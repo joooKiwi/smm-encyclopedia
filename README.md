@@ -1,0 +1,1 @@
+# every-SMM2-properties
