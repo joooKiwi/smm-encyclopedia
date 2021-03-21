@@ -5,8 +5,8 @@ export type Text = { text: string, isActive: boolean, };
 export default class GroupTextButton
     extends AbstractGroupButton<Text> {
 
-    public constructor(props: any, ...elements: Text[]) {
-        super(props, ...elements);
+    public constructor(...elements: Text[]) {
+        super(...elements);
     }
 
     protected getButtons(): JSX.Element[] {

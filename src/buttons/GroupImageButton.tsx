@@ -5,8 +5,8 @@ export type Image = { source: string, name: string, isActive: boolean, };
 export default class GroupImageButton
     extends AbstractGroupButton<Image> {
 
-    public constructor(props: any, ...elements: Image[]) {
-        super(props, ...elements);
+    public constructor(...elements: Image[]) {
+        super(...elements);
     }
 
     protected getButtons(): JSX.Element[] {

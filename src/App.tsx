@@ -22,7 +22,7 @@ export default class App
                     >
                         Learn React
                     </a>
-                    <GroupTextButton children={[{text: 'test', isActive: true,}]}/>
+                    <GroupTextButton elements={[{text: 'test', isActive: true,}]}/>
                 </header>
             </div>
         );

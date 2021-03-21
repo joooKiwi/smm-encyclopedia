@@ -2,21 +2,17 @@ import {Component, ReactNode} from "react";
 import {Image} from "./GroupImageButton";
 
 export default abstract class AbstractGroupButton<T>
-    extends Component<any, { elements: readonly T[] }> {
+    extends Component<{ elements: readonly T[] }, any> {
 
     public static MAXIMUM_HORIZONTAL_LENGTH = 5;
 
-    readonly #elements: T[];
-
-
-    protected constructor(props: any, ...elements: T[]) {
-        super(props);
-        this.#elements = elements;
+    protected constructor(...elements: T[]) {
+        super({elements:elements});
     }
 
 
     protected get elements(): readonly T[] {
-        return this.#elements;
+        return this.props.elements;
     }
 
     /**
