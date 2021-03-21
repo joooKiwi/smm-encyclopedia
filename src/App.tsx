@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.scss';
 
-class App
+export default class App
     extends Component {
 
     render() {
@@ -27,5 +27,3 @@ class App
     }
 
 }
-
-export default App;
