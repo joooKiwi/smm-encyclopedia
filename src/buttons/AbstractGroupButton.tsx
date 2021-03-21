@@ -1,18 +1,23 @@
 import {Component, ReactNode} from "react";
 import {Image} from "./GroupImageButton";
 
-export default abstract class AbstractGroupButton<T>
-    extends Component<{ elements: readonly T[] }, any> {
+
+export default abstract class AbstractGroupButton<T extends { isActive: boolean }>
+    extends Component<{ elements: readonly T[], isChoiceGroup: boolean }, any> {
 
     public static MAXIMUM_HORIZONTAL_LENGTH = 5;
 
-    protected constructor(...elements: T[]) {
-        super({elements:elements});
+    protected constructor(props: { elements: readonly T[]; isChoiceGroup: boolean; }) {
+        super(props);
     }
 
 
     protected get elements(): readonly T[] {
         return this.props.elements;
+    }
+
+    protected get isChoiceGroup(): boolean {
+        return this.props.isChoiceGroup;
     }
 
     /**
@@ -21,11 +26,9 @@ export default abstract class AbstractGroupButton<T>
     protected abstract getButtons(): JSX.Element[];
 
     public render(): ReactNode {
-        console.log(this);
-        console.log(this.elements);
         return <div
-            className={'btn-group btn-group-toggle' + (this.elements.length > AbstractGroupButton.MAXIMUM_HORIZONTAL_LENGTH ? ' btn-group-vertical' : '')}
-            data-toggle="buttons">
+            className={'btn-group' + (this.elements.length > AbstractGroupButton.MAXIMUM_HORIZONTAL_LENGTH ? ' btn-group-vertical' : '')}
+            role="group" aria-label="Basic radio toggle button group">
             {this.getButtons()}
         </div>;
     }
