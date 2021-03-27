@@ -59,9 +59,9 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
         this.elements.forEach((t, index) => {
                 let id = this.groupName + (index + 1);
                 buttons.push(
-                    <input type={this.isChoiceGroup ? 'radio' : 'checkbox'} className="btn-check"
+                    <input key={`input_${this.groupName}_${index}`} type={this.isChoiceGroup ? 'radio' : 'checkbox'} className="btn-check"
                            name={this.groupName} id={id} autoComplete="off" defaultChecked={t.isActive}/>,
-                    <label className={`btn btn${this.isOutline ? '-outline' : ''}-${this.color}`} htmlFor={id}>
+                    <label key={`label_${this.groupName}_${index}`} className={`btn btn${this.isOutline ? '-outline' : ''}-${this.color}`} htmlFor={id}>
                         {this._getContent(t)}
                     </label>,
                 );
@@ -71,7 +71,7 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
     }
 
     public render(): ReactNode {
-        return <div
+        return <div key={`groupButton_${this.groupName}`}
             className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')}
             role="group" aria-label={`Basic ${this.isChoiceGroup ? 'radio' : 'checkbox'} toggle button group`}>
             {this.__getButtons()}
