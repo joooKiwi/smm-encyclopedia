@@ -10,15 +10,8 @@ export default class GroupTextButton
         super(props);
     }
 
-    protected getButtons(): JSX.Element[] {
-        return this.elements.map((image, index) => {
-                let id = 'btnradio' + index;
-                return <div key={id}>
-                    <input type={this.isChoiceGroup ? 'radio': 'checkbox'} className="btn-check" name="btnradio" id={id} autoComplete="off" defaultChecked={image.isActive}/>
-                    <label className="btn btn-outline-primary" htmlFor={id}>{image.text}</label>
-                </div>;
-            }
-        );
+    protected _getContent(text: ActivatableTextElement): string {
+        return text.text;
     }
 
 }
