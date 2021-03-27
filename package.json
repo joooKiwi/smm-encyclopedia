@@ -15,7 +15,8 @@
   "keywords": [
     "SuperMarioMaker",
     "Nintendo",
-    "videoGame"
+    "videoGame",
+    "wiki"
   ],
   "bugs": {
     "url": "https://github.com/joooKiwi/every-SMM2-properties/issues"
@@ -52,6 +53,5 @@
     "react-scripts": "4.0.3",
     "typescript": "^4.2.3",
     "web-vitals": "^1.1.1"},
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
