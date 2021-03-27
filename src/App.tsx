@@ -1,10 +1,18 @@
-import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import React, {Component} from 'react';
+import logo from "./logo.svg";
 import GroupTextButton from "./buttons/GroupTextButton";
+import {PossibleLanguages} from "./Languages";
 
 export default class App
-    extends Component {
+    extends Component<{ lang: PossibleLanguages }, any> {
+
+
+
+    protected get language(): PossibleLanguages {
+        return this.props.lang;
+    }
 
     render() {
         return (
@@ -29,3 +37,4 @@ export default class App
     }
 
 }
+
