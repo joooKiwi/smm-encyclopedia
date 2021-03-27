@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/joooKiwi/every-SMM2-properties/issues"
   },
-  "homepage": "https://github.com/joooKiwi/every-SMM2-properties#readme",
   "eslintConfig": {
     "extends": [
       "react-app",
