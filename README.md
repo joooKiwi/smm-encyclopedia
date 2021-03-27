@@ -20,7 +20,8 @@ To run the project, the command `npm start` is the only thing to do.
  - It will also reload if any edits is made
  - In the console, it will display any lint errors 
 
-By default, it will open it in the default browser automatically. If it has not worked, then, open [http://localhost:3000](http://localhost:3000)\[generated-after-link] to display the application.
+By default, it will open it in the default browser automatically. If it has not worked, then, open [http://localhost:3000](localhost:3000) to display the application.
+If it needs to be tested on other devices than the local machine, there will be another address. An example could be [http://192.168.4.20:3000](192.168.4.20:3000).
 
 ### Running tests
 
