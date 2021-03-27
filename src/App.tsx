@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.scss';
 import React, {Component} from 'react';
 import logo from "./logo.svg";
@@ -8,9 +7,7 @@ import {PossibleLanguages} from "./Languages";
 export default class App
     extends Component<{ lang: PossibleLanguages }, any> {
 
-
-
-    protected get language(): PossibleLanguages {
+    protected get language() {
         return this.props.lang;
     }
 
@@ -37,4 +34,3 @@ export default class App
     }
 
 }
-
