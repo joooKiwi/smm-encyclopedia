@@ -30,6 +30,11 @@ export abstract class Languages {
         return this.#_acronym;
     }
 
+    private __setLanguageToHTML(): this {
+        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym))
+        return this;
+    }
+
 
     public static get currentLanguage(): Languages {
         return this.__CURRENT_LANGUAGE;
@@ -38,7 +43,7 @@ export abstract class Languages {
     public static setCurrentLanguage(value: Languages | string) {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
-            this.__CURRENT_LANGUAGE = selectedLanguage;
+            this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML();
     }
 
 
