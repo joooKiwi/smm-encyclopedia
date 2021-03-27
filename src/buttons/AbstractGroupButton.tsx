@@ -1,4 +1,4 @@
-import {GroupButtonComponents} from "./GroupButtonComponent";
+import {GroupButtonComponents} from "./components/GroupButtonComponent";
 import React, {Component, ReactNode} from "react";
 import {ActivatableElement} from "./elements/ActivatableElement";
 

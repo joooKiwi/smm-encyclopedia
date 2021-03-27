@@ -1,5 +1,5 @@
 import AbstractGroupButton from "./AbstractGroupButton";
-import {GroupButtonComponents} from "./GroupButtonComponent";
+import {GroupButtonComponents} from "./components/GroupButtonComponent";
 import React from "react";
 import {ActivatableImageElement} from "./elements/ActivatableImageElement";
 
