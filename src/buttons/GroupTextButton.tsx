@@ -1,12 +1,12 @@
 import AbstractGroupButton from "./AbstractGroupButton";
+import {GroupButtonComponents} from "./GroupButtonComponent";
 import React from "react";
-
-export type Text = { text: string, isActive: boolean, };
+import {ActivatableTextElement} from "./elements/ActivatableTextElement";
 
 export default class GroupTextButton
-    extends AbstractGroupButton<Text> {
+    extends AbstractGroupButton<ActivatableTextElement> {
 
-    public constructor(props: { elements: readonly Text[]; isChoiceGroup: boolean; }) {
+    public constructor(props: GroupButtonComponents<ActivatableTextElement>) {
         super(props);
     }
 

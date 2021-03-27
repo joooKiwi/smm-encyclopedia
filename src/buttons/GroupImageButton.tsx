@@ -1,12 +1,12 @@
 import AbstractGroupButton from "./AbstractGroupButton";
+import {GroupButtonComponents} from "./GroupButtonComponent";
 import React from "react";
-
-export type Image = { source: string, name: string, isActive: boolean, };
+import {ActivatableImageElement} from "./elements/ActivatableImageElement";
 
 export default class GroupImageButton
-    extends AbstractGroupButton<Image> {
+    extends AbstractGroupButton<ActivatableImageElement> {
 
-    public constructor(props: { elements: readonly Image[]; isChoiceGroup: boolean; }) {
+    public constructor(props: GroupButtonComponents<ActivatableImageElement>) {
         super(props);
     }
 

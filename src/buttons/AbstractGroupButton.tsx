@@ -1,13 +1,13 @@
-import {Component, ReactNode} from "react";
-import {Image} from "./GroupImageButton";
+import {GroupButtonComponents} from "./GroupButtonComponent";
+import React, {Component, ReactNode} from "react";
+import {ActivatableElement} from "./elements/ActivatableElement";
 
-
-export default abstract class AbstractGroupButton<T extends { isActive: boolean }>
-    extends Component<{ elements: readonly T[], isChoiceGroup: boolean }, any> {
+export default abstract class AbstractGroupButton<T extends ActivatableElement>
+    extends Component<GroupButtonComponents<T>, any> {
 
     public static MAXIMUM_HORIZONTAL_LENGTH = 5;
 
-    protected constructor(props: { elements: readonly T[]; isChoiceGroup: boolean; }) {
+    protected constructor(props: GroupButtonComponents<T>) {
         super(props);
     }
 
