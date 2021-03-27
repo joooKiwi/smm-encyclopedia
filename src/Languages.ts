@@ -80,3 +80,8 @@ export abstract class Languages {
 }
 
 Languages.setDefaultLanguage('en_US');
+
+export function __(key: string, language: PossibleLanguages = Languages.currentLanguage.acronym): string {
+    //TODO add file searcher on the json files for this method
+    return key;
+}
