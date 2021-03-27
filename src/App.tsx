@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import GroupTextButton from "./buttons/GroupTextButton";
 
-class App
+export default class App
     extends Component {
 
     render() {
@@ -21,11 +22,10 @@ class App
                     >
                         Learn React
                     </a>
+                    <GroupTextButton elements={[{text: 'test', isActive: true,}]}/>
                 </header>
             </div>
         );
     }
 
 }
-
-export default App;
