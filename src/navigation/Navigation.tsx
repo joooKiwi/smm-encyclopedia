@@ -11,7 +11,10 @@ export default class Navigation
         return (<nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">
                 <Link key={'navigationHome'} className="navbar-brand" to={`/${Languages.currentLanguage}`}>Home</Link>
-                <div id="navbar-right-container" className="collapse navbar-collapse">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"/>
+                </button>
+                <div id="navbar-container" className="collapse navbar-collapse">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <LanguageChanger/>
                     </ul>
