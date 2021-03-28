@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import GroupTextButton from "./buttons/GroupTextButton";
 import {PossibleLanguages} from "./Languages";
 import Navigation from "./navigation/Navigation";
+import Footer from "./navigation/Footer";
 
 export default class App
     extends Component<{ lang: PossibleLanguages }, any> {
@@ -33,6 +34,7 @@ export default class App
             </div>
         );
             <Navigation/>
+            <Footer/>
     }
 
 }
