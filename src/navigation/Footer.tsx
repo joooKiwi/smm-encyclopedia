@@ -1,4 +1,4 @@
-import {__, Languages} from "../Languages";
+import {__, Languages} from "../lang/Languages";
 import {Component} from "react";
 
 export default class Footer extends Component {
@@ -9,22 +9,10 @@ export default class Footer extends Component {
                 <div className="row">
                     <span id="copyright" className="text-sm-center text-light small">Copyright <sup>©</sup> Nintendo<sup>TM</sup></span>
                     <span id="copyright_madeBy" className="text-sm-center text-light small">{__('Web application made by')}: JóôòKiwi</span>
-                    <span id="copyright_lastEdited" className="text-sm-center text-light small">{__('Last update')}: {getDateFromLanguage()}</span>
+                    <span id="copyright_lastEdited" className="text-sm-center text-light small">{__('Last update')}: {Languages.currentLanguage.newDateInstanceCreator.createDate(28, 3, 2021)}</span>
                 </div>
             </div>
         </footer>
     }
 
-}
-
-function getDateFromLanguage(): JSX.Element {
-    switch (Languages.currentLanguage.acronym) {
-        default:
-        case 'en_EU':
-        case 'en_US':
-            return <>March 27<sup>th</sup>, 2021</>;
-        case 'fr_CA':
-        case 'fr_EU':
-            return <>27 mars 2021</>;
-    }
 }
