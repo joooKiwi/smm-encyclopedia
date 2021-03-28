@@ -1,3 +1,4 @@
+import './GroupImageButton.scss';
 import AbstractGroupButton from "./AbstractGroupButton";
 import {GroupButtonComponents} from "./components/GroupButtonComponent";
 import React from "react";
