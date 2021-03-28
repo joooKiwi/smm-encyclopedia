@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import logo from "./logo.svg";
 import GroupTextButton from "./buttons/GroupTextButton";
 import {PossibleLanguages} from "./Languages";
+import Navigation from "./navigation/Navigation";
 
 export default class App
     extends Component<{ lang: PossibleLanguages }, any> {
@@ -31,6 +32,7 @@ export default class App
                 </header>
             </div>
         );
+            <Navigation/>
     }
 
 }
