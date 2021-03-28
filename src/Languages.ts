@@ -1,54 +1,84 @@
-export type PossibleLanguages = 'fr_CA' | 'fr_EU'
+export type PossibleLanguagesAcronym =
+    'ja'
     | 'en_US' | 'en_EU'
     | 'es_AM' | 'es_EU'
-    | 'nl' | 'de'| 'it' | 'ru'
-    | 'ja' | 'ko'
+    | 'fr_CA' | 'fr_EU'
+    | 'nl' | 'de' | 'it' | 'ru'
+    | 'ko'
     | 'zh_T' | 'zh_S';
+export type PossibleLanguagesEnglishName =
+    'Japanese'
+    | 'English (America)' | 'English (Europe)'
+    | 'Spanish (America)' | 'Spanish (Europa)'
+    | 'French (Canada)' | 'French (Europe)'
+    | 'Dutch' | 'German' | 'Italian' | 'Russian'
+    | 'Korean'
+    | 'Chinese (Traditional)' | 'Chinese (Simplified)';
+export type PossibleLanguagesOriginalName =
+    '日本語'
+    | 'English (America)' | 'English (Europe)'
+    | 'Español (America)' | 'Español (Europe)'
+    | 'Français (Canada)' | 'Français (Europe)'
+    | 'Nederlands' | 'Deutsche' | 'Italiano' | 'русский'
+    | '한국어'
+    | '简体(中文)' | '中國(傳統的)';
 
 export abstract class Languages {
     public static readonly JAPANESE = new class extends Languages {
-    }('ja');
+    }('ja', 'Japanese', '日本語',);
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
-    }('en_US');
+    }('en_US', 'English (America)', 'English (America)',);
     public static readonly EUROPEAN_ENGLISH = new class extends Languages {
-    }('en_EU');
+    }('en_EU', 'English (Europe)', 'English (Europe)',);
     public static readonly AMERICAN_SPANISH = new class extends Languages {
-    }('es_AM');
+    }('es_AM', 'Spanish (America)', 'Español (America)',);
     public static readonly EUROPEAN_SPANISH = new class extends Languages {
-    }('es_EU');
+    }('es_EU', 'Spanish (Europe)', 'Español (Europa)',);
     public static readonly CANADIAN_FRENCH = new class extends Languages {
-    }('fr_CA');
+    }('fr_CA', 'French (Canada)', 'Français (Canada)',);
     public static readonly EUROPEAN_FRENCH = new class extends Languages {
-    }('fr_EU');
+    }('fr_EU', 'French (Europe)', 'Français (Europe)',);
     public static readonly DUTCH = new class extends Languages {
-    }('nl');
+    }('nl', 'Dutch', 'Nederlands',);
     public static readonly GERMAN = new class extends Languages {
-    }('de');
+    }('de', 'German', 'Deutsche',);
     public static readonly ITALIAN = new class extends Languages {
-    }('it');
+    }('it', 'Italian', 'Italiano',);
     public static readonly RUSSIAN = new class extends Languages {
-    }('ru');
+    }('ru', 'Russian', 'русский');
     public static readonly KOREAN = new class extends Languages {
-    }('ko');
+    }('ko', 'Korean', '한국어',);
     public static readonly CHINESE_TRADITIONAL = new class extends Languages {
-    }('zh_S');
+    }('zh_S', 'Chinese (Traditional)', '简体(中文)',);
     public static readonly CHINESE_SIMPLIFIED = new class extends Languages {
-    }('zh_S');
+    }('zh_S', 'Chinese (Simplified)', '中國(傳統的)',);
 
 
     private static __VALUES: readonly Languages[];
     private static __CURRENT_LANGUAGE: Languages;
-    private static __DEFAULT_LANGUAGE: PossibleLanguages;
+    private static __DEFAULT_LANGUAGE: PossibleLanguagesAcronym;
 
-    readonly #_acronym
+    readonly #acronym;
+    readonly #englishName;
+    readonly #originalName;
 
-    private constructor(acronym: PossibleLanguages) {
-        this.#_acronym = acronym;
+    private constructor(acronym: PossibleLanguagesAcronym, englishName: PossibleLanguagesEnglishName, originalName: PossibleLanguagesOriginalName) {
+        this.#acronym = acronym;
+        this.#englishName = englishName;
+        this.#originalName = originalName;
     }
 
 
     public get acronym() {
-        return this.#_acronym;
+        return this.#acronym;
+    }
+
+    public get englishName() {
+        return this.#englishName;
+    }
+
+    public get originalName() {
+        return this.#originalName;
     }
 
     private __setLanguageToHTML(): this {
@@ -61,28 +91,28 @@ export abstract class Languages {
         return this.__CURRENT_LANGUAGE;
     }
 
-    public static setCurrentLanguage(value: Languages | string) {
+    public static setCurrentLanguage(value: Languages | string): void {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
             this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML();
     }
 
 
-    public static get defaultLanguage(): PossibleLanguages {
+    public static get defaultLanguage(): PossibleLanguagesAcronym {
         return this.__DEFAULT_LANGUAGE;
     }
 
-    public static setDefaultLanguage(value: Languages | PossibleLanguages) {
+    public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
         this.__DEFAULT_LANGUAGE = typeof value === 'string' ? value : value.acronym;
     }
 
 
-    public static getValue(value: Languages | PossibleLanguages): Languages
+    public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
     public static getValue(value: string): Languages | null
     public static getValue(value: Languages | string): Languages | null
     public static getValue(value: Languages | string): Languages | null {
         return typeof value === 'string'
-            ? this.values.find(language => language.acronym === value) || null
+            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) || null
             : value;
     }
 
@@ -108,7 +138,7 @@ export abstract class Languages {
 
 Languages.setDefaultLanguage('en_US');
 
-export function __(key: string, language: PossibleLanguages = Languages.currentLanguage.acronym): string {
+export function __(key: string, language: PossibleLanguagesAcronym = Languages.currentLanguage.acronym): string {
     //TODO add file searcher on the json files for this method
     return key;
 }
