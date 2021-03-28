@@ -1,5 +1,5 @@
 import App from "../App";
-import {Languages} from "../Languages";
+import {Languages} from "../lang/Languages";
 import {BrowserRouter, Redirect, Route, Switch, useParams} from "react-router-dom";
 import React from "react";
 
