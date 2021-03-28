@@ -7,15 +7,9 @@ export default class Footer extends Component {
         return <footer id="footer_container" className="bg-dark pt-4 pb-3 mb-0">
             <div className="container">
                 <div className="row">
-                    <span id="copyright" className="w-100 text-sm-center text-light small">
-                        Copyright <sup>©</sup> Nintendo<sup>TM</sup>
-                    </span>
-                    <span id="copyright_madeBy" className="w-100 text-sm-center text-light small">
-                        {__('Web application made by')}: JóôòKiwi
-                    </span>
-                    <span id="copyright_lastEdited" className="w-100 text-sm-center text-light small">
-                        {__('Last update')}: {getDateFromLanguage()}
-                    </span>
+                    <span id="copyright" className="w-100 text-sm-center text-light small">Copyright <sup>©</sup> Nintendo<sup>TM</sup></span>
+                    <span id="copyright_madeBy" className="w-100 text-sm-center text-light small">{__('Web application made by')}: JóôòKiwi</span>
+                    <span id="copyright_lastEdited" className="w-100 text-sm-center text-light small">{__('Last update')}: {getDateFromLanguage()}</span>
                 </div>
             </div>
         </footer>

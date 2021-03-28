@@ -1,6 +1,6 @@
 import React, {Component, ReactNode} from "react";
-import { Link } from "react-router-dom";
-import {Languages, PossibleLanguages} from "../Languages";
+import {Link} from "react-router-dom";
+import {Languages} from "../Languages";
 import LanguageChanger from "./LanguageChanger";
 
 export default class Navigation
