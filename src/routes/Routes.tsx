@@ -1,12 +1,16 @@
-import App from "./App";
-import {Languages} from "./Languages";
+import App from "../App";
+import {Languages} from "../Languages";
 import {BrowserRouter, Redirect, Route, Switch, useParams} from "react-router-dom";
 import React from "react";
 
 export default function Routes() {
     return <BrowserRouter>
         <Switch>
-            <Route path="/:lang" children={<LanguageRedirector/>}/>
+            <Route path="/:lang">
+                <LanguageRedirector/>
+                <Route path="/every/entity"/>
+                <Route path="/every/limit"/>
+            </Route>
             <Route path="/"><Redirect to={`/${Languages.defaultLanguage}`}/></Route>
         </Switch>
     </BrowserRouter>;
