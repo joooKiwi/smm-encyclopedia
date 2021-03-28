@@ -1,4 +1,4 @@
-export type PossibleLanguages = 'fr_CA' | 'fr_EU' | 'en_US' | 'en_EU' | 'sp' | 'jp';
+export type PossibleLanguages = 'fr_CA' | 'fr_EU' | 'en_US' | 'en_EU' | 'es' | 'ja' | 'ko' | 'zh_T' | 'zh_S';
 
 export abstract class Languages {
     public static readonly CANADIAN_FRENCH = new class extends Languages {
@@ -10,9 +10,15 @@ export abstract class Languages {
     public static readonly EUROPEAN_ENGLISH = new class extends Languages {
     }('en_EU');
     public static readonly SPANISH = new class extends Languages {
-    }('sp');
+    }('es');
     public static readonly JAPANESE = new class extends Languages {
-    }('jp');
+    }('ja');
+    public static readonly KOREAN = new class extends Languages {
+    }('ko');
+    public static readonly CHINESE_TRADITIONAL = new class extends Languages {
+    }('zh_S');
+    public static readonly CHINESE_SIMPLIFIED = new class extends Languages {
+    }('zh_S');
 
 
     private static __VALUES: readonly Languages[];
@@ -73,6 +79,8 @@ export abstract class Languages {
                 this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
                 this.SPANISH,
                 this.JAPANESE,
+                this.KOREAN,
+                this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
             ]
             : this.__VALUES;
     }
