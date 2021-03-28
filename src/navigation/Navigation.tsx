@@ -15,7 +15,10 @@ export default class Navigation
                     <span className="navbar-toggler-icon"/>
                 </button>
                 <div id="navbar-container" className="collapse navbar-collapse">
-                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul id="left-navbar-container" className="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    </ul>
+                    <ul id="right-navbar-container" className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <LanguageChanger/>
                     </ul>
                 </div>
