@@ -18,7 +18,7 @@ function LanguageRedirector() {
         Languages.setCurrentLanguage(params.lang);
         let currentLanguage = Languages.getValue(params.lang);
         if (currentLanguage != null)
-            return <App lang={currentLanguage.acronym}/>;
+            return <App/>;
     }
     return <Redirect to={`/${Languages.defaultLanguage}`}/>;
 }
