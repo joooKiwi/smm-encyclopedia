@@ -9,7 +9,7 @@ export type PossibleLanguagesAcronym =
 export type PossibleLanguagesEnglishName =
     'Japanese'
     | 'English (America)' | 'English (Europe)'
-    | 'Spanish (America)' | 'Spanish (Europa)'
+    | 'Spanish (America)' | 'Spanish (Europe)'
     | 'French (Canada)' | 'French (Europe)'
     | 'Dutch' | 'German' | 'Italian' | 'Russian'
     | 'Korean'
@@ -17,7 +17,7 @@ export type PossibleLanguagesEnglishName =
 export type PossibleLanguagesOriginalName =
     '日本語'
     | 'English (America)' | 'English (Europe)'
-    | 'Español (America)' | 'Español (Europe)'
+    | 'Español (America)' | 'Español (Europa)'
     | 'Français (Canada)' | 'Français (Europe)'
     | 'Nederlands' | 'Deutsche' | 'Italiano' | 'русский'
     | '한국어'
