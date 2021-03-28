@@ -7,11 +7,12 @@ export default function Routes() {
     return <BrowserRouter>
         <Switch>
             <Route path="/:lang">
+                {/*<Route path="/home"><LanguageRedirector/></Route>*/}
                 <LanguageRedirector/>
                 <Route path="/every/entity"/>
                 <Route path="/every/limit"/>
             </Route>
-            <Route path="/"><Redirect to={`/${Languages.defaultLanguage}`}/></Route>
+            <Route path="/"><LanguageRedirector/></Route>
         </Switch>
     </BrowserRouter>;
 }
@@ -24,5 +25,5 @@ function LanguageRedirector() {
         if (currentLanguage != null)
             return <App/>;
     }
-    return <Redirect to={`/${Languages.defaultLanguage}`}/>;
+    return <Redirect to={`/${Languages.defaultLanguage}/home`}/>;
 }
