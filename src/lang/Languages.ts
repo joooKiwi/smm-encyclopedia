@@ -69,15 +69,15 @@ export abstract class Languages {
     }
 
 
-    public get acronym() {
+    public get acronym(): PossibleLanguagesAcronym {
         return this.#acronym;
     }
 
-    public get englishName() {
+    public get englishName(): PossibleLanguagesEnglishName {
         return this.#englishName;
     }
 
-    public get originalName() {
+    public get originalName(): PossibleLanguagesOriginalName {
         return this.#originalName;
     }
 
