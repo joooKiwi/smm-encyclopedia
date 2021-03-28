@@ -1,18 +1,33 @@
-export type PossibleLanguages = 'fr_CA' | 'fr_EU' | 'en_US' | 'en_EU' | 'es' | 'ja' | 'ko' | 'zh_T' | 'zh_S';
+export type PossibleLanguages = 'fr_CA' | 'fr_EU'
+    | 'en_US' | 'en_EU'
+    | 'es_AM' | 'es_EU'
+    | 'nl' | 'de'| 'it' | 'ru'
+    | 'ja' | 'ko'
+    | 'zh_T' | 'zh_S';
 
 export abstract class Languages {
-    public static readonly CANADIAN_FRENCH = new class extends Languages {
-    }('fr_CA');
-    public static readonly EUROPEAN_FRENCH = new class extends Languages {
-    }('fr_EU');
+    public static readonly JAPANESE = new class extends Languages {
+    }('ja');
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
     }('en_US');
     public static readonly EUROPEAN_ENGLISH = new class extends Languages {
     }('en_EU');
-    public static readonly SPANISH = new class extends Languages {
-    }('es');
-    public static readonly JAPANESE = new class extends Languages {
-    }('ja');
+    public static readonly AMERICAN_SPANISH = new class extends Languages {
+    }('es_AM');
+    public static readonly EUROPEAN_SPANISH = new class extends Languages {
+    }('es_EU');
+    public static readonly CANADIAN_FRENCH = new class extends Languages {
+    }('fr_CA');
+    public static readonly EUROPEAN_FRENCH = new class extends Languages {
+    }('fr_EU');
+    public static readonly DUTCH = new class extends Languages {
+    }('nl');
+    public static readonly GERMAN = new class extends Languages {
+    }('de');
+    public static readonly ITALIAN = new class extends Languages {
+    }('it');
+    public static readonly RUSSIAN = new class extends Languages {
+    }('ru');
     public static readonly KOREAN = new class extends Languages {
     }('ko');
     public static readonly CHINESE_TRADITIONAL = new class extends Languages {
@@ -75,10 +90,14 @@ export abstract class Languages {
     public static get values(): readonly Languages[] {
         return this.__VALUES === undefined
             ? this.__VALUES = [
-                this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
-                this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
-                this.SPANISH,
                 this.JAPANESE,
+                this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
+                this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
+                this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
+                this.DUTCH,
+                this.GERMAN,
+                this.ITALIAN,
+                this.RUSSIAN,
                 this.KOREAN,
                 this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
             ]
