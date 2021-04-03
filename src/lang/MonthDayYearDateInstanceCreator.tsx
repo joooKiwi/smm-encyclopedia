@@ -40,7 +40,7 @@ export class MonthDayYearDateInstanceCreator
     }
 
 
-    public createDate(day: DayNumber, month: MonthNumber, year: number): JSX.Element {
+    public createDate(day: DayNumber, month: MonthNumber, year: number) {
         return <>{this.monthCallback(month)}{this.contentBetweenMonthAndDay}{this.dayCallback(day)}{this.contentBetweenDayAndYear}{this.yearCallback(year)}</>
     }
 
