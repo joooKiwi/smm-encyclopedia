@@ -65,8 +65,8 @@ export abstract class Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
             return new DayMonthYearDateInstanceCreator(
-                day => <>{day}</>, ' de ',
-                month => <>{this.#everyMonths[month - 1]}</>, ' del ',
+                day => <>{day}</>, ' ',
+                month => <>{this.#everyMonths[month - 1]}</>, ' ',
                 year => <>{year}</>,
             );
         }
