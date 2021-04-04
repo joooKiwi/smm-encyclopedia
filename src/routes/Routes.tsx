@@ -36,7 +36,7 @@ function DirectRoutes() {
         Languages.setCurrentLanguage(params.lang);
         const currentLanguage = Languages.getValue(params.lang);
         if (currentLanguage != null)
-            return everySimpleRoutes.find(route => location.pathname == '/' + currentLanguage.acronym + route.path)?.renderCallback()
+            return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.acronym + route.path)?.renderCallback()
                 || <Redirect to={`/${currentLanguage.acronym}/home`}/>;
     }
     return <Redirect to={`/${Languages.defaultLanguage}/home`}/>;
