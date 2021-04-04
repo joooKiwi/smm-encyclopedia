@@ -1,4 +1,4 @@
-import App from "../app/App";
+import HomeApp from "../app/HomeApp";
 import {Languages} from "../lang/Languages";
 import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from "react-router-dom";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
 
 const everySimpleRoutes: SimpleRoute[] = [
-    {path: '/home', renderCallback: () => <App/>,},
+    {path: '/home', renderCallback: () => <HomeApp/>,},
     {path: '/every/entity', renderCallback: () => <>every entities</>,},
     {path: '/every/limit', renderCallback: () => <>every limits</>,},
 ];
