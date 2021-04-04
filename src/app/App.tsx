@@ -1,7 +1,7 @@
 import './App.scss';
 import React, {Component} from 'react';
-import Navigation from "./navigation/Navigation";
-import Footer from "./navigation/Footer";
+import Navigation from "../navigation/Navigation";
+import Footer from "../navigation/Footer";
 
 export default class App
     extends Component {

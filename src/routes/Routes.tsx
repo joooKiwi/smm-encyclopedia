@@ -1,4 +1,4 @@
-import App from "../App";
+import App from "../app/App";
 import {Languages} from "../lang/Languages";
 import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from "react-router-dom";
 import React from "react";
@@ -21,7 +21,7 @@ export default function Routes() {
     </BrowserRouter>;
 }
 
-function renderRoutesInSwitch(){
+function renderRoutesInSwitch() {
     everySimpleRoutes.map(route =>
         <Route key={`switchRoute${route.path}`} path={route.path}>
             <Redirect to={`/${Languages.defaultLanguage}${route.path}`}/>
