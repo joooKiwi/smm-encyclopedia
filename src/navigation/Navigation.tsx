@@ -6,7 +6,7 @@ import LanguageChanger from "./LanguageChanger";
 export default class Navigation
     extends Component {
 
-    render(): ReactNode {
+    public render(): ReactNode {
 
         return (<nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">
@@ -19,8 +19,8 @@ export default class Navigation
                         <li className="nav-item dropdown">
                             <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{__('Display')}...</span>
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li className="dropdown-item"><Link key="navigationEveryEntities" className="nav-link active" to={`${Languages.currentLanguage.acronym}/every/entity`}>{__('Display every entities')}</Link></li>
-                                <li className="dropdown-item"><Link key="navigationEveryLimit" className="nav-link active" to={`${Languages.currentLanguage.acronym}/every/limit`}>{__('Display every limits')}</Link></li>
+                                <li className="dropdown-item"><Link key="navigationEveryEntities" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/entity`}>{__('Display every entities')}</Link></li>
+                                <li className="dropdown-item"><Link key="navigationEveryLimit" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/limit`}>{__('Display every limits')}</Link></li>
                             </ul>
                         </li>
                     </ul>
