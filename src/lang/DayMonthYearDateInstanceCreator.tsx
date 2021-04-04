@@ -31,7 +31,7 @@ export class DayMonthYearDateInstanceCreator
         return this.#monthCallback;
     }
 
-    public get contentBetweenMonthAndYear(): string {
+    public get contentBetweenMonthAndYear() {
         return this.#contentBetweenMonthAndYear;
     }
 
@@ -40,7 +40,7 @@ export class DayMonthYearDateInstanceCreator
     }
 
 
-    public createDate(day: DayNumber, month: MonthNumber, year: number): JSX.Element {
+    public createDate(day: DayNumber, month: MonthNumber, year: number) {
         return <>{this.dayCallback(day)}{this.contentBetweenDayAndMonth}{this.monthCallback(month)}{this.contentBetweenMonthAndYear}{this.yearCallback(year)}</>
     }
 
