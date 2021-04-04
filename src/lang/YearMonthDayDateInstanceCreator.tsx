@@ -1,6 +1,6 @@
 import {DateInstanceCreator, DayNumber, MonthNumber} from "./DateInstanceCreator";
 
-export class YearDayMonthDateInstanceCreator
+export class YearMonthDayDateInstanceCreator
     implements DateInstanceCreator {
 
     readonly #yearCallback;
@@ -40,7 +40,7 @@ export class YearDayMonthDateInstanceCreator
     }
 
 
-    public createDate(day: DayNumber, month: MonthNumber, year: number): JSX.Element {
+    public createDate(day: DayNumber, month: MonthNumber, year: number) {
         return <>{this.yearCallback(year)}{this.contentBetweenYearAndMonth}{this.monthCallback(month)}{this.contentBetweenMonthAndDay}{this.dayCallback(day)}</>
     }
 

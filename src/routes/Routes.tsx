@@ -1,29 +1,43 @@
 import App from "../App";
 import {Languages} from "../lang/Languages";
-import {BrowserRouter, Redirect, Route, Switch, useParams} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from "react-router-dom";
 import React from "react";
+
+type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
+
+const everySimpleRoutes: SimpleRoute[] = [
+    {path: '/home', renderCallback: () => <App/>,},
+    {path: '/every/entity', renderCallback: () => <>every entities</>,},
+    {path: '/every/limit', renderCallback: () => <>every limits</>,},
+];
 
 export default function Routes() {
     return <BrowserRouter>
         <Switch>
-            <Route path="/:lang">
-                {/*<Route path="/home"><LanguageRedirector/></Route>*/}
-                <LanguageRedirector/>
-                <Route path="/every/entity"/>
-                <Route path="/every/limit"/>
-            </Route>
-            <Route path="/"><LanguageRedirector/></Route>
+            <Route exact path="/"><Redirect to={`/${Languages.defaultLanguage}/home`}/></Route>
+            {renderRoutesInSwitch()}
+            <Route path="/:lang"><DirectRoutes/></Route>
         </Switch>
     </BrowserRouter>;
 }
 
-function LanguageRedirector() {
+function renderRoutesInSwitch(){
+    everySimpleRoutes.map(route =>
+        <Route key={`switchRoute${route.path}`} path={route.path}>
+            <Redirect to={`/${Languages.defaultLanguage}${route.path}`}/>
+        </Route>
+    );
+}
+
+function DirectRoutes() {
     const params: { lang?: string } = useParams();
-    if ('lang' in params && params.lang != null) {
+    const location = useLocation();
+    if ('lang' in params && typeof params.lang === 'string') {
         Languages.setCurrentLanguage(params.lang);
-        let currentLanguage = Languages.getValue(params.lang);
+        const currentLanguage = Languages.getValue(params.lang);
         if (currentLanguage != null)
-            return <App/>;
+            return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.acronym + route.path)?.renderCallback()
+                || <Redirect to={`/${currentLanguage.acronym}/home`}/>;
     }
     return <Redirect to={`/${Languages.defaultLanguage}/home`}/>;
 }
