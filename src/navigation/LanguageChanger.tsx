@@ -8,7 +8,7 @@ export default class LanguageChanger
     private __retrieveEveryLanguages() {
         return Languages.values.map(language => language === Languages.currentLanguage
             ? <span className="dropdown-item disabled">{__(language.englishName)}</span>
-            : <Link key={`languageChanger_${language.acronym}`} className="dropdown-item" to={`/${language.acronym}`}>{__(language.englishName)}<sup>({language.originalName})</sup></Link>
+            : <Link key={`languageChanger_${language.acronym}`} className="dropdown-item" to={`/${language.acronym}/home`}>{__(language.englishName)}<sup>({language.originalName})</sup></Link>
         ).map(htmlElement=><li>{htmlElement}</li>);
     };
 
