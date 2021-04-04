@@ -1,7 +1,8 @@
-import {DateInstanceCreator, DayNumber, MonthNumber} from "./DateInstanceCreator";
+import {DayNumber, MonthNumber} from "./DateInstanceCreator";
+import {GenericDateInstanceCreatorBuilder} from "./GenericDateInstanceCreatorBuilder";
 
 export class YearMonthDayDateInstanceCreator
-    implements DateInstanceCreator {
+    extends GenericDateInstanceCreatorBuilder {
 
     readonly #yearCallback;
     readonly #contentBetweenYearAndMonth;
@@ -12,6 +13,7 @@ export class YearMonthDayDateInstanceCreator
     public constructor(yearCallback: (year: number) => JSX.Element, contentBetweenYearAndMonth: string,
                        monthCallback: (month: MonthNumber) => JSX.Element, contentBetweenMonthAndDay: string,
                        dayCallback: (day: DayNumber) => JSX.Element,) {
+        super();
         this.#yearCallback = yearCallback;
         this.#contentBetweenYearAndMonth = contentBetweenYearAndMonth;
         this.#monthCallback = monthCallback;
@@ -40,7 +42,7 @@ export class YearMonthDayDateInstanceCreator
     }
 
 
-    public createDate(day: DayNumber, month: MonthNumber, year: number) {
+    protected _createDate(day: DayNumber, month: MonthNumber, year: number) {
         return <>{this.yearCallback(year)}{this.contentBetweenYearAndMonth}{this.monthCallback(month)}{this.contentBetweenMonthAndDay}{this.dayCallback(day)}</>
     }
 
