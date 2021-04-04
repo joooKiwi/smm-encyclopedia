@@ -1,9 +1,11 @@
+import './LanguageChanger.scss';
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {__, Languages} from "../lang/Languages";
 
 export default class LanguageChanger
     extends Component {
+
 
     private __retrieveEveryLanguages() {
         return Languages.values.map(language => {
@@ -18,9 +20,9 @@ export default class LanguageChanger
     };
 
     public render() {
-        return <li key={'languageChanger'} className="nav-item dropdown d-flex">
-            <span key={'languageChanger_changeTheLanguage'} id="languageChanger" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{__('Change the language')}</span>
-            <ul className="dropdown-menu" aria-labelledby="languageChanger">
+        return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
+            <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{__('Change the language')}</span>
+            <ul id="languageChanger-dropdown-menu" className="dropdown-menu" aria-labelledby="languageChanger-navigation-button">
                 {this.__retrieveEveryLanguages()}
             </ul>
         </li>
