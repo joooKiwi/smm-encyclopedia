@@ -6,7 +6,10 @@ import {initReactI18next} from 'react-i18next';
 // for passing in lng and translations on init
 
 const resources: Resource = {
-    en_US: {},
+    en_US: {
+        language: import('../locale/en_US/language.json'),
+        content: import('../locale/en_US/content.json'),
+    },
 };
 
 i18n
