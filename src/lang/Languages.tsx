@@ -146,12 +146,52 @@ export abstract class Languages {
         this.#originalName = originalName;
     }
 
+
+    public get acronym(): PossibleLanguagesAcronym {
+        return this.#acronym;
+    }
+
+    public get englishName(): PossibleLanguagesEnglishName {
+        return this.#englishName;
+    }
+
+    public get originalName(): PossibleLanguagesOriginalName {
+        return this.#originalName;
+    }
+
+    public abstract get newDateInstanceCreator(): DateInstanceCreator;
+
+    private __setLanguageToHTML(): this {
+        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym))
+        return this;
+    }
+
+
     public static get currentLanguage(): Languages {
         return this.__CURRENT_LANGUAGE;
     }
 
+    public static setCurrentLanguage(value: Languages | string): void {
+        let selectedLanguage = this.getValue(value);
+        if (selectedLanguage !== null)
+            this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML();
+    }
+
     public static get defaultLanguage(): PossibleLanguagesAcronym {
         return this.__DEFAULT_LANGUAGE;
+    }
+
+    public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
+        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? value : value.acronym;
+    }
+
+    public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
+    public static getValue(value: string): Languages | null
+    public static getValue(value: Languages | string): Languages | null
+    public static getValue(value: Languages | string): Languages | null {
+        return typeof value === 'string'
+            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) || null
+            : value;
     }
 
     public static get values(): readonly Languages[] {
@@ -169,45 +209,6 @@ export abstract class Languages {
                 this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
             ]
             : this.__VALUES;
-    }
-
-    public get acronym(): PossibleLanguagesAcronym {
-        return this.#acronym;
-    }
-
-    public get englishName(): PossibleLanguagesEnglishName {
-        return this.#englishName;
-    }
-
-    public get originalName(): PossibleLanguagesOriginalName {
-        return this.#originalName;
-    }
-
-    public abstract get newDateInstanceCreator(): DateInstanceCreator;
-
-    public static setCurrentLanguage(value: Languages | string): void {
-        let selectedLanguage = this.getValue(value);
-        if (selectedLanguage !== null)
-            this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML();
-    }
-
-    public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
-        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? value : value.acronym;
-    }
-
-
-    public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
-    public static getValue(value: string): Languages | null
-    public static getValue(value: Languages | string): Languages | null
-    public static getValue(value: Languages | string): Languages | null {
-        return typeof value === 'string'
-            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) || null
-            : value;
-    }
-
-    private __setLanguageToHTML(): this {
-        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym))
-        return this;
     }
 
 }
