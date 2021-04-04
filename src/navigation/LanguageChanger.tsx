@@ -6,10 +6,15 @@ export default class LanguageChanger
     extends Component {
 
     private __retrieveEveryLanguages() {
-        return Languages.values.map(language => language === Languages.currentLanguage
-            ? <span className="dropdown-item disabled">{__(language.englishName)}</span>
-            : <Link key={`languageChanger_${language.acronym}`} className="dropdown-item" to={`/${language.acronym}/home`}>{__(language.englishName)}<sup>({language.originalName})</sup></Link>
-        ).map(htmlElement=><li>{htmlElement}</li>);
+        return Languages.values.map(language => {
+                return {
+                    language: language,
+                    htmlElement: language === Languages.currentLanguage
+                        ? <span className="dropdown-item disabled">{__(language.englishName)}</span>
+                        : <Link key={`languageChanger_${language.acronym}`} className="dropdown-item" to={`/${language.acronym}/home`}>{__(language.englishName)}<sup>({language.originalName})</sup></Link>
+                }
+            }
+        ).map(object => <li key={`languageChanger_${object.language.acronym}_li`}>{object.htmlElement}</li>);
     };
 
     public render() {
