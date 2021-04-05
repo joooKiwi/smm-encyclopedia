@@ -7,6 +7,8 @@ export type MonthNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
 export interface DateInstanceCreator {
 
+    createDate(date: Date): JSX.Element;
+
     createDate(day: DayNumber, month: MonthNumber, year: number): JSX.Element;
 
 }
