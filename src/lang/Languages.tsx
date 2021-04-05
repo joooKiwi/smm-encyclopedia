@@ -1,5 +1,6 @@
 import {DateInstanceCreator} from "./DateInstanceCreator";
 import {DateInstanceCreatorBuilder} from "./DateInstanceCreatorBuilder";
+import i18n from "i18next";
 
 export type PossibleLanguagesAcronym =
     'ja'
@@ -174,7 +175,7 @@ export abstract class Languages {
     public static setCurrentLanguage(value: Languages | string): void {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
-            this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML();
+            i18n.changeLanguage((this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
     }
 
     public static get defaultLanguage(): PossibleLanguagesAcronym {
