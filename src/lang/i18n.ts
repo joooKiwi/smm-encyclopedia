@@ -1,19 +1,33 @@
 import i18n, {Resource} from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import enUsLanguage from '../locale/en_US/language.json';
-import enUsContent from '../locale/en_US/content.json';
+import enLanguage from '../locale/en/language.json';
+import enContent from '../locale/en/content.json';
+import frLanguage from '../locale/fr/language.json';
+import frContent from '../locale/fr/content.json';
 
 declare module 'react-i18next' {
     interface Resources {
-        language: typeof enUsLanguage;
-        content: typeof enUsContent;
+        language: typeof enLanguage;
+        content: typeof enContent;
     }
 }
 
 const resources: Resource = {
     en_US: {
-        language: enUsLanguage,
-        content: enUsContent,
+        language: enLanguage,
+        content: enContent,
+    },
+    en_EU: {
+        language: enLanguage,
+        content: enContent,
+    },
+    fr_CA: {
+        language: frLanguage,
+        content: frContent,
+    },
+    fr_EU: {
+        language: frLanguage,
+        content: frContent,
     },
 };
 
