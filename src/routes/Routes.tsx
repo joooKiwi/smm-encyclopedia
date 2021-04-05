@@ -44,13 +44,6 @@ function DirectRoutes() {
 }
 
 function Test(){
-    let translation = useTranslation('language');
-    console.log([translation, translation.t]);
-    translation.i18n.changeLanguage('en_US').then(value => {
-        value('English');
-    });
-    return <>{translation.t('test')}</>
-    // return <>{translation.t('test')}</>
-    // return <Translation ns={['language']}>{(t) => <>every entity</>}</Translation>;
-    // window.test = translation;
+    let {t} = useTranslation('language');
+    return <>{t('French')?.toString()}</>;
 }
