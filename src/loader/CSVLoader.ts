@@ -11,7 +11,7 @@ import {StringToNullableNumberConverter} from "./converter/StringToNullableNumbe
 import {StringToNullableStringConverter} from "./converter/StringToNullableStringConverter";
 
 type HeaderTypeOrConvertor = PossibleConversion
-    | [conversionTypeOrValue: PossibleConversion | string]
+    | (PossibleConversion | string)[]
     | ((value: string) => Converter<string, any>);
 export type PossibleConversion = 'boolean' | 'nullable boolean'
     | 'number' | 'nullable number'
@@ -191,7 +191,7 @@ export default class CSVLoader<T extends Array<any>, U> {
         return convertor;
     }
 
-    protected _createAndGetMixedConvertor(header: string, conversionComponents: [conversionTypeOrValue: PossibleConversion | string]): (value: string) => Converter<string, any> {
+    protected _createAndGetMixedConvertor(header: string, conversionComponents: (PossibleConversion | string)[]): (value: string) => Converter<string, any> {
         const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
         let validationComponentOnConverter: ((value: string) => boolean)[] = [];
         let conversionComponentOnConverter: ((value: string) => any)[] = [];
@@ -224,10 +224,17 @@ export default class CSVLoader<T extends Array<any>, U> {
                         validationComponentOnConverter.push(value => value === conversionComponent);
                         conversionComponentOnConverter.push(value => value);
                 }
-                return conversionComponent;
+                return type;
             }).join(', ')
             + ' )';
-        const finalValidationComponentOnConverter = (value: string) => validationComponentOnConverter.every(validationComponent => validationComponent(value));
+        const finalValidationComponentOnConverter = (value: string) => {
+            for(let validationComponent of validationComponentOnConverter){
+                console.log([value,validationComponent])
+                if(validationComponent(value))
+                    return true;
+            }
+            return false;
+        }
         const finalConversionComponentOnConverter = (value: string) => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
 
         return containNullable

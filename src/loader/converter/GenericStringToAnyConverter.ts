@@ -32,10 +32,10 @@ export class GenericStringToAnyConverter<T>
     }
 
     protected _newError(): TypeError {
-        return new TypeError(`The value could not be converted to a "${this.typeName}".`);
+        return new TypeError(`The value "${this.originalValue}" could not be converted to a "${this.typeName}".`);
     }
 
-    isValueValid(value: string): boolean {
+    public isValueValid(value: string): boolean {
         return this.isValueValidCallback(value);
     }
 

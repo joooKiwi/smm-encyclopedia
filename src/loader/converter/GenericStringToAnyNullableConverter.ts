@@ -10,7 +10,7 @@ export class GenericStringToAnyNullableConverter<T>
     }
 
     public isValueValid(value: string): boolean {
-        return value == '' && super.isValueValid(value);
+        return value == '' || super.isValueValid(value);
     }
 
 }

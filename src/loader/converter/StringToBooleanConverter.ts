@@ -6,7 +6,7 @@ export class StringToBooleanConverter
     extends AbstractStringConverter<boolean> {
 
     public constructor(originalValue: string) {
-        super(originalValue.toLowerCase());
+        super(originalValue);
     }
 
 

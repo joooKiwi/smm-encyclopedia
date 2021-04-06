@@ -6,7 +6,7 @@ export class StringToNullableBooleanConverter
     extends AbstractNullableStringConverter<boolean> {
 
     public constructor(originalValue: string) {
-        super(originalValue.toLowerCase());
+        super(originalValue);
     }
 
 
