@@ -8,19 +8,21 @@ import {StringToNumberConverter} from "./converter/StringToNumberConverter";
 import {StringToStringConverter} from "./converter/StringToStringConverter";
 import {StringToNullableBooleanConverter} from "./converter/StringToNullableBooleanConverter";
 import {StringToNullableNumberConverter} from "./converter/StringToNullableNumberConverter";
+import {StringToNullableValueConverter} from "./converter/StringToNullableValueConverter";
 import {StringToNullableStringConverter} from "./converter/StringToNullableStringConverter";
 
 type HeaderTypeOrConvertor = PossibleConversion
     | (PossibleConversion | string)[]
     | ((value: string) => Converter<string, any>);
-export type PossibleConversion = 'boolean' | 'nullable boolean'
-    | 'number' | 'nullable number'
-    | 'string' | 'nullable string';
+export type PossibleConversion = 'nullable' | PredefinedConversion;
+export type NonNullablePredefinedConversion = 'boolean' | 'number' | 'string';
+export type NullablePredefinedConversion = 'nullable boolean' | 'nullable number' | 'nullable string';
+export type PredefinedConversion = NullablePredefinedConversion | NonNullablePredefinedConversion;
 
 export default class CSVLoader<T extends Array<any>, U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PossibleConversion = 'nullable string';
-    public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PossibleConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'nullable string'];
+    public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PredefinedConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'nullable string'];
 
     readonly #originalContent;
     readonly #headersToConvert;
@@ -85,6 +87,10 @@ export default class CSVLoader<T extends Array<any>, U> {
 
     // -------------------- convertor usage methods --------------------
 
+    public convertToNullableValue(...headers: string[]): this {
+        return this.convertTo('nullable', ...headers);
+    }
+
     public convertToBoolean(...headers: string[]): this {
         return this.convertTo('boolean', ...headers);
     }
@@ -109,38 +115,47 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.convertTo('nullable string', ...headers);
     }
 
-    public convertToBooleanAnd(validValue: string, ...headers: string[]): this {
-        return this.convertTo(['boolean', validValue,], ...headers);
+    public convertToNullableValueAnd(convertor: NonNullablePredefinedConversion, ...headers: string[]): this
+    public convertToNullableValueAnd(validValue: string, ...headers: string[]): this
+    public convertToNullableValueAnd(validValueOrConvertor: string | NonNullablePredefinedConversion, ...headers: string[]): this {
+        return this.convertTo(['nullable', validValueOrConvertor,], ...headers);
     }
 
-    public convertToNullableBooleanAnd(convertor: PossibleConversion, ...headers: string[]): this
-    public convertToNullableBooleanAnd(validValue: string, ...headers: string[]): this
-    public convertToNullableBooleanAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
-        return this.convertTo(['nullable boolean', validValue,], ...headers);
+    public convertToBooleanAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertToBooleanAnd(validValue: string, ...headers: string[]): this
+    public convertToBooleanAnd(validValueOrConvertor: string | PossibleConversion, ...headers: string[]): this {
+        return this.convertTo(['boolean', validValueOrConvertor,], ...headers);
     }
+
+    public convertToNullableBooleanAnd(convertor: NonNullablePredefinedConversion, ...headers: string[]): this
+    public convertToNullableBooleanAnd(validValue: string, ...headers: string[]): this
+    public convertToNullableBooleanAnd(validValueOrConvertor: string | NonNullablePredefinedConversion, ...headers: string[]): this {
+        return this.convertTo(['nullable boolean', validValueOrConvertor,], ...headers);
+    }
+
 
     public convertToNumberAnd(convertor: PossibleConversion, ...headers: string[]): this
     public convertToNumberAnd(validValue: string, ...headers: string[]): this
-    public convertToNumberAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
-        return this.convertTo(['number', validValue,], ...headers);
+    public convertToNumberAnd(validValueOrConvertor: string | PossibleConversion, ...headers: string[]): this {
+        return this.convertTo(['number', validValueOrConvertor,], ...headers);
     }
 
-    public convertToNullableNumberAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertToNullableNumberAnd(convertor: NonNullablePredefinedConversion, ...headers: string[]): this
     public convertToNullableNumberAnd(validValue: string, ...headers: string[]): this
-    public convertToNullableNumberAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
-        return this.convertTo(['nullable number', validValue,], ...headers);
+    public convertToNullableNumberAnd(validValueOrConvertor: string | NonNullablePredefinedConversion, ...headers: string[]): this {
+        return this.convertTo(['nullable number', validValueOrConvertor,], ...headers);
     }
 
     public convertToStringAnd(convertor: PossibleConversion, ...headers: string[]): this
     public convertToStringAnd(validValue: string, ...headers: string[]): this
-    public convertToStringAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
-        return this.convertTo(['string', validValue,], ...headers);
+    public convertToStringAnd(validValueOrConvertor: string | PossibleConversion, ...headers: string[]): this {
+        return this.convertTo(['string', validValueOrConvertor,], ...headers);
     }
 
-    public convertToNullableStringAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertToNullableStringAnd(convertor: NonNullablePredefinedConversion, ...headers: string[]): this
     public convertToNullableStringAnd(validValue: string, ...headers: string[]): this
-    public convertToNullableStringAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
-        return this.convertTo(['nullable string', validValue,], ...headers);
+    public convertToNullableStringAnd(validValueOrConvertor: string | NonNullablePredefinedConversion, ...headers: string[]): this {
+        return this.convertTo(['nullable string', validValueOrConvertor,], ...headers);
     }
 
     public convertTo(headerTypeOrConvertor: HeaderTypeOrConvertor, ...headers: string[]): this {
@@ -195,6 +210,9 @@ export default class CSVLoader<T extends Array<any>, U> {
     protected _createAndGetConvertor(header: string, possibleConversion: PossibleConversion): (value: string) => Converter<string, any> {
         let convertor: (value: string) => Converter<string, any>;
         switch (possibleConversion) {
+            case 'nullable':
+                convertor = value => new StringToNullableValueConverter(value);
+                break;
             case 'number':
                 convertor = value => new StringToNumberConverter(value);
                 break;
@@ -228,6 +246,10 @@ export default class CSVLoader<T extends Array<any>, U> {
             + conversionComponents.map(conversionComponent => {
                 let type: string;
                 switch (conversionComponent) {
+                    case 'nullable':
+                        type = 'null';
+                        //There is nothing since it is being taken into account at the start
+                        break;
                     case 'number':
                     case 'nullable number':
                         type = 'number';

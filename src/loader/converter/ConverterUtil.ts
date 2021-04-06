@@ -10,6 +10,11 @@ export class ConverterUtil {
         return value === 'true' || value === '1';
     }
 
+    public static convertToNullableValue(value: string): string | null {
+        value = value.toLowerCase();
+        return value === '' || value === 'null' ? null : value;
+    }
+
     public static convertToNumber(value: string): number {
         return Number(value);
     }
