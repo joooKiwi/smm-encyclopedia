@@ -1,12 +1,18 @@
 import {Converter} from "./converter/Converter";
+import {ConverterPatterns} from "./converter/ConverterPatterns";
+import {ConverterUtil} from "./converter/ConverterUtil";
+import {GenericStringToAnyConverter} from "./converter/GenericStringToAnyConverter";
+import {GenericStringToAnyNullableConverter} from "./converter/GenericStringToAnyNullableConverter";
+import {StringToBooleanConverter} from "./converter/StringToBooleanConverter";
 import {StringToNumberConverter} from "./converter/StringToNumberConverter";
 import {StringToStringConverter} from "./converter/StringToStringConverter";
-import {StringToBooleanConverter} from "./converter/StringToBooleanConverter";
-import {StringToNullableNumberConverter} from "./converter/StringToNullableNumberConverter";
 import {StringToNullableBooleanConverter} from "./converter/StringToNullableBooleanConverter";
+import {StringToNullableNumberConverter} from "./converter/StringToNullableNumberConverter";
 import {StringToNullableStringConverter} from "./converter/StringToNullableStringConverter";
 
-type HeaderTypeOrConvertor = PossibleConversion | ((value: string) => Converter<string, any>);
+type HeaderTypeOrConvertor = PossibleConversion
+    | [conversionTypeOrValue: PossibleConversion | string]
+    | ((value: string) => Converter<string, any>);
 export type PossibleConversion = 'boolean' | 'nullable boolean'
     | 'number' | 'nullable number'
     | 'string' | 'nullable string';
@@ -14,6 +20,7 @@ export type PossibleConversion = 'boolean' | 'nullable boolean'
 export default class CSVLoader<T extends Array<any>, U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PossibleConversion = 'nullable string';
+    public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PossibleConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'nullable string'];
 
     readonly #originalContent;
     readonly #headersToConvert;
@@ -91,10 +98,35 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.convertHeadersTo('nullable string', ...headers);
     }
 
+    public convertHeadersToBooleanAnd(validValue: string, ...headers: string[]): this {
+        return this.convertHeadersTo(['boolean', validValue,], ...headers);
+    }
+
+    public convertHeadersToNullableBooleanAnd(validValue: string, ...headers: string[]): this {
+        return this.convertHeadersTo(['nullable boolean', validValue,], ...headers);
+    }
+
+    public convertHeadersToNumberAnd(validValue: string, ...headers: string[]): this {
+        return this.convertHeadersTo(['number', validValue,], ...headers);
+    }
+
+    public convertHeadersToNullableNumberAnd(validValue: string, ...headers: string[]): this {
+        return this.convertHeadersTo(['nullable number', validValue,], ...headers);
+    }
+
+    public convertHeadersToStringAnd(validValue: string, ...headers: string[]): this {
+        return this.convertHeadersTo(['string', validValue,], ...headers);
+    }
+
+    public convertHeadersToNullableStringAnd(validValue: string, ...headers: string[]): this {
+        return this.convertHeadersTo(['nullable string', validValue,], ...headers);
+    }
+
     public convertHeadersTo(headerTypeOrConvertor: HeaderTypeOrConvertor, ...headers: string[]): this {
         headers.map(header => header.toLowerCase()).forEach(header => this.headersToConvert.set(header, headerTypeOrConvertor));
         return this;
     }
+
 
     public setDefaultConversion(defaultConversion: PossibleConversion): this {
         this.defaultConversion = defaultConversion;
@@ -128,7 +160,9 @@ export default class CSVLoader<T extends Array<any>, U> {
         const headerTypeOrConvertorFound = this.headersToConvert.get(header) ?? this.defaultConversion;
         return typeof headerTypeOrConvertorFound == 'string'
             ? this._createAndGetConvertor(header, headerTypeOrConvertorFound)
-            : headerTypeOrConvertorFound;
+            : headerTypeOrConvertorFound instanceof Array
+                ? this._createAndGetMixedConvertor(header, headerTypeOrConvertorFound)
+                : headerTypeOrConvertorFound;
     }
 
     protected _createAndGetConvertor(header: string, possibleConversion: PossibleConversion): (value: string) => Converter<string, any> {
@@ -155,6 +189,50 @@ export default class CSVLoader<T extends Array<any>, U> {
         }
         this.headersToConvert.set(header, convertor);
         return convertor;
+    }
+
+    protected _createAndGetMixedConvertor(header: string, conversionComponents: [conversionTypeOrValue: PossibleConversion | string]): (value: string) => Converter<string, any> {
+        const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
+        let validationComponentOnConverter: ((value: string) => boolean)[] = [];
+        let conversionComponentOnConverter: ((value: string) => any)[] = [];
+
+        const typeOnConverter = (containNullable ? 'nullable' : '')
+            + ' ('
+            + conversionComponents.map(conversionComponent => {
+                let type: string;
+                switch (conversionComponent) {
+                    case 'number':
+                    case 'nullable number':
+                        type = 'number';
+                        validationComponentOnConverter.push(value => ConverterPatterns.NUMBER_PATTERN.test(value));
+                        conversionComponentOnConverter.push(value => ConverterUtil.convertToNumber(value));
+                        break;
+                    case 'boolean':
+                    case 'nullable boolean':
+                        type = 'boolean';
+                        validationComponentOnConverter.push(value => ConverterPatterns.BOOLEAN_PATTERN.test(value));
+                        conversionComponentOnConverter.push(value => ConverterUtil.convertToBoolean(value));
+                        break;
+                    case 'string':
+                    case 'nullable string':
+                        type = 'string';
+                        validationComponentOnConverter.push(() => true);
+                        conversionComponentOnConverter.push(value => value);
+                        break;
+                    default:
+                        type = conversionComponent;
+                        validationComponentOnConverter.push(value => value === conversionComponent);
+                        conversionComponentOnConverter.push(value => value);
+                }
+                return conversionComponent;
+            }).join(', ')
+            + ' )';
+        const finalValidationComponentOnConverter = (value: string) => validationComponentOnConverter.every(validationComponent => validationComponent(value));
+        const finalConversionComponentOnConverter = (value: string) => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
+
+        return containNullable
+            ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter, value => finalValidationComponentOnConverter(value), value => finalConversionComponentOnConverter(value))
+            : value => new GenericStringToAnyConverter(value, typeOnConverter, value => finalValidationComponentOnConverter(value), value => finalConversionComponentOnConverter(value))
     }
 
 
