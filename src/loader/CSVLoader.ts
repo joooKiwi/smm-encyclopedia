@@ -102,23 +102,33 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.convertHeadersTo(['boolean', validValue,], ...headers);
     }
 
-    public convertHeadersToNullableBooleanAnd(validValue: string, ...headers: string[]): this {
+    public convertHeadersToNullableBooleanAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertHeadersToNullableBooleanAnd(validValue: string, ...headers: string[]): this
+    public convertHeadersToNullableBooleanAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
         return this.convertHeadersTo(['nullable boolean', validValue,], ...headers);
     }
 
-    public convertHeadersToNumberAnd(validValue: string, ...headers: string[]): this {
+    public convertHeadersToNumberAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertHeadersToNumberAnd(validValue: string, ...headers: string[]): this
+    public convertHeadersToNumberAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
         return this.convertHeadersTo(['number', validValue,], ...headers);
     }
 
-    public convertHeadersToNullableNumberAnd(validValue: string, ...headers: string[]): this {
+    public convertHeadersToNullableNumberAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertHeadersToNullableNumberAnd(validValue: string, ...headers: string[]): this
+    public convertHeadersToNullableNumberAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
         return this.convertHeadersTo(['nullable number', validValue,], ...headers);
     }
 
-    public convertHeadersToStringAnd(validValue: string, ...headers: string[]): this {
+    public convertHeadersToStringAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertHeadersToStringAnd(validValue: string, ...headers: string[]): this
+    public convertHeadersToStringAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
         return this.convertHeadersTo(['string', validValue,], ...headers);
     }
 
-    public convertHeadersToNullableStringAnd(validValue: string, ...headers: string[]): this {
+    public convertHeadersToNullableStringAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertHeadersToNullableStringAnd(validValue: string, ...headers: string[]): this
+    public convertHeadersToNullableStringAnd(validValue: string | PossibleConversion, ...headers: string[]): this {
         return this.convertHeadersTo(['nullable string', validValue,], ...headers);
     }
 
@@ -220,7 +230,7 @@ export default class CSVLoader<T extends Array<any>, U> {
                         conversionComponentOnConverter.push(value => value);
                         break;
                     default:
-                        type = conversionComponent;
+                        type = '"' + conversionComponent + '"';
                         validationComponentOnConverter.push(value => value === conversionComponent);
                         conversionComponentOnConverter.push(value => value);
                 }
@@ -228,9 +238,9 @@ export default class CSVLoader<T extends Array<any>, U> {
             }).join(', ')
             + ' )';
         const finalValidationComponentOnConverter = (value: string) => {
-            for(let validationComponent of validationComponentOnConverter){
-                console.log([value,validationComponent])
-                if(validationComponent(value))
+            for (let validationComponent of validationComponentOnConverter) {
+                console.log([value, validationComponent])
+                if (validationComponent(value))
                     return true;
             }
             return false;
