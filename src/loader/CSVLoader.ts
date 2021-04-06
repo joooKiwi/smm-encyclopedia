@@ -191,10 +191,10 @@ export default class CSVLoader<T extends Array<any>, U> {
                 convertor = value => new StringToNullableBooleanConverter(value);
                 break;
             case 'string':
-                convertor = value => new StringToNullableStringConverter(value);
+                convertor = value => new StringToStringConverter(value);
                 break;
             case 'nullable string':
-                convertor = value => new StringToStringConverter(value);
+                convertor = value => new StringToNullableStringConverter(value);
                 break;
         }
         this.headersToConvert.set(header, convertor);
@@ -226,7 +226,7 @@ export default class CSVLoader<T extends Array<any>, U> {
                     case 'string':
                     case 'nullable string':
                         type = 'string';
-                        validationComponentOnConverter.push(() => true);
+                        validationComponentOnConverter.push(value => ConverterPatterns.STRING_PATTERN.test(value));
                         conversionComponentOnConverter.push(value => value);
                         break;
                     default:
@@ -239,7 +239,6 @@ export default class CSVLoader<T extends Array<any>, U> {
             + ' )';
         const finalValidationComponentOnConverter = (value: string) => {
             for (let validationComponent of validationComponentOnConverter) {
-                console.log([value, validationComponent])
                 if (validationComponent(value))
                     return true;
             }

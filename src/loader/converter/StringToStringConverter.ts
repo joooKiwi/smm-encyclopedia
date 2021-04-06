@@ -1,4 +1,5 @@
 import {AbstractStringConverter} from "./AbstractStringConverter";
+import {ConverterPatterns} from "./ConverterPatterns";
 
 export class StringToStringConverter
     extends AbstractStringConverter<string> {
@@ -14,7 +15,7 @@ export class StringToStringConverter
     }
 
     public isValueValid(value: string): boolean {
-        return true;
+        return ConverterPatterns.STRING_PATTERN.test(value);
     }
 
     protected _newError(): TypeError {
