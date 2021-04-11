@@ -1,5 +1,4 @@
 import {Converter} from "./Converter";
-import {PredefinedConversion, PrimitiveConversion} from "../CSVLoader";
 import {StringToBooleanConverter} from "./StringToBooleanConverter";
 import {StringToNumberConverter} from "./StringToNumberConverter";
 import {StringToNonEmptyStringConverter} from "./StringToNonEmptyStringConverter";
@@ -9,6 +8,11 @@ import {StringToNullableStringConverter} from "./StringToNullableStringConverter
 import {StringToStringConverter} from "./StringToStringConverter";
 import {ConverterPatterns} from "./ConverterPatterns";
 import {ConverterUtil} from "./ConverterUtil";
+
+
+export type PrimitiveConversion = 'boolean' | 'number' | 'string';
+export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
+export type PredefinedConversion = NullablePredefinedConversion | PrimitiveConversion | 'non empty string';
 
 /**
  * @enum
