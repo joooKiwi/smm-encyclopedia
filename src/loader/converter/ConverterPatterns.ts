@@ -21,7 +21,7 @@ export class ConverterPatterns {
      * An empty string or the value null.
      * All of that in case insensitive.
      */
-    public static readonly NULLABLE_STRING_PATTERN = /.|null/i;
+    public static readonly NULLABLE_STRING_PATTERN = /.|null|undefined/i;
 
 
 }

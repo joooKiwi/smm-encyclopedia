@@ -12,7 +12,7 @@ export class ConverterUtil {
 
     public static convertToNullableString(value: string): string | null {
         let lowerCaseValue = value.toLowerCase();
-        return lowerCaseValue === '' || lowerCaseValue === 'null' ? null : value;
+        return lowerCaseValue === '' || lowerCaseValue === 'null' || lowerCaseValue === 'undefined' ? null : value;
     }
 
     public static convertToNonEmptyString(value: string): string | null {
