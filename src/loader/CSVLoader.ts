@@ -103,7 +103,7 @@ export default class CSVLoader<T extends any[], U> {
         return this.convertTo('string', ...headers);
     }
 
-    public convertToNonEmptyString(...headers: string[]): this {
+    public convertToEmptyableString(...headers: string[]): this {
         return this.convertTo('emptyable string', ...headers);
     }
 
@@ -142,9 +142,9 @@ export default class CSVLoader<T extends any[], U> {
         return this.convertTo(['string', validValueOrConvertor,], ...headers);
     }
 
-    public convertToNonEmptyStringAnd(convertor: PrimitiveConversion, ...headers: string[]): this
-    public convertToNonEmptyStringAnd(validValue: string, ...headers: string[]): this
-    public convertToNonEmptyStringAnd(validValueOrConvertor: string | PrimitiveConversion, ...headers: string[]): this {
+    public convertToEmptyableStringAnd(convertor: PrimitiveConversion, ...headers: string[]): this
+    public convertToEmptyableStringAnd(validValue: string, ...headers: string[]): this
+    public convertToEmptyableStringAnd(validValueOrConvertor: string | PrimitiveConversion, ...headers: string[]): this {
         return this.convertTo(['emptyable string', validValueOrConvertor,], ...headers);
     }
 
