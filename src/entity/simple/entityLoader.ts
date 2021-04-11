@@ -14,7 +14,6 @@ import {
 } from "../entityTypes";
 import CSVLoader from "../../loader/CSVLoader";
 import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
-import memoizeOne from "memoize-one";
 import {EntityFilePropertiesTemplate} from "./EntityFilePropertiesTemplate";
 
 type EntityFilePropertiesArray = [
@@ -146,7 +145,7 @@ type EntityFilePropertiesArray = [
 
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
-    return memoizeOne(() => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
+    return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
         properties: {
             //region ---------- Basic properties ----------
             isIn: {
@@ -287,22 +286,22 @@ export function loadEveryEntities() {
             'hasAMushroomVariant',
         )
         .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
-        .convertToBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
+        .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
         .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
-        .convertToBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
+        .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
         .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
-        .convertToBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
+        .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
         .convertTo(['nullable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
         .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
         .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
-        .convertToBoolean('canGoThroughWalls', 'canBeStacked',)
+        .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
         .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
         .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
 
-        .convertToBoolean('whilePlaying_isInGEL_isSuperGlobal',)
+        .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
         .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
-        .convertToBoolean('whilePlaying_isInPEL',)
+        .convertToNullableBoolean('whilePlaying_isInPEL',)
         .convertTo(['nullable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
         .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenHorizontalRange',)
         .convertToNullableNumber('whilePlaying_offscreenVerticalRange',)
@@ -325,5 +324,5 @@ export function loadEveryEntities() {
             'dutch', 'german', 'italian', 'russian', 'korean',
             'chinese', 'simplifiedChinese', 'traditionalChinese',
         )
-        .content);
+        .content;
 }
