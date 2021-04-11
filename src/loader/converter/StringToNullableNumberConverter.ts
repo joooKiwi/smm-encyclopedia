@@ -1,9 +1,9 @@
-import {AbstractNonEmptyStringConverter} from "./AbstractNonEmptyStringConverter";
+import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
 import {ConverterUtil} from "./ConverterUtil";
 import {ConverterPatterns} from "./ConverterPatterns";
 
 export class StringToNullableNumberConverter
-    extends AbstractNonEmptyStringConverter<number> {
+    extends AbstractEmptyableStringConverter<number> {
 
     public constructor(originalValue: string) {
         super(originalValue);

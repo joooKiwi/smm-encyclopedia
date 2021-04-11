@@ -15,7 +15,7 @@ export class ConverterUtil {
         return lowerCaseValue === '' || lowerCaseValue === 'null' || lowerCaseValue === 'undefined' ? null : value;
     }
 
-    public static convertToNonEmptyString(value: string): string | null {
+    public static convertToEmptyableString(value: string): string | null {
         return value === '' ? null : value;
     }
 

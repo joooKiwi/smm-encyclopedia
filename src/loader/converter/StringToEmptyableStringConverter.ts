@@ -1,7 +1,7 @@
-import {AbstractNonEmptyStringConverter} from "./AbstractNonEmptyStringConverter";
+import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
 
-export class StringToNonEmptyStringConverter
-    extends AbstractNonEmptyStringConverter<null | string> {
+export class StringToEmptyableStringConverter
+    extends AbstractEmptyableStringConverter<null | string> {
 
     public constructor(originalValue: string) {
         super(originalValue);
