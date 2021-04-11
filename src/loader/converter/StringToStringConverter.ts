@@ -1,12 +1,11 @@
 import {AbstractStringConverter} from "./AbstractStringConverter";
-import {ConverterPatterns} from "./ConverterPatterns";
 
 export class StringToStringConverter
     extends AbstractStringConverter<string> {
 
 
     public constructor(originalValue: string) {
-        super(originalValue.toLowerCase());
+        super(originalValue);
     }
 
     protected _convertTheValue(validValue: string): string {
@@ -15,7 +14,7 @@ export class StringToStringConverter
     }
 
     public isValueValid(value: string): boolean {
-        return ConverterPatterns.NON_EMPTY_STRING_PATTERN.test(value);
+        return true;
     }
 
     protected _newError(): TypeError {
