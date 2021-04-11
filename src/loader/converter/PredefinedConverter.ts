@@ -1,7 +1,7 @@
 import {Converter} from "./Converter";
 import {StringToBooleanConverter} from "./StringToBooleanConverter";
 import {StringToNumberConverter} from "./StringToNumberConverter";
-import {StringToNonEmptyStringConverter} from "./StringToNonEmptyStringConverter";
+import {StringToEmptyableStringConverter} from "./StringToEmptyableStringConverter";
 import {StringToNullableNumberConverter} from "./StringToNullableNumberConverter";
 import {StringToNullableBooleanConverter} from "./StringToNullableBooleanConverter";
 import {StringToNullableStringConverter} from "./StringToNullableStringConverter";
@@ -12,7 +12,7 @@ import {ConverterUtil} from "./ConverterUtil";
 
 export type PrimitiveConversion = 'boolean' | 'number' | 'string';
 export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
-export type PredefinedConversion = NullablePredefinedConversion | PrimitiveConversion | 'non empty string';
+export type PredefinedConversion = NullablePredefinedConversion | PrimitiveConversion | 'emptyable string';
 
 /**
  * @enum
@@ -84,19 +84,19 @@ export abstract class PredefinedConverter {
             return value;
         }
     }('string');
-    public static readonly NON_EMPTY_STRING = new class extends PredefinedConverter {
+    public static readonly EMPTYABLE_STRING = new class extends PredefinedConverter {
         public newStringToConvertor(value: string): Converter<string, any> {
-            return new StringToNonEmptyStringConverter(value);
+            return new StringToEmptyableStringConverter(value);
         }
 
         public newValidation(): (value: string) => boolean {
-            return value => ConverterPatterns.NON_EMPTY_STRING_PATTERN.test(value);
+            return value => ConverterPatterns.EMPTYABLE_STRING_PATTERN.test(value);
         }
 
         public newConversion(value: string): null | string {
-            return ConverterUtil.convertToNonEmptyString(value);
+            return ConverterUtil.convertToEmptyableString(value);
         }
-    }('non empty string', 'string');
+    }('emptyable string', 'string');
     public static readonly NULLABLE_STRING = new class extends PredefinedConverter {
         public newStringToConvertor(value: string): Converter<string, any> {
             return new StringToNullableStringConverter(value);
@@ -177,7 +177,7 @@ export abstract class PredefinedConverter {
         return this.VALUES ?? (this.VALUES = [
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,
-            this.STRING, this.NON_EMPTY_STRING, this.NULLABLE_STRING,
+            this.STRING, this.EMPTYABLE_STRING, this.NULLABLE_STRING,
         ]);
     }
 

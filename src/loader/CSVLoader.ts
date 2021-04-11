@@ -9,7 +9,7 @@ type HeaderTypeOrConvertor = PredefinedConversion
 
 export default class CSVLoader<T extends any[], U> {
 
-    public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'nullable string';
+    public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'emptyable string';
 
     readonly #originalContent;
     readonly #headersToConvert;
@@ -104,7 +104,7 @@ export default class CSVLoader<T extends any[], U> {
     }
 
     public convertToNonEmptyString(...headers: string[]): this {
-        return this.convertTo('non empty string', ...headers);
+        return this.convertTo('emptyable string', ...headers);
     }
 
     public convertToNullableString(...headers: string[]): this {
@@ -145,7 +145,7 @@ export default class CSVLoader<T extends any[], U> {
     public convertToNonEmptyStringAnd(convertor: PrimitiveConversion, ...headers: string[]): this
     public convertToNonEmptyStringAnd(validValue: string, ...headers: string[]): this
     public convertToNonEmptyStringAnd(validValueOrConvertor: string | PrimitiveConversion, ...headers: string[]): this {
-        return this.convertTo(['non empty string', validValueOrConvertor,], ...headers);
+        return this.convertTo(['emptyable string', validValueOrConvertor,], ...headers);
     }
 
     public convertToNullableStringAnd(convertor: PrimitiveConversion, ...headers: string[]): this
@@ -207,7 +207,7 @@ export default class CSVLoader<T extends any[], U> {
 
     protected _createAndGetMixedConvertor(header: string, conversionComponents: (PredefinedConversion | string)[]): (value: string) => Converter<string, any> {
         const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
-        const containNonEmptyString = conversionComponents.find(conversionComponent => conversionComponent === 'non empty string') !== undefined;
+        const containNonEmptyString = conversionComponents.find(conversionComponent => conversionComponent === 'emptyable string') !== undefined;
         let validationComponentOnConverter: ((value: string) => boolean)[] = [];
         let conversionComponentOnConverter: ((value: string) => any)[] = [];
 

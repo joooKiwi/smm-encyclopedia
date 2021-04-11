@@ -16,7 +16,7 @@ export class ConverterPatterns {
     /**
      * A non empty string regex
      */
-    public static readonly NON_EMPTY_STRING_PATTERN = /./;
+    public static readonly EMPTYABLE_STRING_PATTERN = /./;
     /**
      * An empty string or the value null.
      * All of that in case insensitive.
