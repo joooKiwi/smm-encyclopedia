@@ -16,14 +16,14 @@ type HeaderTypeOrConvertor = PossibleConversion
     | ((value: string) => Converter<string, any>);
 export type PossibleConversion = 'nullable' | PredefinedConversion;
 export type PrimitiveConversion = 'boolean' | 'number' | 'string';
-export type NonNullablePredefinedConversion = 'boolean' | 'number' | 'string' | 'non empty string';
+export type NonNullablePredefinedConversion = 'boolean' | 'number' | 'string';
 export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
-export type PredefinedConversion = NullablePredefinedConversion | NonNullablePredefinedConversion;
+export type PredefinedConversion = NullablePredefinedConversion | NonNullablePredefinedConversion | 'non empty string';
 
 export default class CSVLoader<T extends Array<any>, U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PossibleConversion = 'nullable string';
-    public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PredefinedConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'nullable string'];
+    public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PredefinedConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'non empty string', 'nullable string'];
 
     readonly #originalContent;
     readonly #headersToConvert;
