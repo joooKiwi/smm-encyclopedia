@@ -145,6 +145,7 @@ type EntityFilePropertiesArray = [
 ];
 
 export function loadEveryEntities() {
+    const [unknownCharacter, thisText,] = ['?', 'this',];
     return memoizeOne(() => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
         properties: {
             //region ---------- Basic properties ----------
@@ -284,28 +285,39 @@ export function loadEveryEntities() {
             'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
             'isInDayTheme', 'isInNightTheme',
             'hasAMushroomVariant',
-            'canContainOrSpawnAKey', 'canBePutInAOnOffBlock', 'canSpawnOutOfAPipe', 'canBePutInASwingingClaw', 'canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',
-            'canGoThroughWalls', 'canBeStacked',
-            'whilePlaying_isInGEL_isSuperGlobal', 'whilePlaying_isInPEL',
         )
-        .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
+        .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
+        .convertToBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
+        .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
+        .convertToBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
+        .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
+        .convertToBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
+
+        .convertTo(['nullable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+        .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
         .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
-        .convertToNullableBooleanAnd('?',
-            'canBeInAParachute', 'canHaveWings',
-            'canBePutOnATrack', 'canBeThrownByALakitu', 'canBePutInALakituCloud',
-            'lightSourceEmitted_isInSMB', 'canMakeASoundOutOfAMusicBlock',
-        )
-        .convertTo(['nullable string', '?', 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+        .convertToBoolean('canGoThroughWalls', 'canBeStacked',)
+        .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
+        .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
+
+        .convertToBoolean('whilePlaying_isInGEL_isSuperGlobal',)
         .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
-        .convertTo(['nullable string', 'boolean', '?', 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
-        .convertToNullableNumber('whilePlaying_offscreenVerticalRange',)
+        .convertToBoolean('whilePlaying_isInPEL',)
+        .convertTo(['nullable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
         .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenHorizontalRange',)
-        .convertToNonEmptyStringAnd('this',
-            'inDayTheme', 'inNightTheme',
-            'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme', 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme', 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',
-            'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',
+        .convertToNullableNumber('whilePlaying_offscreenVerticalRange',)
+
+        .convertToStringAnd(thisText, 'inDayTheme',)
+        .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
+        .convertToStringAnd(thisText, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+        .convertToEmptyableStringAnd(thisText, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+        .convertToStringAnd(thisText,
+            'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',
+            'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle',
         )
-        .convertToNullableString(
+        .convertToEmptyableStringAnd(thisText, 'inSM3DWGameStyle',)
+
+        .convertToEmptyableString(
             'japanese',
             'english', 'americanEnglish', 'europeanEnglish',
             'spanish', 'americanSpanish', 'europeanSpanish',
