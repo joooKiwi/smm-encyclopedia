@@ -10,7 +10,6 @@ type HeaderTypeOrConvertor = PredefinedConversion
 export default class CSVLoader<T extends Array<any>, U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'nullable string';
-    public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PredefinedConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'non empty string', 'nullable string'];
 
     readonly #originalContent;
     readonly #headersToConvert;
@@ -112,12 +111,6 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.convertTo('nullable string', ...headers);
     }
 
-    public convertToNullableValueAnd(convertor: PrimitiveConversion, ...headers: string[]): this
-    public convertToNullableValueAnd(validValue: string, ...headers: string[]): this
-    public convertToNullableValueAnd(validValueOrConvertor: string | PrimitiveConversion, ...headers: string[]): this {
-        return this.convertTo(['nullable', validValueOrConvertor,], ...headers);
-    }
-
     public convertToBooleanAnd(convertor: PredefinedConversion, ...headers: string[]): this
     public convertToBooleanAnd(validValue: string, ...headers: string[]): this
     public convertToBooleanAnd(validValueOrConvertor: string | PredefinedConversion, ...headers: string[]): this {
@@ -147,6 +140,12 @@ export default class CSVLoader<T extends Array<any>, U> {
     public convertToStringAnd(validValue: string, ...headers: string[]): this
     public convertToStringAnd(validValueOrConvertor: string | PredefinedConversion, ...headers: string[]): this {
         return this.convertTo(['string', validValueOrConvertor,], ...headers);
+    }
+
+    public convertToNonEmptyStringAnd(convertor: PrimitiveConversion, ...headers: string[]): this
+    public convertToNonEmptyStringAnd(validValue: string, ...headers: string[]): this
+    public convertToNonEmptyStringAnd(validValueOrConvertor: string | PrimitiveConversion, ...headers: string[]): this {
+        return this.convertTo(['non empty string', validValueOrConvertor,], ...headers);
     }
 
     public convertToNullableStringAnd(convertor: PrimitiveConversion, ...headers: string[]): this
