@@ -1,19 +1,21 @@
-import {AbstractNullableStringConverter} from "./AbstractNullableStringConverter";
+import {AbstractNonEmptyStringConverter} from "./AbstractNonEmptyStringConverter";
+import {ConverterPatterns} from "./ConverterPatterns";
+import {ConverterUtil} from "./ConverterUtil";
 
 export class StringToNullableStringConverter
-    extends AbstractNullableStringConverter<string> {
+    extends AbstractNonEmptyStringConverter<string | null> {
 
     public constructor(originalValue: string) {
         super(originalValue);
     }
 
 
-    protected _convertTheValue(validValue: string): string {
-        return validValue;
+    protected _convertTheValue(validValue: string): string | null {
+        return ConverterUtil.convertToNullableString(validValue);
     }
 
     protected _isValueValid(nonEmptyValue: string): boolean {
-        return true;
+        return ConverterPatterns.NULLABLE_STRING_PATTERN.test(nonEmptyValue);
     }
 
     protected _newError(): TypeError {

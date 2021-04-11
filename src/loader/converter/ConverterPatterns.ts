@@ -16,12 +16,12 @@ export class ConverterPatterns {
     /**
      * A non empty string regex
      */
-    public static readonly STRING_PATTERN = /./;
+    public static readonly NON_EMPTY_STRING_PATTERN = /./;
     /**
      * An empty string or the value null.
      * All of that in case insensitive.
      */
-    public static readonly NULL_PATTERN = /.|null/i;
+    public static readonly NULLABLE_STRING_PATTERN = /.|null/i;
 
 
 }

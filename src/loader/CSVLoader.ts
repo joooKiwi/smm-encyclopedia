@@ -8,15 +8,16 @@ import {StringToNumberConverter} from "./converter/StringToNumberConverter";
 import {StringToStringConverter} from "./converter/StringToStringConverter";
 import {StringToNullableBooleanConverter} from "./converter/StringToNullableBooleanConverter";
 import {StringToNullableNumberConverter} from "./converter/StringToNullableNumberConverter";
-import {StringToNullableValueConverter} from "./converter/StringToNullableValueConverter";
+import {StringToNonEmptyStringConverter} from "./converter/StringToNonEmptyStringConverter";
 import {StringToNullableStringConverter} from "./converter/StringToNullableStringConverter";
 
 type HeaderTypeOrConvertor = PossibleConversion
     | (PossibleConversion | string)[]
     | ((value: string) => Converter<string, any>);
 export type PossibleConversion = 'nullable' | PredefinedConversion;
-export type NonNullablePredefinedConversion = 'boolean' | 'number' | 'string';
-export type NullablePredefinedConversion = 'nullable boolean' | 'nullable number' | 'nullable string';
+export type PrimitiveConversion = 'boolean' | 'number' | 'string';
+export type NonNullablePredefinedConversion = 'boolean' | 'number' | 'string' | 'non empty string';
+export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
 export type PredefinedConversion = NullablePredefinedConversion | NonNullablePredefinedConversion;
 
 export default class CSVLoader<T extends Array<any>, U> {
@@ -96,10 +97,6 @@ export default class CSVLoader<T extends Array<any>, U> {
 
     //region -------------------- convertor usage methods --------------------
 
-    public convertToNullableValue(...headers: string[]): this {
-        return this.convertTo('nullable', ...headers);
-    }
-
     public convertToBoolean(...headers: string[]): this {
         return this.convertTo('boolean', ...headers);
     }
@@ -118,6 +115,10 @@ export default class CSVLoader<T extends Array<any>, U> {
 
     public convertToString(...headers: string[]): this {
         return this.convertTo('string', ...headers);
+    }
+
+    public convertToNonEmptyString(...headers: string[]): this {
+        return this.convertTo('non empty string', ...headers);
     }
 
     public convertToNullableString(...headers: string[]): this {
@@ -215,7 +216,7 @@ export default class CSVLoader<T extends Array<any>, U> {
         let convertor: (value: string) => Converter<string, any>;
         switch (possibleConversion) {
             case 'nullable':
-                convertor = value => new StringToNullableValueConverter(value);
+                convertor = value => new StringToNonEmptyStringConverter(value);
                 break;
             case 'number':
                 convertor = value => new StringToNumberConverter(value);
@@ -231,6 +232,9 @@ export default class CSVLoader<T extends Array<any>, U> {
                 break;
             case 'string':
                 convertor = value => new StringToStringConverter(value);
+                break;
+            case 'non empty string':
+                convertor = value => new StringToNonEmptyStringConverter(value);
                 break;
             case 'nullable string':
                 convertor = value => new StringToNullableStringConverter(value);
@@ -266,10 +270,15 @@ export default class CSVLoader<T extends Array<any>, U> {
                         validationComponentOnConverter.push(value => ConverterPatterns.BOOLEAN_PATTERN.test(value));
                         conversionComponentOnConverter.push(value => ConverterUtil.convertToBoolean(value));
                         break;
+                    case 'non empty string':
+                        type = 'string';
+                        validationComponentOnConverter.push(value => ConverterPatterns.NON_EMPTY_STRING_PATTERN.test(value));
+                        conversionComponentOnConverter.push(value => value);
+                        break;
                     case 'string':
                     case 'nullable string':
                         type = 'string';
-                        validationComponentOnConverter.push(value => ConverterPatterns.STRING_PATTERN.test(value));
+                        validationComponentOnConverter.push(value => ConverterPatterns.NULLABLE_STRING_PATTERN.test(value));
                         conversionComponentOnConverter.push(value => value);
                         break;
                     default:

@@ -1,6 +1,6 @@
 import {AbstractStringConverter} from "./AbstractStringConverter";
 
-export abstract class AbstractNullableStringConverter<T>
+export abstract class AbstractNonEmptyStringConverter<T>
     extends AbstractStringConverter<T | null> {
 
     protected constructor(originalValue: string) {

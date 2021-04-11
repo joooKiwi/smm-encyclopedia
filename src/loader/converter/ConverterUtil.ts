@@ -10,9 +10,13 @@ export class ConverterUtil {
         return value === 'true' || value === '1';
     }
 
-    public static convertToNullableValue(value: string): string | null {
-        value = value.toLowerCase();
-        return value === '' || value === 'null' ? null : value;
+    public static convertToNullableString(value: string): string | null {
+        let lowerCaseValue = value.toLowerCase();
+        return lowerCaseValue === '' || lowerCaseValue === 'null' ? null : value;
+    }
+
+    public static convertToNonEmptyString(value: string): string | null {
+        return value === '' ? null : value;
     }
 
     public static convertToNumber(value: string): number {

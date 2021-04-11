@@ -15,7 +15,7 @@ export class StringToStringConverter
     }
 
     public isValueValid(value: string): boolean {
-        return ConverterPatterns.STRING_PATTERN.test(value);
+        return ConverterPatterns.NON_EMPTY_STRING_PATTERN.test(value);
     }
 
     protected _newError(): TypeError {

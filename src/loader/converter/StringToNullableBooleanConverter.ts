@@ -1,9 +1,9 @@
-import {AbstractNullableStringConverter} from "./AbstractNullableStringConverter";
+import {AbstractNonEmptyStringConverter} from "./AbstractNonEmptyStringConverter";
 import {ConverterUtil} from "./ConverterUtil";
 import {ConverterPatterns} from "./ConverterPatterns";
 
 export class StringToNullableBooleanConverter
-    extends AbstractNullableStringConverter<boolean> {
+    extends AbstractNonEmptyStringConverter<boolean> {
 
     public constructor(originalValue: string) {
         super(originalValue);
