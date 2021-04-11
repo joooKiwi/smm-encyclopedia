@@ -7,7 +7,7 @@ type HeaderTypeOrConvertor = PredefinedConversion
     | (PredefinedConversion | string)[]
     | ((value: string) => Converter<string, any>);
 
-export default class CSVLoader<T extends Array<any>, U> {
+export default class CSVLoader<T extends any[], U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'nullable string';
 
@@ -207,11 +207,13 @@ export default class CSVLoader<T extends Array<any>, U> {
 
     protected _createAndGetMixedConvertor(header: string, conversionComponents: (PredefinedConversion | string)[]): (value: string) => Converter<string, any> {
         const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
+        const containNonEmptyString = conversionComponents.find(conversionComponent => conversionComponent === 'non empty string') !== undefined;
         let validationComponentOnConverter: ((value: string) => boolean)[] = [];
         let conversionComponentOnConverter: ((value: string) => any)[] = [];
 
         const typeOnConverter = (containNullable ? 'nullable' : '')
             + ' ('
+            + (containNonEmptyString ? '"", ' : '')
             + conversionComponents.map(conversionComponent => {
                 let type: string;
                 const predefinedConvertor = PredefinedConverter.getValue(conversionComponent);
@@ -226,7 +228,7 @@ export default class CSVLoader<T extends Array<any>, U> {
                 }
                 return type;
             }).join(', ')
-            + ' )';
+            + ')';
 
 
         const finalValidationComponentOnConverter = (value: string) => {
@@ -239,8 +241,12 @@ export default class CSVLoader<T extends Array<any>, U> {
         const finalConversionComponentOnConverter = (value: string) => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
 
         return containNullable
-            ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter, value => finalValidationComponentOnConverter(value), value => finalConversionComponentOnConverter(value))
-            : value => new GenericStringToAnyConverter(value, typeOnConverter, value => finalValidationComponentOnConverter(value), value => finalConversionComponentOnConverter(value))
+            ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter,
+                value => finalValidationComponentOnConverter(value),
+                value => finalConversionComponentOnConverter(value))
+            : value => new GenericStringToAnyConverter(value, typeOnConverter,
+                value => (containNonEmptyString ? value === '' : false) || finalValidationComponentOnConverter(value),
+                value => containNonEmptyString && value === '' ? null : finalConversionComponentOnConverter(value))
     }
 
     //endregion -------------------- initialisation methods --------------------
