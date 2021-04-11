@@ -4,7 +4,8 @@ import {
     EntityLink,
     NullableBoolean,
     NullableBooleanOrNSMBU,
-    NullableBooleanOrSM3DW, NullableNumber,
+    NullableBooleanOrSM3DW,
+    NullableNumber,
     PossibleLightSource,
     ProjectileEntityLimitType,
     UnknownOrBoolean,
@@ -78,7 +79,7 @@ export interface EntityFilePropertiesTemplate {
         canMakeASoundOutOfAMusicBlock: UnknownOrNullableBoolean
         //endregion ---------- Specific properties ----------
 
-        limits:{
+        limits: {
             editor: EntityLimit | '?'
             whilePlaying: {
                 isInGEL: {
@@ -155,6 +156,6 @@ export interface EntityFilePropertiesTemplate {
             simplified: null | string
             traditional: null | string
         }
-    }
+    },
 
 }
