@@ -3,13 +3,7 @@ import {ConverterPatterns} from "./converter/ConverterPatterns";
 import {ConverterUtil} from "./converter/ConverterUtil";
 import {GenericStringToAnyConverter} from "./converter/GenericStringToAnyConverter";
 import {GenericStringToAnyNullableConverter} from "./converter/GenericStringToAnyNullableConverter";
-import {StringToBooleanConverter} from "./converter/StringToBooleanConverter";
-import {StringToNumberConverter} from "./converter/StringToNumberConverter";
-import {StringToStringConverter} from "./converter/StringToStringConverter";
-import {StringToNullableBooleanConverter} from "./converter/StringToNullableBooleanConverter";
-import {StringToNullableNumberConverter} from "./converter/StringToNullableNumberConverter";
-import {StringToNonEmptyStringConverter} from "./converter/StringToNonEmptyStringConverter";
-import {StringToNullableStringConverter} from "./converter/StringToNullableStringConverter";
+import {PredefinedConverter} from "./converter/PredefinedConverter";
 
 type HeaderTypeOrConvertor = PredefinedConversion
     | (PredefinedConversion | string)[]
@@ -212,30 +206,8 @@ export default class CSVLoader<T extends Array<any>, U> {
     }
 
     protected _createAndGetConvertor(header: string, predefinedConversion: PredefinedConversion): (value: string) => Converter<string, any> {
-        let convertor: (value: string) => Converter<string, any>;
-        switch (predefinedConversion) {
-            case 'number':
-                convertor = value => new StringToNumberConverter(value);
-                break;
-            case 'nullable number':
-                convertor = value => new StringToNullableNumberConverter(value);
-                break;
-            case 'boolean':
-                convertor = value => new StringToBooleanConverter(value);
-                break;
-            case 'nullable boolean':
-                convertor = value => new StringToNullableBooleanConverter(value);
-                break;
-            case 'string':
-                convertor = value => new StringToStringConverter(value);
-                break;
-            case 'non empty string':
-                convertor = value => new StringToNonEmptyStringConverter(value);
-                break;
-            case 'nullable string':
-                convertor = value => new StringToNullableStringConverter(value);
-                break;
-        }
+        let convertor: (value: string) => Converter<string, any> =
+            value => PredefinedConverter.getValue(predefinedConversion).newStringToConvertor(value);
         this.headersToConvert.set(header, convertor);
         return convertor;
     }
@@ -249,34 +221,15 @@ export default class CSVLoader<T extends Array<any>, U> {
             + ' ('
             + conversionComponents.map(conversionComponent => {
                 let type: string;
-                switch (conversionComponent) {
-                    case 'number':
-                    case 'nullable number':
-                        type = 'number';
-                        validationComponentOnConverter.push(value => ConverterPatterns.NUMBER_PATTERN.test(value));
-                        conversionComponentOnConverter.push(value => ConverterUtil.convertToNumber(value));
-                        break;
-                    case 'boolean':
-                    case 'nullable boolean':
-                        type = 'boolean';
-                        validationComponentOnConverter.push(value => ConverterPatterns.BOOLEAN_PATTERN.test(value));
-                        conversionComponentOnConverter.push(value => ConverterUtil.convertToBoolean(value));
-                        break;
-                    case 'non empty string':
-                        type = 'string';
-                        validationComponentOnConverter.push(value => ConverterPatterns.NON_EMPTY_STRING_PATTERN.test(value));
-                        conversionComponentOnConverter.push(value => value);
-                        break;
-                    case 'string':
-                    case 'nullable string':
-                        type = 'string';
-                        validationComponentOnConverter.push(value => ConverterPatterns.NULLABLE_STRING_PATTERN.test(value));
-                        conversionComponentOnConverter.push(value => value);
-                        break;
-                    default:
-                        type = '"' + conversionComponent + '"';
-                        validationComponentOnConverter.push(value => value === conversionComponent);
-                        conversionComponentOnConverter.push(value => value);
+                const predefinedConvertor = PredefinedConverter.getValue(conversionComponent);
+                if (predefinedConvertor === null) {
+                    type = '"' + conversionComponent + '"';
+                    validationComponentOnConverter.push(value => value === conversionComponent);
+                    conversionComponentOnConverter.push(value => value);
+                } else {
+                    type = predefinedConvertor.nameAsNonNullable;
+                    validationComponentOnConverter.push(predefinedConvertor.newValidationAsNonNullable());
+                    conversionComponentOnConverter.push(value => predefinedConvertor.newConversionAsNonNullable(value));
                 }
                 return type;
             }).join(', ')
