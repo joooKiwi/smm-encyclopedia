@@ -40,8 +40,7 @@ export default class CSVLoader<T extends Array<any>, U> {
         this.#callbackToCreateObject = callbackToCreateObject;
     }
 
-
-    // -------------------- getter and setter and direct use on private members methods --------------------
+    //region -------------------- getter and setter and direct use on private members methods --------------------
 
     public get originalContent() {
         return this.#originalContent;
@@ -76,6 +75,8 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.#callbackToCreateObject;
     }
 
+    //region -------------------- default values methods --------------------
+
     protected get defaultConversion() {
         return this.#defaultConversion ?? CSVLoader.GENERIC_DEFAULT_CONVERSION;
     }
@@ -84,8 +85,16 @@ export default class CSVLoader<T extends Array<any>, U> {
         this.#defaultConversion = value;
     }
 
+    public setDefaultConversion(defaultConversion: PossibleConversion): this {
+        this.defaultConversion = defaultConversion;
+        return this;
+    }
 
-    // -------------------- convertor usage methods --------------------
+    //endregion -------------------- default values methods --------------------
+
+    //endregion -------------------- getter and setter and direct use on private members methods --------------------
+
+    //region -------------------- convertor usage methods --------------------
 
     public convertToNullableValue(...headers: string[]): this {
         return this.convertTo('nullable', ...headers);
@@ -163,16 +172,10 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this;
     }
 
-
-    // -------------------- default values methods --------------------
-
-    public setDefaultConversion(defaultConversion: PossibleConversion): this {
-        this.defaultConversion = defaultConversion;
-        return this;
-    }
+    //endregion -------------------- convertor usage methods --------------------
 
 
-    // -------------------- trigger methods --------------------
+    //region -------------------- trigger methods --------------------
 
     public onConvertedContent(callback: (content: keyof T) => void): this {
         this.#callbackOnConvertedValue = callback;
@@ -184,8 +187,9 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this;
     }
 
+    //endregion -------------------- trigger methods --------------------
 
-    // -------------------- initialisation methods --------------------
+    //region -------------------- initialisation methods --------------------
 
     protected _initialiseContent(): this {
         const headers = this.originalContent[0].map((header, index) => ({index: index, header: header, convertor: this._getConverterBasedOnHeader(header.toLowerCase())}));
@@ -289,5 +293,7 @@ export default class CSVLoader<T extends Array<any>, U> {
             ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter, value => finalValidationComponentOnConverter(value), value => finalConversionComponentOnConverter(value))
             : value => new GenericStringToAnyConverter(value, typeOnConverter, value => finalValidationComponentOnConverter(value), value => finalConversionComponentOnConverter(value))
     }
+
+    //endregion -------------------- initialisation methods --------------------
 
 }
