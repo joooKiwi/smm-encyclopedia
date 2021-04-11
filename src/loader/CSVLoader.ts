@@ -11,10 +11,9 @@ import {StringToNullableNumberConverter} from "./converter/StringToNullableNumbe
 import {StringToNonEmptyStringConverter} from "./converter/StringToNonEmptyStringConverter";
 import {StringToNullableStringConverter} from "./converter/StringToNullableStringConverter";
 
-type HeaderTypeOrConvertor = PossibleConversion
-    | (PossibleConversion | string)[]
+type HeaderTypeOrConvertor = PredefinedConversion
+    | (PredefinedConversion | string)[]
     | ((value: string) => Converter<string, any>);
-export type PossibleConversion = 'nullable' | PredefinedConversion;
 export type PrimitiveConversion = 'boolean' | 'number' | 'string';
 export type NonNullablePredefinedConversion = 'boolean' | 'number' | 'string';
 export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
@@ -22,7 +21,7 @@ export type PredefinedConversion = NullablePredefinedConversion | NonNullablePre
 
 export default class CSVLoader<T extends Array<any>, U> {
 
-    public static GENERIC_DEFAULT_CONVERSION: PossibleConversion = 'nullable string';
+    public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'nullable string';
     public static readonly EVERY_DEFINED_POSSIBLE_CONVERSION: PredefinedConversion[] = ['boolean', 'nullable boolean', 'number', 'nullable number', 'string', 'non empty string', 'nullable string'];
 
     readonly #originalContent;
@@ -32,7 +31,7 @@ export default class CSVLoader<T extends Array<any>, U> {
     readonly #callbackToCreateObject;
     #callbackOnAdd?: (arrayContent: T, convertedContent: U) => void;
     #callbackOnConvertedValue?: (content: keyof T) => void;
-    #defaultConversion?: PossibleConversion;
+    #defaultConversion?: PredefinedConversion;
 
     public constructor(content: string[][], callbackToCreateObject: (arrayOfContent: T) => U) {
         this.#originalContent = content;
@@ -82,11 +81,11 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.#defaultConversion ?? CSVLoader.GENERIC_DEFAULT_CONVERSION;
     }
 
-    protected set defaultConversion(value: PossibleConversion) {
+    protected set defaultConversion(value: PredefinedConversion) {
         this.#defaultConversion = value;
     }
 
-    public setDefaultConversion(defaultConversion: PossibleConversion): this {
+    public setDefaultConversion(defaultConversion: PredefinedConversion): this {
         this.defaultConversion = defaultConversion;
         return this;
     }
@@ -131,9 +130,9 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.convertTo(['nullable', validValueOrConvertor,], ...headers);
     }
 
-    public convertToBooleanAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertToBooleanAnd(convertor: PredefinedConversion, ...headers: string[]): this
     public convertToBooleanAnd(validValue: string, ...headers: string[]): this
-    public convertToBooleanAnd(validValueOrConvertor: string | PossibleConversion, ...headers: string[]): this {
+    public convertToBooleanAnd(validValueOrConvertor: string | PredefinedConversion, ...headers: string[]): this {
         return this.convertTo(['boolean', validValueOrConvertor,], ...headers);
     }
 
@@ -144,9 +143,9 @@ export default class CSVLoader<T extends Array<any>, U> {
     }
 
 
-    public convertToNumberAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertToNumberAnd(convertor: PredefinedConversion, ...headers: string[]): this
     public convertToNumberAnd(validValue: string, ...headers: string[]): this
-    public convertToNumberAnd(validValueOrConvertor: string | PossibleConversion, ...headers: string[]): this {
+    public convertToNumberAnd(validValueOrConvertor: string | PredefinedConversion, ...headers: string[]): this {
         return this.convertTo(['number', validValueOrConvertor,], ...headers);
     }
 
@@ -156,9 +155,9 @@ export default class CSVLoader<T extends Array<any>, U> {
         return this.convertTo(['nullable number', validValueOrConvertor,], ...headers);
     }
 
-    public convertToStringAnd(convertor: PossibleConversion, ...headers: string[]): this
+    public convertToStringAnd(convertor: PredefinedConversion, ...headers: string[]): this
     public convertToStringAnd(validValue: string, ...headers: string[]): this
-    public convertToStringAnd(validValueOrConvertor: string | PossibleConversion, ...headers: string[]): this {
+    public convertToStringAnd(validValueOrConvertor: string | PredefinedConversion, ...headers: string[]): this {
         return this.convertTo(['string', validValueOrConvertor,], ...headers);
     }
 
@@ -212,12 +211,9 @@ export default class CSVLoader<T extends Array<any>, U> {
                 : headerTypeOrConvertorFound;
     }
 
-    protected _createAndGetConvertor(header: string, possibleConversion: PossibleConversion): (value: string) => Converter<string, any> {
+    protected _createAndGetConvertor(header: string, predefinedConversion: PredefinedConversion): (value: string) => Converter<string, any> {
         let convertor: (value: string) => Converter<string, any>;
-        switch (possibleConversion) {
-            case 'nullable':
-                convertor = value => new StringToNonEmptyStringConverter(value);
-                break;
+        switch (predefinedConversion) {
             case 'number':
                 convertor = value => new StringToNumberConverter(value);
                 break;
@@ -244,7 +240,7 @@ export default class CSVLoader<T extends Array<any>, U> {
         return convertor;
     }
 
-    protected _createAndGetMixedConvertor(header: string, conversionComponents: (PossibleConversion | string)[]): (value: string) => Converter<string, any> {
+    protected _createAndGetMixedConvertor(header: string, conversionComponents: (PredefinedConversion | string)[]): (value: string) => Converter<string, any> {
         const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
         let validationComponentOnConverter: ((value: string) => boolean)[] = [];
         let conversionComponentOnConverter: ((value: string) => any)[] = [];
@@ -254,10 +250,6 @@ export default class CSVLoader<T extends Array<any>, U> {
             + conversionComponents.map(conversionComponent => {
                 let type: string;
                 switch (conversionComponent) {
-                    case 'nullable':
-                        type = 'null';
-                        //There is nothing since it is being taken into account at the start
-                        break;
                     case 'number':
                     case 'nullable number':
                         type = 'number';
@@ -289,6 +281,8 @@ export default class CSVLoader<T extends Array<any>, U> {
                 return type;
             }).join(', ')
             + ' )';
+
+
         const finalValidationComponentOnConverter = (value: string) => {
             for (let validationComponent of validationComponentOnConverter) {
                 if (validationComponent(value))
