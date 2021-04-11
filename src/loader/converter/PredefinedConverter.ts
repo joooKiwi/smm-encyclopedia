@@ -160,7 +160,7 @@ export abstract class PredefinedConverter {
     public abstract newConversion(value: string): any;
 
     public newConversionAsNonNullable(value: string): any {
-        return this.#callbackToCreateNewConversionAsNonNullable();
+        return this.#callbackToCreateNewConversionAsNonNullable()(value);
     }
 
 

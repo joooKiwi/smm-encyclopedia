@@ -7,7 +7,7 @@ type HeaderTypeOrConvertor = PredefinedConversion
     | (PredefinedConversion | string)[]
     | ((value: string) => Converter<string, any>);
 
-export default class CSVLoader<T extends Array<any>, U> {
+export default class CSVLoader<T extends any[], U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'nullable string';
 
