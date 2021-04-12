@@ -121,38 +121,38 @@ export interface EntityFilePropertiesTemplate {
     }
 
     name: {
-        japanese: string
+        japanese: null | string
 
         english: {
-            simple: string
+            simple: null | string
             american: null | string
             european: null | string
         }
 
         spanish: {
-            simple: string
+            simple: null | string
             american: null | string
             european: null | string
         }
 
         french: {
-            simple: string
+            simple: null | string
             canadian: null | string
             european: null | string
         }
 
-        dutch: string
+        dutch: null | string
 
-        german: string
+        german: null | string
 
-        italian: string
+        italian: null | string
 
-        russian: string
+        russian: null | string
 
-        korean: string
+        korean: null | string
 
         chinese: {
-            simple: string
+            simple: null | string
             simplified: null | string
             traditional: null | string
         }
