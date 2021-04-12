@@ -117,6 +117,8 @@ export interface EntityFilePropertiesTemplate {
             ghostHouseTheme: EntityLink
             airshipTheme: EntityLink
             castleTheme: EntityLink
+
+            otherReference: null | EntityFilePropertiesTemplate[]
         }
     }
 

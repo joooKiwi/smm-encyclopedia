@@ -152,7 +152,7 @@ export interface EntityFilePropertiesArrayAndTemplate {
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
     const englishNames: Map<string, EntityFilePropertiesArrayAndTemplate> = new Map();
-    const englishReferencesToWatch: { value: string, errorIfNeverFound: () => ReferenceError }[] = [];
+    const englishReferencesToWatch: { reference: EntityFilePropertiesTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[] = [];
 
     return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
         properties: {
@@ -257,6 +257,8 @@ export function loadEveryEntities() {
                 ghostHouseTheme: arrayOfContent[50],
                 airshipTheme: arrayOfContent[51],
                 castleTheme: arrayOfContent[52],
+
+                otherReference: null,
             },
         },
         name: {
@@ -317,8 +319,8 @@ export function loadEveryEntities() {
 
         .convertToStringAnd(thisText, 'inDayTheme',)
         .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
-        .convertToStringAnd(thisText, 'inGroundTheme', )
-        .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme','inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme','inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+        .convertToStringAnd(thisText, 'inGroundTheme',)
+        .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme', 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme', 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
         .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
         .convertToEmptyableString(
@@ -359,12 +361,14 @@ export function loadEveryEntities() {
                         reference.split(' / ').forEach((splitReference, index) => {
                             if (splitReference !== 'this' && englishNames.get(splitReference) === undefined)
                                 englishReferencesToWatch.push({
+                                    reference: finalContent,
                                     value: splitReference,
                                     errorIfNeverFound: () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),
                                 });
                         });
                     } else
                         englishReferencesToWatch.push({
+                            reference: finalContent,
                             value: reference,
                             errorIfNeverFound: () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),
                         });
@@ -373,9 +377,16 @@ export function loadEveryEntities() {
         })
         .onInitialisationEnd(() => {
             englishReferencesToWatch.forEach(englishReferenceToWatch => {
-                console.log(englishReferenceToWatch);
-                if (englishNames.get(englishReferenceToWatch.value) === undefined)
+                const referenceWatched = englishNames.get(englishReferenceToWatch.value);
+                if (referenceWatched === undefined)
                     throw englishReferenceToWatch.errorIfNeverFound();
+
+                //Addition on both references to their other reference table.
+                referenceWatched.template.properties.reference.otherReference = referenceWatched.template.properties.reference.otherReference ?? [];
+                referenceWatched.template.properties.reference.otherReference.push(englishReferenceToWatch.reference);
+
+                englishReferenceToWatch.reference.properties.reference.otherReference = englishReferenceToWatch.reference.properties.reference.otherReference ?? [];
+                englishReferenceToWatch.reference.properties.reference.otherReference.push(referenceWatched.template);
             })
         })
         .content;
