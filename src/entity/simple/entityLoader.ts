@@ -152,6 +152,8 @@ export interface EntityFilePropertiesArrayAndTemplate {
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
     const englishNames: Map<string, EntityFilePropertiesArrayAndTemplate> = new Map();
+    const englishReferencesToWatch: { value: string, errorIfNeverFound: () => ReferenceError }[] = [];
+
     return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
         properties: {
             //region ---------- Basic properties ----------
@@ -315,9 +317,8 @@ export function loadEveryEntities() {
 
         .convertToStringAnd(thisText, 'inDayTheme',)
         .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
-        .convertToStringAnd(thisText, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
-        .convertToEmptyableStringAnd(thisText, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
-        .convertToStringAnd(thisText, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+        .convertToStringAnd(thisText, 'inGroundTheme', )
+        .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme','inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme','inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
         .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
         .convertToEmptyableString(
@@ -328,8 +329,8 @@ export function loadEveryEntities() {
             'dutch', 'german', 'italian', 'russian', 'korean',
             'chinese', 'simplifiedChinese', 'traditionalChinese',
         )
-        .onFinalObjectCreated((convertedContent, arrayContent, originalContent,) => {
-            const name = convertedContent.name;
+        .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
+            const name = finalContent.name;
             //README since some references are still not complete, they are in comment
             if (name.english.simple === null && (name.english.american === null || name.english.european === null))
                 throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -345,10 +346,37 @@ export function loadEveryEntities() {
                 throw new ReferenceError('No english name can be null since they are used as a key for the references.');
             if (englishNames.get(englishReferenceName) !== undefined)
                 throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
-            englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: arrayContent, template: convertedContent,});
+            englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: convertedContent, template: finalContent,});
 
-            const reference = convertedContent.properties.reference;
-
+            const reference = finalContent.properties.reference;
+            [
+                reference.dayTheme, reference.nightTheme,
+                reference.superMarioBrosStyle, reference.superMarioBros3Style, reference.superMarioWorldStyle, reference.newSuperMarioBrosUStyle, reference.superMario3DWorldStyle,
+                reference.groundTheme, reference.undergroundTheme, reference.underwaterTheme, reference.desertTheme, reference.snowTheme, reference.skyTheme, reference.forestTheme, reference.ghostHouseTheme, reference.airshipTheme, reference.castleTheme,
+            ].forEach(reference => {
+                if (reference !== null && reference !== 'this' && englishNames.get(reference) === undefined) {
+                    if (reference.includes("/")) {
+                        reference.split(' / ').forEach((splitReference, index) => {
+                            if (splitReference !== 'this' && englishNames.get(splitReference) === undefined)
+                                englishReferencesToWatch.push({
+                                    value: splitReference,
+                                    errorIfNeverFound: () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),
+                                });
+                        });
+                    } else
+                        englishReferencesToWatch.push({
+                            value: reference,
+                            errorIfNeverFound: () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),
+                        });
+                }
+            });
+        })
+        .onInitialisationEnd(() => {
+            englishReferencesToWatch.forEach(englishReferenceToWatch => {
+                console.log(englishReferenceToWatch);
+                if (englishNames.get(englishReferenceToWatch.value) === undefined)
+                    throw englishReferenceToWatch.errorIfNeverFound();
+            })
         })
         .content;
 }
