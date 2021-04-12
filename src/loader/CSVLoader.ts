@@ -16,8 +16,8 @@ export default class CSVLoader<T extends any[], U> {
     readonly #content;
 
     readonly #callbackToCreateObject;
-    #callbackOnAdd?: (arrayContent: T, convertedContent: U) => void;
-    #callbackOnConvertedValue?: (content: keyof T, originalValue: string) => void;
+    #callbackFinalObjectCreated?: (arrayContent: T, convertedContent: U) => void;
+    #callbackOnSingleContentConverted?: (content: keyof T, originalValue: string) => void;
     #defaultConversion?: PredefinedConversion;
 
     public constructor(content: string[][], callbackToCreateObject: (arrayOfContent: T) => U) {
@@ -53,22 +53,23 @@ export default class CSVLoader<T extends any[], U> {
     //region -------------------- triggers methods --------------------
 
     protected get callbackOnFinalObjectCreated() {
-        return this.#callbackOnAdd;
+        return this.#callbackFinalObjectCreated;
     }
 
     public onFinalObjectCreated(callback: (arrayContent: T, convertedContent: U) => void): this {
-        this.#callbackOnAdd = callback;
+        this.#callbackFinalObjectCreated = callback;
         return this;
     }
 
     protected get callbackOnSingleContentConverted() {
-        return this.#callbackOnConvertedValue;
+        return this.#callbackOnSingleContentConverted;
     }
 
     public onSingleContentConverted(callback: (content: keyof T, originalValue: string) => void): this {
-        this.#callbackOnConvertedValue = callback;
+        this.#callbackOnSingleContentConverted = callback;
         return this;
     }
+
 
     //endregion -------------------- triggers methods --------------------
 
@@ -180,12 +181,14 @@ export default class CSVLoader<T extends any[], U> {
 
     protected _initialiseContent(): this {
         const headers = this.originalContent[0].map((header, index) => ({index: index, header: header, convertor: this._getConverterBasedOnHeader(header.toLowerCase())}));
-        for (let i = 1; i < this.originalContent.length; i++)
+        for (let i = 1; i < this.originalContent.length; i++) {
+
             this.addContent(this.originalContent[i].map((content, index) => {
                 const convertedValue = headers[index].convertor(content).convertedValue as keyof T;
                 this.callbackOnSingleContentConverted?.(convertedValue, content);
                 return convertedValue;
             }) as T)
+        }
         return this;
     }
 
