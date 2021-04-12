@@ -333,19 +333,23 @@ export function loadEveryEntities() {
         )
         .onFinalObjectCreated((convertedContent, arrayContent, originalContent,) => {
             const name = convertedContent.name;
-            if (name.english.simple !== null && (name.english.american === null || name.english.european === null))
-                throw new ReferenceError('The english name can either have a single english name or both "american" and "european" name separated.');
-            if (name.spanish.simple !== null && (name.spanish.american === null || name.spanish.european === null))
-                throw new ReferenceError('The spanish name can either have a single spanish name or both "american" and "european" name separated.');
-            if (name.french.simple !== null && (name.french.canadian === null || name.french.european === null))
-                throw new ReferenceError('The french name can either have a single french name or both "canadian" and "european" name separated.');
-            if (name.chinese.simple !== null && (name.chinese.simplified === null || name.chinese.traditional === null))
-                throw new ReferenceError('The chinese name can either have a single chinese name or both "simplified" and "traditional" name separated.');
+            //README since some references are still not complete, they are in comment
+            if (name.english.simple === null && (name.english.american === null || name.english.european === null))
+                throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
+            // if (name.spanish.simple === null && (name.spanish.american === null || name.spanish.european === null))
+            //     throw new ReferenceError(`The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`);
+            // if (name.french.simple === null && (name.french.canadian === null || name.french.european === null))
+            //     throw new ReferenceError(`The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`);
+            // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
+            //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
 
             const englishReferenceName = name.english.simple ?? name.english.american;
             if (englishReferenceName == null)
                 throw new ReferenceError('No english name can be null since they are used as a key for the references.');
             englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: arrayContent, template: convertedContent,});
+
+            const reference = convertedContent.properties.reference;
+
         })
         .content;
 }
