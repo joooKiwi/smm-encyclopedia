@@ -346,6 +346,8 @@ export function loadEveryEntities() {
             const englishReferenceName = name.english.simple ?? name.english.american;
             if (englishReferenceName == null)
                 throw new ReferenceError('No english name can be null since they are used as a key for the references.');
+            if (englishNames.get(englishReferenceName) !== undefined)
+                throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
             englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: arrayContent, template: convertedContent,});
 
             const reference = convertedContent.properties.reference;
