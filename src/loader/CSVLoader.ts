@@ -45,22 +45,37 @@ export default class CSVLoader<T extends any[], U> {
 
     protected addContent(arrayContent: T): this {
         const convertContent = this.callbackToCreateObject(arrayContent);
-        this.callbackOnAdd?.(arrayContent, convertContent);
+        this.callbackOnFinalObjectCreated?.(arrayContent, convertContent);
         this.#content.push(convertContent);
         return this;
     }
 
-    protected get callbackOnAdd() {
+    //region -------------------- triggers methods --------------------
+
+    protected get callbackOnFinalObjectCreated() {
         return this.#callbackOnAdd;
     }
 
-    protected get callbackOnConvertedValue() {
+    public onFinalObjectCreated(callback: (arrayContent: T, convertedContent: U) => void): this {
+        this.#callbackOnAdd = callback;
+        return this;
+    }
+
+    protected get callbackOnSingleContentConverted() {
         return this.#callbackOnConvertedValue;
     }
+
+    public onSingleContentConverted(callback: (content: keyof T) => void): this {
+        this.#callbackOnConvertedValue = callback;
+        return this;
+    }
+
+    //endregion -------------------- triggers methods --------------------
 
     protected get callbackToCreateObject() {
         return this.#callbackToCreateObject;
     }
+
 
     //region -------------------- default values methods --------------------
 
@@ -161,21 +176,6 @@ export default class CSVLoader<T extends any[], U> {
 
     //endregion -------------------- convertor usage methods --------------------
 
-
-    //region -------------------- trigger methods --------------------
-
-    public onConvertedContent(callback: (content: keyof T) => void): this {
-        this.#callbackOnConvertedValue = callback;
-        return this;
-    }
-
-    public onAddContent(callback: (arrayContent: T, convertedContent: U) => void): this {
-        this.#callbackOnAdd = callback;
-        return this;
-    }
-
-    //endregion -------------------- trigger methods --------------------
-
     //region -------------------- initialisation methods --------------------
 
     protected _initialiseContent(): this {
@@ -183,7 +183,7 @@ export default class CSVLoader<T extends any[], U> {
         for (let i = 1; i < this.originalContent.length; i++)
             this.addContent(this.originalContent[i].map((content, index) => {
                 const convertedValue = headers[index].convertor(content).convertedValue as keyof T;
-                this.callbackOnConvertedValue?.(convertedValue);
+                this.callbackOnSingleContentConverted?.(convertedValue);
                 return convertedValue;
             }) as T)
         return this;
