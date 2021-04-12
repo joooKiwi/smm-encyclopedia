@@ -144,6 +144,7 @@ type EntityFilePropertiesArray = [
 ];
 
 export interface EntityFilePropertiesArrayAndTemplate {
+    originalContent: string[];
     arrayConverted: EntityFilePropertiesArray;
     template: EntityFilePropertiesTemplate;
 }
@@ -330,11 +331,21 @@ export function loadEveryEntities() {
             'dutch', 'german', 'italian', 'russian', 'korean',
             'chinese', 'simplifiedChinese', 'traditionalChinese',
         )
-        .onAddContent((arrayContent, convertedContent) => {
-            const englishName = convertedContent.name.english.simple ?? convertedContent.name.english.american;
-            if (englishName == null)
-                throw new Error('No english name can be null since they are used as a key for the references.');
-            englishNames.set(englishName, {arrayConverted: arrayContent, template: convertedContent,});
+        .onFinalObjectCreated((convertedContent, arrayContent, originalContent,) => {
+            const name = convertedContent.name;
+            if (name.english.simple !== null && (name.english.american === null || name.english.european === null))
+                throw new ReferenceError('The english name can either have a single english name or both "american" and "european" name separated.');
+            if (name.spanish.simple !== null && (name.spanish.american === null || name.spanish.european === null))
+                throw new ReferenceError('The spanish name can either have a single spanish name or both "american" and "european" name separated.');
+            if (name.french.simple !== null && (name.french.canadian === null || name.french.european === null))
+                throw new ReferenceError('The french name can either have a single french name or both "canadian" and "european" name separated.');
+            if (name.chinese.simple !== null && (name.chinese.simplified === null || name.chinese.traditional === null))
+                throw new ReferenceError('The chinese name can either have a single chinese name or both "simplified" and "traditional" name separated.');
+
+            const englishReferenceName = name.english.simple ?? name.english.american;
+            if (englishReferenceName == null)
+                throw new ReferenceError('No english name can be null since they are used as a key for the references.');
+            englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: arrayContent, template: convertedContent,});
         })
         .content;
 }
