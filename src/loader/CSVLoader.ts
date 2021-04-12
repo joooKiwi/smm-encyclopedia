@@ -17,7 +17,7 @@ export default class CSVLoader<T extends any[], U> {
 
     readonly #callbackToCreateObject;
     #callbackOnAdd?: (arrayContent: T, convertedContent: U) => void;
-    #callbackOnConvertedValue?: (content: keyof T) => void;
+    #callbackOnConvertedValue?: (content: keyof T, originalValue: string) => void;
     #defaultConversion?: PredefinedConversion;
 
     public constructor(content: string[][], callbackToCreateObject: (arrayOfContent: T) => U) {
@@ -65,7 +65,7 @@ export default class CSVLoader<T extends any[], U> {
         return this.#callbackOnConvertedValue;
     }
 
-    public onSingleContentConverted(callback: (content: keyof T) => void): this {
+    public onSingleContentConverted(callback: (content: keyof T, originalValue: string) => void): this {
         this.#callbackOnConvertedValue = callback;
         return this;
     }
@@ -183,7 +183,7 @@ export default class CSVLoader<T extends any[], U> {
         for (let i = 1; i < this.originalContent.length; i++)
             this.addContent(this.originalContent[i].map((content, index) => {
                 const convertedValue = headers[index].convertor(content).convertedValue as keyof T;
-                this.callbackOnSingleContentConverted?.(convertedValue);
+                this.callbackOnSingleContentConverted?.(convertedValue, content);
                 return convertedValue;
             }) as T)
         return this;
