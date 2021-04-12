@@ -317,11 +317,8 @@ export function loadEveryEntities() {
         .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
         .convertToStringAnd(thisText, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
         .convertToEmptyableStringAnd(thisText, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
-        .convertToStringAnd(thisText,
-            'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',
-            'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle',
-        )
-        .convertToEmptyableStringAnd(thisText, 'inSM3DWGameStyle',)
+        .convertToStringAnd(thisText, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+        .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
         .convertToEmptyableString(
             'japanese',
