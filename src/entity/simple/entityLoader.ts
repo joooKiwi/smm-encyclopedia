@@ -143,8 +143,14 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Language properties ----------
 ];
 
+export interface EntityFilePropertiesArrayAndTemplate {
+    arrayConverted: EntityFilePropertiesArray;
+    template: EntityFilePropertiesTemplate;
+}
+
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
+    const englishNames: Map<string, EntityFilePropertiesArrayAndTemplate> = new Map();
     return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
         properties: {
             //region ---------- Basic properties ----------
@@ -292,7 +298,7 @@ export function loadEveryEntities() {
         .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
         .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
-        .convertTo(['nullable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+        .convertTo(['emptyable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
         .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
         .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
         .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
@@ -302,7 +308,7 @@ export function loadEveryEntities() {
         .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
         .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
         .convertToNullableBoolean('whilePlaying_isInPEL',)
-        .convertTo(['nullable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+        .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
         .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenHorizontalRange',)
         .convertToNullableNumber('whilePlaying_offscreenVerticalRange',)
 
@@ -324,5 +330,11 @@ export function loadEveryEntities() {
             'dutch', 'german', 'italian', 'russian', 'korean',
             'chinese', 'simplifiedChinese', 'traditionalChinese',
         )
+        .onAddContent((arrayContent, convertedContent) => {
+            const englishName = convertedContent.name.english.simple ?? convertedContent.name.english.american;
+            if (englishName == null)
+                throw new Error('No english name can be null since they are used as a key for the references.');
+            englishNames.set(englishName, {arrayConverted: arrayContent, template: convertedContent,});
+        })
         .content;
 }
