@@ -24,15 +24,15 @@ export class SMM2NameContainer
     readonly #chinese: ChineseLanguage;
 
     public constructor(japanese: string,
-                       english: string | [string, string],
-                       spanish: string | [string, string],
-                       french: string | [string, string],
+                       english: string | [american: string, european: string],
+                       spanish: string | [american: string, european: string],
+                       french: string | [canadian: string, european: string],
                        dutch: string,
                        german: string,
                        italian: string,
                        russian: string,
                        korean: string,
-                       chinese: string | [string, string],) {
+                       chinese: string | [simplified: string, traditional: string],) {
         this.#japanese = new SimpleLanguageContainer(japanese);
         this.#english = typeof english === 'string' ? new AmericanAndEuropeanLanguageContainer(english) : new AmericanAndEuropeanLanguageContainer(...english);
         this.#spanish = typeof spanish === 'string' ? new AmericanAndEuropeanLanguageContainer(spanish) : new AmericanAndEuropeanLanguageContainer(...spanish);
@@ -44,6 +44,7 @@ export class SMM2NameContainer
         this.#korean = new SimpleLanguageContainer(korean);
         this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
     }
+
 
     public get languageValue() {
         return Languages.currentLanguage.get(this);
