@@ -24,8 +24,9 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
 
     public get(language: T): string {
         return this.value === AbstractPluralLanguageContainer.DEFAULT_NULL_LANGUAGE
-            ? this.value
-            : this.values.get(language)!;
+            ? this.values.get(language)!
+            : this.value;
+
     }
 
 }
