@@ -265,7 +265,7 @@ export function loadEveryEntities() {
                 airshipTheme: arrayOfContent[55],
                 castleTheme: arrayOfContent[56],
 
-                otherReference: null,
+                all: null,
             },
         },
         name: {
@@ -391,11 +391,11 @@ export function loadEveryEntities() {
                     throw englishReferenceToWatch.errorIfNeverFound();
 
                 //Addition on both references to their other reference table.
-                referenceWatched.template.properties.reference.otherReference = referenceWatched.template.properties.reference.otherReference ?? [];
-                referenceWatched.template.properties.reference.otherReference.push(englishReferenceToWatch.reference);
+                referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
+                referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);
 
-                englishReferenceToWatch.reference.properties.reference.otherReference = englishReferenceToWatch.reference.properties.reference.otherReference ?? [];
-                englishReferenceToWatch.reference.properties.reference.otherReference.push(referenceWatched.template);
+                englishReferenceToWatch.reference.properties.reference.all = englishReferenceToWatch.reference.properties.reference.all ?? [];
+                englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
             })
         })
         .content;

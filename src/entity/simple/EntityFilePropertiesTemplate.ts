@@ -118,7 +118,7 @@ export interface EntityFilePropertiesTemplate {
             airshipTheme: EntityLink
             castleTheme: EntityLink
 
-            otherReference: null | EntityFilePropertiesTemplate[]
+            all: null | EntityFilePropertiesTemplate[]
         }
     }
 
@@ -158,6 +158,6 @@ export interface EntityFilePropertiesTemplate {
             simplified: null | string
             traditional: null | string
         }
-    },
+    }
 
 }
