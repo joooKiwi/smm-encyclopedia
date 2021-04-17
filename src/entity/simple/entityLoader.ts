@@ -366,20 +366,7 @@ export function loadEveryEntities() {
                 reference.groundTheme, reference.undergroundTheme, reference.underwaterTheme, reference.desertTheme, reference.snowTheme, reference.skyTheme, reference.forestTheme, reference.ghostHouseTheme, reference.airshipTheme, reference.castleTheme,
             ].forEach(reference => referencesToWatch.addReference(finalContent, reference));
         })
-        .onInitialisationEnd(() => {
-            referencesToWatch.references.forEach(englishReferenceToWatch => {
-                const referenceWatched = englishNames.get(englishReferenceToWatch.value);
-                if (referenceWatched === undefined)
-                    throw englishReferenceToWatch.errorIfNeverFound();
-
-                //Addition on both references to their other reference table.
-                referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
-                referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);
-
-                englishReferenceToWatch.reference.properties.reference.all = englishReferenceToWatch.reference.properties.reference.all ?? [];
-                englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
-            })
-        })
+        .onInitialisationEnd(() => referencesToWatch.testReferences())
         .content;
 }
 
@@ -395,6 +382,14 @@ class ReferencesToWatch {
     }
 
 
+    public get englishNames() {
+        return this.#englishNames;
+    }
+
+    public get alreadyAddedName() {
+        return this.#alreadyAddedName;
+    }
+
     public get references() {
         return this.#references;
     }
@@ -402,7 +397,7 @@ class ReferencesToWatch {
 
     public addReference(template: EntityFilePropertiesTemplate, reference: string | null): void {
         if (reference !== null && reference !== 'this') {
-            if (!this.#alreadyAddedName.includes(reference)) {
+            if (!this.alreadyAddedName.includes(reference)) {
                 if (reference.includes("/")) {
                     reference.split(' / ').forEach((splitReference, index) => {
                         if (splitReference !== 'this')
@@ -418,10 +413,24 @@ class ReferencesToWatch {
                         value: reference,
                         errorIfNeverFound: () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),
                     });
-                this.#alreadyAddedName.push(reference);
+                this.alreadyAddedName.push(reference);
             }
         }
     }
 
+    public testReferences(): void {
+        this.references.forEach(englishReferenceToWatch => {
+            const referenceWatched = this.englishNames.get(englishReferenceToWatch.value);
+            if (referenceWatched === undefined)
+                throw englishReferenceToWatch.errorIfNeverFound();
+
+            //Addition on both references to their other reference table.
+            referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
+            referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);
+
+            englishReferenceToWatch.reference.properties.reference.all = englishReferenceToWatch.reference.properties.reference.all ?? [];
+            englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
+        });
+    }
 
 }
