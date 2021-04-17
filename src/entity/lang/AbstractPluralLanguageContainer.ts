@@ -23,7 +23,9 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
     }
 
     public get(language: T): string {
-        return this.values.get(language) ?? (this.values.set(language, AbstractPluralLanguageContainer.DEFAULT_NULL_LANGUAGE).get(language)!);
+        return this.value === AbstractPluralLanguageContainer.DEFAULT_NULL_LANGUAGE
+            ? this.value
+            : this.values.get(language)!;
     }
 
 }

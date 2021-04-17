@@ -7,6 +7,7 @@ import {ChineseLanguageContainer} from "./ChineseLanguageContainer";
 import {SimpleLanguage} from "./SimpleLanguage";
 import {SimpleLanguageContainer} from "./SimpleLanguageContainer";
 import {SMM2Name} from "./SMM2Name";
+import {Languages} from "../../lang/Languages";
 
 export class SMM2NameContainer
     implements SMM2Name {
@@ -44,10 +45,15 @@ export class SMM2NameContainer
         this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
     }
 
+    public get languageValue() {
+        return Languages.currentLanguage.get(this);
+    }
+
 
     public get japanese() {
         return this.#japanese.value;
     }
+
 
     public get english() {
         return this.#english.value;
