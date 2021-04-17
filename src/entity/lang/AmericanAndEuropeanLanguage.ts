@@ -1,7 +1,9 @@
 import {PluralLanguage} from "./PluralLanguage";
 
+export type AmericanOrEuropeanReference = 'american' | 'european';
+
 export interface AmericanAndEuropeanLanguage
-    extends PluralLanguage<'american' | 'european'> {
+    extends PluralLanguage<AmericanOrEuropeanReference> {
 
     american: string
 

@@ -1,7 +1,9 @@
 import {PluralLanguage} from "./PluralLanguage";
 
+export type ChineseReference = 'simplified' | 'traditional';
+
 export interface ChineseLanguage
-    extends PluralLanguage<'simplified' | 'traditional'> {
+    extends PluralLanguage<ChineseReference> {
 
 
     simplified: string
