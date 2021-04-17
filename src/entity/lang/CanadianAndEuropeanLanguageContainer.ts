@@ -1,7 +1,7 @@
 import {AbstractPluralLanguageContainer} from "./AbstractPluralLanguageContainer";
 import {CanadianAndEuropeanLanguage, CanadianOrEuropeanReference} from "./CanadianAndEuropeanLanguage";
 
-export class AmericanAndEuropeanLanguageContainer
+export class CanadianAndEuropeanLanguageContainer
     extends AbstractPluralLanguageContainer<CanadianOrEuropeanReference>
     implements CanadianAndEuropeanLanguage {
 
