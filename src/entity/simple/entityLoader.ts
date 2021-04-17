@@ -231,8 +231,20 @@ export function loadEveryEntities() {
                     isInPJL: arrayOfContent[37],
                     customLimit: arrayOfContent[38],
                     offscreenRange: {
-                        horizontal: arrayOfContent[39],
-                        vertical: arrayOfContent[40],
+                        loading: {
+                            horizontal: arrayOfContent[39],
+                            vertical: {
+                                upward: arrayOfContent[40],
+                                downward: null,
+                            },
+                        },
+                        unloading: {
+                            horizontal: null,
+                            vertical: {
+                                upward: null,
+                                downward: null,
+                            },
+                        },
                     },
                 },
             },

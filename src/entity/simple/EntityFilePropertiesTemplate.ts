@@ -90,8 +90,20 @@ export interface EntityFilePropertiesTemplate {
                 isInPJL: ProjectileEntityLimitType
                 customLimit: EntityLimit
                 offscreenRange: {
-                    horizontal: NullableNumber | 'Variable'
-                    vertical: NullableNumber
+                    loading: {
+                        horizontal: NullableNumber | 'Variable'
+                        vertical: {
+                            upward: NullableNumber
+                            downward: NullableNumber
+                        }
+                    }
+                    unloading: {
+                        horizontal: NullableNumber | 'Variable'
+                        vertical: {
+                            upward: NullableNumber
+                            downward: NullableNumber
+                        }
+                    }
                 }
             }
         }
