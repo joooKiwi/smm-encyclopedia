@@ -1,28 +1,31 @@
-import {AmericanAndEuropeanLanguage} from "./AmericanAndEuropeanLanguage";
-import {CanadianAndEuropeanLanguage} from "./CanadianAndEuropeanLanguage";
-import {ChineseLanguage} from "./ChineseLanguage";
-import {SimpleLanguage} from "./SimpleLanguage";
-
 export interface SMM2Name {
 
-    japanese: SimpleLanguage
+    japanese: string
 
-    english: AmericanAndEuropeanLanguage
+    english: string
+    americanEnglish: string
+    europeanEnglish: string
 
-    spanish: AmericanAndEuropeanLanguage
+    spanish: string
+    americanSpanish: string
+    europeanSpanish: string
 
-    french: CanadianAndEuropeanLanguage
+    french: string
+    canadianFrench: string
+    europeanFrench: string
 
-    dutch: SimpleLanguage
+    dutch: string
 
-    german: SimpleLanguage
+    german: string
 
-    italian: SimpleLanguage
+    italian: string
 
-    russian: SimpleLanguage
+    russian: string
 
-    korean: SimpleLanguage
+    korean: string
 
-    chinese: ChineseLanguage
+    chinese: string
+    simplifiedChinese: string
+    traditionalChinese: string
 
 }
