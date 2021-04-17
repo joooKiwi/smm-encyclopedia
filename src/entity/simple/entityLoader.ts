@@ -226,14 +226,14 @@ export function loadEveryEntities() {
                     isInPJL: arrayOfContent[37],
                     customLimit: arrayOfContent[38],
                     offscreenRange: {
-                        loading: {
+                        spawning: {
                             horizontal: arrayOfContent[39],
                             vertical: {
                                 upward: arrayOfContent[41],
                                 downward: arrayOfContent[43],
                             },
                         },
-                        unloading: {
+                        despawning: {
                             horizontal: arrayOfContent[40],
                             vertical: {
                                 upward: arrayOfContent[42],

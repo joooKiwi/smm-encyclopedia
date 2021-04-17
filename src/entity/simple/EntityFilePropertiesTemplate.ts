@@ -78,14 +78,14 @@ export interface EntityFilePropertiesTemplate {
                 isInPJL: ProjectileEntityLimitType
                 customLimit: EntityLimit
                 offscreenRange: {
-                    loading: {
+                    spawning: {
                         horizontal: null | number | 'Variable'
                         vertical: {
                             upward: null | number
                             downward: null | number
                         }
                     }
-                    unloading: {
+                    despawning: {
                         horizontal: null | number | 'Variable' | 'Infinity'
                         vertical: {
                             upward: null | number
