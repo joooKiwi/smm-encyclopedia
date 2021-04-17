@@ -150,154 +150,7 @@ export function loadEveryEntities() {
     const englishNames: Map<string, EntityFilePropertiesArrayAndTemplate> = new Map();
     const referencesToWatch = new ReferencesToWatch(englishNames);
 
-    return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => ({
-        properties: {
-            //region ---------- Basic properties ----------
-            isIn: {
-                superMarioMaker1: arrayOfContent[0],
-                superMarioMaker2: arrayOfContent[1],
-
-                superMarioBrosStyle: arrayOfContent[2],
-                superMarioBros3Style: arrayOfContent[3],
-                superMarioWorldStyle: arrayOfContent[4],
-                newSuperMarioBrosUStyle: arrayOfContent[5],
-                superMario3DWorldStyle: arrayOfContent[6],
-
-                dayTheme: arrayOfContent[7],
-                nightTheme: arrayOfContent[8],
-            },
-
-            categoryInTheEditor: arrayOfContent[9],
-
-            hasAMushroomVariant: arrayOfContent[10],
-            canBeInAParachute: arrayOfContent[11],
-            canHaveWings: arrayOfContent[12],
-            //endregion ---------- Basic properties ----------
-
-            //region ---------- Specific properties ----------
-            canContainOrSpawnAKey: arrayOfContent[13],
-
-            canBePutInAOnOffBlock: arrayOfContent[14],
-
-            canBePutOnATrack: {
-                value: arrayOfContent[15],
-                editorLimit: arrayOfContent[16],
-                whilePlaying: arrayOfContent[17],
-            },
-
-            canSpawnOutOfAPipe: arrayOfContent[18],
-
-            canBePutInASwingingClaw: arrayOfContent[19],
-
-            canBeThrownByALakitu: arrayOfContent[20],
-            canBePutInALakituCloud: arrayOfContent[21],
-
-            canBePutInAClownCar: arrayOfContent[22],
-
-            canBeFiredOutOfABulletLauncher: arrayOfContent[23],
-
-            canBePutInABlock: arrayOfContent[24],
-
-            canBePutInATree: arrayOfContent[25],
-
-            lightSourceEmitted: {
-                value: arrayOfContent[26],
-                isInSMB: arrayOfContent[27]
-            },
-
-            canIgniteABobOmb: arrayOfContent[28],
-
-            canGoThroughWalls: arrayOfContent[29],
-
-            canBeStacked: arrayOfContent[30],
-
-            isGlobalGroundOrGlobal: arrayOfContent[31],
-
-            canMakeASoundOutOfAMusicBlock: arrayOfContent[32],
-            //endregion ---------- Specific properties ----------
-
-            limits: {
-                editor: arrayOfContent[33],
-                whilePlaying: {
-                    isInGEL: {
-                        value: arrayOfContent[34],
-                        isSuperGlobal: arrayOfContent[35],
-                    },
-                    isInPEL: arrayOfContent[36],
-                    isInPJL: arrayOfContent[37],
-                    customLimit: arrayOfContent[38],
-                    offscreenRange: {
-                        spawning: {
-                            horizontal: arrayOfContent[39],
-                            vertical: {
-                                upward: arrayOfContent[41],
-                                downward: arrayOfContent[43],
-                            },
-                        },
-                        despawning: {
-                            horizontal: arrayOfContent[40],
-                            vertical: {
-                                upward: arrayOfContent[42],
-                                downward: arrayOfContent[44],
-                            },
-                        },
-                    },
-                },
-            },
-
-            reference: {
-                dayTheme: arrayOfContent[45],
-                nightTheme: arrayOfContent[46],
-
-                superMarioBrosStyle: arrayOfContent[57],
-                superMarioBros3Style: arrayOfContent[58],
-                superMarioWorldStyle: arrayOfContent[59],
-                newSuperMarioBrosUStyle: arrayOfContent[60],
-                superMario3DWorldStyle: arrayOfContent[61],
-
-                groundTheme: arrayOfContent[47],
-                undergroundTheme: arrayOfContent[48],
-                underwaterTheme: arrayOfContent[49],
-                desertTheme: arrayOfContent[50],
-                snowTheme: arrayOfContent[51],
-                skyTheme: arrayOfContent[52],
-                forestTheme: arrayOfContent[53],
-                ghostHouseTheme: arrayOfContent[54],
-                airshipTheme: arrayOfContent[55],
-                castleTheme: arrayOfContent[56],
-
-                all: null,
-            },
-        },
-        name: {
-            japanese: arrayOfContent[62],
-            english: {
-                simple: arrayOfContent[63],
-                american: arrayOfContent[64],
-                european: arrayOfContent[65],
-            },
-            spanish: {
-                simple: arrayOfContent[66],
-                american: arrayOfContent[67],
-                european: arrayOfContent[68],
-            },
-            french: {
-                simple: arrayOfContent[69],
-                canadian: arrayOfContent[70],
-                european: arrayOfContent[71],
-            },
-            dutch: arrayOfContent[72],
-            german: arrayOfContent[73],
-            italian: arrayOfContent[74],
-            russian: arrayOfContent[75],
-            korean: arrayOfContent[76],
-            chinese: {
-                simple: arrayOfContent[77],
-                simplified: arrayOfContent[78],
-                traditional: arrayOfContent[79],
-            },
-        }
-    }))
+    return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => createTemplate(arrayOfContent))
         .convertToNullableBoolean(
             'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
             'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
@@ -343,7 +196,7 @@ export function loadEveryEntities() {
         )
         .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
             const name = finalContent.name;
-            testNames(name);
+            testName(name);
             addEnglishReference(name, englishNames, originalContent, convertedContent, finalContent);
             referencesToWatch.addReference(finalContent);
         })
@@ -351,7 +204,158 @@ export function loadEveryEntities() {
         .content;
 }
 
-function testNames(name: SMM2NameTemplate) {
+function createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
+    return {
+        properties: {
+            //region ---------- Basic properties ----------
+            isIn: {
+                superMarioMaker1: content[0],
+                superMarioMaker2: content[1],
+
+                superMarioBrosStyle: content[2],
+                superMarioBros3Style: content[3],
+                superMarioWorldStyle: content[4],
+                newSuperMarioBrosUStyle: content[5],
+                superMario3DWorldStyle: content[6],
+
+                dayTheme: content[7],
+                nightTheme: content[8],
+            },
+
+            categoryInTheEditor: content[9],
+
+            hasAMushroomVariant: content[10],
+            canBeInAParachute: content[11],
+            canHaveWings: content[12],
+            //endregion ---------- Basic properties ----------
+
+            //region ---------- Specific properties ----------
+            canContainOrSpawnAKey: content[13],
+
+            canBePutInAOnOffBlock: content[14],
+
+            canBePutOnATrack: {
+                value: content[15],
+                editorLimit: content[16],
+                whilePlaying: content[17],
+            },
+
+            canSpawnOutOfAPipe: content[18],
+
+            canBePutInASwingingClaw: content[19],
+
+            canBeThrownByALakitu: content[20],
+            canBePutInALakituCloud: content[21],
+
+            canBePutInAClownCar: content[22],
+
+            canBeFiredOutOfABulletLauncher: content[23],
+
+            canBePutInABlock: content[24],
+
+            canBePutInATree: content[25],
+
+            lightSourceEmitted: {
+                value: content[26],
+                isInSMB: content[27]
+            },
+
+            canIgniteABobOmb: content[28],
+
+            canGoThroughWalls: content[29],
+
+            canBeStacked: content[30],
+
+            isGlobalGroundOrGlobal: content[31],
+
+            canMakeASoundOutOfAMusicBlock: content[32],
+            //endregion ---------- Specific properties ----------
+
+            limits: {
+                editor: content[33],
+                whilePlaying: {
+                    isInGEL: {
+                        value: content[34],
+                        isSuperGlobal: content[35],
+                    },
+                    isInPEL: content[36],
+                    isInPJL: content[37],
+                    customLimit: content[38],
+                    offscreenRange: {
+                        spawning: {
+                            horizontal: content[39],
+                            vertical: {
+                                upward: content[41],
+                                downward: content[43],
+                            },
+                        },
+                        despawning: {
+                            horizontal: content[40],
+                            vertical: {
+                                upward: content[42],
+                                downward: content[44],
+                            },
+                        },
+                    },
+                },
+            },
+
+            reference: {
+                dayTheme: content[45],
+                nightTheme: content[46],
+
+                superMarioBrosStyle: content[57],
+                superMarioBros3Style: content[58],
+                superMarioWorldStyle: content[59],
+                newSuperMarioBrosUStyle: content[60],
+                superMario3DWorldStyle: content[61],
+
+                groundTheme: content[47],
+                undergroundTheme: content[48],
+                underwaterTheme: content[49],
+                desertTheme: content[50],
+                snowTheme: content[51],
+                skyTheme: content[52],
+                forestTheme: content[53],
+                ghostHouseTheme: content[54],
+                airshipTheme: content[55],
+                castleTheme: content[56],
+
+                all: null,
+            },
+        },
+        name: {
+            japanese: content[62],
+            english: {
+                simple: content[63],
+                american: content[64],
+                european: content[65],
+            },
+            spanish: {
+                simple: content[66],
+                american: content[67],
+                european: content[68],
+            },
+            french: {
+                simple: content[69],
+                canadian: content[70],
+                european: content[71],
+            },
+            dutch: content[72],
+            german: content[73],
+            italian: content[74],
+            russian: content[75],
+            korean: content[76],
+            chinese: {
+                simple: content[77],
+                simplified: content[78],
+                traditional: content[79],
+            },
+        },
+    };
+}
+
+function testName(name: SMM2NameTemplate): void {
     //README since some references are still not complete, they are in comment
     if (name.english.simple === null && (name.english.american === null || name.english.european === null))
         throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -367,7 +371,7 @@ function addEnglishReference(name: SMM2NameTemplate,
                              englishNames: Map<string, EntityFilePropertiesArrayAndTemplate>,
                              originalContent: string[],
                              convertedContent: EntityFilePropertiesArray,
-                             template: EntityFilePropertiesTemplate,) {
+                             template: EntityFilePropertiesTemplate,): void {
 
     const englishReferenceName = name.english.simple ?? name.english.american;
     if (englishReferenceName == null)
