@@ -1,0 +1,110 @@
+import {Entity} from "./Entity";
+import {SMM2Name} from "../lang/SMM2Name";
+
+export abstract class AbstractEntity
+    implements Entity {
+
+    readonly #name;
+
+    protected constructor(name: SMM2Name) {
+        this.#name = name;
+    }
+
+
+    //region -------------------- Name properties --------------------
+
+    public get name() {
+        return this.#name;
+    }
+
+
+    public get languageValue() {
+        return this.name.languageValue;
+    }
+
+
+    public get japanese() {
+        return this.name.japanese;
+    }
+
+
+    public get english() {
+        return this.name.english;
+    }
+
+    public get americanEnglish() {
+        return this.name.americanEnglish;
+    }
+
+    public get europeanEnglish() {
+        return this.name.europeanEnglish;
+    }
+
+
+    public get spanish() {
+        return this.name.spanish;
+    }
+
+    public get americanSpanish() {
+        return this.name.americanSpanish;
+    }
+
+    public get europeanSpanish() {
+        return this.name.europeanSpanish;
+    }
+
+
+    public get french() {
+        return this.name.french;
+    }
+
+    public get canadianFrench() {
+        return this.name.canadianFrench;
+    }
+
+    public get europeanFrench() {
+        return this.name.europeanFrench;
+    }
+
+
+    public get dutch() {
+        return this.name.dutch;
+    }
+
+
+    public get german() {
+        return this.name.german;
+    }
+
+
+    public get italian() {
+        return this.name.italian;
+    }
+
+
+    public get russian() {
+        return this.name.russian;
+    }
+
+
+    public get korean() {
+        return this.name.korean;
+    }
+
+
+    public get chinese() {
+        return this.name.chinese;
+    }
+
+    public get simplifiedChinese() {
+        return this.name.simplifiedChinese;
+    }
+
+    public get traditionalChinese() {
+        return this.name.traditionalChinese;
+    }
+
+    //endregion -------------------- Name properties --------------------
+
+
+}

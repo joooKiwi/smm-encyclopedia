@@ -99,20 +99,24 @@ export class SMM2NameContainer
         return this.#dutch.value;
     }
 
+
     public get german() {
         return this.#german.value;
     }
+
 
     public get italian() {
         return this.#italian.value;
     }
 
-    public get korean() {
-        return this.#korean.value;
-    }
 
     public get russian() {
         return this.#russian.value;
+    }
+
+
+    public get korean() {
+        return this.#korean.value;
     }
 
 
