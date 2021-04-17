@@ -404,10 +404,9 @@ class ReferencesToWatch {
 
     private _addReference(template: EntityFilePropertiesTemplate, reference: string): void {
         if (reference.includes("/"))
-            reference.split(' / ').forEach((splitReference, index) => {
-                if (splitReference !== 'this')
-                    this._addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`));
-            });
+            reference.split(' / ')
+                .filter(splitReference => splitReference !== 'this')
+                .forEach((splitReference, index) => this._addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
         else
             this._addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
         this.alreadyAddedName.push(reference);
