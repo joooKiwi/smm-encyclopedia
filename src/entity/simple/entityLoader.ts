@@ -1,17 +1,4 @@
-import {
-    CategoryType,
-    EntityLimit,
-    EntityLink,
-    NullableBoolean,
-    NullableBooleanOrNSMBU,
-    NullableBooleanOrSM3DW,
-    NullableNumber,
-    NullableString,
-    PossibleLightSource,
-    ProjectileEntityLimitType,
-    UnknownOrBoolean,
-    UnknownOrNullableBoolean
-} from "../entityTypes";
+import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
 import CSVLoader from "../../loader/CSVLoader";
 import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
 import {EntityFilePropertiesTemplate} from "./EntityFilePropertiesTemplate";
@@ -28,59 +15,59 @@ type EntityFilePropertiesArray = [
     isInSuperMario3DWorld: boolean,
 
     isInDayTheme: boolean,
-    isInNightTheme: NullableBoolean,
+    isInNightTheme: null | boolean,
 
     categoryInTheEditor: null | CategoryType,
 
-    hasAMushroomVariant: NullableBoolean,
-    canBeInAParachute: UnknownOrNullableBoolean,
-    canHaveWings: UnknownOrBoolean,
+    hasAMushroomVariant: null | boolean,
+    canBeInAParachute: null | boolean | '?',
+    canHaveWings: boolean | '?',
     //endregion ---------- Basic properties ----------
 
     //region ---------- Specific properties ----------
-    canContainOrSpawnAKey: NullableBoolean,
+    canContainOrSpawnAKey: null | boolean,
 
-    canBePutInAOnOffBlock: NullableBoolean,
+    canBePutInAOnOffBlock: null | boolean,
 
-    canBePutOnATrack: UnknownOrNullableBoolean,
+    canBePutOnATrack: null | boolean | '?',
     editorLimit_canBePutOnATrack: EntityLimit,
     whilePlaying_canBePutOnATrack: EntityLimit,
 
-    canSpawnOutOfAPipe: NullableBoolean,
+    canSpawnOutOfAPipe: null | boolean,
 
-    canBePutInASwingingClaw: NullableBoolean,
+    canBePutInASwingingClaw: null | boolean,
 
-    canBeThrownByALakitu: UnknownOrNullableBoolean,
-    canBePutInALakituCloud: UnknownOrNullableBoolean,
+    canBeThrownByALakitu: null | boolean | '?',
+    canBePutInALakituCloud: null | boolean | '?',
 
-    canBePutInAClownCar: NullableBoolean,
+    canBePutInAClownCar: null | boolean,
 
-    canBeFiredOutOfABulletLauncher: NullableBoolean,
+    canBeFiredOutOfABulletLauncher: null | boolean,
 
-    canBePutInABlock: NullableBoolean,
+    canBePutInABlock: null | boolean,
 
-    canBePutInATree: NullableBoolean,
+    canBePutInATree: null | boolean,
 
     lightSourceEmitted: PossibleLightSource,
-    lightSourceEmitted_isInSMB: NullableBoolean,
+    lightSourceEmitted_isInSMB: null | boolean,
 
-    canIgniteABobOmb: NullableBooleanOrNSMBU,
+    canIgniteABobOmb: null | boolean | 'NSMBU',
 
-    canGoThroughWalls: NullableBoolean,
+    canGoThroughWalls: null | boolean,
 
-    canBeStacked: NullableBoolean,
+    canBeStacked: null | boolean,
 
-    isGlobalGroundOrGlobal: NullableBooleanOrSM3DW,
-    canMakeASoundOutOfAMusicBlock: UnknownOrNullableBoolean,
+    isGlobalGroundOrGlobal: null | boolean | 'SM3DW',
+    canMakeASoundOutOfAMusicBlock: null | boolean | '?',
     //endregion ---------- Specific properties ----------
 
     //region ---------- Entity limit properties ----------
     editorLimit: EntityLimit | '?',
 
-    whilePlaying_isInGEL: NullableBoolean | 2,
-    whilePlaying_isInGEL_isSuperGlobal: NullableBoolean,
+    whilePlaying_isInGEL: null | boolean | 2,
+    whilePlaying_isInGEL_isSuperGlobal: null | boolean,
 
-    whilePlaying_isInPEL: NullableBoolean,
+    whilePlaying_isInPEL: null | boolean,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
 
@@ -88,14 +75,14 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Entity limit properties ----------
 
     //region ---------- Spawning / Despawning range properties ----------
-    whilePlaying_offscreenSpawningHorizontalRange: NullableNumber | 'Variable',
-    whilePlaying_offscreenDespawningHorizontalRange: NullableNumber | 'Variable' | 'Infinity',
+    whilePlaying_offscreenSpawningHorizontalRange: null | number | 'Variable',
+    whilePlaying_offscreenDespawningHorizontalRange: null | number | 'Variable' | 'Infinity',
 
-    whilePlaying_offscreenSpawingUpwardVerticalRange: NullableNumber,
-    whilePlaying_offscreenDespawningUpwardVerticalRange: NullableNumber,
+    whilePlaying_offscreenSpawingUpwardVerticalRange: null | number,
+    whilePlaying_offscreenDespawningUpwardVerticalRange: null | number,
 
-    whilePlaying_offscreenSpawningDownwardVerticalRange: NullableNumber,
-    whilePlaying_offscreenDespawningDownwardVerticalRange: NullableNumber,
+    whilePlaying_offscreenSpawningDownwardVerticalRange: null | number,
+    whilePlaying_offscreenDespawningDownwardVerticalRange: null | number,
     //endregion ---------- Spawning / Despawning range properties ----------
 
     //region ---------- Reference on specific condition properties ----------
@@ -121,33 +108,33 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Reference on specific condition properties ----------
 
     //region ---------- Language properties ----------
-    japanese: NullableString,
+    japanese: null | string,
 
-    english: NullableString,
-    americanEnglish: NullableString,
-    europeanEnglish: NullableString,
+    english: null | string,
+    americanEnglish: null | string,
+    europeanEnglish: null | string,
 
-    spanish: NullableString,
-    americanSpanish: NullableString,
-    europeanSpanish: NullableString,
+    spanish: null | string,
+    americanSpanish: null | string,
+    europeanSpanish: null | string,
 
-    french: NullableString,
-    canadianFrench: NullableString,
-    europeanFrench: NullableString,
+    french: null | string,
+    canadianFrench: null | string,
+    europeanFrench: null | string,
 
-    dutch: NullableString,
+    dutch: null | string,
 
-    german: NullableString,
+    german: null | string,
 
-    italian: NullableString,
+    italian: null | string,
 
-    russian: NullableString,
+    russian: null | string,
 
-    korean: NullableString,
+    korean: null | string,
 
-    chinese: NullableString,
-    simplifiedChinese: NullableString,
-    tradionalChinese: NullableString,
+    chinese: null | string,
+    simplifiedChinese: null | string,
+    tradionalChinese: null | string,
     //endregion ---------- Language properties ----------
 ];
 

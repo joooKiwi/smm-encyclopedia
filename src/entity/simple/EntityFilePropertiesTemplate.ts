@@ -1,16 +1,4 @@
-import {
-    CategoryType,
-    EntityLimit,
-    EntityLink,
-    NullableBoolean,
-    NullableBooleanOrNSMBU,
-    NullableBooleanOrSM3DW,
-    NullableNumber,
-    PossibleLightSource,
-    ProjectileEntityLimitType,
-    UnknownOrBoolean,
-    UnknownOrNullableBoolean
-} from "../entityTypes";
+import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
 
 export interface EntityFilePropertiesTemplate {
 
@@ -27,81 +15,81 @@ export interface EntityFilePropertiesTemplate {
             superMario3DWorldStyle: boolean
 
             dayTheme: boolean
-            nightTheme: NullableBoolean
+            nightTheme: null | boolean
         }
 
         categoryInTheEditor: null | CategoryType
 
-        hasAMushroomVariant: NullableBoolean
-        canBeInAParachute: UnknownOrNullableBoolean
-        canHaveWings: UnknownOrBoolean
+        hasAMushroomVariant: null | boolean
+        canBeInAParachute: null | boolean | '?'
+        canHaveWings: boolean | '?'
         //endregion ---------- Basic properties ----------
 
         //region ---------- Specific properties ----------
-        canContainOrSpawnAKey: NullableBoolean
+        canContainOrSpawnAKey: null | boolean
 
-        canBePutInAOnOffBlock: NullableBoolean
+        canBePutInAOnOffBlock: null | boolean
 
         canBePutOnATrack: {
-            value: UnknownOrNullableBoolean
+            value: null | boolean | '?'
             editorLimit: EntityLink
             whilePlaying: EntityLink
         }
 
-        canSpawnOutOfAPipe: NullableBoolean
+        canSpawnOutOfAPipe: null | boolean
 
-        canBePutInASwingingClaw: NullableBoolean
+        canBePutInASwingingClaw: null | boolean
 
-        canBeThrownByALakitu: UnknownOrNullableBoolean
-        canBePutInALakituCloud: UnknownOrNullableBoolean
+        canBeThrownByALakitu: null | boolean | '?'
+        canBePutInALakituCloud: null | boolean | '?'
 
-        canBePutInAClownCar: NullableBoolean
+        canBePutInAClownCar: null | boolean
 
-        canBeFiredOutOfABulletLauncher: NullableBoolean
+        canBeFiredOutOfABulletLauncher: null | boolean
 
-        canBePutInABlock: NullableBoolean
+        canBePutInABlock: null | boolean
 
-        canBePutInATree: NullableBoolean
+        canBePutInATree: null | boolean
 
         lightSourceEmitted: {
             value: PossibleLightSource
-            isInSMB: NullableBoolean
+            isInSMB: null | boolean
         }
 
-        canIgniteABobOmb: NullableBooleanOrNSMBU
+        canIgniteABobOmb: null | boolean | 'NSMBU'
 
-        canGoThroughWalls: NullableBoolean
+        canGoThroughWalls: null | boolean
 
-        canBeStacked: NullableBoolean
+        canBeStacked: null | boolean
 
-        isGlobalGroundOrGlobal: NullableBooleanOrSM3DW
+        isGlobalGroundOrGlobal: null | boolean | 'SM3DW'
 
-        canMakeASoundOutOfAMusicBlock: UnknownOrNullableBoolean
+        canMakeASoundOutOfAMusicBlock: null | boolean | '?'
         //endregion ---------- Specific properties ----------
 
         limits: {
             editor: EntityLimit | '?'
             whilePlaying: {
                 isInGEL: {
-                    value: NullableBoolean | 2
-                    isSuperGlobal: NullableBoolean
+                    value: null | boolean | 2
+                    isSuperGlobal: null | boolean
                 }
-                isInPEL: NullableBoolean
+                isInPEL: null | boolean
                 isInPJL: ProjectileEntityLimitType
                 customLimit: EntityLimit
                 offscreenRange: {
                     loading: {
-                        horizontal: NullableNumber | 'Variable'
+                        horizontal: null | number | 'Variable'
                         vertical: {
-                            upward: NullableNumber
-                            downward: NullableNumber
+                            upward: null | number
+                            downward: null | number
                         }
                     }
                     unloading: {
-                        horizontal: NullableNumber | 'Variable' | 'Infinity'
+                        horizontal: null | number | 'Variable' | 'Infinity'
                         vertical: {
-                            upward: NullableNumber
-                            downward: NullableNumber
+                            upward: null | number
+                            downward: null | number
                         }
                     }
                 }
