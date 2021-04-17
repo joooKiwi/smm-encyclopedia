@@ -406,19 +406,19 @@ class ReferencesToWatch {
         if (reference.includes("/"))
             reference.split(' / ').forEach((splitReference, index) => {
                 if (splitReference !== 'this')
-                    this.references.push({
-                        reference: template,
-                        value: splitReference,
-                        errorIfNeverFound: () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),
-                    });
+                    this._addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`));
             });
         else
-            this.references.push({
-                reference: template,
-                value: reference,
-                errorIfNeverFound: () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),
-            });
+            this._addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
         this.alreadyAddedName.push(reference);
+    }
+
+    private _addReferenceToArray(template: EntityFilePropertiesTemplate, reference: string, errorIfNeverFound: () => ReferenceError) {
+        this.references.push({
+            reference: template,
+            value: reference,
+            errorIfNeverFound: errorIfNeverFound,
+        });
     }
 
     public testReferences(): void {
