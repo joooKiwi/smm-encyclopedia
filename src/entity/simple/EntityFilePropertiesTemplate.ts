@@ -1,4 +1,5 @@
 import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
+import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 
 export interface EntityFilePropertiesTemplate {
 
@@ -122,42 +123,6 @@ export interface EntityFilePropertiesTemplate {
         }
     }
 
-    name: {
-        japanese: null | string
-
-        english: {
-            simple: null | string
-            american: null | string
-            european: null | string
-        }
-
-        spanish: {
-            simple: null | string
-            american: null | string
-            european: null | string
-        }
-
-        french: {
-            simple: null | string
-            canadian: null | string
-            european: null | string
-        }
-
-        dutch: null | string
-
-        german: null | string
-
-        italian: null | string
-
-        russian: null | string
-
-        korean: null | string
-
-        chinese: {
-            simple: null | string
-            simplified: null | string
-            traditional: null | string
-        }
-    }
+    name: SMM2NameTemplate
 
 }
