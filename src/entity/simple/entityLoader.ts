@@ -359,12 +359,7 @@ export function loadEveryEntities() {
                 throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
             englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: convertedContent, template: finalContent,});
 
-            const reference = finalContent.properties.reference;
-            [
-                reference.dayTheme, reference.nightTheme,
-                reference.superMarioBrosStyle, reference.superMarioBros3Style, reference.superMarioWorldStyle, reference.newSuperMarioBrosUStyle, reference.superMario3DWorldStyle,
-                reference.groundTheme, reference.undergroundTheme, reference.underwaterTheme, reference.desertTheme, reference.snowTheme, reference.skyTheme, reference.forestTheme, reference.ghostHouseTheme, reference.airshipTheme, reference.castleTheme,
-            ].forEach(reference => referencesToWatch.addReference(finalContent, reference));
+            referencesToWatch.addReference(finalContent);
         })
         .onInitialisationEnd(() => referencesToWatch.testReferences())
         .content;
@@ -394,8 +389,17 @@ class ReferencesToWatch {
         return this.#references;
     }
 
+    public addReference(reference: EntityFilePropertiesTemplate): void {
+        const otherReference = reference.properties.reference;
+        [
+            otherReference.dayTheme, otherReference.nightTheme,
+            otherReference.superMarioBrosStyle, otherReference.superMarioBros3Style, otherReference.superMarioWorldStyle, otherReference.newSuperMarioBrosUStyle, otherReference.superMario3DWorldStyle,
+            otherReference.groundTheme, otherReference.undergroundTheme, otherReference.underwaterTheme, otherReference.desertTheme, otherReference.snowTheme, otherReference.skyTheme, otherReference.forestTheme, otherReference.ghostHouseTheme, otherReference.airshipTheme, otherReference.castleTheme,
+        ].forEach(otherReference => this._addReference(reference, otherReference));
+    }
 
-    public addReference(template: EntityFilePropertiesTemplate, reference: string | null): void {
+
+    private _addReference(template: EntityFilePropertiesTemplate, reference: string | null): void {
         if (reference !== null && reference !== 'this') {
             if (!this.alreadyAddedName.includes(reference)) {
                 if (reference.includes("/")) {
