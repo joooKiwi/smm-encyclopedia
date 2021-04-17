@@ -98,7 +98,7 @@ export interface EntityFilePropertiesTemplate {
                         }
                     }
                     unloading: {
-                        horizontal: NullableNumber | 'Variable'
+                        horizontal: NullableNumber | 'Variable' | 'Infinity'
                         vertical: {
                             upward: NullableNumber
                             downward: NullableNumber

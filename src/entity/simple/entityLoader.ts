@@ -85,10 +85,18 @@ type EntityFilePropertiesArray = [
     whilePlaying_isInPJL: ProjectileEntityLimitType,
 
     whilePlaying_customLimit: EntityLimit,
-
-    whilePlaying_offscreenHorizontalRange: NullableNumber | 'Variable',
-    whilePlaying_offscreenVerticalRange: NullableNumber,
     //endregion ---------- Entity limit properties ----------
+
+    //region ---------- Spawning / Despawning range properties ----------
+    whilePlaying_offscreenSpawningHorizontalRange: NullableNumber | 'Variable',
+    whilePlaying_offscreenDespawningHorizontalRange: NullableNumber | 'Variable' | 'Infinity',
+
+    whilePlaying_offscreenSpawingUpwardVerticalRange: NullableNumber,
+    whilePlaying_offscreenDespawningUpwardVerticalRange: NullableNumber,
+
+    whilePlaying_offscreenSpawningDownwardVerticalRange: NullableNumber,
+    whilePlaying_offscreenDespawningDownwardVerticalRange: NullableNumber,
+    //endregion ---------- Spawning / Despawning range properties ----------
 
     //region ---------- Reference on specific condition properties ----------
     isInDayTheme: EntityLink,
@@ -234,15 +242,15 @@ export function loadEveryEntities() {
                         loading: {
                             horizontal: arrayOfContent[39],
                             vertical: {
-                                upward: arrayOfContent[40],
-                                downward: null,
+                                upward: arrayOfContent[41],
+                                downward: arrayOfContent[43],
                             },
                         },
                         unloading: {
-                            horizontal: null,
+                            horizontal: arrayOfContent[40],
                             vertical: {
-                                upward: null,
-                                downward: null,
+                                upward: arrayOfContent[42],
+                                downward: arrayOfContent[44],
                             },
                         },
                     },
@@ -250,55 +258,55 @@ export function loadEveryEntities() {
             },
 
             reference: {
-                dayTheme: arrayOfContent[41],
-                nightTheme: arrayOfContent[42],
+                dayTheme: arrayOfContent[45],
+                nightTheme: arrayOfContent[46],
 
-                superMarioBrosStyle: arrayOfContent[53],
-                superMarioBros3Style: arrayOfContent[54],
-                superMarioWorldStyle: arrayOfContent[55],
-                newSuperMarioBrosUStyle: arrayOfContent[56],
-                superMario3DWorldStyle: arrayOfContent[57],
+                superMarioBrosStyle: arrayOfContent[57],
+                superMarioBros3Style: arrayOfContent[58],
+                superMarioWorldStyle: arrayOfContent[59],
+                newSuperMarioBrosUStyle: arrayOfContent[60],
+                superMario3DWorldStyle: arrayOfContent[61],
 
-                groundTheme: arrayOfContent[43],
-                undergroundTheme: arrayOfContent[44],
-                underwaterTheme: arrayOfContent[45],
-                desertTheme: arrayOfContent[46],
-                snowTheme: arrayOfContent[47],
-                skyTheme: arrayOfContent[48],
-                forestTheme: arrayOfContent[49],
-                ghostHouseTheme: arrayOfContent[50],
-                airshipTheme: arrayOfContent[51],
-                castleTheme: arrayOfContent[52],
+                groundTheme: arrayOfContent[47],
+                undergroundTheme: arrayOfContent[48],
+                underwaterTheme: arrayOfContent[49],
+                desertTheme: arrayOfContent[50],
+                snowTheme: arrayOfContent[51],
+                skyTheme: arrayOfContent[52],
+                forestTheme: arrayOfContent[53],
+                ghostHouseTheme: arrayOfContent[54],
+                airshipTheme: arrayOfContent[55],
+                castleTheme: arrayOfContent[56],
 
                 otherReference: null,
             },
         },
         name: {
-            japanese: arrayOfContent[58],
+            japanese: arrayOfContent[62],
             english: {
-                simple: arrayOfContent[59],
-                american: arrayOfContent[60],
-                european: arrayOfContent[61],
+                simple: arrayOfContent[63],
+                american: arrayOfContent[64],
+                european: arrayOfContent[65],
             },
             spanish: {
-                simple: arrayOfContent[62],
-                american: arrayOfContent[63],
-                european: arrayOfContent[64],
+                simple: arrayOfContent[66],
+                american: arrayOfContent[67],
+                european: arrayOfContent[68],
             },
             french: {
-                simple: arrayOfContent[65],
-                canadian: arrayOfContent[66],
-                european: arrayOfContent[67],
+                simple: arrayOfContent[69],
+                canadian: arrayOfContent[70],
+                european: arrayOfContent[71],
             },
-            dutch: arrayOfContent[68],
-            german: arrayOfContent[69],
-            italian: arrayOfContent[70],
-            russian: arrayOfContent[71],
-            korean: arrayOfContent[72],
+            dutch: arrayOfContent[72],
+            german: arrayOfContent[73],
+            italian: arrayOfContent[74],
+            russian: arrayOfContent[75],
+            korean: arrayOfContent[76],
             chinese: {
-                simple: arrayOfContent[73],
-                simplified: arrayOfContent[74],
-                traditional: arrayOfContent[75],
+                simple: arrayOfContent[77],
+                simplified: arrayOfContent[78],
+                traditional: arrayOfContent[79],
             },
         }
     }))
@@ -326,8 +334,10 @@ export function loadEveryEntities() {
         .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
         .convertToNullableBoolean('whilePlaying_isInPEL',)
         .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
-        .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenHorizontalRange',)
-        .convertToNullableNumber('whilePlaying_offscreenVerticalRange',)
+        .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
+        .convertTo(['nullable number', 'Variable', 'Infinity'], 'whilePlaying_offscreenDespawningHorizontalRange',)
+        .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
+            'whilePlaying_offscreenSpawningDownwardVerticalRange', 'whilePlaying_offscreenDespawningDownwardVerticalRange',)
 
         .convertToStringAnd(thisText, 'inDayTheme',)
         .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
