@@ -395,31 +395,30 @@ class ReferencesToWatch {
             otherReference.dayTheme, otherReference.nightTheme,
             otherReference.superMarioBrosStyle, otherReference.superMarioBros3Style, otherReference.superMarioWorldStyle, otherReference.newSuperMarioBrosUStyle, otherReference.superMario3DWorldStyle,
             otherReference.groundTheme, otherReference.undergroundTheme, otherReference.underwaterTheme, otherReference.desertTheme, otherReference.snowTheme, otherReference.skyTheme, otherReference.forestTheme, otherReference.ghostHouseTheme, otherReference.airshipTheme, otherReference.castleTheme,
-        ].forEach(otherReference => this._addReference(reference, otherReference));
+        ].filter(otherReference => otherReference !== null)
+            .filter(otherReference => otherReference !== 'this')
+            .filter(otherReference => !this.alreadyAddedName.includes(otherReference as string))
+            .forEach(otherReference => this._addReference(reference, otherReference as string));
     }
 
 
-    private _addReference(template: EntityFilePropertiesTemplate, reference: string | null): void {
-        if (reference !== null && reference !== 'this') {
-            if (!this.alreadyAddedName.includes(reference)) {
-                if (reference.includes("/")) {
-                    reference.split(' / ').forEach((splitReference, index) => {
-                        if (splitReference !== 'this')
-                            this.references.push({
-                                reference: template,
-                                value: splitReference,
-                                errorIfNeverFound: () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),
-                            });
-                    });
-                } else
+    private _addReference(template: EntityFilePropertiesTemplate, reference: string): void {
+        if (reference.includes("/"))
+            reference.split(' / ').forEach((splitReference, index) => {
+                if (splitReference !== 'this')
                     this.references.push({
                         reference: template,
-                        value: reference,
-                        errorIfNeverFound: () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),
+                        value: splitReference,
+                        errorIfNeverFound: () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),
                     });
-                this.alreadyAddedName.push(reference);
-            }
-        }
+            });
+        else
+            this.references.push({
+                reference: template,
+                value: reference,
+                errorIfNeverFound: () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),
+            });
+        this.alreadyAddedName.push(reference);
     }
 
     public testReferences(): void {
