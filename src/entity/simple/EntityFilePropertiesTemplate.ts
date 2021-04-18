@@ -1,23 +1,12 @@
 import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
 import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
+import {IsInPropertyTemplate} from "../properties/IsInPropertyTemplate";
 
 export interface EntityFilePropertiesTemplate {
 
     properties: {
         //region ---------- Basic properties ----------
-        isIn: {
-            superMarioMaker1: boolean
-            superMarioMaker2: boolean
-
-            superMarioBrosStyle: boolean
-            superMarioBros3Style: boolean
-            superMarioWorldStyle: boolean
-            newSuperMarioBrosUStyle: boolean
-            superMario3DWorldStyle: boolean
-
-            dayTheme: boolean
-            nightTheme: null | boolean
-        }
+        isIn: IsInPropertyTemplate
 
         categoryInTheEditor: null | CategoryType
 
@@ -106,7 +95,6 @@ export interface EntityFilePropertiesTemplate {
             superMarioWorldStyle: EntityLink
             newSuperMarioBrosUStyle: EntityLink
             superMario3DWorldStyle: null | EntityLink
-
 
             groundTheme: EntityLink
             undergroundTheme: EntityLink

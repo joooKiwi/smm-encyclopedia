@@ -215,21 +215,40 @@ export function loadEveryEntities() {
 //region -------------------- Template related methods & classes --------------------
 
 function createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
+    const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
+        [content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54], content[55], content[56],];
+
     return {
         properties: {
             //region ---------- Basic properties ----------
             isIn: {
-                superMarioMaker1: content[0],
-                superMarioMaker2: content[1],
+                game: {
+                    1: content[0],
+                    2: content[1],
+                },
 
-                superMarioBrosStyle: content[2],
-                superMarioBros3Style: content[3],
-                superMarioWorldStyle: content[4],
-                newSuperMarioBrosUStyle: content[5],
-                superMario3DWorldStyle: content[6],
+                style: {
+                    superMarioBros: content[2],
+                    superMarioBros3: content[3],
+                    superMarioWorld: content[4],
+                    newSuperMarioBrosU: content[5],
+                    superMario3DWorld: content[6],
+                },
+                theme: {
+                    ground: groundLink === 'this',
+                    underground: undergroundLink === 'this',
+                    underwater: underwaterLink === 'this',
+                    desert: desertLink === null ? null : desertLink === 'this',
+                    snow: snowLink === null ? null : snowLink === 'this',
+                    sky: skyLink === null ? null : skyLink === 'this',
+                    forest: forestLink === null ? null : forestLink === 'this',
+                    ghostHouse: ghostHouseLink === 'this',
+                    airship: airshipLink === 'this',
+                    castle: castleLink === 'this',
+                },
 
-                dayTheme: content[7],
-                nightTheme: content[8],
+                day: content[7],
+                night: content[8],
             },
 
             categoryInTheEditor: content[9],
@@ -320,16 +339,16 @@ function createTemplate(content: EntityFilePropertiesArray): EntityFilePropertie
                 newSuperMarioBrosUStyle: content[60],
                 superMario3DWorldStyle: content[61],
 
-                groundTheme: content[47],
-                undergroundTheme: content[48],
-                underwaterTheme: content[49],
-                desertTheme: content[50],
-                snowTheme: content[51],
-                skyTheme: content[52],
-                forestTheme: content[53],
-                ghostHouseTheme: content[54],
-                airshipTheme: content[55],
-                castleTheme: content[56],
+                groundTheme: groundLink,
+                undergroundTheme: undergroundLink,
+                underwaterTheme: underwaterLink,
+                desertTheme: desertLink,
+                snowTheme: snowLink,
+                skyTheme: skyLink,
+                forestTheme: forestLink,
+                ghostHouseTheme: ghostHouseLink,
+                airshipTheme: airshipLink,
+                castleTheme: castleLink,
 
                 all: null,
             },
