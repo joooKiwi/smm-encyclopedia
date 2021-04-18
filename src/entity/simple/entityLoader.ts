@@ -3,6 +3,9 @@ import CSVLoader from "../../loader/CSVLoader";
 import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
 import {EntityFilePropertiesTemplate} from "./EntityFilePropertiesTemplate";
 import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
+import {GenericEntity} from "./GenericEntity";
+import {SMM2NameContainer} from "../lang/SMM2NameContainer";
+import {Entity} from "./Entity";
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
@@ -139,18 +142,19 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Language properties ----------
 ];
 
-export interface EntityFilePropertiesArrayAndTemplate {
+export interface EntityReferences {
     originalContent: string[];
     arrayConverted: EntityFilePropertiesArray;
     template: EntityFilePropertiesTemplate;
+    entity?: Entity;
 }
 
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
-    const englishNames: Map<string, EntityFilePropertiesArrayAndTemplate> = new Map();
+    const englishNames: Map<string, EntityReferences> = new Map();
     const referencesToWatch = new ReferencesToWatch(englishNames);
 
-    return () => new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => createTemplate(arrayOfContent))
+    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => createTemplate(arrayOfContent))
         .convertToNullableBoolean(
             'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
             'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
@@ -200,9 +204,15 @@ export function loadEveryEntities() {
             addEnglishReference(name, englishNames, originalContent, convertedContent, finalContent);
             referencesToWatch.addReference(finalContent);
         })
-        .onInitialisationEnd(() => referencesToWatch.testReferences())
-        .content;
+        .onInitialisationEnd(() => {
+            referencesToWatch.testReferences();
+            englishNames.forEach(reference => reference.entity = createEntity(reference.template));
+        });
+    console.log(csvLoader.content);
+    return ()=>englishNames;
 }
+
+//region -------------------- Template related methods & classes --------------------
 
 function createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
     return {
@@ -368,7 +378,7 @@ function testName(name: SMM2NameTemplate): void {
 }
 
 function addEnglishReference(name: SMM2NameTemplate,
-                             englishNames: Map<string, EntityFilePropertiesArrayAndTemplate>,
+                             englishNames: Map<string, EntityReferences>,
                              originalContent: string[],
                              convertedContent: EntityFilePropertiesArray,
                              template: EntityFilePropertiesTemplate,): void {
@@ -386,7 +396,7 @@ class ReferencesToWatch {
     readonly #alreadyAddedName: string[];
     readonly #references: { reference: EntityFilePropertiesTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
 
-    public constructor(englishNames: Map<string, EntityFilePropertiesArrayAndTemplate>) {
+    public constructor(englishNames: Map<string, EntityReferences>) {
         this.#englishNames = englishNames;
         this.#alreadyAddedName = [];
         this.#references = [];
@@ -405,6 +415,7 @@ class ReferencesToWatch {
         return this.#references;
     }
 
+
     public addReference(reference: EntityFilePropertiesTemplate): void {
         const otherReference = reference.properties.reference;
         [
@@ -416,7 +427,6 @@ class ReferencesToWatch {
             .filter(otherReference => !this.alreadyAddedName.includes(otherReference as string))
             .forEach(otherReference => this._addReference(reference, otherReference as string));
     }
-
 
     private _addReference(template: EntityFilePropertiesTemplate, reference: string): void {
         if (reference.includes("/"))
@@ -451,4 +461,22 @@ class ReferencesToWatch {
         });
     }
 
+}
+
+//endregion -------------------- Template related methods & classes --------------------
+
+
+function createEntity(template: EntityFilePropertiesTemplate): Entity {
+    const temporaryVariableToAvoidError = 'temp';
+    const japaneseReference = template.name.japanese ?? temporaryVariableToAvoidError as string;
+    const englishReference = template.name.english.simple ?? [template.name.english.american ?? temporaryVariableToAvoidError, template.name.english.european ?? temporaryVariableToAvoidError] as string | [string, string];
+    const spanishReference = template.name.spanish.simple ?? [template.name.spanish.american ?? temporaryVariableToAvoidError, template.name.spanish.european ?? temporaryVariableToAvoidError] as string | [string, string];
+    const frenchReference = template.name.french.simple ?? [template.name.french.canadian ?? temporaryVariableToAvoidError, template.name.french.european ?? temporaryVariableToAvoidError] as string | [string, string];
+    const dutchReference = template.name.dutch ?? temporaryVariableToAvoidError as string;
+    const germanReference = template.name.german ?? temporaryVariableToAvoidError as string;
+    const italianReference = template.name.italian ?? temporaryVariableToAvoidError as string;
+    const russianReference = template.name.russian ?? temporaryVariableToAvoidError as string;
+    const koreanReference = template.name.korean ?? temporaryVariableToAvoidError as string;
+    const chineseReference = template.name.chinese.simple ?? [template.name.chinese.simplified ?? temporaryVariableToAvoidError, template.name.chinese.traditional ?? temporaryVariableToAvoidError] as string | [string, string];
+    return new GenericEntity(new SMM2NameContainer(japaneseReference, englishReference, spanishReference, frenchReference, dutchReference, germanReference, italianReference, russianReference, koreanReference, chineseReference));
 }
