@@ -10,7 +10,7 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
     readonly #values?;
 
     protected constructor(value: string)
-    protected constructor(...values: readonly [T, string][])
+    protected constructor(values: readonly [T, string][])
     protected constructor(values: string | readonly [T, string][]) {
         super(values instanceof Array ? AbstractPluralLanguageContainer.DEFAULT_NULL_LANGUAGE : values);
         if (values instanceof Array)

@@ -11,7 +11,7 @@ export class CanadianAndEuropeanLanguageContainer
         if (european === undefined)
             super(valueOrCanadian);
         else
-            super(['canadian', valueOrCanadian], ['european', european],);
+            super([['canadian', valueOrCanadian], ['european', european],]);
     }
 
     public get canadian() {

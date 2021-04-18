@@ -11,7 +11,7 @@ export class AmericanAndEuropeanLanguageContainer
         if (european === undefined)
             super(valueOrAmerican);
         else
-            super(['american', valueOrAmerican], ['european', european],);
+            super([['american', valueOrAmerican], ['european', european],]);
     }
 
     public get american() {

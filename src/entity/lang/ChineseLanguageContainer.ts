@@ -11,7 +11,7 @@ export class ChineseLanguageContainer
         if (traditional === undefined)
             super(valueOrSimplified);
         else
-            super(['simplified', valueOrSimplified], ['traditional', traditional],);
+            super([['simplified', valueOrSimplified], ['traditional', traditional],]);
     }
 
     public get simplified() {
