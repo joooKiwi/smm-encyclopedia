@@ -1,0 +1,136 @@
+import {IsInProperty} from "./IsInProperty";
+
+export class IsInPropertyContainer
+    implements IsInProperty {
+
+    readonly #isInSuperMarioMaker1: boolean
+    readonly #isInSuperMarioMaker2: boolean
+
+    readonly #isInSuperMarioBrosStyle: boolean
+    readonly #isInSuperMarioBros3Style: boolean
+    readonly #isInSuperMarioWorldStyle: boolean
+    readonly #isInNewSuperMarioBrosUStyle: boolean
+    readonly #isInSuperMario3DWorldStyle: null | boolean
+
+    readonly #isInGroundTheme: boolean
+    readonly #isInUndergroundTheme: boolean
+    readonly #isInUnderwaterTheme: boolean
+    readonly #isInDesertTheme: boolean | null
+    readonly #isInSnowTheme: boolean | null
+    readonly #isInSkyTheme: boolean | null
+    readonly #isInForestTheme: boolean | null
+    readonly #isInGhostHouseTheme: boolean
+    readonly #isInAirshipTheme: boolean
+    readonly #isInCastleTheme: boolean
+
+    readonly #isInDayTheme: boolean
+    readonly #isInNightTheme: boolean | null
+
+    public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
+                       isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,
+                       isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
+                       isInDayTheme: boolean, isInNightTheme: null | boolean,) {
+        this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
+        this.#isInSuperMarioMaker2 = isInSuperMarioMaker2;
+
+        this.#isInSuperMarioBrosStyle = isInSuperMarioBrosStyle;
+        this.#isInSuperMarioBros3Style = isInSuperMarioBros3Style;
+        this.#isInSuperMarioWorldStyle = isInSuperMarioWorldStyle;
+        this.#isInNewSuperMarioBrosUStyle = isInNewSuperMarioBrosUStyle;
+        this.#isInSuperMario3DWorldStyle = isInSuperMario3DWorldStyle;
+
+        this.#isInGroundTheme = isInGroundTheme;
+        this.#isInUndergroundTheme = isInUndergroundTheme;
+        this.#isInUnderwaterTheme = isInUnderwaterTheme;
+        this.#isInDesertTheme = isInDesertTheme;
+        this.#isInSnowTheme = isInSnowTheme;
+        this.#isInSkyTheme = isInSkyTheme;
+        this.#isInForestTheme = isInForestTheme;
+        this.#isInGhostHouseTheme = isInGhostHouseTheme;
+        this.#isInAirshipTheme = isInAirshipTheme;
+        this.#isInCastleTheme = isInCastleTheme;
+
+        this.#isInDayTheme = isInDayTheme;
+        this.#isInNightTheme = isInNightTheme;
+    }
+
+
+    public get isInSuperMarioMaker1() {
+        return this.#isInSuperMarioMaker1;
+    }
+
+    public get isInSuperMarioMaker2() {
+        return this.#isInSuperMarioMaker2;
+    }
+
+
+    public get isInSuperMarioBrosStyle() {
+        return this.#isInSuperMarioBrosStyle;
+    }
+
+    public get isInSuperMarioBros3Style() {
+        return this.#isInSuperMarioBros3Style;
+    }
+
+    public get isInSuperMarioWorldStyle() {
+        return this.#isInSuperMarioWorldStyle;
+    }
+
+    public get isInNewSuperMarioBrosUStyle() {
+        return this.#isInNewSuperMarioBrosUStyle;
+    }
+
+    public get isInSuperMario3DWorldStyle() {
+        return this.#isInSuperMario3DWorldStyle;
+    }
+
+
+    public get isInGroundTheme() {
+        return this.#isInGroundTheme;
+    }
+
+    public get isInUndergroundTheme() {
+        return this.#isInUndergroundTheme;
+    }
+
+    public get isInUnderwaterTheme() {
+        return this.#isInUnderwaterTheme;
+    }
+
+    public get isInDesertTheme() {
+        return this.#isInDesertTheme;
+    }
+
+    public get isInSnowTheme() {
+        return this.#isInSnowTheme;
+    }
+
+    public get isInSkyTheme() {
+        return this.#isInSkyTheme;
+    }
+
+    public get isInForestTheme() {
+        return this.#isInForestTheme;
+    }
+
+    public get isInGhostHouseTheme() {
+        return this.#isInGhostHouseTheme;
+    }
+
+    public get isInAirshipTheme() {
+        return this.#isInAirshipTheme;
+    }
+
+    public get isInCastleTheme() {
+        return this.#isInCastleTheme;
+    }
+
+    public get isInDayTheme() {
+        return this.#isInDayTheme;
+    }
+
+    public get isInNightTheme() {
+        return this.#isInNightTheme;
+    }
+
+}
