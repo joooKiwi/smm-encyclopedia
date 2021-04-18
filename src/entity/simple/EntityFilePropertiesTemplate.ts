@@ -1,6 +1,7 @@
 import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
 import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 import {IsInPropertyTemplate} from "../properties/IsInPropertyTemplate";
+import {EntityReferencesTemplate} from "../properties/EntityReferencesTemplate";
 
 export interface EntityFilePropertiesTemplate {
 
@@ -86,29 +87,7 @@ export interface EntityFilePropertiesTemplate {
             }
         }
 
-        reference: {
-            dayTheme: EntityLink
-            nightTheme: null | EntityLink
-
-            superMarioBrosStyle: EntityLink
-            superMarioBros3Style: EntityLink
-            superMarioWorldStyle: EntityLink
-            newSuperMarioBrosUStyle: EntityLink
-            superMario3DWorldStyle: null | EntityLink
-
-            groundTheme: EntityLink
-            undergroundTheme: EntityLink
-            underwaterTheme: EntityLink
-            desertTheme: null | EntityLink
-            snowTheme: null | EntityLink
-            skyTheme: null | EntityLink
-            forestTheme: null | EntityLink
-            ghostHouseTheme: EntityLink
-            airshipTheme: EntityLink
-            castleTheme: EntityLink
-
-            all: null | EntityFilePropertiesTemplate[]
-        }
+        reference: EntityReferencesTemplate
     }
 
     name: SMM2NameTemplate

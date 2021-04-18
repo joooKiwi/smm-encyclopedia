@@ -333,25 +333,30 @@ class TemplateCreator {
                 },
 
                 reference: {
-                    dayTheme: content[45],
-                    nightTheme: content[46],
 
-                    superMarioBrosStyle: content[57],
-                    superMarioBros3Style: content[58],
-                    superMarioWorldStyle: content[59],
-                    newSuperMarioBrosUStyle: content[60],
-                    superMario3DWorldStyle: content[61],
+                    style: {
+                        superMarioBros: content[57],
+                        superMarioBros3: content[58],
+                        superMarioWorld: content[59],
+                        newSuperMarioBrosU: content[60],
+                        superMario3DWorld: content[61],
+                    },
 
-                    groundTheme: groundLink,
-                    undergroundTheme: undergroundLink,
-                    underwaterTheme: underwaterLink,
-                    desertTheme: desertLink,
-                    snowTheme: snowLink,
-                    skyTheme: skyLink,
-                    forestTheme: forestLink,
-                    ghostHouseTheme: ghostHouseLink,
-                    airshipTheme: airshipLink,
-                    castleTheme: castleLink,
+                    theme: {
+                        ground: groundLink,
+                        underground: undergroundLink,
+                        underwater: underwaterLink,
+                        desert: desertLink,
+                        snow: snowLink,
+                        sky: skyLink,
+                        forest: forestLink,
+                        ghostHouse: ghostHouseLink,
+                        airship: airshipLink,
+                        castle: castleLink,
+                    },
+
+                    day: content[45],
+                    night: content[46],
 
                     all: null,
                 },
@@ -451,9 +456,9 @@ class ReferencesToWatch {
     public addReference(reference: EntityFilePropertiesTemplate): void {
         const otherReference = reference.properties.reference;
         [
-            otherReference.dayTheme, otherReference.nightTheme,
-            otherReference.superMarioBrosStyle, otherReference.superMarioBros3Style, otherReference.superMarioWorldStyle, otherReference.newSuperMarioBrosUStyle, otherReference.superMario3DWorldStyle,
-            otherReference.groundTheme, otherReference.undergroundTheme, otherReference.underwaterTheme, otherReference.desertTheme, otherReference.snowTheme, otherReference.skyTheme, otherReference.forestTheme, otherReference.ghostHouseTheme, otherReference.airshipTheme, otherReference.castleTheme,
+            otherReference.day, otherReference.night,
+            otherReference.style.superMarioBros, otherReference.style.superMarioBros3, otherReference.style.superMarioWorld, otherReference.style.newSuperMarioBrosU, otherReference.style.superMario3DWorld,
+            otherReference.theme.ground, otherReference.theme.underground, otherReference.theme.underwater, otherReference.theme.desert, otherReference.theme.snow, otherReference.theme.sky, otherReference.theme.forest, otherReference.theme.ghostHouse, otherReference.theme.airship, otherReference.theme.castle,
         ].filter(otherReference => otherReference !== null)
             .filter(otherReference => otherReference !== 'this')
             .filter(otherReference => !this.alreadyAddedName.includes(otherReference as string))
