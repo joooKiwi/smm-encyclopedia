@@ -151,11 +151,10 @@ export interface EntityReferences {
 
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
-    const templateCreator = new TemplateCreator();
     const references: Map<string, EntityReferences> = new Map();
     const referencesToWatch = new ReferencesToWatch(references);
 
-    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => templateCreator.createTemplate(arrayOfContent))
+    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => TemplateCreator.createTemplate(arrayOfContent))
         .convertToNullableBoolean(
             'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
             'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
@@ -217,7 +216,7 @@ export function loadEveryEntities() {
 
 class TemplateCreator {
 
-    public createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
+    public static createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
             [content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54], content[55], content[56],];
 
@@ -238,16 +237,16 @@ class TemplateCreator {
                         superMario3DWorld: content[6],
                     },
                     theme: {
-                        ground: groundLink === 'this',
-                        underground: undergroundLink === 'this',
-                        underwater: underwaterLink === 'this',
-                        desert: desertLink === null ? null : desertLink === 'this',
-                        snow: snowLink === null ? null : snowLink === 'this',
-                        sky: skyLink === null ? null : skyLink === 'this',
-                        forest: forestLink === null ? null : forestLink === 'this',
-                        ghostHouse: ghostHouseLink === 'this',
-                        airship: airshipLink === 'this',
-                        castle: castleLink === 'this',
+                        ground: this.__convertLinkToBoolean(groundLink),
+                        underground: this.__convertLinkToBoolean(undergroundLink),
+                        underwater: this.__convertLinkToBoolean(underwaterLink),
+                        desert: this.__convertLinkToNullableBoolean(desertLink),
+                        snow: this.__convertLinkToNullableBoolean(snowLink),
+                        sky: this.__convertLinkToNullableBoolean(skyLink),
+                        forest: this.__convertLinkToNullableBoolean(forestLink),
+                        ghostHouse: this.__convertLinkToBoolean(ghostHouseLink),
+                        airship: this.__convertLinkToBoolean(airshipLink),
+                        castle: this.__convertLinkToBoolean(castleLink),
                     },
 
                     day: content[7],
@@ -385,6 +384,14 @@ class TemplateCreator {
                 },
             },
         };
+    }
+
+    private static __convertLinkToBoolean(link: EntityLink): boolean {
+        return link === 'this';
+    }
+
+    private static __convertLinkToNullableBoolean(link: null | EntityLink): null | boolean {
+        return link === null ? null : this.__convertLinkToBoolean(link);
     }
 
 }
