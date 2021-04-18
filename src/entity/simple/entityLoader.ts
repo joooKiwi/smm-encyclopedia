@@ -229,7 +229,6 @@ class TemplateCreator {
                         1: content[0],
                         2: content[1],
                     },
-
                     style: {
                         superMarioBros: content[2],
                         superMarioBros3: content[3],
@@ -249,7 +248,6 @@ class TemplateCreator {
                         airship: this.__convertLinkToBoolean(airshipLink),
                         castle: this.__convertLinkToBoolean(castleLink),
                     },
-
                     day: content[7],
                     night: content[8],
                 },
@@ -333,7 +331,6 @@ class TemplateCreator {
                 },
 
                 reference: {
-
                     style: {
                         superMarioBros: content[57],
                         superMarioBros3: content[58],
@@ -341,7 +338,6 @@ class TemplateCreator {
                         newSuperMarioBrosU: content[60],
                         superMario3DWorld: content[61],
                     },
-
                     theme: {
                         ground: groundLink,
                         underground: undergroundLink,
@@ -354,10 +350,8 @@ class TemplateCreator {
                         airship: airshipLink,
                         castle: castleLink,
                     },
-
                     day: content[45],
                     night: content[46],
-
                     all: null,
                 },
             },
