@@ -151,10 +151,11 @@ export interface EntityReferences {
 
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
+    const templateCreator = new TemplateCreator();
     const references: Map<string, EntityReferences> = new Map();
     const referencesToWatch = new ReferencesToWatch(references);
 
-    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => createTemplate(arrayOfContent))
+    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => templateCreator.createTemplate(arrayOfContent))
         .convertToNullableBoolean(
             'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
             'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
@@ -214,174 +215,178 @@ export function loadEveryEntities() {
 
 //region -------------------- Template related methods & classes --------------------
 
-function createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
-    const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-        [content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54], content[55], content[56],];
+class TemplateCreator {
 
-    return {
-        properties: {
-            //region ---------- Basic properties ----------
-            isIn: {
-                game: {
-                    1: content[0],
-                    2: content[1],
-                },
+    public createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
+        const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
+            [content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54], content[55], content[56],];
 
-                style: {
-                    superMarioBros: content[2],
-                    superMarioBros3: content[3],
-                    superMarioWorld: content[4],
-                    newSuperMarioBrosU: content[5],
-                    superMario3DWorld: content[6],
-                },
-                theme: {
-                    ground: groundLink === 'this',
-                    underground: undergroundLink === 'this',
-                    underwater: underwaterLink === 'this',
-                    desert: desertLink === null ? null : desertLink === 'this',
-                    snow: snowLink === null ? null : snowLink === 'this',
-                    sky: skyLink === null ? null : skyLink === 'this',
-                    forest: forestLink === null ? null : forestLink === 'this',
-                    ghostHouse: ghostHouseLink === 'this',
-                    airship: airshipLink === 'this',
-                    castle: castleLink === 'this',
-                },
-
-                day: content[7],
-                night: content[8],
-            },
-
-            categoryInTheEditor: content[9],
-
-            hasAMushroomVariant: content[10],
-            canBeInAParachute: content[11],
-            canHaveWings: content[12],
-            //endregion ---------- Basic properties ----------
-
-            //region ---------- Specific properties ----------
-            canContainOrSpawnAKey: content[13],
-
-            canBePutInAOnOffBlock: content[14],
-
-            canBePutOnATrack: {
-                value: content[15],
-                editorLimit: content[16],
-                whilePlaying: content[17],
-            },
-
-            canSpawnOutOfAPipe: content[18],
-
-            canBePutInASwingingClaw: content[19],
-
-            canBeThrownByALakitu: content[20],
-            canBePutInALakituCloud: content[21],
-
-            canBePutInAClownCar: content[22],
-
-            canBeFiredOutOfABulletLauncher: content[23],
-
-            canBePutInABlock: content[24],
-
-            canBePutInATree: content[25],
-
-            lightSourceEmitted: {
-                value: content[26],
-                isInSMB: content[27]
-            },
-
-            canIgniteABobOmb: content[28],
-
-            canGoThroughWalls: content[29],
-
-            canBeStacked: content[30],
-
-            isGlobalGroundOrGlobal: content[31],
-
-            canMakeASoundOutOfAMusicBlock: content[32],
-            //endregion ---------- Specific properties ----------
-
-            limits: {
-                editor: content[33],
-                whilePlaying: {
-                    isInGEL: {
-                        value: content[34],
-                        isSuperGlobal: content[35],
+        return {
+            properties: {
+                //region ---------- Basic properties ----------
+                isIn: {
+                    game: {
+                        1: content[0],
+                        2: content[1],
                     },
-                    isInPEL: content[36],
-                    isInPJL: content[37],
-                    customLimit: content[38],
-                    offscreenRange: {
-                        spawning: {
-                            horizontal: content[39],
-                            vertical: {
-                                upward: content[41],
-                                downward: content[43],
+
+                    style: {
+                        superMarioBros: content[2],
+                        superMarioBros3: content[3],
+                        superMarioWorld: content[4],
+                        newSuperMarioBrosU: content[5],
+                        superMario3DWorld: content[6],
+                    },
+                    theme: {
+                        ground: groundLink === 'this',
+                        underground: undergroundLink === 'this',
+                        underwater: underwaterLink === 'this',
+                        desert: desertLink === null ? null : desertLink === 'this',
+                        snow: snowLink === null ? null : snowLink === 'this',
+                        sky: skyLink === null ? null : skyLink === 'this',
+                        forest: forestLink === null ? null : forestLink === 'this',
+                        ghostHouse: ghostHouseLink === 'this',
+                        airship: airshipLink === 'this',
+                        castle: castleLink === 'this',
+                    },
+
+                    day: content[7],
+                    night: content[8],
+                },
+
+                categoryInTheEditor: content[9],
+
+                hasAMushroomVariant: content[10],
+                canBeInAParachute: content[11],
+                canHaveWings: content[12],
+                //endregion ---------- Basic properties ----------
+
+                //region ---------- Specific properties ----------
+                canContainOrSpawnAKey: content[13],
+
+                canBePutInAOnOffBlock: content[14],
+
+                canBePutOnATrack: {
+                    value: content[15],
+                    editorLimit: content[16],
+                    whilePlaying: content[17],
+                },
+
+                canSpawnOutOfAPipe: content[18],
+
+                canBePutInASwingingClaw: content[19],
+
+                canBeThrownByALakitu: content[20],
+                canBePutInALakituCloud: content[21],
+
+                canBePutInAClownCar: content[22],
+
+                canBeFiredOutOfABulletLauncher: content[23],
+
+                canBePutInABlock: content[24],
+
+                canBePutInATree: content[25],
+
+                lightSourceEmitted: {
+                    value: content[26],
+                    isInSMB: content[27]
+                },
+
+                canIgniteABobOmb: content[28],
+
+                canGoThroughWalls: content[29],
+
+                canBeStacked: content[30],
+
+                isGlobalGroundOrGlobal: content[31],
+
+                canMakeASoundOutOfAMusicBlock: content[32],
+                //endregion ---------- Specific properties ----------
+
+                limits: {
+                    editor: content[33],
+                    whilePlaying: {
+                        isInGEL: {
+                            value: content[34],
+                            isSuperGlobal: content[35],
+                        },
+                        isInPEL: content[36],
+                        isInPJL: content[37],
+                        customLimit: content[38],
+                        offscreenRange: {
+                            spawning: {
+                                horizontal: content[39],
+                                vertical: {
+                                    upward: content[41],
+                                    downward: content[43],
+                                },
+                            },
+                            despawning: {
+                                horizontal: content[40],
+                                vertical: {
+                                    upward: content[42],
+                                    downward: content[44],
+                                },
                             },
                         },
-                        despawning: {
-                            horizontal: content[40],
-                            vertical: {
-                                upward: content[42],
-                                downward: content[44],
-                            },
-                        },
                     },
                 },
-            },
 
-            reference: {
-                dayTheme: content[45],
-                nightTheme: content[46],
+                reference: {
+                    dayTheme: content[45],
+                    nightTheme: content[46],
 
-                superMarioBrosStyle: content[57],
-                superMarioBros3Style: content[58],
-                superMarioWorldStyle: content[59],
-                newSuperMarioBrosUStyle: content[60],
-                superMario3DWorldStyle: content[61],
+                    superMarioBrosStyle: content[57],
+                    superMarioBros3Style: content[58],
+                    superMarioWorldStyle: content[59],
+                    newSuperMarioBrosUStyle: content[60],
+                    superMario3DWorldStyle: content[61],
 
-                groundTheme: groundLink,
-                undergroundTheme: undergroundLink,
-                underwaterTheme: underwaterLink,
-                desertTheme: desertLink,
-                snowTheme: snowLink,
-                skyTheme: skyLink,
-                forestTheme: forestLink,
-                ghostHouseTheme: ghostHouseLink,
-                airshipTheme: airshipLink,
-                castleTheme: castleLink,
+                    groundTheme: groundLink,
+                    undergroundTheme: undergroundLink,
+                    underwaterTheme: underwaterLink,
+                    desertTheme: desertLink,
+                    snowTheme: snowLink,
+                    skyTheme: skyLink,
+                    forestTheme: forestLink,
+                    ghostHouseTheme: ghostHouseLink,
+                    airshipTheme: airshipLink,
+                    castleTheme: castleLink,
 
-                all: null,
+                    all: null,
+                },
             },
-        },
-        name: {
-            japanese: content[62],
-            english: {
-                simple: content[63],
-                american: content[64],
-                european: content[65],
+            name: {
+                japanese: content[62],
+                english: {
+                    simple: content[63],
+                    american: content[64],
+                    european: content[65],
+                },
+                spanish: {
+                    simple: content[66],
+                    american: content[67],
+                    european: content[68],
+                },
+                french: {
+                    simple: content[69],
+                    canadian: content[70],
+                    european: content[71],
+                },
+                dutch: content[72],
+                german: content[73],
+                italian: content[74],
+                russian: content[75],
+                korean: content[76],
+                chinese: {
+                    simple: content[77],
+                    simplified: content[78],
+                    traditional: content[79],
+                },
             },
-            spanish: {
-                simple: content[66],
-                american: content[67],
-                european: content[68],
-            },
-            french: {
-                simple: content[69],
-                canadian: content[70],
-                european: content[71],
-            },
-            dutch: content[72],
-            german: content[73],
-            italian: content[74],
-            russian: content[75],
-            korean: content[76],
-            chinese: {
-                simple: content[77],
-                simplified: content[78],
-                traditional: content[79],
-            },
-        },
-    };
+        };
+    }
+
 }
 
 function testName(name: SMM2NameTemplate): void {
