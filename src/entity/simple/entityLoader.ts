@@ -143,7 +143,7 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Language properties ----------
 ];
 
-export interface EntityReferences {
+export interface DebugEntityReferences {
     originalContent: string[];
     arrayConverted: EntityFilePropertiesArray;
     template: EntityFilePropertiesTemplate;
@@ -152,7 +152,7 @@ export interface EntityReferences {
 
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
-    const references: Map<string, EntityReferences> = new Map();
+    const references: Map<string, DebugEntityReferences> = new Map();
     const referencesToWatch = new ReferencesToWatch(references);
 
     const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => TemplateCreator.createTemplate(arrayOfContent))
@@ -410,7 +410,7 @@ function testName(name: SMM2NameTemplate): void {
 }
 
 function addEnglishReference(name: SMM2NameTemplate,
-                             englishNames: Map<string, EntityReferences>,
+                             englishNames: Map<string, DebugEntityReferences>,
                              originalContent: string[],
                              convertedContent: EntityFilePropertiesArray,
                              template: EntityFilePropertiesTemplate,): void {
@@ -428,7 +428,7 @@ class ReferencesToWatch {
     readonly #alreadyAddedName: string[];
     readonly #references: { reference: EntityFilePropertiesTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
 
-    public constructor(englishNames: Map<string, EntityReferences>) {
+    public constructor(englishNames: Map<string, DebugEntityReferences>) {
         this.#englishNames = englishNames;
         this.#alreadyAddedName = [];
         this.#references = [];
