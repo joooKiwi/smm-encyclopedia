@@ -151,8 +151,8 @@ export interface EntityReferences {
 
 export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
-    const englishNames: Map<string, EntityReferences> = new Map();
-    const referencesToWatch = new ReferencesToWatch(englishNames);
+    const references: Map<string, EntityReferences> = new Map();
+    const referencesToWatch = new ReferencesToWatch(references);
 
     const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => createTemplate(arrayOfContent))
         .convertToNullableBoolean(
@@ -201,15 +201,15 @@ export function loadEveryEntities() {
         .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
             const name = finalContent.name;
             testName(name);
-            addEnglishReference(name, englishNames, originalContent, convertedContent, finalContent);
+            addEnglishReference(name, references, originalContent, convertedContent, finalContent);
             referencesToWatch.addReference(finalContent);
         })
         .onInitialisationEnd(() => {
             referencesToWatch.testReferences();
-            englishNames.forEach(reference => reference.entity = createEntity(reference.template));
+            references.forEach(reference => reference.entity = createEntity(reference.template));
         });
     console.log(csvLoader.content);
-    return ()=>englishNames;
+    return () => references;
 }
 
 //region -------------------- Template related methods & classes --------------------
