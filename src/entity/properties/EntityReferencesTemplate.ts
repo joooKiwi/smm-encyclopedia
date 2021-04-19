@@ -4,24 +4,24 @@ import {EntityFilePropertiesTemplate} from "../simple/EntityFilePropertiesTempla
 export interface EntityReferencesTemplate {
 
     style: {
-        superMarioBros: EntityLink
-        superMarioBros3: EntityLink
-        superMarioWorld: EntityLink
-        newSuperMarioBrosU: EntityLink
+        superMarioBros: null | EntityLink
+        superMarioBros3: null | EntityLink
+        superMarioWorld: null | EntityLink
+        newSuperMarioBrosU: null | EntityLink
         superMario3DWorld: null | EntityLink
     }
 
     theme: {
         ground: EntityLink
-        underground: EntityLink
-        underwater: EntityLink
+        underground: null | EntityLink
+        underwater: null | EntityLink
         desert: null | EntityLink
         snow: null | EntityLink
         sky: null | EntityLink
         forest: null | EntityLink
-        ghostHouse: EntityLink
-        airship: EntityLink
-        castle: EntityLink
+        ghostHouse: null | EntityLink
+        airship: null | EntityLink
+        castle: null | EntityLink
     }
 
     day: EntityLink

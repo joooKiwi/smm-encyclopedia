@@ -93,20 +93,20 @@ type EntityFilePropertiesArray = [
     isInNightTheme: null | EntityLink,
 
     inGroundTheme: EntityLink,
-    inUndergroundTheme: EntityLink,
-    inUnderwaterTheme: EntityLink,
+    inUndergroundTheme: null | EntityLink,
+    inUnderwaterTheme: null | EntityLink,
     inDesertTheme: null | EntityLink,
     inSnowTheme: null | EntityLink,
     inSkyTheme: null | EntityLink,
     inForestTheme: null | EntityLink,
-    inGhostHouseTheme: EntityLink,
-    inAirshipTheme: EntityLink,
-    inCastleTheme: EntityLink,
+    inGhostHouseTheme: null | EntityLink,
+    inAirshipTheme: null | EntityLink,
+    inCastleTheme: null | EntityLink,
 
-    inSMBGameStyle: EntityLink,
-    inSMB3GameStyle: EntityLink,
-    inSMWGameStyle: EntityLink,
-    inNSMBUGameStyle: EntityLink,
+    inSMBGameStyle: null | EntityLink,
+    inSMB3GameStyle: null | EntityLink,
+    inSMWGameStyle: null | EntityLink,
+    inNSMBUGameStyle: null | EntityLink,
     inSM3DWGameStyle: null | EntityLink,
     //endregion ---------- Reference on specific condition properties ----------
 
@@ -237,15 +237,15 @@ class TemplateCreator {
                     },
                     theme: {
                         ground: this.__convertLinkToBoolean(groundLink),
-                        underground: this.__convertLinkToBoolean(undergroundLink),
-                        underwater: this.__convertLinkToBoolean(underwaterLink),
+                        underground: this.__convertLinkToOnlyBoolean(undergroundLink),
+                        underwater: this.__convertLinkToOnlyBoolean(underwaterLink),
                         desert: this.__convertLinkToNullableBoolean(desertLink),
                         snow: this.__convertLinkToNullableBoolean(snowLink),
                         sky: this.__convertLinkToNullableBoolean(skyLink),
                         forest: this.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: this.__convertLinkToBoolean(ghostHouseLink),
-                        airship: this.__convertLinkToBoolean(airshipLink),
-                        castle: this.__convertLinkToBoolean(castleLink),
+                        ghostHouse: this.__convertLinkToOnlyBoolean(ghostHouseLink),
+                        airship: this.__convertLinkToOnlyBoolean(airshipLink),
+                        castle: this.__convertLinkToOnlyBoolean(castleLink),
                     },
                     day: content[7],
                     night: content[8],
@@ -387,6 +387,10 @@ class TemplateCreator {
 
     private static __convertLinkToBoolean(link: EntityLink): boolean {
         return link === 'this';
+    }
+
+    private static __convertLinkToOnlyBoolean(link: null | EntityLink): boolean {
+        return link !== null && link === 'this';
     }
 
     private static __convertLinkToNullableBoolean(link: null | EntityLink): null | boolean {

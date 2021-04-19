@@ -66,22 +66,22 @@ export class EntityBuilder {
     private __createReferences() {
         const reference = this.__template.properties.reference;
 
-        const inSuperMarioBros = this.__createEntityCallbackFor(reference.style.superMarioBros);
-        const inSuperMarioBros3 = this.__createEntityCallbackFor(reference.style.superMarioBros3);
-        const inSuperMarioWorld = this.__createEntityCallbackFor(reference.style.superMarioWorld);
-        const inNewSuperMarioBros = this.__createEntityCallbackFor(reference.style.newSuperMarioBrosU);
+        const inSuperMarioBros = this.__createNullableEntityCallbackFor(reference.style.superMarioBros);
+        const inSuperMarioBros3 = this.__createNullableEntityCallbackFor(reference.style.superMarioBros3);
+        const inSuperMarioWorld = this.__createNullableEntityCallbackFor(reference.style.superMarioWorld);
+        const inNewSuperMarioBros = this.__createNullableEntityCallbackFor(reference.style.newSuperMarioBrosU);
         const inSuperMario3DWorld = this.__createNullableEntityCallbackFor(reference.style.superMario3DWorld);
 
         const inGroundTheme = this.__createEntityCallbackFor(reference.theme.ground);
-        const inUndergroundTheme = this.__createEntityCallbackFor(reference.theme.underground);
-        const inUnderwaterTheme = this.__createEntityCallbackFor(reference.theme.underwater);
+        const inUndergroundTheme = this.__createNullableEntityCallbackFor(reference.theme.underground);
+        const inUnderwaterTheme = this.__createNullableEntityCallbackFor(reference.theme.underwater);
         const inDesertTheme = this.__createNullableEntityCallbackFor(reference.theme.desert);
         const inSnowTheme = this.__createNullableEntityCallbackFor(reference.theme.snow);
         const inSkyTheme = this.__createNullableEntityCallbackFor(reference.theme.sky);
         const inForestTheme = this.__createNullableEntityCallbackFor(reference.theme.forest);
-        const inGhostHouseTheme = this.__createEntityCallbackFor(reference.theme.ghostHouse);
-        const inAirshipTheme = this.__createEntityCallbackFor(reference.theme.airship);
-        const inCastleTheme = this.__createEntityCallbackFor(reference.theme.castle);
+        const inGhostHouseTheme = this.__createNullableEntityCallbackFor(reference.theme.ghostHouse);
+        const inAirshipTheme = this.__createNullableEntityCallbackFor(reference.theme.airship);
+        const inCastleTheme = this.__createNullableEntityCallbackFor(reference.theme.castle);
 
         const inDayTheme = this.__createEntityCallbackFor(reference.day);
         const inNightTheme = this.__createNullableEntityCallbackFor(reference.night);
