@@ -60,7 +60,7 @@ export class EntityReferencesContainer
             this.referenceInSuperMarioBrosStyle, this.referenceInSuperMarioBros3Style, this.referenceInSuperMarioWorldStyle, this.referenceInNewSuperMarioBrosUStyle, this.referenceInSuperMario3DWorldStyle,
             this.referenceInGroundTheme, this.referenceInUndergroundTheme, this.referenceInUnderwaterTheme, this.referenceInDesertTheme, this.referenceInSnowTheme, this.referenceInSkyTheme, this.referenceInForestTheme, this.referenceInGhostHouseTheme, this.referenceInAirshipTheme, this.referenceInCastleTheme,
             this.referenceInDayTheme, this.referenceInNightTheme,
-        ].filter(reference => reference != this.__originalReference));
+        ].filter(reference => reference !== this.__originalReference));
     }
 
 
