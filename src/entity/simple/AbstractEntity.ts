@@ -1,16 +1,19 @@
 import {Entity} from "./Entity";
 import {SMM2Name} from "../lang/SMM2Name";
 import {IsInProperty} from "../properties/IsInProperty";
+import {EntityReferences} from "../properties/EntityReferences";
 
 export abstract class AbstractEntity
     implements Entity {
 
     readonly #name;
     readonly #isInProperty;
+    readonly #references;
 
-    protected constructor(name: SMM2Name, isInProperty: IsInProperty,) {
+    protected constructor(name: SMM2Name, isInProperty: IsInProperty, references: EntityReferences,) {
         this.#name = name;
         this.#isInProperty = isInProperty;
+        this.#references = references;
     }
 
 
@@ -194,5 +197,89 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- Is in properties --------------------
+
+    //region -------------------- References properties --------------------
+
+    public get references() {
+        return this.#references;
+    }
+
+
+    public get referenceInSuperMarioBrosStyle() {
+        return this.references.referenceInSuperMarioBrosStyle;
+    }
+
+    public get referenceInSuperMarioBros3Style() {
+        return this.references.referenceInSuperMarioBros3Style;
+    }
+
+    public get referenceInSuperMarioWorldStyle() {
+        return this.references.referenceInSuperMarioWorldStyle;
+    }
+
+    public get referenceInNewSuperMarioBrosUStyle() {
+        return this.references.referenceInNewSuperMarioBrosUStyle;
+    }
+
+    public get referenceInSuperMario3DWorldStyle() {
+        return this.references.referenceInSuperMario3DWorldStyle;
+    }
+
+
+    public get referenceInGroundTheme() {
+        return this.references.referenceInGroundTheme;
+    }
+
+    public get referenceInUndergroundTheme() {
+        return this.references.referenceInUndergroundTheme;
+    }
+
+    public get referenceInUnderwaterTheme() {
+        return this.references.referenceInUnderwaterTheme;
+    }
+
+    public get referenceInDesertTheme() {
+        return this.references.referenceInDesertTheme;
+    }
+
+    public get referenceInSnowTheme() {
+        return this.references.referenceInSnowTheme;
+    }
+
+    public get referenceInSkyTheme() {
+        return this.references.referenceInSkyTheme;
+    }
+
+    public get referenceInForestTheme() {
+        return this.references.referenceInForestTheme;
+    }
+
+    public get referenceInGhostHouseTheme() {
+        return this.references.referenceInGhostHouseTheme;
+    }
+
+    public get referenceInAirshipTheme() {
+        return this.references.referenceInAirshipTheme;
+    }
+
+    public get referenceInCastleTheme() {
+        return this.references.referenceInCastleTheme;
+    }
+
+
+    public get referenceInDayTheme() {
+        return this.references.referenceInDayTheme;
+    }
+
+    public get referenceInNightTheme() {
+        return this.references.referenceInNightTheme;
+    }
+
+
+    public get everyReferences() {
+        return this.references.everyReferences;
+    }
+
+    //endregion -------------------- References properties --------------------
 
 }

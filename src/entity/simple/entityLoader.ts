@@ -152,6 +152,7 @@ export function loadEveryEntities() {
     const [unknownCharacter, thisText,] = ['?', 'this',];
     const references: Map<string, DebugEntityReferences> = new Map();
     const referencesToWatch = new ReferencesToWatch(references);
+    EntityBuilder.references = references;
 
     const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => TemplateCreator.createTemplate(arrayOfContent))
         .convertToNullableBoolean(
