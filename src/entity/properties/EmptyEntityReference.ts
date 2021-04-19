@@ -93,4 +93,8 @@ export class EmptyEntityReference
     public static get get() {
         return this.instance;
     }
+
+    public toString() {
+        return 'Empty entity reference';
+    }
 }

@@ -20,4 +20,8 @@ export class EmptyEntity
         return this.instance;
     }
 
+    public toString() {
+        return 'Empty entity';
+    }
+
 }

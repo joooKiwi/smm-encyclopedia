@@ -37,4 +37,8 @@ export class EmptyIsInProperty
         return this.instance;
     }
 
+    public toString() {
+        return 'Empty is in property';
+    }
+
 }

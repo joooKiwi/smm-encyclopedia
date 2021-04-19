@@ -49,4 +49,8 @@ export class EmptyName
         return this.instance;
     }
 
+    public toString() {
+        return 'Empty name';
+    }
+
 }
