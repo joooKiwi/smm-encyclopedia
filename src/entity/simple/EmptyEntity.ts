@@ -1,0 +1,23 @@
+import {AbstractEntity} from "./AbstractEntity";
+import {EmptyName} from "../lang/EmptyName";
+import {EmptyIsInProperty} from "../properties/EmptyIsInProperty";
+import {EmptyEntityReference} from "../properties/EmptyEntityReference";
+
+/**
+ * @singleton
+ */
+export class EmptyEntity
+    extends AbstractEntity {
+
+    public static instance = new EmptyEntity();
+
+    private constructor() {
+        super(EmptyName.get, EmptyIsInProperty.get, EmptyEntityReference.get,)
+    }
+
+
+    public static get get() {
+        return this.instance;
+    }
+
+}
