@@ -28,22 +28,6 @@ export class SMM1ExclusiveGenericEntity
     }
 
 
-    public get isInSuperMarioBrosStyle() {
-        return this.isInProperty.isInSuperMarioBrosStyle;
-    }
-
-    public get isInSuperMarioBros3Style() {
-        return this.isInProperty.isInSuperMarioBros3Style;
-    }
-
-    public get isInSuperMarioWorldStyle() {
-        return this.isInProperty.isInSuperMarioWorldStyle;
-    }
-
-    public get isInNewSuperMarioBrosUStyle() {
-        return this.isInProperty.isInNewSuperMarioBrosUStyle;
-    }
-
     public get isInSuperMario3DWorldStyle() {
         return this.isInProperty.isInSuperMario3DWorldStyle;
     }
