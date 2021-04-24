@@ -119,81 +119,82 @@ export abstract class AbstractEntity
     }
 
     public get isInSuperMarioMaker1() {
-        return this.#isInProperty.isInSuperMarioMaker1;
+        return this.isInProperty.isInSuperMarioMaker1;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.#isInProperty.isInSuperMarioMaker2;
+        return this.isInProperty.isInSuperMarioMaker2;
     }
 
 
     public get isInSuperMarioBrosStyle() {
-        return this.#isInProperty.isInSuperMarioBrosStyle;
+        return this.isInProperty.isInSuperMarioBrosStyle;
     }
 
     public get isInSuperMarioBros3Style() {
-        return this.#isInProperty.isInSuperMarioBros3Style;
+        return this.isInProperty.isInSuperMarioBros3Style;
     }
 
     public get isInSuperMarioWorldStyle() {
-        return this.#isInProperty.isInSuperMarioWorldStyle;
+        return this.isInProperty.isInSuperMarioWorldStyle;
     }
 
     public get isInNewSuperMarioBrosUStyle() {
-        return this.#isInProperty.isInNewSuperMarioBrosUStyle;
+        return this.isInProperty.isInNewSuperMarioBrosUStyle;
     }
 
     public get isInSuperMario3DWorldStyle() {
-        return this.#isInProperty.isInSuperMario3DWorldStyle;
+        return this.isInProperty.isInSuperMario3DWorldStyle;
     }
 
 
     public get isInGroundTheme() {
-        return this.#isInProperty.isInGroundTheme;
+        return this.isInProperty.isInGroundTheme;
     }
 
     public get isInUndergroundTheme() {
-        return this.#isInProperty.isInUndergroundTheme;
+        return this.isInProperty.isInUndergroundTheme;
     }
 
     public get isInUnderwaterTheme() {
-        return this.#isInProperty.isInUnderwaterTheme;
+        return this.isInProperty.isInUnderwaterTheme;
     }
 
     public get isInDesertTheme() {
-        return this.#isInProperty.isInDesertTheme;
+        return this.isInProperty.isInDesertTheme;
     }
 
     public get isInSnowTheme() {
-        return this.#isInProperty.isInSnowTheme;
+        return this.isInProperty.isInSnowTheme;
     }
 
     public get isInSkyTheme() {
-        return this.#isInProperty.isInSkyTheme;
+        return this.isInProperty.isInSkyTheme;
     }
 
     public get isInForestTheme() {
-        return this.#isInProperty.isInForestTheme;
+        return this.isInProperty.isInForestTheme;
     }
 
     public get isInGhostHouseTheme() {
-        return this.#isInProperty.isInGhostHouseTheme;
+        return this.isInProperty.isInGhostHouseTheme;
     }
 
     public get isInAirshipTheme() {
-        return this.#isInProperty.isInAirshipTheme;
+        return this.isInProperty.isInAirshipTheme;
     }
 
     public get isInCastleTheme() {
-        return this.#isInProperty.isInCastleTheme;
+        return this.isInProperty.isInCastleTheme;
     }
 
+
     public get isInDayTheme() {
-        return this.#isInProperty.isInDayTheme;
+        return this.isInProperty.isInDayTheme;
     }
 
     public get isInNightTheme() {
-        return this.#isInProperty.isInNightTheme;
+        return this.isInProperty.isInNightTheme;
     }
 
     //endregion -------------------- Is in properties --------------------
