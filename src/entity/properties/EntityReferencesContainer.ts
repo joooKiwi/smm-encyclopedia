@@ -5,8 +5,6 @@ import {CallbackCaller} from "../../util/CallbackCaller";
 export class EntityReferencesContainer
     implements EntityReferences {
 
-    readonly #originalReference: CallbackCaller<Entity>;
-
     readonly #referenceInSuperMarioBrosStyle: CallbackCaller<Entity>
     readonly #referenceInSuperMarioBros3Style: CallbackCaller<Entity>
     readonly #referenceInSuperMarioWorldStyle: CallbackCaller<Entity>
@@ -30,12 +28,10 @@ export class EntityReferencesContainer
     readonly #everyReferences: CallbackCaller<readonly Entity[]>
 
 
-    public constructor(originalReference: () => Entity,
-                       referenceInSuperMarioBrosStyle: () => Entity, referenceInSuperMarioBros3Style: () => Entity, referenceInSuperMarioWorldStyle: () => Entity, referenceInNewSuperMarioBrosUStyle: () => Entity, referenceInSuperMario3DWorldStyle: () => Entity,
+    public constructor(referenceInSuperMarioBrosStyle: () => Entity, referenceInSuperMarioBros3Style: () => Entity, referenceInSuperMarioWorldStyle: () => Entity, referenceInNewSuperMarioBrosUStyle: () => Entity, referenceInSuperMario3DWorldStyle: () => Entity,
                        referenceInGroundTheme: () => Entity, referenceInUndergroundTheme: () => Entity, referenceInUnderwaterTheme: () => Entity, referenceInDesertTheme: () => Entity, referenceInSnowTheme: () => Entity, referenceInSkyTheme: () => Entity, referenceInForestTheme: () => Entity, referenceInGhostHouseTheme: () => Entity, referenceInAirshipTheme: () => Entity, referenceInCastleTheme: () => Entity,
-                       referenceInDayTheme: () => Entity, referenceInNightTheme: () => Entity,) {
-        this.#originalReference = new CallbackCaller<Entity>(originalReference);
-
+                       referenceInDayTheme: () => Entity, referenceInNightTheme: () => Entity,
+                       referenceAll: () => Entity[],) {
         this.#referenceInSuperMarioBrosStyle = new CallbackCaller<Entity>(referenceInSuperMarioBrosStyle);
         this.#referenceInSuperMarioBros3Style = new CallbackCaller<Entity>(referenceInSuperMarioBros3Style);
         this.#referenceInSuperMarioWorldStyle = new CallbackCaller<Entity>(referenceInSuperMarioWorldStyle);
@@ -56,16 +52,7 @@ export class EntityReferencesContainer
         this.#referenceInDayTheme = new CallbackCaller<Entity>(referenceInDayTheme);
         this.#referenceInNightTheme = new CallbackCaller<Entity>(referenceInNightTheme);
 
-        this.#everyReferences = new CallbackCaller<readonly Entity[]>(() => [
-            this.referenceInSuperMarioBrosStyle, this.referenceInSuperMarioBros3Style, this.referenceInSuperMarioWorldStyle, this.referenceInNewSuperMarioBrosUStyle, this.referenceInSuperMario3DWorldStyle,
-            this.referenceInGroundTheme, this.referenceInUndergroundTheme, this.referenceInUnderwaterTheme, this.referenceInDesertTheme, this.referenceInSnowTheme, this.referenceInSkyTheme, this.referenceInForestTheme, this.referenceInGhostHouseTheme, this.referenceInAirshipTheme, this.referenceInCastleTheme,
-            this.referenceInDayTheme, this.referenceInNightTheme,
-        ].filter(reference => reference !== this.__originalReference));
-    }
-
-
-    private get __originalReference() {
-        return this.#originalReference.get;
+        this.#everyReferences = new CallbackCaller<readonly Entity[]>(referenceAll);
     }
 
 

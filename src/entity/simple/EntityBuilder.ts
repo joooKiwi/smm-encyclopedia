@@ -93,16 +93,19 @@ export class EntityBuilder {
         const inDayTheme = this.__createEntityCallbackFor(reference.day);
         const inNightTheme = this.__createNullableEntityCallbackFor(reference.night);
 
+        const allReferences = reference.all === null ? () => [] : () => reference.all!
+            .map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+
         return new EntityReferencesContainer(
-            this.#selfCallback,
             inSuperMarioBros, inSuperMarioBros3, inSuperMarioWorld, inNewSuperMarioBros, inSuperMario3DWorld,
             inGroundTheme, inUndergroundTheme, inUnderwaterTheme, inDesertTheme, inSnowTheme, inSkyTheme, inForestTheme, inGhostHouseTheme, inAirshipTheme, inCastleTheme,
             inDayTheme, inNightTheme,
+            allReferences,
         );
     }
 
     private __createEntityCallbackFor(link: EntityLink): () => Entity {
-        return link === 'this' ? this.#selfCallback : () => EntityBuilder.references.get(link)!.entity!
+        return link === 'this' ? this.#selfCallback : () => EntityBuilder.references.get(link)!.entity!;
     }
 
     private __createNullableEntityCallbackFor(link: null | EntityLink): () => Entity {
