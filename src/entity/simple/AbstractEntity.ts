@@ -83,6 +83,19 @@ export abstract class AbstractEntity
     }
 
 
+    public get portuguese() {
+        return this.name.portuguese;
+    }
+
+    public get americanPortuguese() {
+        return this.name.americanPortuguese;
+    }
+
+    public get europeanPortuguese() {
+        return this.name.europeanPortuguese;
+    }
+
+
     public get italian() {
         return this.name.italian;
     }

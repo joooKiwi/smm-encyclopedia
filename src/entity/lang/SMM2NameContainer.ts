@@ -19,6 +19,7 @@ export class SMM2NameContainer
     readonly #dutch: SimpleLanguage;
     readonly #german: SimpleLanguage;
     readonly #italian: SimpleLanguage;
+    readonly #portuguese: AmericanAndEuropeanLanguage;
     readonly #russian: SimpleLanguage;
     readonly #korean: SimpleLanguage;
     readonly #chinese: ChineseLanguage;
@@ -30,6 +31,7 @@ export class SMM2NameContainer
                        dutch: string,
                        german: string,
                        italian: string,
+                       portuguese: string | [american: string, european: string],
                        russian: string,
                        korean: string,
                        chinese: string | [simplified: string, traditional: string],) {
@@ -40,6 +42,7 @@ export class SMM2NameContainer
         this.#dutch = new SimpleLanguageContainer(dutch);
         this.#german = new SimpleLanguageContainer(german);
         this.#italian = new SimpleLanguageContainer(italian);
+        this.#portuguese = typeof portuguese === 'string' ? new AmericanAndEuropeanLanguageContainer(portuguese) : new AmericanAndEuropeanLanguageContainer(...portuguese);
         this.#russian = new SimpleLanguageContainer(russian);
         this.#korean = new SimpleLanguageContainer(korean);
         this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
@@ -102,6 +105,19 @@ export class SMM2NameContainer
 
     public get german() {
         return this.#german.value;
+    }
+
+
+    public get portuguese() {
+        return this.#portuguese.value;
+    }
+
+    public get americanPortuguese() {
+        return this.#portuguese.american;
+    }
+
+    public get europeanPortuguese() {
+        return this.#portuguese.european;
     }
 
 

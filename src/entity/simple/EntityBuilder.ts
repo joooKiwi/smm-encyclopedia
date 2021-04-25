@@ -50,11 +50,12 @@ export class EntityBuilder {
         const dutchReference = name.dutch ?? temporaryVariableToAvoidError as string;
         const germanReference = name.german ?? temporaryVariableToAvoidError as string;
         const italianReference = name.italian ?? temporaryVariableToAvoidError as string;
+        const portugueseReference = name.portuguese.simple ?? [name.portuguese.american ?? temporaryVariableToAvoidError, name.portuguese.european ?? temporaryVariableToAvoidError] as string | [string, string];
         const russianReference = name.russian ?? temporaryVariableToAvoidError as string;
         const koreanReference = name.korean ?? temporaryVariableToAvoidError as string;
         const chineseReference = name.chinese.simple ?? [name.chinese.simplified ?? temporaryVariableToAvoidError, name.chinese.traditional ?? temporaryVariableToAvoidError] as string | [string, string];
 
-        return new SMM2NameContainer(japaneseReference, englishReference, spanishReference, frenchReference, dutchReference, germanReference, italianReference, russianReference, koreanReference, chineseReference);
+        return new SMM2NameContainer(japaneseReference, englishReference, spanishReference, frenchReference, dutchReference, germanReference, italianReference, portugueseReference, russianReference, koreanReference, chineseReference);
     }
 
 

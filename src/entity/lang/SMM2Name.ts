@@ -8,6 +8,7 @@ export interface SMM2Name
     english: string
     spanish: string
     french: string
+    portuguese: string
     chinese: string
 
 }

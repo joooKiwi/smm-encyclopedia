@@ -36,6 +36,10 @@ export class EmptyName
 
     public readonly italian = EmptyName.EMPTY_STRING;
 
+    public readonly portuguese = EmptyName.EMPTY_STRING;
+    public readonly americanPortuguese = EmptyName.EMPTY_STRING;
+    public readonly europeanPortuguese = EmptyName.EMPTY_STRING;
+
     public readonly russian = EmptyName.EMPTY_STRING;
 
     public readonly korean = EmptyName.EMPTY_STRING;

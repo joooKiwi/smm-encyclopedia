@@ -26,6 +26,12 @@ export interface SMM2NameTemplate {
 
     italian: null | string
 
+    portuguese: {
+        simple: null | string
+        american: null | string
+        european: null | string
+    }
+
     russian: null | string
 
     korean: null | string

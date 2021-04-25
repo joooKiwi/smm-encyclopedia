@@ -17,6 +17,9 @@ export interface ClassWithEveryLanguages {
 
     italian: string
 
+    americanPortuguese: string
+    europeanPortuguese: string
+
     russian: string
 
     korean: string

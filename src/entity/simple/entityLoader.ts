@@ -131,6 +131,10 @@ type EntityFilePropertiesArray = [
 
     italian: null | string,
 
+    portuguese: null | string,
+    americanPortuguese: null | string,
+    europeanPortuguese: null | string,
+
     russian: null | string,
 
     korean: null | string,
@@ -195,7 +199,9 @@ export function loadEveryEntities() {
             'english', 'americanEnglish', 'europeanEnglish',
             'spanish', 'americanSpanish', 'europeanSpanish',
             'french', 'canadianFrench', 'europeanFrench',
-            'dutch', 'german', 'italian', 'russian', 'korean',
+            'dutch', 'german', 'italian',
+            'portuguese', 'americanPortuguese', 'europeanPortuguese',
+            'russian', 'korean',
             'chinese', 'simplifiedChinese', 'traditionalChinese',
         )
         .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
@@ -375,12 +381,17 @@ class TemplateCreator {
                 dutch: content[72],
                 german: content[73],
                 italian: content[74],
-                russian: content[75],
-                korean: content[76],
+                portuguese: {
+                    simple: content[75],
+                    american: content[76],
+                    european: content[77],
+                },
+                russian: content[78],
+                korean: content[79],
                 chinese: {
-                    simple: content[77],
-                    simplified: content[78],
-                    traditional: content[79],
+                    simple: content[80],
+                    simplified: content[81],
+                    traditional: content[82],
                 },
             },
         };
@@ -408,6 +419,8 @@ function testName(name: SMM2NameTemplate): void {
     //     throw new ReferenceError(`The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`);
     // if (name.french.simple === null && (name.french.canadian === null || name.french.european === null))
     //     throw new ReferenceError(`The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`);
+    // if (name.portuguese.simple === null && (name.portuguese.simplified === null || name.portuguese.traditional === null))
+    //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
     // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
     //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
 }

@@ -169,16 +169,28 @@ export abstract class Languages {
 
     }('it', 'Italian', 'Italiano',);
     public static readonly AMERICAN_PORTUGUESE = new class extends Languages {
+
         public get newDateInstanceCreator(): DateInstanceCreator {
             return new DateInstanceCreatorBuilder('day,month,year', ' de ', ' de ',)
                 .setMonths('array', ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'septembro', 'outubro', 'novembro', 'dezembro',],)
                 .build();
         }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.americanPortuguese;
+        }
+
     }('pt_AM', 'Portuguese (America)', 'Português (América)',);
     public static readonly EUROPEAN_PORTUGUESE = new class extends Languages {
+
         public get newDateInstanceCreator(): DateInstanceCreator {
             return Languages.AMERICAN_PORTUGUESE.newDateInstanceCreator;
         }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.europeanPortuguese;
+        }
+
     }('pt_EU', 'Portuguese (Europe)', 'Português (Europa)',);
     public static readonly RUSSIAN = new class extends Languages {
 
