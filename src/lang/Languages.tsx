@@ -231,3 +231,13 @@ export abstract class Languages {
 }
 
 Languages.setDefaultLanguage('en_US');
+
+/**
+ * A temporary method used to define the simple translations on the project.
+ *
+ * @param value
+ * @temporary
+ */
+export function __(value: string): string {
+    return value;
+}
