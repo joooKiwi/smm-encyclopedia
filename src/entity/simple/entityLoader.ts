@@ -206,6 +206,7 @@ export function loadEveryEntities() {
         })
         .onInitialisationEnd(() => {
             referencesToWatch.testReferences();
+            referencesToWatch.setReferences();
             references.forEach(reference => reference.entity = new EntityBuilder(reference.template).build());
         });
     console.log(csvLoader.content);
@@ -472,7 +473,7 @@ class ReferencesToWatch {
         this.alreadyAddedName.push(reference);
     }
 
-    private _addReferenceToArray(template: EntityFilePropertiesTemplate, reference: string, errorIfNeverFound: () => ReferenceError) {
+    private _addReferenceToArray(template: EntityFilePropertiesTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
         this.references.push({
             reference: template,
             value: reference,
@@ -485,6 +486,12 @@ class ReferencesToWatch {
             const referenceWatched = this.englishNames.get(englishReferenceToWatch.value);
             if (referenceWatched === undefined)
                 throw englishReferenceToWatch.errorIfNeverFound();
+        });
+    }
+
+    public setReferences(): void {
+        this.references.forEach(englishReferenceToWatch => {
+            const referenceWatched = this.englishNames.get(englishReferenceToWatch.value)!;
 
             //Addition on both references to their other reference table.
             referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
