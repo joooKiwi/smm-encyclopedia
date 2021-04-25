@@ -8,6 +8,8 @@ import {EntityReferencesContainer} from "../properties/EntityReferencesContainer
 import {DebugEntityReferences} from "./entityLoader";
 import {EntityLink} from "../entityTypes";
 import {EmptyEntity} from "./EmptyEntity";
+import {SMM1ExclusiveGenericEntity} from "./SMM1ExclusiveGenericEntity";
+import {SMM2ExclusiveGenericEntity} from "./SMM2ExclusiveGenericEntity";
 
 /**
  * @builder
@@ -24,7 +26,12 @@ export class EntityBuilder {
 
     public constructor(template: EntityFilePropertiesTemplate) {
         this.#template = template;
-        this.#entityCaller = new CallbackCaller(() => new GenericEntity(this.__createName(), this.__createIsInProperty(), this.__createReferences(),));
+        this.#entityCaller = new CallbackCaller(() => {
+            const isInProperty = this.__createIsInProperty();
+            return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2 ? new SMM1ExclusiveGenericEntity(this.__createName(), isInProperty, this.__createReferences(),)
+                : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2 ? new SMM2ExclusiveGenericEntity(this.__createName(), isInProperty, this.__createReferences(),)
+                    : new GenericEntity(this.__createName(), isInProperty, this.__createReferences(),);
+        });
     }
 
     private get __template() {
