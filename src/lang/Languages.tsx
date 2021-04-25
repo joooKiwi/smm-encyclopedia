@@ -8,24 +8,27 @@ export type PossibleLanguagesAcronym =
     | 'en_US' | 'en_EU'
     | 'es_AM' | 'es_EU'
     | 'fr_CA' | 'fr_EU'
-    | 'nl' | 'de' | 'it' | 'ru'
-    | 'ko'
+    | 'nl' | 'de' | 'it'
+    | 'pt_AM' | 'pt_EU'
+    | 'ru' | 'ko'
     | 'zh_T' | 'zh_S';
 export type PossibleLanguagesEnglishName =
     'Japanese'
-    | 'English (America)' | 'English (Europe)'
-    | 'Spanish (America)' | 'Spanish (Europe)'
-    | 'French (Canada)' | 'French (Europe)'
-    | 'Dutch' | 'German' | 'Italian' | 'Russian'
-    | 'Korean'
+    | `English (${'America' | 'Europe'})`
+    | `Spanish (${'America' | 'Europe'})`
+    | `French (${'Canada' | 'Europe'})`
+    | 'Dutch' | 'German' | 'Italian'
+    | `Portuguese (${'America' | 'Europe'})`
+    | 'Russian' | 'Korean'
     | 'Chinese (Traditional)' | 'Chinese (Simplified)';
 export type PossibleLanguagesOriginalName =
     '日本語'
-    | 'English (America)' | 'English (Europe)'
-    | 'Español (America)' | 'Español (Europa)'
-    | 'Français (Canada)' | 'Français (Europe)'
-    | 'Nederlands' | 'Deutsche' | 'Italiano' | 'русский'
-    | '한국어'
+    | `English (${'America' | 'Europe'})`
+    | `Español (${'America' | 'Europa'})`
+    | `Français (${'Canada' | 'Europe'})`
+    | 'Nederlands' | 'Deutsche' | 'Italiano'
+    | `Português (${'América' | 'Europa'})`//Canadá
+    | 'русский' | '한국어'
     | '简体(中文)' | '中國(傳統的)';
 
 export abstract class Languages {
@@ -165,6 +168,18 @@ export abstract class Languages {
         }
 
     }('it', 'Italian', 'Italiano',);
+    public static readonly AMERICAN_PORTUGUESE = new class extends Languages {
+        public get newDateInstanceCreator(): DateInstanceCreator {
+            return new DateInstanceCreatorBuilder('day,month,year', ' de ', ' de ',)
+                .setMonths('array', ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'septembro', 'outubro', 'novembro', 'dezembro',],)
+                .build();
+        }
+    }('pt_AM', 'Portuguese (America)', 'Português (América)',);
+    public static readonly EUROPEAN_PORTUGUESE = new class extends Languages {
+        public get newDateInstanceCreator(): DateInstanceCreator {
+            return Languages.AMERICAN_PORTUGUESE.newDateInstanceCreator;
+        }
+    }('pt_EU', 'Portuguese (Europe)', 'Português (Europa)',);
     public static readonly RUSSIAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -292,6 +307,7 @@ export abstract class Languages {
                 this.DUTCH,
                 this.GERMAN,
                 this.ITALIAN,
+                this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
                 this.RUSSIAN,
                 this.KOREAN,
                 this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
@@ -303,7 +319,12 @@ export abstract class Languages {
 
 Languages.setDefaultLanguage('en_US');
 
-export function __(key: string, language: PossibleLanguagesAcronym = Languages.currentLanguage.acronym): string {
-    //TODO add file searcher on the json files for this method
-    return key;
+/**
+ * A temporary method used to define the simple translations on the project.
+ *
+ * @param value
+ * @temporary
+ */
+export function __(value: string): string {
+    return value;
 }
