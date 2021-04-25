@@ -20,6 +20,10 @@ import germanLanguage            from "./locale/de/language.json";
 import germanContent             from "./locale/de/content.json";
 import italianLanguage           from "./locale/it/language.json";
 import italianContent            from "./locale/it/content.json";
+import portugueseLanguage        from "./locale/pt/language.json";
+import portugueseContent         from "./locale/pt/content.json";
+import americanPortugueseContent from "./locale/pt/pt_AM/content.json";
+import europeanPortugueseContent from "./locale/pt/pt_EU/content.json";
 import russianLanguage           from "./locale/ru/language.json";
 import russianContent            from "./locale/ru/content.json";
 import koreanLanguage            from "./locale/ko/language.json";
@@ -83,6 +87,16 @@ const resources: Resource = {
         language: italianLanguage,
         content: italianContent,
     },
+    pt: {
+        language: portugueseLanguage,
+        content: portugueseContent,
+    },
+    pt_AM: {
+        content: americanPortugueseContent,
+    },
+    pt_EU: {
+        content: europeanPortugueseContent,
+    },
     ru: {
         language: russianLanguage,
         content: russianContent,
@@ -111,6 +125,8 @@ i18n
             fr_EU: ['fr'],
             es_AM: ['es'],
             es_EU: ['es'],
+            pt_AM: ['pt'],
+            pt_EU: ['pt'],
             zh_S: ['zh'],
             zh_T: ['zh'],
             default: ['en'],
