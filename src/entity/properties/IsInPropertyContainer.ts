@@ -13,22 +13,22 @@ export class IsInPropertyContainer
     readonly #isInSuperMario3DWorldStyle: null | boolean
 
     readonly #isInGroundTheme: boolean
-    readonly #isInUndergroundTheme: boolean
-    readonly #isInUnderwaterTheme: boolean
-    readonly #isInDesertTheme: boolean | null
-    readonly #isInSnowTheme: boolean | null
-    readonly #isInSkyTheme: boolean | null
-    readonly #isInForestTheme: boolean | null
-    readonly #isInGhostHouseTheme: boolean
-    readonly #isInAirshipTheme: boolean
-    readonly #isInCastleTheme: boolean
+    readonly #isInUndergroundTheme: null | boolean
+    readonly #isInUnderwaterTheme: null | boolean
+    readonly #isInDesertTheme: null | boolean
+    readonly #isInSnowTheme: null | boolean
+    readonly #isInSkyTheme: null | boolean
+    readonly #isInForestTheme: null | boolean
+    readonly #isInGhostHouseTheme: null | boolean
+    readonly #isInAirshipTheme: null | boolean
+    readonly #isInCastleTheme: null | boolean
 
     readonly #isInDayTheme: boolean
     readonly #isInNightTheme: boolean | null
 
     public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,
-                       isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
+                       isInGroundTheme: boolean, isInUndergroundTheme: null | boolean, isInUnderwaterTheme: null | boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: null | boolean, isInAirshipTheme: null | boolean, isInCastleTheme: null | boolean,
                        isInDayTheme: boolean, isInNightTheme: null | boolean,) {
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
         this.#isInSuperMarioMaker2 = isInSuperMarioMaker2;

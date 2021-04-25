@@ -15,15 +15,15 @@ export interface IsInPropertyTemplate {
 
     theme: {
         ground: boolean
-        underground: boolean
-        underwater: boolean
+        underground: null | boolean
+        underwater: null | boolean
         desert: null | boolean
         snow: null | boolean
         sky: null | boolean
         forest: null | boolean
-        ghostHouse: boolean
-        airship: boolean
-        castle: boolean
+        ghostHouse: null | boolean
+        airship: null | boolean
+        castle: null | boolean
     }
 
     day: boolean

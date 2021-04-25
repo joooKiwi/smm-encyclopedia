@@ -244,15 +244,15 @@ class TemplateCreator {
                     },
                     theme: {
                         ground: this.__convertLinkToBoolean(groundLink),
-                        underground: this.__convertLinkToOnlyBoolean(undergroundLink),
-                        underwater: this.__convertLinkToOnlyBoolean(underwaterLink),
+                        underground: this.__convertLinkToNullableBoolean(undergroundLink),
+                        underwater: this.__convertLinkToNullableBoolean(underwaterLink),
                         desert: this.__convertLinkToNullableBoolean(desertLink),
                         snow: this.__convertLinkToNullableBoolean(snowLink),
                         sky: this.__convertLinkToNullableBoolean(skyLink),
                         forest: this.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: this.__convertLinkToOnlyBoolean(ghostHouseLink),
-                        airship: this.__convertLinkToOnlyBoolean(airshipLink),
-                        castle: this.__convertLinkToOnlyBoolean(castleLink),
+                        ghostHouse: this.__convertLinkToNullableBoolean(ghostHouseLink),
+                        airship: this.__convertLinkToNullableBoolean(airshipLink),
+                        castle: this.__convertLinkToNullableBoolean(castleLink),
                     },
                     day: content[7],
                     night: content[8],
@@ -399,10 +399,6 @@ class TemplateCreator {
 
     private static __convertLinkToBoolean(link: EntityLink): boolean {
         return link === 'this';
-    }
-
-    private static __convertLinkToOnlyBoolean(link: null | EntityLink): boolean {
-        return link !== null && link === 'this';
     }
 
     private static __convertLinkToNullableBoolean(link: null | EntityLink): null | boolean {
