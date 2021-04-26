@@ -5,6 +5,7 @@ import {EntityBuilder} from "./EntityBuilder";
 import {EntityTemplate} from "./EntityTemplate";
 import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
 import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
+import {CallbackCaller} from "../../util/CallbackCaller";
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
@@ -152,70 +153,92 @@ export interface DebugEntityReferences {
     entity?: Entity;
 }
 
-export function loadEveryEntities() {
-    const [unknownCharacter, thisText,] = ['?', 'this',];
-    const references: Map<string, DebugEntityReferences> = new Map();
-    const referencesToWatch = new ReferencesToWatch(references);
-    EntityBuilder.references = references;
+/**
+ * @singleton
+ */
+export class EntityLoader {
 
-    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityTemplate>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
-        .convertToNullableBoolean(
-            'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
-            'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
-            'isInDayTheme', 'isInNightTheme',
-            'hasAMushroomVariant',
-        )
-        .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
-        .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
-        .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
-        .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
-        .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
-        .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
+    private static readonly instance = new EntityLoader();
 
-        .convertTo(['emptyable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
-        .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
-        .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
-        .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
-        .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
-        .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
+    readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
 
-        .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
-        .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
-        .convertToNullableBoolean('whilePlaying_isInPEL',)
-        .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
-        .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
-        .convertTo(['nullable number', 'Variable', 'Infinity'], 'whilePlaying_offscreenDespawningHorizontalRange',)
-        .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
-            'whilePlaying_offscreenSpawningDownwardVerticalRange', 'whilePlaying_offscreenDespawningDownwardVerticalRange',)
+    private constructor() {
+        this.#everyEntitiesMap = new CallbackCaller(() => {
+            const [unknownCharacter, thisText,] = ['?', 'this',];
+            const references: Map<string, DebugEntityReferences> = new Map();
+            const referencesToWatch = new ReferencesToWatch(references);
+            EntityBuilder.references = references;
 
-        .convertToStringAnd(thisText, 'inDayTheme',)
-        .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
-        .convertToStringAnd(thisText, 'inGroundTheme',)
-        .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme', 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme', 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
-        .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+            const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityTemplate>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
+                .convertToNullableBoolean(
+                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                    'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
+                    'isInDayTheme', 'isInNightTheme',
+                    'hasAMushroomVariant',
+                )
+                .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
+                .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
+                .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
+                .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
+                .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
+                .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
-        .convertToEmptyableString(
-            'japanese',
-            'english', 'americanEnglish', 'europeanEnglish',
-            'spanish', 'americanSpanish', 'europeanSpanish',
-            'french', 'canadianFrench', 'europeanFrench',
-            'dutch', 'german', 'italian',
-            'portuguese', 'americanPortuguese', 'europeanPortuguese',
-            'russian', 'korean',
-            'chinese', 'simplifiedChinese', 'traditionalChinese',
-        )
-        .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
-            const name = finalContent.name;
-            NameCreator.addEnglishReference(name, references, originalContent, convertedContent, finalContent);
-            referencesToWatch.addReference(finalContent);
-        })
-        .onInitialisationEnd(() => {
-            referencesToWatch.testReferences();
-            referencesToWatch.setReferences();
-            references.forEach(reference => reference.entity = new EntityBuilder(reference.template).build());
+                .convertTo(['emptyable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+                .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
+                .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
+                .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
+                .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
+                .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
+
+                .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
+                .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
+                .convertToNullableBoolean('whilePlaying_isInPEL',)
+                .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+                .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
+                .convertTo(['nullable number', 'Variable', 'Infinity'], 'whilePlaying_offscreenDespawningHorizontalRange',)
+                .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
+                    'whilePlaying_offscreenSpawningDownwardVerticalRange', 'whilePlaying_offscreenDespawningDownwardVerticalRange',)
+
+                .convertToStringAnd(thisText, 'inDayTheme',)
+                .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
+                .convertToStringAnd(thisText, 'inGroundTheme',)
+                .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme', 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme', 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+                .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+
+                .convertToEmptyableString(
+                    'japanese',
+                    'english', 'americanEnglish', 'europeanEnglish',
+                    'spanish', 'americanSpanish', 'europeanSpanish',
+                    'french', 'canadianFrench', 'europeanFrench',
+                    'dutch', 'german', 'italian',
+                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
+                    'russian', 'korean',
+                    'chinese', 'simplifiedChinese', 'traditionalChinese',
+                )
+                .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
+                    const name = finalContent.name;
+                    NameCreator.addEnglishReference(name, references, originalContent, convertedContent, finalContent);
+                    referencesToWatch.addReference(finalContent);
+                })
+                .onInitialisationEnd(() => {
+                    referencesToWatch.testReferences();
+                    referencesToWatch.setReferences();
+                    references.forEach(reference => reference.entity = new EntityBuilder(reference.template).build());
+                });
+            console.log(csvLoader.content);
+            return references;
         });
-    console.log(csvLoader.content);
-    return () => references;
+    }
+
+    public static get get() {
+        return this.instance;
+    }
+
+
+    public load() {
+        return this.#everyEntitiesMap.get;
+    }
+
 }
 
 //region -------------------- Template related methods & classes --------------------

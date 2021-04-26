@@ -4,7 +4,7 @@ import {GenericEntity} from "./GenericEntity";
 import {IsInPropertyContainer} from "../properties/IsInPropertyContainer";
 import {CallbackCaller} from "../../util/CallbackCaller";
 import {EntityReferencesContainer} from "../properties/EntityReferencesContainer";
-import {DebugEntityReferences} from "./entityLoader";
+import {DebugEntityReferences} from "./EntityLoader";
 import {EntityLink} from "../entityTypes";
 import {EmptyEntity} from "./EmptyEntity";
 import {SMM1ExclusiveGenericEntity} from "./SMM1ExclusiveGenericEntity";
