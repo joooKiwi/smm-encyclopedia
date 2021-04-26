@@ -4,13 +4,15 @@ import {EntityReferences} from "../properties/EntityReferences";
 import {IsInExclusiveSMM1Property} from "../properties/IsInExclusiveSMM1Property";
 import {GenericEntity} from "./GenericEntity";
 import {SMM1ExclusiveEntity} from "./SMM1ExclusiveEntity";
+import {EntityCategory} from "../category/EntityCategory";
+import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
 
 export class SMM1ExclusiveGenericEntity
     extends GenericEntity
     implements SMM1ExclusiveEntity {
 
-    public constructor(name: SMM2Name, isInProperty: IsInProperty, references: EntityReferences,) {
-        super(name, validateIsInProperty(isInProperty), references);
+    public constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+        super(name, validateIsEmptyCategory(category), validateIsInProperty(isInProperty), references);
     }
 
     //region -------------------- Is in properties --------------------
@@ -84,6 +86,12 @@ export class SMM1ExclusiveGenericEntity
 
     //endregion -------------------- Is in properties --------------------
 
+}
+
+function validateIsEmptyCategory(category: EntityCategory): EmptyEntityCategory {
+    if (!(category instanceof EmptyEntityCategory))
+        throw new TypeError('A SMM1 exclusive entity cannot be in a SMM2 category.');
+    return category;
 }
 
 function validateIsInProperty(isInProperty: IsInProperty): IsInExclusiveSMM1Property {

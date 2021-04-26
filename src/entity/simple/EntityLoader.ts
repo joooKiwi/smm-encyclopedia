@@ -1,11 +1,13 @@
-import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
+import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
+import {CallbackCaller} from "../../util/CallbackCaller";
+import {CategoryType, EntityCategoryLoader} from "../category/EntityCategoryLoader";
 import CSVLoader from "../../loader/CSVLoader";
 import {Entity} from "./Entity";
 import {EntityBuilder} from "./EntityBuilder";
+import {EntityCategory} from "../category/EntityCategory";
 import {EntityTemplate} from "./EntityTemplate";
 import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
 import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
-import {CallbackCaller} from "../../util/CallbackCaller";
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
@@ -160,22 +162,26 @@ export class EntityLoader {
 
     private static readonly instance = new EntityLoader();
 
+    readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
     readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
 
     private constructor() {
+        this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
         this.#everyEntitiesMap = new CallbackCaller(() => {
             const [unknownCharacter, thisText,] = ['?', 'this',];
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
             EntityBuilder.references = references;
+            EntityBuilder.categoriesMap = this.entityCategories;
 
             const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityTemplate>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .convertToNullableBoolean(
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
                     'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
                     'isInDayTheme', 'isInNightTheme',
-                    'hasAMushroomVariant',
                 )
+                .convertTo(['emptyable string', ...this.entityCategoriesNames], 'categoryInTheEditor',)
+                .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
                 .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
@@ -232,6 +238,15 @@ export class EntityLoader {
 
     public static get get() {
         return this.instance;
+    }
+
+
+    private get entityCategories() {
+        return this.#everyEntityCategories.get;
+    }
+
+    private get entityCategoriesNames() {
+        return [...this.entityCategories.keys()];
     }
 
 

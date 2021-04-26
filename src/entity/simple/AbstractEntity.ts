@@ -2,16 +2,19 @@ import {Entity} from "./Entity";
 import {SMM2Name} from "../lang/SMM2Name";
 import {IsInProperty} from "../properties/IsInProperty";
 import {EntityReferences} from "../properties/EntityReferences";
+import {EntityCategory} from "../category/EntityCategory";
 
 export abstract class AbstractEntity
     implements Entity {
 
     readonly #name;
+    readonly #category;
     readonly #isInProperty;
     readonly #references;
 
-    protected constructor(name: SMM2Name, isInProperty: IsInProperty, references: EntityReferences,) {
+    protected constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
         this.#name = name;
+        this.#category = category;
         this.#isInProperty = isInProperty;
         this.#references = references;
     }
@@ -124,6 +127,119 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- Name properties --------------------
+
+    //region -------------------- Category properties --------------------
+
+    public get category() {
+        return this.#category;
+    }
+
+
+    public get categoryName() {
+        return this.#name;
+    }
+
+
+    public get categoryLanguageValue() {
+        return this.categoryName.languageValue;
+    }
+
+
+    public get categoryJapanese() {
+        return this.categoryName.japanese;
+    }
+
+
+    public get categoryEnglish() {
+        return this.categoryName.english;
+    }
+
+    public get categoryAmericanEnglish() {
+        return this.categoryName.americanEnglish;
+    }
+
+    public get categoryEuropeanEnglish() {
+        return this.categoryName.europeanEnglish;
+    }
+
+
+    public get categorySpanish() {
+        return this.categoryName.spanish;
+    }
+
+    public get categoryAmericanSpanish() {
+        return this.categoryName.americanSpanish;
+    }
+
+    public get categoryEuropeanSpanish() {
+        return this.categoryName.europeanSpanish;
+    }
+
+
+    public get categoryFrench() {
+        return this.categoryName.french;
+    }
+
+    public get categoryCanadianFrench() {
+        return this.categoryName.canadianFrench;
+    }
+
+    public get categoryEuropeanFrench() {
+        return this.categoryName.europeanFrench;
+    }
+
+
+    public get categoryDutch() {
+        return this.categoryName.dutch;
+    }
+
+
+    public get categoryGerman() {
+        return this.categoryName.german;
+    }
+
+
+    public get categoryPortuguese() {
+        return this.categoryName.portuguese;
+    }
+
+    public get categoryAmericanPortuguese() {
+        return this.categoryName.americanPortuguese;
+    }
+
+    public get categoryEuropeanPortuguese() {
+        return this.categoryName.europeanPortuguese;
+    }
+
+
+    public get categoryItalian() {
+        return this.categoryName.italian;
+    }
+
+
+    public get categoryRussian() {
+        return this.categoryName.russian;
+    }
+
+
+    public get categoryKorean() {
+        return this.categoryName.korean;
+    }
+
+
+    public get categoryChinese() {
+        return this.categoryName.chinese;
+    }
+
+    public get categorySimplifiedChinese() {
+        return this.categoryName.simplifiedChinese;
+    }
+
+    public get categoryTraditionalChinese() {
+        return this.categoryName.traditionalChinese;
+    }
+
+    //endregion -------------------- Category properties --------------------
 
     //region -------------------- Is in properties --------------------
 

@@ -4,13 +4,14 @@ import {EntityReferences} from "../properties/EntityReferences";
 import {GenericEntity} from "./GenericEntity";
 import {IsInExclusiveSMM2Property} from "../properties/IsInExclusiveSMM2Property";
 import {SMM2ExclusiveEntity} from "./SMM2ExclusiveEntity";
+import {EntityCategory} from "../category/EntityCategory";
 
 export class SMM2ExclusiveGenericEntity
     extends GenericEntity
     implements SMM2ExclusiveEntity {
 
-    public constructor(name: SMM2Name, isInProperty: IsInProperty, references: EntityReferences,) {
-        super(name, validateIsInProperty(isInProperty), references,);
+    public constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+        super(name, category, validateIsInProperty(isInProperty), references,);
     }
 
     //region -------------------- Is in properties --------------------

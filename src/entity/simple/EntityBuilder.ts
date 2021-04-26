@@ -10,6 +10,8 @@ import {EmptyEntity} from "./EmptyEntity";
 import {SMM1ExclusiveGenericEntity} from "./SMM1ExclusiveGenericEntity";
 import {SMM2ExclusiveGenericEntity} from "./SMM2ExclusiveGenericEntity";
 import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
+import {EntityCategory} from "../category/EntityCategory";
+import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
 
 /**
  * @builder
@@ -17,7 +19,12 @@ import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
  */
 export class EntityBuilder {
 
+    //region ---------- external object references ----------
+
     public static references: Map<string, DebugEntityReferences>;
+    public static categoriesMap: Map<string, EntityCategory>;
+
+    //endregion ---------- external object references ----------
 
     readonly #template;
     readonly #entityCaller: CallbackCaller<Entity>;
@@ -28,9 +35,11 @@ export class EntityBuilder {
         this.#template = template;
         this.#entityCaller = new CallbackCaller(() => {
             const isInProperty = this.__createIsInProperty();
-            return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2 ? new SMM1ExclusiveGenericEntity(this.__createName(), isInProperty, this.__createReferences(),)
-                : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2 ? new SMM2ExclusiveGenericEntity(this.__createName(), isInProperty, this.__createReferences(),)
-                    : new GenericEntity(this.__createName(), isInProperty, this.__createReferences(),);
+            return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
+                ? new SMM1ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
+                    ? new SMM2ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
         });
     }
 
@@ -41,6 +50,11 @@ export class EntityBuilder {
 
     private __createName() {
         return new SMM2NameBuilder(this.template.name).build();
+    }
+
+    private __getEntityCategory() {
+        const category = this.template.properties.categoryInTheEditor;
+        return category === null ? EmptyEntityCategory.get : EntityBuilder.categoriesMap.get(category)!;
     }
 
 

@@ -2,6 +2,7 @@ import {AbstractEntity} from "./AbstractEntity";
 import {EmptyName} from "../lang/EmptyName";
 import {EmptyIsInProperty} from "../properties/EmptyIsInProperty";
 import {EmptyEntityReference} from "../properties/EmptyEntityReference";
+import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
 
 /**
  * @singleton
@@ -12,7 +13,7 @@ export class EmptyEntity
     private static readonly instance = new EmptyEntity();
 
     private constructor() {
-        super(EmptyName.get, EmptyIsInProperty.get, EmptyEntityReference.get,)
+        super(EmptyName.get, EmptyEntityCategory.get, EmptyIsInProperty.get, EmptyEntityReference.get,)
     }
 
 
