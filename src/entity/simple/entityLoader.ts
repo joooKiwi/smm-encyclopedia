@@ -1,10 +1,10 @@
 import {CategoryType, EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
 import CSVLoader from "../../loader/CSVLoader";
-import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
-import {EntityFilePropertiesTemplate} from "./EntityFilePropertiesTemplate";
-import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 import {Entity} from "./Entity";
 import {EntityBuilder} from "./EntityBuilder";
+import {EntityTemplate} from "./EntityTemplate";
+import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
+import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
@@ -148,7 +148,7 @@ type EntityFilePropertiesArray = [
 export interface DebugEntityReferences {
     originalContent: string[];
     arrayConverted: EntityFilePropertiesArray;
-    template: EntityFilePropertiesTemplate;
+    template: EntityTemplate;
     entity?: Entity;
 }
 
@@ -158,7 +158,7 @@ export function loadEveryEntities() {
     const referencesToWatch = new ReferencesToWatch(references);
     EntityBuilder.references = references;
 
-    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityFilePropertiesTemplate>(everyEntities, arrayOfContent => TemplateCreator.createTemplate(arrayOfContent))
+    const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityTemplate>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
         .convertToNullableBoolean(
             'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
             'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
@@ -206,8 +206,7 @@ export function loadEveryEntities() {
         )
         .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
             const name = finalContent.name;
-            testName(name);
-            addEnglishReference(name, references, originalContent, convertedContent, finalContent);
+            NameCreator.addEnglishReference(name, references, originalContent, convertedContent, finalContent);
             referencesToWatch.addReference(finalContent);
         })
         .onInitialisationEnd(() => {
@@ -223,7 +222,7 @@ export function loadEveryEntities() {
 
 class TemplateCreator {
 
-    public static createTemplate(content: EntityFilePropertiesArray): EntityFilePropertiesTemplate {
+    public static createTemplate(content: EntityFilePropertiesArray): EntityTemplate {
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
             [content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54], content[55], content[56],];
 
@@ -407,38 +406,38 @@ class TemplateCreator {
 
 }
 
-function testName(name: SMM2NameTemplate): void {
-    //README since some references are still not complete, they are in comment
-    if (name.english.simple === null && (name.english.american === null || name.english.european === null))
-        throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
-    // if (name.spanish.simple === null && (name.spanish.american === null || name.spanish.european === null))
-    //     throw new ReferenceError(`The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`);
-    if (name.french.simple === null && (name.french.canadian === null || name.french.european === null))
-        throw new ReferenceError(`The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`);
-    // if (name.portuguese.simple === null && (name.portuguese.simplified === null || name.portuguese.traditional === null))
-    //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
-    // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
-    //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
-}
+class NameCreator {
 
-function addEnglishReference(name: SMM2NameTemplate,
-                             englishNames: Map<string, DebugEntityReferences>,
-                             originalContent: string[],
-                             convertedContent: EntityFilePropertiesArray,
-                             template: EntityFilePropertiesTemplate,): void {
+    private static __testName(name: SMM2NameTemplate): void {
+        //README since some references are still not complete, they are in comment
+        if (name.english.simple === null && (name.english.american === null || name.english.european === null))
+            throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
+        // if (name.spanish.simple === null && (name.spanish.american === null || name.spanish.european === null))
+        //     throw new ReferenceError(`The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`);
+        if (name.french.simple === null && (name.french.canadian === null || name.french.european === null))
+            throw new ReferenceError(`The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`);
+        // if (name.portuguese.simple === null && (name.portuguese.simplified === null || name.portuguese.traditional === null))
+        //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
+        // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
+        //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
+    }
 
-    const englishReferenceName = name.english.simple ?? name.english.american;
-    if (englishReferenceName == null)
-        throw new ReferenceError('No english name can be null since they are used as a key for the references.');
-    if (englishNames.get(englishReferenceName) !== undefined)
-        throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
-    englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: convertedContent, template: template,});
+    public static addEnglishReference(name: SMM2NameTemplate, englishNames: Map<string, DebugEntityReferences>, originalContent: string[], convertedContent: EntityFilePropertiesArray, template: EntityTemplate,): void {
+        this.__testName(name);
+        const englishReferenceName = name.english.simple ?? name.english.american;
+        if (englishReferenceName == null)
+            throw new ReferenceError('No english name can be null since they are used as a key for the references.');
+        if (englishNames.get(englishReferenceName) !== undefined)
+            throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
+        englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: convertedContent, template: template,});
+    }
+
 }
 
 class ReferencesToWatch {
     readonly #englishNames;
     readonly #alreadyAddedName: string[];
-    readonly #references: { reference: EntityFilePropertiesTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
+    readonly #references: { reference: EntityTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
 
     public constructor(englishNames: Map<string, DebugEntityReferences>) {
         this.#englishNames = englishNames;
@@ -460,7 +459,7 @@ class ReferencesToWatch {
     }
 
 
-    public addReference(reference: EntityFilePropertiesTemplate): void {
+    public addReference(reference: EntityTemplate): void {
         const otherReference = reference.properties.reference;
         [
             otherReference.day, otherReference.night,
@@ -472,7 +471,7 @@ class ReferencesToWatch {
             .forEach(otherReference => this._addReference(reference, otherReference as string));
     }
 
-    private _addReference(template: EntityFilePropertiesTemplate, reference: string): void {
+    private _addReference(template: EntityTemplate, reference: string): void {
         if (reference.includes("/"))
             reference.split(' / ')
                 .filter(splitReference => splitReference !== 'this')
@@ -482,7 +481,7 @@ class ReferencesToWatch {
         this.alreadyAddedName.push(reference);
     }
 
-    private _addReferenceToArray(template: EntityFilePropertiesTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
+    private _addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
         this.references.push({
             reference: template,
             value: reference,

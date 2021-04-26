@@ -1,5 +1,5 @@
 import {EntityLink} from "../entityTypes";
-import {EntityFilePropertiesTemplate} from "../simple/EntityFilePropertiesTemplate";
+import {EntityTemplate} from "../simple/EntityTemplate";
 
 export interface EntityReferencesTemplate {
 
@@ -27,6 +27,6 @@ export interface EntityReferencesTemplate {
     day: EntityLink
     night: null | EntityLink
 
-    all: null | EntityFilePropertiesTemplate[]
+    all: null | EntityTemplate[]
 
 }

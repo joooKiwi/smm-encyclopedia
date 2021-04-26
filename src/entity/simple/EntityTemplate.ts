@@ -3,7 +3,7 @@ import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 import {IsInPropertyTemplate} from "../properties/IsInPropertyTemplate";
 import {EntityReferencesTemplate} from "../properties/EntityReferencesTemplate";
 
-export interface EntityFilePropertiesTemplate {
+export interface EntityTemplate {
 
     properties: {
         //region ---------- Basic properties ----------

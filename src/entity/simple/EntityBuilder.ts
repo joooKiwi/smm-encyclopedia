@@ -1,7 +1,6 @@
 import {Entity} from "./Entity";
-import {EntityFilePropertiesTemplate} from "./EntityFilePropertiesTemplate";
+import {EntityTemplate} from "./EntityTemplate";
 import {GenericEntity} from "./GenericEntity";
-import {SMM2NameContainer} from "../lang/SMM2NameContainer";
 import {IsInPropertyContainer} from "../properties/IsInPropertyContainer";
 import {CallbackCaller} from "../../util/CallbackCaller";
 import {EntityReferencesContainer} from "../properties/EntityReferencesContainer";
@@ -10,6 +9,7 @@ import {EntityLink} from "../entityTypes";
 import {EmptyEntity} from "./EmptyEntity";
 import {SMM1ExclusiveGenericEntity} from "./SMM1ExclusiveGenericEntity";
 import {SMM2ExclusiveGenericEntity} from "./SMM2ExclusiveGenericEntity";
+import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
 
 /**
  * @builder
@@ -24,7 +24,7 @@ export class EntityBuilder {
     readonly #selfCallback = () => this.build();
     public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
 
-    public constructor(template: EntityFilePropertiesTemplate) {
+    public constructor(template: EntityTemplate) {
         this.#template = template;
         this.#entityCaller = new CallbackCaller(() => {
             const isInProperty = this.__createIsInProperty();
@@ -34,33 +34,18 @@ export class EntityBuilder {
         });
     }
 
-    private get __template() {
+    public get template() {
         return this.#template;
     }
 
 
     private __createName() {
-        const temporaryVariableToAvoidError = 'temp';
-        const name = this.__template.name;
-
-        const japaneseReference = name.japanese ?? temporaryVariableToAvoidError as string;
-        const englishReference = name.english.simple ?? [name.english.american ?? temporaryVariableToAvoidError, name.english.european ?? temporaryVariableToAvoidError] as string | [string, string];
-        const spanishReference = name.spanish.simple ?? [name.spanish.american ?? temporaryVariableToAvoidError, name.spanish.european ?? temporaryVariableToAvoidError] as string | [string, string];
-        const frenchReference = name.french.simple ?? [name.french.canadian ?? temporaryVariableToAvoidError, name.french.european ?? temporaryVariableToAvoidError] as string | [string, string];
-        const dutchReference = name.dutch ?? temporaryVariableToAvoidError as string;
-        const germanReference = name.german ?? temporaryVariableToAvoidError as string;
-        const italianReference = name.italian ?? temporaryVariableToAvoidError as string;
-        const portugueseReference = name.portuguese.simple ?? [name.portuguese.american ?? temporaryVariableToAvoidError, name.portuguese.european ?? temporaryVariableToAvoidError] as string | [string, string];
-        const russianReference = name.russian ?? temporaryVariableToAvoidError as string;
-        const koreanReference = name.korean ?? temporaryVariableToAvoidError as string;
-        const chineseReference = name.chinese.simple ?? [name.chinese.simplified ?? temporaryVariableToAvoidError, name.chinese.traditional ?? temporaryVariableToAvoidError] as string | [string, string];
-
-        return new SMM2NameContainer(japaneseReference, englishReference, spanishReference, frenchReference, dutchReference, germanReference, italianReference, portugueseReference, russianReference, koreanReference, chineseReference);
+        return new SMM2NameBuilder(this.template.name).build();
     }
 
 
     private __createIsInProperty() {
-        const isIn = this.__template.properties.isIn;
+        const isIn = this.template.properties.isIn;
 
         return new IsInPropertyContainer(
             isIn.game['1'], isIn.game['2'],
@@ -72,7 +57,7 @@ export class EntityBuilder {
 
 
     private __createReferences() {
-        const reference = this.__template.properties.reference;
+        const reference = this.template.properties.reference;
 
         const inSuperMarioBros = this.__createNullableEntityCallbackFor(reference.style.superMarioBros);
         const inSuperMarioBros3 = this.__createNullableEntityCallbackFor(reference.style.superMarioBros3);
@@ -117,4 +102,5 @@ export class EntityBuilder {
     public build() {
         return this.#entityCaller.get;
     }
+
 }
