@@ -20,7 +20,7 @@ export type PossibleLanguagesEnglishName =
     | 'Dutch' | 'German' | 'Italian'
     | `Portuguese (${'America' | 'Europe'})`
     | 'Russian' | 'Korean'
-    | 'Chinese (Traditional)' | 'Chinese (Simplified)';
+    | 'Traditional Chinese' | 'Simplified Chinese';
 export type PossibleLanguagesOriginalName =
     '日本語'
     | `English (${'America' | 'Europe'})`
@@ -29,7 +29,7 @@ export type PossibleLanguagesOriginalName =
     | 'Nederlands' | 'Deutsche' | 'Italiano'
     | `Português (${'América' | 'Europa'})`//Canadá
     | 'русский' | '한국어'
-    | '简体(中文)' | '中國(傳統的)';
+    | '简体中文' | '繁體中文';
 
 export abstract class Languages {
     public static readonly JAPANESE = new class extends Languages {
@@ -231,7 +231,7 @@ export abstract class Languages {
             return classWithEveryLanguages.traditionalChinese;
         }
 
-    }('zh_T', 'Chinese (Traditional)', '简体(中文)',);
+    }('zh_T', 'Traditional Chinese', '简体中文',);
     public static readonly CHINESE_SIMPLIFIED = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -242,7 +242,7 @@ export abstract class Languages {
             return classWithEveryLanguages.simplifiedChinese;
         }
 
-    }('zh_S', 'Chinese (Simplified)', '中國(傳統的)',);
+    }('zh_S', 'Simplified Chinese', '繁體中文',);
 
 
     private static __VALUES: readonly Languages[];
