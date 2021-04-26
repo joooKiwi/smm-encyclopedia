@@ -7,7 +7,7 @@ import {EmptyEntity} from "../simple/EmptyEntity";
 export class EmptyEntityReference
     implements EntityReferences {
 
-    public static instance = new EmptyEntityReference();
+    private static readonly instance = new EmptyEntityReference();
     public static readonly EMPTY_ARRAY = [];
 
     private constructor() {

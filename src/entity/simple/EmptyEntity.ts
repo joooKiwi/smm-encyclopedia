@@ -9,7 +9,7 @@ import {EmptyEntityReference} from "../properties/EmptyEntityReference";
 export class EmptyEntity
     extends AbstractEntity {
 
-    public static instance = new EmptyEntity();
+    private static readonly instance = new EmptyEntity();
 
     private constructor() {
         super(EmptyName.get, EmptyIsInProperty.get, EmptyEntityReference.get,)

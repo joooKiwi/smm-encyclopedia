@@ -6,7 +6,7 @@ import {SMM2Name} from "./SMM2Name";
 export class EmptyName
     implements SMM2Name {
 
-    public static instance = new EmptyName();
+    private static readonly instance = new EmptyName();
     public static readonly EMPTY_STRING = '';
 
     private constructor() {
