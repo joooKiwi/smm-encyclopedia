@@ -15,8 +15,8 @@ export class DateInstanceCreatorBuilder {
     // static readonly DEFAULT_YEAR_CALLBACK_TYPE: PossibleYearCallbackType = 'number';
 
     readonly #order: PossibleDateInstanceCreatorType;
-    readonly #firstSpace: string;
-    readonly #secondSpace: string;
+    readonly #firstText: string;
+    readonly #secondText: string;
 
     #dayCallbackType: PossibleDayCallbackType;
     #monthCallbackType: PossibleMonthCallbackType;
@@ -26,13 +26,13 @@ export class DateInstanceCreatorBuilder {
     #monthCallback!: (month: MonthNumber) => JSX.Element;
     #yearCallback!: (year: number) => JSX.Element;
 
-    public constructor(order: 'day,month,year', textBetweenDayAndMonth: string, spaceBetweenMonthAndYear: string)
-    public constructor(order: 'month,day,year', textBetweenMonthAndDay: string, spaceBetweenDayAndYear: string)
-    public constructor(order: 'year,month,day', textBetweenYearAndMonth: string, spaceBetweenMonthAndDay: string)
-    public constructor(order: PossibleDateInstanceCreatorType, firstSpace: string, secondSpace: string) {
+    public constructor(order: 'day,month,year', textBetweenDayAndMonth: string, textBetweenMonthAndYear: string)
+    public constructor(order: 'month,day,year', textBetweenMonthAndDay: string, textBetweenDayAndYear: string)
+    public constructor(order: 'year,month,day', textBetweenYearAndMonth: string, textBetweenMonthAndDay: string)
+    public constructor(order: PossibleDateInstanceCreatorType, firstText: string, secondText: string) {
         this.#order = order;
-        this.#firstSpace = firstSpace;
-        this.#secondSpace = secondSpace;
+        this.#firstText = firstText;
+        this.#secondText = secondText;
         this.#dayCallbackType = 'number';
         this.#monthCallbackType = 'number';
         this.#yearCallbackType = 'number';
@@ -161,11 +161,11 @@ export class DateInstanceCreatorBuilder {
     public build(): DateInstanceCreator {
         switch (this.#order) {
             case 'day,month,year':
-                return new DayMonthYearDateInstanceCreator(this.dayCallback, this.#firstSpace, this.monthCallback, this.#secondSpace, this.yearCallback,);
+                return new DayMonthYearDateInstanceCreator(this.dayCallback, this.#firstText, this.monthCallback, this.#secondText, this.yearCallback,);
             case 'month,day,year':
-                return new MonthDayYearDateInstanceCreator(this.monthCallback, this.#firstSpace, this.dayCallback, this.#secondSpace, this.yearCallback,);
+                return new MonthDayYearDateInstanceCreator(this.monthCallback, this.#firstText, this.dayCallback, this.#secondText, this.yearCallback,);
             case 'year,month,day':
-                return new YearMonthDayDateInstanceCreator(this.yearCallback, this.#firstSpace, this.monthCallback, this.#secondSpace, this.dayCallback,);
+                return new YearMonthDayDateInstanceCreator(this.yearCallback, this.#firstText, this.monthCallback, this.#secondText, this.dayCallback,);
         }
     }
 
