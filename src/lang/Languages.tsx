@@ -1,5 +1,5 @@
-import {DateInstanceCreator} from "./DateInstanceCreator";
-import {DateInstanceCreatorBuilder} from "./DateInstanceCreatorBuilder";
+import {DateInstanceCreator} from "./date/DateInstanceCreator";
+import {DateInstanceCreatorBuilder} from "./date/DateInstanceCreatorBuilder";
 import i18n from "i18next";
 
 export type PossibleLanguagesAcronym =
