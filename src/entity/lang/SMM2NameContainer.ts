@@ -24,28 +24,28 @@ export class SMM2NameContainer
     readonly #chinese: ChineseLanguage;
     readonly #korean: SimpleLanguage;
 
-    public constructor(japanese: string,
-                       english: string | [american: string, european: string],
-                       spanish: string | [american: string, european: string],
+    public constructor(english: string | [american: string, european: string],
                        french: string | [canadian: string, european: string],
-                       dutch: string,
                        german: string,
+                       spanish: string | [american: string, european: string],
                        italian: string,
+                       dutch: string,
                        portuguese: string | [american: string, european: string],
                        russian: string,
-                       korean: string,
-                       chinese: string | [simplified: string, traditional: string],) {
-        this.#japanese = new SimpleLanguageContainer(japanese);
+                       japanese: string,
+                       chinese: string | [simplified: string, traditional: string],
+                       korean: string,) {
         this.#english = typeof english === 'string' ? new AmericanAndEuropeanLanguageContainer(english) : new AmericanAndEuropeanLanguageContainer(...english);
-        this.#spanish = typeof spanish === 'string' ? new AmericanAndEuropeanLanguageContainer(spanish) : new AmericanAndEuropeanLanguageContainer(...spanish);
         this.#french = typeof french === 'string' ? new CanadianAndEuropeanLanguageContainer(french) : new CanadianAndEuropeanLanguageContainer(...french);
-        this.#dutch = new SimpleLanguageContainer(dutch);
         this.#german = new SimpleLanguageContainer(german);
+        this.#spanish = typeof spanish === 'string' ? new AmericanAndEuropeanLanguageContainer(spanish) : new AmericanAndEuropeanLanguageContainer(...spanish);
         this.#italian = new SimpleLanguageContainer(italian);
+        this.#dutch = new SimpleLanguageContainer(dutch);
         this.#portuguese = typeof portuguese === 'string' ? new AmericanAndEuropeanLanguageContainer(portuguese) : new AmericanAndEuropeanLanguageContainer(...portuguese);
         this.#russian = new SimpleLanguageContainer(russian);
-        this.#korean = new SimpleLanguageContainer(korean);
+        this.#japanese = new SimpleLanguageContainer(japanese);
         this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
+        this.#korean = new SimpleLanguageContainer(korean);
     }
 
 

@@ -1,5 +1,5 @@
-english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,japanese,chinese,simplifiedChinese,traditionalChinese,korean,russian
-Terrain,,,,,,Gelände,Superficies,,,Terreno,,,,,地形,,,地形,,
-Item,,,,,,Items,Objetos,,,Oggetti,,,,,アイテム,,,,,
-Enemy,,,,,,Gegner,Enemigos,,,Nemici,,,,,敵,,,,,
-Gizmo,,,,,,Vorrichtungen,Artilugios,,,Dispositivi,,,,,しかけ,,,,,
+english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,simplifiedChinese,traditionalChinese,korean
+Terrain,,,,,,Gelände,Superficies,,,Terreno,,,,,,地形,,,地形,
+Item,,,,,,Items,Objetos,,,Oggetti,,,,,,アイテム,,,,
+Enemy,,,,,,Gegner,Enemigos,,,Nemici,,,,,,敵,,,,
+Gizmo,,,,,,Vorrichtungen,Artilugios,,,Dispositivi,,,,,,しかけ,,,,
