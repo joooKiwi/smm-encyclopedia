@@ -1,14 +1,16 @@
-import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
+import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
+
 import {CallbackCaller} from "../../util/CallbackCaller";
 import {CategoryType, EntityCategoryLoader} from "../category/EntityCategoryLoader";
 import CSVLoader from "../../loader/CSVLoader";
 import {Entity} from "./Entity";
 import {EntityBuilder} from "./EntityBuilder";
 import {EntityCategory} from "../category/EntityCategory";
+import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
 import {EntityTemplate} from "./EntityTemplate";
-import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
-import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 import {GenericSingleInstanceBuilder} from "../../util/GenericSingleInstanceBuilder";
+import {Loader} from "../../util/Loader";
+import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
@@ -138,6 +140,8 @@ type EntityFilePropertiesArray = [
     americanPortuguese: null | string,
     europeanPortuguese: null | string,
 
+    russian: null | string,
+
     japanese: null | string,
 
     chinese: null | string,
@@ -145,8 +149,6 @@ type EntityFilePropertiesArray = [
     tradionalChinese: null | string,
 
     korean: null | string,
-
-    russian: null | string,
     //endregion ---------- Language properties ----------
 ];
 
@@ -160,7 +162,8 @@ export interface DebugEntityReferences {
 /**
  * @singleton
  */
-export class EntityLoader {
+export class EntityLoader
+    implements Loader<Map<string, DebugEntityReferences>> {
 
     private static readonly instance = new EntityLoader();
 
@@ -214,14 +217,15 @@ export class EntityLoader {
                 .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
                 .convertToEmptyableString(
-                    'japanese',
                     'english', 'americanEnglish', 'europeanEnglish',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
                     'french', 'canadianFrench', 'europeanFrench',
-                    'dutch', 'german', 'italian',
+                    'german',
+                    'spanish', 'americanSpanish', 'europeanSpanish',
+                    'dutch', 'italian',
                     'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'korean',
+                    'russian', 'japanese',
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
+                    'korean',
                 )
                 .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
                     const name = finalContent.name;
@@ -446,6 +450,9 @@ class TemplateCreator {
 
 }
 
+/**
+ * @temporary
+ */
 class NameCreator {
 
     private static __testName(name: SMM2NameTemplate): void {
