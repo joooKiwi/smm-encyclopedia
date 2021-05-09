@@ -4,7 +4,7 @@ import japaneseLanguage          from "./locale/ja/language.json";
 import japaneseContent           from "./locale/ja/content.json";
 import englishLanguage           from "./locale/en/language.json";
 import englishContent            from "./locale/en/content.json";
-import americanEnglishContent    from "./locale/en/en_US/content.json";
+import americanEnglishContent    from "./locale/en/en_AM/content.json";
 import europeanEnglishContent    from "./locale/en/en_EU/content.json";
 import spanishLanguage           from "./locale/es/language.json";
 import spanishContent            from "./locale/es/content.json";
@@ -49,7 +49,7 @@ const resources: Resource = {
         language: englishLanguage,
         content: englishContent,
     },
-    en_US: {
+    en_AM: {
         content: americanEnglishContent,
     },
     en_EU: {

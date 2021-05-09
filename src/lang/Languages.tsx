@@ -5,7 +5,7 @@ import {ClassWithEveryLanguages} from "./ClassWithEveryLanguages";
 
 export type PossibleLanguagesAcronym =
     'ja'
-    | 'en_US' | 'en_EU'
+    | 'en_AM' | 'en_EU'
     | 'es_AM' | 'es_EU'
     | 'fr_CA' | 'fr_EU'
     | 'nl' | 'de' | 'it'
@@ -66,7 +66,7 @@ export abstract class Languages {
             return classWithEveryLanguages.americanEnglish;
         }
 
-    }('en_US', 'English (America)', 'English (America)',);
+    }('en_AM', 'English (America)', 'English (America)',);
     public static readonly EUROPEAN_ENGLISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -329,7 +329,7 @@ export abstract class Languages {
 
 }
 
-Languages.setDefaultLanguage('en_US');
+Languages.setDefaultLanguage('en_AM');
 
 /**
  * A temporary method used to define the simple translations on the project.
