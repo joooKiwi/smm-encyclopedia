@@ -8,6 +8,7 @@ import {EntityCategory} from "../category/EntityCategory";
 import {EntityTemplate} from "./EntityTemplate";
 import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
 import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
+import {GenericSingleInstanceBuilder} from "../../util/GenericSingleInstanceBuilder";
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
@@ -230,7 +231,7 @@ export class EntityLoader {
                 .onInitialisationEnd(() => {
                     referencesToWatch.testReferences();
                     referencesToWatch.setReferences();
-                    references.forEach(reference => reference.entity = new EntityBuilder(reference.template).build());
+                    references.forEach(reference => reference.entity = new GenericSingleInstanceBuilder(new EntityBuilder(reference.template)).build());
                 });
             console.log(csvLoader.content);
             return references;

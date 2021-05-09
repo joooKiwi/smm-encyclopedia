@@ -2,7 +2,6 @@ import {Entity} from "./Entity";
 import {EntityTemplate} from "./EntityTemplate";
 import {GenericEntity} from "./GenericEntity";
 import {IsInPropertyContainer} from "../properties/IsInPropertyContainer";
-import {CallbackCaller} from "../../util/CallbackCaller";
 import {EntityReferencesContainer} from "../properties/EntityReferencesContainer";
 import {DebugEntityReferences} from "./EntityLoader";
 import {EntityLink} from "../entityTypes";
@@ -12,12 +11,10 @@ import {SMM2ExclusiveGenericEntity} from "./SMM2ExclusiveGenericEntity";
 import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
 import {EntityCategory} from "../category/EntityCategory";
 import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
+import {Builder} from "../../util/Builder";
 
-/**
- * @builder
- * @singleInstanceCreator
- */
-export class EntityBuilder {
+export class EntityBuilder
+    implements Builder<Entity> {
 
     //region ---------- external object references ----------
 
@@ -27,20 +24,11 @@ export class EntityBuilder {
     //endregion ---------- external object references ----------
 
     readonly #template;
-    readonly #entityCaller: CallbackCaller<Entity>;
     readonly #selfCallback = () => this.build();
     public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
 
     public constructor(template: EntityTemplate) {
         this.#template = template;
-        this.#entityCaller = new CallbackCaller(() => {
-            const isInProperty = this.__createIsInProperty();
-            return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
-                ? new SMM1ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
-                    ? new SMM2ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                    : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
-        });
     }
 
     public get template() {
@@ -114,7 +102,12 @@ export class EntityBuilder {
 
 
     public build() {
-        return this.#entityCaller.get;
+        const isInProperty = this.__createIsInProperty();
+        return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
+            ? new SMM1ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
+                ? new SMM2ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 
 }
