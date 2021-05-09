@@ -30,6 +30,9 @@ export type PossibleLanguagesOriginalName =
     | 'русский' | '한국어'
     | '简体(中文)' | '中國(傳統的)';
 
+/**
+ * @enum
+ */
 export abstract class Languages {
     public static readonly JAPANESE = new class extends Languages {
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -206,7 +209,7 @@ export abstract class Languages {
     public static getValue(value: Languages | string): Languages | null
     public static getValue(value: Languages | string): Languages | null {
         return typeof value === 'string'
-            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) || null
+            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) ?? null
             : value;
     }
 
