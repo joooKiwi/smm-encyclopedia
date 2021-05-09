@@ -318,17 +318,17 @@ export abstract class Languages {
     public static get values(): readonly Languages[] {
         return this.__VALUES === undefined
             ? this.__VALUES = [
-                this.JAPANESE,
                 this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
-                this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
                 this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
-                this.DUTCH,
                 this.GERMAN,
+                this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
                 this.ITALIAN,
+                this.DUTCH,
                 this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
                 this.RUSSIAN,
-                this.KOREAN,
+                this.JAPANESE,
                 this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
+                this.KOREAN,
             ]
             : this.__VALUES;
     }
