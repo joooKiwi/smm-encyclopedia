@@ -1,6 +1,7 @@
 import {SMM2Name} from "./SMM2Name";
 
 /**
+ * @nullObjectPattern
  * @singleton
  */
 export class EmptyName

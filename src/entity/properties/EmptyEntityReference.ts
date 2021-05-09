@@ -2,6 +2,7 @@ import {EntityReferences} from "./EntityReferences";
 import {EmptyEntity} from "../simple/EmptyEntity";
 
 /**
+ * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntityReference

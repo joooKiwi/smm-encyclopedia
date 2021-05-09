@@ -1,5 +1,8 @@
 import {IsInProperty} from "./IsInProperty";
 
+/**
+ * @nullObjectPattern
+ */
 export class EmptyIsInProperty
     implements IsInProperty {
 

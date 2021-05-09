@@ -2,6 +2,7 @@ import {GenericEntityCategory} from "./GenericEntityCategory";
 import {EmptyName} from "../lang/EmptyName";
 
 /**
+ * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntityCategory

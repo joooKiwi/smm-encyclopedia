@@ -5,6 +5,7 @@ import {EmptyEntityReference} from "../properties/EmptyEntityReference";
 import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
 
 /**
+ * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntity
