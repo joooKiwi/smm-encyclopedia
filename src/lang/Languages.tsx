@@ -34,6 +34,9 @@ export type PossibleLanguagesOriginalName =
     | '简体中文' | '繁體中文'
      | '한국어';
 
+/**
+ * @enum
+ */
 export abstract class Languages {
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
 
@@ -308,7 +311,7 @@ export abstract class Languages {
     public static getValue(value: Languages | string): Languages | null
     public static getValue(value: Languages | string): Languages | null {
         return typeof value === 'string'
-            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) || null
+            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) ?? null
             : value;
     }
 
