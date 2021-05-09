@@ -22,11 +22,6 @@ export class GenericEntityCategory
     }
 
 
-    public get japanese() {
-        return this.name.japanese;
-    }
-
-
     public get english() {
         return this.name.english;
     }
@@ -37,19 +32,6 @@ export class GenericEntityCategory
 
     public get europeanEnglish() {
         return this.name.europeanEnglish;
-    }
-
-
-    public get spanish() {
-        return this.name.spanish;
-    }
-
-    public get americanSpanish() {
-        return this.name.americanSpanish;
-    }
-
-    public get europeanSpanish() {
-        return this.name.europeanSpanish;
     }
 
 
@@ -66,13 +48,31 @@ export class GenericEntityCategory
     }
 
 
-    public get dutch() {
-        return this.name.dutch;
+    public get german() {
+        return this.name.german;
     }
 
 
-    public get german() {
-        return this.name.german;
+    public get spanish() {
+        return this.name.spanish;
+    }
+
+    public get americanSpanish() {
+        return this.name.americanSpanish;
+    }
+
+    public get europeanSpanish() {
+        return this.name.europeanSpanish;
+    }
+
+
+    public get italian() {
+        return this.name.italian;
+    }
+
+
+    public get dutch() {
+        return this.name.dutch;
     }
 
 
@@ -89,18 +89,8 @@ export class GenericEntityCategory
     }
 
 
-    public get italian() {
-        return this.name.italian;
-    }
-
-
-    public get russian() {
-        return this.name.russian;
-    }
-
-
-    public get korean() {
-        return this.name.korean;
+    public get japanese() {
+        return this.name.japanese;
     }
 
 
@@ -114,6 +104,16 @@ export class GenericEntityCategory
 
     public get traditionalChinese() {
         return this.name.traditionalChinese;
+    }
+
+
+    public get korean() {
+        return this.name.korean;
+    }
+
+
+    public get russian() {
+        return this.name.russian;
     }
 
     //endregion -------------------- Name properties --------------------

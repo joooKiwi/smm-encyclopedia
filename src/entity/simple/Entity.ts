@@ -16,37 +16,37 @@ export interface Entity
 
     categoryLanguageValue: string
 
-    categoryJapanese: string
-
     categoryEnglish: string
     categoryAmericanEnglish: string
     categoryEuropeanEnglish: string
-
-    categorySpanish: string
-    categoryAmericanSpanish: string
-    categoryEuropeanSpanish: string
 
     categoryFrench: string
     categoryCanadianFrench: string
     categoryEuropeanFrench: string
 
-    categoryDutch: string
-
     categoryGerman: string
+
+    categorySpanish: string
+    categoryAmericanSpanish: string
+    categoryEuropeanSpanish: string
+
+    categoryItalian: string
+
+    categoryDutch: string
 
     categoryPortuguese: string
     categoryAmericanPortuguese: string
     categoryEuropeanPortuguese: string
 
-    categoryItalian: string
-
-    categoryRussian: string
-
-    categoryKorean: string
+    categoryJapanese: string
 
     categoryChinese: string
     categorySimplifiedChinese: string
     categoryTraditionalChinese: string
+
+    categoryKorean: string
+
+    categoryRussian: string
 
     //endregion -------------------- Category properties --------------------
 

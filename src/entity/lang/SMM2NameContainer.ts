@@ -12,17 +12,17 @@ import {Languages} from "../../lang/Languages";
 export class SMM2NameContainer
     implements SMM2Name {
 
-    readonly #japanese: SimpleLanguage;
-    readonly #english: AmericanAndEuropeanLanguage;
-    readonly #spanish: AmericanAndEuropeanLanguage;
     readonly #french: CanadianAndEuropeanLanguage;
-    readonly #dutch: SimpleLanguage;
+    readonly #english: AmericanAndEuropeanLanguage;
     readonly #german: SimpleLanguage;
+    readonly #spanish: AmericanAndEuropeanLanguage;
     readonly #italian: SimpleLanguage;
+    readonly #dutch: SimpleLanguage;
     readonly #portuguese: AmericanAndEuropeanLanguage;
-    readonly #russian: SimpleLanguage;
-    readonly #korean: SimpleLanguage;
+    readonly #japanese: SimpleLanguage;
     readonly #chinese: ChineseLanguage;
+    readonly #korean: SimpleLanguage;
+    readonly #russian: SimpleLanguage;
 
     public constructor(japanese: string,
                        english: string | [american: string, european: string],
@@ -54,11 +54,6 @@ export class SMM2NameContainer
     }
 
 
-    public get japanese() {
-        return this.#japanese.value;
-    }
-
-
     public get english() {
         return this.#english.value;
     }
@@ -69,19 +64,6 @@ export class SMM2NameContainer
 
     public get europeanEnglish() {
         return this.#english.european;
-    }
-
-
-    public get spanish() {
-        return this.#spanish.value;
-    }
-
-    public get americanSpanish() {
-        return this.#spanish.american;
-    }
-
-    public get europeanSpanish() {
-        return this.#spanish.european;
     }
 
 
@@ -98,13 +80,31 @@ export class SMM2NameContainer
     }
 
 
-    public get dutch() {
-        return this.#dutch.value;
+    public get german() {
+        return this.#german.value;
     }
 
 
-    public get german() {
-        return this.#german.value;
+    public get spanish() {
+        return this.#spanish.value;
+    }
+
+    public get americanSpanish() {
+        return this.#spanish.american;
+    }
+
+    public get europeanSpanish() {
+        return this.#spanish.european;
+    }
+
+
+    public get italian() {
+        return this.#italian.value;
+    }
+
+
+    public get dutch() {
+        return this.#dutch.value;
     }
 
 
@@ -121,18 +121,8 @@ export class SMM2NameContainer
     }
 
 
-    public get italian() {
-        return this.#italian.value;
-    }
-
-
-    public get russian() {
-        return this.#russian.value;
-    }
-
-
-    public get korean() {
-        return this.#korean.value;
+    public get japanese() {
+        return this.#japanese.value;
     }
 
 
@@ -146,6 +136,16 @@ export class SMM2NameContainer
 
     public get traditionalChinese() {
         return this.#chinese.simplified;
+    }
+
+
+    public get korean() {
+        return this.#korean.value;
+    }
+
+
+    public get russian() {
+        return this.#russian.value;
     }
 
 }

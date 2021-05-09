@@ -32,11 +32,6 @@ export abstract class AbstractEntity
     }
 
 
-    public get japanese() {
-        return this.name.japanese;
-    }
-
-
     public get english() {
         return this.name.english;
     }
@@ -47,19 +42,6 @@ export abstract class AbstractEntity
 
     public get europeanEnglish() {
         return this.name.europeanEnglish;
-    }
-
-
-    public get spanish() {
-        return this.name.spanish;
-    }
-
-    public get americanSpanish() {
-        return this.name.americanSpanish;
-    }
-
-    public get europeanSpanish() {
-        return this.name.europeanSpanish;
     }
 
 
@@ -76,13 +58,31 @@ export abstract class AbstractEntity
     }
 
 
-    public get dutch() {
-        return this.name.dutch;
+    public get german() {
+        return this.name.german;
     }
 
 
-    public get german() {
-        return this.name.german;
+    public get spanish() {
+        return this.name.spanish;
+    }
+
+    public get americanSpanish() {
+        return this.name.americanSpanish;
+    }
+
+    public get europeanSpanish() {
+        return this.name.europeanSpanish;
+    }
+
+
+    public get italian() {
+        return this.name.italian;
+    }
+
+
+    public get dutch() {
+        return this.name.dutch;
     }
 
 
@@ -99,18 +99,8 @@ export abstract class AbstractEntity
     }
 
 
-    public get italian() {
-        return this.name.italian;
-    }
-
-
-    public get russian() {
-        return this.name.russian;
-    }
-
-
-    public get korean() {
-        return this.name.korean;
+    public get japanese() {
+        return this.name.japanese;
     }
 
 
@@ -124,6 +114,16 @@ export abstract class AbstractEntity
 
     public get traditionalChinese() {
         return this.name.traditionalChinese;
+    }
+
+
+    public get korean() {
+        return this.name.korean;
+    }
+
+
+    public get russian() {
+        return this.name.russian;
     }
 
     //endregion -------------------- Name properties --------------------
@@ -145,11 +145,6 @@ export abstract class AbstractEntity
     }
 
 
-    public get categoryJapanese() {
-        return this.categoryName.japanese;
-    }
-
-
     public get categoryEnglish() {
         return this.categoryName.english;
     }
@@ -160,19 +155,6 @@ export abstract class AbstractEntity
 
     public get categoryEuropeanEnglish() {
         return this.categoryName.europeanEnglish;
-    }
-
-
-    public get categorySpanish() {
-        return this.categoryName.spanish;
-    }
-
-    public get categoryAmericanSpanish() {
-        return this.categoryName.americanSpanish;
-    }
-
-    public get categoryEuropeanSpanish() {
-        return this.categoryName.europeanSpanish;
     }
 
 
@@ -189,13 +171,31 @@ export abstract class AbstractEntity
     }
 
 
-    public get categoryDutch() {
-        return this.categoryName.dutch;
+    public get categoryGerman() {
+        return this.categoryName.german;
     }
 
 
-    public get categoryGerman() {
-        return this.categoryName.german;
+    public get categorySpanish() {
+        return this.categoryName.spanish;
+    }
+
+    public get categoryAmericanSpanish() {
+        return this.categoryName.americanSpanish;
+    }
+
+    public get categoryEuropeanSpanish() {
+        return this.categoryName.europeanSpanish;
+    }
+
+
+    public get categoryItalian() {
+        return this.categoryName.italian;
+    }
+
+
+    public get categoryDutch() {
+        return this.categoryName.dutch;
     }
 
 
@@ -212,18 +212,8 @@ export abstract class AbstractEntity
     }
 
 
-    public get categoryItalian() {
-        return this.categoryName.italian;
-    }
-
-
-    public get categoryRussian() {
-        return this.categoryName.russian;
-    }
-
-
-    public get categoryKorean() {
-        return this.categoryName.korean;
+    public get categoryJapanese() {
+        return this.categoryName.japanese;
     }
 
 
@@ -237,6 +227,16 @@ export abstract class AbstractEntity
 
     public get categoryTraditionalChinese() {
         return this.categoryName.traditionalChinese;
+    }
+
+
+    public get categoryKorean() {
+        return this.categoryName.korean;
+    }
+
+
+    public get categoryRussian() {
+        return this.categoryName.russian;
     }
 
     //endregion -------------------- Category properties --------------------

@@ -4,49 +4,37 @@ import i18n from "i18next";
 import {ClassWithEveryLanguages} from "./ClassWithEveryLanguages";
 
 export type PossibleLanguagesAcronym =
-    'ja'
+    | 'ja'
     | 'en_AM' | 'en_EU'
-    | 'es_AM' | 'es_EU'
+    | 'de'
     | 'fr_CA' | 'fr_EU'
-    | 'nl' | 'de' | 'it'
+    | 'es_AM' | 'es_EU'
+    | 'it' | 'nl'
     | 'pt_AM' | 'pt_EU'
     | 'ru' | 'ko'
     | 'zh_T' | 'zh_S';
 export type PossibleLanguagesEnglishName =
-    'Japanese'
     | `English (${'America' | 'Europe'})`
-    | `Spanish (${'America' | 'Europe'})`
     | `French (${'Canada' | 'Europe'})`
-    | 'Dutch' | 'German' | 'Italian'
+    | 'German'
+    | `Spanish (${'America' | 'Europe'})`
+    | 'Italian' | 'Dutch'
     | `Portuguese (${'America' | 'Europe'})`
-    | 'Russian' | 'Korean'
-    | 'Traditional Chinese' | 'Simplified Chinese';
+    | 'Japanese'
+    | 'Traditional Chinese' | 'Simplified Chinese'
+    | 'Korean' | 'Russian';
 export type PossibleLanguagesOriginalName =
-    '日本語'
     | `English (${'America' | 'Europe'})`
-    | `Español (${'America' | 'Europa'})`
     | `Français (${'Canada' | 'Europe'})`
-    | 'Nederlands' | 'Deutsche' | 'Italiano'
+    | 'Deutsche'
+    | `Español (${'America' | 'Europa'})`
+    | 'Italiano' | 'Nederlands'
     | `Português (${'América' | 'Europa'})`//Canadá
-    | 'русский' | '한국어'
-    | '简体中文' | '繁體中文';
+    | '日本語'
+    | '简体中文' | '繁體中文'
+    | 'русский' | '한국어';
 
 export abstract class Languages {
-    public static readonly JAPANESE = new class extends Languages {
-
-        public get newDateInstanceCreator(): DateInstanceCreator {
-            return new DateInstanceCreatorBuilder('year,month,day', '', '',)
-                .setDays('afterText', '年',)
-                .setMonths('afterText', '月',)
-                .setYears('afterText', '日',)
-                .build();
-        }
-
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.japanese;
-        }
-
-    }('ja', 'Japanese', '日本語',);
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -78,30 +66,20 @@ export abstract class Languages {
         }
 
     }('en_EU', 'English (Europe)', 'English (Europe)',);
-    public static readonly AMERICAN_SPANISH = new class extends Languages {
+    public static readonly GERMAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
-            return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
-                .setMonths('array', ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'deciembre',],)
+            return new DateInstanceCreatorBuilder('day,month,year', '. ', ' ',)
+                .setDays('beforeText', 'der ',)
+                .setMonths('array', ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',],)
                 .build();
         }
 
         public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.americanSpanish;
+            return classWithEveryLanguages.german;
         }
 
-    }('es_AM', 'Spanish (America)', 'Español (America)',);
-    public static readonly EUROPEAN_SPANISH = new class extends Languages {
-
-        public get newDateInstanceCreator(): DateInstanceCreator {
-            return Languages.AMERICAN_SPANISH.newDateInstanceCreator;
-        }
-
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.europeanSpanish;
-        }
-
-    }('es_EU', 'Spanish (Europe)', 'Español (Europa)',);
+    }('de', 'German', 'Deutsche',);
     public static readonly CANADIAN_FRENCH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -127,33 +105,30 @@ export abstract class Languages {
         }
 
     }('fr_EU', 'French (Europe)', 'Français (Europe)',);
-    public static readonly DUTCH = new class extends Languages {
+    public static readonly AMERICAN_SPANISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
             return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
-                .setMonths('array', ['januari', 'febuari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'novembere', 'decembre',],)
+                .setMonths('array', ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'deciembre',],)
                 .build();
         }
 
         public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.dutch;
+            return classWithEveryLanguages.americanSpanish;
         }
 
-    }('nl', 'Dutch', 'Nederlands',);
-    public static readonly GERMAN = new class extends Languages {
+    }('es_AM', 'Spanish (America)', 'Español (America)',);
+    public static readonly EUROPEAN_SPANISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
-            return new DateInstanceCreatorBuilder('day,month,year', '. ', ' ',)
-                .setDays('beforeText', 'der ',)
-                .setMonths('array', ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',],)
-                .build();
+            return Languages.AMERICAN_SPANISH.newDateInstanceCreator;
         }
 
         public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.german;
+            return classWithEveryLanguages.europeanSpanish;
         }
 
-    }('de', 'German', 'Deutsche',);
+    }('es_EU', 'Spanish (Europe)', 'Español (Europa)',);
     public static readonly ITALIAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -168,6 +143,19 @@ export abstract class Languages {
         }
 
     }('it', 'Italian', 'Italiano',);
+    public static readonly DUTCH = new class extends Languages {
+
+        public get newDateInstanceCreator(): DateInstanceCreator {
+            return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
+                .setMonths('array', ['januari', 'febuari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'novembere', 'decembre',],)
+                .build();
+        }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.dutch;
+        }
+
+    }('nl', 'Dutch', 'Nederlands',);
     public static readonly AMERICAN_PORTUGUESE = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -192,35 +180,21 @@ export abstract class Languages {
         }
 
     }('pt_EU', 'Portuguese (Europe)', 'Português (Europa)',);
-    public static readonly RUSSIAN = new class extends Languages {
+    public static readonly JAPANESE = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
-            return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
-                .setMonths('array', ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',],)
-                .setYears('afterText', ' года')
+            return new DateInstanceCreatorBuilder('year,month,day', '', '',)
+                .setDays('afterText', '年',)
+                .setMonths('afterText', '月',)
+                .setYears('afterText', '日',)
                 .build();
         }
 
         public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.russian;
+            return classWithEveryLanguages.japanese;
         }
 
-    }('ru', 'Russian', 'русский');
-    public static readonly KOREAN = new class extends Languages {
-
-        public get newDateInstanceCreator(): DateInstanceCreator {
-            return new DateInstanceCreatorBuilder('year,month,day', '', '')
-                .setDays('afterText', '년',)
-                .setMonths('afterText', '월',)
-                .setYears('afterText', '일',)
-                .build();
-        }
-
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.korean;
-        }
-
-    }('ko', 'Korean', '한국어',);
+    }('ja', 'Japanese', '日本語',);
     public static readonly CHINESE_TRADITIONAL = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -243,6 +217,35 @@ export abstract class Languages {
         }
 
     }('zh_S', 'Simplified Chinese', '繁體中文',);
+    public static readonly KOREAN = new class extends Languages {
+
+        public get newDateInstanceCreator(): DateInstanceCreator {
+            return new DateInstanceCreatorBuilder('year,month,day', '', '')
+                .setDays('afterText', '년',)
+                .setMonths('afterText', '월',)
+                .setYears('afterText', '일',)
+                .build();
+        }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.korean;
+        }
+
+    }('ko', 'Korean', '한국어',);
+    public static readonly RUSSIAN = new class extends Languages {
+
+        public get newDateInstanceCreator(): DateInstanceCreator {
+            return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
+                .setMonths('array', ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',],)
+                .setYears('afterText', ' года')
+                .build();
+        }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.russian;
+        }
+
+    }('ru', 'Russian', 'русский');
 
 
     private static __VALUES: readonly Languages[];

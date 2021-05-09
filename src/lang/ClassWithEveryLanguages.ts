@@ -1,29 +1,30 @@
 export interface ClassWithEveryLanguages {
 
-    japanese: string
-
     americanEnglish: string
     europeanEnglish: string
-
-    americanSpanish: string
-    europeanSpanish: string
 
     canadianFrench: string
     europeanFrench: string
 
-    dutch: string
-
     german: string
 
+    americanSpanish: string
+    europeanSpanish: string
+
     italian: string
+
+    dutch: string
 
     americanPortuguese: string
     europeanPortuguese: string
 
-    russian: string
-
-    korean: string
+    japanese: string
 
     simplifiedChinese: string
     traditionalChinese: string
+
+    korean: string
+
+    russian: string
+
 }
