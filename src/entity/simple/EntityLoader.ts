@@ -114,37 +114,38 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Reference on specific condition properties ----------
 
     //region ---------- Language properties ----------
-    japanese: null | string,
 
     english: null | string,
     americanEnglish: null | string,
     europeanEnglish: null | string,
 
-    spanish: null | string,
-    americanSpanish: null | string,
-    europeanSpanish: null | string,
-
     french: null | string,
     canadianFrench: null | string,
     europeanFrench: null | string,
 
-    dutch: null | string,
-
     german: null | string,
 
+    spanish: null | string,
+    americanSpanish: null | string,
+    europeanSpanish: null | string,
+
     italian: null | string,
+
+    dutch: null | string,
 
     portuguese: null | string,
     americanPortuguese: null | string,
     europeanPortuguese: null | string,
 
-    russian: null | string,
-
-    korean: null | string,
+    japanese: null | string,
 
     chinese: null | string,
     simplifiedChinese: null | string,
     tradionalChinese: null | string,
+
+    korean: null | string,
+
+    russian: null | string,
     //endregion ---------- Language properties ----------
 ];
 
@@ -399,37 +400,37 @@ class TemplateCreator {
                 },
             },
             name: {
-                japanese: content[62],
                 english: {
-                    simple: content[63],
-                    american: content[64],
-                    european: content[65],
-                },
-                spanish: {
-                    simple: content[66],
-                    american: content[67],
-                    european: content[68],
+                    simple: content[62],
+                    american: content[63],
+                    european: content[64],
                 },
                 french: {
+                    simple: content[65],
+                    canadian: content[66],
+                    european: content[67],
+                },
+                german: content[68],
+                spanish: {
                     simple: content[69],
-                    canadian: content[70],
+                    american: content[70],
                     european: content[71],
                 },
-                dutch: content[72],
-                german: content[73],
-                italian: content[74],
+                italian: content[72],
+                dutch: content[73],
                 portuguese: {
-                    simple: content[75],
-                    american: content[76],
-                    european: content[77],
+                    simple: content[74],
+                    american: content[75],
+                    european: content[76],
                 },
-                russian: content[78],
-                korean: content[79],
+                russian: content[82],
+                japanese: content[77],
                 chinese: {
-                    simple: content[80],
-                    simplified: content[81],
-                    traditional: content[82],
+                    simple: content[78],
+                    simplified: content[79],
+                    traditional: content[80],
                 },
+                korean: content[81],
             },
         };
     }

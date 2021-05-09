@@ -19,10 +19,10 @@ export class SMM2NameContainer
     readonly #italian: SimpleLanguage;
     readonly #dutch: SimpleLanguage;
     readonly #portuguese: AmericanAndEuropeanLanguage;
+    readonly #russian: SimpleLanguage;
     readonly #japanese: SimpleLanguage;
     readonly #chinese: ChineseLanguage;
     readonly #korean: SimpleLanguage;
-    readonly #russian: SimpleLanguage;
 
     public constructor(japanese: string,
                        english: string | [american: string, european: string],
@@ -121,6 +121,11 @@ export class SMM2NameContainer
     }
 
 
+    public get russian() {
+        return this.#russian.value;
+    }
+
+
     public get japanese() {
         return this.#japanese.value;
     }
@@ -141,11 +146,6 @@ export class SMM2NameContainer
 
     public get korean() {
         return this.#korean.value;
-    }
-
-
-    public get russian() {
-        return this.#russian.value;
     }
 
 }

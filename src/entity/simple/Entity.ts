@@ -38,6 +38,8 @@ export interface Entity
     categoryAmericanPortuguese: string
     categoryEuropeanPortuguese: string
 
+    categoryRussian: string
+
     categoryJapanese: string
 
     categoryChinese: string
@@ -45,8 +47,6 @@ export interface Entity
     categoryTraditionalChinese: string
 
     categoryKorean: string
-
-    categoryRussian: string
 
     //endregion -------------------- Category properties --------------------
 

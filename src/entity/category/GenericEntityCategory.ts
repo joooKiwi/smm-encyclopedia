@@ -89,6 +89,11 @@ export class GenericEntityCategory
     }
 
 
+    public get russian() {
+        return this.name.russian;
+    }
+
+
     public get japanese() {
         return this.name.japanese;
     }
@@ -109,11 +114,6 @@ export class GenericEntityCategory
 
     public get korean() {
         return this.name.korean;
-    }
-
-
-    public get russian() {
-        return this.name.russian;
     }
 
     //endregion -------------------- Name properties --------------------

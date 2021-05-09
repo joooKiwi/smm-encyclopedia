@@ -1,14 +1,6 @@
 export interface SMM2NameTemplate {
 
-    japanese: null | string
-
     english: {
-        simple: null | string
-        american: null | string
-        european: null | string
-    }
-
-    spanish: {
         simple: null | string
         american: null | string
         european: null | string
@@ -20,11 +12,17 @@ export interface SMM2NameTemplate {
         european: null | string
     }
 
-    dutch: null | string
-
     german: null | string
 
+    spanish: {
+        simple: null | string
+        american: null | string
+        european: null | string
+    }
+
     italian: null | string
+
+    dutch: null | string
 
     portuguese: {
         simple: null | string
@@ -34,12 +32,14 @@ export interface SMM2NameTemplate {
 
     russian: null | string
 
-    korean: null | string
-
     chinese: {
         simple: null | string
         simplified: null | string
         traditional: null | string
     }
+
+    japanese: null | string
+
+    korean: null | string
 
 }

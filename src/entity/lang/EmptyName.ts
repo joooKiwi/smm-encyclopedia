@@ -38,6 +38,8 @@ export class EmptyName
     public readonly americanPortuguese = EmptyName.EMPTY_STRING;
     public readonly europeanPortuguese = EmptyName.EMPTY_STRING;
 
+    public readonly russian = EmptyName.EMPTY_STRING;
+
     public readonly japanese = EmptyName.EMPTY_STRING;
 
     public readonly chinese = EmptyName.EMPTY_STRING;
@@ -45,8 +47,6 @@ export class EmptyName
     public readonly traditionalChinese = EmptyName.EMPTY_STRING;
 
     public readonly korean = EmptyName.EMPTY_STRING;
-
-    public readonly russian = EmptyName.EMPTY_STRING;
 
 
     public static get get() {

@@ -4,15 +4,15 @@ import i18n from "i18next";
 import {ClassWithEveryLanguages} from "./ClassWithEveryLanguages";
 
 export type PossibleLanguagesAcronym =
-    | 'ja'
     | 'en_AM' | 'en_EU'
-    | 'de'
     | 'fr_CA' | 'fr_EU'
+    | 'de'
     | 'es_AM' | 'es_EU'
     | 'it' | 'nl'
     | 'pt_AM' | 'pt_EU'
-    | 'ru' | 'ko'
-    | 'zh_T' | 'zh_S';
+        | 'ru' | 'ja'
+    | 'zh_T' | 'zh_S'
+    | 'ko';
 export type PossibleLanguagesEnglishName =
     | `English (${'America' | 'Europe'})`
     | `French (${'Canada' | 'Europe'})`
@@ -20,9 +20,9 @@ export type PossibleLanguagesEnglishName =
     | `Spanish (${'America' | 'Europe'})`
     | 'Italian' | 'Dutch'
     | `Portuguese (${'America' | 'Europe'})`
-    | 'Japanese'
+    | 'Korean' | 'Japanese'
     | 'Traditional Chinese' | 'Simplified Chinese'
-    | 'Korean' | 'Russian';
+    | 'Russian';
 export type PossibleLanguagesOriginalName =
     | `English (${'America' | 'Europe'})`
     | `Français (${'Canada' | 'Europe'})`
@@ -30,9 +30,9 @@ export type PossibleLanguagesOriginalName =
     | `Español (${'America' | 'Europa'})`
     | 'Italiano' | 'Nederlands'
     | `Português (${'América' | 'Europa'})`//Canadá
-    | '日本語'
+    | 'русский' | '日本語'
     | '简体中文' | '繁體中文'
-    | 'русский' | '한국어';
+     | '한국어';
 
 export abstract class Languages {
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
@@ -180,6 +180,20 @@ export abstract class Languages {
         }
 
     }('pt_EU', 'Portuguese (Europe)', 'Português (Europa)',);
+    public static readonly RUSSIAN = new class extends Languages {
+
+        public get newDateInstanceCreator(): DateInstanceCreator {
+            return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
+                .setMonths('array', ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',],)
+                .setYears('afterText', ' года')
+                .build();
+        }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.russian;
+        }
+
+    }('ru', 'Russian', 'русский');
     public static readonly JAPANESE = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -232,20 +246,6 @@ export abstract class Languages {
         }
 
     }('ko', 'Korean', '한국어',);
-    public static readonly RUSSIAN = new class extends Languages {
-
-        public get newDateInstanceCreator(): DateInstanceCreator {
-            return new DateInstanceCreatorBuilder('day,month,year', ' ', ' ',)
-                .setMonths('array', ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',],)
-                .setYears('afterText', ' года')
-                .build();
-        }
-
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.russian;
-        }
-
-    }('ru', 'Russian', 'русский');
 
 
     private static __VALUES: readonly Languages[];

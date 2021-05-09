@@ -18,13 +18,13 @@ export interface ClassWithEveryLanguages {
     americanPortuguese: string
     europeanPortuguese: string
 
+    russian: string
+
     japanese: string
 
     simplifiedChinese: string
     traditionalChinese: string
 
     korean: string
-
-    russian: string
 
 }
