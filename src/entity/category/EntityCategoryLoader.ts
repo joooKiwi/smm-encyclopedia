@@ -11,25 +11,24 @@ export type CategoryType = 'Terrain' | 'Item' | 'Gizmo' | 'Enemy';
 
 type EntityCategoryPropertiesArray = [
     //region ---------- Language properties ----------
-    japanese: null | string,
 
     english: null | string,
     americanEnglish: null | string,
     europeanEnglish: null | string,
 
-    spanish: null | string,
-    americanSpanish: null | string,
-    europeanSpanish: null | string,
-
     french: null | string,
     canadianFrench: null | string,
     europeanFrench: null | string,
 
-    dutch: null | string,
-
     german: null | string,
 
+    spanish: null | string,
+    americanSpanish: null | string,
+    europeanSpanish: null | string,
+
     italian: null | string,
+
+    dutch: null | string,
 
     portuguese: null | string,
     americanPortuguese: null | string,
@@ -37,11 +36,13 @@ type EntityCategoryPropertiesArray = [
 
     russian: null | string,
 
-    korean: null | string,
+    japanese: null | string,
 
     chinese: null | string,
     simplifiedChinese: null | string,
     tradionalChinese: null | string,
+
+    korean: null | string,
     //endregion ---------- Language properties ----------
 ];
 
@@ -144,10 +145,10 @@ class NameCreator {
         //README since some references are still not complete, they are in comment
         if (name.english.simple === null && (name.english.american === null || name.english.european === null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
-        // if (name.spanish.simple === null && (name.spanish.american === null || name.spanish.european === null))
-        //     throw new ReferenceError(`The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`);
         // if (name.french.simple === null && (name.french.canadian === null || name.french.european === null))
         //     throw new ReferenceError(`The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`);
+        // if (name.spanish.simple === null && (name.spanish.american === null || name.spanish.european === null))
+        //     throw new ReferenceError(`The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`);
         // if (name.portuguese.simple === null && (name.portuguese.simplified === null || name.portuguese.traditional === null))
         //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
         // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
