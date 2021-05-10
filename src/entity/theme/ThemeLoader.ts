@@ -76,7 +76,7 @@ export class ThemeLoader
             const templateMap: Map<string, ThemeTemplate> = new Map();
             const finalReferences: Map<string, [CourseTheme, WorldTheme]> = new Map();
 
-            const csvLoader = new CSVLoader<ThemePropertiesArray, ThemeTemplate>(everyThemes, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            let content = new CSVLoader<ThemePropertiesArray, ThemeTemplate>(everyThemes, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .convertToBoolean('isInCourseTheme', 'isInWorldTheme',)
                 .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
@@ -92,8 +92,8 @@ export class ThemeLoader
                 .onFinalObjectCreated(finalContent => NameCreator.addEnglishReference(finalContent.name, templateMap, finalContent))
                 .onInitialisationEnd(() =>
                     templateMap.forEach((template, englishName) =>
-                        finalReferences.set(englishName, this.__createReference(template, new SMM2NameBuilder(template.name).build(),))));
-            console.log(csvLoader.content);
+                        finalReferences.set(englishName, this.__createReference(template, new SMM2NameBuilder(template.name).build(),))))
+                .content;
             return finalReferences;
         });
     }
@@ -122,7 +122,7 @@ export class ThemeLoader
         if (theme === null)
             throw new ReferenceError(`The english name "${englishName}" has no reference on the Themes class.`);
         const everyEntities = [] as Entity[];
-        for (let [englishName, reference] of this.entities.entries())
+        for (const [, reference] of this.entities.entries())
             if (reference.entity !== undefined && theme.isEntityOnTheme(reference.entity))
                 everyEntities.push(reference.entity);
         return everyEntities;
