@@ -22,6 +22,7 @@ export default class Navigation
                                 <li className="dropdown-item"><Link key="navigationEveryEntities" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/entity`}>{__('Display every entities')}</Link></li>
                                 <li className="dropdown-item"><Link key="navigationEveryLimit" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/group`}>{__('Display every entity group')}</Link></li>
                                 <li className="dropdown-item"><Link key="navigationEveryLimit" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/limit`}>{__('Display every limits')}</Link></li>
+                                <li className="dropdown-item"><Link key="navigationEveryTheme" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/theme`}>{__('Display every themes')}</Link></li>
                             </ul>
                         </li>
                     </ul>

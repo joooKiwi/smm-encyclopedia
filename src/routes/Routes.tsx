@@ -5,6 +5,7 @@ import {EveryLimitsApp} from "../app/EveryLimitsApp";
 import HomeApp from "../app/HomeApp";
 import {Languages} from "../lang/Languages";
 import React from "react";
+import {EveryThemesApp} from "../app/EveryThemesApp";
 
 type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
 
@@ -13,6 +14,7 @@ const everySimpleRoutes: SimpleRoute[] = [
     {path: '/every/entity', renderCallback: () => <EveryEntitiesApp/>,},
     {path: '/every/group', renderCallback: () => <EveryEntityGroupApp/>,},
     {path: '/every/limit', renderCallback: () => <EveryLimitsApp/>,},
+    {path: '/every/theme', renderCallback: () => <EveryThemesApp/>,},
 ];
 
 export default function Routes() {
