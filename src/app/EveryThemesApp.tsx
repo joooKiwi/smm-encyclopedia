@@ -7,6 +7,7 @@ import {WorldTheme} from "../entity/theme/WorldTheme";
 import {__} from "../lang/Languages";
 import {EmptyCourseTheme} from "../entity/theme/EmptyCourseTheme";
 import {EmptyWorldTheme} from "../entity/theme/EmptyWorldTheme";
+import BooleanResultContainer from "./tools/BooleanResultContainer";
 
 export class EveryThemesApp
     extends AbstractApp {
@@ -26,8 +27,8 @@ export class EveryThemesApp
 
             content.push([englishName,
                 <>{index++}</>,
-                <>{courseTheme !== EmptyCourseTheme.get ? __('Yes') : __('No')}</>,
-                <>{worldTheme !== EmptyWorldTheme.get ? __('Yes') : __('No')}</>,
+                <BooleanResultContainer boolean={courseTheme !== EmptyCourseTheme.get} trueValue={__('Yes')} falseValue={__('No')}/>,
+                <BooleanResultContainer boolean={worldTheme !== EmptyWorldTheme.get} trueValue={__('Yes')} falseValue={__('No')}/>,
                 <>{name.english}</>,
             ]);
         }
