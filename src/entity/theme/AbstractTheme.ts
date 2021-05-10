@@ -1,0 +1,122 @@
+import {Theme} from "./Theme";
+import {SMM2Name} from "../lang/SMM2Name";
+
+export class AbstractTheme
+    implements Theme {
+
+    readonly #name;
+
+    protected constructor(name: SMM2Name) {
+        this.#name = name;
+    }
+
+
+    //region -------------------- Name properties --------------------
+
+    public get name() {
+        return this.#name;
+    }
+
+
+    public get languageValue() {
+        return this.name.languageValue;
+    }
+
+
+    public get english() {
+        return this.name.english;
+    }
+
+    public get americanEnglish() {
+        return this.name.americanEnglish;
+    }
+
+    public get europeanEnglish() {
+        return this.name.europeanEnglish;
+    }
+
+
+    public get french() {
+        return this.name.french;
+    }
+
+    public get canadianFrench() {
+        return this.name.canadianFrench;
+    }
+
+    public get europeanFrench() {
+        return this.name.europeanFrench;
+    }
+
+
+    public get german() {
+        return this.name.german;
+    }
+
+
+    public get spanish() {
+        return this.name.spanish;
+    }
+
+    public get americanSpanish() {
+        return this.name.americanSpanish;
+    }
+
+    public get europeanSpanish() {
+        return this.name.europeanSpanish;
+    }
+
+
+    public get italian() {
+        return this.name.italian;
+    }
+
+
+    public get dutch() {
+        return this.name.dutch;
+    }
+
+
+    public get portuguese() {
+        return this.name.portuguese;
+    }
+
+    public get americanPortuguese() {
+        return this.name.americanPortuguese;
+    }
+
+    public get europeanPortuguese() {
+        return this.name.europeanPortuguese;
+    }
+
+
+    public get russian() {
+        return this.name.russian;
+    }
+
+
+    public get japanese() {
+        return this.name.japanese;
+    }
+
+
+    public get chinese() {
+        return this.name.chinese;
+    }
+
+    public get simplifiedChinese() {
+        return this.name.simplifiedChinese;
+    }
+
+    public get traditionalChinese() {
+        return this.name.traditionalChinese;
+    }
+
+
+    public get korean() {
+        return this.name.korean;
+    }
+
+    //endregion -------------------- Name properties --------------------
+
+}
