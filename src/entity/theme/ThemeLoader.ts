@@ -76,7 +76,7 @@ export class ThemeLoader
             const templateMap: Map<string, ThemeTemplate> = new Map();
             const finalReferences: Map<string, [CourseTheme, WorldTheme]> = new Map();
 
-            let content = new CSVLoader<ThemePropertiesArray, ThemeTemplate>(everyThemes, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            new CSVLoader<ThemePropertiesArray, ThemeTemplate>(everyThemes, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .convertToBoolean('isInCourseTheme', 'isInWorldTheme',)
                 .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
@@ -93,7 +93,7 @@ export class ThemeLoader
                 .onInitialisationEnd(() =>
                     templateMap.forEach((template, englishName) =>
                         finalReferences.set(englishName, this.__createReference(template, new SMM2NameBuilder(template.name).build(),))))
-                .content;
+                .load();
             return finalReferences;
         });
     }
