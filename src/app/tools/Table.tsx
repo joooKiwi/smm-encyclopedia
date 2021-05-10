@@ -1,9 +1,11 @@
 import {Component, ReactNode} from "react";
 
+export type SingleTableContent = [key: string, ...content: JSX.Element[]];
+
 interface SimpleTableComponent {
     caption: string
     headers: string[]
-    content: [key: string, ...content: JSX.Element[]][]
+    content: SingleTableContent[]
 }
 
 export default class Table

@@ -1,9 +1,12 @@
 import AbstractApp from "./AbstractApp";
 import React from "react";
 import {ThemeLoader} from "../entity/theme/ThemeLoader";
-import Table from "./tools/Table";
+import Table, {SingleTableContent} from "./tools/Table";
 import {CourseTheme} from "../entity/theme/CourseTheme";
 import {WorldTheme} from "../entity/theme/WorldTheme";
+import {__} from "../lang/Languages";
+import {EmptyCourseTheme} from "../entity/theme/EmptyCourseTheme";
+import {EmptyWorldTheme} from "../entity/theme/EmptyWorldTheme";
 
 export class EveryThemesApp
     extends AbstractApp {
@@ -15,14 +18,24 @@ export class EveryThemesApp
     }
 
     protected _displayTableContent(): JSX.Element {
+        const content = [] as SingleTableContent[];
+        let index = 1;
+        for (let [englishName, [courseTheme, worldTheme]] of this.themes.entries()) {
+            const hasCourseTheme = courseTheme !== EmptyCourseTheme.get;
+            const name = hasCourseTheme ? courseTheme.name : worldTheme.name;
+
+            content.push([englishName,
+                <>{index++}</>,
+                <>{courseTheme !== EmptyCourseTheme.get ? __('Yes') : __('No')}</>,
+                <>{worldTheme !== EmptyWorldTheme.get ? __('Yes') : __('No')}</>,
+                <>{name.english}</>,
+            ]);
+        }
+
         return <Table
             caption="every themes"
-            headers={['#', 'test header',]}
-            content={[
-                ['1', <>1</>, <div>test content 1</div>,],
-                ['2', <>2</>, <div>test content 2</div>,],
-                ['3', <>3</>, <div>test content 3</div>,],
-            ]}/>;
+            headers={['#', __('Is in course theme'), __('Is in world theme'), __('Language'),]}
+            content={content}/>;
     }
 
     protected _mainContent(): JSX.Element {
