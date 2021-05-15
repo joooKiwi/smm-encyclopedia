@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import Navigation from "../navigation/Navigation";
-import Footer from "../navigation/Footer";
+import Navigation         from "../navigation/Navigation";
+import Footer             from "../navigation/Footer";
 
 export default abstract class AbstractApp
     extends Component {

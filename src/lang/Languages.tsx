@@ -1,9 +1,9 @@
-import {DateInstanceCreator} from "./date/DateInstanceCreator";
+import {DateInstanceCreator}        from "./date/DateInstanceCreator";
 import {DateInstanceCreatorBuilder} from "./date/DateInstanceCreatorBuilder";
-import i18n from "i18next";
+import i18n                         from "i18next";
 
 export type PossibleLanguagesAcronym =
-    'ja'
+   | 'ja'
     | 'en_US' | 'en_EU'
     | 'es_AM' | 'es_EU'
     | 'fr_CA' | 'fr_EU'
@@ -12,7 +12,7 @@ export type PossibleLanguagesAcronym =
     | 'ru' | 'ko'
     | 'zh_T' | 'zh_S';
 export type PossibleLanguagesEnglishName =
-    'Japanese'
+   | 'Japanese'
     | `English (${'America' | 'Europe'})`
     | `Spanish (${'America' | 'Europe'})`
     | `French (${'Canada' | 'Europe'})`
@@ -21,7 +21,7 @@ export type PossibleLanguagesEnglishName =
     | 'Russian' | 'Korean'
     | 'Chinese (Traditional)' | 'Chinese (Simplified)';
 export type PossibleLanguagesOriginalName =
-    '日本語'
+   | '日本語'
     | `English (${'America' | 'Europe'})`
     | `Español (${'America' | 'Europa'})`
     | `Français (${'Canada' | 'Europe'})`
@@ -211,8 +211,7 @@ export abstract class Languages {
     }
 
     public static get values(): readonly Languages[] {
-        return this.__VALUES === undefined
-            ? this.__VALUES = [
+        return this.__VALUES ?? (this.__VALUES = [
                 this.JAPANESE,
                 this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
                 this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
@@ -224,8 +223,7 @@ export abstract class Languages {
                 this.RUSSIAN,
                 this.KOREAN,
                 this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
-            ]
-            : this.__VALUES;
+            ]);
     }
 
 }
