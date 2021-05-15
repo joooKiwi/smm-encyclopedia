@@ -1,5 +1,5 @@
 import {__, Languages} from "../lang/Languages";
-import {Component} from "react";
+import {Component}     from "react";
 
 export default class Footer
     extends Component {

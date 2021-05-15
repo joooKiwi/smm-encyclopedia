@@ -1,5 +1,5 @@
-import AbstractApp from "./AbstractApp";
-import React from "react";
+import AbstractApp    from "./AbstractApp";
+import React          from "react";
 import {EntityLoader} from "../entity/simple/EntityLoader";
 
 export class EveryEntitiesApp

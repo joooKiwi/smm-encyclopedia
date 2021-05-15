@@ -1,11 +1,11 @@
 import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from "react-router-dom";
-import {EveryEntitiesApp} from "../app/EveryEntitiesApp";
-import {EveryEntityGroupApp} from "../app/EveryEntityGroupApp";
-import {EveryLimitsApp} from "../app/EveryLimitsApp";
-import HomeApp from "../app/HomeApp";
-import {Languages} from "../lang/Languages";
-import React from "react";
-import {EveryThemesApp} from "../app/EveryThemesApp";
+import {EveryEntitiesApp}                                               from "../app/EveryEntitiesApp";
+import {EveryEntityGroupApp}                                            from "../app/EveryEntityGroupApp";
+import {EveryLimitsApp}                                                 from "../app/EveryLimitsApp";
+import {EveryThemesApp}                                                 from "../app/EveryThemesApp";
+import HomeApp                                                          from "../app/HomeApp";
+import {Languages}                                                      from "../lang/Languages";
+import React                                                            from "react";
 
 type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
 
