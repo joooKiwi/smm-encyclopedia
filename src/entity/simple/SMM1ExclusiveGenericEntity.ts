@@ -1,11 +1,12 @@
-import {SMM2Name} from "../lang/SMM2Name";
-import {IsInProperty} from "../properties/IsInProperty";
-import {EntityReferences}     from "../properties/EntityReferences";
-import {IsInOnlySMM1Property} from "../properties/IsInOnlySMM1Property";
-import {GenericEntity}        from "./GenericEntity";
-import {SMM1ExclusiveEntity} from "./SMM1ExclusiveEntity";
-import {EntityCategory} from "../category/EntityCategory";
-import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
+import {SMM2Name}                 from '../lang/SMM2Name';
+import {IsInProperty}             from '../properties/IsInProperty';
+import {EmptyEntityCategory}      from '../category/EmptyEntityCategory';
+import {EntityCategory}           from '../category/EntityCategory';
+import {EntityReferences}         from '../properties/EntityReferences';
+import {GenericEntity}            from './GenericEntity';
+import {IsInOnlySMM1GameProperty} from '../properties/IsInOnlySMM1GameProperty';
+import {IsInOnlySMM1Property}     from '../properties/IsInOnlySMM1Property';
+import {SMM1ExclusiveEntity}      from './SMM1ExclusiveEntity';
 
 export class SMM1ExclusiveGenericEntity
     extends GenericEntity
@@ -19,6 +20,10 @@ export class SMM1ExclusiveGenericEntity
 
     public get isInProperty(): IsInOnlySMM1Property {
         return super.isInProperty as IsInOnlySMM1Property;
+    }
+
+    get isInGame(): IsInOnlySMM1GameProperty {
+        return super.isInGame as IsInOnlySMM1GameProperty;
     }
 
     public get isInSuperMarioMaker1() {
