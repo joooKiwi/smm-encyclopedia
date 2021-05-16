@@ -1,9 +1,9 @@
-import {DateInstanceCreator}        from "./date/DateInstanceCreator";
-import {DateInstanceCreatorBuilder} from "./date/DateInstanceCreatorBuilder";
-import i18n                         from "i18next";
+import {DateInstanceCreator}        from './date/DateInstanceCreator';
+import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
+import i18n                         from 'i18next';
 
 export type PossibleLanguagesAcronym =
-   | 'ja'
+    | 'ja'
     | 'en_US' | 'en_EU'
     | 'es_AM' | 'es_EU'
     | 'fr_CA' | 'fr_EU'
@@ -12,7 +12,7 @@ export type PossibleLanguagesAcronym =
     | 'ru' | 'ko'
     | 'zh_T' | 'zh_S';
 export type PossibleLanguagesEnglishName =
-   | 'Japanese'
+    | 'Japanese'
     | `English (${'America' | 'Europe'})`
     | `Spanish (${'America' | 'Europe'})`
     | `French (${'Canada' | 'Europe'})`
@@ -21,7 +21,7 @@ export type PossibleLanguagesEnglishName =
     | 'Russian' | 'Korean'
     | 'Chinese (Traditional)' | 'Chinese (Simplified)';
 export type PossibleLanguagesOriginalName =
-   | '日本語'
+    | '日本語'
     | `English (${'America' | 'Europe'})`
     | `Español (${'America' | 'Europa'})`
     | `Français (${'Canada' | 'Europe'})`
@@ -189,7 +189,7 @@ export abstract class Languages {
 
     private static __VALUES: readonly Languages[];
     private static __CURRENT_LANGUAGE: Languages;
-    private static __DEFAULT_LANGUAGE: PossibleLanguagesAcronym;
+    private static __DEFAULT_LANGUAGE: Languages;
 
     readonly #acronym;
     readonly #englishName;
@@ -226,18 +226,26 @@ export abstract class Languages {
         return this.__CURRENT_LANGUAGE;
     }
 
+    public static set currentLanguage(value: Languages) {
+        this.setCurrentLanguage(value);
+    }
+
     public static setCurrentLanguage(value: Languages | string): void {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
             i18n.changeLanguage((this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
     }
 
-    public static get defaultLanguage(): PossibleLanguagesAcronym {
+    public static get defaultLanguage(): Languages {
         return this.__DEFAULT_LANGUAGE;
     }
 
+    public static set defaultLanguage(value: Languages) {
+        this.setDefaultLanguage(value);
+    }
+
     public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
-        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? value : value.acronym;
+        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
     }
 
     public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
