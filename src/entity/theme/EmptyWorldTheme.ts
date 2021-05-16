@@ -1,10 +1,10 @@
+import {EmptyName}         from '../lang/EmptyName';
+import {GenericWorldTheme} from './GenericWorldTheme';
+
 /**
  * @nullObjectPattern
  * @singleton
  */
-import {GenericWorldTheme} from "./GenericWorldTheme";
-import {EmptyName} from "../lang/EmptyName";
-
 export class EmptyWorldTheme
     extends GenericWorldTheme {
 

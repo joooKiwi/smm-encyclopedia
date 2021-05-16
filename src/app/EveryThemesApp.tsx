@@ -30,12 +30,16 @@ export class EveryThemesApp
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
             const name = isInCourseTheme ? courseTheme.name : worldTheme.name;
+            const isInSMM1 = !isInWorldTheme && courseTheme.isInSuperMarioMaker1;
+            const isInSMM2 = courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2;
 
             content.push([englishName,
                 <>{index}</>,
                 <img src={this.themesEnum[index - 1].longImagePath} alt={englishName}/>,
                 <YesOrNoResultContainer boolean={isInCourseTheme}/>,
                 <YesOrNoResultContainer boolean={isInWorldTheme}/>,
+                <YesOrNoResultContainer boolean={isInSMM1}/>,
+                <YesOrNoResultContainer boolean={isInSMM2}/>,
                 <>{Languages.currentLanguage.get(name)}</>,
             ]);
             index++;
@@ -43,7 +47,7 @@ export class EveryThemesApp
 
         return <Table
             caption={__('every themes')}
-            headers={['#', __('Image'), __('Is in course theme'), __('Is in world theme'), __('Language'),]}
+            headers={['#', __('Image'), __('Is in course theme'), __('Is in world theme'), __('Is in SMM1'),  __('Is in SMM2') ,__('Language'),]}
             content={content}/>;
     }
 

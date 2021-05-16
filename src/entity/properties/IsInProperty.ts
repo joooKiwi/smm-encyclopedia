@@ -3,6 +3,8 @@ import {IsInGameProperty} from './IsInGameProperty';
 export interface IsInProperty
     extends IsInGameProperty {
 
+    isInGame: IsInGameProperty
+
     isInSuperMarioBrosStyle: boolean
     isInSuperMarioBros3Style: boolean
     isInSuperMarioWorldStyle: boolean

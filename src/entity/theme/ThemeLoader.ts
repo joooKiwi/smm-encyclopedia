@@ -1,26 +1,30 @@
-import everyThemes from "../../resources/Every Super Mario Maker 2 entities properties - Themes.csv";
+import everyThemes from '../../resources/Every Super Mario Maker 2 entities properties - Themes.csv';
 
-import {CallbackCaller} from "../../util/CallbackCaller";
-import CSVLoader from "../../loader/CSVLoader";
-import {CourseTheme} from "./CourseTheme";
-import {DebugEntityReferences, EntityLoader} from "../simple/EntityLoader";
-import {EmptyCourseTheme} from "./EmptyCourseTheme";
-import {EmptyWorldTheme} from "./EmptyWorldTheme";
-import {Entity} from "../simple/Entity";
-import {Loader} from "../../util/Loader";
-import {NameCreator} from "../lang/NameCreator";
-import {GenericWorldTheme} from "./GenericWorldTheme";
-import {GenericCourseTheme} from "./GenericCourseTheme";
-import {SMM2Name} from "../lang/SMM2Name";
-import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
-import {Themes} from "./Themes";
-import {ThemeTemplate} from "./ThemeTemplate";
-import {WorldTheme} from "./WorldTheme";
+import {CallbackCaller}                      from '../../util/CallbackCaller';
+import CSVLoader                             from '../../loader/CSVLoader';
+import {CourseTheme}                         from './CourseTheme';
+import {DebugEntityReferences, EntityLoader} from '../simple/EntityLoader';
+import {EmptyCourseTheme}                    from './EmptyCourseTheme';
+import {EmptyWorldTheme}                     from './EmptyWorldTheme';
+import {Entity}                              from '../simple/Entity';
+import {IsInGamePropertyContainer}           from '../properties/IsInGamePropertyContainer';
+import {Loader}                              from '../../util/Loader';
+import {NameCreator}                         from '../lang/NameCreator';
+import {GenericWorldTheme}                   from './GenericWorldTheme';
+import {GenericCourseTheme}                  from './GenericCourseTheme';
+import {SMM2Name}                            from '../lang/SMM2Name';
+import {SMM2NameBuilder}                     from '../lang/SMM2NameBuilder';
+import {Themes}                              from './Themes';
+import {ThemeTemplate}                       from './ThemeTemplate';
+import {WorldTheme}                          from './WorldTheme';
 
 
 type ThemePropertiesArray = [
     isInCourseTheme: boolean,
     isInWorldTheme: boolean,
+
+    isInSuperMarioMaker1: boolean,
+    isInSuperMarioMaker2: boolean,
 
     //region ---------- Language properties ----------
 
@@ -77,7 +81,10 @@ export class ThemeLoader
             const finalReferences: Map<string, [CourseTheme, WorldTheme]> = new Map();
 
             new CSVLoader<ThemePropertiesArray, ThemeTemplate>(everyThemes, convertedContent => TemplateCreator.createTemplate(convertedContent))
-                .convertToBoolean('isInCourseTheme', 'isInWorldTheme',)
+                .convertToBoolean(
+                    'isInCourseTheme', 'isInWorldTheme',
+                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                )
                 .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
                     'french', 'canadianFrench', 'europeanFrench',
@@ -98,19 +105,23 @@ export class ThemeLoader
         });
     }
 
-    private __createReference(template: ThemeTemplate, name: SMM2Name,): [CourseTheme, WorldTheme] {
-        const isInCourseTheme = template.isIn.courseTheme;
-        const isInWorldTheme = template.isIn.worldTheme;
+    private __createReference(template: ThemeTemplate, name: SMM2Name,): [CourseTheme, WorldTheme,] {
+        const isInCourseTheme = template.isIn.theme.course;
+        const isInWorldTheme = template.isIn.theme.world;
 
         return isInCourseTheme && isInWorldTheme
-            ? [this.__createCourseTheme(name,), new GenericWorldTheme(name),]
+            ? [this.__createCourseTheme(template, name,), new GenericWorldTheme(name),]
             : isInCourseTheme
-                ? [this.__createCourseTheme(name,), EmptyWorldTheme.get,]
-                : [EmptyCourseTheme.get, new GenericWorldTheme(name)];
+                ? [this.__createCourseTheme(template, name,), EmptyWorldTheme.get,]
+                : [EmptyCourseTheme.get, new GenericWorldTheme(name),];
     }
 
-    private __createCourseTheme(name: SMM2Name,): CourseTheme {
-        return new GenericCourseTheme(name, () => this.whereEntityIs(name.english),);
+    private __createCourseTheme(template: ThemeTemplate, name: SMM2Name,): CourseTheme {
+        return new GenericCourseTheme(
+            name,
+            IsInGamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2']),
+            () => this.whereEntityIs(name.english),
+        );
     }
 
     private get entities() {
@@ -147,41 +158,47 @@ class TemplateCreator {
     public static createTemplate(content: ThemePropertiesArray): ThemeTemplate {
         return {
             isIn: {
-                courseTheme: content[0],
-                worldTheme: content[1],
+                game: {
+                    1: content[2],
+                    2: content[3],
+                },
+                theme: {
+                    course: content[0],
+                    world: content[1],
+                },
             },
             name: {
                 english: {
-                    simple: content[2],
-                    american: content[3],
-                    european: content[4],
+                    simple: content[4],
+                    american: content[5],
+                    european: content[6],
                 },
                 french: {
-                    simple: content[5],
-                    canadian: content[6],
-                    european: content[7],
+                    simple: content[7],
+                    canadian: content[8],
+                    european: content[9],
                 },
-                german: content[8],
+                german: content[10],
                 spanish: {
-                    simple: content[9],
-                    american: content[10],
-                    european: content[11],
+                    simple: content[11],
+                    american: content[12],
+                    european: content[13],
                 },
-                italian: content[12],
-                dutch: content[13],
+                italian: content[14],
+                dutch: content[15],
                 portuguese: {
-                    simple: content[14],
-                    american: content[15],
-                    european: content[16],
+                    simple: content[16],
+                    american: content[17],
+                    european: content[18],
                 },
-                russian: content[17],
-                japanese: content[18],
+                russian: content[19],
+                japanese: content[20],
                 chinese: {
-                    simple: content[19],
-                    simplified: content[20],
-                    traditional: content[21],
+                    simple: content[21],
+                    simplified: content[22],
+                    traditional: content[23],
                 },
-                korean: content[22],
+                korean: content[24],
             }
         };
     }

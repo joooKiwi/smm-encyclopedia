@@ -1,6 +1,6 @@
 export interface IsInPropertyTemplate {
 
-    game: {
+    game: {//TODO move to isolated interface
         1: boolean
         2: boolean
     }

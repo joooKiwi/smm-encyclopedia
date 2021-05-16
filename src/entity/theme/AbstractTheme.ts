@@ -1,13 +1,16 @@
-import {Theme} from "./Theme";
-import {SMM2Name} from "../lang/SMM2Name";
+import {IsInGameProperty} from '../properties/IsInGameProperty';
+import {SMM2Name}         from '../lang/SMM2Name';
+import {Theme}            from './Theme';
 
 export class AbstractTheme
     implements Theme {
 
     readonly #name;
+    readonly #isInProperty;
 
-    protected constructor(name: SMM2Name) {
+    protected constructor(name: SMM2Name, isInProperty: IsInGameProperty) {
         this.#name = name;
+        this.#isInProperty = isInProperty;
     }
 
 
@@ -118,5 +121,20 @@ export class AbstractTheme
     }
 
     //endregion -------------------- Name properties --------------------
+    //region -------------------- Is in game properties --------------------
+
+    public get isInProperty() {
+        return this.#isInProperty;
+    }
+
+    public get isInSuperMarioMaker1() {
+        return this.isInProperty.isInSuperMarioMaker1;
+    }
+
+    public get isInSuperMarioMaker2() {
+        return this.isInProperty.isInSuperMarioMaker2;
+    }
+
+    //endregion -------------------- Is in game properties --------------------
 
 }

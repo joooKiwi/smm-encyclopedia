@@ -1,10 +1,11 @@
-import {IsInProperty} from "./IsInProperty";
+import {IsInProperty}              from './IsInProperty';
+import {IsInGameProperty}          from './IsInGameProperty';
+import {IsInGamePropertyContainer} from './IsInGamePropertyContainer';
 
 export class IsInPropertyContainer
     implements IsInProperty {
 
-    readonly #isInSuperMarioMaker1: boolean
-    readonly #isInSuperMarioMaker2: boolean
+    readonly #isInGame: IsInGameProperty;
 
     readonly #isInSuperMarioBrosStyle: boolean
     readonly #isInSuperMarioBros3Style: boolean
@@ -30,8 +31,7 @@ export class IsInPropertyContainer
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,
                        isInGroundTheme: boolean, isInUndergroundTheme: null | boolean, isInUnderwaterTheme: null | boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: null | boolean, isInAirshipTheme: null | boolean, isInCastleTheme: null | boolean,
                        isInDayTheme: boolean, isInNightTheme: null | boolean,) {
-        this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
-        this.#isInSuperMarioMaker2 = isInSuperMarioMaker2;
+        this.#isInGame = IsInGamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
 
         this.#isInSuperMarioBrosStyle = isInSuperMarioBrosStyle;
         this.#isInSuperMarioBros3Style = isInSuperMarioBros3Style;
@@ -55,12 +55,16 @@ export class IsInPropertyContainer
     }
 
 
+    public get isInGame() {
+        return this.#isInGame;
+    }
+
     public get isInSuperMarioMaker1() {
-        return this.#isInSuperMarioMaker1;
+        return this.isInGame.isInSuperMarioMaker1;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.#isInSuperMarioMaker2;
+        return this.isInGame.isInSuperMarioMaker2;
     }
 
 

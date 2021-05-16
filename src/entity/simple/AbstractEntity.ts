@@ -1,8 +1,8 @@
-import {Entity} from "./Entity";
-import {SMM2Name} from "../lang/SMM2Name";
-import {IsInProperty} from "../properties/IsInProperty";
-import {EntityReferences} from "../properties/EntityReferences";
-import {EntityCategory} from "../category/EntityCategory";
+import {Entity}           from './Entity';
+import {EntityCategory}   from '../category/EntityCategory';
+import {EntityReferences} from '../properties/EntityReferences';
+import {IsInProperty}     from '../properties/IsInProperty';
+import {SMM2Name}         from '../lang/SMM2Name';
 
 export abstract class AbstractEntity
     implements Entity {
@@ -245,6 +245,10 @@ export abstract class AbstractEntity
 
     public get isInProperty() {
         return this.#isInProperty;
+    }
+
+    public get isInGame() {
+        return this.isInProperty.isInGame;
     }
 
     public get isInSuperMarioMaker1() {
