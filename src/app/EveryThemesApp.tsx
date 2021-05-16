@@ -1,5 +1,5 @@
-import {__} from "../lang/Languages";
-import AbstractApp from "./AbstractApp";
+import {__, Languages} from '../lang/Languages';
+import AbstractApp     from "./AbstractApp";
 import BooleanResultContainer from "./tools/BooleanResultContainer";
 import {CourseTheme} from "../entity/theme/CourseTheme";
 import {EmptyCourseTheme} from "../entity/theme/EmptyCourseTheme";
@@ -27,15 +27,16 @@ export class EveryThemesApp
         const content = [] as SingleTableContent[];
         let index = 1;
         for (let [englishName, [courseTheme, worldTheme]] of this.themes.entries()) {
-            const hasCourseTheme = courseTheme !== EmptyCourseTheme.get;
-            const name = hasCourseTheme ? courseTheme.name : worldTheme.name;
+            const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
+            const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
+            const name = isInCourseTheme ? courseTheme.name : worldTheme.name;
 
             content.push([englishName,
                 <>{index}</>,
                 <img src={this.themesEnum[index - 1].longImagePath} alt={englishName}/>,
-                <BooleanResultContainer boolean={courseTheme !== EmptyCourseTheme.get} trueValue={__('Yes')} falseValue={__('No')}/>,
-                <BooleanResultContainer boolean={worldTheme !== EmptyWorldTheme.get} trueValue={__('Yes')} falseValue={__('No')}/>,
-                <>{name.english}</>,
+                <BooleanResultContainer boolean={isInCourseTheme} trueValue={__('Yes')} falseValue={__('No')}/>,
+                <BooleanResultContainer boolean={isInWorldTheme} trueValue={__('Yes')} falseValue={__('No')}/>,
+                <>{Languages.currentLanguage.get(name)}</>,
             ]);
             index++;
         }
