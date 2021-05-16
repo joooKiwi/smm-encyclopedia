@@ -1,5 +1,7 @@
 import './index.scss';
 import './lang/i18n';
+import 'bootstrap/dist/js/bootstrap'
+
 import ReactDOM        from 'react-dom';
 import React           from 'react';
 import reportWebVitals from './reportWebVitals';
