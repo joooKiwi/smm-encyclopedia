@@ -1,3 +1,19 @@
 {
+  "yes": "yes",
+  "Yes": "Yes",
+  "no":  "no",
+  "No":  "No",
 
+  "name": "name",
+  "Name": "Name",
+
+  "minimum": { "m": "minimum", "f": "minimum" },
+  "Minimum": { "m": "Minimum", "f": "Minimum" },
+  "maximum": { "m": "maximum", "f": "maximum" },
+  "Maximum": { "m": "Maximum", "f": "Maximum" },
+
+  "Limit in the editor": "Limit in the editor",
+  "Limit while playing": "Limit while playing",
+
+  "In other languages": "In other languages"
 }
