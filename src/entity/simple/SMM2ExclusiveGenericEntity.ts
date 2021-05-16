@@ -1,9 +1,9 @@
 import {SMM2Name} from "../lang/SMM2Name";
 import {IsInProperty} from "../properties/IsInProperty";
 import {EntityReferences} from "../properties/EntityReferences";
-import {GenericEntity} from "./GenericEntity";
-import {IsInExclusiveSMM2Property} from "../properties/IsInExclusiveSMM2Property";
-import {SMM2ExclusiveEntity} from "./SMM2ExclusiveEntity";
+import {GenericEntity}        from "./GenericEntity";
+import {IsInOnlySMM2Property} from "../properties/IsInOnlySMM2Property";
+import {SMM2ExclusiveEntity}  from "./SMM2ExclusiveEntity";
 import {EntityCategory} from "../category/EntityCategory";
 
 export class SMM2ExclusiveGenericEntity
@@ -16,8 +16,8 @@ export class SMM2ExclusiveGenericEntity
 
     //region -------------------- Is in properties --------------------
 
-    public get isInProperty(): IsInExclusiveSMM2Property {
-        return super.isInProperty as IsInExclusiveSMM2Property;
+    public get isInProperty(): IsInOnlySMM2Property {
+        return super.isInProperty as IsInOnlySMM2Property;
     }
 
 
@@ -33,10 +33,10 @@ export class SMM2ExclusiveGenericEntity
 
 }
 
-function validateIsInProperty(isInProperty: IsInProperty): IsInExclusiveSMM2Property {
+function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM2Property {
     if (isInProperty.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to false for a SMM2 exclusive property.');
     if (!isInProperty.isInSuperMarioMaker2)
         throw new TypeError('The property isInSMM2 should always be set to true for a SMM2 exclusive property.');
-    return isInProperty as IsInExclusiveSMM2Property;
+    return isInProperty as IsInOnlySMM2Property;
 }

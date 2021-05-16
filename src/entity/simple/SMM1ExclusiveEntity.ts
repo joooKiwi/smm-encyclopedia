@@ -1,10 +1,10 @@
-import {Entity} from "./Entity";
-import {IsInExclusiveSMM1Property} from "../properties/IsInExclusiveSMM1Property";
+import {Entity}               from "./Entity";
+import {IsInOnlySMM1Property} from "../properties/IsInOnlySMM1Property";
 
 export interface SMM1ExclusiveEntity
-    extends Entity, IsInExclusiveSMM1Property {
+    extends Entity, IsInOnlySMM1Property {
 
-    isInProperty: IsInExclusiveSMM1Property
+    isInProperty: IsInOnlySMM1Property
 
     isInSuperMarioMaker1: true
     isInSuperMarioMaker2: false

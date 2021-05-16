@@ -1,7 +1,7 @@
-export interface IsInProperty {
+import {IsInGameProperty} from './IsInGameProperty';
 
-    isInSuperMarioMaker1: boolean
-    isInSuperMarioMaker2: boolean
+export interface IsInProperty
+    extends IsInGameProperty {
 
     isInSuperMarioBrosStyle: boolean
     isInSuperMarioBros3Style: boolean
