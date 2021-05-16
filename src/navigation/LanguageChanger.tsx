@@ -1,7 +1,7 @@
 import './LanguageChanger.scss';
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {__, Languages} from "../lang/Languages";
+import {Link}             from "react-router-dom";
+import {__, Languages}    from "../lang/Languages";
 
 export default class LanguageChanger
     extends Component {

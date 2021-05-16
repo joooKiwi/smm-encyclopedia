@@ -1,4 +1,4 @@
-import {DayNumber, MonthNumber} from "./DateInstanceCreator";
+import {DayNumber, MonthNumber}            from "./DateInstanceCreator";
 import {GenericDateInstanceCreatorBuilder} from "./GenericDateInstanceCreatorBuilder";
 
 export class MonthDayYearDateInstanceCreator
