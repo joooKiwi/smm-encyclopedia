@@ -1,7 +1,7 @@
-import {CourseTheme} from "./CourseTheme";
-import {Entity} from "../simple/Entity";
-import {ThemeLoader} from "./ThemeLoader";
-import {WorldTheme} from "./WorldTheme";
+import {CourseTheme} from './CourseTheme';
+import {Entity}      from '../simple/Entity';
+import {ThemeLoader} from './ThemeLoader';
+import {WorldTheme}  from './WorldTheme';
 
 type ThemesInBothCourseAndWorld = 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
@@ -165,23 +165,21 @@ export abstract class Themes {
     }
 
     public static get values(): readonly Themes[] {
-        return this.__VALUES === undefined
-            ? this.__VALUES = [
-                this.GROUND,
-                this.UNDERGROUND,
-                this.UNDERWATER,
-                this.DESERT,
-                this.SNOW,
-                this.SKY,
-                this.FOREST,
-                this.GHOST_HOUSE,
-                this.AIRSHIP,
-                this.CASTLE,
+        return this.__VALUES ?? (this.__VALUES = [
+            this.GROUND,
+            this.UNDERGROUND,
+            this.UNDERWATER,
+            this.DESERT,
+            this.SNOW,
+            this.SKY,
+            this.FOREST,
+            this.GHOST_HOUSE,
+            this.AIRSHIP,
+            this.CASTLE,
 
-                this.VOLCANO,
-                this.SPACE,
-            ]
-            : this.__VALUES;
+            this.VOLCANO,
+            this.SPACE,
+        ]);
     }
 
 }
