@@ -1,14 +1,14 @@
-import {__, Languages} from '../lang/Languages';
-import AbstractApp     from "./AbstractApp";
-import BooleanResultContainer from "./tools/BooleanResultContainer";
-import {CourseTheme} from "../entity/theme/CourseTheme";
-import {EmptyCourseTheme} from "../entity/theme/EmptyCourseTheme";
-import {EmptyWorldTheme} from "../entity/theme/EmptyWorldTheme";
-import React from "react";
+import {__, Languages}             from '../lang/Languages';
+import AbstractApp                 from "./AbstractApp";
+import {CourseTheme}               from "../entity/theme/CourseTheme";
+import {EmptyCourseTheme}          from "../entity/theme/EmptyCourseTheme";
+import {EmptyWorldTheme}           from "../entity/theme/EmptyWorldTheme";
+import React                       from "react";
 import Table, {SingleTableContent} from "./tools/Table";
-import {ThemeLoader} from "../entity/theme/ThemeLoader";
-import {Themes} from "../entity/theme/Themes";
-import {WorldTheme} from "../entity/theme/WorldTheme";
+import {ThemeLoader}               from "../entity/theme/ThemeLoader";
+import {Themes}                    from "../entity/theme/Themes";
+import {WorldTheme}                from "../entity/theme/WorldTheme";
+import {YesOrNoResultContainer}    from './tools/text/YesOrNoResultContainer';
 
 export class EveryThemesApp
     extends AbstractApp {
@@ -34,8 +34,8 @@ export class EveryThemesApp
             content.push([englishName,
                 <>{index}</>,
                 <img src={this.themesEnum[index - 1].longImagePath} alt={englishName}/>,
-                <BooleanResultContainer boolean={isInCourseTheme} trueValue={__('Yes')} falseValue={__('No')}/>,
-                <BooleanResultContainer boolean={isInWorldTheme} trueValue={__('Yes')} falseValue={__('No')}/>,
+                <YesOrNoResultContainer boolean={isInCourseTheme}/>,
+                <YesOrNoResultContainer boolean={isInWorldTheme}/>,
                 <>{Languages.currentLanguage.get(name)}</>,
             ]);
             index++;
