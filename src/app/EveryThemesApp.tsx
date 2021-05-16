@@ -1,13 +1,17 @@
+import './EveryThemesApp.scss';
+
+import React from 'react';
+
 import {__, Languages}             from '../lang/Languages';
-import AbstractApp                 from "./AbstractApp";
-import {CourseTheme}               from "../entity/theme/CourseTheme";
-import {EmptyCourseTheme}          from "../entity/theme/EmptyCourseTheme";
-import {EmptyWorldTheme}           from "../entity/theme/EmptyWorldTheme";
-import React                       from "react";
-import Table, {SingleTableContent} from "./tools/Table";
-import {ThemeLoader}               from "../entity/theme/ThemeLoader";
-import {Themes}                    from "../entity/theme/Themes";
-import {WorldTheme}                from "../entity/theme/WorldTheme";
+import AbstractApp                 from './AbstractApp';
+import {CourseTheme}               from '../entity/theme/CourseTheme';
+import {EmptyCourseTheme}          from '../entity/theme/EmptyCourseTheme';
+import {EmptyWorldTheme}           from '../entity/theme/EmptyWorldTheme';
+import {Games}                     from '../entity/game/Games';
+import Table, {SingleTableContent} from './tools/Table';
+import {ThemeLoader}               from '../entity/theme/ThemeLoader';
+import {Themes}                    from '../entity/theme/Themes';
+import {WorldTheme}                from '../entity/theme/WorldTheme';
 import {YesOrNoResultContainer}    from './tools/text/YesOrNoResultContainer';
 
 export class EveryThemesApp
@@ -46,13 +50,22 @@ export class EveryThemesApp
         }
 
         return <Table
+            id="theme_table"
             caption={__('every themes')}
-            headers={['#', __('Image'), __('Is in course theme'), __('Is in world theme'), __('Is in SMM1'),  __('Is in SMM2') ,__('Language'),]}
+            headers={[
+                '#',
+                __('Image'),
+                __('Is in course theme'),
+                __('Is in world theme'),
+                {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                __('Language'),
+            ]}
             content={content}/>;
     }
 
     protected _mainContent(): JSX.Element {
-        console.log(this.themes);
+        // console.log(this.themes);//README this log is there only to help debugging.
         return <>{this._displayTableContent()}</>;
     }
 
