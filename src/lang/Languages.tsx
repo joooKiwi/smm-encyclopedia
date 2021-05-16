@@ -1,9 +1,9 @@
-import {DateInstanceCreator}        from "./date/DateInstanceCreator";
-import {DateInstanceCreatorBuilder} from "./date/DateInstanceCreatorBuilder";
-import i18n                         from "i18next";
+import {DateInstanceCreator}        from './date/DateInstanceCreator';
+import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
+import i18n                         from 'i18next';
 
 export type PossibleLanguagesAcronym =
-   | 'ja'
+    | 'ja'
     | 'en_US' | 'en_EU'
     | 'es_AM' | 'es_EU'
     | 'fr_CA' | 'fr_EU'
@@ -12,7 +12,7 @@ export type PossibleLanguagesAcronym =
     | 'ru' | 'ko'
     | 'zh_T' | 'zh_S';
 export type PossibleLanguagesEnglishName =
-   | 'Japanese'
+    | 'Japanese'
     | `English (${'America' | 'Europe'})`
     | `Spanish (${'America' | 'Europe'})`
     | `French (${'Canada' | 'Europe'})`
@@ -21,7 +21,7 @@ export type PossibleLanguagesEnglishName =
     | 'Russian' | 'Korean'
     | 'Chinese (Traditional)' | 'Chinese (Simplified)';
 export type PossibleLanguagesOriginalName =
-   | '日本語'
+    | '日本語'
     | `English (${'America' | 'Europe'})`
     | `Español (${'America' | 'Europa'})`
     | `Français (${'Canada' | 'Europe'})`
@@ -30,6 +30,45 @@ export type PossibleLanguagesOriginalName =
     | 'русский' | '한국어'
     | '简体(中文)' | '中國(傳統的)';
 
+/**
+ * <p>
+ *     An enum class containing every languages in the project.
+ *     The languages used are only those direct languages and not a basic language.
+ * </p>
+ *
+ * <p>
+ *     It also utilise the {@link DateInstanceCreator} in order
+ *     to create the date by the language standard.
+ * </p>
+ *
+ * <p>
+ *     The other utility class is the getter and setter from a {@link ClassWithAName}
+ *     to retrieve its property by the instance that is used.
+ * </p>
+ *
+ * As it stands, the languages are:
+ * <ol>
+ *     <li>en_AM - American English</li>
+ *     <li>en_EU - European English</li>
+ *     <li>fr_CA - Canadian French</li>
+ *     <li>fr_EU - European French</li>
+ *     <li>de    - German</li>
+ *     <li>es_AM - American Spanish</li>
+ *     <li>es_EU - European Spanish</li>
+ *     <li>it    - Italian</li>
+ *     <li>nl    - Dutch</li>
+ *     <li>pt_AM - American Portuguese</li>
+ *     <li>pt_EU - European Portuguese</li>
+ *     <li>ru    - Russian</li>
+ *     <li>ja    - Japanese</li>
+ *     <li>zh_S  - Simplified Chinese</li>
+ *     <li>zh_T  - Traditional Chinese</li>
+ *     <li>ko    - Korean</li>
+ * </ol>
+ *
+ * @see https://en.wikipedia.org/wiki/Russian_alphabet Russian alphabet
+ * @enum
+ */
 export abstract class Languages {
     public static readonly JAPANESE = new class extends Languages {
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -150,7 +189,7 @@ export abstract class Languages {
 
     private static __VALUES: readonly Languages[];
     private static __CURRENT_LANGUAGE: Languages;
-    private static __DEFAULT_LANGUAGE: PossibleLanguagesAcronym;
+    private static __DEFAULT_LANGUAGE: Languages;
 
     readonly #acronym;
     readonly #englishName;
@@ -187,18 +226,26 @@ export abstract class Languages {
         return this.__CURRENT_LANGUAGE;
     }
 
+    public static set currentLanguage(value: Languages) {
+        this.setCurrentLanguage(value);
+    }
+
     public static setCurrentLanguage(value: Languages | string): void {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
             i18n.changeLanguage((this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
     }
 
-    public static get defaultLanguage(): PossibleLanguagesAcronym {
+    public static get defaultLanguage(): Languages {
         return this.__DEFAULT_LANGUAGE;
     }
 
+    public static set defaultLanguage(value: Languages) {
+        this.setDefaultLanguage(value);
+    }
+
     public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
-        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? value : value.acronym;
+        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
     }
 
     public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
@@ -206,24 +253,24 @@ export abstract class Languages {
     public static getValue(value: Languages | string): Languages | null
     public static getValue(value: Languages | string): Languages | null {
         return typeof value === 'string'
-            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) || null
+            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) ?? null
             : value;
     }
 
     public static get values(): readonly Languages[] {
         return this.__VALUES ?? (this.__VALUES = [
-                this.JAPANESE,
-                this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
-                this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
-                this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
-                this.DUTCH,
-                this.GERMAN,
-                this.ITALIAN,
-                this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
-                this.RUSSIAN,
-                this.KOREAN,
-                this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
-            ]);
+            this.JAPANESE,
+            this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
+            this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
+            this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
+            this.DUTCH,
+            this.GERMAN,
+            this.ITALIAN,
+            this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
+            this.RUSSIAN,
+            this.KOREAN,
+            this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
+        ]);
     }
 
 }

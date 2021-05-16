@@ -1,3 +1,14 @@
 {
+  "yes": "sim",
+  "Yes": "Sim",
+  "no":  "não",
+  "No":  "Não",
 
+  "name": "nome",
+  "Name": "Nome",
+
+  "minimum": { "m": "mínima", "f": "mínima" },
+  "Minimum": { "m": "Mínimo", "f": "Mínima" },
+  "maximum": { "m": "máximo", "f": "máxima" },
+  "Maximum": { "m": "Máxima", "f": "Máxima" }
 }
