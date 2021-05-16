@@ -31,6 +31,42 @@ export type PossibleLanguagesOriginalName =
     | '简体(中文)' | '中國(傳統的)';
 
 /**
+ * <p>
+ *     An enum class containing every languages in the project.
+ *     The languages used are only those direct languages and not a basic language.
+ * </p>
+ *
+ * <p>
+ *     It also utilise the {@link DateInstanceCreator} in order
+ *     to create the date by the language standard.
+ * </p>
+ *
+ * <p>
+ *     The other utility class is the getter and setter from a {@link ClassWithAName}
+ *     to retrieve its property by the instance that is used.
+ * </p>
+ *
+ * As it stands, the languages are:
+ * <ol>
+ *     <li>en_AM - American English</li>
+ *     <li>en_EU - European English</li>
+ *     <li>fr_CA - Canadian French</li>
+ *     <li>fr_EU - European French</li>
+ *     <li>de    - German</li>
+ *     <li>es_AM - American Spanish</li>
+ *     <li>es_EU - European Spanish</li>
+ *     <li>it    - Italian</li>
+ *     <li>nl    - Dutch</li>
+ *     <li>pt_AM - American Portuguese</li>
+ *     <li>pt_EU - European Portuguese</li>
+ *     <li>ru    - Russian</li>
+ *     <li>ja    - Japanese</li>
+ *     <li>zh_S  - Simplified Chinese</li>
+ *     <li>zh_T  - Traditional Chinese</li>
+ *     <li>ko    - Korean</li>
+ * </ol>
+ *
+ * @see https://en.wikipedia.org/wiki/Russian_alphabet Russian alphabet
  * @enum
  */
 export abstract class Languages {
