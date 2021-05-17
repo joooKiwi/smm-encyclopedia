@@ -14,7 +14,7 @@ export function SMM2NameComponent(props: SMM2NameProperty) {
     const content_t = useTranslation('content').t;
 
     const {name, popoverOrientation} = props;
-    const id = props.id + name.english.toLowerCase().replace(' ', '_');
+    const id = props.id + '_'+name.english.toLowerCase().replace(' ', '_');
     const nameMap = name.toNameMap();
     const languagesToDisplay = getLanguagesToSetTheList(name);
     console.log(languagesToDisplay.map(language => language.englishName));
@@ -40,6 +40,7 @@ export function SMM2NameComponent(props: SMM2NameProperty) {
 function getLanguagesToSetTheList(name: SMM2Name): readonly SMM2Languages[] {
     const currentLanguage = SMM2Languages.currentLanguage;
     const returnedLanguages = [] as SMM2Languages[];
+
     if (!SMM2Languages.ENGLISH.isCurrentLanguage)
         returnedLanguages.push(...(typeof SMM2Languages.ENGLISH.original(name) === 'string' ? [SMM2Languages.ENGLISH] : [SMM2Languages.AMERICAN_ENGLISH, SMM2Languages.EUROPEAN_ENGLISH]));
     if (!SMM2Languages.FRENCH.isCurrentLanguage)
@@ -62,14 +63,6 @@ function getLanguagesToSetTheList(name: SMM2Name): readonly SMM2Languages[] {
         returnedLanguages.push(...(typeof SMM2Languages.CHINESE.original(name) === 'string' ? [SMM2Languages.CHINESE] : [SMM2Languages.CHINESE_SIMPLIFIED, SMM2Languages.CHINESE_TRADITIONAL]));
     if (!SMM2Languages.KOREAN.isCurrentLanguage)
         returnedLanguages.push(SMM2Languages.KOREAN);
-
-    // SMM2Languages.values
-    //     .filter(language => !(language === SMM2Languages.AMERICAN_ENGLISH || language === SMM2Languages.EUROPEAN_ENGLISH))
-    //     .filter(language => !(language === SMM2Languages.CANADIAN_FRENCH || language === SMM2Languages.EUROPEAN_FRENCH))
-    //     .filter(language => !(language === SMM2Languages.AMERICAN_SPANISH || language === SMM2Languages.EUROPEAN_SPANISH))
-    //     .filter(language => !(language === SMM2Languages.AMERICAN_PORTUGUESE || language === SMM2Languages.EUROPEAN_PORTUGUESE))
-    //     .filter(language => !(language === SMM2Languages.CHINESE_SIMPLIFIED || language === SMM2Languages.CHINESE_TRADITIONAL))
-    //     .filter(language => !language.isCurrentLanguageOrAssociatedWithIt);
 
     return returnedLanguages;
 }
