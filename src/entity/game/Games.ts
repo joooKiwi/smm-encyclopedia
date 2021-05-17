@@ -14,7 +14,7 @@ export class Games {
 
     private constructor(englishName: PossibleGameFullName) {
         this.#englishName = englishName;
-        this.#imagePath = '/game/logos/' + englishName;
+        this.#imagePath = '/game/logos/' + englishName + '.png';
     }
 
     public get englishName() {
