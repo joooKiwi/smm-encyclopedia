@@ -1,7 +1,8 @@
-import {SMM2Name}       from './SMM2Name';
-import {useTranslation} from 'react-i18next';
 import {Popover}        from 'bootstrap';
-import {SMM2Languages}  from './SMM2Languages';
+import {useTranslation} from 'react-i18next';
+
+import {SMM2Name}      from './SMM2Name';
+import {SMM2Languages} from './SMM2Languages';
 
 interface SMM2NameProperty {
     popoverOrientation?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
@@ -14,12 +15,10 @@ export function SMM2NameComponent(props: SMM2NameProperty) {
     const content_t = useTranslation('content').t;
 
     const {name, popoverOrientation} = props;
-    const id = props.id + '_'+name.english.toLowerCase().replace(' ', '_');
-    const nameMap = name.toNameMap();
+    const id = props.id + '_' + name.english.toLowerCase().replace(' ', '_');
     const languagesToDisplay = getLanguagesToSetTheList(name);
-    console.log(languagesToDisplay.map(language => language.englishName));
     let content = '<ol>';
-    nameMap.forEach((value, language) => {
+    name.toNameMap().forEach((value, language) => {
         if (languagesToDisplay.includes(language)) {
             content += `<li>${language_t(language.englishName)}: ${value}</li>`;
         }
@@ -53,7 +52,7 @@ function getLanguagesToSetTheList(name: SMM2Name): readonly SMM2Languages[] {
         returnedLanguages.push(SMM2Languages.ITALIAN);
     if (!SMM2Languages.DUTCH.isCurrentLanguage)
         returnedLanguages.push(SMM2Languages.DUTCH);
-    if (!(currentLanguage === SMM2Languages.AMERICAN_PORTUGUESE || currentLanguage === SMM2Languages.EUROPEAN_PORTUGUESE))
+    if (!SMM2Languages.PORTUGUESE.isCurrentLanguage)
         returnedLanguages.push(...(typeof SMM2Languages.PORTUGUESE.original(name) === 'string' ? [SMM2Languages.PORTUGUESE] : [SMM2Languages.AMERICAN_PORTUGUESE, SMM2Languages.EUROPEAN_PORTUGUESE]));
     if (!SMM2Languages.RUSSIAN.isCurrentLanguage)
         returnedLanguages.push(SMM2Languages.RUSSIAN);
