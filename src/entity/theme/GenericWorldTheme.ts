@@ -25,4 +25,9 @@ export class GenericWorldTheme
         return true;
     }
 
+
+    public toNameMap() {
+        return this.name.toNameMap();
+    }
+
 }

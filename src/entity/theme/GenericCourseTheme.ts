@@ -20,4 +20,9 @@ export class GenericCourseTheme
         return this.#entities.get;
     }
 
+
+    public toNameMap() {
+        return this.name.toNameMap();
+    }
+
 }

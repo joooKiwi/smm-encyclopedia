@@ -26,6 +26,10 @@ export class AbstractTheme
     }
 
 
+    public get originalEnglish() {
+        return this.name.originalEnglish;
+    }
+
     public get english() {
         return this.name.english;
     }
@@ -38,6 +42,10 @@ export class AbstractTheme
         return this.name.europeanEnglish;
     }
 
+
+    public get originalFrench() {
+        return this.name.originalFrench;
+    }
 
     public get french() {
         return this.name.french;
@@ -56,6 +64,10 @@ export class AbstractTheme
         return this.name.german;
     }
 
+
+    public get originalSpanish() {
+        return this.name.originalSpanish;
+    }
 
     public get spanish() {
         return this.name.spanish;
@@ -80,6 +92,10 @@ export class AbstractTheme
     }
 
 
+    public get originalPortuguese() {
+        return this.name.originalPortuguese;
+    }
+
     public get portuguese() {
         return this.name.portuguese;
     }
@@ -102,6 +118,10 @@ export class AbstractTheme
         return this.name.japanese;
     }
 
+
+    public get originalChinese() {
+        return this.name.originalChinese;
+    }
 
     public get chinese() {
         return this.name.chinese;
@@ -136,5 +156,9 @@ export class AbstractTheme
     }
 
     //endregion -------------------- Is in game properties --------------------
+
+    public toNameMap() {
+        return this.name.toNameMap();
+    }
 
 }

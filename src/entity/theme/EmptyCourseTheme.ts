@@ -11,14 +11,19 @@ export class EmptyCourseTheme
 
     private static readonly instance = new EmptyCourseTheme();
     public static readonly EMPTY_ARRAY = [];
+    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
-        super(EmptyName.get, EmptyIsInProperty.get, () => EmptyCourseTheme.EMPTY_ARRAY)
+        super(EmptyName.get, EmptyIsInProperty.get, () => EmptyCourseTheme.EMPTY_ARRAY,);
     }
 
 
     public static get get() {
         return this.instance;
+    }
+
+    public toNameMap() {
+        return EmptyCourseTheme.EMPTY_MAP;
     }
 
     public toString() {

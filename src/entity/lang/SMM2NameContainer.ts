@@ -1,19 +1,24 @@
-import {AmericanAndEuropeanLanguage} from "./AmericanAndEuropeanLanguage";
-import {AmericanAndEuropeanLanguageContainer} from "./AmericanAndEuropeanLanguageContainer";
-import {CanadianAndEuropeanLanguage} from "./CanadianAndEuropeanLanguage";
-import {CanadianAndEuropeanLanguageContainer} from "./CanadianAndEuropeanLanguageContainer";
-import {ChineseLanguage} from "./ChineseLanguage";
-import {ChineseLanguageContainer} from "./ChineseLanguageContainer";
-import {SimpleLanguage} from "./SimpleLanguage";
-import {SimpleLanguageContainer} from "./SimpleLanguageContainer";
-import {SMM2Name} from "./SMM2Name";
-import {Languages} from "../../lang/Languages";
+import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './AmericanAndEuropeanLanguage';
+import {AmericanAndEuropeanLanguageContainer}                    from './AmericanAndEuropeanLanguageContainer';
+import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './CanadianAndEuropeanLanguage';
+import {CanadianAndEuropeanLanguageContainer}                    from './CanadianAndEuropeanLanguageContainer';
+import {ChineseLanguage, ChineseOriginal}                        from './ChineseLanguage';
+import {ChineseLanguageContainer}                                from './ChineseLanguageContainer';
+import {Languages}                                               from '../../lang/Languages';
+import {SimpleLanguage}                                          from './SimpleLanguage';
+import {SimpleLanguageContainer}                                 from './SimpleLanguageContainer';
+import {SMM2Name}                                                from './SMM2Name';
+import {SMM2Languages}                                           from './SMM2Languages';
 
 export class SMM2NameContainer
     implements SMM2Name {
 
-    readonly #french: CanadianAndEuropeanLanguage;
+    //region -------------------- Attributes --------------------
+
+    #map?: Map<SMM2Languages, string>;
+
     readonly #english: AmericanAndEuropeanLanguage;
+    readonly #french: CanadianAndEuropeanLanguage;
     readonly #german: SimpleLanguage;
     readonly #spanish: AmericanAndEuropeanLanguage;
     readonly #italian: SimpleLanguage;
@@ -24,16 +29,18 @@ export class SMM2NameContainer
     readonly #chinese: ChineseLanguage;
     readonly #korean: SimpleLanguage;
 
-    public constructor(english: string | [american: string, european: string],
-                       french: string | [canadian: string, european: string],
+    //endregion -------------------- Attributes --------------------
+
+    public constructor(english: AmericanOrEuropeanOriginal,
+                       french: CanadianOrEuropeanOriginal,
                        german: string,
-                       spanish: string | [american: string, european: string],
+                       spanish: AmericanOrEuropeanOriginal,
                        italian: string,
                        dutch: string,
-                       portuguese: string | [american: string, european: string],
+                       portuguese: AmericanOrEuropeanOriginal,
                        russian: string,
                        japanese: string,
-                       chinese: string | [simplified: string, traditional: string],
+                       chinese: ChineseOriginal,
                        korean: string,) {
         this.#english = typeof english === 'string' ? new AmericanAndEuropeanLanguageContainer(english) : new AmericanAndEuropeanLanguageContainer(...english);
         this.#french = typeof french === 'string' ? new CanadianAndEuropeanLanguageContainer(french) : new CanadianAndEuropeanLanguageContainer(...french);
@@ -54,6 +61,10 @@ export class SMM2NameContainer
     }
 
 
+    public get originalEnglish() {
+        return this.#english.original;
+    }
+
     public get english() {
         return this.#english.value;
     }
@@ -66,6 +77,9 @@ export class SMM2NameContainer
         return this.#english.european;
     }
 
+    public get originalFrench() {
+        return this.#french.original;
+    }
 
     public get french() {
         return this.#french.value;
@@ -84,6 +98,10 @@ export class SMM2NameContainer
         return this.#german.value;
     }
 
+
+    public get originalSpanish() {
+        return this.#spanish.original;
+    }
 
     public get spanish() {
         return this.#spanish.value;
@@ -108,6 +126,10 @@ export class SMM2NameContainer
     }
 
 
+    public get originalPortuguese() {
+        return this.#portuguese.original;
+    }
+
     public get portuguese() {
         return this.#portuguese.value;
     }
@@ -131,6 +153,10 @@ export class SMM2NameContainer
     }
 
 
+    public get originalChinese() {
+        return this.#chinese.original;
+    }
+
     public get chinese() {
         return this.#chinese.value;
     }
@@ -148,4 +174,22 @@ export class SMM2NameContainer
         return this.#korean.value;
     }
 
+
+    public toNameMap() {
+        return this.#map ?? (this.#map = this.__createMap());
+    }
+
+    private __createMap() {
+        const map = new Map<SMM2Languages, string>();
+        SMM2Languages.values.forEach(language => map.set(language, language.get(this)));
+        return map;
+    }
+
+}
+
+export namespace SMM2NameContainer {
+    export namespace chinese {
+        export namespace test {
+        }
+    }
 }
