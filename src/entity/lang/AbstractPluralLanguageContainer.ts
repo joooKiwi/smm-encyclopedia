@@ -1,5 +1,5 @@
-import {PluralLanguage} from "./PluralLanguage";
-import {SimpleLanguageContainer} from "./SimpleLanguageContainer";
+import {PluralLanguage}          from './PluralLanguage';
+import {SimpleLanguageContainer} from './SimpleLanguageContainer';
 
 export abstract class AbstractPluralLanguageContainer<T extends string>
     extends SimpleLanguageContainer
@@ -7,10 +7,8 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
 
     public static DEFAULT_NULL_LANGUAGE = 'N/A';
 
-    readonly #values?;
+    #values?: Map<T, string>;
 
-    protected constructor(value: string)
-    protected constructor(values: readonly [T, string][])
     protected constructor(values: string | readonly [T, string][]) {
         super(values instanceof Array ? AbstractPluralLanguageContainer.DEFAULT_NULL_LANGUAGE : values);
         if (values instanceof Array)
@@ -19,7 +17,7 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
 
 
     protected get values(): Map<T, string> {
-        return this.#values ?? new Map();
+        return this.#values ?? (this.#values = new Map());
     }
 
     public get(language: T): string {
