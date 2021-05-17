@@ -56,8 +56,8 @@ export class EveryThemesApp
             headers={[
                 '#',
                 __('Image'),
-                __('Is in course theme'),
-                __('Is in world theme'),
+                __('Is in the course theme'),
+                __('Is in the world theme'),
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
                 __('Language'),

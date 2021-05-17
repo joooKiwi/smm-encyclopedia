@@ -12,8 +12,10 @@
   "maximum": { "m": "maximum", "f": "maximum" },
   "Maximum": { "m": "Maximum", "f": "Maximum" },
 
-  "Limit in the editor": "Limit dans l'éditeur",
-  "Limit while playing": "Limit quand est en train de joer",
+  "image": "image",
+  "Image": "Image",
 
+  "language":           "langue",
+  "Language":           "Langue",
   "In other languages": "Dans d'autres langues"
 }
