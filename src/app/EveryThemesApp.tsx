@@ -13,6 +13,7 @@ import {ThemeLoader}               from '../entity/theme/ThemeLoader';
 import {Themes}                    from '../entity/theme/Themes';
 import {WorldTheme}                from '../entity/theme/WorldTheme';
 import {YesOrNoResultContainer}    from './tools/text/YesOrNoResultContainer';
+import {SMM2NameComponent}         from '../entity/lang/SMM2NameComponent';
 
 export class EveryThemesApp
     extends AbstractApp {
@@ -44,7 +45,7 @@ export class EveryThemesApp
                 <YesOrNoResultContainer boolean={isInWorldTheme}/>,
                 <YesOrNoResultContainer boolean={isInSMM1}/>,
                 <YesOrNoResultContainer boolean={isInSMM2}/>,
-                <>{Languages.currentLanguage.get(name)}</>,
+                <SMM2NameComponent id="theme_name" name={name} popoverOrientation="left"/>,
             ]);
             index++;
         }
