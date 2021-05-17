@@ -1,19 +1,19 @@
 import './EveryThemesApp.scss';
 
-import React from 'react';
+import {useTranslation} from 'react-i18next';
+import React            from 'react';
 
-import {__, Languages}             from '../lang/Languages';
 import AbstractApp                 from './AbstractApp';
 import {CourseTheme}               from '../entity/theme/CourseTheme';
 import {EmptyCourseTheme}          from '../entity/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}           from '../entity/theme/EmptyWorldTheme';
 import {Games}                     from '../entity/game/Games';
+import {SMM2NameComponent}         from '../entity/lang/SMM2NameComponent';
 import Table, {SingleTableContent} from './tools/Table';
 import {ThemeLoader}               from '../entity/theme/ThemeLoader';
 import {Themes}                    from '../entity/theme/Themes';
 import {WorldTheme}                from '../entity/theme/WorldTheme';
 import {YesOrNoResultContainer}    from './tools/text/YesOrNoResultContainer';
-import {SMM2NameComponent}         from '../entity/lang/SMM2NameComponent';
 
 export class EveryThemesApp
     extends AbstractApp {
@@ -49,20 +49,7 @@ export class EveryThemesApp
             ]);
             index++;
         }
-
-        return <Table
-            id="theme_table"
-            caption={__('every themes')}
-            headers={[
-                '#',
-                __('Image'),
-                __('Is in the course theme'),
-                __('Is in the world theme'),
-                {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                __('Language'),
-            ]}
-            content={content}/>;
+        return <TableFromTheme content={content}/>;
     }
 
     protected _mainContent(): JSX.Element {
@@ -70,4 +57,23 @@ export class EveryThemesApp
         return <>{this._displayTableContent()}</>;
     }
 
+}
+
+function TableFromTheme(props: { content: readonly SingleTableContent[] }): JSX.Element {
+    const content_t = useTranslation('content').t;
+    const gameContent_t = useTranslation('game').t;
+
+    return <Table
+        id="theme_table"
+        caption={gameContent_t('every.Themes')}
+        headers={[
+            '#',
+            content_t('Image'),
+            gameContent_t('Is in.the course theme'),
+            gameContent_t('Is in.the world theme'),
+            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+            content_t('Language'),
+        ]}
+        content={props.content}/>;
 }

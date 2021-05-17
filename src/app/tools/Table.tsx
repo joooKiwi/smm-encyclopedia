@@ -14,8 +14,8 @@ interface SimpleImageHeader {
 interface SimpleTableComponent {
     id: string
     caption: string
-    headers: (string | SimpleImageHeader)[]
-    content: SingleTableContent[]
+    headers: readonly (string | SimpleImageHeader)[]
+    content: readonly SingleTableContent[]
 }
 
 export default class Table
