@@ -1,5 +1,6 @@
 import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from "react-router-dom";
 import {EveryEntitiesApp}                                               from "../app/EveryEntitiesApp";
+import {EveryEntityCategoriesApp}                                       from '../app/EveryEntityCategoriesApp';
 import {EveryEntityGroupApp}                                            from "../app/EveryEntityGroupApp";
 import {EveryLimitsApp}                                                 from "../app/EveryLimitsApp";
 import {EveryThemesApp}                                                 from "../app/EveryThemesApp";
@@ -10,11 +11,12 @@ import React                                                            from "re
 type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
 
 const everySimpleRoutes: SimpleRoute[] = [
-    {path: '/home', renderCallback: () => <HomeApp/>,},
-    {path: '/every/entity', renderCallback: () => <EveryEntitiesApp/>,},
-    {path: '/every/group', renderCallback: () => <EveryEntityGroupApp/>,},
-    {path: '/every/limit', renderCallback: () => <EveryLimitsApp/>,},
-    {path: '/every/theme', renderCallback: () => <EveryThemesApp/>,},
+    {path: '/home',           renderCallback: () => <HomeApp/>,},
+    {path: '/every/entity',   renderCallback: () => <EveryEntitiesApp/>,},
+    {path: '/every/category', renderCallback: () => <EveryEntityCategoriesApp/>,},
+    {path: '/every/group',    renderCallback: () => <EveryEntityGroupApp/>,},
+    {path: '/every/limit',    renderCallback: () => <EveryLimitsApp/>,},
+    {path: '/every/theme',    renderCallback: () => <EveryThemesApp/>,},
 ];
 
 export default function Routes() {
