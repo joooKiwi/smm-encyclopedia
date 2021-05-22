@@ -2,8 +2,8 @@ import React            from 'react';
 import {Link}           from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
-import {Languages}     from '../lang/Languages';
-import LanguageChanger from './LanguageChanger';
+import {Languages}          from '../lang/Languages';
+import ChangeTheLanguageTab from './ChangeTheLanguageTab';
 
 export default function Navigation(): JSX.Element {
     const t_content = useTranslation('content').t;
@@ -29,7 +29,7 @@ export default function Navigation(): JSX.Element {
                     </li>
                 </ul>
                 <ul id="right-navbar-container" className="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <LanguageChanger/>
+                    <ChangeTheLanguageTab/>
                 </ul>
             </div>
         </div>
