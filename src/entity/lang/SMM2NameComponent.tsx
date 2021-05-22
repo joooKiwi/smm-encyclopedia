@@ -37,7 +37,6 @@ export function SMM2NameComponent(props: SMM2NameProperty) {
 }
 
 function getLanguagesToSetTheList(name: SMM2Name): readonly SMM2Languages[] {
-    const currentLanguage = SMM2Languages.currentLanguage;
     const returnedLanguages = [] as SMM2Languages[];
 
     if (!SMM2Languages.ENGLISH.isCurrentLanguage)
