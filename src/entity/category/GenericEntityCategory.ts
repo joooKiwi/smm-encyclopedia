@@ -1,12 +1,12 @@
 import {EntityCategory} from './EntityCategory';
-import {SMM2Name}       from '../lang/SMM2Name';
+import {Name}           from '../../lang/name/Name';
 
 export class GenericEntityCategory
     implements EntityCategory {
 
     readonly #name;
 
-    public constructor(name: SMM2Name) {
+    public constructor(name: Name) {
         this.#name = name;
     }
 

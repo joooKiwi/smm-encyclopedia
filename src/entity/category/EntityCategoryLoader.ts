@@ -7,7 +7,7 @@ import {EntityCategoryTemplate} from "./EntityCategoryTemplate";
 import {GenericEntityCategory} from "./GenericEntityCategory";
 import {Loader} from "../../util/Loader";
 import {NameCreator} from "../lang/NameCreator";
-import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
+import {NameBuilder} from "../lang/NameBuilder";
 
 export type CategoryType = 'Terrain' | 'Item' | 'Gizmo' | 'Enemy';
 
@@ -81,7 +81,7 @@ export class EntityCategoryLoader
                 .onFinalObjectCreated(finalContent => NameCreator.addEnglishReference(finalContent.name, templateMap, finalContent))
                 .onInitialisationEnd(() =>
                     templateMap.forEach((template, englishName) =>
-                        finalReferences.set(englishName, new GenericEntityCategory(new SMM2NameBuilder(template.name).build()))));
+                        finalReferences.set(englishName, new GenericEntityCategory(new NameBuilder(template.name).build()))));
             console.log(csvLoader.content);
             return finalReferences;
         });

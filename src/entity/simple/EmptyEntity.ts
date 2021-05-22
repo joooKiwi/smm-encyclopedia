@@ -1,8 +1,8 @@
 import {AbstractEntity}       from './AbstractEntity';
-import {EmptyName}            from '../lang/EmptyName';
 import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
+import {EmptyName}            from '../../lang/name/EmptyName';
 
 /**
  * @nullObjectPattern

@@ -1,10 +1,10 @@
-import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {SMM2Name}         from '../lang/SMM2Name';
+import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
+import {IsInGameProperty}        from '../properties/IsInGameProperty';
 
 export interface Theme
-    extends SMM2Name, IsInGameProperty {
+    extends ClassWithEveryLanguages, IsInGameProperty {
 
-    name: SMM2Name;
+    name: ClassWithEveryLanguages;
 
     isInProperty: IsInGameProperty
 

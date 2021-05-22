@@ -1,17 +1,17 @@
-import {SMM2Name}                 from '../lang/SMM2Name';
 import {IsInProperty}             from '../properties/IsInProperty';
 import {EntityCategory}           from '../category/EntityCategory';
 import {EntityReferences}         from '../properties/EntityReferences';
 import {GenericEntity}            from './GenericEntity';
 import {IsInOnlySMM2GameProperty} from '../properties/IsInOnlySMM2GameProperty';
 import {IsInOnlySMM2Property}     from '../properties/IsInOnlySMM2Property';
+import {Name}                     from '../../lang/name/Name';
 import {SMM2ExclusiveEntity}      from './SMM2ExclusiveEntity';
 
 export class SMM2ExclusiveGenericEntity
     extends GenericEntity
     implements SMM2ExclusiveEntity {
 
-    public constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+    public constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
         super(name, category, validateIsInProperty(isInProperty), references,);
     }
 

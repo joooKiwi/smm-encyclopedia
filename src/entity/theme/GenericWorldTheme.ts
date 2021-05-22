@@ -1,14 +1,14 @@
 import {AbstractTheme}             from './AbstractTheme';
 import {IsInGamePropertyContainer} from '../properties/IsInGamePropertyContainer';
 import {IsInOnlySMM2GameProperty}  from '../properties/IsInOnlySMM2GameProperty';
-import {SMM2Name}                  from '../lang/SMM2Name';
+import {Name}                      from '../../lang/name/Name';
 import {WorldTheme}                from './WorldTheme';
 
 export class GenericWorldTheme
     extends AbstractTheme
     implements WorldTheme {
 
-    public constructor(name: SMM2Name) {
+    public constructor(name: Name) {
         super(name, IsInGamePropertyContainer.get(false, true));
     }
 

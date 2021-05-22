@@ -1,5 +1,5 @@
+import {EmptyName}             from '../../lang/name/EmptyName';
 import {GenericEntityCategory} from './GenericEntityCategory';
-import {EmptyName}             from '../lang/EmptyName';
 
 /**
  * @nullObjectPattern

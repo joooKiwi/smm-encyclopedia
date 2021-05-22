@@ -1,4 +1,3 @@
-import {SMM2Name}                 from '../lang/SMM2Name';
 import {IsInProperty}             from '../properties/IsInProperty';
 import {EmptyEntityCategory}      from '../category/EmptyEntityCategory';
 import {EntityCategory}           from '../category/EntityCategory';
@@ -6,13 +5,14 @@ import {EntityReferences}         from '../properties/EntityReferences';
 import {GenericEntity}            from './GenericEntity';
 import {IsInOnlySMM1GameProperty} from '../properties/IsInOnlySMM1GameProperty';
 import {IsInOnlySMM1Property}     from '../properties/IsInOnlySMM1Property';
+import {Name}                     from '../../lang/name/Name';
 import {SMM1ExclusiveEntity}      from './SMM1ExclusiveEntity';
 
 export class SMM1ExclusiveGenericEntity
     extends GenericEntity
     implements SMM1ExclusiveEntity {
 
-    public constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+    public constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
         super(name, validateIsEmptyCategory(category), validateIsInProperty(isInProperty), references);
     }
 

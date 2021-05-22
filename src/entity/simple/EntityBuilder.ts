@@ -8,8 +8,8 @@ import {EntityLink} from "../entityTypes";
 import {EmptyEntity} from "./EmptyEntity";
 import {SMM1ExclusiveGenericEntity} from "./SMM1ExclusiveGenericEntity";
 import {SMM2ExclusiveGenericEntity} from "./SMM2ExclusiveGenericEntity";
-import {SMM2NameBuilder} from "../lang/SMM2NameBuilder";
-import {EntityCategory} from "../category/EntityCategory";
+import {NameBuilder}                from "../lang/NameBuilder";
+import {EntityCategory}             from "../category/EntityCategory";
 import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
 import {Builder} from "../../util/Builder";
 
@@ -37,7 +37,7 @@ export class EntityBuilder
 
 
     private __createName() {
-        return new SMM2NameBuilder(this.template.name).build();
+        return new NameBuilder(this.template.name).build();
     }
 
     private __getEntityCategory() {

@@ -5,18 +5,18 @@ import CSVLoader                             from '../../loader/CSVLoader';
 import {CourseTheme}                         from './CourseTheme';
 import {DebugEntityReferences, EntityLoader} from '../simple/EntityLoader';
 import {EmptyCourseTheme}                    from './EmptyCourseTheme';
-import {EmptyWorldTheme}                     from './EmptyWorldTheme';
-import {Entity}                              from '../simple/Entity';
-import {IsInGamePropertyContainer}           from '../properties/IsInGamePropertyContainer';
-import {Loader}                              from '../../util/Loader';
-import {NameCreator}                         from '../lang/NameCreator';
-import {GenericWorldTheme}                   from './GenericWorldTheme';
-import {GenericCourseTheme}                  from './GenericCourseTheme';
-import {SMM2Name}                            from '../lang/SMM2Name';
-import {SMM2NameBuilder}                     from '../lang/SMM2NameBuilder';
-import {Themes}                              from './Themes';
-import {ThemeTemplate}                       from './ThemeTemplate';
-import {WorldTheme}                          from './WorldTheme';
+import {EmptyWorldTheme}           from './EmptyWorldTheme';
+import {Entity}                    from '../simple/Entity';
+import {IsInGamePropertyContainer} from '../properties/IsInGamePropertyContainer';
+import {Loader}                    from '../../util/Loader';
+import {GenericWorldTheme}         from './GenericWorldTheme';
+import {GenericCourseTheme}        from './GenericCourseTheme';
+import {Name}                      from '../../lang/name/Name';
+import {NameBuilder}               from '../lang/NameBuilder';
+import {NameCreator}               from '../lang/NameCreator';
+import {Themes}                    from './Themes';
+import {ThemeTemplate}             from './ThemeTemplate';
+import {WorldTheme}                from './WorldTheme';
 
 
 type ThemePropertiesArray = [
@@ -99,13 +99,13 @@ export class ThemeLoader
                 .onFinalObjectCreated(finalContent => NameCreator.addEnglishReference(finalContent.name, templateMap, finalContent))
                 .onInitialisationEnd(() =>
                     templateMap.forEach((template, englishName) =>
-                        finalReferences.set(englishName, this.__createReference(template, new SMM2NameBuilder(template.name).build(),))))
+                        finalReferences.set(englishName, this.__createReference(template, new NameBuilder(template.name).build(),))))
                 .load();
             return finalReferences;
         });
     }
 
-    private __createReference(template: ThemeTemplate, name: SMM2Name,): [CourseTheme, WorldTheme,] {
+    private __createReference(template: ThemeTemplate, name: Name,): [CourseTheme, WorldTheme,] {
         const isInCourseTheme = template.isIn.theme.course;
         const isInWorldTheme = template.isIn.theme.world;
 
@@ -116,7 +116,7 @@ export class ThemeLoader
                 : [EmptyCourseTheme.get, new GenericWorldTheme(name),];
     }
 
-    private __createCourseTheme(template: ThemeTemplate, name: SMM2Name,): CourseTheme {
+    private __createCourseTheme(template: ThemeTemplate, name: Name,): CourseTheme {
         return new GenericCourseTheme(
             name,
             IsInGamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2']),

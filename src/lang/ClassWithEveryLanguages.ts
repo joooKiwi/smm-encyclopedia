@@ -1,30 +1,39 @@
-export interface ClassWithEveryLanguages {
+import {ClassWithLanguages}         from './ClassWithLanguages';
+import {EveryLanguages}             from './EveryLanguages';
+import {ChineseOriginal}            from './name/components/ChineseLanguage';
+import {AmericanOrEuropeanOriginal} from './name/components/AmericanAndEuropeanLanguage';
+import {CanadianOrEuropeanOriginal} from './name/components/CanadianAndEuropeanLanguage';
 
-    americanEnglish: string
-    europeanEnglish: string
+/**
+ * <p>
+ *     A class with every languages including the simple language.
+ * </p>
+ *
+ * <p>
+ *     As a reference, this class utilise the simple language without the region as well
+ *     as every languages included inside {@link ClassWithLanguages}
+ * </p>
+ */
+export interface ClassWithEveryLanguages
+    extends ClassWithLanguages {
 
-    canadianFrench: string
-    europeanFrench: string
+    languageValue: string
 
-    german: string
+    english: string
+    originalEnglish: AmericanOrEuropeanOriginal
 
-    americanSpanish: string
-    europeanSpanish: string
+    french: string
+    originalFrench: CanadianOrEuropeanOriginal
 
-    italian: string
+    spanish: string
+    originalSpanish: AmericanOrEuropeanOriginal
 
-    dutch: string
+    portuguese: string
+    originalPortuguese: AmericanOrEuropeanOriginal
 
-    americanPortuguese: string
-    europeanPortuguese: string
+    chinese: string
+    originalChinese: ChineseOriginal
 
-    russian: string
-
-    japanese: string
-
-    simplifiedChinese: string
-    traditionalChinese: string
-
-    korean: string
+    toNameMap(): Map<EveryLanguages, string>
 
 }

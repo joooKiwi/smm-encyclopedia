@@ -1,7 +1,7 @@
 import {DateInstanceCreator}        from './date/DateInstanceCreator';
 import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
-import i18n                         from 'i18next';
-import {ClassWithEveryLanguages}    from './ClassWithEveryLanguages';
+import i18n                 from 'i18next';
+import {ClassWithLanguages} from './ClassWithLanguages';
 
 export type PossibleLanguagesAcronym =
     | 'en_AM' | 'en_EU'
@@ -46,7 +46,7 @@ export type PossibleLanguagesOriginalName =
  * </p>
  *
  * <p>
- *     The other utility class is the getter and setter from a {@link ClassWithEveryLanguages}
+ *     The other utility class is the getter and setter from a {@link ClassWithLanguages}
  *     to retrieve its property by the instance that is used.
  * </p>
  *
@@ -89,8 +89,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.americanEnglish;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.americanEnglish;
         }
 
     }('en_AM', 'English (America)', 'English (America)',);
@@ -100,8 +100,8 @@ export abstract class Languages {
             return Languages.AMERICAN_ENGLISH.newDateInstanceCreator;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.europeanEnglish;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.europeanEnglish;
         }
 
     }('en_EU', 'English (Europe)', 'English (Europe)',);
@@ -114,8 +114,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.german;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.german;
         }
 
     }('de', 'German', 'Deutsche',);
@@ -128,8 +128,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.canadianFrench;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.canadianFrench;
         }
 
     }('fr_CA', 'French (Canada)', 'Français (Canada)',);
@@ -139,8 +139,8 @@ export abstract class Languages {
             return Languages.CANADIAN_FRENCH.newDateInstanceCreator;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.europeanFrench;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.europeanFrench;
         }
 
     }('fr_EU', 'French (Europe)', 'Français (Europe)',);
@@ -152,8 +152,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.americanSpanish;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.americanSpanish;
         }
 
     }('es_AM', 'Spanish (America)', 'Español (America)',);
@@ -163,8 +163,8 @@ export abstract class Languages {
             return Languages.AMERICAN_SPANISH.newDateInstanceCreator;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.europeanSpanish;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.europeanSpanish;
         }
 
     }('es_EU', 'Spanish (Europe)', 'Español (Europa)',);
@@ -177,8 +177,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.italian;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.italian;
         }
 
     }('it', 'Italian', 'Italiano',);
@@ -190,8 +190,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.dutch;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.dutch;
         }
 
     }('nl', 'Dutch', 'Nederlands',);
@@ -203,8 +203,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.americanPortuguese;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.americanPortuguese;
         }
 
     }('pt_AM', 'Portuguese (America)', 'Português (América)',);
@@ -214,8 +214,8 @@ export abstract class Languages {
             return Languages.AMERICAN_PORTUGUESE.newDateInstanceCreator;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.europeanPortuguese;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.europeanPortuguese;
         }
 
     }('pt_EU', 'Portuguese (Europe)', 'Português (Europa)',);
@@ -228,8 +228,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.russian;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.russian;
         }
 
     }('ru', 'Russian', 'русский');
@@ -243,8 +243,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.japanese;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.japanese;
         }
 
     }('ja', 'Japanese', '日本語',);
@@ -254,8 +254,8 @@ export abstract class Languages {
             return Languages.JAPANESE.newDateInstanceCreator;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.traditionalChinese;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.traditionalChinese;
         }
 
     }('zh_T', 'Traditional chinese', '简体中文',);
@@ -265,8 +265,8 @@ export abstract class Languages {
             return Languages.JAPANESE.newDateInstanceCreator;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.simplifiedChinese;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.simplifiedChinese;
         }
 
     }('zh_S', 'Simplified chinese', '繁體中文',);
@@ -280,8 +280,8 @@ export abstract class Languages {
                 .build();
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
-            return classWithEveryLanguages.korean;
+        public get(classWithLanguages: ClassWithLanguages): string {
+            return classWithLanguages.korean;
         }
 
     }('ko', 'Korean', '한국어',);
@@ -316,7 +316,7 @@ export abstract class Languages {
 
     public abstract get newDateInstanceCreator(): DateInstanceCreator;
 
-    public abstract get(classWithEveryLanguages: ClassWithEveryLanguages): string;
+    public abstract get(classWithLanguages: ClassWithLanguages): string;
 
     private __setLanguageToHTML(): this {
         document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym))

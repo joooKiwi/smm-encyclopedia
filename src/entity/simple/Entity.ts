@@ -1,18 +1,18 @@
-import {SMM2Name} from "../lang/SMM2Name";
-import {IsInProperty} from "../properties/IsInProperty";
-import {EntityReferences} from "../properties/EntityReferences";
-import {EntityCategory} from "../category/EntityCategory";
+import {IsInProperty}            from '../properties/IsInProperty';
+import {EntityReferences}        from '../properties/EntityReferences';
+import {EntityCategory}          from '../category/EntityCategory';
+import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
 
 export interface Entity
-    extends SMM2Name, IsInProperty, EntityReferences {
+    extends ClassWithEveryLanguages, IsInProperty, EntityReferences {
 
-    name: SMM2Name
+    name: ClassWithEveryLanguages
 
     //region -------------------- Category properties --------------------
 
     category: EntityCategory
 
-    categoryName: SMM2Name
+    categoryName: ClassWithEveryLanguages
 
     categoryLanguageValue: string
 

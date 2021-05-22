@@ -1,11 +1,11 @@
-import {SMM2Name} from './SMM2Name';
+import {Name} from './Name';
 
 /**
  * @nullObjectPattern
  * @singleton
  */
 export class EmptyName
-    implements SMM2Name {
+    implements Name {
 
     private static readonly instance = new EmptyName();
     public static readonly EMPTY_STRING = '';

@@ -1,5 +1,5 @@
 import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {SMM2Name}         from '../lang/SMM2Name';
+import {Name}             from '../../lang/name/Name';
 import {Theme}            from './Theme';
 
 export class AbstractTheme
@@ -8,7 +8,7 @@ export class AbstractTheme
     readonly #name;
     readonly #isInProperty;
 
-    protected constructor(name: SMM2Name, isInProperty: IsInGameProperty) {
+    protected constructor(name: Name, isInProperty: IsInGameProperty) {
         this.#name = name;
         this.#isInProperty = isInProperty;
     }

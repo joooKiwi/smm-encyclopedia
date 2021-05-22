@@ -1,21 +1,22 @@
-import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './AmericanAndEuropeanLanguage';
-import {AmericanAndEuropeanLanguageContainer}                    from './AmericanAndEuropeanLanguageContainer';
-import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './CanadianAndEuropeanLanguage';
-import {CanadianAndEuropeanLanguageContainer}                    from './CanadianAndEuropeanLanguageContainer';
-import {ChineseLanguage, ChineseOriginal}                        from './ChineseLanguage';
-import {ChineseLanguageContainer}                                from './ChineseLanguageContainer';
-import {Languages}                                               from '../../lang/Languages';
-import {SimpleLanguage}                                          from './SimpleLanguage';
-import {SimpleLanguageContainer}                                 from './SimpleLanguageContainer';
-import {SMM2Name}                                                from './SMM2Name';
-import {SMM2Languages}                                           from './SMM2Languages';
+import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './components/AmericanAndEuropeanLanguage';
+import {AmericanAndEuropeanLanguageContainer}                    from './components/AmericanAndEuropeanLanguageContainer';
+import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './components/CanadianAndEuropeanLanguage';
+import {CanadianAndEuropeanLanguageContainer}                    from './components/CanadianAndEuropeanLanguageContainer';
+import {ChineseLanguage, ChineseOriginal}                        from './components/ChineseLanguage';
+import {ChineseLanguageContainer}                                from './components/ChineseLanguageContainer';
+import {Languages}                                               from '../Languages';
+import {SimpleLanguage}                                          from './components/SimpleLanguage';
+import {SimpleLanguageContainer}                                 from './components/SimpleLanguageContainer';
+import {Name}                                                    from './Name';
+import {EveryLanguages}                                          from '../EveryLanguages';
+import {CallbackCaller}                                          from '../../util/CallbackCaller';
 
-export class SMM2NameContainer
-    implements SMM2Name {
+export class NameContainer
+    implements Name {
 
     //region -------------------- Attributes --------------------
 
-    #map?: Map<SMM2Languages, string>;
+    readonly #mapCaller: CallbackCaller<Map<EveryLanguages, string>>;
 
     readonly #english: AmericanAndEuropeanLanguage;
     readonly #french: CanadianAndEuropeanLanguage;
@@ -53,6 +54,11 @@ export class SMM2NameContainer
         this.#japanese = new SimpleLanguageContainer(japanese);
         this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
         this.#korean = new SimpleLanguageContainer(korean);
+        this.#mapCaller = new CallbackCaller(() => {
+            const map = new Map<EveryLanguages, string>();
+            EveryLanguages.values.forEach(language => map.set(language, language.get(this)));
+            return map;
+        });
     }
 
 
@@ -176,20 +182,7 @@ export class SMM2NameContainer
 
 
     public toNameMap() {
-        return this.#map ?? (this.#map = this.__createMap());
+        return this.#mapCaller.get
     }
 
-    private __createMap() {
-        const map = new Map<SMM2Languages, string>();
-        SMM2Languages.values.forEach(language => map.set(language, language.get(this)));
-        return map;
-    }
-
-}
-
-export namespace SMM2NameContainer {
-    export namespace chinese {
-        export namespace test {
-        }
-    }
 }

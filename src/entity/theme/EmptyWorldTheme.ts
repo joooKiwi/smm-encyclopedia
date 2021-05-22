@@ -1,4 +1,4 @@
-import {EmptyName}         from '../lang/EmptyName';
+import {EmptyName}         from '../../lang/name/EmptyName';
 import {GenericWorldTheme} from './GenericWorldTheme';
 
 /**

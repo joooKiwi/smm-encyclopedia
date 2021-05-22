@@ -1,13 +1,13 @@
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import {SMM2Name}      from './SMM2Name';
-import {SMM2Languages} from './SMM2Languages';
+import {Name}           from '../../lang/name/Name';
+import {EveryLanguages} from '../../lang/EveryLanguages';
 
 interface SMM2NameProperty {
     popoverOrientation?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
     id: string
-    name: SMM2Name
+    name: Name
 }
 
 export function SMM2NameComponent(props: SMM2NameProperty) {
@@ -33,34 +33,34 @@ export function SMM2NameComponent(props: SMM2NameProperty) {
         trigger: 'hover focus',
     }), 1);
     //TODO change to a way without a delay (timeout).
-    return <span id={id} data-bs-toggle="popover">{SMM2Languages.currentLanguage.get(name)}</span>;
+    return <span id={id} data-bs-toggle="popover">{EveryLanguages.currentLanguage.get(name)}</span>;
 }
 
-function getLanguagesToSetTheList(name: SMM2Name): readonly SMM2Languages[] {
-    const returnedLanguages = [] as SMM2Languages[];
+function getLanguagesToSetTheList(name: Name): readonly EveryLanguages[] {
+    const returnedLanguages = [] as EveryLanguages[];
 
-    if (!SMM2Languages.ENGLISH.isCurrentLanguage)
-        returnedLanguages.push(...(typeof SMM2Languages.ENGLISH.original(name) === 'string' ? [SMM2Languages.ENGLISH] : [SMM2Languages.AMERICAN_ENGLISH, SMM2Languages.EUROPEAN_ENGLISH]));
-    if (!SMM2Languages.FRENCH.isCurrentLanguage)
-        returnedLanguages.push(...(typeof SMM2Languages.FRENCH.original(name) === 'string' ? [SMM2Languages.FRENCH] : [SMM2Languages.CANADIAN_FRENCH, SMM2Languages.EUROPEAN_FRENCH]));
-    if (!SMM2Languages.GERMAN.isCurrentLanguage)
-        returnedLanguages.push(SMM2Languages.GERMAN);
-    if (!SMM2Languages.SPANISH.isCurrentLanguage)
-        returnedLanguages.push(...(typeof SMM2Languages.SPANISH.original(name) === 'string' ? [SMM2Languages.SPANISH] : [SMM2Languages.AMERICAN_SPANISH, SMM2Languages.EUROPEAN_SPANISH]));
-    if (!SMM2Languages.ITALIAN.isCurrentLanguage)
-        returnedLanguages.push(SMM2Languages.ITALIAN);
-    if (!SMM2Languages.DUTCH.isCurrentLanguage)
-        returnedLanguages.push(SMM2Languages.DUTCH);
-    if (!SMM2Languages.PORTUGUESE.isCurrentLanguage)
-        returnedLanguages.push(...(typeof SMM2Languages.PORTUGUESE.original(name) === 'string' ? [SMM2Languages.PORTUGUESE] : [SMM2Languages.AMERICAN_PORTUGUESE, SMM2Languages.EUROPEAN_PORTUGUESE]));
-    if (!SMM2Languages.RUSSIAN.isCurrentLanguage)
-        returnedLanguages.push(SMM2Languages.RUSSIAN);
-    if (!SMM2Languages.JAPANESE.isCurrentLanguage)
-        returnedLanguages.push(SMM2Languages.JAPANESE);
-    if (!SMM2Languages.CHINESE.isCurrentLanguage)
-        returnedLanguages.push(...(typeof SMM2Languages.CHINESE.original(name) === 'string' ? [SMM2Languages.CHINESE] : [SMM2Languages.CHINESE_SIMPLIFIED, SMM2Languages.CHINESE_TRADITIONAL]));
-    if (!SMM2Languages.KOREAN.isCurrentLanguage)
-        returnedLanguages.push(SMM2Languages.KOREAN);
+    if (!EveryLanguages.ENGLISH.isCurrentLanguage)
+        returnedLanguages.push(...(typeof EveryLanguages.ENGLISH.original(name) === 'string' ? [EveryLanguages.ENGLISH] : [EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH]));
+    if (!EveryLanguages.FRENCH.isCurrentLanguage)
+        returnedLanguages.push(...(typeof EveryLanguages.FRENCH.original(name) === 'string' ? [EveryLanguages.FRENCH] : [EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH]));
+    if (!EveryLanguages.GERMAN.isCurrentLanguage)
+        returnedLanguages.push(EveryLanguages.GERMAN);
+    if (!EveryLanguages.SPANISH.isCurrentLanguage)
+        returnedLanguages.push(...(typeof EveryLanguages.SPANISH.original(name) === 'string' ? [EveryLanguages.SPANISH] : [EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH]));
+    if (!EveryLanguages.ITALIAN.isCurrentLanguage)
+        returnedLanguages.push(EveryLanguages.ITALIAN);
+    if (!EveryLanguages.DUTCH.isCurrentLanguage)
+        returnedLanguages.push(EveryLanguages.DUTCH);
+    if (!EveryLanguages.PORTUGUESE.isCurrentLanguage)
+        returnedLanguages.push(...(typeof EveryLanguages.PORTUGUESE.original(name) === 'string' ? [EveryLanguages.PORTUGUESE] : [EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE]));
+    if (!EveryLanguages.RUSSIAN.isCurrentLanguage)
+        returnedLanguages.push(EveryLanguages.RUSSIAN);
+    if (!EveryLanguages.JAPANESE.isCurrentLanguage)
+        returnedLanguages.push(EveryLanguages.JAPANESE);
+    if (!EveryLanguages.CHINESE.isCurrentLanguage)
+        returnedLanguages.push(...(typeof EveryLanguages.CHINESE.original(name) === 'string' ? [EveryLanguages.CHINESE] : [EveryLanguages.CHINESE_SIMPLIFIED, EveryLanguages.CHINESE_TRADITIONAL]));
+    if (!EveryLanguages.KOREAN.isCurrentLanguage)
+        returnedLanguages.push(EveryLanguages.KOREAN);
 
     return returnedLanguages;
 }

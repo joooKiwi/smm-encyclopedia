@@ -2,7 +2,7 @@ import {Entity}           from './Entity';
 import {EntityCategory}   from '../category/EntityCategory';
 import {EntityReferences} from '../properties/EntityReferences';
 import {IsInProperty}     from '../properties/IsInProperty';
-import {SMM2Name}         from '../lang/SMM2Name';
+import {Name}             from '../../lang/name/Name';
 
 export abstract class AbstractEntity
     implements Entity {
@@ -12,7 +12,7 @@ export abstract class AbstractEntity
     readonly #isInProperty;
     readonly #references;
 
-    protected constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
         this.#name = name;
         this.#category = category;
         this.#isInProperty = isInProperty;

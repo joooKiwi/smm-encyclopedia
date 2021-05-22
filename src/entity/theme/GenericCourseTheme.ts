@@ -3,7 +3,7 @@ import {CallbackCaller}   from '../../util/CallbackCaller';
 import {CourseTheme}      from './CourseTheme';
 import {Entity}           from '../simple/Entity';
 import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {SMM2Name}         from '../lang/SMM2Name';
+import {Name}             from '../../lang/name/Name';
 
 export class GenericCourseTheme
     extends AbstractTheme
@@ -11,7 +11,7 @@ export class GenericCourseTheme
 
     readonly #entities: CallbackCaller<Entity[]>;
 
-    public constructor(name: SMM2Name, isInProperty: IsInGameProperty, entities: () => Entity[]) {
+    public constructor(name: Name, isInProperty: IsInGameProperty, entities: () => Entity[]) {
         super(name, isInProperty);
         this.#entities = new CallbackCaller(entities);
     }

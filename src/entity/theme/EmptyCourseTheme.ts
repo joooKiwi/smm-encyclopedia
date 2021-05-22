@@ -1,5 +1,5 @@
 import {EmptyIsInProperty}  from '../properties/EmptyIsInProperty';
-import {EmptyName}          from '../lang/EmptyName';
+import {EmptyName}          from '../../lang/name/EmptyName';
 import {GenericCourseTheme} from './GenericCourseTheme';
 
 /**
