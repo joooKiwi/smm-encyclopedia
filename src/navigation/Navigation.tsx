@@ -1,28 +1,12 @@
 import React, {Component}                     from 'react';
 import {Link}                                 from 'react-router-dom';
-import {TFuncKey, TFunction, withTranslation} from 'react-i18next';
 
-import {Languages}          from '../lang/Languages';
 import ChangeTheLanguageTab from './ChangeTheLanguageTab';
+import DisplayTab           from './DisplayTab';
+import {Languages}          from '../lang/Languages';
 
-class Navigation
-    extends Component<{ t: TFunction<'content' | 'game'> }> {
-
-
-    private contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys) {
-        return this.props.t(value, {ns: 'content'});
-    }
-
-    private gameTranslation<TKeys extends TFuncKey<'game'>>(value: TKeys) {
-        return this.props.t(value);
-    }
-
-    private static _createLi(key: string, partialPath: string, textContent: string) {
-        return <li className="dropdown-item">
-            <Link key={key} className="nav-link active" to={`/${Languages.currentLanguage.acronym}/${partialPath}`}>{textContent}</Link>
-        </li>;
-    }
-
+export default class Navigation
+    extends Component {
 
     public render(): JSX.Element {
         return (<nav className="navbar navbar-expand-md navbar-light bg-light">
@@ -33,16 +17,7 @@ class Navigation
                 </button>
                 <div id="navbar-container" className="collapse navbar-collapse">
                     <ul id="left-navbar-container" className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item dropdown">
-                            <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{this.contentTranslation('Display')}…</span>
-                            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                {Navigation._createLi('navigationEveryEntities', 'every/entity', this.gameTranslation('Display every entities'))}
-                                {Navigation._createLi('navigationEveryCategories', 'every/category', this.gameTranslation('Display every entity categories'))}
-                                {Navigation._createLi('navigationEveryGroups', 'every/group', this.gameTranslation('Display every entity groups'))}
-                                {Navigation._createLi('navigationEveryLimit', 'every/limit', this.gameTranslation('Display every limits'))}
-                                {Navigation._createLi('navigationEveryTheme', 'every/theme', this.gameTranslation('Display every themes'))}
-                            </ul>
-                        </li>
+                        <DisplayTab/>
                     </ul>
                     <ul id="right-navbar-container" className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <ChangeTheLanguageTab/>
@@ -53,5 +28,3 @@ class Navigation
     }
 
 }
-
-export default withTranslation(['game', 'content',])(Navigation);
