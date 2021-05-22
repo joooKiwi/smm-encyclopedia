@@ -1,18 +1,15 @@
-import React, {Component} from 'react';
-import {Link}             from 'react-router-dom';
+import React  from 'react';
+import {Link} from 'react-router-dom';
 
-import ChangeTheLanguageTab         from './ChangeTheLanguageTab';
-import DisplayTab                   from './DisplayTab';
-import {Languages}                  from '../lang/Languages';
-import {TFunction, withTranslation} from 'react-i18next';
+import ChangeTheLanguageTab              from './ChangeTheLanguageTab';
+import DisplayTab                        from './DisplayTab';
+import {Languages}                       from '../lang/Languages';
+import {withTranslation}                 from 'react-i18next';
+import {ComponentWithContentTranslation} from '../lang/components/ComponentWithContentTranslation';
 
 class Navigation
-    extends Component<{ t: TFunction<'content'> }> {
+    extends ComponentWithContentTranslation {
 
-
-    protected get translation() {
-        return this.props.t;
-    }
 
     public render(): JSX.Element {
         return (<nav className="navbar navbar-expand-md navbar-light bg-light">

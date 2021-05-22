@@ -1,14 +1,10 @@
-import {Component}                  from 'react';
-import {TFunction, withTranslation} from 'react-i18next';
+import {withTranslation} from 'react-i18next';
 
-import {Languages} from '../lang/Languages';
+import {Languages}                       from '../lang/Languages';
+import {ComponentWithContentTranslation} from '../lang/components/ComponentWithContentTranslation';
 
 class Footer
-    extends Component<{ t: TFunction<'content'> }> {
-
-    private get translation() {
-        return this.props.t;
-    }
+    extends ComponentWithContentTranslation {
 
     public render() {
         return <footer id="footer_container" className="bg-dark pt-4 pb-3 mb-0">
