@@ -60,7 +60,7 @@ const resources: Resource = {
     en: {
         language: englishLanguage,
         content: englishContent,
-        game: englishGameContent,
+        gameContent: englishGameContent,
     },
     en_AM: {
         content: americanEnglishContent,
@@ -71,7 +71,7 @@ const resources: Resource = {
     fr: {
         language: frenchLanguage,
         content: frenchContent,
-        game: frenchGameContent,
+        gameContent: frenchGameContent,
     },
     fr_CA: {
         content: canadianFrenchContent,
