@@ -1,7 +1,8 @@
-import React, {Component, ReactNode} from "react";
-import {Link}                        from "react-router-dom";
-import {__, Languages}               from "../lang/Languages";
-import LanguageChanger               from "./LanguageChanger";
+import React, {Component, ReactNode} from 'react';
+import {Link}                        from 'react-router-dom';
+
+import {__, Languages} from '../lang/Languages';
+import LanguageChanger from './LanguageChanger';
 
 export default class Navigation
     extends Component {
@@ -20,7 +21,8 @@ export default class Navigation
                             <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{__('Display')}...</span>
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li className="dropdown-item"><Link key="navigationEveryEntities" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/entity`}>{__('Display every entities')}</Link></li>
-                                <li className="dropdown-item"><Link key="navigationEveryLimit" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/group`}>{__('Display every entity group')}</Link></li>
+                                <li className="dropdown-item"><Link key="navigationEveryCategories" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/category`}>{__('Display every entity categories')}</Link></li>
+                                <li className="dropdown-item"><Link key="navigationEveryGroups" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/group`}>{__('Display every entity groups')}</Link></li>
                                 <li className="dropdown-item"><Link key="navigationEveryLimit" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/limit`}>{__('Display every limits')}</Link></li>
                                 <li className="dropdown-item"><Link key="navigationEveryTheme" className="nav-link active" to={`/${Languages.currentLanguage.acronym}/every/theme`}>{__('Display every themes')}</Link></li>
                             </ul>
