@@ -1,3 +1,9 @@
 {
 
+
+  "Game Style":        "ゲームスキン",
+  "Extra Game Styles": "エクストラゲームスキン",
+
+  "Course Theme": { "in game": "シーンスキン" },
+  "World Theme":  { "in game": "シーンスキン" }
 }

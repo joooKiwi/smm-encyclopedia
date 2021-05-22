@@ -2,16 +2,22 @@
   "Limit in the editor": "Limit dans l'éditeur",
   "Limit while playing": "Limit quand est en train de jouer",
 
-  "every themes": "tous les thèmes",
-  "Every themes": "Tous les thèmes",
+  "every themes": "tous les décors",
+  "Every themes": "Tous les décors",
 
-  "Is in the course theme": "Est dans le thème de niveau",
-  "Is in the world theme":  "Est dans le thème de monde",
+  "Is in the course theme": "Est dans le décor de niveau",
+  "Is in the world theme":  "Est dans le décor de monde",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
   "Empty entity reference":   "Référence d'entité vide",
   "Empty course theme":       "Thème de niveau vide",
   "Empty world theme":        "Thème de monde vide",
-  "Empty \"is in property\"": "«Est dans propriété» vide"
+  "Empty \"is in property\"": "«Est dans propriété» vide",
+
+  "Game Style":        "Style de jeu",
+  "Extra Game Styles": "Style de jeu supplémentaire",
+
+  "Course Theme": { "in game": "Décor", "spoken": "Décor de niveau" },
+  "World Theme":  { "in game": "Décor",  "spoken": "Décor de monde" }
 }
