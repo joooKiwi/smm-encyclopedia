@@ -6,7 +6,6 @@
 
   "name": "name",
   "Name": "Name",
-
   "Empty name": "Empty name",
 
   "minimum": { "m": "minimum", "f": "minimum" },
@@ -21,6 +20,10 @@
   "Language":            "Language",
   "In other languages":  "In other languages",
   "Change the language": "Change the language",
+
+  "Copyright":                 "Copyright",
+  "React application made by": "React application made by",
+  "Last update":               "Last update",
 
   "Display": "Display"
 }
