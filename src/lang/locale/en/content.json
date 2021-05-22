@@ -17,7 +17,9 @@
   "image": "image",
   "Image": "Image",
 
-  "language":           "language",
-  "Language":           "Language",
-  "In other languages": "In other languages"
+  "language":            "language",
+  "Language":            "Language",
+  "In other languages":  "In other languages",
+
+  "Display": "Display"
 }
