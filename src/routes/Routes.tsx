@@ -2,6 +2,7 @@ import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from "re
 import {EveryEntitiesApp}                                               from "../app/EveryEntitiesApp";
 import {EveryEntityGroupApp}                                            from "../app/EveryEntityGroupApp";
 import {EveryLimitsApp}                                                 from "../app/EveryLimitsApp";
+import {EveryThemesApp}                                                 from "../app/EveryThemesApp";
 import HomeApp                                                          from "../app/HomeApp";
 import {Languages}                                                      from "../lang/Languages";
 import React                                                            from "react";
@@ -13,6 +14,7 @@ const everySimpleRoutes: SimpleRoute[] = [
     {path: '/every/entity', renderCallback: () => <EveryEntitiesApp/>,},
     {path: '/every/group', renderCallback: () => <EveryEntityGroupApp/>,},
     {path: '/every/limit', renderCallback: () => <EveryLimitsApp/>,},
+    {path: '/every/theme', renderCallback: () => <EveryThemesApp/>,},
 ];
 
 export default function Routes() {

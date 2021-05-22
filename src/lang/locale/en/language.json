@@ -1,29 +1,33 @@
 {
   "Japanese": "Japanese",
 
-  "English": "English",
+  "English":           "English",
   "English (America)": "English (America)",
-  "English (Europe)": "English (Europe)",
+  "English (Europe)":  "English (Europe)",
 
-  "Spanish": "Spanish",
+  "Spanish":           "Spanish",
   "Spanish (America)": "Spanish (America)",
-  "Spanish (Europe)": "Spanish (Europe)",
+  "Spanish (Europe)":  "Spanish (Europe)",
 
-  "French": "French",
+  "French":          "French",
   "French (Canada)": "French (Canada)",
   "French (Europe)": "French (Europe)",
 
   "Dutch": "Dutch",
+
   "German": "German",
+
   "Italian": "Italian",
 
+  "Portuguese":           "Portuguese",
   "Portuguese (America)": "Portuguese (America)",
-  "Portuguese (Europe)": "Portuguese (Europe)",
+  "Portuguese (Europe)":  "Portuguese (Europe)",
 
   "Russian": "Russian",
-  "Korean": "Korean",
 
-  "Chinese": "Chinese",
-  "Simplified chinese": "Simplified chinese",
+  "Korean":  "Korean",
+
+  "Chinese":             "Chinese",
+  "Simplified chinese":  "Simplified chinese",
   "Traditional chinese": "Traditional chinese"
 }

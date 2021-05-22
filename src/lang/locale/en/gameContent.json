@@ -1,0 +1,23 @@
+{
+  "Limit in the editor": "Limit in the editor",
+  "Limit while playing": "Limit while playing",
+
+  "every themes": "every themes",
+  "Every themes": "Every themes",
+
+  "Is in the course theme": "Is in the course theme",
+  "Is in the world theme":  "Is in the world theme",
+
+  "Empty entity":             "Empty entity",
+  "Empty entity category":    "Empty entity category",
+  "Empty entity reference":   "Empty entity reference",
+  "Empty course theme":       "Empty course theme",
+  "Empty world theme":        "Empty world theme",
+  "Empty \"is in property\"": "Empty \"is in property\"",
+
+  "Game Style":        "Game Style",
+  "Extra Game Styles": "Extra Game Styles",
+
+  "Course Theme": { "in game": "Course Theme", "spoken": "Course theme" },
+  "World Theme":  { "in game": "World Theme",  "spoken": "World theme" }
+}

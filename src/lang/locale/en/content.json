@@ -7,13 +7,17 @@
   "name": "name",
   "Name": "Name",
 
+  "Empty name": "Empty name",
+
   "minimum": { "m": "minimum", "f": "minimum" },
   "Minimum": { "m": "Minimum", "f": "Minimum" },
   "maximum": { "m": "maximum", "f": "maximum" },
   "Maximum": { "m": "Maximum", "f": "Maximum" },
 
-  "Limit in the editor": "Limit in the editor",
-  "Limit while playing": "Limit while playing",
+  "image": "image",
+  "Image": "Image",
 
+  "language":           "language",
+  "Language":           "Language",
   "In other languages": "In other languages"
 }
