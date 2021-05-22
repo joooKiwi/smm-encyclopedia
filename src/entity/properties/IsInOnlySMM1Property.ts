@@ -1,7 +1,8 @@
-import {IsInProperty} from "./IsInProperty";
+import {IsInProperty}             from './IsInProperty';
+import {IsInOnlySMM1GameProperty} from './IsInOnlySMM1GameProperty';
 
-export interface IsInExclusiveSMM1Property
-    extends IsInProperty {
+export interface IsInOnlySMM1Property
+    extends IsInProperty, IsInOnlySMM1GameProperty {
 
     isInSuperMarioMaker1: true
     isInSuperMarioMaker2: false

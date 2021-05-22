@@ -1,5 +1,5 @@
-import {EntityReferences} from "./EntityReferences";
-import {EmptyEntity} from "../simple/EmptyEntity";
+import {EntityReferences} from './EntityReferences';
+import {EmptyEntity}      from '../simple/EmptyEntity';
 
 /**
  * @nullObjectPattern
@@ -95,7 +95,7 @@ export class EmptyEntityReference
         return this.instance;
     }
 
-    public toString() {
+    public toString(): 'Empty entity reference' {
         return 'Empty entity reference';
     }
 }

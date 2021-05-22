@@ -1,13 +1,16 @@
-import {Theme} from "./Theme";
-import {SMM2Name} from "../lang/SMM2Name";
+import {IsInGameProperty} from '../properties/IsInGameProperty';
+import {Name}             from '../../lang/name/Name';
+import {Theme}            from './Theme';
 
 export class AbstractTheme
     implements Theme {
 
     readonly #name;
+    readonly #isInProperty;
 
-    protected constructor(name: SMM2Name) {
+    protected constructor(name: Name, isInProperty: IsInGameProperty) {
         this.#name = name;
+        this.#isInProperty = isInProperty;
     }
 
 
@@ -23,6 +26,10 @@ export class AbstractTheme
     }
 
 
+    public get originalEnglish() {
+        return this.name.originalEnglish;
+    }
+
     public get english() {
         return this.name.english;
     }
@@ -35,6 +42,10 @@ export class AbstractTheme
         return this.name.europeanEnglish;
     }
 
+
+    public get originalFrench() {
+        return this.name.originalFrench;
+    }
 
     public get french() {
         return this.name.french;
@@ -53,6 +64,10 @@ export class AbstractTheme
         return this.name.german;
     }
 
+
+    public get originalSpanish() {
+        return this.name.originalSpanish;
+    }
 
     public get spanish() {
         return this.name.spanish;
@@ -77,6 +92,10 @@ export class AbstractTheme
     }
 
 
+    public get originalPortuguese() {
+        return this.name.originalPortuguese;
+    }
+
     public get portuguese() {
         return this.name.portuguese;
     }
@@ -100,6 +119,10 @@ export class AbstractTheme
     }
 
 
+    public get originalChinese() {
+        return this.name.originalChinese;
+    }
+
     public get chinese() {
         return this.name.chinese;
     }
@@ -118,5 +141,24 @@ export class AbstractTheme
     }
 
     //endregion -------------------- Name properties --------------------
+    //region -------------------- Is in game properties --------------------
+
+    public get isInProperty() {
+        return this.#isInProperty;
+    }
+
+    public get isInSuperMarioMaker1() {
+        return this.isInProperty.isInSuperMarioMaker1;
+    }
+
+    public get isInSuperMarioMaker2() {
+        return this.isInProperty.isInSuperMarioMaker2;
+    }
+
+    //endregion -------------------- Is in game properties --------------------
+
+    public toNameMap() {
+        return this.name.toNameMap();
+    }
 
 }

@@ -1,24 +1,29 @@
-import {SMM2Name} from "../lang/SMM2Name";
-import {IsInProperty} from "../properties/IsInProperty";
-import {EntityReferences} from "../properties/EntityReferences";
-import {IsInExclusiveSMM1Property} from "../properties/IsInExclusiveSMM1Property";
-import {GenericEntity} from "./GenericEntity";
-import {SMM1ExclusiveEntity} from "./SMM1ExclusiveEntity";
-import {EntityCategory} from "../category/EntityCategory";
-import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
+import {IsInProperty}             from '../properties/IsInProperty';
+import {EmptyEntityCategory}      from '../category/EmptyEntityCategory';
+import {EntityCategory}           from '../category/EntityCategory';
+import {EntityReferences}         from '../properties/EntityReferences';
+import {GenericEntity}            from './GenericEntity';
+import {IsInOnlySMM1GameProperty} from '../properties/IsInOnlySMM1GameProperty';
+import {IsInOnlySMM1Property}     from '../properties/IsInOnlySMM1Property';
+import {Name}                     from '../../lang/name/Name';
+import {SMM1ExclusiveEntity}      from './SMM1ExclusiveEntity';
 
 export class SMM1ExclusiveGenericEntity
     extends GenericEntity
     implements SMM1ExclusiveEntity {
 
-    public constructor(name: SMM2Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+    public constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
         super(name, validateIsEmptyCategory(category), validateIsInProperty(isInProperty), references);
     }
 
     //region -------------------- Is in properties --------------------
 
-    public get isInProperty(): IsInExclusiveSMM1Property {
-        return super.isInProperty as IsInExclusiveSMM1Property;
+    public get isInProperty(): IsInOnlySMM1Property {
+        return super.isInProperty as IsInOnlySMM1Property;
+    }
+
+    get isInGame(): IsInOnlySMM1GameProperty {
+        return super.isInGame as IsInOnlySMM1GameProperty;
     }
 
     public get isInSuperMarioMaker1() {
@@ -94,7 +99,7 @@ function validateIsEmptyCategory(category: EntityCategory): EmptyEntityCategory 
     return category;
 }
 
-function validateIsInProperty(isInProperty: IsInProperty): IsInExclusiveSMM1Property {
+function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM1Property {
     if (!isInProperty.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to true for a SMM1 exclusive property.');
     if (isInProperty.isInSuperMarioMaker2)
@@ -107,5 +112,5 @@ function validateIsInProperty(isInProperty: IsInProperty): IsInExclusiveSMM1Prop
         throw new TypeError('A SMM1 entity is never in the desert, snow, sky and forest theme. The rest should always be set to true.');
     if (!(isInProperty.isInDayTheme && isInProperty.isInNightTheme === null))
         throw new TypeError('A SMM1 entity is never in the night theme, but always in the day theme.');
-    return isInProperty as IsInExclusiveSMM1Property;
+    return isInProperty as IsInOnlySMM1Property;
 }

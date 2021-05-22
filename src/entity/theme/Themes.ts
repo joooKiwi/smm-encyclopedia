@@ -1,7 +1,7 @@
-import {ThemeLoader} from "./ThemeLoader";
-import {CourseTheme} from "./CourseTheme";
-import {WorldTheme} from "./WorldTheme";
-import {Entity} from "../simple/Entity";
+import {CourseTheme} from './CourseTheme';
+import {Entity}      from '../simple/Entity';
+import {ThemeLoader} from './ThemeLoader';
+import {WorldTheme}  from './WorldTheme';
 
 type ThemesInBothCourseAndWorld = 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
@@ -62,10 +62,10 @@ export abstract class Themes {
         public _isEntityOnTheme(entity: Entity): boolean | null {
             return entity.isInCastleTheme;
         }
-    }('Castle');
+    }('Castle', 'Castle - Volcano');
 
     public static readonly VOLCANO = new class extends Themes {
-    }('Volcano');
+    }('Volcano', 'Castle - Volcano');
     public static readonly SPACE = new class extends Themes {
     }('Space');
 
@@ -77,9 +77,13 @@ export abstract class Themes {
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName;
+    readonly #imagePath;
 
-    private constructor(englishName: PossibleTheme) {
+    private constructor(englishNameAndImagePath: PossibleTheme)
+    private constructor(englishName: PossibleTheme, basicImagePath: string)
+    private constructor(englishName: PossibleTheme, basicImagePath: string = englishName) {
         this.#englishName = englishName;
+        this.#imagePath = '/game/themes/' + basicImagePath;
     }
 
     public get englishName() {
@@ -104,6 +108,18 @@ export abstract class Themes {
 
     public get worldTheme() {
         return this.#worldTheme ?? (this.#worldTheme = this.references[1]);
+    }
+
+    public get imagePath() {
+        return this.#imagePath;
+    }
+
+    public get smallImagePath() {
+        return this.imagePath + ' (small).png';
+    }
+
+    public get longImagePath() {
+        return this.imagePath + ' (long).jpg';
     }
 
 
@@ -149,23 +165,21 @@ export abstract class Themes {
     }
 
     public static get values(): readonly Themes[] {
-        return this.__VALUES === undefined
-            ? this.__VALUES = [
-                this.GROUND,
-                this.UNDERGROUND,
-                this.UNDERWATER,
-                this.DESERT,
-                this.SNOW,
-                this.SKY,
-                this.FOREST,
-                this.GHOST_HOUSE,
-                this.AIRSHIP,
-                this.CASTLE,
+        return this.__VALUES ?? (this.__VALUES = [
+            this.GROUND,
+            this.UNDERGROUND,
+            this.UNDERWATER,
+            this.DESERT,
+            this.SNOW,
+            this.SKY,
+            this.FOREST,
+            this.GHOST_HOUSE,
+            this.AIRSHIP,
+            this.CASTLE,
 
-                this.VOLCANO,
-                this.SPACE,
-            ]
-            : this.__VALUES;
+            this.VOLCANO,
+            this.SPACE,
+        ]);
     }
 
 }

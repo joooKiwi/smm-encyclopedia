@@ -1,3 +1,23 @@
 {
+  "yes": "yes",
+  "Yes": "Yes",
+  "no":  "no",
+  "No":  "No",
 
+  "name": "name",
+  "Name": "Name",
+
+  "Empty name": "Empty name",
+
+  "minimum": { "m": "minimum", "f": "minimum" },
+  "Minimum": { "m": "Minimum", "f": "Minimum" },
+  "maximum": { "m": "maximum", "f": "maximum" },
+  "Maximum": { "m": "Maximum", "f": "Maximum" },
+
+  "image": "image",
+  "Image": "Image",
+
+  "language":           "language",
+  "Language":           "Language",
+  "In other languages": "In other languages"
 }

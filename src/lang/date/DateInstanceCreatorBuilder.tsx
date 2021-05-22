@@ -1,12 +1,12 @@
 import {DateInstanceCreator, DayNumber, MonthNumber} from "./DateInstanceCreator";
-import {DayMonthYearDateInstanceCreator} from "./DayMonthYearDateInstanceCreator";
-import {YearMonthDayDateInstanceCreator} from "./YearMonthDayDateInstanceCreator";
-import {MonthDayYearDateInstanceCreator} from "./MonthDayYearDateInstanceCreator";
+import {DayMonthYearDateInstanceCreator}             from "./DayMonthYearDateInstanceCreator";
+import {YearMonthDayDateInstanceCreator}             from "./YearMonthDayDateInstanceCreator";
+import {MonthDayYearDateInstanceCreator}             from "./MonthDayYearDateInstanceCreator";
 
-export type PossibleDateInstanceCreatorType = 'day,month,year' | 'month,day,year' | 'year,month,day';
-export type PossibleDayCallbackType = 'number' | 'firstAfterHover' | 'firstBefore' | 'firstReplace' | 'beforeText' | 'afterText' | 'custom';
-export type PossibleMonthCallbackType = 'number' | 'array' | 'afterText' | 'custom';
-export type PossibleYearCallbackType = 'number' | 'afterText' | 'custom';
+export type PossibleDateInstanceCreatorType = | 'day,month,year' | 'month,day,year' | 'year,month,day';
+export type PossibleDayCallbackType = | 'number' | 'firstAfterHover' | 'firstBefore' | 'firstReplace' | 'beforeText' | 'afterText' | 'custom';
+export type PossibleMonthCallbackType = | 'number' | 'array' | 'afterText' | 'custom';
+export type PossibleYearCallbackType = | 'number' | 'afterText' | 'custom';
 
 export class DateInstanceCreatorBuilder {
 

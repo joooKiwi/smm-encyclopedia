@@ -1,9 +1,11 @@
 import './index.scss';
 import './lang/i18n';
-import ReactDOM from 'react-dom';
-import React from 'react';
+import 'bootstrap/dist/js/bootstrap.esm';
+
+import ReactDOM        from 'react-dom';
+import React           from 'react';
 import reportWebVitals from './reportWebVitals';
-import Routes from './routes/Routes';
+import Routes          from './routes/Routes';
 
 ReactDOM.render(
     <React.StrictMode>

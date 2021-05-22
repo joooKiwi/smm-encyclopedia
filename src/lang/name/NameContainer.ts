@@ -1,19 +1,25 @@
-import {AmericanAndEuropeanLanguage} from "./AmericanAndEuropeanLanguage";
-import {AmericanAndEuropeanLanguageContainer} from "./AmericanAndEuropeanLanguageContainer";
-import {CanadianAndEuropeanLanguage} from "./CanadianAndEuropeanLanguage";
-import {CanadianAndEuropeanLanguageContainer} from "./CanadianAndEuropeanLanguageContainer";
-import {ChineseLanguage} from "./ChineseLanguage";
-import {ChineseLanguageContainer} from "./ChineseLanguageContainer";
-import {SimpleLanguage} from "./SimpleLanguage";
-import {SimpleLanguageContainer} from "./SimpleLanguageContainer";
-import {SMM2Name} from "./SMM2Name";
-import {Languages} from "../../lang/Languages";
+import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './components/AmericanAndEuropeanLanguage';
+import {AmericanAndEuropeanLanguageContainer}                    from './components/AmericanAndEuropeanLanguageContainer';
+import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './components/CanadianAndEuropeanLanguage';
+import {CanadianAndEuropeanLanguageContainer}                    from './components/CanadianAndEuropeanLanguageContainer';
+import {ChineseLanguage, ChineseOriginal}                        from './components/ChineseLanguage';
+import {ChineseLanguageContainer}                                from './components/ChineseLanguageContainer';
+import {Languages}                                               from '../Languages';
+import {SimpleLanguage}                                          from './components/SimpleLanguage';
+import {SimpleLanguageContainer}                                 from './components/SimpleLanguageContainer';
+import {Name}                                                    from './Name';
+import {EveryLanguages}                                          from '../EveryLanguages';
+import {CallbackCaller}                                          from '../../util/CallbackCaller';
 
-export class SMM2NameContainer
-    implements SMM2Name {
+export class NameContainer
+    implements Name {
 
-    readonly #french: CanadianAndEuropeanLanguage;
+    //region -------------------- Attributes --------------------
+
+    readonly #mapCaller: CallbackCaller<Map<EveryLanguages, string>>;
+
     readonly #english: AmericanAndEuropeanLanguage;
+    readonly #french: CanadianAndEuropeanLanguage;
     readonly #german: SimpleLanguage;
     readonly #spanish: AmericanAndEuropeanLanguage;
     readonly #italian: SimpleLanguage;
@@ -24,16 +30,18 @@ export class SMM2NameContainer
     readonly #chinese: ChineseLanguage;
     readonly #korean: SimpleLanguage;
 
-    public constructor(english: string | [american: string, european: string],
-                       french: string | [canadian: string, european: string],
+    //endregion -------------------- Attributes --------------------
+
+    public constructor(english: AmericanOrEuropeanOriginal,
+                       french: CanadianOrEuropeanOriginal,
                        german: string,
-                       spanish: string | [american: string, european: string],
+                       spanish: AmericanOrEuropeanOriginal,
                        italian: string,
                        dutch: string,
-                       portuguese: string | [american: string, european: string],
+                       portuguese: AmericanOrEuropeanOriginal,
                        russian: string,
                        japanese: string,
-                       chinese: string | [simplified: string, traditional: string],
+                       chinese: ChineseOriginal,
                        korean: string,) {
         this.#english = typeof english === 'string' ? new AmericanAndEuropeanLanguageContainer(english) : new AmericanAndEuropeanLanguageContainer(...english);
         this.#french = typeof french === 'string' ? new CanadianAndEuropeanLanguageContainer(french) : new CanadianAndEuropeanLanguageContainer(...french);
@@ -46,6 +54,11 @@ export class SMM2NameContainer
         this.#japanese = new SimpleLanguageContainer(japanese);
         this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
         this.#korean = new SimpleLanguageContainer(korean);
+        this.#mapCaller = new CallbackCaller(() => {
+            const map = new Map<EveryLanguages, string>();
+            EveryLanguages.values.forEach(language => map.set(language, language.get(this)));
+            return map;
+        });
     }
 
 
@@ -53,6 +66,10 @@ export class SMM2NameContainer
         return Languages.currentLanguage.get(this);
     }
 
+
+    public get originalEnglish() {
+        return this.#english.original;
+    }
 
     public get english() {
         return this.#english.value;
@@ -66,6 +83,9 @@ export class SMM2NameContainer
         return this.#english.european;
     }
 
+    public get originalFrench() {
+        return this.#french.original;
+    }
 
     public get french() {
         return this.#french.value;
@@ -84,6 +104,10 @@ export class SMM2NameContainer
         return this.#german.value;
     }
 
+
+    public get originalSpanish() {
+        return this.#spanish.original;
+    }
 
     public get spanish() {
         return this.#spanish.value;
@@ -108,6 +132,10 @@ export class SMM2NameContainer
     }
 
 
+    public get originalPortuguese() {
+        return this.#portuguese.original;
+    }
+
     public get portuguese() {
         return this.#portuguese.value;
     }
@@ -131,6 +159,10 @@ export class SMM2NameContainer
     }
 
 
+    public get originalChinese() {
+        return this.#chinese.original;
+    }
+
     public get chinese() {
         return this.#chinese.value;
     }
@@ -146,6 +178,11 @@ export class SMM2NameContainer
 
     public get korean() {
         return this.#korean.value;
+    }
+
+
+    public toNameMap() {
+        return this.#mapCaller.get
     }
 
 }

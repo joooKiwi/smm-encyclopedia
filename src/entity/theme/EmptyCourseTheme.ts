@@ -1,18 +1,20 @@
+import {EmptyIsInProperty}  from '../properties/EmptyIsInProperty';
+import {EmptyName}          from '../../lang/name/EmptyName';
+import {GenericCourseTheme} from './GenericCourseTheme';
+
 /**
  * @nullObjectPattern
  * @singleton
  */
-import {EmptyName} from "../lang/EmptyName";
-import {GenericCourseTheme} from "./GenericCourseTheme";
-
 export class EmptyCourseTheme
     extends GenericCourseTheme {
 
     private static readonly instance = new EmptyCourseTheme();
     public static readonly EMPTY_ARRAY = [];
+    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
-        super(EmptyName.get, () => EmptyCourseTheme.EMPTY_ARRAY)
+        super(EmptyName.get, EmptyIsInProperty.get, () => EmptyCourseTheme.EMPTY_ARRAY,);
     }
 
 
@@ -20,8 +22,12 @@ export class EmptyCourseTheme
         return this.instance;
     }
 
-    public toString() {
-        return 'Empty Course Theme';
+    public toNameMap() {
+        return EmptyCourseTheme.EMPTY_MAP;
+    }
+
+    public toString(): 'Empty course theme' {
+        return 'Empty course theme';
     }
 
 }

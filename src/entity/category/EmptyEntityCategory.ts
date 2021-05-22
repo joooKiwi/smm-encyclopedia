@@ -1,5 +1,5 @@
-import {GenericEntityCategory} from "./GenericEntityCategory";
-import {EmptyName} from "../lang/EmptyName";
+import {EmptyName}             from '../../lang/name/EmptyName';
+import {GenericEntityCategory} from './GenericEntityCategory';
 
 /**
  * @nullObjectPattern
@@ -9,6 +9,7 @@ export class EmptyEntityCategory
     extends GenericEntityCategory {
 
     private static readonly instance = new EmptyEntityCategory();
+    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
         super(EmptyName.get);
@@ -19,7 +20,12 @@ export class EmptyEntityCategory
         return this.instance;
     }
 
-    public toString() {
+
+    public toNameMap() {
+        return EmptyEntityCategory.EMPTY_MAP;
+    }
+
+    public toString(): 'Empty entity category' {
         return 'Empty entity category';
     }
 

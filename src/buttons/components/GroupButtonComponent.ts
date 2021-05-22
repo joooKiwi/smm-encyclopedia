@@ -3,7 +3,7 @@ export interface GroupButtonComponents<T> {
     isChoiceGroup: boolean;
     isOutline?: boolean;
     isVertical?: boolean;
-    color: 'primary' | 'secondary'
+    color: | 'primary' | 'secondary'
         | 'light' | 'dark'
         | 'success' | 'info' | 'warning' | 'danger'
         | 'white' | 'gray' | 'gray-dark'

@@ -1,8 +1,8 @@
-import {SMM2Name} from "../lang/SMM2Name";
+import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
 
 export interface EntityCategory
-    extends SMM2Name {
+    extends ClassWithEveryLanguages {
 
-    name: SMM2Name
+    name: ClassWithEveryLanguages
 
 }

@@ -44,9 +44,14 @@ export default class CSVLoader<T extends any[], U> {
         return this.#headersToConvert;
     }
 
-    public get content() {
+    public load(): this {
         if (this.#content.length === 0)
             this._initialiseContent();
+        return this;
+    }
+
+    public get content() {
+        this.load();
         return this.#content;
     }
 

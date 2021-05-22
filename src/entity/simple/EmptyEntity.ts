@@ -1,8 +1,8 @@
-import {AbstractEntity} from "./AbstractEntity";
-import {EmptyName} from "../lang/EmptyName";
-import {EmptyIsInProperty} from "../properties/EmptyIsInProperty";
-import {EmptyEntityReference} from "../properties/EmptyEntityReference";
-import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
+import {AbstractEntity}       from './AbstractEntity';
+import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
+import {EmptyEntityReference} from '../properties/EmptyEntityReference';
+import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
+import {EmptyName}            from '../../lang/name/EmptyName';
 
 /**
  * @nullObjectPattern
@@ -12,9 +12,10 @@ export class EmptyEntity
     extends AbstractEntity {
 
     private static readonly instance = new EmptyEntity();
+    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
-        super(EmptyName.get, EmptyEntityCategory.get, EmptyIsInProperty.get, EmptyEntityReference.get,)
+        super(EmptyName.get, EmptyEntityCategory.get, EmptyIsInProperty.get, EmptyEntityReference.get,);
     }
 
 
@@ -22,7 +23,11 @@ export class EmptyEntity
         return this.instance;
     }
 
-    public toString() {
+    public toNameMap() {
+        return EmptyEntity.EMPTY_MAP;
+    }
+
+    public toString(): 'Empty entity' {
         return 'Empty entity';
     }
 
