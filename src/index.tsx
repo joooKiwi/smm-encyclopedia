@@ -1,6 +1,6 @@
 import './index.scss';
 import './lang/i18n';
-import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/js/bootstrap.esm';
 
 import ReactDOM        from 'react-dom';
 import React           from 'react';
