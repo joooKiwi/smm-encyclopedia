@@ -1,7 +1,8 @@
+import i18n from 'i18next';
+
+import {ClassWithLanguages}         from './ClassWithLanguages';
 import {DateInstanceCreator}        from './date/DateInstanceCreator';
 import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
-import i18n                 from 'i18next';
-import {ClassWithLanguages} from './ClassWithLanguages';
 
 export type PossibleLanguagesAcronym =
     | 'en_AM' | 'en_EU'
@@ -319,7 +320,7 @@ export abstract class Languages {
     public abstract get(classWithLanguages: ClassWithLanguages): string;
 
     private __setLanguageToHTML(): this {
-        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym))
+        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym));
         return this;
     }
 
@@ -378,13 +379,3 @@ export abstract class Languages {
 }
 
 Languages.setDefaultLanguage('en_AM');
-
-/**
- * A temporary method used to define the simple translations on the project.
- *
- * @param value
- * @temporary
- */
-export function __(value: string): string {
-    return value;
-}
