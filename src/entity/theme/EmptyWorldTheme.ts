@@ -24,8 +24,8 @@ export class EmptyWorldTheme
         return EmptyWorldTheme.EMPTY_MAP;
     }
 
-    public toString() {
-        return 'Empty World Theme';
+    public toString(): 'Empty world theme' {
+        return 'Empty world theme';
     }
 
 }

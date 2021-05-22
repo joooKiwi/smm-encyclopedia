@@ -65,12 +65,12 @@ function TableFromTheme(props: { content: readonly SingleTableContent[] }): JSX.
 
     return <Table
         id="theme_table"
-        caption={gameContent_t('every.Themes')}
+        caption={gameContent_t('Every themes')}
         headers={[
             '#',
             content_t('Image'),
-            gameContent_t('Is in.the course theme'),
-            gameContent_t('Is in.the world theme'),
+            gameContent_t('Is in the course theme'),
+            gameContent_t('Is in the world theme'),
             {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
             {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
             content_t('Language'),

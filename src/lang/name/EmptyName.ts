@@ -64,7 +64,7 @@ export class EmptyName
         return EmptyName.EMPTY_MAP;
     }
 
-    public toString() {
+    public toString(): 'Empty name' {
         return 'Empty name';
     }
 

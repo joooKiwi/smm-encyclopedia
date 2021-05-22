@@ -7,6 +7,8 @@
   "name": "nom",
   "Name": "Nom",
 
+  "Empty name": "Nom vide",
+
   "minimum": { "m": "minimum", "f": "minimum" },
   "Minimum": { "m": "Minimum", "f": "Minimum" },
   "maximum": { "m": "maximum", "f": "maximum" },

@@ -26,8 +26,8 @@ export class EmptyCourseTheme
         return EmptyCourseTheme.EMPTY_MAP;
     }
 
-    public toString() {
-        return 'Empty Course Theme';
+    public toString(): 'Empty course theme' {
+        return 'Empty course theme';
     }
 
 }

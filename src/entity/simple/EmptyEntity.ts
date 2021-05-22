@@ -27,7 +27,7 @@ export class EmptyEntity
         return EmptyEntity.EMPTY_MAP;
     }
 
-    public toString() {
+    public toString(): 'Empty entity' {
         return 'Empty entity';
     }
 

@@ -12,7 +12,7 @@ export class EmptyIsInProperty
     private constructor() {
     }
 
-    public readonly isInGame = IsInGamePropertyContainer.get(false, false)
+    public readonly isInGame = IsInGamePropertyContainer.get(false, false);
     public readonly isInSuperMarioMaker1 = false;
     public readonly isInSuperMarioMaker2 = false;
 
@@ -42,8 +42,8 @@ export class EmptyIsInProperty
         return this.instance;
     }
 
-    public toString() {
-        return 'Empty is in property';
+    public toString(): 'Empty "is in property"' {
+        return 'Empty "is in property"';
     }
 
 }

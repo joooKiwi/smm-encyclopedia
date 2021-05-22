@@ -25,7 +25,7 @@ export class EmptyEntityCategory
         return EmptyEntityCategory.EMPTY_MAP;
     }
 
-    public toString() {
+    public toString(): 'Empty entity category' {
         return 'Empty entity category';
     }
 
