@@ -61,7 +61,7 @@ export class EveryThemesApp
 
 function TableFromTheme(props: { content: readonly SingleTableContent[] }): JSX.Element {
     const content_t = useTranslation('content').t;
-    const gameContent_t = useTranslation('game').t;
+    const gameContent_t = useTranslation('gameContent').t;
 
     return <Table
         id="theme_table"

@@ -9,8 +9,8 @@ export abstract class ComponentWithContentAndGameContentTranslation<T extends Co
         return this.props.t(value, {ns: 'content'});
     }
 
-    protected gameContentTranslation<TKeys extends TFuncKey<'game'>>(value: TKeys) {
-        return this.props.t(value, {ns: 'game'});
+    protected gameContentTranslation<TKeys extends TFuncKey<'gameContent'>>(value: TKeys) {
+        return this.props.t(value, {ns: 'gameContent'});
     }
 
     public abstract render(): JSX.Element;

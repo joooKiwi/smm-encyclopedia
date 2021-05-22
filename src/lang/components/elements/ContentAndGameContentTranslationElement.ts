@@ -2,6 +2,6 @@ import {TFunction} from 'react-i18next';
 
 export interface ContentAndGameContentTranslationElement {
 
-    t: TFunction<'content' | 'game'>
+    t: TFunction<'content' | 'gameContent'>
 
 }

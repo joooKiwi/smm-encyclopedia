@@ -52,7 +52,7 @@ declare module 'react-i18next' {
     interface Resources {
         language: typeof englishLanguage
         content: typeof englishContent
-        game: typeof englishGameContent
+        gameContent: typeof englishGameContent
     }
 }
 

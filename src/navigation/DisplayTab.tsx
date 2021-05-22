@@ -30,4 +30,4 @@ class DisplayTab
 
 }
 
-export default withTranslation(['game', 'content'])(DisplayTab);
+export default withTranslation(['gameContent', 'content'])(DisplayTab);

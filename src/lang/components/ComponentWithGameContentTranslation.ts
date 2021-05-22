@@ -7,7 +7,7 @@ export abstract class ComponentWithGameContentTranslation<T extends GameContentT
     extends Component<T> {
 
 
-    protected get translation(): TFunction<'game'> {
+    protected get translation(): TFunction<'gameContent'> {
         return this.props.t;
     }
 
