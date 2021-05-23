@@ -140,6 +140,10 @@ export class AbstractTheme
         return this.name.korean;
     }
 
+    public get individualValues() {
+        return this.name.individualValues;
+    }
+
     //endregion -------------------- Name properties --------------------
     //region -------------------- Is in game properties --------------------
 

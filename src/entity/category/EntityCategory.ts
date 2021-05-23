@@ -1,8 +1,8 @@
-import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
+import {Name} from '../../lang/name/Name';
 
 export interface EntityCategory
-    extends ClassWithEveryLanguages {
+    extends Name {
 
-    name: ClassWithEveryLanguages
+    name: Name
 
 }

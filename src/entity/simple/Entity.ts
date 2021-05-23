@@ -1,31 +1,37 @@
-import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
-import {IsInProperty}            from '../properties/IsInProperty';
-import {EntityReferences}        from '../properties/EntityReferences';
-import {EntityCategory}          from '../category/EntityCategory';
+import {AmericanOrEuropeanOriginal} from '../../lang/name/containers/AmericanAndEuropeanLanguage';
+import {CanadianOrEuropeanOriginal} from '../../lang/name/containers/CanadianAndEuropeanLanguage';
+import {ChineseOriginal}            from '../../lang/name/containers/ChineseLanguage';
+import {IsInProperty}               from '../properties/IsInProperty';
+import {EntityReferences}           from '../properties/EntityReferences';
+import {EntityCategory}             from '../category/EntityCategory';
+import {Name}                       from '../../lang/name/Name';
 
 export interface Entity
-    extends ClassWithEveryLanguages, IsInProperty, EntityReferences {
+    extends Name, IsInProperty, EntityReferences {
 
-    name: ClassWithEveryLanguages
+    name: Name
 
     //region -------------------- Category properties --------------------
 
     category: EntityCategory
 
-    categoryName: ClassWithEveryLanguages
+    categoryName: Name
 
     categoryLanguageValue: string
 
+    categoryOriginalEnglish: AmericanOrEuropeanOriginal
     categoryEnglish: string
     categoryAmericanEnglish: string
     categoryEuropeanEnglish: string
 
+    categoryOriginalFrench: CanadianOrEuropeanOriginal
     categoryFrench: string
     categoryCanadianFrench: string
     categoryEuropeanFrench: string
 
     categoryGerman: string
 
+    categoryOriginalSpanish: AmericanOrEuropeanOriginal
     categorySpanish: string
     categoryAmericanSpanish: string
     categoryEuropeanSpanish: string
@@ -34,6 +40,7 @@ export interface Entity
 
     categoryDutch: string
 
+    categoryOriginalPortuguese: AmericanOrEuropeanOriginal
     categoryPortuguese: string
     categoryAmericanPortuguese: string
     categoryEuropeanPortuguese: string
@@ -42,6 +49,7 @@ export interface Entity
 
     categoryJapanese: string
 
+    categoryOriginalChinese: ChineseOriginal
     categoryChinese: string
     categorySimplifiedChinese: string
     categoryTraditionalChinese: string

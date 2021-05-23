@@ -9,6 +9,7 @@ export class EmptyWorldTheme
     extends GenericWorldTheme {
 
     private static readonly instance = new EmptyWorldTheme();
+    public static readonly EMPTY_ARRAY = [];
     public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
@@ -18,6 +19,10 @@ export class EmptyWorldTheme
 
     public static get get() {
         return this.instance;
+    }
+
+    public get individualValues() {
+        return EmptyWorldTheme.EMPTY_ARRAY;
     }
 
     public toNameMap() {

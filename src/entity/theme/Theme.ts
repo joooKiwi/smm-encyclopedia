@@ -1,10 +1,10 @@
-import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
-import {IsInGameProperty}        from '../properties/IsInGameProperty';
+import {IsInGameProperty} from '../properties/IsInGameProperty';
+import {Name}             from '../../lang/name/Name';
 
 export interface Theme
-    extends ClassWithEveryLanguages, IsInGameProperty {
+    extends Name, IsInGameProperty {
 
-    name: ClassWithEveryLanguages;
+    name: Name;
 
     isInProperty: IsInGameProperty
 

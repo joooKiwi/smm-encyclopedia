@@ -34,4 +34,4 @@ class TableWithTranslations
 
 }
 
-export default withTranslation(['language', 'gameContent', 'content'])(TableWithTranslations);
+export default withTranslation(['language', 'gameContent', 'content',])(TableWithTranslations);

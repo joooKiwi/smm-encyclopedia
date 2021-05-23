@@ -21,6 +21,10 @@ export class EmptyEntityCategory
     }
 
 
+    public get individualValues() {
+        return this.name.individualValues;
+    }
+
     public toNameMap() {
         return EmptyEntityCategory.EMPTY_MAP;
     }

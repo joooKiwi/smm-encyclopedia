@@ -146,6 +146,10 @@ export abstract class AbstractEntity
         return this.name.korean;
     }
 
+    public get individualValues() {
+        return this.name.individualValues;
+    }
+
     //endregion -------------------- Name properties --------------------
 
     //region -------------------- Category properties --------------------
@@ -165,6 +169,10 @@ export abstract class AbstractEntity
     }
 
 
+    public get categoryOriginalEnglish() {
+        return this.categoryName.originalEnglish;
+    }
+
     public get categoryEnglish() {
         return this.categoryName.english;
     }
@@ -177,6 +185,10 @@ export abstract class AbstractEntity
         return this.categoryName.europeanEnglish;
     }
 
+
+    public get categoryOriginalFrench() {
+        return this.categoryName.originalFrench;
+    }
 
     public get categoryFrench() {
         return this.categoryName.french;
@@ -195,6 +207,10 @@ export abstract class AbstractEntity
         return this.categoryName.german;
     }
 
+
+    public get categoryOriginalSpanish() {
+        return this.categoryName.originalSpanish;
+    }
 
     public get categorySpanish() {
         return this.categoryName.spanish;
@@ -219,6 +235,10 @@ export abstract class AbstractEntity
     }
 
 
+    public get categoryOriginalPortuguese() {
+        return this.categoryName.originalPortuguese;
+    }
+
     public get categoryPortuguese() {
         return this.categoryName.portuguese;
     }
@@ -236,6 +256,10 @@ export abstract class AbstractEntity
         return this.categoryName.japanese;
     }
 
+
+    public get categoryOriginalChinese() {
+        return this.categoryName.originalChinese;
+    }
 
     public get categoryChinese() {
         return this.categoryName.chinese;
@@ -440,4 +464,5 @@ export abstract class AbstractEntity
     public toNameMap() {
         return this.name.toNameMap();
     }
+
 }

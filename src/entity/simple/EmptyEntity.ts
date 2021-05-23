@@ -12,6 +12,7 @@ export class EmptyEntity
     extends AbstractEntity {
 
     private static readonly instance = new EmptyEntity();
+    public static readonly EMPTY_ARRAY = [];
     public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
@@ -21,6 +22,10 @@ export class EmptyEntity
 
     public static get get() {
         return this.instance;
+    }
+
+    public get everyReferences() {
+        return EmptyEntity.EMPTY_ARRAY;
     }
 
     public toNameMap() {
