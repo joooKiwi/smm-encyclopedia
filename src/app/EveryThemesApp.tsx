@@ -34,7 +34,7 @@ export default class EveryThemesApp
         for (let [englishName, [courseTheme, worldTheme]] of this.map.entries()) {
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
-            const name = isInCourseTheme ? courseTheme.name : worldTheme.name;
+            const name = isInCourseTheme ? courseTheme : worldTheme;
             const isInSMM1 = !isInWorldTheme && courseTheme.isInSuperMarioMaker1;
             const isInSMM2 = courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2;
 
@@ -64,8 +64,8 @@ export default class EveryThemesApp
                 translations.contentTranslation('Image'),
                 translations.gameContentTranslation('Is in the course theme'),
                 translations.gameContentTranslation('Is in the world theme'),
-                {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
                 translations.contentTranslation('Language'),
 
             ],

@@ -27,10 +27,9 @@ export default class EveryEntityCategoriesApp
         const content = [] as SingleTableContent[];
         let index = 1;
         for (let [englishName, category] of this.map.entries()) {
-            const name = category.name;
             content.push([englishName,
                 <>{index}</>,
-                <SMM2NameComponent id="theme_name" name={name} popoverOrientation="left"/>,
+                <SMM2NameComponent id="theme_name" name={category} popoverOrientation="left"/>,
             ]);
             index++;
         }
