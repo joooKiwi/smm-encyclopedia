@@ -6,7 +6,6 @@
 
   "name": "nom",
   "Name": "Nom",
-
   "Empty name": "Nom vide",
 
   "minimum": { "m": "minimum", "f": "minimum" },
@@ -17,7 +16,15 @@
   "image": "image",
   "Image": "Image",
 
-  "language":           "langue",
-  "Language":           "Langue",
-  "In other languages": "Dans d'autres langues"
+  "language":            "langue",
+  "Language":            "Langue",
+  "In other languages":  "Dans d'autres langues",
+  "Change the language": "Changer la langue",
+
+  "Copyright":                 "Droit d'auteur",
+  "React application made by": "Application React faite par",
+  "Last update":               "Dernière mise à jour",
+
+  "Home":    "Accueil",
+  "Display": "Afficher"
 }

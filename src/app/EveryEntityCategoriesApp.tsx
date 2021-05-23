@@ -6,7 +6,7 @@ import React            from 'react';
 import AbstractApp                 from './AbstractApp';
 import {EntityCategory}            from '../entity/category/EntityCategory';
 import {EntityCategoryLoader}      from '../entity/category/EntityCategoryLoader';
-import {SMM2NameComponent}         from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent           from '../entity/lang/SMM2NameComponent';
 import Table, {SingleTableContent} from './tools/Table';
 import {Themes}                    from '../entity/theme/Themes';
 

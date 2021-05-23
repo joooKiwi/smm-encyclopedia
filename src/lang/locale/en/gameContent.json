@@ -15,6 +15,12 @@
   "Empty world theme":        "Empty world theme",
   "Empty \"is in property\"": "Empty \"is in property\"",
 
+  "Display every entities":          "Display every entities",
+  "Display every entity categories": "Display every entity categories",
+  "Display every entity groups":     "Display every entity groups",
+  "Display every limits":            "Display every limits",
+  "Display every themes":            "Display every themes",
+
   "Game Style":        "Game Style",
   "Extra Game Styles": "Extra Game Styles",
 

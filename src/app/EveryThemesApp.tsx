@@ -8,7 +8,7 @@ import {CourseTheme}               from '../entity/theme/CourseTheme';
 import {EmptyCourseTheme}          from '../entity/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}           from '../entity/theme/EmptyWorldTheme';
 import {Games}                     from '../entity/game/Games';
-import {SMM2NameComponent}         from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent           from '../entity/lang/SMM2NameComponent';
 import Table, {SingleTableContent} from './tools/Table';
 import {ThemeLoader}               from '../entity/theme/ThemeLoader';
 import {Themes}                    from '../entity/theme/Themes';
@@ -61,7 +61,7 @@ export class EveryThemesApp
 
 function TableFromTheme(props: { content: readonly SingleTableContent[] }): JSX.Element {
     const content_t = useTranslation('content').t;
-    const gameContent_t = useTranslation('game').t;
+    const gameContent_t = useTranslation('gameContent').t;
 
     return <Table
         id="theme_table"

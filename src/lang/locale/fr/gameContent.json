@@ -15,6 +15,12 @@
   "Empty world theme":        "Thème de monde vide",
   "Empty \"is in property\"": "«Est dans propriété» vide",
 
+  "Display every entities":          "Afficher toutes les entités",
+  "Display every entity categories": "Afficher toutes les catégories d'entité",
+  "Display every entity groups":     "Afficher tous les groupes d'entité",
+  "Display every limits":            "Afficher toutes les limites",
+  "Display every themes":            "Afficher tous les décors",
+
   "Game Style":        "Style de jeu",
   "Extra Game Styles": "Style de jeu supplémentaire",
 
