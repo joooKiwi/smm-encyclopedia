@@ -23,9 +23,7 @@ export default class EveryEntityCategoriesApp
         return EntityCategories.values;
     }
 
-    protected _mainContent(): JSX.Element {
-        console.log(this.enum);//README this log is there only to help debugging.
-
+    protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (let [englishName, category] of this.map.entries()) {
@@ -36,6 +34,11 @@ export default class EveryEntityCategoriesApp
             ]);
             index++;
         }
+        return content;
+    }
+
+    protected _mainContent(): JSX.Element {
+        console.log(this.enum);//README this log is there only to help debugging.
 
         return <TableWithTranslations renderCallback={translations => ({
             id: 'entityCategory_table',
@@ -44,7 +47,7 @@ export default class EveryEntityCategoriesApp
                 '#',
                 translations.contentTranslation('Language'),
             ],
-            content: content,
+            content: this.content,
         })}/>;
     }
 
