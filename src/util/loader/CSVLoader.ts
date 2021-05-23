@@ -1,13 +1,13 @@
-import {Converter} from "./converter/Converter";
-import {GenericStringToAnyConverter} from "./converter/GenericStringToAnyConverter";
-import {GenericStringToAnyNullableConverter} from "./converter/GenericStringToAnyNullableConverter";
+import {Converter}                                                      from "./converter/Converter";
+import {GenericStringToAnyConverter}                                    from "./converter/GenericStringToAnyConverter";
+import {GenericStringToAnyNullableConverter}                            from "./converter/GenericStringToAnyNullableConverter";
 import {PredefinedConversion, PredefinedConverter, PrimitiveConversion} from "./converter/PredefinedConverter";
 
 type HeaderTypeOrConvertor = PredefinedConversion
     | (PredefinedConversion | string)[]
     | ((value: string) => Converter<string, any>);
 
-export default class CSVLoader<T extends any[], U> {
+export class CSVLoader<T extends any[], U> {
 
     public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'emptyable string';
 

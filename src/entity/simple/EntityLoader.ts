@@ -1,16 +1,16 @@
-import everyEntities from "../../resources/Every Super Mario Maker 2 entities properties - Entities.csv";
+import everyEntities from '../../resources/Every Super Mario Maker 2 entities properties - Entities.csv';
 
-import {CallbackCaller} from "../../util/CallbackCaller";
-import {CategoryType, EntityCategoryLoader} from "../category/EntityCategoryLoader";
-import CSVLoader from "../../loader/CSVLoader";
-import {Entity} from "./Entity";
-import {EntityBuilder} from "./EntityBuilder";
-import {EntityCategory} from "../category/EntityCategory";
-import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
-import {EntityTemplate} from "./EntityTemplate";
-import {GenericSingleInstanceBuilder} from "../../util/GenericSingleInstanceBuilder";
-import {Loader} from "../../util/Loader";
-import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
+import {CallbackCaller}                                                          from '../../util/CallbackCaller';
+import {CategoryType, EntityCategoryLoader}                                      from '../category/EntityCategoryLoader';
+import {CSVLoader}                                                               from '../../util/loader/CSVLoader';
+import {Entity}                                                                  from './Entity';
+import {EntityBuilder}                                                           from './EntityBuilder';
+import {EntityCategory}                                                          from '../category/EntityCategory';
+import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import {EntityTemplate}                                                          from './EntityTemplate';
+import {GenericSingleInstanceBuilder}                                            from '../../util/GenericSingleInstanceBuilder';
+import {Loader}                                                                  from '../../util/Loader';
+import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------

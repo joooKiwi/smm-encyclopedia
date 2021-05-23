@@ -1,17 +1,17 @@
-import {Entity} from "./Entity";
-import {EntityTemplate} from "./EntityTemplate";
-import {GenericEntity} from "./GenericEntity";
-import {IsInPropertyContainer} from "../properties/IsInPropertyContainer";
-import {EntityReferencesContainer} from "../properties/EntityReferencesContainer";
-import {DebugEntityReferences} from "./EntityLoader";
-import {EntityLink} from "../entityTypes";
-import {EmptyEntity} from "./EmptyEntity";
-import {SMM1ExclusiveGenericEntity} from "./SMM1ExclusiveGenericEntity";
-import {SMM2ExclusiveGenericEntity} from "./SMM2ExclusiveGenericEntity";
-import {NameBuilder}                from "../lang/NameBuilder";
-import {EntityCategory}             from "../category/EntityCategory";
-import {EmptyEntityCategory} from "../category/EmptyEntityCategory";
-import {Builder} from "../../util/Builder";
+import {Builder}                    from '../../util/Builder';
+import {DebugEntityReferences}      from './EntityLoader';
+import {Entity}                     from './Entity';
+import {EntityCategory}             from '../category/EntityCategory';
+import {EntityLink}                 from '../entityTypes';
+import {EntityTemplate}             from './EntityTemplate';
+import {EntityReferencesContainer}  from '../properties/EntityReferencesContainer';
+import {EmptyEntity}                from './EmptyEntity';
+import {EmptyEntityCategory}        from '../category/EmptyEntityCategory';
+import {GenericEntity}              from './GenericEntity';
+import {IsInPropertyContainer}      from '../properties/IsInPropertyContainer';
+import {NameBuilder}                from '../lang/NameBuilder';
+import {SMM1ExclusiveGenericEntity} from './SMM1ExclusiveGenericEntity';
+import {SMM2ExclusiveGenericEntity} from './SMM2ExclusiveGenericEntity';
 
 export class EntityBuilder
     implements Builder<Entity> {

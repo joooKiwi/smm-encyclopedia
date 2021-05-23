@@ -1,8 +1,8 @@
-import {CategoryType} from "../category/EntityCategoryLoader";
-import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from "../entityTypes";
-import {EntityReferencesTemplate} from "../properties/EntityReferencesTemplate";
-import {IsInPropertyTemplate} from "../properties/IsInPropertyTemplate";
-import {SMM2NameTemplate} from "../lang/SMM2NameTemplate";
+import {CategoryType}                                                            from '../category/EntityCategoryLoader';
+import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import {EntityReferencesTemplate}                                                from '../properties/EntityReferencesTemplate';
+import {IsInPropertyTemplate}                                                    from '../properties/IsInPropertyTemplate';
+import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
 
 export interface EntityTemplate {
 

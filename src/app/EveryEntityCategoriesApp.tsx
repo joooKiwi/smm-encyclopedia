@@ -1,4 +1,5 @@
 import './EveryThemesApp.scss';
+
 import React from 'react';
 
 import AbstractApp            from './AbstractApp';
@@ -9,7 +10,7 @@ import TableWithTranslations  from './tools/table/TableWithTranslations';
 import {Themes}               from '../entity/theme/Themes';
 import {SingleTableContent}   from './tools/table/Table';
 
-export class EveryEntityCategoriesApp
+export default class EveryEntityCategoriesApp
     extends AbstractApp {
 
     #entityCategories?: Map<string, EntityCategory>;

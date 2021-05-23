@@ -2,8 +2,8 @@ import React             from 'react';
 import {Link}            from 'react-router-dom';
 import {withTranslation} from 'react-i18next';
 
-import {ContentAndGameContentTranslationComponent} from '../lang/components/ContentAndGameContentTranslationComponent';
-import {Languages}                                 from '../lang/Languages';
+import ContentAndGameContentTranslationComponent from '../lang/components/ContentAndGameContentTranslationComponent';
+import {Languages}                               from '../lang/Languages';
 
 class DisplayTab
     extends ContentAndGameContentTranslationComponent {
@@ -30,4 +30,4 @@ class DisplayTab
 
 }
 
-export default withTranslation(['gameContent', 'content'])(DisplayTab);
+export default withTranslation(['gameContent', 'content',])(DisplayTab);

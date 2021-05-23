@@ -3,7 +3,7 @@ import {TFunction} from 'react-i18next';
 
 import {LanguageTranslationElement} from './elements/LanguageTranslationElement';
 
-export abstract class LanguageTranslationComponent<T extends LanguageTranslationElement = LanguageTranslationElement>
+export default abstract class LanguageTranslationComponent<T extends LanguageTranslationElement = LanguageTranslationElement>
     extends Component<T> {
 
 

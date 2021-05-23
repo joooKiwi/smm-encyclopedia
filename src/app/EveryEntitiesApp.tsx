@@ -1,8 +1,9 @@
-import AbstractApp    from "./AbstractApp";
-import React          from "react";
-import {EntityLoader} from "../entity/simple/EntityLoader";
+import React from 'react';
 
-export class EveryEntitiesApp
+import AbstractApp    from './AbstractApp';
+import {EntityLoader} from '../entity/simple/EntityLoader';
+
+export default class EveryEntitiesApp
     extends AbstractApp {
 
     protected _mainContent(): JSX.Element {

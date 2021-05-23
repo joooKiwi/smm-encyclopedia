@@ -1,13 +1,13 @@
-import everyEntityCategories from "../../resources/Every Super Mario Maker 2 entities properties - Entity categories.csv";
+import everyEntityCategories from '../../resources/Every Super Mario Maker 2 entities properties - Entity categories.csv';
 
-import {CallbackCaller} from "../../util/CallbackCaller";
-import CSVLoader from "../../loader/CSVLoader";
-import {EntityCategory} from "./EntityCategory";
-import {EntityCategoryTemplate} from "./EntityCategoryTemplate";
-import {GenericEntityCategory} from "./GenericEntityCategory";
-import {Loader} from "../../util/Loader";
-import {NameCreator} from "../lang/NameCreator";
-import {NameBuilder} from "../lang/NameBuilder";
+import {CallbackCaller}         from '../../util/CallbackCaller';
+import {CSVLoader}              from '../../util/loader/CSVLoader';
+import {EntityCategory}         from './EntityCategory';
+import {EntityCategoryTemplate} from './EntityCategoryTemplate';
+import {GenericEntityCategory}  from './GenericEntityCategory';
+import {Loader}                 from '../../util/Loader';
+import {NameCreator}            from '../lang/NameCreator';
+import {NameBuilder}            from '../lang/NameBuilder';
 
 export type CategoryType = 'Terrain' | 'Item' | 'Gizmo' | 'Enemy';
 

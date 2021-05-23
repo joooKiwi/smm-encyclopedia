@@ -2,10 +2,10 @@ import React             from 'react';
 import {Link}            from 'react-router-dom';
 import {withTranslation} from 'react-i18next';
 
-import ChangeTheLanguageTab          from './ChangeTheLanguageTab';
-import {ContentTranslationComponent} from '../lang/components/ContentTranslationComponent';
-import DisplayTab                    from './DisplayTab';
-import {Languages}                   from '../lang/Languages';
+import ChangeTheLanguageTab        from './ChangeTheLanguageTab';
+import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
+import DisplayTab                  from './DisplayTab';
+import {Languages}                 from '../lang/Languages';
 
 class Navigation
     extends ContentTranslationComponent {

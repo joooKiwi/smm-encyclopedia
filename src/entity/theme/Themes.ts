@@ -3,10 +3,10 @@ import {Entity}      from '../simple/Entity';
 import {ThemeLoader} from './ThemeLoader';
 import {WorldTheme}  from './WorldTheme';
 
-type ThemesInBothCourseAndWorld = 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
-export type PossibleCourseTheme = ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
-export type PossibleWorldTheme = ThemesInBothCourseAndWorld | 'Volcano' | 'Space';
-export type PossibleTheme = PossibleCourseTheme | PossibleWorldTheme;
+type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
+export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
+export type PossibleWorldTheme = | ThemesInBothCourseAndWorld | 'Volcano' | 'Space';
+export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
 
 
 /**

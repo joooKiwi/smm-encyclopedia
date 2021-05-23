@@ -1,7 +1,8 @@
-import AbstractApp from "./AbstractApp";
 import React       from "react";
 
-export class EveryLimitsApp
+import AbstractApp from "./AbstractApp";
+
+export default class EveryLimitsApp
     extends AbstractApp {
 
     protected _mainContent(): JSX.Element {

@@ -1,22 +1,22 @@
 import everyThemes from '../../resources/Every Super Mario Maker 2 entities properties - Themes.csv';
 
 import {CallbackCaller}                      from '../../util/CallbackCaller';
-import CSVLoader                             from '../../loader/CSVLoader';
+import {CSVLoader}                           from '../../util/loader/CSVLoader';
 import {CourseTheme}                         from './CourseTheme';
 import {DebugEntityReferences, EntityLoader} from '../simple/EntityLoader';
 import {EmptyCourseTheme}                    from './EmptyCourseTheme';
-import {EmptyWorldTheme}           from './EmptyWorldTheme';
-import {Entity}                    from '../simple/Entity';
-import {IsInGamePropertyContainer} from '../properties/IsInGamePropertyContainer';
-import {Loader}                    from '../../util/Loader';
-import {GenericWorldTheme}         from './GenericWorldTheme';
-import {GenericCourseTheme}        from './GenericCourseTheme';
-import {Name}                      from '../../lang/name/Name';
-import {NameBuilder}               from '../lang/NameBuilder';
-import {NameCreator}               from '../lang/NameCreator';
-import {Themes}                    from './Themes';
-import {ThemeTemplate}             from './ThemeTemplate';
-import {WorldTheme}                from './WorldTheme';
+import {EmptyWorldTheme}                     from './EmptyWorldTheme';
+import {Entity}                              from '../simple/Entity';
+import {IsInGamePropertyContainer}           from '../properties/IsInGamePropertyContainer';
+import {Loader}                              from '../../util/Loader';
+import {GenericWorldTheme}                   from './GenericWorldTheme';
+import {GenericCourseTheme}                  from './GenericCourseTheme';
+import {Name}                                from '../../lang/name/Name';
+import {NameBuilder}                         from '../lang/NameBuilder';
+import {NameCreator}                         from '../lang/NameCreator';
+import {Themes}                              from './Themes';
+import {ThemeTemplate}                       from './ThemeTemplate';
+import {WorldTheme}                          from './WorldTheme';
 
 
 type ThemePropertiesArray = [

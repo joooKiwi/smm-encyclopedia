@@ -4,8 +4,8 @@ import React             from 'react';
 import {withTranslation} from 'react-i18next';
 import {Link}            from 'react-router-dom';
 
-import {ContentAndLanguageTranslationComponent} from '../lang/components/ContentAndLanguageTranslationComponent';
-import {Languages}                              from '../lang/Languages';
+import ContentAndLanguageTranslationComponent from '../lang/components/ContentAndLanguageTranslationComponent';
+import {Languages}                            from '../lang/Languages';
 
 class ChangeTheLanguageTab
     extends ContentAndLanguageTranslationComponent {
@@ -34,4 +34,4 @@ class ChangeTheLanguageTab
 
 }
 
-export default withTranslation(['language', 'content'])(ChangeTheLanguageTab);
+export default withTranslation(['language', 'content',])(ChangeTheLanguageTab);

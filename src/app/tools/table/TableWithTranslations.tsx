@@ -1,7 +1,7 @@
 import {TFuncKey, withTranslation} from 'react-i18next';
 
 import {EveryTranslationElement}     from '../../../lang/components/elements/EveryTranslationElement';
-import {EveryTranslationsComponent}  from '../../../lang/components/EveryTranslationsComponent';
+import EveryTranslationsComponent    from '../../../lang/components/EveryTranslationsComponent';
 import Table, {SimpleTableComponent} from './Table';
 
 interface TableWithTranslationsComponent

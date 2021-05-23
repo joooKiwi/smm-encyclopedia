@@ -1,6 +1,7 @@
-import {GroupButtonComponents}       from "./components/GroupButtonComponent";
-import React, {Component, ReactNode} from "react";
-import {ActivatableElement}          from "./elements/ActivatableElement";
+import React, {Component, ReactNode} from 'react';
+
+import {ActivatableElement}    from './elements/ActivatableElement';
+import {GroupButtonComponents} from './components/GroupButtonComponent';
 
 export default abstract class AbstractGroupButton<T extends ActivatableElement>
     extends Component<GroupButtonComponents<T>, any> {
@@ -45,7 +46,7 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
     protected get hasTheConditionToBeVertical(): boolean {
         if (!this.isVertical)
             return false;
-        return this.elements.length > AbstractGroupButton.MAXIMUM_HORIZONTAL_LENGTH
+        return this.elements.length > AbstractGroupButton.MAXIMUM_HORIZONTAL_LENGTH;
     }
 
 

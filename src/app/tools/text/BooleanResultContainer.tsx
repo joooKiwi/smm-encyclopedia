@@ -1,4 +1,5 @@
-import {Component}          from 'react';
+import {Component} from 'react';
+
 import BooleanTextContainer from './BooleanTextContainer';
 
 export interface BooleanTextContent {
@@ -22,6 +23,11 @@ export default class BooleanResultContainer
 
 
     public render() {
-        return <BooleanTextContainer className={[this.boolean ? 'text-success' : 'text-danger']} boolean={this.boolean} trueValue={this.props.trueValue} falseValue={this.props.falseValue}/>;
+        return <BooleanTextContainer
+            className={[this.boolean ? 'text-success' : 'text-danger']}
+            boolean={this.boolean}
+            trueValue={this.props.trueValue}
+            falseValue={this.props.falseValue}
+        />;
     }
 }

@@ -1,7 +1,7 @@
+import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
 import {IsInProperty}            from '../properties/IsInProperty';
 import {EntityReferences}        from '../properties/EntityReferences';
 import {EntityCategory}          from '../category/EntityCategory';
-import {ClassWithEveryLanguages} from '../../lang/ClassWithEveryLanguages';
 
 export interface Entity
     extends ClassWithEveryLanguages, IsInProperty, EntityReferences {

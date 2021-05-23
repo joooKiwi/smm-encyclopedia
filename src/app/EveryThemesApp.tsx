@@ -1,20 +1,21 @@
 import './EveryThemesApp.scss';
+
 import React from 'react';
 
-import AbstractApp              from './AbstractApp';
-import {CourseTheme}            from '../entity/theme/CourseTheme';
-import {EmptyCourseTheme}       from '../entity/theme/EmptyCourseTheme';
-import {EmptyWorldTheme}        from '../entity/theme/EmptyWorldTheme';
-import {Games}                  from '../entity/game/Games';
-import SMM2NameComponent        from '../entity/lang/SMM2NameComponent';
-import {SingleTableContent}     from './tools/table/Table';
-import TableWithTranslations    from './tools/table/TableWithTranslations';
-import {ThemeLoader}            from '../entity/theme/ThemeLoader';
-import {Themes}                 from '../entity/theme/Themes';
-import {WorldTheme}             from '../entity/theme/WorldTheme';
-import {YesOrNoResultContainer} from './tools/text/YesOrNoResultContainer';
+import AbstractApp            from './AbstractApp';
+import {CourseTheme}          from '../entity/theme/CourseTheme';
+import {EmptyCourseTheme}     from '../entity/theme/EmptyCourseTheme';
+import {EmptyWorldTheme}      from '../entity/theme/EmptyWorldTheme';
+import {Games}                from '../entity/game/Games';
+import SMM2NameComponent      from '../entity/lang/SMM2NameComponent';
+import {SingleTableContent}   from './tools/table/Table';
+import TableWithTranslations  from './tools/table/TableWithTranslations';
+import {ThemeLoader}          from '../entity/theme/ThemeLoader';
+import {Themes}               from '../entity/theme/Themes';
+import {WorldTheme}           from '../entity/theme/WorldTheme';
+import YesOrNoResultContainer from './tools/text/YesOrNoResultContainer';
 
-export class EveryThemesApp
+export default class EveryThemesApp
     extends AbstractApp {
 
     #themes?: Map<string, [CourseTheme, WorldTheme]>;

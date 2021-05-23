@@ -1,7 +1,7 @@
 import {withTranslation} from 'react-i18next';
 
-import {ContentTranslationComponent} from '../lang/components/ContentTranslationComponent';
-import {Languages}                   from '../lang/Languages';
+import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
+import {Languages}                 from '../lang/Languages';
 
 class Footer
     extends ContentTranslationComponent {

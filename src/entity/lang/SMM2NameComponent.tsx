@@ -1,10 +1,10 @@
 import {Popover}         from 'bootstrap';
 import {withTranslation} from 'react-i18next';
 
-import {ContentAndLanguageTranslationComponent} from '../../lang/components/ContentAndLanguageTranslationComponent';
-import {ContentAndLanguageTranslationElement}   from '../../lang/components/elements/ContentAndLanguageTranslationElement';
-import {EveryLanguages}                         from '../../lang/EveryLanguages';
-import {Name}                                   from '../../lang/name/Name';
+import ContentAndLanguageTranslationComponent from '../../lang/components/ContentAndLanguageTranslationComponent';
+import {ContentAndLanguageTranslationElement} from '../../lang/components/elements/ContentAndLanguageTranslationElement';
+import {EveryLanguages}                       from '../../lang/EveryLanguages';
+import {Name}                                 from '../../lang/name/Name';
 
 interface SMM2NameProperty
     extends ContentAndLanguageTranslationElement {
