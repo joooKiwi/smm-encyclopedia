@@ -2,11 +2,11 @@ import React             from 'react';
 import {Link}            from 'react-router-dom';
 import {withTranslation} from 'react-i18next';
 
-import {ComponentWithContentAndGameContentTranslation} from '../lang/components/ComponentWithContentAndGameContentTranslation';
-import {Languages}                                     from '../lang/Languages';
+import {ContentAndGameContentTranslationComponent} from '../lang/components/ContentAndGameContentTranslationComponent';
+import {Languages}                                 from '../lang/Languages';
 
 class DisplayTab
-    extends ComponentWithContentAndGameContentTranslation {
+    extends ContentAndGameContentTranslationComponent {
 
 
     private static _createLi(key: string, partialPath: string, textContent: string): JSX.Element {
