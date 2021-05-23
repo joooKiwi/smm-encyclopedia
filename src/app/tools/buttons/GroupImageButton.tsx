@@ -3,7 +3,7 @@ import './GroupImageButton.scss';
 import React from 'react';
 
 import AbstractGroupButton       from './AbstractGroupButton';
-import {GroupButtonComponents}   from './components/GroupButtonComponent';
+import {GroupButtonComponents}   from './properties/GroupButtonProperty';
 import {ActivatableImageElement} from './elements/ActivatableImageElement';
 
 export default class GroupImageButton

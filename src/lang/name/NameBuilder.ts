@@ -1,7 +1,7 @@
-import {AmericanOrEuropeanOriginal} from './components/AmericanAndEuropeanLanguage';
+import {AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
 import {Builder}                    from '../../util/Builder';
-import {CanadianOrEuropeanOriginal} from './components/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from './components/ChineseLanguage';
+import {CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
+import {ChineseOriginal}            from './containers/ChineseLanguage';
 import {Name}                       from './Name';
 import {NameContainer}              from './NameContainer';
 

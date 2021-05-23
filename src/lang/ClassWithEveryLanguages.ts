@@ -1,8 +1,8 @@
 import {ClassWithLanguages}         from './ClassWithLanguages';
 import {EveryLanguages}             from './EveryLanguages';
-import {ChineseOriginal}            from './name/components/ChineseLanguage';
-import {AmericanOrEuropeanOriginal} from './name/components/AmericanAndEuropeanLanguage';
-import {CanadianOrEuropeanOriginal} from './name/components/CanadianAndEuropeanLanguage';
+import {ChineseOriginal}            from './name/containers/ChineseLanguage';
+import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
+import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
 
 /**
  * <p>

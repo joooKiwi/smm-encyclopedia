@@ -1,7 +1,7 @@
 import React, {Component, ReactNode} from 'react';
 
 import {ActivatableElement}    from './elements/ActivatableElement';
-import {GroupButtonComponents} from './components/GroupButtonComponent';
+import {GroupButtonComponents} from './properties/GroupButtonProperty';
 
 export default abstract class AbstractGroupButton<T extends ActivatableElement>
     extends Component<GroupButtonComponents<T>, any> {

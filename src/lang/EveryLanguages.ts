@@ -5,9 +5,9 @@ import {
     PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages,
     PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages
 }                                   from './Languages';
-import {AmericanOrEuropeanOriginal} from './name/components/AmericanAndEuropeanLanguage';
-import {CanadianOrEuropeanOriginal} from './name/components/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from './name/components/ChineseLanguage';
+import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
+import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
+import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 
 
 type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人';

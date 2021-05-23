@@ -2,7 +2,7 @@ import React from 'react';
 
 import AbstractGroupButton      from './AbstractGroupButton';
 import {ActivatableTextElement} from './elements/ActivatableTextElement';
-import {GroupButtonComponents}  from './components/GroupButtonComponent';
+import {GroupButtonComponents}  from './properties/GroupButtonProperty';
 
 export default class GroupTextButton
     extends AbstractGroupButton<ActivatableTextElement> {
