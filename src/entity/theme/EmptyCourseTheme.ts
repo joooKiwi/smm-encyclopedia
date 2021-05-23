@@ -22,6 +22,10 @@ export class EmptyCourseTheme
         return this.instance;
     }
 
+    public get individualValues() {
+        return EmptyCourseTheme.EMPTY_ARRAY;
+    }
+
     public toNameMap() {
         return EmptyCourseTheme.EMPTY_MAP;
     }

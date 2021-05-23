@@ -9,6 +9,7 @@ export class EmptyName
 
     private static readonly instance = new EmptyName();
     public static readonly EMPTY_STRING = '';
+    public static readonly EMPTY_ARRAY = [];
     public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
@@ -55,6 +56,7 @@ export class EmptyName
 
     public readonly korean = EmptyName.EMPTY_STRING;
 
+    public readonly individualValues = EmptyName.EMPTY_ARRAY;
 
     public static get get() {
         return this.instance;

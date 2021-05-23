@@ -28,33 +28,8 @@ class SMM2NameComponent
         return this.props.name;
     }
 
-    private get languagesToDisplay(): readonly EveryLanguages[] {
-        const returnedLanguages = [] as EveryLanguages[];
-
-        if (!EveryLanguages.ENGLISH.isCurrentLanguage)
-            returnedLanguages.push(...(typeof EveryLanguages.ENGLISH.original(this.name) === 'string' ? [EveryLanguages.ENGLISH] : [EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH]));
-        if (!EveryLanguages.FRENCH.isCurrentLanguage)
-            returnedLanguages.push(...(typeof EveryLanguages.FRENCH.original(this.name) === 'string' ? [EveryLanguages.FRENCH] : [EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH]));
-        if (!EveryLanguages.GERMAN.isCurrentLanguage)
-            returnedLanguages.push(EveryLanguages.GERMAN);
-        if (!EveryLanguages.SPANISH.isCurrentLanguage)
-            returnedLanguages.push(...(typeof EveryLanguages.SPANISH.original(this.name) === 'string' ? [EveryLanguages.SPANISH] : [EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH]));
-        if (!EveryLanguages.ITALIAN.isCurrentLanguage)
-            returnedLanguages.push(EveryLanguages.ITALIAN);
-        if (!EveryLanguages.DUTCH.isCurrentLanguage)
-            returnedLanguages.push(EveryLanguages.DUTCH);
-        if (!EveryLanguages.PORTUGUESE.isCurrentLanguage)
-            returnedLanguages.push(...(typeof EveryLanguages.PORTUGUESE.original(this.name) === 'string' ? [EveryLanguages.PORTUGUESE] : [EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE]));
-        if (!EveryLanguages.RUSSIAN.isCurrentLanguage)
-            returnedLanguages.push(EveryLanguages.RUSSIAN);
-        if (!EveryLanguages.JAPANESE.isCurrentLanguage)
-            returnedLanguages.push(EveryLanguages.JAPANESE);
-        if (!EveryLanguages.CHINESE.isCurrentLanguage)
-            returnedLanguages.push(...(typeof EveryLanguages.CHINESE.original(this.name) === 'string' ? [EveryLanguages.CHINESE] : [EveryLanguages.CHINESE_SIMPLIFIED, EveryLanguages.CHINESE_TRADITIONAL]));
-        if (!EveryLanguages.KOREAN.isCurrentLanguage)
-            returnedLanguages.push(EveryLanguages.KOREAN);
-
-        return returnedLanguages;
+    private get languagesToDisplay() {
+        return this.name.individualValues.filter(language => !language.isCurrentLanguage);
     }
 
     public render(): JSX.Element {

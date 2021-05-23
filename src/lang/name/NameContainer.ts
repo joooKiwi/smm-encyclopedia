@@ -2,20 +2,21 @@ import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './contain
 import {AmericanAndEuropeanLanguageContainer}                    from './containers/AmericanAndEuropeanLanguageContainer';
 import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
 import {CanadianAndEuropeanLanguageContainer}                    from './containers/CanadianAndEuropeanLanguageContainer';
+import {CallbackCaller}                                          from '../../util/CallbackCaller';
 import {ChineseLanguage, ChineseOriginal}                        from './containers/ChineseLanguage';
 import {ChineseLanguageContainer}                                from './containers/ChineseLanguageContainer';
+import {EveryLanguages}                                          from '../EveryLanguages';
 import {Languages}                                               from '../Languages';
 import {SimpleLanguage}                                          from './containers/SimpleLanguage';
 import {SimpleLanguageContainer}                                 from './containers/SimpleLanguageContainer';
 import {Name}                                                    from './Name';
-import {EveryLanguages}                                          from '../EveryLanguages';
-import {CallbackCaller}                                          from '../../util/CallbackCaller';
 
 export class NameContainer
     implements Name {
 
     //region -------------------- Attributes --------------------
 
+    readonly #individualValues: readonly EveryLanguages[];
     readonly #mapCaller: CallbackCaller<Map<EveryLanguages, string>>;
 
     readonly #english: AmericanAndEuropeanLanguage;
@@ -43,17 +44,69 @@ export class NameContainer
                        japanese: string,
                        chinese: ChineseOriginal,
                        korean: string,) {
-        this.#english = typeof english === 'string' ? new AmericanAndEuropeanLanguageContainer(english) : new AmericanAndEuropeanLanguageContainer(...english);
-        this.#french = typeof french === 'string' ? new CanadianAndEuropeanLanguageContainer(french) : new CanadianAndEuropeanLanguageContainer(...french);
+        const individualValues = [];
+
+        if (typeof english === 'string') {
+            this.#english = new AmericanAndEuropeanLanguageContainer(english);
+            individualValues.push(EveryLanguages.ENGLISH);
+        } else {
+            this.#english = new AmericanAndEuropeanLanguageContainer(...english);
+            individualValues.push(EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH,);
+        }
+
+        if (typeof french === 'string') {
+            this.#french = new CanadianAndEuropeanLanguageContainer(french);
+            individualValues.push(EveryLanguages.FRENCH);
+        } else {
+            this.#french = new CanadianAndEuropeanLanguageContainer(...french);
+            individualValues.push(EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH,);
+        }
+
         this.#german = new SimpleLanguageContainer(german);
-        this.#spanish = typeof spanish === 'string' ? new AmericanAndEuropeanLanguageContainer(spanish) : new AmericanAndEuropeanLanguageContainer(...spanish);
+        individualValues.push(EveryLanguages.GERMAN);
+
+        if (typeof spanish === 'string') {
+            this.#spanish = new AmericanAndEuropeanLanguageContainer(spanish);
+            individualValues.push(EveryLanguages.SPANISH);
+
+        } else {
+            this.#spanish = new AmericanAndEuropeanLanguageContainer(...spanish);
+            individualValues.push(EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH,);
+
+        }
+
         this.#italian = new SimpleLanguageContainer(italian);
+        individualValues.push(EveryLanguages.ITALIAN);
+
         this.#dutch = new SimpleLanguageContainer(dutch);
-        this.#portuguese = typeof portuguese === 'string' ? new AmericanAndEuropeanLanguageContainer(portuguese) : new AmericanAndEuropeanLanguageContainer(...portuguese);
+        individualValues.push(EveryLanguages.DUTCH);
+
+        if (typeof portuguese === 'string') {
+            this.#portuguese = new AmericanAndEuropeanLanguageContainer(portuguese);
+            individualValues.push(EveryLanguages.PORTUGUESE);
+        } else {
+            this.#portuguese = new AmericanAndEuropeanLanguageContainer(...portuguese);
+            individualValues.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
+        }
+
         this.#russian = new SimpleLanguageContainer(russian);
+        individualValues.push(EveryLanguages.RUSSIAN);
+
         this.#japanese = new SimpleLanguageContainer(japanese);
-        this.#chinese = typeof chinese === 'string' ? new ChineseLanguageContainer(chinese) : new ChineseLanguageContainer(...chinese);
+        individualValues.push(EveryLanguages.JAPANESE);
+
+        if (typeof chinese === 'string') {
+            this.#chinese = new ChineseLanguageContainer(chinese);
+            individualValues.push(EveryLanguages.CHINESE);
+        } else {
+            this.#chinese = new ChineseLanguageContainer(...chinese);
+            individualValues.push(EveryLanguages.CHINESE_SIMPLIFIED, EveryLanguages.CHINESE_TRADITIONAL,);
+        }
+
         this.#korean = new SimpleLanguageContainer(korean);
+        individualValues.push(EveryLanguages.KOREAN);
+
+        this.#individualValues = individualValues;
         this.#mapCaller = new CallbackCaller(() => {
             const map = new Map<EveryLanguages, string>();
             EveryLanguages.values.forEach(language => map.set(language, language.get(this)));
@@ -181,8 +234,12 @@ export class NameContainer
     }
 
 
+    public get individualValues() {
+        return this.#individualValues;
+    }
+
     public toNameMap() {
-        return this.#mapCaller.get
+        return this.#mapCaller.get;
     }
 
 }

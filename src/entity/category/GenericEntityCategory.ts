@@ -138,6 +138,10 @@ export class GenericEntityCategory
 
     //endregion -------------------- Name properties --------------------
 
+    public get individualValues() {
+        return this.name.individualValues;
+    }
+
     public toNameMap() {
         return this.name.toNameMap();
     }

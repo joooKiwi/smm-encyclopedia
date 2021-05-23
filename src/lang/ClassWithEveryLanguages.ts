@@ -17,8 +17,6 @@ import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanL
 export interface ClassWithEveryLanguages
     extends ClassWithLanguages {
 
-    languageValue: string
-
     english: string
     originalEnglish: AmericanOrEuropeanOriginal
 
@@ -33,6 +31,8 @@ export interface ClassWithEveryLanguages
 
     chinese: string
     originalChinese: ChineseOriginal
+
+    individualValues: readonly EveryLanguages[]//TODO find a better name
 
     toNameMap(): Map<EveryLanguages, string>
 
