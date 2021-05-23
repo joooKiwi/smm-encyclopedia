@@ -1,31 +1,37 @@
+import {TFuncKey, withTranslation} from 'react-i18next';
+
+import {EveryTranslationElement}     from '../../../lang/components/elements/EveryTranslationElement';
+import {EveryTranslationsComponent}  from '../../../lang/components/EveryTranslationsComponent';
 import Table, {SimpleTableComponent} from './Table';
-import {TFunction, withTranslation}  from 'react-i18next';
 
-interface TableWithTranslationsComponent {
-    translations: Translations,
-    renderCallback: (translations: TranslationObject) => SimpleTableComponent
+interface TableWithTranslationsComponent
+    extends EveryTranslationElement {
+
+    renderCallback: (translations: TableWithTranslations) => SimpleTableComponent
+
 }
 
-interface Translations {
-    language?: boolean
-    gameContent?: boolean
-    content?: boolean
+class TableWithTranslations
+    extends EveryTranslationsComponent<TableWithTranslationsComponent> {
+
+
+    public contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys) {
+        return super.contentTranslation(value);
+    }
+
+    public gameContentTranslation<TKeys extends TFuncKey<'gameContent'>>(value: TKeys) {
+        return super.gameContentTranslation(value);
+    }
+
+    public languageTranslation<TKeys extends TFuncKey<'gameContent'>>(value: TKeys) {
+        return super.languageTranslation(value);
+    }
+
+    public render(): JSX.Element {
+        const {id, caption, headers, content,} = this.props.renderCallback(this);
+        return <Table id={id} caption={caption} headers={headers} content={content}/>;
+    }
+
 }
 
-interface TranslationObject {
-    language: TFunction<'language'>
-    gameContent: TFunction<'gameContent'>
-    content: TFunction<'content'>
-}
-
-//TODO add a definition method for this react component.
-export default function TableWithTranslations(props: TableWithTranslationsComponent): JSX.Element {
-    let translation = {} as TranslationObject;
-    if (props.translations.language) translation.language = withTranslation('language');
-    if (props.translations.gameContent) translation.gameContent = withTranslation('gameContent');
-    if (props.translations.content) translation.content = withTranslation('content');
-
-    const tableComponent = props.renderCallback(translation);
-
-    return <Table id={tableComponent.id} caption={tableComponent.caption} headers={tableComponent.headers} content={tableComponent.content}/>;
-}
+export default withTranslation(['language', 'gameContent', 'content'])(TableWithTranslations);

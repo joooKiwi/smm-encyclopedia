@@ -52,17 +52,17 @@ export class EveryThemesApp
             index++;
         }
 
-        return <TableWithTranslations translations={({content: true, gameContent: true,})} renderCallback={(translations) => ({
+        return <TableWithTranslations renderCallback={(translations) => ({
             id: 'theme_table',
-            caption: translations.gameContent('Every themes'),
+            caption: translations.gameContentTranslation('Every themes'),
             headers: [
                 '#',
-                translations.content('Image'),
-                translations.gameContent('Is in the course theme'),
-                translations.gameContent('Is in the world theme'),
+                translations.contentTranslation('Image'),
+                translations.gameContentTranslation('Is in the course theme'),
+                translations.gameContentTranslation('Is in the world theme'),
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                translations.content('Language'),
+                translations.contentTranslation('Language'),
 
             ],
             content: content,
