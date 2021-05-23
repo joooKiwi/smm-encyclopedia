@@ -1,6 +1,6 @@
 import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
-import {ConverterPatterns} from "./ConverterPatterns";
-import {ConverterUtil} from "./ConverterUtil";
+import {ConverterPatterns}                from "./ConverterPatterns";
+import {ConverterUtil}                    from "./ConverterUtil";
 
 export class StringToNullableStringConverter
     extends AbstractEmptyableStringConverter<string | null> {

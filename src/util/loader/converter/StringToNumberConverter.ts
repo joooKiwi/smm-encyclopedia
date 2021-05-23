@@ -1,5 +1,5 @@
 import {AbstractStringConverter} from "./AbstractStringConverter";
-import {ConverterPatterns} from "./ConverterPatterns";
+import {ConverterPatterns}       from "./ConverterPatterns";
 
 export class StringToNumberConverter
     extends AbstractStringConverter<number> {

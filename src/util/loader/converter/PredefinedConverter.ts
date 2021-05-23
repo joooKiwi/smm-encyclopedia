@@ -1,13 +1,13 @@
-import {Converter} from "./Converter";
-import {StringToBooleanConverter} from "./StringToBooleanConverter";
-import {StringToNumberConverter} from "./StringToNumberConverter";
+import {Converter}                        from "./Converter";
+import {ConverterPatterns}                from "./ConverterPatterns";
+import {ConverterUtil}                    from "./ConverterUtil";
+import {StringToBooleanConverter}         from "./StringToBooleanConverter";
 import {StringToEmptyableStringConverter} from "./StringToEmptyableStringConverter";
-import {StringToNullableNumberConverter} from "./StringToNullableNumberConverter";
+import {StringToNullableNumberConverter}  from "./StringToNullableNumberConverter";
 import {StringToNullableBooleanConverter} from "./StringToNullableBooleanConverter";
-import {StringToNullableStringConverter} from "./StringToNullableStringConverter";
-import {StringToStringConverter} from "./StringToStringConverter";
-import {ConverterPatterns} from "./ConverterPatterns";
-import {ConverterUtil} from "./ConverterUtil";
+import {StringToNullableStringConverter}  from "./StringToNullableStringConverter";
+import {StringToNumberConverter}          from "./StringToNumberConverter";
+import {StringToStringConverter}          from "./StringToStringConverter";
 
 
 export type PrimitiveConversion = 'boolean' | 'number' | 'string';

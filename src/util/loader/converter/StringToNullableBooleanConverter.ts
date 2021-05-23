@@ -1,6 +1,6 @@
 import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
-import {ConverterUtil} from "./ConverterUtil";
-import {ConverterPatterns} from "./ConverterPatterns";
+import {ConverterUtil}                    from "./ConverterUtil";
+import {ConverterPatterns}                from "./ConverterPatterns";
 
 export class StringToNullableBooleanConverter
     extends AbstractEmptyableStringConverter<boolean> {
