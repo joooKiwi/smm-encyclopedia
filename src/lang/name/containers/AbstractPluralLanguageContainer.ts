@@ -5,7 +5,7 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
     extends SimpleLanguageContainer
     implements PluralLanguage<T> {
 
-    public static DEFAULT_NULL_LANGUAGE = 'N/A';
+    public static readonly DEFAULT_NULL_LANGUAGE = 'N/A';
 
     #values?: Map<T, string>;
 

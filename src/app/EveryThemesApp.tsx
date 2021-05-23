@@ -30,7 +30,7 @@ export default class EveryThemesApp
 
 
     protected _mainContent(): JSX.Element {
-        // console.log(this.enum);//README this log is there only to help debugging.
+        console.log(this.enum);//README this log is there only to help debugging.
 
         const content = [] as SingleTableContent[];
         let index = 1;

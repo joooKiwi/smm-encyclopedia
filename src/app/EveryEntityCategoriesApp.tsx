@@ -3,11 +3,11 @@ import './EveryThemesApp.scss';
 import React from 'react';
 
 import AbstractApp            from './AbstractApp';
+import {EntityCategories}     from '../entity/category/EntityCategories';
 import {EntityCategory}       from '../entity/category/EntityCategory';
 import {EntityCategoryLoader} from '../entity/category/EntityCategoryLoader';
 import SMM2NameComponent      from '../entity/lang/SMM2NameComponent';
 import TableWithTranslations  from './tools/table/TableWithTranslations';
-import {Themes}               from '../entity/theme/Themes';
 import {SingleTableContent}   from './tools/table/Table';
 
 export default class EveryEntityCategoriesApp
@@ -20,7 +20,7 @@ export default class EveryEntityCategoriesApp
     }
 
     protected get enum() {
-        return Themes.values;
+        return EntityCategories.values;
     }
 
     protected _mainContent(): JSX.Element {
