@@ -2,7 +2,7 @@ import {Component, ReactNode} from 'react';
 
 export type SingleTableContent = [key: string, ...content: JSX.Element[]];
 
-interface SimpleImageHeader {
+export interface SimpleImageHeader {
     key: string
     /**
      * The name if the image cannot be loaded.
@@ -11,7 +11,7 @@ interface SimpleImageHeader {
     path: string
 }
 
-interface SimpleTableComponent {
+export interface SimpleTableComponent {
     id: string
     caption: string
     headers: readonly (string | SimpleImageHeader)[]
@@ -76,4 +76,5 @@ export default class Table
             </tfoot>
         </table>;
     }
+
 }

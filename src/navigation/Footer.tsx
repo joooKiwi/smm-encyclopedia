@@ -1,10 +1,10 @@
 import {withTranslation} from 'react-i18next';
 
-import {Languages}                       from '../lang/Languages';
-import {ComponentWithContentTranslation} from '../lang/components/ComponentWithContentTranslation';
+import {ContentTranslationComponent} from '../lang/components/ContentTranslationComponent';
+import {Languages}                   from '../lang/Languages';
 
 class Footer
-    extends ComponentWithContentTranslation {
+    extends ContentTranslationComponent {
 
     public render() {
         return <footer id="footer_container" className="bg-dark pt-4 pb-3 mb-0">

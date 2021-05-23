@@ -1,37 +1,39 @@
 import './EveryThemesApp.scss';
+import React from 'react';
 
-import {useTranslation} from 'react-i18next';
-import React            from 'react';
-
-import AbstractApp                 from './AbstractApp';
-import {CourseTheme}               from '../entity/theme/CourseTheme';
-import {EmptyCourseTheme}          from '../entity/theme/EmptyCourseTheme';
-import {EmptyWorldTheme}           from '../entity/theme/EmptyWorldTheme';
-import {Games}                     from '../entity/game/Games';
-import SMM2NameComponent           from '../entity/lang/SMM2NameComponent';
-import Table, {SingleTableContent} from './tools/Table';
-import {ThemeLoader}               from '../entity/theme/ThemeLoader';
-import {Themes}                    from '../entity/theme/Themes';
-import {WorldTheme}                from '../entity/theme/WorldTheme';
-import {YesOrNoResultContainer}    from './tools/text/YesOrNoResultContainer';
+import AbstractApp              from './AbstractApp';
+import {CourseTheme}            from '../entity/theme/CourseTheme';
+import {EmptyCourseTheme}       from '../entity/theme/EmptyCourseTheme';
+import {EmptyWorldTheme}        from '../entity/theme/EmptyWorldTheme';
+import {Games}                  from '../entity/game/Games';
+import SMM2NameComponent        from '../entity/lang/SMM2NameComponent';
+import {SingleTableContent}     from './tools/table/Table';
+import TableWithTranslations    from './tools/table/TableWithTranslations';
+import {ThemeLoader}            from '../entity/theme/ThemeLoader';
+import {Themes}                 from '../entity/theme/Themes';
+import {WorldTheme}             from '../entity/theme/WorldTheme';
+import {YesOrNoResultContainer} from './tools/text/YesOrNoResultContainer';
 
 export class EveryThemesApp
     extends AbstractApp {
 
     #themes?: Map<string, [CourseTheme, WorldTheme]>;
 
-    protected get themes() {
+    protected get map() {
         return this.#themes ?? (this.#themes = ThemeLoader.get.load());
     }
 
-    protected get themesEnum() {
+    protected get enum() {
         return Themes.values;
     }
 
-    protected _displayTableContent(): JSX.Element {
+
+    protected _mainContent(): JSX.Element {
+        // console.log(this.enum);//README this log is there only to help debugging.
+
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (let [englishName, [courseTheme, worldTheme]] of this.themes.entries()) {
+        for (let [englishName, [courseTheme, worldTheme]] of this.map.entries()) {
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
             const name = isInCourseTheme ? courseTheme.name : worldTheme.name;
@@ -40,7 +42,7 @@ export class EveryThemesApp
 
             content.push([englishName,
                 <>{index}</>,
-                <img src={this.themesEnum[index - 1].longImagePath} alt={englishName}/>,
+                <img src={this.enum[index - 1].longImagePath} alt={englishName}/>,
                 <YesOrNoResultContainer boolean={isInCourseTheme}/>,
                 <YesOrNoResultContainer boolean={isInWorldTheme}/>,
                 <YesOrNoResultContainer boolean={isInSMM1}/>,
@@ -49,31 +51,22 @@ export class EveryThemesApp
             ]);
             index++;
         }
-        return <TableFromTheme content={content}/>;
+
+        return <TableWithTranslations renderCallback={(translations) => ({
+            id: 'theme_table',
+            caption: translations.gameContentTranslation('Every themes'),
+            headers: [
+                '#',
+                translations.contentTranslation('Image'),
+                translations.gameContentTranslation('Is in the course theme'),
+                translations.gameContentTranslation('Is in the world theme'),
+                {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                translations.contentTranslation('Language'),
+
+            ],
+            content: content,
+        })}/>;
     }
 
-    protected _mainContent(): JSX.Element {
-        // console.log(this.themes);//README this log is there only to help debugging.
-        return <>{this._displayTableContent()}</>;
-    }
-
-}
-
-function TableFromTheme(props: { content: readonly SingleTableContent[] }): JSX.Element {
-    const content_t = useTranslation('content').t;
-    const gameContent_t = useTranslation('gameContent').t;
-
-    return <Table
-        id="theme_table"
-        caption={gameContent_t('Every themes')}
-        headers={[
-            '#',
-            content_t('Image'),
-            gameContent_t('Is in the course theme'),
-            gameContent_t('Is in the world theme'),
-            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.fullName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.fullName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-            content_t('Language'),
-        ]}
-        content={props.content}/>;
 }
