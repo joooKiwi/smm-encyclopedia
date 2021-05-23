@@ -36,13 +36,12 @@ export class EveryEntityCategoriesApp
             index++;
         }
 
-        return <TableWithTranslations translations={{content: true,}} renderCallback={translations => ({
+        return <TableWithTranslations translations={{content: true, gameContent: true,}} renderCallback={translations => ({
             id: 'entityCategory_table',
-            caption: '',
-            // caption: translations.gameContent!(''),
+            caption: translations.gameContent('Every entity categories'),
             headers: [
                 '#',
-                translations.content!('Language'),
+                translations.content('Language'),
             ],
             content: content,
         })}/>;
