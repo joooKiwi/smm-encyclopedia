@@ -1,39 +1,55 @@
-import {Popover}        from 'bootstrap';
-import {useTranslation} from 'react-i18next';
+import {Popover}         from 'bootstrap';
+import {withTranslation} from 'react-i18next';
 
-import {Name}           from '../../lang/name/Name';
-import {EveryLanguages} from '../../lang/EveryLanguages';
+import {ComponentWithContentAndLanguageTranslation} from '../../lang/components/ComponentWithContentAndLanguageTranslation';
+import {ContentAndLanguageTranslationElement}       from '../../lang/components/elements/ContentAndLanguageTranslationElement';
+import {EveryLanguages}                             from '../../lang/EveryLanguages';
+import {Name}                                       from '../../lang/name/Name';
 
-interface SMM2NameProperty {
+interface SMM2NameProperty
+extends ContentAndLanguageTranslationElement{
     popoverOrientation?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
     id: string
     name: Name
 }
 
-export function SMM2NameComponent(props: SMM2NameProperty) {
-    const language_t = useTranslation('language').t;
-    const content_t = useTranslation('content').t;
+class SMM2NameComponent
+    extends ComponentWithContentAndLanguageTranslation<SMM2NameProperty> {
 
-    const {name, popoverOrientation} = props;
-    const id = props.id + '_' + name.english.toLowerCase().replace(' ', '_');
-    const languagesToDisplay = getLanguagesToSetTheList(name);
-    let content = '<ol>';
-    name.toNameMap().forEach((value, language) => {
-        if (languagesToDisplay.includes(language)) {
-            content += `<li>${language_t(language.englishName)}: ${value}</li>`;
-        }
-    });
-    content += '</ol>';
+    private get id() {
+        return this.props.id;
+    }
 
-    setTimeout(() => new Popover(document.getElementById(id)!, {
-        title: content_t('In other languages'),
-        content: content,
-        html: true,
-        placement: popoverOrientation,
-        trigger: 'hover focus',
-    }), 1);
-    //TODO change to a way without a delay (timeout).
-    return <span id={id} data-bs-toggle="popover">{EveryLanguages.currentLanguage.get(name)}</span>;
+    private get popoverOrientation() {
+        return this.props.popoverOrientation;
+    }
+
+    private get name() {
+        return this.props.name;
+    }
+
+    public render(): JSX.Element {
+        const id = this.id + '_' + this.name.english.toLowerCase().replace(' ', '_');
+        const languagesToDisplay = getLanguagesToSetTheList(this.name);
+        let content = '<ol>';
+        this.name.toNameMap().forEach((value, language) => {
+            if (languagesToDisplay.includes(language)) {
+                content += `<li>${this.languageTranslation(language.englishName)}: ${value}</li>`;
+            }
+        });
+        content += '</ol>';
+
+        setTimeout(() => new Popover(document.getElementById(id)!, {
+            title: this.contentTranslation('In other languages'),
+            content: content,
+            html: true,
+            placement: this.popoverOrientation,
+            trigger: 'hover focus',
+        }), 1);
+        //TODO change to a way without a delay (timeout).
+        return <span id={id} data-bs-toggle="popover">{EveryLanguages.currentLanguage.get(this.name)}</span>;
+    }
+
 }
 
 function getLanguagesToSetTheList(name: Name): readonly EveryLanguages[] {
@@ -64,3 +80,5 @@ function getLanguagesToSetTheList(name: Name): readonly EveryLanguages[] {
 
     return returnedLanguages;
 }
+
+export default withTranslation(['content', 'language',])(SMM2NameComponent);

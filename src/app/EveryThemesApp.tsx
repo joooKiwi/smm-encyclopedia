@@ -8,7 +8,7 @@ import {CourseTheme}               from '../entity/theme/CourseTheme';
 import {EmptyCourseTheme}          from '../entity/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}           from '../entity/theme/EmptyWorldTheme';
 import {Games}                     from '../entity/game/Games';
-import {SMM2NameComponent}         from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent           from '../entity/lang/SMM2NameComponent';
 import Table, {SingleTableContent} from './tools/Table';
 import {ThemeLoader}               from '../entity/theme/ThemeLoader';
 import {Themes}                    from '../entity/theme/Themes';
