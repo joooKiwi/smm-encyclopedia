@@ -20,18 +20,18 @@ export class EveryThemesApp
 
     #themes?: Map<string, [CourseTheme, WorldTheme]>;
 
-    protected get themes() {
+    protected get map() {
         return this.#themes ?? (this.#themes = ThemeLoader.get.load());
     }
 
-    protected get themesEnum() {
+    protected get enum() {
         return Themes.values;
     }
 
     protected _displayTableContent(): JSX.Element {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (let [englishName, [courseTheme, worldTheme]] of this.themes.entries()) {
+        for (let [englishName, [courseTheme, worldTheme]] of this.map.entries()) {
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
             const name = isInCourseTheme ? courseTheme.name : worldTheme.name;
@@ -40,7 +40,7 @@ export class EveryThemesApp
 
             content.push([englishName,
                 <>{index}</>,
-                <img src={this.themesEnum[index - 1].longImagePath} alt={englishName}/>,
+                <img src={this.enum[index - 1].longImagePath} alt={englishName}/>,
                 <YesOrNoResultContainer boolean={isInCourseTheme}/>,
                 <YesOrNoResultContainer boolean={isInWorldTheme}/>,
                 <YesOrNoResultContainer boolean={isInSMM1}/>,
@@ -53,7 +53,7 @@ export class EveryThemesApp
     }
 
     protected _mainContent(): JSX.Element {
-        // console.log(this.themes);//README this log is there only to help debugging.
+        // console.log(this.enum);//README this log is there only to help debugging.
         return <>{this._displayTableContent()}</>;
     }
 
