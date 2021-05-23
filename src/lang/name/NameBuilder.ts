@@ -9,7 +9,6 @@ export class NameBuilder
     implements Builder<Name> {
 
     #english?: AmericanOrEuropeanOriginal;
-
     #french?: CanadianOrEuropeanOriginal;
     #german?: string;
     #spanish?: AmericanOrEuropeanOriginal;
@@ -199,19 +198,19 @@ export class NameBuilder
 
 
     public build() {
-        const englishReference = this._english;
-        const frenchReference = this._french;
-        const germanReference = this._german;
-        const spanishReference = this._spanish;
-        const italianReference = this._italian;
-        const dutchReference = this._dutch;
-        const portugueseReference = this._portuguese;
-        const russianReference = this._russian;
-        const japaneseReference = this._japanese;
-        const chineseReference = this._chinese;
-        const koreanReference = this._korean;
-
-        return new NameContainer(englishReference, frenchReference, germanReference, spanishReference, italianReference, dutchReference, portugueseReference, russianReference, japaneseReference, chineseReference, koreanReference,);
+        return new NameContainer(
+            this._english,
+            this._french,
+            this._german,
+            this._spanish,
+            this._italian,
+            this._dutch,
+            this._portuguese,
+            this._russian,
+            this._japanese,
+            this._chinese,
+            this._korean,
+        );
     }
 
 }
