@@ -1,5 +1,5 @@
-import {EntityVerifier} from '../EntityVerifier';
 import {Entity}         from '../simple/Entity';
+import {EntityVerifier} from '../EntityVerifier';
 
 export type PossibleGameName = `Super Mario Maker${'' | ' 2'}`;
 export type PossibleImagePath = `/game/logos/${PossibleGameName}.png`;
