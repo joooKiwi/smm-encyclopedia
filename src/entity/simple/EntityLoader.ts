@@ -153,10 +153,12 @@ type EntityFilePropertiesArray = [
 ];
 
 export interface DebugEntityReferences {
-    originalContent: string[];
-    arrayConverted: EntityFilePropertiesArray;
-    template: EntityTemplate;
-    entity?: Entity;
+
+    originalContent: string[]
+    arrayConverted: EntityFilePropertiesArray
+    template: EntityTemplate
+    entity?: Entity
+
 }
 
 /**
@@ -519,7 +521,7 @@ class ReferencesToWatch {
     }
 
     private _addReference(template: EntityTemplate, reference: string): void {
-        if (reference.includes("/"))
+        if (reference.includes('/'))
             reference.split(' / ')
                 .filter(splitReference => splitReference !== 'this')
                 .forEach((splitReference, index) => this._addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
