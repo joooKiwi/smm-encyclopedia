@@ -1,4 +1,7 @@
-import {Entity} from '../simple/Entity';
+import {Entity}                      from '../simple/Entity';
+import {EntityVerifierWithReference} from '../EntityVerifier';
+import {GameStyle}                   from './GameStyle';
+import {GameStyleLoader}             from './GameStyleLoader';
 
 export type PossibleGameStyleName = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
 
@@ -11,7 +14,8 @@ export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | '
 /**
  * @enum
  */
-export abstract class GameStyles {
+export abstract class GameStyles
+    implements EntityVerifierWithReference<PossibleGameStyleName, GameStyle> {
     public static readonly SUPER_MARIO_BROS = new class extends GameStyles {
         public isEntityOn(entity: Entity): boolean {
             return entity.isInSuperMarioBrosStyle;
@@ -40,6 +44,7 @@ export abstract class GameStyles {
 
     private static __VALUES: readonly GameStyles[];
 
+    #references?: GameStyle;
     readonly #englishName;
     readonly #startingImagePath: StartingImagePath;
 
@@ -54,6 +59,10 @@ export abstract class GameStyles {
     }
 
     public abstract isEntityOn(entity: Entity): boolean;
+
+    public get references() {
+        return this.#references ?? (this.#references = GameStyleLoader.get.load().get(this.englishName)!);
+    }
 
     public get startingImagePath(): StartingImagePath {
         return this.#startingImagePath;

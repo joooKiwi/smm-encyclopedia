@@ -1,7 +1,8 @@
-import {CourseTheme} from './CourseTheme';
-import {Entity}      from '../simple/Entity';
-import {ThemeLoader} from './ThemeLoader';
-import {WorldTheme}  from './WorldTheme';
+import {CourseTheme}                 from './CourseTheme';
+import {Entity}                      from '../simple/Entity';
+import {EntityVerifierWithReference} from '../EntityVerifier';
+import {ThemeLoader}                 from './ThemeLoader';
+import {WorldTheme}                  from './WorldTheme';
 
 type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
@@ -12,62 +13,62 @@ export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
 /**
  * @enum
  */
-export abstract class Themes {
+export class Themes
+    implements EntityVerifierWithReference<PossibleTheme, [CourseTheme, WorldTheme]> {
     public static readonly GROUND = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInGroundTheme;
         }
     }('Ground');
     public static readonly UNDERGROUND = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInUndergroundTheme;
         }
     }('Underground');
     public static readonly UNDERWATER = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInUnderwaterTheme;
         }
     }('Underwater');
     public static readonly DESERT = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInDesertTheme;
         }
     }('Desert');
     public static readonly SNOW = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInSnowTheme;
         }
     }('Snow');
     public static readonly SKY = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInSkyTheme;
         }
     }('Sky');
     public static readonly FOREST = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInForestTheme;
         }
     }('Forest');
     public static readonly GHOST_HOUSE = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInGhostHouseTheme;
         }
     }('Ghost House');
     public static readonly AIRSHIP = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInAirshipTheme;
         }
     }('Airship');
     public static readonly CASTLE = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
+        public _isEntityOn(entity: Entity): boolean | null {
             return entity.isInCastleTheme;
         }
     }('Castle', 'Castle - Volcano');
 
-    public static readonly VOLCANO = new class extends Themes {
-    }('Volcano', 'Castle - Volcano');
-    public static readonly SPACE = new class extends Themes {
-    }('Space');
+    public static readonly VOLCANO = new Themes('Volcano', 'Castle - Volcano');
+    public static readonly SPACE = new Themes('Space');
+
 
     private static __COURSES: readonly Themes[];
     private static __WORLDS: readonly Themes[];
@@ -90,16 +91,16 @@ export abstract class Themes {
         return this.#englishName;
     }
 
-    protected _isEntityOnTheme(entity: Entity): boolean | null {
+    protected _isEntityOn(entity: Entity): boolean | null {
         return false;
     }
 
-    public isEntityOnTheme(entity: Entity): boolean {
-        return this._isEntityOnTheme(entity) ?? false;
+    public isEntityOn(entity: Entity): boolean {
+        return this._isEntityOn(entity) ?? false;
     }
 
     public get references() {
-        return this.#references ?? (this.#references = this.#references = ThemeLoader.get.load().get(this.englishName)!);
+        return this.#references ?? (this.#references = ThemeLoader.get.load().get(this.englishName)!);
     }
 
     public get courseTheme() {

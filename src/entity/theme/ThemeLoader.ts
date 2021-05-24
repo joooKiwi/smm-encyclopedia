@@ -133,9 +133,9 @@ export class ThemeLoader
         if (theme === null)
             throw new ReferenceError(`The english name "${englishName}" has no reference on the Themes class.`);
         const everyEntities = [] as Entity[];
-        for (const [, reference] of this.entities.entries())
-            if (reference.entity !== undefined && theme.isEntityOnTheme(reference.entity))
-                everyEntities.push(reference.entity);
+        for (const [, {entity}] of this.entities.entries())
+            if (entity !== undefined && theme.isEntityOn(entity))
+                everyEntities.push(entity);
         return everyEntities;
     }
 

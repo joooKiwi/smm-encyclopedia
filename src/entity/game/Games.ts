@@ -1,33 +1,47 @@
-export type PossibleGameFullName = `Super Mario Maker${'' | ' 2'}`;
-export type PossibleImagePath = `/game/logos/${PossibleGameFullName}.png`;
+import {EntityVerifier} from '../EntityVerifier';
+import {Entity}         from '../simple/Entity';
+
+export type PossibleGameName = `Super Mario Maker${'' | ' 2'}`;
+export type PossibleImagePath = `/game/logos/${PossibleGameName}.png`;
 
 /**
  * @enum
  */
-export class Games {
-    public static readonly SUPER_MARIO_MAKER_1 = new Games('Super Mario Maker');
-    public static readonly SUPER_MARIO_MAKER_2 = new Games('Super Mario Maker 2');
+export abstract class Games
+    implements EntityVerifier<PossibleGameName> {
+    public static readonly SUPER_MARIO_MAKER_1 = new class extends Games {
+        public isEntityOn(entity: Entity): boolean {
+            return entity.isInSuperMarioMaker1;
+        }
+    }('Super Mario Maker');
+    public static readonly SUPER_MARIO_MAKER_2 = new class extends Games {
+        public isEntityOn(entity: Entity): boolean {
+            return entity.isInSuperMarioMaker2;
+        }
+    }('Super Mario Maker 2');
 
     private static __VALUES: readonly Games[];
 
     readonly #englishName;
     readonly #imagePath;
 
-    private constructor(englishName: PossibleGameFullName) {
+    private constructor(englishName: PossibleGameName) {
         this.#englishName = englishName;
         this.#imagePath = '/game/logos/' + englishName + '.png' as PossibleImagePath;
     }
 
-    public get englishName(): PossibleGameFullName {
+    public get englishName(): PossibleGameName {
         return this.#englishName;
     }
+
+    public abstract isEntityOn(entity: Entity): boolean;
 
     public get imagePath(): PossibleImagePath {
         return this.#imagePath;
     }
 
 
-    public static getValue(value: Games | PossibleGameFullName): Games
+    public static getValue(value: Games | PossibleGameName): Games
     public static getValue(value: string): Games | null
     public static getValue(value: Games | string): Games | null
     public static getValue(value: Games | string): Games | null {
@@ -42,6 +56,5 @@ export class Games {
             this.SUPER_MARIO_MAKER_2,
         ]);
     }
-
 
 }
