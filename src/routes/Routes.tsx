@@ -3,8 +3,8 @@ import React                                                            from 're
 
 import EveryEntitiesApp         from '../app/EveryEntitiesApp';
 import EveryEntityCategoriesApp from '../app/EveryEntityCategoriesApp';
-import EveryEntityGameStylesApp from '../app/EveryEntityGameStylesApp';
 import EveryEntityGroupApp      from '../app/EveryEntityGroupApp';
+import EveryGameStylesApp       from '../app/EveryGameStylesApp';
 import EveryLimitsApp           from '../app/EveryLimitsApp';
 import EveryThemesApp           from '../app/EveryThemesApp';
 import HomeApp                  from '../app/HomeApp';
@@ -15,7 +15,7 @@ type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
 const everySimpleRoutes: SimpleRoute[] = [
     {path: '/home',            renderCallback: () => <HomeApp/>,},
     {path: '/every/entity',    renderCallback: () => <EveryEntitiesApp/>,},
-    {path: '/every/gameStyle', renderCallback: () => <EveryEntityGameStylesApp/>,},
+    {path: '/every/gameStyle', renderCallback: () => <EveryGameStylesApp/>,},
     {path: '/every/category',  renderCallback: () => <EveryEntityCategoriesApp/>,},
     {path: '/every/group',     renderCallback: () => <EveryEntityGroupApp/>,},
     {path: '/every/limit',     renderCallback: () => <EveryLimitsApp/>,},

@@ -1,16 +1,19 @@
-import {CallbackCaller} from '../../util/CallbackCaller';
-import {Entity}         from '../simple/Entity';
-import {GameStyle}      from './GameStyle';
-import {Name}           from '../../lang/name/Name';
+import {CallbackCaller}   from '../../util/CallbackCaller';
+import {Entity}           from '../simple/Entity';
+import {GameStyle}        from './GameStyle';
+import {Name}             from '../../lang/name/Name';
+import {IsInGameProperty} from '../properties/IsInGameProperty';
 
 export class GenericGameStyle
     implements GameStyle {
 
     readonly #name;
+    readonly #isInProperty;
     readonly #entities: CallbackCaller<Entity[]>;
 
-    public constructor(name: Name,entities: () => Entity[]) {
+    public constructor(name: Name, isInProperty: IsInGameProperty, entities: () => Entity[]) {
         this.#name = name;
+        this.#isInProperty = isInProperty;
         this.#entities = new CallbackCaller(entities);
     }
 
@@ -145,6 +148,21 @@ export class GenericGameStyle
     }
 
     //endregion -------------------- Name properties --------------------
+    //region -------------------- Is in game properties --------------------
+
+    public get isInProperty() {
+        return this.#isInProperty;
+    }
+
+    public get isInSuperMarioMaker1() {
+        return this.isInProperty.isInSuperMarioMaker1;
+    }
+
+    public get isInSuperMarioMaker2() {
+        return this.isInProperty.isInSuperMarioMaker2;
+    }
+
+    //endregion -------------------- Is in game properties --------------------
 
     public get entities() {
         return this.#entities.get;

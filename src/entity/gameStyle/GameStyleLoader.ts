@@ -1,4 +1,4 @@
-import everyThemes                           from '../../resources/Every Super Mario Maker 2 entities properties - Game styles.csv';
+import everyGameStyles from '../../resources/Every Super Mario Maker 2 entities properties - Game styles.csv';
 
 import {Loader}                              from '../../util/Loader';
 import {CallbackCaller}                      from '../../util/CallbackCaller';
@@ -12,8 +12,13 @@ import {NameCreator}                         from '../lang/NameCreator';
 import {NameBuilder}                         from '../lang/NameBuilder';
 import {Name}                                from '../../lang/name/Name';
 import {GenericGameStyle}                    from './GenericGameStyle';
+import {IsInGamePropertyContainer}           from '../properties/IsInGamePropertyContainer';
 
 type GameStylePropertiesArray = [
+
+    isInSuperMarioMaker1: boolean,
+    isInSuperMarioMaker2: boolean,
+
     //region ---------- Language properties ----------
 
     english: null | string,
@@ -68,29 +73,31 @@ export class GameStyleLoader
             const templateMap: Map<string, GameStyleTemplate> = new Map();
             const finalReferences: Map<string, GameStyle> = new Map();
 
-            new CSVLoader<GameStylePropertiesArray, GameStyleTemplate>(everyThemes, convertedContent => TemplateCreator.createTemplate(convertedContent))
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
-                )
+            new CSVLoader<GameStylePropertiesArray, GameStyleTemplate>(everyGameStyles, convertedContent => TemplateCreator.createTemplate(convertedContent))
+                .convertToBoolean(
+                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                ).convertToEmptyableString(
+                'english', 'americanEnglish', 'europeanEnglish',
+                'french', 'canadianFrench', 'europeanFrench',
+                'german',
+                'spanish', 'americanSpanish', 'europeanSpanish',
+                'dutch', 'italian',
+                'portuguese', 'americanPortuguese', 'europeanPortuguese',
+                'russian', 'japanese',
+                'chinese', 'simplifiedChinese', 'traditionalChinese',
+                'korean',
+            )
                 .onFinalObjectCreated(finalContent => NameCreator.addEnglishReference(finalContent.name, templateMap, finalContent))
                 .onInitialisationEnd(() =>
                     templateMap.forEach((template, englishName) =>
-                        finalReferences.set(englishName, this.__createReference(new NameBuilder(template.name).build()))))
+                        finalReferences.set(englishName, this.__createReference(template, new NameBuilder(template.name).build(),))))
                 .load();
             return finalReferences;
         });
     }
 
-    private __createReference(name: Name,): GameStyle {
-        return new GenericGameStyle(name, () => this.whereEntityIs(name.english));
+    private __createReference(template: GameStyleTemplate, name: Name,): GameStyle {
+        return new GenericGameStyle(name, IsInGamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2']), () => this.whereEntityIs(name.english));
     }
 
     private get entities() {
@@ -125,38 +132,44 @@ class TemplateCreator {
 
     public static createTemplate(content: GameStylePropertiesArray): GameStyleTemplate {
         return {
+            isIn: {
+                game: {
+                    '1': content[0],
+                    '2': content[1],
+                },
+            },
             name: {
                 english: {
-                    simple: content[0],
-                    american: content[1],
-                    european: content[2],
+                    simple: content[2],
+                    american: content[3],
+                    european: content[4],
                 },
                 french: {
-                    simple: content[3],
-                    canadian: content[4],
-                    european: content[5],
+                    simple: content[5],
+                    canadian: content[6],
+                    european: content[7],
                 },
-                german: content[6],
+                german: content[8],
                 spanish: {
-                    simple: content[7],
-                    american: content[8],
-                    european: content[9],
+                    simple: content[9],
+                    american: content[10],
+                    european: content[11],
                 },
-                italian: content[10],
-                dutch: content[11],
+                italian: content[12],
+                dutch: content[13],
                 portuguese: {
-                    simple: content[12],
-                    american: content[13],
-                    european: content[14],
+                    simple: content[14],
+                    american: content[15],
+                    european: content[16],
                 },
-                russian: content[15],
-                japanese: content[16],
+                russian: content[17],
+                japanese: content[18],
                 chinese: {
-                    simple: content[17],
-                    simplified: content[18],
-                    traditional: content[19],
+                    simple: content[19],
+                    simplified: content[20],
+                    traditional: content[21],
                 },
-                korean: content[20],
+                korean: content[22],
             }
         };
     }

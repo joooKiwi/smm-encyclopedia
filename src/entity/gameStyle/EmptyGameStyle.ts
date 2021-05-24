@@ -1,5 +1,6 @@
-import {GenericGameStyle} from './GenericGameStyle';
-import {EmptyName}        from '../../lang/name/EmptyName';
+import {GenericGameStyle}  from './GenericGameStyle';
+import {EmptyName}         from '../../lang/name/EmptyName';
+import {EmptyIsInProperty} from '../properties/EmptyIsInProperty';
 
 /**
  * @nullObjectPattern
@@ -13,7 +14,7 @@ export class EmptyGameStyle
     public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
-        super(EmptyName.get, () => EmptyGameStyle.EMPTY_ARRAY,);
+        super(EmptyName.get, EmptyIsInProperty.get, () => EmptyGameStyle.EMPTY_ARRAY,);
     }
 
 
