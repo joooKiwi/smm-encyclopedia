@@ -1,12 +1,17 @@
-import {IsInProperty}             from './IsInProperty';
-import {IsInOnlySMM1GameProperty} from './IsInOnlySMM1GameProperty';
+import {IsInProperty}                  from './IsInProperty';
+import {IsInOnlySMM1GameProperty}      from './IsInOnlySMM1GameProperty';
+import {IsInOnlySMM1GameStyleProperty} from './IsInOnlySMM1GameStyleProperty';
 
 export interface IsInOnlySMM1Property
-    extends IsInProperty, IsInOnlySMM1GameProperty {
+    extends IsInProperty, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty {
 
     isInSuperMarioMaker1: true
     isInSuperMarioMaker2: false
 
+    isInSuperMarioBrosStyle: true
+    isInSuperMarioBros3Style: true
+    isInSuperMarioWorldStyle: true
+    isInNewSuperMarioBrosUStyle: true
     isInSuperMario3DWorldStyle: null
 
     isInGroundTheme: true

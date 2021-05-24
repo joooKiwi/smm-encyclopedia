@@ -7,4 +7,6 @@ export interface IsInOnlySMM2Property
     isInSuperMarioMaker1: false
     isInSuperMarioMaker2: true
 
+    isInSuperMario3DWorldStyle: boolean
+
 }

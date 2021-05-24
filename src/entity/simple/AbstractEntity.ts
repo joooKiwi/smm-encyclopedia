@@ -151,7 +151,6 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- Name properties --------------------
-
     //region -------------------- Category properties --------------------
 
     public get category() {
@@ -284,44 +283,48 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- Category properties --------------------
-
     //region -------------------- Is in properties --------------------
 
     public get isInProperty() {
         return this.#isInProperty;
     }
 
+
     public get isInGame() {
         return this.isInProperty.isInGame;
     }
 
     public get isInSuperMarioMaker1() {
-        return this.isInProperty.isInSuperMarioMaker1;
+        return this.isInGame.isInSuperMarioMaker1;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.isInProperty.isInSuperMarioMaker2;
+        return this.isInGame.isInSuperMarioMaker2;
     }
 
 
+    public get isInGameStyle() {
+        return this.isInProperty.isInGameStyle;
+    }
+
     public get isInSuperMarioBrosStyle() {
-        return this.isInProperty.isInSuperMarioBrosStyle;
+        return this.isInGameStyle.isInSuperMarioBrosStyle;
     }
 
     public get isInSuperMarioBros3Style() {
-        return this.isInProperty.isInSuperMarioBros3Style;
+        return this.isInGameStyle.isInSuperMarioBros3Style;
     }
 
     public get isInSuperMarioWorldStyle() {
-        return this.isInProperty.isInSuperMarioWorldStyle;
+        return this.isInGameStyle.isInSuperMarioWorldStyle;
     }
 
     public get isInNewSuperMarioBrosUStyle() {
-        return this.isInProperty.isInNewSuperMarioBrosUStyle;
+        return this.isInGameStyle.isInNewSuperMarioBrosUStyle;
     }
 
     public get isInSuperMario3DWorldStyle() {
-        return this.isInProperty.isInSuperMario3DWorldStyle;
+        return this.isInGameStyle.isInSuperMario3DWorldStyle;
     }
 
 
@@ -375,7 +378,6 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- Is in properties --------------------
-
     //region -------------------- References properties --------------------
 
     public get references() {

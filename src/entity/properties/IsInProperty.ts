@@ -1,16 +1,12 @@
-import {IsInGameProperty} from './IsInGameProperty';
+import {IsInGameProperty}      from './IsInGameProperty';
+import {IsInGameStyleProperty} from './IsInGameStyleProperty';
 
 export interface IsInProperty
-    extends IsInGameProperty {
+    extends IsInGameProperty, IsInGameStyleProperty {
 
     isInGame: IsInGameProperty
 
-    isInSuperMarioBrosStyle: boolean
-    isInSuperMarioBros3Style: boolean
-    isInSuperMarioWorldStyle: boolean
-    isInNewSuperMarioBrosUStyle: boolean
-    isInSuperMario3DWorldStyle: null | boolean
-
+    isInGameStyle: IsInGameStyleProperty
 
     isInGroundTheme: boolean
     isInUndergroundTheme: null | boolean

@@ -1,5 +1,6 @@
-import {IsInProperty}              from './IsInProperty';
-import {IsInGamePropertyContainer} from './IsInGamePropertyContainer';
+import {IsInProperty}                   from './IsInProperty';
+import {IsInGamePropertyContainer}      from './IsInGamePropertyContainer';
+import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
 
 /**
  * @nullObjectPattern
@@ -12,10 +13,11 @@ export class EmptyIsInProperty
     private constructor() {
     }
 
-    public readonly isInGame = IsInGamePropertyContainer.get(false, false);
+    public readonly isInGame = IsInGamePropertyContainer.get(false, false,);
     public readonly isInSuperMarioMaker1 = false;
     public readonly isInSuperMarioMaker2 = false;
 
+    public readonly isInGameStyle = IsInGameStylePropertyContainer.get(false, false, false, false, null,);
     public readonly isInSuperMarioBrosStyle = false;
     public readonly isInSuperMarioBros3Style = false;
     public readonly isInSuperMarioWorldStyle = false;

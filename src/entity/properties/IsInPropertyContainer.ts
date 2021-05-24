@@ -1,31 +1,29 @@
-import {IsInProperty}              from './IsInProperty';
-import {IsInGameProperty}          from './IsInGameProperty';
-import {IsInGamePropertyContainer} from './IsInGamePropertyContainer';
+import {IsInProperty}                   from './IsInProperty';
+import {IsInGameProperty}               from './IsInGameProperty';
+import {IsInGamePropertyContainer}      from './IsInGamePropertyContainer';
+import {IsInGameStyleProperty}          from './IsInGameStyleProperty';
+import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
 
 export class IsInPropertyContainer
     implements IsInProperty {
 
     readonly #isInGame: IsInGameProperty;
 
-    readonly #isInSuperMarioBrosStyle: boolean
-    readonly #isInSuperMarioBros3Style: boolean
-    readonly #isInSuperMarioWorldStyle: boolean
-    readonly #isInNewSuperMarioBrosUStyle: boolean
-    readonly #isInSuperMario3DWorldStyle: null | boolean
+    readonly #isInGameStyle: IsInGameStyleProperty;
 
-    readonly #isInGroundTheme: boolean
-    readonly #isInUndergroundTheme: null | boolean
-    readonly #isInUnderwaterTheme: null | boolean
-    readonly #isInDesertTheme: null | boolean
-    readonly #isInSnowTheme: null | boolean
-    readonly #isInSkyTheme: null | boolean
-    readonly #isInForestTheme: null | boolean
-    readonly #isInGhostHouseTheme: null | boolean
-    readonly #isInAirshipTheme: null | boolean
-    readonly #isInCastleTheme: null | boolean
+    readonly #isInGroundTheme: boolean;
+    readonly #isInUndergroundTheme: null | boolean;
+    readonly #isInUnderwaterTheme: null | boolean;
+    readonly #isInDesertTheme: null | boolean;
+    readonly #isInSnowTheme: null | boolean;
+    readonly #isInSkyTheme: null | boolean;
+    readonly #isInForestTheme: null | boolean;
+    readonly #isInGhostHouseTheme: null | boolean;
+    readonly #isInAirshipTheme: null | boolean;
+    readonly #isInCastleTheme: null | boolean;
 
-    readonly #isInDayTheme: boolean
-    readonly #isInNightTheme: boolean | null
+    readonly #isInDayTheme: boolean;
+    readonly #isInNightTheme: boolean | null;
 
     public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,
@@ -33,11 +31,7 @@ export class IsInPropertyContainer
                        isInDayTheme: boolean, isInNightTheme: null | boolean,) {
         this.#isInGame = IsInGamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
 
-        this.#isInSuperMarioBrosStyle = isInSuperMarioBrosStyle;
-        this.#isInSuperMarioBros3Style = isInSuperMarioBros3Style;
-        this.#isInSuperMarioWorldStyle = isInSuperMarioWorldStyle;
-        this.#isInNewSuperMarioBrosUStyle = isInNewSuperMarioBrosUStyle;
-        this.#isInSuperMario3DWorldStyle = isInSuperMario3DWorldStyle;
+        this.#isInGameStyle = IsInGameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
 
         this.#isInGroundTheme = isInGroundTheme;
         this.#isInUndergroundTheme = isInUndergroundTheme;
@@ -68,24 +62,28 @@ export class IsInPropertyContainer
     }
 
 
+    public get isInGameStyle() {
+        return this.#isInGameStyle;
+    }
+
     public get isInSuperMarioBrosStyle() {
-        return this.#isInSuperMarioBrosStyle;
+        return this.isInGameStyle.isInSuperMarioBrosStyle;
     }
 
     public get isInSuperMarioBros3Style() {
-        return this.#isInSuperMarioBros3Style;
+        return this.isInGameStyle.isInSuperMarioBros3Style;
     }
 
     public get isInSuperMarioWorldStyle() {
-        return this.#isInSuperMarioWorldStyle;
+        return this.isInGameStyle.isInSuperMarioWorldStyle;
     }
 
     public get isInNewSuperMarioBrosUStyle() {
-        return this.#isInNewSuperMarioBrosUStyle;
+        return this.isInGameStyle.isInNewSuperMarioBrosUStyle;
     }
 
     public get isInSuperMario3DWorldStyle() {
-        return this.#isInSuperMario3DWorldStyle;
+        return this.isInGameStyle.isInSuperMario3DWorldStyle;
     }
 
 

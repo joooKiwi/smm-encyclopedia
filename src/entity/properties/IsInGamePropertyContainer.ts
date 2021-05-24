@@ -9,10 +9,10 @@ import {IsInOnlySMM2GameProperty} from './IsInOnlySMM2GameProperty';
 export class IsInGamePropertyContainer
     implements IsInGameProperty {
 
-    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new IsInGamePropertyContainer(true, false) as IsInOnlySMM1GameProperty;
-    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new IsInGamePropertyContainer(false, true) as IsInOnlySMM2GameProperty;
-    private static readonly __IS_IN_BOTH_GAMES_PROPERTY = new IsInGamePropertyContainer(true, true);
-    private static readonly __IS_IN_NO_GAMES_PROPERTY = new IsInGamePropertyContainer(false, false);
+    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new IsInGamePropertyContainer(true, false,) as IsInOnlySMM1GameProperty;
+    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new IsInGamePropertyContainer(false, true,) as IsInOnlySMM2GameProperty;
+    private static readonly __IS_IN_BOTH_GAMES_PROPERTY = new IsInGamePropertyContainer(true, true,);
+    private static readonly __IS_IN_NO_GAMES_PROPERTY = new IsInGamePropertyContainer(false, false,);
 
     readonly #isInSuperMarioMaker1;
     readonly #isInSuperMarioMaker2;
