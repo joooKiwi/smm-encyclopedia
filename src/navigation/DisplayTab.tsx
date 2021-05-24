@@ -21,6 +21,7 @@ class DisplayTab
             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 {DisplayTab._createLi('navigationEveryEntities', 'every/entity', this.gameContentTranslation('Display every entities'))}
                 {DisplayTab._createLi('navigationEveryCategories', 'every/category', this.gameContentTranslation('Display every entity categories'))}
+                {DisplayTab._createLi('navigationEveryGameStyles', 'every/gameStyle', this.gameContentTranslation('Display every game styles'))}
                 {DisplayTab._createLi('navigationEveryGroups', 'every/group', this.gameContentTranslation('Display every entity groups'))}
                 {DisplayTab._createLi('navigationEveryLimit', 'every/limit', this.gameContentTranslation('Display every limits'))}
                 {DisplayTab._createLi('navigationEveryTheme', 'every/theme', this.gameContentTranslation('Display every themes'))}
