@@ -3,6 +3,7 @@
   "Limit while playing": "Limit while playing",
 
   "Every themes":            "Every themes",
+  "Every entities":          "Every entities",
   "Every entity categories": "Every entity categories",
 
   "Is in the course theme": "Is in the course theme",
@@ -17,12 +18,18 @@
 
   "Display every entities":          "Display every entities",
   "Display every entity categories": "Display every entity categories",
+  "Display every game styles":       "Display every game styles",
   "Display every entity groups":     "Display every entity groups",
   "Display every limits":            "Display every limits",
   "Display every themes":            "Display every themes",
 
+  "Game":              "Game",
   "Game Style":        "Game Style",
   "Extra Game Styles": "Extra Game Styles",
+
+  "Every games":         "Every games",
+  "Super Mario Maker":   "Super Mario Maker",
+  "Super Mario Maker 2": "Super Mario Maker 2",
 
   "Course Theme": { "in game": "Course Theme", "spoken": "Course theme" },
   "World Theme":  { "in game": "World Theme",  "spoken": "World theme" }

@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import Navigation         from "../navigation/Navigation";
 import Footer             from "../navigation/Footer";
 
-export default abstract class AbstractApp
-    extends Component {
+export default abstract class AbstractApp<T = {}>
+    extends Component<T> {
 
 
     protected abstract _mainContent(): JSX.Element;

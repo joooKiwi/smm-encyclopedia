@@ -3,6 +3,7 @@
   "Limit while playing": "Limit quand est en train de jouer",
 
   "Every themes":            "Tous les décors",
+  "Every entities":          "Toutes les entités",
   "Every entity categories": "Toutes les catégories d'entité",
 
   "Is in the course theme": "Est dans le décor de niveau",
@@ -17,12 +18,18 @@
 
   "Display every entities":          "Afficher toutes les entités",
   "Display every entity categories": "Afficher toutes les catégories d'entité",
+  "Display every game styles":       "Afficher tous les styles de jeu",
   "Display every entity groups":     "Afficher tous les groupes d'entité",
   "Display every limits":            "Afficher toutes les limites",
   "Display every themes":            "Afficher tous les décors",
 
+  "Game":              "Jeu",
   "Game Style":        "Style de jeu",
   "Extra Game Styles": "Style de jeu supplémentaire",
+
+  "Every games":         "Tous les jeux",
+  "Super Mario Maker":   "Super Mario Maker",
+  "Super Mario Maker 2": "Super Mario Maker 2",
 
   "Course Theme": { "in game": "Décor", "spoken": "Décor de niveau" },
   "World Theme":  { "in game": "Décor",  "spoken": "Décor de monde" }

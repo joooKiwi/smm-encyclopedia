@@ -1,4 +1,5 @@
 export type PossibleGameFullName = `Super Mario Maker${'' | ' 2'}`;
+export type PossibleImagePath = `/game/logos/${PossibleGameFullName}.png`;
 
 /**
  * @enum
@@ -14,18 +15,14 @@ export class Games {
 
     private constructor(englishName: PossibleGameFullName) {
         this.#englishName = englishName;
-        this.#imagePath = '/game/logos/' + englishName + '.png';
+        this.#imagePath = '/game/logos/' + englishName + '.png' as PossibleImagePath;
     }
 
-    public get englishName() {
+    public get englishName(): PossibleGameFullName {
         return this.#englishName;
     }
 
-    public get fullName() {
-        return this.#englishName;//TODO change to translation name
-    }
-
-    public get imagePath() {
+    public get imagePath(): PossibleImagePath {
         return this.#imagePath;
     }
 
@@ -35,7 +32,7 @@ export class Games {
     public static getValue(value: Games | string): Games | null
     public static getValue(value: Games | string): Games | null {
         return typeof value === 'string'
-            ? this.values.find(theme => theme.fullName === value) ?? null
+            ? this.values.find(theme => theme.englishName === value) ?? null
             : value;
     }
 
