@@ -2,6 +2,10 @@ import {IsInGameProperty}         from './IsInGameProperty';
 import {IsInOnlySMM1GameProperty} from './IsInOnlySMM1GameProperty';
 import {IsInOnlySMM2GameProperty} from './IsInOnlySMM2GameProperty';
 
+/**
+ * @multiton
+ * @provider
+ */
 export class IsInGamePropertyContainer
     implements IsInGameProperty {
 
@@ -10,8 +14,8 @@ export class IsInGamePropertyContainer
     private static readonly __IS_IN_BOTH_GAMES_PROPERTY = new IsInGamePropertyContainer(true, true);
     private static readonly __IS_IN_NO_GAMES_PROPERTY = new IsInGamePropertyContainer(false, false);
 
-    readonly #isInSuperMarioMaker1: boolean
-    readonly #isInSuperMarioMaker2: boolean
+    readonly #isInSuperMarioMaker1;
+    readonly #isInSuperMarioMaker2;
 
     private constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,) {
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
@@ -28,24 +32,23 @@ export class IsInGamePropertyContainer
     }
 
     /**
-     * Return the proper instance based on the values received.
-     * Note that it does not duplicate the class creation, but only give a predefined instance.
+     * <p>
+     *     Return the property instance based on the booleans values received.
+     *     Note that it does not duplicate the class creation, but only give a predefined instance.
+     * </p>
+     *
+     * The result vary based on the values received.
+     * <table>
+     *     <tr><th>booleans</th><th>result</th></tr>
+     *     <tr><td>true & true</td><td>A property in every games</td></tr>
+     *     <tr><td>true & false</td><td>A property only in {@link Games.SUPER_MARIO_MAKER_1}</td></tr>
+     *     <tr><td>false & true</td><td>A property only in {@link Games.SUPER_MARIO_MAKER_2}</td></tr>
+     *     <tr><td>false & false</td><td>A property where it is in no games.</td></tr>
+     * </table>
+     *
      * @param isInSuperMarioMaker1
      * @param isInSuperMarioMaker2
      */
-    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): IsInGameProperty
-    /**
-     * Return a Super Mario Maker 1 only property.
-     * @param isInSuperMarioMaker1 true
-     * @param isInSuperMarioMaker2 false
-     */
-    public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): IsInOnlySMM1GameProperty
-    /**
-     * Return a Super Mario Maker 2 only property.
-     * @param isInSuperMarioMaker1 false
-     * @param isInSuperMarioMaker2 true
-     */
-    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): IsInOnlySMM2GameProperty
     public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): IsInGameProperty {
         if (isInSuperMarioMaker1 && isInSuperMarioMaker2)
             return IsInGamePropertyContainer.__IS_IN_BOTH_GAMES_PROPERTY;
