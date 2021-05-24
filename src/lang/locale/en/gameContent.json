@@ -5,12 +5,14 @@
   "Every themes":            "Every themes",
   "Every entities":          "Every entities",
   "Every entity categories": "Every entity categories",
+  "Every game styles":       "Every game styles",
 
   "Is in the course theme": "Is in the course theme",
   "Is in the world theme":  "Is in the world theme",
 
   "Empty entity":             "Empty entity",
   "Empty entity category":    "Empty entity category",
+  "Empty game styles":        "Empty entity category",
   "Empty entity reference":   "Empty entity reference",
   "Empty course theme":       "Empty course theme",
   "Empty world theme":        "Empty world theme",

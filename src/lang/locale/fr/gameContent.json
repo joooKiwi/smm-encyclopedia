@@ -5,12 +5,14 @@
   "Every themes":            "Tous les décors",
   "Every entities":          "Toutes les entités",
   "Every entity categories": "Toutes les catégories d'entité",
+  "Every game styles":       "Tous les styles de jeu",
 
   "Is in the course theme": "Est dans le décor de niveau",
   "Is in the world theme":  "Est dans le décor de monde",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
+  "Empty game styles":        "Style de jeu vide",
   "Empty entity reference":   "Référence d'entité vide",
   "Empty course theme":       "Thème de niveau vide",
   "Empty world theme":        "Thème de monde vide",
