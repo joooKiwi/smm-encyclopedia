@@ -1,4 +1,6 @@
-import {IsInGameStyleProperty} from './IsInGameStyleProperty';
+import {IsInGameStyleProperty}         from './IsInGameStyleProperty';
+import {IsInOnlySMM1GameStyleProperty} from './IsInOnlySMM1GameStyleProperty';
+import {IsInOnlySMM2GameStyleProperty} from './IsInOnlySMM2GameStyleProperty';
 
 /**
  * @multiton
@@ -7,16 +9,16 @@ import {IsInGameStyleProperty} from './IsInGameStyleProperty';
 export class IsInGameStylePropertyContainer
     implements IsInGameStyleProperty {
 
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_IN_SUPER_MARIO_MAKER_1_PROPERTY = new IsInGameStylePropertyContainer(true, false, false, false, null,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_IN_SUPER_MARIO_MAKER_2_PROPERTY = new IsInGameStylePropertyContainer(true, false, false, false, false,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_3_PROPERTY = new IsInGameStylePropertyContainer(false, true, false, false, false,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_WORLD_PROPERTY = new IsInGameStylePropertyContainer(false, false, true, false, false,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_NEW_SUPER_MARIO_BROS_U_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, true, false,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_3D_WORLD_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, false, true,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_AND_SUPER_MARIO_BROS_3_PROPERTY = new IsInGameStylePropertyContainer(true, true, false, false, false,);
-    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_WORLD_AND_NEW_SUPER_MARIO_BROS_U_PROPERTY = new IsInGameStylePropertyContainer(false, false, true, true, false,);
-    private static readonly __IS_IN_ORIGINAL_4_STYLES_PROPERTY = new IsInGameStylePropertyContainer(true, true, true, true, false,);
-    private static readonly __IS_IN_EVERY_GAME_STYLES_PROPERTY = new IsInGameStylePropertyContainer(true, true, true, true, true,);
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_IN_SUPER_MARIO_MAKER_1_PROPERTY = new IsInGameStylePropertyContainer(true, false, false, false, null,) as IsInOnlySMM1GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_IN_SUPER_MARIO_MAKER_2_PROPERTY = new IsInGameStylePropertyContainer(true, false, false, false, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_3_PROPERTY = new IsInGameStylePropertyContainer(false, true, false, false, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_WORLD_PROPERTY = new IsInGameStylePropertyContainer(false, false, true, false, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_NEW_SUPER_MARIO_BROS_U_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, true, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_3D_WORLD_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, false, true,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_AND_SUPER_MARIO_BROS_3_PROPERTY = new IsInGameStylePropertyContainer(true, true, false, false, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_WORLD_AND_NEW_SUPER_MARIO_BROS_U_PROPERTY = new IsInGameStylePropertyContainer(false, false, true, true, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_ORIGINAL_4_STYLES_PROPERTY = new IsInGameStylePropertyContainer(true, true, true, true, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EVERY_GAME_STYLES_PROPERTY = new IsInGameStylePropertyContainer(true, true, true, true, true,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_NO_GAME_STYLES_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, false, null,);
 
     readonly #isInSuperMarioBrosStyle;
@@ -55,7 +57,9 @@ export class IsInGameStylePropertyContainer
         return this.#isInSuperMario3DWorldStyle;
     }
 
-
+    public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInGameStyleProperty
+    public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInOnlySMM1GameStyleProperty
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): IsInOnlySMM2GameStyleProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
@@ -84,7 +88,7 @@ export class IsInGameStylePropertyContainer
      * @param isInNewSuperMarioBrosUStyle
      * @param isInSuperMario3DWorldStyle
      */
-    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): IsInGameStylePropertyContainer {
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): IsInGameStyleProperty {
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle) {
             if (isInSuperMario3DWorldStyle === true)
                 return IsInGameStylePropertyContainer.__IS_IN_EVERY_GAME_STYLES_PROPERTY;

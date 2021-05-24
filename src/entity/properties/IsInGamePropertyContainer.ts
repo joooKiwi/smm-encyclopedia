@@ -31,6 +31,9 @@ export class IsInGamePropertyContainer
         return this.#isInSuperMarioMaker2;
     }
 
+    public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): IsInOnlySMM1GameProperty
+    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): IsInOnlySMM2GameProperty
+    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): IsInGameProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
