@@ -1,23 +1,15 @@
 import {IsInGameProperty}      from './IsInGameProperty';
 import {IsInGameStyleProperty} from './IsInGameStyleProperty';
+import {IsInThemeProperty}     from './IsInThemeProperty';
 
 export interface IsInProperty
-    extends IsInGameProperty, IsInGameStyleProperty {
+    extends IsInGameProperty, IsInGameStyleProperty, IsInThemeProperty {
 
     isInGame: IsInGameProperty
 
     isInGameStyle: IsInGameStyleProperty
 
-    isInGroundTheme: boolean
-    isInUndergroundTheme: null | boolean
-    isInUnderwaterTheme: null | boolean
-    isInDesertTheme: null | boolean
-    isInSnowTheme: null | boolean
-    isInSkyTheme: null | boolean
-    isInForestTheme: null | boolean
-    isInGhostHouseTheme: null | boolean
-    isInAirshipTheme: null | boolean
-    isInCastleTheme: null | boolean
+    isInTheme: IsInThemeProperty
 
     isInDayTheme: boolean
     isInNightTheme: null | boolean

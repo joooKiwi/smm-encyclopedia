@@ -8,6 +8,7 @@ import {IsInOnlySMM1Property}          from '../properties/IsInOnlySMM1Property'
 import {Name}                          from '../../lang/name/Name';
 import {SMM1ExclusiveEntity}           from './SMM1ExclusiveEntity';
 import {IsInOnlySMM1GameStyleProperty} from '../properties/IsInOnlySMM1GameStyleProperty';
+import {IsInOnlySMM1ThemeProperty}     from '../properties/IsInOnlySMM1ThemeProperty';
 
 export class SMM1ExclusiveGenericEntity
     extends GenericEntity
@@ -23,6 +24,8 @@ export class SMM1ExclusiveGenericEntity
         return super.isInProperty as IsInOnlySMM1Property;
     }
 
+    //region -------------------- Is in game properties --------------------
+
     public get isInGame(): IsInOnlySMM1GameProperty {
         return super.isInGame as IsInOnlySMM1GameProperty;
     }
@@ -35,6 +38,8 @@ export class SMM1ExclusiveGenericEntity
         return this.isInGame.isInSuperMarioMaker2;
     }
 
+    //endregion -------------------- Is in game properties --------------------
+    //region -------------------- Is in game style properties --------------------
 
     public get isInGameStyle(): IsInOnlySMM1GameStyleProperty {
         return super.isInGameStyle as IsInOnlySMM1GameStyleProperty;
@@ -60,47 +65,54 @@ export class SMM1ExclusiveGenericEntity
         return this.isInGameStyle.isInSuperMario3DWorldStyle;
     }
 
+    //endregion -------------------- Is in game style properties --------------------
+    //region -------------------- Is in theme properties --------------------
+
+    public get isInTheme(): IsInOnlySMM1ThemeProperty {
+        return super.isInTheme as IsInOnlySMM1ThemeProperty;
+    }
 
     public get isInGroundTheme() {
-        return this.isInProperty.isInGroundTheme;
+        return this.isInTheme.isInGroundTheme;
     }
 
     public get isInUndergroundTheme() {
-        return this.isInProperty.isInUndergroundTheme;
+        return this.isInTheme.isInUndergroundTheme;
     }
 
     public get isInUnderwaterTheme() {
-        return this.isInProperty.isInUnderwaterTheme;
+        return this.isInTheme.isInUnderwaterTheme;
     }
 
     public get isInDesertTheme() {
-        return this.isInProperty.isInDesertTheme;
+        return this.isInTheme.isInDesertTheme;
     }
 
     public get isInSnowTheme() {
-        return this.isInProperty.isInSnowTheme;
+        return this.isInTheme.isInSnowTheme;
     }
 
     public get isInSkyTheme() {
-        return this.isInProperty.isInSkyTheme;
+        return this.isInTheme.isInSkyTheme;
     }
 
     public get isInForestTheme() {
-        return this.isInProperty.isInForestTheme;
+        return this.isInTheme.isInForestTheme;
     }
 
     public get isInGhostHouseTheme() {
-        return this.isInProperty.isInGhostHouseTheme;
+        return this.isInTheme.isInGhostHouseTheme;
     }
 
     public get isInAirshipTheme() {
-        return this.isInProperty.isInAirshipTheme;
+        return this.isInTheme.isInAirshipTheme;
     }
 
     public get isInCastleTheme() {
-        return this.isInProperty.isInCastleTheme;
+        return this.isInTheme.isInCastleTheme;
     }
 
+    //endregion -------------------- Is in theme properties --------------------
 
     public get isInDayTheme() {
         return this.isInProperty.isInDayTheme;

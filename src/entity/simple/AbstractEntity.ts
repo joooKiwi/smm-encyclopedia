@@ -289,6 +289,7 @@ export abstract class AbstractEntity
         return this.#isInProperty;
     }
 
+    //region -------------------- Is in game properties --------------------
 
     public get isInGame() {
         return this.isInProperty.isInGame;
@@ -302,6 +303,8 @@ export abstract class AbstractEntity
         return this.isInGame.isInSuperMarioMaker2;
     }
 
+    //endregion -------------------- Is in game properties --------------------
+    //region -------------------- Is in game style properties --------------------
 
     public get isInGameStyle() {
         return this.isInProperty.isInGameStyle;
@@ -327,47 +330,53 @@ export abstract class AbstractEntity
         return this.isInGameStyle.isInSuperMario3DWorldStyle;
     }
 
+    //endregion -------------------- Is in game style properties --------------------
+    //region -------------------- Is in theme properties --------------------
+    public get isInTheme() {
+        return this.isInProperty.isInTheme;
+    }
 
     public get isInGroundTheme() {
-        return this.isInProperty.isInGroundTheme;
+        return this.isInTheme.isInGroundTheme;
     }
 
     public get isInUndergroundTheme() {
-        return this.isInProperty.isInUndergroundTheme;
+        return this.isInTheme.isInUndergroundTheme;
     }
 
     public get isInUnderwaterTheme() {
-        return this.isInProperty.isInUnderwaterTheme;
+        return this.isInTheme.isInUnderwaterTheme;
     }
 
     public get isInDesertTheme() {
-        return this.isInProperty.isInDesertTheme;
+        return this.isInTheme.isInDesertTheme;
     }
 
     public get isInSnowTheme() {
-        return this.isInProperty.isInSnowTheme;
+        return this.isInTheme.isInSnowTheme;
     }
 
     public get isInSkyTheme() {
-        return this.isInProperty.isInSkyTheme;
+        return this.isInTheme.isInSkyTheme;
     }
 
     public get isInForestTheme() {
-        return this.isInProperty.isInForestTheme;
+        return this.isInTheme.isInForestTheme;
     }
 
     public get isInGhostHouseTheme() {
-        return this.isInProperty.isInGhostHouseTheme;
+        return this.isInTheme.isInGhostHouseTheme;
     }
 
     public get isInAirshipTheme() {
-        return this.isInProperty.isInAirshipTheme;
+        return this.isInTheme.isInAirshipTheme;
     }
 
     public get isInCastleTheme() {
-        return this.isInProperty.isInCastleTheme;
+        return this.isInTheme.isInCastleTheme;
     }
 
+    //endregion -------------------- Is in theme properties --------------------
 
     public get isInDayTheme() {
         return this.isInProperty.isInDayTheme;

@@ -99,15 +99,15 @@ type EntityFilePropertiesArray = [
     isInNightTheme: null | EntityLink,
 
     inGroundTheme: EntityLink,
-    inUndergroundTheme: null | EntityLink,
-    inUnderwaterTheme: null | EntityLink,
+    inUndergroundTheme: EntityLink,
+    inUnderwaterTheme: EntityLink,
     inDesertTheme: null | EntityLink,
     inSnowTheme: null | EntityLink,
     inSkyTheme: null | EntityLink,
     inForestTheme: null | EntityLink,
-    inGhostHouseTheme: null | EntityLink,
-    inAirshipTheme: null | EntityLink,
-    inCastleTheme: null | EntityLink,
+    inGhostHouseTheme: EntityLink,
+    inAirshipTheme: EntityLink,
+    inCastleTheme: EntityLink,
 
     inSMBGameStyle: null | EntityLink,
     inSMB3GameStyle: null | EntityLink,
@@ -214,8 +214,11 @@ export class EntityLoader
 
                 .convertToStringAnd(thisText, 'inDayTheme',)
                 .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
-                .convertToStringAnd(thisText, 'inGroundTheme',)
-                .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme', 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme', 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+
+                .convertToStringAnd(thisText, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+                .convertToEmptyableStringAnd(thisText, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+                .convertToStringAnd(thisText, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+
                 .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
                 .convertToEmptyableString(
@@ -289,15 +292,15 @@ class TemplateCreator {
                     },
                     theme: {
                         ground: this.__convertLinkToBoolean(groundLink),
-                        underground: this.__convertLinkToNullableBoolean(undergroundLink),
-                        underwater: this.__convertLinkToNullableBoolean(underwaterLink),
+                        underground: this.__convertLinkToBoolean(undergroundLink),
+                        underwater: this.__convertLinkToBoolean(underwaterLink),
                         desert: this.__convertLinkToNullableBoolean(desertLink),
                         snow: this.__convertLinkToNullableBoolean(snowLink),
                         sky: this.__convertLinkToNullableBoolean(skyLink),
                         forest: this.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: this.__convertLinkToNullableBoolean(ghostHouseLink),
-                        airship: this.__convertLinkToNullableBoolean(airshipLink),
-                        castle: this.__convertLinkToNullableBoolean(castleLink),
+                        ghostHouse: this.__convertLinkToBoolean(ghostHouseLink),
+                        airship: this.__convertLinkToBoolean(airshipLink),
+                        castle: this.__convertLinkToBoolean(castleLink),
                     },
                     day: content[7],
                     night: content[8],
@@ -551,6 +554,7 @@ class ReferencesToWatch {
             const referenceWatched = this.englishNames.get(englishReferenceToWatch.value)!;
 
             //Addition on both references to their other reference table.
+
             referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
             if (!referenceWatched.template.properties.reference.all.includes(englishReferenceToWatch.reference))
                 referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);

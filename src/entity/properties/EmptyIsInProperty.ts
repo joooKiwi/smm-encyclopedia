@@ -1,6 +1,7 @@
 import {IsInProperty}                   from './IsInProperty';
 import {IsInGamePropertyContainer}      from './IsInGamePropertyContainer';
 import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
+import {IsInThemePropertyContainer}     from './IsInThemePropertyContainer';
 
 /**
  * @nullObjectPattern
@@ -24,7 +25,7 @@ export class EmptyIsInProperty
     public readonly isInNewSuperMarioBrosUStyle = false;
     public readonly isInSuperMario3DWorldStyle = null;
 
-
+    public readonly isInTheme = IsInThemePropertyContainer.get(false, false, false, null, null, null, null, false, false, false,);
     public readonly isInGroundTheme = false;
     public readonly isInUndergroundTheme = false;
     public readonly isInUnderwaterTheme = false;

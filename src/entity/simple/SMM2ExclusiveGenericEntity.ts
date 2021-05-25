@@ -7,6 +7,7 @@ import {IsInOnlySMM2Property}          from '../properties/IsInOnlySMM2Property'
 import {Name}                          from '../../lang/name/Name';
 import {SMM2ExclusiveEntity}           from './SMM2ExclusiveEntity';
 import {IsInOnlySMM2GameStyleProperty} from '../properties/IsInOnlySMM2GameStyleProperty';
+import {IsInOnlySMM2ThemeProperty}     from '../properties/IsInOnlySMM2ThemeProperty';
 
 export class SMM2ExclusiveGenericEntity
     extends GenericEntity
@@ -22,6 +23,7 @@ export class SMM2ExclusiveGenericEntity
         return super.isInProperty as IsInOnlySMM2Property;
     }
 
+    //region -------------------- Is in game properties --------------------
 
     public get isInGame(): IsInOnlySMM2GameProperty {
         return super.isInGame as IsInOnlySMM2GameProperty;
@@ -35,6 +37,8 @@ export class SMM2ExclusiveGenericEntity
         return this.isInGame.isInSuperMarioMaker2;
     }
 
+    //endregion -------------------- Is in game properties --------------------
+    //region -------------------- Is in game style properties --------------------
 
     public get isInGameStyle(): IsInOnlySMM2GameStyleProperty {
         return super.isInGameStyle as IsInOnlySMM2GameStyleProperty;
@@ -43,6 +47,31 @@ export class SMM2ExclusiveGenericEntity
     public get isInSuperMario3DWorldStyle() {
         return this.isInGameStyle.isInSuperMario3DWorldStyle;
     }
+
+    //endregion -------------------- Is in game style properties --------------------
+    //region -------------------- Is in theme properties --------------------
+
+    public get isInTheme(): IsInOnlySMM2ThemeProperty {
+        return super.isInTheme as IsInOnlySMM2ThemeProperty;
+    }
+
+    public get isInDesertTheme() {
+        return this.isInTheme.isInDesertTheme;
+    }
+
+    public get isInSnowTheme() {
+        return this.isInTheme.isInSnowTheme;
+    }
+
+    public get isInSkyTheme() {
+        return this.isInTheme.isInSkyTheme;
+    }
+
+    public get isInForestTheme() {
+        return this.isInTheme.isInForestTheme;
+    }
+
+    //endregion -------------------- Is in theme properties --------------------
 
     //endregion -------------------- Is in properties --------------------
 

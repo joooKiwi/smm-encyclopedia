@@ -1,10 +1,11 @@
 import {Entity}                        from './Entity';
 import {IsInOnlySMM1GameProperty}      from '../properties/IsInOnlySMM1GameProperty';
-import {IsInOnlySMM1Property}          from '../properties/IsInOnlySMM1Property';
 import {IsInOnlySMM1GameStyleProperty} from '../properties/IsInOnlySMM1GameStyleProperty';
+import {IsInOnlySMM1Property}          from '../properties/IsInOnlySMM1Property';
+import {IsInOnlySMM1ThemeProperty}     from '../properties/IsInOnlySMM1ThemeProperty';
 
 export interface SMM1ExclusiveEntity
-    extends Entity, IsInOnlySMM1Property, IsInOnlySMM1GameStyleProperty {
+    extends Entity, IsInOnlySMM1Property, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty, IsInOnlySMM1ThemeProperty {
 
     isInProperty: IsInOnlySMM1Property
 
@@ -19,6 +20,7 @@ export interface SMM1ExclusiveEntity
     isInNewSuperMarioBrosUStyle: true
     isInSuperMario3DWorldStyle: null
 
+    isInTheme: IsInOnlySMM1ThemeProperty
     isInGroundTheme: true
     isInUndergroundTheme: true
     isInUnderwaterTheme: true
