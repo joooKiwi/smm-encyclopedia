@@ -17,4 +17,9 @@ export interface SMM2ExclusiveEntity
     isInSuperMario3DWorldStyle: boolean
 
     isInTheme: IsInOnlySMM2ThemeProperty
+    isInDesertTheme: boolean
+    isInSnowTheme: boolean
+    isInSkyTheme: boolean
+    isInForestTheme: boolean
+
 }

@@ -10,9 +10,9 @@ export interface IsInOnlySMM1Property
     isInSuperMarioMaker2: false
 
     isInSuperMarioBrosStyle: true
-    isInSuperMarioBros3Style: true
-    isInSuperMarioWorldStyle: true
-    isInNewSuperMarioBrosUStyle: true
+    isInSuperMarioBros3Style: false
+    isInSuperMarioWorldStyle: false
+    isInNewSuperMarioBrosUStyle: false
     isInSuperMario3DWorldStyle: null
 
     isInGroundTheme: true
