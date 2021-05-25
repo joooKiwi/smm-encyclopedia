@@ -13,6 +13,7 @@ export class IsInGameStylePropertyContainer
     private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_IN_SUPER_MARIO_MAKER_2_PROPERTY = new IsInGameStylePropertyContainer(true, false, false, false, false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_3_PROPERTY = new IsInGameStylePropertyContainer(false, true, false, false, false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_WORLD_PROPERTY = new IsInGameStylePropertyContainer(false, false, true, false, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_AND_SUPER_MARIO_BROS_3_AND_NEW_SUPER_MARIO_BROS_U = new IsInGameStylePropertyContainer(true, true, true, false, false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_NEW_SUPER_MARIO_BROS_U_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, true, false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_3D_WORLD_PROPERTY = new IsInGameStylePropertyContainer(false, false, false, false, true,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_AND_SUPER_MARIO_BROS_3_PROPERTY = new IsInGameStylePropertyContainer(true, true, false, false, false,) as IsInOnlySMM2GameStyleProperty;
@@ -59,7 +60,8 @@ export class IsInGameStylePropertyContainer
 
     public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInGameStyleProperty
     public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInOnlySMM1GameStyleProperty
-    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): IsInOnlySMM2GameStyleProperty
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,): IsInOnlySMM2GameStyleProperty
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): IsInGameStyleProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
@@ -79,6 +81,7 @@ export class IsInGameStylePropertyContainer
      *     <tr><td>true  true  true  true  & false</td><td>A property in the original 4 styles ({@link GameStyles.SUPER_MARIO_BROS}, {@link GameStyles.SUPER_MARIO_BROS_3}, {@link GameStyles.SUPER_MARIO_WORLD} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U})</td></tr>
      *     <tr><td>true  true  false false & false</td><td>A property only in {@link GameStyles.SUPER_MARIO_BROS} & {@link GameStyles.SUPER_MARIO_BROS_3}</td></tr>
      *     <tr><td>false false true  true  & false</td><td>A property only in {@link GameStyles.SUPER_MARIO_WORLD} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U}</td></tr>
+     *     <tr><td>true  true  false true  & false</td><td>A property only in {@link GameStyles.SUPER_MARIO_BROS}, {@link GameStyles.SUPER_MARIO_BROS_3} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U}</td></tr>
      *     <tr><td>false false false false & null</td><td>A property no game styles. It also catch every other cases, but it should not happen.</td></tr>
      * </table>
      *
@@ -115,6 +118,10 @@ export class IsInGameStylePropertyContainer
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === false)
             return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SUPER_MARIO_WORLD_AND_NEW_SUPER_MARIO_BROS_U_PROPERTY;
         //endregion ----- Exclusive for 2 game styles -----
+        //region ----- Exclusive for 3 game styles -----
+        if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === false)
+            return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SUPER_MARIO_BROS_AND_SUPER_MARIO_BROS_3_AND_NEW_SUPER_MARIO_BROS_U;
+        //endregion ----- Exclusive for 3 game styles -----
 
         return IsInGameStylePropertyContainer.__IS_IN_NO_GAME_STYLES_PROPERTY;
     }

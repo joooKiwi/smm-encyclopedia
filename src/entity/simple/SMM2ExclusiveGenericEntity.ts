@@ -86,7 +86,7 @@ function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM2Property 
     //endregion ----- Game property -----
     //region ----- Game style property -----
     if (isInProperty.isInSuperMario3DWorldStyle === null)
-        throw new TypeError('The property isInSMM2 should always be set to a boolean for a SMM2 exclusive property.');
+        throw new TypeError('The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.');
     //endregion ----- Game style property -----
     return isInProperty as IsInOnlySMM2Property;
 }
