@@ -110,7 +110,7 @@ export class GameStyleLoader
             throw new ReferenceError(`The english name "${englishName}" has no reference on the Game Style class.`);
         const everyEntities = [] as Entity[];
         for (const [, {entity}] of this.entities.entries())
-            if (entity !== undefined && gameStyle.isEntityOn(entity))
+            if (entity !== undefined && gameStyle.get(entity))
                 everyEntities.push(entity);
         return everyEntities;
     }

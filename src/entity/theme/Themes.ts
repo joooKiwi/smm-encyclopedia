@@ -1,8 +1,8 @@
 import {CourseTheme}                 from './CourseTheme';
-import {Entity}                      from '../simple/Entity';
-import {EntityVerifierWithReference} from '../EntityVerifier';
+import {PropertyGetterWithReference} from '../PropertyGetter';
 import {ThemeLoader}                 from './ThemeLoader';
 import {WorldTheme}                  from './WorldTheme';
+import {IsInThemeProperty}           from '../properties/IsInThemeProperty';
 
 type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
@@ -14,55 +14,55 @@ export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
  * @enum
  */
 export class Themes
-    implements EntityVerifierWithReference<PossibleTheme, [CourseTheme, WorldTheme]> {
+    implements PropertyGetterWithReference<PossibleTheme, IsInThemeProperty, [CourseTheme, WorldTheme]> {
     public static readonly GROUND = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInGroundTheme;
+        public _get(property: IsInThemeProperty): boolean {
+            return property.isInGroundTheme;
         }
     }('Ground');
     public static readonly UNDERGROUND = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInUndergroundTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInUndergroundTheme;
         }
     }('Underground');
     public static readonly UNDERWATER = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInUnderwaterTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInUnderwaterTheme;
         }
     }('Underwater');
     public static readonly DESERT = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInDesertTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInDesertTheme;
         }
     }('Desert');
     public static readonly SNOW = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInSnowTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInSnowTheme;
         }
     }('Snow');
     public static readonly SKY = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInSkyTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInSkyTheme;
         }
     }('Sky');
     public static readonly FOREST = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInForestTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInForestTheme;
         }
     }('Forest');
     public static readonly GHOST_HOUSE = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInGhostHouseTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInGhostHouseTheme;
         }
     }('Ghost House');
     public static readonly AIRSHIP = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInAirshipTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInAirshipTheme;
         }
     }('Airship');
     public static readonly CASTLE = new class extends Themes {
-        public _isEntityOn(entity: Entity): boolean | null {
-            return entity.isInCastleTheme;
+        public _get(property: IsInThemeProperty): boolean | null {
+            return property.isInCastleTheme;
         }
     }('Castle', 'Castle - Volcano');
 
@@ -91,12 +91,12 @@ export class Themes
         return this.#englishName;
     }
 
-    protected _isEntityOn(entity: Entity): boolean | null {
+    protected _get(property: IsInThemeProperty): boolean | null {
         return false;
     }
 
-    public isEntityOn(entity: Entity): boolean {
-        return this._isEntityOn(entity) ?? false;
+    public get(property: IsInThemeProperty): boolean {
+        return this._get(property) ?? false;
     }
 
     public get references() {

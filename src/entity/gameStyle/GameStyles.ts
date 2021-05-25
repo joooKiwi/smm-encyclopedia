@@ -1,7 +1,7 @@
-import {Entity}                      from '../simple/Entity';
-import {EntityVerifierWithReference} from '../EntityVerifier';
+import {PropertyGetterWithReference} from '../PropertyGetter';
 import {GameStyle}                   from './GameStyle';
 import {GameStyleLoader}             from './GameStyleLoader';
+import {IsInGameStyleProperty}       from '../properties/IsInGameStyleProperty';
 
 export type PossibleGameStyleName = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
 
@@ -15,30 +15,30 @@ export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | '
  * @enum
  */
 export abstract class GameStyles
-    implements EntityVerifierWithReference<PossibleGameStyleName, GameStyle> {
+    implements PropertyGetterWithReference<PossibleGameStyleName, IsInGameStyleProperty, GameStyle> {
     public static readonly SUPER_MARIO_BROS = new class extends GameStyles {
-        public isEntityOn(entity: Entity): boolean {
-            return entity.isInSuperMarioBrosStyle;
+        public get(property: IsInGameStyleProperty): boolean {
+            return property.isInSuperMarioBrosStyle;
         }
     }('Super Mario Bros.');
     public static readonly SUPER_MARIO_BROS_3 = new class extends GameStyles {
-        public isEntityOn(entity: Entity): boolean {
-            return entity.isInSuperMarioBros3Style;
+        public get(property: IsInGameStyleProperty): boolean {
+            return property.isInSuperMarioBros3Style;
         }
     }('Super Mario Bros. 3');
     public static readonly SUPER_MARIO_WORLD = new class extends GameStyles {
-        public isEntityOn(entity: Entity): boolean {
-            return entity.isInSuperMarioWorldStyle;
+        public get(property: IsInGameStyleProperty): boolean {
+            return property.isInSuperMarioWorldStyle;
         }
     }('Super Mario World');
     public static readonly NEW_SUPER_MARIO_BROS_U = new class extends GameStyles {
-        public isEntityOn(entity: Entity): boolean {
-            return entity.isInNewSuperMarioBrosUStyle;
+        public get(property: IsInGameStyleProperty): boolean {
+            return property.isInNewSuperMarioBrosUStyle;
         }
     }('New Super Mario Bros. U');
     public static readonly SUPER_MARIO_3D_WORLD = new class extends GameStyles {
-        public isEntityOn(entity: Entity): boolean {
-            return entity.isInSuperMario3DWorldStyle === true;
+        public get(property: IsInGameStyleProperty): boolean {
+            return property.isInSuperMario3DWorldStyle === true;
         }
     }('Super Mario 3D World');
 
@@ -58,7 +58,7 @@ export abstract class GameStyles
         return this.#englishName;
     }
 
-    public abstract isEntityOn(entity: Entity): boolean;
+    public abstract get(property: IsInGameStyleProperty): boolean;
 
     public get references() {
         return this.#references ?? (this.#references = GameStyleLoader.get.load().get(this.englishName)!);
