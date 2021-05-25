@@ -1,9 +1,10 @@
 import {IsInProperty}                  from './IsInProperty';
 import {IsInOnlySMM1GameProperty}      from './IsInOnlySMM1GameProperty';
 import {IsInOnlySMM1GameStyleProperty} from './IsInOnlySMM1GameStyleProperty';
+import {IsInOnlySMM1ThemeProperty}     from './IsInOnlySMM1ThemeProperty';
 
 export interface IsInOnlySMM1Property
-    extends IsInProperty, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty {
+    extends IsInProperty, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty, IsInOnlySMM1ThemeProperty {
 
     isInSuperMarioMaker1: true
     isInSuperMarioMaker2: false
