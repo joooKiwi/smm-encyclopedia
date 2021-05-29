@@ -120,7 +120,7 @@ export class Themes
     }
 
     public get longImagePath() {
-        return this.imagePath + ' (long).jpg';
+        return this.imagePath + ' (large).jpg';
     }
 
 
