@@ -1,6 +1,7 @@
 import {IsInThemeProperty}         from './IsInThemeProperty';
 import {IsInOnlySMM1ThemeProperty} from './IsInOnlySMM1ThemeProperty';
 import {IsInOnlySMM2ThemeProperty} from './IsInOnlySMM2ThemeProperty';
+import {Themes}                    from '../theme/Themes';
 
 /**
  * @multiton
@@ -84,6 +85,10 @@ export class IsInThemePropertyContainer
         return this.#isInCastleTheme;
     }
 
+
+    public toCourseThemeMap(): Map<Themes, boolean> {
+        return new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]));
+    }
 
     public static get(isInGroundTheme: true, isInUndergroundTheme: true, isInUnderwaterTheme: true, isInDesertTheme: null, isInSnowTheme: null, isInSkyTheme: null, isInForestTheme: null, isInGhostHouseTheme: true, isInAirshipTheme: true, isInCastleTheme: true,): IsInOnlySMM1ThemeProperty
     public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): IsInThemeProperty

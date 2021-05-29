@@ -476,6 +476,10 @@ export abstract class AbstractEntity
         return this.isInProperty.toGameStyleMap();
     }
 
+    public toCourseThemeMap() {
+        return this.isInTheme.toCourseThemeMap();
+    }
+
     public toNameMap() {
         return this.name.toNameMap();
     }

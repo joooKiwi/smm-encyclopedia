@@ -136,4 +136,8 @@ export class IsInPropertyContainer
         return this.isInGameStyle.toGameStyleMap();
     }
 
+    public toCourseThemeMap() {
+        return this.isInTheme.toCourseThemeMap();
+    }
+
 }

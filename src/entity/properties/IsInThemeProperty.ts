@@ -1,3 +1,5 @@
+import {Themes} from '../theme/Themes';
+
 export interface IsInThemeProperty {
 
     isInGroundTheme: boolean
@@ -10,5 +12,7 @@ export interface IsInThemeProperty {
     isInGhostHouseTheme: boolean
     isInAirshipTheme: boolean
     isInCastleTheme: boolean
+
+    toCourseThemeMap(): Map<Themes, boolean>
 
 }
