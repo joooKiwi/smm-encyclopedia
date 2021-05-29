@@ -11,8 +11,8 @@ FALSE,TRUE,Gizmo,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,FALSE,,,,,FALSE,FALSE,FALS
 TRUE,TRUE,Terrain,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Ground Limit 2,FALSE,FALSE,FALSE,FALSE,,,,,,,,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,,Mushroom Platform,,,Platforme champignon,,,Pilzplattform,Plataforma champiñón,,,Piattaforma fungo,,,,,,キノコ地形,蘑菇地形,,,
 TRUE,TRUE,Terrain,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Ground Limit 2,FALSE,FALSE,FALSE,FALSE,,,,,,,,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,Semi-solid Platform,,,Platforme semi-solide,,,Hintergrund-Plattform,Plataforma flotante,,,Piattaforma fluttante,,,,,,半当たり地形,半碰撞地形,,,
 TRUE,TRUE,Terrain,FALSE,FALSE,FALSE,FALSE,FALSE,,,,FALSE,,,,,FALSE,FALSE,,,FALSE,FALSE,FALSE,FALSE,FALSE,,Ground Limit 2,FALSE,FALSE,FALSE,FALSE,,,,,,,,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,this,,Bridge,,,Pont,,,Brücke,Puente,,,Ponte,,,,,,橋,橋,,,
-TRUE,TRUE,Terrain,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,GEL (ELB),GEL (ELB),FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Other Ground + Vine Limit,FALSE,FALSE,FALSE,FALSE,,,,,,,,this,this,this,this,this,this,this,this,this,this,this,this,this,"Block
-(Rotating Block)",this,this,this,"Block
+TRUE,TRUE,Terrain,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,GEL (ELB),GEL (ELB),FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Other Ground + Vine Limit,FALSE,FALSE,FALSE,FALSE,,,,,,,,this,this,this,this,this,this,this,this,this,this,this,this,this,this,"Block
+(Rotating Block)",this,this,"Block
 (Brick Block)",,,"Bloc
 (Bloc de brique)",,,"Block
 (Mauerblock)","Bloque
@@ -51,8 +51,8 @@ FALSE,TRUE,Terrain,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,GEL (ELB),GEL (ELB),FALSE,FA
 (Кристальный блок)","レンガ
 (鉱石ブロック)",???,,,
 TRUE,TRUE,Terrain,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,GEL (ELB),GEL (ELB),FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Other Ground + Vine Limit,FALSE,FALSE,FALSE,FALSE,,,,,,,,this,this,this,this,this,this,this,this,this,this,this,this,"Block
-(Brick Block)",this,"Block
 (Brick Block)","Block
+(Brick Block)",this,"Block
 (Brick Block)","Block
 (Brick Block)","Block
 (Rotating Block)",,,"Bloc
