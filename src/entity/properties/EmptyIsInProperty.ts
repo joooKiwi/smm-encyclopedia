@@ -1,8 +1,4 @@
-import {IsInProperty}                   from './IsInProperty';
-import {IsInGamePropertyContainer}      from './IsInGamePropertyContainer';
-import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
-import {IsInThemePropertyContainer}     from './IsInThemePropertyContainer';
-import {GameStyles}                     from '../gameStyle/GameStyles';
+import {IsInProperty} from './IsInProperty';
 
 /**
  * @nullObjectPattern
@@ -12,23 +8,21 @@ export class EmptyIsInProperty
 
     public static instance = new EmptyIsInProperty();
 
-    private static __EMPTY_GAME_STYLE_MAP?: Map<GameStyles, false>;
-
     private constructor() {
     }
 
-    public readonly isInGame = IsInGamePropertyContainer.get(false, false,);
+    public readonly isInGame = this;
     public readonly isInSuperMarioMaker1 = false;
     public readonly isInSuperMarioMaker2 = false;
 
-    public readonly isInGameStyle = IsInGameStylePropertyContainer.get(false, false, false, false, null,);
+    public readonly isInGameStyle = this;
     public readonly isInSuperMarioBrosStyle = false;
     public readonly isInSuperMarioBros3Style = false;
     public readonly isInSuperMarioWorldStyle = false;
     public readonly isInNewSuperMarioBrosUStyle = false;
     public readonly isInSuperMario3DWorldStyle = null;
 
-    public readonly isInTheme = IsInThemePropertyContainer.get(false, false, false, null, null, null, null, false, false, false,);
+    public readonly isInTheme = this;
     public readonly isInGroundTheme = false;
     public readonly isInUndergroundTheme = false;
     public readonly isInUnderwaterTheme = false;
@@ -48,8 +42,12 @@ export class EmptyIsInProperty
         return this.instance;
     }
 
-    public toGameStyleMap() {
-        return EmptyIsInProperty.__EMPTY_GAME_STYLE_MAP ?? (EmptyIsInProperty.__EMPTY_GAME_STYLE_MAP = new Map(GameStyles.values.map(gameStyle => [gameStyle, false,])));
+    public toGameStyleMap(): never {
+        throw new ReferenceError(`An ${this} cannot have a game style map.`);
+    }
+
+    public toCourseThemeMap(): never {
+        throw new ReferenceError(`An ${this} cannot have a course theme map.`);
     }
 
     public toString(): 'Empty "is in property"' {
