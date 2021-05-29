@@ -444,11 +444,11 @@ class TemplateCreator {
     }
 
     private static __convertLinkToOnlyBoolean(link: null | EntityLink) {
-        return link === 'this';
+        return link !== null && this.__convertLinkToBoolean(link);
     }
 
     private static __convertLinkToBoolean(link: EntityLink): boolean {
-        return link === 'this';
+        return link.includes('this');
     }
 
     private static __convertLinkToNullableBoolean(link: null | EntityLink): null | boolean {
