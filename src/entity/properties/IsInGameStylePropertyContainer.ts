@@ -58,6 +58,11 @@ export class IsInGameStylePropertyContainer
         return this.#isInSuperMario3DWorldStyle;
     }
 
+
+    public toGameStyleMap(): Map<GameStyles, boolean> {
+        return new Map(GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
+    }
+
     public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInGameStyleProperty
     public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInOnlySMM1GameStyleProperty
     public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,): IsInOnlySMM2GameStyleProperty

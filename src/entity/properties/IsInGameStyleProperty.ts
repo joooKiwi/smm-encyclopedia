@@ -1,3 +1,5 @@
+import {GameStyles} from '../gameStyle/GameStyles';
+
 export interface IsInGameStyleProperty {
 
     isInSuperMarioBrosStyle: boolean
@@ -5,5 +7,8 @@ export interface IsInGameStyleProperty {
     isInSuperMarioWorldStyle: boolean
     isInNewSuperMarioBrosUStyle: boolean
     isInSuperMario3DWorldStyle: null | boolean
+
+
+    toGameStyleMap(): Map<GameStyles, boolean>
 
 }

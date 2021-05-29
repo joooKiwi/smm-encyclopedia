@@ -2,6 +2,7 @@ import {IsInProperty}                   from './IsInProperty';
 import {IsInGamePropertyContainer}      from './IsInGamePropertyContainer';
 import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
 import {IsInThemePropertyContainer}     from './IsInThemePropertyContainer';
+import {GameStyles}                     from '../gameStyle/GameStyles';
 
 /**
  * @nullObjectPattern
@@ -10,6 +11,8 @@ export class EmptyIsInProperty
     implements IsInProperty {
 
     public static instance = new EmptyIsInProperty();
+
+    private static __EMPTY_GAME_STYLE_MAP?: Map<GameStyles, false>;
 
     private constructor() {
     }
@@ -43,6 +46,10 @@ export class EmptyIsInProperty
 
     public static get get() {
         return this.instance;
+    }
+
+    public toGameStyleMap() {
+        return EmptyIsInProperty.__EMPTY_GAME_STYLE_MAP ?? (EmptyIsInProperty.__EMPTY_GAME_STYLE_MAP = new Map(GameStyles.values.map(gameStyle => [gameStyle, false,])));
     }
 
     public toString(): 'Empty "is in property"' {

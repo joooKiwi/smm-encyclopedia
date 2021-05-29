@@ -472,6 +472,10 @@ export abstract class AbstractEntity
     //endregion -------------------- References properties --------------------
 
 
+    public toGameStyleMap() {
+        return this.isInProperty.toGameStyleMap();
+    }
+
     public toNameMap() {
         return this.name.toNameMap();
     }
