@@ -8,6 +8,7 @@ import GameComponent                         from '../entity/game/GameComponent'
 import TableWithTranslations                 from './tools/table/TableWithTranslations';
 import {SingleTableContent}                  from './tools/table/Table';
 import SMM2NameComponent                     from '../entity/lang/SMM2NameComponent';
+import GameStyleComponent                    from '../entity/gameStyle/GameStyleComponent';
 
 export default class EveryEntitiesApp
     extends AbstractApp {
@@ -29,6 +30,7 @@ export default class EveryEntitiesApp
                 <>{index}</>,
                 <SMM2NameComponent id="entity_name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity}/>,
+                <GameStyleComponent reference={entity}/>,
             ]);
             index++;
         }
@@ -46,6 +48,7 @@ export default class EveryEntitiesApp
                     '#',
                     translations.contentTranslation('Language'),
                     translations.gameContentTranslation('Game'),
+                    translations.gameContentTranslation('Game Style'),
                 ],
                 content: this.content,
             }))}
