@@ -1,9 +1,10 @@
-import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import {IsInGameStyleProperty}         from '../properties/IsInGameStyleProperty';
+import React             from 'react';
+import {withTranslation} from 'react-i18next';
+
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {withTranslation}               from 'react-i18next';
+import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import {GameStyles}                    from './GameStyles';
-import React                           from 'react';
+import {IsInGameStyleProperty}         from '../properties/IsInGameStyleProperty';
 
 export interface GameStyleElement
     extends GameContentTranslationElement {

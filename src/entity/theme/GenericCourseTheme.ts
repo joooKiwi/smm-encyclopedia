@@ -16,10 +16,10 @@ export class GenericCourseTheme
         this.#entities = new CallbackCaller(entities);
     }
 
+
     public get entities() {
         return this.#entities.get;
     }
-
 
     public toNameMap() {
         return this.name.toNameMap();

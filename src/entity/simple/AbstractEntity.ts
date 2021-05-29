@@ -159,7 +159,7 @@ export abstract class AbstractEntity
 
 
     public get categoryName() {
-        return this.#name;
+        return this.category.name;
     }
 
 

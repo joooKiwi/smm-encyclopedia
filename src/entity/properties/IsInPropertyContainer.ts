@@ -5,7 +5,6 @@ import {IsInGameStyleProperty}          from './IsInGameStyleProperty';
 import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
 import {IsInThemeProperty}              from './IsInThemeProperty';
 import {IsInThemePropertyContainer}     from './IsInThemePropertyContainer';
-import {GameStyles}                     from '../gameStyle/GameStyles';
 
 export class IsInPropertyContainer
     implements IsInProperty {
@@ -132,7 +131,7 @@ export class IsInPropertyContainer
     }
 
 
-    public toGameStyleMap(): Map<GameStyles, boolean> {
+    public toGameStyleMap() {
         return this.isInGameStyle.toGameStyleMap();
     }
 

@@ -11,7 +11,7 @@ export class IsInThemePropertyContainer
     implements IsInThemeProperty {
 
     private static readonly __IS_IN_NO_THEMES =                              new IsInThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
-    private static readonly __IS_IN_MARIO_MAKER_1_THEMES =                   new IsInThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as IsInOnlySMM1ThemeProperty;
+    private static readonly __IS_IN_SMM1_THEMES =                            new IsInThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as IsInOnlySMM1ThemeProperty;
     private static readonly __IS_IN_EXCLUSIVE_GROUND_THEME =                 new IsInThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as IsInOnlySMM2ThemeProperty;
     private static readonly __IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new IsInThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
     private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new IsInThemePropertyContainer(false, false, true,  false, false, false, false, true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
@@ -96,7 +96,7 @@ export class IsInThemePropertyContainer
         if (isInDesertTheme === null && isInSnowTheme === null && isInSkyTheme === null && isInForestTheme === null) {
             if (isInGroundTheme && isInUndergroundTheme && isInUnderwaterTheme
                 && isInGhostHouseTheme && isInAirshipTheme && isInCastleTheme)
-                return this.__IS_IN_MARIO_MAKER_1_THEMES;
+                return this.__IS_IN_SMM1_THEMES;
             return this.__IS_IN_NO_THEMES;
         }
         if (isInGroundTheme) {
