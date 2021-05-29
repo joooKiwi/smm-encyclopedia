@@ -52,7 +52,7 @@ class GameStyleComponent
         });
         if (gameStyles.length === 1)
             return this.__createSingleGameStyleImage(gameStyles[0]);
-        return <div key={`${this.name.english} - group`}>{gameStyles.map((gameStyle) => this.__createSingleGameStyleImage(gameStyle))}</div>;
+        return <div key={`${this.name.english} - group`}>{gameStyles.map(gameStyle => this.__createSingleGameStyleImage(gameStyle))}</div>;
     }
 
 
