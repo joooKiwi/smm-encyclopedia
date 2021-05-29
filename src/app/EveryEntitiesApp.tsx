@@ -29,8 +29,8 @@ export default class EveryEntitiesApp
             content.push([englishName,
                 <>{index}</>,
                 <SMM2NameComponent id="entity_name" name={entity} popoverOrientation="right"/>,
-                <GameComponent reference={entity}/>,
-                <GameStyleComponent reference={entity}/>,
+                <GameComponent reference={entity} name={entity}/>,
+                <GameStyleComponent reference={entity} name={entity}/>,
             ]);
             index++;
         }

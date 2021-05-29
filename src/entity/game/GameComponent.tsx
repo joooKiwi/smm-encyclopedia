@@ -4,11 +4,14 @@ import {Games}                         from './Games';
 import React                           from 'react';
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import {IsInGameProperty}              from '../properties/IsInGameProperty';
+import {Name}                          from '../../lang/name/Name';
 
 export interface GameElement
     extends GameContentTranslationElement {
 
     reference: IsInGameProperty
+
+    name: Name
 
 }
 
@@ -19,8 +22,12 @@ class GameComponent
         return this.props.reference;
     }
 
+    protected get name() {
+        return this.props.name;
+    }
+
     private __createGameImage(game: Games): JSX.Element {
-        return <img src={game.imagePath} alt={game.englishName} className="game_image"/>;
+        return <img key={`${this.name.english} - ${game.englishName}`} src={game.imagePath} alt={game.englishName} className="game_image"/>;
     }
 
     public render(): JSX.Element {

@@ -32,7 +32,7 @@ export default class EveryGameStylesApp
                 <>{index}</>,
                 <img src={this.enum[index - 1].largeImagePath} alt={englishName}/>,
                 <SMM2NameComponent id="theme_name" name={gameStyle} popoverOrientation="left"/>,
-                <GameComponent reference={gameStyle}/>,
+                <GameComponent reference={gameStyle} name={gameStyle}/>,
             ]);
             index++;
         }

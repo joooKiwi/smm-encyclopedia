@@ -5,11 +5,14 @@ import GameContentTranslationComponent from '../../lang/components/GameContentTr
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import {GameStyles}                    from './GameStyles';
 import {IsInGameStyleProperty}         from '../properties/IsInGameStyleProperty';
+import {Name}                          from '../../lang/name/Name';
 
 export interface GameStyleElement
     extends GameContentTranslationElement {
 
     reference: IsInGameStyleProperty
+
+    name: Name
 
 }
 
@@ -21,6 +24,10 @@ class GameStyleComponent
         return this.props.reference;
     }
 
+    protected get name(){
+        return this.props.name;
+    }
+
     protected get isInEveryGameStyles(): boolean {
         return this.reference.isInSuperMarioBrosStyle
             && this.reference.isInSuperMarioBros3Style
@@ -30,7 +37,7 @@ class GameStyleComponent
     }
 
     private __createSingleGameStyleImage(gameStyle: GameStyles): JSX.Element {
-        return <img src={gameStyle.smallImagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
+        return <img key={`${this.name.english} - ${gameStyle.englishName}`} src={gameStyle.smallImagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
     }
 
 
@@ -45,11 +52,7 @@ class GameStyleComponent
         });
         if (gameStyles.length === 1)
             return this.__createSingleGameStyleImage(gameStyles[0]);
-        return <div>{gameStyles.map((gameStyle, index) => {
-            if (index === gameStyles.length - 1)
-                return this.__createSingleGameStyleImage(gameStyle);
-            return <>{this.__createSingleGameStyleImage(gameStyle)}<br/></>;
-        })}</div>;
+        return <div key={`${this.name.english} - group`}>{gameStyles.map((gameStyle) => this.__createSingleGameStyleImage(gameStyle))}</div>;
     }
 
 
