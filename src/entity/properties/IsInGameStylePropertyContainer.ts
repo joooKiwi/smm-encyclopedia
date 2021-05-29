@@ -1,6 +1,7 @@
 import {IsInGameStyleProperty}         from './IsInGameStyleProperty';
 import {IsInOnlySMM1GameStyleProperty} from './IsInOnlySMM1GameStyleProperty';
 import {IsInOnlySMM2GameStyleProperty} from './IsInOnlySMM2GameStyleProperty';
+import {GameStyles}                    from '../gameStyle/GameStyles';
 
 /**
  * @multiton
