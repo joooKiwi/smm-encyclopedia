@@ -26,7 +26,7 @@ export class SMM2ExclusiveGenericEntity
     //region -------------------- Is in game properties --------------------
 
     public get isInGameContainer(): IsInOnlySMM2GameProperty {
-        return super.isInGameContainer as IsInOnlySMM2GameProperty;
+        return super.isInGameContainer;
     }
 
     public get isInSuperMarioMaker1() {
@@ -41,7 +41,7 @@ export class SMM2ExclusiveGenericEntity
     //region -------------------- Is in game style properties --------------------
 
     public get isInGameStyleContainer(): IsInOnlySMM2GameStyleProperty {
-        return super.isInGameStyleContainer as IsInOnlySMM2GameStyleProperty;
+        return super.isInGameStyleContainer;
     }
 
     public get isInSuperMario3DWorldStyle() {
@@ -52,7 +52,7 @@ export class SMM2ExclusiveGenericEntity
     //region -------------------- Is in theme properties --------------------
 
     public get isInThemeContainer(): IsInOnlySMM2ThemeProperty {
-        return super.isInThemeContainer as IsInOnlySMM2ThemeProperty;
+        return super.isInThemeContainer;
     }
 
     public get isInDesertTheme() {
@@ -72,6 +72,21 @@ export class SMM2ExclusiveGenericEntity
     }
 
     //endregion -------------------- Is in theme properties --------------------
+    //region -------------------- Is in time properties --------------------
+
+    public get isInTimeContainer() {
+        return super.isInTimeContainer;
+    }
+
+    public get isInDayTheme() {
+        return this.isInTimeContainer.isInDayTheme;
+    }
+
+    public get isInNightTheme() {
+        return this.isInTimeContainer.isInNightTheme;
+    }
+
+    //endregion -------------------- Is in time properties --------------------
 
     //endregion -------------------- Is in properties --------------------
 
@@ -88,5 +103,9 @@ function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM2Property 
     if (isInProperty.isInSuperMario3DWorldStyle === null)
         throw new TypeError('The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.');
     //endregion ----- Game style property -----
+    //region ----- Time property -----
+    if (isInProperty.isInNightTheme === null)
+        throw new TypeError('The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property.');
+    //endregion ----- Time property -----
     return isInProperty as IsInOnlySMM2Property;
 }

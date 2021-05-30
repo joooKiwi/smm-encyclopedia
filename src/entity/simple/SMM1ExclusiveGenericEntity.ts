@@ -9,6 +9,7 @@ import {Name}                          from '../../lang/name/Name';
 import {SMM1ExclusiveEntity}           from './SMM1ExclusiveEntity';
 import {IsInOnlySMM1GameStyleProperty} from '../properties/IsInOnlySMM1GameStyleProperty';
 import {IsInOnlySMM1ThemeProperty}     from '../properties/IsInOnlySMM1ThemeProperty';
+import {IsInOnlySMM1TimeProperty}      from '../properties/IsInOnlySMM1TimeProperty';
 
 export class SMM1ExclusiveGenericEntity
     extends GenericEntity
@@ -27,7 +28,7 @@ export class SMM1ExclusiveGenericEntity
     //region -------------------- Is in game properties --------------------
 
     public get isInGameContainer(): IsInOnlySMM1GameProperty {
-        return super.isInGameContainer as IsInOnlySMM1GameProperty;
+        return super.isInGameContainer;
     }
 
     public get isInSuperMarioMaker1() {
@@ -42,7 +43,7 @@ export class SMM1ExclusiveGenericEntity
     //region -------------------- Is in game style properties --------------------
 
     public get isInGameStyleContainer(): IsInOnlySMM1GameStyleProperty {
-        return super.isInGameStyleContainer as IsInOnlySMM1GameStyleProperty;
+        return super.isInGameStyleContainer;
     }
 
     public get isInSuperMarioBrosStyle() {
@@ -69,7 +70,7 @@ export class SMM1ExclusiveGenericEntity
     //region -------------------- Is in theme properties --------------------
 
     public get isInThemeContainer(): IsInOnlySMM1ThemeProperty {
-        return super.isInThemeContainer as IsInOnlySMM1ThemeProperty;
+        return super.isInThemeContainer;
     }
 
     public get isInGroundTheme() {
@@ -113,6 +114,11 @@ export class SMM1ExclusiveGenericEntity
     }
 
     //endregion -------------------- Is in theme properties --------------------
+    //region -------------------- Is in time properties --------------------
+
+    public get isInTimeContainer(): IsInOnlySMM1TimeProperty {
+        return super.isInTimeContainer;
+    }
 
     public get isInDayTheme() {
         return this.isInPropertyContainer.isInDayTheme;
@@ -121,6 +127,8 @@ export class SMM1ExclusiveGenericEntity
     public get isInNightTheme() {
         return this.isInPropertyContainer.isInNightTheme;
     }
+
+    //endregion -------------------- Is in time properties --------------------
 
     //endregion -------------------- Is in properties --------------------
 
@@ -152,8 +160,10 @@ function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM1Property 
         && isInProperty.isInSnowTheme === null && isInProperty.isInSkyTheme === null && isInProperty.isInForestTheme === null && isInProperty.isInGhostHouseTheme
         && isInProperty.isInAirshipTheme && isInProperty.isInCastleTheme))
         throw new TypeError('A SMM1 entity is never in the desert, snow, sky and forest theme. The rest should always be set to true.');
+    //endregion ----- Theme property -----
+    //region ----- Time property -----
     if (!(isInProperty.isInDayTheme && isInProperty.isInNightTheme === null))
         throw new TypeError('A SMM1 entity is never in the night theme, but always in the day theme.');
-    //endregion ----- Theme property -----
+    //endregion ----- Time property -----
     return isInProperty as IsInOnlySMM1Property;
 }

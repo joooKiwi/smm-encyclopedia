@@ -26,7 +26,9 @@ export interface IsInPropertyTemplate {
         castle: boolean
     }
 
-    day: boolean
-    night: null | boolean
+    time: {
+        day: boolean
+        night: null | boolean
+    }
 
 }

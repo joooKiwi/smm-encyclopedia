@@ -53,7 +53,7 @@ export class EntityBuilder
             isIn.game['1'], isIn.game['2'],
             isIn.style.superMarioBros, isIn.style.superMarioBros3, isIn.style.superMarioWorld, isIn.style.newSuperMarioBrosU, isIn.style.superMario3DWorld,
             isIn.theme.ground, isIn.theme.underground, isIn.theme.underwater, isIn.theme.desert, isIn.theme.snow, isIn.theme.sky, isIn.theme.forest, isIn.theme.ghostHouse, isIn.theme.airship, isIn.theme.castle,
-            isIn.day, isIn.night,
+            isIn.time.day, isIn.time.night,
         );
     }
 

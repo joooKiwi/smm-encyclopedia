@@ -300,8 +300,10 @@ class TemplateCreator {
                         airship: this.__convertLinkToBoolean(airshipLink),
                         castle: this.__convertLinkToBoolean(castleLink),
                     },
-                    day: this.__convertLinkToBoolean(dayLink),
-                    night: this.__convertLinkToNullableBoolean(nightLink),
+                    time: {
+                        day: this.__convertLinkToBoolean(dayLink),
+                        night: this.__convertLinkToNullableBoolean(nightLink),
+                    },
                 },
 
                 categoryInTheEditor: content[2],

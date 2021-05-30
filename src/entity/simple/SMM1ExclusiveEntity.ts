@@ -3,9 +3,10 @@ import {IsInOnlySMM1GameProperty}      from '../properties/IsInOnlySMM1GamePrope
 import {IsInOnlySMM1GameStyleProperty} from '../properties/IsInOnlySMM1GameStyleProperty';
 import {IsInOnlySMM1Property}          from '../properties/IsInOnlySMM1Property';
 import {IsInOnlySMM1ThemeProperty}     from '../properties/IsInOnlySMM1ThemeProperty';
+import {IsInOnlySMM1TimeProperty}      from '../properties/IsInOnlySMM1TimeProperty';
 
 export interface SMM1ExclusiveEntity
-    extends Entity, IsInOnlySMM1Property, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty, IsInOnlySMM1ThemeProperty {
+    extends Entity, IsInOnlySMM1Property, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty, IsInOnlySMM1ThemeProperty, IsInOnlySMM1TimeProperty {
 
     isInPropertyContainer: IsInOnlySMM1Property
 
@@ -32,6 +33,7 @@ export interface SMM1ExclusiveEntity
     isInAirshipTheme: true
     isInCastleTheme: true
 
+    isInTimeContainer: IsInOnlySMM1TimeProperty
     isInDayTheme: true
     isInNightTheme: null
 

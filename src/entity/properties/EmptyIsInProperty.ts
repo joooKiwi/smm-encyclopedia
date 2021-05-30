@@ -34,6 +34,7 @@ export class EmptyIsInProperty
     public readonly isInAirshipTheme = false;
     public readonly isInCastleTheme = false;
 
+    public readonly isInTimeContainer = this;
     public readonly isInDayTheme = false;
     public readonly isInNightTheme = null;
 
@@ -48,6 +49,10 @@ export class EmptyIsInProperty
 
     public toCourseThemeMap(): never {
         throw new ReferenceError(`An ${this} cannot have a course theme map.`);
+    }
+
+    public toTimeMap(): never {
+        throw new ReferenceError(`An ${this} cannot have a time map.`);
     }
 
     public toString(): 'Empty "is in property"' {

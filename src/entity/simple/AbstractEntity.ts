@@ -291,7 +291,7 @@ export abstract class AbstractEntity
 
     //region -------------------- Is in game properties --------------------
 
-    public get isInGameContainer() {
+    public get isInGameContainer(): this['isInPropertyContainer']['isInGameContainer'] {
         return this.isInPropertyContainer.isInGameContainer;
     }
 
@@ -306,7 +306,7 @@ export abstract class AbstractEntity
     //endregion -------------------- Is in game properties --------------------
     //region -------------------- Is in game style properties --------------------
 
-    public get isInGameStyleContainer() {
+    public get isInGameStyleContainer(): this['isInPropertyContainer']['isInGameStyleContainer'] {
         return this.isInPropertyContainer.isInGameStyleContainer;
     }
 
@@ -332,7 +332,8 @@ export abstract class AbstractEntity
 
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
-    public get isInThemeContainer() {
+
+    public get isInThemeContainer(): this['isInPropertyContainer']['isInThemeContainer'] {
         return this.isInPropertyContainer.isInThemeContainer;
     }
 
@@ -377,6 +378,11 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- Is in theme properties --------------------
+    //region -------------------- Is in time properties --------------------
+
+    public get isInTimeContainer(): this['isInPropertyContainer']['isInTimeContainer'] {
+        return this.isInPropertyContainer.isInTimeContainer;
+    }
 
     public get isInDayTheme() {
         return this.isInPropertyContainer.isInDayTheme;
@@ -385,6 +391,8 @@ export abstract class AbstractEntity
     public get isInNightTheme() {
         return this.isInPropertyContainer.isInNightTheme;
     }
+
+    //endregion -------------------- Is in time properties --------------------
 
     //endregion -------------------- Is in properties --------------------
     //region -------------------- References properties --------------------
@@ -478,6 +486,10 @@ export abstract class AbstractEntity
 
     public toCourseThemeMap() {
         return this.isInThemeContainer.toCourseThemeMap();
+    }
+
+    public toTimeMap() {
+        return this.isInTimeContainer.toTimeMap();
     }
 
     public toNameMap() {

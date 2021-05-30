@@ -327,6 +327,7 @@ export class EmptyEntity
 
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
+
     public get isInThemeContainer() {
         return this.isInPropertyContainer.isInThemeContainer;
     }
@@ -372,6 +373,11 @@ export class EmptyEntity
     }
 
     //endregion -------------------- Is in theme properties --------------------
+    //region -------------------- Is in time properties --------------------
+
+    public get isInTimeContainer() {
+        return this.isInPropertyContainer.isInTimeContainer;
+    }
 
     public get isInDayTheme() {
         return this.isInPropertyContainer.isInDayTheme;
@@ -380,6 +386,8 @@ export class EmptyEntity
     public get isInNightTheme() {
         return this.isInPropertyContainer.isInNightTheme;
     }
+
+    //endregion -------------------- Is in time properties --------------------
 
     //endregion -------------------- Is in properties --------------------
     //region -------------------- References properties --------------------
@@ -470,6 +478,10 @@ export class EmptyEntity
 
     public toCourseThemeMap(): never {
         throw new ReferenceError(`An ${this} cannot have a course theme map.`);
+    }
+
+    public toTimeMap(): never {
+        throw new ReferenceError(`An ${this} cannot have a time map.`);
     }
 
     public toNameMap() {
