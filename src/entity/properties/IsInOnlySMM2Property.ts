@@ -21,6 +21,5 @@ export interface IsInOnlySMM2Property
     isInForestTheme: boolean
 
     isInTimeContainer: IsInOnlySMM2TimeProperty
-    isInNightTheme: boolean
 
 }

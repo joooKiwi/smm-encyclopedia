@@ -104,8 +104,13 @@ function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM2Property 
         throw new TypeError('The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.');
     //endregion ----- Game style property -----
     //region ----- Time property -----
-    if (isInProperty.isInNightTheme === null)
-        throw new TypeError('The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property.');
+    if (!isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle) {
+        if (isInProperty.isInNightTheme !== null)
+            throw new TypeError('The property isInNightTheme should always be set to a null for a SMM2 exclusive property when it is exclusively in the SM3DW style.');
+    } else {
+        if (isInProperty.isInNightTheme === null)
+            throw new TypeError('The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property when it is included in at least one of those styles (SMB, SMB3, SMW or NSMBU).');
+    }
     //endregion ----- Time property -----
     return isInProperty as IsInOnlySMM2Property;
 }

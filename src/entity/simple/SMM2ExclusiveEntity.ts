@@ -24,6 +24,5 @@ export interface SMM2ExclusiveEntity
     isInForestTheme: boolean
 
     isInTimeContainer: IsInOnlySMM2TimeProperty
-    isInNightTheme: boolean
 
 }
