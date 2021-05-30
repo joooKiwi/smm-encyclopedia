@@ -37,5 +37,7 @@
   "Course Theme": { "in game": "Course Theme", "spoken": "Course theme" },
   "World Theme":  { "in game": "World Theme",  "spoken": "World theme" },
 
-  "Time": "Time"
+  "Time": "Time",
+
+  "Category": "Category"
 }

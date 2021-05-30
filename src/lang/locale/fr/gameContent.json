@@ -37,5 +37,7 @@
   "Course Theme": { "in game": "Décor", "spoken": "Décor de niveau" },
   "World Theme":  { "in game": "Décor",  "spoken": "Décor de monde" },
 
-  "Time": "Temps"
+  "Time": "Temps",
+
+  "Category": "Catégorie"
 }

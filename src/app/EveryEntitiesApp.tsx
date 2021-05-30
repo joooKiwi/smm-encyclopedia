@@ -35,6 +35,7 @@ export default class EveryEntitiesApp
                 <GameStyleComponent reference={entity} name={entity}/>,
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
+                <SMM2NameComponent id="entityCategory_name" name={entity.category} popoverOrientation="left"/>,
             ]);
             index++;
         }
@@ -55,6 +56,7 @@ export default class EveryEntitiesApp
                     translations.gameContentTranslation('Game Style'),
                     translations.gameContentTranslation('Course Theme.spoken'),
                     translations.gameContentTranslation('Time'),
+                    translations.gameContentTranslation('Category'),
                 ],
                 content: this.content,
             }))}
