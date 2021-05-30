@@ -23,5 +23,4 @@ export class ConverterUtil {
         return Number(value);
     }
 
-
 }

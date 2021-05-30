@@ -1,4 +1,4 @@
-import {AbstractStringConverter} from "./AbstractStringConverter";
+import {AbstractStringConverter} from './AbstractStringConverter';
 
 export abstract class AbstractEmptyableStringConverter<T>
     extends AbstractStringConverter<T | null> {

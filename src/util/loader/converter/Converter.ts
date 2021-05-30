@@ -1,11 +1,11 @@
 export interface Converter<T, U> {
 
-    originalValue: T;
+    originalValue: T
 
-    convertedValue: U;
+    convertedValue: U
 
-    isValueValid(value: T): boolean;
+    isValueValid(value: T): boolean
 
-    convertTheValue(value: T): U;
+    convertTheValue(value: T): U
 
 }
