@@ -8,7 +8,7 @@ export class CallbackCaller<T> {
     }
 
     public get get(): T {
-        return this.#object || (this.#object = this.#callback());
+        return this.#object ?? (this.#object = this.#callback());
     }
 
 }
