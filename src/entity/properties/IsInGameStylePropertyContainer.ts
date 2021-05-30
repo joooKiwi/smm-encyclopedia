@@ -10,22 +10,31 @@ import {GameStyles}                    from '../gameStyle/GameStyles';
 export class IsInGameStylePropertyContainer
     implements IsInGameStyleProperty {
 
+    //region -------------------- predefined containers --------------------
+
     private static readonly __IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY =         new IsInGameStylePropertyContainer(true,  false, false, false, null, ) as IsInOnlySMM1GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY =         new IsInGameStylePropertyContainer(true,  false, false, false, false,) as IsInOnlySMM2GameStyleProperty;
+
     private static readonly __IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY =                new IsInGameStylePropertyContainer(false, true,  false, false, false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SMW_PROPERTY =                 new IsInGameStylePropertyContainer(false, false, true,  false, false,) as IsInOnlySMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_AND_SMW =         new IsInGameStylePropertyContainer(true,  true,  true,  false, false,) as IsInOnlySMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_AND_NSMBU =       new IsInGameStylePropertyContainer(true,  true,  false, true,  false,) as IsInOnlySMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_NSMBU_AND_SM3DW = new IsInGameStylePropertyContainer(true,  true,  true,  false, true, ) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY =               new IsInGameStylePropertyContainer(false, false, false, true,  false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY =               new IsInGameStylePropertyContainer(false, false, false, false, true, ) as IsInOnlySMM2GameStyleProperty;
+
     private static readonly __IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY =        new IsInGameStylePropertyContainer(true,  true,  false, false, false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY =       new IsInGameStylePropertyContainer(false, false, true,  true,  false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY =       new IsInGameStylePropertyContainer(false, false, true,  false, true, ) as IsInOnlySMM2GameStyleProperty;
+
+    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW =             new IsInGameStylePropertyContainer(true,  true,  true,  false, false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU =           new IsInGameStylePropertyContainer(true,  true,  false, true,  false,) as IsInOnlySMM2GameStyleProperty;
+    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new IsInGameStylePropertyContainer(true,  true,  true,  false, true, ) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY = new IsInGameStylePropertyContainer(false, false, true,  true,  true, ) as IsInOnlySMM2GameStyleProperty;
+
     private static readonly __IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new IsInGameStylePropertyContainer(true,  true,  true,  true,  false,) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_EVERY_GAME_STYLES_PROPERTY =                new IsInGameStylePropertyContainer(true,  true,  true,  true,  true, ) as IsInOnlySMM2GameStyleProperty;
     private static readonly __IS_IN_NO_GAME_STYLES_PROPERTY =                   new IsInGameStylePropertyContainer(false, false, false, false, null, );
+
+    //endregion -------------------- predefined containers --------------------
+    //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #isInSuperMarioBrosStyle;
     readonly #isInSuperMarioBros3Style;
@@ -67,6 +76,9 @@ export class IsInGameStylePropertyContainer
     public toGameStyleMap(): Map<GameStyles, boolean> {
         return new Map(GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
     }
+
+    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Provider/Multiton method --------------------
 
     public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInGameStyleProperty
     public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): IsInOnlySMM1GameStyleProperty
@@ -136,17 +148,19 @@ export class IsInGameStylePropertyContainer
         //region ----- Exclusive for 3 game styles -----
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMario3DWorldStyle !== true) {
             if (isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle)
-                return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_AND_SMW;
+                return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW;
             if (!isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle)
-                return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_AND_NSMBU;
+                return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU;
         }
         //endregion ----- Exclusive for 3 game styles -----
         //region ----- Exclusive for 4 game styles -----
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
-            return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_NSMBU_AND_SM3DW;
+            return IsInGameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW;
         //endregion ----- Exclusive for 4 game styles -----
 
         return IsInGameStylePropertyContainer.__IS_IN_NO_GAME_STYLES_PROPERTY;
     }
+
+    //endregion -------------------- Provider/Multiton method --------------------
 
 }

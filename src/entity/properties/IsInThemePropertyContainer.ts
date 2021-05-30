@@ -10,7 +10,7 @@ import {Themes}                    from '../theme/Themes';
 export class IsInThemePropertyContainer
     implements IsInThemeProperty {
 
-    //region -------------------- predefined "Is in theme property" --------------------
+    //region -------------------- predefined containers --------------------
 
     private static readonly __IS_IN_NO_THEMES =                              new IsInThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
     private static readonly __IS_IN_SMM1_THEMES =                            new IsInThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as IsInOnlySMM1ThemeProperty;
@@ -29,8 +29,8 @@ export class IsInThemePropertyContainer
 
     private static readonly __IS_IN_EVERY_THEMES =                           new IsInThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
 
-    //endregion -------------------- predefined "Is in theme property" --------------------
-    //region -------------------- "Is in theme property" attributes, constructor & methods --------------------
+    //endregion -------------------- predefined containers --------------------
+    //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #isInGroundTheme: boolean;
     readonly #isInUndergroundTheme: boolean;
@@ -101,7 +101,7 @@ export class IsInThemePropertyContainer
         return new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]));
     }
 
-    //endregion -------------------- "Is in theme property" attributes, constructor & methods --------------------
+    //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider/Multiton method --------------------
 
     public static get(isInGroundTheme: true, isInUndergroundTheme: true, isInUnderwaterTheme: true, isInDesertTheme: null, isInSnowTheme: null, isInSkyTheme: null, isInForestTheme: null, isInGhostHouseTheme: true, isInAirshipTheme: true, isInCastleTheme: true,): IsInOnlySMM1ThemeProperty
