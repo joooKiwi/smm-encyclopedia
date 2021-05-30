@@ -19,56 +19,56 @@ export class SMM2ExclusiveGenericEntity
 
     //region -------------------- Is in properties --------------------
 
-    public get isInProperty(): IsInOnlySMM2Property {
-        return super.isInProperty as IsInOnlySMM2Property;
+    public get isInPropertyContainer(): IsInOnlySMM2Property {
+        return super.isInPropertyContainer as IsInOnlySMM2Property;
     }
 
     //region -------------------- Is in game properties --------------------
 
-    public get isInGame(): IsInOnlySMM2GameProperty {
-        return super.isInGame as IsInOnlySMM2GameProperty;
+    public get isInGameContainer(): IsInOnlySMM2GameProperty {
+        return super.isInGameContainer as IsInOnlySMM2GameProperty;
     }
 
     public get isInSuperMarioMaker1() {
-        return this.isInGame.isInSuperMarioMaker1;
+        return this.isInGameContainer.isInSuperMarioMaker1;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.isInGame.isInSuperMarioMaker2;
+        return this.isInGameContainer.isInSuperMarioMaker2;
     }
 
     //endregion -------------------- Is in game properties --------------------
     //region -------------------- Is in game style properties --------------------
 
-    public get isInGameStyle(): IsInOnlySMM2GameStyleProperty {
-        return super.isInGameStyle as IsInOnlySMM2GameStyleProperty;
+    public get isInGameStyleContainer(): IsInOnlySMM2GameStyleProperty {
+        return super.isInGameStyleContainer as IsInOnlySMM2GameStyleProperty;
     }
 
     public get isInSuperMario3DWorldStyle() {
-        return this.isInGameStyle.isInSuperMario3DWorldStyle;
+        return this.isInGameStyleContainer.isInSuperMario3DWorldStyle;
     }
 
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
 
-    public get isInTheme(): IsInOnlySMM2ThemeProperty {
-        return super.isInTheme as IsInOnlySMM2ThemeProperty;
+    public get isInThemeContainer(): IsInOnlySMM2ThemeProperty {
+        return super.isInThemeContainer as IsInOnlySMM2ThemeProperty;
     }
 
     public get isInDesertTheme() {
-        return this.isInTheme.isInDesertTheme;
+        return this.isInThemeContainer.isInDesertTheme;
     }
 
     public get isInSnowTheme() {
-        return this.isInTheme.isInSnowTheme;
+        return this.isInThemeContainer.isInSnowTheme;
     }
 
     public get isInSkyTheme() {
-        return this.isInTheme.isInSkyTheme;
+        return this.isInThemeContainer.isInSkyTheme;
     }
 
     public get isInForestTheme() {
-        return this.isInTheme.isInForestTheme;
+        return this.isInThemeContainer.isInForestTheme;
     }
 
     //endregion -------------------- Is in theme properties --------------------

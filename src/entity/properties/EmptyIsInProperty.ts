@@ -11,18 +11,18 @@ export class EmptyIsInProperty
     private constructor() {
     }
 
-    public readonly isInGame = this;
+    public readonly isInGameContainer = this;
     public readonly isInSuperMarioMaker1 = false;
     public readonly isInSuperMarioMaker2 = false;
 
-    public readonly isInGameStyle = this;
+    public readonly isInGameStyleContainer = this;
     public readonly isInSuperMarioBrosStyle = false;
     public readonly isInSuperMarioBros3Style = false;
     public readonly isInSuperMarioWorldStyle = false;
     public readonly isInNewSuperMarioBrosUStyle = false;
     public readonly isInSuperMario3DWorldStyle = null;
 
-    public readonly isInTheme = this;
+    public readonly isInThemeContainer = this;
     public readonly isInGroundTheme = false;
     public readonly isInUndergroundTheme = false;
     public readonly isInUnderwaterTheme = false;

@@ -7,16 +7,16 @@ import {IsInOnlySMM2ThemeProperty}     from '../properties/IsInOnlySMM2ThemeProp
 export interface SMM2ExclusiveEntity
     extends Entity, IsInOnlySMM2Property, IsInOnlySMM2GameProperty, IsInOnlySMM2GameStyleProperty, IsInOnlySMM2ThemeProperty {
 
-    isInProperty: IsInOnlySMM2Property
+    isInPropertyContainer: IsInOnlySMM2Property
 
-    isInGame: IsInOnlySMM2GameProperty
+    isInGameContainer: IsInOnlySMM2GameProperty
     isInSuperMarioMaker1: false
     isInSuperMarioMaker2: true
 
-    isInGameStyle: IsInOnlySMM2GameStyleProperty
+    isInGameStyleContainer: IsInOnlySMM2GameStyleProperty
     isInSuperMario3DWorldStyle: boolean
 
-    isInTheme: IsInOnlySMM2ThemeProperty
+    isInThemeContainer: IsInOnlySMM2ThemeProperty
     isInDesertTheme: boolean
     isInSnowTheme: boolean
     isInSkyTheme: boolean

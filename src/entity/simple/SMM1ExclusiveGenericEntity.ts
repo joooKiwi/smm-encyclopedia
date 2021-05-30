@@ -20,106 +20,106 @@ export class SMM1ExclusiveGenericEntity
 
     //region -------------------- Is in properties --------------------
 
-    public get isInProperty(): IsInOnlySMM1Property {
-        return super.isInProperty as IsInOnlySMM1Property;
+    public get isInPropertyContainer(): IsInOnlySMM1Property {
+        return super.isInPropertyContainer as IsInOnlySMM1Property;
     }
 
     //region -------------------- Is in game properties --------------------
 
-    public get isInGame(): IsInOnlySMM1GameProperty {
-        return super.isInGame as IsInOnlySMM1GameProperty;
+    public get isInGameContainer(): IsInOnlySMM1GameProperty {
+        return super.isInGameContainer as IsInOnlySMM1GameProperty;
     }
 
     public get isInSuperMarioMaker1() {
-        return this.isInGame.isInSuperMarioMaker1;
+        return this.isInGameContainer.isInSuperMarioMaker1;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.isInGame.isInSuperMarioMaker2;
+        return this.isInGameContainer.isInSuperMarioMaker2;
     }
 
     //endregion -------------------- Is in game properties --------------------
     //region -------------------- Is in game style properties --------------------
 
-    public get isInGameStyle(): IsInOnlySMM1GameStyleProperty {
-        return super.isInGameStyle as IsInOnlySMM1GameStyleProperty;
+    public get isInGameStyleContainer(): IsInOnlySMM1GameStyleProperty {
+        return super.isInGameStyleContainer as IsInOnlySMM1GameStyleProperty;
     }
 
     public get isInSuperMarioBrosStyle() {
-        return this.isInGameStyle.isInSuperMarioBrosStyle;
+        return this.isInGameStyleContainer.isInSuperMarioBrosStyle;
     }
 
     public get isInSuperMarioBros3Style() {
-        return this.isInGameStyle.isInSuperMarioBros3Style;
+        return this.isInGameStyleContainer.isInSuperMarioBros3Style;
     }
 
     public get isInSuperMarioWorldStyle() {
-        return this.isInGameStyle.isInSuperMarioWorldStyle;
+        return this.isInGameStyleContainer.isInSuperMarioWorldStyle;
     }
 
     public get isInNewSuperMarioBrosUStyle() {
-        return this.isInGameStyle.isInNewSuperMarioBrosUStyle;
+        return this.isInGameStyleContainer.isInNewSuperMarioBrosUStyle;
     }
 
     public get isInSuperMario3DWorldStyle() {
-        return this.isInGameStyle.isInSuperMario3DWorldStyle;
+        return this.isInGameStyleContainer.isInSuperMario3DWorldStyle;
     }
 
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
 
-    public get isInTheme(): IsInOnlySMM1ThemeProperty {
-        return super.isInTheme as IsInOnlySMM1ThemeProperty;
+    public get isInThemeContainer(): IsInOnlySMM1ThemeProperty {
+        return super.isInThemeContainer as IsInOnlySMM1ThemeProperty;
     }
 
     public get isInGroundTheme() {
-        return this.isInTheme.isInGroundTheme;
+        return this.isInThemeContainer.isInGroundTheme;
     }
 
     public get isInUndergroundTheme() {
-        return this.isInTheme.isInUndergroundTheme;
+        return this.isInThemeContainer.isInUndergroundTheme;
     }
 
     public get isInUnderwaterTheme() {
-        return this.isInTheme.isInUnderwaterTheme;
+        return this.isInThemeContainer.isInUnderwaterTheme;
     }
 
     public get isInDesertTheme() {
-        return this.isInTheme.isInDesertTheme;
+        return this.isInThemeContainer.isInDesertTheme;
     }
 
     public get isInSnowTheme() {
-        return this.isInTheme.isInSnowTheme;
+        return this.isInThemeContainer.isInSnowTheme;
     }
 
     public get isInSkyTheme() {
-        return this.isInTheme.isInSkyTheme;
+        return this.isInThemeContainer.isInSkyTheme;
     }
 
     public get isInForestTheme() {
-        return this.isInTheme.isInForestTheme;
+        return this.isInThemeContainer.isInForestTheme;
     }
 
     public get isInGhostHouseTheme() {
-        return this.isInTheme.isInGhostHouseTheme;
+        return this.isInThemeContainer.isInGhostHouseTheme;
     }
 
     public get isInAirshipTheme() {
-        return this.isInTheme.isInAirshipTheme;
+        return this.isInThemeContainer.isInAirshipTheme;
     }
 
     public get isInCastleTheme() {
-        return this.isInTheme.isInCastleTheme;
+        return this.isInThemeContainer.isInCastleTheme;
     }
 
     //endregion -------------------- Is in theme properties --------------------
 
     public get isInDayTheme() {
-        return this.isInProperty.isInDayTheme;
+        return this.isInPropertyContainer.isInDayTheme;
     }
 
     public get isInNightTheme() {
-        return this.isInProperty.isInNightTheme;
+        return this.isInPropertyContainer.isInNightTheme;
     }
 
     //endregion -------------------- Is in properties --------------------

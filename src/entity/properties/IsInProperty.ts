@@ -5,11 +5,11 @@ import {IsInThemeProperty}     from './IsInThemeProperty';
 export interface IsInProperty
     extends IsInGameProperty, IsInGameStyleProperty, IsInThemeProperty {
 
-    isInGame: IsInGameProperty
+    isInGameContainer: IsInGameProperty
 
-    isInGameStyle: IsInGameStyleProperty
+    isInGameStyleContainer: IsInGameStyleProperty
 
-    isInTheme: IsInThemeProperty
+    isInThemeContainer: IsInThemeProperty
 
     isInDayTheme: boolean
     isInNightTheme: null | boolean

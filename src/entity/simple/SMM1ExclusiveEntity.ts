@@ -7,20 +7,20 @@ import {IsInOnlySMM1ThemeProperty}     from '../properties/IsInOnlySMM1ThemeProp
 export interface SMM1ExclusiveEntity
     extends Entity, IsInOnlySMM1Property, IsInOnlySMM1GameProperty, IsInOnlySMM1GameStyleProperty, IsInOnlySMM1ThemeProperty {
 
-    isInProperty: IsInOnlySMM1Property
+    isInPropertyContainer: IsInOnlySMM1Property
 
-    isInGame: IsInOnlySMM1GameProperty
+    isInGameContainer: IsInOnlySMM1GameProperty
     isInSuperMarioMaker1: true
     isInSuperMarioMaker2: false
 
-    isInGameStyle: IsInOnlySMM1GameStyleProperty
+    isInGameStyleContainer: IsInOnlySMM1GameStyleProperty
     isInSuperMarioBrosStyle: true
     isInSuperMarioBros3Style: false
     isInSuperMarioWorldStyle: false
     isInNewSuperMarioBrosUStyle: false
     isInSuperMario3DWorldStyle: null
 
-    isInTheme: IsInOnlySMM1ThemeProperty
+    isInThemeContainer: IsInOnlySMM1ThemeProperty
     isInGroundTheme: true
     isInUndergroundTheme: true
     isInUnderwaterTheme: true
