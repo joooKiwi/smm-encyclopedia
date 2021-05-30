@@ -3,6 +3,7 @@
   "Limit while playing": "Limit while playing",
 
   "Every themes":            "Every themes",
+  "Every times":             "Every times",
   "Every entities":          "Every entities",
   "Every entity categories": "Every entity categories",
   "Every game styles":       "Every game styles",
@@ -34,5 +35,7 @@
   "Super Mario Maker 2": "Super Mario Maker 2",
 
   "Course Theme": { "in game": "Course Theme", "spoken": "Course theme" },
-  "World Theme":  { "in game": "World Theme",  "spoken": "World theme" }
+  "World Theme":  { "in game": "World Theme",  "spoken": "World theme" },
+
+  "Time": "Time"
 }

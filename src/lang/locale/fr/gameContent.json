@@ -3,6 +3,7 @@
   "Limit while playing": "Limit quand est en train de jouer",
 
   "Every themes":            "Tous les décors",
+  "Every times":             "Tous les temps",
   "Every entities":          "Toutes les entités",
   "Every entity categories": "Toutes les catégories d'entité",
   "Every game styles":       "Tous les styles de jeu",
@@ -34,5 +35,7 @@
   "Super Mario Maker 2": "Super Mario Maker 2",
 
   "Course Theme": { "in game": "Décor", "spoken": "Décor de niveau" },
-  "World Theme":  { "in game": "Décor",  "spoken": "Décor de monde" }
+  "World Theme":  { "in game": "Décor",  "spoken": "Décor de monde" },
+
+  "Time": "Temps"
 }

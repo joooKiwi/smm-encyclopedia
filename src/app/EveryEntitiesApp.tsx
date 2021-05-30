@@ -3,13 +3,14 @@ import './EveryEntitiesApp.scss';
 import React from 'react';
 
 import AbstractApp                           from './AbstractApp';
+import CourseThemeComponent                  from '../entity/theme/CourseThemeComponent';
 import {DebugEntityReferences, EntityLoader} from '../entity/simple/EntityLoader';
 import GameComponent                         from '../entity/game/GameComponent';
-import TableWithTranslations                 from './tools/table/TableWithTranslations';
+import GameStyleComponent                    from '../entity/gameStyle/GameStyleComponent';
 import {SingleTableContent}                  from './tools/table/Table';
 import SMM2NameComponent                     from '../entity/lang/SMM2NameComponent';
-import GameStyleComponent                    from '../entity/gameStyle/GameStyleComponent';
-import CourseThemeComponent                  from '../entity/theme/CourseThemeComponent';
+import TableWithTranslations                 from './tools/table/TableWithTranslations';
+import TimeComponent                         from '../entity/time/TimeComponent';
 
 export default class EveryEntitiesApp
     extends AbstractApp {
@@ -32,7 +33,8 @@ export default class EveryEntitiesApp
                 <SMM2NameComponent id="entity_name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity}/>,
                 <GameStyleComponent reference={entity} name={entity}/>,
-                <CourseThemeComponent reference={entity} name={entity}/>
+                <CourseThemeComponent reference={entity} name={entity}/>,
+                <TimeComponent reference={entity} name={entity}/>,
             ]);
             index++;
         }
@@ -52,6 +54,7 @@ export default class EveryEntitiesApp
                     translations.gameContentTranslation('Game'),
                     translations.gameContentTranslation('Game Style'),
                     translations.gameContentTranslation('Course Theme.spoken'),
+                    translations.gameContentTranslation('Time'),
                 ],
                 content: this.content,
             }))}
