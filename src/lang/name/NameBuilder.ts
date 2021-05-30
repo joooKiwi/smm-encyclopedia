@@ -8,6 +8,8 @@ import {NameContainer}              from './NameContainer';
 export class NameBuilder
     implements Builder<Name> {
 
+    //region -------------------- Attributes --------------------
+
     #english?: AmericanOrEuropeanOriginal;
     #french?: CanadianOrEuropeanOriginal;
     #german?: string;
@@ -20,6 +22,8 @@ export class NameBuilder
     #chinese?: ChineseOriginal;
     #korean?: string;
 
+    //endregion -------------------- Attributes --------------------
+    //region -------------------- Getter & setter methods --------------------
 
     public get english() {
         return this.#english;
@@ -196,6 +200,7 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Getter & setter methods --------------------
 
     public build() {
         return new NameContainer(

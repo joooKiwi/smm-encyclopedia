@@ -9,7 +9,11 @@ export class GenericCourseTheme
     extends AbstractTheme
     implements CourseTheme {
 
+    //region -------------------- Attributes --------------------
+
     readonly #entities: CallbackCaller<Entity[]>;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(name: Name, isInProperty: IsInGameProperty, entities: () => Entity[]) {
         super(name, isInProperty);

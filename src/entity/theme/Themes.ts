@@ -97,6 +97,7 @@ export class Themes
         this.#imagePath = '/game/themes/' + basicImagePath;
     }
 
+
     //region -------------------- Methods --------------------
 
     public get englishName() {

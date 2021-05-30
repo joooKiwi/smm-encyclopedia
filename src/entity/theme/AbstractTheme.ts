@@ -5,8 +5,12 @@ import {Theme}            from './Theme';
 export class AbstractTheme
     implements Theme {
 
+    //region -------------------- Attributes --------------------
+
     readonly #name;
     readonly #isInProperty;
+
+    //endregion -------------------- Attributes --------------------
 
     protected constructor(name: Name, isInProperty: IsInGameProperty) {
         this.#name = name;

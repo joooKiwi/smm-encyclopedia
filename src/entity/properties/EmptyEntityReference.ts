@@ -14,6 +14,12 @@ export class EmptyEntityReference
     private constructor() {
     }
 
+    public static get get() {
+        return this.instance;
+    }
+
+
+    //region -------------------- References methods --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return EmptyEntity.get;
@@ -90,12 +96,10 @@ export class EmptyEntityReference
         return EMPTY_ARRAY;
     }
 
-
-    public static get get() {
-        return this.instance;
-    }
+    //endregion -------------------- References methods --------------------
 
     public toString(): 'Empty entity reference' {
         return 'Empty entity reference';
     }
+
 }

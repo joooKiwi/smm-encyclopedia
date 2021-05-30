@@ -7,15 +7,20 @@ import {IsInGameProperty} from '../properties/IsInGameProperty';
 export class GenericGameStyle
     implements GameStyle {
 
+    //region -------------------- Attributes --------------------
+
     readonly #name;
     readonly #isInProperty;
     readonly #entities: CallbackCaller<Entity[]>;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(name: Name, isInProperty: IsInGameProperty, entities: () => Entity[]) {
         this.#name = name;
         this.#isInProperty = isInProperty;
         this.#entities = new CallbackCaller(entities);
     }
+
 
     //region -------------------- Name properties --------------------
 

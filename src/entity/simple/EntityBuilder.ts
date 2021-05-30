@@ -22,14 +22,21 @@ export class EntityBuilder
     public static categoriesMap: Map<string, EntityCategory>;
 
     //endregion ---------- external object references ----------
+    //region -------------------- Attributes --------------------
+
+    public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
 
     readonly #template;
     readonly #selfCallback = () => this.build();
-    public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(template: EntityTemplate) {
         this.#template = template;
     }
+
+
+    //region -------------------- Build helper methods --------------------
 
     public get template() {
         return this.#template;
@@ -100,6 +107,7 @@ export class EntityBuilder
         return link === null ? EntityBuilder.EMPTY_ENTITY_CALLBACK : this.__createEntityCallbackFor(link);
     }
 
+    //endregion -------------------- Build helper methods --------------------
 
     public build() {
         const isInProperty = this.__createIsInProperty();

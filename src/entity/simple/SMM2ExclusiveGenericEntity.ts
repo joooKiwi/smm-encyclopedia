@@ -17,6 +17,7 @@ export class SMM2ExclusiveGenericEntity
         super(name, category, validateIsInProperty(isInProperty), references,);
     }
 
+
     //region -------------------- Is in properties --------------------
 
     public get isInPropertyContainer(): IsInOnlySMM2Property {

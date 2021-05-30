@@ -4,11 +4,16 @@ import {Name}           from '../../lang/name/Name';
 export class GenericEntityCategory
     implements EntityCategory {
 
+    //region -------------------- Attributes --------------------
+
     readonly #name;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(name: Name) {
         this.#name = name;
     }
+
 
     //region -------------------- Name properties --------------------
 
@@ -136,11 +141,12 @@ export class GenericEntityCategory
         return this.name.korean;
     }
 
-    //endregion -------------------- Name properties --------------------
 
     public get individualValues() {
         return this.name.individualValues;
     }
+
+    //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
         return this.name.toNameMap();

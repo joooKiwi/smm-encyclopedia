@@ -71,8 +71,12 @@ export class ThemeLoader
 
     private static readonly instance = new ThemeLoader();
 
+    //region ---------- external object references ----------
+
     readonly #entitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
-    readonly #everyThemeMap: CallbackCaller<Map<string, [CourseTheme, WorldTheme]>>
+    readonly #everyThemeMap: CallbackCaller<Map<string, [CourseTheme, WorldTheme]>>;
+
+    //endregion ---------- external object references ----------
 
     private constructor() {
         this.#entitiesMap = new CallbackCaller(() => EntityLoader.get.load());

@@ -7,10 +7,14 @@ import {Name}             from '../../lang/name/Name';
 export abstract class AbstractEntity
     implements Entity {
 
+    //region -------------------- Attributes --------------------
+
     readonly #name;
     readonly #category;
     readonly #isInPropertyContainer;
     readonly #referencesContainer;
+
+    //endregion -------------------- Attributes --------------------
 
     protected constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
         this.#name = name;
@@ -478,7 +482,6 @@ export abstract class AbstractEntity
     }
 
     //endregion -------------------- References properties --------------------
-
 
     public toGameStyleMap() {
         return this.isInPropertyContainer.toGameStyleMap();

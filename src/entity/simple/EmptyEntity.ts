@@ -21,6 +21,7 @@ export class EmptyEntity
         return this.instance;
     }
 
+
     //region -------------------- Name properties --------------------
 
     public readonly name = EmptyName.get;

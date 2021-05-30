@@ -15,7 +15,6 @@ export class EmptyWorldTheme
     private constructor() {
     }
 
-
     public static get get() {
         return this.instance;
     }

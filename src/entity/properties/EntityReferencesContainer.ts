@@ -1,60 +1,65 @@
-import {EntityReferences} from "./EntityReferences";
-import {Entity} from "../simple/Entity";
-import {CallbackCaller} from "../../util/CallbackCaller";
+import {EntityReferences} from './EntityReferences';
+import {Entity}           from '../simple/Entity';
+import {CallbackCaller}   from '../../util/CallbackCaller';
 
 export class EntityReferencesContainer
     implements EntityReferences {
 
-    readonly #referenceInSuperMarioBrosStyle: CallbackCaller<Entity>
-    readonly #referenceInSuperMarioBros3Style: CallbackCaller<Entity>
-    readonly #referenceInSuperMarioWorldStyle: CallbackCaller<Entity>
-    readonly #referenceInNewSuperMarioBrosUStyle: CallbackCaller<Entity>
-    readonly #referenceInSuperMario3DWorldStyle: CallbackCaller<Entity>
+    //region -------------------- Attributes --------------------
 
-    readonly #referenceInGroundTheme: CallbackCaller<Entity>
-    readonly #referenceInUndergroundTheme: CallbackCaller<Entity>
-    readonly #referenceInUnderwaterTheme: CallbackCaller<Entity>
-    readonly #referenceInDesertTheme: CallbackCaller<Entity>
-    readonly #referenceInSnowTheme: CallbackCaller<Entity>
-    readonly #referenceInSkyTheme: CallbackCaller<Entity>
-    readonly #referenceInForestTheme: CallbackCaller<Entity>
-    readonly #referenceInGhostHouseTheme: CallbackCaller<Entity>
-    readonly #referenceInAirshipTheme: CallbackCaller<Entity>
-    readonly #referenceInCastleTheme: CallbackCaller<Entity>
+    readonly #referenceInSuperMarioBrosStyle: CallbackCaller<Entity>;
+    readonly #referenceInSuperMarioBros3Style: CallbackCaller<Entity>;
+    readonly #referenceInSuperMarioWorldStyle: CallbackCaller<Entity>;
+    readonly #referenceInNewSuperMarioBrosUStyle: CallbackCaller<Entity>;
+    readonly #referenceInSuperMario3DWorldStyle: CallbackCaller<Entity>;
 
-    readonly #referenceInDayTheme: CallbackCaller<Entity>
-    readonly #referenceInNightTheme: CallbackCaller<Entity>
+    readonly #referenceInGroundTheme: CallbackCaller<Entity>;
+    readonly #referenceInUndergroundTheme: CallbackCaller<Entity>;
+    readonly #referenceInUnderwaterTheme: CallbackCaller<Entity>;
+    readonly #referenceInDesertTheme: CallbackCaller<Entity>;
+    readonly #referenceInSnowTheme: CallbackCaller<Entity>;
+    readonly #referenceInSkyTheme: CallbackCaller<Entity>;
+    readonly #referenceInForestTheme: CallbackCaller<Entity>;
+    readonly #referenceInGhostHouseTheme: CallbackCaller<Entity>;
+    readonly #referenceInAirshipTheme: CallbackCaller<Entity>;
+    readonly #referenceInCastleTheme: CallbackCaller<Entity>;
 
-    readonly #everyReferences: CallbackCaller<readonly Entity[]>
+    readonly #referenceInDayTheme: CallbackCaller<Entity>;
+    readonly #referenceInNightTheme: CallbackCaller<Entity>;
 
+    readonly #everyReferences: CallbackCaller<readonly Entity[]>;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(referenceInSuperMarioBrosStyle: () => Entity, referenceInSuperMarioBros3Style: () => Entity, referenceInSuperMarioWorldStyle: () => Entity, referenceInNewSuperMarioBrosUStyle: () => Entity, referenceInSuperMario3DWorldStyle: () => Entity,
                        referenceInGroundTheme: () => Entity, referenceInUndergroundTheme: () => Entity, referenceInUnderwaterTheme: () => Entity, referenceInDesertTheme: () => Entity, referenceInSnowTheme: () => Entity, referenceInSkyTheme: () => Entity, referenceInForestTheme: () => Entity, referenceInGhostHouseTheme: () => Entity, referenceInAirshipTheme: () => Entity, referenceInCastleTheme: () => Entity,
                        referenceInDayTheme: () => Entity, referenceInNightTheme: () => Entity,
                        referenceAll: () => Entity[],) {
-        this.#referenceInSuperMarioBrosStyle = new CallbackCaller<Entity>(referenceInSuperMarioBrosStyle);
-        this.#referenceInSuperMarioBros3Style = new CallbackCaller<Entity>(referenceInSuperMarioBros3Style);
-        this.#referenceInSuperMarioWorldStyle = new CallbackCaller<Entity>(referenceInSuperMarioWorldStyle);
-        this.#referenceInNewSuperMarioBrosUStyle = new CallbackCaller<Entity>(referenceInNewSuperMarioBrosUStyle);
-        this.#referenceInSuperMario3DWorldStyle = new CallbackCaller<Entity>(referenceInSuperMario3DWorldStyle)
+        this.#referenceInSuperMarioBrosStyle = new CallbackCaller(referenceInSuperMarioBrosStyle);
+        this.#referenceInSuperMarioBros3Style = new CallbackCaller(referenceInSuperMarioBros3Style);
+        this.#referenceInSuperMarioWorldStyle = new CallbackCaller(referenceInSuperMarioWorldStyle);
+        this.#referenceInNewSuperMarioBrosUStyle = new CallbackCaller(referenceInNewSuperMarioBrosUStyle);
+        this.#referenceInSuperMario3DWorldStyle = new CallbackCaller(referenceInSuperMario3DWorldStyle);
 
-        this.#referenceInGroundTheme = new CallbackCaller<Entity>(referenceInGroundTheme);
-        this.#referenceInUndergroundTheme = new CallbackCaller<Entity>(referenceInUndergroundTheme);
-        this.#referenceInUnderwaterTheme = new CallbackCaller<Entity>(referenceInUnderwaterTheme);
-        this.#referenceInDesertTheme = new CallbackCaller<Entity>(referenceInDesertTheme);
-        this.#referenceInSnowTheme = new CallbackCaller<Entity>(referenceInSnowTheme);
-        this.#referenceInSkyTheme = new CallbackCaller<Entity>(referenceInSkyTheme);
-        this.#referenceInForestTheme = new CallbackCaller<Entity>(referenceInForestTheme);
-        this.#referenceInGhostHouseTheme = new CallbackCaller<Entity>(referenceInGhostHouseTheme);
-        this.#referenceInAirshipTheme = new CallbackCaller<Entity>(referenceInAirshipTheme);
-        this.#referenceInCastleTheme = new CallbackCaller<Entity>(referenceInCastleTheme);
+        this.#referenceInGroundTheme = new CallbackCaller(referenceInGroundTheme);
+        this.#referenceInUndergroundTheme = new CallbackCaller(referenceInUndergroundTheme);
+        this.#referenceInUnderwaterTheme = new CallbackCaller(referenceInUnderwaterTheme);
+        this.#referenceInDesertTheme = new CallbackCaller(referenceInDesertTheme);
+        this.#referenceInSnowTheme = new CallbackCaller(referenceInSnowTheme);
+        this.#referenceInSkyTheme = new CallbackCaller(referenceInSkyTheme);
+        this.#referenceInForestTheme = new CallbackCaller(referenceInForestTheme);
+        this.#referenceInGhostHouseTheme = new CallbackCaller(referenceInGhostHouseTheme);
+        this.#referenceInAirshipTheme = new CallbackCaller(referenceInAirshipTheme);
+        this.#referenceInCastleTheme = new CallbackCaller(referenceInCastleTheme);
 
-        this.#referenceInDayTheme = new CallbackCaller<Entity>(referenceInDayTheme);
-        this.#referenceInNightTheme = new CallbackCaller<Entity>(referenceInNightTheme);
+        this.#referenceInDayTheme = new CallbackCaller(referenceInDayTheme);
+        this.#referenceInNightTheme = new CallbackCaller(referenceInNightTheme);
 
-        this.#everyReferences = new CallbackCaller<readonly Entity[]>(referenceAll);
+        this.#everyReferences = new CallbackCaller(referenceAll);
     }
 
+
+    //region -------------------- References methods --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return this.#referenceInSuperMarioBrosStyle.get;
@@ -130,5 +135,7 @@ export class EntityReferencesContainer
     public get everyReferences() {
         return this.#everyReferences.get;
     }
+
+    //endregion -------------------- References methods --------------------
 
 }

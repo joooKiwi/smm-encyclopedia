@@ -15,7 +15,6 @@ export class EmptyGameStyle
     private constructor() {
     }
 
-
     public static get get() {
         return this.instance;
     }

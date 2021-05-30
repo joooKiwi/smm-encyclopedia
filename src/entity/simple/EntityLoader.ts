@@ -23,7 +23,6 @@ type EntityFilePropertiesArray = [
     canBeInAParachute: null | boolean | '?',
     canHaveWings: boolean | '?',
     //endregion ---------- Basic properties ----------
-
     //region ---------- Specific properties ----------
     canContainOrSpawnAKey: null | boolean,
 
@@ -61,7 +60,6 @@ type EntityFilePropertiesArray = [
 
     canMakeASoundOutOfAMusicBlock: null | boolean | '?',
     //endregion ---------- Specific properties ----------
-
     //region ---------- Entity limit properties ----------
     editorLimit: EntityLimit | '?',
 
@@ -74,7 +72,6 @@ type EntityFilePropertiesArray = [
 
     whilePlaying_customLimit: EntityLimit,
     //endregion ---------- Entity limit properties ----------
-
     //region ---------- Spawning / Despawning range properties ----------
     whilePlaying_offscreenSpawningHorizontalRange: null | number | 'Variable',
     whilePlaying_offscreenDespawningHorizontalRange: null | number | 'Variable' | 'Infinity',
@@ -85,7 +82,6 @@ type EntityFilePropertiesArray = [
     whilePlaying_offscreenSpawningDownwardVerticalRange: null | number,
     whilePlaying_offscreenDespawningDownwardVerticalRange: null | number,
     //endregion ---------- Spawning / Despawning range properties ----------
-
     //region ---------- Reference on specific condition properties ----------
     isInDayTheme: EntityLink,
     isInNightTheme: null | EntityLink,
@@ -107,7 +103,6 @@ type EntityFilePropertiesArray = [
     inNSMBUGameStyle: null | EntityLink,
     inSM3DWGameStyle: null | EntityLink,
     //endregion ---------- Reference on specific condition properties ----------
-
     //region ---------- Language properties ----------
 
     english: null | string,
@@ -161,8 +156,12 @@ export class EntityLoader
 
     private static readonly instance = new EntityLoader();
 
+    //region ---------- external object references ----------
+
     readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
     readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
+
+    //endregion ---------- external object references ----------
 
     private constructor() {
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
@@ -491,9 +490,14 @@ class NameCreator {
 }
 
 class ReferencesToWatch {
+
+    //region -------------------- Attributes --------------------
+
     readonly #englishNames;
     readonly #alreadyAddedName: string[];
     readonly #references: { reference: EntityTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(englishNames: Map<string, DebugEntityReferences>) {
         this.#englishNames = englishNames;
@@ -501,6 +505,9 @@ class ReferencesToWatch {
         this.#references = [];
     }
 
+    //region -------------------- Methods --------------------
+
+    //region -------------------- Getter --------------------
 
     public get englishNames() {
         return this.#englishNames;
@@ -514,6 +521,7 @@ class ReferencesToWatch {
         return this.#references;
     }
 
+    //endregion -------------------- Getter --------------------
 
     public addReference(reference: EntityTemplate): void {
         const otherReference = reference.properties.reference;
@@ -568,6 +576,8 @@ class ReferencesToWatch {
                 englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
         });
     }
+
+    //endregion -------------------- Methods --------------------
 
 }
 

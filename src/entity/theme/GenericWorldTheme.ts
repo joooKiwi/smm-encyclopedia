@@ -13,6 +13,8 @@ export class GenericWorldTheme
     }
 
 
+    //region -------------------- Is in game properties --------------------
+
     public get isInProperty() {
         return super.isInProperty as IsInOnlySMM2GameProperty;
     }
@@ -25,6 +27,7 @@ export class GenericWorldTheme
         return true;
     }
 
+    //endregion -------------------- Is in game properties --------------------
 
     public toNameMap() {
         return this.name.toNameMap();

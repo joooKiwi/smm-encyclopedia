@@ -15,10 +15,10 @@ export class EmptyCourseTheme
     private constructor() {
     }
 
-
     public static get get() {
         return this.instance;
     }
+
 
     //region -------------------- Name properties --------------------
 

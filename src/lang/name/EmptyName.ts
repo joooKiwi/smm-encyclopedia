@@ -13,6 +13,12 @@ export class EmptyName
     private constructor() {
     }
 
+    public static get get() {
+        return this.instance;
+    }
+
+
+    //region -------------------- Name properties --------------------
 
     public readonly languageValue = EMPTY_STRING;
 
@@ -56,9 +62,7 @@ export class EmptyName
 
     public readonly individualValues = EMPTY_ARRAY;
 
-    public static get get() {
-        return this.instance;
-    }
+    //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
         return EMPTY_MAP;

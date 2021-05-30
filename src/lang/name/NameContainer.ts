@@ -115,6 +115,8 @@ export class NameContainer
     }
 
 
+    //region -------------------- Name properties --------------------
+
     public get languageValue() {
         return Languages.currentLanguage.get(this);
     }
@@ -237,6 +239,8 @@ export class NameContainer
     public get individualValues() {
         return this.#individualValues;
     }
+
+    //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
         return this.#mapCaller.get;

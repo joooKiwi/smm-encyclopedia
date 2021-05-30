@@ -11,10 +11,14 @@ import {IsInTimePropertyContainer}      from './IsInTimePropertyContainer';
 export class IsInPropertyContainer
     implements IsInProperty {
 
+    //region -------------------- Attributes --------------------
+
     readonly #isInGameContainer: IsInGameProperty;
     readonly #isInGameStyleContainer: IsInGameStyleProperty;
     readonly #isInThemeContainer: IsInThemeProperty;
     readonly #isInTimeContainer: IsInTimeProperty;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,
@@ -25,6 +29,7 @@ export class IsInPropertyContainer
         this.#isInThemeContainer = IsInThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
         this.#isInTimeContainer = IsInTimePropertyContainer.get(isInDayTheme, isInNightTheme,);
     }
+
 
     //region -------------------- Is in game properties --------------------
 
@@ -130,7 +135,6 @@ export class IsInPropertyContainer
     }
 
     //endregion -------------------- Is in time properties --------------------
-
 
     public toGameStyleMap() {
         return this.isInGameStyleContainer.toGameStyleMap();
