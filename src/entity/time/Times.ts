@@ -1,13 +1,20 @@
 import {PropertyGetter}   from '../PropertyGetter';
 import {IsInTimeProperty} from '../properties/IsInTimeProperty';
 
+//region -------------------- time texts --------------------
+
 export type PossibleTimeName = 'Day' | 'Night';
+
+//endregion -------------------- time texts --------------------
 
 /**
  * @enum
  */
 export abstract class Times
     implements PropertyGetter<PossibleTimeName, IsInTimeProperty> {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly DAY = new class extends Times {
         public get(property: IsInTimeProperty): boolean {
             return property.isInDayTheme;
@@ -19,13 +26,20 @@ export abstract class Times
         }
     }('Night');
 
+    //endregion -------------------- enum instances --------------------
+
     private static __VALUES: readonly Times[];
+    //region -------------------- Attributes --------------------
 
     readonly #englishName;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleTimeName) {
         this.#englishName = englishName;
     }
+
+    //region -------------------- Methods --------------------
 
     public get englishName(): PossibleTimeName {
         return this.#englishName;
@@ -33,6 +47,8 @@ export abstract class Times
 
     public abstract get(property: IsInTimeProperty): boolean;
 
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
 
     public static getValue(value: Times | PossibleTimeName): Times
     public static getValue(value: string): Times | null
@@ -49,5 +65,12 @@ export abstract class Times
             this.NIGHT,
         ]);
     }
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
 
 }

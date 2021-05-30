@@ -3,6 +3,8 @@ import {GameStyle}                   from './GameStyle';
 import {GameStyleLoader}             from './GameStyleLoader';
 import {IsInGameStyleProperty}       from '../properties/IsInGameStyleProperty';
 
+//region -------------------- game style texts --------------------
+
 export type PossibleGameStyleName = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
 
 type StartingImagePath = `/game/styles/${PossibleGameStyleName}`;
@@ -11,11 +13,16 @@ export type MediumImagePath = `${StartingImagePath} - medium.png`;
 export type LargeImagePath = `${StartingImagePath} - large.png`;
 export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | 'large'}.png`;
 
+//endregion -------------------- game style texts --------------------
+
 /**
  * @enum
  */
 export abstract class GameStyles
     implements PropertyGetterWithReference<PossibleGameStyleName, IsInGameStyleProperty, GameStyle> {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly SUPER_MARIO_BROS = new class extends GameStyles {
         public get(property: IsInGameStyleProperty): boolean {
             return property.isInSuperMarioBrosStyle;
@@ -42,17 +49,23 @@ export abstract class GameStyles
         }
     }('Super Mario 3D World');
 
-    private static __VALUES: readonly GameStyles[];
+    //endregion -------------------- enum instances --------------------
+
+    private static __VALUES?: readonly GameStyles[];
+    //region -------------------- Attributes --------------------
 
     #references?: GameStyle;
     readonly #englishName;
     readonly #startingImagePath: StartingImagePath;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleGameStyleName) {
         this.#englishName = englishName;
         this.#startingImagePath = '/game/styles/' + englishName as StartingImagePath;
     }
 
+    //region -------------------- Methods --------------------
 
     public get englishName() {
         return this.#englishName;
@@ -80,6 +93,8 @@ export abstract class GameStyles
         return this.#startingImagePath + ' - large.png' as LargeImagePath;
     }
 
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
 
     public static getValue(value: GameStyles | PossibleGameStyleName): GameStyles
     public static getValue(value: string): GameStyles | null
@@ -99,5 +114,12 @@ export abstract class GameStyles
             this.SUPER_MARIO_3D_WORLD,
         ]);
     }
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
 
 }

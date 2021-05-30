@@ -4,17 +4,23 @@ import {ThemeLoader}                 from './ThemeLoader';
 import {WorldTheme}                  from './WorldTheme';
 import {IsInThemeProperty}           from '../properties/IsInThemeProperty';
 
+//region -------------------- themes texts --------------------
+
 type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
 export type PossibleWorldTheme = | ThemesInBothCourseAndWorld | 'Volcano' | 'Space';
 export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
 
+//endregion -------------------- themes texts --------------------
 
 /**
  * @enum
  */
 export class Themes
     implements PropertyGetterWithReference<PossibleTheme, IsInThemeProperty, [CourseTheme, WorldTheme]> {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly GROUND = new class extends Themes {
         public _get(property: IsInThemeProperty): boolean {
             return property.isInGroundTheme;
@@ -69,8 +75,10 @@ export class Themes
     public static readonly VOLCANO = new Themes('Volcano', 'Castle - Volcano');
     public static readonly SPACE = new Themes('Space');
 
+    //endregion -------------------- enum instances --------------------
 
     private static __COURSES: readonly Themes[];
+    //region -------------------- Attributes --------------------
     private static __WORLDS: readonly Themes[];
     private static __VALUES: readonly Themes[];
 
@@ -80,12 +88,16 @@ export class Themes
     readonly #englishName;
     readonly #imagePath;
 
+    //endregion -------------------- Attributes --------------------
+
     private constructor(englishNameAndImagePath: PossibleTheme)
     private constructor(englishName: PossibleTheme, basicImagePath: string)
     private constructor(englishName: PossibleTheme, basicImagePath: string = englishName) {
         this.#englishName = englishName;
         this.#imagePath = '/game/themes/' + basicImagePath;
     }
+
+    //region -------------------- Methods --------------------
 
     public get englishName() {
         return this.#englishName;
@@ -156,6 +168,9 @@ export class Themes
             : this.__WORLDS;
     }
 
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
+
     public static getValue(value: Themes | PossibleTheme): Themes
     public static getValue(value: string): Themes | null
     public static getValue(value: Themes | string): Themes | null
@@ -182,5 +197,12 @@ export class Themes
             this.SPACE,
         ]);
     }
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
 
 }

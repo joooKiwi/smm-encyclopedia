@@ -4,6 +4,8 @@ import {ClassWithLanguages}         from './ClassWithLanguages';
 import {DateInstanceCreator}        from './date/DateInstanceCreator';
 import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
 
+//region -------------------- Languages text --------------------
+
 export type PossibleLanguagesAcronym =
     | 'en_AM' | 'en_EU'
     | 'fr_CA' | 'fr_EU'
@@ -34,6 +36,8 @@ export type PossibleLanguagesOriginalName =
     | 'русский' | '日本語'
     | '简体中文' | '繁體中文'
     | '한국어';
+
+//endregion -------------------- Languages text --------------------
 
 /**
  * <p>
@@ -75,6 +79,9 @@ export type PossibleLanguagesOriginalName =
  * @enum
  */
 export abstract class Languages {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -287,8 +294,11 @@ export abstract class Languages {
 
     }('ko', 'Korean', '한국어',);
 
+    //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly Languages[];
+    private static __VALUES?: readonly Languages[];
+    //region -------------------- Attributes --------------------
+
     private static __CURRENT_LANGUAGE: Languages;
     private static __DEFAULT_LANGUAGE: Languages;
 
@@ -296,12 +306,15 @@ export abstract class Languages {
     readonly #englishName;
     readonly #originalName;
 
+    //endregion -------------------- Attributes --------------------
+
     private constructor(acronym: PossibleLanguagesAcronym, englishName: PossibleLanguagesEnglishName, originalName: PossibleLanguagesOriginalName) {
         this.#acronym = acronym;
         this.#englishName = englishName;
         this.#originalName = originalName;
     }
 
+    //region -------------------- Methods --------------------
 
     public get acronym(): PossibleLanguagesAcronym {
         return this.#acronym;
@@ -351,6 +364,9 @@ export abstract class Languages {
         this.__DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
     }
 
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
+
     public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
     public static getValue(value: string): Languages | null
     public static getValue(value: Languages | string): Languages | null
@@ -375,6 +391,14 @@ export abstract class Languages {
             this.KOREAN,
         ]);
     }
+
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
 
 }
 
