@@ -1,11 +1,11 @@
+import React             from 'react';
+import {withTranslation} from 'react-i18next';
+
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Times}                         from './Times';
 import {Name}                          from '../../lang/name/Name';
-import React                           from 'react';
 import {IsInTimeProperty}              from '../properties/IsInTimeProperty';
-// import {BsMoon, BsSun}                 from 'react-icons/bs';
-import {withTranslation}               from 'react-i18next';
+import {Times}                         from './Times';
 
 export interface TimeElement
     extends GameContentTranslationElement {
