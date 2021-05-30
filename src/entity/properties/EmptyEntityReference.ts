@@ -1,4 +1,5 @@
 import {EntityReferences} from './EntityReferences';
+import {EMPTY_ARRAY}      from '../../util/emptyVariables';
 import {EmptyEntity}      from '../simple/EmptyEntity';
 
 /**
@@ -9,7 +10,6 @@ export class EmptyEntityReference
     implements EntityReferences {
 
     private static readonly instance = new EmptyEntityReference();
-    public static readonly EMPTY_ARRAY = [];
 
     private constructor() {
     }
@@ -87,7 +87,7 @@ export class EmptyEntityReference
 
 
     public get everyReferences() {
-        return EmptyEntityReference.EMPTY_ARRAY;
+        return EMPTY_ARRAY;
     }
 
 

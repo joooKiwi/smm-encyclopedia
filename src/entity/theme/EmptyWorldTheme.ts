@@ -1,3 +1,4 @@
+import {EMPTY_MAP}                 from '../../util/emptyVariables';
 import {EmptyName}                 from '../../lang/name/EmptyName';
 import {WorldTheme}                from './WorldTheme';
 import {IsInGamePropertyContainer} from '../properties/IsInGamePropertyContainer';
@@ -10,7 +11,6 @@ export class EmptyWorldTheme
     implements WorldTheme {
 
     private static readonly instance = new EmptyWorldTheme();
-    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
     }
@@ -165,7 +165,7 @@ export class EmptyWorldTheme
     //endregion -------------------- Is in game properties --------------------
 
     public toNameMap() {
-        return EmptyWorldTheme.EMPTY_MAP;
+        return EMPTY_MAP;
     }
 
     public toString(): 'Empty world theme' {

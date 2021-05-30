@@ -1,3 +1,4 @@
+import {EMPTY_MAP}            from '../../util/emptyVariables';
 import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
@@ -12,7 +13,6 @@ export class EmptyEntity
     implements Entity {
 
     private static readonly instance = new EmptyEntity();
-    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
     }
@@ -485,7 +485,7 @@ export class EmptyEntity
     }
 
     public toNameMap() {
-        return EmptyEntity.EMPTY_MAP;
+        return EMPTY_MAP;
     }
 
     public toString(): 'Empty entity' {

@@ -1,6 +1,7 @@
-import {EmptyIsInProperty} from '../properties/EmptyIsInProperty';
-import {EmptyName}         from '../../lang/name/EmptyName';
-import {CourseTheme}       from './CourseTheme';
+import {CourseTheme}            from './CourseTheme';
+import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
+import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
+import {EmptyName}              from '../../lang/name/EmptyName';
 
 /**
  * @nullObjectPattern
@@ -10,9 +11,6 @@ export class EmptyCourseTheme
     implements CourseTheme {
 
     private static readonly instance = new EmptyCourseTheme();
-
-    public static readonly EMPTY_ARRAY = [];
-    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
     }
@@ -145,7 +143,9 @@ export class EmptyCourseTheme
         return this.name.korean;
     }
 
-    public readonly individualValues = EmptyCourseTheme.EMPTY_ARRAY;
+    public get individualValues() {
+        return this.name.individualValues;
+    }
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Is in game properties --------------------
@@ -162,10 +162,10 @@ export class EmptyCourseTheme
 
     //endregion -------------------- Is in game properties --------------------
 
-    public readonly entities = EmptyCourseTheme.EMPTY_ARRAY;
+    public readonly entities = EMPTY_ARRAY;
 
     public toNameMap() {
-        return EmptyCourseTheme.EMPTY_MAP;
+        return EMPTY_MAP;
     }
 
     public toString(): 'Empty course theme' {

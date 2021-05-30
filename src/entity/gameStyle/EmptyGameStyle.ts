@@ -1,6 +1,7 @@
-import {EmptyName}         from '../../lang/name/EmptyName';
-import {EmptyIsInProperty} from '../properties/EmptyIsInProperty';
-import {GameStyle}         from './GameStyle';
+import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
+import {EmptyName}              from '../../lang/name/EmptyName';
+import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
+import {GameStyle}              from './GameStyle';
 
 /**
  * @nullObjectPattern
@@ -10,8 +11,6 @@ export class EmptyGameStyle
     implements GameStyle {
 
     private static readonly instance = new EmptyGameStyle();
-    public static readonly EMPTY_ARRAY = [];
-    public static readonly EMPTY_MAP = new Map();
 
     private constructor() {
     }
@@ -165,10 +164,10 @@ export class EmptyGameStyle
 
     //endregion -------------------- Is in game properties --------------------
 
-    public readonly entities = EmptyGameStyle.EMPTY_ARRAY;
+    public readonly entities = EMPTY_ARRAY;
 
     public toNameMap() {
-        return EmptyGameStyle.EMPTY_MAP;
+        return EMPTY_MAP;
     }
 
     public toString(): 'Empty game style' {
