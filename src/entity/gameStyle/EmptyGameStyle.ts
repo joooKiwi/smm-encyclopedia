@@ -149,7 +149,7 @@ export class EmptyGameStyle
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public readonly isInProperty = EmptyIsInProperty.get;
 
@@ -161,7 +161,7 @@ export class EmptyGameStyle
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
+    //endregion -------------------- Game properties --------------------
 
     public readonly entities = EMPTY_ARRAY;
 

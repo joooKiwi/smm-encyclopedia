@@ -153,7 +153,7 @@ export class GenericGameStyle
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public get isInProperty() {
         return this.#isInProperty;
@@ -167,7 +167,7 @@ export class GenericGameStyle
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
+    //endregion -------------------- Game properties --------------------
 
     public get entities() {
         return this.#entities.get;

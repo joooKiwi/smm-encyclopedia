@@ -149,7 +149,7 @@ export class AbstractTheme
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public get isInProperty() {
         return this.#isInProperty;
@@ -163,7 +163,7 @@ export class AbstractTheme
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
+    //endregion -------------------- Game properties --------------------
 
     public toNameMap() {
         return this.name.toNameMap();

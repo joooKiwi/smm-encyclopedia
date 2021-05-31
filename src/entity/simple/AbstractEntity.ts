@@ -287,13 +287,13 @@ export abstract class AbstractEntity<T extends Property = Property>
     }
 
     //endregion -------------------- Category properties --------------------
-    //region -------------------- Is in properties --------------------
+    //region -------------------- Properties --------------------
 
     public get propertyContainer(): T {
         return this.#propertyContainer;
     }
 
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public get gameContainer(): this['propertyContainer']['gameContainer'] {
         return this.propertyContainer.gameContainer;
@@ -307,8 +307,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.gameContainer.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
-    //region -------------------- Is in game style properties --------------------
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
 
     public get gameStyleContainer(): this['propertyContainer']['gameStyleContainer'] {
         return this.propertyContainer.gameStyleContainer;
@@ -334,8 +334,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.gameStyleContainer.isInSuperMario3DWorldStyle;
     }
 
-    //endregion -------------------- Is in game style properties --------------------
-    //region -------------------- Is in theme properties --------------------
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
 
     public get themeContainer(): this['propertyContainer']['themeContainer'] {
         return this.propertyContainer.themeContainer;
@@ -381,8 +381,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.themeContainer.isInCastleTheme;
     }
 
-    //endregion -------------------- Is in theme properties --------------------
-    //region -------------------- Is in time properties --------------------
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
 
     public get timeContainer(): this['propertyContainer']['timeContainer'] {
         return this.propertyContainer.timeContainer;
@@ -396,9 +396,9 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.propertyContainer.isInNightTheme;
     }
 
-    //endregion -------------------- Is in time properties --------------------
+    //endregion -------------------- Time properties --------------------
 
-    //endregion -------------------- Is in properties --------------------
+    //endregion -------------------- Properties --------------------
     //region -------------------- References properties --------------------
 
     public get referencesContainer() {

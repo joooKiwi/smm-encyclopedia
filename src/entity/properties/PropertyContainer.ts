@@ -31,7 +31,7 @@ export class PropertyContainer
     }
 
 
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public get gameContainer() {
         return this.#gameContainer;
@@ -45,8 +45,8 @@ export class PropertyContainer
         return this.gameContainer.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
-    //region -------------------- Is in game style properties --------------------
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
 
     public get gameStyleContainer() {
         return this.#gameStyleContainer;
@@ -72,8 +72,8 @@ export class PropertyContainer
         return this.gameStyleContainer.isInSuperMario3DWorldStyle;
     }
 
-    //endregion -------------------- Is in game style properties --------------------
-    //region -------------------- Is in theme properties --------------------
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
 
     public get themeContainer() {
         return this.#themeContainer;
@@ -119,8 +119,8 @@ export class PropertyContainer
         return this.themeContainer.isInCastleTheme;
     }
 
-    //endregion -------------------- Is in theme properties --------------------
-    //region -------------------- Is in time properties --------------------
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
 
     public get timeContainer() {
         return this.#timeContainer;
@@ -134,7 +134,7 @@ export class PropertyContainer
         return this.timeContainer.isInNightTheme;
     }
 
-    //endregion -------------------- Is in time properties --------------------
+    //endregion -------------------- Time properties --------------------
 
     public toGameStyleMap() {
         return this.gameStyleContainer.toGameStyleMap();

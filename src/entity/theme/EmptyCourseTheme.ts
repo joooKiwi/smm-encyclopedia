@@ -148,7 +148,7 @@ export class EmptyCourseTheme
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public readonly isInProperty = EmptyIsInProperty.get;
 
@@ -160,7 +160,7 @@ export class EmptyCourseTheme
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
+    //endregion -------------------- Game properties --------------------
 
     public readonly entities = EMPTY_ARRAY;
 

@@ -149,7 +149,7 @@ export class EmptyWorldTheme
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public readonly isInProperty = GamePropertyContainer.get(false, true);
 
@@ -161,7 +161,7 @@ export class EmptyWorldTheme
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
+    //endregion -------------------- Game properties --------------------
 
     public toNameMap() {
         return EMPTY_MAP;

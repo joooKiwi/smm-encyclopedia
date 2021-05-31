@@ -16,14 +16,14 @@ export class EmptyIsInProperty
     }
 
 
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public readonly gameContainer = this;
     public readonly isInSuperMarioMaker1 = false;
     public readonly isInSuperMarioMaker2 = false;
 
-    //endregion -------------------- Is in game properties --------------------
-    //region -------------------- Is in game style properties --------------------
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
 
     public readonly gameStyleContainer = this;
     public readonly isInSuperMarioBrosStyle = false;
@@ -32,8 +32,8 @@ export class EmptyIsInProperty
     public readonly isInNewSuperMarioBrosUStyle = false;
     public readonly isInSuperMario3DWorldStyle = null;
 
-    //endregion -------------------- Is in game style properties --------------------
-    //region -------------------- Is in theme properties --------------------
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
 
     public readonly themeContainer = this;
     public readonly isInGroundTheme = false;
@@ -46,14 +46,14 @@ export class EmptyIsInProperty
     public readonly isInGhostHouseTheme = false;
     public readonly isInAirshipTheme = false;
     public readonly isInCastleTheme = false;
-    //endregion -------------------- Is in theme properties --------------------
-    //region -------------------- Is in time properties --------------------
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
 
     public readonly timeContainer = this;
     public readonly isInDayTheme = false;
     public readonly isInNightTheme = null;
 
-    //endregion -------------------- Is in time properties --------------------
+    //endregion -------------------- Time properties --------------------
 
     public toGameStyleMap(): never {
         throw new ReferenceError(`An ${this} cannot have a game style map.`);
