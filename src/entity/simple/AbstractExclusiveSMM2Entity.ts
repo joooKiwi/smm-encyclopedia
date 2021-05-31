@@ -2,7 +2,7 @@ import {Property}              from '../properties/Property';
 import {EntityCategory}        from '../category/EntityCategory';
 import {EntityReferences}      from '../properties/EntityReferences';
 import {GenericEntity}         from './GenericEntity';
-import {ExclusiveSMM2Property} from '../properties/ExclusiveSMM2Property';
+import {ExclusiveSMM2Property} from '../properties/exclusive/ExclusiveSMM2Property';
 import {Name}                  from '../../lang/name/Name';
 import {ExclusiveSMM2Entity}   from './ExclusiveSMM2Entity';
 

@@ -1,6 +1,6 @@
 import {ThemeProperty}              from './ThemeProperty';
-import {ExclusiveSMM1ThemeProperty} from './ExclusiveSMM1ThemeProperty';
-import {ExclusiveSMM2ThemeProperty} from './ExclusiveSMM2ThemeProperty';
+import {ExclusiveSMM1ThemeProperty} from './exclusive/ExclusiveSMM1ThemeProperty';
+import {ExclusiveSMM2ThemeProperty} from './exclusive/ExclusiveSMM2ThemeProperty';
 import {Themes}                     from '../theme/Themes';
 
 /**

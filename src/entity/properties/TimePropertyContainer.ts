@@ -1,4 +1,4 @@
-import {ExclusiveSMM2TimeProperty} from './ExclusiveSMM2TimeProperty';
+import {ExclusiveSMM2TimeProperty} from './exclusive/ExclusiveSMM2TimeProperty';
 import {TimeProperty}              from './TimeProperty';
 import {Times}                     from '../time/Times';
 
