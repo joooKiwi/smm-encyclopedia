@@ -1,9 +1,10 @@
-import {withTranslation}               from 'react-i18next';
+import {withTranslation} from 'react-i18next';
+import React             from 'react';
+
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from './Games';
-import React                           from 'react';
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import {GameProperty}                  from '../properties/GameProperty';
+import {Games}                         from './Games';
 import {Name}                          from '../../lang/name/Name';
 
 export interface GameElement

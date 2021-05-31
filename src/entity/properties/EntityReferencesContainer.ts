@@ -1,6 +1,6 @@
-import {EntityReferences} from './EntityReferences';
-import {Entity}           from '../simple/Entity';
 import {CallbackCaller}   from '../../util/CallbackCaller';
+import {Entity}           from '../simple/Entity';
+import {EntityReferences} from './EntityReferences';
 
 export class EntityReferencesContainer
     implements EntityReferences {

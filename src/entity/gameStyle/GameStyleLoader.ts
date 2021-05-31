@@ -5,14 +5,14 @@ import {CallbackCaller}                      from '../../util/CallbackCaller';
 import {DebugEntityReferences, EntityLoader} from '../simple/EntityLoader';
 import {CSVLoader}                           from '../../util/loader/CSVLoader';
 import {Entity}                              from '../simple/Entity';
+import {GamePropertyContainer}               from '../properties/GamePropertyContainer';
 import {GameStyle}                           from './GameStyle';
 import {GameStyles}                          from './GameStyles';
 import {GameStyleTemplate}                   from './GameStyleTemplate';
+import {GenericGameStyle}                    from './GenericGameStyle';
 import {NameCreator}                         from '../lang/NameCreator';
 import {NameBuilder}                         from '../lang/NameBuilder';
 import {Name}                                from '../../lang/name/Name';
-import {GenericGameStyle}      from './GenericGameStyle';
-import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 
 type GameStylePropertiesArray = [
 
@@ -97,7 +97,7 @@ export class GameStyleLoader
     }
 
     private __createReference(template: GameStyleTemplate, name: Name,): GameStyle {
-        return new GenericGameStyle(name, GamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2']), () => this.whereEntityIs(name.english));
+        return new GenericGameStyle(name, GamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2'],), () => this.whereEntityIs(name.english));
     }
 
     private get entities() {

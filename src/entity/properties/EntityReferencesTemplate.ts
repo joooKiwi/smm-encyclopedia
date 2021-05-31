@@ -1,5 +1,5 @@
-import {EntityLink} from "../entityTypes";
-import {EntityTemplate} from "../simple/EntityTemplate";
+import {EntityLink}     from '../entityTypes';
+import {EntityTemplate} from '../simple/EntityTemplate';
 
 export interface EntityReferencesTemplate {
 

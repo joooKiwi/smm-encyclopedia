@@ -1,8 +1,8 @@
-import {CallbackCaller}   from '../../util/CallbackCaller';
-import {Entity}           from '../simple/Entity';
-import {GameStyle}        from './GameStyle';
-import {Name}         from '../../lang/name/Name';
-import {GameProperty} from '../properties/GameProperty';
+import {CallbackCaller} from '../../util/CallbackCaller';
+import {Entity}         from '../simple/Entity';
+import {GameProperty}   from '../properties/GameProperty';
+import {GameStyle}      from './GameStyle';
+import {Name}           from '../../lang/name/Name';
 
 export class GenericGameStyle
     implements GameStyle {

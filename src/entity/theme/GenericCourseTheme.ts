@@ -1,9 +1,9 @@
-import {AbstractTheme}    from './AbstractTheme';
-import {CallbackCaller}   from '../../util/CallbackCaller';
-import {CourseTheme}      from './CourseTheme';
-import {Entity}       from '../simple/Entity';
-import {GameProperty} from '../properties/GameProperty';
-import {Name}         from '../../lang/name/Name';
+import {AbstractTheme}  from './AbstractTheme';
+import {CallbackCaller} from '../../util/CallbackCaller';
+import {CourseTheme}    from './CourseTheme';
+import {Entity}         from '../simple/Entity';
+import {GameProperty}   from '../properties/GameProperty';
+import {Name}           from '../../lang/name/Name';
 
 export class GenericCourseTheme
     extends AbstractTheme

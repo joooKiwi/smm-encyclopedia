@@ -1,10 +1,10 @@
-import {Property}              from '../properties/Property';
 import {EntityCategory}        from '../category/EntityCategory';
 import {EntityReferences}      from '../properties/EntityReferences';
 import {GenericEntity}         from './GenericEntity';
+import {ExclusiveSMM2Entity}   from './ExclusiveSMM2Entity';
 import {ExclusiveSMM2Property} from '../properties/exclusive/ExclusiveSMM2Property';
 import {Name}                  from '../../lang/name/Name';
-import {ExclusiveSMM2Entity}   from './ExclusiveSMM2Entity';
+import {Property}              from '../properties/Property';
 
 export abstract class AbstractExclusiveSMM2Entity<T extends ExclusiveSMM2Property = ExclusiveSMM2Property>
     extends GenericEntity<T>

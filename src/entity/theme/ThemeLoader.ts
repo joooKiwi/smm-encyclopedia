@@ -6,11 +6,11 @@ import {CourseTheme}                         from './CourseTheme';
 import {DebugEntityReferences, EntityLoader} from '../simple/EntityLoader';
 import {EmptyCourseTheme}                    from './EmptyCourseTheme';
 import {EmptyWorldTheme}                     from './EmptyWorldTheme';
-import {Entity}                from '../simple/Entity';
-import {GamePropertyContainer} from '../properties/GamePropertyContainer';
-import {Loader}                from '../../util/Loader';
-import {GenericWorldTheme}                   from './GenericWorldTheme';
+import {Entity}                              from '../simple/Entity';
+import {GamePropertyContainer}               from '../properties/GamePropertyContainer';
 import {GenericCourseTheme}                  from './GenericCourseTheme';
+import {GenericWorldTheme}                   from './GenericWorldTheme';
+import {Loader}                              from '../../util/Loader';
 import {Name}                                from '../../lang/name/Name';
 import {NameBuilder}                         from '../lang/NameBuilder';
 import {NameCreator}                         from '../lang/NameCreator';
@@ -123,7 +123,7 @@ export class ThemeLoader
     private __createCourseTheme(template: ThemeTemplate, name: Name,): CourseTheme {
         return new GenericCourseTheme(
             name,
-            GamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2']),
+            GamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2'],),
             () => this.whereEntityIs(name.english),
         );
     }

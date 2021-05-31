@@ -1,10 +1,10 @@
 import {AmericanOrEuropeanOriginal} from '../../lang/name/containers/AmericanAndEuropeanLanguage';
 import {CanadianOrEuropeanOriginal} from '../../lang/name/containers/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}  from '../../lang/name/containers/ChineseLanguage';
-import {Property}         from '../properties/Property';
-import {EntityReferences} from '../properties/EntityReferences';
+import {ChineseOriginal}            from '../../lang/name/containers/ChineseLanguage';
+import {EntityReferences}           from '../properties/EntityReferences';
 import {EntityCategory}             from '../category/EntityCategory';
 import {Name}                       from '../../lang/name/Name';
+import {Property}                   from '../properties/Property';
 
 export interface Entity
     extends Name, Property, EntityReferences {

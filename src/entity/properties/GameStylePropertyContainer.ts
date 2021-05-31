@@ -1,6 +1,6 @@
-import {GameStyleProperty}              from './GameStyleProperty';
 import {ExclusiveSMM1GameStyleProperty} from './exclusive/ExclusiveSMM1GameStyleProperty';
 import {ExclusiveSMM2GameStyleProperty} from './exclusive/ExclusiveSMM2GameStyleProperty';
+import {GameStyleProperty}              from './GameStyleProperty';
 import {GameStyles}                     from '../gameStyle/GameStyles';
 
 /**

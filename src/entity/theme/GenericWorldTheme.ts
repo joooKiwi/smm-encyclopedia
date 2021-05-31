@@ -1,6 +1,6 @@
-import {AbstractTheme}            from './AbstractTheme';
-import {GamePropertyContainer}     from '../properties/GamePropertyContainer';
+import {AbstractTheme}             from './AbstractTheme';
 import {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
+import {GamePropertyContainer}     from '../properties/GamePropertyContainer';
 import {Name}                      from '../../lang/name/Name';
 import {WorldTheme}                from './WorldTheme';
 
@@ -9,7 +9,7 @@ export class GenericWorldTheme
     implements WorldTheme {
 
     public constructor(name: Name) {
-        super(name, GamePropertyContainer.get(false, true));
+        super(name, GamePropertyContainer.get(false, true,));
     }
 
 

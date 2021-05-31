@@ -1,8 +1,8 @@
 import {CourseTheme}                 from './CourseTheme';
 import {PropertyGetterWithReference} from '../PropertyGetter';
 import {ThemeLoader}                 from './ThemeLoader';
-import {WorldTheme}    from './WorldTheme';
-import {ThemeProperty} from '../properties/ThemeProperty';
+import {ThemeProperty}               from '../properties/ThemeProperty';
+import {WorldTheme}                  from './WorldTheme';
 
 //region -------------------- themes texts --------------------
 

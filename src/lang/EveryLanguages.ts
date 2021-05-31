@@ -1,13 +1,13 @@
 import {ClassWithEveryLanguages}    from './ClassWithEveryLanguages';
+import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
+import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
+import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 import {
     Languages,
     PossibleLanguagesAcronym,
     PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages,
     PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages
 }                                   from './Languages';
-import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
-import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 
 //region -------------------- Language text --------------------
 

@@ -1,7 +1,7 @@
 import {EMPTY_MAP}            from '../../util/emptyVariables';
-import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
+import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyName}            from '../../lang/name/EmptyName';
 import {Entity}               from './Entity';
 

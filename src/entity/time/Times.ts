@@ -3,7 +3,7 @@ import {TimeProperty}   from '../properties/TimeProperty';
 
 //region -------------------- time texts --------------------
 
-export type PossibleTimeName = 'Day' | 'Night';
+export type PossibleTimeName = | 'Day' | 'Night';
 
 //endregion -------------------- time texts --------------------
 

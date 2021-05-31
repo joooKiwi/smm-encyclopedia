@@ -1,6 +1,6 @@
-import {EntityReferences} from './EntityReferences';
 import {EMPTY_ARRAY}      from '../../util/emptyVariables';
 import {EmptyEntity}      from '../simple/EmptyEntity';
+import {EntityReferences} from './EntityReferences';
 
 /**
  * @nullObjectPattern

@@ -3,9 +3,9 @@ import {withTranslation} from 'react-i18next';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import {Themes}        from './Themes';
-import {ThemeProperty} from '../properties/ThemeProperty';
-import {Name}          from '../../lang/name/Name';
+import {Name}                          from '../../lang/name/Name';
+import {ThemeProperty}                 from '../properties/ThemeProperty';
+import {Themes}                        from './Themes';
 
 
 export interface ThemeElement

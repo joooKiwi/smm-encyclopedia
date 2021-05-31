@@ -2,8 +2,8 @@ import './index.scss';
 import './lang/i18n';
 import 'bootstrap/dist/js/bootstrap.esm';
 
-import ReactDOM        from 'react-dom';
 import React           from 'react';
+import ReactDOM        from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import Routes          from './routes/Routes';
 
@@ -11,7 +11,7 @@ ReactDOM.render(
     <React.StrictMode>
         <Routes/>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );
 
 if (process.env.NODE_ENV !== 'production') {
