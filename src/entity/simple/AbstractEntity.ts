@@ -1,7 +1,7 @@
 import {Entity}           from './Entity';
 import {EntityCategory}   from '../category/EntityCategory';
 import {EntityReferences} from '../properties/EntityReferences';
-import {IsInProperty}     from '../properties/IsInProperty';
+import {Property}         from '../properties/Property';
 import {Name}             from '../../lang/name/Name';
 
 export abstract class AbstractEntity
@@ -16,7 +16,7 @@ export abstract class AbstractEntity
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, isInProperty: Property, references: EntityReferences,) {
         this.#name = name;
         this.#category = category;
         this.#isInPropertyContainer = isInProperty;

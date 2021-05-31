@@ -1,20 +1,20 @@
-import {IsInGameProperty}         from './IsInGameProperty';
-import {IsInOnlySMM1GameProperty} from './IsInOnlySMM1GameProperty';
-import {IsInOnlySMM2GameProperty} from './IsInOnlySMM2GameProperty';
+import {GameProperty}              from './GameProperty';
+import {ExclusiveSMM1GameProperty} from './ExclusiveSMM1GameProperty';
+import {ExclusiveSMM2GameProperty} from './ExclusiveSMM2GameProperty';
 
 /**
  * @multiton
  * @provider
  */
-export class IsInGamePropertyContainer
-    implements IsInGameProperty {
+export class GamePropertyContainer
+    implements GameProperty {
 
     //region -------------------- predefined containers --------------------
-    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new IsInGamePropertyContainer(true, false,) as IsInOnlySMM1GameProperty;
-    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new IsInGamePropertyContainer(false, true,) as IsInOnlySMM2GameProperty;
+    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new GamePropertyContainer(true, false,) as ExclusiveSMM1GameProperty;
+    private static readonly __IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new GamePropertyContainer(false, true,) as ExclusiveSMM2GameProperty;
 
-    private static readonly __IS_IN_BOTH_GAMES_PROPERTY = new IsInGamePropertyContainer(true, true,);
-    private static readonly __IS_IN_NO_GAMES_PROPERTY = new IsInGamePropertyContainer(false, false,);
+    private static readonly __IS_IN_BOTH_GAMES_PROPERTY = new GamePropertyContainer(true, true,);
+    private static readonly __IS_IN_NO_GAMES_PROPERTY = new GamePropertyContainer(false, false,);
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -38,9 +38,9 @@ export class IsInGamePropertyContainer
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider/Multiton method --------------------
 
-    public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): IsInOnlySMM1GameProperty
-    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): IsInOnlySMM2GameProperty
-    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): IsInGameProperty
+    public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): ExclusiveSMM1GameProperty
+    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): ExclusiveSMM2GameProperty
+    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): GameProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
@@ -59,14 +59,14 @@ export class IsInGamePropertyContainer
      * @param isInSuperMarioMaker1
      * @param isInSuperMarioMaker2
      */
-    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): IsInGameProperty {
+    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): GameProperty {
         if (isInSuperMarioMaker1 && isInSuperMarioMaker2)
-            return IsInGamePropertyContainer.__IS_IN_BOTH_GAMES_PROPERTY;
+            return GamePropertyContainer.__IS_IN_BOTH_GAMES_PROPERTY;
         if (isInSuperMarioMaker1 && !isInSuperMarioMaker2)
-            return IsInGamePropertyContainer.__IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY;
+            return GamePropertyContainer.__IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY;
         if (!isInSuperMarioMaker1 && isInSuperMarioMaker2)
-            return IsInGamePropertyContainer.__IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY;
-        return IsInGamePropertyContainer.__IS_IN_NO_GAMES_PROPERTY;
+            return GamePropertyContainer.__IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY;
+        return GamePropertyContainer.__IS_IN_NO_GAMES_PROPERTY;
     }
 
     //endregion -------------------- Provider/Multiton method --------------------

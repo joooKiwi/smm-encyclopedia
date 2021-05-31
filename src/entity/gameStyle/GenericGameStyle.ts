@@ -1,8 +1,8 @@
 import {CallbackCaller}   from '../../util/CallbackCaller';
 import {Entity}           from '../simple/Entity';
 import {GameStyle}        from './GameStyle';
-import {Name}             from '../../lang/name/Name';
-import {IsInGameProperty} from '../properties/IsInGameProperty';
+import {Name}         from '../../lang/name/Name';
+import {GameProperty} from '../properties/GameProperty';
 
 export class GenericGameStyle
     implements GameStyle {
@@ -15,7 +15,7 @@ export class GenericGameStyle
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, isInProperty: IsInGameProperty, entities: () => Entity[]) {
+    public constructor(name: Name, isInProperty: GameProperty, entities: () => Entity[]) {
         this.#name = name;
         this.#isInProperty = isInProperty;
         this.#entities = new CallbackCaller(entities);

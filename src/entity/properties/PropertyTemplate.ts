@@ -1,4 +1,4 @@
-export interface IsInPropertyTemplate {
+export interface PropertyTemplate {
 
     game: {//TODO move to isolated interface
         1: boolean

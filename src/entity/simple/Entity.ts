@@ -1,13 +1,13 @@
 import {AmericanOrEuropeanOriginal} from '../../lang/name/containers/AmericanAndEuropeanLanguage';
 import {CanadianOrEuropeanOriginal} from '../../lang/name/containers/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from '../../lang/name/containers/ChineseLanguage';
-import {IsInProperty}               from '../properties/IsInProperty';
-import {EntityReferences}           from '../properties/EntityReferences';
+import {ChineseOriginal}  from '../../lang/name/containers/ChineseLanguage';
+import {Property}         from '../properties/Property';
+import {EntityReferences} from '../properties/EntityReferences';
 import {EntityCategory}             from '../category/EntityCategory';
 import {Name}                       from '../../lang/name/Name';
 
 export interface Entity
-    extends Name, IsInProperty, EntityReferences {
+    extends Name, Property, EntityReferences {
 
     name: Name
 
@@ -58,7 +58,7 @@ export interface Entity
 
     //endregion -------------------- Category properties --------------------
 
-    isInPropertyContainer: IsInProperty
+    isInPropertyContainer: Property
 
     referencesContainer: EntityReferences
 

@@ -3,15 +3,15 @@ import {withTranslation} from 'react-i18next';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import {Themes}                        from './Themes';
-import {IsInThemeProperty}             from '../properties/IsInThemeProperty';
-import {Name}                          from '../../lang/name/Name';
+import {Themes}        from './Themes';
+import {ThemeProperty} from '../properties/ThemeProperty';
+import {Name}          from '../../lang/name/Name';
 
 
 export interface ThemeElement
     extends GameContentTranslationElement {
 
-    reference: IsInThemeProperty
+    reference: ThemeProperty
 
     name: Name
 

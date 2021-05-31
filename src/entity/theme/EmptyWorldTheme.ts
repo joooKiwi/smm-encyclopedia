@@ -1,7 +1,7 @@
 import {EMPTY_MAP}                 from '../../util/emptyVariables';
 import {EmptyName}                 from '../../lang/name/EmptyName';
-import {WorldTheme}                from './WorldTheme';
-import {IsInGamePropertyContainer} from '../properties/IsInGamePropertyContainer';
+import {WorldTheme}            from './WorldTheme';
+import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 
 /**
  * @nullObjectPattern
@@ -151,7 +151,7 @@ export class EmptyWorldTheme
     //endregion -------------------- Name properties --------------------
     //region -------------------- Is in game properties --------------------
 
-    public readonly isInProperty = IsInGamePropertyContainer.get(false, true);
+    public readonly isInProperty = GamePropertyContainer.get(false, true);
 
     public get isInSuperMarioMaker1() {
         return this.isInProperty.isInSuperMarioMaker1;

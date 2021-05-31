@@ -1,5 +1,5 @@
-import {PropertyGetter}   from '../PropertyGetter';
-import {IsInTimeProperty} from '../properties/IsInTimeProperty';
+import {PropertyGetter} from '../PropertyGetter';
+import {TimeProperty}   from '../properties/TimeProperty';
 
 //region -------------------- time texts --------------------
 
@@ -11,17 +11,17 @@ export type PossibleTimeName = 'Day' | 'Night';
  * @enum
  */
 export abstract class Times
-    implements PropertyGetter<PossibleTimeName, IsInTimeProperty> {
+    implements PropertyGetter<PossibleTimeName, TimeProperty> {
 
     //region -------------------- enum instances --------------------
 
     public static readonly DAY = new class extends Times {
-        public get(property: IsInTimeProperty): boolean {
+        public get(property: TimeProperty): boolean {
             return property.isInDayTheme;
         }
     }('Day');
     public static readonly NIGHT = new class extends Times {
-        public get(property: IsInTimeProperty): boolean {
+        public get(property: TimeProperty): boolean {
             return property.isInNightTheme === true;
         }
     }('Night');
@@ -46,7 +46,7 @@ export abstract class Times
         return this.#englishName;
     }
 
-    public abstract get(property: IsInTimeProperty): boolean;
+    public abstract get(property: TimeProperty): boolean;
 
     //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------

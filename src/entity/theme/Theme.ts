@@ -1,11 +1,11 @@
-import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {Name}             from '../../lang/name/Name';
+import {GameProperty} from '../properties/GameProperty';
+import {Name}         from '../../lang/name/Name';
 
 export interface Theme
-    extends Name, IsInGameProperty {
+    extends Name, GameProperty {
 
     name: Name
 
-    isInProperty: IsInGameProperty
+    isInProperty: GameProperty
 
 }

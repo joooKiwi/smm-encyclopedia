@@ -1,5 +1,5 @@
-import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {Name}             from '../../lang/name/Name';
+import {GameProperty} from '../properties/GameProperty';
+import {Name}         from '../../lang/name/Name';
 import {Theme}            from './Theme';
 
 export class AbstractTheme
@@ -12,7 +12,7 @@ export class AbstractTheme
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, isInProperty: IsInGameProperty) {
+    protected constructor(name: Name, isInProperty: GameProperty) {
         this.#name = name;
         this.#isInProperty = isInProperty;
     }

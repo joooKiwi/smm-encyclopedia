@@ -3,14 +3,14 @@ import React             from 'react';
 
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Name}                          from '../../lang/name/Name';
-import {IsInTimeProperty}              from '../properties/IsInTimeProperty';
-import {Times}                         from './Times';
+import {Name}         from '../../lang/name/Name';
+import {TimeProperty} from '../properties/TimeProperty';
+import {Times}        from './Times';
 
 export interface TimeElement
     extends GameContentTranslationElement {
 
-    reference: IsInTimeProperty
+    reference: TimeProperty
 
     name: Name
 

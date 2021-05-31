@@ -1,5 +1,5 @@
-import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {PropertyGetter}   from '../PropertyGetter';
+import {GameProperty}   from '../properties/GameProperty';
+import {PropertyGetter} from '../PropertyGetter';
 
 //region -------------------- game texts --------------------
 
@@ -12,17 +12,17 @@ export type PossibleImagePath = `/game/logos/${PossibleGameName}.png`;
  * @enum
  */
 export abstract class Games
-    implements PropertyGetter<PossibleGameName, IsInGameProperty> {
+    implements PropertyGetter<PossibleGameName, GameProperty> {
 
     //region -------------------- enum instances --------------------
 
     public static readonly SUPER_MARIO_MAKER_1 = new class extends Games {
-        public get(property: IsInGameProperty): boolean {
+        public get(property: GameProperty): boolean {
             return property.isInSuperMarioMaker1;
         }
     }('Super Mario Maker');
     public static readonly SUPER_MARIO_MAKER_2 = new class extends Games {
-        public get(property: IsInGameProperty): boolean {
+        public get(property: GameProperty): boolean {
             return property.isInSuperMarioMaker2;
         }
     }('Super Mario Maker 2');
@@ -48,7 +48,7 @@ export abstract class Games
         return this.#englishName;
     }
 
-    public abstract get(property: IsInGameProperty): boolean;
+    public abstract get(property: GameProperty): boolean;
 
     public get imagePath(): PossibleImagePath {
         return this.#imagePath;

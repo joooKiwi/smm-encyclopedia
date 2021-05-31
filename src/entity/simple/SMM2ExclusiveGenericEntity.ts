@@ -1,32 +1,32 @@
-import {IsInProperty}                  from '../properties/IsInProperty';
-import {EntityCategory}                from '../category/EntityCategory';
+import {Property}       from '../properties/Property';
+import {EntityCategory} from '../category/EntityCategory';
 import {EntityReferences}              from '../properties/EntityReferences';
-import {GenericEntity}                 from './GenericEntity';
-import {IsInOnlySMM2GameProperty}      from '../properties/IsInOnlySMM2GameProperty';
-import {IsInOnlySMM2Property}          from '../properties/IsInOnlySMM2Property';
-import {Name}                          from '../../lang/name/Name';
-import {SMM2ExclusiveEntity}           from './SMM2ExclusiveEntity';
-import {IsInOnlySMM2GameStyleProperty} from '../properties/IsInOnlySMM2GameStyleProperty';
-import {IsInOnlySMM2ThemeProperty}     from '../properties/IsInOnlySMM2ThemeProperty';
+import {GenericEntity}             from './GenericEntity';
+import {ExclusiveSMM2GameProperty} from '../properties/ExclusiveSMM2GameProperty';
+import {ExclusiveSMM2Property}     from '../properties/ExclusiveSMM2Property';
+import {Name}                      from '../../lang/name/Name';
+import {SMM2ExclusiveEntity}            from './SMM2ExclusiveEntity';
+import {ExclusiveSMM2GameStyleProperty} from '../properties/ExclusiveSMM2GameStyleProperty';
+import {ExclusiveSMM2ThemeProperty}     from '../properties/ExclusiveSMM2ThemeProperty';
 
 export class SMM2ExclusiveGenericEntity
     extends GenericEntity
     implements SMM2ExclusiveEntity {
 
-    public constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
+    public constructor(name: Name, category: EntityCategory, isInProperty: Property, references: EntityReferences,) {
         super(name, category, validateIsInProperty(isInProperty), references,);
     }
 
 
     //region -------------------- Is in properties --------------------
 
-    public get isInPropertyContainer(): IsInOnlySMM2Property {
-        return super.isInPropertyContainer as IsInOnlySMM2Property;
+    public get isInPropertyContainer(): ExclusiveSMM2Property {
+        return super.isInPropertyContainer as ExclusiveSMM2Property;
     }
 
     //region -------------------- Is in game properties --------------------
 
-    public get isInGameContainer(): IsInOnlySMM2GameProperty {
+    public get isInGameContainer(): ExclusiveSMM2GameProperty {
         return super.isInGameContainer;
     }
 
@@ -41,7 +41,7 @@ export class SMM2ExclusiveGenericEntity
     //endregion -------------------- Is in game properties --------------------
     //region -------------------- Is in game style properties --------------------
 
-    public get isInGameStyleContainer(): IsInOnlySMM2GameStyleProperty {
+    public get isInGameStyleContainer(): ExclusiveSMM2GameStyleProperty {
         return super.isInGameStyleContainer;
     }
 
@@ -52,7 +52,7 @@ export class SMM2ExclusiveGenericEntity
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
 
-    public get isInThemeContainer(): IsInOnlySMM2ThemeProperty {
+    public get isInThemeContainer(): ExclusiveSMM2ThemeProperty {
         return super.isInThemeContainer;
     }
 
@@ -93,7 +93,7 @@ export class SMM2ExclusiveGenericEntity
 
 }
 
-function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM2Property {
+function validateIsInProperty(isInProperty: Property): ExclusiveSMM2Property {
     //region ----- Game property -----
     if (isInProperty.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to false for a SMM2 exclusive property.');
@@ -113,5 +113,5 @@ function validateIsInProperty(isInProperty: IsInProperty): IsInOnlySMM2Property 
             throw new TypeError('The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property when it is included in at least one of those styles (SMB, SMB3, SMW or NSMBU).');
     }
     //endregion ----- Time property -----
-    return isInProperty as IsInOnlySMM2Property;
+    return isInProperty as ExclusiveSMM2Property;
 }

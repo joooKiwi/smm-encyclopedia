@@ -1,8 +1,8 @@
 import {CourseTheme}                 from './CourseTheme';
 import {PropertyGetterWithReference} from '../PropertyGetter';
 import {ThemeLoader}                 from './ThemeLoader';
-import {WorldTheme}                  from './WorldTheme';
-import {IsInThemeProperty}           from '../properties/IsInThemeProperty';
+import {WorldTheme}    from './WorldTheme';
+import {ThemeProperty} from '../properties/ThemeProperty';
 
 //region -------------------- themes texts --------------------
 
@@ -17,57 +17,57 @@ export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
  * @enum
  */
 export class Themes
-    implements PropertyGetterWithReference<PossibleTheme, IsInThemeProperty, [CourseTheme, WorldTheme]> {
+    implements PropertyGetterWithReference<PossibleTheme, ThemeProperty, [CourseTheme, WorldTheme]> {
 
     //region -------------------- enum instances --------------------
 
     public static readonly GROUND = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean {
+        public _get(property: ThemeProperty): boolean {
             return property.isInGroundTheme;
         }
     }('Ground');
     public static readonly UNDERGROUND = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInUndergroundTheme;
         }
     }('Underground');
     public static readonly UNDERWATER = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInUnderwaterTheme;
         }
     }('Underwater');
     public static readonly DESERT = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInDesertTheme;
         }
     }('Desert');
     public static readonly SNOW = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInSnowTheme;
         }
     }('Snow');
     public static readonly SKY = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInSkyTheme;
         }
     }('Sky');
     public static readonly FOREST = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInForestTheme;
         }
     }('Forest');
     public static readonly GHOST_HOUSE = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInGhostHouseTheme;
         }
     }('Ghost House');
     public static readonly AIRSHIP = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInAirshipTheme;
         }
     }('Airship');
     public static readonly CASTLE = new class extends Themes {
-        public _get(property: IsInThemeProperty): boolean | null {
+        public _get(property: ThemeProperty): boolean | null {
             return property.isInCastleTheme;
         }
     }('Castle', 'Castle - Volcano');
@@ -104,11 +104,11 @@ export class Themes
         return this.#englishName;
     }
 
-    protected _get(property: IsInThemeProperty): boolean | null {
+    protected _get(property: ThemeProperty): boolean | null {
         return false;
     }
 
-    public get(property: IsInThemeProperty): boolean {
+    public get(property: ThemeProperty): boolean {
         return this._get(property) ?? false;
     }
 

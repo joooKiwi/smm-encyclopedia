@@ -1,7 +1,7 @@
-import {IsInThemeProperty} from './IsInThemeProperty';
+import {ThemeProperty} from './ThemeProperty';
 
-export interface IsInOnlySMM2ThemeProperty
-    extends IsInThemeProperty {
+export interface ExclusiveSMM2ThemeProperty
+    extends ThemeProperty {
 
     isInGroundTheme: boolean
     isInUndergroundTheme: boolean

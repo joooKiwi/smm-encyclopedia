@@ -1,6 +1,6 @@
 import {Themes} from '../theme/Themes';
 
-export interface IsInThemeProperty {
+export interface ThemeProperty {
 
     isInGroundTheme: boolean
     isInUndergroundTheme: boolean
@@ -15,7 +15,7 @@ export interface IsInThemeProperty {
 
     /**
      * Return a {@link Map} based on the enum {@link Themes}
-     * with every values stored inside this instance ({@link IsInThemeProperty})
+     * with every values stored inside this instance ({@link ThemeProperty})
      * as a boolean only.
      */
     toCourseThemeMap(): Map<Themes, boolean>

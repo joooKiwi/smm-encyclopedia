@@ -7,9 +7,9 @@ import {EntityTemplate}             from './EntityTemplate';
 import {EntityReferencesContainer}  from '../properties/EntityReferencesContainer';
 import {EmptyEntity}                from './EmptyEntity';
 import {EmptyEntityCategory}        from '../category/EmptyEntityCategory';
-import {GenericEntity}              from './GenericEntity';
-import {IsInPropertyContainer}      from '../properties/IsInPropertyContainer';
-import {NameBuilder}                from '../lang/NameBuilder';
+import {GenericEntity}     from './GenericEntity';
+import {PropertyContainer} from '../properties/PropertyContainer';
+import {NameBuilder}       from '../lang/NameBuilder';
 import {SMM1ExclusiveGenericEntity} from './SMM1ExclusiveGenericEntity';
 import {SMM2ExclusiveGenericEntity} from './SMM2ExclusiveGenericEntity';
 
@@ -56,7 +56,7 @@ export class EntityBuilder
     private __createIsInProperty() {
         const isIn = this.template.properties.isIn;
 
-        return new IsInPropertyContainer(
+        return new PropertyContainer(
             isIn.game['1'], isIn.game['2'],
             isIn.style.superMarioBros, isIn.style.superMarioBros3, isIn.style.superMarioWorld, isIn.style.newSuperMarioBrosU, isIn.style.superMario3DWorld,
             isIn.theme.ground, isIn.theme.underground, isIn.theme.underwater, isIn.theme.desert, isIn.theme.snow, isIn.theme.sky, isIn.theme.forest, isIn.theme.ghostHouse, isIn.theme.airship, isIn.theme.castle,

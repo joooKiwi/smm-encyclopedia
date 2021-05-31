@@ -1,13 +1,13 @@
-import {Entity}           from '../simple/Entity';
-import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {Name}             from '../../lang/name/Name';
+import {Entity}       from '../simple/Entity';
+import {GameProperty} from '../properties/GameProperty';
+import {Name}         from '../../lang/name/Name';
 
 export interface GameStyle
-    extends Name, IsInGameProperty {
+    extends Name, GameProperty {
 
     name: Name
 
-    isInProperty: IsInGameProperty
+    isInProperty: GameProperty
 
     entities: readonly Entity[]
 

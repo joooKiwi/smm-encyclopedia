@@ -1,7 +1,7 @@
-import {IsInGameStyleProperty} from './IsInGameStyleProperty';
+import {GameStyleProperty} from './GameStyleProperty';
 
-export interface IsInOnlySMM1GameStyleProperty
-    extends IsInGameStyleProperty {
+export interface ExclusiveSMM1GameStyleProperty
+    extends GameStyleProperty {
 
     isInSuperMarioBrosStyle: true
     isInSuperMarioBros3Style: false

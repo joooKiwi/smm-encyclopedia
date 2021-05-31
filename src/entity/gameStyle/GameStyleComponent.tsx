@@ -3,14 +3,14 @@ import {withTranslation} from 'react-i18next';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import {GameStyles}                    from './GameStyles';
-import {IsInGameStyleProperty}         from '../properties/IsInGameStyleProperty';
-import {Name}                          from '../../lang/name/Name';
+import {GameStyles}        from './GameStyles';
+import {GameStyleProperty} from '../properties/GameStyleProperty';
+import {Name}              from '../../lang/name/Name';
 
 export interface GameStyleElement
     extends GameContentTranslationElement {
 
-    reference: IsInGameStyleProperty
+    reference: GameStyleProperty
 
     name: Name
 

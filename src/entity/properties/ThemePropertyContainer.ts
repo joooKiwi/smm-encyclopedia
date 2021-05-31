@@ -1,33 +1,33 @@
-import {IsInThemeProperty}         from './IsInThemeProperty';
-import {IsInOnlySMM1ThemeProperty} from './IsInOnlySMM1ThemeProperty';
-import {IsInOnlySMM2ThemeProperty} from './IsInOnlySMM2ThemeProperty';
-import {Themes}                    from '../theme/Themes';
+import {ThemeProperty}              from './ThemeProperty';
+import {ExclusiveSMM1ThemeProperty} from './ExclusiveSMM1ThemeProperty';
+import {ExclusiveSMM2ThemeProperty} from './ExclusiveSMM2ThemeProperty';
+import {Themes}                     from '../theme/Themes';
 
 /**
  * @multiton
  * @provider
  */
-export class IsInThemePropertyContainer
-    implements IsInThemeProperty {
+export class ThemePropertyContainer
+    implements ThemeProperty {
 
     //region -------------------- predefined containers --------------------
 
-    private static readonly __IS_IN_NO_THEMES =                              new IsInThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
-    private static readonly __IS_IN_SMM1_THEMES =                            new IsInThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as IsInOnlySMM1ThemeProperty;
+    private static readonly __IS_IN_NO_THEMES =                              new ThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
+    private static readonly __IS_IN_SMM1_THEMES =                            new ThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as ExclusiveSMM1ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_GROUND_THEME =                 new IsInThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as IsInOnlySMM2ThemeProperty;
-    private static readonly __IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new IsInThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
+    private static readonly __IS_IN_EXCLUSIVE_GROUND_THEME =                 new ThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
+    private static readonly __IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new ThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new IsInThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as IsInOnlySMM2ThemeProperty;
-    private static readonly __IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new IsInThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
+    private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new ThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as ExclusiveSMM2ThemeProperty;
+    private static readonly __IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new ThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_SNOW_THEME =                   new IsInThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as IsInOnlySMM2ThemeProperty;
-    private static readonly __IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new IsInThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
+    private static readonly __IS_IN_EXCLUSIVE_SNOW_THEME =                   new ThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
+    private static readonly __IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new ThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new IsInThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as IsInOnlySMM2ThemeProperty;
-    private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new IsInThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as IsInOnlySMM2ThemeProperty;
+    private static readonly __IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new ThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
+    private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new ThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EVERY_THEMES =                           new IsInThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as IsInOnlySMM2ThemeProperty;
+    private static readonly __IS_IN_EVERY_THEMES =                           new ThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -104,9 +104,9 @@ export class IsInThemePropertyContainer
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider/Multiton method --------------------
 
-    public static get(isInGroundTheme: true, isInUndergroundTheme: true, isInUnderwaterTheme: true, isInDesertTheme: null, isInSnowTheme: null, isInSkyTheme: null, isInForestTheme: null, isInGhostHouseTheme: true, isInAirshipTheme: true, isInCastleTheme: true,): IsInOnlySMM1ThemeProperty
-    public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): IsInThemeProperty
-    public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): IsInThemeProperty {
+    public static get(isInGroundTheme: true, isInUndergroundTheme: true, isInUnderwaterTheme: true, isInDesertTheme: null, isInSnowTheme: null, isInSkyTheme: null, isInForestTheme: null, isInGhostHouseTheme: true, isInAirshipTheme: true, isInCastleTheme: true,): ExclusiveSMM1ThemeProperty
+    public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty
+    public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty {
         if (isInDesertTheme === null && isInSnowTheme === null && isInSkyTheme === null && isInForestTheme === null) {
             if (isInGroundTheme &&  isInUndergroundTheme &&  isInUnderwaterTheme &&  isInGhostHouseTheme &&  isInAirshipTheme &&  isInCastleTheme )
                 return this.__IS_IN_SMM1_THEMES;

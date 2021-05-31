@@ -1,22 +1,22 @@
-import {IsInProperty}                   from './IsInProperty';
-import {IsInGameProperty}               from './IsInGameProperty';
-import {IsInGamePropertyContainer}      from './IsInGamePropertyContainer';
-import {IsInGameStyleProperty}          from './IsInGameStyleProperty';
-import {IsInGameStylePropertyContainer} from './IsInGameStylePropertyContainer';
-import {IsInThemeProperty}              from './IsInThemeProperty';
-import {IsInThemePropertyContainer}     from './IsInThemePropertyContainer';
-import {IsInTimeProperty}               from './IsInTimeProperty';
-import {IsInTimePropertyContainer}      from './IsInTimePropertyContainer';
+import {Property}                  from './Property';
+import {GameProperty}          from './GameProperty';
+import {GamePropertyContainer}          from './GamePropertyContainer';
+import {GameStyleProperty}          from './GameStyleProperty';
+import {GameStylePropertyContainer} from './GameStylePropertyContainer';
+import {ThemeProperty}          from './ThemeProperty';
+import {ThemePropertyContainer}    from './ThemePropertyContainer';
+import {TimeProperty}          from './TimeProperty';
+import {TimePropertyContainer} from './TimePropertyContainer';
 
-export class IsInPropertyContainer
-    implements IsInProperty {
+export class PropertyContainer
+    implements Property {
 
     //region -------------------- Attributes --------------------
 
-    readonly #isInGameContainer: IsInGameProperty;
-    readonly #isInGameStyleContainer: IsInGameStyleProperty;
-    readonly #isInThemeContainer: IsInThemeProperty;
-    readonly #isInTimeContainer: IsInTimeProperty;
+    readonly #isInGameContainer: GameProperty;
+    readonly #isInGameStyleContainer: GameStyleProperty;
+    readonly #isInThemeContainer: ThemeProperty;
+    readonly #isInTimeContainer: TimeProperty;
 
     //endregion -------------------- Attributes --------------------
 
@@ -24,10 +24,10 @@ export class IsInPropertyContainer
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,
                        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
                        isInDayTheme: boolean, isInNightTheme: null | boolean,) {
-        this.#isInGameContainer = IsInGamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
-        this.#isInGameStyleContainer = IsInGameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
-        this.#isInThemeContainer = IsInThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
-        this.#isInTimeContainer = IsInTimePropertyContainer.get(isInDayTheme, isInNightTheme,);
+        this.#isInGameContainer = GamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
+        this.#isInGameStyleContainer = GameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
+        this.#isInThemeContainer = ThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
+        this.#isInTimeContainer = TimePropertyContainer.get(isInDayTheme, isInNightTheme,);
     }
 
 

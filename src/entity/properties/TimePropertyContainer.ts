@@ -1,22 +1,22 @@
-import {IsInOnlySMM2TimeProperty} from './IsInOnlySMM2TimeProperty';
-import {IsInTimeProperty}         from './IsInTimeProperty';
-import {Times}                    from '../time/Times';
+import {ExclusiveSMM2TimeProperty} from './ExclusiveSMM2TimeProperty';
+import {TimeProperty}              from './TimeProperty';
+import {Times}                     from '../time/Times';
 
 /**
  * @multiton
  * @provider
  */
-export class IsInTimePropertyContainer
-    implements IsInTimeProperty {
+export class TimePropertyContainer
+    implements TimeProperty {
 
     //region -------------------- predefined containers --------------------
-    private static readonly __IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new IsInTimePropertyContainer(true, null,);
+    private static readonly __IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new TimePropertyContainer(true, null,);
 
-    private static readonly __IS_IN_ONLY_DAY_THEME_PROPERTY = new IsInTimePropertyContainer(true, false,) as IsInOnlySMM2TimeProperty;
-    private static readonly __IS_IN_ONLY_NIGHT_THEME_PROPERTY = new IsInTimePropertyContainer(false, true,) as IsInOnlySMM2TimeProperty;
+    private static readonly __IS_IN_ONLY_DAY_THEME_PROPERTY = new TimePropertyContainer(true, false,) as ExclusiveSMM2TimeProperty;
+    private static readonly __IS_IN_ONLY_NIGHT_THEME_PROPERTY = new TimePropertyContainer(false, true,) as ExclusiveSMM2TimeProperty;
 
-    private static readonly __IS_IN_BOTH_TIMES_PROPERTY = new IsInTimePropertyContainer(true, true,) as IsInOnlySMM2TimeProperty;
-    private static readonly __IS_IN_NO_TIMES_PROPERTY = new IsInTimePropertyContainer(false, false,);
+    private static readonly __IS_IN_BOTH_TIMES_PROPERTY = new TimePropertyContainer(true, true,) as ExclusiveSMM2TimeProperty;
+    private static readonly __IS_IN_NO_TIMES_PROPERTY = new TimePropertyContainer(false, false,);
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -44,11 +44,11 @@ export class IsInTimePropertyContainer
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider/Multiton method --------------------
 
-    public static get(isInDayTheme: true, isInNightTheme: null,): IsInTimeProperty
-    public static get(isInDayTheme: false, isInNightTheme: true,): IsInOnlySMM2TimeProperty
-    public static get(isInDayTheme: true, isInNightTheme: false,): IsInOnlySMM2TimeProperty
-    public static get(isInDayTheme: true, isInNightTheme: true,): IsInOnlySMM2TimeProperty
-    public static get(isInDayTheme: boolean, isInNightTheme: null | boolean,): IsInTimeProperty
+    public static get(isInDayTheme: true, isInNightTheme: null,): TimeProperty
+    public static get(isInDayTheme: false, isInNightTheme: true,): ExclusiveSMM2TimeProperty
+    public static get(isInDayTheme: true, isInNightTheme: false,): ExclusiveSMM2TimeProperty
+    public static get(isInDayTheme: true, isInNightTheme: true,): ExclusiveSMM2TimeProperty
+    public static get(isInDayTheme: boolean, isInNightTheme: null | boolean,): TimeProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
@@ -68,19 +68,19 @@ export class IsInTimePropertyContainer
      * @param isInDayTheme
      * @param isInNightTheme
      */
-    public static get(isInDayTheme: boolean, isInNightTheme: null | boolean,): IsInTimeProperty {
+    public static get(isInDayTheme: boolean, isInNightTheme: null | boolean,): TimeProperty {
         if (isInDayTheme)
             switch (isInNightTheme) {
                 case true:
-                    return IsInTimePropertyContainer.__IS_IN_BOTH_TIMES_PROPERTY;
+                    return TimePropertyContainer.__IS_IN_BOTH_TIMES_PROPERTY;
                 case false:
-                    return IsInTimePropertyContainer.__IS_IN_ONLY_DAY_THEME_PROPERTY;
+                    return TimePropertyContainer.__IS_IN_ONLY_DAY_THEME_PROPERTY;
                 case null:
-                    return IsInTimePropertyContainer.__IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY;
+                    return TimePropertyContainer.__IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY;
             }
         if (isInNightTheme === true)
-            return IsInTimePropertyContainer.__IS_IN_ONLY_NIGHT_THEME_PROPERTY;
-        return IsInTimePropertyContainer.__IS_IN_NO_TIMES_PROPERTY;
+            return TimePropertyContainer.__IS_IN_ONLY_NIGHT_THEME_PROPERTY;
+        return TimePropertyContainer.__IS_IN_NO_TIMES_PROPERTY;
     }
 
     //endregion -------------------- Provider/Multiton method --------------------

@@ -1,7 +1,7 @@
 import {PropertyGetterWithReference} from '../PropertyGetter';
 import {GameStyle}                   from './GameStyle';
-import {GameStyleLoader}             from './GameStyleLoader';
-import {IsInGameStyleProperty}       from '../properties/IsInGameStyleProperty';
+import {GameStyleLoader}   from './GameStyleLoader';
+import {GameStyleProperty} from '../properties/GameStyleProperty';
 
 //region -------------------- game style texts --------------------
 
@@ -19,32 +19,32 @@ export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | '
  * @enum
  */
 export abstract class GameStyles
-    implements PropertyGetterWithReference<PossibleGameStyleName, IsInGameStyleProperty, GameStyle> {
+    implements PropertyGetterWithReference<PossibleGameStyleName, GameStyleProperty, GameStyle> {
 
     //region -------------------- enum instances --------------------
 
     public static readonly SUPER_MARIO_BROS = new class extends GameStyles {
-        public get(property: IsInGameStyleProperty): boolean {
+        public get(property: GameStyleProperty): boolean {
             return property.isInSuperMarioBrosStyle;
         }
     }('Super Mario Bros.');
     public static readonly SUPER_MARIO_BROS_3 = new class extends GameStyles {
-        public get(property: IsInGameStyleProperty): boolean {
+        public get(property: GameStyleProperty): boolean {
             return property.isInSuperMarioBros3Style;
         }
     }('Super Mario Bros. 3');
     public static readonly SUPER_MARIO_WORLD = new class extends GameStyles {
-        public get(property: IsInGameStyleProperty): boolean {
+        public get(property: GameStyleProperty): boolean {
             return property.isInSuperMarioWorldStyle;
         }
     }('Super Mario World');
     public static readonly NEW_SUPER_MARIO_BROS_U = new class extends GameStyles {
-        public get(property: IsInGameStyleProperty): boolean {
+        public get(property: GameStyleProperty): boolean {
             return property.isInNewSuperMarioBrosUStyle;
         }
     }('New Super Mario Bros. U');
     public static readonly SUPER_MARIO_3D_WORLD = new class extends GameStyles {
-        public get(property: IsInGameStyleProperty): boolean {
+        public get(property: GameStyleProperty): boolean {
             return property.isInSuperMario3DWorldStyle === true;
         }
     }('Super Mario 3D World');
@@ -72,7 +72,7 @@ export abstract class GameStyles
         return this.#englishName;
     }
 
-    public abstract get(property: IsInGameStyleProperty): boolean;
+    public abstract get(property: GameStyleProperty): boolean;
 
     public get references() {
         return this.#references ?? (this.#references = GameStyleLoader.get.load().get(this.englishName)!);

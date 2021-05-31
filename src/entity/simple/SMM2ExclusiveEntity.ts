@@ -1,28 +1,28 @@
 import {Entity}                        from './Entity';
-import {IsInOnlySMM2GameProperty}      from '../properties/IsInOnlySMM2GameProperty';
-import {IsInOnlySMM2GameStyleProperty} from '../properties/IsInOnlySMM2GameStyleProperty';
-import {IsInOnlySMM2Property}          from '../properties/IsInOnlySMM2Property';
-import {IsInOnlySMM2ThemeProperty}     from '../properties/IsInOnlySMM2ThemeProperty';
-import {IsInOnlySMM2TimeProperty}      from '../properties/IsInOnlySMM2TimeProperty';
+import {ExclusiveSMM2GameProperty}      from '../properties/ExclusiveSMM2GameProperty';
+import {ExclusiveSMM2GameStyleProperty} from '../properties/ExclusiveSMM2GameStyleProperty';
+import {ExclusiveSMM2Property}      from '../properties/ExclusiveSMM2Property';
+import {ExclusiveSMM2ThemeProperty} from '../properties/ExclusiveSMM2ThemeProperty';
+import {ExclusiveSMM2TimeProperty}  from '../properties/ExclusiveSMM2TimeProperty';
 
 export interface SMM2ExclusiveEntity
-    extends Entity, IsInOnlySMM2Property, IsInOnlySMM2GameProperty, IsInOnlySMM2GameStyleProperty, IsInOnlySMM2ThemeProperty, IsInOnlySMM2TimeProperty {
+    extends Entity, ExclusiveSMM2Property, ExclusiveSMM2GameProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2TimeProperty {
 
-    isInPropertyContainer: IsInOnlySMM2Property
+    isInPropertyContainer: ExclusiveSMM2Property
 
-    isInGameContainer: IsInOnlySMM2GameProperty
+    isInGameContainer: ExclusiveSMM2GameProperty
     isInSuperMarioMaker1: false
     isInSuperMarioMaker2: true
 
-    isInGameStyleContainer: IsInOnlySMM2GameStyleProperty
+    isInGameStyleContainer: ExclusiveSMM2GameStyleProperty
     isInSuperMario3DWorldStyle: boolean
 
-    isInThemeContainer: IsInOnlySMM2ThemeProperty
+    isInThemeContainer: ExclusiveSMM2ThemeProperty
     isInDesertTheme: boolean
     isInSnowTheme: boolean
     isInSkyTheme: boolean
     isInForestTheme: boolean
 
-    isInTimeContainer: IsInOnlySMM2TimeProperty
+    isInTimeContainer: ExclusiveSMM2TimeProperty
 
 }

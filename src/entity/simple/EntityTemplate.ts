@@ -1,14 +1,14 @@
 import {CategoryType}                                                            from '../category/EntityCategoryLoader';
 import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import {EntityReferencesTemplate}                                                from '../properties/EntityReferencesTemplate';
-import {IsInPropertyTemplate}                                                    from '../properties/IsInPropertyTemplate';
-import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
+import {EntityReferencesTemplate} from '../properties/EntityReferencesTemplate';
+import {PropertyTemplate}         from '../properties/PropertyTemplate';
+import {SMM2NameTemplate}         from '../lang/SMM2NameTemplate';
 
 export interface EntityTemplate {
 
     properties: {
         //region ---------- Basic properties ----------
-        isIn: IsInPropertyTemplate
+        isIn: PropertyTemplate
 
         categoryInTheEditor: null | CategoryType
 

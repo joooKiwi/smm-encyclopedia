@@ -1,10 +1,10 @@
-import {IsInProperty} from './IsInProperty';
+import {Property} from './Property';
 
 /**
  * @nullObjectPattern
  */
 export class EmptyIsInProperty
-    implements IsInProperty {
+    implements Property {
 
     public static instance = new EmptyIsInProperty();
 

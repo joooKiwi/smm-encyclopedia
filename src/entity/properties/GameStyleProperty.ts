@@ -1,6 +1,6 @@
 import {GameStyles} from '../gameStyle/GameStyles';
 
-export interface IsInGameStyleProperty {
+export interface GameStyleProperty {
 
     isInSuperMarioBrosStyle: boolean
     isInSuperMarioBros3Style: boolean
@@ -10,7 +10,7 @@ export interface IsInGameStyleProperty {
 
     /**
      * Return a {@link Map} based on the enum {@link GameStyles}
-     * with every values stored inside this instance ({@link IsInGameStyleProperty})
+     * with every values stored inside this instance ({@link GameStyleProperty})
      * as a boolean only.
      */
     toGameStyleMap(): Map<GameStyles, boolean>

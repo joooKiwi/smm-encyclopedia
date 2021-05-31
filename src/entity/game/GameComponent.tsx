@@ -3,13 +3,13 @@ import GameContentTranslationComponent from '../../lang/components/GameContentTr
 import {Games}                         from './Games';
 import React                           from 'react';
 import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import {IsInGameProperty}              from '../properties/IsInGameProperty';
+import {GameProperty}                  from '../properties/GameProperty';
 import {Name}                          from '../../lang/name/Name';
 
 export interface GameElement
     extends GameContentTranslationElement {
 
-    reference: IsInGameProperty
+    reference: GameProperty
 
     name: Name
 
