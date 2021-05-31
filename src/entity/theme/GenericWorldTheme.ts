@@ -1,6 +1,6 @@
 import {AbstractTheme}            from './AbstractTheme';
 import {GamePropertyContainer}     from '../properties/GamePropertyContainer';
-import {ExclusiveSMM2GameProperty} from '../properties/ExclusiveSMM2GameProperty';
+import {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
 import {Name}                      from '../../lang/name/Name';
 import {WorldTheme}                from './WorldTheme';
 

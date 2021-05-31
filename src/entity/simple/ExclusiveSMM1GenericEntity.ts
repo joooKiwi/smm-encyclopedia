@@ -3,7 +3,7 @@ import {EmptyEntityCategory}   from '../category/EmptyEntityCategory';
 import {EntityCategory}        from '../category/EntityCategory';
 import {EntityReferences}      from '../properties/EntityReferences';
 import {GenericEntity}         from './GenericEntity';
-import {ExclusiveSMM1Property} from '../properties/ExclusiveSMM1Property';
+import {ExclusiveSMM1Property} from '../properties/exclusive/ExclusiveSMM1Property';
 import {Name}                  from '../../lang/name/Name';
 import {ExclusiveSMM1Entity}   from './ExclusiveSMM1Entity';
 
@@ -24,29 +24,25 @@ function validateIsEmptyCategory(category: EntityCategory): EmptyEntityCategory 
 }
 
 function validateIsInProperty(property: Property): ExclusiveSMM1Property {
-    //region ----- Game property -----
     if (!property.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to true for a SMM1 exclusive property.');
     if (property.isInSuperMarioMaker2)
         throw new TypeError('The property isInSMM2 should always be set to false for a SMM2 exclusive property.');
-    //endregion ----- Game property -----
-    //region ----- Game style property -----
+
     if (!property.isInSuperMarioBrosStyle
         || property.isInSuperMarioBros3Style
         || property.isInSuperMarioWorldStyle
         || property.isInNewSuperMarioBrosUStyle
         || property.isInSuperMario3DWorldStyle !== null)
         throw new TypeError('The possible SMM1 entity can only be in the SMB style');
-    //endregion ----- Game style property -----
-    //region ----- Theme property -----
+
     if (!(property.isInGroundTheme && property.isInUndergroundTheme && property.isInUnderwaterTheme && property.isInDesertTheme === null
         && property.isInSnowTheme === null && property.isInSkyTheme === null && property.isInForestTheme === null && property.isInGhostHouseTheme
         && property.isInAirshipTheme && property.isInCastleTheme))
         throw new TypeError('A SMM1 entity is never in the desert, snow, sky and forest theme. The rest should always be set to true.');
-    //endregion ----- Theme property -----
-    //region ----- Time property -----
+
     if (!(property.isInDayTheme && property.isInNightTheme === null))
         throw new TypeError('A SMM1 entity is never in the night theme, but always in the day theme.');
-    //endregion ----- Time property -----
+
     return property as ExclusiveSMM1Property;
 }

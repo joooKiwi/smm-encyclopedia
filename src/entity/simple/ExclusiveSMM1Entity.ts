@@ -1,9 +1,9 @@
-import {Entity}                        from './Entity';
-import {ExclusiveSMM1GameProperty}      from '../properties/ExclusiveSMM1GameProperty';
-import {ExclusiveSMM1GameStyleProperty} from '../properties/ExclusiveSMM1GameStyleProperty';
-import {ExclusiveSMM1Property}      from '../properties/ExclusiveSMM1Property';
-import {ExclusiveSMM1ThemeProperty} from '../properties/ExclusiveSMM1ThemeProperty';
-import {ExclusiveSMM1TimeProperty}  from '../properties/ExclusiveSMM1TimeProperty';
+import {Entity}                         from './Entity';
+import {ExclusiveSMM1GameProperty}      from '../properties/exclusive/ExclusiveSMM1GameProperty';
+import {ExclusiveSMM1GameStyleProperty} from '../properties/exclusive/ExclusiveSMM1GameStyleProperty';
+import {ExclusiveSMM1Property}          from '../properties/exclusive/ExclusiveSMM1Property';
+import {ExclusiveSMM1ThemeProperty}     from '../properties/exclusive/ExclusiveSMM1ThemeProperty';
+import {ExclusiveSMM1TimeProperty}      from '../properties/exclusive/ExclusiveSMM1TimeProperty';
 
 export interface ExclusiveSMM1Entity
     extends Entity, ExclusiveSMM1Property, ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty {

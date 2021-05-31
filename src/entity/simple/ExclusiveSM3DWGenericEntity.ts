@@ -1,10 +1,10 @@
-import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
-import {EntityCategory}              from '../category/EntityCategory';
-import {EntityReferences}            from '../properties/EntityReferences';
+import {AbstractExclusiveSMM2Entity}  from './AbstractExclusiveSMM2Entity';
+import {EntityCategory}               from '../category/EntityCategory';
+import {EntityReferences}             from '../properties/EntityReferences';
 import {ExclusiveSM3DWEntity}         from './ExclusiveSM3DWEntity';
-import {ExclusiveSMM2PropertyInSM3DW} from '../properties/ExclusiveSMM2PropertyInSM3DW';
+import {ExclusiveSMM2PropertyInSM3DW} from '../properties/exclusive/ExclusiveSMM2PropertyInSM3DW';
 import {Name}                         from '../../lang/name/Name';
-import {Property}                    from '../properties/Property';
+import {Property}                     from '../properties/Property';
 
 export class ExclusiveSM3DWGenericEntity
     extends AbstractExclusiveSMM2Entity<ExclusiveSMM2PropertyInSM3DW>

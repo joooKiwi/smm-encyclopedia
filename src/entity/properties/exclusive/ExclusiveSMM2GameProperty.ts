@@ -1,4 +1,4 @@
-import {GameProperty} from './GameProperty';
+import {GameProperty} from '../GameProperty';
 
 export interface ExclusiveSMM2GameProperty
     extends GameProperty {

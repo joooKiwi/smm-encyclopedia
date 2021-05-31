@@ -1,4 +1,4 @@
-import {ExclusiveSMM2GameProperty} from '../properties/ExclusiveSMM2GameProperty';
+import {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
 import {Theme}                     from './Theme';
 
 export interface WorldTheme

@@ -1,4 +1,4 @@
-import {GameStyleProperty} from './GameStyleProperty';
+import {GameStyleProperty} from '../GameStyleProperty';
 
 export interface ExclusiveSMM2GameStyleProperty
     extends GameStyleProperty {

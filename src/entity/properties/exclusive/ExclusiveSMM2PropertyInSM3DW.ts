@@ -1,6 +1,6 @@
 import {ExclusiveSMM2GamePropertyInSM3DW}      from './ExclusiveSMM2GamePropertyInSM3DW';
 import {ExclusiveSMM2GameStylePropertyInSM3DW} from './ExclusiveSMM2GameStylePropertyInSM3DW';
-import {ExclusiveSMM2Property}            from './ExclusiveSMM2Property';
+import {ExclusiveSMM2Property}                 from './ExclusiveSMM2Property';
 import {ExclusiveSMM2ThemeProperty}            from './ExclusiveSMM2ThemeProperty';
 import {ExclusiveSMM2TimePropertyInSM3DW}      from './ExclusiveSMM2TimePropertyInSM3DW';
 

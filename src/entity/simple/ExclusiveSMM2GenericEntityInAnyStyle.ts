@@ -2,7 +2,7 @@ import {AbstractExclusiveSMM2Entity}     from './AbstractExclusiveSMM2Entity';
 import {EntityCategory}                  from '../category/EntityCategory';
 import {EntityReferences}                from '../properties/EntityReferences';
 import {ExclusiveSMM2EntityInAnyStyle}   from './ExclusiveSMM2EntityInAnyStyle';
-import {ExclusiveSMM2PropertyInAnyStyle} from '../properties/ExclusiveSMM2PropertyInAnyStyle';
+import {ExclusiveSMM2PropertyInAnyStyle} from '../properties/exclusive/ExclusiveSMM2PropertyInAnyStyle';
 import {Name}                            from '../../lang/name/Name';
 import {Property}                        from '../properties/Property';
 
@@ -15,7 +15,6 @@ export class ExclusiveSMM2GenericEntityInAnyStyle
     }
 
 }
-
 
 function validateIsInProperty(isInProperty: Property): ExclusiveSMM2PropertyInAnyStyle {
     if (isInProperty.isInNightTheme === null)
