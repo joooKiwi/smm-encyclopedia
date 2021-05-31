@@ -4,7 +4,7 @@ import {EntityReferences} from '../properties/EntityReferences';
 import {Property}         from '../properties/Property';
 import {Name}             from '../../lang/name/Name';
 
-export abstract class AbstractEntity
+export abstract class AbstractEntity<T extends Property = Property>
     implements Entity {
 
     //region -------------------- Attributes --------------------
@@ -16,7 +16,7 @@ export abstract class AbstractEntity
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, category: EntityCategory, isInProperty: Property, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, isInProperty: T, references: EntityReferences,) {
         this.#name = name;
         this.#category = category;
         this.#propertyContainer = isInProperty;
@@ -289,7 +289,7 @@ export abstract class AbstractEntity
     //endregion -------------------- Category properties --------------------
     //region -------------------- Is in properties --------------------
 
-    public get propertyContainer() {
+    public get propertyContainer(): T {
         return this.#propertyContainer;
     }
 
@@ -299,11 +299,11 @@ export abstract class AbstractEntity
         return this.propertyContainer.gameContainer;
     }
 
-    public get isInSuperMarioMaker1() {
+    public get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1'] {
         return this.gameContainer.isInSuperMarioMaker1;
     }
 
-    public get isInSuperMarioMaker2() {
+    public get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2'] {
         return this.gameContainer.isInSuperMarioMaker2;
     }
 
@@ -314,23 +314,23 @@ export abstract class AbstractEntity
         return this.propertyContainer.gameStyleContainer;
     }
 
-    public get isInSuperMarioBrosStyle() {
+    public get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle'] {
         return this.gameStyleContainer.isInSuperMarioBrosStyle;
     }
 
-    public get isInSuperMarioBros3Style() {
+    public get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style'] {
         return this.gameStyleContainer.isInSuperMarioBros3Style;
     }
 
-    public get isInSuperMarioWorldStyle() {
+    public get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle'] {
         return this.gameStyleContainer.isInSuperMarioWorldStyle;
     }
 
-    public get isInNewSuperMarioBrosUStyle() {
+    public get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle'] {
         return this.gameStyleContainer.isInNewSuperMarioBrosUStyle;
     }
 
-    public get isInSuperMario3DWorldStyle() {
+    public get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle'] {
         return this.gameStyleContainer.isInSuperMario3DWorldStyle;
     }
 
@@ -341,43 +341,43 @@ export abstract class AbstractEntity
         return this.propertyContainer.themeContainer;
     }
 
-    public get isInGroundTheme() {
+    public get isInGroundTheme(): this['themeContainer']['isInGroundTheme'] {
         return this.themeContainer.isInGroundTheme;
     }
 
-    public get isInUndergroundTheme() {
+    public get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme'] {
         return this.themeContainer.isInUndergroundTheme;
     }
 
-    public get isInUnderwaterTheme() {
+    public get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme'] {
         return this.themeContainer.isInUnderwaterTheme;
     }
 
-    public get isInDesertTheme() {
+    public get isInDesertTheme(): this['themeContainer']['isInDesertTheme'] {
         return this.themeContainer.isInDesertTheme;
     }
 
-    public get isInSnowTheme() {
+    public get isInSnowTheme(): this['themeContainer']['isInSnowTheme'] {
         return this.themeContainer.isInSnowTheme;
     }
 
-    public get isInSkyTheme() {
+    public get isInSkyTheme(): this['themeContainer']['isInSkyTheme'] {
         return this.themeContainer.isInSkyTheme;
     }
 
-    public get isInForestTheme() {
+    public get isInForestTheme(): this['themeContainer']['isInForestTheme'] {
         return this.themeContainer.isInForestTheme;
     }
 
-    public get isInGhostHouseTheme() {
+    public get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme'] {
         return this.themeContainer.isInGhostHouseTheme;
     }
 
-    public get isInAirshipTheme() {
+    public get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme'] {
         return this.themeContainer.isInAirshipTheme;
     }
 
-    public get isInCastleTheme() {
+    public get isInCastleTheme(): this['themeContainer']['isInCastleTheme'] {
         return this.themeContainer.isInCastleTheme;
     }
 
@@ -388,11 +388,11 @@ export abstract class AbstractEntity
         return this.propertyContainer.timeContainer;
     }
 
-    public get isInDayTheme() {
+    public get isInDayTheme(): this['timeContainer']['isInDayTheme'] {
         return this.propertyContainer.isInDayTheme;
     }
 
-    public get isInNightTheme() {
+    public get isInNightTheme(): this['timeContainer']['isInNightTheme'] {
         return this.propertyContainer.isInNightTheme;
     }
 

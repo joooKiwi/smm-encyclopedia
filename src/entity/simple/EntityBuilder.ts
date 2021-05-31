@@ -1,17 +1,18 @@
-import {Builder}                    from '../../util/Builder';
-import {DebugEntityReferences}      from './EntityLoader';
-import {Entity}                     from './Entity';
-import {EntityCategory}             from '../category/EntityCategory';
-import {EntityLink}                 from '../entityTypes';
-import {EntityTemplate}             from './EntityTemplate';
-import {EntityReferencesContainer}  from '../properties/EntityReferencesContainer';
-import {EmptyEntity}                from './EmptyEntity';
-import {EmptyEntityCategory}        from '../category/EmptyEntityCategory';
-import {GenericEntity}     from './GenericEntity';
-import {PropertyContainer} from '../properties/PropertyContainer';
-import {NameBuilder}       from '../lang/NameBuilder';
-import {SMM1ExclusiveGenericEntity} from './SMM1ExclusiveGenericEntity';
-import {SMM2ExclusiveGenericEntity} from './SMM2ExclusiveGenericEntity';
+import {Builder}                              from '../../util/Builder';
+import {DebugEntityReferences}                from './EntityLoader';
+import {Entity}                               from './Entity';
+import {EntityCategory}                       from '../category/EntityCategory';
+import {EntityLink}                           from '../entityTypes';
+import {EntityTemplate}                       from './EntityTemplate';
+import {EntityReferencesContainer}            from '../properties/EntityReferencesContainer';
+import {EmptyEntity}                          from './EmptyEntity';
+import {EmptyEntityCategory}                  from '../category/EmptyEntityCategory';
+import {ExclusiveSM3DWGenericEntity}          from './ExclusiveSM3DWGenericEntity';
+import {ExclusiveSMM1GenericEntity}           from './ExclusiveSMM1GenericEntity';
+import {ExclusiveSMM2GenericEntityInAnyStyle} from './ExclusiveSMM2GenericEntityInAnyStyle';
+import {GenericEntity}                        from './GenericEntity';
+import {PropertyContainer}                    from '../properties/PropertyContainer';
+import {NameBuilder}                          from '../lang/NameBuilder';
 
 export class EntityBuilder
     implements Builder<Entity> {
@@ -112,10 +113,12 @@ export class EntityBuilder
     public build() {
         const isInProperty = this.__createIsInProperty();
         return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
-            ? new SMM1ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            ? new ExclusiveSMM1GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
-                ? new SMM2ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);//TODO add exclusive 3DW entity and other type of entity
+                ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
+                    ? new ExclusiveSM3DWGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new ExclusiveSMM2GenericEntityInAnyStyle(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 
 }

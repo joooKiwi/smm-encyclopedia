@@ -1,8 +1,8 @@
-import {Property}                      from './Property';
 import {ExclusiveSMM1GameProperty}      from './ExclusiveSMM1GameProperty';
 import {ExclusiveSMM1GameStyleProperty} from './ExclusiveSMM1GameStyleProperty';
-import {ExclusiveSMM1ThemeProperty} from './ExclusiveSMM1ThemeProperty';
-import {ExclusiveSMM1TimeProperty}  from './ExclusiveSMM1TimeProperty';
+import {ExclusiveSMM1ThemeProperty}     from './ExclusiveSMM1ThemeProperty';
+import {ExclusiveSMM1TimeProperty}      from './ExclusiveSMM1TimeProperty';
+import {Property}                       from './Property';
 
 export interface ExclusiveSMM1Property
     extends Property, ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty {

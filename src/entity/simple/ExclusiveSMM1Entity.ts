@@ -5,7 +5,7 @@ import {ExclusiveSMM1Property}      from '../properties/ExclusiveSMM1Property';
 import {ExclusiveSMM1ThemeProperty} from '../properties/ExclusiveSMM1ThemeProperty';
 import {ExclusiveSMM1TimeProperty}  from '../properties/ExclusiveSMM1TimeProperty';
 
-export interface SMM1ExclusiveEntity
+export interface ExclusiveSMM1Entity
     extends Entity, ExclusiveSMM1Property, ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty {
 
     propertyContainer: ExclusiveSMM1Property
