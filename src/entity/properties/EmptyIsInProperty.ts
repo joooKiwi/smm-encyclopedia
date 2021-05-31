@@ -18,14 +18,14 @@ export class EmptyIsInProperty
 
     //region -------------------- Is in game properties --------------------
 
-    public readonly isInGameContainer = this;
+    public readonly gameContainer = this;
     public readonly isInSuperMarioMaker1 = false;
     public readonly isInSuperMarioMaker2 = false;
 
     //endregion -------------------- Is in game properties --------------------
     //region -------------------- Is in game style properties --------------------
 
-    public readonly isInGameStyleContainer = this;
+    public readonly gameStyleContainer = this;
     public readonly isInSuperMarioBrosStyle = false;
     public readonly isInSuperMarioBros3Style = false;
     public readonly isInSuperMarioWorldStyle = false;
@@ -35,7 +35,7 @@ export class EmptyIsInProperty
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
 
-    public readonly isInThemeContainer = this;
+    public readonly themeContainer = this;
     public readonly isInGroundTheme = false;
     public readonly isInUndergroundTheme = false;
     public readonly isInUnderwaterTheme = false;
@@ -49,7 +49,7 @@ export class EmptyIsInProperty
     //endregion -------------------- Is in theme properties --------------------
     //region -------------------- Is in time properties --------------------
 
-    public readonly isInTimeContainer = this;
+    public readonly timeContainer = this;
     public readonly isInDayTheme = false;
     public readonly isInNightTheme = null;
 

@@ -6,9 +6,9 @@ import {TimeProperty}  from './TimeProperty';
 export interface Property
     extends GameProperty, GameStyleProperty, ThemeProperty, TimeProperty {
 
-    isInGameContainer: GameProperty
-    isInGameStyleContainer: GameStyleProperty
-    isInThemeContainer: ThemeProperty
-    isInTimeContainer: TimeProperty
+    gameContainer: GameProperty
+    gameStyleContainer: GameStyleProperty
+    themeContainer: ThemeProperty
+    timeContainer: TimeProperty
 
 }

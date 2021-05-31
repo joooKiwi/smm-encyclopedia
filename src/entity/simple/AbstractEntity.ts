@@ -11,7 +11,7 @@ export abstract class AbstractEntity
 
     readonly #name;
     readonly #category;
-    readonly #isInPropertyContainer;
+    readonly #propertyContainer;
     readonly #referencesContainer;
 
     //endregion -------------------- Attributes --------------------
@@ -19,7 +19,7 @@ export abstract class AbstractEntity
     protected constructor(name: Name, category: EntityCategory, isInProperty: Property, references: EntityReferences,) {
         this.#name = name;
         this.#category = category;
-        this.#isInPropertyContainer = isInProperty;
+        this.#propertyContainer = isInProperty;
         this.#referencesContainer = references;
     }
 
@@ -289,111 +289,111 @@ export abstract class AbstractEntity
     //endregion -------------------- Category properties --------------------
     //region -------------------- Is in properties --------------------
 
-    public get isInPropertyContainer() {
-        return this.#isInPropertyContainer;
+    public get propertyContainer() {
+        return this.#propertyContainer;
     }
 
     //region -------------------- Is in game properties --------------------
 
-    public get isInGameContainer(): this['isInPropertyContainer']['isInGameContainer'] {
-        return this.isInPropertyContainer.isInGameContainer;
+    public get gameContainer(): this['propertyContainer']['gameContainer'] {
+        return this.propertyContainer.gameContainer;
     }
 
     public get isInSuperMarioMaker1() {
-        return this.isInGameContainer.isInSuperMarioMaker1;
+        return this.gameContainer.isInSuperMarioMaker1;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.isInGameContainer.isInSuperMarioMaker2;
+        return this.gameContainer.isInSuperMarioMaker2;
     }
 
     //endregion -------------------- Is in game properties --------------------
     //region -------------------- Is in game style properties --------------------
 
-    public get isInGameStyleContainer(): this['isInPropertyContainer']['isInGameStyleContainer'] {
-        return this.isInPropertyContainer.isInGameStyleContainer;
+    public get gameStyleContainer(): this['propertyContainer']['gameStyleContainer'] {
+        return this.propertyContainer.gameStyleContainer;
     }
 
     public get isInSuperMarioBrosStyle() {
-        return this.isInGameStyleContainer.isInSuperMarioBrosStyle;
+        return this.gameStyleContainer.isInSuperMarioBrosStyle;
     }
 
     public get isInSuperMarioBros3Style() {
-        return this.isInGameStyleContainer.isInSuperMarioBros3Style;
+        return this.gameStyleContainer.isInSuperMarioBros3Style;
     }
 
     public get isInSuperMarioWorldStyle() {
-        return this.isInGameStyleContainer.isInSuperMarioWorldStyle;
+        return this.gameStyleContainer.isInSuperMarioWorldStyle;
     }
 
     public get isInNewSuperMarioBrosUStyle() {
-        return this.isInGameStyleContainer.isInNewSuperMarioBrosUStyle;
+        return this.gameStyleContainer.isInNewSuperMarioBrosUStyle;
     }
 
     public get isInSuperMario3DWorldStyle() {
-        return this.isInGameStyleContainer.isInSuperMario3DWorldStyle;
+        return this.gameStyleContainer.isInSuperMario3DWorldStyle;
     }
 
     //endregion -------------------- Is in game style properties --------------------
     //region -------------------- Is in theme properties --------------------
 
-    public get isInThemeContainer(): this['isInPropertyContainer']['isInThemeContainer'] {
-        return this.isInPropertyContainer.isInThemeContainer;
+    public get themeContainer(): this['propertyContainer']['themeContainer'] {
+        return this.propertyContainer.themeContainer;
     }
 
     public get isInGroundTheme() {
-        return this.isInThemeContainer.isInGroundTheme;
+        return this.themeContainer.isInGroundTheme;
     }
 
     public get isInUndergroundTheme() {
-        return this.isInThemeContainer.isInUndergroundTheme;
+        return this.themeContainer.isInUndergroundTheme;
     }
 
     public get isInUnderwaterTheme() {
-        return this.isInThemeContainer.isInUnderwaterTheme;
+        return this.themeContainer.isInUnderwaterTheme;
     }
 
     public get isInDesertTheme() {
-        return this.isInThemeContainer.isInDesertTheme;
+        return this.themeContainer.isInDesertTheme;
     }
 
     public get isInSnowTheme() {
-        return this.isInThemeContainer.isInSnowTheme;
+        return this.themeContainer.isInSnowTheme;
     }
 
     public get isInSkyTheme() {
-        return this.isInThemeContainer.isInSkyTheme;
+        return this.themeContainer.isInSkyTheme;
     }
 
     public get isInForestTheme() {
-        return this.isInThemeContainer.isInForestTheme;
+        return this.themeContainer.isInForestTheme;
     }
 
     public get isInGhostHouseTheme() {
-        return this.isInThemeContainer.isInGhostHouseTheme;
+        return this.themeContainer.isInGhostHouseTheme;
     }
 
     public get isInAirshipTheme() {
-        return this.isInThemeContainer.isInAirshipTheme;
+        return this.themeContainer.isInAirshipTheme;
     }
 
     public get isInCastleTheme() {
-        return this.isInThemeContainer.isInCastleTheme;
+        return this.themeContainer.isInCastleTheme;
     }
 
     //endregion -------------------- Is in theme properties --------------------
     //region -------------------- Is in time properties --------------------
 
-    public get isInTimeContainer(): this['isInPropertyContainer']['isInTimeContainer'] {
-        return this.isInPropertyContainer.isInTimeContainer;
+    public get timeContainer(): this['propertyContainer']['timeContainer'] {
+        return this.propertyContainer.timeContainer;
     }
 
     public get isInDayTheme() {
-        return this.isInPropertyContainer.isInDayTheme;
+        return this.propertyContainer.isInDayTheme;
     }
 
     public get isInNightTheme() {
-        return this.isInPropertyContainer.isInNightTheme;
+        return this.propertyContainer.isInNightTheme;
     }
 
     //endregion -------------------- Is in time properties --------------------
@@ -484,15 +484,15 @@ export abstract class AbstractEntity
     //endregion -------------------- References properties --------------------
 
     public toGameStyleMap() {
-        return this.isInPropertyContainer.toGameStyleMap();
+        return this.propertyContainer.toGameStyleMap();
     }
 
     public toCourseThemeMap() {
-        return this.isInThemeContainer.toCourseThemeMap();
+        return this.themeContainer.toCourseThemeMap();
     }
 
     public toTimeMap() {
-        return this.isInTimeContainer.toTimeMap();
+        return this.timeContainer.toTimeMap();
     }
 
     public toNameMap() {

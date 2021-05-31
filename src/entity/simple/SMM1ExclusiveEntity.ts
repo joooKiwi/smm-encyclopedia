@@ -8,20 +8,20 @@ import {ExclusiveSMM1TimeProperty}  from '../properties/ExclusiveSMM1TimePropert
 export interface SMM1ExclusiveEntity
     extends Entity, ExclusiveSMM1Property, ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty {
 
-    isInPropertyContainer: ExclusiveSMM1Property
+    propertyContainer: ExclusiveSMM1Property
 
-    isInGameContainer: ExclusiveSMM1GameProperty
+    gameContainer: ExclusiveSMM1GameProperty
     isInSuperMarioMaker1: true
     isInSuperMarioMaker2: false
 
-    isInGameStyleContainer: ExclusiveSMM1GameStyleProperty
+    gameStyleContainer: ExclusiveSMM1GameStyleProperty
     isInSuperMarioBrosStyle: true
     isInSuperMarioBros3Style: false
     isInSuperMarioWorldStyle: false
     isInNewSuperMarioBrosUStyle: false
     isInSuperMario3DWorldStyle: null
 
-    isInThemeContainer: ExclusiveSMM1ThemeProperty
+    themeContainer: ExclusiveSMM1ThemeProperty
     isInGroundTheme: true
     isInUndergroundTheme: true
     isInUnderwaterTheme: true
@@ -33,7 +33,7 @@ export interface SMM1ExclusiveEntity
     isInAirshipTheme: true
     isInCastleTheme: true
 
-    isInTimeContainer: ExclusiveSMM1TimeProperty
+    timeContainer: ExclusiveSMM1TimeProperty
     isInDayTheme: true
     isInNightTheme: null
 

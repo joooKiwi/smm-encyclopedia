@@ -58,7 +58,7 @@ export interface Entity
 
     //endregion -------------------- Category properties --------------------
 
-    isInPropertyContainer: Property
+    propertyContainer: Property
 
     referencesContainer: EntityReferences
 
