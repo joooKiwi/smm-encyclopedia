@@ -4,9 +4,9 @@ import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanL
 import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 import {
     Languages,
-    PossibleLanguagesAcronym,
     PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages,
-    PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages
+    PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages,
+    PossibleValueToGetLanguage
 }                                   from './Languages';
 
 //region -------------------- Language text --------------------
@@ -253,7 +253,7 @@ export class EveryLanguages {
     //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------
 
-    public static getValue(value: Languages | EveryLanguages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): EveryLanguages
+    public static getValue(value: EveryLanguages | PossibleValueToGetLanguage): EveryLanguages
     public static getValue(value: string): EveryLanguages | null
     public static getValue(value: Languages | EveryLanguages | string): EveryLanguages | null
     public static getValue(value: Languages | EveryLanguages | string): EveryLanguages | null {

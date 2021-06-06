@@ -4,6 +4,7 @@ import {ClassWithLanguages}         from './ClassWithLanguages';
 import {DateInstanceCreator}        from './date/DateInstanceCreator';
 import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
 
+//region -------------------- Languages types --------------------
 //region -------------------- Languages text --------------------
 
 export type PossibleLanguagesAcronym =
@@ -38,6 +39,10 @@ export type PossibleLanguagesOriginalName =
     | '한국어';
 
 //endregion -------------------- Languages text --------------------
+
+export type PossibleValueToGetLanguage = Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName;
+
+//endregion -------------------- Languages types --------------------
 
 /**
  * <p>
@@ -359,7 +364,7 @@ export abstract class Languages {
     //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------
 
-    public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
+    public static getValue(value: PossibleValueToGetLanguage): Languages
     public static getValue(value: string): Languages | null
     public static getValue(value: Languages | string): Languages | null
     public static getValue(value: Languages | string): Languages | null {
