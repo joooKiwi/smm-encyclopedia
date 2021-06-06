@@ -9,11 +9,17 @@ export interface DateTimeFormat {
     day: DayNumber
 }
 
-const globalDate = globalThis.Date;
-
-export function Date(props: DateTimeFormat) {
+/**
+ * A simple date component that return a date
+ * from the {@link Languages.currentLanguage current language}.
+ *
+ * @param props
+ * @constructor
+ * @see https://formatjs.io/docs/react-intl/components#formatteddate
+ */
+export function SimpleDate(props: DateTimeFormat) {
     return <FormattedDate
-        value={new globalDate(props.year, props.month - 1, props.day,)}
+        value={new Date(props.year, props.month - 1, props.day,)}
         year="numeric"
         month="long"
         day="numeric"
