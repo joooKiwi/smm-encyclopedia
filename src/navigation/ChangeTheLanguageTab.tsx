@@ -16,11 +16,11 @@ class ChangeTheLanguageTab
                     language: language,
                     htmlElement: language === Languages.currentLanguage
                         ? <span className="dropdown-item disabled">{this.languageTranslation(language.englishName)}</span>
-                        : <Link key={`languageChanger_${language.acronym}`} className="dropdown-item"
-                                to={`/${language.acronym}/home`}>{this.languageTranslation(language.englishName)}<sup>({language.originalName})</sup></Link>
+                        : <Link key={`languageChanger_${language.projectAcronym}`} className="dropdown-item"
+                                to={`/${language.projectAcronym}/home`}>{this.languageTranslation(language.englishName)}<sup>({language.originalName})</sup></Link>
                 };
             }
-        ).map(object => <li key={`languageChanger_${object.language.acronym}_li`}>{object.htmlElement}</li>);
+        ).map(object => <li key={`languageChanger_${object.language.projectAcronym}_li`}>{object.htmlElement}</li>);
     };
 
     public render() {

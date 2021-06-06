@@ -17,6 +17,17 @@ export type PossibleLanguagesAcronym =
     | 'ru' | 'ja'
     | 'zh_T' | 'zh_S'
     | 'ko';
+
+export type PossibleLanguagesInternationalAcronym =
+    | 'en-US' | 'en-EU'
+    | 'fr-CA' | 'fr-EU'
+    | 'de'
+    | 'es-US' | 'es-EU'
+    | 'it' | 'nl'
+    | 'pt-US' | 'pt-EU'
+    | 'ru' | 'ja'
+    | 'zh'
+    | 'ko';
 export type PossibleLanguagesEnglishName =
     | `English (${'America' | 'Europe'})`
     | `French (${'Canada' | 'Europe'})`
@@ -106,7 +117,7 @@ export abstract class Languages {
             return classWithLanguages.americanEnglish;
         }
 
-    }('en_AM', 'English (America)', 'English (America)',);
+    }('en_AM', 'en-US', 'English (America)', 'English (America)',);
     public static readonly EUROPEAN_ENGLISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -117,7 +128,7 @@ export abstract class Languages {
             return classWithLanguages.europeanEnglish;
         }
 
-    }('en_EU', 'English (Europe)', 'English (Europe)',);
+    }('en_EU', 'en-EU', 'English (Europe)', 'English (Europe)',);
     public static readonly CANADIAN_FRENCH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -131,7 +142,7 @@ export abstract class Languages {
             return classWithLanguages.canadianFrench;
         }
 
-    }('fr_CA', 'French (Canada)', 'Français (Canada)',);
+    }('fr_CA', 'fr-CA', 'French (Canada)', 'Français (Canada)',);
     public static readonly EUROPEAN_FRENCH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -142,7 +153,7 @@ export abstract class Languages {
             return classWithLanguages.europeanFrench;
         }
 
-    }('fr_EU', 'French (Europe)', 'Français (Europe)',);
+    }('fr_EU', 'fr-EU', 'French (Europe)', 'Français (Europe)',);
     public static readonly GERMAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -156,7 +167,7 @@ export abstract class Languages {
             return classWithLanguages.german;
         }
 
-    }('de', 'German', 'Deutsche',);
+    }('de', 'de', 'German', 'Deutsche',);
     public static readonly AMERICAN_SPANISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -169,7 +180,7 @@ export abstract class Languages {
             return classWithLanguages.americanSpanish;
         }
 
-    }('es_AM', 'Spanish (America)', 'Español (America)',);
+    }('es_AM', 'es-US', 'Spanish (America)', 'Español (America)',);
     public static readonly EUROPEAN_SPANISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -180,7 +191,7 @@ export abstract class Languages {
             return classWithLanguages.europeanSpanish;
         }
 
-    }('es_EU', 'Spanish (Europe)', 'Español (Europa)',);
+    }('es_EU', 'es-EU', 'Spanish (Europe)', 'Español (Europa)',);
     public static readonly ITALIAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -194,7 +205,7 @@ export abstract class Languages {
             return classWithLanguages.italian;
         }
 
-    }('it', 'Italian', 'Italiano',);
+    }('it', 'it', 'Italian', 'Italiano',);
     public static readonly DUTCH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -207,7 +218,7 @@ export abstract class Languages {
             return classWithLanguages.dutch;
         }
 
-    }('nl', 'Dutch', 'Nederlands',);
+    }('nl', 'nl', 'Dutch', 'Nederlands',);
     public static readonly AMERICAN_PORTUGUESE = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -220,7 +231,7 @@ export abstract class Languages {
             return classWithLanguages.americanPortuguese;
         }
 
-    }('pt_AM', 'Portuguese (America)', 'Português (América)',);
+    }('pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)',);
     public static readonly EUROPEAN_PORTUGUESE = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -231,7 +242,7 @@ export abstract class Languages {
             return classWithLanguages.europeanPortuguese;
         }
 
-    }('pt_EU', 'Portuguese (Europe)', 'Português (Europa)',);
+    }('pt_EU', 'pt-EU', 'Portuguese (Europe)', 'Português (Europa)',);
     public static readonly RUSSIAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -245,7 +256,7 @@ export abstract class Languages {
             return classWithLanguages.russian;
         }
 
-    }('ru', 'Russian', 'русский');
+    }('ru', 'ru', 'Russian', 'русский');
     public static readonly JAPANESE = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -260,7 +271,7 @@ export abstract class Languages {
             return classWithLanguages.japanese;
         }
 
-    }('ja', 'Japanese', '日本語',);
+    }('ja', 'ja', 'Japanese', '日本語',);
     public static readonly CHINESE_TRADITIONAL = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -271,7 +282,7 @@ export abstract class Languages {
             return classWithLanguages.traditionalChinese;
         }
 
-    }('zh_T', 'Traditional chinese', '简体中文',);
+    }('zh_T', 'zh', 'Traditional chinese', '简体中文',);
     public static readonly CHINESE_SIMPLIFIED = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -282,7 +293,7 @@ export abstract class Languages {
             return classWithLanguages.simplifiedChinese;
         }
 
-    }('zh_S', 'Simplified chinese', '繁體中文',);
+    }('zh_S', 'zh', 'Simplified chinese', '繁體中文',);
     public static readonly KOREAN = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -297,7 +308,7 @@ export abstract class Languages {
             return classWithLanguages.korean;
         }
 
-    }('ko', 'Korean', '한국어',);
+    }('ko', 'ko', 'Korean', '한국어',);
 
     //endregion -------------------- enum instances --------------------
 
@@ -307,22 +318,28 @@ export abstract class Languages {
     static #CURRENT_LANGUAGE: Languages;
     static #DEFAULT_LANGUAGE: Languages;
 
-    readonly #acronym;
+    readonly #projectAcronym;
+    readonly #internationalAcronym;
     readonly #englishName;
     readonly #originalName;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym: PossibleLanguagesAcronym, englishName: PossibleLanguagesEnglishName, originalName: PossibleLanguagesOriginalName) {
-        this.#acronym = acronym;
+    private constructor(projectAcronym: PossibleLanguagesAcronym, internationalAcronym: PossibleLanguagesInternationalAcronym, englishName: PossibleLanguagesEnglishName, originalName: PossibleLanguagesOriginalName) {
+        this.#projectAcronym = projectAcronym;
+        this.#internationalAcronym = internationalAcronym;
         this.#englishName = englishName;
         this.#originalName = originalName;
     }
 
     //region -------------------- Methods --------------------
 
-    public get acronym(): PossibleLanguagesAcronym {
-        return this.#acronym;
+    public get projectAcronym(): PossibleLanguagesAcronym {
+        return this.#projectAcronym;
+    }
+
+    public get internationalAcronym(): PossibleLanguagesInternationalAcronym {
+        return this.#internationalAcronym;
     }
 
     public get englishName(): PossibleLanguagesEnglishName {
@@ -338,7 +355,7 @@ export abstract class Languages {
     public abstract get(classWithLanguages: ClassWithLanguages): string;
 
     private __setLanguageToHTML(): this {
-        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.acronym));
+        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.projectAcronym));
         return this;
     }
 
@@ -350,7 +367,7 @@ export abstract class Languages {
     public static set currentLanguage(value: Languages | string) {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
-            i18n.changeLanguage((this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
+            i18n.changeLanguage((this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).projectAcronym);
     }
 
     public static get defaultLanguage(): Languages {
@@ -369,7 +386,7 @@ export abstract class Languages {
     public static getValue(value: Languages | string): Languages | null
     public static getValue(value: Languages | string): Languages | null {
         return typeof value === 'string'
-            ? this.values.find(language => language.acronym === value || language.englishName === value || language.originalName === value) ?? null
+            ? this.values.find(language => language.projectAcronym === value || language.englishName === value || language.originalName === value) ?? null
             : value;
     }
 
@@ -400,3 +417,4 @@ export abstract class Languages {
 }
 
 Languages.defaultLanguage = 'en_AM';
+Languages.currentLanguage = 'en_AM';

@@ -6,11 +6,17 @@ import React           from 'react';
 import ReactDOM        from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import Routes          from './routes/Routes';
+import {IntlProvider}  from 'react-intl';
 
+import {Languages} from './lang/Languages';
+
+//FIXME have the language properly work with the language change.
 ReactDOM.render(
-    <React.StrictMode>
-        <Routes/>
-    </React.StrictMode>,
+    <IntlProvider locale={Languages.currentLanguage.internationalAcronym} key="reactLanguageProvider">
+        <React.StrictMode>
+            <Routes/>
+        </React.StrictMode>
+    </IntlProvider>,
     document.getElementById('root'),
 );
 

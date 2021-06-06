@@ -25,7 +25,7 @@ const everySimpleRoutes: SimpleRoute[] = [
 export default function Routes() {
     return <BrowserRouter>
         <Switch>
-            <Route exact path="/"><Redirect to={`/${Languages.defaultLanguage.acronym}/home`}/></Route>
+            <Route exact path="/"><Redirect to={`/${Languages.defaultLanguage.projectAcronym}/home`}/></Route>
             {renderRoutesInSwitch()}
             <Route path="/:lang"><DirectRoutes/></Route>
         </Switch>
@@ -35,7 +35,7 @@ export default function Routes() {
 function renderRoutesInSwitch() {
     everySimpleRoutes.map(route =>
         <Route key={`switchRoute${route.path}`} path={route.path}>
-            <Redirect to={`/${Languages.defaultLanguage.acronym}${route.path}`}/>
+            <Redirect to={`/${Languages.defaultLanguage.projectAcronym}${route.path}`}/>
         </Route>
     );
 }
@@ -47,8 +47,8 @@ function DirectRoutes() {
         Languages.currentLanguage = params.lang;
         const currentLanguage = Languages.getValue(params.lang);
         if (currentLanguage != null)
-            return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.acronym + route.path)?.renderCallback()
-                ?? <Redirect to={`/${currentLanguage.acronym}/home`}/>;
+            return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.projectAcronym + route.path)?.renderCallback()
+                ?? <Redirect to={`/${currentLanguage.projectAcronym}/home`}/>;
     }
-    return <Redirect to={`/${Languages.defaultLanguage.acronym}/home`}/>;
+    return <Redirect to={`/${Languages.defaultLanguage.projectAcronym}/home`}/>;
 }
