@@ -28,7 +28,7 @@ export abstract class Games
     }('Super Mario Maker 2');
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly Games[];
+    static #VALUES: readonly Games[];
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -67,7 +67,7 @@ export abstract class Games
     }
 
     public static get values(): readonly Games[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.SUPER_MARIO_MAKER_1,
             this.SUPER_MARIO_MAKER_2,
         ]);

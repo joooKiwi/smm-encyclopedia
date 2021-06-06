@@ -62,7 +62,7 @@ type GameStylePropertiesArray = [
 export class GameStyleLoader
     implements Loader<Map<string, GameStyle>> {
 
-    private static readonly instance = new GameStyleLoader();
+    static readonly #instance = new GameStyleLoader();
 
     readonly #entitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
     readonly #everyGameStyleMap: CallbackCaller<Map<string, GameStyle>>;
@@ -96,6 +96,11 @@ export class GameStyleLoader
         });
     }
 
+    public static get get() {
+        return this.#instance;
+    }
+
+
     private __createReference(template: GameStyleTemplate, name: Name,): GameStyle {
         return new GenericGameStyle(name, GamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2'],), () => this.whereEntityIs(name.english));
     }
@@ -113,11 +118,6 @@ export class GameStyleLoader
             if (entity !== undefined && gameStyle.get(entity))
                 everyEntities.push(entity);
         return everyEntities;
-    }
-
-
-    public static get get() {
-        return this.instance;
     }
 
     public load() {

@@ -296,11 +296,11 @@ export abstract class Languages {
 
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES?: readonly Languages[];
+    static #VALUES?: readonly Languages[];
     //region -------------------- Attributes --------------------
 
-    private static __CURRENT_LANGUAGE: Languages;
-    private static __DEFAULT_LANGUAGE: Languages;
+    static #CURRENT_LANGUAGE: Languages;
+    static #DEFAULT_LANGUAGE: Languages;
 
     readonly #acronym;
     readonly #englishName;
@@ -339,29 +339,21 @@ export abstract class Languages {
 
 
     public static get currentLanguage(): Languages {
-        return this.__CURRENT_LANGUAGE;
+        return this.#CURRENT_LANGUAGE;
     }
 
-    public static set currentLanguage(value: Languages) {
-        this.setCurrentLanguage(value);
-    }
-
-    public static setCurrentLanguage(value: Languages | string): void {
+    public static set currentLanguage(value: Languages | string) {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
-            i18n.changeLanguage((this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
+            i18n.changeLanguage((this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
     }
 
     public static get defaultLanguage(): Languages {
-        return this.__DEFAULT_LANGUAGE;
+        return this.#DEFAULT_LANGUAGE;
     }
 
-    public static set defaultLanguage(value: Languages) {
-        this.setDefaultLanguage(value);
-    }
-
-    public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
-        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
+    public static set defaultLanguage(value: Languages | PossibleLanguagesAcronym) {
+        this.#DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
     }
 
     //endregion -------------------- Methods --------------------
@@ -377,7 +369,7 @@ export abstract class Languages {
     }
 
     public static get values(): readonly Languages[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
             this.GERMAN,
@@ -402,4 +394,4 @@ export abstract class Languages {
 
 }
 
-Languages.setDefaultLanguage('en_AM');
+Languages.defaultLanguage = 'en_AM';

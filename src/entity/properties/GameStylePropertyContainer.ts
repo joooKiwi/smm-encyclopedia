@@ -12,26 +12,26 @@ export class GameStylePropertyContainer
 
     //region -------------------- predefined containers --------------------
 
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, null, ) as ExclusiveSMM1GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, null, ) as ExclusiveSMM1GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, false,) as ExclusiveSMM2GameStyleProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY =                new GameStylePropertyContainer(false, true,  false, false, false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMW_PROPERTY =                 new GameStylePropertyContainer(false, false, true,  false, false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY =               new GameStylePropertyContainer(false, false, false, true,  false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY =               new GameStylePropertyContainer(false, false, false, false, true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY =                new GameStylePropertyContainer(false, true,  false, false, false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_PROPERTY =                 new GameStylePropertyContainer(false, false, true,  false, false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY =               new GameStylePropertyContainer(false, false, false, true,  false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY =               new GameStylePropertyContainer(false, false, false, false, true, ) as ExclusiveSMM2GameStyleProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY =        new GameStylePropertyContainer(true,  true,  false, false, false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY =       new GameStylePropertyContainer(false, false, true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY =       new GameStylePropertyContainer(false, false, true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY =        new GameStylePropertyContainer(true,  true,  false, false, false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY =       new GameStylePropertyContainer(false, false, true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY =       new GameStylePropertyContainer(false, false, true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW =             new GameStylePropertyContainer(true,  true,  true,  false, false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU =           new GameStylePropertyContainer(true,  true,  false, true,  false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY = new GameStylePropertyContainer(false, false, true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW =             new GameStylePropertyContainer(true,  true,  true,  false, false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU =           new GameStylePropertyContainer(true,  true,  false, true,  false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY = new GameStylePropertyContainer(false, false, true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
 
-    private static readonly __IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
-    private static readonly __IS_IN_NO_GAME_STYLES_PROPERTY =                   new GameStylePropertyContainer(false, false, false, false, null, );
+    static readonly #IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_NO_GAME_STYLES_PROPERTY =                   new GameStylePropertyContainer(false, false, false, false, null, );
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -119,46 +119,46 @@ export class GameStylePropertyContainer
     public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): GameStyleProperty {
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle) {
             if (isInSuperMario3DWorldStyle === true)
-                return GameStylePropertyContainer.__IS_IN_EVERY_GAME_STYLES_PROPERTY;
-            return GameStylePropertyContainer.__IS_IN_ORIGINAL_4_STYLES_PROPERTY;
+                return this.#IS_IN_EVERY_GAME_STYLES_PROPERTY;
+            return this.#IS_IN_ORIGINAL_4_STYLES_PROPERTY;
         }
         //region ----- Exclusive for 1 game style -----
         if (isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle) {
             if (isInSuperMario3DWorldStyle === null)
-                return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY;
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY;
+                return this.#IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY;
         }
         if (!isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMW_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SMW_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY;
         //endregion ----- Exclusive for 1 game style -----
         //region ----- Exclusive for 2 game styles -----
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY;
+            return this.#IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY;
         //endregion ----- Exclusive for 2 game styles -----
         //region ----- Exclusive for 3 game styles -----
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMario3DWorldStyle !== true) {
             if (isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle)
-                return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW;
+                return this.#IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW;
             if (!isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle)
-                return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU;
+                return this.#IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU;
         }
         //endregion ----- Exclusive for 3 game styles -----
         //region ----- Exclusive for 4 game styles -----
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
-            return GameStylePropertyContainer.__IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW;
+            return this.#IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW;
         //endregion ----- Exclusive for 4 game styles -----
 
-        return GameStylePropertyContainer.__IS_IN_NO_GAME_STYLES_PROPERTY;
+        return this.#IS_IN_NO_GAME_STYLES_PROPERTY;
     }
 
     //endregion -------------------- Provider/Multiton method --------------------

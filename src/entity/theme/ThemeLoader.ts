@@ -69,7 +69,7 @@ type ThemePropertiesArray = [
 export class ThemeLoader
     implements Loader<Map<string, [CourseTheme, WorldTheme]>> {
 
-    private static readonly instance = new ThemeLoader();
+    static readonly #instance = new ThemeLoader();
 
     //region ---------- external object references ----------
 
@@ -109,6 +109,11 @@ export class ThemeLoader
         });
     }
 
+    public static get get() {
+        return this.#instance;
+    }
+
+
     private __createReference(template: ThemeTemplate, name: Name,): [CourseTheme, WorldTheme,] {
         const isInCourseTheme = template.isIn.theme.course;
         const isInWorldTheme = template.isIn.theme.world;
@@ -143,10 +148,6 @@ export class ThemeLoader
         return everyEntities;
     }
 
-
-    public static get get() {
-        return this.instance;
-    }
 
     public load() {
         return this.#everyThemeMap.get;

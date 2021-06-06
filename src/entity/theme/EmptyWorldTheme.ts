@@ -10,13 +10,13 @@ import {WorldTheme}            from './WorldTheme';
 export class EmptyWorldTheme
     implements WorldTheme {
 
-    private static readonly instance = new EmptyWorldTheme();
+    static readonly #instance = new EmptyWorldTheme();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

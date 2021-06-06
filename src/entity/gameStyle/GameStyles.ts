@@ -1,7 +1,7 @@
 import {PropertyGetterWithReference} from '../PropertyGetter';
 import {GameStyle}                   from './GameStyle';
-import {GameStyleLoader}   from './GameStyleLoader';
-import {GameStyleProperty} from '../properties/GameStyleProperty';
+import {GameStyleLoader}             from './GameStyleLoader';
+import {GameStyleProperty}           from '../properties/GameStyleProperty';
 
 //region -------------------- game style texts --------------------
 
@@ -51,7 +51,7 @@ export abstract class GameStyles
 
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES?: readonly GameStyles[];
+    static #VALUES?: readonly GameStyles[];
     //region -------------------- Attributes --------------------
 
     #references?: GameStyle;
@@ -107,7 +107,7 @@ export abstract class GameStyles
     }
 
     public static get values(): readonly GameStyles[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.SUPER_MARIO_BROS,
             this.SUPER_MARIO_BROS_3,
             this.SUPER_MARIO_WORLD,

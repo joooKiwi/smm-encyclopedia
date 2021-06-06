@@ -10,13 +10,14 @@ export class TimePropertyContainer
     implements TimeProperty {
 
     //region -------------------- predefined containers --------------------
-    private static readonly __IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new TimePropertyContainer(true, null,);
 
-    private static readonly __IS_IN_ONLY_DAY_THEME_PROPERTY = new TimePropertyContainer(true, false,) as ExclusiveSMM2TimeProperty;
-    private static readonly __IS_IN_ONLY_NIGHT_THEME_PROPERTY = new TimePropertyContainer(false, true,) as ExclusiveSMM2TimeProperty;
+    static readonly #IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new TimePropertyContainer(true, null,);
 
-    private static readonly __IS_IN_BOTH_TIMES_PROPERTY = new TimePropertyContainer(true, true,) as ExclusiveSMM2TimeProperty;
-    private static readonly __IS_IN_NO_TIMES_PROPERTY = new TimePropertyContainer(false, false,);
+    static readonly #IS_IN_ONLY_DAY_THEME_PROPERTY = new TimePropertyContainer(true, false,) as ExclusiveSMM2TimeProperty;
+    static readonly #IS_IN_ONLY_NIGHT_THEME_PROPERTY = new TimePropertyContainer(false, true,) as ExclusiveSMM2TimeProperty;
+
+    static readonly #IS_IN_BOTH_TIMES_PROPERTY = new TimePropertyContainer(true, true,) as ExclusiveSMM2TimeProperty;
+    static readonly #IS_IN_NO_TIMES_PROPERTY = new TimePropertyContainer(false, false,);
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -72,15 +73,15 @@ export class TimePropertyContainer
         if (isInDayTheme)
             switch (isInNightTheme) {
                 case true:
-                    return TimePropertyContainer.__IS_IN_BOTH_TIMES_PROPERTY;
+                    return this.#IS_IN_BOTH_TIMES_PROPERTY;
                 case false:
-                    return TimePropertyContainer.__IS_IN_ONLY_DAY_THEME_PROPERTY;
+                    return this.#IS_IN_ONLY_DAY_THEME_PROPERTY;
                 case null:
-                    return TimePropertyContainer.__IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY;
+                    return this.#IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY;
             }
         if (isInNightTheme === true)
-            return TimePropertyContainer.__IS_IN_ONLY_NIGHT_THEME_PROPERTY;
-        return TimePropertyContainer.__IS_IN_NO_TIMES_PROPERTY;
+            return this.#IS_IN_ONLY_NIGHT_THEME_PROPERTY;
+        return this.#IS_IN_NO_TIMES_PROPERTY;
     }
 
     //endregion -------------------- Provider/Multiton method --------------------

@@ -77,10 +77,10 @@ export class Themes
 
     //endregion -------------------- enum instances --------------------
 
-    private static __COURSES: readonly Themes[];
+    static #COURSES: readonly Themes[];
     //region -------------------- Attributes --------------------
-    private static __WORLDS: readonly Themes[];
-    private static __VALUES: readonly Themes[];
+    static #WORLDS: readonly Themes[];
+    static #VALUES: readonly Themes[];
 
     #references?: [CourseTheme, WorldTheme];
     #courseTheme?: CourseTheme;
@@ -138,35 +138,31 @@ export class Themes
 
 
     public static get courseThemes(): readonly Themes[] {
-        return this.__COURSES === undefined
-            ? this.__COURSES = [
-                this.GROUND,
-                this.UNDERGROUND,
-                this.UNDERWATER,
-                this.DESERT,
-                this.SNOW,
-                this.SKY,
-                this.FOREST,
-                this.GHOST_HOUSE,
-                this.AIRSHIP,
-                this.CASTLE,
-            ]
-            : this.__COURSES;
+        return this.#COURSES ?? (this.#COURSES = [
+            this.GROUND,
+            this.UNDERGROUND,
+            this.UNDERWATER,
+            this.DESERT,
+            this.SNOW,
+            this.SKY,
+            this.FOREST,
+            this.GHOST_HOUSE,
+            this.AIRSHIP,
+            this.CASTLE,
+        ]);
     }
 
     public static get worldThemes(): readonly Themes[] {
-        return this.__WORLDS === undefined
-            ? this.__WORLDS = [
-                this.GROUND,
-                this.UNDERGROUND,
-                this.DESERT,
-                this.SNOW,
-                this.SKY,
-                this.FOREST,
-                this.VOLCANO,
-                this.SPACE,
-            ]
-            : this.__WORLDS;
+        return this.#WORLDS ?? (this.#WORLDS = [
+            this.GROUND,
+            this.UNDERGROUND,
+            this.DESERT,
+            this.SNOW,
+            this.SKY,
+            this.FOREST,
+            this.VOLCANO,
+            this.SPACE,
+        ]);
     }
 
     //endregion -------------------- Methods --------------------
@@ -182,7 +178,7 @@ export class Themes
     }
 
     public static get values(): readonly Themes[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.GROUND,
             this.UNDERGROUND,
             this.UNDERWATER,

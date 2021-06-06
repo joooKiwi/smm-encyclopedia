@@ -8,13 +8,13 @@ import {EntityCategory} from './EntityCategory';
 export class EmptyEntityCategory
     implements EntityCategory {
 
-    private static readonly instance = new EmptyEntityCategory();
+    static readonly #instance = new EmptyEntityCategory();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

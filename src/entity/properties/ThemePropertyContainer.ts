@@ -12,22 +12,22 @@ export class ThemePropertyContainer
 
     //region -------------------- predefined containers --------------------
 
-    private static readonly __IS_IN_NO_THEMES =                              new ThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
-    private static readonly __IS_IN_SMM1_THEMES =                            new ThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as ExclusiveSMM1ThemeProperty;
+    static readonly #IS_IN_NO_THEMES =                              new ThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
+    static readonly #IS_IN_SMM1_THEMES =                            new ThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as ExclusiveSMM1ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_GROUND_THEME =                 new ThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
-    private static readonly __IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new ThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_GROUND_THEME =                 new ThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new ThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new ThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as ExclusiveSMM2ThemeProperty;
-    private static readonly __IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new ThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new ThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new ThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_SNOW_THEME =                   new ThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
-    private static readonly __IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new ThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_SNOW_THEME =                   new ThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new ThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new ThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
-    private static readonly __IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new ThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new ThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new ThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
 
-    private static readonly __IS_IN_EVERY_THEMES =                           new ThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EVERY_THEMES =                           new ThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -109,32 +109,32 @@ export class ThemePropertyContainer
     public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: null | boolean, isInSnowTheme: null | boolean, isInSkyTheme: null | boolean, isInForestTheme: null | boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty {
         if (isInDesertTheme === null && isInSnowTheme === null && isInSkyTheme === null && isInForestTheme === null) {
             if (isInGroundTheme &&  isInUndergroundTheme &&  isInUnderwaterTheme &&  isInGhostHouseTheme &&  isInAirshipTheme &&  isInCastleTheme )
-                return this.__IS_IN_SMM1_THEMES;
+                return this.#IS_IN_SMM1_THEMES;
             if (!isInGroundTheme && !isInUndergroundTheme && !isInUnderwaterTheme && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-                return this.__IS_IN_NO_THEMES;
+                return this.#IS_IN_NO_THEMES;
         }
         if (isInGroundTheme  && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
-            return this.__IS_IN_EVERY_THEMES;
+            return this.#IS_IN_EVERY_THEMES;
 
         if (!isInGroundTheme && !isInUndergroundTheme && isInUnderwaterTheme  && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.__IS_IN_EXCLUSIVE_UNDERWATER_THEME;
+            return this.#IS_IN_EXCLUSIVE_UNDERWATER_THEME;
         if (isInGroundTheme  && isInUndergroundTheme  && !isInUnderwaterTheme && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
-            return this.__IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME;
+            return this.#IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME;
 
         if (!isInGroundTheme && !isInUndergroundTheme && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme === true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.__IS_IN_EXCLUSIVE_SNOW_THEME;
+            return this.#IS_IN_EXCLUSIVE_SNOW_THEME;
         if (isInGroundTheme  && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme !== true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  &&  isInAirshipTheme && isInCastleTheme )
-            return this.__IS_IN_NOT_EXCLUSIVE_SNOW_THEME;
+            return this.#IS_IN_NOT_EXCLUSIVE_SNOW_THEME;
 
         if (isInGroundTheme  && !isInUndergroundTheme && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.__IS_IN_EXCLUSIVE_GROUND_THEME;
+            return this.#IS_IN_EXCLUSIVE_GROUND_THEME;
         if (!isInGroundTheme && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
-            return this.__IS_IN_NOT_EXCLUSIVE_GROUND_THEME;
+            return this.#IS_IN_NOT_EXCLUSIVE_GROUND_THEME;
 
         if (!isInGroundTheme && isInUndergroundTheme  && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme === true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.__IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME;
+            return this.#IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME;
         if (!isInGroundTheme && !isInUndergroundTheme && isInUnderwaterTheme  && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme === true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.__IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME;
+            return this.#IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME;
 
         throw new EvalError(`No theme can be used with this theme selection (${isInGroundTheme}, ${isInUndergroundTheme}, ${isInUnderwaterTheme}, ${isInDesertTheme}, ${isInSnowTheme}, ${isInSkyTheme}, ${isInForestTheme}, ${isInGhostHouseTheme}, ${isInAirshipTheme}, ${isInCastleTheme}).`);
     }

@@ -8,13 +8,13 @@ import {Name}                                 from './Name';
 export class EmptyName
     implements Name {
 
-    private static readonly instance = new EmptyName();
+    static readonly #instance = new EmptyName();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

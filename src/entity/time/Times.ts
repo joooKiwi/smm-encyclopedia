@@ -28,7 +28,7 @@ export abstract class Times
 
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly Times[];
+    static #VALUES: readonly Times[];
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -61,7 +61,7 @@ export abstract class Times
     }
 
     public static get values(): readonly Times[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.DAY,
             this.NIGHT,
         ]);

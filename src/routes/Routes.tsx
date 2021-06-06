@@ -44,7 +44,7 @@ function DirectRoutes() {
     const params: { lang?: string } = useParams();
     const location = useLocation();
     if ('lang' in params && typeof params.lang === 'string') {
-        Languages.setCurrentLanguage(params.lang);
+        Languages.currentLanguage = params.lang;
         const currentLanguage = Languages.getValue(params.lang);
         if (currentLanguage != null)
             return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.acronym + route.path)?.renderCallback()

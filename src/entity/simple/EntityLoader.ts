@@ -154,7 +154,7 @@ export interface DebugEntityReferences {
 export class EntityLoader
     implements Loader<Map<string, DebugEntityReferences>> {
 
-    private static readonly instance = new EntityLoader();
+    static readonly #instance = new EntityLoader();
 
     //region ---------- external object references ----------
 
@@ -239,7 +239,7 @@ export class EntityLoader
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 
@@ -532,20 +532,20 @@ class ReferencesToWatch {
         ].filter(otherReference => otherReference !== null)
             .filter(otherReference => otherReference !== 'this')
             .filter(otherReference => !this.alreadyAddedName.includes(otherReference as string))
-            .forEach(otherReference => this._addReference(reference, otherReference as string));
+            .forEach(otherReference => this.__addReference(reference, otherReference as string));
     }
 
-    private _addReference(template: EntityTemplate, reference: string): void {
+    private __addReference(template: EntityTemplate, reference: string): void {
         if (reference.includes('/'))
             reference.split(' / ')
                 .filter(splitReference => splitReference !== 'this')
-                .forEach((splitReference, index) => this._addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
+                .forEach((splitReference, index) => this.__addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
         else
-            this._addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
+            this.__addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
         this.alreadyAddedName.push(reference);
     }
 
-    private _addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
+    private __addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
         this.references.push({
             reference: template,
             value: reference,

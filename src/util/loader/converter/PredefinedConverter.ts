@@ -118,7 +118,7 @@ export abstract class PredefinedConverter {
 
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES?: PredefinedConverter[];
+    static #VALUES?: PredefinedConverter[];
     //region -------------------- Attributes --------------------
 
     readonly #name;
@@ -185,7 +185,7 @@ export abstract class PredefinedConverter {
     }
 
     public static get values(): readonly PredefinedConverter[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,
             this.STRING, this.EMPTYABLE_STRING, this.NULLABLE_STRING,

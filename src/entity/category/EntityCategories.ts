@@ -22,7 +22,7 @@ export class EntityCategories {
 
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly EntityCategories[];
+    static #VALUES: readonly EntityCategories[];
     //region -------------------- Attributes --------------------
 
     #reference?: EntityCategory;
@@ -66,7 +66,7 @@ export class EntityCategories {
     }
 
     public static get values(): readonly EntityCategories[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.TERRAIN,
             this.ITEM,
             this.ENEMY,

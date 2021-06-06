@@ -10,13 +10,13 @@ import {GameStyle}              from './GameStyle';
 export class EmptyGameStyle
     implements GameStyle {
 
-    private static readonly instance = new EmptyGameStyle();
+    static readonly #instance = new EmptyGameStyle();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

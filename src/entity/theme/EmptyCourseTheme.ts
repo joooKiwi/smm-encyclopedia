@@ -10,13 +10,13 @@ import {EmptyName}              from '../../lang/name/EmptyName';
 export class EmptyCourseTheme
     implements CourseTheme {
 
-    private static readonly instance = new EmptyCourseTheme();
+    static readonly #instance = new EmptyCourseTheme();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

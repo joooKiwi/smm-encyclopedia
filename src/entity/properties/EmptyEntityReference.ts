@@ -9,13 +9,13 @@ import {EntityReferences} from './EntityReferences';
 export class EmptyEntityReference
     implements EntityReferences {
 
-    private static readonly instance = new EmptyEntityReference();
+    static readonly #instance = new EmptyEntityReference();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

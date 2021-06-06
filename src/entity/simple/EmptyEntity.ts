@@ -12,13 +12,13 @@ import {Entity}               from './Entity';
 export class EmptyEntity
     implements Entity {
 
-    private static readonly instance = new EmptyEntity();
+    static readonly #instance = new EmptyEntity();
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

@@ -151,7 +151,7 @@ export class EveryLanguages {
 
     //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly EveryLanguages[];
+    static #VALUES: readonly EveryLanguages[];
     //region -------------------- Attributes --------------------
     readonly #englishName: PossibleLanguagesEnglishName;
     readonly #originalName: PossibleLanguagesOriginalName;
@@ -233,7 +233,7 @@ export class EveryLanguages {
     public static setCurrentLanguage(value: EveryLanguages | Languages | string): void {
         const selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null && selectedLanguage.reference !== null)
-            Languages.setCurrentLanguage(selectedLanguage.reference);
+            Languages.currentLanguage = selectedLanguage.reference;
     }
 
     public static get defaultLanguage(): EveryLanguages {
@@ -247,7 +247,7 @@ export class EveryLanguages {
     public static setDefaultLanguage(value: EveryLanguages | Languages | string): void {
         const selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null && selectedLanguage.reference !== null)
-            Languages.setDefaultLanguage(selectedLanguage.reference);
+            Languages.defaultLanguage = selectedLanguage.reference;
     }
 
     //endregion -------------------- Methods --------------------
@@ -265,7 +265,7 @@ export class EveryLanguages {
     }
 
     public static get values(): readonly EveryLanguages[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.ENGLISH, this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.FRENCH, this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
             this.GERMAN,
