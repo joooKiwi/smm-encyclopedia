@@ -1,23 +1,28 @@
-import {Converter}                        from "./Converter";
-import {ConverterPatterns}                from "./ConverterPatterns";
-import {ConverterUtil}                    from "./ConverterUtil";
-import {StringToBooleanConverter}         from "./StringToBooleanConverter";
-import {StringToEmptyableStringConverter} from "./StringToEmptyableStringConverter";
-import {StringToNullableNumberConverter}  from "./StringToNullableNumberConverter";
-import {StringToNullableBooleanConverter} from "./StringToNullableBooleanConverter";
-import {StringToNullableStringConverter}  from "./StringToNullableStringConverter";
-import {StringToNumberConverter}          from "./StringToNumberConverter";
-import {StringToStringConverter}          from "./StringToStringConverter";
+import {Converter}                        from './Converter';
+import {ConverterPatterns}                from './ConverterPatterns';
+import {ConverterUtil}                    from './ConverterUtil';
+import {StringToBooleanConverter}         from './StringToBooleanConverter';
+import {StringToEmptyableStringConverter} from './StringToEmptyableStringConverter';
+import {StringToNullableNumberConverter}  from './StringToNullableNumberConverter';
+import {StringToNullableBooleanConverter} from './StringToNullableBooleanConverter';
+import {StringToNullableStringConverter}  from './StringToNullableStringConverter';
+import {StringToNumberConverter}          from './StringToNumberConverter';
+import {StringToStringConverter}          from './StringToStringConverter';
 
+//region -------------------- converter texts --------------------
 
 export type PrimitiveConversion = 'boolean' | 'number' | 'string';
 export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
 export type PredefinedConversion = NullablePredefinedConversion | PrimitiveConversion | 'emptyable string';
 
+//endregion -------------------- converter texts --------------------
+
 /**
  * @enum
  */
 export abstract class PredefinedConverter {
+
+    //region -------------------- enum instances --------------------
 
     public static readonly NUMBER = new class extends PredefinedConverter {
         public newStringToConvertor(value: string): Converter<string, any> {
@@ -111,13 +116,18 @@ export abstract class PredefinedConverter {
         }
     }('nullable string', 'string');
 
+    //endregion -------------------- enum instances --------------------
 
-    private static VALUES?: PredefinedConverter[];
+    static #VALUES?: PredefinedConverter[];
+    //region -------------------- Attributes --------------------
+
     readonly #name;
     readonly #nameAsNonNullable;
     readonly #parent: () => PredefinedConverter;
     readonly #callbackToCreateNewValidationAsNonNullable: () => (value: string) => boolean;
     readonly #callbackToCreateNewConversionAsNonNullable: () => (value: string) => any;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor(name: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable: PrimitiveConversion)
@@ -135,6 +145,7 @@ export abstract class PredefinedConverter {
         }
     }
 
+    //region -------------------- Methods --------------------
 
     public get name() {
         return this.#name;
@@ -163,7 +174,7 @@ export abstract class PredefinedConverter {
         return this.#callbackToCreateNewConversionAsNonNullable()(value);
     }
 
-
+    //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------
 
     public static getValue(value: PredefinedConversion): PredefinedConverter
@@ -174,11 +185,16 @@ export abstract class PredefinedConverter {
     }
 
     public static get values(): readonly PredefinedConverter[] {
-        return this.VALUES ?? (this.VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,
             this.STRING, this.EMPTYABLE_STRING, this.NULLABLE_STRING,
         ]);
+    }
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
     }
 
     //endregion -------------------- enum methods --------------------

@@ -6,7 +6,9 @@ import ContentTranslationComponent from '../../../lang/components/ContentTransla
 
 export interface YesOrNoTextContent
     extends ContentTranslationElement {
+
     boolean: boolean
+
 }
 
 /**

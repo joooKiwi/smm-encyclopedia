@@ -1,5 +1,6 @@
-import {EntityReferences} from './EntityReferences';
+import {EMPTY_ARRAY}      from '../../util/emptyVariables';
 import {EmptyEntity}      from '../simple/EmptyEntity';
+import {EntityReferences} from './EntityReferences';
 
 /**
  * @nullObjectPattern
@@ -8,12 +9,17 @@ import {EmptyEntity}      from '../simple/EmptyEntity';
 export class EmptyEntityReference
     implements EntityReferences {
 
-    private static readonly instance = new EmptyEntityReference();
-    public static readonly EMPTY_ARRAY = [];
+    static readonly #instance = new EmptyEntityReference();
 
     private constructor() {
     }
 
+    public static get get() {
+        return this.#instance;
+    }
+
+
+    //region -------------------- References methods --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return EmptyEntity.get;
@@ -87,15 +93,13 @@ export class EmptyEntityReference
 
 
     public get everyReferences() {
-        return EmptyEntityReference.EMPTY_ARRAY;
+        return EMPTY_ARRAY;
     }
 
-
-    public static get get() {
-        return this.instance;
-    }
+    //endregion -------------------- References methods --------------------
 
     public toString(): 'Empty entity reference' {
         return 'Empty entity reference';
     }
+
 }

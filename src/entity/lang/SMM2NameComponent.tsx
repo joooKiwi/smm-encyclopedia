@@ -8,9 +8,11 @@ import {Name}                                 from '../../lang/name/Name';
 
 interface SMM2NameProperty
     extends ContentAndLanguageTranslationElement {
+
     popoverOrientation?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
     id: string
     name: Name
+
 }
 
 class SMM2NameComponent

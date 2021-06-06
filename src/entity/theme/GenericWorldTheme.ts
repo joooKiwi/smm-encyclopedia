@@ -1,6 +1,6 @@
 import {AbstractTheme}             from './AbstractTheme';
-import {IsInGamePropertyContainer} from '../properties/IsInGamePropertyContainer';
-import {IsInOnlySMM2GameProperty}  from '../properties/IsInOnlySMM2GameProperty';
+import {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
+import {GamePropertyContainer}     from '../properties/GamePropertyContainer';
 import {Name}                      from '../../lang/name/Name';
 import {WorldTheme}                from './WorldTheme';
 
@@ -9,12 +9,14 @@ export class GenericWorldTheme
     implements WorldTheme {
 
     public constructor(name: Name) {
-        super(name, IsInGamePropertyContainer.get(false, true));
+        super(name, GamePropertyContainer.get(false, true,));
     }
 
 
+    //region -------------------- Game properties --------------------
+
     public get isInProperty() {
-        return super.isInProperty as IsInOnlySMM2GameProperty;
+        return super.isInProperty as ExclusiveSMM2GameProperty;
     }
 
     public get isInSuperMarioMaker1(): false {
@@ -25,6 +27,7 @@ export class GenericWorldTheme
         return true;
     }
 
+    //endregion -------------------- Game properties --------------------
 
     public toNameMap() {
         return this.name.toNameMap();

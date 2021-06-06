@@ -1,7 +1,9 @@
-import {Component} from "react";
+import {Component} from 'react';
 
 export interface TextContent {
+
     content: string
+
 }
 
 export default class TextContainer

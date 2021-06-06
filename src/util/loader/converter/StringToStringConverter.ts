@@ -1,12 +1,12 @@
-import {AbstractStringConverter} from "./AbstractStringConverter";
+import {AbstractStringConverter} from './AbstractStringConverter';
 
 export class StringToStringConverter
     extends AbstractStringConverter<string> {
 
-
     public constructor(originalValue: string) {
         super(originalValue);
     }
+
 
     protected _convertTheValue(validValue: string): string {
         return validValue;
@@ -20,6 +20,5 @@ export class StringToStringConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a string`);
     }
-
 
 }

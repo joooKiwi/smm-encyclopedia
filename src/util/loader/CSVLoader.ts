@@ -9,6 +9,8 @@ type HeaderTypeOrConvertor = PredefinedConversion
 
 export class CSVLoader<T extends any[], U> {
 
+    //region -------------------- Attributes --------------------
+
     public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'emptyable string';
 
     readonly #originalContent;
@@ -22,6 +24,8 @@ export class CSVLoader<T extends any[], U> {
     #callbackOnInitialisationEnd?: (finalContents: U[], convertedContents: T[], originalContents: string[][],) => void;
     #defaultConversion?: PredefinedConversion;
 
+    //endregion -------------------- Attributes --------------------
+
     public constructor(originalContent: string[][], callbackToCreateObject: (convertedContent: T) => U) {
         this.#originalContent = originalContent;
         this.#headersToConvert = new Map<string, HeaderTypeOrConvertor>();
@@ -29,6 +33,7 @@ export class CSVLoader<T extends any[], U> {
         this.#content = [] as U[];
         this.#callbackToCreateObject = callbackToCreateObject;
     }
+
 
     //region -------------------- getter and setter and direct use on private members methods --------------------
 
@@ -117,7 +122,6 @@ export class CSVLoader<T extends any[], U> {
     //endregion -------------------- default values methods --------------------
 
     //endregion -------------------- getter and setter and direct use on private members methods --------------------
-
     //region -------------------- convertor usage methods --------------------
 
     public convertToBoolean(...headers: string[]): this {
@@ -197,7 +201,6 @@ export class CSVLoader<T extends any[], U> {
     }
 
     //endregion -------------------- convertor usage methods --------------------
-
     //region -------------------- initialisation methods --------------------
 
     protected _initialiseContent(): this {

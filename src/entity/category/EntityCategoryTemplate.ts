@@ -1,5 +1,5 @@
-import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 import {EntityTemplate}   from '../simple/EntityTemplate';
+import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 
 export interface EntityCategoryTemplate {
 

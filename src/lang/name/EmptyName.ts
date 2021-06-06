@@ -1,4 +1,5 @@
-import {Name} from './Name';
+import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
+import {Name}                                 from './Name';
 
 /**
  * @nullObjectPattern
@@ -7,63 +8,64 @@ import {Name} from './Name';
 export class EmptyName
     implements Name {
 
-    private static readonly instance = new EmptyName();
-    public static readonly EMPTY_STRING = '';
-    public static readonly EMPTY_ARRAY = [];
-    public static readonly EMPTY_MAP = new Map();
+    static readonly #instance = new EmptyName();
 
     private constructor() {
     }
 
-
-    public readonly languageValue = EmptyName.EMPTY_STRING;
-
-
-    public readonly originalEnglish = EmptyName.EMPTY_STRING;
-    public readonly english = EmptyName.EMPTY_STRING;
-    public readonly americanEnglish = EmptyName.EMPTY_STRING;
-    public readonly europeanEnglish = EmptyName.EMPTY_STRING;
-
-    public readonly german = EmptyName.EMPTY_STRING;
-
-    public readonly originalFrench = EmptyName.EMPTY_STRING;
-    public readonly french = EmptyName.EMPTY_STRING;
-    public readonly canadianFrench = EmptyName.EMPTY_STRING;
-    public readonly europeanFrench = EmptyName.EMPTY_STRING;
-
-    public readonly originalSpanish = EmptyName.EMPTY_STRING;
-    public readonly spanish = EmptyName.EMPTY_STRING;
-    public readonly americanSpanish = EmptyName.EMPTY_STRING;
-    public readonly europeanSpanish = EmptyName.EMPTY_STRING;
-
-    public readonly italian = EmptyName.EMPTY_STRING;
-
-    public readonly dutch = EmptyName.EMPTY_STRING;
-
-    public readonly originalPortuguese = EmptyName.EMPTY_STRING;
-    public readonly portuguese = EmptyName.EMPTY_STRING;
-    public readonly americanPortuguese = EmptyName.EMPTY_STRING;
-    public readonly europeanPortuguese = EmptyName.EMPTY_STRING;
-
-    public readonly russian = EmptyName.EMPTY_STRING;
-
-    public readonly japanese = EmptyName.EMPTY_STRING;
-
-    public readonly originalChinese = EmptyName.EMPTY_STRING;
-    public readonly chinese = EmptyName.EMPTY_STRING;
-    public readonly simplifiedChinese = EmptyName.EMPTY_STRING;
-    public readonly traditionalChinese = EmptyName.EMPTY_STRING;
-
-    public readonly korean = EmptyName.EMPTY_STRING;
-
-    public readonly individualValues = EmptyName.EMPTY_ARRAY;
-
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
+
+    //region -------------------- Name properties --------------------
+
+    public readonly languageValue = EMPTY_STRING;
+
+
+    public readonly originalEnglish = EMPTY_STRING;
+    public readonly english = EMPTY_STRING;
+    public readonly americanEnglish = EMPTY_STRING;
+    public readonly europeanEnglish = EMPTY_STRING;
+
+    public readonly german = EMPTY_STRING;
+
+    public readonly originalFrench = EMPTY_STRING;
+    public readonly french = EMPTY_STRING;
+    public readonly canadianFrench = EMPTY_STRING;
+    public readonly europeanFrench = EMPTY_STRING;
+
+    public readonly originalSpanish = EMPTY_STRING;
+    public readonly spanish = EMPTY_STRING;
+    public readonly americanSpanish = EMPTY_STRING;
+    public readonly europeanSpanish = EMPTY_STRING;
+
+    public readonly italian = EMPTY_STRING;
+
+    public readonly dutch = EMPTY_STRING;
+
+    public readonly originalPortuguese = EMPTY_STRING;
+    public readonly portuguese = EMPTY_STRING;
+    public readonly americanPortuguese = EMPTY_STRING;
+    public readonly europeanPortuguese = EMPTY_STRING;
+
+    public readonly russian = EMPTY_STRING;
+
+    public readonly japanese = EMPTY_STRING;
+
+    public readonly originalChinese = EMPTY_STRING;
+    public readonly chinese = EMPTY_STRING;
+    public readonly simplifiedChinese = EMPTY_STRING;
+    public readonly traditionalChinese = EMPTY_STRING;
+
+    public readonly korean = EMPTY_STRING;
+
+    public readonly individualValues = EMPTY_ARRAY;
+
+    //endregion -------------------- Name properties --------------------
+
     public toNameMap() {
-        return EmptyName.EMPTY_MAP;
+        return EMPTY_MAP;
     }
 
     public toString(): 'Empty name' {

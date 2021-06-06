@@ -21,5 +21,4 @@ export class GenericSingleInstanceBuilder<T>
         return this.#callbackCallerForBuilder.get;
     }
 
-
 }

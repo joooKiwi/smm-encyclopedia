@@ -1,0 +1,44 @@
+import {withTranslation} from 'react-i18next';
+import React             from 'react';
+
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
+import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
+import {GameProperty}                  from '../properties/GameProperty';
+import {Games}                         from './Games';
+import {Name}                          from '../../lang/name/Name';
+
+export interface GameElement
+    extends GameContentTranslationElement {
+
+    reference: GameProperty
+
+    name: Name
+
+}
+
+class GameComponent
+    extends GameContentTranslationComponent<GameElement> {
+
+    protected get reference() {
+        return this.props.reference;
+    }
+
+    protected get name() {
+        return this.props.name;
+    }
+
+    private __createGameImage(game: Games): JSX.Element {
+        return <img key={`${this.name.english} - ${game.englishName}`} src={game.imagePath} alt={game.englishName} className="game_image"/>;
+    }
+
+    public render(): JSX.Element {
+        return this.reference.isInSuperMarioMaker1 && this.reference.isInSuperMarioMaker2
+            ? <span>{this.translation('Every games')}</span>
+            : this.reference.isInSuperMarioMaker1
+                ? this.__createGameImage(Games.SUPER_MARIO_MAKER_1)
+                : this.__createGameImage(Games.SUPER_MARIO_MAKER_2);
+    }
+
+}
+
+export default withTranslation('gameContent')(GameComponent);

@@ -8,10 +8,10 @@ export class ChineseLanguageContainer
     readonly #original;
 
     public constructor(value: string)
-    public constructor(simplified: string, traditional: string)
-    public constructor(valueOrSimplified: string, traditional?: string) {
-        super(traditional === undefined ? valueOrSimplified : [['simplified', valueOrSimplified], ['traditional', traditional],]);
-        this.#original = traditional === undefined ? valueOrSimplified : [valueOrSimplified, traditional] as ChineseOriginal;
+    public constructor(simplified: string, traditional: string,)
+    public constructor(valueOrSimplified: string, traditional?: string,) {
+        super(traditional === undefined ? valueOrSimplified : [['simplified', valueOrSimplified,], ['traditional', traditional,],]);
+        this.#original = traditional === undefined ? valueOrSimplified : [valueOrSimplified, traditional,] as ChineseOriginal;
     }
 
     public get original() {

@@ -7,10 +7,10 @@ import {DebugEntityReferences, EntityLoader} from '../simple/EntityLoader';
 import {EmptyCourseTheme}                    from './EmptyCourseTheme';
 import {EmptyWorldTheme}                     from './EmptyWorldTheme';
 import {Entity}                              from '../simple/Entity';
-import {IsInGamePropertyContainer}           from '../properties/IsInGamePropertyContainer';
-import {Loader}                              from '../../util/Loader';
-import {GenericWorldTheme}                   from './GenericWorldTheme';
+import {GamePropertyContainer}               from '../properties/GamePropertyContainer';
 import {GenericCourseTheme}                  from './GenericCourseTheme';
+import {GenericWorldTheme}                   from './GenericWorldTheme';
+import {Loader}                              from '../../util/Loader';
 import {Name}                                from '../../lang/name/Name';
 import {NameBuilder}                         from '../lang/NameBuilder';
 import {NameCreator}                         from '../lang/NameCreator';
@@ -69,10 +69,14 @@ type ThemePropertiesArray = [
 export class ThemeLoader
     implements Loader<Map<string, [CourseTheme, WorldTheme]>> {
 
-    private static readonly instance = new ThemeLoader();
+    static readonly #instance = new ThemeLoader();
+
+    //region ---------- external object references ----------
 
     readonly #entitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
-    readonly #everyThemeMap: CallbackCaller<Map<string, [CourseTheme, WorldTheme]>>
+    readonly #everyThemeMap: CallbackCaller<Map<string, [CourseTheme, WorldTheme]>>;
+
+    //endregion ---------- external object references ----------
 
     private constructor() {
         this.#entitiesMap = new CallbackCaller(() => EntityLoader.get.load());
@@ -105,6 +109,11 @@ export class ThemeLoader
         });
     }
 
+    public static get get() {
+        return this.#instance;
+    }
+
+
     private __createReference(template: ThemeTemplate, name: Name,): [CourseTheme, WorldTheme,] {
         const isInCourseTheme = template.isIn.theme.course;
         const isInWorldTheme = template.isIn.theme.world;
@@ -119,7 +128,7 @@ export class ThemeLoader
     private __createCourseTheme(template: ThemeTemplate, name: Name,): CourseTheme {
         return new GenericCourseTheme(
             name,
-            IsInGamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2']),
+            GamePropertyContainer.get(template.isIn.game['1'], template.isIn.game['2'],),
             () => this.whereEntityIs(name.english),
         );
     }
@@ -133,16 +142,12 @@ export class ThemeLoader
         if (theme === null)
             throw new ReferenceError(`The english name "${englishName}" has no reference on the Themes class.`);
         const everyEntities = [] as Entity[];
-        for (const [, reference] of this.entities.entries())
-            if (reference.entity !== undefined && theme.isEntityOnTheme(reference.entity))
-                everyEntities.push(reference.entity);
+        for (const [, {entity}] of this.entities.entries())
+            if (entity !== undefined && theme.get(entity))
+                everyEntities.push(entity);
         return everyEntities;
     }
 
-
-    public static get get() {
-        return this.instance;
-    }
 
     public load() {
         return this.#everyThemeMap.get;

@@ -3,9 +3,11 @@ import {Component} from 'react';
 import BooleanTextContainer from './BooleanTextContainer';
 
 export interface BooleanTextContent {
+
     boolean: boolean
     trueValue: string
     falseValue: string
+
 }
 
 /**

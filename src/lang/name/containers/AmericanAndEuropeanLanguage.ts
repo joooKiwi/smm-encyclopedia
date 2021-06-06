@@ -1,7 +1,7 @@
 import {PluralLanguage} from './PluralLanguage';
 
-export type AmericanOrEuropeanReference = 'american' | 'european';
-export type AmericanOrEuropeanOriginal = string | readonly [american: string, european: string];
+export type AmericanOrEuropeanReference = | 'american' | 'european';
+export type AmericanOrEuropeanOriginal = | string | readonly [american: string, european: string,];
 
 export interface AmericanAndEuropeanLanguage
     extends PluralLanguage<AmericanOrEuropeanReference> {

@@ -1,14 +1,21 @@
-import {Converter} from "./Converter";
+import {Converter} from './Converter';
 
 export abstract class AbstractStringConverter<T>
     implements Converter<string, T> {
 
+    //region -------------------- Attributes --------------------
+
     readonly #originalValue;
-    #convertedValue!: T;
+    #convertedValue?: T;
+
+    //endregion -------------------- Attributes --------------------
 
     protected constructor(originalValue: string) {
         this.#originalValue = originalValue;
     }
+
+
+    //region -------------------- Getter --------------------
 
     public get convertedValue(): T {
         return this.#convertedValue ?? (this.#convertedValue = this.convertTheValue(this.originalValue));
@@ -17,6 +24,8 @@ export abstract class AbstractStringConverter<T>
     public get originalValue() {
         return this.#originalValue;
     }
+
+    //endregion -------------------- Getter --------------------
 
     public convertTheValue(value: string): T {
         if (this.isValueValid(value))
@@ -29,6 +38,5 @@ export abstract class AbstractStringConverter<T>
     public abstract isValueValid(value: string): boolean;
 
     protected abstract _newError(): TypeError;
-
 
 }

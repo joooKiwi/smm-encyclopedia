@@ -1,14 +1,14 @@
 import {AbstractEntity}   from './AbstractEntity';
-import {IsInProperty}     from '../properties/IsInProperty';
 import {EntityReferences} from '../properties/EntityReferences';
 import {EntityCategory}   from '../category/EntityCategory';
 import {Name}             from '../../lang/name/Name';
+import {Property}         from '../properties/Property';
 
-export class GenericEntity
-    extends AbstractEntity {
+export class GenericEntity<T extends Property = Property>
+    extends AbstractEntity<T> {
 
-    public constructor(name: Name, category: EntityCategory, isInProperty: IsInProperty, references: EntityReferences,) {
-        super(name, category, isInProperty, references,);
+    public constructor(name: Name, category: EntityCategory, property: T, references: EntityReferences,) {
+        super(name, category, property, references,);
     }
 
 }

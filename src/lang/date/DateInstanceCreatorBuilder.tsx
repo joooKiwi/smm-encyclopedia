@@ -1,7 +1,7 @@
-import {DateInstanceCreator, DayNumber, MonthNumber} from "./DateInstanceCreator";
-import {DayMonthYearDateInstanceCreator}             from "./DayMonthYearDateInstanceCreator";
-import {YearMonthDayDateInstanceCreator}             from "./YearMonthDayDateInstanceCreator";
-import {MonthDayYearDateInstanceCreator}             from "./MonthDayYearDateInstanceCreator";
+import {DateInstanceCreator, DayNumber, MonthNumber} from './DateInstanceCreator';
+import {DayMonthYearDateInstanceCreator}             from './DayMonthYearDateInstanceCreator';
+import {YearMonthDayDateInstanceCreator}             from './YearMonthDayDateInstanceCreator';
+import {MonthDayYearDateInstanceCreator}             from './MonthDayYearDateInstanceCreator';
 
 export type PossibleDateInstanceCreatorType = | 'day,month,year' | 'month,day,year' | 'year,month,day';
 export type PossibleDayCallbackType = | 'number' | 'firstAfterHover' | 'firstBefore' | 'firstReplace' | 'beforeText' | 'afterText' | 'custom';
@@ -10,6 +10,7 @@ export type PossibleYearCallbackType = | 'number' | 'afterText' | 'custom';
 
 export class DateInstanceCreatorBuilder {
 
+    //region -------------------- Attributes --------------------
     // static readonly DEFAULT_DAY_CALLBACK_TYPE: PossibleDayCallbackType = 'number';
     // static readonly DEFAULT_MONTH_CALLBACK_TYPE: PossibleMonthCallbackType = 'number';
     // static readonly DEFAULT_YEAR_CALLBACK_TYPE: PossibleYearCallbackType = 'number';
@@ -26,6 +27,8 @@ export class DateInstanceCreatorBuilder {
     #monthCallback!: (month: MonthNumber) => JSX.Element;
     #yearCallback!: (year: number) => JSX.Element;
 
+    //endregion -------------------- Attributes --------------------
+
     public constructor(order: 'day,month,year', textBetweenDayAndMonth: string, textBetweenMonthAndYear: string)
     public constructor(order: 'month,day,year', textBetweenMonthAndDay: string, textBetweenDayAndYear: string)
     public constructor(order: 'year,month,day', textBetweenYearAndMonth: string, textBetweenMonthAndDay: string)
@@ -38,6 +41,7 @@ export class DateInstanceCreatorBuilder {
         this.#yearCallbackType = 'number';
         this.setDays('number').setMonths('number').setYears('number');
     }
+
 
     protected get dayCallback() {
         return this.#dayCallback;
@@ -60,41 +64,41 @@ export class DateInstanceCreatorBuilder {
     public setDays(type: 'custom', callback: (day: DayNumber) => JSX.Element): this
     public setDays(type: PossibleDayCallbackType, textOrCallback?: string | ((day: DayNumber) => JSX.Element)): this {
         switch (type) {
-            case "number":
+            case 'number':
                 this.#dayCallback = day => <>{day}</>;
                 break;
-            case "firstAfterHover":
+            case 'firstAfterHover':
                 if (typeof textOrCallback !== 'string')
                     throw new EvalError('The after text type is not of type "string"');
                 this.#dayCallback = day => day === 1
                     ? <>{day}<sup>{textOrCallback}</sup></>
                     : <>{day}</>;
                 break;
-            case "firstBefore":
+            case 'firstBefore':
                 if (typeof textOrCallback !== 'string')
                     throw new EvalError('The before text type is not of type "string"');
                 this.#dayCallback = day => day === 1
                     ? <>{textOrCallback}{day}</>
                     : <>{day}</>;
                 break;
-            case "firstReplace":
+            case 'firstReplace':
                 if (typeof textOrCallback !== 'string')
                     throw new EvalError('The replace text type is not of type "string"');
                 this.#dayCallback = day => day === 1
                     ? <>{textOrCallback}</>
                     : <>{day}</>;
                 break;
-            case "beforeText":
+            case 'beforeText':
                 if (typeof textOrCallback !== 'string')
                     throw new EvalError('The before text type is not of type "string"');
                 this.#dayCallback = day => <>{textOrCallback}{day}</>;
                 break;
-            case "afterText":
+            case 'afterText':
                 if (typeof textOrCallback !== 'string')
                     throw new EvalError('The after text type is not of type "string"');
                 this.#dayCallback = day => <>{day}{textOrCallback}</>;
                 break;
-            case "custom":
+            case 'custom':
                 if (typeof textOrCallback !== 'function')
                     throw new EvalError('The callback type is not of type "function"');
                 this.#dayCallback = textOrCallback;
@@ -110,20 +114,20 @@ export class DateInstanceCreatorBuilder {
     public setMonths(type: 'custom', callback: (month: MonthNumber) => JSX.Element): this
     public setMonths(type: PossibleMonthCallbackType, monthsOrTextOrCallback?: [string, string, string, string, string, string, string, string, string, string, string, string,] | string | ((month: MonthNumber) => JSX.Element)): this {
         switch (type) {
-            case "number":
+            case 'number':
                 this.#monthCallback = month => <>{month}</>;
                 break;
-            case "array":
+            case 'array':
                 if (!(monthsOrTextOrCallback instanceof Array))
                     throw new EvalError('The months type is not of type "array"');
                 this.#monthCallback = month => <>{monthsOrTextOrCallback[month - 1]}</>;
                 break;
-            case "afterText":
+            case 'afterText':
                 if (typeof monthsOrTextOrCallback !== 'string')
                     throw new EvalError('The after text type is not of type "string"');
                 this.#monthCallback = month => <>{month}{monthsOrTextOrCallback}</>;
                 break;
-            case "custom":
+            case 'custom':
                 if (typeof monthsOrTextOrCallback !== 'function')
                     throw new EvalError('The callback type is not of type "function"');
                 this.#monthCallback = monthsOrTextOrCallback;
@@ -139,15 +143,15 @@ export class DateInstanceCreatorBuilder {
     public setYears(type: 'custom', callback: (year: number) => JSX.Element): this
     public setYears(type: PossibleYearCallbackType, textOrCallback?: string | ((year: number) => JSX.Element)): this {
         switch (type) {
-            case "number":
+            case 'number':
                 this.#yearCallback = year => <>{year}</>;
                 break;
-            case "afterText":
+            case 'afterText':
                 if (typeof textOrCallback !== 'string')
                     throw new EvalError('The after text type is not of type "string"');
                 this.#yearCallback = year => <>{year}{textOrCallback}</>;
                 break;
-            case "custom":
+            case 'custom':
                 if (typeof textOrCallback !== 'function')
                     throw new EvalError('The callback type is not of type "function"');
                 this.#yearCallback = textOrCallback;

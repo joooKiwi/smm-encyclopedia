@@ -3,19 +3,23 @@ import {Component, ReactNode} from 'react';
 export type SingleTableContent = [key: string, ...content: JSX.Element[]];
 
 export interface SimpleImageHeader {
+
     key: string
     /**
      * The name if the image cannot be loaded.
      */
     alt: string
     path: string
+
 }
 
 export interface SimpleTableComponent {
+
     id: string
     caption: string
     headers: readonly (string | SimpleImageHeader)[]
     content: readonly SingleTableContent[]
+
 }
 
 export default class Table

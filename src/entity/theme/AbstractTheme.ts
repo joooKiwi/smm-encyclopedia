@@ -1,14 +1,18 @@
-import {IsInGameProperty} from '../properties/IsInGameProperty';
-import {Name}             from '../../lang/name/Name';
+import {GameProperty} from '../properties/GameProperty';
+import {Name}         from '../../lang/name/Name';
 import {Theme}            from './Theme';
 
 export class AbstractTheme
     implements Theme {
 
+    //region -------------------- Attributes --------------------
+
     readonly #name;
     readonly #isInProperty;
 
-    protected constructor(name: Name, isInProperty: IsInGameProperty) {
+    //endregion -------------------- Attributes --------------------
+
+    protected constructor(name: Name, isInProperty: GameProperty) {
         this.#name = name;
         this.#isInProperty = isInProperty;
     }
@@ -145,7 +149,7 @@ export class AbstractTheme
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Is in game properties --------------------
+    //region -------------------- Game properties --------------------
 
     public get isInProperty() {
         return this.#isInProperty;
@@ -159,7 +163,7 @@ export class AbstractTheme
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
-    //endregion -------------------- Is in game properties --------------------
+    //endregion -------------------- Game properties --------------------
 
     public toNameMap() {
         return this.name.toNameMap();

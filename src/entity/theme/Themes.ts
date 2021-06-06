@@ -1,83 +1,94 @@
-import {CourseTheme} from './CourseTheme';
-import {Entity}      from '../simple/Entity';
-import {ThemeLoader} from './ThemeLoader';
-import {WorldTheme}  from './WorldTheme';
+import {CourseTheme}                 from './CourseTheme';
+import {PropertyGetterWithReference} from '../PropertyGetter';
+import {ThemeLoader}                 from './ThemeLoader';
+import {ThemeProperty}               from '../properties/ThemeProperty';
+import {WorldTheme}                  from './WorldTheme';
+
+//region -------------------- themes texts --------------------
 
 type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
 export type PossibleWorldTheme = | ThemesInBothCourseAndWorld | 'Volcano' | 'Space';
 export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
 
+//endregion -------------------- themes texts --------------------
 
 /**
  * @enum
  */
-export abstract class Themes {
+export class Themes
+    implements PropertyGetterWithReference<PossibleTheme, ThemeProperty, [CourseTheme, WorldTheme]> {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly GROUND = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInGroundTheme;
+        public _get(property: ThemeProperty): boolean {
+            return property.isInGroundTheme;
         }
     }('Ground');
     public static readonly UNDERGROUND = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInUndergroundTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInUndergroundTheme;
         }
     }('Underground');
     public static readonly UNDERWATER = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInUnderwaterTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInUnderwaterTheme;
         }
     }('Underwater');
     public static readonly DESERT = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInDesertTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInDesertTheme;
         }
     }('Desert');
     public static readonly SNOW = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInSnowTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInSnowTheme;
         }
     }('Snow');
     public static readonly SKY = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInSkyTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInSkyTheme;
         }
     }('Sky');
     public static readonly FOREST = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInForestTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInForestTheme;
         }
     }('Forest');
     public static readonly GHOST_HOUSE = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInGhostHouseTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInGhostHouseTheme;
         }
     }('Ghost House');
     public static readonly AIRSHIP = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInAirshipTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInAirshipTheme;
         }
     }('Airship');
     public static readonly CASTLE = new class extends Themes {
-        public _isEntityOnTheme(entity: Entity): boolean | null {
-            return entity.isInCastleTheme;
+        public _get(property: ThemeProperty): boolean | null {
+            return property.isInCastleTheme;
         }
     }('Castle', 'Castle - Volcano');
 
-    public static readonly VOLCANO = new class extends Themes {
-    }('Volcano', 'Castle - Volcano');
-    public static readonly SPACE = new class extends Themes {
-    }('Space');
+    public static readonly VOLCANO = new Themes('Volcano', 'Castle - Volcano');
+    public static readonly SPACE = new Themes('Space');
 
-    private static __COURSES: readonly Themes[];
-    private static __WORLDS: readonly Themes[];
-    private static __VALUES: readonly Themes[];
+    //endregion -------------------- enum instances --------------------
+
+    static #COURSES: readonly Themes[];
+    //region -------------------- Attributes --------------------
+    static #WORLDS: readonly Themes[];
+    static #VALUES: readonly Themes[];
 
     #references?: [CourseTheme, WorldTheme];
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName;
     readonly #imagePath;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor(englishNameAndImagePath: PossibleTheme)
     private constructor(englishName: PossibleTheme, basicImagePath: string)
@@ -86,20 +97,23 @@ export abstract class Themes {
         this.#imagePath = '/game/themes/' + basicImagePath;
     }
 
+
+    //region -------------------- Methods --------------------
+
     public get englishName() {
         return this.#englishName;
     }
 
-    protected _isEntityOnTheme(entity: Entity): boolean | null {
+    protected _get(property: ThemeProperty): boolean | null {
         return false;
     }
 
-    public isEntityOnTheme(entity: Entity): boolean {
-        return this._isEntityOnTheme(entity) ?? false;
+    public get(property: ThemeProperty): boolean {
+        return this._get(property) ?? false;
     }
 
     public get references() {
-        return this.#references ?? (this.#references = this.#references = ThemeLoader.get.load().get(this.englishName)!);
+        return this.#references ?? (this.#references = ThemeLoader.get.load().get(this.englishName)!);
     }
 
     public get courseTheme() {
@@ -119,41 +133,40 @@ export abstract class Themes {
     }
 
     public get longImagePath() {
-        return this.imagePath + ' (long).jpg';
+        return this.imagePath + ' (large).jpg';
     }
 
 
     public static get courseThemes(): readonly Themes[] {
-        return this.__COURSES === undefined
-            ? this.__COURSES = [
-                this.GROUND,
-                this.UNDERGROUND,
-                this.UNDERWATER,
-                this.DESERT,
-                this.SNOW,
-                this.SKY,
-                this.FOREST,
-                this.GHOST_HOUSE,
-                this.AIRSHIP,
-                this.CASTLE,
-            ]
-            : this.__COURSES;
+        return this.#COURSES ?? (this.#COURSES = [
+            this.GROUND,
+            this.UNDERGROUND,
+            this.UNDERWATER,
+            this.DESERT,
+            this.SNOW,
+            this.SKY,
+            this.FOREST,
+            this.GHOST_HOUSE,
+            this.AIRSHIP,
+            this.CASTLE,
+        ]);
     }
 
     public static get worldThemes(): readonly Themes[] {
-        return this.__WORLDS === undefined
-            ? this.__WORLDS = [
-                this.GROUND,
-                this.UNDERGROUND,
-                this.DESERT,
-                this.SNOW,
-                this.SKY,
-                this.FOREST,
-                this.VOLCANO,
-                this.SPACE,
-            ]
-            : this.__WORLDS;
+        return this.#WORLDS ?? (this.#WORLDS = [
+            this.GROUND,
+            this.UNDERGROUND,
+            this.DESERT,
+            this.SNOW,
+            this.SKY,
+            this.FOREST,
+            this.VOLCANO,
+            this.SPACE,
+        ]);
     }
+
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
 
     public static getValue(value: Themes | PossibleTheme): Themes
     public static getValue(value: string): Themes | null
@@ -165,7 +178,7 @@ export abstract class Themes {
     }
 
     public static get values(): readonly Themes[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.GROUND,
             this.UNDERGROUND,
             this.UNDERWATER,
@@ -181,5 +194,12 @@ export abstract class Themes {
             this.SPACE,
         ]);
     }
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
 
 }

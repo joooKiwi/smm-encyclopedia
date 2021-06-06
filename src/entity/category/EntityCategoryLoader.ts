@@ -57,7 +57,7 @@ type EntityCategoryPropertiesArray = [
 export class EntityCategoryLoader
     implements Loader<Map<string, EntityCategory>> {
 
-    private static readonly instance = new EntityCategoryLoader();
+    static readonly #instance = new EntityCategoryLoader();
 
     readonly #everyEntityCategoriesMap: CallbackCaller<Map<string, EntityCategory>>;
 
@@ -88,7 +88,7 @@ export class EntityCategoryLoader
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 

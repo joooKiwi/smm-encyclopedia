@@ -1,18 +1,19 @@
 import './EveryEntitiesApp.scss';
 
-import React                        from 'react';
-import {TFunction, withTranslation} from 'react-i18next';
+import React from 'react';
 
 import AbstractApp                           from './AbstractApp';
+import CourseThemeComponent                  from '../entity/theme/CourseThemeComponent';
 import {DebugEntityReferences, EntityLoader} from '../entity/simple/EntityLoader';
-import {Entity}                              from '../entity/simple/Entity';
-import {Games}                               from '../entity/game/Games';
-import TableWithTranslations                 from './tools/table/TableWithTranslations';
+import GameComponent                         from '../entity/game/GameComponent';
+import GameStyleComponent                    from '../entity/gameStyle/GameStyleComponent';
 import {SingleTableContent}                  from './tools/table/Table';
 import SMM2NameComponent                     from '../entity/lang/SMM2NameComponent';
+import TableWithTranslations                 from './tools/table/TableWithTranslations';
+import TimeComponent                         from '../entity/time/TimeComponent';
 
-class EveryEntitiesApp
-    extends AbstractApp<{ t: TFunction<'gameContent'> }> {
+export default class EveryEntitiesApp
+    extends AbstractApp {
 
     #entities?: Map<string, DebugEntityReferences>;
 
@@ -20,18 +21,6 @@ class EveryEntitiesApp
         return this.#entities ?? (this.#entities = EntityLoader.get.load());
     }
 
-
-    private __createGameImage(game: Games): JSX.Element {
-        return <img src={game.imagePath} alt={game.englishName} className="game_image"/>;
-    }
-
-    protected getGameComponent(entity: Entity): JSX.Element {
-        return entity.isInSuperMarioMaker1 && entity.isInSuperMarioMaker2
-            ? <span>{this.props.t('Every games')}</span>
-            : entity.isInSuperMarioMaker1
-                ? this.__createGameImage(Games.SUPER_MARIO_MAKER_1)
-                : this.__createGameImage(Games.SUPER_MARIO_MAKER_2);
-    }
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -42,7 +31,11 @@ class EveryEntitiesApp
             content.push([englishName,
                 <>{index}</>,
                 <SMM2NameComponent id="entity_name" name={entity} popoverOrientation="right"/>,
-                this.getGameComponent(entity),
+                <GameComponent reference={entity} name={entity}/>,
+                <GameStyleComponent reference={entity} name={entity}/>,
+                <CourseThemeComponent reference={entity} name={entity}/>,
+                <TimeComponent reference={entity} name={entity}/>,
+                <SMM2NameComponent id="entityCategory_name" name={entity.category} popoverOrientation="left"/>,
             ]);
             index++;
         }
@@ -60,6 +53,10 @@ class EveryEntitiesApp
                     '#',
                     translations.contentTranslation('Language'),
                     translations.gameContentTranslation('Game'),
+                    translations.gameContentTranslation('Game Style'),
+                    translations.gameContentTranslation('Course Theme.spoken'),
+                    translations.gameContentTranslation('Time'),
+                    translations.gameContentTranslation('Category'),
                 ],
                 content: this.content,
             }))}
@@ -67,5 +64,3 @@ class EveryEntitiesApp
     }
 
 }
-
-export default withTranslation('gameContent')(EveryEntitiesApp);

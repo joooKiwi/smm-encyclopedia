@@ -4,6 +4,8 @@ import {ClassWithLanguages}         from './ClassWithLanguages';
 import {DateInstanceCreator}        from './date/DateInstanceCreator';
 import {DateInstanceCreatorBuilder} from './date/DateInstanceCreatorBuilder';
 
+//region -------------------- Languages text --------------------
+
 export type PossibleLanguagesAcronym =
     | 'en_AM' | 'en_EU'
     | 'fr_CA' | 'fr_EU'
@@ -34,6 +36,8 @@ export type PossibleLanguagesOriginalName =
     | 'русский' | '日本語'
     | '简体中文' | '繁體中文'
     | '한국어';
+
+//endregion -------------------- Languages text --------------------
 
 /**
  * <p>
@@ -75,6 +79,9 @@ export type PossibleLanguagesOriginalName =
  * @enum
  */
 export abstract class Languages {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly AMERICAN_ENGLISH = new class extends Languages {
 
         public get newDateInstanceCreator(): DateInstanceCreator {
@@ -287,14 +294,19 @@ export abstract class Languages {
 
     }('ko', 'Korean', '한국어',);
 
+    //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly Languages[];
-    private static __CURRENT_LANGUAGE: Languages;
-    private static __DEFAULT_LANGUAGE: Languages;
+    static #VALUES?: readonly Languages[];
+    //region -------------------- Attributes --------------------
+
+    static #CURRENT_LANGUAGE: Languages;
+    static #DEFAULT_LANGUAGE: Languages;
 
     readonly #acronym;
     readonly #englishName;
     readonly #originalName;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor(acronym: PossibleLanguagesAcronym, englishName: PossibleLanguagesEnglishName, originalName: PossibleLanguagesOriginalName) {
         this.#acronym = acronym;
@@ -302,6 +314,7 @@ export abstract class Languages {
         this.#originalName = originalName;
     }
 
+    //region -------------------- Methods --------------------
 
     public get acronym(): PossibleLanguagesAcronym {
         return this.#acronym;
@@ -326,30 +339,25 @@ export abstract class Languages {
 
 
     public static get currentLanguage(): Languages {
-        return this.__CURRENT_LANGUAGE;
+        return this.#CURRENT_LANGUAGE;
     }
 
-    public static set currentLanguage(value: Languages) {
-        this.setCurrentLanguage(value);
-    }
-
-    public static setCurrentLanguage(value: Languages | string): void {
+    public static set currentLanguage(value: Languages | string) {
         let selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null)
-            i18n.changeLanguage((this.__CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
+            i18n.changeLanguage((this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).acronym);
     }
 
     public static get defaultLanguage(): Languages {
-        return this.__DEFAULT_LANGUAGE;
+        return this.#DEFAULT_LANGUAGE;
     }
 
-    public static set defaultLanguage(value: Languages) {
-        this.setDefaultLanguage(value);
+    public static set defaultLanguage(value: Languages | PossibleLanguagesAcronym) {
+        this.#DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
     }
 
-    public static setDefaultLanguage(value: Languages | PossibleLanguagesAcronym): void {
-        this.__DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
-    }
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
 
     public static getValue(value: Languages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): Languages
     public static getValue(value: string): Languages | null
@@ -361,7 +369,7 @@ export abstract class Languages {
     }
 
     public static get values(): readonly Languages[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
             this.GERMAN,
@@ -376,6 +384,14 @@ export abstract class Languages {
         ]);
     }
 
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
+
 }
 
-Languages.setDefaultLanguage('en_AM');
+Languages.defaultLanguage = 'en_AM';

@@ -17,22 +17,12 @@ type EntityFilePropertiesArray = [
     isInSuperMarioMaker1: boolean,
     isInSuperMarioMaker2: boolean,
 
-    isInSuperMarioBros: boolean,
-    isInSuperMarioBros3: boolean,
-    isInSuperMarioWorld: boolean,
-    isInNewSuperMarioBrosU: boolean,
-    isInSuperMario3DWorld: boolean,
-
-    isInDayTheme: boolean,
-    isInNightTheme: null | boolean,
-
     categoryInTheEditor: null | CategoryType,
 
     hasAMushroomVariant: null | boolean,
     canBeInAParachute: null | boolean | '?',
     canHaveWings: boolean | '?',
     //endregion ---------- Basic properties ----------
-
     //region ---------- Specific properties ----------
     canContainOrSpawnAKey: null | boolean,
 
@@ -67,9 +57,9 @@ type EntityFilePropertiesArray = [
     canBeStacked: null | boolean,
 
     isGlobalGroundOrGlobal: null | boolean | 'SM3DW',
+
     canMakeASoundOutOfAMusicBlock: null | boolean | '?',
     //endregion ---------- Specific properties ----------
-
     //region ---------- Entity limit properties ----------
     editorLimit: EntityLimit | '?',
 
@@ -82,7 +72,6 @@ type EntityFilePropertiesArray = [
 
     whilePlaying_customLimit: EntityLimit,
     //endregion ---------- Entity limit properties ----------
-
     //region ---------- Spawning / Despawning range properties ----------
     whilePlaying_offscreenSpawningHorizontalRange: null | number | 'Variable',
     whilePlaying_offscreenDespawningHorizontalRange: null | number | 'Variable' | 'Infinity',
@@ -93,21 +82,20 @@ type EntityFilePropertiesArray = [
     whilePlaying_offscreenSpawningDownwardVerticalRange: null | number,
     whilePlaying_offscreenDespawningDownwardVerticalRange: null | number,
     //endregion ---------- Spawning / Despawning range properties ----------
-
     //region ---------- Reference on specific condition properties ----------
     isInDayTheme: EntityLink,
     isInNightTheme: null | EntityLink,
 
     inGroundTheme: EntityLink,
-    inUndergroundTheme: null | EntityLink,
-    inUnderwaterTheme: null | EntityLink,
+    inUndergroundTheme: EntityLink,
+    inUnderwaterTheme: EntityLink,
     inDesertTheme: null | EntityLink,
     inSnowTheme: null | EntityLink,
     inSkyTheme: null | EntityLink,
     inForestTheme: null | EntityLink,
-    inGhostHouseTheme: null | EntityLink,
-    inAirshipTheme: null | EntityLink,
-    inCastleTheme: null | EntityLink,
+    inGhostHouseTheme: EntityLink,
+    inAirshipTheme: EntityLink,
+    inCastleTheme: EntityLink,
 
     inSMBGameStyle: null | EntityLink,
     inSMB3GameStyle: null | EntityLink,
@@ -115,7 +103,6 @@ type EntityFilePropertiesArray = [
     inNSMBUGameStyle: null | EntityLink,
     inSM3DWGameStyle: null | EntityLink,
     //endregion ---------- Reference on specific condition properties ----------
-
     //region ---------- Language properties ----------
 
     english: null | string,
@@ -153,10 +140,12 @@ type EntityFilePropertiesArray = [
 ];
 
 export interface DebugEntityReferences {
-    originalContent: string[];
-    arrayConverted: EntityFilePropertiesArray;
-    template: EntityTemplate;
-    entity?: Entity;
+
+    originalContent: string[]
+    arrayConverted: EntityFilePropertiesArray
+    template: EntityTemplate
+    entity?: Entity
+
 }
 
 /**
@@ -165,10 +154,14 @@ export interface DebugEntityReferences {
 export class EntityLoader
     implements Loader<Map<string, DebugEntityReferences>> {
 
-    private static readonly instance = new EntityLoader();
+    static readonly #instance = new EntityLoader();
+
+    //region ---------- external object references ----------
 
     readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
     readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
+
+    //endregion ---------- external object references ----------
 
     private constructor() {
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
@@ -212,8 +205,11 @@ export class EntityLoader
 
                 .convertToStringAnd(thisText, 'inDayTheme',)
                 .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
-                .convertToStringAnd(thisText, 'inGroundTheme',)
-                .convertToEmptyableStringAnd(thisText, 'inUndergroundTheme', 'inUnderwaterTheme', 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme', 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+
+                .convertToStringAnd(thisText, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+                .convertToEmptyableStringAnd(thisText, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+                .convertToStringAnd(thisText, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+
                 .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
                 .convertToEmptyableString(
@@ -243,7 +239,7 @@ export class EntityLoader
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance;
     }
 
 
@@ -267,112 +263,120 @@ export class EntityLoader
 class TemplateCreator {
 
     public static createTemplate(content: EntityFilePropertiesArray): EntityTemplate {
+        const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
+            [content[0], content[1]];
+        const [dayLink, nightLink] =
+            [content[38], content[39],];
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-            [content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54], content[55], content[56],];
+            [content[40], content[41], content[42], content[43], content[44], content[45], content[46], content[47], content[48], content[49],];
+        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] =
+            [content[50], content[51], content[52], content[53], content[54]];
 
         return {
             properties: {
                 //region ---------- Basic properties ----------
                 isIn: {
                     game: {
-                        1: content[0],
-                        2: content[1],
+                        1: isInSuperMarioMaker1,
+                        2: isInSuperMarioMaker2,
                     },
                     style: {
-                        superMarioBros: content[2],
-                        superMarioBros3: content[3],
-                        superMarioWorld: content[4],
-                        newSuperMarioBrosU: content[5],
-                        superMario3DWorld: content[6],
+                        superMarioBros: this.__convertLinkToOnlyBoolean(superMarioBrosLink),
+                        superMarioBros3: this.__convertLinkToOnlyBoolean(superMarioBros3Link),
+                        superMarioWorld: this.__convertLinkToOnlyBoolean(superMarioWorldLink),
+                        newSuperMarioBrosU: this.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
+                        superMario3DWorld: !isInSuperMarioMaker1 && isInSuperMarioMaker2 ? this.__convertLinkToOnlyBoolean(superMario3DWorldLink) : this.__convertLinkToNullableBoolean(superMario3DWorldLink),
                     },
                     theme: {
                         ground: this.__convertLinkToBoolean(groundLink),
-                        underground: this.__convertLinkToNullableBoolean(undergroundLink),
-                        underwater: this.__convertLinkToNullableBoolean(underwaterLink),
+                        underground: this.__convertLinkToBoolean(undergroundLink),
+                        underwater: this.__convertLinkToBoolean(underwaterLink),
                         desert: this.__convertLinkToNullableBoolean(desertLink),
                         snow: this.__convertLinkToNullableBoolean(snowLink),
                         sky: this.__convertLinkToNullableBoolean(skyLink),
                         forest: this.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: this.__convertLinkToNullableBoolean(ghostHouseLink),
-                        airship: this.__convertLinkToNullableBoolean(airshipLink),
-                        castle: this.__convertLinkToNullableBoolean(castleLink),
+                        ghostHouse: this.__convertLinkToBoolean(ghostHouseLink),
+                        airship: this.__convertLinkToBoolean(airshipLink),
+                        castle: this.__convertLinkToBoolean(castleLink),
                     },
-                    day: content[7],
-                    night: content[8],
+                    time: {
+                        day: this.__convertLinkToBoolean(dayLink),
+                        night: this.__convertLinkToNullableBoolean(nightLink),
+                    },
                 },
 
-                categoryInTheEditor: content[9],
+                categoryInTheEditor: content[2],
 
-                hasAMushroomVariant: content[10],
-                canBeInAParachute: content[11],
-                canHaveWings: content[12],
+                hasAMushroomVariant: content[3],
+                canBeInAParachute: content[4],
+                canHaveWings: content[5],
                 //endregion ---------- Basic properties ----------
 
                 //region ---------- Specific properties ----------
-                canContainOrSpawnAKey: content[13],
+                canContainOrSpawnAKey: content[6],
 
-                canBePutInAOnOffBlock: content[14],
+                canBePutInAOnOffBlock: content[7],
 
                 canBePutOnATrack: {
-                    value: content[15],
-                    editorLimit: content[16],
-                    whilePlaying: content[17],
+                    value: content[8],
+                    editorLimit: content[9],
+                    whilePlaying: content[10],
                 },
 
-                canSpawnOutOfAPipe: content[18],
+                canSpawnOutOfAPipe: content[11],
 
-                canBePutInASwingingClaw: content[19],
+                canBePutInASwingingClaw: content[12],
 
-                canBeThrownByALakitu: content[20],
-                canBePutInALakituCloud: content[21],
+                canBeThrownByALakitu: content[13],
+                canBePutInALakituCloud: content[14],
 
-                canBePutInAClownCar: content[22],
+                canBePutInAClownCar: content[15],
 
-                canBeFiredOutOfABulletLauncher: content[23],
+                canBeFiredOutOfABulletLauncher: content[16],
 
-                canBePutInABlock: content[24],
+                canBePutInABlock: content[17],
 
-                canBePutInATree: content[25],
+                canBePutInATree: content[18],
 
                 lightSourceEmitted: {
-                    value: content[26],
-                    isInSMB: content[27]
+                    value: content[19],
+                    isInSMB: content[20]
                 },
 
-                canIgniteABobOmb: content[28],
+                canIgniteABobOmb: content[21],
 
-                canGoThroughWalls: content[29],
+                canGoThroughWalls: content[22],
 
-                canBeStacked: content[30],
+                canBeStacked: content[23],
 
-                isGlobalGroundOrGlobal: content[31],
+                isGlobalGroundOrGlobal: content[24],
 
-                canMakeASoundOutOfAMusicBlock: content[32],
+                canMakeASoundOutOfAMusicBlock: content[25],
                 //endregion ---------- Specific properties ----------
 
                 limits: {
-                    editor: content[33],
+                    editor: content[26],
                     whilePlaying: {
                         isInGEL: {
-                            value: content[34],
-                            isSuperGlobal: content[35],
+                            value: content[27],
+                            isSuperGlobal: content[28],
                         },
-                        isInPEL: content[36],
-                        isInPJL: content[37],
-                        customLimit: content[38],
+                        isInPEL: content[29],
+                        isInPJL: content[30],
+                        customLimit: content[31],
                         offscreenRange: {
                             spawning: {
-                                horizontal: content[39],
+                                horizontal: content[32],
                                 vertical: {
-                                    upward: content[41],
-                                    downward: content[43],
+                                    upward: content[34],
+                                    downward: content[36],
                                 },
                             },
                             despawning: {
-                                horizontal: content[40],
+                                horizontal: content[33],
                                 vertical: {
-                                    upward: content[42],
-                                    downward: content[44],
+                                    upward: content[35],
+                                    downward: content[37],
                                 },
                             },
                         },
@@ -381,11 +385,11 @@ class TemplateCreator {
 
                 reference: {
                     style: {
-                        superMarioBros: content[57],
-                        superMarioBros3: content[58],
-                        superMarioWorld: content[59],
-                        newSuperMarioBrosU: content[60],
-                        superMario3DWorld: content[61],
+                        superMarioBros: superMarioBrosLink,
+                        superMarioBros3: superMarioBros3Link,
+                        superMarioWorld: superMarioWorldLink,
+                        newSuperMarioBrosU: newSuperMarioBrosULink,
+                        superMario3DWorld: superMario3DWorldLink,
                     },
                     theme: {
                         ground: groundLink,
@@ -399,49 +403,53 @@ class TemplateCreator {
                         airship: airshipLink,
                         castle: castleLink,
                     },
-                    day: content[45],
-                    night: content[46],
+                    day: dayLink,
+                    night: nightLink,
                     all: null,
                 },
             },
             name: {
                 english: {
+                    simple: content[55],
+                    american: content[56],
+                    european: content[57],
+                },
+                french: {
+                    simple: content[58],
+                    canadian: content[59],
+                    european: content[60],
+                },
+                german: content[61],
+                spanish: {
                     simple: content[62],
                     american: content[63],
                     european: content[64],
                 },
-                french: {
-                    simple: content[65],
-                    canadian: content[66],
-                    european: content[67],
-                },
-                german: content[68],
-                spanish: {
-                    simple: content[69],
-                    american: content[70],
-                    european: content[71],
-                },
-                italian: content[72],
-                dutch: content[73],
+                italian: content[65],
+                dutch: content[66],
                 portuguese: {
-                    simple: content[74],
-                    american: content[75],
-                    european: content[76],
+                    simple: content[67],
+                    american: content[68],
+                    european: content[69],
                 },
-                russian: content[82],
-                japanese: content[77],
+                russian: content[70],
+                japanese: content[71],
                 chinese: {
-                    simple: content[78],
-                    simplified: content[79],
-                    traditional: content[80],
+                    simple: content[72],
+                    simplified: content[73],
+                    traditional: content[74],
                 },
-                korean: content[81],
+                korean: content[75],
             },
         };
     }
 
+    private static __convertLinkToOnlyBoolean(link: null | EntityLink) {
+        return link !== null && this.__convertLinkToBoolean(link);
+    }
+
     private static __convertLinkToBoolean(link: EntityLink): boolean {
-        return link === 'this';
+        return link.includes('this');
     }
 
     private static __convertLinkToNullableBoolean(link: null | EntityLink): null | boolean {
@@ -482,9 +490,14 @@ class NameCreator {
 }
 
 class ReferencesToWatch {
+
+    //region -------------------- Attributes --------------------
+
     readonly #englishNames;
     readonly #alreadyAddedName: string[];
     readonly #references: { reference: EntityTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(englishNames: Map<string, DebugEntityReferences>) {
         this.#englishNames = englishNames;
@@ -492,6 +505,9 @@ class ReferencesToWatch {
         this.#references = [];
     }
 
+    //region -------------------- Methods --------------------
+
+    //region -------------------- Getter --------------------
 
     public get englishNames() {
         return this.#englishNames;
@@ -505,6 +521,7 @@ class ReferencesToWatch {
         return this.#references;
     }
 
+    //endregion -------------------- Getter --------------------
 
     public addReference(reference: EntityTemplate): void {
         const otherReference = reference.properties.reference;
@@ -515,20 +532,20 @@ class ReferencesToWatch {
         ].filter(otherReference => otherReference !== null)
             .filter(otherReference => otherReference !== 'this')
             .filter(otherReference => !this.alreadyAddedName.includes(otherReference as string))
-            .forEach(otherReference => this._addReference(reference, otherReference as string));
+            .forEach(otherReference => this.__addReference(reference, otherReference as string));
     }
 
-    private _addReference(template: EntityTemplate, reference: string): void {
-        if (reference.includes("/"))
+    private __addReference(template: EntityTemplate, reference: string): void {
+        if (reference.includes('/'))
             reference.split(' / ')
                 .filter(splitReference => splitReference !== 'this')
-                .forEach((splitReference, index) => this._addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
+                .forEach((splitReference, index) => this.__addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
         else
-            this._addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
+            this.__addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
         this.alreadyAddedName.push(reference);
     }
 
-    private _addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
+    private __addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
         this.references.push({
             reference: template,
             value: reference,
@@ -549,6 +566,7 @@ class ReferencesToWatch {
             const referenceWatched = this.englishNames.get(englishReferenceToWatch.value)!;
 
             //Addition on both references to their other reference table.
+
             referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
             if (!referenceWatched.template.properties.reference.all.includes(englishReferenceToWatch.reference))
                 referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);
@@ -558,6 +576,8 @@ class ReferencesToWatch {
                 englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
         });
     }
+
+    //endregion -------------------- Methods --------------------
 
 }
 

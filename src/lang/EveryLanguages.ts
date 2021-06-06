@@ -1,21 +1,30 @@
 import {ClassWithEveryLanguages}    from './ClassWithEveryLanguages';
+import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
+import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
+import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 import {
     Languages,
     PossibleLanguagesAcronym,
     PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages,
     PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages
 }                                   from './Languages';
-import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
-import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 
+//region -------------------- Language text --------------------
 
 type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人';
 type BasicEnglishName = | 'English' | 'French' | 'Spanish' | 'Portuguese' | 'Chinese';
 export type PossibleLanguagesEnglishName = | BasicEnglishName | PossibleLanguagesEnglishNameLanguages;
 export type PossibleLanguagesOriginalName = | BasicOriginalName | PossibleLanguagesOriginalNameLanguages;
 
+//endregion -------------------- Language text --------------------
+
+/**
+ * @enum
+ */
 export class EveryLanguages {
+
+    //region -------------------- enum instances --------------------
+
     public static readonly ENGLISH = new class extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
@@ -140,12 +149,16 @@ export class EveryLanguages {
     }(Languages.CHINESE_TRADITIONAL, EveryLanguages.CHINESE,);
     public static readonly KOREAN = new EveryLanguages(Languages.KOREAN);
 
+    //endregion -------------------- enum instances --------------------
 
-    private static __VALUES: readonly EveryLanguages[];
+    static #VALUES: readonly EveryLanguages[];
+    //region -------------------- Attributes --------------------
     readonly #englishName: PossibleLanguagesEnglishName;
     readonly #originalName: PossibleLanguagesOriginalName;
     readonly #parent: null | EveryLanguages;
     readonly #reference: null | Languages;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: BasicEnglishName, originalName: BasicOriginalName)
     private constructor(reference: Languages,)
@@ -169,6 +182,10 @@ export class EveryLanguages {
 
     }
 
+
+    //region -------------------- Methods --------------------
+
+    //region -------------------- Getter --------------------
 
     public get englishName(): PossibleLanguagesEnglishName {
         return this.#englishName;
@@ -194,6 +211,8 @@ export class EveryLanguages {
         return this.isCurrentLanguage;
     }
 
+    //endregion -------------------- Getter --------------------
+
     public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
         return this.reference!.get(classWithEveryLanguages);
     }
@@ -214,7 +233,7 @@ export class EveryLanguages {
     public static setCurrentLanguage(value: EveryLanguages | Languages | string): void {
         const selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null && selectedLanguage.reference !== null)
-            Languages.setCurrentLanguage(selectedLanguage.reference);
+            Languages.currentLanguage = selectedLanguage.reference;
     }
 
     public static get defaultLanguage(): EveryLanguages {
@@ -228,8 +247,11 @@ export class EveryLanguages {
     public static setDefaultLanguage(value: EveryLanguages | Languages | string): void {
         const selectedLanguage = this.getValue(value);
         if (selectedLanguage !== null && selectedLanguage.reference !== null)
-            Languages.setDefaultLanguage(selectedLanguage.reference);
+            Languages.defaultLanguage = selectedLanguage.reference;
     }
+
+    //endregion -------------------- Methods --------------------
+    //region -------------------- enum methods --------------------
 
     public static getValue(value: Languages | EveryLanguages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): EveryLanguages
     public static getValue(value: string): EveryLanguages | null
@@ -243,7 +265,7 @@ export class EveryLanguages {
     }
 
     public static get values(): readonly EveryLanguages[] {
-        return this.__VALUES ?? (this.__VALUES = [
+        return this.#VALUES ?? (this.#VALUES = [
             this.ENGLISH, this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.FRENCH, this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
             this.GERMAN,
@@ -257,4 +279,12 @@ export class EveryLanguages {
             this.KOREAN,
         ]);
     }
+
+    public static* [Symbol.iterator]() {
+        for (const value of this.values)
+            yield value;
+    }
+
+    //endregion -------------------- enum methods --------------------
+
 }

@@ -1,5 +1,5 @@
-import {AbstractStringConverter} from "./AbstractStringConverter";
-import {ConverterPatterns}       from "./ConverterPatterns";
+import {AbstractStringConverter} from './AbstractStringConverter';
+import {ConverterPatterns}       from './ConverterPatterns';
 
 export class StringToNumberConverter
     extends AbstractStringConverter<number> {
@@ -8,9 +8,9 @@ export class StringToNumberConverter
         super(originalValue.toLowerCase());
     }
 
+
     protected _convertTheValue(validValue: string): number {
         return Number(validValue);
-
     }
 
     public isValueValid(value: string): boolean {
@@ -20,6 +20,5 @@ export class StringToNumberConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a number`);
     }
-
 
 }

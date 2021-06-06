@@ -1,17 +1,18 @@
-import {Builder}                    from '../../util/Builder';
-import {DebugEntityReferences}      from './EntityLoader';
-import {Entity}                     from './Entity';
-import {EntityCategory}             from '../category/EntityCategory';
-import {EntityLink}                 from '../entityTypes';
-import {EntityTemplate}             from './EntityTemplate';
-import {EntityReferencesContainer}  from '../properties/EntityReferencesContainer';
-import {EmptyEntity}                from './EmptyEntity';
-import {EmptyEntityCategory}        from '../category/EmptyEntityCategory';
-import {GenericEntity}              from './GenericEntity';
-import {IsInPropertyContainer}      from '../properties/IsInPropertyContainer';
-import {NameBuilder}                from '../lang/NameBuilder';
-import {SMM1ExclusiveGenericEntity} from './SMM1ExclusiveGenericEntity';
-import {SMM2ExclusiveGenericEntity} from './SMM2ExclusiveGenericEntity';
+import {Builder}                              from '../../util/Builder';
+import {DebugEntityReferences}                from './EntityLoader';
+import {Entity}                               from './Entity';
+import {EntityCategory}                       from '../category/EntityCategory';
+import {EntityLink}                           from '../entityTypes';
+import {EntityTemplate}                       from './EntityTemplate';
+import {EntityReferencesContainer}            from '../properties/EntityReferencesContainer';
+import {EmptyEntity}                          from './EmptyEntity';
+import {EmptyEntityCategory}                  from '../category/EmptyEntityCategory';
+import {ExclusiveSM3DWGenericEntity}          from './ExclusiveSM3DWGenericEntity';
+import {ExclusiveSMM1GenericEntity}           from './ExclusiveSMM1GenericEntity';
+import {ExclusiveSMM2GenericEntityInAnyStyle} from './ExclusiveSMM2GenericEntityInAnyStyle';
+import {GenericEntity}                        from './GenericEntity';
+import {PropertyContainer}                    from '../properties/PropertyContainer';
+import {NameBuilder}                          from '../lang/NameBuilder';
 
 export class EntityBuilder
     implements Builder<Entity> {
@@ -22,14 +23,21 @@ export class EntityBuilder
     public static categoriesMap: Map<string, EntityCategory>;
 
     //endregion ---------- external object references ----------
+    //region -------------------- Attributes --------------------
+
+    public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
 
     readonly #template;
     readonly #selfCallback = () => this.build();
-    public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(template: EntityTemplate) {
         this.#template = template;
     }
+
+
+    //region -------------------- Build helper methods --------------------
 
     public get template() {
         return this.#template;
@@ -49,11 +57,11 @@ export class EntityBuilder
     private __createIsInProperty() {
         const isIn = this.template.properties.isIn;
 
-        return new IsInPropertyContainer(
+        return new PropertyContainer(
             isIn.game['1'], isIn.game['2'],
             isIn.style.superMarioBros, isIn.style.superMarioBros3, isIn.style.superMarioWorld, isIn.style.newSuperMarioBrosU, isIn.style.superMario3DWorld,
             isIn.theme.ground, isIn.theme.underground, isIn.theme.underwater, isIn.theme.desert, isIn.theme.snow, isIn.theme.sky, isIn.theme.forest, isIn.theme.ghostHouse, isIn.theme.airship, isIn.theme.castle,
-            isIn.day, isIn.night,
+            isIn.time.day, isIn.time.night,
         );
     }
 
@@ -100,13 +108,16 @@ export class EntityBuilder
         return link === null ? EntityBuilder.EMPTY_ENTITY_CALLBACK : this.__createEntityCallbackFor(link);
     }
 
+    //endregion -------------------- Build helper methods --------------------
 
     public build() {
         const isInProperty = this.__createIsInProperty();
         return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
-            ? new SMM1ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            ? new ExclusiveSMM1GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
-                ? new SMM2ExclusiveGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
+                    ? new ExclusiveSM3DWGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new ExclusiveSMM2GenericEntityInAnyStyle(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
                 : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 

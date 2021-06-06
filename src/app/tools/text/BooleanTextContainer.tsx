@@ -1,10 +1,12 @@
 import {Component} from 'react';
 
-export interface BooleanTextContent /*extends React.HTMLAttributes<HTMLSpanElement>*/ {
+export interface BooleanTextContent /*extends React.HTMLAttributes<HTMLSpanElement>*/{
+
     boolean: boolean
     trueValue: string
     falseValue: string
     className?: string[]
+
 }
 
 /**
