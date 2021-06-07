@@ -2,13 +2,25 @@ import './ChangeTheLanguageTab.scss';
 
 import React             from 'react';
 import {withTranslation} from 'react-i18next';
-import {Link}            from 'react-router-dom';
 
 import ContentAndLanguageTranslationComponent from '../lang/components/ContentAndLanguageTranslationComponent';
 import {Languages}                            from '../lang/Languages';
+import {ContentAndLanguageTranslationElement} from '../lang/components/elements/ContentAndLanguageTranslationElement';
 
 class ChangeTheLanguageTab
-    extends ContentAndLanguageTranslationComponent {
+    extends ContentAndLanguageTranslationComponent<ContentAndLanguageTranslationElement, { currentLanguage: Languages }> {
+
+
+    public constructor(props: ContentAndLanguageTranslationElement) {
+        super(props);
+        this.state = {
+            currentLanguage: Languages.currentLanguage,
+        };
+    }
+
+    protected setCurrentLanguage(language: Languages): void {
+        this.setState({currentLanguage: Languages.currentLanguage = language});
+    }
 
     private __retrieveEveryLanguages() {
         return Languages.values.map(language => {
@@ -16,8 +28,10 @@ class ChangeTheLanguageTab
                     language: language,
                     htmlElement: language === Languages.currentLanguage
                         ? <span className="dropdown-item disabled">{this.languageTranslation(language.englishName)}</span>
-                        : <Link key={`languageChanger_${language.projectAcronym}`} className="dropdown-item"
-                                to={`/${language.projectAcronym}/home`}>{this.languageTranslation(language.englishName)}<sup>({language.originalName})</sup></Link>
+                        : <button key={`languageChanger_${language.projectAcronym}`} className="dropdown-item" onClick={() => this.setCurrentLanguage(language)}>
+                            {this.languageTranslation(language.englishName)}
+                            <sup>({language.originalName})</sup>
+                        </button>
                 };
             }
         ).map(object => <li key={`languageChanger_${object.language.projectAcronym}_li`}>{object.htmlElement}</li>);
