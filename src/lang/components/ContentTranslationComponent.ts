@@ -3,8 +3,8 @@ import {TFunction} from 'react-i18next';
 
 import {ContentTranslationElement} from './elements/ContentTranslationElement';
 
-export default abstract class ContentTranslationComponent<T extends ContentTranslationElement = ContentTranslationElement>
-    extends Component<T> {
+export default abstract class ContentTranslationComponent<P extends ContentTranslationElement = ContentTranslationElement, S = {}, >
+    extends Component<P, S> {
 
 
     protected get translation(): TFunction<'content'> {
