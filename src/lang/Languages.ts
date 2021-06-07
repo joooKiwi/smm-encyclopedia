@@ -180,7 +180,7 @@ export abstract class Languages {
             return classWithLanguages.russian;
         }
 
-    }('ru',    'ru',    'Russian',              'русский');
+    }('ru',    'ru',    'Russian',              'русский',);
     public static readonly JAPANESE =            new class extends Languages {
 
         public get(classWithLanguages: ClassWithLanguages): string {
