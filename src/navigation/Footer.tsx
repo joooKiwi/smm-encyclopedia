@@ -2,7 +2,7 @@ import {withTranslation} from 'react-i18next';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import {Languages}                 from '../lang/Languages';
-import SimpleDate                  from '../lang/SimpleDate';
+import SimpleDate                  from '../lang/date/SimpleDate';
 
 class Footer
     extends ContentTranslationComponent {
