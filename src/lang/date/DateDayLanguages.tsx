@@ -1,5 +1,5 @@
+import {DayNumber}                             from './types';
 import {Languages, PossibleValueToGetLanguage} from '../Languages';
-import {DayNumber}                             from './DateInstanceCreator';
 
 /**
  * @enum
@@ -8,7 +8,7 @@ export abstract class DateDayLanguages {
 
     //region -------------------- enum instances --------------------
 
-    public static readonly AMERICAN_ENGLISH = new class extends DateDayLanguages {
+    public static readonly AMERICAN_ENGLISH =    new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return day === 2 || day === 22
@@ -19,14 +19,14 @@ export abstract class DateDayLanguages {
         }
 
     }(Languages.AMERICAN_ENGLISH);
-    public static readonly EUROPEAN_ENGLISH = new class extends DateDayLanguages {
+    public static readonly EUROPEAN_ENGLISH =    new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return DateDayLanguages.AMERICAN_ENGLISH.newDayComponent(day);
         }
 
     }(Languages.EUROPEAN_ENGLISH);
-    public static readonly CANADIAN_FRENCH = new class extends DateDayLanguages {
+    public static readonly CANADIAN_FRENCH =     new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return day === 1
@@ -35,14 +35,14 @@ export abstract class DateDayLanguages {
         }
 
     }(Languages.CANADIAN_FRENCH);
-    public static readonly EUROPEAN_FRENCH = new class extends DateDayLanguages {
+    public static readonly EUROPEAN_FRENCH =     new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return DateDayLanguages.CANADIAN_FRENCH.newDayComponent(day);
         }
 
     }(Languages.EUROPEAN_FRENCH);
-    public static readonly GERMAN = new class extends DateDayLanguages {
+    public static readonly GERMAN =              new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day === 1
@@ -51,28 +51,28 @@ export abstract class DateDayLanguages {
         }
 
     }(Languages.GERMAN);
-    public static readonly AMERICAN_SPANISH = new class extends DateDayLanguages {
+    public static readonly AMERICAN_SPANISH =    new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day}</>;
         }
 
     }(Languages.AMERICAN_SPANISH);
-    public static readonly EUROPEAN_SPANISH = new class extends DateDayLanguages {
+    public static readonly EUROPEAN_SPANISH =    new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return DateDayLanguages.AMERICAN_SPANISH.newDayComponent(day);
         }
 
     }(Languages.EUROPEAN_SPANISH);
-    public static readonly ITALIAN = new class extends DateDayLanguages {
+    public static readonly ITALIAN =             new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day === 1 ? 'il' : day}</>;
         }
 
     }(Languages.ITALIAN);
-    public static readonly DUTCH = new class extends DateDayLanguages {
+    public static readonly DUTCH =               new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day}</>;
@@ -93,14 +93,14 @@ export abstract class DateDayLanguages {
         }
 
     }(Languages.EUROPEAN_PORTUGUESE);
-    public static readonly RUSSIAN = new class extends DateDayLanguages {
+    public static readonly RUSSIAN =             new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day}</>;
         }
 
     }(Languages.RUSSIAN);
-    public static readonly JAPANESE = new class extends DateDayLanguages {
+    public static readonly JAPANESE =            new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day}</>;
@@ -114,14 +114,14 @@ export abstract class DateDayLanguages {
         }
 
     }(Languages.CHINESE_TRADITIONAL);
-    public static readonly CHINESE_SIMPLIFIED = new class extends DateDayLanguages {
+    public static readonly CHINESE_SIMPLIFIED =  new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return DateDayLanguages.JAPANESE.newDayComponent(day);
         }
 
     }(Languages.CHINESE_SIMPLIFIED);
-    public static readonly KOREAN = new class extends DateDayLanguages {
+    public static readonly KOREAN =              new class extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber) {
             return <>{day}</>;

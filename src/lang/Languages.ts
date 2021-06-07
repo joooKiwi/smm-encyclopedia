@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 
 import {ClassWithLanguages}  from './ClassWithLanguages';
-import {DateInstanceCreator} from './date/DateInstanceCreator';
 
 //region -------------------- Languages types --------------------
 //region -------------------- Languages text --------------------
@@ -58,11 +57,6 @@ export type PossibleValueToGetLanguage = Languages | PossibleLanguagesAcronym | 
  * <p>
  *     An enum class containing every languages in the project.
  *     The languages used are only those direct languages and not a basic language.
- * </p>
- *
- * <p>
- *     It also utilise the {@link DateInstanceCreator} in order
- *     to create the date by the language standard.
  * </p>
  *
  * <p>
