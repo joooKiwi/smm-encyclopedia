@@ -17,7 +17,7 @@ export interface DateTimeFormat {
  * @constructor
  * @see https://formatjs.io/docs/react-intl/components#formatteddate
  */
-export function SimpleDate(props: DateTimeFormat) {
+export default function SimpleDate(props: DateTimeFormat) {
     return <FormattedDate
         value={new Date(props.year, props.month - 1, props.day,)}
         year="numeric"
