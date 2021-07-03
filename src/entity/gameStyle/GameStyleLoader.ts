@@ -1,4 +1,4 @@
-import everyGameStyles from '../../resources/Every Super Mario Maker 2 entities properties - Game styles.csv';
+import everyGameStyles from '../../resources/Game styles.csv';
 
 import {Loader}                              from '../../util/Loader';
 import {CallbackCaller}                      from '../../util/CallbackCaller';

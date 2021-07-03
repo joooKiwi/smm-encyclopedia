@@ -1,4 +1,4 @@
-import everyEntities from '../../resources/Every Super Mario Maker 2 entities properties - Entities.csv';
+import everyEntities from '../../resources/Entities.csv';
 
 import {CallbackCaller}                                                          from '../../util/CallbackCaller';
 import {CategoryType, EntityCategoryLoader}                                      from '../category/EntityCategoryLoader';

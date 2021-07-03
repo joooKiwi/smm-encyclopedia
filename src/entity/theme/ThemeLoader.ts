@@ -1,4 +1,4 @@
-import everyThemes from '../../resources/Every Super Mario Maker 2 entities properties - Themes.csv';
+import everyThemes from '../../resources/Themes.csv';
 
 import {CallbackCaller}                      from '../../util/CallbackCaller';
 import {CSVLoader}                           from '../../util/loader/CSVLoader';
