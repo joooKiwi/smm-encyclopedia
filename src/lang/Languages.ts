@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 
-import {ClassWithLanguages}  from './ClassWithLanguages';
+import {ClassWithLanguages} from './ClassWithLanguages';
 
 //region -------------------- Languages types --------------------
 //region -------------------- Languages text --------------------
@@ -267,7 +267,7 @@ export abstract class Languages {
     }
 
     public static set defaultLanguage(value: Languages | PossibleLanguagesAcronym) {
-        this.#DEFAULT_LANGUAGE = typeof value === 'string' ? this.getValue(value) : value;
+        this.#DEFAULT_LANGUAGE = this.getValue(value);
     }
 
     //endregion -------------------- Methods --------------------
