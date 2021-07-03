@@ -14,7 +14,7 @@ class Navigation
     public render(): JSX.Element {
         return (<nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">
-                <Link key='navigationHome' className="navbar-brand" aria-current="page" to={`/${Languages.currentLanguage.acronym}/home`}>{this.translation('Home')}</Link>
+                <Link key='navigationHome' className="navbar-brand" aria-current="page" to={`/${Languages.currentLanguage.projectAcronym}/home`}>{this.translation('Home')}</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
                 </button>

@@ -1,7 +1,7 @@
 import {withTranslation} from 'react-i18next';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import {Languages}                 from '../lang/Languages';
+import SimpleDate                  from '../lang/date/SimpleDate';
 
 class Footer
     extends ContentTranslationComponent {
@@ -12,7 +12,7 @@ class Footer
                 <div className="row">
                     <span id="copyright" className="text-center text-light small">{this.translation('Copyright')}<sup>©</sup> Nintendo™</span>
                     <span id="copyright_madeBy" className="text-center text-light small">{this.translation('React application made by')}: JóôòKiwi & Geitje</span>
-                    <span id="copyright_lastEdited" className="text-center text-light small">{this.translation('Last update')}: {Languages.currentLanguage.newDateInstanceCreator.createDate(9, 5, 2021)}</span>
+                    <span id="copyright_lastEdited" className="text-center text-light small">{this.translation('Last update')}: <SimpleDate day={6} month={6} year={2021}/></span>
                 </div>
             </div>
         </footer>;

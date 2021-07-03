@@ -3,8 +3,8 @@ import {TFuncKey}  from 'react-i18next';
 
 import {ContentAndGameContentTranslationElement} from './elements/ContentAndGameContentTranslationElement';
 
-export default abstract class ContentAndGameContentTranslationComponent<T extends ContentAndGameContentTranslationElement = ContentAndGameContentTranslationElement>
-    extends Component<T> {
+export default abstract class ContentAndGameContentTranslationComponent<P extends ContentAndGameContentTranslationElement = ContentAndGameContentTranslationElement, S = {}, >
+    extends Component<P, S> {
 
     protected contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys) {
         return this.props.t(value, {ns: 'content'});

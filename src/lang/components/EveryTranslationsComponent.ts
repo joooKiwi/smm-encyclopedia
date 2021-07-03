@@ -3,8 +3,8 @@ import {TFuncKey}  from 'react-i18next';
 
 import {EveryTranslationElement} from './elements/EveryTranslationElement';
 
-export default abstract class EveryTranslationsComponent<T extends EveryTranslationElement = EveryTranslationElement>
-    extends Component<T> {
+export default abstract class EveryTranslationsComponent<P extends EveryTranslationElement = EveryTranslationElement, S = {}, >
+    extends Component<P, S> {
 
     protected contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys) {
         return this.props.t(value, {ns: 'content'});

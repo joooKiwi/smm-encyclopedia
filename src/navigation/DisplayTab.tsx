@@ -11,7 +11,7 @@ class DisplayTab
 
     private static _createLi(key: string, partialPath: string, textContent: string): JSX.Element {
         return <li className="dropdown-item">
-            <Link key={key} className="nav-link active" to={`/${Languages.currentLanguage.acronym}/${partialPath}`}>{textContent}</Link>
+            <Link key={key} className="nav-link active" to={`/${Languages.currentLanguage.projectAcronym}/${partialPath}`}>{textContent}</Link>
         </li>;
     }
 

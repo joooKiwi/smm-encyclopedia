@@ -4,9 +4,9 @@ import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanL
 import {ChineseOriginal}            from './name/containers/ChineseLanguage';
 import {
     Languages,
-    PossibleLanguagesAcronym,
     PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages,
-    PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages
+    PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages,
+    PossibleValueToGetLanguage
 }                                   from './Languages';
 
 //region -------------------- Language text --------------------
@@ -25,7 +25,7 @@ export class EveryLanguages {
 
     //region -------------------- enum instances --------------------
 
-    public static readonly ENGLISH = new class extends EveryLanguages {
+    public static readonly ENGLISH =             new class extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
@@ -40,17 +40,17 @@ export class EveryLanguages {
         }
 
     }('English', 'English',);
-    public static readonly AMERICAN_ENGLISH = new class extends EveryLanguages {
+    public static readonly AMERICAN_ENGLISH =    new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
         }
     }(Languages.AMERICAN_ENGLISH, EveryLanguages.ENGLISH,);
-    public static readonly EUROPEAN_ENGLISH = new class extends EveryLanguages {
+    public static readonly EUROPEAN_ENGLISH =    new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage;
         }
     }(Languages.EUROPEAN_ENGLISH, EveryLanguages.ENGLISH,);
-    public static readonly FRENCH = new class extends EveryLanguages {
+    public static readonly FRENCH =              new class extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
@@ -65,18 +65,18 @@ export class EveryLanguages {
         }
 
     }('French', 'Français',);
-    public static readonly CANADIAN_FRENCH = new class extends EveryLanguages {
+    public static readonly CANADIAN_FRENCH =     new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
         }
     }(Languages.CANADIAN_FRENCH, EveryLanguages.FRENCH,);
-    public static readonly EUROPEAN_FRENCH = new class extends EveryLanguages {
+    public static readonly EUROPEAN_FRENCH =     new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage;
         }
     }(Languages.EUROPEAN_FRENCH, EveryLanguages.FRENCH,);
-    public static readonly GERMAN = new EveryLanguages(Languages.GERMAN);
-    public static readonly SPANISH = new class extends EveryLanguages {
+    public static readonly GERMAN =              new EveryLanguages(Languages.GERMAN,);
+    public static readonly SPANISH =             new class extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage;
@@ -91,19 +91,19 @@ export class EveryLanguages {
         }
 
     }('Spanish', 'Español',);
-    public static readonly AMERICAN_SPANISH = new class extends EveryLanguages {
+    public static readonly AMERICAN_SPANISH =    new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
         }
     }(Languages.AMERICAN_SPANISH, EveryLanguages.SPANISH,);
-    public static readonly EUROPEAN_SPANISH = new class extends EveryLanguages {
+    public static readonly EUROPEAN_SPANISH =    new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
         }
     }(Languages.EUROPEAN_SPANISH, EveryLanguages.SPANISH,);
-    public static readonly ITALIAN = new EveryLanguages(Languages.ITALIAN);
-    public static readonly DUTCH = new EveryLanguages(Languages.DUTCH);
-    public static readonly PORTUGUESE = new class extends EveryLanguages {
+    public static readonly ITALIAN =             new EveryLanguages(Languages.ITALIAN,);
+    public static readonly DUTCH =               new EveryLanguages(Languages.DUTCH,);
+    public static readonly PORTUGUESE =          new class extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
@@ -124,9 +124,9 @@ export class EveryLanguages {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage;
         }
     }(Languages.EUROPEAN_PORTUGUESE, EveryLanguages.PORTUGUESE,);
-    public static readonly RUSSIAN = new EveryLanguages(Languages.RUSSIAN);
-    public static readonly JAPANESE = new EveryLanguages(Languages.JAPANESE);
-    public static readonly CHINESE = new class extends EveryLanguages {
+    public static readonly RUSSIAN =             new EveryLanguages(Languages.RUSSIAN,);
+    public static readonly JAPANESE =            new EveryLanguages(Languages.JAPANESE,);
+    public static readonly CHINESE =             new class extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.CHINESE_SIMPLIFIED.isCurrentLanguage || EveryLanguages.CHINESE_TRADITIONAL.isCurrentLanguage;
@@ -137,7 +137,7 @@ export class EveryLanguages {
         }
 
     }('Chinese', '中国人');
-    public static readonly CHINESE_SIMPLIFIED = new class extends EveryLanguages {
+    public static readonly CHINESE_SIMPLIFIED =  new class extends EveryLanguages {
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.CHINESE_TRADITIONAL.isCurrentLanguage;
         }
@@ -147,7 +147,7 @@ export class EveryLanguages {
             return this.isCurrentLanguage && EveryLanguages.CHINESE_SIMPLIFIED.isCurrentLanguage;
         }
     }(Languages.CHINESE_TRADITIONAL, EveryLanguages.CHINESE,);
-    public static readonly KOREAN = new EveryLanguages(Languages.KOREAN);
+    public static readonly KOREAN =              new EveryLanguages(Languages.KOREAN,);
 
     //endregion -------------------- enum instances --------------------
 
@@ -160,7 +160,7 @@ export class EveryLanguages {
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: BasicEnglishName, originalName: BasicOriginalName)
+    private constructor(englishName: BasicEnglishName, originalName: BasicOriginalName,)
     private constructor(reference: Languages,)
     private constructor(reference: Languages, parent: EveryLanguages,)
     private constructor(referenceOrEnglishName: Languages | BasicEnglishName, parentOrOriginalName?: EveryLanguages | BasicOriginalName,) {
@@ -253,7 +253,7 @@ export class EveryLanguages {
     //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------
 
-    public static getValue(value: Languages | EveryLanguages | PossibleLanguagesAcronym | PossibleLanguagesEnglishName | PossibleLanguagesOriginalName): EveryLanguages
+    public static getValue(value: EveryLanguages | PossibleValueToGetLanguage): EveryLanguages
     public static getValue(value: string): EveryLanguages | null
     public static getValue(value: Languages | EveryLanguages | string): EveryLanguages | null
     public static getValue(value: Languages | EveryLanguages | string): EveryLanguages | null {
