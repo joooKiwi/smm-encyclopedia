@@ -168,25 +168,77 @@ export class EmptyEntity
 
     public readonly referencesContainer = EmptyEntityReference.get;
 
-    public readonly referenceInSuperMarioBrosStyle = this.referencesContainer.referenceInSuperMarioBrosStyle;
-    public readonly referenceInSuperMarioBros3Style = this.referencesContainer.referenceInSuperMarioBros3Style;
-    public readonly referenceInSuperMarioWorldStyle = this.referencesContainer.referenceInSuperMarioWorldStyle;
-    public readonly referenceInNewSuperMarioBrosUStyle = this.referencesContainer.referenceInNewSuperMarioBrosUStyle;
-    public readonly referenceInSuperMario3DWorldStyle = this.referencesContainer.referenceInSuperMario3DWorldStyle;
 
-    public readonly referenceInGroundTheme = this.referencesContainer.referenceInGroundTheme;
-    public readonly referenceInUndergroundTheme = this.referencesContainer.referenceInUndergroundTheme;
-    public readonly referenceInUnderwaterTheme = this.referencesContainer.referenceInUnderwaterTheme;
-    public readonly referenceInDesertTheme = this.referencesContainer.referenceInDesertTheme;
-    public readonly referenceInSnowTheme = this.referencesContainer.referenceInSnowTheme;
-    public readonly referenceInSkyTheme = this.referencesContainer.referenceInSkyTheme;
-    public readonly referenceInForestTheme = this.referencesContainer.referenceInForestTheme;
-    public readonly referenceInGhostHouseTheme = this.referencesContainer.referenceInGhostHouseTheme;
-    public readonly referenceInAirshipTheme = this.referencesContainer.referenceInAirshipTheme;
-    public readonly referenceInCastleTheme = this.referencesContainer.referenceInCastleTheme;
+    public get referenceInSuperMarioBrosStyle() {
+        return this.referencesContainer.referenceInSuperMarioBrosStyle;
+    }
 
-    public readonly referenceInDayTheme = this.referencesContainer.referenceInDayTheme;
-    public readonly referenceInNightTheme = this.referencesContainer.referenceInNightTheme;
+    public get referenceInSuperMarioBros3Style() {
+        return this.referencesContainer.referenceInSuperMarioBros3Style;
+    }
+
+    public get referenceInSuperMarioWorldStyle() {
+        return this.referencesContainer.referenceInSuperMarioWorldStyle;
+    }
+
+    public get referenceInNewSuperMarioBrosUStyle() {
+        return this.referencesContainer.referenceInNewSuperMarioBrosUStyle;
+    }
+
+    public get referenceInSuperMario3DWorldStyle() {
+        return this.referencesContainer.referenceInSuperMario3DWorldStyle;
+    }
+
+
+    public get referenceInGroundTheme() {
+        return this.referencesContainer.referenceInGroundTheme;
+    }
+
+    public get referenceInUndergroundTheme() {
+        return this.referencesContainer.referenceInUndergroundTheme;
+    }
+
+    public get referenceInUnderwaterTheme() {
+        return this.referencesContainer.referenceInUnderwaterTheme;
+    }
+
+    public get referenceInDesertTheme() {
+        return this.referencesContainer.referenceInDesertTheme;
+    }
+
+    public get referenceInSnowTheme() {
+        return this.referencesContainer.referenceInSnowTheme;
+    }
+
+    public get referenceInSkyTheme() {
+        return this.referencesContainer.referenceInSkyTheme;
+    }
+
+    public get referenceInForestTheme() {
+        return this.referencesContainer.referenceInForestTheme;
+    }
+
+    public get referenceInGhostHouseTheme() {
+        return this.referencesContainer.referenceInGhostHouseTheme;
+    }
+
+    public get referenceInAirshipTheme() {
+        return this.referencesContainer.referenceInAirshipTheme;
+    }
+
+    public get referenceInCastleTheme() {
+        return this.referencesContainer.referenceInCastleTheme;
+    }
+
+
+    public get referenceInDayTheme() {
+        return this.referencesContainer.referenceInDayTheme;
+    }
+
+    public get referenceInNightTheme() {
+        return this.referencesContainer.referenceInNightTheme;
+    }
+
 
     public readonly everyReferences = this.referencesContainer.everyReferences;
 

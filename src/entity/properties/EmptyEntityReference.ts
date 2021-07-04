@@ -21,25 +21,76 @@ export class EmptyEntityReference
 
     //region -------------------- References methods --------------------
 
-    public readonly referenceInSuperMarioBrosStyle = EmptyEntity.get;
-    public readonly referenceInSuperMarioBros3Style = EmptyEntity.get;
-    public readonly referenceInSuperMarioWorldStyle = EmptyEntity.get;
-    public readonly referenceInNewSuperMarioBrosUStyle = EmptyEntity.get;
-    public readonly referenceInSuperMario3DWorldStyle = EmptyEntity.get;
+    public get referenceInSuperMarioBrosStyle() {
+        return EmptyEntity.get;
+    }
 
-    public readonly referenceInGroundTheme = EmptyEntity.get;
-    public readonly referenceInUndergroundTheme = EmptyEntity.get;
-    public readonly referenceInUnderwaterTheme = EmptyEntity.get;
-    public readonly referenceInDesertTheme = EmptyEntity.get;
-    public readonly referenceInSnowTheme = EmptyEntity.get;
-    public readonly referenceInSkyTheme = EmptyEntity.get;
-    public readonly referenceInForestTheme = EmptyEntity.get;
-    public readonly referenceInGhostHouseTheme = EmptyEntity.get;
-    public readonly referenceInAirshipTheme = EmptyEntity.get;
-    public readonly referenceInCastleTheme = EmptyEntity.get;
+    public get referenceInSuperMarioBros3Style() {
+        return EmptyEntity.get;
+    }
 
-    public readonly referenceInDayTheme = EmptyEntity.get;
-    public readonly referenceInNightTheme = EmptyEntity.get;
+    public get referenceInSuperMarioWorldStyle() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInNewSuperMarioBrosUStyle() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInSuperMario3DWorldStyle() {
+        return EmptyEntity.get;
+    }
+
+
+    public get referenceInGroundTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInUndergroundTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInUnderwaterTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInDesertTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInSnowTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInSkyTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInForestTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInGhostHouseTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInAirshipTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInCastleTheme() {
+        return EmptyEntity.get;
+    }
+
+
+    public get referenceInDayTheme() {
+        return EmptyEntity.get;
+    }
+
+    public get referenceInNightTheme() {
+        return EmptyEntity.get;
+    }
+
 
     public readonly everyReferences = EMPTY_ARRAY;
 
