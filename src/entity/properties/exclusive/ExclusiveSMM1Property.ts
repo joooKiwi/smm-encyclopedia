@@ -7,31 +7,53 @@ import {Property}                       from '../Property';
 export interface ExclusiveSMM1Property
     extends Property, ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty {
 
-    gameContainer: ExclusiveSMM1GameProperty
-    isInSuperMarioMaker1: true
-    isInSuperMarioMaker2: false
+    get gameContainer(): ExclusiveSMM1GameProperty
 
-    gameStyleContainer: ExclusiveSMM1GameStyleProperty
-    isInSuperMarioBrosStyle: true
-    isInSuperMarioBros3Style: false
-    isInSuperMarioWorldStyle: false
-    isInNewSuperMarioBrosUStyle: false
-    isInSuperMario3DWorldStyle: null
+    get isInSuperMarioMaker1(): true
 
-    themeContainer: ExclusiveSMM1ThemeProperty
-    isInGroundTheme: true
-    isInUndergroundTheme: true
-    isInUnderwaterTheme: true
-    isInDesertTheme: null
-    isInSnowTheme: null
-    isInSkyTheme: null
-    isInForestTheme: null
-    isInGhostHouseTheme: true
-    isInAirshipTheme: true
-    isInCastleTheme: true
+    get isInSuperMarioMaker2(): false
 
-    timeContainer: ExclusiveSMM1TimeProperty
-    isInDayTheme: true
-    isInNightTheme: null
+
+    get gameStyleContainer(): ExclusiveSMM1GameStyleProperty
+
+    get isInSuperMarioBrosStyle(): true
+
+    get isInSuperMarioBros3Style(): false
+
+    get isInSuperMarioWorldStyle(): false
+
+    get isInNewSuperMarioBrosUStyle(): false
+
+    get isInSuperMario3DWorldStyle(): null
+
+
+    get themeContainer(): ExclusiveSMM1ThemeProperty
+
+    get isInGroundTheme(): true
+
+    get isInUndergroundTheme(): true
+
+    get isInUnderwaterTheme(): true
+
+    get isInDesertTheme(): null
+
+    get isInSnowTheme(): null
+
+    get isInSkyTheme(): null
+
+    get isInForestTheme(): null
+
+    get isInGhostHouseTheme(): true
+
+    get isInAirshipTheme(): true
+
+    get isInCastleTheme(): true
+
+
+    get timeContainer(): ExclusiveSMM1TimeProperty
+
+    get isInDayTheme(): true
+
+    get isInNightTheme(): null
 
 }

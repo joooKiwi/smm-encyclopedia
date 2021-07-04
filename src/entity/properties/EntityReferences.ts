@@ -1,27 +1,44 @@
-import {Entity} from "../simple/Entity";
+import {Entity} from '../simple/Entity';
 
 export interface EntityReferences {
 
-    referenceInSuperMarioBrosStyle: Entity
-    referenceInSuperMarioBros3Style: Entity
-    referenceInSuperMarioWorldStyle: Entity
-    referenceInNewSuperMarioBrosUStyle: Entity
-    referenceInSuperMario3DWorldStyle: Entity
+    get referenceInSuperMarioBrosStyle(): Entity
 
-    referenceInGroundTheme: Entity
-    referenceInUndergroundTheme: Entity
-    referenceInUnderwaterTheme: Entity
-    referenceInDesertTheme: Entity
-    referenceInSnowTheme: Entity
-    referenceInSkyTheme: Entity
-    referenceInForestTheme: Entity
-    referenceInGhostHouseTheme: Entity
-    referenceInAirshipTheme: Entity
-    referenceInCastleTheme: Entity
+    get referenceInSuperMarioBros3Style(): Entity
 
-    referenceInDayTheme: Entity
-    referenceInNightTheme: Entity
+    get referenceInSuperMarioWorldStyle(): Entity
 
-    everyReferences: readonly Entity[]
+    get referenceInNewSuperMarioBrosUStyle(): Entity
+
+    get referenceInSuperMario3DWorldStyle(): Entity
+
+
+    get referenceInGroundTheme(): Entity
+
+    get referenceInUndergroundTheme(): Entity
+
+    get referenceInUnderwaterTheme(): Entity
+
+    get referenceInDesertTheme(): Entity
+
+    get referenceInSnowTheme(): Entity
+
+    get referenceInSkyTheme(): Entity
+
+    get referenceInForestTheme(): Entity
+
+    get referenceInGhostHouseTheme(): Entity
+
+    get referenceInAirshipTheme(): Entity
+
+    get referenceInCastleTheme(): Entity
+
+
+    get referenceInDayTheme(): Entity
+
+    get referenceInNightTheme(): Entity
+
+
+    get everyReferences(): readonly Entity[]
 
 }

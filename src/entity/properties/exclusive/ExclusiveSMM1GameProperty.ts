@@ -3,7 +3,8 @@ import {GameProperty} from '../GameProperty';
 export interface ExclusiveSMM1GameProperty
     extends GameProperty {
 
-    isInSuperMarioMaker1: true
-    isInSuperMarioMaker2: false
+    get isInSuperMarioMaker1(): true
+
+    get isInSuperMarioMaker2(): false
 
 }

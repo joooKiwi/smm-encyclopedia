@@ -26,259 +26,93 @@ export class EmptyEntity
 
     public readonly name = EmptyName.get;
 
+    public readonly languageValue = this.name.languageValue;
 
-    public get languageValue() {
-        return this.name.languageValue;
-    }
+    public readonly originalEnglish = this.name.originalEnglish;
+    public readonly english = this.name.english;
+    public readonly americanEnglish = this.name.americanEnglish;
+    public readonly europeanEnglish = this.name.europeanEnglish;
 
+    public readonly originalFrench = this.name.originalFrench;
+    public readonly french = this.name.french;
+    public readonly canadianFrench = this.name.canadianFrench;
+    public readonly europeanFrench = this.name.europeanFrench;
 
-    public get originalEnglish() {
-        return this.name.originalEnglish;
-    }
+    public readonly german = this.name.german;
 
-    public get english() {
-        return this.name.english;
-    }
+    public readonly originalSpanish = this.name.originalSpanish;
+    public readonly spanish = this.name.spanish;
+    public readonly americanSpanish = this.name.americanSpanish;
+    public readonly europeanSpanish = this.name.europeanSpanish;
 
-    public get americanEnglish() {
-        return this.name.americanEnglish;
-    }
+    public readonly italian = this.name.italian;
 
-    public get europeanEnglish() {
-        return this.name.europeanEnglish;
-    }
+    public readonly dutch = this.name.dutch;
 
+    public readonly originalPortuguese = this.name.originalPortuguese;
+    public readonly portuguese = this.name.portuguese;
+    public readonly americanPortuguese = this.name.americanPortuguese;
+    public readonly europeanPortuguese = this.name.europeanPortuguese;
 
-    public get originalFrench() {
-        return this.name.originalFrench;
-    }
+    public readonly russian = this.name.russian;
 
-    public get french() {
-        return this.name.french;
-    }
+    public readonly japanese = this.name.japanese;
 
-    public get canadianFrench() {
-        return this.name.canadianFrench;
-    }
+    public readonly originalChinese = this.name.originalChinese;
+    public readonly chinese = this.name.chinese;
+    public readonly simplifiedChinese = this.name.simplifiedChinese;
+    public readonly traditionalChinese = this.name.traditionalChinese;
 
-    public get europeanFrench() {
-        return this.name.europeanFrench;
-    }
+    public readonly korean = this.name.korean;
 
-
-    public get german() {
-        return this.name.german;
-    }
-
-
-    public get originalSpanish() {
-        return this.name.originalSpanish;
-    }
-
-    public get spanish() {
-        return this.name.spanish;
-    }
-
-    public get americanSpanish() {
-        return this.name.americanSpanish;
-    }
-
-    public get europeanSpanish() {
-        return this.name.europeanSpanish;
-    }
-
-
-    public get italian() {
-        return this.name.italian;
-    }
-
-
-    public get dutch() {
-        return this.name.dutch;
-    }
-
-
-    public get originalPortuguese() {
-        return this.name.originalPortuguese;
-    }
-
-    public get portuguese() {
-        return this.name.portuguese;
-    }
-
-    public get americanPortuguese() {
-        return this.name.americanPortuguese;
-    }
-
-    public get europeanPortuguese() {
-        return this.name.europeanPortuguese;
-    }
-
-
-    public get russian() {
-        return this.name.russian;
-    }
-
-
-    public get japanese() {
-        return this.name.japanese;
-    }
-
-
-    public get originalChinese() {
-        return this.name.originalChinese;
-    }
-
-    public get chinese() {
-        return this.name.chinese;
-    }
-
-    public get simplifiedChinese() {
-        return this.name.simplifiedChinese;
-    }
-
-    public get traditionalChinese() {
-        return this.name.traditionalChinese;
-    }
-
-
-    public get korean() {
-        return this.name.korean;
-    }
-
-    public get individualValues() {
-        return this.name.individualValues;
-    }
+    public readonly individualValues = this.name.individualValues;
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------
 
     public readonly category = EmptyEntityCategory.get;
 
+    public readonly categoryName = this.category.name;
 
-    public get categoryName() {
-        return this.category.name;
-    }
+    public readonly categoryLanguageValue = this.categoryName.languageValue;
 
-
-    public get categoryLanguageValue() {
-        return this.categoryName.languageValue;
-    }
-
-
-    public get categoryOriginalEnglish() {
-        return this.categoryName.originalEnglish;
-    }
-
-    public get categoryEnglish() {
-        return this.categoryName.english;
-    }
-
-    public get categoryAmericanEnglish() {
-        return this.categoryName.americanEnglish;
-    }
-
-    public get categoryEuropeanEnglish() {
-        return this.categoryName.europeanEnglish;
-    }
+    public readonly categoryOriginalEnglish = this.categoryName.originalEnglish;
+    public readonly categoryEnglish = this.categoryName.english;
+    public readonly categoryAmericanEnglish = this.categoryName.americanEnglish;
+    public readonly categoryEuropeanEnglish = this.categoryName.europeanEnglish;
 
 
-    public get categoryOriginalFrench() {
-        return this.categoryName.originalFrench;
-    }
+    public readonly categoryOriginalFrench = this.categoryName.originalFrench;
+    public readonly categoryFrench = this.categoryName.french;
+    public readonly categoryCanadianFrench = this.categoryName.canadianFrench;
+    public readonly categoryEuropeanFrench = this.categoryName.europeanFrench;
 
-    public get categoryFrench() {
-        return this.categoryName.french;
-    }
+    public readonly categoryGerman = this.categoryName.german;
 
-    public get categoryCanadianFrench() {
-        return this.categoryName.canadianFrench;
-    }
+    public readonly categoryOriginalSpanish = this.categoryName.originalSpanish;
+    public readonly categorySpanish = this.categoryName.spanish;
+    public readonly categoryAmericanSpanish = this.categoryName.americanSpanish;
+    public readonly categoryEuropeanSpanish = this.categoryName.europeanSpanish;
 
-    public get categoryEuropeanFrench() {
-        return this.categoryName.europeanFrench;
-    }
+    public readonly categoryItalian = this.categoryName.italian;
 
+    public readonly categoryDutch = this.categoryName.dutch;
 
-    public get categoryGerman() {
-        return this.categoryName.german;
-    }
+    public readonly categoryOriginalPortuguese = this.categoryName.originalPortuguese;
+    public readonly categoryPortuguese = this.categoryName.portuguese;
+    public readonly categoryAmericanPortuguese = this.categoryName.americanPortuguese;
+    public readonly categoryEuropeanPortuguese = this.categoryName.europeanPortuguese;
 
+    public readonly categoryJapanese = this.categoryName.japanese;
 
-    public get categoryOriginalSpanish() {
-        return this.categoryName.originalSpanish;
-    }
+    public readonly categoryOriginalChinese = this.categoryName.originalChinese;
+    public readonly categoryChinese = this.categoryName.chinese;
+    public readonly categorySimplifiedChinese = this.categoryName.simplifiedChinese;
+    public readonly categoryTraditionalChinese = this.categoryName.traditionalChinese;
 
-    public get categorySpanish() {
-        return this.categoryName.spanish;
-    }
+    public readonly categoryKorean = this.categoryName.korean;
 
-    public get categoryAmericanSpanish() {
-        return this.categoryName.americanSpanish;
-    }
-
-    public get categoryEuropeanSpanish() {
-        return this.categoryName.europeanSpanish;
-    }
-
-
-    public get categoryItalian() {
-        return this.categoryName.italian;
-    }
-
-
-    public get categoryDutch() {
-        return this.categoryName.dutch;
-    }
-
-
-    public get categoryOriginalPortuguese() {
-        return this.categoryName.originalPortuguese;
-    }
-
-    public get categoryPortuguese() {
-        return this.categoryName.portuguese;
-    }
-
-    public get categoryAmericanPortuguese() {
-        return this.categoryName.americanPortuguese;
-    }
-
-    public get categoryEuropeanPortuguese() {
-        return this.categoryName.europeanPortuguese;
-    }
-
-
-    public get categoryJapanese() {
-        return this.categoryName.japanese;
-    }
-
-
-    public get categoryOriginalChinese() {
-        return this.categoryName.originalChinese;
-    }
-
-    public get categoryChinese() {
-        return this.categoryName.chinese;
-    }
-
-    public get categorySimplifiedChinese() {
-        return this.categoryName.simplifiedChinese;
-    }
-
-    public get categoryTraditionalChinese() {
-        return this.categoryName.traditionalChinese;
-    }
-
-
-    public get categoryKorean() {
-        return this.categoryName.korean;
-    }
-
-
-    public get categoryRussian() {
-        return this.categoryName.russian;
-    }
+    public readonly categoryRussian = this.categoryName.russian;
 
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
@@ -287,106 +121,45 @@ export class EmptyEntity
 
     //region -------------------- Game properties --------------------
 
-    public get gameContainer() {
-        return this.propertyContainer.gameContainer;
-    }
+    public readonly gameContainer = this.propertyContainer.gameContainer;
 
-    public get isInSuperMarioMaker1() {
-        return this.gameContainer.isInSuperMarioMaker1;
-    }
-
-    public get isInSuperMarioMaker2() {
-        return this.gameContainer.isInSuperMarioMaker2;
-    }
+    public readonly isInSuperMarioMaker1 = this.gameContainer.isInSuperMarioMaker1;
+    public readonly isInSuperMarioMaker2 = this.gameContainer.isInSuperMarioMaker2;
 
     //endregion -------------------- Game properties --------------------
     //region -------------------- Game style properties --------------------
 
-    public get gameStyleContainer() {
-        return this.propertyContainer.gameStyleContainer;
-    }
+    public readonly gameStyleContainer = this.propertyContainer.gameStyleContainer;
 
-    public get isInSuperMarioBrosStyle() {
-        return this.gameStyleContainer.isInSuperMarioBrosStyle;
-    }
-
-    public get isInSuperMarioBros3Style() {
-        return this.gameStyleContainer.isInSuperMarioBros3Style;
-    }
-
-    public get isInSuperMarioWorldStyle() {
-        return this.gameStyleContainer.isInSuperMarioWorldStyle;
-    }
-
-    public get isInNewSuperMarioBrosUStyle() {
-        return this.gameStyleContainer.isInNewSuperMarioBrosUStyle;
-    }
-
-    public get isInSuperMario3DWorldStyle() {
-        return this.gameStyleContainer.isInSuperMario3DWorldStyle;
-    }
+    public readonly isInSuperMarioBrosStyle = this.gameStyleContainer.isInSuperMarioBrosStyle;
+    public readonly isInSuperMarioBros3Style = this.gameStyleContainer.isInSuperMarioBros3Style;
+    public readonly isInSuperMarioWorldStyle = this.gameStyleContainer.isInSuperMarioWorldStyle;
+    public readonly isInNewSuperMarioBrosUStyle = this.gameStyleContainer.isInNewSuperMarioBrosUStyle;
+    public readonly isInSuperMario3DWorldStyle = this.gameStyleContainer.isInSuperMario3DWorldStyle;
 
     //endregion -------------------- Game style properties --------------------
     //region -------------------- Theme properties --------------------
 
-    public get themeContainer() {
-        return this.propertyContainer.themeContainer;
-    }
+    public readonly themeContainer = this.propertyContainer.themeContainer;
 
-    public get isInGroundTheme() {
-        return this.themeContainer.isInGroundTheme;
-    }
-
-    public get isInUndergroundTheme() {
-        return this.themeContainer.isInUndergroundTheme;
-    }
-
-    public get isInUnderwaterTheme() {
-        return this.themeContainer.isInUnderwaterTheme;
-    }
-
-    public get isInDesertTheme() {
-        return this.themeContainer.isInDesertTheme;
-    }
-
-    public get isInSnowTheme() {
-        return this.themeContainer.isInSnowTheme;
-    }
-
-    public get isInSkyTheme() {
-        return this.themeContainer.isInSkyTheme;
-    }
-
-    public get isInForestTheme() {
-        return this.themeContainer.isInForestTheme;
-    }
-
-    public get isInGhostHouseTheme() {
-        return this.themeContainer.isInGhostHouseTheme;
-    }
-
-    public get isInAirshipTheme() {
-        return this.themeContainer.isInAirshipTheme;
-    }
-
-    public get isInCastleTheme() {
-        return this.themeContainer.isInCastleTheme;
-    }
+    public readonly isInGroundTheme = this.themeContainer.isInGroundTheme;
+    public readonly isInUndergroundTheme = this.themeContainer.isInUndergroundTheme;
+    public readonly isInUnderwaterTheme = this.themeContainer.isInUnderwaterTheme;
+    public readonly isInDesertTheme = this.themeContainer.isInDesertTheme;
+    public readonly isInSnowTheme = this.themeContainer.isInSnowTheme;
+    public readonly isInSkyTheme = this.themeContainer.isInSkyTheme;
+    public readonly isInForestTheme = this.themeContainer.isInForestTheme;
+    public readonly isInGhostHouseTheme = this.themeContainer.isInGhostHouseTheme;
+    public readonly isInAirshipTheme = this.themeContainer.isInAirshipTheme;
+    public readonly isInCastleTheme = this.themeContainer.isInCastleTheme;
 
     //endregion -------------------- Theme properties --------------------
     //region -------------------- Time properties --------------------
 
-    public get timeContainer() {
-        return this.propertyContainer.timeContainer;
-    }
+    public readonly timeContainer = this.propertyContainer.timeContainer;
 
-    public get isInDayTheme() {
-        return this.propertyContainer.isInDayTheme;
-    }
-
-    public get isInNightTheme() {
-        return this.propertyContainer.isInNightTheme;
-    }
+    public readonly isInDayTheme = this.propertyContainer.isInDayTheme;
+    public readonly isInNightTheme = this.propertyContainer.isInNightTheme;
 
     //endregion -------------------- Time properties --------------------
 
@@ -395,81 +168,27 @@ export class EmptyEntity
 
     public readonly referencesContainer = EmptyEntityReference.get;
 
+    public readonly referenceInSuperMarioBrosStyle = this.referencesContainer.referenceInSuperMarioBrosStyle;
+    public readonly referenceInSuperMarioBros3Style = this.referencesContainer.referenceInSuperMarioBros3Style;
+    public readonly referenceInSuperMarioWorldStyle = this.referencesContainer.referenceInSuperMarioWorldStyle;
+    public readonly referenceInNewSuperMarioBrosUStyle = this.referencesContainer.referenceInNewSuperMarioBrosUStyle;
+    public readonly referenceInSuperMario3DWorldStyle = this.referencesContainer.referenceInSuperMario3DWorldStyle;
 
-    public get referenceInSuperMarioBrosStyle() {
-        return this.referencesContainer.referenceInSuperMarioBrosStyle;
-    }
+    public readonly referenceInGroundTheme = this.referencesContainer.referenceInGroundTheme;
+    public readonly referenceInUndergroundTheme = this.referencesContainer.referenceInUndergroundTheme;
+    public readonly referenceInUnderwaterTheme = this.referencesContainer.referenceInUnderwaterTheme;
+    public readonly referenceInDesertTheme = this.referencesContainer.referenceInDesertTheme;
+    public readonly referenceInSnowTheme = this.referencesContainer.referenceInSnowTheme;
+    public readonly referenceInSkyTheme = this.referencesContainer.referenceInSkyTheme;
+    public readonly referenceInForestTheme = this.referencesContainer.referenceInForestTheme;
+    public readonly referenceInGhostHouseTheme = this.referencesContainer.referenceInGhostHouseTheme;
+    public readonly referenceInAirshipTheme = this.referencesContainer.referenceInAirshipTheme;
+    public readonly referenceInCastleTheme = this.referencesContainer.referenceInCastleTheme;
 
-    public get referenceInSuperMarioBros3Style() {
-        return this.referencesContainer.referenceInSuperMarioBros3Style;
-    }
+    public readonly referenceInDayTheme = this.referencesContainer.referenceInDayTheme;
+    public readonly referenceInNightTheme = this.referencesContainer.referenceInNightTheme;
 
-    public get referenceInSuperMarioWorldStyle() {
-        return this.referencesContainer.referenceInSuperMarioWorldStyle;
-    }
-
-    public get referenceInNewSuperMarioBrosUStyle() {
-        return this.referencesContainer.referenceInNewSuperMarioBrosUStyle;
-    }
-
-    public get referenceInSuperMario3DWorldStyle() {
-        return this.referencesContainer.referenceInSuperMario3DWorldStyle;
-    }
-
-
-    public get referenceInGroundTheme() {
-        return this.referencesContainer.referenceInGroundTheme;
-    }
-
-    public get referenceInUndergroundTheme() {
-        return this.referencesContainer.referenceInUndergroundTheme;
-    }
-
-    public get referenceInUnderwaterTheme() {
-        return this.referencesContainer.referenceInUnderwaterTheme;
-    }
-
-    public get referenceInDesertTheme() {
-        return this.referencesContainer.referenceInDesertTheme;
-    }
-
-    public get referenceInSnowTheme() {
-        return this.referencesContainer.referenceInSnowTheme;
-    }
-
-    public get referenceInSkyTheme() {
-        return this.referencesContainer.referenceInSkyTheme;
-    }
-
-    public get referenceInForestTheme() {
-        return this.referencesContainer.referenceInForestTheme;
-    }
-
-    public get referenceInGhostHouseTheme() {
-        return this.referencesContainer.referenceInGhostHouseTheme;
-    }
-
-    public get referenceInAirshipTheme() {
-        return this.referencesContainer.referenceInAirshipTheme;
-    }
-
-    public get referenceInCastleTheme() {
-        return this.referencesContainer.referenceInCastleTheme;
-    }
-
-
-    public get referenceInDayTheme() {
-        return this.referencesContainer.referenceInDayTheme;
-    }
-
-    public get referenceInNightTheme() {
-        return this.referencesContainer.referenceInNightTheme;
-    }
-
-
-    public get everyReferences() {
-        return this.referencesContainer.everyReferences;
-    }
+    public readonly everyReferences = this.referencesContainer.everyReferences;
 
     //endregion -------------------- References properties --------------------
 

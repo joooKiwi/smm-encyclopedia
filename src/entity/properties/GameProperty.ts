@@ -1,6 +1,7 @@
 export interface GameProperty {
 
-    isInSuperMarioMaker1: boolean
-    isInSuperMarioMaker2: boolean
+    get isInSuperMarioMaker1(): boolean
+
+    get isInSuperMarioMaker2(): boolean
 
 }

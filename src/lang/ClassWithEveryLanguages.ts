@@ -17,22 +17,33 @@ import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanL
 export interface ClassWithEveryLanguages
     extends ClassWithLanguages {
 
-    english: string
-    originalEnglish: AmericanOrEuropeanOriginal
+    get english(): string
 
-    french: string
-    originalFrench: CanadianOrEuropeanOriginal
+    get originalEnglish(): AmericanOrEuropeanOriginal
 
-    spanish: string
-    originalSpanish: AmericanOrEuropeanOriginal
 
-    portuguese: string
-    originalPortuguese: AmericanOrEuropeanOriginal
+    get french(): string
 
-    chinese: string
-    originalChinese: ChineseOriginal
+    get originalFrench(): CanadianOrEuropeanOriginal
 
-    individualValues: readonly EveryLanguages[]//TODO find a better name
+
+    get spanish(): string
+
+    get originalSpanish(): AmericanOrEuropeanOriginal
+
+
+    get portuguese(): string
+
+    get originalPortuguese(): AmericanOrEuropeanOriginal
+
+
+    get chinese(): string
+
+    get originalChinese(): ChineseOriginal
+
+
+    get individualValues(): readonly EveryLanguages[]//TODO find a better name
+
 
     /**
      * Return a {@link Map} based on the enum {@link EveryLanguages}

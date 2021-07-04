@@ -24,129 +24,47 @@ export class EmptyWorldTheme
 
     public readonly name = EmptyName.get;
 
+    public readonly languageValue = this.name.languageValue;
 
-    public get languageValue() {
-        return this.name.languageValue;
-    }
+    public readonly originalEnglish = this.name.originalEnglish;
+    public readonly english = this.name.english;
+    public readonly americanEnglish = this.name.americanEnglish;
+    public readonly europeanEnglish = this.name.europeanEnglish;
 
+    public readonly originalFrench = this.name.originalFrench;
+    public readonly french = this.name.french;
+    public readonly canadianFrench = this.name.canadianFrench;
+    public readonly europeanFrench = this.name.europeanFrench;
 
-    public get originalEnglish() {
-        return this.name.originalEnglish;
-    }
-
-    public get english() {
-        return this.name.english;
-    }
-
-    public get americanEnglish() {
-        return this.name.americanEnglish;
-    }
-
-    public get europeanEnglish() {
-        return this.name.europeanEnglish;
-    }
+    public readonly german = this.name.german;
 
 
-    public get originalFrench() {
-        return this.name.originalFrench;
-    }
+    public readonly originalSpanish = this.name.originalSpanish;
+    public readonly spanish = this.name.spanish;
+    public readonly americanSpanish = this.name.americanSpanish;
+    public readonly europeanSpanish = this.name.europeanSpanish;
 
-    public get french() {
-        return this.name.french;
-    }
+    public readonly italian = this.name.italian;
 
-    public get canadianFrench() {
-        return this.name.canadianFrench;
-    }
+    public readonly dutch = this.name.dutch;
 
-    public get europeanFrench() {
-        return this.name.europeanFrench;
-    }
+    public readonly originalPortuguese = this.name.originalPortuguese;
+    public readonly portuguese = this.name.portuguese;
+    public readonly americanPortuguese = this.name.americanPortuguese;
+    public readonly europeanPortuguese = this.name.europeanPortuguese;
 
+    public readonly russian = this.name.russian;
 
-    public get german() {
-        return this.name.german;
-    }
+    public readonly japanese = this.name.japanese;
 
+    public readonly originalChinese = this.name.originalChinese;
+    public readonly chinese = this.name.chinese;
+    public readonly simplifiedChinese = this.name.simplifiedChinese;
+    public readonly traditionalChinese = this.name.traditionalChinese;
 
-    public get originalSpanish() {
-        return this.name.originalSpanish;
-    }
+    public readonly korean = this.name.korean;
 
-    public get spanish() {
-        return this.name.spanish;
-    }
-
-    public get americanSpanish() {
-        return this.name.americanSpanish;
-    }
-
-    public get europeanSpanish() {
-        return this.name.europeanSpanish;
-    }
-
-
-    public get italian() {
-        return this.name.italian;
-    }
-
-
-    public get dutch() {
-        return this.name.dutch;
-    }
-
-
-    public get originalPortuguese() {
-        return this.name.originalPortuguese;
-    }
-
-    public get portuguese() {
-        return this.name.portuguese;
-    }
-
-    public get americanPortuguese() {
-        return this.name.americanPortuguese;
-    }
-
-    public get europeanPortuguese() {
-        return this.name.europeanPortuguese;
-    }
-
-
-    public get russian() {
-        return this.name.russian;
-    }
-
-
-    public get japanese() {
-        return this.name.japanese;
-    }
-
-
-    public get originalChinese() {
-        return this.name.originalChinese;
-    }
-
-    public get chinese() {
-        return this.name.chinese;
-    }
-
-    public get simplifiedChinese() {
-        return this.name.simplifiedChinese;
-    }
-
-    public get traditionalChinese() {
-        return this.name.traditionalChinese;
-    }
-
-
-    public get korean() {
-        return this.name.korean;
-    }
-
-    public get individualValues() {
-        return this.name.individualValues;
-    }
+    public readonly individualValues = this.name.individualValues;
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Game properties --------------------

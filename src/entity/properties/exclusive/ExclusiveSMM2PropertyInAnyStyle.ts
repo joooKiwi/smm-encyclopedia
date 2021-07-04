@@ -7,13 +7,17 @@ import {ExclusiveSMM2TimePropertyInAnyStyle}      from './ExclusiveSMM2TimePrope
 export interface ExclusiveSMM2PropertyInAnyStyle
     extends ExclusiveSMM2Property, ExclusiveSMM2GamePropertyInAnyStyle, ExclusiveSMM2GameStylePropertyInAnyStyle, ExclusiveSMM2ThemePropertyInAnyStyle, ExclusiveSMM2TimePropertyInAnyStyle {
 
-    gameContainer: ExclusiveSMM2GamePropertyInAnyStyle
+    get gameContainer(): ExclusiveSMM2GamePropertyInAnyStyle
 
-    gameStyleContainer: ExclusiveSMM2GameStylePropertyInAnyStyle
 
-    themeContainer: ExclusiveSMM2ThemePropertyInAnyStyle
+    get gameStyleContainer(): ExclusiveSMM2GameStylePropertyInAnyStyle
 
-    timeContainer: ExclusiveSMM2TimePropertyInAnyStyle
-    isInNightTheme: boolean
+
+    get themeContainer(): ExclusiveSMM2ThemePropertyInAnyStyle
+
+
+    get timeContainer(): ExclusiveSMM2TimePropertyInAnyStyle
+
+    get isInNightTheme(): boolean
 
 }

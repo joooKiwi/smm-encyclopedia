@@ -2,16 +2,25 @@ import {Themes} from '../theme/Themes';
 
 export interface ThemeProperty {
 
-    isInGroundTheme: boolean
-    isInUndergroundTheme: boolean
-    isInUnderwaterTheme: boolean
-    isInDesertTheme: null | boolean
-    isInSnowTheme: null | boolean
-    isInSkyTheme: null | boolean
-    isInForestTheme: null | boolean
-    isInGhostHouseTheme: boolean
-    isInAirshipTheme: boolean
-    isInCastleTheme: boolean
+    get isInGroundTheme(): boolean
+
+    get isInUndergroundTheme(): boolean
+
+    get isInUnderwaterTheme(): boolean
+
+    get isInDesertTheme(): null | boolean
+
+    get isInSnowTheme(): null | boolean
+
+    get isInSkyTheme(): null | boolean
+
+    get isInForestTheme(): null | boolean
+
+    get isInGhostHouseTheme(): boolean
+
+    get isInAirshipTheme(): boolean
+
+    get isInCastleTheme(): boolean
 
     /**
      * Return a {@link Map} based on the enum {@link Themes}

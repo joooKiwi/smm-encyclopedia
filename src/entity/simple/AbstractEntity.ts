@@ -150,6 +150,7 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.name.korean;
     }
 
+
     public get individualValues() {
         return this.name.individualValues;
     }

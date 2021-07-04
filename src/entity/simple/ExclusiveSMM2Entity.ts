@@ -8,21 +8,32 @@ import {ExclusiveSMM2TimeProperty}      from '../properties/exclusive/ExclusiveS
 export interface ExclusiveSMM2Entity
     extends Entity, ExclusiveSMM2Property, ExclusiveSMM2GameProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2TimeProperty {
 
-    propertyContainer: ExclusiveSMM2Property
+    get propertyContainer(): ExclusiveSMM2Property
 
-    gameContainer: ExclusiveSMM2GameProperty
-    isInSuperMarioMaker1: false
-    isInSuperMarioMaker2: true
 
-    gameStyleContainer: ExclusiveSMM2GameStyleProperty
-    isInSuperMario3DWorldStyle: boolean
+    get gameContainer(): ExclusiveSMM2GameProperty
 
-    themeContainer: ExclusiveSMM2ThemeProperty
-    isInDesertTheme: boolean
-    isInSnowTheme: boolean
-    isInSkyTheme: boolean
-    isInForestTheme: boolean
+    get isInSuperMarioMaker1(): false
 
-    timeContainer: ExclusiveSMM2TimeProperty
+    get isInSuperMarioMaker2(): true
+
+
+    get gameStyleContainer(): ExclusiveSMM2GameStyleProperty
+
+    get isInSuperMario3DWorldStyle(): boolean
+
+
+    get themeContainer(): ExclusiveSMM2ThemeProperty
+
+    get isInDesertTheme(): boolean
+
+    get isInSnowTheme(): boolean
+
+    get isInSkyTheme(): boolean
+
+    get isInForestTheme(): boolean
+
+
+    get timeContainer(): ExclusiveSMM2TimeProperty
 
 }
