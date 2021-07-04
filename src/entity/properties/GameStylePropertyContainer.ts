@@ -26,8 +26,9 @@ export class GameStylePropertyContainer
 
     static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW =             new GameStylePropertyContainer(true,  true,  true,  false, false,) as ExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU =           new GameStylePropertyContainer(true,  true,  false, true,  false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY = new GameStylePropertyContainer(false, false, true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
+
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
 
     static readonly #IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
@@ -152,6 +153,8 @@ export class GameStylePropertyContainer
             if (!isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle)
                 return this.#IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU;
         }
+        if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
+            return this.#IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY;
         //endregion ----- Exclusive for 3 game styles -----
         //region ----- Exclusive for 4 game styles -----
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
