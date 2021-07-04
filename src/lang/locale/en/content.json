@@ -21,6 +21,9 @@
   "image": "image",
   "Image": "Image",
 
+  "limit": "limit",
+  "Limit": "Limit",
+
   "language":            "language",
   "Language":            "Language",
   "In other languages":  "In other languages",

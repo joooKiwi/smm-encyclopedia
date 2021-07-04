@@ -1,3 +1,5 @@
+import './EveryLimitsApp.scss';
+
 import React from 'react';
 
 import AbstractApp                from './AbstractApp';
@@ -25,6 +27,13 @@ export default class EveryLimitsApp
             : `${entityLimit.acronym} / ${entityLimit.alternativeAcronym}`;
     }
 
+    private static __getLimit(entityLimit: EntityLimit): JSX.Element {
+        const amount = String(entityLimit.amount ?? '') + (entityLimit.isAmountUnknown ? '?' : '');
+        if (entityLimit.isAmountUnknown)
+            return <span className="isUnknown">{amount}</span>;
+        return <span>{amount}</span>;
+    }
+
     protected content(translation: EveryTranslationsComponent,) {
         const content = [] as SingleTableContent[];
         let index = 1;
@@ -34,6 +43,7 @@ export default class EveryLimitsApp
                 <span>{EveryLimitsApp.__getAcronym(entityTheme)}</span>,
                 <>{entityTheme.fullName ?? ''}</>,//<>{translation.gameContentTranslation(entityTheme.fullName ?? '')}</>,
                 <>{entityTheme.alternativeName ?? ''}</>,//<>{translation.gameContentTranslation(entityTheme.alternativeName ?? '')}</>,
+                EveryLimitsApp.__getLimit(entityTheme),
             ]);
             index++;
         }
@@ -49,6 +59,7 @@ export default class EveryLimitsApp
                 translations.contentTranslation('Acronym(s)'),
                 translations.contentTranslation('Full name'),
                 translations.contentTranslation('Alternative name'),
+                translations.contentTranslation('Limit'),
             ],
             content: this.content(translations),
         })}>
