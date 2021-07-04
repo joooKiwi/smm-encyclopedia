@@ -25,7 +25,7 @@ export default class EveryEntitiesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, {entity}] of this.map.entries()) {
+        for (const [englishName, {entity},] of this.map.entries()) {
             if (entity === undefined)
                 throw new ReferenceError(`The entity #${index} was not initialised`);
             content.push([englishName,

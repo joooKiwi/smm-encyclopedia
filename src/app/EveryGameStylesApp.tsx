@@ -27,7 +27,7 @@ export default class EveryGameStylesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (let [englishName, gameStyle] of this.map.entries()) {
+        for (const [englishName, gameStyle,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
                 <img src={this.enum[index - 1].largeImagePath} alt={englishName}/>,
