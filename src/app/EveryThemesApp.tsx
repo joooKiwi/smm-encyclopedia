@@ -18,7 +18,7 @@ import YesOrNoResultContainer from './tools/text/YesOrNoResultContainer';
 export default class EveryThemesApp
     extends AbstractApp {
 
-    #themes?: Map<string, [CourseTheme, WorldTheme]>;
+    #themes?: Map<string, readonly [CourseTheme, WorldTheme]>;
 
     protected get map() {
         return this.#themes ?? (this.#themes = ThemeLoader.get.load());
@@ -28,7 +28,7 @@ export default class EveryThemesApp
         return Themes.values;
     }
 
-    protected get content(){
+    protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (let [englishName, [courseTheme, worldTheme]] of this.map.entries()) {

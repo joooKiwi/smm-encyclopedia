@@ -17,7 +17,7 @@ export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
  * @enum
  */
 export class Themes
-    implements PropertyGetterWithReference<PossibleTheme, ThemeProperty, [CourseTheme, WorldTheme]> {
+    implements PropertyGetterWithReference<PossibleTheme, ThemeProperty, readonly [CourseTheme, WorldTheme]> {
 
     //region -------------------- enum instances --------------------
 
@@ -82,7 +82,7 @@ export class Themes
     static #WORLDS: readonly Themes[];
     static #VALUES: readonly Themes[];
 
-    #references?: [CourseTheme, WorldTheme];
+    #references?: readonly [CourseTheme, WorldTheme];
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName;
