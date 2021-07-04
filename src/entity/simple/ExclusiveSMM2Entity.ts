@@ -10,30 +10,63 @@ export interface ExclusiveSMM2Entity
 
     get propertyContainer(): ExclusiveSMM2Property
 
+    //region -------------------- Game properties --------------------
 
-    get gameContainer(): ExclusiveSMM2GameProperty
+    get gameContainer(): this['propertyContainer']['gameContainer']
 
-    get isInSuperMarioMaker1(): false
+    get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
 
-    get isInSuperMarioMaker2(): true
+    get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
 
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
 
-    get gameStyleContainer(): ExclusiveSMM2GameStyleProperty
+    get gameStyleContainer(): this['propertyContainer']['gameStyleContainer']
 
-    get isInSuperMario3DWorldStyle(): boolean
+    get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle']
 
+    get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style']
 
-    get themeContainer(): ExclusiveSMM2ThemeProperty
+    get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle']
 
-    get isInDesertTheme(): boolean
+    get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle']
 
-    get isInSnowTheme(): boolean
+    get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle']
 
-    get isInSkyTheme(): boolean
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
 
-    get isInForestTheme(): boolean
+    get themeContainer(): this['propertyContainer']['themeContainer']
 
+    get isInGroundTheme(): this['themeContainer']['isInGroundTheme']
 
-    get timeContainer(): ExclusiveSMM2TimeProperty
+    get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme']
+
+    get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme']
+
+    get isInDesertTheme(): this['themeContainer']['isInDesertTheme']
+
+    get isInSnowTheme(): this['themeContainer']['isInSnowTheme']
+
+    get isInSkyTheme(): this['themeContainer']['isInSkyTheme']
+
+    get isInForestTheme(): this['themeContainer']['isInForestTheme']
+
+    get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme']
+
+    get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme']
+
+    get isInCastleTheme(): this['themeContainer']['isInCastleTheme']
+
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
+
+    get timeContainer(): this['propertyContainer']['timeContainer']
+
+    get isInDayTheme(): this['timeContainer']['isInDayTheme']
+
+    get isInNightTheme(): this['timeContainer']['isInNightTheme']
+
+    //endregion -------------------- Time properties --------------------
 
 }

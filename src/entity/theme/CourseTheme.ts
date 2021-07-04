@@ -4,6 +4,6 @@ import {Theme}  from './Theme';
 export interface CourseTheme
     extends Theme {
 
-    entities: readonly Entity[]
+    get entities(): readonly Entity[]
 
 }
