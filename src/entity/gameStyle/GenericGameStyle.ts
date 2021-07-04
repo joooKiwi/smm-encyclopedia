@@ -21,7 +21,6 @@ export class GenericGameStyle
         this.#entities = new CallbackCaller(entities);
     }
 
-
     //region -------------------- Name properties --------------------
 
     public get name() {

@@ -237,7 +237,8 @@ export class EntityLoader
                     referencesToWatch.testReferences();
                     referencesToWatch.setReferences();
                     references.forEach(reference => reference.entity = new GenericSingleInstanceBuilder(new EntityBuilder(reference.template)).build());
-                });
+                }).load();
+
             console.log(csvLoader.content);
             return references;
         });

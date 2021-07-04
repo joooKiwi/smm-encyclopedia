@@ -1,3 +1,6 @@
+/**
+ * @template
+ */
 export interface SMM2NameTemplate {
 
     english: {

@@ -2,6 +2,8 @@ import {Entity} from '../simple/Entity';
 
 export interface EntityReferences {
 
+    //region -------------------- Game style references properties --------------------
+
     get referenceInSuperMarioBrosStyle(): Entity
 
     get referenceInSuperMarioBros3Style(): Entity
@@ -12,6 +14,8 @@ export interface EntityReferences {
 
     get referenceInSuperMario3DWorldStyle(): Entity
 
+    //endregion -------------------- Game style references properties --------------------
+    //region -------------------- Theme references properties --------------------
 
     get referenceInGroundTheme(): Entity
 
@@ -33,11 +37,14 @@ export interface EntityReferences {
 
     get referenceInCastleTheme(): Entity
 
+    //endregion -------------------- Theme references properties --------------------
+    //region -------------------- Time references properties --------------------
 
     get referenceInDayTheme(): Entity
 
     get referenceInNightTheme(): Entity
 
+    //endregion -------------------- Time references properties --------------------
 
     get everyReferences(): readonly Entity[]
 

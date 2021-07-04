@@ -41,7 +41,6 @@ export abstract class Games
         this.#imagePath = '/game/logos/' + englishName + '.png' as PossibleImagePath;
     }
 
-
     //region -------------------- Methods --------------------
 
     public get englishName(): PossibleGameName {

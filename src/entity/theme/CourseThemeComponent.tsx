@@ -7,7 +7,6 @@ import {Name}                          from '../../lang/name/Name';
 import {ThemeProperty}                 from '../properties/ThemeProperty';
 import {Themes}                        from './Themes';
 
-
 export interface ThemeElement
     extends GameContentTranslationElement {
 

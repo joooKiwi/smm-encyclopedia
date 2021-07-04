@@ -158,11 +158,14 @@ export interface Entity
 
     get propertyContainer(): Property
 
+    //TODO add property types on other methods when the Property interface is finished
+
     //endregion -------------------- Properties --------------------
     //region -------------------- References properties --------------------
 
     get referencesContainer(): EntityReferences
 
+    //region -------------------- Game style references properties --------------------
 
     get referenceInSuperMarioBrosStyle(): this['referencesContainer']['referenceInSuperMarioBrosStyle']
 
@@ -174,6 +177,8 @@ export interface Entity
 
     get referenceInSuperMario3DWorldStyle(): this ['referencesContainer']['referenceInSuperMario3DWorldStyle']
 
+    //endregion -------------------- Game style references properties --------------------
+    //region -------------------- Theme references properties --------------------
 
     get referenceInGroundTheme(): this['referencesContainer']['referenceInGroundTheme']
 
@@ -195,11 +200,14 @@ export interface Entity
 
     get referenceInCastleTheme(): this['referencesContainer']['referenceInCastleTheme']
 
+    //endregion -------------------- Theme references properties --------------------
+    //region -------------------- Time references properties --------------------
 
     get referenceInDayTheme(): this['referencesContainer']['referenceInDayTheme']
 
     get referenceInNightTheme(): this['referencesContainer']['referenceInNightTheme']
 
+    //endregion -------------------- Time references properties --------------------
 
     get everyReferences(): this['referencesContainer']['everyReferences']
 

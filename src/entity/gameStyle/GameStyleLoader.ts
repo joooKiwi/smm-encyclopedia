@@ -60,8 +60,11 @@ export class GameStyleLoader
     implements Loader<Map<string, GameStyle>> {
 
     static readonly #instance = new GameStyleLoader();
+    //region -------------------- Attributes --------------------
 
     readonly #everyGameStyleMap: CallbackCaller<Map<string, GameStyle>>;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor() {
         this.#everyGameStyleMap = new CallbackCaller(() => {

@@ -9,7 +9,11 @@ export class EntityCategoryBuilder
     extends TemplateBuilder<EntityCategoryTemplate, EntityCategory>
     implements Builder<EntityCategory> {
 
+    //region -------------------- Attributes --------------------
+
     static readonly #templateMap: Map<string, EntityCategoryTemplate> = new Map();
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(template: EntityCategoryTemplate,) {
         super(template);

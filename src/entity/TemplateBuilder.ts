@@ -4,14 +4,18 @@ import {NameBuilder}      from './lang/NameBuilder';
 import {NameCreator}      from './lang/NameCreator';
 import {Name}             from '../lang/name/Name';
 
-type TemplateWithNameTemplate = {
+interface TemplateWithNameTemplate {
     name: SMM2NameTemplate
 }
 
 export abstract class TemplateBuilder<T extends TemplateWithNameTemplate, U>
     implements Builder<U> {
 
+    //region -------------------- Attributes --------------------
+
     readonly #template;
+
+    //endregion -------------------- Attributes --------------------
 
     protected constructor(template: T,) {
         this.#template = template;

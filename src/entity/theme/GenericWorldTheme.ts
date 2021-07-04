@@ -12,7 +12,6 @@ export class GenericWorldTheme
         super(name, GamePropertyContainer.get(false, true,));
     }
 
-
     //region -------------------- Game properties --------------------
 
     public get isInProperty() {

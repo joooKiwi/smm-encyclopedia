@@ -4,6 +4,9 @@ import {PossibleEntityCategories}                                               
 import {PropertyTemplate}                                                        from '../properties/PropertyTemplate';
 import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
 
+/**
+ * @template
+ */
 export interface EntityTemplate {
 
     properties: {

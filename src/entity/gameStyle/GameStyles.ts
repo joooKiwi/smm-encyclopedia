@@ -65,7 +65,6 @@ export abstract class GameStyles
         this.#startingImagePath = '/game/styles/' + englishName as StartingImagePath;
     }
 
-
     //region -------------------- Methods --------------------
 
     public get englishName() {

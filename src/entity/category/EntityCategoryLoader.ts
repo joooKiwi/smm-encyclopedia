@@ -58,8 +58,11 @@ export class EntityCategoryLoader
     implements Loader<Map<string, EntityCategory>> {
 
     static readonly #instance = new EntityCategoryLoader();
+    //region -------------------- Attributes --------------------
 
     readonly #everyEntityCategoriesMap: CallbackCaller<Map<string, EntityCategory>>;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor() {
         this.#everyEntityCategoriesMap = new CallbackCaller(() => {

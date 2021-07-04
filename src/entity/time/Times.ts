@@ -39,7 +39,6 @@ export abstract class Times
         this.#englishName = englishName;
     }
 
-
     //region -------------------- Methods --------------------
 
     public get englishName(): PossibleTimeName {

@@ -30,7 +30,6 @@ export class PropertyContainer
         this.#timeContainer = TimePropertyContainer.get(isInDayTheme, isInNightTheme,);
     }
 
-
     //region -------------------- Game properties --------------------
 
     public get gameContainer() {

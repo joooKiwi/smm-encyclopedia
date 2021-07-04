@@ -1,3 +1,6 @@
+/**
+ * @template
+ */
 export interface PropertyTemplate {
 
     game: {//TODO move to isolated interface

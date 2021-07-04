@@ -94,6 +94,7 @@ export class ThemeLoader
                 )
                 .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
+
             return finalReferences;
         });
     }

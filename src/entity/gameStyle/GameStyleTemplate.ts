@@ -1,5 +1,8 @@
 import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 
+/**
+ * @template
+ */
 export interface GameStyleTemplate {
 
     isIn:{

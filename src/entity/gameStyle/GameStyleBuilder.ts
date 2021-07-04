@@ -13,8 +13,15 @@ export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
+    //region ---------- external object references ----------
+
     public static entitiesMap: Map<string, DebugEntityReferences>;
+    //endregion ---------- external object references ----------
+    //region -------------------- Attributes --------------------
+
     static readonly #templateMap: Map<string, GameStyleTemplate> = new Map();
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(template: GameStyleTemplate,) {
         super(template);

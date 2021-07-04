@@ -5,7 +5,12 @@ import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
 
 export class NameBuilder
     implements Builder<Name> {
+
+    //region -------------------- Attributes --------------------
+
     readonly #template;
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(template: SMM2NameTemplate) {
         this.#template = template;
