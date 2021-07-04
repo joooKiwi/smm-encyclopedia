@@ -1,28 +1,22 @@
-import {PossibleEntityLimitTypeEnglishName} from './EntityLimitTypes';
+import {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes';
+import {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits';
 
 //region -------------------- Limit types --------------------
 
 /**
  * @template
  */
-export interface AcronymAndNameTemplate {
-    acronym: null | string
+export interface FullAcronymAndNameTemplate {
+    acronym: null | PossibleAcronymEntityLimits
+    name: PossibleEntityLimits
 }
 
 /**
  * @template
  */
-export interface FullAcronymAndNameTemplate
-    extends AcronymAndNameTemplate {
-    name: string
-}
-
-/**
- * @template
- */
-export interface AlternateAcronymAndNameTemplate
-    extends AcronymAndNameTemplate {
-    name: null | string
+export interface AlternateAcronymAndNameTemplate {
+    acronym: null | PossibleAlternativeAcronymEntityLimits
+    name: null | PossibleAlternativeEntityLimits
 }
 
 /**

@@ -1,7 +1,9 @@
+import {PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits} from '../EntityLimits';
+
 export interface EntityLimitAlternativeName {
 
-    get acronym(): null | string
+    get acronym(): null | PossibleAlternativeAcronymEntityLimits
 
-    get name(): null | string
+    get name(): null | PossibleAlternativeEntityLimits
 
 }

@@ -1,10 +1,9 @@
-import './EveryLimitsApp.scss';
-
 import React from 'react';
 
 import AbstractApp                from './AbstractApp';
 import {EntityLimit}              from '../entity/limit/EntityLimit';
 import {EntityLimitLoader}        from '../entity/limit/EntityLimitLoader';
+import {EntityLimits}             from '../entity/limit/EntityLimits';
 import EveryTranslationsComponent from '../lang/components/EveryTranslationsComponent';
 import {SingleTableContent}       from './tools/table/Table';
 import TableWithTranslations      from './tools/table/TableWithTranslations';
@@ -19,6 +18,10 @@ export default class EveryLimitsApp
         return this.#limits ?? (this.#limits = EntityLimitLoader.get.load());
     }
 
+    protected get enum(){
+        return EntityLimits.values;
+    }
+
     private static __getAcronym(entityLimit: EntityLimit,): '' | EntityLimit['acronym'] | `${EntityLimit['acronym']} / ${EntityLimit['alternativeAcronym']}` {
         return entityLimit.alternativeAcronym == null
             ? entityLimit.acronym == null
@@ -30,7 +33,7 @@ export default class EveryLimitsApp
     private static __getLimit(entityLimit: EntityLimit): JSX.Element {
         const amount = String(entityLimit.amount ?? '') + (entityLimit.isAmountUnknown ? '?' : '');
         if (entityLimit.isAmountUnknown)
-            return <span className="isUnknown">{amount}</span>;
+            return <span className="text-danger">{amount}</span>;
         return <span>{amount}</span>;
     }
 

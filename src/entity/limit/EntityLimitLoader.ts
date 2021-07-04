@@ -1,24 +1,25 @@
 import everyThemes from '../../resources/Entities limits.csv';
 
-import {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate} from './EntityLimitTemplate';
-import {CallbackCaller}                                                                                        from '../../util/CallbackCaller';
-import {CSVLoader}                                                                                             from '../../util/loader/CSVLoader';
-import {EntityLimit}                                                                                           from './EntityLimit';
-import {EntityLimitBuilder}                                                                                    from './EntityLimitBuilder';
-import {EntityLimitTypes, PossibleEntityLimitTypeEnglishName}                                                  from './EntityLimitTypes';
-import {Loader}                                                                                                from '../../util/Loader';
+import {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate}                                    from './EntityLimitTemplate';
+import {CallbackCaller}                                                                                                                           from '../../util/CallbackCaller';
+import {CSVLoader}                                                                                                                                from '../../util/loader/CSVLoader';
+import {EntityLimit}                                                                                                                              from './EntityLimit';
+import {EntityLimitBuilder}                                                                                                                       from './EntityLimitBuilder';
+import {EntityLimitTypes, PossibleEntityLimitTypeEnglishName}                                                                                     from './EntityLimitTypes';
+import {EntityLimits, PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits';
+import {Loader}                                                                                                                                   from '../../util/Loader';
 
 //region -------------------- CSV array related types --------------------
 
 type PossibleLimitInArray = number | `${number}?` | '?';
 type LimitPropertiesArray = [
-    acronym_fullName: null | string,
-    acronym_alternativeName: null | string,
+    acronym_fullName: null | PossibleAcronymEntityLimits,
+    acronym_alternativeName: null | PossibleAlternativeAcronymEntityLimits,
 
     type: PossibleEntityLimitTypeEnglishName,
 
-    fullName: string,
-    alternativeName: null | string,
+    fullName: PossibleEntityLimits,
+    alternativeName: null | PossibleAlternativeEntityLimits,
 
     limit: PossibleLimitInArray,
 ];
@@ -27,6 +28,7 @@ type LimitPropertiesArray = [
 
 /**
  * @singleton
+ * @recursiveReference {@link EntityLimits}
  */
 export class EntityLimitLoader
     implements Loader<Map<string, EntityLimit>> {
@@ -40,10 +42,11 @@ export class EntityLimitLoader
             const finalReferences: Map<string, EntityLimit> = new Map();
 
             new CSVLoader<LimitPropertiesArray, EntityLimit>(everyThemes, convertedContent => new EntityLimitBuilder(TemplateCreator.createTemplate(convertedContent)).build())
-                .convertToEmptyableString('acronym_fullName', 'acronym_alternativeName',)
-                .convertTo(EntityLimitTypes.values.map(type => type.englishName), 'type',)
-                .convertToString('fullName')
-                .convertToNullableString('alternativeName')
+                .convertTo(['nullable string', ...EntityLimits.everyAcronyms,], 'acronym_alternativeName',)
+                .convertTo(['nullable string', ...EntityLimits.everyAlternativeAcronyms,], 'acronym_alternativeName',)
+                .convertTo(EntityLimitTypes.everyEnglishNames, 'type',)
+                .convertTo(EntityLimits.everyEnglishNames, 'fullName')
+                .convertTo(['nullable string', ...EntityLimits.everyAlternativeEnglishNames,], 'alternativeName')
                 .convertTo(['number', '?', 'string',], 'limit')
                 .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.full.name, finalContent,))
                 .load();
@@ -79,14 +82,16 @@ class TemplateCreator {
         };
     }
 
-    private static __convertAcronymToStringOrArray(acronym: string | null, name: string): FullAcronymAndNameTemplate
+    private static __convertAcronymToStringOrArray(acronym: PossibleAcronymEntityLimits | null, name: PossibleEntityLimits): FullAcronymAndNameTemplate
     private static __convertAcronymToStringOrArray(acronym: null, name: null): null
-    private static __convertAcronymToStringOrArray(acronym: string | null, name: string | null): AlternateAcronymAndNameTemplate | null
+    private static __convertAcronymToStringOrArray(acronym: PossibleAlternativeAcronymEntityLimits | null, name: PossibleAlternativeEntityLimits | null): AlternateAcronymAndNameTemplate | null
     private static __convertAcronymToStringOrArray(acronym: string | null, name: string | null): AlternateAcronymAndNameTemplate | FullAcronymAndNameTemplate | null {
         if (acronym == null && name == null)
             return null;
         return {
+            // @ts-ignore They are defined the other declarations
             acronym: acronym,
+            // @ts-ignore They are defined the other declarations
             name: name,
         };
     }

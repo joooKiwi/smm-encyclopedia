@@ -29,6 +29,10 @@ export class EntityLimitTypes {
         return this.#englishName;
     }
 
+    public static get everyEnglishNames(): readonly [PossibleEntityLimitTypeEnglishName, PossibleEntityLimitTypeEnglishName,] {
+        return this.values.map(type => type.englishName) as [PossibleEntityLimitTypeEnglishName, PossibleEntityLimitTypeEnglishName,];
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------
 

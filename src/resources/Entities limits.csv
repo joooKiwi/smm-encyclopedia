@@ -2,8 +2,8 @@ acronym_fullName,acronym_alternativeName,type,fullName,alternativeName,limit
 GEL,ELB,Playing,General Entity Limit,Entity Limit B,100
 PEL,ELC,Playing,Power-up Entity Limit,Entity Limit C,100
 LCL,,Playing,Loose Coin Limit,,50
-SEL,,Playing,Sound effect limit,,?
-CL,,Playing,Corpse limit,,?
+SEL,,Playing,Sound Effect Limit,,?
+CL,,Playing,Corpse Limit,,?
 PJL,,Playing,Projectile Limit,,100
 ,,Editor,Ground Limit,Ground Limit 1,4000
 ,,Editor,Block Limit,Ground Limit 2,400
@@ -17,7 +17,7 @@ GVL,,Playing,Grown Vine Limit,,100
 ,,Editor,Track Block Limit,,10
 ,,Editor,Icicle Limit,,100
 ,,Editor,One-Way Wall / Arrow Sign / Dash Block Limit,,200
-,,Playing,Entity Held by Twister Limit,,?
+,,Playing,Entity Held By Twister Limit,,?
 ,,Editor,10 / 30 / 50 Coin Limit,,5
 ,,Editor,Pink Coin Limit,,5
 ,,Playing,Key Limit,,8
@@ -26,7 +26,7 @@ GVL,,Playing,Grown Vine Limit,,100
 ,,Playing,Superball Limit,,1
 ,,Playing,Link's Bomb Limit,,1
 ,,Playing,Player Crate Limit,,5
-,,Playing,Bommerang Limit,,1
+,,Playing,Boomerang Limit,,1
 ,,Playing,Player Cannonball Limit,,10?
 HYL,,Playing,Hatched Yoshi Limit,,2
 ,,Editor,Enemy + Other Limit,General Enemy Limit,100
