@@ -9,7 +9,7 @@ import {Loader}                 from '../../util/Loader';
 import {NameCreator}            from '../lang/NameCreator';
 import {NameBuilder}            from '../lang/NameBuilder';
 
-export type CategoryType = 'Terrain' | 'Item' | 'Gizmo' | 'Enemy';
+//region -------------------- CSV array related types --------------------
 
 type EntityCategoryPropertiesArray = [
     //region ---------- Language properties ----------
@@ -47,6 +47,8 @@ type EntityCategoryPropertiesArray = [
     korean: null | string,
     //endregion ---------- Language properties ----------
 ];
+
+//endregion -------------------- CSV array related types --------------------
 
 /**
  * A single class made to handle the loading

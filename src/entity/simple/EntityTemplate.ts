@@ -1,8 +1,8 @@
-import {CategoryType}                                                            from '../category/EntityCategoryLoader';
 import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import {EntityReferencesTemplate} from '../properties/EntityReferencesTemplate';
-import {PropertyTemplate}         from '../properties/PropertyTemplate';
-import {SMM2NameTemplate}         from '../lang/SMM2NameTemplate';
+import {EntityReferencesTemplate}                                                from '../properties/EntityReferencesTemplate';
+import {PossibleEntityCategories}                                                from '../category/EntityCategories';
+import {PropertyTemplate}                                                        from '../properties/PropertyTemplate';
+import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
 
 export interface EntityTemplate {
 
@@ -10,7 +10,7 @@ export interface EntityTemplate {
         //region ---------- Basic properties ----------
         isIn: PropertyTemplate
 
-        categoryInTheEditor: null | CategoryType
+        categoryInTheEditor: null | PossibleEntityCategories
 
         hasAMushroomVariant: null | boolean
         canBeInAParachute: null | boolean | '?'

@@ -1,7 +1,7 @@
 import everyEntities from '../../resources/Entities.csv';
 
 import {CallbackCaller}                                                          from '../../util/CallbackCaller';
-import {CategoryType, EntityCategoryLoader}                                      from '../category/EntityCategoryLoader';
+import {EntityCategoryLoader}                                                    from '../category/EntityCategoryLoader';
 import {CSVLoader}                                                               from '../../util/loader/CSVLoader';
 import {Entity}                                                                  from './Entity';
 import {EntityBuilder}                                                           from './EntityBuilder';
@@ -10,14 +10,17 @@ import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType}
 import {EntityTemplate}                                                          from './EntityTemplate';
 import {GenericSingleInstanceBuilder}                                            from '../../util/GenericSingleInstanceBuilder';
 import {Loader}                                                                  from '../../util/Loader';
+import {PossibleEntityCategories}                                                from '../category/EntityCategories';
 import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
+
+//region -------------------- CSV array related types --------------------
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
     isInSuperMarioMaker1: boolean,
     isInSuperMarioMaker2: boolean,
 
-    categoryInTheEditor: null | CategoryType,
+    categoryInTheEditor: null | PossibleEntityCategories,
 
     hasAMushroomVariant: null | boolean,
     canBeInAParachute: null | boolean | '?',
@@ -138,6 +141,8 @@ type EntityFilePropertiesArray = [
     korean: null | string,
     //endregion ---------- Language properties ----------
 ];
+
+//endregion -------------------- CSV array related types --------------------
 
 export interface DebugEntityReferences {
 

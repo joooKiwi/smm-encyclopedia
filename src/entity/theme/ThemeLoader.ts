@@ -18,6 +18,7 @@ import {Themes}                              from './Themes';
 import {ThemeTemplate}                       from './ThemeTemplate';
 import {WorldTheme}                          from './WorldTheme';
 
+//region -------------------- CSV array related types --------------------
 
 type ThemePropertiesArray = [
     isInCourseTheme: boolean,
@@ -62,6 +63,7 @@ type ThemePropertiesArray = [
     //endregion ---------- Language properties ----------
 ];
 
+//endregion -------------------- CSV array related types --------------------
 
 /**
  * @singleton

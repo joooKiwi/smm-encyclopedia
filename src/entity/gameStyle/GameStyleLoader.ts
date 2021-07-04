@@ -14,6 +14,8 @@ import {NameCreator}                         from '../lang/NameCreator';
 import {NameBuilder}                         from '../lang/NameBuilder';
 import {Name}                                from '../../lang/name/Name';
 
+//region -------------------- CSV array related types --------------------
+
 type GameStylePropertiesArray = [
 
     isInSuperMarioMaker1: boolean,
@@ -55,6 +57,7 @@ type GameStylePropertiesArray = [
     //endregion ---------- Language properties ----------
 ];
 
+//endregion -------------------- CSV array related types --------------------
 
 /**
  * @singleton
