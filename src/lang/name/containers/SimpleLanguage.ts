@@ -1,5 +1,5 @@
 export interface SimpleLanguage {
 
-    value: string
+    get value(): string
 
 }

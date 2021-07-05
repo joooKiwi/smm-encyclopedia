@@ -2,8 +2,9 @@ import {Times} from '../time/Times';
 
 export interface TimeProperty {
 
-    isInDayTheme: boolean
-    isInNightTheme: null | boolean
+    get isInDayTheme(): boolean
+
+    get isInNightTheme(): null | boolean
 
     /**
      * Return a {@link Map} based on the enum {@link Times}

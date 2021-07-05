@@ -4,8 +4,8 @@ import {Name}         from '../../lang/name/Name';
 export interface Theme
     extends Name, GameProperty {
 
-    name: Name
+    get name(): Name
 
-    isInProperty: GameProperty
+    get isInProperty(): GameProperty
 
 }

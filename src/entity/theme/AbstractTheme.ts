@@ -17,7 +17,6 @@ export class AbstractTheme
         this.#isInProperty = isInProperty;
     }
 
-
     //region -------------------- Name properties --------------------
 
     public get name() {

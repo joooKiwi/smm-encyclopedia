@@ -1,15 +1,13 @@
-import everyEntityCategories from '../../resources/Every Super Mario Maker 2 entities properties - Entity categories.csv';
+import everyEntityCategories from '../../resources/Entity categories.csv';
 
 import {CallbackCaller}         from '../../util/CallbackCaller';
 import {CSVLoader}              from '../../util/loader/CSVLoader';
 import {EntityCategory}         from './EntityCategory';
+import {EntityCategoryBuilder}  from './EntityCategoryBuilder';
 import {EntityCategoryTemplate} from './EntityCategoryTemplate';
-import {GenericEntityCategory}  from './GenericEntityCategory';
 import {Loader}                 from '../../util/Loader';
-import {NameCreator}            from '../lang/NameCreator';
-import {NameBuilder}            from '../lang/NameBuilder';
 
-export type CategoryType = 'Terrain' | 'Item' | 'Gizmo' | 'Enemy';
+//region -------------------- CSV array related types --------------------
 
 type EntityCategoryPropertiesArray = [
     //region ---------- Language properties ----------
@@ -48,6 +46,8 @@ type EntityCategoryPropertiesArray = [
     //endregion ---------- Language properties ----------
 ];
 
+//endregion -------------------- CSV array related types --------------------
+
 /**
  * A single class made to handle the loading
  * and the unique creation of every categories.
@@ -58,15 +58,17 @@ export class EntityCategoryLoader
     implements Loader<Map<string, EntityCategory>> {
 
     static readonly #instance = new EntityCategoryLoader();
+    //region -------------------- Attributes --------------------
 
     readonly #everyEntityCategoriesMap: CallbackCaller<Map<string, EntityCategory>>;
 
+    //endregion -------------------- Attributes --------------------
+
     private constructor() {
         this.#everyEntityCategoriesMap = new CallbackCaller(() => {
-            const templateMap: Map<string, EntityCategoryTemplate> = new Map();
             const finalReferences: Map<string, EntityCategory> = new Map();
 
-            const csvLoader = new CSVLoader<EntityCategoryPropertiesArray, EntityCategoryTemplate>(everyEntityCategories, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            const csvLoader = new CSVLoader<EntityCategoryPropertiesArray, EntityCategoryBuilder>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
                     'french', 'canadianFrench', 'europeanFrench',
@@ -78,10 +80,9 @@ export class EntityCategoryLoader
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
                     'korean',
                 )
-                .onFinalObjectCreated(finalContent => NameCreator.addEnglishReference(finalContent.name, templateMap, finalContent))
-                .onInitialisationEnd(() =>
-                    templateMap.forEach((template, englishName) =>
-                        finalReferences.set(englishName, new GenericEntityCategory(new NameBuilder(template.name).build()))));
+                .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
+                .load();
+
             console.log(csvLoader.content);
             return finalReferences;
         });

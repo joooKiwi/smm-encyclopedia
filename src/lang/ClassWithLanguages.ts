@@ -11,31 +11,46 @@
  */
 export interface ClassWithLanguages {
 
-    americanEnglish: string
-    europeanEnglish: string
+    get americanEnglish(): string
 
-    canadianFrench: string
-    europeanFrench: string
+    get europeanEnglish(): string
 
-    german: string
 
-    americanSpanish: string
-    europeanSpanish: string
+    get canadianFrench(): string
 
-    italian: string
+    get europeanFrench(): string
 
-    dutch: string
 
-    americanPortuguese: string
-    europeanPortuguese: string
+    get german(): string
 
-    russian: string
 
-    japanese: string
+    get americanSpanish(): string
 
-    simplifiedChinese: string
-    traditionalChinese: string
+    get europeanSpanish(): string
 
-    korean: string
+
+    get italian(): string
+
+
+    get dutch(): string
+
+
+    get americanPortuguese(): string
+
+    get europeanPortuguese(): string
+
+
+    get russian(): string
+
+
+    get japanese(): string
+
+
+    get simplifiedChinese(): string
+
+    get traditionalChinese(): string
+
+
+    get korean(): string
 
 }

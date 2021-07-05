@@ -12,18 +12,17 @@ export class GenericWorldTheme
         super(name, GamePropertyContainer.get(false, true,));
     }
 
-
     //region -------------------- Game properties --------------------
 
     public get isInProperty() {
         return super.isInProperty as ExclusiveSMM2GameProperty;
     }
 
-    public get isInSuperMarioMaker1(): false {
+    public get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1'] {
         return false;
     }
 
-    public get isInSuperMarioMaker2(): true {
+    public get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2'] {
         return true;
     }
 

@@ -6,10 +6,10 @@ export type ChineseOriginal = | string | readonly [simplified: string, tradition
 export interface ChineseLanguage
     extends PluralLanguage<ChineseReference> {
 
-    original: ChineseOriginal
+    get original(): ChineseOriginal
 
-    simplified: string
+    get simplified(): string
 
-    traditional: string
+    get traditional(): string
 
 }

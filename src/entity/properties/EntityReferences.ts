@@ -1,27 +1,51 @@
-import {Entity} from "../simple/Entity";
+import {Entity} from '../simple/Entity';
 
 export interface EntityReferences {
 
-    referenceInSuperMarioBrosStyle: Entity
-    referenceInSuperMarioBros3Style: Entity
-    referenceInSuperMarioWorldStyle: Entity
-    referenceInNewSuperMarioBrosUStyle: Entity
-    referenceInSuperMario3DWorldStyle: Entity
+    //region -------------------- Game style references properties --------------------
 
-    referenceInGroundTheme: Entity
-    referenceInUndergroundTheme: Entity
-    referenceInUnderwaterTheme: Entity
-    referenceInDesertTheme: Entity
-    referenceInSnowTheme: Entity
-    referenceInSkyTheme: Entity
-    referenceInForestTheme: Entity
-    referenceInGhostHouseTheme: Entity
-    referenceInAirshipTheme: Entity
-    referenceInCastleTheme: Entity
+    get referenceInSuperMarioBrosStyle(): Entity
 
-    referenceInDayTheme: Entity
-    referenceInNightTheme: Entity
+    get referenceInSuperMarioBros3Style(): Entity
 
-    everyReferences: readonly Entity[]
+    get referenceInSuperMarioWorldStyle(): Entity
+
+    get referenceInNewSuperMarioBrosUStyle(): Entity
+
+    get referenceInSuperMario3DWorldStyle(): Entity
+
+    //endregion -------------------- Game style references properties --------------------
+    //region -------------------- Theme references properties --------------------
+
+    get referenceInGroundTheme(): Entity
+
+    get referenceInUndergroundTheme(): Entity
+
+    get referenceInUnderwaterTheme(): Entity
+
+    get referenceInDesertTheme(): Entity
+
+    get referenceInSnowTheme(): Entity
+
+    get referenceInSkyTheme(): Entity
+
+    get referenceInForestTheme(): Entity
+
+    get referenceInGhostHouseTheme(): Entity
+
+    get referenceInAirshipTheme(): Entity
+
+    get referenceInCastleTheme(): Entity
+
+    //endregion -------------------- Theme references properties --------------------
+    //region -------------------- Time references properties --------------------
+
+    get referenceInDayTheme(): Entity
+
+    get referenceInNightTheme(): Entity
+
+    //endregion -------------------- Time references properties --------------------
+
+    get everyReferences(): readonly Entity[]
 
 }

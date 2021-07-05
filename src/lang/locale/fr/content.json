@@ -4,9 +4,14 @@
   "no":  "non",
   "No":  "Non",
 
-  "name": "nom",
-  "Name": "Nom",
-  "Empty name": "Nom vide",
+  "name":                "nom",
+  "Name":                "Nom",
+  "Full name":           "Nom complet",
+  "Alternative name":    "Nom alternatif",
+  "Empty name":          "Nom vide",
+  "Acronym":             "Acronyme",
+  "Acronym(s)":          "Acronyme(s)",
+  "Alternative acronym": "Acronyme alternatif",
 
   "minimum": { "m": "minimum", "f": "minimum" },
   "Minimum": { "m": "Minimum", "f": "Minimum" },
@@ -15,6 +20,9 @@
 
   "image": "image",
   "Image": "Image",
+
+  "limit": "limite",
+  "Limit": "Limite",
 
   "language":            "langue",
   "Language":            "Langue",

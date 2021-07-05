@@ -4,9 +4,11 @@ import {Theme}                     from './Theme';
 export interface WorldTheme
     extends Theme, ExclusiveSMM2GameProperty {
 
-    isInProperty: ExclusiveSMM2GameProperty
+    get isInProperty(): ExclusiveSMM2GameProperty
 
-    isInSuperMarioMaker1: false
-    isInSuperMarioMaker2: true
+
+    get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1']
+
+    get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2']
 
 }

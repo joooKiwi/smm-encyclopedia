@@ -92,9 +92,7 @@ export class EmptyEntityReference
     }
 
 
-    public get everyReferences() {
-        return EMPTY_ARRAY;
-    }
+    public readonly everyReferences = EMPTY_ARRAY;
 
     //endregion -------------------- References methods --------------------
 

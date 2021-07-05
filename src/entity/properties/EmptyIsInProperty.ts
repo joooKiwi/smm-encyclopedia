@@ -46,6 +46,7 @@ export class EmptyIsInProperty
     public readonly isInGhostHouseTheme = false;
     public readonly isInAirshipTheme = false;
     public readonly isInCastleTheme = false;
+
     //endregion -------------------- Theme properties --------------------
     //region -------------------- Time properties --------------------
 

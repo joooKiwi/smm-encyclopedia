@@ -116,25 +116,30 @@ export class ThemePropertyContainer
         if (isInGroundTheme  && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
             return this.#IS_IN_EVERY_THEMES;
 
+        //region ----- Exclusive (or not) on underwater theme -----
         if (!isInGroundTheme && !isInUndergroundTheme && isInUnderwaterTheme  && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
             return this.#IS_IN_EXCLUSIVE_UNDERWATER_THEME;
         if (isInGroundTheme  && isInUndergroundTheme  && !isInUnderwaterTheme && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
             return this.#IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME;
-
+        //endregion ----- Exclusive (or not) on underwater theme -----
+        //region ----- Exclusive (or not) on snow theme -----
         if (!isInGroundTheme && !isInUndergroundTheme && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme === true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
             return this.#IS_IN_EXCLUSIVE_SNOW_THEME;
         if (isInGroundTheme  && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme !== true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  &&  isInAirshipTheme && isInCastleTheme )
             return this.#IS_IN_NOT_EXCLUSIVE_SNOW_THEME;
-
+        //endregion ----- Exclusive (or not) on snow theme -----
+        //region ----- Exclusive (or not) on underground theme -----
         if (isInGroundTheme  && !isInUndergroundTheme && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
             return this.#IS_IN_EXCLUSIVE_GROUND_THEME;
         if (!isInGroundTheme && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
             return this.#IS_IN_NOT_EXCLUSIVE_GROUND_THEME;
-
+        //endregion ----- Exclusive (or not) on underground theme -----
+        //region ----- Exclusive 2 themes -----
         if (!isInGroundTheme && isInUndergroundTheme  && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme === true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
             return this.#IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME;
         if (!isInGroundTheme && !isInUndergroundTheme && isInUnderwaterTheme  && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme === true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
             return this.#IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME;
+        //endregion ----- Exclusive 2 themes -----
 
         throw new EvalError(`No theme can be used with this theme selection (${isInGroundTheme}, ${isInUndergroundTheme}, ${isInUnderwaterTheme}, ${isInDesertTheme}, ${isInSnowTheme}, ${isInSkyTheme}, ${isInForestTheme}, ${isInGhostHouseTheme}, ${isInAirshipTheme}, ${isInCastleTheme}).`);
     }

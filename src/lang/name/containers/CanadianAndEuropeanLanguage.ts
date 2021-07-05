@@ -6,10 +6,10 @@ export type CanadianOrEuropeanOriginal = | string | readonly [canadian: string, 
 export interface CanadianAndEuropeanLanguage
     extends PluralLanguage<CanadianOrEuropeanReference> {
 
-    original: CanadianOrEuropeanOriginal
+    get original(): CanadianOrEuropeanOriginal
 
-    canadian: string
+    get canadian(): string
 
-    european: string
+    get european(): string
 
 }

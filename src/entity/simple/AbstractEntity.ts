@@ -150,6 +150,7 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.name.korean;
     }
 
+
     public get individualValues() {
         return this.name.individualValues;
     }
@@ -405,6 +406,7 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.#referencesContainer;
     }
 
+    //region -------------------- Game style references properties --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return this.referencesContainer.referenceInSuperMarioBrosStyle;
@@ -426,6 +428,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.referencesContainer.referenceInSuperMario3DWorldStyle;
     }
 
+    //endregion -------------------- Game style references properties --------------------
+    //region -------------------- Theme references properties --------------------
 
     public get referenceInGroundTheme() {
         return this.referencesContainer.referenceInGroundTheme;
@@ -467,6 +471,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.referencesContainer.referenceInCastleTheme;
     }
 
+    //endregion -------------------- Theme references properties --------------------
+    //region -------------------- Time references properties --------------------
 
     public get referenceInDayTheme() {
         return this.referencesContainer.referenceInDayTheme;
@@ -476,6 +482,7 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.referencesContainer.referenceInNightTheme;
     }
 
+    //endregion -------------------- Time references properties --------------------
 
     public get everyReferences() {
         return this.referencesContainer.everyReferences;

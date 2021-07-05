@@ -38,7 +38,6 @@ export class EntityCategories {
         // this.#imagePath = '/game/themes/' + basicImagePath;
     }
 
-
     //region -------------------- Methods --------------------
 
     public get englishName() {

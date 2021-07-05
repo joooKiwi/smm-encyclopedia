@@ -1,10 +1,13 @@
 import {EntityTemplate}   from '../simple/EntityTemplate';
 import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 
+/**
+ * @template
+ */
 export interface EntityCategoryTemplate {
 
-    entities: null | EntityTemplate[]
+    get entities(): null | EntityTemplate[]
 
-    name: SMM2NameTemplate
+    get name(): SMM2NameTemplate
 
 }

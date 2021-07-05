@@ -6,10 +6,10 @@ export type AmericanOrEuropeanOriginal = | string | readonly [american: string, 
 export interface AmericanAndEuropeanLanguage
     extends PluralLanguage<AmericanOrEuropeanReference> {
 
-    original: AmericanOrEuropeanOriginal
+    get original(): AmericanOrEuropeanOriginal
 
-    american: string
+    get american(): string
 
-    european: string
+    get european(): string
 
 }

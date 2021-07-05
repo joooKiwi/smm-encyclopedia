@@ -7,31 +7,67 @@ import {Property}                       from '../Property';
 export interface ExclusiveSMM1Property
     extends Property, ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty {
 
-    gameContainer: ExclusiveSMM1GameProperty
-    isInSuperMarioMaker1: true
-    isInSuperMarioMaker2: false
+    //region -------------------- Game properties --------------------
 
-    gameStyleContainer: ExclusiveSMM1GameStyleProperty
-    isInSuperMarioBrosStyle: true
-    isInSuperMarioBros3Style: false
-    isInSuperMarioWorldStyle: false
-    isInNewSuperMarioBrosUStyle: false
-    isInSuperMario3DWorldStyle: null
+    get gameContainer(): ExclusiveSMM1GameProperty
 
-    themeContainer: ExclusiveSMM1ThemeProperty
-    isInGroundTheme: true
-    isInUndergroundTheme: true
-    isInUnderwaterTheme: true
-    isInDesertTheme: null
-    isInSnowTheme: null
-    isInSkyTheme: null
-    isInForestTheme: null
-    isInGhostHouseTheme: true
-    isInAirshipTheme: true
-    isInCastleTheme: true
 
-    timeContainer: ExclusiveSMM1TimeProperty
-    isInDayTheme: true
-    isInNightTheme: null
+    get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+
+    get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
+
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
+
+    get gameStyleContainer(): ExclusiveSMM1GameStyleProperty
+
+
+    get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle']
+
+    get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style']
+
+    get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle']
+
+    get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle']
+
+    get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle']
+
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
+
+    get themeContainer(): ExclusiveSMM1ThemeProperty
+
+
+    get isInGroundTheme(): this['themeContainer']['isInGroundTheme']
+
+    get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme']
+
+    get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme']
+
+    get isInDesertTheme(): this['themeContainer']['isInDesertTheme']
+
+    get isInSnowTheme(): this['themeContainer']['isInSnowTheme']
+
+    get isInSkyTheme(): this['themeContainer']['isInSkyTheme']
+
+    get isInForestTheme(): this['themeContainer']['isInForestTheme']
+
+    get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme']
+
+    get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme']
+
+    get isInCastleTheme(): this['themeContainer']['isInCastleTheme']
+
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
+
+    get timeContainer(): ExclusiveSMM1TimeProperty
+
+
+    get isInDayTheme(): this['timeContainer']['isInDayTheme']
+
+    get isInNightTheme(): this['timeContainer']['isInNightTheme']
+
+    //endregion -------------------- Time properties --------------------
 
 }

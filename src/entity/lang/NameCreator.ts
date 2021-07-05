@@ -1,4 +1,4 @@
-import {SMM2NameTemplate} from "./SMM2NameTemplate";
+import {SMM2NameTemplate} from './SMM2NameTemplate';
 
 /**
  * A class made to help the {@link SMM2NameTemplate}.
@@ -19,6 +19,22 @@ export class NameCreator {
         //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
     }
 
+    /**
+     * <p>
+     *  Add the english reference used by the <b>name</b> received into the <b>templateMap</b> reference.
+     *  It also add the <b>template</b> received into the <b>templateMap</b>.
+     * </p>
+     *
+     * <p>
+     *  The possible ways that it can fail (only in development, not in production)
+     *  is when the english name (simple or american) don't have either a value
+     *  or when the reference is already existing in the <b>templateMap</b>.
+     * </p>
+     *
+     * @param name the template name to retrieve the english name (simple or american)
+     * @param templateMap the template map reference
+     * @param template the template to add to the map
+     */
     public static addEnglishReference<T>(name: SMM2NameTemplate, templateMap: Map<string, T>, template: T,): void {
         this.__testName(name);
         const englishReferenceName = name.english.simple ?? name.english.american;

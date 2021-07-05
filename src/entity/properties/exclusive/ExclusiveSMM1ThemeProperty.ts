@@ -3,15 +3,24 @@ import {ThemeProperty} from '../ThemeProperty';
 export interface ExclusiveSMM1ThemeProperty
     extends ThemeProperty {
 
-    isInGroundTheme: true
-    isInUndergroundTheme: true
-    isInUnderwaterTheme: true
-    isInDesertTheme: null
-    isInSnowTheme: null
-    isInSkyTheme: null
-    isInForestTheme: null
-    isInGhostHouseTheme: true
-    isInAirshipTheme: true
-    isInCastleTheme: true
+    get isInGroundTheme(): true
+
+    get isInUndergroundTheme(): true
+
+    get isInUnderwaterTheme(): true
+
+    get isInDesertTheme(): null
+
+    get isInSnowTheme(): null
+
+    get isInSkyTheme(): null
+
+    get isInForestTheme(): null
+
+    get isInGhostHouseTheme(): true
+
+    get isInAirshipTheme(): true
+
+    get isInCastleTheme(): true
 
 }

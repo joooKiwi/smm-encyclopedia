@@ -3,10 +3,14 @@ import {GameStyleProperty} from '../GameStyleProperty';
 export interface ExclusiveSMM1GameStyleProperty
     extends GameStyleProperty {
 
-    isInSuperMarioBrosStyle: true
-    isInSuperMarioBros3Style: false
-    isInSuperMarioWorldStyle: false
-    isInNewSuperMarioBrosUStyle: false
-    isInSuperMario3DWorldStyle: null
+    get isInSuperMarioBrosStyle(): true
+
+    get isInSuperMarioBros3Style(): false
+
+    get isInSuperMarioWorldStyle(): false
+
+    get isInNewSuperMarioBrosUStyle(): false
+
+    get isInSuperMario3DWorldStyle(): null
 
 }
