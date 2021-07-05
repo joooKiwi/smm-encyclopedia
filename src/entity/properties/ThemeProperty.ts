@@ -1,4 +1,4 @@
-import {Themes} from '../theme/Themes';
+import type {Themes} from '../theme/Themes';
 
 export interface ThemeProperty {
 

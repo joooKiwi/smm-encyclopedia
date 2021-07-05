@@ -1,4 +1,4 @@
-import {Times} from '../time/Times';
+import type {Times} from '../time/Times';
 
 export interface TimeProperty {
 

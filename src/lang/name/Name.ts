@@ -1,4 +1,4 @@
-import {ClassWithEveryLanguages} from '../ClassWithEveryLanguages';
+import type {ClassWithEveryLanguages} from '../ClassWithEveryLanguages';
 
 export interface Name
     extends ClassWithEveryLanguages {

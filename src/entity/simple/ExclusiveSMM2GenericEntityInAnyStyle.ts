@@ -1,10 +1,11 @@
-import {AbstractExclusiveSMM2Entity}     from './AbstractExclusiveSMM2Entity';
-import {EntityCategory}                  from '../category/EntityCategory';
-import {EntityReferences}                from '../properties/EntityReferences';
-import {ExclusiveSMM2EntityInAnyStyle}   from './ExclusiveSMM2EntityInAnyStyle';
-import {ExclusiveSMM2PropertyInAnyStyle} from '../properties/exclusive/ExclusiveSMM2PropertyInAnyStyle';
-import {Name}                            from '../../lang/name/Name';
-import {Property}                        from '../properties/Property';
+import type {EntityCategory}                  from '../category/EntityCategory';
+import type {EntityReferences}                from '../properties/EntityReferences';
+import type {ExclusiveSMM2EntityInAnyStyle}   from './ExclusiveSMM2EntityInAnyStyle';
+import type {ExclusiveSMM2PropertyInAnyStyle} from '../properties/exclusive/ExclusiveSMM2PropertyInAnyStyle';
+import type {Name}                            from '../../lang/name/Name';
+import type {Property}                        from '../properties/Property';
+
+import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
 
 export class ExclusiveSMM2GenericEntityInAnyStyle
     extends AbstractExclusiveSMM2Entity<ExclusiveSMM2PropertyInAnyStyle>

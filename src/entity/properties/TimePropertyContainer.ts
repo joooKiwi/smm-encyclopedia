@@ -1,5 +1,6 @@
-import {ExclusiveSMM2TimeProperty} from './exclusive/ExclusiveSMM2TimeProperty';
-import {TimeProperty}              from './TimeProperty';
+import type {ExclusiveSMM2TimeProperty} from './exclusive/ExclusiveSMM2TimeProperty';
+import type {TimeProperty}              from './TimeProperty';
+
 import {Times}                     from '../time/Times';
 
 /**
@@ -11,16 +12,17 @@ export class TimePropertyContainer
 
     //region -------------------- predefined containers --------------------
 
-    static readonly #IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new TimePropertyContainer(true, null,);
+    static readonly #IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new TimePropertyContainer(true,  null, );
 
-    static readonly #IS_IN_ONLY_DAY_THEME_PROPERTY = new TimePropertyContainer(true, false,) as ExclusiveSMM2TimeProperty;
-    static readonly #IS_IN_ONLY_NIGHT_THEME_PROPERTY = new TimePropertyContainer(false, true,) as ExclusiveSMM2TimeProperty;
+    static readonly #IS_IN_ONLY_DAY_THEME_PROPERTY =     new TimePropertyContainer(true,  false,) as ExclusiveSMM2TimeProperty;
+    static readonly #IS_IN_ONLY_NIGHT_THEME_PROPERTY =   new TimePropertyContainer(false, true, ) as ExclusiveSMM2TimeProperty;
 
-    static readonly #IS_IN_BOTH_TIMES_PROPERTY = new TimePropertyContainer(true, true,) as ExclusiveSMM2TimeProperty;
-    static readonly #IS_IN_NO_TIMES_PROPERTY = new TimePropertyContainer(false, false,);
+    static readonly #IS_IN_BOTH_TIMES_PROPERTY =         new TimePropertyContainer(true,  true, ) as ExclusiveSMM2TimeProperty;
+    static readonly #IS_IN_NO_TIMES_PROPERTY =           new TimePropertyContainer(false, false,);
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
+
     readonly #isInDayTheme;
     readonly #isInNightTheme;
 

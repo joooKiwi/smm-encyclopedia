@@ -1,4 +1,4 @@
-import {Property} from './Property';
+import type {Property} from './Property';
 
 /**
  * @nullObjectPattern

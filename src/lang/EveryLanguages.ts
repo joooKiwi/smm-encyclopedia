@@ -1,13 +1,10 @@
-import {ClassWithEveryLanguages}    from './ClassWithEveryLanguages';
-import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
-import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from './name/containers/ChineseLanguage';
-import {
-    Languages,
-    PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages,
-    PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages,
-    PossibleValueToGetLanguage
-}                                   from './Languages';
+import type {ClassWithEveryLanguages}                                                                                                                                                    from './ClassWithEveryLanguages';
+import type {AmericanOrEuropeanOriginal}                                                                                                                                                 from './name/containers/AmericanAndEuropeanLanguage';
+import type {CanadianOrEuropeanOriginal}                                                                                                                                                 from './name/containers/CanadianAndEuropeanLanguage';
+import type {ChineseOriginal}                                                                                                                                                            from './name/containers/ChineseLanguage';
+import type {PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages, PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages, PossibleValueToGetLanguage} from './Languages';
+
+import {Languages} from './Languages';
 
 //region -------------------- Language text --------------------
 

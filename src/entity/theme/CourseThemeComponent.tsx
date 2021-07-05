@@ -1,10 +1,11 @@
 import React             from 'react';
 import {withTranslation} from 'react-i18next';
 
+import type {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
+import type {Name}                          from '../../lang/name/Name';
+import type {ThemeProperty}                 from '../properties/ThemeProperty';
+
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import {Name}                          from '../../lang/name/Name';
-import {ThemeProperty}                 from '../properties/ThemeProperty';
 import {Themes}                        from './Themes';
 
 export interface ThemeElement

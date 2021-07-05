@@ -1,6 +1,7 @@
-import {Builder}              from '../../util/Builder';
-import {EntityLimit}          from './EntityLimit';
-import {EntityLimitTemplate}  from './EntityLimitTemplate';
+import type {Builder}             from '../../util/Builder';
+import type {EntityLimit}         from './EntityLimit';
+import type {EntityLimitTemplate} from './EntityLimitTemplate';
+
 import {EntityLimitContainer} from './EntityLimitContainer';
 import {EntityLimitTypes}     from './EntityLimitTypes';
 

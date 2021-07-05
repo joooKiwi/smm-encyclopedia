@@ -1,8 +1,9 @@
-import {Builder}          from '../util/Builder';
-import {SMM2NameTemplate} from './lang/SMM2NameTemplate';
-import {NameBuilder}      from './lang/NameBuilder';
-import {NameCreator}      from './lang/NameCreator';
-import {Name}             from '../lang/name/Name';
+import type {Builder}          from '../util/Builder';
+import type {SMM2NameTemplate} from './lang/SMM2NameTemplate';
+import type {Name}             from '../lang/name/Name';
+
+import {NameBuilder} from './lang/NameBuilder';
+import {NameCreator} from './lang/NameCreator';
 
 interface TemplateWithNameTemplate {
     name: SMM2NameTemplate

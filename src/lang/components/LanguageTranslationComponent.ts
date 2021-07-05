@@ -1,7 +1,7 @@
-import {Component} from 'react';
-import {TFunction} from 'react-i18next';
+import {Component}      from 'react';
+import type {TFunction} from 'react-i18next';
 
-import {LanguageTranslationElement} from './elements/LanguageTranslationElement';
+import type {LanguageTranslationElement} from './elements/LanguageTranslationElement';
 
 export default abstract class LanguageTranslationComponent<P extends LanguageTranslationElement = LanguageTranslationElement, S = {}, >
     extends Component<P, S> {

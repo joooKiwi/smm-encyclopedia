@@ -1,6 +1,6 @@
-import {Entity}       from '../simple/Entity';
-import {GameProperty} from '../properties/GameProperty';
-import {Name}         from '../../lang/name/Name';
+import type {Entity}       from '../simple/Entity';
+import type {GameProperty} from '../properties/GameProperty';
+import type {Name}         from '../../lang/name/Name';
 
 export interface GameStyle
     extends Name, GameProperty {

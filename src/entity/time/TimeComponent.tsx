@@ -1,11 +1,12 @@
 import {withTranslation} from 'react-i18next';
 import React             from 'react';
 
-import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
+import type {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
+import type {Name}                          from '../../lang/name/Name';
+import type {TimeProperty}                  from '../properties/TimeProperty';
+
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Name}         from '../../lang/name/Name';
-import {TimeProperty} from '../properties/TimeProperty';
-import {Times}        from './Times';
+import {Times}                         from './Times';
 
 export interface TimeElement
     extends GameContentTranslationElement {

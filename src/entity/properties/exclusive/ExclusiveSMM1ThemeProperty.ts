@@ -1,4 +1,4 @@
-import {ThemeProperty} from '../ThemeProperty';
+import type {ThemeProperty} from '../ThemeProperty';
 
 export interface ExclusiveSMM1ThemeProperty
     extends ThemeProperty {

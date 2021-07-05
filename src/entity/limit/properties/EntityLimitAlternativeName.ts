@@ -1,4 +1,4 @@
-import {PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits} from '../EntityLimits';
+import type {PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits} from '../EntityLimits';
 
 export interface EntityLimitAlternativeName {
 

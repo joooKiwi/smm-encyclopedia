@@ -1,5 +1,5 @@
-import {EntityCategory} from './EntityCategory';
-import {Name}           from '../../lang/name/Name';
+import type {EntityCategory} from './EntityCategory';
+import type {Name}           from '../../lang/name/Name';
 
 export class GenericEntityCategory
     implements EntityCategory {

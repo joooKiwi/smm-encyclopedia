@@ -1,5 +1,5 @@
-import {EntityTemplate}   from '../simple/EntityTemplate';
-import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
+import type {EntityTemplate}   from '../simple/EntityTemplate';
+import type {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 
 /**
  * @template

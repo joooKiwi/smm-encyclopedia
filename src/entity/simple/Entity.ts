@@ -1,7 +1,7 @@
-import {EntityReferences} from '../properties/EntityReferences';
-import {EntityCategory}   from '../category/EntityCategory';
-import {Name}             from '../../lang/name/Name';
-import {Property}         from '../properties/Property';
+import type {EntityReferences} from '../properties/EntityReferences';
+import type {EntityCategory}   from '../category/EntityCategory';
+import type {Name}             from '../../lang/name/Name';
+import type {Property}         from '../properties/Property';
 
 export interface Entity
     extends Name, Property, EntityReferences {

@@ -1,4 +1,4 @@
-import {GameStyles} from '../gameStyle/GameStyles';
+import type {GameStyles} from '../gameStyle/GameStyles';
 
 export interface GameStyleProperty {
 

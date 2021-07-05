@@ -1,4 +1,4 @@
-import {PluralLanguage} from './PluralLanguage';
+import type {PluralLanguage} from './PluralLanguage';
 
 export type ChineseReference = | 'simplified' | 'traditional';
 export type ChineseOriginal = | string | readonly [simplified: string, traditional: string,];

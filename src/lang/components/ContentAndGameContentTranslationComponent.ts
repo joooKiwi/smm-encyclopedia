@@ -1,5 +1,5 @@
-import {Component} from 'react';
-import {TFuncKey}  from 'react-i18next';
+import {Component}     from 'react';
+import type {TFuncKey} from 'react-i18next';
 
 import {ContentAndGameContentTranslationElement} from './elements/ContentAndGameContentTranslationElement';
 

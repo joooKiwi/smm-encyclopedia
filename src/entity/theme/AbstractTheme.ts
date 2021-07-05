@@ -1,6 +1,6 @@
-import {GameProperty} from '../properties/GameProperty';
-import {Name}         from '../../lang/name/Name';
-import {Theme}            from './Theme';
+import type {GameProperty} from '../properties/GameProperty';
+import type {Name}         from '../../lang/name/Name';
+import type {Theme}        from './Theme';
 
 export class AbstractTheme
     implements Theme {

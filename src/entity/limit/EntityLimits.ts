@@ -1,5 +1,7 @@
-import {EntityLimit}       from './EntityLimit';
+import type {EntityLimit} from './EntityLimit';
+
 import {EntityLimitLoader} from './EntityLimitLoader';
+
 //region -------------------- limit texts --------------------
 
 export type PossibleAcronymEntityLimits = `${'GE' | 'PE' | 'LC' | 'SE' | 'C' | 'PJ' | 'GV' | 'HY'}L`;
@@ -86,7 +88,7 @@ export class EntityLimits {
     static readonly #LIMIT_LENGTH = ' Limit'.length;
 
     #reference?: EntityLimit;
-    readonly #acronym:PossibleAcronymEntityLimits|null;
+    readonly #acronym: PossibleAcronymEntityLimits | null;
     readonly #englishName: PossibleEntityLimits;
     readonly #alternativeAcronym: PossibleAlternativeAcronymEntityLimits | null;
     readonly #alternativeEnglishName: PossibleAlternativeEntityLimits | null;

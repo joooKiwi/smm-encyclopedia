@@ -1,4 +1,4 @@
-import {PluralLanguage} from './PluralLanguage';
+import type {PluralLanguage} from './PluralLanguage';
 
 export type AmericanOrEuropeanReference = | 'american' | 'european';
 export type AmericanOrEuropeanOriginal = | string | readonly [american: string, european: string,];

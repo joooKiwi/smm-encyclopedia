@@ -1,6 +1,6 @@
-import {ExclusiveSMM1GameProperty} from './exclusive/ExclusiveSMM1GameProperty';
-import {ExclusiveSMM2GameProperty} from './exclusive/ExclusiveSMM2GameProperty';
-import {GameProperty}              from './GameProperty';
+import type {ExclusiveSMM1GameProperty} from './exclusive/ExclusiveSMM1GameProperty';
+import type {ExclusiveSMM2GameProperty} from './exclusive/ExclusiveSMM2GameProperty';
+import type {GameProperty}              from './GameProperty';
 
 /**
  * @multiton
@@ -10,14 +10,15 @@ export class GamePropertyContainer
     implements GameProperty {
 
     //region -------------------- predefined containers --------------------
-    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new GamePropertyContainer(true, false,) as ExclusiveSMM1GameProperty;
-    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new GamePropertyContainer(false, true,) as ExclusiveSMM2GameProperty;
+    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new GamePropertyContainer(true,  false,) as ExclusiveSMM1GameProperty;
+    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new GamePropertyContainer(false, true, ) as ExclusiveSMM2GameProperty;
 
-    static readonly #IS_IN_BOTH_GAMES_PROPERTY = new GamePropertyContainer(true, true,);
-    static readonly #IS_IN_NO_GAMES_PROPERTY = new GamePropertyContainer(false, false,);
+    static readonly #IS_IN_BOTH_GAMES_PROPERTY =               new GamePropertyContainer(true,  true, );
+    static readonly #IS_IN_NO_GAMES_PROPERTY =                 new GamePropertyContainer(false, false,);
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
+
     readonly #isInSuperMarioMaker1;
     readonly #isInSuperMarioMaker2;
 

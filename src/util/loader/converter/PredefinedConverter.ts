@@ -1,4 +1,5 @@
-import {Converter}                        from './Converter';
+import type {Converter} from './Converter';
+
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';
 import {StringToBooleanConverter}         from './StringToBooleanConverter';

@@ -1,7 +1,7 @@
-import {EntityLimitTypes}           from './EntityLimitTypes';
-import {EntityLimitAmount}          from './properties/EntityLimitAmount';
-import {EntityLimitFullName}        from './properties/EntityLimitFullName';
-import {EntityLimitAlternativeName} from './properties/EntityLimitAlternativeName';
+import type {EntityLimitTypes}           from './EntityLimitTypes';
+import type {EntityLimitAmount}          from './properties/EntityLimitAmount';
+import type {EntityLimitFullName}        from './properties/EntityLimitFullName';
+import type {EntityLimitAlternativeName} from './properties/EntityLimitAlternativeName';
 
 export interface EntityLimit {
 

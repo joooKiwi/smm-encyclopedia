@@ -1,4 +1,4 @@
-import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
+import type {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 
 /**
  * @template

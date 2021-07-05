@@ -1,9 +1,10 @@
-import {AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
-import {Builder}                    from '../../util/Builder';
-import {CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
-import {ChineseOriginal}            from './containers/ChineseLanguage';
-import {Name}                       from './Name';
-import {NameContainer}              from './NameContainer';
+import type {AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
+import type {Builder}                    from '../../util/Builder';
+import type {CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
+import type {ChineseOriginal}            from './containers/ChineseLanguage';
+import type {Name}                       from './Name';
+
+import {NameContainer} from './NameContainer';
 
 export class NameBuilder
     implements Builder<Name> {

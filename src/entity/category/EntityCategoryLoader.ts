@@ -1,11 +1,12 @@
 import everyEntityCategories from '../../resources/Entity categories.csv';
 
-import {CallbackCaller}         from '../../util/CallbackCaller';
-import {CSVLoader}              from '../../util/loader/CSVLoader';
-import {EntityCategory}         from './EntityCategory';
-import {EntityCategoryBuilder}  from './EntityCategoryBuilder';
-import {EntityCategoryTemplate} from './EntityCategoryTemplate';
-import {Loader}                 from '../../util/Loader';
+import type {EntityCategory}         from './EntityCategory';
+import type {EntityCategoryTemplate} from './EntityCategoryTemplate';
+import type {Loader}                 from '../../util/Loader';
+
+import {CallbackCaller}        from '../../util/CallbackCaller';
+import {CSVLoader}             from '../../util/loader/CSVLoader';
+import {EntityCategoryBuilder} from './EntityCategoryBuilder';
 
 //region -------------------- CSV array related types --------------------
 

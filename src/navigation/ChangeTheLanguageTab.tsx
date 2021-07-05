@@ -3,9 +3,10 @@ import './ChangeTheLanguageTab.scss';
 import React             from 'react';
 import {withTranslation} from 'react-i18next';
 
+import type {ContentAndLanguageTranslationElement} from '../lang/components/elements/ContentAndLanguageTranslationElement';
+
 import ContentAndLanguageTranslationComponent from '../lang/components/ContentAndLanguageTranslationComponent';
 import {Languages}                            from '../lang/Languages';
-import {ContentAndLanguageTranslationElement} from '../lang/components/elements/ContentAndLanguageTranslationElement';
 
 class ChangeTheLanguageTab
     extends ContentAndLanguageTranslationComponent<ContentAndLanguageTranslationElement, { currentLanguage: Languages }> {

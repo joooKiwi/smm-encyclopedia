@@ -1,13 +1,14 @@
 import everyThemes from '../../resources/Themes.csv';
 
+import type {CourseTheme}   from './CourseTheme';
+import type {Loader}        from '../../util/Loader';
+import type {ThemeTemplate} from './ThemeTemplate';
+import type {WorldTheme}    from './WorldTheme';
+
 import {CallbackCaller} from '../../util/CallbackCaller';
 import {CSVLoader}      from '../../util/loader/CSVLoader';
-import {CourseTheme}    from './CourseTheme';
 import {EntityLoader}   from '../simple/EntityLoader';
-import {Loader}         from '../../util/Loader';
 import {ThemeBuilder}   from './ThemeBuilder';
-import {ThemeTemplate}  from './ThemeTemplate';
-import {WorldTheme}     from './WorldTheme';
 
 //region -------------------- CSV array related types --------------------
 

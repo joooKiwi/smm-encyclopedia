@@ -1,7 +1,8 @@
+import type {WorldTheme} from './WorldTheme';
+
 import {EMPTY_MAP}             from '../../util/emptyVariables';
 import {EmptyName}             from '../../lang/name/EmptyName';
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
-import {WorldTheme}            from './WorldTheme';
 
 /**
  * @nullObjectPattern

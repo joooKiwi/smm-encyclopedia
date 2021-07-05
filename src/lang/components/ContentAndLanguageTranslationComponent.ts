@@ -1,7 +1,7 @@
-import {Component} from 'react';
-import {TFuncKey}  from 'react-i18next';
+import {Component}     from 'react';
+import type {TFuncKey} from 'react-i18next';
 
-import {ContentAndLanguageTranslationElement} from './elements/ContentAndLanguageTranslationElement';
+import type {ContentAndLanguageTranslationElement} from './elements/ContentAndLanguageTranslationElement';
 
 export default abstract class ContentAndLanguageTranslationComponent<P extends ContentAndLanguageTranslationElement = ContentAndLanguageTranslationElement, S = {}, >
     extends Component<P, S> {

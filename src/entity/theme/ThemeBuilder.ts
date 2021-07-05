@@ -1,17 +1,18 @@
-import {Builder}               from '../../util/Builder';
-import {CourseTheme}           from './CourseTheme';
-import {DebugEntityReferences} from '../simple/EntityLoader';
+import type {Builder}               from '../../util/Builder';
+import type {CourseTheme}           from './CourseTheme';
+import type {DebugEntityReferences} from '../simple/EntityLoader';
+import type {Entity}                from '../simple/Entity';
+import type {Name}                  from '../../lang/name/Name';
+import type {ThemeTemplate}         from './ThemeTemplate';
+import type {WorldTheme}            from './WorldTheme';
+
 import {EmptyCourseTheme}      from './EmptyCourseTheme';
 import {EmptyWorldTheme}       from './EmptyWorldTheme';
-import {Entity}                from '../simple/Entity';
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 import {GenericCourseTheme}    from './GenericCourseTheme';
 import {GenericWorldTheme}     from './GenericWorldTheme';
-import {Name}                  from '../../lang/name/Name';
 import {TemplateBuilder}       from '../TemplateBuilder';
 import {Themes}                from './Themes';
-import {ThemeTemplate}         from './ThemeTemplate';
-import {WorldTheme}            from './WorldTheme';
 
 export class ThemeBuilder
     extends TemplateBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>

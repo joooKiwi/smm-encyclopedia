@@ -1,5 +1,5 @@
-import {GameProperty}   from '../properties/GameProperty';
-import {PropertyGetter} from '../PropertyGetter';
+import type {GameProperty}   from '../properties/GameProperty';
+import type {PropertyGetter} from '../PropertyGetter';
 
 //region -------------------- game texts --------------------
 

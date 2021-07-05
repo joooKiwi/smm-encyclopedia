@@ -1,7 +1,7 @@
-import {Component} from 'react';
-import {TFunction} from 'react-i18next';
+import {Component}      from 'react';
+import type {TFunction} from 'react-i18next';
 
-import {GameContentTranslationElement} from './elements/GameContentTranslationElement';
+import type {GameContentTranslationElement} from './elements/GameContentTranslationElement';
 
 export default abstract class GameContentTranslationComponent<P extends GameContentTranslationElement = GameContentTranslationElement, S = {}, >
     extends Component<P, S> {

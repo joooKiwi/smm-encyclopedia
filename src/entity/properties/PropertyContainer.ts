@@ -1,11 +1,12 @@
-import {GameProperty}               from './GameProperty';
+import type {GameProperty}      from './GameProperty';
+import type {GameStyleProperty} from './GameStyleProperty';
+import type {Property}          from './Property';
+import type {ThemeProperty}     from './ThemeProperty';
+import type {TimeProperty}      from './TimeProperty';
+
 import {GamePropertyContainer}      from './GamePropertyContainer';
-import {GameStyleProperty}          from './GameStyleProperty';
 import {GameStylePropertyContainer} from './GameStylePropertyContainer';
-import {Property}                   from './Property';
-import {ThemeProperty}              from './ThemeProperty';
 import {ThemePropertyContainer}     from './ThemePropertyContainer';
-import {TimeProperty}               from './TimeProperty';
 import {TimePropertyContainer}      from './TimePropertyContainer';
 
 export class PropertyContainer

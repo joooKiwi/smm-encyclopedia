@@ -1,12 +1,13 @@
 import everyGameStyles from '../../resources/Game styles.csv';
 
-import {Loader}            from '../../util/Loader';
-import {CallbackCaller}    from '../../util/CallbackCaller';
-import {EntityLoader}      from '../simple/EntityLoader';
-import {CSVLoader}         from '../../util/loader/CSVLoader';
-import {GameStyle}         from './GameStyle';
-import {GameStyleBuilder}  from './GameStyleBuilder';
-import {GameStyleTemplate} from './GameStyleTemplate';
+import type {Loader}            from '../../util/Loader';
+import type {GameStyle}         from './GameStyle';
+import type {GameStyleTemplate} from './GameStyleTemplate';
+
+import {CallbackCaller}   from '../../util/CallbackCaller';
+import {EntityLoader}     from '../simple/EntityLoader';
+import {CSVLoader}        from '../../util/loader/CSVLoader';
+import {GameStyleBuilder} from './GameStyleBuilder';
 
 //region -------------------- CSV array related types --------------------
 

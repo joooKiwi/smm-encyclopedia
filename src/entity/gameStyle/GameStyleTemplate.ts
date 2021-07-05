@@ -1,11 +1,11 @@
-import {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
+import type {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
 
 /**
  * @template
  */
 export interface GameStyleTemplate {
 
-    isIn:{
+    isIn: {
         game: {//TODO move to isolated interface
             1: boolean
             2: boolean

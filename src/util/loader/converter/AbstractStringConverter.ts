@@ -1,4 +1,4 @@
-import {Converter} from './Converter';
+import type {Converter} from './Converter';
 
 export abstract class AbstractStringConverter<T>
     implements Converter<string, T> {

@@ -1,5 +1,7 @@
-import {DayNumber}                             from './types';
-import {Languages, PossibleValueToGetLanguage} from '../Languages';
+import type {DayNumber}                  from './types';
+import type {PossibleValueToGetLanguage} from '../Languages';
+
+import {Languages} from '../Languages';
 
 /**
  * @enum

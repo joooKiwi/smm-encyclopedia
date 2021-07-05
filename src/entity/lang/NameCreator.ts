@@ -1,4 +1,4 @@
-import {SMM2NameTemplate} from './SMM2NameTemplate';
+import type {SMM2NameTemplate} from './SMM2NameTemplate';
 
 /**
  * A class made to help the {@link SMM2NameTemplate}.

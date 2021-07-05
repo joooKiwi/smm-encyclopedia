@@ -1,4 +1,4 @@
-import {SimpleLanguage} from "./SimpleLanguage";
+import type {SimpleLanguage} from './SimpleLanguage';
 
 export class SimpleLanguageContainer
     implements SimpleLanguage {

@@ -1,7 +1,8 @@
-import {PropertyGetterWithReference} from '../PropertyGetter';
-import {GameStyle}                   from './GameStyle';
-import {GameStyleLoader}             from './GameStyleLoader';
-import {GameStyleProperty}           from '../properties/GameStyleProperty';
+import type {PropertyGetterWithReference} from '../PropertyGetter';
+import type {GameStyle}                   from './GameStyle';
+import type {GameStyleProperty}           from '../properties/GameStyleProperty';
+
+import {GameStyleLoader} from './GameStyleLoader';
 
 //region -------------------- game style texts --------------------
 

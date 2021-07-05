@@ -1,12 +1,13 @@
-import {Builder}               from '../../util/Builder';
-import {DebugEntityReferences} from '../simple/EntityLoader';
-import {Entity}                from '../simple/Entity';
+import type {Builder}               from '../../util/Builder';
+import type {DebugEntityReferences} from '../simple/EntityLoader';
+import type {Entity}                from '../simple/Entity';
+import type {GameStyle}             from './GameStyle';
+import type {GameStyleTemplate}     from './GameStyleTemplate';
+import type {Name}                  from '../../lang/name/Name';
+
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
-import {GameStyle}             from './GameStyle';
 import {GameStyles}            from './GameStyles';
-import {GameStyleTemplate}     from './GameStyleTemplate';
 import {GenericGameStyle}      from './GenericGameStyle';
-import {Name}                  from '../../lang/name/Name';
 import {TemplateBuilder}       from '../TemplateBuilder';
 
 export class GameStyleBuilder

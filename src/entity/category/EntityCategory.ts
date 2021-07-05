@@ -1,4 +1,4 @@
-import {Name} from '../../lang/name/Name';
+import type {Name} from '../../lang/name/Name';
 
 export interface EntityCategory
     extends Name {

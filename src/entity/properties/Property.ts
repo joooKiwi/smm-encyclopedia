@@ -1,7 +1,7 @@
-import {GameProperty}      from './GameProperty';
-import {GameStyleProperty} from './GameStyleProperty';
-import {ThemeProperty}     from './ThemeProperty';
-import {TimeProperty}      from './TimeProperty';
+import type {GameProperty}      from './GameProperty';
+import type {GameStyleProperty} from './GameStyleProperty';
+import type {ThemeProperty}     from './ThemeProperty';
+import type {TimeProperty}      from './TimeProperty';
 
 export interface Property
     extends GameProperty, GameStyleProperty, ThemeProperty, TimeProperty {

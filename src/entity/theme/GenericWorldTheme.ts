@@ -1,8 +1,9 @@
-import {AbstractTheme}             from './AbstractTheme';
-import {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
-import {GamePropertyContainer}     from '../properties/GamePropertyContainer';
-import {Name}                      from '../../lang/name/Name';
-import {WorldTheme}                from './WorldTheme';
+import type {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
+import type {Name}                      from '../../lang/name/Name';
+import type {WorldTheme}                from './WorldTheme';
+
+import {AbstractTheme}         from './AbstractTheme';
+import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 
 export class GenericWorldTheme
     extends AbstractTheme

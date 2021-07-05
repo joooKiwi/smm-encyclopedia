@@ -1,6 +1,7 @@
-import {Builder}                            from '../../util/Builder';
-import {SMM2NameTemplate}                   from './SMM2NameTemplate';
-import {Name}                               from '../../lang/name/Name';
+import type {Builder}          from '../../util/Builder';
+import type {SMM2NameTemplate} from './SMM2NameTemplate';
+import type {Name}             from '../../lang/name/Name';
+
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
 
 export class NameBuilder

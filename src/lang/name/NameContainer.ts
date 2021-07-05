@@ -1,15 +1,16 @@
-import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
-import {AmericanAndEuropeanLanguageContainer}                    from './containers/AmericanAndEuropeanLanguageContainer';
-import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
-import {CanadianAndEuropeanLanguageContainer}                    from './containers/CanadianAndEuropeanLanguageContainer';
-import {CallbackCaller}                                          from '../../util/CallbackCaller';
-import {ChineseLanguage, ChineseOriginal}                        from './containers/ChineseLanguage';
-import {ChineseLanguageContainer}                                from './containers/ChineseLanguageContainer';
-import {EveryLanguages}                                          from '../EveryLanguages';
-import {Languages}                                               from '../Languages';
-import {SimpleLanguage}                                          from './containers/SimpleLanguage';
-import {SimpleLanguageContainer}                                 from './containers/SimpleLanguageContainer';
-import {Name}                                                    from './Name';
+import type {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
+import type {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
+import type {ChineseLanguage, ChineseOriginal}                        from './containers/ChineseLanguage';
+import type {SimpleLanguage}                                          from './containers/SimpleLanguage';
+import type {Name}                                                    from './Name';
+
+import {AmericanAndEuropeanLanguageContainer} from './containers/AmericanAndEuropeanLanguageContainer';
+import {CanadianAndEuropeanLanguageContainer} from './containers/CanadianAndEuropeanLanguageContainer';
+import {CallbackCaller}                       from '../../util/CallbackCaller';
+import {ChineseLanguageContainer}             from './containers/ChineseLanguageContainer';
+import {EveryLanguages}                       from '../EveryLanguages';
+import {Languages}                            from '../Languages';
+import {SimpleLanguageContainer}              from './containers/SimpleLanguageContainer';
 
 export class NameContainer
     implements Name {

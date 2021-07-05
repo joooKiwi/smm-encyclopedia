@@ -1,11 +1,12 @@
-import {EmptyEntityCategory}   from '../category/EmptyEntityCategory';
-import {EntityCategory}        from '../category/EntityCategory';
-import {EntityReferences}      from '../properties/EntityReferences';
-import {ExclusiveSMM1Entity}   from './ExclusiveSMM1Entity';
-import {ExclusiveSMM1Property} from '../properties/exclusive/ExclusiveSMM1Property';
-import {GenericEntity}         from './GenericEntity';
-import {Name}                  from '../../lang/name/Name';
-import {Property}              from '../properties/Property';
+import type {EntityCategory}        from '../category/EntityCategory';
+import type {EntityReferences}      from '../properties/EntityReferences';
+import type {ExclusiveSMM1Entity}   from './ExclusiveSMM1Entity';
+import type {ExclusiveSMM1Property} from '../properties/exclusive/ExclusiveSMM1Property';
+import type {Name}                  from '../../lang/name/Name';
+import type {Property}              from '../properties/Property';
+
+import {EmptyEntityCategory} from '../category/EmptyEntityCategory';
+import {GenericEntity}       from './GenericEntity';
 
 export class ExclusiveSMM1GenericEntity
     extends GenericEntity<ExclusiveSMM1Property>

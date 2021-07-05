@@ -1,5 +1,6 @@
-import {EmptyName}      from '../../lang/name/EmptyName';
-import {EntityCategory} from './EntityCategory';
+import type {EntityCategory} from './EntityCategory';
+
+import {EmptyName} from '../../lang/name/EmptyName';
 
 /**
  * @nullObjectPattern

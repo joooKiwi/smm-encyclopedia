@@ -1,9 +1,10 @@
-import {EntityLimit}                from './EntityLimit';
-import {EntityLimitFullName}        from './properties/EntityLimitFullName';
-import {EntityLimitAlternativeName} from './properties/EntityLimitAlternativeName';
-import {EntityLimitTypes}           from './EntityLimitTypes';
-import {EntityLimitAmount}          from './properties/EntityLimitAmount';
-import {CallbackCaller}             from '../../util/CallbackCaller';
+import type {EntityLimit}                from './EntityLimit';
+import type {EntityLimitFullName}        from './properties/EntityLimitFullName';
+import type {EntityLimitAlternativeName} from './properties/EntityLimitAlternativeName';
+import type {EntityLimitTypes}           from './EntityLimitTypes';
+import type {EntityLimitAmount}          from './properties/EntityLimitAmount';
+
+import {CallbackCaller} from '../../util/CallbackCaller';
 
 export class EntityLimitContainer
     implements EntityLimit {

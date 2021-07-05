@@ -1,4 +1,4 @@
-import {SimpleLanguage} from "./SimpleLanguage";
+import type {SimpleLanguage} from './SimpleLanguage';
 
 export interface PluralLanguage<T extends string>
     extends SimpleLanguage {

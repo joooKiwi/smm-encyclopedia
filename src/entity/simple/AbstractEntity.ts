@@ -1,8 +1,8 @@
-import {Entity}           from './Entity';
-import {EntityCategory}   from '../category/EntityCategory';
-import {EntityReferences} from '../properties/EntityReferences';
-import {Property}         from '../properties/Property';
-import {Name}             from '../../lang/name/Name';
+import type {Entity}           from './Entity';
+import type {EntityCategory}   from '../category/EntityCategory';
+import type {EntityReferences} from '../properties/EntityReferences';
+import type {Property}         from '../properties/Property';
+import type {Name}             from '../../lang/name/Name';
 
 export abstract class AbstractEntity<T extends Property = Property>
     implements Entity {

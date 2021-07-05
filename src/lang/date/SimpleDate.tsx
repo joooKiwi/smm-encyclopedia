@@ -1,7 +1,8 @@
 import {FormattedDateParts} from 'react-intl';
 
-import {DayNumber, MonthNumber} from './types';
-import {DateDayLanguages}       from './DateDayLanguages';
+import type {DayNumber, MonthNumber} from './types';
+
+import {DateDayLanguages} from './DateDayLanguages';
 
 export interface DateTimeFormat {
     year: number

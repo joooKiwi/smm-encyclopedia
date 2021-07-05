@@ -1,4 +1,4 @@
-import {ExclusiveSMM2TimeProperty} from './ExclusiveSMM2TimeProperty';
+import type {ExclusiveSMM2TimeProperty} from './ExclusiveSMM2TimeProperty';
 
 export interface ExclusiveSMM2TimePropertyInAnyStyle
     extends ExclusiveSMM2TimeProperty {

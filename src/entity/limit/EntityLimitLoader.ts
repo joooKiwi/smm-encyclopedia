@@ -1,13 +1,16 @@
 import everyThemes from '../../resources/Entities limits.csv';
 
-import {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate}                                    from './EntityLimitTemplate';
-import {CallbackCaller}                                                                                                                           from '../../util/CallbackCaller';
-import {CSVLoader}                                                                                                                                from '../../util/loader/CSVLoader';
-import {EntityLimit}                                                                                                                              from './EntityLimit';
-import {EntityLimitBuilder}                                                                                                                       from './EntityLimitBuilder';
-import {EntityLimitTypes, PossibleEntityLimitTypeEnglishName}                                                                                     from './EntityLimitTypes';
-import {EntityLimits, PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits';
-import {Loader}                                                                                                                                   from '../../util/Loader';
+import type {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate}                      from './EntityLimitTemplate';
+import type {EntityLimit}                                                                                                                from './EntityLimit';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits';
+import type{PossibleEntityLimitTypeEnglishName}                                                                                          from './EntityLimitTypes';
+
+import {EntityLimits}       from './EntityLimits';
+import {EntityLimitTypes}   from './EntityLimitTypes';
+import {CallbackCaller}     from '../../util/CallbackCaller';
+import {CSVLoader}          from '../../util/loader/CSVLoader';
+import {EntityLimitBuilder} from './EntityLimitBuilder';
+import {Loader}             from '../../util/Loader';
 
 //region -------------------- CSV array related types --------------------
 

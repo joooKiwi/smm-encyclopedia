@@ -1,5 +1,6 @@
-import {AbstractPluralLanguageContainer}                                                      from './AbstractPluralLanguageContainer';
-import {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal, AmericanOrEuropeanReference} from './AmericanAndEuropeanLanguage';
+import type {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal, AmericanOrEuropeanReference} from './AmericanAndEuropeanLanguage';
+
+import {AbstractPluralLanguageContainer} from './AbstractPluralLanguageContainer';
 
 export class AmericanAndEuropeanLanguageContainer
     extends AbstractPluralLanguageContainer<AmericanOrEuropeanReference>

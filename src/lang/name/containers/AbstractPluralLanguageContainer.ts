@@ -1,4 +1,5 @@
-import {PluralLanguage}          from './PluralLanguage';
+import type {PluralLanguage} from './PluralLanguage';
+
 import {SimpleLanguageContainer} from './SimpleLanguageContainer';
 
 export abstract class AbstractPluralLanguageContainer<T extends string>

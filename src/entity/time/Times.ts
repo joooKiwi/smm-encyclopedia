@@ -1,5 +1,5 @@
-import {PropertyGetter} from '../PropertyGetter';
-import {TimeProperty}   from '../properties/TimeProperty';
+import type {PropertyGetter} from '../PropertyGetter';
+import type {TimeProperty}   from '../properties/TimeProperty';
 
 //region -------------------- time texts --------------------
 

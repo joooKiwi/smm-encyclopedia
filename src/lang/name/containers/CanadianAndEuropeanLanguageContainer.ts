@@ -1,5 +1,6 @@
-import {AbstractPluralLanguageContainer}                                                      from './AbstractPluralLanguageContainer';
-import {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal, CanadianOrEuropeanReference} from './CanadianAndEuropeanLanguage';
+import type {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal, CanadianOrEuropeanReference} from './CanadianAndEuropeanLanguage';
+
+import {AbstractPluralLanguageContainer} from './AbstractPluralLanguageContainer';
 
 export class CanadianAndEuropeanLanguageContainer
     extends AbstractPluralLanguageContainer<CanadianOrEuropeanReference>

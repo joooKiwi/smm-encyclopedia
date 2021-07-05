@@ -1,4 +1,4 @@
-import {TimeProperty} from '../TimeProperty';
+import type {TimeProperty} from '../TimeProperty';
 
 export interface ExclusiveSMM1TimeProperty
     extends TimeProperty {

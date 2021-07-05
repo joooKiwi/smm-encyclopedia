@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 
-import {ClassWithLanguages} from './ClassWithLanguages';
+import type {ClassWithLanguages} from './ClassWithLanguages';
 
 //region -------------------- Languages types --------------------
 //region -------------------- Languages text --------------------

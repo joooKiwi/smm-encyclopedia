@@ -1,9 +1,10 @@
-import {Builder}                from '../../util/Builder';
-import {EntityCategory}         from './EntityCategory';
-import {GenericEntityCategory}  from './GenericEntityCategory';
-import {EntityCategoryTemplate} from './EntityCategoryTemplate';
-import {TemplateBuilder}        from '../TemplateBuilder';
-import {Name}                   from '../../lang/name/Name';
+import type {Builder}                from '../../util/Builder';
+import type {EntityCategory}         from './EntityCategory';
+import type {EntityCategoryTemplate} from './EntityCategoryTemplate';
+import type {Name}                   from '../../lang/name/Name';
+
+import {GenericEntityCategory} from './GenericEntityCategory';
+import {TemplateBuilder}       from '../TemplateBuilder';
 
 export class EntityCategoryBuilder
     extends TemplateBuilder<EntityCategoryTemplate, EntityCategory>

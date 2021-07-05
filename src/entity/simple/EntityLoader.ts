@@ -1,20 +1,21 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import {CallbackCaller}                                             from '../../util/CallbackCaller';
-import {EntityCategoryLoader}                                       from '../category/EntityCategoryLoader';
-import {CSVLoader}                                                  from '../../util/loader/CSVLoader';
-import {Entity}                                                     from './Entity';
-import {EntityBuilder}                                              from './EntityBuilder';
-import {EntityCategory}                                             from '../category/EntityCategory';
-import {EntityLimit}                                                from '../limit/EntityLimit';
-import {EntityLimitLoader}                                          from '../limit/EntityLimitLoader';
-import {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import {EntityTemplate}                                             from './EntityTemplate';
-import {GenericSingleInstanceBuilder}                               from '../../util/GenericSingleInstanceBuilder';
-import {Loader}                                                     from '../../util/Loader';
-import {PossibleEntityCategories}                                   from '../category/EntityCategories';
-import {PossibleEntityLimits}                                       from '../limit/EntityLimits';
-import {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
+import type {Entity}                                                     from './Entity';
+import type {EntityCategory}                                             from '../category/EntityCategory';
+import type {EntityLimit}                                                from '../limit/EntityLimit';
+import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import type {EntityTemplate}                                             from './EntityTemplate';
+import type {Loader}                                                     from '../../util/Loader';
+import type {PossibleEntityCategories}                                   from '../category/EntityCategories';
+import type {PossibleEntityLimits}                                       from '../limit/EntityLimits';
+import type {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
+
+import {CallbackCaller}               from '../../util/CallbackCaller';
+import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
+import {CSVLoader}                    from '../../util/loader/CSVLoader';
+import {EntityBuilder}                from './EntityBuilder';
+import {EntityLimitLoader}            from '../limit/EntityLimitLoader';
+import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
 
 //region -------------------- CSV array related types --------------------
 

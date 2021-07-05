@@ -1,7 +1,9 @@
-import {Converter}                                                      from './converter/Converter';
-import {GenericStringToAnyConverter}                                    from './converter/GenericStringToAnyConverter';
-import {GenericStringToAnyNullableConverter}                            from './converter/GenericStringToAnyNullableConverter';
-import {PredefinedConversion, PredefinedConverter, PrimitiveConversion} from './converter/PredefinedConverter';
+import type {Converter}                                 from './converter/Converter';
+import type {PredefinedConversion, PrimitiveConversion} from './converter/PredefinedConverter';
+
+import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
+import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
+import {PredefinedConverter}                 from './converter/PredefinedConverter';
 
 //region -------------------- CVSLoader types --------------------
 

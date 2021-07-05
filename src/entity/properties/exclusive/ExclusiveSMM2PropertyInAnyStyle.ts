@@ -1,8 +1,8 @@
-import {ExclusiveSMM2GamePropertyInAnyStyle}      from './ExclusiveSMM2GamePropertyInAnyStyle';
-import {ExclusiveSMM2GameStylePropertyInAnyStyle} from './ExclusiveSMM2GameStylePropertyInAnyStyle';
-import {ExclusiveSMM2Property}                    from './ExclusiveSMM2Property';
-import {ExclusiveSMM2ThemePropertyInAnyStyle}     from './ExclusiveSMM2ThemePropertyInAnyStyle';
-import {ExclusiveSMM2TimePropertyInAnyStyle}      from './ExclusiveSMM2TimePropertyInAnyStyle';
+import type {ExclusiveSMM2GamePropertyInAnyStyle}      from './ExclusiveSMM2GamePropertyInAnyStyle';
+import type {ExclusiveSMM2GameStylePropertyInAnyStyle} from './ExclusiveSMM2GameStylePropertyInAnyStyle';
+import type {ExclusiveSMM2Property}                    from './ExclusiveSMM2Property';
+import type {ExclusiveSMM2ThemePropertyInAnyStyle}     from './ExclusiveSMM2ThemePropertyInAnyStyle';
+import type {ExclusiveSMM2TimePropertyInAnyStyle}      from './ExclusiveSMM2TimePropertyInAnyStyle';
 
 export interface ExclusiveSMM2PropertyInAnyStyle
     extends ExclusiveSMM2Property, ExclusiveSMM2GamePropertyInAnyStyle, ExclusiveSMM2GameStylePropertyInAnyStyle, ExclusiveSMM2ThemePropertyInAnyStyle, ExclusiveSMM2TimePropertyInAnyStyle {

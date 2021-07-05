@@ -1,7 +1,8 @@
-import {ExclusiveSMM1ThemeProperty} from './exclusive/ExclusiveSMM1ThemeProperty';
-import {ExclusiveSMM2ThemeProperty} from './exclusive/ExclusiveSMM2ThemeProperty';
-import {ThemeProperty}              from './ThemeProperty';
-import {Themes}                     from '../theme/Themes';
+import type {ExclusiveSMM1ThemeProperty} from './exclusive/ExclusiveSMM1ThemeProperty';
+import type {ExclusiveSMM2ThemeProperty} from './exclusive/ExclusiveSMM2ThemeProperty';
+import type {ThemeProperty}              from './ThemeProperty';
+
+import {Themes} from '../theme/Themes';
 
 /**
  * @multiton

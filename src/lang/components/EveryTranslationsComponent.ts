@@ -1,7 +1,7 @@
-import {Component} from 'react';
-import {TFuncKey}  from 'react-i18next';
+import {Component}     from 'react';
+import type {TFuncKey} from 'react-i18next';
 
-import {EveryTranslationElement} from './elements/EveryTranslationElement';
+import type {EveryTranslationElement} from './elements/EveryTranslationElement';
 
 export default abstract class EveryTranslationsComponent<P extends EveryTranslationElement = EveryTranslationElement, S = {}, >
     extends Component<P, S> {

@@ -1,8 +1,8 @@
-import {ClassWithLanguages}         from './ClassWithLanguages';
-import {EveryLanguages}             from './EveryLanguages';
-import {ChineseOriginal}            from './name/containers/ChineseLanguage';
-import {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
-import {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
+import type {ClassWithLanguages}         from './ClassWithLanguages';
+import type {EveryLanguages}             from './EveryLanguages';
+import type {ChineseOriginal}            from './name/containers/ChineseLanguage';
+import type {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
+import type {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
 
 /**
  * <p>

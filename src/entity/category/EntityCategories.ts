@@ -1,6 +1,7 @@
+import type {PossibleTheme} from '../theme/Themes';
+
 import {EntityCategory}       from './EntityCategory';
 import {EntityCategoryLoader} from './EntityCategoryLoader';
-import {PossibleTheme}        from '../theme/Themes';
 
 //region -------------------- category texts --------------------
 

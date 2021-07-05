@@ -1,5 +1,6 @@
+import type {Name} from './Name';
+
 import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
-import {Name}                                 from './Name';
 
 /**
  * @nullObjectPattern
