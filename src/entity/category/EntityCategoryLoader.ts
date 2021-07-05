@@ -55,7 +55,7 @@ type EntityCategoryPropertiesArray = [
  * @singleton
  */
 export class EntityCategoryLoader
-    implements Loader<Map<string, EntityCategory>> {
+    implements Loader<ReadonlyMap<string, EntityCategory>> {
 
     static readonly #instance = new EntityCategoryLoader();
     //region -------------------- Attributes --------------------
@@ -83,7 +83,8 @@ export class EntityCategoryLoader
                 .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
 
-            console.log(csvLoader.content);
+            console.log('-------------------- entity category has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
             return finalReferences;
         });
     }

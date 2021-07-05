@@ -57,7 +57,7 @@ type GameStylePropertiesArray = [
  * @singleton
  */
 export class GameStyleLoader
-    implements Loader<Map<string, GameStyle>> {
+    implements Loader<ReadonlyMap<string, GameStyle>> {
 
     static readonly #instance = new GameStyleLoader();
     //region -------------------- Attributes --------------------
@@ -71,22 +71,25 @@ export class GameStyleLoader
             const finalReferences: Map<string, GameStyle> = new Map();
             GameStyleBuilder.entitiesMap = EntityLoader.get.load();
 
-            new CSVLoader<GameStylePropertiesArray, GameStyleBuilder>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
+            const csvLoader = new CSVLoader<GameStylePropertiesArray, GameStyleBuilder>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .convertToBoolean(
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
                 ).convertToEmptyableString(
-                'english', 'americanEnglish', 'europeanEnglish',
-                'french', 'canadianFrench', 'europeanFrench',
-                'german',
-                'spanish', 'americanSpanish', 'europeanSpanish',
-                'dutch', 'italian',
-                'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                'russian', 'japanese',
-                'chinese', 'simplifiedChinese', 'traditionalChinese',
-                'korean',
-            )
+                    'english', 'americanEnglish', 'europeanEnglish',
+                    'french', 'canadianFrench', 'europeanFrench',
+                    'german',
+                    'spanish', 'americanSpanish', 'europeanSpanish',
+                    'dutch', 'italian',
+                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
+                    'russian', 'japanese',
+                    'chinese', 'simplifiedChinese', 'traditionalChinese',
+                    'korean',
+                )
                 .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
+
+            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
             return finalReferences;
         });
     }

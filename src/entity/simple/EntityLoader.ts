@@ -160,7 +160,7 @@ export interface DebugEntityReferences {
  * @singleton
  */
 export class EntityLoader
-    implements Loader<Map<string, DebugEntityReferences>> {
+    implements Loader<ReadonlyMap<string, DebugEntityReferences>> {
 
     static readonly #instance = new EntityLoader();
 
@@ -248,7 +248,8 @@ export class EntityLoader
                 })
                 .load();
 
-            console.log(csvLoader.content);
+            console.log('-------------------- entity has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
             return references;
         });
     }

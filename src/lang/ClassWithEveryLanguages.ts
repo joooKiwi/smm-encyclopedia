@@ -49,6 +49,6 @@ export interface ClassWithEveryLanguages
      * Return a {@link Map} based on the enum {@link EveryLanguages}
      * with every values used by the original value stored for this instance.
      */
-    toNameMap(): Map<EveryLanguages, string>
+    toNameMap(): ReadonlyMap<EveryLanguages, string>
 
 }

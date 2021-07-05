@@ -11,6 +11,6 @@ export interface TimeProperty {
      * with every values stored inside this instance ({@link TimeProperty})
      * as a boolean only.
      */
-    toTimeMap(): Map<Times, boolean>
+    toTimeMap(): ReadonlyMap<Times, boolean>
 
 }
