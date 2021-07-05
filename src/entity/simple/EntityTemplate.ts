@@ -1,8 +1,9 @@
-import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import {EntityReferencesTemplate}                                                from '../properties/EntityReferencesTemplate';
-import {PossibleEntityCategories}                                                from '../category/EntityCategories';
-import {PropertyTemplate}                                                        from '../properties/PropertyTemplate';
-import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
+import {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import {EntityReferencesTemplate}                                   from '../properties/EntityReferencesTemplate';
+import {PossibleEntityCategories}                                   from '../category/EntityCategories';
+import {PossibleEntityLimits}                                       from '../limit/EntityLimits';
+import {PropertyTemplate}                                           from '../properties/PropertyTemplate';
+import {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
 
 /**
  * @template
@@ -27,8 +28,8 @@ export interface EntityTemplate {
 
         canBePutOnATrack: {
             value: null | boolean | '?'
-            editorLimit: EntityLink
-            whilePlaying: EntityLink
+            editorLimit: null | EntityLink
+            whilePlaying: null | EntityLink
         }
 
         canSpawnOutOfAPipe: null | boolean
@@ -63,7 +64,7 @@ export interface EntityTemplate {
         //endregion ---------- Specific properties ----------
 
         limits: {
-            editor: EntityLimit | '?'
+            editor: null | PossibleEntityLimits | '?'
             whilePlaying: {
                 isInGEL: {
                     value: null | boolean | 2
@@ -71,7 +72,7 @@ export interface EntityTemplate {
                 }
                 isInPEL: null | boolean
                 isInPJL: ProjectileEntityLimitType
-                customLimit: EntityLimit
+                customLimit: null | PossibleEntityLimits | '?'
                 offscreenRange: {
                     spawning: {
                         horizontal: null | number | 'Variable'

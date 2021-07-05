@@ -1,4 +1,3 @@
-export type EntityLimit = '';
 export type ProjectileEntityLimitType = | null | boolean | '?' | 'Temporary as it comes out';
 
 export type EntityLink = | 'this' | string | `${string | 'this'} / ${'this' | string}`;

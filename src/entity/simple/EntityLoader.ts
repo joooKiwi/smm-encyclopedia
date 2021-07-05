@@ -1,17 +1,20 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import {CallbackCaller}                                                          from '../../util/CallbackCaller';
-import {EntityCategoryLoader}                                                    from '../category/EntityCategoryLoader';
-import {CSVLoader}                                                               from '../../util/loader/CSVLoader';
-import {Entity}                                                                  from './Entity';
-import {EntityBuilder}                                                           from './EntityBuilder';
-import {EntityCategory}                                                          from '../category/EntityCategory';
-import {EntityLimit, EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import {EntityTemplate}                                                          from './EntityTemplate';
-import {GenericSingleInstanceBuilder}                                            from '../../util/GenericSingleInstanceBuilder';
-import {Loader}                                                                  from '../../util/Loader';
-import {PossibleEntityCategories}                                                from '../category/EntityCategories';
-import {SMM2NameTemplate}                                                        from '../lang/SMM2NameTemplate';
+import {CallbackCaller}                                             from '../../util/CallbackCaller';
+import {EntityCategoryLoader}                                       from '../category/EntityCategoryLoader';
+import {CSVLoader}                                                  from '../../util/loader/CSVLoader';
+import {Entity}                                                     from './Entity';
+import {EntityBuilder}                                              from './EntityBuilder';
+import {EntityCategory}                                             from '../category/EntityCategory';
+import {EntityLimit}                                                from '../limit/EntityLimit';
+import {EntityLimitLoader}                                          from '../limit/EntityLimitLoader';
+import {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import {EntityTemplate}                                             from './EntityTemplate';
+import {GenericSingleInstanceBuilder}                               from '../../util/GenericSingleInstanceBuilder';
+import {Loader}                                                     from '../../util/Loader';
+import {PossibleEntityCategories}                                   from '../category/EntityCategories';
+import {PossibleEntityLimits}                                       from '../limit/EntityLimits';
+import {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
 
 //region -------------------- CSV array related types --------------------
 
@@ -32,8 +35,8 @@ type EntityFilePropertiesArray = [
     canBePutInAOnOffBlock: null | boolean,
 
     canBePutOnATrack: null | boolean | '?',
-    editorLimit_canBePutOnATrack: EntityLimit,
-    whilePlaying_canBePutOnATrack: EntityLimit,
+    editorLimit_canBePutOnATrack: null | PossibleEntityLimits,
+    whilePlaying_canBePutOnATrack: null | PossibleEntityLimits,
 
     canSpawnOutOfAPipe: null | boolean,
 
@@ -64,7 +67,7 @@ type EntityFilePropertiesArray = [
     canMakeASoundOutOfAMusicBlock: null | boolean | '?',
     //endregion ---------- Specific properties ----------
     //region ---------- Entity limit properties ----------
-    editorLimit: EntityLimit | '?',
+    editorLimit: null | PossibleEntityLimits | '?',
 
     whilePlaying_isInGEL: null | boolean | 2,
     whilePlaying_isInGEL_isSuperGlobal: null | boolean,
@@ -73,7 +76,7 @@ type EntityFilePropertiesArray = [
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
 
-    whilePlaying_customLimit: EntityLimit,
+    whilePlaying_customLimit: null | PossibleEntityLimits | '?',
     //endregion ---------- Entity limit properties ----------
     //region ---------- Spawning / Despawning range properties ----------
     whilePlaying_offscreenSpawningHorizontalRange: null | number | 'Variable',
@@ -164,12 +167,14 @@ export class EntityLoader
     //region ---------- external object references ----------
 
     readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
+    readonly #everyEntityLimits: CallbackCaller<Map<string, EntityLimit>>;
     readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
 
     //endregion ---------- external object references ----------
 
     private constructor() {
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
+        this.#everyEntityLimits = new CallbackCaller(() => EntityLimitLoader.get.load());
         this.#everyEntitiesMap = new CallbackCaller(() => {
             const [unknownCharacter, thisText,] = ['?', 'this',];
             const references: Map<string, DebugEntityReferences> = new Map();
@@ -178,16 +183,16 @@ export class EntityLoader
             EntityBuilder.categoriesMap = this.entityCategories;
 
             const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityTemplate>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
-                .convertToNullableBoolean(
-                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
-                    'isInSuperMarioBros', 'isInSuperMarioBros3', 'isInSuperMarioWorld', 'isInNewSuperMarioBrosU', 'isInSuperMario3DWorld',
-                    'isInDayTheme', 'isInNightTheme',
-                )
+                .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertTo(['emptyable string', ...this.entityCategoriesNames], 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
+
                 .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
+
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
+                .convertTo(['nullable string', ...this.entityLimitsNames,], 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
                 .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
@@ -199,10 +204,13 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
 
+                .convertTo(['nullable string', unknownCharacter, ...this.entityLimitsNames,], 'editorLimit',)
                 .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+                .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+                .convertTo(['nullable string', ...this.entityLimitsNames,], 'whilePlaying_customLimit',)
                 .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
                 .convertTo(['nullable number', 'Variable', 'Infinity'], 'whilePlaying_offscreenDespawningHorizontalRange',)
                 .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
@@ -237,7 +245,8 @@ export class EntityLoader
                     referencesToWatch.testReferences();
                     referencesToWatch.setReferences();
                     references.forEach(reference => reference.entity = new GenericSingleInstanceBuilder(new EntityBuilder(reference.template)).build());
-                }).load();
+                })
+                .load();
 
             console.log(csvLoader.content);
             return references;
@@ -255,6 +264,14 @@ export class EntityLoader
 
     private get entityCategoriesNames() {
         return [...this.entityCategories.keys()];
+    }
+
+    private get entityLimits() {
+        return this.#everyEntityLimits.get;
+    }
+
+    private get entityLimitsNames() {
+        return [...this.entityLimits.keys()];
     }
 
 
@@ -531,14 +548,14 @@ class ReferencesToWatch {
 
     public addReference(reference: EntityTemplate): void {
         const otherReference = reference.properties.reference;
-        [
+        ([
             otherReference.day, otherReference.night,
             otherReference.style.superMarioBros, otherReference.style.superMarioBros3, otherReference.style.superMarioWorld, otherReference.style.newSuperMarioBrosU, otherReference.style.superMario3DWorld,
             otherReference.theme.ground, otherReference.theme.underground, otherReference.theme.underwater, otherReference.theme.desert, otherReference.theme.snow, otherReference.theme.sky, otherReference.theme.forest, otherReference.theme.ghostHouse, otherReference.theme.airship, otherReference.theme.castle,
-        ].filter(otherReference => otherReference !== null)
+        ].filter(otherReference => otherReference !== null) as string[])
             .filter(otherReference => otherReference !== 'this')
-            .filter(otherReference => !this.alreadyAddedName.includes(otherReference as string))
-            .forEach(otherReference => this.__addReference(reference, otherReference as string));
+            .filter(otherReference => !this.alreadyAddedName.includes(otherReference))
+            .forEach(otherReference => this.__addReference(reference, otherReference));
     }
 
     private __addReference(template: EntityTemplate, reference: string): void {
