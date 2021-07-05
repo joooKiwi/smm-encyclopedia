@@ -149,7 +149,7 @@ type EntityFilePropertiesArray = [
 
 export interface DebugEntityReferences {
 
-    originalContent: string[]
+    originalContent: readonly string[]
     arrayConverted: EntityFilePropertiesArray
     template: EntityTemplate
     entity?: Entity
@@ -500,7 +500,7 @@ class NameCreator {
         //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
     }
 
-    public static addEnglishReference(name: SMM2NameTemplate, englishNames: Map<string, DebugEntityReferences>, originalContent: string[], convertedContent: EntityFilePropertiesArray, template: EntityTemplate,): void {
+    public static addEnglishReference(name: SMM2NameTemplate, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: EntityFilePropertiesArray, template: EntityTemplate,): void {
         this.__testName(name);
         const englishReferenceName = name.english.simple ?? name.english.american;
         if (englishReferenceName == null)
