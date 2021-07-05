@@ -27,6 +27,6 @@ export interface ThemeProperty {
      * with every values stored inside this instance ({@link ThemeProperty})
      * as a boolean only.
      */
-    toCourseThemeMap(): Map<Themes, boolean>
+    toCourseThemeMap(): ReadonlyMap<Themes, boolean>
 
 }

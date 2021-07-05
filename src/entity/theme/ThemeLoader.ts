@@ -60,7 +60,7 @@ type ThemePropertiesArray = [
  * @singleton
  */
 export class ThemeLoader
-    implements Loader<Map<string, readonly [CourseTheme, WorldTheme]>> {
+    implements Loader<ReadonlyMap<string, readonly [CourseTheme, WorldTheme]>> {
 
     static readonly #instance = new ThemeLoader();
 
@@ -76,7 +76,7 @@ export class ThemeLoader
 
             ThemeBuilder.entitiesMap = EntityLoader.get.load();
 
-            new CSVLoader<ThemePropertiesArray, ThemeBuilder>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
+            const csvLoader = new CSVLoader<ThemePropertiesArray, ThemeBuilder>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .convertToBoolean(
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
@@ -95,6 +95,8 @@ export class ThemeLoader
                 .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
 
+            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
             return finalReferences;
         });
     }

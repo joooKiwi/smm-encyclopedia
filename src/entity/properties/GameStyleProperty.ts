@@ -17,6 +17,6 @@ export interface GameStyleProperty {
      * with every values stored inside this instance ({@link GameStyleProperty})
      * as a boolean only.
      */
-    toGameStyleMap(): Map<GameStyles, boolean>
+    toGameStyleMap(): ReadonlyMap<GameStyles, boolean>
 
 }

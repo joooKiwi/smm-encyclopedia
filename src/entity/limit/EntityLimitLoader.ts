@@ -31,7 +31,7 @@ type LimitPropertiesArray = [
  * @recursiveReference {@link EntityLimits}
  */
 export class EntityLimitLoader
-    implements Loader<Map<string, EntityLimit>> {
+    implements Loader<ReadonlyMap<string, EntityLimit>> {
 
     static readonly #instance = new EntityLimitLoader();
 
@@ -51,7 +51,8 @@ export class EntityLimitLoader
                 .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.full.name, finalContent,))
                 .load();
 
-            console.log(finalReferences);
+            console.log('-------------------- entity limit has been loaded --------------------');// temporary console.log
+            console.log(finalReferences);// temporary console.log
             return finalReferences;
         });
     }
