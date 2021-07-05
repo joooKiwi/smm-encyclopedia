@@ -4,7 +4,7 @@ import {GenericStringToAnyNullableConverter}                            from "./
 import {PredefinedConversion, PredefinedConverter, PrimitiveConversion} from "./converter/PredefinedConverter";
 
 type HeaderTypeOrConvertor = PredefinedConversion
-    | (PredefinedConversion | string)[]
+    | readonly (PredefinedConversion | string)[]
     | ((value: string) => Converter<string, any>);
 
 export class CSVLoader<T extends any[], U> {
@@ -233,7 +233,7 @@ export class CSVLoader<T extends any[], U> {
         return convertor;
     }
 
-    protected _createAndGetMixedConvertor(header: string, conversionComponents: (PredefinedConversion | string)[]): (value: string) => Converter<string, any> {
+    protected _createAndGetMixedConvertor(header: string, conversionComponents: readonly (PredefinedConversion | string)[]): (value: string) => Converter<string, any> {
         const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
         const containNonEmptyString = conversionComponents.find(conversionComponent => conversionComponent === 'emptyable string') !== undefined;
         let validationComponentOnConverter: ((value: string) => boolean)[] = [];
