@@ -12,7 +12,7 @@ class Footer
                 <div className="row">
                     <span id="copyright" className="text-center text-light small">{this.translation('Copyright')}<sup>©</sup> Nintendo™</span>
                     <span id="copyright_madeBy" className="text-center text-light small">{this.translation('React application made by')}: JóôòKiwi & Geitje</span>
-                    <span id="copyright_lastEdited" className="text-center text-light small">{this.translation('Last update')}: <SimpleDate day={6} month={6} year={2021}/></span>
+                    <span id="copyright_lastEdited" className="text-center text-light small">{this.translation('Last update')}: <SimpleDate day={4} month={7} year={2021}/></span>
                 </div>
             </div>
         </footer>;
