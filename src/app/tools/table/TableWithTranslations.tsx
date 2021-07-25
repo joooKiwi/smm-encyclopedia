@@ -7,7 +7,7 @@ import Table, {SimpleTableComponent} from './Table';
 interface TableWithTranslationsComponent
     extends EveryTranslationElement {
 
-    renderCallback: (translations: TableWithTranslations) => SimpleTableComponent
+    renderCallback: (translations: TableWithTranslations,) => SimpleTableComponent
 
 }
 

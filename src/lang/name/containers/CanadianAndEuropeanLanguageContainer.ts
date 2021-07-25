@@ -8,7 +8,7 @@ export class CanadianAndEuropeanLanguageContainer
 
     readonly #original;
 
-    public constructor(value: string)
+    public constructor(value: string,)
     public constructor(canadian: string, european: string,)
     public constructor(valueOrCanadian: string, european?: string,) {
         super(european === undefined ? valueOrCanadian : [['canadian', valueOrCanadian,], ['european', european,],]);

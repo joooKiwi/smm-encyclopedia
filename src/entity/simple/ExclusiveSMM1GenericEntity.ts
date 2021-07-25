@@ -18,13 +18,13 @@ export class ExclusiveSMM1GenericEntity
 
 }
 
-function validateIsEmptyCategory(category: EntityCategory): EmptyEntityCategory {
+function validateIsEmptyCategory(category: EntityCategory,): EmptyEntityCategory {
     if (!(category instanceof EmptyEntityCategory))
         throw new TypeError('A SMM1 exclusive entity cannot be in a SMM2 category.');
     return category;
 }
 
-function validateIsInProperty(property: Property): ExclusiveSMM1Property {
+function validateIsInProperty(property: Property,): ExclusiveSMM1Property {
     if (!property.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to true for a SMM1 exclusive property.');
     if (property.isInSuperMarioMaker2)

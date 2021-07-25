@@ -4,16 +4,16 @@ import {ConverterPatterns}       from './ConverterPatterns';
 export class StringToNumberConverter
     extends AbstractStringConverter<number> {
 
-    public constructor(originalValue: string) {
+    public constructor(originalValue: string,) {
         super(originalValue.toLowerCase());
     }
 
 
-    protected _convertTheValue(validValue: string): number {
+    protected _convertTheValue(validValue: string,): number {
         return Number(validValue);
     }
 
-    public isValueValid(value: string): boolean {
+    public isValueValid(value: string,): boolean {
         return ConverterPatterns.NUMBER_PATTERN.test(value);
     }
 

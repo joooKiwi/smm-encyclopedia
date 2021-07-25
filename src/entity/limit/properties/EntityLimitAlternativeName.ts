@@ -2,8 +2,8 @@ import type {PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLi
 
 export interface EntityLimitAlternativeName {
 
-    get acronym(): null | PossibleAlternativeAcronymEntityLimits
+    get acronym(): | PossibleAlternativeAcronymEntityLimits | null
 
-    get name(): null | PossibleAlternativeEntityLimits
+    get name(): | PossibleAlternativeEntityLimits | null
 
 }

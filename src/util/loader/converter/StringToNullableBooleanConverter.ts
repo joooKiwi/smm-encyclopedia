@@ -5,16 +5,16 @@ import {ConverterPatterns}                from "./ConverterPatterns";
 export class StringToNullableBooleanConverter
     extends AbstractEmptyableStringConverter<boolean> {
 
-    public constructor(originalValue: string) {
+    public constructor(originalValue: string,) {
         super(originalValue);
     }
 
 
-    protected _convertTheValue(validValue: string): boolean {
+    protected _convertTheValue(validValue: string,): boolean {
         return ConverterUtil.convertToBoolean(validValue);
     }
 
-    protected _isValueValid(nonEmptyValue: string): boolean {
+    protected _isValueValid(nonEmptyValue: string,): boolean {
         return ConverterPatterns.BOOLEAN_PATTERN.test(nonEmptyValue);
     }
 

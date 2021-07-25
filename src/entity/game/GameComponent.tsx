@@ -28,7 +28,7 @@ class GameComponent
         return this.props.name;
     }
 
-    private __createGameImage(game: Games): JSX.Element {
+    private __createGameImage(game: Games,): JSX.Element {
         return <img key={`${this.name.english} - ${game.englishName}`} src={game.imagePath} alt={game.englishName} className="game_image"/>;
     }
 

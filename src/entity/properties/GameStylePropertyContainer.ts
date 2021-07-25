@@ -45,7 +45,7 @@ export class GameStylePropertyContainer
     readonly #isInSuperMario3DWorldStyle;
 
 
-    private constructor(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,) {
+    private constructor(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,) {
         this.#isInSuperMarioBrosStyle = isInSuperMarioBrosStyle;
         this.#isInSuperMarioBros3Style = isInSuperMarioBros3Style;
         this.#isInSuperMarioWorldStyle = isInSuperMarioWorldStyle;
@@ -85,7 +85,7 @@ export class GameStylePropertyContainer
     public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): GameStyleProperty
     public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): ExclusiveSMM1GameStyleProperty
     public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,): ExclusiveSMM2GameStyleProperty
-    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): GameStyleProperty
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,): GameStyleProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
@@ -118,13 +118,14 @@ export class GameStylePropertyContainer
      * @param isInNewSuperMarioBrosUStyle
      * @param isInSuperMario3DWorldStyle
      */
-    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: null | boolean,): GameStyleProperty {
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,): GameStyleProperty {
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle) {
             if (isInSuperMario3DWorldStyle === true)
                 return this.#IS_IN_EVERY_GAME_STYLES_PROPERTY;
             return this.#IS_IN_ORIGINAL_4_STYLES_PROPERTY;
         }
         //region ----- Exclusive for 1 game style -----
+
         if (isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle) {
             if (isInSuperMario3DWorldStyle === null)
                 return this.#IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY;
@@ -138,16 +139,20 @@ export class GameStylePropertyContainer
             return this.#IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
             return this.#IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY;
+
         //endregion ----- Exclusive for 1 game style -----
         //region ----- Exclusive for 2 game styles -----
+
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
             return this.#IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle !== true)
             return this.#IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY;
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
             return this.#IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY;
+
         //endregion ----- Exclusive for 2 game styles -----
         //region ----- Exclusive for 3 game styles -----
+
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMario3DWorldStyle !== true) {
             if (isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle)
                 return this.#IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW;
@@ -156,10 +161,13 @@ export class GameStylePropertyContainer
         }
         if (!isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
             return this.#IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY;
+
         //endregion ----- Exclusive for 3 game styles -----
         //region ----- Exclusive for 4 game styles -----
+
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle && isInSuperMario3DWorldStyle === true)
             return this.#IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW;
+
         //endregion ----- Exclusive for 4 game styles -----
 
         return this.#IS_IN_NO_GAME_STYLES_PROPERTY;

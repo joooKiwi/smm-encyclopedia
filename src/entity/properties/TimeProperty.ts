@@ -4,7 +4,7 @@ export interface TimeProperty {
 
     get isInDayTheme(): boolean
 
-    get isInNightTheme(): null | boolean
+    get isInNightTheme(): | boolean | null
 
     /**
      * Return a {@link Map} based on the enum {@link Times}

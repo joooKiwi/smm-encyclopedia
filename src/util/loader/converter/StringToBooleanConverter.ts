@@ -5,16 +5,16 @@ import {ConverterUtil}           from "./ConverterUtil";
 export class StringToBooleanConverter
     extends AbstractStringConverter<boolean> {
 
-    public constructor(originalValue: string) {
+    public constructor(originalValue: string,) {
         super(originalValue);
     }
 
 
-    protected _convertTheValue(validValue: string): boolean {
+    protected _convertTheValue(validValue: string,): boolean {
         return ConverterUtil.convertToBoolean(validValue);
     }
 
-    public isValueValid(value: string): boolean {
+    public isValueValid(value: string,): boolean {
         return ConverterPatterns.BOOLEAN_PATTERN.test(value);
     }
 

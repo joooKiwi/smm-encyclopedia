@@ -33,7 +33,7 @@ export class EntityBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: EntityTemplate) {
+    public constructor(template: EntityTemplate,) {
         this.#template = template;
     }
 
@@ -101,11 +101,11 @@ export class EntityBuilder
         );
     }
 
-    private __createEntityCallbackFor(link: EntityLink): () => Entity {
+    private __createEntityCallbackFor(link: EntityLink,): () => Entity {
         return link === 'this' ? this.#selfCallback : () => EntityBuilder.references.get(link)!.entity!;
     }
 
-    private __createNullableEntityCallbackFor(link: null | EntityLink): () => Entity {
+    private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => Entity {
         return link === null ? EntityBuilder.EMPTY_ENTITY_CALLBACK : this.__createEntityCallbackFor(link);
     }
 

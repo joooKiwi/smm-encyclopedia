@@ -6,11 +6,11 @@ import type {ContentAndLanguageTranslationElement} from './elements/ContentAndLa
 export default abstract class ContentAndLanguageTranslationComponent<P extends ContentAndLanguageTranslationElement = ContentAndLanguageTranslationElement, S = {}, >
     extends Component<P, S> {
 
-    protected contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys) {
+    protected contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys,) {
         return this.props.t(value, {ns: 'content'});
     }
 
-    protected languageTranslation<TKeys extends TFuncKey<'language'>>(value: TKeys) {
+    protected languageTranslation<TKeys extends TFuncKey<'language'>>(value: TKeys,) {
         return this.props.t(value, {ns: 'language'});
     }
 

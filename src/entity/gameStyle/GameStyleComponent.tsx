@@ -37,7 +37,7 @@ class GameStyleComponent
             && (this.reference.isInSuperMario3DWorldStyle ?? false);
     }
 
-    private __createSingleGameStyleImage(gameStyle: GameStyles): JSX.Element {
+    private __createSingleGameStyleImage(gameStyle: GameStyles,): JSX.Element {
         return <img key={`${this.name.english} - ${gameStyle.englishName}`} src={gameStyle.smallImagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
     }
 

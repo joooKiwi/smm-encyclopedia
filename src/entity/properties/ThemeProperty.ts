@@ -8,13 +8,13 @@ export interface ThemeProperty {
 
     get isInUnderwaterTheme(): boolean
 
-    get isInDesertTheme(): null | boolean
+    get isInDesertTheme(): | boolean | null
 
-    get isInSnowTheme(): null | boolean
+    get isInSnowTheme(): | boolean | null
 
-    get isInSkyTheme(): null | boolean
+    get isInSkyTheme(): | boolean | null
 
-    get isInForestTheme(): null | boolean
+    get isInForestTheme(): | boolean | null
 
     get isInGhostHouseTheme(): boolean
 

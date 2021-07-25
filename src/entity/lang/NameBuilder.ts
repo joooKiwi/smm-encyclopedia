@@ -13,7 +13,7 @@ export class NameBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: SMM2NameTemplate) {
+    public constructor(template: SMM2NameTemplate,) {
         this.#template = template;
     }
 

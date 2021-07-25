@@ -13,17 +13,17 @@ export interface PropertyTemplate {
         superMarioBros3: boolean
         superMarioWorld: boolean
         newSuperMarioBrosU: boolean
-        superMario3DWorld: null | boolean
+        superMario3DWorld: | boolean | null
     }
 
     theme: {
         ground: boolean
         underground: boolean
         underwater: boolean
-        desert: null | boolean
-        snow: null | boolean
-        sky: null | boolean
-        forest: null | boolean
+        desert: | boolean | null
+        snow: | boolean | null
+        sky: | boolean | null
+        forest: | boolean | null
         ghostHouse: boolean
         airship: boolean
         castle: boolean
@@ -31,7 +31,7 @@ export interface PropertyTemplate {
 
     time: {
         day: boolean
-        night: null | boolean
+        night: | boolean | null
     }
 
 }

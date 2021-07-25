@@ -13,37 +13,37 @@ import {EntityCategoryBuilder} from './EntityCategoryBuilder';
 type EntityCategoryPropertiesArray = [
     //region ---------- Language properties ----------
 
-    english: null | string,
-    americanEnglish: null | string,
-    europeanEnglish: null | string,
+    english: | string | null,
+    americanEnglish: | string | null,
+    europeanEnglish: | string | null,
 
-    french: null | string,
-    canadianFrench: null | string,
-    europeanFrench: null | string,
+    french: | string | null,
+    canadianFrench: | string | null,
+    europeanFrench: | string | null,
 
-    german: null | string,
+    german: | string | null,
 
-    spanish: null | string,
-    americanSpanish: null | string,
-    europeanSpanish: null | string,
+    spanish: | string | null,
+    americanSpanish: | string | null,
+    europeanSpanish: | string | null,
 
-    italian: null | string,
+    italian: | string | null,
 
-    dutch: null | string,
+    dutch: | string | null,
 
-    portuguese: null | string,
-    americanPortuguese: null | string,
-    europeanPortuguese: null | string,
+    portuguese: | string | null,
+    americanPortuguese: | string | null,
+    europeanPortuguese: | string | null,
 
-    russian: null | string,
+    russian: | string | null,
 
-    japanese: null | string,
+    japanese: | string | null,
 
-    chinese: null | string,
-    simplifiedChinese: null | string,
-    tradionalChinese: null | string,
+    chinese: | string | null,
+    simplifiedChinese: | string | null,
+    tradionalChinese: | string | null,
 
-    korean: null | string,
+    korean: | string | null,
     //endregion ---------- Language properties ----------
 ];
 

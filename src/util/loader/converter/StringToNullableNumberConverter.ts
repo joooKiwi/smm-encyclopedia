@@ -5,16 +5,16 @@ import {ConverterPatterns}                from "./ConverterPatterns";
 export class StringToNullableNumberConverter
     extends AbstractEmptyableStringConverter<number> {
 
-    public constructor(originalValue: string) {
+    public constructor(originalValue: string,) {
         super(originalValue);
     }
 
 
-    protected _convertTheValue(validValue: string): number {
+    protected _convertTheValue(validValue: string,): number {
         return ConverterUtil.convertToNumber(validValue);
     }
 
-    protected _isValueValid(nonEmptyValue: string): boolean {
+    protected _isValueValid(nonEmptyValue: string,): boolean {
         return ConverterPatterns.NUMBER_PATTERN.test(nonEmptyValue);
     }
 

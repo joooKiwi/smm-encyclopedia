@@ -2,7 +2,7 @@ export interface PropertyGetter<Name extends string, Property> {
 
     englishName: Name
 
-    get(property: Property): boolean
+    get(property: Property,): boolean
 
 }
 

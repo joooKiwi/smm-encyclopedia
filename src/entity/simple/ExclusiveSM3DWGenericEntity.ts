@@ -17,7 +17,7 @@ export class ExclusiveSM3DWGenericEntity
 
 }
 
-function validateIsInProperty(property: Property): ExclusiveSMM2PropertyInSM3DW {
+function validateIsInProperty(property: Property,): ExclusiveSMM2PropertyInSM3DW {
     if (property.isInNightTheme !== null)
         throw new TypeError('The property isInNightTheme should always be set to a null for a SMM2 exclusive property when it is exclusively in the SM3DW style.');
     return property as ExclusiveSMM2PropertyInSM3DW;

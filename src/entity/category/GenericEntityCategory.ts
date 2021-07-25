@@ -10,7 +10,7 @@ export class GenericEntityCategory
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name) {
+    public constructor(name: Name,) {
         this.#name = name;
     }
 

@@ -301,10 +301,10 @@ export class EveryLanguages {
     }
 
 
-    public static getValue(value: | EveryLanguages | PossibleValueToGetLanguage): EveryLanguages
-    public static getValue(value: string): | EveryLanguages | null
-    public static getValue(value: | Languages | EveryLanguages | string): | EveryLanguages | null
-    public static getValue(value: | Languages | EveryLanguages | string): | EveryLanguages | null {
+    public static getValue(value: | EveryLanguages | PossibleValueToGetLanguage,): EveryLanguages
+    public static getValue(value: string,): | EveryLanguages | null
+    public static getValue(value: | Languages | EveryLanguages | string,): | EveryLanguages | null
+    public static getValue(value: | Languages | EveryLanguages | string,): | EveryLanguages | null {
         return typeof value === 'string'
             ? this.values.find(language => language.englishName === value || language.originalName === value) ?? this.getValue(Languages.getValue(value) ?? '')
             : value instanceof Languages

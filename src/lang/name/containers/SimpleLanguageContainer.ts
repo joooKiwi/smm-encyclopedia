@@ -5,7 +5,7 @@ export class SimpleLanguageContainer
 
     readonly #value;
 
-    public constructor(value: string) {
+    public constructor(value: string,) {
         this.#value = value;
     }
 

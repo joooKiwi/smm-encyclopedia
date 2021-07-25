@@ -45,7 +45,7 @@ export class ThemeBuilder
         );
     }
 
-    private static __whereEntityIs(englishName: string): Entity[] {
+    private static __whereEntityIs(englishName: string,): Entity[] {
         const theme = Themes.getValue(englishName);
         if (theme === null)
             throw new ReferenceError(`The english name "${englishName}" has no reference on the Themes class.`);

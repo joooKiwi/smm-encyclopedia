@@ -36,7 +36,7 @@ export class NameBuilder
         return this.english;
     }
 
-    public setEnglish(value: AmericanOrEuropeanOriginal): this {
+    public setEnglish(value: AmericanOrEuropeanOriginal,): this {
         this.#english = value;
         return this;
     }
@@ -52,7 +52,7 @@ export class NameBuilder
         return this.french;
     }
 
-    public setFrench(value: CanadianOrEuropeanOriginal): this {
+    public setFrench(value: CanadianOrEuropeanOriginal,): this {
         this.#french = value;
         return this;
     }
@@ -68,7 +68,7 @@ export class NameBuilder
         return this.german;
     }
 
-    public setGerman(value: string): this {
+    public setGerman(value: string,): this {
         this.#german = value;
         return this;
     }
@@ -84,7 +84,7 @@ export class NameBuilder
         return this.spanish;
     }
 
-    public setSpanish(value: AmericanOrEuropeanOriginal): this {
+    public setSpanish(value: AmericanOrEuropeanOriginal,): this {
         this.#spanish = value;
         return this;
     }
@@ -100,7 +100,7 @@ export class NameBuilder
         return this.italian;
     }
 
-    public setItalian(value: string): this {
+    public setItalian(value: string,): this {
         this.#italian = value;
         return this;
     }
@@ -116,7 +116,7 @@ export class NameBuilder
         return this.dutch;
     }
 
-    public setDutch(value: string): this {
+    public setDutch(value: string,): this {
         this.#dutch = value;
         return this;
     }
@@ -132,7 +132,7 @@ export class NameBuilder
         return this.portuguese;
     }
 
-    public setPortuguese(value: AmericanOrEuropeanOriginal): this {
+    public setPortuguese(value: AmericanOrEuropeanOriginal,): this {
         this.#portuguese = value;
         return this;
     }
@@ -148,7 +148,7 @@ export class NameBuilder
         return this.russian;
     }
 
-    public setRussian(value: string): this {
+    public setRussian(value: string,): this {
         this.#russian = value;
         return this;
     }
@@ -164,7 +164,7 @@ export class NameBuilder
         return this.japanese;
     }
 
-    public setJapanese(value: string): this {
+    public setJapanese(value: string,): this {
         this.#japanese = value;
         return this;
     }
@@ -180,7 +180,7 @@ export class NameBuilder
         return this.chinese;
     }
 
-    public setChinese(value: ChineseOriginal): this {
+    public setChinese(value: ChineseOriginal,): this {
         this.#chinese = value;
         return this;
     }
@@ -196,7 +196,7 @@ export class NameBuilder
         return this.korean;
     }
 
-    public setKorean(value: string): this {
+    public setKorean(value: string,): this {
         this.#korean = value;
         return this;
     }

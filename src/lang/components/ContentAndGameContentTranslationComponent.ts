@@ -6,11 +6,11 @@ import {ContentAndGameContentTranslationElement} from './elements/ContentAndGame
 export default abstract class ContentAndGameContentTranslationComponent<P extends ContentAndGameContentTranslationElement = ContentAndGameContentTranslationElement, S = {}, >
     extends Component<P, S> {
 
-    protected contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys) {
+    protected contentTranslation<TKeys extends TFuncKey<'content'>>(value: TKeys,) {
         return this.props.t(value, {ns: 'content'});
     }
 
-    protected gameContentTranslation<TKeys extends TFuncKey<'gameContent'>>(value: TKeys) {
+    protected gameContentTranslation<TKeys extends TFuncKey<'gameContent'>>(value: TKeys,) {
         return this.props.t(value, {ns: 'gameContent'});
     }
 

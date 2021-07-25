@@ -10,7 +10,7 @@ export interface GameStyleProperty {
 
     get isInNewSuperMarioBrosUStyle(): boolean
 
-    get isInSuperMario3DWorldStyle(): null | boolean
+    get isInSuperMario3DWorldStyle(): | boolean | null
 
     /**
      * Return a {@link Map} based on the enum {@link GameStyles}

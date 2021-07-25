@@ -16,7 +16,7 @@ export class GenericCourseTheme
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, isInProperty: GameProperty, entities: () => Entity[]) {
+    public constructor(name: Name, isInProperty: GameProperty, entities: () => Entity[],) {
         super(name, isInProperty);
         this.#entities = new CallbackCaller(entities);
     }

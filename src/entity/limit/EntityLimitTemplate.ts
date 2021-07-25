@@ -7,7 +7,7 @@ import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits
  * @template
  */
 export interface FullAcronymAndNameTemplate {
-    acronym: null | PossibleAcronymEntityLimits
+    acronym: | PossibleAcronymEntityLimits | null
     name: PossibleEntityLimits
 }
 
@@ -15,15 +15,15 @@ export interface FullAcronymAndNameTemplate {
  * @template
  */
 export interface AlternateAcronymAndNameTemplate {
-    acronym: null | PossibleAlternativeAcronymEntityLimits
-    name: null | PossibleAlternativeEntityLimits
+    acronym: | PossibleAlternativeAcronymEntityLimits | null
+    name: | PossibleAlternativeEntityLimits | null
 }
 
 /**
  * @template
  */
 export interface LimitAmountTemplate {
-    amount: null | number
+    amount: | number | null
     isUnknown: boolean
 }
 
@@ -35,7 +35,7 @@ export interface LimitAmountTemplate {
 export interface EntityLimitTemplate {
 
     full: FullAcronymAndNameTemplate
-    alternative: null | AlternateAcronymAndNameTemplate
+    alternative: | AlternateAcronymAndNameTemplate | null
 
     type: PossibleEntityLimitTypeEnglishName
 

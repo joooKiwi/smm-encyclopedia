@@ -41,17 +41,17 @@ export default class Table
         return this.props.content;
     }
 
-    private static __getHeaderKey(header: string | SimpleImageHeader): string {
+    private static __getHeaderKey(header: | string | SimpleImageHeader,): string {
         return typeof header === 'string' ? header : header.key;
     }
 
-    private static __getHeaderContent(header: string | SimpleImageHeader): JSX.Element {
+    private static __getHeaderContent(header: | string | SimpleImageHeader,): JSX.Element {
         return typeof header === 'string'
             ? <span>{header}</span>
             : <img key={header.key} alt={header.alt} src={header.path}/>;
     }
 
-    private __getHeaders(isHead: boolean): JSX.Element[] {
+    private __getHeaders(isHead: boolean,): JSX.Element[] {
         return this.headers.map(header => <th key={`${isHead ? 'head' : 'foot'}_${Table.__getHeaderKey(header)}`}>{Table.__getHeaderContent(header)}</th>);
     }
 

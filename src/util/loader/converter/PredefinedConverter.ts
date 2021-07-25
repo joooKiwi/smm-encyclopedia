@@ -13,16 +13,16 @@ import {StringToStringConverter}          from './StringToStringConverter';
 
 //region -------------------- converter texts --------------------
 
-export type PrimitiveConversion = 'boolean' | 'number' | 'string';
+export type PrimitiveConversion = | 'boolean' | 'number' | 'string';
 export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
-export type PredefinedConversion = NullablePredefinedConversion | PrimitiveConversion | 'emptyable string';
+export type PredefinedConversion = | NullablePredefinedConversion | PrimitiveConversion | 'emptyable string';
 
 //endregion -------------------- converter texts --------------------
 
 //region -------------------- Enum types --------------------
 
 export type PredefinedConverterOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-export type PredefinedConverterNames = `${'NULLABLE_' | ''}${'NUMBER' | 'BOOLEAN' | 'STRING'}` | 'EMPTYABLE_STRING';
+export type PredefinedConverterNames = `${| 'NULLABLE_' | ''}${| 'NUMBER' | 'BOOLEAN' | 'STRING'}` | 'EMPTYABLE_STRING';
 export type SimplePredefinedConverter<T = PredefinedConverter, > = SimpleEnum<PredefinedConverterNames, T>;
 export type PredefinedConverterArray<T = PredefinedConverter, > = readonly [
     SimplePredefinedConverter<T>['NUMBER'], SimplePredefinedConverter<T>['NULLABLE_NUMBER'],

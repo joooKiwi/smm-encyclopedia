@@ -21,128 +21,139 @@ import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuil
 
 type EntityFilePropertiesArray = [
     //region ---------- Basic properties ----------
+
     isInSuperMarioMaker1: boolean,
     isInSuperMarioMaker2: boolean,
 
-    categoryInTheEditor: null | PossibleEntityCategories,
+    categoryInTheEditor: | PossibleEntityCategories | null,
 
-    hasAMushroomVariant: null | boolean,
-    canBeInAParachute: null | boolean | '?',
+    hasAMushroomVariant: | boolean | null,
+    canBeInAParachute: | boolean | '?' | null,
     canHaveWings: boolean | '?',
+
     //endregion ---------- Basic properties ----------
     //region ---------- Specific properties ----------
-    canContainOrSpawnAKey: null | boolean,
 
-    canBePutInAOnOffBlock: null | boolean,
+    canContainOrSpawnAKey: | boolean | null,
 
-    canBePutOnATrack: null | boolean | '?',
-    editorLimit_canBePutOnATrack: null | PossibleEntityLimits,
-    whilePlaying_canBePutOnATrack: null | PossibleEntityLimits,
+    canBePutInAOnOffBlock: | boolean | null,
 
-    canSpawnOutOfAPipe: null | boolean,
+    canBePutOnATrack: | boolean | '?' | null,
+    editorLimit_canBePutOnATrack: | PossibleEntityLimits | null,
+    whilePlaying_canBePutOnATrack: | PossibleEntityLimits | null,
 
-    canBePutInASwingingClaw: null | boolean,
+    canSpawnOutOfAPipe: | boolean | null,
 
-    canBeThrownByALakitu: null | boolean | '?',
-    canBePutInALakituCloud: null | boolean | '?',
+    canBePutInASwingingClaw: | boolean | null,
 
-    canBePutInAClownCar: null | boolean,
+    canBeThrownByALakitu: | boolean | '?' | null,
+    canBePutInALakituCloud: | boolean | '?' | null,
 
-    canBeFiredOutOfABulletLauncher: null | boolean,
+    canBePutInAClownCar: | boolean | null,
 
-    canBePutInABlock: null | boolean,
+    canBeFiredOutOfABulletLauncher: | boolean | null,
 
-    canBePutInATree: null | boolean,
+    canBePutInABlock: | boolean | null,
+
+    canBePutInATree: | boolean | null,
 
     lightSourceEmitted: PossibleLightSource,
-    lightSourceEmitted_isInSMB: null | boolean,
+    lightSourceEmitted_isInSMB: | boolean | null,
 
-    canIgniteABobOmb: null | boolean | 'NSMBU',
+    canIgniteABobOmb: | boolean | 'NSMBU' | null,
 
-    canGoThroughWalls: null | boolean,
+    canGoThroughWalls: | boolean | null,
 
-    canBeStacked: null | boolean,
+    canBeStacked: | boolean | null,
 
-    isGlobalGroundOrGlobal: null | boolean | 'SM3DW',
+    isGlobalGroundOrGlobal: | boolean | 'SM3DW' | null,
 
-    canMakeASoundOutOfAMusicBlock: null | boolean | '?',
+    canMakeASoundOutOfAMusicBlock: | boolean | '?' | null,
+
     //endregion ---------- Specific properties ----------
     //region ---------- Entity limit properties ----------
-    editorLimit: null | PossibleEntityLimits | '?',
 
-    whilePlaying_isInGEL: null | boolean | 2,
-    whilePlaying_isInGEL_isSuperGlobal: null | boolean,
+    editorLimit: | PossibleEntityLimits | '?' | null,
 
-    whilePlaying_isInPEL: null | boolean,
+    whilePlaying_isInGEL: | boolean | 2 | null,
+    whilePlaying_isInGEL_isSuperGlobal: | boolean | null,
+
+    whilePlaying_isInPEL: | boolean | null,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
 
-    whilePlaying_customLimit: null | PossibleEntityLimits | '?',
+    whilePlaying_customLimit: | PossibleEntityLimits | '?' | null,
+
     //endregion ---------- Entity limit properties ----------
     //region ---------- Spawning / Despawning range properties ----------
-    whilePlaying_offscreenSpawningHorizontalRange: null | number | 'Variable',
-    whilePlaying_offscreenDespawningHorizontalRange: null | number | 'Variable' | 'Infinity',
 
-    whilePlaying_offscreenSpawingUpwardVerticalRange: null | number,
-    whilePlaying_offscreenDespawningUpwardVerticalRange: null | number,
+    whilePlaying_offscreenSpawningHorizontalRange: | number | 'Variable' | null,
+    whilePlaying_offscreenDespawningHorizontalRange: | number | 'Variable' | 'Infinity' | null,
 
-    whilePlaying_offscreenSpawningDownwardVerticalRange: null | number,
-    whilePlaying_offscreenDespawningDownwardVerticalRange: null | number,
+    whilePlaying_offscreenSpawingUpwardVerticalRange: | number | null,
+    whilePlaying_offscreenDespawningUpwardVerticalRange: | number | null,
+
+    whilePlaying_offscreenSpawningDownwardVerticalRange: | number | null,
+    whilePlaying_offscreenDespawningDownwardVerticalRange: | number | null,
+
     //endregion ---------- Spawning / Despawning range properties ----------
     //region ---------- Reference on specific condition properties ----------
+
     isInDayTheme: EntityLink,
-    isInNightTheme: null | EntityLink,
+    isInNightTheme: | EntityLink | null,
 
     inGroundTheme: EntityLink,
     inUndergroundTheme: EntityLink,
     inUnderwaterTheme: EntityLink,
-    inDesertTheme: null | EntityLink,
-    inSnowTheme: null | EntityLink,
-    inSkyTheme: null | EntityLink,
-    inForestTheme: null | EntityLink,
+    inDesertTheme: | EntityLink | null,
+    inSnowTheme: | EntityLink | null,
+    inSkyTheme: | EntityLink | null,
+    inForestTheme: | EntityLink | null,
     inGhostHouseTheme: EntityLink,
     inAirshipTheme: EntityLink,
     inCastleTheme: EntityLink,
 
-    inSMBGameStyle: null | EntityLink,
-    inSMB3GameStyle: null | EntityLink,
-    inSMWGameStyle: null | EntityLink,
-    inNSMBUGameStyle: null | EntityLink,
-    inSM3DWGameStyle: null | EntityLink,
+    inSMBGameStyle: | EntityLink | null,
+    inSMB3GameStyle: | EntityLink | null,
+    inSMWGameStyle: | EntityLink | null,
+    inNSMBUGameStyle: | EntityLink | null,
+    inSM3DWGameStyle: | EntityLink | null,
+
     //endregion ---------- Reference on specific condition properties ----------
     //region ---------- Language properties ----------
 
-    english: null | string,
-    americanEnglish: null | string,
-    europeanEnglish: null | string,
+    english: | string | null,
+    americanEnglish: | string | null,
+    europeanEnglish: | string | null,
 
-    french: null | string,
-    canadianFrench: null | string,
-    europeanFrench: null | string,
+    french: | string | null,
+    canadianFrench: | string | null,
+    europeanFrench: | string | null,
 
-    german: null | string,
+    german: | string | null,
 
-    spanish: null | string,
-    americanSpanish: null | string,
-    europeanSpanish: null | string,
+    spanish: | string | null,
+    americanSpanish: | string | null,
+    europeanSpanish: | string | null,
 
-    italian: null | string,
+    italian: | string | null,
 
-    dutch: null | string,
+    dutch: | string | null,
 
-    portuguese: null | string,
-    americanPortuguese: null | string,
-    europeanPortuguese: null | string,
+    portuguese: | string | null,
+    americanPortuguese: | string | null,
+    europeanPortuguese: | string | null,
 
-    russian: null | string,
+    russian: | string | null,
 
-    japanese: null | string,
+    japanese: | string | null,
 
-    chinese: null | string,
-    simplifiedChinese: null | string,
-    tradionalChinese: null | string,
+    chinese: | string | null,
+    simplifiedChinese: | string | null,
+    tradionalChinese: | string | null,
 
-    korean: null | string,
+    korean: | string | null,
+
     //endregion ---------- Language properties ----------
 ];
 
@@ -287,7 +298,7 @@ export class EntityLoader
 
 class TemplateCreator {
 
-    public static createTemplate(content: EntityFilePropertiesArray): EntityTemplate {
+    public static createTemplate(content: EntityFilePropertiesArray,): EntityTemplate {
         const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
             [content[0], content[1]];
         const [dayLink, nightLink] =
@@ -469,15 +480,15 @@ class TemplateCreator {
         };
     }
 
-    private static __convertLinkToOnlyBoolean(link: null | EntityLink) {
+    private static __convertLinkToOnlyBoolean(link: | EntityLink | null,) {
         return link !== null && this.__convertLinkToBoolean(link);
     }
 
-    private static __convertLinkToBoolean(link: EntityLink): boolean {
+    private static __convertLinkToBoolean(link: EntityLink,): boolean {
         return link.includes('this');
     }
 
-    private static __convertLinkToNullableBoolean(link: null | EntityLink): null | boolean {
+    private static __convertLinkToNullableBoolean(link: | EntityLink | null,): | boolean | null {
         return link === null ? null : this.__convertLinkToBoolean(link);
     }
 
@@ -488,7 +499,7 @@ class TemplateCreator {
  */
 class NameCreator {
 
-    private static __testName(name: SMM2NameTemplate): void {
+    private static __testName(name: SMM2NameTemplate,): void {
         //README since some references are still not complete, they are in comment
         if (name.english.simple === null && (name.english.american === null || name.english.european === null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -524,7 +535,7 @@ class ReferencesToWatch {
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(englishNames: Map<string, DebugEntityReferences>) {
+    public constructor(englishNames: Map<string, DebugEntityReferences>,) {
         this.#englishNames = englishNames;
         this.#alreadyAddedName = [];
         this.#references = [];
@@ -548,7 +559,7 @@ class ReferencesToWatch {
 
     //endregion -------------------- Getter --------------------
 
-    public addReference(reference: EntityTemplate): void {
+    public addReference(reference: EntityTemplate,): void {
         const otherReference = reference.properties.reference;
         ([
             otherReference.day, otherReference.night,
@@ -560,7 +571,7 @@ class ReferencesToWatch {
             .forEach(otherReference => this.__addReference(reference, otherReference));
     }
 
-    private __addReference(template: EntityTemplate, reference: string): void {
+    private __addReference(template: EntityTemplate, reference: string,): void {
         if (reference.includes('/'))
             reference.split(' / ')
                 .filter(splitReference => splitReference !== 'this')
@@ -570,7 +581,7 @@ class ReferencesToWatch {
         this.alreadyAddedName.push(reference);
     }
 
-    private __addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError): void {
+    private __addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError,): void {
         this.references.push({
             reference: template,
             value: reference,

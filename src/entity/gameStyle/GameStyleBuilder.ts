@@ -33,7 +33,7 @@ export class GameStyleBuilder
         return GameStyleBuilder.#templateMap;
     }
 
-    private static __whereEntityIs(englishName: string): Entity[] {
+    private static __whereEntityIs(englishName: string,): Entity[] {
         const gameStyle = GameStyles.getValue(englishName);
         if (gameStyle === null)
             throw new ReferenceError(`The english name "${englishName}" has no reference on the Game Style class.`);
@@ -44,7 +44,7 @@ export class GameStyleBuilder
         return everyEntities;
     }
 
-    protected _build(name: Name): GameStyle {
+    protected _build(name: Name,): GameStyle {
         return new GenericGameStyle(
             name,
             GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),

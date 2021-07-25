@@ -14,7 +14,7 @@ export interface EntityLimit {
     get acronym(): this['full']['acronym']
 
 
-    get alternative(): null | EntityLimitAlternativeName
+    get alternative(): | EntityLimitAlternativeName | null
 
     get alternativeName(): EntityLimitAlternativeName['name']
 

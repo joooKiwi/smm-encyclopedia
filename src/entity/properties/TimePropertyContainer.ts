@@ -26,7 +26,7 @@ export class TimePropertyContainer
     readonly #isInDayTheme;
     readonly #isInNightTheme;
 
-    private constructor(isInDayTheme: boolean, isInNightTheme: null | boolean,) {
+    private constructor(isInDayTheme: boolean, isInNightTheme: | boolean | null,) {
         this.#isInDayTheme = isInDayTheme;
         this.#isInNightTheme = isInNightTheme;
     }
@@ -51,7 +51,7 @@ export class TimePropertyContainer
     public static get(isInDayTheme: false, isInNightTheme: true,): ExclusiveSMM2TimeProperty
     public static get(isInDayTheme: true, isInNightTheme: false,): ExclusiveSMM2TimeProperty
     public static get(isInDayTheme: true, isInNightTheme: true,): ExclusiveSMM2TimeProperty
-    public static get(isInDayTheme: boolean, isInNightTheme: null | boolean,): TimeProperty
+    public static get(isInDayTheme: boolean, isInNightTheme: | boolean | null,): TimeProperty
     /**
      * <p>
      *     Return the property instance based on the booleans values received.
@@ -71,7 +71,7 @@ export class TimePropertyContainer
      * @param isInDayTheme
      * @param isInNightTheme
      */
-    public static get(isInDayTheme: boolean, isInNightTheme: null | boolean,): TimeProperty {
+    public static get(isInDayTheme: boolean, isInNightTheme: | boolean | null,): TimeProperty {
         if (isInDayTheme)
             switch (isInNightTheme) {
                 case true:

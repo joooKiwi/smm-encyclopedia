@@ -7,7 +7,7 @@ import {PredefinedConverter}                 from './converter/PredefinedConvert
 
 //region -------------------- CVSLoader types --------------------
 
-export type CustomConversionCallback = (value: string) => Converter<string, any>;
+export type CustomConversionCallback = (value: string,) => Converter<string, any>;
 export type HeaderTypeOrConvertor = PredefinedConversion
     | readonly (PredefinedConversion | string)[]
     | CustomConversionCallback;
@@ -27,13 +27,13 @@ export class CSVLoader<T extends any[], U> {
 
     readonly #callbackToCreateObject;
     #callbackOnFinalObjectCreated?: (finalContent: U, convertedContent: T, originalContent: readonly string[],) => void;
-    #callbackOnSingleContentConverted?: (content: keyof T, originalValue: string) => void;
+    #callbackOnSingleContentConverted?: (content: keyof T, originalValue: string,) => void;
     #callbackOnInitialisationEnd?: (finalContents: readonly U[], convertedContents: readonly T[], originalContents: readonly string[][],) => void;
     #defaultConversion?: PredefinedConversion;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalContent: string[][], callbackToCreateObject: (convertedContent: T) => U,) {
+    public constructor(originalContent: string[][], callbackToCreateObject: (convertedContent: T,) => U,) {
         this.#originalContent = originalContent;
         this.#headersToConvert = new Map<string, HeaderTypeOrConvertor>();
         this.#convertedContent = [] as T[];
@@ -91,7 +91,7 @@ export class CSVLoader<T extends any[], U> {
         return this.load().#content;
     }
 
-    protected addContent(originalContent: string[], arrayContent: T): this {
+    protected addContent(originalContent: string[], arrayContent: T,): this {
         const convertContent = this.callbackToCreateObject(arrayContent);
         this.callbackOnFinalObjectCreated?.(convertContent, arrayContent, originalContent,);
         this.#convertedContent.push(arrayContent);
@@ -123,7 +123,7 @@ export class CSVLoader<T extends any[], U> {
      *
      * @param callback the callback to set
      */
-    public onFinalObjectCreated(callback: (finalContent: U, convertedContent: T, originalContent: readonly string[],) => void): this {
+    public onFinalObjectCreated(callback: (finalContent: U, convertedContent: T, originalContent: readonly string[],) => void,): this {
         this.#callbackOnFinalObjectCreated = callback;
         return this;
     }
@@ -148,7 +148,7 @@ export class CSVLoader<T extends any[], U> {
      *
      * @param callback the callback to set
      */
-    public onSingleContentConverted(callback: (content: keyof T, originalValue: string) => void): this {
+    public onSingleContentConverted(callback: (content: keyof T, originalValue: string,) => void,): this {
         this.#callbackOnSingleContentConverted = callback;
         return this;
     }
@@ -174,7 +174,7 @@ export class CSVLoader<T extends any[], U> {
      *
      * @param callback the callback to set
      */
-    public onInitialisationEnd(callback: (finalContents: readonly U[], convertedContents: readonly T[], originalContents: readonly string[][],) => void): this {
+    public onInitialisationEnd(callback: (finalContents: readonly U[], convertedContents: readonly T[], originalContents: readonly string[][],) => void,): this {
         this.#callbackOnInitialisationEnd = callback;
         return this;
     }
@@ -203,7 +203,7 @@ export class CSVLoader<T extends any[], U> {
      * @param defaultConversion
      * @see GENERIC_DEFAULT_CONVERSION
      */
-    public setDefaultConversion(defaultConversion: PredefinedConversion): this {
+    public setDefaultConversion(defaultConversion: PredefinedConversion,): this {
         this.defaultConversion = defaultConversion;
         return this;
     }
@@ -214,52 +214,52 @@ export class CSVLoader<T extends any[], U> {
     //region -------------------- convertor usage methods --------------------
 
     public convertToBoolean(...headers: string[]): this {
-        return this.convertTo('boolean', ...headers);
+        return this.convertTo('boolean', ...headers,);
     }
 
     public convertToNullableBoolean(...headers: string[]): this {
-        return this.convertTo('nullable boolean', ...headers);
+        return this.convertTo('nullable boolean', ...headers,);
     }
 
     public convertToNumber(...headers: string[]): this {
-        return this.convertTo('number', ...headers);
+        return this.convertTo('number', ...headers,);
     }
 
     public convertToNullableNumber(...headers: string[]): this {
-        return this.convertTo('nullable number', ...headers);
+        return this.convertTo('nullable number', ...headers,);
     }
 
     public convertToString(...headers: string[]): this {
-        return this.convertTo('string', ...headers);
+        return this.convertTo('string', ...headers,);
     }
 
     public convertToEmptyableString(...headers: string[]): this {
-        return this.convertTo('emptyable string', ...headers);
+        return this.convertTo('emptyable string', ...headers,);
     }
 
     public convertToNullableString(...headers: string[]): this {
-        return this.convertTo('nullable string', ...headers);
+        return this.convertTo('nullable string', ...headers,);
     }
 
 
     public convertToBooleanAnd(validValueOrConvertor: string | Exclude<PredefinedConversion, 'boolean'>, ...headers: string[]): this {
-        return this.convertTo(['boolean', validValueOrConvertor,], ...headers);
+        return this.convertTo(['boolean', validValueOrConvertor,], ...headers,);
     }
 
     public convertToNullableBooleanAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'boolean'>, ...headers: string[]): this {
-        return this.convertTo(['nullable boolean', validValueOrConvertor,], ...headers);
+        return this.convertTo(['nullable boolean', validValueOrConvertor,], ...headers,);
     }
 
     public convertToNumberAnd(validValueOrConvertor: string | Exclude<PredefinedConversion, 'number'>, ...headers: string[]): this {
-        return this.convertTo(['number', validValueOrConvertor,], ...headers);
+        return this.convertTo(['number', validValueOrConvertor,], ...headers,);
     }
 
     public convertToNullableNumberAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'number'>, ...headers: string[]): this {
-        return this.convertTo(['nullable number', validValueOrConvertor,], ...headers);
+        return this.convertTo(['nullable number', validValueOrConvertor,], ...headers,);
     }
 
     public convertToStringAnd(validValueOrConvertor: string | Exclude<PredefinedConversion, 'string'>, ...headers: string[]): this {
-        return this.convertTo(['string', validValueOrConvertor,], ...headers);
+        return this.convertTo(['string', validValueOrConvertor,], ...headers,);
     }
 
     /**
@@ -281,7 +281,7 @@ export class CSVLoader<T extends any[], U> {
      * @see ConverterPatterns.EMPTYABLE_STRING_PATTERN
      */
     public convertToEmptyableStringAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'string'>, ...headers: string[]): this {
-        return this.convertTo(['emptyable string', validValueOrConvertor,], ...headers);
+        return this.convertTo(['emptyable string', validValueOrConvertor,], ...headers,);
     }
 
     /**
@@ -303,7 +303,7 @@ export class CSVLoader<T extends any[], U> {
      * @see ConverterPatterns.NULLABLE_STRING_PATTERN
      */
     public convertToNullableStringAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'string'>, ...headers: string[]): this {
-        return this.convertTo(['nullable string', validValueOrConvertor,], ...headers);
+        return this.convertTo(['nullable string', validValueOrConvertor,], ...headers,);
     }
 
     /**
@@ -381,14 +381,14 @@ export class CSVLoader<T extends any[], U> {
             + ')';
 
 
-        const finalValidationComponentOnConverter = (value: string) => {
+        const finalValidationComponentOnConverter = (value: string,) => {
             for (let validationComponent of validationComponentOnConverter) {
                 if (validationComponent(value))
                     return true;
             }
             return false;
         };
-        const finalConversionComponentOnConverter = (value: string) => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
+        const finalConversionComponentOnConverter = (value: string,) => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
 
         return containNullable
             ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter,

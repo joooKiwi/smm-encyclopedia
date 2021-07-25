@@ -10,7 +10,7 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
     public static DEFAULT_IS_VERTICAL = true;
     public static MAXIMUM_HORIZONTAL_LENGTH = 5;
 
-    protected constructor(props: GroupButtonComponents<T>) {
+    protected constructor(props: GroupButtonComponents<T>,) {
         super(props);
     }
 
@@ -53,7 +53,7 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
     /**
      * Return every buttons from the elements stored inside them.
      */
-    protected abstract _getContent(t: T): JSX.Element | string;
+    protected abstract _getContent(t: T,): | JSX.Element | string;
 
     private __getButtons(): JSX.Element[] {
         let buttons: JSX.Element[] = [];

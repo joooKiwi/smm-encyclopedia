@@ -16,13 +16,13 @@ import {Loader}             from '../../util/Loader';
 
 type PossibleLimitInArray = number | `${number}?` | '?';
 type LimitPropertiesArray = [
-    acronym_fullName: null | PossibleAcronymEntityLimits,
-    acronym_alternativeName: null | PossibleAlternativeAcronymEntityLimits,
+    acronym_fullName: | PossibleAcronymEntityLimits | null,
+    acronym_alternativeName: | PossibleAlternativeAcronymEntityLimits | null,
 
     type: PossibleEntityLimitTypeEnglishName,
 
     fullName: PossibleEntityLimits,
-    alternativeName: null | PossibleAlternativeEntityLimits,
+    alternativeName: | PossibleAlternativeEntityLimits | null,
 
     limit: PossibleLimitInArray,
 ];
@@ -75,7 +75,7 @@ export class EntityLimitLoader
 
 class TemplateCreator {
 
-    public static createTemplate(content: LimitPropertiesArray): EntityLimitTemplate {
+    public static createTemplate(content: LimitPropertiesArray,): EntityLimitTemplate {
         return {
             full: this.__convertAcronymToStringOrArray(content[0], content[3],),
             alternative: this.__convertAcronymToStringOrArray(content[1], content[4],),
@@ -86,10 +86,10 @@ class TemplateCreator {
         };
     }
 
-    private static __convertAcronymToStringOrArray(acronym: PossibleAcronymEntityLimits | null, name: PossibleEntityLimits): FullAcronymAndNameTemplate
-    private static __convertAcronymToStringOrArray(acronym: null, name: null): null
-    private static __convertAcronymToStringOrArray(acronym: PossibleAlternativeAcronymEntityLimits | null, name: PossibleAlternativeEntityLimits | null): AlternateAcronymAndNameTemplate | null
-    private static __convertAcronymToStringOrArray(acronym: string | null, name: string | null): AlternateAcronymAndNameTemplate | FullAcronymAndNameTemplate | null {
+    private static __convertAcronymToStringOrArray(acronym: PossibleAcronymEntityLimits | null, name: PossibleEntityLimits,): FullAcronymAndNameTemplate
+    private static __convertAcronymToStringOrArray(acronym: null, name: null,): null
+    private static __convertAcronymToStringOrArray(acronym: PossibleAlternativeAcronymEntityLimits | null, name: PossibleAlternativeEntityLimits | null,): | AlternateAcronymAndNameTemplate | null
+    private static __convertAcronymToStringOrArray(acronym: string | null, name: string | null,): | AlternateAcronymAndNameTemplate | FullAcronymAndNameTemplate | null {
         if (acronym == null && name == null)
             return null;
         return {
@@ -100,7 +100,7 @@ class TemplateCreator {
         };
     }
 
-    private static __convertToLimitTemplate(limit: PossibleLimitInArray): LimitAmountTemplate {
+    private static __convertToLimitTemplate(limit: PossibleLimitInArray,): LimitAmountTemplate {
         switch (typeof limit) {
             case 'number':
                 return {

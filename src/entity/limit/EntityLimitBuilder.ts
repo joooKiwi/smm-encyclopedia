@@ -10,7 +10,7 @@ export class EntityLimitBuilder
 
     readonly #template;
 
-    public constructor(template: EntityLimitTemplate) {
+    public constructor(template: EntityLimitTemplate,) {
         this.#template = template;
     }
 

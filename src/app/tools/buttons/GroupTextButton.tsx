@@ -7,11 +7,11 @@ import {GroupButtonComponents}  from './properties/GroupButtonProperty';
 export default class GroupTextButton
     extends AbstractGroupButton<ActivatableTextElement> {
 
-    public constructor(props: GroupButtonComponents<ActivatableTextElement>) {
+    public constructor(props: GroupButtonComponents<ActivatableTextElement>,) {
         super(props);
     }
 
-    protected _getContent(text: ActivatableTextElement): JSX.Element {
+    protected _getContent(text: ActivatableTextElement,): JSX.Element {
         return <span>{text.text}</span>;
     }
 

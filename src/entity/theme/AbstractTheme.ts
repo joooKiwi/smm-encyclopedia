@@ -12,7 +12,7 @@ export class AbstractTheme
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, isInProperty: GameProperty) {
+    protected constructor(name: Name, isInProperty: GameProperty,) {
         this.#name = name;
         this.#isInProperty = isInProperty;
     }

@@ -11,7 +11,10 @@ export class GenericStringToAnyConverter<T>
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalValue: string, typeName: string, isValueValidCallback: (value: string) => boolean, convertTheValueCallback: (validValue: string) => T,) {
+    public constructor(originalValue: string,
+                       typeName: string,
+                       isValueValidCallback: (value: string) => boolean,
+                       convertTheValueCallback: (validValue: string) => T,) {
         super(originalValue);
         this.#typeName = typeName;
         this.#isValueValidCallback = isValueValidCallback;
@@ -34,7 +37,7 @@ export class GenericStringToAnyConverter<T>
 
     //endregion -------------------- Getter --------------------
 
-    protected _convertTheValue(validValue: string): T {
+    protected _convertTheValue(validValue: string,): T {
         return this.convertTheValueCallback(validValue);
     }
 
@@ -42,7 +45,7 @@ export class GenericStringToAnyConverter<T>
         return new TypeError(`The value "${this.originalValue}" could not be converted to a "${this.typeName}".`);
     }
 
-    public isValueValid(value: string): boolean {
+    public isValueValid(value: string,): boolean {
         return this.isValueValidCallback(value);
     }
 

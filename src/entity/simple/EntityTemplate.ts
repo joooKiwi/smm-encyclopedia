@@ -12,80 +12,84 @@ export interface EntityTemplate {
 
     properties: {
         //region ---------- Basic properties ----------
+
         isIn: PropertyTemplate
 
-        categoryInTheEditor: null | PossibleEntityCategories
+        categoryInTheEditor: | PossibleEntityCategories | null
 
-        hasAMushroomVariant: null | boolean
-        canBeInAParachute: null | boolean | '?'
+        hasAMushroomVariant: | boolean | null
+        canBeInAParachute: | boolean | '?' | null
         canHaveWings: boolean | '?'
+
         //endregion ---------- Basic properties ----------
 
         //region ---------- Specific properties ----------
-        canContainOrSpawnAKey: null | boolean
 
-        canBePutInAOnOffBlock: null | boolean
+        canContainOrSpawnAKey: | boolean | null
+
+        canBePutInAOnOffBlock: | boolean | null
 
         canBePutOnATrack: {
-            value: null | boolean | '?'
-            editorLimit: null | EntityLink
-            whilePlaying: null | EntityLink
+            value: | boolean | '?' | null
+            editorLimit: | EntityLink | null
+            whilePlaying: | EntityLink | null
         }
 
-        canSpawnOutOfAPipe: null | boolean
+        canSpawnOutOfAPipe: | boolean | null
 
-        canBePutInASwingingClaw: null | boolean
+        canBePutInASwingingClaw: | boolean | null
 
-        canBeThrownByALakitu: null | boolean | '?'
-        canBePutInALakituCloud: null | boolean | '?'
+        canBeThrownByALakitu: | boolean | '?' | null
+        canBePutInALakituCloud: | boolean | '?' | null
 
-        canBePutInAClownCar: null | boolean
+        canBePutInAClownCar: | boolean | null
 
-        canBeFiredOutOfABulletLauncher: null | boolean
+        canBeFiredOutOfABulletLauncher: | boolean | null
 
-        canBePutInABlock: null | boolean
+        canBePutInABlock: | boolean | null
 
-        canBePutInATree: null | boolean
+        canBePutInATree: | boolean | null
 
         lightSourceEmitted: {
             value: PossibleLightSource
-            isInSMB: null | boolean
+            isInSMB: | boolean | null
         }
 
-        canIgniteABobOmb: null | boolean | 'NSMBU'
+        canIgniteABobOmb: | boolean | 'NSMBU' | null
 
-        canGoThroughWalls: null | boolean
+        canGoThroughWalls: | boolean | null
 
-        canBeStacked: null | boolean
+        canBeStacked: | boolean | null
 
-        isGlobalGroundOrGlobal: null | boolean | 'SM3DW'
+        isGlobalGroundOrGlobal: | boolean | 'SM3DW' | null
 
-        canMakeASoundOutOfAMusicBlock: null | boolean | '?'
+        canMakeASoundOutOfAMusicBlock: | boolean | '?' | null
+
         //endregion ---------- Specific properties ----------
 
         limits: {
-            editor: null | PossibleEntityLimits | '?'
+            editor: | PossibleEntityLimits | '?' | null
             whilePlaying: {
                 isInGEL: {
-                    value: null | boolean | 2
-                    isSuperGlobal: null | boolean
+                    value: | boolean | 2 | null
+                    isSuperGlobal: | boolean | null
                 }
-                isInPEL: null | boolean
+                isInPEL: | boolean | null
                 isInPJL: ProjectileEntityLimitType
-                customLimit: null | PossibleEntityLimits | '?'
+                customLimit: | PossibleEntityLimits | '?' | null
                 offscreenRange: {
                     spawning: {
-                        horizontal: null | number | 'Variable'
+                        horizontal: | number | 'Variable' | null
                         vertical: {
-                            upward: null | number
-                            downward: null | number
+                            upward: | number | null
+                            downward: | number | null
                         }
                     }
                     despawning: {
-                        horizontal: null | number | 'Variable' | 'Infinity'
+                        horizontal: | number | 'Variable' | 'Infinity' | null
                         vertical: {
-                            upward: null | number
-                            downward: null | number
+                            upward: | number | null
+                            downward: | number | null
                         }
                     }
                 }

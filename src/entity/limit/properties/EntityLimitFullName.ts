@@ -2,7 +2,7 @@ import type {PossibleAcronymEntityLimits, PossibleEntityLimits} from '../EntityL
 
 export interface EntityLimitFullName {
 
-    get acronym(): null | PossibleAcronymEntityLimits
+    get acronym(): | PossibleAcronymEntityLimits | null
 
     get name(): PossibleEntityLimits
 

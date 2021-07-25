@@ -10,7 +10,7 @@ export abstract class AbstractStringConverter<T>
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(originalValue: string) {
+    protected constructor(originalValue: string,) {
         this.#originalValue = originalValue;
     }
 
@@ -27,15 +27,15 @@ export abstract class AbstractStringConverter<T>
 
     //endregion -------------------- Getter --------------------
 
-    public convertTheValue(value: string): T {
+    public convertTheValue(value: string,): T {
         if (this.isValueValid(value))
             return this._convertTheValue(value);
         throw this._newError();
     }
 
-    protected abstract _convertTheValue(validValue: string): T;
+    protected abstract _convertTheValue(validValue: string,): T;
 
-    public abstract isValueValid(value: string): boolean;
+    public abstract isValueValid(value: string,): boolean;
 
     protected abstract _newError(): TypeError;
 

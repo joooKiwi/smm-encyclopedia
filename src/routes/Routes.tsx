@@ -10,7 +10,7 @@ import EveryThemesApp           from '../app/EveryThemesApp';
 import HomeApp                  from '../app/HomeApp';
 import {Languages}              from '../lang/Languages';
 
-type SimpleRoute = { path: string, renderCallback: () => JSX.Element };
+type SimpleRoute = { path: string, renderCallback: () => JSX.Element, };
 
 const everySimpleRoutes: SimpleRoute[] = [
     {path: '/home',            renderCallback: () => <HomeApp/>,},
@@ -25,7 +25,7 @@ const everySimpleRoutes: SimpleRoute[] = [
 export default function Routes() {
     return <BrowserRouter>
         <Switch>
-            <Route exact path="/"><Redirect to={`/${Languages.defaultLanguage.projectAcronym}/home`}/></Route>
+            <Route exact path="/"><Redirect to={`/${Languages.default.projectAcronym}/home`}/></Route>
             {renderRoutesInSwitch()}
             <Route path="/:lang"><DirectRoutes/></Route>
         </Switch>
@@ -35,7 +35,7 @@ export default function Routes() {
 function renderRoutesInSwitch() {
     everySimpleRoutes.map(route =>
         <Route key={`switchRoute${route.path}`} path={route.path}>
-            <Redirect to={`/${Languages.defaultLanguage.projectAcronym}${route.path}`}/>
+            <Redirect to={`/${Languages.default.projectAcronym}${route.path}`}/>
         </Route>
     );
 }
@@ -50,5 +50,5 @@ function DirectRoutes() {
             return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.projectAcronym + route.path)?.renderCallback()
                 ?? <Redirect to={`/${currentLanguage.projectAcronym}/home`}/>;
     }
-    return <Redirect to={`/${Languages.defaultLanguage.projectAcronym}/home`}/>;
+    return <Redirect to={`/${Languages.default.projectAcronym}/home`}/>;
 }

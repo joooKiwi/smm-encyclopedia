@@ -1,18 +1,18 @@
 import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
 
 export class StringToEmptyableStringConverter
-    extends AbstractEmptyableStringConverter<null | string> {
+    extends AbstractEmptyableStringConverter<| string | null> {
 
-    public constructor(originalValue: string) {
+    public constructor(originalValue: string,) {
         super(originalValue);
     }
 
 
-    protected _convertTheValue(nonEmptyValue: string): null | string {
+    protected _convertTheValue(nonEmptyValue: string,): | string | null {
         return nonEmptyValue;
     }
 
-    public _isValueValid(value: string): boolean {
+    public _isValueValid(value: string,): boolean {
         return true;
     }
 

@@ -7,29 +7,29 @@ import type {EntityTemplate} from '../simple/EntityTemplate';
 export interface EntityReferencesTemplate {
 
     style: {
-        superMarioBros: null | EntityLink
-        superMarioBros3: null | EntityLink
-        superMarioWorld: null | EntityLink
-        newSuperMarioBrosU: null | EntityLink
-        superMario3DWorld: null | EntityLink
+        superMarioBros: | EntityLink | null
+        superMarioBros3: | EntityLink | null
+        superMarioWorld: | EntityLink | null
+        newSuperMarioBrosU: | EntityLink | null
+        superMario3DWorld: | EntityLink | null
     }
 
     theme: {
         ground: EntityLink
-        underground: null | EntityLink
-        underwater: null | EntityLink
-        desert: null | EntityLink
-        snow: null | EntityLink
-        sky: null | EntityLink
-        forest: null | EntityLink
-        ghostHouse: null | EntityLink
-        airship: null | EntityLink
-        castle: null | EntityLink
+        underground: | EntityLink | null
+        underwater: | EntityLink | null
+        desert: | EntityLink | null
+        snow: | EntityLink | null
+        sky: | EntityLink | null
+        forest: | EntityLink | null
+        ghostHouse: | EntityLink | null
+        airship: | EntityLink | null
+        castle: | EntityLink | null
     }
 
     day: EntityLink
-    night: null | EntityLink
+    night: | EntityLink | null
 
-    all: null | EntityTemplate[]
+    all: | EntityTemplate[] | null
 
 }

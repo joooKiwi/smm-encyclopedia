@@ -8,7 +8,7 @@ export class GenericSingleInstanceBuilder<T>
     readonly #sourceBuilder: Builder<T>;
     readonly #callbackCallerForBuilder: CallbackCaller<T>;
 
-    public constructor(builder: Builder<T>) {
+    public constructor(builder: Builder<T>,) {
         this.#sourceBuilder = builder;
         this.#callbackCallerForBuilder = new CallbackCaller(() => this.builder.build());
     }

@@ -1,6 +1,6 @@
 export interface EntityLimitAmount {
 
-    get amount(): null | number
+    get amount(): | number | null
 
     get isUnknown(): boolean
 

@@ -5,7 +5,7 @@ import type {SMM2NameTemplate} from './SMM2NameTemplate';
  */
 export class NameCreator {
 
-    private static __testName(name: SMM2NameTemplate): void {
+    private static __testName(name: SMM2NameTemplate,): void {
         //README since some references are still not complete, they are in comment
         if (name.english.simple === null && (name.english.american === null || name.english.european === null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);

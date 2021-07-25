@@ -4,45 +4,45 @@
 export interface SMM2NameTemplate {
 
     english: {
-        simple: null | string
-        american: null | string
-        european: null | string
+        simple: | string | null
+        american: | string | null
+        european: | string | null
     }
 
     french: {
-        simple: null | string
-        canadian: null | string
-        european: null | string
+        simple: | string | null
+        canadian: | string | null
+        european: | string | null
     }
 
-    german: null | string
+    german: | string | null
 
     spanish: {
-        simple: null | string
-        american: null | string
-        european: null | string
+        simple: | string | null
+        american: | string | null
+        european: | string | null
     }
 
-    italian: null | string
+    italian: | string | null
 
-    dutch: null | string
+    dutch: | string | null
 
     portuguese: {
-        simple: null | string
-        american: null | string
-        european: null | string
+        simple: | string | null
+        american: | string | null
+        european: | string | null
     }
 
-    russian: null | string
+    russian: | string | null
 
     chinese: {
-        simple: null | string
-        simplified: null | string
-        traditional: null | string
+        simple: | string | null
+        simplified: | string | null
+        traditional: | string | null
     }
 
-    japanese: null | string
+    japanese: | string | null
 
-    korean: null | string
+    korean: | string | null
 
 }

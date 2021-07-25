@@ -6,7 +6,7 @@ import type {SMM2NameTemplate} from '../lang/SMM2NameTemplate';
  */
 export interface EntityCategoryTemplate {
 
-    get entities(): null | EntityTemplate[]
+    get entities(): | EntityTemplate[] | null
 
     get name(): SMM2NameTemplate
 

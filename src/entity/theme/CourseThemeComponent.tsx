@@ -41,7 +41,7 @@ class CourseThemeComponent
             && this.reference.isInCastleTheme;
     }
 
-    private __createSingleThemeImage(theme: Themes): JSX.Element {
+    private __createSingleThemeImage(theme: Themes,): JSX.Element {
         return <img key={`${this.name.english} - ${theme.englishName}`} src={theme.smallImagePath} alt={theme.englishName} className="theme_image"/>;
     }
 

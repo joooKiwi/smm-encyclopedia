@@ -9,7 +9,7 @@ export class GenericWorldTheme
     extends AbstractTheme
     implements WorldTheme {
 
-    public constructor(name: Name) {
+    public constructor(name: Name,) {
         super(name, GamePropertyContainer.get(false, true,));
     }
 
