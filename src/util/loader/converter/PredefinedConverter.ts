@@ -1,4 +1,5 @@
-import type {Converter} from './Converter';
+import type {Converter}  from './Converter';
+import type {SimpleEnum} from '../../enum/EnumTypes';
 
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';
@@ -18,6 +19,19 @@ export type PredefinedConversion = NullablePredefinedConversion | PrimitiveConve
 
 //endregion -------------------- converter texts --------------------
 
+//region -------------------- Enum types --------------------
+
+export type PredefinedConverterOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type PredefinedConverterNames = `${'NULLABLE_' | ''}${'NUMBER' | 'BOOLEAN' | 'STRING'}` | 'EMPTYABLE_STRING';
+export type SimplePredefinedConverter<T = PredefinedConverter, > = SimpleEnum<PredefinedConverterNames, T>;
+export type PredefinedConverterArray<T = PredefinedConverter, > = readonly [
+    SimplePredefinedConverter<T>['NUMBER'], SimplePredefinedConverter<T>['NULLABLE_NUMBER'],
+    SimplePredefinedConverter<T>['BOOLEAN'], SimplePredefinedConverter<T>['NULLABLE_BOOLEAN'],
+    SimplePredefinedConverter<T>['STRING'], SimplePredefinedConverter<T>['EMPTYABLE_STRING'], SimplePredefinedConverter<T>['NULLABLE_STRING'],
+];
+
+//endregion -------------------- Enum types --------------------
+
 /**
  * @enum
  */
@@ -25,106 +39,126 @@ export abstract class PredefinedConverter {
 
     //region -------------------- enum instances --------------------
 
-    public static readonly NUMBER = new class extends PredefinedConverter {
-        public newStringToConvertor(value: string): Converter<string, any> {
+    public static readonly NUMBER =           new class PredefinedConverter_Number extends PredefinedConverter {
+
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToNumberConverter(value);
         }
 
-        public newValidation(): (value: string) => boolean {
+        public newValidation(): (value: string,) => boolean {
             return value => ConverterPatterns.NUMBER_PATTERN.test(value);
         }
 
-        public newConversion(value: string): number {
+        public newConversion(value: string,): number {
             return ConverterUtil.convertToNumber(value);
         }
-    }('number');
-    public static readonly NULLABLE_NUMBER = new class extends PredefinedConverter {
-        public newValidation(): (value: string) => boolean {
+
+    }         ('number',);
+    public static readonly NULLABLE_NUMBER =  new class PredefinedConverter_NullableNumber extends PredefinedConverter {
+
+        public newValidation(): (value: string,) => boolean {
             return value => value === '' || ConverterPatterns.NUMBER_PATTERN.test(value);
         }
 
-        public newStringToConvertor(value: string): Converter<string, any> {
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToNullableNumberConverter(value);
         }
 
-        public newConversion(value: string): null | number {
+        public newConversion(value: string,): | number | null {
             return value === '' ? null : PredefinedConverter.NUMBER.newConversion(value);
         }
-    }('nullable number', 'number');
-    public static readonly BOOLEAN = new class extends PredefinedConverter {
-        public newStringToConvertor(value: string): Converter<string, any> {
+
+    } ('nullable number', 'number',);
+    public static readonly BOOLEAN =          new class PredefinedConverter_Boolean extends PredefinedConverter {
+
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToBooleanConverter(value);
         }
 
-        public newValidation(): (value: string) => boolean {
+        public newValidation(): (value: string,) => boolean {
             return value => ConverterPatterns.BOOLEAN_PATTERN.test(value);
         }
 
-        public newConversion(value: string): boolean {
+        public newConversion(value: string,): boolean {
             return ConverterUtil.convertToBoolean(value);
         }
-    }('boolean');
-    public static readonly NULLABLE_BOOLEAN = new class extends PredefinedConverter {
-        public newStringToConvertor(value: string): Converter<string, any> {
+
+    }        ('boolean',);
+    public static readonly NULLABLE_BOOLEAN = new class PredefinedConverter_NullableBoolean extends PredefinedConverter {
+
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToNullableBooleanConverter(value);
         }
 
-        public newValidation(): (value: string) => boolean {
+        public newValidation(): (value: string,) => boolean {
             return value => value === '' || ConverterPatterns.BOOLEAN_PATTERN.test(value);
         }
 
-        public newConversion(value: string): null | boolean {
+        public newConversion(value: string,): | boolean | null {
             return value === '' ? null : PredefinedConverter.BOOLEAN.newConversion(value);
         }
-    }('nullable boolean', 'boolean');
-    public static readonly STRING = new class extends PredefinedConverter {
-        public newStringToConvertor(value: string): Converter<string, any> {
+
+    }('nullable boolean', 'boolean',);
+    public static readonly STRING =           new class PredefinedConverter_String extends PredefinedConverter {
+
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToStringConverter(value);
         }
 
-        public newValidation(): (value: string) => boolean {
+        public newValidation(): (value: string,) => boolean {
             return () => true;
         }
 
-        public newConversion(value: string): string {
+        public newConversion(value: string,): string {
             return value;
         }
-    }('string');
-    public static readonly EMPTYABLE_STRING = new class extends PredefinedConverter {
-        public newStringToConvertor(value: string): Converter<string, any> {
+
+    }         ('string',);
+    public static readonly EMPTYABLE_STRING = new class PredefinedConverter_EmptyableString extends PredefinedConverter {
+
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToEmptyableStringConverter(value);
         }
 
-        public newValidation(): (value: string) => boolean {
+        public newValidation(): (value: string,) => boolean {
             return value => ConverterPatterns.EMPTYABLE_STRING_PATTERN.test(value);
         }
 
-        public newConversion(value: string): null | string {
+        public newConversion(value: string,): | string | null {
             return ConverterUtil.convertToEmptyableString(value);
         }
-    }('emptyable string', 'string');
-    public static readonly NULLABLE_STRING = new class extends PredefinedConverter {
-        public newStringToConvertor(value: string): Converter<string, any> {
+
+    }('emptyable string', 'string',);
+    public static readonly NULLABLE_STRING =  new class PredefinedConverter_NullableString extends PredefinedConverter {
+
+        public newStringToConvertor(value: string,): Converter<string, any> {
             return new StringToNullableStringConverter(value);
         }
 
-        public newValidation(): (value: string) => boolean {
+        public newValidation(): (value: string,) => boolean {
             return value => ConverterPatterns.NULLABLE_STRING_PATTERN.test(value);
         }
 
-        public newConversion(value: string): null | string {
+        public newConversion(value: string,): | string | null {
             return ConverterUtil.convertToNullableString(value);
         }
-    }('nullable string', 'string');
+
+    } ('nullable string', 'string',);
 
     //endregion -------------------- enum instances --------------------
+    //region -------------------- Enum attributes --------------------
 
-    static #VALUES?: PredefinedConverter[];
+    static #VALUES: PredefinedConverterArray;
+    static #LAST_ORDINAL: PredefinedConverterOrdinals = 0;
+    readonly #ordinal: PredefinedConverterOrdinals;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #name;
     readonly #nameAsNonNullable;
-    readonly #parent: () => PredefinedConverter;
+    #parent?: PredefinedConverter;
+    readonly #parentCallback: () => PredefinedConverter;
     readonly #callbackToCreateNewValidationAsNonNullable: () => (value: string) => boolean;
     readonly #callbackToCreateNewConversionAsNonNullable: () => (value: string) => any;
 
@@ -133,14 +167,15 @@ export abstract class PredefinedConverter {
     private constructor(name: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable?: PrimitiveConversion) {
+        this.#ordinal = PredefinedConverter.#LAST_ORDINAL++ as PredefinedConverterOrdinals;
         this.#name = name;
         this.#nameAsNonNullable = nameAsNonNullable ?? name;
         if (nameAsNonNullable === undefined) {
-            this.#parent = () => this;
+            this.#parentCallback = () => this;
             this.#callbackToCreateNewValidationAsNonNullable = () => this.newValidation();
             this.#callbackToCreateNewConversionAsNonNullable = () => value => this.newConversion(value);
         } else {
-            this.#parent = () => PredefinedConverter.getValue(this.name);
+            this.#parentCallback = () => PredefinedConverter.getValue(this.name);
             this.#callbackToCreateNewValidationAsNonNullable = () => this.parent.newValidation();
             this.#callbackToCreateNewConversionAsNonNullable = () => value => this.parent.newConversion(value);
         }
@@ -156,36 +191,40 @@ export abstract class PredefinedConverter {
         return this.#nameAsNonNullable;
     }
 
-    public get parent(): PredefinedConverter | this {
-        return this.#parent();
+    public get parent(): | PredefinedConverter | this {
+        return this.#parent ?? (this.#parent = this.#parentCallback());
     }
 
 
-    public abstract newStringToConvertor(value: string): Converter<string, any>;
+    public abstract newStringToConvertor(value: string,): Converter<string, any>;
 
-    public abstract newValidation(): (value: string) => boolean;
+    public abstract newValidation(): (value: string,) => boolean;
 
-    public newValidationAsNonNullable(): (value: string) => boolean {
+    public newValidationAsNonNullable(): (value: string,) => boolean {
         return this.#callbackToCreateNewValidationAsNonNullable();
     }
 
-    public abstract newConversion(value: string): any;
+    public abstract newConversion(value: string,): any;
 
-    public newConversionAsNonNullable(value: string): any {
+    public newConversionAsNonNullable(value: string,): any {
         return this.#callbackToCreateNewConversionAsNonNullable()(value);
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- enum methods --------------------
 
-    public static getValue(value: PredefinedConversion): PredefinedConverter
-    public static getValue(value: string): PredefinedConverter | null
-    public static getValue(value: string | PredefinedConversion): PredefinedConverter | null {
+    public get ordinal(): PredefinedConverterOrdinals {
+        return this.#ordinal;
+    }
+
+    public static getValue(value: PredefinedConversion,): PredefinedConverter
+    public static getValue(value: string,): | PredefinedConverter | null
+    public static getValue(value: | string | PredefinedConversion,): PredefinedConverter | null {
         let lowerCaseValue = value.toLowerCase();
         return this.values.find(predefinedConverter => predefinedConverter.name === lowerCaseValue) ?? null;
     }
 
-    public static get values(): readonly PredefinedConverter[] {
+    public static get values(): PredefinedConverterArray {
         return this.#VALUES ?? (this.#VALUES = [
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,
@@ -193,9 +232,8 @@ export abstract class PredefinedConverter {
         ]);
     }
 
-    public static* [Symbol.iterator]() {
-        for (const value of this.values)
-            yield value;
+    public static [Symbol.iterator]() {
+        return this.values[Symbol.iterator]();
     }
 
     //endregion -------------------- enum methods --------------------
