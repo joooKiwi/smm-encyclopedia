@@ -10,5 +10,10 @@ module.exports = {
                 skipEmptyLines: true,
             },
         }
-    ]
+    ],
+    babel: {
+        plugins: [
+            "@babel/plugin-proposal-logical-assignment-operators"
+        ]
+    }
 }
