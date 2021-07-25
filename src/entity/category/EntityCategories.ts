@@ -66,7 +66,7 @@ export class EntityCategories {
     }
 
     public get reference() {
-        return this.#reference ?? (this.#reference = EntityCategoryLoader.get.load().get(this.englishName)!);
+        return this.#reference ??= EntityCategoryLoader.get.load().get(this.englishName)!;
     }
 
     // public get imagePath() {
@@ -90,12 +90,12 @@ export class EntityCategories {
     }
 
     public static get values(): EntityCategoriesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.TERRAIN,
             this.ITEM,
             this.ENEMY,
             this.GIZMO,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

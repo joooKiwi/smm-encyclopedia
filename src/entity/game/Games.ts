@@ -88,10 +88,10 @@ export abstract class Games
     }
 
     public static get values(): GamesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.SUPER_MARIO_MAKER_1,
             this.SUPER_MARIO_MAKER_2,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

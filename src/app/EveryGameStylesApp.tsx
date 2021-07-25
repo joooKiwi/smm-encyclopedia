@@ -17,7 +17,7 @@ export default class EveryGameStylesApp
     #themes?: Map<string, GameStyle>;
 
     protected get map() {
-        return this.#themes ?? (this.#themes = GameStyleLoader.get.load());
+        return this.#themes ??= GameStyleLoader.get.load();
     }
 
     protected get enum() {

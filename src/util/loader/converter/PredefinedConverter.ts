@@ -192,7 +192,7 @@ export abstract class PredefinedConverter {
     }
 
     public get parent(): | PredefinedConverter | this {
-        return this.#parent ?? (this.#parent = this.#parentCallback());
+        return this.#parent ??= this.#parentCallback();
     }
 
 
@@ -225,11 +225,11 @@ export abstract class PredefinedConverter {
     }
 
     public static get values(): PredefinedConverterArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,
             this.STRING, this.EMPTYABLE_STRING, this.NULLABLE_STRING,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

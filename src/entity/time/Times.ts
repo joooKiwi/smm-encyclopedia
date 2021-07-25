@@ -87,10 +87,10 @@ export abstract class Times
     }
 
     public static get values(): readonly Times[] {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.DAY,
             this.NIGHT,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

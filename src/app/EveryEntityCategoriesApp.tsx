@@ -16,7 +16,7 @@ export default class EveryEntityCategoriesApp
     #entityCategories?: Map<string, EntityCategory>;
 
     protected get map() {
-        return this.#entityCategories ?? (this.#entityCategories = EntityCategoryLoader.get.load());
+        return this.#entityCategories ??= EntityCategoryLoader.get.load();
     }
 
     protected get enum() {

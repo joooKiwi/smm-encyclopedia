@@ -200,7 +200,7 @@ export class EntityLimits {
     }
 
     public get reference() {
-        return this.#reference ?? (this.#reference = EntityLimitLoader.get.load().get(this.englishName)!);
+        return this.#reference ??= EntityLimitLoader.get.load().get(this.englishName)!;
     }
 
 
@@ -240,7 +240,7 @@ export class EntityLimits {
     }
 
     public static get values(): EntityLimitsArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.GENERAL_ENTITY_LIMIT, this.POWER_UP_ENTITY_LIMIT,
 
             this.LOOSE_COIN_LIMIT, this.SOUND_EFFECT_LIMIT, this.CORPSE_LIMIT, this.PROJECTILE_LIMIT,
@@ -264,7 +264,7 @@ export class EntityLimits {
             this.ANGRY_SUN_MOON_LIMIT, this.PHANTO_LIMIT, this.KOOPA_TROOPA_CAR_LIMIT,
 
             this.WARP_DOOR_LIMIT, this.WARP_BOX_LIMIT,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

@@ -603,11 +603,11 @@ class ReferencesToWatch {
 
             //Addition on both references to their other reference table.
 
-            referenceWatched.template.properties.reference.all = referenceWatched.template.properties.reference.all ?? [];
+            referenceWatched.template.properties.reference.all ??= [];
             if (!referenceWatched.template.properties.reference.all.includes(englishReferenceToWatch.reference))
                 referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);
 
-            englishReferenceToWatch.reference.properties.reference.all = englishReferenceToWatch.reference.properties.reference.all ?? [];
+            englishReferenceToWatch.reference.properties.reference.all ??= [];
             if (!englishReferenceToWatch.reference.properties.reference.all.includes(referenceWatched.template))
                 englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
         });

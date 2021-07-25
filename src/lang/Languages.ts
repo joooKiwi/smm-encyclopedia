@@ -328,7 +328,7 @@ export abstract class Languages {
     }
 
     public static get values(): LanguagesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
             this.GERMAN,
@@ -340,7 +340,7 @@ export abstract class Languages {
             this.JAPANESE,
             this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
             this.KOREAN,
-        ]);
+        ];
     }
 
 

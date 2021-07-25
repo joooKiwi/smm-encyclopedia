@@ -18,7 +18,7 @@ export default class EveryEntitiesApp
     #entities?: Map<string, DebugEntityReferences>;
 
     protected get map() {
-        return this.#entities ?? (this.#entities = EntityLoader.get.load());
+        return this.#entities ??= EntityLoader.get.load();
     }
 
 

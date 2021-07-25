@@ -313,7 +313,7 @@ export class EveryLanguages {
     }
 
     public static get values(): EveryLanguagesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.ENGLISH, this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.FRENCH, this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
             this.GERMAN,
@@ -325,7 +325,7 @@ export class EveryLanguages {
             this.JAPANESE,
             this.CHINESE, this.CHINESE_TRADITIONAL, this.CHINESE_SIMPLIFIED,
             this.KOREAN,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

@@ -18,7 +18,7 @@ export abstract class AbstractStringConverter<T>
     //region -------------------- Getter --------------------
 
     public get convertedValue(): T {
-        return this.#convertedValue ?? (this.#convertedValue = this.convertTheValue(this.originalValue));
+        return this.#convertedValue ??= this.convertTheValue(this.originalValue);
     }
 
     public get originalValue() {

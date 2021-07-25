@@ -21,7 +21,7 @@ export default class EveryThemesApp
     #themes?: Map<string, readonly [CourseTheme, WorldTheme]>;
 
     protected get map() {
-        return this.#themes ?? (this.#themes = ThemeLoader.get.load());
+        return this.#themes ??= ThemeLoader.get.load();
     }
 
     protected get enum() {

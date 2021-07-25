@@ -18,7 +18,7 @@ export abstract class AbstractPluralLanguageContainer<T extends string>
 
 
     protected get values(): Map<T, string> {
-        return this.#values ?? (this.#values = new Map());
+        return this.#values ??= new Map();
     }
 
     public get(language: T,): string {

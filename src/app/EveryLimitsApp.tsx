@@ -15,7 +15,7 @@ export default class EveryLimitsApp
 
 
     protected get map() {
-        return this.#limits ?? (this.#limits = EntityLimitLoader.get.load());
+        return this.#limits ??= EntityLimitLoader.get.load();
     }
 
     protected get enum(){

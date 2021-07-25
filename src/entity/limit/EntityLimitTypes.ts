@@ -74,10 +74,10 @@ export class EntityLimitTypes {
     }
 
     public static get values(): EntityLimitTypesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.PLAYING,
             this.EDITOR,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

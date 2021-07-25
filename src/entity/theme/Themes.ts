@@ -167,15 +167,15 @@ export class Themes
     }
 
     public get references() {
-        return this.#references ?? (this.#references = ThemeLoader.get.load().get(this.englishName)!);
+        return this.#references ??= ThemeLoader.get.load().get(this.englishName)!;
     }
 
     public get courseTheme() {
-        return this.#courseTheme ?? (this.#courseTheme = this.references[0]);
+        return this.#courseTheme ??= this.references[0];
     }
 
     public get worldTheme() {
-        return this.#worldTheme ?? (this.#worldTheme = this.references[1]);
+        return this.#worldTheme ??= this.references[1];
     }
 
     public get imagePath() {
@@ -192,7 +192,7 @@ export class Themes
 
 
     public static get courseThemes(): ThemesArrayAsOnlyCourseTheme {
-        return this.#COURSES ?? (this.#COURSES = [
+        return this.#COURSES ??= [
             this.GROUND,
             this.UNDERGROUND,
             this.UNDERWATER,
@@ -203,11 +203,11 @@ export class Themes
             this.GHOST_HOUSE,
             this.AIRSHIP,
             this.CASTLE,
-        ]);
+        ];
     }
 
     public static get worldThemes(): ThemesArrayAsOnlyWorldTheme {
-        return this.#WORLDS ?? (this.#WORLDS = [
+        return this.#WORLDS ??= [
             this.GROUND,
             this.UNDERGROUND,
             this.DESERT,
@@ -216,7 +216,7 @@ export class Themes
             this.FOREST,
             this.VOLCANO,
             this.SPACE,
-        ]);
+        ];
     }
 
     //endregion -------------------- Methods --------------------
@@ -236,7 +236,7 @@ export class Themes
     }
 
     public static get values(): ThemesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.GROUND,
             this.UNDERGROUND,
             this.UNDERWATER,
@@ -250,7 +250,7 @@ export class Themes
 
             this.VOLCANO,
             this.SPACE,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {

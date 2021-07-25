@@ -106,7 +106,7 @@ export abstract class GameStyles
     public abstract get(property: GameStyleProperty,): boolean;
 
     public get references() {
-        return this.#references ?? (this.#references = GameStyleLoader.get.load().get(this.englishName)!);
+        return this.#references ??= GameStyleLoader.get.load().get(this.englishName)!;
     }
 
     public get startingImagePath(): StartingImagePath {
@@ -138,13 +138,13 @@ export abstract class GameStyles
     }
 
     public static get values(): GameStylesArray {
-        return this.#VALUES ?? (this.#VALUES = [
+        return this.#VALUES ??= [
             this.SUPER_MARIO_BROS,
             this.SUPER_MARIO_BROS_3,
             this.SUPER_MARIO_WORLD,
             this.NEW_SUPER_MARIO_BROS_U,
             this.SUPER_MARIO_3D_WORLD,
-        ]);
+        ];
     }
 
     public static [Symbol.iterator]() {
