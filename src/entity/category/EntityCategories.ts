@@ -3,6 +3,7 @@ import type {PossibleTheme}  from '../theme/Themes';
 import type {SimpleEnum}     from '../../util/enum/EnumTypes';
 
 import {EntityCategoryLoader} from './EntityCategoryLoader';
+import {getLastOrdinalOn}     from '../../util/enum/ordinalMethods';
 
 //region -------------------- category texts --------------------
 
@@ -39,7 +40,6 @@ export class EntityCategories {
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: EntityCategoriesArray;
-    static #LAST_ORDINAL: EntityCategoriesOrdinals = 0;
     readonly #ordinal: EntityCategoriesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -54,7 +54,7 @@ export class EntityCategories {
     // private constructor(englishNameAndImagePath: PossibleEntityCategories)
     // private constructor(englishName: PossibleEntityCategories, basicImagePath: string)
     private constructor(englishName: PossibleEntityCategories/*, basicImagePath: string = englishName*/) {
-        this.#ordinal = EntityCategories.#LAST_ORDINAL++ as EntityCategoriesOrdinals;
+        this.#ordinal = getLastOrdinalOn(EntityCategories);
         this.#englishName = englishName;
         // this.#imagePath = '/game/themes/' + basicImagePath;
     }

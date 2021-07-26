@@ -2,6 +2,7 @@ import type {EntityLimit} from './EntityLimit';
 import type {SimpleEnum}  from '../../util/enum/EnumTypes';
 
 import {EntityLimitLoader} from './EntityLimitLoader';
+import {getLastOrdinalOn}  from '../../util/enum/ordinalMethods';
 
 //region -------------------- limit texts --------------------
 
@@ -144,7 +145,6 @@ export class EntityLimits {
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: EntityLimitsArray;
-    static #LAST_ORDINAL: EntityLimitsOrdinals = 0;
     readonly #ordinal: EntityLimitsOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -164,7 +164,7 @@ export class EntityLimits {
         englishName: PossibleStartingEntityLimits | [englishName: PossibleAcronymEntityLimits, englishAcronym: PossibleStartingEntityLimits,],
         alternativeEnglishName: PossibleAlternativeEntityLimits | [alternativeEnglishName: PossibleAlternativeAcronymEntityLimits, alternativeEnglishAcronym: PossibleAlternativeEntityLimits,] | null = null,
     ) {
-        this.#ordinal = EntityLimits.#LAST_ORDINAL++ as EntityLimitsOrdinals;
+        this.#ordinal = getLastOrdinalOn(EntityLimits);
         if (typeof englishName == 'string') {
             this.#acronym = null;
             this.#englishName = `${englishName} Limit`;

@@ -10,6 +10,7 @@ import {StringToNullableBooleanConverter} from './StringToNullableBooleanConvert
 import {StringToNullableStringConverter}  from './StringToNullableStringConverter';
 import {StringToNumberConverter}          from './StringToNumberConverter';
 import {StringToStringConverter}          from './StringToStringConverter';
+import {getLastOrdinalOn}                 from '../../enum/ordinalMethods';
 
 //region -------------------- converter texts --------------------
 
@@ -149,7 +150,6 @@ export abstract class PredefinedConverter {
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: PredefinedConverterArray;
-    static #LAST_ORDINAL: PredefinedConverterOrdinals = 0;
     readonly #ordinal: PredefinedConverterOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -167,7 +167,7 @@ export abstract class PredefinedConverter {
     private constructor(name: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable?: PrimitiveConversion) {
-        this.#ordinal = PredefinedConverter.#LAST_ORDINAL++ as PredefinedConverterOrdinals;
+        this.#ordinal = getLastOrdinalOn(PredefinedConverter);
         this.#name = name;
         this.#nameAsNonNullable = nameAsNonNullable ?? name;
         if (nameAsNonNullable === undefined) {

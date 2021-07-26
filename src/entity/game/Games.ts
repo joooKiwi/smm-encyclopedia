@@ -2,6 +2,8 @@ import type {GameProperty}   from '../properties/GameProperty';
 import type {PropertyGetter} from '../PropertyGetter';
 import type {SimpleEnum}     from '../../util/enum/EnumTypes';
 
+import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+
 //region -------------------- game texts --------------------
 
 export type PossibleGameName = `Super Mario Maker${'' | ' 2'}`;
@@ -42,7 +44,6 @@ export abstract class Games
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: GamesArray;
-    static #LAST_ORDINAL: GamesOrdinals = 0;
     readonly #ordinal: GamesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -54,7 +55,7 @@ export abstract class Games
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleGameName,) {
-        this.#ordinal = Games.#LAST_ORDINAL++ as GamesOrdinals;
+        this.#ordinal = getLastOrdinalOn(Games);
         this.#englishName = englishName;
         this.#imagePath = '/game/logos/' + englishName + '.png' as PossibleImagePath;
     }

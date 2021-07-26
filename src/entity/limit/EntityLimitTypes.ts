@@ -1,5 +1,7 @@
 import type {SimpleEnum} from '../../util/enum/EnumTypes';
 
+import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+
 //region -------------------- limit type texts --------------------
 
 export type PossibleEntityLimitTypeEnglishName = | 'Playing' | 'Editor';
@@ -32,7 +34,6 @@ export class EntityLimitTypes {
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: EntityLimitTypesArray;
-    static #LAST_ORDINAL: EntityLimitTypesOrdinals = 0;
     readonly #ordinal: EntityLimitTypesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -43,7 +44,7 @@ export class EntityLimitTypes {
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleEntityLimitTypeEnglishName,) {
-        this.#ordinal = EntityLimitTypes.#LAST_ORDINAL++ as EntityLimitTypesOrdinals;
+        this.#ordinal = getLastOrdinalOn(EntityLimitTypes);
         this.#englishName = englishName;
     }
 

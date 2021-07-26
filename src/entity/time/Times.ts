@@ -1,7 +1,8 @@
 import type {PropertyGetter} from '../PropertyGetter';
 import type {TimeProperty}   from '../properties/TimeProperty';
-import {SimpleEnum}          from '../../util/enum/EnumTypes';
 
+import {SimpleEnum}       from '../../util/enum/EnumTypes';
+import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
 
 //region -------------------- time texts --------------------
 
@@ -58,7 +59,7 @@ export abstract class Times
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleTimeName,) {
-        this.#ordinal = Times.#LAST_ORDINAL++ as TimesOrdinals;
+        this.#ordinal = getLastOrdinalOn(Times);
         this.#englishName = englishName;
     }
 

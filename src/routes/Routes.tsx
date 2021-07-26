@@ -33,7 +33,7 @@ export default function Routes() {
 }
 
 function renderRoutesInSwitch() {
-    everySimpleRoutes.map(route =>
+    return everySimpleRoutes.map(route =>
         <Route key={`switchRoute${route.path}`} path={route.path}>
             <Redirect to={`/${Languages.default.projectAcronym}${route.path}`}/>
         </Route>

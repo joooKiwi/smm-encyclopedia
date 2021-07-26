@@ -3,7 +3,8 @@ import type {GameStyle}                   from './GameStyle';
 import type {GameStyleProperty}           from '../properties/GameStyleProperty';
 import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
 
-import {GameStyleLoader} from './GameStyleLoader';
+import {GameStyleLoader}  from './GameStyleLoader';
+import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
 
 //region -------------------- game style texts --------------------
 
@@ -79,7 +80,6 @@ export abstract class GameStyles
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: GameStylesArray;
-    static #LAST_ORDINAL: GameStylesOrdinals = 0;
     readonly #ordinal: GameStylesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -92,7 +92,7 @@ export abstract class GameStyles
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleGameStyleName,) {
-        this.#ordinal = GameStyles.#LAST_ORDINAL++ as GameStylesOrdinals;
+        this.#ordinal = getLastOrdinalOn(GameStyles);
         this.#englishName = englishName;
         this.#startingImagePath = `/game/styles/${englishName}`;
     }

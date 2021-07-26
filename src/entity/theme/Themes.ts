@@ -4,7 +4,8 @@ import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
 import type {ThemeProperty}               from '../properties/ThemeProperty';
 import type {WorldTheme}                  from './WorldTheme';
 
-import {ThemeLoader} from './ThemeLoader';
+import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+import {ThemeLoader}      from './ThemeLoader';
 
 //region -------------------- themes texts --------------------
 
@@ -127,7 +128,6 @@ export class Themes
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: ThemesArray;
-    static #LAST_ORDINAL: ThemesOrdinals = 0;
     readonly #ordinal: ThemesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -147,7 +147,7 @@ export class Themes
     private constructor(englishNameAndImagePath: PossibleTheme,)
     private constructor(englishName: PossibleTheme, basicImagePath: string,)
     private constructor(englishName: PossibleTheme, basicImagePath: string = englishName,) {
-        this.#ordinal = Themes.#LAST_ORDINAL++ as ThemesOrdinals;
+        this.#ordinal = getLastOrdinalOn(Themes);
         this.#englishName = englishName;
         this.#imagePath = `/game/themes/${basicImagePath}`;
     }

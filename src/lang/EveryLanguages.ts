@@ -5,7 +5,8 @@ import type {ChineseOriginal}                                                   
 import type {LanguagesNames, LanguagesOrdinals, PossibleLanguagesEnglishName as PossibleLanguagesEnglishNameLanguages, PossibleLanguagesOriginalName as PossibleLanguagesOriginalNameLanguages, PossibleValueToGetLanguage} from './Languages';
 import type {SimpleEnum}                                                                                                                                                                                                    from '../util/enum/EnumTypes';
 
-import {Languages} from './Languages';
+import {getLastOrdinalOn} from '../util/enum/ordinalMethods';
+import {Languages}        from './Languages';
 
 //region -------------------- Language text --------------------
 
@@ -192,7 +193,6 @@ export class EveryLanguages {
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: EveryLanguagesArray;
-    static #LAST_ORDINAL: EveryLanguagesOrdinals = 0;
     readonly #ordinal: EveryLanguagesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -209,7 +209,7 @@ export class EveryLanguages {
     private constructor(reference: Languages,)
     private constructor(reference: Languages, parent: EveryLanguages,)
     private constructor(referenceOrEnglishName: Languages | BasicEnglishName, parentOrOriginalName?: EveryLanguages | BasicOriginalName,) {
-        this.#ordinal = EveryLanguages.#LAST_ORDINAL++ as EveryLanguagesOrdinals;
+        this.#ordinal = getLastOrdinalOn(EveryLanguages);
         if (typeof referenceOrEnglishName === 'string') {
             this.#englishName = referenceOrEnglishName;
             this.#originalName = parentOrOriginalName as BasicOriginalName;
@@ -217,7 +217,7 @@ export class EveryLanguages {
             this.#parent = null;
         } else {
             this.#englishName = referenceOrEnglishName.englishName;
-            this.#originalName = this.reference!.originalName;
+            this.#originalName = referenceOrEnglishName.originalName;
             this.#reference = referenceOrEnglishName;
             this.#parent = parentOrOriginalName as EveryLanguages | undefined ?? null;
         }

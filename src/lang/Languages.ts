@@ -3,6 +3,8 @@ import i18n from 'i18next';
 import type {ClassWithLanguages} from './ClassWithLanguages';
 import type {SimpleEnum}         from '../util/enum/EnumTypes';
 
+import {getLastOrdinalOn} from '../util/enum/ordinalMethods';
+
 //region -------------------- Languages types --------------------
 //region -------------------- Languages text --------------------
 
@@ -234,7 +236,6 @@ export abstract class Languages {
 
     static #VALUES?: LanguagesArray;
     static #DEFAULT: Languages;
-    static #LAST_ORDINAL: LanguagesOrdinals = 0;
     readonly #ordinal: LanguagesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
@@ -253,7 +254,7 @@ export abstract class Languages {
     // @ts-ignore
     private constructor(projectAcronym: PossibleLanguagesAcronym, internationalAcronym: PossibleLanguagesInternationalAcronym, englishName: PossibleLanguagesEnglishName, originalName: PossibleLanguagesOriginalName)
     protected constructor(projectAcronymOrLanguage: PossibleLanguagesAcronym | Languages, internationalAcronym?: PossibleLanguagesInternationalAcronym, englishName?: PossibleLanguagesEnglishName, originalName?: PossibleLanguagesOriginalName) {
-        this.#ordinal = Languages.#LAST_ORDINAL++ as LanguagesOrdinals;
+        this.#ordinal = getLastOrdinalOn(Languages);
         if (projectAcronymOrLanguage instanceof Languages) {
             this.#projectAcronym = projectAcronymOrLanguage.projectAcronym;
             this.#internationalAcronym = projectAcronymOrLanguage.internationalAcronym;
