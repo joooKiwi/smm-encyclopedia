@@ -1,47 +1,36 @@
-import React, {PureComponent} from 'react';
+import React               from 'react';
+import type {TimeProperty} from '../properties/TimeProperty';
 
-import type {Name}                          from '../../lang/name/Name';
-import type {TimeProperty}                  from '../properties/TimeProperty';
-
-import {Times}                          from './Times';
-import GameContentTranslationComponent  from '../../lang/components/GameContentTranslationComponent';
-
-export interface TimeElement {
-
-    reference: TimeProperty
-
-    name: Name
-
-}
+import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
+import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
+import {Times}                               from './Times';
 
 export default class TimeComponent
-    extends PureComponent<TimeElement> {
+    extends AbstractDualEntityPropertyComponent<TimeProperty> {
 
-    protected get reference() {
-        return this.props.reference;
-    }
-
-    protected get name() {
-        return this.props.name;
-    }
-
-    protected get isInEveryTimes(): boolean {
+    protected get _isInAll(): boolean {
         return this.reference.isInDayTheme
             && (this.reference.isInNightTheme ?? false);
     }
 
+    protected get _isInFirst(): boolean {
+        return this.reference.isInDayTheme;
+    }
 
-    private __createSingleTime(time: Times,): JSX.Element {
+    protected _renderSingleComponent(time: Times,): JSX.Element {
         return <i key={`${this.name.english} - ${time.englishName}`} className={`time_image ${time === Times.DAY ? 'bi-sun-fill' : 'bi-moon-fill'}`}/>;
     }
 
-    public render(): JSX.Element {
-        if (this.isInEveryTimes)
-            return <span><GameContentTranslationComponent renderCallback={translation => translation('Every times')}/></span>;
+    protected _renderFirstComponent(): JSX.Element {
+        return this._renderSingleComponent(Times.DAY);
+    }
 
-        return this.reference.isInDayTheme
-            ? this.__createSingleTime(Times.DAY)
-            : this.__createSingleTime(Times.NIGHT);
+    protected _renderSecondComponent(): JSX.Element {
+        return this._renderSingleComponent(Times.NIGHT);
+    }
+
+    protected _renderComponentForAll(): JSX.Element {
+        return <span><GameContentTranslationComponent translationCallback={translation => translation('Every times')}/></span>;
     }
 
 }

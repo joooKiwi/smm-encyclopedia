@@ -1,40 +1,36 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 
 import type {GameProperty} from '../properties/GameProperty';
-import type {Name}         from '../../lang/name/Name';
 
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from './Games';
-
-export interface GameElement {
-
-    reference: GameProperty
-
-    name: Name
-
-}
+import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
+import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
+import {Games}                               from './Games';
 
 export default class GameComponent
-    extends PureComponent<GameElement> {
+    extends AbstractDualEntityPropertyComponent<GameProperty> {
 
-    protected get reference() {
-        return this.props.reference;
+    protected get _isInAll(): boolean {
+        return this.reference.isInSuperMarioMaker1 && this.reference.isInSuperMarioMaker2;
     }
 
-    protected get name() {
-        return this.props.name;
+    protected get _isInFirst(): boolean {
+        return this.reference.isInSuperMarioMaker1;
     }
 
-    private __createGameImage(game: Games,): JSX.Element {
+    protected _renderSingleComponent(game: Games,): JSX.Element {
         return <img key={`${this.name.english} - ${game.englishName}`} src={game.imagePath} alt={game.englishName} className="game_image"/>;
     }
 
-    public render(): JSX.Element {
-        return this.reference.isInSuperMarioMaker1 && this.reference.isInSuperMarioMaker2
-            ? <span><GameContentTranslationComponent renderCallback={translation => translation('Every games')}/></span>
-            : this.reference.isInSuperMarioMaker1
-                ? this.__createGameImage(Games.SUPER_MARIO_MAKER_1)
-                : this.__createGameImage(Games.SUPER_MARIO_MAKER_2);
+    protected _renderFirstComponent(): JSX.Element {
+        return this._renderSingleComponent(Games.SUPER_MARIO_MAKER_1);
+    }
+
+    protected _renderSecondComponent(): JSX.Element {
+        return this._renderSingleComponent(Games.SUPER_MARIO_MAKER_2);
+    }
+
+    protected _renderComponentForAll(): JSX.Element {
+        return <span><GameContentTranslationComponent translationCallback={translation => translation('Every games')}/></span>;
     }
 
 }
