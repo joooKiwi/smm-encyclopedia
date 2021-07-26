@@ -33,7 +33,7 @@ export default function SMM2NameComponent({id, name, popoverOrientation,}: SMM2N
         html: true,
         placement: popoverOrientation,
         trigger: 'hover focus',
-    }), 1);
+    }), 100);
     //TODO change to a way without a delay (timeout).
-    return <span id={id} data-bs-toggle="popover">{EveryLanguages.currentLanguage.get(name)}</span>;
+    return <span id={elementId} data-bs-toggle="popover">{EveryLanguages.currentLanguage.get(name)}</span>;
 }

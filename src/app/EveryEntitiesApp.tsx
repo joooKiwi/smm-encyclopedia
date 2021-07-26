@@ -55,11 +55,11 @@ export default class EveryEntitiesApp
             headers={[
                 '#',
                 {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
-                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Game')}/>,},
-                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Game Style')}/>,},
-                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Course Theme.spoken')}/>,},
-                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Time')}/>,},
-                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Category')}/>,},
+                {key: 'game', element: <GameContentTranslationComponent renderCallback={translation => translation('Game')}/>,},
+                {key: 'gameStyle', element: <GameContentTranslationComponent renderCallback={translation => translation('Game Style')}/>,},
+                {key: 'courseTheme', element: <GameContentTranslationComponent renderCallback={translation => translation('Course Theme.spoken')}/>,},
+                {key: 'time', element: <GameContentTranslationComponent renderCallback={translation => translation('Time')}/>,},
+                {key: 'category', element: <GameContentTranslationComponent renderCallback={translation => translation('Category')}/>,},
             ]}
             content={this.content}
         />;
