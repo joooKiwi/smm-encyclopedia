@@ -12,13 +12,12 @@ interface SMM2NameProperty {
 
 }
 
-export default function SMM2NameComponent({id, name, popoverOrientation,}: SMM2NameProperty,): JSX.Element {
+export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2NameProperty,) {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 
     const elementId = id + '_' + name.english.toLowerCase().replace(' ', '_');
     const languagesToDisplay = name.individualValues.filter(language => !language.isCurrentLanguage);
-
     let content = '<ol>';
     name.toNameMap().forEach((value, language) => {
         if (languagesToDisplay.includes(language)) {
@@ -33,7 +32,8 @@ export default function SMM2NameComponent({id, name, popoverOrientation,}: SMM2N
         html: true,
         placement: popoverOrientation,
         trigger: 'hover focus',
-    }), 100);
+    }), 1);
     //TODO change to a way without a delay (timeout).
+
     return <span id={elementId} data-bs-toggle="popover">{EveryLanguages.currentLanguage.get(name)}</span>;
 }
