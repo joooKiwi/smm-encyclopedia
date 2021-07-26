@@ -1,15 +1,12 @@
-import {withTranslation} from 'react-i18next';
-import React             from 'react';
+import React, {PureComponent} from 'react';
 
 import type {GameProperty} from '../properties/GameProperty';
 import type {Name}         from '../../lang/name/Name';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import {Games}                         from './Games';
 
-export interface GameElement
-    extends GameContentTranslationElement {
+export interface GameElement {
 
     reference: GameProperty
 
@@ -17,8 +14,8 @@ export interface GameElement
 
 }
 
-class GameComponent
-    extends GameContentTranslationComponent<GameElement> {
+export default class GameComponent
+    extends PureComponent<GameElement> {
 
     protected get reference() {
         return this.props.reference;
@@ -34,12 +31,10 @@ class GameComponent
 
     public render(): JSX.Element {
         return this.reference.isInSuperMarioMaker1 && this.reference.isInSuperMarioMaker2
-            ? <span>{this.translation('Every games')}</span>
+            ? <span><GameContentTranslationComponent renderCallback={translation => translation('Every games')}/></span>
             : this.reference.isInSuperMarioMaker1
                 ? this.__createGameImage(Games.SUPER_MARIO_MAKER_1)
                 : this.__createGameImage(Games.SUPER_MARIO_MAKER_2);
     }
 
 }
-
-export default withTranslation('gameContent')(GameComponent);

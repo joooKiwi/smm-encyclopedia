@@ -1,15 +1,12 @@
-import React             from 'react';
-import {withTranslation} from 'react-i18next';
+import React, {PureComponent} from 'react';
 
-import type {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import type {Name}                          from '../../lang/name/Name';
-import type {ThemeProperty}                 from '../properties/ThemeProperty';
+import type {Name}          from '../../lang/name/Name';
+import type {ThemeProperty} from '../properties/ThemeProperty';
 
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Themes}                        from './Themes';
+import {Themes}                         from './Themes';
+import GameContentTranslationComponent  from '../../lang/components/GameContentTranslationComponent';
 
-export interface ThemeElement
-    extends GameContentTranslationElement {
+export interface ThemeElement {
 
     reference: ThemeProperty
 
@@ -17,8 +14,8 @@ export interface ThemeElement
 
 }
 
-class CourseThemeComponent
-    extends GameContentTranslationComponent<ThemeElement> {
+export default class CourseThemeComponent
+    extends PureComponent<ThemeElement> {
 
     protected get reference() {
         return this.props.reference;
@@ -48,7 +45,7 @@ class CourseThemeComponent
 
     public render(): JSX.Element {
         if (this.isInEveryGameStyles)
-            return <span>{this.translation('Every themes')}</span>;
+            return <span><GameContentTranslationComponent renderCallback={translation => translation('Every themes')}/></span>;
 
         const themes = [] as Themes[];
         this.reference.toCourseThemeMap().forEach((isInTheme, theme) => {
@@ -62,5 +59,3 @@ class CourseThemeComponent
 
 
 }
-
-export default withTranslation('gameContent')(CourseThemeComponent);

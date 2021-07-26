@@ -1,4 +1,4 @@
-import {Component, ReactNode} from 'react';
+import {PureComponent, ReactNode} from 'react';
 
 export type SingleTableContent = [key: string, ...content: JSX.Element[]];
 
@@ -13,17 +13,24 @@ export interface SimpleImageHeader {
 
 }
 
+export interface SimpleReactHeader {
+
+    key: string
+    element: JSX.Element
+
+}
+
 export interface SimpleTableComponent {
 
     id: string
-    caption: string
-    headers: readonly (string | SimpleImageHeader)[]
+    caption: string | JSX.Element
+    headers: readonly (| string | SimpleImageHeader | SimpleReactHeader)[]
     content: readonly SingleTableContent[]
 
 }
 
 export default class Table
-    extends Component<SimpleTableComponent, any> {
+    extends PureComponent<SimpleTableComponent> {
 
     protected get id() {
         return this.props.id;
@@ -41,14 +48,16 @@ export default class Table
         return this.props.content;
     }
 
-    private static __getHeaderKey(header: | string | SimpleImageHeader,): string {
+    private static __getHeaderKey(header: | string | SimpleImageHeader | SimpleReactHeader,): string {
         return typeof header === 'string' ? header : header.key;
     }
 
-    private static __getHeaderContent(header: | string | SimpleImageHeader,): JSX.Element {
+    private static __getHeaderContent(header: | string | SimpleImageHeader | SimpleReactHeader,): JSX.Element {
         return typeof header === 'string'
             ? <span>{header}</span>
-            : <img key={header.key} alt={header.alt} src={header.path}/>;
+            : 'element' in header
+                ? header.element
+                : <img key={header.key} alt={header.alt} src={header.path}/>;
     }
 
     private __getHeaders(isHead: boolean,): JSX.Element[] {

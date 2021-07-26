@@ -2,13 +2,16 @@ import './EveryThemesApp.scss';
 
 import React from 'react';
 
-import AbstractApp            from './AbstractApp';
-import {EntityCategories}     from '../entity/category/EntityCategories';
-import {EntityCategory}       from '../entity/category/EntityCategory';
-import {EntityCategoryLoader} from '../entity/category/EntityCategoryLoader';
-import SMM2NameComponent      from '../entity/lang/SMM2NameComponent';
-import TableWithTranslations  from './tools/table/TableWithTranslations';
-import {SingleTableContent}   from './tools/table/Table';
+import type {SingleTableContent} from './tools/table/Table';
+
+import AbstractApp                     from './AbstractApp';
+import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import {EntityCategories}              from '../entity/category/EntityCategories';
+import {EntityCategory}                from '../entity/category/EntityCategory';
+import {EntityCategoryLoader}          from '../entity/category/EntityCategoryLoader';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import Table                           from './tools/table/Table';
 
 export default class EveryEntityCategoriesApp
     extends AbstractApp {
@@ -39,15 +42,15 @@ export default class EveryEntityCategoriesApp
     protected _mainContent(): JSX.Element {
         console.log(this.enum);//README this log is there only to help debugging.
 
-        return <TableWithTranslations renderCallback={translations => ({
-            id: 'entityCategory_table',
-            caption: translations.gameContentTranslation('Every entity categories'),
-            headers: [
+        return <Table
+            id='entityCategory_table'
+            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every entity categories')}/>}
+            headers={ [
                 '#',
-                translations.contentTranslation('Language'),
-            ],
-            content: this.content,
-        })}/>;
+                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
+            ]}
+            content={this.content}
+        />;
     }
 
 }

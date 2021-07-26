@@ -1,11 +1,7 @@
-import {withTranslation} from 'react-i18next';
+import BooleanResultContainer from './BooleanResultContainer';
+import {useTranslation}       from 'react-i18next';
 
-import BooleanResultContainer      from './BooleanResultContainer';
-import {ContentTranslationElement} from '../../../lang/components/elements/ContentTranslationElement';
-import ContentTranslationComponent from '../../../lang/components/ContentTranslationComponent';
-
-export interface YesOrNoTextContent
-    extends ContentTranslationElement {
+export interface YesOrNoTextContent {
 
     boolean: boolean
 
@@ -17,17 +13,11 @@ export interface YesOrNoTextContent
  * @param props {@link YesOrNoTextContent} a simple boolean value property
  * @return {@link BooleanResultContainer}
  */
-class YesOrNoResultContainer
-    extends ContentTranslationComponent<YesOrNoTextContent> {
-
-    public render(): JSX.Element {
-        return <BooleanResultContainer
-            boolean={this.props.boolean}
-            trueValue={this.translation('Yes')}
-            falseValue={this.translation('No')}
-        />;
-    }
-
+export default function YesOrNoResultContainer(props: YesOrNoTextContent,): JSX.Element {
+    const {t: translation} = useTranslation('content');
+    return <BooleanResultContainer
+        boolean={props.boolean}
+        trueValue={translation('Yes')}
+        falseValue={translation('No')}
+    />;
 }
-
-export default withTranslation('content')(YesOrNoResultContainer);

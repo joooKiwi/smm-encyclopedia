@@ -1,15 +1,12 @@
-import {withTranslation} from 'react-i18next';
-import React             from 'react';
+import React, {PureComponent} from 'react';
 
-import type {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
 import type {Name}                          from '../../lang/name/Name';
 import type {TimeProperty}                  from '../properties/TimeProperty';
 
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Times}                         from './Times';
+import {Times}                          from './Times';
+import GameContentTranslationComponent  from '../../lang/components/GameContentTranslationComponent';
 
-export interface TimeElement
-    extends GameContentTranslationElement {
+export interface TimeElement {
 
     reference: TimeProperty
 
@@ -17,8 +14,8 @@ export interface TimeElement
 
 }
 
-class TimeComponent
-    extends GameContentTranslationComponent<TimeElement> {
+export default class TimeComponent
+    extends PureComponent<TimeElement> {
 
     protected get reference() {
         return this.props.reference;
@@ -40,7 +37,7 @@ class TimeComponent
 
     public render(): JSX.Element {
         if (this.isInEveryTimes)
-            return <span>{this.translation('Every times')}</span>;
+            return <span><GameContentTranslationComponent renderCallback={translation => translation('Every times')}/></span>;
 
         return this.reference.isInDayTheme
             ? this.__createSingleTime(Times.DAY)
@@ -48,5 +45,3 @@ class TimeComponent
     }
 
 }
-
-export default withTranslation('gameContent')(TimeComponent);

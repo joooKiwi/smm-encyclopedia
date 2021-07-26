@@ -2,18 +2,21 @@ import './EveryThemesApp.scss';
 
 import React from 'react';
 
-import AbstractApp            from './AbstractApp';
-import {CourseTheme}          from '../entity/theme/CourseTheme';
-import {EmptyCourseTheme}     from '../entity/theme/EmptyCourseTheme';
-import {EmptyWorldTheme}      from '../entity/theme/EmptyWorldTheme';
-import {Games}                from '../entity/game/Games';
-import SMM2NameComponent      from '../entity/lang/SMM2NameComponent';
-import {SingleTableContent}   from './tools/table/Table';
-import TableWithTranslations  from './tools/table/TableWithTranslations';
-import {ThemeLoader}          from '../entity/theme/ThemeLoader';
-import {Themes}               from '../entity/theme/Themes';
-import {WorldTheme}           from '../entity/theme/WorldTheme';
-import YesOrNoResultContainer from './tools/text/YesOrNoResultContainer';
+import type {SingleTableContent} from './tools/table/Table';
+
+import AbstractApp                     from './AbstractApp';
+import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import {CourseTheme}                   from '../entity/theme/CourseTheme';
+import {EmptyCourseTheme}              from '../entity/theme/EmptyCourseTheme';
+import {EmptyWorldTheme}               from '../entity/theme/EmptyWorldTheme';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {Games}                         from '../entity/game/Games';
+import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import Table                           from './tools/table/Table';
+import {ThemeLoader}                   from '../entity/theme/ThemeLoader';
+import {Themes}                        from '../entity/theme/Themes';
+import {WorldTheme}                    from '../entity/theme/WorldTheme';
+import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
 
 export default class EveryThemesApp
     extends AbstractApp {
@@ -56,21 +59,20 @@ export default class EveryThemesApp
     protected _mainContent(): JSX.Element {
         console.log(this.enum);//README this log is there only to help debugging.
 
-        return <TableWithTranslations renderCallback={translations => ({
-            id: 'theme_table',
-            caption: translations.gameContentTranslation('Every themes'),
-            headers: [
+        return <Table
+            id="theme_table"
+            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every themes')}/>}
+            headers={[
                 '#',
-                translations.contentTranslation('Image'),
-                translations.gameContentTranslation('Is in the course theme'),
-                translations.gameContentTranslation('Is in the world theme'),
+                {key: 'image', element: <ContentTranslationComponent renderCallback={translation => translation('Image')}/>,},
+                {key: 'isInTheCourseTheme', element: <GameContentTranslationComponent renderCallback={translation => translation('Is in the course theme')}/>,},
+                {key: 'isInTheWorldTheme', element: <GameContentTranslationComponent renderCallback={translation => translation('Is in the world theme')}/>,},
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                translations.contentTranslation('Language'),
-
-            ],
-            content: this.content,
-        })}/>;
+                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
+            ]}
+            content={this.content}
+        />;
     }
 
 }

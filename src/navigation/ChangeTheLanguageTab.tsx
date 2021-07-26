@@ -1,18 +1,16 @@
 import './ChangeTheLanguageTab.scss';
 
-import React             from 'react';
-import {withTranslation} from 'react-i18next';
+import React, {PureComponent} from 'react';
 
-import type {ContentAndLanguageTranslationElement} from '../lang/components/elements/ContentAndLanguageTranslationElement';
+import {Languages}                  from '../lang/Languages';
+import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
+import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
 
-import ContentAndLanguageTranslationComponent from '../lang/components/ContentAndLanguageTranslationComponent';
-import {Languages}                            from '../lang/Languages';
-
-class ChangeTheLanguageTab
-    extends ContentAndLanguageTranslationComponent<ContentAndLanguageTranslationElement, { currentLanguage: Languages }> {
+export default class ChangeTheLanguageTab
+    extends PureComponent<object, { currentLanguage: Languages }> {
 
 
-    public constructor(props: ContentAndLanguageTranslationElement) {
+    public constructor(props: object,) {
         super(props);
         this.state = {
             currentLanguage: Languages.currentLanguage,
@@ -28,9 +26,11 @@ class ChangeTheLanguageTab
                 return {
                     language: language,
                     htmlElement: language === Languages.currentLanguage
-                        ? <span className="dropdown-item disabled">{this.languageTranslation(language.englishName)}</span>
+                        ? <span className="dropdown-item disabled">
+                              <LanguageTranslationComponent renderCallback={translation => translation(language.englishName)}/>
+                          </span>
                         : <button key={`languageChanger_${language.projectAcronym}`} className="dropdown-item" onClick={() => this.setCurrentLanguage(language)}>
-                            {this.languageTranslation(language.englishName)}
+                            <LanguageTranslationComponent renderCallback={translation => translation(language.englishName)}/>
                             <sup>({language.originalName})</sup>
                         </button>
                 };
@@ -40,7 +40,9 @@ class ChangeTheLanguageTab
 
     public render() {
         return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
-            <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{this.contentTranslation('Change the language')}</span>
+            <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <ContentTranslationComponent renderCallback={translation => translation('Change the language')}/>
+            </span>
             <ul id="languageChanger-dropdown-menu" className="dropdown-menu" aria-labelledby="languageChanger-navigation-button">
                 {this.__retrieveEveryLanguages()}
             </ul>
@@ -48,5 +50,3 @@ class ChangeTheLanguageTab
     }
 
 }
-
-export default withTranslation(['language', 'content',])(ChangeTheLanguageTab);

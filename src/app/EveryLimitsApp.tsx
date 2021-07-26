@@ -1,12 +1,14 @@
 import React from 'react';
 
-import AbstractApp                from './AbstractApp';
-import {EntityLimit}              from '../entity/limit/EntityLimit';
-import {EntityLimitLoader}        from '../entity/limit/EntityLimitLoader';
-import {EntityLimits}             from '../entity/limit/EntityLimits';
-import EveryTranslationsComponent from '../lang/components/EveryTranslationsComponent';
-import {SingleTableContent}       from './tools/table/Table';
-import TableWithTranslations      from './tools/table/TableWithTranslations';
+import type{SingleTableContent} from './tools/table/Table';
+
+import AbstractApp                     from './AbstractApp';
+import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import {EntityLimit}                   from '../entity/limit/EntityLimit';
+import {EntityLimitLoader}             from '../entity/limit/EntityLimitLoader';
+import {EntityLimits}                  from '../entity/limit/EntityLimits';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Table                           from './tools/table/Table';
 
 export default class EveryLimitsApp
     extends AbstractApp {
@@ -18,7 +20,7 @@ export default class EveryLimitsApp
         return this.#limits ??= EntityLimitLoader.get.load();
     }
 
-    protected get enum(){
+    protected get enum() {
         return EntityLimits.values;
     }
 
@@ -37,15 +39,15 @@ export default class EveryLimitsApp
         return <span>{amount}</span>;
     }
 
-    protected content(translation: EveryTranslationsComponent,) {
+    protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const [englishName, entityTheme,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
                 <span>{EveryLimitsApp.__getAcronym(entityTheme)}</span>,
-                <>{entityTheme.fullName ?? ''}</>,//<>{translation.gameContentTranslation(entityTheme.fullName ?? '')}</>,
-                <>{entityTheme.alternativeName ?? ''}</>,//<>{translation.gameContentTranslation(entityTheme.alternativeName ?? '')}</>,
+                <GameContentTranslationComponent renderCallback={translation => translation(entityTheme.fullName)}/>,
+                entityTheme.alternativeName == null ? <></> : <GameContentTranslationComponent renderCallback={translation => translation(entityTheme.alternativeName!)}/>,
                 EveryLimitsApp.__getLimit(entityTheme),
             ]);
             index++;
@@ -54,19 +56,17 @@ export default class EveryLimitsApp
     }
 
     protected _mainContent(): JSX.Element {
-        return <TableWithTranslations renderCallback={translations => ({
-            id: 'entityLimit_table',
-            caption: translations.gameContentTranslation('Every entity limits'),
-            headers: [
+        return <Table
+            id="entityLimit_table"
+            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every entity limits')}/>}
+            headers={[
                 '#',
-                translations.contentTranslation('Acronym(s)'),
-                translations.contentTranslation('Full name'),
-                translations.contentTranslation('Alternative name'),
-                translations.contentTranslation('Limit'),
-            ],
-            content: this.content(translations),
-        })}>
-        </TableWithTranslations>;
+                {key: 'acronym', element: <ContentTranslationComponent renderCallback={translation => translation('Acronym(s)')}/>,},
+                {key: 'fullName', element: <ContentTranslationComponent renderCallback={translation => translation('Full name')}/>,},
+                {key: 'alternativeName', element: <ContentTranslationComponent renderCallback={translation => translation('Alternative name')}/>,},
+                {key: 'limit', element: <ContentTranslationComponent renderCallback={translation => translation('Limit')}/>,},
+            ]}
+            content={this.content}/>;
     }
 
 }

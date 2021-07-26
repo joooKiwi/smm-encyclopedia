@@ -2,14 +2,17 @@ import './EveryGameStylesApp.scss';
 
 import React from 'react';
 
-import AbstractApp           from './AbstractApp';
-import GameComponent         from '../entity/game/GameComponent';
-import {GameStyle}           from '../entity/gameStyle/GameStyle';
-import {GameStyleLoader}     from '../entity/gameStyle/GameStyleLoader';
-import {GameStyles}          from '../entity/gameStyle/GameStyles';
-import {SingleTableContent}  from './tools/table/Table';
-import SMM2NameComponent     from '../entity/lang/SMM2NameComponent';
-import TableWithTranslations from './tools/table/TableWithTranslations';
+import type {SingleTableContent} from './tools/table/Table';
+
+import AbstractApp                     from './AbstractApp';
+import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import GameComponent                   from '../entity/game/GameComponent';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {GameStyle}                     from '../entity/gameStyle/GameStyle';
+import {GameStyleLoader}               from '../entity/gameStyle/GameStyleLoader';
+import {GameStyles}                    from '../entity/gameStyle/GameStyles';
+import Table                           from './tools/table/Table';
+import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 
 export default class EveryGameStylesApp
     extends AbstractApp {
@@ -42,18 +45,18 @@ export default class EveryGameStylesApp
     protected _mainContent(): JSX.Element {
         console.log(this.enum);//README this log is there only to help debugging.
 
-        return <TableWithTranslations renderCallback={translations => ({
-            id: 'gameStyle_table',
-            caption: translations.gameContentTranslation('Every game styles'),
-            headers: [
+        return <Table
+            id="gameStyle_table"
+            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every game styles')}/>}
+            headers={[
                 '#',
-                translations.contentTranslation('Image'),
-                translations.contentTranslation('Language'),
-                translations.gameContentTranslation('Game'),
+                {key: 'image', element: <ContentTranslationComponent renderCallback={translation => translation('Image')}/>,},
+                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
+                {key: 'game', element: <GameContentTranslationComponent renderCallback={translation => translation('Game')}/>,},
 
-            ],
-            content: this.content,
-        })}/>;
+            ]}
+            content={this.content}
+        />;
     }
 
 }

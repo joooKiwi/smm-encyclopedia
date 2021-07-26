@@ -2,15 +2,19 @@ import './EveryEntitiesApp.scss';
 
 import React from 'react';
 
-import AbstractApp                           from './AbstractApp';
-import CourseThemeComponent                  from '../entity/theme/CourseThemeComponent';
-import {DebugEntityReferences, EntityLoader} from '../entity/simple/EntityLoader';
-import GameComponent                         from '../entity/game/GameComponent';
-import GameStyleComponent                    from '../entity/gameStyle/GameStyleComponent';
-import {SingleTableContent}                  from './tools/table/Table';
-import SMM2NameComponent                     from '../entity/lang/SMM2NameComponent';
-import TableWithTranslations                 from './tools/table/TableWithTranslations';
-import TimeComponent                         from '../entity/time/TimeComponent';
+import type {DebugEntityReferences} from '../entity/simple/EntityLoader';
+import type {SingleTableContent}           from './tools/table/Table';
+
+import AbstractApp                     from './AbstractApp';
+import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import CourseThemeComponent            from '../entity/theme/CourseThemeComponent';
+import {EntityLoader}                  from '../entity/simple/EntityLoader';
+import GameComponent                   from '../entity/game/GameComponent';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import GameStyleComponent              from '../entity/gameStyle/GameStyleComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import Table                           from './tools/table/Table';
+import TimeComponent                   from '../entity/time/TimeComponent';
 
 export default class EveryEntitiesApp
     extends AbstractApp {
@@ -45,21 +49,19 @@ export default class EveryEntitiesApp
     protected _mainContent(): JSX.Element {
         console.log(this.map);
 
-        return <TableWithTranslations
-            renderCallback={(translations => ({
-                id: 'entity_table',
-                caption: translations.gameContentTranslation('Every entities'),
-                headers: [
-                    '#',
-                    translations.contentTranslation('Language'),
-                    translations.gameContentTranslation('Game'),
-                    translations.gameContentTranslation('Game Style'),
-                    translations.gameContentTranslation('Course Theme.spoken'),
-                    translations.gameContentTranslation('Time'),
-                    translations.gameContentTranslation('Category'),
-                ],
-                content: this.content,
-            }))}
+        return <Table
+            id="entity_table"
+            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every entities')}/>}
+            headers={[
+                '#',
+                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
+                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Game')}/>,},
+                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Game Style')}/>,},
+                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Course Theme.spoken')}/>,},
+                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Time')}/>,},
+                {key: 'language', element: <GameContentTranslationComponent renderCallback={translation => translation('Category')}/>,},
+            ]}
+            content={this.content}
         />;
     }
 

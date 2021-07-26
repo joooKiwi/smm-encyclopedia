@@ -1,15 +1,12 @@
-import React             from 'react';
-import {withTranslation} from 'react-i18next';
+import React, {PureComponent} from 'react';
 
-import type {GameContentTranslationElement} from '../../lang/components/elements/GameContentTranslationElement';
-import type {GameStyles}                    from './GameStyles';
-import type {GameStyleProperty}             from '../properties/GameStyleProperty';
-import type {Name}                          from '../../lang/name/Name';
+import type {GameStyles}        from './GameStyles';
+import type {GameStyleProperty} from '../properties/GameStyleProperty';
+import type {Name}              from '../../lang/name/Name';
 
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
+import GameContentTranslationComponent  from '../../lang/components/GameContentTranslationComponent';
 
-export interface GameStyleElement
-    extends GameContentTranslationElement {
+export interface GameStyleElement {
 
     reference: GameStyleProperty
 
@@ -17,8 +14,8 @@ export interface GameStyleElement
 
 }
 
-class GameStyleComponent
-    extends GameContentTranslationComponent<GameStyleElement> {
+export default class GameStyleComponent
+    extends PureComponent<GameStyleElement> {
 
 
     protected get reference() {
@@ -44,7 +41,7 @@ class GameStyleComponent
 
     public render(): JSX.Element {
         if (this.isInEveryGameStyles)
-            return <span>{this.translation('Every game styles')}</span>;
+            return <span><GameContentTranslationComponent renderCallback={translation => translation('Every game styles')}/></span>;
 
         const gameStyles = [] as GameStyles[];
         this.reference.toGameStyleMap().forEach((isInGameStyle, gameStyle) => {
@@ -58,5 +55,3 @@ class GameStyleComponent
 
 
 }
-
-export default withTranslation('gameContent')(GameStyleComponent);
