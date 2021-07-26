@@ -12,7 +12,7 @@ export default function Footer() {
                     <ContentTranslationComponent translationCallback={translation => translation('React application made by')}/>: JóôòKiwi & Geitje
                 </span>
                 <span id="copyright_lastEdited" className="text-center text-light small">
-                    <ContentTranslationComponent translationCallback={translation => translation('Last update')}/>: <SimpleDate day={4} month={7} year={2021}/>
+                    <ContentTranslationComponent translationCallback={translation => translation('Last update')}/>: <SimpleDate day={26} month={7} year={2021}/>
                 </span>
             </div>
         </div>
