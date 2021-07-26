@@ -51,15 +51,15 @@ export default class EveryEntitiesApp
 
         return <Table
             id="entity_table"
-            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every entities')}/>}
+            caption={<GameContentTranslationComponent translationCallback={translation => translation('Every entities')}/>}
             headers={[
                 '#',
-                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
-                {key: 'game', element: <GameContentTranslationComponent renderCallback={translation => translation('Game')}/>,},
-                {key: 'gameStyle', element: <GameContentTranslationComponent renderCallback={translation => translation('Game Style')}/>,},
-                {key: 'courseTheme', element: <GameContentTranslationComponent renderCallback={translation => translation('Course Theme.spoken')}/>,},
-                {key: 'time', element: <GameContentTranslationComponent renderCallback={translation => translation('Time')}/>,},
-                {key: 'category', element: <GameContentTranslationComponent renderCallback={translation => translation('Category')}/>,},
+                {key: 'language', element: <ContentTranslationComponent translationCallback={translation => translation('Language')}/>,},
+                {key: 'game', element: <GameContentTranslationComponent translationCallback={translation => translation('Game')}/>,},
+                {key: 'gameStyle', element: <GameContentTranslationComponent translationCallback={translation => translation('Game Style')}/>,},
+                {key: 'courseTheme', element: <GameContentTranslationComponent translationCallback={translation => translation('Course Theme.spoken')}/>,},
+                {key: 'time', element: <GameContentTranslationComponent translationCallback={translation => translation('Time')}/>,},
+                {key: 'category', element: <GameContentTranslationComponent translationCallback={translation => translation('Category')}/>,},
             ]}
             content={this.content}
         />;

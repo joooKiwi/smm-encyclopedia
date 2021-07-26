@@ -1,15 +1,8 @@
-import type {TFunction} from 'react-i18next';
 import {useTranslation} from 'react-i18next';
 
-type ContentCallback = (translation: TFunction<'content'>,) => string;
+import type {TranslationProperty} from './TranslationProperty';
 
-interface ContentProperty {
-
-    renderCallback: ContentCallback
-
-}
-
-export default function ContentTranslationComponent({renderCallback,}: ContentProperty,) {
+export default function ContentTranslationComponent({translationCallback,}: TranslationProperty<'content'>,) {
     const {t} = useTranslation('content');
-    return <>{renderCallback(t)}</>;
+    return <>{translationCallback(t)}</>;
 }

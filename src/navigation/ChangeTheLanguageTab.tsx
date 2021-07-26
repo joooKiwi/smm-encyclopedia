@@ -9,7 +9,6 @@ import ContentTranslationComponent  from '../lang/components/ContentTranslationC
 export default class ChangeTheLanguageTab
     extends PureComponent<object, { currentLanguage: Languages }> {
 
-
     public constructor(props: object,) {
         super(props);
         this.state = {
@@ -27,10 +26,10 @@ export default class ChangeTheLanguageTab
                     language: language,
                     htmlElement: language === Languages.currentLanguage
                         ? <span className="dropdown-item disabled">
-                              <LanguageTranslationComponent renderCallback={translation => translation(language.englishName)}/>
+                              <LanguageTranslationComponent translationCallback={translation => translation(language.englishName)}/>
                           </span>
                         : <button key={`languageChanger_${language.projectAcronym}`} className="dropdown-item" onClick={() => this.setCurrentLanguage(language)}>
-                            <LanguageTranslationComponent renderCallback={translation => translation(language.englishName)}/>
+                            <LanguageTranslationComponent translationCallback={translation => translation(language.englishName)}/>
                             <sup>({language.originalName})</sup>
                         </button>
                 };
@@ -41,7 +40,7 @@ export default class ChangeTheLanguageTab
     public render() {
         return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
             <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <ContentTranslationComponent renderCallback={translation => translation('Change the language')}/>
+                <ContentTranslationComponent translationCallback={translation => translation('Change the language')}/>
             </span>
             <ul id="languageChanger-dropdown-menu" className="dropdown-menu" aria-labelledby="languageChanger-navigation-button">
                 {this.__retrieveEveryLanguages()}

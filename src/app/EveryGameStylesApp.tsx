@@ -47,12 +47,12 @@ export default class EveryGameStylesApp
 
         return <Table
             id="gameStyle_table"
-            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every game styles')}/>}
+            caption={<GameContentTranslationComponent translationCallback={translation => translation('Every game styles')}/>}
             headers={[
                 '#',
-                {key: 'image', element: <ContentTranslationComponent renderCallback={translation => translation('Image')}/>,},
-                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
-                {key: 'game', element: <GameContentTranslationComponent renderCallback={translation => translation('Game')}/>,},
+                {key: 'image', element: <ContentTranslationComponent translationCallback={translation => translation('Image')}/>,},
+                {key: 'language', element: <ContentTranslationComponent translationCallback={translation => translation('Language')}/>,},
+                {key: 'game', element: <GameContentTranslationComponent translationCallback={translation => translation('Game')}/>,},
 
             ]}
             content={this.content}

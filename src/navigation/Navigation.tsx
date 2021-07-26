@@ -10,7 +10,7 @@ export default function Navigation() {
     return <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container-fluid">
             <Link key="navigationHome" className="navbar-brand" aria-current="page" to={`/${Languages.currentLanguage.projectAcronym}/home`}>
-                <ContentTranslationComponent renderCallback={translation => translation('Home')}/>
+                <ContentTranslationComponent translationCallback={translation => translation('Home')}/>
             </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>

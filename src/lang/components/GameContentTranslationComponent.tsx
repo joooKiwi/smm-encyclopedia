@@ -1,15 +1,8 @@
-import type {TFunction} from 'react-i18next';
 import {useTranslation} from 'react-i18next';
 
-export type GameContentCallback = (translation: TFunction<'gameContent'>,) => string;
+import type {TranslationProperty} from './TranslationProperty';
 
-interface GameContentProperty {
-
-    renderCallback: GameContentCallback
-
-}
-
-export default function GameContentTranslationComponent({renderCallback,}: GameContentProperty,) {
+export default function GameContentTranslationComponent({translationCallback,}: TranslationProperty<'gameContent'>,) {
     const {t} = useTranslation('gameContent');
-    return <>{renderCallback(t)}</>;
+    return <>{translationCallback(t)}</>;
 }

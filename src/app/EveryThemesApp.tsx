@@ -61,15 +61,15 @@ export default class EveryThemesApp
 
         return <Table
             id="theme_table"
-            caption={<GameContentTranslationComponent renderCallback={translation => translation('Every themes')}/>}
+            caption={<GameContentTranslationComponent translationCallback={translation => translation('Every themes')}/>}
             headers={[
                 '#',
-                {key: 'image', element: <ContentTranslationComponent renderCallback={translation => translation('Image')}/>,},
-                {key: 'isInTheCourseTheme', element: <GameContentTranslationComponent renderCallback={translation => translation('Is in the course theme')}/>,},
-                {key: 'isInTheWorldTheme', element: <GameContentTranslationComponent renderCallback={translation => translation('Is in the world theme')}/>,},
+                {key: 'image', element: <ContentTranslationComponent translationCallback={translation => translation('Image')}/>,},
+                {key: 'isInTheCourseTheme', element: <GameContentTranslationComponent translationCallback={translation => translation('Is in the course theme')}/>,},
+                {key: 'isInTheWorldTheme', element: <GameContentTranslationComponent translationCallback={translation => translation('Is in the world theme')}/>,},
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                {key: 'language', element: <ContentTranslationComponent renderCallback={translation => translation('Language')}/>,},
+                {key: 'language', element: <ContentTranslationComponent translationCallback={translation => translation('Language')}/>,},
             ]}
             content={this.content}
         />;
