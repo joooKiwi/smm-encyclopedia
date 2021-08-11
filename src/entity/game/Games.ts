@@ -2,7 +2,7 @@ import type {GameProperty}   from '../properties/GameProperty';
 import type {PropertyGetter} from '../PropertyGetter';
 import type {SimpleEnum}     from '../../util/enum/EnumTypes';
 
-import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
 
 //region -------------------- game texts --------------------
 

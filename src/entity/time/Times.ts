@@ -2,7 +2,7 @@ import type {PropertyGetter} from '../PropertyGetter';
 import type {TimeProperty}   from '../properties/TimeProperty';
 
 import {SimpleEnum}       from '../../util/enum/EnumTypes';
-import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
 
 //region -------------------- time texts --------------------
 

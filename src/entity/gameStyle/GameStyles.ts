@@ -4,7 +4,7 @@ import type {GameStyleProperty}           from '../properties/GameStyleProperty'
 import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
 
 import {GameStyleLoader}  from './GameStyleLoader';
-import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
 
 //region -------------------- game style texts --------------------
 

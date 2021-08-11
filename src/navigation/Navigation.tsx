@@ -1,15 +1,15 @@
-import React  from 'react';
 import {Link} from 'react-router-dom';
+import React  from 'react';
 
 import ChangeTheLanguageTab        from './ChangeTheLanguageTab';
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import DisplayTab                  from './DisplayTab';
-import {Languages}                 from '../lang/Languages';
+import {ProjectLanguages}          from '../lang/ProjectLanguages';
 
 export default function Navigation() {
     return <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container-fluid">
-            <Link key="navigationHome" className="navbar-brand" aria-current="page" to={`/${Languages.currentLanguage.projectAcronym}/home`}>
+            <Link key="navigationHome" className="navbar-brand" aria-current="page" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/home`}>
                 <ContentTranslationComponent translationCallback={translation => translation('Home')}/>
             </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

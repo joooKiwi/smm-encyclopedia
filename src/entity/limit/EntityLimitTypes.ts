@@ -1,6 +1,6 @@
 import type {SimpleEnum} from '../../util/enum/EnumTypes';
 
-import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
 
 //region -------------------- limit type texts --------------------
 
