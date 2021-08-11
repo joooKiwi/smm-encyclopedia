@@ -1,6 +1,6 @@
-import {AbstractStringConverter} from "./AbstractStringConverter";
-import {ConverterPatterns}       from "./ConverterPatterns";
-import {ConverterUtil}           from "./ConverterUtil";
+import {AbstractStringConverter} from './AbstractStringConverter';
+import {ConverterPatterns}       from './ConverterPatterns';
+import {ConverterUtil}           from './ConverterUtil';
 
 export class StringToBooleanConverter
     extends AbstractStringConverter<boolean> {
@@ -9,6 +9,7 @@ export class StringToBooleanConverter
         super(originalValue);
     }
 
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): boolean {
         return ConverterUtil.convertToBoolean(validValue);
@@ -21,5 +22,7 @@ export class StringToBooleanConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a boolean`);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

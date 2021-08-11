@@ -7,6 +7,7 @@ export class StringToStringConverter
         super(originalValue);
     }
 
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): string {
         return validValue;
@@ -20,5 +21,7 @@ export class StringToStringConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a string`);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

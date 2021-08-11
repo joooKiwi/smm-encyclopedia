@@ -1,6 +1,6 @@
-import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
-import {ConverterPatterns}                from "./ConverterPatterns";
-import {ConverterUtil}                    from "./ConverterUtil";
+import {AbstractEmptyableStringConverter} from './AbstractEmptyableStringConverter';
+import {ConverterPatterns}                from './ConverterPatterns';
+import {ConverterUtil}                    from './ConverterUtil';
 
 export class StringToNullableStringConverter
     extends AbstractEmptyableStringConverter<| string | null> {
@@ -9,6 +9,7 @@ export class StringToNullableStringConverter
         super(originalValue);
     }
 
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): | string | null {
         return ConverterUtil.convertToNullableString(validValue);
@@ -21,5 +22,7 @@ export class StringToNullableStringConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a nullable string`);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

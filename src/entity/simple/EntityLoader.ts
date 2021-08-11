@@ -176,13 +176,13 @@ export class EntityLoader
 
     static readonly #instance = new EntityLoader();
 
-    //region ---------- external object references ----------
+    //region ---------- External object references ----------
 
     readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
     readonly #everyEntityLimits: CallbackCaller<Map<string, EntityLimit>>;
     readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
 
-    //endregion ---------- external object references ----------
+    //endregion ---------- External object references ----------
 
     private constructor() {
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
@@ -541,9 +541,7 @@ class ReferencesToWatch {
         this.#references = [];
     }
 
-    //region -------------------- Methods --------------------
-
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     public get englishNames() {
         return this.#englishNames;
@@ -557,7 +555,8 @@ class ReferencesToWatch {
         return this.#references;
     }
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public addReference(reference: EntityTemplate,): void {
         const otherReference = reference.properties.reference;

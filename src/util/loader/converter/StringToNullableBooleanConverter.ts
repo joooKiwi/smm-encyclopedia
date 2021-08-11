@@ -1,6 +1,6 @@
-import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
-import {ConverterUtil}                    from "./ConverterUtil";
-import {ConverterPatterns}                from "./ConverterPatterns";
+import {AbstractEmptyableStringConverter} from './AbstractEmptyableStringConverter';
+import {ConverterUtil}                    from './ConverterUtil';
+import {ConverterPatterns}                from './ConverterPatterns';
 
 export class StringToNullableBooleanConverter
     extends AbstractEmptyableStringConverter<boolean> {
@@ -9,6 +9,7 @@ export class StringToNullableBooleanConverter
         super(originalValue);
     }
 
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): boolean {
         return ConverterUtil.convertToBoolean(validValue);
@@ -21,5 +22,7 @@ export class StringToNullableBooleanConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a nullable boolean`);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

@@ -1,8 +1,8 @@
 export interface Converter<T, U> {
 
-    originalValue: T
+    get originalValue(): T
 
-    convertedValue: U
+    get convertedValue(): U
 
     isValueValid(value: T): boolean
 
