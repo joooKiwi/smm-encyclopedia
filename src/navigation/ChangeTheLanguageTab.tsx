@@ -2,29 +2,29 @@ import './ChangeTheLanguageTab.scss';
 
 import React, {PureComponent} from 'react';
 
-import {Languages}                  from '../lang/Languages';
-import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
+import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
+import {ProjectLanguages}           from '../lang/ProjectLanguages';
 
 export default class ChangeTheLanguageTab
-    extends PureComponent<object, { currentLanguage: Languages }> {
+    extends PureComponent<object, { currentLanguage: ProjectLanguages }> {
 
     public constructor(props: object,) {
         super(props);
         this.state = {
-            currentLanguage: Languages.currentLanguage,
+            currentLanguage: ProjectLanguages.currentLanguage,
         };
     }
 
-    protected setCurrentLanguage(language: Languages): void {
-        this.setState({currentLanguage: Languages.currentLanguage = language});
+    protected setCurrentLanguage(language: ProjectLanguages): void {
+        this.setState({currentLanguage: ProjectLanguages.currentLanguage = language});
     }
 
     private __retrieveEveryLanguages() {
-        return Languages.values.map(language => {
+        return ProjectLanguages.values.map(language => {
                 return {
                     language: language,
-                    htmlElement: language === Languages.currentLanguage
+                    htmlElement: language === ProjectLanguages.currentLanguage
                         ? <span className="dropdown-item disabled">
                               <LanguageTranslationComponent translationCallback={translation => translation(language.englishName)}/>
                           </span>

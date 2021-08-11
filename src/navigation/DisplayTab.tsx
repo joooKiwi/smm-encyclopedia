@@ -3,9 +3,9 @@ import {Link}                 from 'react-router-dom';
 
 import type {GameContentCallback} from '../lang/components/TranslationProperty';
 
-import {Languages}                     from '../lang/Languages';
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {ProjectLanguages}              from '../lang/ProjectLanguages';
 
 export default class DisplayTab
     extends PureComponent {
@@ -13,7 +13,7 @@ export default class DisplayTab
 
     private static _createLi(key: string, partialPath: string, textContentCallback: GameContentCallback,): JSX.Element {
         return <li className="dropdown-item">
-            <Link key={key} className="nav-link active" to={`/${Languages.currentLanguage.projectAcronym}/${partialPath}`}>
+            <Link key={key} className="nav-link active" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/${partialPath}`}>
                 <GameContentTranslationComponent translationCallback={textContentCallback}/>
             </Link>
         </li>;

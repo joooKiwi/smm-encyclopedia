@@ -9,7 +9,7 @@ import {CanadianAndEuropeanLanguageContainer} from './containers/CanadianAndEuro
 import {CallbackCaller}                       from '../../util/CallbackCaller';
 import {ChineseLanguageContainer}             from './containers/ChineseLanguageContainer';
 import {EveryLanguages}                       from '../EveryLanguages';
-import {Languages}                            from '../Languages';
+import {ProjectLanguages}                     from '../ProjectLanguages';
 import {SimpleLanguageContainer}              from './containers/SimpleLanguageContainer';
 
 export class NameContainer
@@ -101,7 +101,7 @@ export class NameContainer
             individualValues.push(EveryLanguages.CHINESE);
         } else {
             this.#chinese = new ChineseLanguageContainer(...chinese);
-            individualValues.push(EveryLanguages.CHINESE_SIMPLIFIED, EveryLanguages.CHINESE_TRADITIONAL,);
+            individualValues.push(EveryLanguages.SIMPLIFIED_CHINESE, EveryLanguages.TRADITIONAL_CHINESE,);
         }
 
         this.#korean = new SimpleLanguageContainer(korean);
@@ -119,7 +119,7 @@ export class NameContainer
     //region -------------------- Name properties --------------------
 
     public get languageValue() {
-        return Languages.currentLanguage.get(this);
+        return ProjectLanguages.currentLanguage.get(this);
     }
 
 
