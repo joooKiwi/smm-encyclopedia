@@ -3,6 +3,7 @@ import type {SimpleEnum} from '../../enum/EnumTypes';
 
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';
+import {Enum}                             from '../../enum/Enum';
 import {StringToBooleanConverter}         from './StringToBooleanConverter';
 import {StringToEmptyableStringConverter} from './StringToEmptyableStringConverter';
 import {StringToNullableNumberConverter}  from './StringToNullableNumberConverter';
@@ -10,16 +11,14 @@ import {StringToNullableBooleanConverter} from './StringToNullableBooleanConvert
 import {StringToNullableStringConverter}  from './StringToNullableStringConverter';
 import {StringToNumberConverter}          from './StringToNumberConverter';
 import {StringToStringConverter}          from './StringToStringConverter';
-import {getLastOrdinalOn}                 from '../../enum/enumUtilityMethods';
 
-//region -------------------- converter texts --------------------
+//region -------------------- Predefined converter texts --------------------
 
 export type PrimitiveConversion = | 'boolean' | 'number' | 'string';
 export type NullablePredefinedConversion = `nullable ${PrimitiveConversion}`;
 export type PredefinedConversion = | NullablePredefinedConversion | PrimitiveConversion | 'emptyable string';
 
-//endregion -------------------- converter texts --------------------
-
+//endregion -------------------- Predefined converter texts --------------------
 //region -------------------- Enum types --------------------
 
 export type PredefinedConverterOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -33,12 +32,10 @@ export type PredefinedConverterArray<T = PredefinedConverter, > = readonly [
 
 //endregion -------------------- Enum types --------------------
 
-/**
- * @enum
- */
-export abstract class PredefinedConverter {
+export abstract class PredefinedConverter
+    extends Enum<PredefinedConverterOrdinals, PredefinedConverterNames> {
 
-    //region -------------------- enum instances --------------------
+    //region -------------------- Enum instances --------------------
 
     public static readonly NUMBER =           new class PredefinedConverter_Number extends PredefinedConverter {
 
@@ -146,11 +143,10 @@ export abstract class PredefinedConverter {
 
     } ('nullable string', 'string',);
 
-    //endregion -------------------- enum instances --------------------
+    //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: PredefinedConverterArray;
-    readonly #ordinal: PredefinedConverterOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -167,7 +163,7 @@ export abstract class PredefinedConverter {
     private constructor(name: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable: PrimitiveConversion)
     private constructor(name: PredefinedConversion, nameAsNonNullable?: PrimitiveConversion) {
-        this.#ordinal = getLastOrdinalOn(PredefinedConverter);
+        super(PredefinedConverter);
         this.#name = name;
         this.#nameAsNonNullable = nameAsNonNullable ?? name;
         if (nameAsNonNullable === undefined) {
@@ -181,7 +177,7 @@ export abstract class PredefinedConverter {
         }
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get name() {
         return this.#name;
@@ -195,6 +191,8 @@ export abstract class PredefinedConverter {
         return this.#parent ??= this.#parentCallback();
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public abstract newStringToConvertor(value: string,): Converter<string, any>;
 
@@ -211,17 +209,24 @@ export abstract class PredefinedConverter {
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //region -------------------- Enum methods --------------------
 
-    public get ordinal(): PredefinedConverterOrdinals {
-        return this.#ordinal;
-    }
-
-    public static getValue(value: PredefinedConversion,): PredefinedConverter
-    public static getValue(value: string,): | PredefinedConverter | null
-    public static getValue(value: | string | PredefinedConversion,): PredefinedConverter | null {
-        let lowerCaseValue = value.toLowerCase();
-        return this.values.find(predefinedConverter => predefinedConverter.name === lowerCaseValue) ?? null;
+    public static getValue(nullValue: | null | undefined,): null
+    public static getValue<O extends PredefinedConverterOrdinals = PredefinedConverterOrdinals, >(ordinal: O,): PredefinedConverterArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): NonNullable<PredefinedConverterArray[O]> | null
+    public static getValue(name: | PredefinedConversion | PredefinedConverterNames,): PredefinedConverter
+    public static getValue(name: string,): | PredefinedConverter | null
+    public static getValue(value: | PredefinedConverter | string | number | null | undefined,): PredefinedConverter | null
+    public static getValue(value: | PredefinedConverter | string | number | null | undefined,): PredefinedConverter | null {
+        return value == null
+            ? null
+            : typeof value === 'string'
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.values.find(predefinedConverter => predefinedConverter.name === value.toLowerCase())
+                    ?? null
+                : typeof value === 'number'
+                    ? this.values[value] ?? null
+                    : null;
     }
 
     public static get values(): PredefinedConverterArray {
@@ -232,10 +237,11 @@ export abstract class PredefinedConverter {
         ];
     }
 
+
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }

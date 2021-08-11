@@ -4,10 +4,10 @@ import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
 import type {ThemeProperty}               from '../properties/ThemeProperty';
 import type {WorldTheme}                  from './WorldTheme';
 
-import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
+import {Enum}             from '../../util/enum/Enum';
 import {ThemeLoader}      from './ThemeLoader';
 
-//region -------------------- themes texts --------------------
+//region -------------------- Theme texts --------------------
 
 type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
 export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
@@ -16,7 +16,7 @@ export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
 
 export type ThemePath = `/game/themes/${PossibleTheme | string}`
 
-//endregion -------------------- themes texts --------------------
+//endregion -------------------- Theme texts --------------------
 //region -------------------- Enum types --------------------
 
 export type ThemesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -42,13 +42,11 @@ export type ThemesArrayAsOnlyWorldTheme<T = Themes, > = readonly [
 
 //endregion -------------------- Enum types --------------------
 
-/**
- * @enum
- */
 export class Themes
+    extends Enum<ThemesOrdinals, ThemesNames>
     implements PropertyGetterWithReference<PossibleTheme, ThemeProperty, readonly [CourseTheme, WorldTheme]> {
 
-    //region -------------------- enum instances --------------------
+    //region -------------------- Enum instances --------------------
 
     public static readonly GROUND =      new class Themes_Ground extends Themes {
 
@@ -124,11 +122,10 @@ export class Themes
     public static readonly VOLCANO =     new Themes                                       ('Volcano', 'Castle - Volcano',);
     public static readonly SPACE =       new Themes                                       ('Space',);
 
-    //endregion -------------------- enum instances --------------------
+    //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: ThemesArray;
-    readonly #ordinal: ThemesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -147,23 +144,15 @@ export class Themes
     private constructor(englishNameAndImagePath: PossibleTheme,)
     private constructor(englishName: PossibleTheme, basicImagePath: string,)
     private constructor(englishName: PossibleTheme, basicImagePath: string = englishName,) {
-        this.#ordinal = getLastOrdinalOn(Themes);
+        super(Themes);
         this.#englishName = englishName;
         this.#imagePath = `/game/themes/${basicImagePath}`;
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get englishName() {
         return this.#englishName;
-    }
-
-    protected _get(property: ThemeProperty): boolean | null {
-        return false;
-    }
-
-    public get(property: ThemeProperty): boolean {
-        return this._get(property) ?? false;
     }
 
     public get references() {
@@ -188,6 +177,17 @@ export class Themes
 
     public get longImagePath() {
         return this.imagePath + ' (large).jpg';
+    }
+
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
+    protected _get(property: ThemeProperty,): boolean | null {
+        return false;
+    }
+
+    public get(property: ThemeProperty,): boolean {
+        return this._get(property) ?? false;
     }
 
 
@@ -220,19 +220,25 @@ export class Themes
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //region -------------------- Enum methods --------------------
 
-    public get ordinal():ThemesOrdinals{
-        return this.#ordinal;
-    }
-
-    public static getValue(value: | Themes | PossibleTheme,): Themes
-    public static getValue(value: string,): | Themes | null
-    public static getValue(value: | Themes | string,): | Themes | null
-    public static getValue(value: | Themes | string,): | Themes | null {
-        return typeof value === 'string'
-            ? this.values.find(theme => theme.englishName === value) ?? null
-            : value;
+    public static getValue(nullValue: | null | undefined,): null
+    public static getValue<O extends ThemesOrdinals = ThemesOrdinals, >(ordinal: O,): ThemesArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<ThemesArray[O]> | null
+    public static getValue(name: PossibleTheme,): Themes
+    public static getValue(name: string,): | Themes | null
+    public static getValue<I extends Themes = Themes, >(instance: I,): I
+    public static getValue(value: | Themes | string | number | null | undefined,): | Themes | null
+    public static getValue(value: | Themes | string | number | null | undefined,): | Themes | null {
+        return value == null
+            ? null
+            : typeof value === 'string'
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.values.find(theme => theme.englishName === value)
+                    ?? null
+                : typeof value === 'number'
+                    ? this.values[value] ?? null
+                    : value;
     }
 
     public static get values(): ThemesArray {
@@ -253,10 +259,11 @@ export class Themes
         ];
     }
 
+
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }

@@ -5,15 +5,12 @@ import type {ProjectLanguagesOrdinals}                                    from '
 
 import {ProjectLanguages} from '../ProjectLanguages';
 
-//region -------------------- Languages types --------------------
+//region -------------------- Date day language types --------------------
 
 export type PossibleNonNullableValue = | DateDayLanguages | ProjectPossibleNonNullableValue;
 
-//endregion -------------------- Languages types --------------------
+//endregion -------------------- Date day language types --------------------
 
-/**
- * @enum
- */
 export abstract class DateDayLanguages
     extends ProjectLanguages {
 
@@ -141,9 +138,13 @@ export abstract class DateDayLanguages
     }            (ProjectLanguages.KOREAN,             );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Enum attributes --------------------
 
     static #VALUES?: ProjectLanguagesArray<DateDayLanguages>;
+
+    //endregion -------------------- Enum attributes --------------------
+    //region -------------------- Attributes --------------------
+
     readonly #reference;
 
     //endregion -------------------- Attributes --------------------
@@ -153,15 +154,14 @@ export abstract class DateDayLanguages
         this.#reference = language;
     }
 
-    //region -------------------- Methods --------------------
-
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     public get reference() {
         return this.#reference;
     }
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public abstract newDayComponent(day: DayNumber,): JSX.Element;
 
@@ -171,7 +171,7 @@ export abstract class DateDayLanguages
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //region -------------------- Enum methods --------------------
 
     public static get default(): DateDayLanguages {
         return this.getValue(ProjectLanguages.default);
@@ -215,6 +215,6 @@ export abstract class DateDayLanguages
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }

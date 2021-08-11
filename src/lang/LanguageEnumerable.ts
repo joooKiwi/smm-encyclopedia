@@ -7,7 +7,7 @@ import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, P
 
 export interface LanguageEnumerable {
 
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     get projectAcronym(): PossibleEveryLanguagesAcronym
 
@@ -21,7 +21,7 @@ export interface LanguageEnumerable {
 
     get isCurrentLanguageOrAssociatedWithIt(): boolean
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     get(classWithLanguages: ClassWithLanguages,): string

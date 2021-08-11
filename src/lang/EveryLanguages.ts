@@ -8,10 +8,9 @@ import type {ChineseOriginal}            from './name/containers/ChineseLanguage
 import type {LanguageEnumerable}         from './LanguageEnumerable';
 import type {SimpleEnum}                 from '../util/enum/EnumTypes';
 
-import {Enumerable}       from '../util/enum/Enumerable';
-import {getLastOrdinalOn} from '../util/enum/enumUtilityMethods';
+import {Enum} from '../util/enum/Enum';
 
-//region -------------------- Language text --------------------
+//region -------------------- Every language text --------------------
 
 //region -------------------- Acronyms --------------------
 
@@ -76,7 +75,7 @@ export type PossibleNonNullableValue = | EveryLanguages
     | PossibleEveryLanguagesAcronym
     | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName;
 
-//endregion -------------------- Language text --------------------
+//endregion -------------------- Every language text --------------------
 //region -------------------- Enum types --------------------
 
 export type EveryLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
@@ -119,11 +118,9 @@ export type EveryLanguagesArray<T = EveryLanguages, > = readonly [
 
 //endregion -------------------- Enum types --------------------
 
-/**
- * @enum
- */
 export abstract class EveryLanguages
-    implements Enumerable<EveryLanguagesOrdinals, EveryLanguagesNames>, LanguageEnumerable {
+    extends Enum<EveryLanguagesOrdinals, EveryLanguagesNames>
+    implements LanguageEnumerable {
 
     //region -------------------- Enum instances --------------------
 
@@ -352,7 +349,6 @@ export abstract class EveryLanguages
 
     static #VALUES?: EveryLanguagesArray;
     static #DEFAULT?: EveryLanguages;
-    readonly #ordinal: EveryLanguagesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -371,7 +367,7 @@ export abstract class EveryLanguages
     private constructor(projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName,)
     private constructor(projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName, parent: EveryLanguages,)
     private constructor(projectAcronym: PossibleEveryLanguagesAcronym, internationalAcronym: PossibleEveryLanguagesInternationalAcronym, englishName: PossibleEveryLanguagesEnglishName, originalName: PossibleEveryLanguagesOriginalName, parent: | EveryLanguages | null = null,) {
-        this.#ordinal = getLastOrdinalOn(EveryLanguages);
+        super(EveryLanguages);
         this.#projectAcronym = projectAcronym;
         this.#internationalAcronym = internationalAcronym;
         this.#englishName = englishName;
@@ -379,7 +375,7 @@ export abstract class EveryLanguages
         this.#parent = parent;
     }
 
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     public get projectAcronym(): PossibleEveryLanguagesAcronym {
         return this.#projectAcronym;
@@ -409,7 +405,7 @@ export abstract class EveryLanguages
         return this.isCurrentLanguage;
     }
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public abstract get(classWithLanguages: ClassWithLanguages,): string;
@@ -448,11 +444,6 @@ export abstract class EveryLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public get ordinal(): EveryLanguagesOrdinals {
-        return this.#ordinal;
-    }
-
-
     public static get default(): EveryLanguages {
         return this.#DEFAULT!;
     }
@@ -480,7 +471,9 @@ export abstract class EveryLanguages
         return value == null
             ? null
             : typeof value === 'string'
-                ? this.values.find(language => language.englishName === value || language.originalName === value) ?? null
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
+                    ?? null
                 : typeof value == 'number'
                     ? this.values[value] ?? null
                     : value ?? null;
@@ -510,5 +503,5 @@ export abstract class EveryLanguages
 
 }
 
-EveryLanguages.default = EveryLanguages.default ?? 'en_AM';
-EveryLanguages.currentLanguage = EveryLanguages.currentLanguage ?? 'en_AM';
+EveryLanguages.default ??= 'en_AM';
+EveryLanguages.currentLanguage ??= 'en_AM';

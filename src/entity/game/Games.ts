@@ -2,14 +2,14 @@ import type {GameProperty}   from '../properties/GameProperty';
 import type {PropertyGetter} from '../PropertyGetter';
 import type {SimpleEnum}     from '../../util/enum/EnumTypes';
 
-import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
+import {Enum} from '../../util/enum/Enum';
 
-//region -------------------- game texts --------------------
+//region -------------------- Game texts --------------------
 
 export type PossibleGameName = `Super Mario Maker${'' | ' 2'}`;
 export type PossibleImagePath = `/game/logos/${PossibleGameName}.png`;
 
-//endregion -------------------- game texts --------------------
+//endregion -------------------- Game texts --------------------
 //region -------------------- Enum types --------------------
 
 export type GamesOrdinals = 0 | 1;
@@ -22,13 +22,11 @@ export type GamesArray<T = Games, > = readonly [
 
 //endregion -------------------- Enum types --------------------
 
-/**
- * @enum
- */
 export abstract class Games
+    extends Enum<GamesOrdinals, GamesNames>
     implements PropertyGetter<PossibleGameName, GameProperty> {
 
-    //region -------------------- enum instances --------------------
+    //region -------------------- Enum instances --------------------
 
     public static readonly SUPER_MARIO_MAKER_1 = new class Games_SuperMarioMaker1 extends Games {
         public get(property: GameProperty,): boolean {
@@ -40,11 +38,11 @@ export abstract class Games
             return property.isInSuperMarioMaker2;
         }
     }('Super Mario Maker 2',);
-    //endregion -------------------- enum instances --------------------
+
+    //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: GamesArray;
-    readonly #ordinal: GamesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -55,37 +53,46 @@ export abstract class Games
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleGameName,) {
-        this.#ordinal = getLastOrdinalOn(Games);
+        super(Games);
         this.#englishName = englishName;
         this.#imagePath = '/game/logos/' + englishName + '.png' as PossibleImagePath;
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleGameName {
         return this.#englishName;
     }
 
-    public abstract get(property: GameProperty,): boolean;
-
     public get imagePath(): PossibleImagePath {
         return this.#imagePath;
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
+    public abstract get(property: GameProperty,): boolean;
+
     //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //region -------------------- Enum methods --------------------
 
-    public get ordinal(): GamesOrdinals {
-        return this.#ordinal;
-    }
-
-    public static getValue(value: | Games | PossibleGameName,): Games
-    public static getValue(value: string,): | Games | null
-    public static getValue(value: | Games | string,): | Games | null
-    public static getValue(value: | Games | string,): | Games | null {
-        return typeof value === 'string'
-            ? this.values.find(theme => theme.englishName === value) ?? null
-            : value;
+    public static getValue(nullValue: | null | undefined,): null
+    public static getValue<O extends GamesOrdinals = GamesOrdinals, >(ordinal: O,): GamesArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<GamesArray[O]> | null
+    public static getValue(name: string,): | Games | null
+    public static getValue(name: PossibleGameName,): Games
+    public static getValue<I extends Games = Games, >(instance: I,): I
+    public static getValue(value: | Games | string | number,): | Games | null
+    public static getValue(value: | Games | string | number | null | undefined,): | Games | null {
+        return value == null
+            ? null
+            : typeof value === 'string'
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.values.find(theme => theme.englishName === value)
+                    ?? null
+                : typeof value === 'number'
+                    ? this.values[value] ?? null
+                    : value;
     }
 
     public static get values(): GamesArray {
@@ -95,10 +102,11 @@ export abstract class Games
         ];
     }
 
+
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }

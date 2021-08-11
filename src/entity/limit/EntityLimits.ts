@@ -2,9 +2,9 @@ import type {EntityLimit} from './EntityLimit';
 import type {SimpleEnum}  from '../../util/enum/EnumTypes';
 
 import {EntityLimitLoader} from './EntityLimitLoader';
-import {getLastOrdinalOn}  from '../../util/enum/enumUtilityMethods';
+import {Enum}              from '../../util/enum/Enum';
 
-//region -------------------- limit texts --------------------
+//region -------------------- Limit texts --------------------
 
 export type PossibleAcronymEntityLimits = `${'GE' | 'PE' | 'LC' | 'SE' | 'C' | 'PJ' | 'GV' | 'HY'}L`;
 export type PossibleStartingEntityLimits =
@@ -32,7 +32,7 @@ export type PossibleEntityLimits = `${PossibleStartingEntityLimits} Limit`;
 export type PossibleAlternativeAcronymEntityLimits = `EL${'B' | 'C'}`
 export type PossibleAlternativeEntityLimits = `Entity Limit ${'B' | 'C'}` | `Ground Limit ${1 | 2 | 3}` | 'General Enemy Limit';
 
-//endregion -------------------- limit texts --------------------
+//endregion -------------------- Limit texts --------------------
 //region -------------------- Enum types --------------------
 
 export type EntityLimitsOrdinals =
@@ -85,12 +85,12 @@ export type EntityLimitsArray<T = EntityLimits, > = readonly [
 //endregion -------------------- Enum types --------------------
 
 /**
- * @enum
  * @recursiveReference {@link EntityLimitLoader}
  */
-export class EntityLimits {
+export class EntityLimits
+    extends Enum<EntityLimitsOrdinals, EntityLimitsNames> {
 
-    //region -------------------- enum instances --------------------
+    //region -------------------- Enum instances --------------------
 
     public static readonly GENERAL_ENTITY_LIMIT =                           new EntityLimits(['GEL', 'General Entity',], ['ELB', 'Entity Limit B',],);
     public static readonly POWER_UP_ENTITY_LIMIT =                          new EntityLimits(['PEL', 'Power-up Entity'], ['ELC', 'Entity Limit C',],);
@@ -141,11 +141,10 @@ export class EntityLimits {
     public static readonly WARP_DOOR_LIMIT =                                new EntityLimits('Warp Door',);
     public static readonly WARP_BOX_LIMIT =                                 new EntityLimits('Warp Box',);
 
-    //endregion -------------------- enum instances --------------------
+    //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: EntityLimitsArray;
-    readonly #ordinal: EntityLimitsOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -164,7 +163,7 @@ export class EntityLimits {
         englishName: PossibleStartingEntityLimits | [englishName: PossibleAcronymEntityLimits, englishAcronym: PossibleStartingEntityLimits,],
         alternativeEnglishName: PossibleAlternativeEntityLimits | [alternativeEnglishName: PossibleAlternativeAcronymEntityLimits, alternativeEnglishAcronym: PossibleAlternativeEntityLimits,] | null = null,
     ) {
-        this.#ordinal = getLastOrdinalOn(EntityLimits);
+        super(EntityLimits);
         if (typeof englishName == 'string') {
             this.#acronym = null;
             this.#englishName = `${englishName} Limit`;
@@ -181,7 +180,7 @@ export class EntityLimits {
         }
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get acronym(): PossibleAcronymEntityLimits | null {
         return this.#acronym;
@@ -203,6 +202,8 @@ export class EntityLimits {
         return this.#reference ??= EntityLimitLoader.get.load().get(this.englishName)!;
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public static get everyAcronyms(): readonly PossibleAcronymEntityLimits[] {
         return this.values.map(limit => limit.acronym).filter(acronym => acronym != null) as PossibleAcronymEntityLimits[];
@@ -221,22 +222,27 @@ export class EntityLimits {
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //region -------------------- Enum methods --------------------
 
-    public get ordinal(): EntityLimitsOrdinals {
-        return this.#ordinal;
-    }
-
-    public static getValue(value: | EntityLimits | PossibleStartingEntityLimits | PossibleEntityLimits | PossibleAlternativeEntityLimits,): EntityLimits
-    public static getValue(value: string,): | EntityLimits | null
-    public static getValue(value: | EntityLimits | string,): | EntityLimits | null
-    public static getValue(value: | EntityLimits | string,): | EntityLimits | null {
-        return typeof value === 'string'
-            ? this.values.find(theme => theme.englishName === value)
-                ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_LENGTH) === value)
-                ?? this.values.find(theme => theme.alternativeEnglishName === value)
-                ?? null
-            : value;
+    public static getValue(nullValue: | null | undefined,): null
+    public static getValue<O extends EntityLimitsOrdinals = EntityLimitsOrdinals>(ordinal: O,): EntityLimitsArray[O]
+    public static getValue<O extends number = number>(ordinal: O,): | NonNullable<EntityLimitsArray[O]> | null
+    public static getValue(name: | PossibleStartingEntityLimits | PossibleEntityLimits | PossibleAlternativeEntityLimits,): EntityLimits
+    public static getValue(name: string,): | EntityLimits | null
+    public static getValue<I extends EntityLimits = EntityLimits, >(instance: I,): I
+    public static getValue(value: | EntityLimits | string | number | null | undefined,): | EntityLimits | null
+    public static getValue(value: | EntityLimits | string | number | null | undefined,): | EntityLimits | null {
+        return value == null
+            ? null
+            : typeof value === 'string'
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.values.find(theme => theme.englishName === value)
+                    ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_LENGTH) === value)
+                    ?? this.values.find(theme => theme.alternativeEnglishName === value)
+                    ?? null
+                : typeof value === 'number'
+                    ? this.values[value] ?? null
+                    : value;
     }
 
     public static get values(): EntityLimitsArray {
@@ -267,10 +273,11 @@ export class EntityLimits {
         ];
     }
 
+
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }
