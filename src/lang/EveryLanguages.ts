@@ -9,7 +9,7 @@ import type {LanguageEnumerable}         from './LanguageEnumerable';
 import type {SimpleEnum}                 from '../util/enum/EnumTypes';
 
 import {Enumerable}       from '../util/enum/Enumerable';
-import {getLastOrdinalOn} from '../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../util/enum/enumUtilityMethods';
 
 //region -------------------- Language text --------------------
 

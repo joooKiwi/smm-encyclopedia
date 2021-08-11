@@ -4,7 +4,7 @@ import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
 import type {ThemeProperty}               from '../properties/ThemeProperty';
 import type {WorldTheme}                  from './WorldTheme';
 
-import {getLastOrdinalOn} from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
 import {ThemeLoader}      from './ThemeLoader';
 
 //region -------------------- themes texts --------------------

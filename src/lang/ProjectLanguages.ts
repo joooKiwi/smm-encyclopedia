@@ -8,7 +8,7 @@ import type {LanguageEnumerable}                                                
 import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym,  PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages';
 
 import {EveryLanguages}   from './EveryLanguages';
-import {getLastOrdinalOn} from '../util/enum/ordinalMethods';
+import {getLastOrdinalOn} from '../util/enum/enumUtilityMethods';
 
 //region -------------------- Languages types --------------------
 

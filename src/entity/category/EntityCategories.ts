@@ -3,7 +3,7 @@ import type {PossibleTheme}  from '../theme/Themes';
 import type {SimpleEnum}     from '../../util/enum/EnumTypes';
 
 import {EntityCategoryLoader} from './EntityCategoryLoader';
-import {getLastOrdinalOn}     from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn}     from '../../util/enum/enumUtilityMethods';
 
 //region -------------------- category texts --------------------
 

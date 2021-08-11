@@ -2,7 +2,7 @@ import type {EntityLimit} from './EntityLimit';
 import type {SimpleEnum}  from '../../util/enum/EnumTypes';
 
 import {EntityLimitLoader} from './EntityLimitLoader';
-import {getLastOrdinalOn}  from '../../util/enum/ordinalMethods';
+import {getLastOrdinalOn}  from '../../util/enum/enumUtilityMethods';
 
 //region -------------------- limit texts --------------------
 

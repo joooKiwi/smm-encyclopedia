@@ -10,7 +10,7 @@ import {StringToNullableBooleanConverter} from './StringToNullableBooleanConvert
 import {StringToNullableStringConverter}  from './StringToNullableStringConverter';
 import {StringToNumberConverter}          from './StringToNumberConverter';
 import {StringToStringConverter}          from './StringToStringConverter';
-import {getLastOrdinalOn}                 from '../../enum/ordinalMethods';
+import {getLastOrdinalOn}                 from '../../enum/enumUtilityMethods';
 
 //region -------------------- converter texts --------------------
 
