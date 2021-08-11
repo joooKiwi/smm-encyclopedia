@@ -26,6 +26,8 @@ export class NameBuilder
     //endregion -------------------- Attributes --------------------
     //region -------------------- Getter & setter methods --------------------
 
+    //region -------------------- English getter & setter methods --------------------
+
     public get english() {
         return this.#english;
     }
@@ -41,6 +43,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- English getter & setter methods --------------------
+    //region -------------------- French getter & setter methods --------------------
 
     public get french() {
         return this.#french;
@@ -57,6 +61,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- French getter & setter methods --------------------
+    //region -------------------- German getter & setter methods --------------------
 
     public get german() {
         return this.#german;
@@ -73,6 +79,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- German getter & setter methods --------------------
+    //region -------------------- Spanish getter & setter methods --------------------
 
     public get spanish() {
         return this.#spanish;
@@ -89,6 +97,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Spanish getter & setter methods --------------------
+    //region -------------------- Italian getter & setter methods --------------------
 
     public get italian() {
         return this.#italian;
@@ -105,6 +115,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Italian getter & setter methods --------------------
+    //region -------------------- Dutch getter & setter methods --------------------
 
     public get dutch() {
         return this.#dutch;
@@ -121,6 +133,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Dutch getter & setter methods --------------------
+    //region -------------------- Portuguese getter & setter methods --------------------
 
     public get portuguese() {
         return this.#portuguese;
@@ -137,6 +151,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Portuguese getter & setter methods --------------------
+    //region -------------------- Russian getter & setter methods --------------------
 
     public get russian() {
         return this.#russian;
@@ -153,6 +169,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Russian getter & setter methods --------------------
+    //region -------------------- Japanese getter & setter methods --------------------
 
     public get japanese() {
         return this.#japanese;
@@ -169,6 +187,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Japanese getter & setter methods --------------------
+    //region -------------------- Chinese getter & setter methods --------------------
 
     public get chinese() {
         return this.#chinese;
@@ -185,6 +205,8 @@ export class NameBuilder
         return this;
     }
 
+    //endregion -------------------- Chinese getter & setter methods --------------------
+    //region -------------------- Korean getter & setter methods --------------------
 
     public get korean() {
         return this.#korean;
@@ -200,6 +222,8 @@ export class NameBuilder
         this.#korean = value;
         return this;
     }
+
+    //endregion -------------------- Korean getter & setter methods --------------------
 
     //endregion -------------------- Getter & setter methods --------------------
 
