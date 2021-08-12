@@ -1,13 +1,35 @@
 import type {Converter}            from './converter/Converter';
 import type {PredefinedConversion} from './converter/PredefinedConverterTypes';
 
-export type CustomConversionCallback = (value: string,) => Converter<string, any>;
-export type HeaderTypeOrConvertor = | PredefinedConversion
-                                    | readonly (PredefinedConversion | string)[]
-                                    | CustomConversionCallback;
-export type HeaderType<H extends string = string, > = readonly H[];
+export type ConversionCallbackToConverter = (value: string,) => Converter<string, any>;
 
+export type SimpleHeaderTypeOrConvertor = | PredefinedConversion | string | ConversionCallbackToConverter;
+export type ArrayHeaderTypeOrConvertor = readonly SimpleHeaderTypeOrConvertor[];
+export type ArrayOrSimpleHeaderTypeOrConvertor = | SimpleHeaderTypeOrConvertor | ArrayHeaderTypeOrConvertor;
+export type ArrayOrSimpleHeaderTypeConvertorExcluding<T> = | Exclude<SimpleHeaderTypeOrConvertor, T> | readonly Exclude<SimpleHeaderTypeOrConvertor, T>[]
+
+//region -------------------- Headers types --------------------
+
+export type ArrayOfHeaders<H extends string = string, > = readonly SimpleHeader<H>[];
+export type ArrayOfHeadersReceived<H extends string = string, > = readonly SimpleHeaderReceived<H>[];
+export type SimpleHeader<H extends string = string, > = Lowercase<H>;
+export type SimpleHeaderReceived<H extends string = string, > = | H | Lowercase<H> | Uppercase<H> | Capitalize<H> | Uncapitalize<H>;
+
+export interface HeadersConverterHolder<H extends string = string, > {
+
+    get index(): number
+
+    get header(): SimpleHeader<H>
+
+    get convertor(): ConversionCallbackToConverter
+
+}
+
+//endregion -------------------- Headers types --------------------
 //region -------------------- Callback types --------------------
+
+export type ValidationCallback = (value: string,) => boolean;
+export type ConversionCallbackToAny = (value: string,) => any;
 
 export type CallbackOnBeforeFinalObjectCreated<A extends any[] = any[], > = | ((convertedContent: A, originalContent: readonly string[],) => void) | null;
 export type CallbackOnAfterFinalObjectCreated<A extends any[] = any[], T = any, > = | ((finalContent: T, convertedContent: A, originalContent: readonly string[],) => void) | null;

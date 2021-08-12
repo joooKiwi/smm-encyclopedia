@@ -5,13 +5,15 @@ import type {SimpleEnum}          from '../../enum/EnumTypes';
 
 export type PrimitiveConversion = | 'boolean' | 'number' | 'string';
 export type HeaderConversion = 'header';
-export type NullablePredefinedConversion = `nullable ${PrimitiveConversion | HeaderConversion}`;
-export type PredefinedConversion = | NullablePredefinedConversion | PrimitiveConversion | HeaderConversion | 'emptyable string';
+export type BasicPredefinedConversion = PrimitiveConversion;// | HeaderConversion;
+export type NullablePredefinedConversion = `nullable ${BasicPredefinedConversion}`;
+export type EmptyableString = 'emptyable string';
+export type PredefinedConversion = | NullablePredefinedConversion | BasicPredefinedConversion | EmptyableString;
 
 //endregion -------------------- Predefined converter texts --------------------
 //region -------------------- Enum types --------------------
 
-export type PredefinedConverterOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type PredefinedConverterOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;// | 8 | 9;
 export type PredefinedConverterNames = `${| 'NULLABLE_' | ''}${| 'NUMBER' | 'BOOLEAN' | 'STRING' | 'HEADER'}` | 'EMPTYABLE_STRING';
 export type SimplePredefinedConverter<T = PredefinedConverter, > = SimpleEnum<PredefinedConverterNames, T>;
 export type PredefinedConverterArray<T = PredefinedConverter, > = readonly [
