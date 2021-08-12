@@ -604,6 +604,10 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
                 : headerTypeOrConvertorFound;
     }
 
+    //region -------------------- Convertor creation methods --------------------
+
+    //region -------------------- Single Convertor creation methods --------------------
+
     /**
      * Create the {@link Converter} based on the {@link PredefinedConversion}
      * and the create a new basic {@link Converter}.
@@ -618,9 +622,18 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         return value => new StringToSingleStringConverter(value, predefinedConversionHeaderOrString,);
     }
 
-    protected _createMixedConvertor(conversionComponents: ArrayHeaderTypeOrConvertor,): ConversionCallbackToConverter {
+    //endregion -------------------- Single Convertor creation methods --------------------
+    //region -------------------- Mixed Convertor creation methods --------------------
+
+    protected _createContainValidations(conversionComponents: ArrayHeaderTypeOrConvertor,): [boolean, boolean] {
         const containNullable = conversionComponents.find(conversionComponent => typeof conversionComponent === 'string' && conversionComponent.includes('nullable')) != null;
         const containEmptyableString = conversionComponents.find(conversionComponent => conversionComponent === PredefinedConverter.EMPTYABLE_STRING.name) != null;
+        return [containNullable, containEmptyableString,];
+    }
+
+    protected _createMixedConvertor(conversionComponents: ArrayHeaderTypeOrConvertor,): ConversionCallbackToConverter {
+        const [containNullable, containEmptyableString,] = this._createContainValidations(conversionComponents);
+
         //region -------------------- Creation of the mixed convertor --------------------
 
         let validationComponentOnConverter = [] as ValidationCallback[];
@@ -651,6 +664,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
                 .join(', ')
             + ')';
 
+        //endregion -------------------- Mixed Convertor creation methods --------------------
+
         //endregion -------------------- Creation of the mixed convertor --------------------
         //region -------------------- Return statement --------------------
 
@@ -673,6 +688,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
         //endregion -------------------- Return statement --------------------
     }
+
+    //endregion -------------------- Convertor creation methods --------------------
 
     //endregion -------------------- Initialisation methods --------------------
 
