@@ -26,6 +26,12 @@ export interface HeadersConverterHolder<H extends string = string, > {
 }
 
 //endregion -------------------- Headers types --------------------
+//region -------------------- Mixed convertor types --------------------
+
+export type ArrayOfValidationsArrayOfValidations = [containNullable: boolean, containEmptyableString: boolean,];
+export type ArrayOfMixedConvertorInstance = [validationComponentOnConvertor: readonly ValidationCallback[], conversionComponentOnConvertor: readonly ConversionCallbackToAny[], typeOnConvertor: string,];
+
+//endregion -------------------- Mixed convertor types --------------------
 //region -------------------- Callback types --------------------
 
 export type ValidationCallback = (value: string,) => boolean;

@@ -1,6 +1,6 @@
-import type {Converter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './converter/Converter';
-import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoaderTypes';
-import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion, PrimitiveConversion}                                                                                                                                                                                                                                                                                                                                                                                                                    from './converter/PredefinedConverterTypes';
+import type {Converter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from './converter/Converter';
+import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoaderTypes';
+import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion, PrimitiveConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from './converter/PredefinedConverterTypes';
 
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
@@ -625,21 +625,19 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- Single Convertor creation methods --------------------
     //region -------------------- Mixed Convertor creation methods --------------------
 
-    protected _createContainValidations(conversionComponents: ArrayHeaderTypeOrConvertor,): [boolean, boolean] {
+    protected _createContainValidations(conversionComponents: ArrayHeaderTypeOrConvertor,): ArrayOfValidationsArrayOfValidations {
         const containNullable = conversionComponents.find(conversionComponent => typeof conversionComponent === 'string' && conversionComponent.includes('nullable')) != null;
         const containEmptyableString = conversionComponents.find(conversionComponent => conversionComponent === PredefinedConverter.EMPTYABLE_STRING.name) != null;
         return [containNullable, containEmptyableString,];
     }
 
-    protected _createMixedConvertor(conversionComponents: ArrayHeaderTypeOrConvertor,): ConversionCallbackToConverter {
-        const [containNullable, containEmptyableString,] = this._createContainValidations(conversionComponents);
+    protected _createMixedConvertorInstance(conversionComponents: ArrayHeaderTypeOrConvertor, validations: ArrayOfValidationsArrayOfValidations,): ArrayOfMixedConvertorInstance {
+        const [containNullable, containEmptyableString,] = validations;
 
-        //region -------------------- Creation of the mixed convertor --------------------
+        let validationComponentOnConvertor = [] as ValidationCallback[];
+        let conversionComponentOnConvertor = [] as ConversionCallbackToAny[];
 
-        let validationComponentOnConverter = [] as ValidationCallback[];
-        let conversionComponentOnConverter = [] as ConversionCallbackToAny[];
-
-        const typeOnConverter = (containNullable ? 'nullable' : '')
+        const typeOnConvertor = (containNullable ? 'nullable' : '')
             + ' ('
             + (containEmptyableString ? '"", ' : '')
             + conversionComponents.map(conversionComponent => {
@@ -648,45 +646,53 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
                     const predefinedConvertor = PredefinedConverter.getValue(conversionComponent);
                     if (predefinedConvertor === null) {
                         type = '"' + conversionComponent + '"';
-                        validationComponentOnConverter.push(value => value === conversionComponent);
-                        conversionComponentOnConverter.push(value => value);
+                        validationComponentOnConvertor.push(value => value === conversionComponent);
+                        conversionComponentOnConvertor.push(value => value);
                     } else {
                         type = predefinedConvertor.nameAsNonNullable;
-                        validationComponentOnConverter.push(predefinedConvertor.newValidationAsNonNullable());
-                        conversionComponentOnConverter.push(value => predefinedConvertor.newConversionAsNonNullable(value));
+                        validationComponentOnConvertor.push(predefinedConvertor.newValidationAsNonNullable());
+                        conversionComponentOnConvertor.push(value => predefinedConvertor.newConversionAsNonNullable(value));
                     }
                 } else {
                     type = CSVLoader.CUSTOM_CALLBACK_NAME;
-                    conversionComponentOnConverter.push(value => conversionComponent(value));
+                    conversionComponentOnConvertor.push(value => conversionComponent(value));
                 }
                 return type;
             })
                 .join(', ')
             + ')';
 
-        //endregion -------------------- Mixed Convertor creation methods --------------------
+        return [validationComponentOnConvertor, conversionComponentOnConvertor, typeOnConvertor,];
+    }
 
-        //endregion -------------------- Creation of the mixed convertor --------------------
-        //region -------------------- Return statement --------------------
+    protected _interpretConvertorInstance(validations: ArrayOfValidationsArrayOfValidations, mixedConvertorInstance: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
+        const [containNullable, containEmptyableString,] = validations;
+        const [validationComponentOnConvertor, conversionComponentOnConvertor, typeOnConvertor,] = mixedConvertorInstance;
 
         const finalValidationComponentOnConverter: ValidationCallback = value => {
-            for (let validationComponent of validationComponentOnConverter) {
+            for (let validationComponent of validationComponentOnConvertor) {
                 if (validationComponent(value))
                     return true;
             }
             return false;
         };
-        const finalConversionComponentOnConverter: ConversionCallbackToAny = value => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
+        const finalConversionComponentOnConverter: ConversionCallbackToAny = value => conversionComponentOnConvertor[validationComponentOnConvertor.findIndex(validationComponent => validationComponent(value))](value);
 
         return containNullable
-            ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter,
+            ? value => new GenericStringToAnyNullableConverter(value, typeOnConvertor,
                 value => finalValidationComponentOnConverter(value),
                 value => finalConversionComponentOnConverter(value))
-            : value => new GenericStringToAnyConverter(value, typeOnConverter,
+            : value => new GenericStringToAnyConverter(value, typeOnConvertor,
                 value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
                 value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value));
+    }
 
-        //endregion -------------------- Return statement --------------------
+    protected _createMixedConvertor(conversionComponents: ArrayHeaderTypeOrConvertor,): ConversionCallbackToConverter {
+        const validations = this._createContainValidations(conversionComponents);
+
+        const mixedConvertorInstance = this._createMixedConvertorInstance(conversionComponents, validations,);
+
+        return this._interpretConvertorInstance(validations, mixedConvertorInstance);
     }
 
     //endregion -------------------- Convertor creation methods --------------------
