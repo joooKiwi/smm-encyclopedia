@@ -5,7 +5,8 @@ import type {SimpleEnum}          from '../../enum/EnumTypes';
 
 export type PrimitiveConversion = | 'boolean' | 'number' | 'string';
 export type HeaderConversion = 'header';
-export type BasicPredefinedConversion = PrimitiveConversion;// | HeaderConversion;
+export type SingleString = 'single string';
+export type BasicPredefinedConversion = | PrimitiveConversion | SingleString;// | HeaderConversion;
 export type NullablePredefinedConversion = `nullable ${BasicPredefinedConversion}`;
 export type EmptyableString = 'emptyable string';
 export type PredefinedConversion = | NullablePredefinedConversion | BasicPredefinedConversion | EmptyableString;
