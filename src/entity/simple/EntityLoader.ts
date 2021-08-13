@@ -248,7 +248,7 @@ export class EntityLoader
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
                     'korean',
                 )
-                .onFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
+                .onAfterFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
                     const name = finalContent.name;
                     NameCreator.addEnglishReference(name, references, originalContent, convertedContent, finalContent);
                     referencesToWatch.addReference(finalContent);

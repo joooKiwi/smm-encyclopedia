@@ -1,85 +1,122 @@
-import type {Converter}                                 from './converter/Converter';
-import type {PredefinedConversion, PrimitiveConversion} from './converter/PredefinedConverter';
+import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoaderTypes';
+import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './converter/PredefinedConverterTypes';
 
+import {HeaderContainer}                     from './HeaderContainer';
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
 import {PredefinedConverter}                 from './converter/PredefinedConverter';
 
-//region -------------------- CVSLoader types --------------------
-
-export type CustomConversionCallback = (value: string,) => Converter<string, any>;
-export type HeaderTypeOrConvertor = PredefinedConversion
-    | readonly (PredefinedConversion | string)[]
-    | CustomConversionCallback;
-
-//endregion -------------------- CVSLoader types --------------------
-
-export class CSVLoader<T extends any[], U> {
+export class CSVLoader<A extends any[] = any[], T = any, H extends string = string, > {
 
     //region -------------------- Attributes --------------------
 
-    public static GENERIC_DEFAULT_CONVERSION: PredefinedConversion = 'emptyable string';
+    public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
+    public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
 
+    readonly #headers;
     readonly #originalContent;
-    readonly #headersToConvert;
+    readonly #callbackToCreateObject;
+
+    readonly #headerContainerMap;
+    readonly #headersFollowed;
     readonly #convertedContent;
     readonly #content;
 
-    readonly #callbackToCreateObject;
-    #callbackOnFinalObjectCreated?: (finalContent: U, convertedContent: T, originalContent: readonly string[],) => void;
-    #callbackOnSingleContentConverted?: (content: keyof T, originalValue: string,) => void;
-    #callbackOnInitialisationEnd?: (finalContents: readonly U[], convertedContents: readonly T[], originalContents: readonly string[][],) => void;
+    #callbackOnBeforeFinalObjectCreated: CallbackOnBeforeFinalObjectCreated<A>;
+    #callbackOnAfterFinalObjectCreated: CallbackOnAfterFinalObjectCreated<A, T>;
+    #callbackOnBeforeSingleContentConverted: CallbackOnBeforeSingleContentConverted;
+    #callbackOnAfterSingleContentConverted: CallbackOnAfterSingleContentConverted<A>;
+    #callbackOnInitialisationStart: CallbackOnInitialisationStart;
+    #callbackOnInitialisationEnd: CallbackOnInitialisationEnd<A, T>;
     #defaultConversion?: PredefinedConversion;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalContent: string[][], callbackToCreateObject: (convertedContent: T,) => U,) {
+    public constructor(originalContent: string[][], callbackToCreateObject: (convertedContent: A,) => T,) {
+        this.#headers = originalContent.shift()! as readonly SimpleHeader<H>[];
         this.#originalContent = originalContent;
-        this.#headersToConvert = new Map<string, HeaderTypeOrConvertor>();
-        this.#convertedContent = [] as T[];
-        this.#content = [] as U[];
         this.#callbackToCreateObject = callbackToCreateObject;
+
+        this.#headerContainerMap = new Map<SimpleHeader<H>, HeaderContainer<H, this['headers']>>();
+        this.#headersFollowed = [] as SimpleHeader<H>[];
+        this.#convertedContent = [] as A[];
+        this.#content = [] as T[];
+
+        this.#callbackOnBeforeFinalObjectCreated = null;
+        this.#callbackOnAfterFinalObjectCreated = null;
+        this.#callbackOnBeforeSingleContentConverted = null;
+        this.#callbackOnAfterSingleContentConverted = null;
+        this.#callbackOnInitialisationStart = null;
+        this.#callbackOnInitialisationEnd = null;
     }
 
-    //region -------------------- getter and setter and direct use on private members methods --------------------
+    //region -------------------- Getter and setter methods --------------------
+
+    //region -------------------- Headers methods --------------------
+
+    /**
+     * The headers on the {@link this.originalContent original content}.
+     */
+    public get headers(): readonly SimpleHeader<H>[] {
+        return this.#headers;
+    }
+
+    //endregion -------------------- Headers methods --------------------
+    //region -------------------- Original content methods --------------------
 
     /**
      * The original content received via the constructor.
      */
-    public get originalContent(): string[][] {
+    public get originalContent(): readonly string[][] {
         return this.#originalContent;
     }
 
+    //endregion -------------------- Original content methods --------------------
+    //region -------------------- Converted content methods --------------------
+
     /**
-     * The converted content with the sames structure as the {@link originalContent},
-     * but converted based on the {@link headersToConvert} on each associated <u>header index</u>.
+     * The converted content with the sames structure as the {@link this.originalContent},
+     * but converted based on the {@link this.headerContainerMap} on each associated <u>header index</u>.
      */
-    public get convertedContent(): readonly T[] {
+    public get convertedContent(): readonly A[] {
+        return this._convertedContent;
+    }
+
+    protected get _convertedContent(): A[] {
         return this.#convertedContent;
     }
 
+    //endregion -------------------- Converted content methods --------------------
+    //region -------------------- Headers to convert methods --------------------
+
     /**
      * A map of every headers to convert.
-     * It exclude the other titles where they use the {@link GENERIC_DEFAULT_CONVERSION} instead.
+     * For the titles not included in it, it use the {@link GENERIC_DEFAULT_CONVERSION} for the conversion.
      */
-    public get headersToConvert(): ReadonlyMap<string, HeaderTypeOrConvertor> {
-        return this.#headersToConvert;
+    public get headerContainerMap(): ReadonlyMap<SimpleHeader<H>, HeaderContainer<H, this['headers']>> {
+        return this._headerContainerMap;
     }
 
-    protected get _headersToConvert(): Map<string, HeaderTypeOrConvertor> {
-        return this.#headersToConvert;
+    protected get _headerContainerMap(): Map<SimpleHeader<H>, HeaderContainer<H, this['headers']>> {
+        return this.#headerContainerMap;
     }
+
+    //endregion -------------------- Headers to convert methods --------------------
+    //region -------------------- Headers followed methods --------------------
 
     /**
-     * Load the content only once, and then do nothing.
-     *
-     * @see _initialiseContent
+     * An array of every headers followed for the conversion.
      */
-    public load(): this {
-        if (this.#content.length === 0)
-            this._initialiseContent();
-        return this;
+    public get headersFollowed(): ArrayOfHeaders<H> {
+        return this._headersFollowed;
     }
+
+    public get _headersFollowed(): SimpleHeader<H>[] {
+        return this.#headersFollowed;
+    }
+
+    //endregion -------------------- Headers followed methods --------------------
+    //region -------------------- Content methods --------------------
 
     /**
      * Get the content stored inside this {@link CSVLoader loader}.
@@ -87,105 +124,23 @@ export class CSVLoader<T extends any[], U> {
      *
      * @see load
      */
-    public get content(): readonly U[] {
+    public get content(): readonly T[] {
         return this.load().#content;
     }
 
-    protected addContent(originalContent: string[], arrayContent: T,): this {
-        const convertContent = this.callbackToCreateObject(arrayContent);
-        this.callbackOnFinalObjectCreated?.(convertContent, arrayContent, originalContent,);
-        this.#convertedContent.push(arrayContent);
-        this.#content.push(convertContent);
-        return this;
+    protected get _content(): T[] {
+        return this.#content;
     }
 
-    //region -------------------- triggers methods --------------------
-
-    protected get callbackOnFinalObjectCreated() {
-        return this.#callbackOnFinalObjectCreated;
-    }
-
-    /**
-     * <p>
-     *  A trigger called before inserting the content
-     *  and after the {@link callbackToCreateObject callback received in the construction}
-     *  on the {@link addContent addition of content} in the initialisation process.
-     * </p>
-     *
-     * <p>
-     *  It receive as a parameter:
-     *  <ol>
-     *    <li>The final content</li>
-     *    <li>The content converted</li>
-     *    <li>The original content</li>
-     *  </ol>
-     * </p>
-     *
-     * @param callback the callback to set
-     */
-    public onFinalObjectCreated(callback: (finalContent: U, convertedContent: T, originalContent: readonly string[],) => void,): this {
-        this.#callbackOnFinalObjectCreated = callback;
-        return this;
-    }
-
-    protected get callbackOnSingleContentConverted() {
-        return this.#callbackOnSingleContentConverted;
-    }
-
-    /**
-     * <p>
-     *  A trigger called after each individual conversion
-     *  on the {@link _initialiseContent initialisation method}.
-     * </p>
-     *
-     * <p>
-     *  It receive as a parameter:
-     *  <ol>
-     *    <li>A single converted content</li>
-     *    <li>A single original content</li>
-     *  </ol>
-     * </p>
-     *
-     * @param callback the callback to set
-     */
-    public onSingleContentConverted(callback: (content: keyof T, originalValue: string,) => void,): this {
-        this.#callbackOnSingleContentConverted = callback;
-        return this;
-    }
-
-    protected get callbackOnInitialisationEnd() {
-        return this.#callbackOnInitialisationEnd;
-    }
-
-    /**
-     * <p>
-     *   A trigger called at the end of
-     *   the {@link _initialiseContent initialisation method}.
-     * </p>
-     *
-     * <p>
-     *  It receive as a parameter:
-     *  <ol>
-     *    <li>The final array of content</li>
-     *    <li>The array of converted content</li>
-     *    <li>The original content</li>
-     *  </ol>
-     * </p>
-     *
-     * @param callback the callback to set
-     */
-    public onInitialisationEnd(callback: (finalContents: readonly U[], convertedContents: readonly T[], originalContents: readonly string[][],) => void,): this {
-        this.#callbackOnInitialisationEnd = callback;
-        return this;
-    }
-
-    //endregion -------------------- triggers methods --------------------
+    //endregion -------------------- Content methods --------------------
+    //region -------------------- Callback to create the object --------------------
 
     protected get callbackToCreateObject() {
         return this.#callbackToCreateObject;
     }
 
-    //region -------------------- default values methods --------------------
+    //endregion -------------------- Callback to create the object --------------------
+    //region -------------------- Default conversion methods --------------------
 
     protected get defaultConversion() {
         return this.#defaultConversion ?? CSVLoader.GENERIC_DEFAULT_CONVERSION;
@@ -208,58 +163,324 @@ export class CSVLoader<T extends any[], U> {
         return this;
     }
 
-    //endregion -------------------- default values methods --------------------
+    //endregion -------------------- Default conversion methods --------------------
+    //region -------------------- Triggers methods --------------------
 
-    //endregion -------------------- getter and setter and direct use on private members methods --------------------
-    //region -------------------- convertor usage methods --------------------
+    //region -------------------- On before final object created methods --------------------
 
-    public convertToBoolean(...headers: string[]): this {
+    protected get callbackOnBeforeFinalObjectCreated() {
+        return this.#callbackOnBeforeFinalObjectCreated;
+    }
+
+    protected set callbackOnBeforeFinalObjectCreated(callback: CallbackOnBeforeFinalObjectCreated<A>,) {
+        this.onBeforeFinalObjectCreated(callback);
+    }
+
+    /**
+     * <p>
+     *  A trigger called before inserting the content
+     *  and before the {@link callbackToCreateObject callback received in the construction}
+     *  on the {@link addContent addition of content} in the initialisation process.
+     * </p>
+     *
+     * <p>
+     *  It receive as a parameter:
+     *  <ol>
+     *    <li>The content converted</li>
+     *    <li>The original content</li>
+     *  </ol>
+     * </p>
+     *
+     * @param callback the callback to set
+     */
+    public onBeforeFinalObjectCreated(callback: CallbackOnBeforeFinalObjectCreated<A>,): this {
+        this.#callbackOnBeforeFinalObjectCreated = callback;
+        return this;
+    }
+
+    //endregion -------------------- On before final object created methods --------------------
+    //region -------------------- On after final object created methods --------------------
+
+    protected get callbackOnAfterFinalObjectCreated() {
+        return this.#callbackOnAfterFinalObjectCreated;
+    }
+
+    protected set callbackOnAfterFinalObjectCreated(callback: CallbackOnAfterFinalObjectCreated<A, T>,) {
+        this.onAfterFinalObjectCreated(callback);
+    }
+
+    /**
+     * <p>
+     *  A trigger called before inserting the content
+     *  and after the {@link callbackToCreateObject callback received in the construction}
+     *  on the {@link addContent addition of content} in the initialisation process.
+     * </p>
+     *
+     * <p>
+     *  It receive as a parameter:
+     *  <ol>
+     *    <li>The final content</li>
+     *    <li>The content converted</li>
+     *    <li>The original content</li>
+     *  </ol>
+     * </p>
+     *
+     * @param callback the callback to set
+     */
+    public onAfterFinalObjectCreated(callback: CallbackOnAfterFinalObjectCreated<A, T>,): this {
+        this.#callbackOnAfterFinalObjectCreated = callback;
+        return this;
+    }
+
+    //endregion -------------------- On after final object created methods --------------------
+
+    //region -------------------- On before single content has been converted methods --------------------
+
+    protected get callbackOnBeforeSingleContentConverted() {
+        return this.#callbackOnBeforeSingleContentConverted;
+    }
+
+    protected set callbackOnBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted,) {
+        this.onBeforeSingleContentConverted(callback);
+    }
+
+    /**
+     * <p>
+     *  A trigger called before each individual conversion
+     *  on the {@link _initialiseContent initialisation method}.
+     * </p>
+     *
+     * <p>
+     *  It receive as a parameter:
+     *  <ol>
+     *    <li>A single original content</li>
+     *  </ol>
+     * </p>
+     *
+     * @param callback the callback to set
+     */
+    public onBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted,): this {
+        this.#callbackOnBeforeSingleContentConverted = callback;
+        return this;
+    }
+
+    //endregion -------------------- On before single content has been converted methods --------------------
+    //region -------------------- On after single content has been converted methods --------------------
+
+    protected get callbackOnAfterSingleContentConverted() {
+        return this.#callbackOnAfterSingleContentConverted;
+    }
+
+    protected set callbackOnAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<A>,) {
+        this.onAfterSingleContentConverted(callback);
+    }
+
+    /**
+     * <p>
+     *  A trigger called after each individual conversion
+     *  on the {@link _initialiseContent initialisation method}.
+     * </p>
+     *
+     * <p>
+     *  It receive as a parameter:
+     *  <ol>
+     *    <li>A single converted content</li>
+     *    <li>A single original content</li>
+     *  </ol>
+     * </p>
+     *
+     * @param callback the callback to set
+     */
+    public onAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<A>,): this {
+        this.#callbackOnAfterSingleContentConverted = callback;
+        return this;
+    }
+
+    //endregion -------------------- On after single content has been converted methods --------------------
+
+    //region -------------------- On initialisation start methods --------------------
+
+    protected get callbackOnInitialisationStart() {
+        return this.#callbackOnInitialisationStart;
+    }
+
+    protected set callbackOnInitialisationStart(callback: CallbackOnInitialisationStart,) {
+        this.onInitialisationStart(callback);
+    }
+
+    /**
+     * <p>
+     *   A trigger called at the start of
+     *   the {@link _initialiseContent initialisation method}.
+     * </p>
+     *
+     * <p>
+     *  It receive as a parameter:
+     *  <ol>
+     *    <li>The original content</li>
+     *  </ol>
+     * </p>
+     *
+     * @param callback the callback to set
+     */
+    public onInitialisationStart(callback: CallbackOnInitialisationStart,): this {
+        this.#callbackOnInitialisationStart = callback;
+        return this;
+    }
+
+    //endregion -------------------- On initialisation start methods --------------------
+    //region -------------------- On initialisation end methods --------------------
+
+    protected get callbackOnInitialisationEnd() {
+        return this.#callbackOnInitialisationEnd;
+    }
+
+    protected set callbackOnInitialisationEnd(callback: CallbackOnInitialisationEnd<A, T>,) {
+        this.onInitialisationEnd(callback);
+    }
+
+    /**
+     * <p>
+     *   A trigger called at the end of
+     *   the {@link _initialiseContent initialisation method}.
+     * </p>
+     *
+     * <p>
+     *  It receive as a parameter:
+     *  <ol>
+     *    <li>The final array of content</li>
+     *    <li>The array of converted content</li>
+     *    <li>The original content</li>
+     *  </ol>
+     * </p>
+     *
+     * @param callback the callback to set
+     */
+    public onInitialisationEnd(callback: CallbackOnInitialisationEnd<A, T>,): this {
+        this.#callbackOnInitialisationEnd = callback;
+        return this;
+    }
+
+    //endregion -------------------- On initialisation end methods --------------------
+
+    //endregion -------------------- Triggers methods --------------------
+
+    //endregion -------------------- Getter and setter methods --------------------
+    //region -------------------- Direct use on private members methods --------------------
+
+    /**
+     * Load the content only once, and then do nothing.
+     *
+     * @see _initialiseContent
+     */
+    public load(): this {
+        if (this.#content.length === 0)
+            this._initialiseContent();
+        return this;
+    }
+
+    protected addHeaderToConvert(header: SimpleHeader<H>, headerTypeOrConvertor: ArrayOrSimpleHeaderTypeOrConvertor): this {
+        if (!this._headerContainerMap.has(header))
+            this._headerContainerMap.set(header, new HeaderContainer(header, this.headers,));
+        this._headerContainerMap.get(header)!.addHeaderTypeOrConvertor(headerTypeOrConvertor);
+        return this;
+    }
+
+    protected addHeaderFollowed(...headers: ArrayOfHeaders<H>): this {
+        this._headersFollowed.concat(...headers);
+        return this;
+    }
+
+    protected addContent(originalContent: string[], arrayContent: A,): this {
+        this.callbackOnBeforeFinalObjectCreated?.(arrayContent, originalContent,);
+        const convertContent = this.callbackToCreateObject(arrayContent);
+        this.callbackOnAfterFinalObjectCreated?.(convertContent, arrayContent, originalContent,);
+        this._convertedContent.push(arrayContent);
+        this._content.push(convertContent);
+        return this;
+    }
+
+    //endregion -------------------- Direct use on private members methods --------------------
+    //region -------------------- Convertor usage methods --------------------
+
+    /**
+     * <p>
+     *  Add the type to the possible header type or simple convertor array.
+     * </p>
+     *
+     * <p>
+     *  If the valid value or the convertor is an array:
+     *  <ul>
+     *   <li>it will add the type in the front of the array</li>
+     *   <li>it return a simple double tuple with the type and the valid value or convertor</li>
+     *  </ul>
+     * </p>
+     *
+     * @param typeOrHeader the type to add in front of the header type or the header name
+     * @param validValueOrConvertor an array or a simple header or convertor
+     * @protected
+     */
+    protected _addTypeToHeaderTypeOrConvertor<E extends string>(typeOrHeader: PredefinedConversion | SimpleHeader<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<E>,): ArrayHeaderTypeOrConvertor {
+        return [typeOrHeader, validValueOrConvertor,].flat();
+    }
+
+    //region -------------------- Boolean conversion methods --------------------
+
+    public convertToBoolean(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('boolean', ...headers,);
     }
 
-    public convertToNullableBoolean(...headers: string[]): this {
+    public convertToNullableBoolean(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('nullable boolean', ...headers,);
     }
 
-    public convertToNumber(...headers: string[]): this {
+
+    public convertToBooleanAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean'>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('boolean', validValueOrConvertor,), ...headers,);
+    }
+
+    public convertToNullableBooleanAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable boolean', validValueOrConvertor,), ...headers,);
+    }
+
+    //endregion -------------------- Boolean conversion methods --------------------
+    //region -------------------- Number conversion methods --------------------
+
+    public convertToNumber(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('number', ...headers,);
     }
 
-    public convertToNullableNumber(...headers: string[]): this {
+    public convertToNullableNumber(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('nullable number', ...headers,);
     }
 
-    public convertToString(...headers: string[]): this {
+
+    public convertToNumberAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number'>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('number', validValueOrConvertor,), ...headers,);
+    }
+
+    public convertToNullableNumberAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable number', validValueOrConvertor,), ...headers,);
+    }
+
+    //endregion -------------------- Number conversion methods --------------------
+    //region -------------------- String conversion methods --------------------
+
+    public convertToString(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('string', ...headers,);
     }
 
-    public convertToEmptyableString(...headers: string[]): this {
+    public convertToEmptyableString(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('emptyable string', ...headers,);
     }
 
-    public convertToNullableString(...headers: string[]): this {
+    public convertToNullableString(...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo('nullable string', ...headers,);
     }
 
 
-    public convertToBooleanAnd(validValueOrConvertor: string | Exclude<PredefinedConversion, 'boolean'>, ...headers: string[]): this {
-        return this.convertTo(['boolean', validValueOrConvertor,], ...headers,);
-    }
-
-    public convertToNullableBooleanAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'boolean'>, ...headers: string[]): this {
-        return this.convertTo(['nullable boolean', validValueOrConvertor,], ...headers,);
-    }
-
-    public convertToNumberAnd(validValueOrConvertor: string | Exclude<PredefinedConversion, 'number'>, ...headers: string[]): this {
-        return this.convertTo(['number', validValueOrConvertor,], ...headers,);
-    }
-
-    public convertToNullableNumberAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'number'>, ...headers: string[]): this {
-        return this.convertTo(['nullable number', validValueOrConvertor,], ...headers,);
-    }
-
-    public convertToStringAnd(validValueOrConvertor: string | Exclude<PredefinedConversion, 'string'>, ...headers: string[]): this {
-        return this.convertTo(['string', validValueOrConvertor,], ...headers,);
+    public convertToStringAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | 'nullable string' | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('string', validValueOrConvertor,), ...headers,);
     }
 
     /**
@@ -279,9 +500,10 @@ export class CSVLoader<T extends any[], U> {
      * @param headers
      * @see StringToEmptyableStringConverter
      * @see ConverterPatterns.EMPTYABLE_STRING_PATTERN
+     * @see this.convertTo
      */
-    public convertToEmptyableStringAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'string'>, ...headers: string[]): this {
-        return this.convertTo(['emptyable string', validValueOrConvertor,], ...headers,);
+    public convertToEmptyableStringAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('emptyable string', validValueOrConvertor,), ...headers,);
     }
 
     /**
@@ -301,104 +523,166 @@ export class CSVLoader<T extends any[], U> {
      * @param headers
      * @see StringToNullableStringConverter
      * @see ConverterPatterns.NULLABLE_STRING_PATTERN
+     * @see this.convertTo
      */
-    public convertToNullableStringAnd(validValueOrConvertor: string | Exclude<PrimitiveConversion, 'string'>, ...headers: string[]): this {
-        return this.convertTo(['nullable string', validValueOrConvertor,], ...headers,);
+    public convertToNullableStringAnd(validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable string', validValueOrConvertor,), ...headers,);
     }
+
+    //endregion -------------------- String conversion methods --------------------
+    //region -------------------- Header conversion methods --------------------
+
+    protected _validateHeaderNotIncludedInArrayOfHeadersReceived(header: SimpleHeader<H>, headers: ArrayOfHeadersReceived<H>,): void | never {
+        if (headers.includes(header))
+            throw new EvalError(`Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(', ')})`);
+    }
+
+    public convertToHeader(header: SimpleHeaderReceived<H>, ...headers: ArrayOfHeadersReceived<H>): this | never {
+        this._validateHeaderNotIncludedInArrayOfHeadersReceived(header.toLowerCase() as SimpleHeader<H>, headers,);
+        return this.convertTo(header, ...headers,);
+    }
+
+    public convertToHeaderAnd(header: SimpleHeaderReceived<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<H>, ...headers: ArrayOfHeadersReceived<H>): this | never {
+        this._validateHeaderNotIncludedInArrayOfHeadersReceived(header.toLowerCase() as SimpleHeader<H>, headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(header.toLowerCase() as SimpleHeader<H>, validValueOrConvertor,), ...headers,);
+    }
+
+    //endregion -------------------- Header conversion methods --------------------
 
     /**
      * Add a conversion on each headers received with <u>only one</u> of:
      * <ul>
      *     <li>a predefined conversion type ({@link PredefinedConversion})</li>
-     *     <li>a custom convertor ({@link CustomConversionCallback})</li>
+     *     <li>a custom convertor ({@link ConversionCallbackToConverter})</li>
      *     <li>an {@link Array array} of any string and / or the {@link PredefinedConversion predefined conversion type}</li>
      * </ul>
      *
      * @param headerTypeOrConvertor <u>the predefined conversion</u>, <u>custom convertor</u> or <u>the array of string and / or predefined conversion</u>
      * @param headers the headers to have the validation
      */
-    public convertTo(headerTypeOrConvertor: HeaderTypeOrConvertor, ...headers: string[]): this {
-        headers.map(header => header.toLowerCase()).forEach(header => this._headersToConvert.set(header, headerTypeOrConvertor));
+    public convertTo(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeOrConvertor, ...headers: ArrayOfHeadersReceived<H>): this {
+        headers.map(header => header.toLowerCase() as SimpleHeader<H>).forEach(header => this.addHeaderToConvert(header, headerTypeOrConvertor,));
         return this;
     }
 
-    //endregion -------------------- convertor usage methods --------------------
-    //region -------------------- initialisation methods --------------------
+    //endregion -------------------- Convertor usage methods --------------------
+    //region -------------------- Initialisation methods --------------------
+
+    protected _convertOriginalContent(headerConverterHolder: HeadersConverterHolder, content: string,): keyof A {
+        return headerConverterHolder.convertor(content).convertedValue as keyof A;
+    }
 
     protected _initialiseContent(): this {
-        const headers = this.originalContent[0].map((header, index) => ({index: index, header: header, convertor: this._getConverterBasedOnHeader(header.toLowerCase())}));
-        for (let i = 1; i < this.originalContent.length; i++) {
-            const originalContent = this.originalContent[i];
-            this.addContent(originalContent, originalContent.map((content, index) => {
-                const convertedValue = headers[index].convertor(content).convertedValue as keyof T;
-                this.callbackOnSingleContentConverted?.(convertedValue, content);
-                return convertedValue;
-            }) as T);
-        }
-        this.callbackOnInitialisationEnd?.(this.content, this.convertedContent, this.originalContent);
+        this.callbackOnInitialisationStart?.(this.originalContent);
+        //TODO verify every headers to include them as those followed.
+        const headersConverterHolders: readonly HeadersConverterHolder[] = this.headers.map((header, index,) => ({
+            index: index,
+            header: header.toLowerCase() as SimpleHeader<H>,
+            convertor: this._getConverterBasedOnHeader(header.toLowerCase() as SimpleHeader<H>),
+        }));
+        //TODO add temporary variable to hold the values in their proper order
+        this.originalContent.forEach(
+            originalContent => this.addContent(originalContent, originalContent
+                .map((content, index,) => {
+                    this.callbackOnBeforeSingleContentConverted?.(content);
+                    const convertedValue = this._convertOriginalContent(headersConverterHolders[index], content,);
+                    this.callbackOnAfterSingleContentConverted?.(convertedValue, content,);
+                    return convertedValue;
+                }) as A)
+        );
+        this.callbackOnInitialisationEnd?.(this.content, this.convertedContent, this.originalContent,);
         return this;
     }
 
-    protected _getConverterBasedOnHeader(header: string): (value: string) => Converter<string, any> {
-        const headerTypeOrConvertorFound = this.headersToConvert.get(header) ?? this.defaultConversion;
-        return typeof headerTypeOrConvertorFound == 'string'
-            ? this._createAndGetConvertor(header, headerTypeOrConvertorFound)
-            : headerTypeOrConvertorFound instanceof Array
-                ? this._createAndGetMixedConvertor(header, headerTypeOrConvertorFound)
-                : headerTypeOrConvertorFound;
+    protected _getConverterBasedOnHeader(header: SimpleHeader<H>,): ConversionCallbackToConverter {
+        const headerContainer = this.headerContainerMap.get(header);
+        if (headerContainer == null)
+            return value => PredefinedConverter.getValue(this.defaultConversion).newConvertor(value, null,);
+        if (headerContainer.amountOfValidator === 1)
+            return this._createSingleConvertor(headerContainer);
+        return this._createMixedConvertor(headerContainer);
     }
 
-    protected _createAndGetConvertor(header: string, predefinedConversion: PredefinedConversion): (value: string) => Converter<string, any> {
-        let convertor: (value: string) => Converter<string, any> =
-            value => PredefinedConverter.getValue(predefinedConversion).newStringToConvertor(value);
-        this._headersToConvert.set(header, convertor);
-        return convertor;
+    //region -------------------- Convertor creation methods --------------------
+
+    //region -------------------- Single Convertor creation methods --------------------
+
+    /**
+     * Create the {@link Converter} based on the {@link PredefinedConversion}
+     * and the create a new basic {@link Converter}.
+     *
+     * @param headerContainer the header container
+     * @protected
+     */
+    protected _createSingleConvertor(headerContainer: HeaderContainer<H, this['headers']>,): ConversionCallbackToConverter {
+        return headerContainer.createConversionCallbacks()[0];
     }
 
-    protected _createAndGetMixedConvertor(header: string, conversionComponents: readonly (PredefinedConversion | string)[]): (value: string) => Converter<string, any> {
-        const containNullable = conversionComponents.find(conversionComponent => conversionComponent.includes('nullable')) !== undefined;
-        const containNonEmptyString = conversionComponents.find(conversionComponent => conversionComponent === 'emptyable string') !== undefined;
-        let validationComponentOnConverter: ((value: string) => boolean)[] = [];
-        let conversionComponentOnConverter: ((value: string) => any)[] = [];
+    //endregion -------------------- Single Convertor creation methods --------------------
+    //region -------------------- Mixed Convertor creation methods --------------------
 
-        const typeOnConverter = (containNullable ? 'nullable' : '')
+    protected _createContainValidations(headerContainer: HeaderContainer<H, this['headers']>,): ArrayOfValidationsArrayOfValidations {
+        const containNullable = headerContainer.predefinedConvertor.find(predefinedConvertor => predefinedConvertor.name.includes('nullable')) != null;
+        const containEmptyableString = headerContainer.predefinedConvertor.includes(PredefinedConverter.EMPTYABLE_STRING) != null;
+        return [containNullable, containEmptyableString,];
+    }
+
+    protected _createMixedConvertorInstance(headerContainer: HeaderContainer<H, this['headers']>, validations: ArrayOfValidationsArrayOfValidations,): ArrayOfMixedConvertorInstance {
+        const [containNullable, containEmptyableString,] = validations;
+
+        const conversionCallbacksToConverter = headerContainer.createConversionCallbacks();
+        const mixedTypeOnConverter = (containNullable ? 'nullable' : '')
             + ' ('
-            + (containNonEmptyString ? '"", ' : '')
-            + conversionComponents.map(conversionComponent => {
-                let type: string;
-                const predefinedConvertor = PredefinedConverter.getValue(conversionComponent);
-                if (predefinedConvertor === null) {
-                    type = '"' + conversionComponent + '"';
-                    validationComponentOnConverter.push(value => value === conversionComponent);
-                    conversionComponentOnConverter.push(value => value);
-                } else {
-                    type = predefinedConvertor.nameAsNonNullable;
-                    validationComponentOnConverter.push(predefinedConvertor.newValidationAsNonNullable());
-                    conversionComponentOnConverter.push(value => predefinedConvertor.newConversionAsNonNullable(value));
-                }
-                return type;
-            }).join(', ')
+            + (containEmptyableString ? '"", ' : '')
+            + (headerContainer.predefinedConvertor.length === 0 ? '' : `predefined convertor: (${headerContainer.predefinedConvertor.map(predefinedConvertor => predefinedConvertor.nameAsNonNullable).join(', ')})`)
+            + (headerContainer.followingHeaders.length === 0 ? '' : `headers: (${headerContainer.followingHeaders.join(', ')})`)
+            + (headerContainer.singleValuesToValidate.length === 0 ? '' : `values: (${headerContainer.singleValuesToValidate.map(singleValue => `"${singleValue}"`).join(', ')})`)
+            + (headerContainer.convertorCallbacks.length === 0 ? '' : `${CSVLoader.CUSTOM_CALLBACK_NAME} x${headerContainer.convertorCallbacks.length}`)
             + ')';
 
+        return [conversionCallbacksToConverter, mixedTypeOnConverter,];
+    }
 
-        const finalValidationComponentOnConverter = (value: string,) => {
-            for (let validationComponent of validationComponentOnConverter) {
-                if (validationComponent(value))
+    protected _interpretConvertorInstance(validations: ArrayOfValidationsArrayOfValidations, mixedConvertorInstance: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
+        const [containNullable, containEmptyableString,] = validations;
+        const [conversionCallbacksToConverter, mixedTypeOnConverter,] = mixedConvertorInstance;
+
+        const finalValidationComponentOnConverter: ValidationCallback = value => {
+            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
+                if (conversionCallbackToConverter(value).isValueValid(value))
                     return true;
             }
             return false;
         };
-        const finalConversionComponentOnConverter = (value: string,) => conversionComponentOnConverter[validationComponentOnConverter.findIndex(validationComponent => validationComponent(value))](value);
+        const finalConversionComponentOnConverter: ConversionCallbackToAny = value => {
+            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
+                if (conversionCallbackToConverter(value).isValueValid(value))
+                    return conversionCallbackToConverter(value).convertTheValue(value);
+            }
+            throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
+        };
 
         return containNullable
-            ? value => new GenericStringToAnyNullableConverter(value, typeOnConverter,
+            ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter,
                 value => finalValidationComponentOnConverter(value),
                 value => finalConversionComponentOnConverter(value))
-            : value => new GenericStringToAnyConverter(value, typeOnConverter,
-                value => (containNonEmptyString ? value === '' : false) || finalValidationComponentOnConverter(value),
-                value => containNonEmptyString && value === '' ? null : finalConversionComponentOnConverter(value));
+            : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
+                value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
+                value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value));
     }
 
-    //endregion -------------------- initialisation methods --------------------
+    protected _createMixedConvertor(headerContainer: HeaderContainer<H, this['headers']>,): ConversionCallbackToConverter {
+        const validations = this._createContainValidations(headerContainer);
+
+        const mixedConvertorInstance = this._createMixedConvertorInstance(headerContainer, validations,);
+
+        return this._interpretConvertorInstance(validations, mixedConvertorInstance);
+    }
+
+    //endregion -------------------- Mixed Convertor creation methods --------------------
+
+    //endregion -------------------- Convertor creation methods --------------------
+
+    //endregion -------------------- Initialisation methods --------------------
 
 }

@@ -94,7 +94,7 @@ export class ThemeLoader
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
                     'korean',
                 )
-                .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
 
             console.log('-------------------- theme has been loaded --------------------');// temporary console.log

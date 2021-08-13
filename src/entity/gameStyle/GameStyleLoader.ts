@@ -86,7 +86,7 @@ export class GameStyleLoader
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
                     'korean',
                 )
-                .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
 
             console.log('-------------------- game style has been loaded --------------------');// temporary console.log

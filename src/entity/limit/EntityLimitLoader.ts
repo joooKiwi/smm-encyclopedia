@@ -51,7 +51,7 @@ export class EntityLimitLoader
                 .convertTo(EntityLimits.everyEnglishNames, 'fullName')
                 .convertTo(['nullable string', ...EntityLimits.everyAlternativeEnglishNames,], 'alternativeName')
                 .convertTo(['number', '?', 'string',], 'limit')
-                .onFinalObjectCreated(finalContent => finalReferences.set(finalContent.full.name, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.full.name, finalContent,))
                 .load();
 
             console.log('-------------------- entity limit has been loaded --------------------');// temporary console.log
