@@ -1,14 +1,19 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import type {Entity}                                                     from './Entity';
-import type {EntityCategory}                                             from '../category/EntityCategory';
-import type {EntityLimit}                                                from '../limit/EntityLimit';
-import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import type {EntityTemplate}                                             from './EntityTemplate';
-import type {Loader}                                                     from '../../util/Loader';
-import type {PossibleEntityCategories}                                   from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                       from '../limit/EntityLimits.types';
-import type {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
+import type {Entity}                                                                 from './Entity';
+import type {EntityCategory}                                                         from '../category/EntityCategory';
+import type {EntityLimit}                                                            from '../limit/EntityLimit';
+import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType}             from '../entityTypes';
+import type {EntityTemplate}                                                         from './EntityTemplate';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
+import type {Loader}                                                                 from '../../util/loader/Loader';
+import type {PossibleCourseTheme}                                                    from '../theme/Themes.types';
+import type {PossibleEntityCategories}                                               from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                                   from '../limit/EntityLimits.types';
+import type {PossibleGameStyleAcronym}                                               from '../gameStyle/GameStyles.types';
+import type {PossibleTimeName}                                                       from '../time/Times';
+import type {SMM2NameTemplate}                                                       from '../lang/SMM2NameTemplate';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
@@ -19,11 +24,30 @@ import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuil
 
 //region -------------------- CSV array related types --------------------
 
-type EntityFilePropertiesArray = [
-    //region ---------- Basic properties ----------
+type Headers =
+    | GamesHeaders
+    | 'categoryInTheEditor'
+    | 'hasAMushroomVariant' | `can${| 'BeInAParachute' | 'HaveWings'}`
 
-    isInSuperMarioMaker1: boolean,
-    isInSuperMarioMaker2: boolean,
+    | 'canContainOrSpawnAKey' | 'canBePutInAOnOffBlock' | `${| 'editorLimit_' | 'whilePlaying_' | ''}canBePutOnATrack`
+    | 'canSpawnOutOfAPipe' | 'canBePutInASwingingClaw'
+    | 'canBeThrownByALakitu' | 'canBePutInALakituCloud'
+    | 'canBePutInAClownCar' | 'canBeFiredOutOfABulletLauncher' | `canBePutInA${| 'Block' | 'Tree'}`
+    | `lightSourceEmitted${| '' | '_isInSMB'}`
+    | 'canIgniteABobOmb' | 'canGoThroughWalls' | 'canBeStacked' | 'isGlobalGroundOrGlobal' | 'canMakeASoundOutOfAMusicBlock'
+
+    | 'editorLimit'
+    | `whilePlaying_${| `isInGEL${| '' | '_isSuperGlobal'}` | 'isInPEL' | 'isInPJL' | 'customLimit'}`
+
+    | `whilePlaying_offscreen${| 'Spawning' | 'Despawning'}${| 'Horizontal' | `${| 'Upward' | 'Downward'}Vertical`}Range`
+
+    | `in${PossibleTimeName}Theme`
+    | `in${| Exclude<PossibleCourseTheme, 'Ghost House'> | 'GhostHouse'}Theme`
+    | `in${PossibleGameStyleAcronym}GameStyle`
+
+    | LanguagesHeaders;
+type ExclusivePropertiesArray = [
+    //region ---------- Basic properties ----------
 
     categoryInTheEditor: | PossibleEntityCategories | null,
 
@@ -99,8 +123,8 @@ type EntityFilePropertiesArray = [
     //endregion ---------- Spawning / Despawning range properties ----------
     //region ---------- Reference on specific condition properties ----------
 
-    isInDayTheme: EntityLink,
-    isInNightTheme: | EntityLink | null,
+    inDayTheme: EntityLink,
+    inNightTheme: | EntityLink | null,
 
     inGroundTheme: EntityLink,
     inUndergroundTheme: EntityLink,
@@ -120,41 +144,11 @@ type EntityFilePropertiesArray = [
     inSM3DWGameStyle: | EntityLink | null,
 
     //endregion ---------- Reference on specific condition properties ----------
-    //region ---------- Language properties ----------
-
-    english: | string | null,
-    americanEnglish: | string | null,
-    europeanEnglish: | string | null,
-
-    french: | string | null,
-    canadianFrench: | string | null,
-    europeanFrench: | string | null,
-
-    german: | string | null,
-
-    spanish: | string | null,
-    americanSpanish: | string | null,
-    europeanSpanish: | string | null,
-
-    italian: | string | null,
-
-    dutch: | string | null,
-
-    portuguese: | string | null,
-    americanPortuguese: | string | null,
-    europeanPortuguese: | string | null,
-
-    russian: | string | null,
-
-    japanese: | string | null,
-
-    chinese: | string | null,
-    simplifiedChinese: | string | null,
-    tradionalChinese: | string | null,
-
-    korean: | string | null,
-
-    //endregion ---------- Language properties ----------
+];
+type PropertiesArray = [
+    ...GamesPropertyArray,
+    ...ExclusivePropertiesArray,
+    ...LanguagesPropertyArray,
 ];
 
 //endregion -------------------- CSV array related types --------------------
@@ -162,7 +156,7 @@ type EntityFilePropertiesArray = [
 export interface DebugEntityReferences {
 
     originalContent: readonly string[]
-    arrayConverted: EntityFilePropertiesArray
+    arrayConverted: PropertiesArray
     template: EntityTemplate
     entity?: Entity
 
@@ -194,37 +188,37 @@ export class EntityLoader
             EntityBuilder.references = references;
             EntityBuilder.categoriesMap = this.entityCategories;
 
-            const csvLoader = new CSVLoader<EntityFilePropertiesArray, EntityTemplate>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            const csvLoader = new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .convertTo(['emptyable string', ...this.entityCategoriesNames], 'categoryInTheEditor',)
+                .convertToEmptyableStringAnd(this.entityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
 
                 .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
 
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
-                .convertTo(['nullable string', ...this.entityLimitsNames,], 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertToEmptyableStringAnd(this.entityLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
                 .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
-                .convertTo(['emptyable string', unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+                .convertToEmptyableStringAnd([unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
                 .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
                 .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
                 .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
                 .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
 
-                .convertTo(['nullable string', unknownCharacter, ...this.entityLimitsNames,], 'editorLimit',)
+                .convertToEmptyableStringAnd([unknownCharacter, ...this.entityLimitsNames,], 'editorLimit',)
                 .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
-                .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
-                .convertTo(['emptyable string', 'boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
-                .convertTo(['nullable string', ...this.entityLimitsNames,], 'whilePlaying_customLimit',)
+                .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+                .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+                .convertToEmptyableStringAnd(this.entityLimitsNames, 'whilePlaying_customLimit',)
                 .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
-                .convertTo(['nullable number', 'Variable', 'Infinity'], 'whilePlaying_offscreenDespawningHorizontalRange',)
+                .convertToNullableNumberAnd(['Variable', 'Infinity',], 'whilePlaying_offscreenDespawningHorizontalRange',)
                 .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
                     'whilePlaying_offscreenSpawningDownwardVerticalRange', 'whilePlaying_offscreenDespawningDownwardVerticalRange',)
 
@@ -298,7 +292,7 @@ export class EntityLoader
 
 class TemplateCreator {
 
-    public static createTemplate(content: EntityFilePropertiesArray,): EntityTemplate {
+    public static createTemplate(content: PropertiesArray,): EntityTemplate {
         const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
             [content[0], content[1]];
         const [dayLink, nightLink] =
@@ -513,7 +507,7 @@ class NameCreator {
         //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
     }
 
-    public static addEnglishReference(name: SMM2NameTemplate, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: EntityFilePropertiesArray, template: EntityTemplate,): void {
+    public static addEnglishReference(name: SMM2NameTemplate, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
         this.__testName(name);
         const englishReferenceName = name.english.simple ?? name.english.american;
         if (englishReferenceName == null)

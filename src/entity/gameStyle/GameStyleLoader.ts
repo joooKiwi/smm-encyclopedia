@@ -1,8 +1,10 @@
 import everyGameStyles from '../../resources/Game styles.csv';
 
-import type {Loader}            from '../../util/Loader';
-import type {GameStyle}         from './GameStyle';
-import type {GameStyleTemplate} from './GameStyleTemplate';
+import type {Loader}                                                                 from '../../util/loader/Loader';
+import type {GameStyle}                                                              from './GameStyle';
+import type {GameStyleTemplate}                                                      from './GameStyleTemplate';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CallbackCaller}   from '../../util/CallbackCaller';
 import {EntityLoader}     from '../simple/EntityLoader';
@@ -11,51 +13,19 @@ import {GameStyleBuilder} from './GameStyleBuilder';
 
 //region -------------------- CSV array related types --------------------
 
-type GameStylePropertiesArray = [
-
-    isInSuperMarioMaker1: boolean,
-    isInSuperMarioMaker2: boolean,
-
-    //region ---------- Language properties ----------
-
-    english: | string | null,
-    americanEnglish: | string | null,
-    europeanEnglish: | string | null,
-
-    french: | string | null,
-    canadianFrench: | string | null,
-    europeanFrench: | string | null,
-
-    german: | string | null,
-
-    spanish: | string | null,
-    americanSpanish: | string | null,
-    europeanSpanish: | string | null,
-
-    italian: | string | null,
-
-    dutch: | string | null,
-
-    portuguese: | string | null,
-    americanPortuguese: | string | null,
-    europeanPortuguese: | string | null,
-
-    russian: | string | null,
-
-    japanese: | string | null,
-
-    chinese: | string | null,
-    simplifiedChinese: | string | null,
-    tradionalChinese: | string | null,
-
-    korean: | string | null,
-    //endregion ---------- Language properties ----------
+type Headers =
+    | GamesHeaders
+    | LanguagesHeaders;
+type PropertiesArray = [
+    ...GamesPropertyArray,
+    ...LanguagesPropertyArray,
 ];
 
 //endregion -------------------- CSV array related types --------------------
 
 /**
  * @singleton
+ * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyles}>
  */
 export class GameStyleLoader
     implements Loader<ReadonlyMap<string, GameStyle>> {
@@ -72,10 +42,9 @@ export class GameStyleLoader
             const finalReferences: Map<string, GameStyle> = new Map();
             GameStyleBuilder.entitiesMap = EntityLoader.get.load();
 
-            const csvLoader = new CSVLoader<GameStylePropertiesArray, GameStyleBuilder>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
-                .convertToBoolean(
-                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
-                ).convertToEmptyableString(
+            const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
                     'french', 'canadianFrench', 'europeanFrench',
                     'german',
@@ -110,7 +79,7 @@ export class GameStyleLoader
 
 class TemplateCreator {
 
-    public static createTemplate(content: GameStylePropertiesArray): GameStyleTemplate {
+    public static createTemplate(content: PropertiesArray): GameStyleTemplate {
         return {
             isIn: {
                 game: {
