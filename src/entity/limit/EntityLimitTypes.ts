@@ -1,24 +1,6 @@
-import type {SimpleEnum} from '../../util/enum/EnumTypes';
+import type {EntityLimitTypeEnglishNameArray, EntityLimitTypesArray, EntityLimitTypesNames, EntityLimitTypesOrdinals, PossibleEntityLimitTypeEnglishName} from './EntityLimitTypes.types';
 
 import {Enum} from '../../util/enum/Enum';
-
-//region -------------------- Limit type texts --------------------
-
-export type PossibleEntityLimitTypeEnglishName = | 'Playing' | 'Editor';
-export type EntityLimitTypeEnglishNameArray = readonly ['Playing', 'Editor',];
-
-//endregion -------------------- Limit type texts --------------------
-//region -------------------- Enum types --------------------
-
-export type EntityLimitTypesOrdinals = | 0 | 1;
-export type EntityLimitTypesNames = | 'PLAYING' | 'EDITOR';
-export type SimpleEntityLimitTypes<T = EntityLimitTypes, > = SimpleEnum<EntityLimitTypesNames, T>;
-export type EntityLimitTypesArray<T = EntityLimitTypes, > = readonly [
-    SimpleEntityLimitTypes<T>['PLAYING'],
-    SimpleEntityLimitTypes<T>['EDITOR'],
-];
-
-//endregion -------------------- Enum types --------------------
 
 export class EntityLimitTypes
     extends Enum<EntityLimitTypesOrdinals, EntityLimitTypesNames> {
@@ -64,7 +46,7 @@ export class EntityLimitTypes
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends EntityLimitTypesOrdinals = EntityLimitTypesOrdinals, >(ordinal: O,): EntityLimitTypesArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EntityLimitTypesArray[O]> | null
-    public static getValue(name: PossibleEntityLimitTypeEnglishName,): EntityLimitTypes
+    public static getValue(name: PossibleEntityLimitTypeEnglishName | EntityLimitTypesNames,): EntityLimitTypes
     public static getValue(name: string,): | EntityLimitTypes | null
     public static getValue<I extends EntityLimitTypes = EntityLimitTypes, >(instance: I,): I
     public static getValue(value: | EntityLimitTypes | string | number | null | undefined,): | EntityLimitTypes | null

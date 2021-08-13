@@ -1,5 +1,5 @@
-import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits';
+import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 
 //region -------------------- Limit types --------------------
 

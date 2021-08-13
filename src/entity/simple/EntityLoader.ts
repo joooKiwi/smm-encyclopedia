@@ -6,8 +6,8 @@ import type {EntityLimit}                                                from '.
 import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
 import type {EntityTemplate}                                             from './EntityTemplate';
 import type {Loader}                                                     from '../../util/Loader';
-import type {PossibleEntityCategories}                                   from '../category/EntityCategories';
-import type {PossibleEntityLimits}                                       from '../limit/EntityLimits';
+import type {PossibleEntityCategories}                                   from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                       from '../limit/EntityLimits.types';
 import type {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';

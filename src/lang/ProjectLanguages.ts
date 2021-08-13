@@ -1,28 +1,14 @@
-import type {AmericanOrEuropeanOriginal}                                                                                                                                                                                                                                                                                  from './name/containers/AmericanAndEuropeanLanguage';
-import type {CanadianOrEuropeanOriginal}                                                                                                                                                                                                                                                                                  from './name/containers/CanadianAndEuropeanLanguage';
-import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                     from './ClassWithEveryLanguages';
-import type {ClassWithLanguages}                                                                                                                                                                                                                                                                                          from './ClassWithLanguages';
-import type {ChineseOriginal}                                                                                                                                                                                                                                                                                             from './name/containers/ChineseLanguage';
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                          from './LanguageEnumerable';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym,  PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages';
+import type {AmericanOrEuropeanOriginal}                                                                                                                                                                                                                                                                                 from './name/containers/AmericanAndEuropeanLanguage';
+import type {CanadianOrEuropeanOriginal}                                                                                                                                                                                                                                                                                 from './name/containers/CanadianAndEuropeanLanguage';
+import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages';
+import type {ClassWithLanguages}                                                                                                                                                                                                                                                                                         from './ClassWithLanguages';
+import type {ChineseOriginal}                                                                                                                                                                                                                                                                                            from './name/containers/ChineseLanguage';
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                         from './LanguageEnumerable';
+import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                                                                                                                         from './ProjectLanguages.types';
+import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
 
-import {Enum}             from '../util/enum/Enum';
-import {EveryLanguages}   from './EveryLanguages';
-
-//region -------------------- Project language types --------------------
-
-export type PossibleNonNullableValue = | ProjectLanguages
-    | ProjectLanguagesOrdinals
-    | PossibleProjectLanguagesAcronym
-    | PossibleProjectLanguagesEnglishName | PossibleProjectLanguagesOriginalName;
-
-//endregion -------------------- Project language types --------------------
-//region -------------------- Enum types --------------------
-
-export type ProjectLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-    | 11 | 12 | 13 | 14 | 15;
-
-//endregion -------------------- Enum types --------------------
+import {Enum}           from '../util/enum/Enum';
+import {EveryLanguages} from './EveryLanguages';
 
 /**
  * <p>
@@ -182,9 +168,10 @@ export class ProjectLanguages
 
 
     public static getValue(nullValue: | null | undefined,): null
+    public static getValue(value: PossibleNonNullableValue,): ProjectLanguages
     public static getValue<O extends ProjectLanguagesOrdinals, >(ordinal: O,): ProjectLanguagesArray<ProjectLanguages>[O]
     public static getValue<O extends number, >(ordinal: O,): | NonNullable<ProjectLanguagesArray<ProjectLanguages>[O]> | null
-    public static getValue(value: PossibleNonNullableValue,): ProjectLanguages
+    public static getValue(nameOrAcronym: | PossibleProjectLanguagesAcronym | PossibleProjectLanguagesEnglishName | PossibleProjectLanguagesOriginalName | ProjectLanguagesNames,): ProjectLanguages
     public static getValue(nameOrAcronym: string,): | ProjectLanguages | null
     public static getValue<I extends ProjectLanguages, >(instance: I,): I
     public static getValue(instance: EveryLanguages,): | ProjectLanguages | null

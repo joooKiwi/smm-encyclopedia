@@ -2,8 +2,8 @@ import everyThemes from '../../resources/Entities limits.csv';
 
 import type {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate}                      from './EntityLimitTemplate';
 import type {EntityLimit}                                                                                                                from './EntityLimit';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits';
-import type{PossibleEntityLimitTypeEnglishName}                                                                                          from './EntityLimitTypes';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
+import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
 
 import {EntityLimits}       from './EntityLimits';
 import {EntityLimitTypes}   from './EntityLimitTypes';
