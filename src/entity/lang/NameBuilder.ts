@@ -1,5 +1,5 @@
 import type {Builder}          from '../../util/Builder';
-import type {SMM2NameTemplate} from './SMM2NameTemplate';
+import type {SMM2NameTemplate} from './SMM2Name.template';
 import type {Name}             from '../../lang/name/Name';
 
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';

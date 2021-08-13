@@ -1,12 +1,11 @@
+import type {GameTemplate} from '../game/Game.template';
+
 /**
  * @template
  */
 export interface PropertyTemplate {
 
-    game: {//TODO move to isolated interface
-        1: boolean
-        2: boolean
-    }
+    game: GameTemplate
 
     style: {
         superMarioBros: boolean

@@ -1,7 +1,7 @@
 import everyThemes from '../../resources/Entities limits.csv';
 
-import type {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate}                      from './EntityLimitTemplate';
-import type {EntityLimit}                                                                                                                from './EntityLimit';
+import type {AlternateAcronymAndNameTemplate, EntityLimitTemplate, FullAcronymAndNameTemplate, LimitAmountTemplate} from './EntityLimit.template';
+import type {EntityLimit}                                                                                           from './EntityLimit';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
 

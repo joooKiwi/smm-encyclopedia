@@ -1,8 +1,8 @@
 import everyEntityCategories from '../../resources/Entity categories.csv';
 
-import type {EntityCategory}                                                         from './EntityCategory';
-import type {EntityCategoryTemplate}                                                 from './EntityCategoryTemplate';
-import type {Loader}                                                                 from '../../util/loader/Loader';
+import type {EntityCategory}         from './EntityCategory';
+import type {EntityCategoryTemplate} from './EntityCategory.template';
+import type {Loader}                 from '../../util/loader/Loader';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CallbackCaller}        from '../../util/CallbackCaller';

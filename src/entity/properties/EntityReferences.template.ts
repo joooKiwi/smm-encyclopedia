@@ -1,5 +1,5 @@
 import type {EntityLink}     from '../entityTypes';
-import type {EntityTemplate} from '../simple/EntityTemplate';
+import type {EntityTemplate} from '../simple/Entity.template';
 
 /**
  * @template

@@ -1,9 +1,9 @@
 import everyGameStyles from '../../resources/Game styles.csv';
 
 import type {Loader}                                                                 from '../../util/loader/Loader';
-import type {GameStyle}                                                              from './GameStyle';
-import type {GameStyleTemplate}                                                      from './GameStyleTemplate';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
+import type {GameStyle}                                                      from './GameStyle';
+import type {GameStyleTemplate}                                              from './GameStyle.template';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray} from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CallbackCaller}   from '../../util/CallbackCaller';

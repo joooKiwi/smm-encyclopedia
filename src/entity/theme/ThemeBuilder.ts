@@ -2,9 +2,9 @@ import type {Builder}               from '../../util/Builder';
 import type {CourseTheme}           from './CourseTheme';
 import type {DebugEntityReferences} from '../simple/EntityLoader';
 import type {Entity}                from '../simple/Entity';
-import type {Name}                  from '../../lang/name/Name';
-import type {ThemeTemplate}         from './ThemeTemplate';
-import type {WorldTheme}            from './WorldTheme';
+import type {Name}          from '../../lang/name/Name';
+import type {ThemeTemplate} from './Theme.template';
+import type {WorldTheme}    from './WorldTheme';
 
 import {EmptyCourseTheme}      from './EmptyCourseTheme';
 import {EmptyWorldTheme}       from './EmptyWorldTheme';

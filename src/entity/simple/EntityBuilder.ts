@@ -2,8 +2,8 @@ import type {Builder}               from '../../util/Builder';
 import type {DebugEntityReferences} from './EntityLoader';
 import type {Entity}                from './Entity';
 import type {EntityCategory}        from '../category/EntityCategory';
-import type {EntityLink}            from '../entityTypes';
-import type {EntityTemplate}        from './EntityTemplate';
+import type {EntityLink}     from '../entityTypes';
+import type {EntityTemplate} from './Entity.template';
 
 import {EntityReferencesContainer}            from '../properties/EntityReferencesContainer';
 import {EmptyEntity}                          from './EmptyEntity';

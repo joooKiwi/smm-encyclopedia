@@ -1,9 +1,9 @@
 import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import type {EntityReferencesTemplate}                                   from '../properties/EntityReferencesTemplate';
+import type {EntityReferencesTemplate}                                   from '../properties/EntityReferences.template';
 import type {PossibleEntityCategories}                                   from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                       from '../limit/EntityLimits.types';
-import type {PropertyTemplate}                                           from '../properties/PropertyTemplate';
-import type {SMM2NameTemplate}                                           from '../lang/SMM2NameTemplate';
+import type {PossibleEntityLimits} from '../limit/EntityLimits.types';
+import type {PropertyTemplate} from '../properties/Property.template';
+import type {SMM2NameTemplate} from '../lang/SMM2Name.template';
 
 /**
  * @template

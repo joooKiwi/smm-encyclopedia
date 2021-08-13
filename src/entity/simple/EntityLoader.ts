@@ -4,7 +4,7 @@ import type {Entity}                                                            
 import type {EntityCategory}                                                         from '../category/EntityCategory';
 import type {EntityLimit}                                                            from '../limit/EntityLimit';
 import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType}             from '../entityTypes';
-import type {EntityTemplate}                                                         from './EntityTemplate';
+import type {EntityTemplate}                                                         from './Entity.template';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Loader}                                                                 from '../../util/loader/Loader';
@@ -12,8 +12,8 @@ import type {PossibleCourseTheme}                                               
 import type {PossibleEntityCategories}                                               from '../category/EntityCategories.types';
 import type {PossibleEntityLimits}                                                   from '../limit/EntityLimits.types';
 import type {PossibleGameStyleAcronym}                                               from '../gameStyle/GameStyles.types';
-import type {PossibleTimeName}                                                       from '../time/Times';
-import type {SMM2NameTemplate}                                                       from '../lang/SMM2NameTemplate';
+import type {PossibleTimeName} from '../time/Times';
+import type {SMM2NameTemplate} from '../lang/SMM2Name.template';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';

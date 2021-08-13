@@ -1,6 +1,6 @@
 import type {Builder}                from '../../util/Builder';
 import type {EntityCategory}         from './EntityCategory';
-import type {EntityCategoryTemplate} from './EntityCategoryTemplate';
+import type {EntityCategoryTemplate} from './EntityCategory.template';
 import type {Name}                   from '../../lang/name/Name';
 
 import {GenericEntityCategory} from './GenericEntityCategory';
