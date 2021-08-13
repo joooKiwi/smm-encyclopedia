@@ -1,7 +1,8 @@
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import type {Name}      from '../../lang/name/Name';
+import type {Name} from '../../lang/name/Name';
+
 import {EveryLanguages} from '../../lang/EveryLanguages';
 
 interface SMM2NameProperty {

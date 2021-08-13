@@ -1,7 +1,7 @@
 import type {GameStyle}                                                                                                                                                                 from './GameStyle';
 import type {GameStyleProperty}                                                                                                                                                         from '../properties/GameStyleProperty';
-import type {PropertyGetterWithReference}                                                                                                                                               from '../PropertyGetter';
 import type {GameStylesArray, GameStylesNames, GameStylesOrdinals, LargeImagePath, MediumImagePath, PossibleGameStyleAcronym, PossibleGameStyleName, SmallImagePath, StartingImagePath} from './GameStyles.types';
+import type {PropertyGetterWithReference}                                                                                                                                               from '../PropertyGetter';
 
 import {Enum}            from '../../util/enum/Enum';
 import {GameStyleLoader} from './GameStyleLoader';

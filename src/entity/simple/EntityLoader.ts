@@ -16,8 +16,8 @@ import type {PossibleTimeName} from '../time/Times';
 import type {SMM2NameTemplate} from '../lang/SMM2Name.template';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
-import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
+import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
 import {EntityBuilder}                from './EntityBuilder';
 import {EntityLimitLoader}            from '../limit/EntityLimitLoader';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';

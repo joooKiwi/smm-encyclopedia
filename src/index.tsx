@@ -2,11 +2,11 @@ import './index.scss';
 import './lang/i18n';
 import 'bootstrap/dist/js/bootstrap.esm';
 
+import {IntlProvider}  from 'react-intl';
 import React           from 'react';
 import ReactDOM        from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import Routes          from './routes/Routes';
-import {IntlProvider}  from 'react-intl';
 
 import {ProjectLanguages} from './lang/ProjectLanguages';
 

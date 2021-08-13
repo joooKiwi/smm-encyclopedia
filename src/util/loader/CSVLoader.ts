@@ -1,9 +1,9 @@
 import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoaderTypes';
 import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './converter/PredefinedConverterTypes';
 
-import {HeaderContainer}                     from './HeaderContainer';
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
+import {HeaderContainer}                     from './HeaderContainer';
 import {PredefinedConverter}                 from './converter/PredefinedConverter';
 
 export class CSVLoader<A extends any[] = any[], T = any, H extends string = string, > {
