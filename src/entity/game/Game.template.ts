@@ -1,4 +1,4 @@
-export interface GameTemplate {
+export interface BooleanGameTemplate {
 
     1: boolean
 

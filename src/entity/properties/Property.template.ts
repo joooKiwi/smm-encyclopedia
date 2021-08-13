@@ -1,36 +1,19 @@
-import type {GameTemplate} from '../game/Game.template';
+import type {BooleanGameTemplate}      from '../game/Game.template';
+import type {BooleanGameStyleTemplate} from '../gameStyle/GameStyle.template';
+import type {BooleanThemeTemplate}          from '../theme/Theme.template';
+import type {BooleanTimeTemplate}           from '../time/Time.template';
 
 /**
  * @template
  */
 export interface PropertyTemplate {
 
-    game: GameTemplate
+    game: BooleanGameTemplate
 
-    style: {
-        superMarioBros: boolean
-        superMarioBros3: boolean
-        superMarioWorld: boolean
-        newSuperMarioBrosU: boolean
-        superMario3DWorld: | boolean | null
-    }
+    style: BooleanGameStyleTemplate
 
-    theme: {
-        ground: boolean
-        underground: boolean
-        underwater: boolean
-        desert: | boolean | null
-        snow: | boolean | null
-        sky: | boolean | null
-        forest: | boolean | null
-        ghostHouse: boolean
-        airship: boolean
-        castle: boolean
-    }
+    theme: BooleanThemeTemplate
 
-    time: {
-        day: boolean
-        night: | boolean | null
-    }
+    time: BooleanTimeTemplate
 
 }
