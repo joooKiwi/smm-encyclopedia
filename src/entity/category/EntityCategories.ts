@@ -1,7 +1,7 @@
 import type {EntityCategory}                                                                                   from './EntityCategory';
 import type {EveryLanguagesNames, EveryLanguagesOrdinals}                                                      from '../../lang/EveryLanguages.types';
-import type {PossibleTheme}                                                                                    from '../theme/Themes';
 import type {EntityCategoriesArray, EntityCategoriesNames, EntityCategoriesOrdinals, PossibleEntityCategories} from './EntityCategories.types';
+import type {PossibleTheme}                                                                                    from '../theme/Themes.types';
 
 import {EntityCategoryLoader} from './EntityCategoryLoader';
 import {Enum}                 from '../../util/enum/Enum';
