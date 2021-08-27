@@ -1,5 +1,5 @@
 import type {Converter}            from './converter/Converter';
-import type {PredefinedConversion} from './converter/PredefinedConverterTypes';
+import type {PredefinedConversion} from './converter/PredefinedConverter.types';
 
 export type ConversionCallbackToConverter = (value: string,) => Converter<string, any>;
 

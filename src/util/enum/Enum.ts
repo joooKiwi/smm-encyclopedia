@@ -1,5 +1,6 @@
-import {Enumerable}       from './Enumerable';
-import {EnumerableStatic} from './EnumerableStatic';
+import type {Enumerable}       from './Enumerable';
+import type {EnumerableStatic} from './EnumerableStatic';
+
 import {getLastOrdinalOn} from './enumUtilityMethods';
 
 export abstract class Enum<O extends number = number, N extends string = string, >

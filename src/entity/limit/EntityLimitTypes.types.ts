@@ -1,17 +1,29 @@
 import type {SimpleEnum}       from '../../util/enum/EnumTypes';
 import type {EntityLimitTypes} from './EntityLimitTypes';
 
-export type PossibleEntityLimitTypeEnglishName = | 'Playing' | 'Editor';
-export type EntityLimitTypeEnglishNameArray = readonly ['Playing', 'Editor',];
-
-//region -------------------- Enum types --------------------
+//region -------------------- Number types --------------------
 
 export type EntityLimitTypesOrdinals = | 0 | 1;
-export type EntityLimitTypesNames = | 'PLAYING' | 'EDITOR';
+
+//endregion -------------------- Number types --------------------
+//region -------------------- String types --------------------
+
+export type EntityLimitTypesNames = Uppercase<PossibleEntityLimitTypeEnglishName>;
+
+export type PossibleEntityLimitTypeEnglishName = | 'Playing' | 'Editor';
+
+//endregion -------------------- String types --------------------
+//region -------------------- Instance types --------------------
+
 export type SimpleEntityLimitTypes<T = EntityLimitTypes, > = SimpleEnum<EntityLimitTypesNames, T>;
+
+//endregion -------------------- Instance types --------------------
+//region -------------------- Array types --------------------
+
 export type EntityLimitTypesArray<T = EntityLimitTypes, > = readonly [
     SimpleEntityLimitTypes<T>['PLAYING'],
     SimpleEntityLimitTypes<T>['EDITOR'],
 ];
+export type EntityLimitTypeEnglishNameArray = readonly ['Playing', 'Editor',];
 
-//endregion -------------------- Enum types --------------------
+//endregion -------------------- Array types --------------------

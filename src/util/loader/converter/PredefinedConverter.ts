@@ -1,6 +1,6 @@
 import type {Converter}                                                                                                                        from './Converter';
-import type {BasicPredefinedConversion, PredefinedConversion, PredefinedConverterArray, PredefinedConverterNames, PredefinedConverterOrdinals} from './PredefinedConverterTypes';
-import type {ConversionCallbackToAny, ValidationCallback}                                                                                      from '../CSVLoaderTypes';
+import type {BasicPredefinedConversion, PredefinedConversion, PredefinedConverterArray, PredefinedConverterNames, PredefinedConverterOrdinals} from './PredefinedConverter.types';
+import type {ConversionCallbackToAny, ValidationCallback}                                                                                      from '../CSVLoader.types';
 
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';

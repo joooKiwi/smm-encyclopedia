@@ -1,6 +1,25 @@
 import type {EveryLanguages} from './EveryLanguages';
 import type {SimpleEnum}     from '../util/enum/EnumTypes';
 
+export type PossibleNonNullableValue = | EveryLanguages
+                                       | EveryLanguagesOrdinals
+                                       | PossibleEveryLanguagesAcronym
+                                       | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName | EveryLanguagesNames;
+
+//region -------------------- Number types --------------------
+
+export type EveryLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+                                     | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20;
+
+//endregion -------------------- Number types --------------------
+//region -------------------- String types --------------------
+
+export type ProjectLanguagesNames = | `${| 'AMERICAN' | 'EUROPEAN'}_${| 'ENGLISH' | 'SPANISH' | 'PORTUGUESE'}`
+                                    | `${| 'CANADIAN' | 'EUROPEAN'}_FRENCH`
+                                    | 'GERMAN' | 'ITALIAN' | 'DUTCH' | 'RUSSIAN' | 'JAPANESE' | 'KOREAN'
+                                    | `CHINESE_${| 'TRADITIONAL' | 'SIMPLIFIED'}`;
+export type EveryLanguagesNames = | ProjectLanguagesNames | Uppercase<BasicEnglishName>;
+
 //region -------------------- Acronyms --------------------
 
 export type BasicAcronym = | 'en' | 'fr' | 'es' | 'pt' | 'zh';
@@ -59,22 +78,15 @@ export type PossibleEveryLanguagesOriginalName = | BasicOriginalName | PossibleP
 
 //endregion -------------------- Names --------------------
 
-export type PossibleNonNullableValue = | EveryLanguages
-                                       | EveryLanguagesOrdinals
-                                       | PossibleEveryLanguagesAcronym
-                                       | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName | EveryLanguagesNames;
-
-//region -------------------- Enum types --------------------
-
-export type EveryLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-                                     | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20;
-export type ProjectLanguagesNames = | `${| 'AMERICAN' | 'EUROPEAN'}_${| 'ENGLISH' | 'SPANISH' | 'PORTUGUESE'}`
-                                    | `${| 'CANADIAN' | 'EUROPEAN'}_FRENCH`
-                                    | 'GERMAN' | 'ITALIAN' | 'DUTCH' | 'RUSSIAN' | 'JAPANESE' | 'KOREAN'
-                                    | `CHINESE_${| 'TRADITIONAL' | 'SIMPLIFIED'}`;
-export type EveryLanguagesNames = | ProjectLanguagesNames | Uppercase<BasicEnglishName>;
+//endregion -------------------- String types --------------------
+//region -------------------- Instance types --------------------
 
 export type SimpleProjectLanguages<T = EveryLanguages, > = SimpleEnum<ProjectLanguagesNames, T>;
+export type SimpleEveryLanguages<T = EveryLanguages, > = SimpleEnum<EveryLanguagesNames, T>;
+
+//endregion -------------------- Instance types --------------------
+//region -------------------- Array types --------------------
+
 export type ProjectLanguagesArray<T = EveryLanguages, > = readonly [
     SimpleProjectLanguages<T>['AMERICAN_ENGLISH'], SimpleProjectLanguages<T>['EUROPEAN_ENGLISH'],
     SimpleProjectLanguages<T>['CANADIAN_FRENCH'], SimpleProjectLanguages<T>['EUROPEAN_FRENCH'],
@@ -88,8 +100,6 @@ export type ProjectLanguagesArray<T = EveryLanguages, > = readonly [
     SimpleProjectLanguages<T>['CHINESE_TRADITIONAL'], SimpleProjectLanguages<T>['CHINESE_SIMPLIFIED'],
     SimpleProjectLanguages<T>['KOREAN'],
 ];
-
-export type SimpleEveryLanguages<T = EveryLanguages, > = SimpleEnum<EveryLanguagesNames, T>;
 export type EveryLanguagesArray<T = EveryLanguages, > = readonly [
     SimpleEveryLanguages<T>['ENGLISH'], SimpleEveryLanguages<T>['AMERICAN_ENGLISH'], SimpleEveryLanguages<T>['EUROPEAN_ENGLISH'],
     SimpleEveryLanguages<T>['FRENCH'], SimpleEveryLanguages<T>['CANADIAN_FRENCH'], SimpleEveryLanguages<T>['EUROPEAN_FRENCH'],
@@ -104,4 +114,4 @@ export type EveryLanguagesArray<T = EveryLanguages, > = readonly [
     SimpleEveryLanguages<T>['KOREAN'],
 ];
 
-//endregion -------------------- Enum types --------------------
+//endregion -------------------- Array types --------------------

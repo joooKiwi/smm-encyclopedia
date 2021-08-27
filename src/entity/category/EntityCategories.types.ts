@@ -1,13 +1,25 @@
 import type {SimpleEnum}       from '../../util/enum/EnumTypes';
 import type {EntityCategories} from './EntityCategories';
 
-export type PossibleEntityCategories = | 'Terrain' | 'Item' | 'Enemy' | 'Gizmo';
-
-//region -------------------- Enum types --------------------
+//region -------------------- Number types --------------------
 
 export type EntityCategoriesOrdinals = | 0 | 1 | 2 | 3;
-export type EntityCategoriesNames = | 'TERRAIN' | 'ITEM' | 'ENEMY' | 'GIZMO';
+
+//endregion -------------------- Number types --------------------
+//region -------------------- String types --------------------
+
+export type EntityCategoriesNames = |Uppercase<PossibleEntityCategories>;
+
+export type PossibleEntityCategories = | 'Terrain' | 'Item' | 'Enemy' | 'Gizmo';
+
+//endregion -------------------- String types --------------------
+//region -------------------- Instance types --------------------
+
 export type SimpleEntityCategories<T = EntityCategories, > = SimpleEnum<EntityCategoriesNames, T>;
+
+//endregion -------------------- Instance types --------------------
+//region -------------------- Array types --------------------
+
 export type EntityCategoriesArray<T = EntityCategories, > = readonly [
     SimpleEntityCategories<T>['TERRAIN'],
     SimpleEntityCategories<T>['ITEM'],
@@ -15,4 +27,4 @@ export type EntityCategoriesArray<T = EntityCategories, > = readonly [
     SimpleEntityCategories<T>['GIZMO'],
 ];
 
-//endregion -------------------- Enum types --------------------
+//endregion -------------------- Array types --------------------

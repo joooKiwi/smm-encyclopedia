@@ -6,9 +6,9 @@ export type PossibleNonNullableValue = | ProjectLanguages
                                        | PossibleProjectLanguagesAcronym
                                        | PossibleProjectLanguagesEnglishName | PossibleProjectLanguagesOriginalName | ProjectLanguagesNames;
 
-//region -------------------- Enum types --------------------
+//region -------------------- Number types --------------------
 
 export type ProjectLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
                                        | 11 | 12 | 13 | 14 | 15;
 
-//endregion -------------------- Enum types --------------------
+//endregion -------------------- Number types --------------------
