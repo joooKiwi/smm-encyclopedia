@@ -395,6 +395,3 @@ export abstract class EveryLanguages
     //endregion -------------------- Enum methods --------------------
 
 }
-
-EveryLanguages.default ??= 'en_AM';
-EveryLanguages.currentLanguage ??= 'en_AM';

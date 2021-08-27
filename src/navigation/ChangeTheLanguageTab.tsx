@@ -1,6 +1,7 @@
 import './ChangeTheLanguageTab.scss';
 
 import React, {PureComponent} from 'react';
+import { Link } from 'react-router-dom';
 
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
 import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
@@ -16,8 +17,8 @@ export default class ChangeTheLanguageTab
         };
     }
 
-    protected setCurrentLanguage(language: ProjectLanguages): void {
-        this.setState({currentLanguage: ProjectLanguages.currentLanguage = language});
+    protected setCurrentLanguage(language: ProjectLanguages,): void {
+        this.setState({currentLanguage: ProjectLanguages.currentLanguage = language,});
     }
 
     private __retrieveEveryLanguages() {
@@ -28,10 +29,10 @@ export default class ChangeTheLanguageTab
                         ? <span className="dropdown-item disabled">
                               <LanguageTranslationComponent translationCallback={translation => translation(language.englishName)}/>
                           </span>
-                        : <button key={`languageChanger_${language.projectAcronym}`} className="dropdown-item" onClick={() => this.setCurrentLanguage(language)}>
+                        : <Link key={`languageChanger_${language.projectAcronym}`} className="dropdown-item" to={`/${language.projectAcronym}/home`} onClick={() => this.setCurrentLanguage(language)}>
                             <LanguageTranslationComponent translationCallback={translation => translation(language.englishName)}/>
                             <sup>({language.originalName})</sup>
-                        </button>
+                        </Link>
                 };
             }
         ).map(object => <li key={`languageChanger_${object.language.projectAcronym}_li`}>{object.htmlElement}</li>);
