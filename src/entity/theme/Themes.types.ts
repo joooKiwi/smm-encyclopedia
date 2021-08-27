@@ -1,4 +1,4 @@
-import type {SimpleEnum} from '../../util/enum/EnumTypes';
+import type {SimpleEnum} from '../../util/enum/Enum.types';
 import type {Themes}     from './Themes';
 
 //region -------------------- Number types --------------------

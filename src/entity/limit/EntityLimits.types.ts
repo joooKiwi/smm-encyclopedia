@@ -1,4 +1,4 @@
-import type {SimpleEnum}   from '../../util/enum/EnumTypes';
+import type {SimpleEnum}   from '../../util/enum/Enum.types';
 import type {EntityLimits} from './EntityLimits';
 
 //region -------------------- Number types --------------------

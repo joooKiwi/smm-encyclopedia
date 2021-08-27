@@ -1,5 +1,5 @@
 import type {EveryLanguages} from './EveryLanguages';
-import type {SimpleEnum}     from '../util/enum/EnumTypes';
+import type {SimpleEnum}     from '../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | EveryLanguages
                                        | EveryLanguagesOrdinals

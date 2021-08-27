@@ -12,8 +12,8 @@ import type {PossibleCourseTheme}                                               
 import type {PossibleEntityCategories}                                               from '../category/EntityCategories.types';
 import type {PossibleEntityLimits}                                                   from '../limit/EntityLimits.types';
 import type {PossibleGameStyleAcronym}                                               from '../gameStyle/GameStyles.types';
-import type {PossibleTimeName} from '../time/Times';
-import type {SMM2NameTemplate} from '../lang/SMM2Name.template';
+import type {PossibleTimeName}                                                       from '../time/Times.types';
+import type {SMM2NameTemplate}                                                       from '../lang/SMM2Name.template';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';

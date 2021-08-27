@@ -2,6 +2,10 @@ import type {Builder} from './Builder';
 
 import {CallbackCaller} from './CallbackCaller';
 
+/**
+ * A generic builder that create only <b>once</b> an instance from another {@link Builder}.
+ * @see Builder
+ */
 export class GenericSingleInstanceBuilder<T>
     implements Builder<T> {
 

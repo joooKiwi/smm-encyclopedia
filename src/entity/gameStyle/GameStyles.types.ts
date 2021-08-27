@@ -1,5 +1,5 @@
 import type {GameStyles} from './GameStyles';
-import type {SimpleEnum} from '../../util/enum/EnumTypes';
+import type {SimpleEnum} from '../../util/enum/Enum.types';
 
 //region -------------------- Number types --------------------
 

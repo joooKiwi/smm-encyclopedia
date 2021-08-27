@@ -1,5 +1,5 @@
-import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderTypeOrConvertor} from './CSVLoader.types';
-import {PredefinedConverter}                                                                                                          from './converter/PredefinedConverter';
+import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderReceived, SimpleHeaderTypeOrConvertor} from './CSVLoader.types';
+import {PredefinedConverter}                                                                                                                                from './converter/PredefinedConverter';
 import {GenericStringToAnyConverter}                                                                                                  from './converter/GenericStringToAnyConverter';
 import {CSVLoader}                                                                                                                    from './CSVLoader';
 
@@ -15,7 +15,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     readonly #singleValuesToValidate: string[];
     readonly #convertorCallbacks: ConversionCallbackToConverter[];
 
-    public constructor(header: SimpleHeader<H>, otherHeaders: A,) {
+    public constructor(header: SimpleHeaderReceived<H>, otherHeaders: A,) {
         this.#header = header.toLowerCase() as SimpleHeader<H>;
         this.#otherHeaders = otherHeaders;
         this.#headerTypeOrConvertorOriginalArray = [];

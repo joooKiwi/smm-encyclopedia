@@ -1,5 +1,5 @@
 import type {PredefinedConverter} from './PredefinedConverter';
-import type {SimpleEnum}          from '../../enum/EnumTypes';
+import type {SimpleEnum}          from '../../enum/Enum.types';
 
 //region -------------------- Number types --------------------
 

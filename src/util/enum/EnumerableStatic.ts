@@ -18,6 +18,9 @@ export interface EnumerableStatic<O extends number = number, N extends string = 
     getValue<I extends Enumerable<O, N> = Enumerable<O, N>, >(value: | I | Enumerable<O, N> | string | number | null | undefined,): | I | Enumerable<O, N> | null
 
 
+    /**
+     * Get every values inside the instance.
+     */
     get values(): readonly Enumerable<O, N>[]
 
 }

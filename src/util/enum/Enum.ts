@@ -18,9 +18,13 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
     //region -------------------- Enum methods --------------------
 
+    /**
+     * Get the ordinal on the current enum instance.
+     */
     public get ordinal(): O {
         return this.#ordinal;
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }
