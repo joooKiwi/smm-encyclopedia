@@ -1,19 +1,19 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import type {Entity}                                                                                                           from './Entity';
-import type {EntityCategory}                                                                                                   from '../category/EntityCategory';
-import type {EntityLimit}                                                                                                      from '../limit/EntityLimit';
-import type {EntityLink, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import type {EntityTemplate}                                                                                                   from './Entity.template';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                           from '../../lang/Loader.types';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                   from '../game/Loader.types';
-import type {Loader}                                                                                                           from '../../util/loader/Loader';
-import type {PossibleCourseTheme}                                                                                              from '../theme/Themes.types';
-import type {PossibleEntityCategories}                                                                                         from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                                                                             from '../limit/EntityLimits.types';
-import type {PossibleGameStyleAcronym}                                                                                         from '../gameStyle/GameStyles.types';
-import type {PossibleTimeName}                                                                                                 from '../time/Times.types';
-import type {SMM2NameTemplate}                                                                                                 from '../lang/SMM2Name.template';
+import type {Entity}                                                                                                                                             from './Entity';
+import type {EntityCategory}                                                                                                                                     from '../category/EntityCategory';
+import type {EntityLimit}                                                                                                                                        from '../limit/EntityLimit';
+import type {CustomLimitType, EditorLimitType, EntityLink, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import type {EntityTemplate}                                                                                                                                     from './Entity.template';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                                                             from '../../lang/Loader.types';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                     from '../game/Loader.types';
+import type {Loader}                                                                                                                                             from '../../util/loader/Loader';
+import type {PossibleCourseTheme}                                                                                                                                from '../theme/Themes.types';
+import type {PossibleEntityCategories}                                                                                                                           from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                                                                                                               from '../limit/EntityLimits.types';
+import type {PossibleGameStyleAcronym}                                                                                                                           from '../gameStyle/GameStyles.types';
+import type {PossibleTimeName}                                                                                                                                   from '../time/Times.types';
+import type {SMM2NameTemplate}                                                                                                                                   from '../lang/SMM2Name.template';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
@@ -97,7 +97,7 @@ type ExclusivePropertiesArray = [
     //endregion ---------- Specific properties ----------
     //region ---------- Entity limit properties ----------
 
-    editorLimit: | PossibleEntityLimits | '?' | null,
+    editorLimit: EditorLimitType,
 
     whilePlaying_isInGEL: GeneralEntityLimitType,
     whilePlaying_isInGel_comment: | string | null,
@@ -110,7 +110,7 @@ type ExclusivePropertiesArray = [
     whilePlaying_isInPJL: ProjectileEntityLimitType,
     whilePlaying_isInPJL_comment: | string | null,
 
-    whilePlaying_customLimit: | PossibleEntityLimits | '?' | null,
+    whilePlaying_customLimit: CustomLimitType,
     whilePlaying_customLimit_comment: | string | null,
 
     //endregion ---------- Entity limit properties ----------
@@ -217,7 +217,7 @@ export class EntityLoader
 
                 .convertToEmptyableStringAnd([unknownCharacter, ...this.entityLimitsNames,], 'editorLimit',)
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
-                .convertToNullableBooleanAnd(['number',/*2*/ 'Variable',], 'whilePlaying_isInGEL',)
+                .convertToNullableBooleanAnd(['number',/*2*/ 'Only when collected',], 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
                 .convertToEmptyableStringAnd(this.entityLimitsNames, 'whilePlaying_customLimit',)
