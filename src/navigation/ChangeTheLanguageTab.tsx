@@ -1,5 +1,3 @@
-import './ChangeTheLanguageTab.scss';
-
 import React, {PureComponent} from 'react';
 
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
