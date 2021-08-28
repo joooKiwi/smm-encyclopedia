@@ -34,22 +34,27 @@ export default class EveryLimitsApp
             : `${entityLimit.acronym} / ${entityLimit.alternativeAcronym}`;
     }
 
-    private static __getLimit(entityLimit: EntityLimit): JSX.Element {
+    private static __getAmount(entityLimit: EntityLimit): JSX.Element {
         return entityLimit.isAmountUnknown
             ? <span className="is-unknown">{entityLimit.amount}</span>
             : <span>{entityLimit.amount}</span>;
     }
 
+    private static __getType(entityLimit: EntityLimit): JSX.Element {
+        return <span><GameContentTranslationComponent translationCallback={translation => translation(entityLimit.type.englishCommonText)}/></span>;
+    }
+
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, entityTheme,] of this.map.entries()) {
+        for (const [englishName, entityLimit,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <span>{EveryLimitsApp.__getAcronym(entityTheme)}</span>,
-                <GameContentTranslationComponent translationCallback={translation => translation(entityTheme.fullName)}/>,
-                entityTheme.alternativeName == null ? <></> : <GameContentTranslationComponent translationCallback={translation => translation(entityTheme.alternativeName!)}/>,
-                EveryLimitsApp.__getLimit(entityTheme),
+                <span>{EveryLimitsApp.__getAcronym(entityLimit)}</span>,
+                <GameContentTranslationComponent translationCallback={translation => translation(entityLimit.fullName)}/>,
+                entityLimit.alternativeName == null ? <></> : <GameContentTranslationComponent translationCallback={translation => translation(entityLimit.alternativeName!)}/>,
+                EveryLimitsApp.__getAmount(entityLimit),
+                EveryLimitsApp.__getType(entityLimit),
             ]);
             index++;
         }
@@ -66,6 +71,7 @@ export default class EveryLimitsApp
                 {key: 'fullName', element: <ContentTranslationComponent translationCallback={translation => translation('Full name')}/>,},
                 {key: 'alternativeName', element: <ContentTranslationComponent translationCallback={translation => translation('Alternative name')}/>,},
                 {key: 'limit', element: <ContentTranslationComponent translationCallback={translation => translation('Limit')}/>,},
+                {key: 'type', element: <ContentTranslationComponent translationCallback={translation => translation('Type')}/>,},
             ]}
             content={this.content}/>;
     }
