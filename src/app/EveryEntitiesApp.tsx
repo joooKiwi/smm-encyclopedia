@@ -3,7 +3,7 @@ import './EveryEntitiesApp.scss';
 import React from 'react';
 
 import type {DebugEntityReferences} from '../entity/simple/EntityLoader';
-import type {SingleTableContent}           from './tools/table/Table';
+import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';

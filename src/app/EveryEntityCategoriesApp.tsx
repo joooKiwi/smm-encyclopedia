@@ -2,7 +2,7 @@ import './EveryThemesApp.scss';
 
 import React from 'react';
 
-import type {SingleTableContent} from './tools/table/Table';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -43,9 +43,9 @@ export default class EveryEntityCategoriesApp
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table
-            id='entityCategory_table'
+            id="entityCategory_table"
             caption={<GameContentTranslationComponent translationCallback={translation => translation('Every entity categories')}/>}
-            headers={ [
+            headers={[
                 '#',
                 {key: 'language', element: <ContentTranslationComponent translationCallback={translation => translation('Language')}/>,},
             ]}

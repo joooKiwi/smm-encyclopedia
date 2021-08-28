@@ -2,7 +2,7 @@ import './EveryGameStylesApp.scss';
 
 import React from 'react';
 
-import type {SingleTableContent} from './tools/table/Table';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';

@@ -1,6 +1,8 @@
+import './EveryLimitsApp.scss';
+
 import React from 'react';
 
-import type{SingleTableContent} from './tools/table/Table';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -33,10 +35,9 @@ export default class EveryLimitsApp
     }
 
     private static __getLimit(entityLimit: EntityLimit): JSX.Element {
-        const amount = String(entityLimit.amount ?? '') + (entityLimit.isAmountUnknown ? '?' : '');
-        if (entityLimit.isAmountUnknown)
-            return <span className="text-danger">{amount}</span>;
-        return <span>{amount}</span>;
+        return entityLimit.isAmountUnknown
+            ? <span className="is-unknown">{entityLimit.amount}</span>
+            : <span>{entityLimit.amount}</span>;
     }
 
     protected get content() {
