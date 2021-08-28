@@ -1,4 +1,4 @@
-import type {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
+import type {ExclusiveSMM2GameProperty} from '../properties/GameProperty';
 import type {Name}                      from '../../lang/name/Name';
 import type {WorldTheme}                from './WorldTheme';
 

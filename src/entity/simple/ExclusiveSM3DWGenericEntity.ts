@@ -1,9 +1,8 @@
-import type {EntityCategory}               from '../category/EntityCategory';
-import type {EntityReferences}             from '../properties/EntityReferences';
-import type {ExclusiveSM3DWEntity}         from './ExclusiveSM3DWEntity';
-import type {ExclusiveSMM2PropertyInSM3DW} from '../properties/exclusive/ExclusiveSMM2PropertyInSM3DW';
-import type {Name}                         from '../../lang/name/Name';
-import type {Property}                     from '../properties/Property';
+import type {EntityCategory}                         from '../category/EntityCategory';
+import type {EntityReferences}                       from '../properties/EntityReferences';
+import type {ExclusiveSM3DWEntity}                   from './Entity';
+import type {ExclusiveSMM2PropertyInSM3DW, Property} from '../properties/Property';
+import type {Name}                                   from '../../lang/name/Name';
 
 import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
 

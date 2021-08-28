@@ -1,6 +1,4 @@
-import type {ExclusiveSMM1GameProperty} from './exclusive/ExclusiveSMM1GameProperty';
-import type {ExclusiveSMM2GameProperty} from './exclusive/ExclusiveSMM2GameProperty';
-import type {GameProperty}              from './GameProperty';
+import type {ExclusiveSMM1GameProperty, ExclusiveSMM2GameProperty, GameProperty} from './GameProperty';
 
 /**
  * @multiton

@@ -1,10 +1,20 @@
-import type {EntityReferences} from '../properties/EntityReferences';
-import type {EntityCategory}   from '../category/EntityCategory';
-import type {Name}             from '../../lang/name/Name';
-import type {Property}         from '../properties/Property';
+import type {EntityReferences}                                                                                                                                                   from '../properties/EntityReferences';
+import type {EntityCategory}                                                                                                                                                     from '../category/EntityCategory';
+import type {ExclusiveSMM1GameProperty, ExclusiveSMM2GameProperty, ExclusiveSMM2GamePropertyInAnyStyle, ExclusiveSMM2GamePropertyInSM3DW, GameProperty}                          from '../properties/GameProperty';
+import type {ExclusiveSMM1GameStyleProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2GameStylePropertyInAnyStyle, ExclusiveSMM2GameStylePropertyInSM3DW, GameStyleProperty} from '../properties/GameStyleProperty';
+import type {ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInAnyStyle, ExclusiveSMM2PropertyInSM3DW, Property}                                              from '../properties/Property';
+import type {ExclusiveSMM1ThemeProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2ThemePropertyInAnyStyle, ExclusiveSMM2ThemePropertyInSM3DW, ThemeProperty}                     from '../properties/ThemeProperty';
+import type {ExclusiveSMM1TimeProperty, ExclusiveSMM2TimeProperty, ExclusiveSMM2TimePropertyInAnyStyle, ExclusiveSMM2TimePropertyInSM3DW, TimeProperty}                          from '../properties/TimeProperty';
+import type {Name}                                                                                                                                                               from '../../lang/name/Name';
 
-export interface Entity
-    extends Name, Property, EntityReferences {
+export interface Entity<PROPERTY extends Property = Property, >
+    extends Name,
+        Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
+        GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
+        GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,
+        ThemeProperty<PROPERTY['isInGroundTheme'], PROPERTY['isInUndergroundTheme'], PROPERTY['isInUnderwaterTheme'], PROPERTY['isInDesertTheme'], PROPERTY['isInSnowTheme'], PROPERTY['isInSkyTheme'], PROPERTY['isInForestTheme'], PROPERTY['isInGhostHouseTheme'], PROPERTY['isInAirshipTheme'], PROPERTY['isInCastleTheme']>,
+        TimeProperty<PROPERTY['isInDayTheme'], PROPERTY['isInNightTheme']>,
+        EntityReferences {
 
     //region -------------------- Name properties --------------------
 
@@ -156,9 +166,66 @@ export interface Entity
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
 
-    get propertyContainer(): Property
+    get propertyContainer(): PROPERTY
 
-    //TODO add property types on other methods when the Property interface is finished
+    //region -------------------- Game properties --------------------
+
+    get gameContainer(): this['propertyContainer']['gameContainer']
+
+    get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+
+    get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
+
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
+
+    get gameStyleContainer(): this['propertyContainer']['gameStyleContainer']
+
+    get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle']
+
+    get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style']
+
+    get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle']
+
+    get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle']
+
+    get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle']
+
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
+
+    get themeContainer(): this['propertyContainer']['themeContainer']
+
+    get isInGroundTheme(): this['themeContainer']['isInGroundTheme']
+
+    get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme']
+
+    get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme']
+
+    get isInDesertTheme(): this['themeContainer']['isInDesertTheme']
+
+    get isInSnowTheme(): this['themeContainer']['isInSnowTheme']
+
+    get isInSkyTheme(): this['themeContainer']['isInSkyTheme']
+
+    get isInForestTheme(): this['themeContainer']['isInForestTheme']
+
+    get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme']
+
+    get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme']
+
+    get isInCastleTheme(): this['themeContainer']['isInCastleTheme']
+
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
+
+    get timeContainer(): this['propertyContainer']['timeContainer']
+
+    get isInDayTheme(): this['timeContainer']['isInDayTheme']
+
+    get isInNightTheme(): this['timeContainer']['isInNightTheme']
+
+    //endregion -------------------- Time properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References properties --------------------
@@ -214,3 +281,16 @@ export interface Entity
     //endregion -------------------- References properties --------------------
 
 }
+
+export type ExclusiveSMM1Entity
+    = Entity<ExclusiveSMM1Property> & ExclusiveSMM1Property
+      & ExclusiveSMM1GameProperty & ExclusiveSMM1GameStyleProperty & ExclusiveSMM1ThemeProperty & ExclusiveSMM1TimeProperty;
+export type ExclusiveSMM2Entity<PROPERTY extends ExclusiveSMM2Property = ExclusiveSMM2Property, >
+    = Entity<PROPERTY> & ExclusiveSMM2Property
+      & ExclusiveSMM2GameProperty & ExclusiveSMM2GameStyleProperty & ExclusiveSMM2ThemeProperty & ExclusiveSMM2TimeProperty;
+export type ExclusiveSM3DWEntity
+    = ExclusiveSMM2Entity<ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW
+      & ExclusiveSMM2GamePropertyInSM3DW & ExclusiveSMM2GameStylePropertyInSM3DW & ExclusiveSMM2ThemePropertyInSM3DW & ExclusiveSMM2TimePropertyInSM3DW;
+export type ExclusiveSMM2EntityInAnyStyle
+    = ExclusiveSMM2Entity<ExclusiveSMM2PropertyInAnyStyle> & ExclusiveSMM2PropertyInAnyStyle
+      & ExclusiveSMM2GamePropertyInAnyStyle & ExclusiveSMM2GameStylePropertyInAnyStyle & ExclusiveSMM2ThemePropertyInAnyStyle & ExclusiveSMM2TimePropertyInAnyStyle;

@@ -1,7 +1,6 @@
-import type {ExclusiveSMM2TimeProperty} from './exclusive/ExclusiveSMM2TimeProperty';
-import type {TimeProperty}              from './TimeProperty';
+import type {ExclusiveSMM2TimeProperty, TimeProperty} from './TimeProperty';
 
-import {Times}                     from '../time/Times';
+import {Times} from '../time/Times';
 
 /**
  * @multiton

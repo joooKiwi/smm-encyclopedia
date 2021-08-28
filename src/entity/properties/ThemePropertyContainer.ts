@@ -1,6 +1,4 @@
-import type {ExclusiveSMM1ThemeProperty} from './exclusive/ExclusiveSMM1ThemeProperty';
-import type {ExclusiveSMM2ThemeProperty} from './exclusive/ExclusiveSMM2ThemeProperty';
-import type {ThemeProperty}              from './ThemeProperty';
+import type {ExclusiveSMM1ThemeProperty,ExclusiveSMM2ThemeProperty, ThemeProperty} from './ThemeProperty';
 
 import {Themes} from '../theme/Themes';
 

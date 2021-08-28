@@ -4,8 +4,8 @@ import type {EntityReferences} from '../properties/EntityReferences';
 import type {Property}         from '../properties/Property';
 import type {Name}             from '../../lang/name/Name';
 
-export abstract class AbstractEntity<T extends Property = Property>
-    implements Entity {
+export abstract class AbstractEntity<PROPERTY extends Property = Property, >
+    implements Entity<PROPERTY> {
 
     //region -------------------- Attributes --------------------
 
@@ -16,10 +16,10 @@ export abstract class AbstractEntity<T extends Property = Property>
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, category: EntityCategory, isInProperty: T, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, property: PROPERTY, references: EntityReferences,) {
         this.#name = name;
         this.#category = category;
-        this.#propertyContainer = isInProperty;
+        this.#propertyContainer = property;
         this.#referencesContainer = references;
     }
 
@@ -290,7 +290,7 @@ export abstract class AbstractEntity<T extends Property = Property>
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
 
-    public get propertyContainer(): T {
+    public get propertyContainer(): PROPERTY {
         return this.#propertyContainer;
     }
 
