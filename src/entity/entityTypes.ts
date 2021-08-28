@@ -1,3 +1,5 @@
+export type GeneralEntityLimitType = | boolean | 2 | 'Variable' | null;
+export type GeneralGlobalEntityLimitType = | boolean | 'Not on track' | null;
 export type ProjectileEntityLimitType = | boolean | '?' | 'Temporary as it comes out' | null;
 
 export type EntityLink = | 'this' | string | `${string | 'this'} / ${'this' | string}`;

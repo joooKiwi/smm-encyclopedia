@@ -1,9 +1,9 @@
-import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import type {EntityReferencesTemplate}                                   from '../properties/EntityReferences.template';
+import type {EntityLink, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import type {EntityReferencesTemplate}                                                                                         from '../properties/EntityReferences.template';
 import type {PossibleEntityCategories}                                   from '../category/EntityCategories.types';
-import type {PossibleEntityLimits} from '../limit/EntityLimits.types';
-import type {PropertyTemplate} from '../properties/Property.template';
-import type {SMM2NameTemplate} from '../lang/SMM2Name.template';
+import type {PossibleEntityLimits}                                       from '../limit/EntityLimits.types';
+import type {PropertyTemplate}                                           from '../properties/Property.template';
+import type {SMM2NameTemplate}                                           from '../lang/SMM2Name.template';
 
 /**
  * @template
@@ -71,12 +71,12 @@ export interface EntityTemplate {
             editor: | PossibleEntityLimits | '?' | null
             whilePlaying: {
                 isInGEL: {
-                    value: | boolean | 2 | null
-                    isSuperGlobal: | boolean | null
+                    value: LimitWithComment<GeneralEntityLimitType>
+                    isSuperGlobal: LimitWithComment<GeneralGlobalEntityLimitType>
                 }
-                isInPEL: | boolean | null
-                isInPJL: ProjectileEntityLimitType
-                customLimit: | PossibleEntityLimits | '?' | null
+                isInPEL: LimitWithComment<| boolean | null>
+                isInPJL: LimitWithComment<ProjectileEntityLimitType>
+                customLimit: LimitWithComment<| PossibleEntityLimits | '?' | null>
                 offscreenRange: {
                     spawning: {
                         horizontal: | number | 'Variable' | null
@@ -101,4 +101,9 @@ export interface EntityTemplate {
 
     name: SMM2NameTemplate
 
+}
+
+export interface LimitWithComment<T> {
+    value: T
+    comment: | string | null
 }

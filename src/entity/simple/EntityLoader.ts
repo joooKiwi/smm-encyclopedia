@@ -1,19 +1,19 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import type {Entity}                                                                 from './Entity';
-import type {EntityCategory}                                                         from '../category/EntityCategory';
-import type {EntityLimit}                                                            from '../limit/EntityLimit';
-import type {EntityLink, PossibleLightSource, ProjectileEntityLimitType}             from '../entityTypes';
-import type {EntityTemplate}                                                         from './Entity.template';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
-import type {Loader}                                                                 from '../../util/loader/Loader';
-import type {PossibleCourseTheme}                                                    from '../theme/Themes.types';
-import type {PossibleEntityCategories}                                               from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                                   from '../limit/EntityLimits.types';
-import type {PossibleGameStyleAcronym}                                               from '../gameStyle/GameStyles.types';
-import type {PossibleTimeName}                                                       from '../time/Times.types';
-import type {SMM2NameTemplate}                                                       from '../lang/SMM2Name.template';
+import type {Entity}                                                                                                           from './Entity';
+import type {EntityCategory}                                                                                                   from '../category/EntityCategory';
+import type {EntityLimit}                                                                                                      from '../limit/EntityLimit';
+import type {EntityLink, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
+import type {EntityTemplate}                                                                                                   from './Entity.template';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                           from '../../lang/Loader.types';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                   from '../game/Loader.types';
+import type {Loader}                                                                                                           from '../../util/loader/Loader';
+import type {PossibleCourseTheme}                                                                                              from '../theme/Themes.types';
+import type {PossibleEntityCategories}                                                                                         from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                                                                             from '../limit/EntityLimits.types';
+import type {PossibleGameStyleAcronym}                                                                                         from '../gameStyle/GameStyles.types';
+import type {PossibleTimeName}                                                                                                 from '../time/Times.types';
+import type {SMM2NameTemplate}                                                                                                 from '../lang/SMM2Name.template';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
@@ -37,7 +37,7 @@ type Headers =
     | 'canIgniteABobOmb' | 'canGoThroughWalls' | 'canBeStacked' | 'isGlobalGroundOrGlobal' | 'canMakeASoundOutOfAMusicBlock'
 
     | 'editorLimit'
-    | `whilePlaying_${| `isInGEL${| '' | '_isSuperGlobal'}` | 'isInPEL' | 'isInPJL' | 'customLimit'}`
+    | `${`whilePlaying_${| `isInGEL${| '' | '_isSuperGlobal'}` | 'isInPEL' | 'isInPJL' | 'customLimit'}`}${| '' | '_comment'}`
 
     | `whilePlaying_offscreen${| 'Spawning' | 'Despawning'}${| 'Horizontal' | `${| 'Upward' | 'Downward'}Vertical`}Range`
 
@@ -99,14 +99,19 @@ type ExclusivePropertiesArray = [
 
     editorLimit: | PossibleEntityLimits | '?' | null,
 
-    whilePlaying_isInGEL: | boolean | 2 | null,
-    whilePlaying_isInGEL_isSuperGlobal: | boolean | null,
+    whilePlaying_isInGEL: GeneralEntityLimitType,
+    whilePlaying_isInGel_comment: | string | null,
+    whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType,
+    whilePlaying_isInGEL_isSuperGlobal_comment: | string | null,
 
     whilePlaying_isInPEL: | boolean | null,
+    whilePlaying_isInPEL_comment: | string | null,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
+    whilePlaying_isInPJL_comment: | string | null,
 
     whilePlaying_customLimit: | PossibleEntityLimits | '?' | null,
+    whilePlaying_customLimit_comment: | string | null,
 
     //endregion ---------- Entity limit properties ----------
     //region ---------- Spawning / Despawning range properties ----------
@@ -211,16 +216,21 @@ export class EntityLoader
                 .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
 
                 .convertToEmptyableStringAnd([unknownCharacter, ...this.entityLimitsNames,], 'editorLimit',)
-                .convertToNullableBoolean('whilePlaying_isInGEL_isSuperGlobal',)
-                .convertToNullableBooleanAnd('number', 'whilePlaying_isInGEL',)
+                .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
+                .convertToNullableBooleanAnd(['number',/*2*/ 'Variable',], 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
-                .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
                 .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
                 .convertToEmptyableStringAnd(this.entityLimitsNames, 'whilePlaying_customLimit',)
                 .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
                 .convertToNullableNumberAnd(['Variable', 'Infinity',], 'whilePlaying_offscreenDespawningHorizontalRange',)
                 .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
                     'whilePlaying_offscreenSpawningDownwardVerticalRange', 'whilePlaying_offscreenDespawningDownwardVerticalRange',)
+                .convertToEmptyableString(
+                    'whilePlaying_isInGEL_comment', 'whilePlaying_isInGEL_isSuperGlobal_comment',
+                    'whilePlaying_isInPEL_comment',
+                    'whilePlaying_isInPJL_comment',
+                    'whilePlaying_customLimit_comment',
+                )
 
                 .convertToStringAnd(thisText, 'inDayTheme',)
                 .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
@@ -230,6 +240,14 @@ export class EntityLoader
                 .convertToStringAnd(thisText, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
 
                 .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inDayTheme',)
+                // .convertToNullableHeadersAnd(['english', 'americanEnglish',], thisText,'inNightTheme',)
+                //
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+                // .convertToNullableHeadersAnd(['english', 'americanEnglish',], 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+                //
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
                 .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
@@ -296,11 +314,11 @@ class TemplateCreator {
         const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
             [content[0], content[1]];
         const [dayLink, nightLink] =
-            [content[38], content[39],];
+            [content[43], content[44],];
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-            [content[40], content[41], content[42], content[43], content[44], content[45], content[46], content[47], content[48], content[49],];
+            [content[45], content[46], content[47], content[48], content[49], content[50], content[51], content[52], content[53], content[54],];
         const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] =
-            [content[50], content[51], content[52], content[53], content[54]];
+            [content[55], content[56], content[57], content[58], content[59]];
 
         return {
             properties: {
@@ -388,25 +406,25 @@ class TemplateCreator {
                     editor: content[26],
                     whilePlaying: {
                         isInGEL: {
-                            value: content[27],
-                            isSuperGlobal: content[28],
+                            value: {value: content[27], comment: content[28],},
+                            isSuperGlobal: {value: content[29], comment: content[30],},
                         },
-                        isInPEL: content[29],
-                        isInPJL: content[30],
-                        customLimit: content[31],
+                        isInPEL: {value: content[31], comment: content[32],},
+                        isInPJL: {value: content[33], comment: content[34],},
+                        customLimit: {value: content[35], comment: content[36],},
                         offscreenRange: {
                             spawning: {
-                                horizontal: content[32],
+                                horizontal: content[37],
                                 vertical: {
-                                    upward: content[34],
-                                    downward: content[36],
+                                    upward: content[39],
+                                    downward: content[41],
                                 },
                             },
                             despawning: {
-                                horizontal: content[33],
+                                horizontal: content[38],
                                 vertical: {
-                                    upward: content[35],
-                                    downward: content[37],
+                                    upward: content[40],
+                                    downward: content[42],
                                 },
                             },
                         },
@@ -440,36 +458,36 @@ class TemplateCreator {
             },
             name: {
                 english: {
-                    simple: content[55],
-                    american: content[56],
-                    european: content[57],
+                    simple: content[60],
+                    american: content[61],
+                    european: content[62],
                 },
                 french: {
-                    simple: content[58],
-                    canadian: content[59],
-                    european: content[60],
+                    simple: content[63],
+                    canadian: content[64],
+                    european: content[65],
                 },
-                german: content[61],
+                german: content[66],
                 spanish: {
-                    simple: content[62],
-                    american: content[63],
-                    european: content[64],
-                },
-                italian: content[65],
-                dutch: content[66],
-                portuguese: {
                     simple: content[67],
                     american: content[68],
                     european: content[69],
                 },
-                russian: content[70],
-                japanese: content[71],
-                chinese: {
+                italian: content[70],
+                dutch: content[71],
+                portuguese: {
                     simple: content[72],
-                    simplified: content[73],
-                    traditional: content[74],
+                    american: content[73],
+                    european: content[74],
                 },
-                korean: content[75],
+                russian: content[75],
+                japanese: content[76],
+                chinese: {
+                    simple: content[77],
+                    simplified: content[78],
+                    traditional: content[79],
+                },
+                korean: content[80],
             },
         };
     }
