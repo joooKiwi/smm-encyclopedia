@@ -13,9 +13,9 @@ export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE e
 
     get gameContainer(): GAME
 
-
+    // @ts-ignore
     get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
-
+    //@ts-ignore
     get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
 
     //endregion -------------------- Game properties --------------------
@@ -23,15 +23,15 @@ export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE e
 
     get gameStyleContainer(): GAME_STYLE
 
-
+    // @ts-ignore
     get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle']
-
+    // @ts-ignore
     get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style']
-
+    // @ts-ignore
     get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle']
-
+    // @ts-ignore
     get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle']
-
+    // @ts-ignore
     get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle']
 
     //endregion -------------------- Game style properties --------------------
@@ -41,23 +41,23 @@ export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE e
 
 
     get isInGroundTheme(): this['themeContainer']['isInGroundTheme']
-
+    // @ts-ignore
     get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme']
-
+    // @ts-ignore
     get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme']
-
+    // @ts-ignore
     get isInDesertTheme(): this['themeContainer']['isInDesertTheme']
-
+    // @ts-ignore
     get isInSnowTheme(): this['themeContainer']['isInSnowTheme']
-
+    // @ts-ignore
     get isInSkyTheme(): this['themeContainer']['isInSkyTheme']
-
+    // @ts-ignore
     get isInForestTheme(): this['themeContainer']['isInForestTheme']
-
+    // @ts-ignore
     get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme']
-
+    // @ts-ignore
     get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme']
-
+    // @ts-ignore
     get isInCastleTheme(): this['themeContainer']['isInCastleTheme']
 
     //endregion -------------------- Theme properties --------------------
@@ -65,9 +65,9 @@ export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE e
 
     get timeContainer(): TIME
 
-
+    // @ts-ignore
     get isInDayTheme(): this['timeContainer']['isInDayTheme']
-
+    // @ts-ignore
     get isInNightTheme(): this['timeContainer']['isInNightTheme']
 
     //endregion -------------------- Time properties --------------------
@@ -79,7 +79,7 @@ export type ExclusiveSMM1Property
       & ExclusiveSMM1GameProperty & ExclusiveSMM1GameStyleProperty & ExclusiveSMM1ThemeProperty & ExclusiveSMM1TimeProperty;
 export type ExclusiveSMM2Property<GAME extends ExclusiveSMM2GameProperty = ExclusiveSMM2GameProperty, GAME_STYLE extends ExclusiveSMM2GameStyleProperty = ExclusiveSMM2GameStyleProperty, THEME extends ExclusiveSMM2ThemeProperty = ExclusiveSMM2ThemeProperty, TIME extends ExclusiveSMM2TimeProperty = ExclusiveSMM2TimeProperty, >
     = Property<GAME, GAME_STYLE, THEME, TIME>
-      & GAME & GAME_STYLE & THEME & TIME;
+      & ExclusiveSMM2GameProperty & ExclusiveSMM2GameStyleProperty & ExclusiveSMM2ThemeProperty & ExclusiveSMM2TimeProperty;
 export type ExclusiveSMM2PropertyInSM3DW
     = ExclusiveSMM2Property<ExclusiveSMM2GamePropertyInSM3DW, ExclusiveSMM2GameStylePropertyInSM3DW, ExclusiveSMM2ThemePropertyInSM3DW, ExclusiveSMM2TimePropertyInSM3DW>
       & ExclusiveSMM2GamePropertyInSM3DW & ExclusiveSMM2GameStylePropertyInSM3DW & ExclusiveSMM2ThemePropertyInSM3DW & ExclusiveSMM2TimePropertyInSM3DW;
