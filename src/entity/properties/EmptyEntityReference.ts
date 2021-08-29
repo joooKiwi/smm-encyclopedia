@@ -93,6 +93,14 @@ export class EmptyEntityReference
     }
 
 
+    public getReferenceFrom() {
+        return EmptyEntity.get;
+    }
+
+    public readonly everyGameStyleReferences = EMPTY_ARRAY;
+    public readonly everyThemeReferences = EMPTY_ARRAY;
+    public readonly everyTimeReferences = EMPTY_ARRAY;
+
     public readonly everyReferences = EMPTY_ARRAY;
 
     //endregion -------------------- References methods --------------------

@@ -240,7 +240,13 @@ export class EmptyEntity
         return this.referencesContainer.referenceInNightTheme;
     }
 
+    public getReferenceFrom() {
+        return this.referencesContainer.getReferenceFrom();
+    }
 
+    public readonly everyGameStyleReferences = this.referencesContainer.everyGameStyleReferences;
+    public readonly everyThemeReferences = this.referencesContainer.everyThemeReferences;
+    public readonly everyTimeReferences = this.referencesContainer.everyTimeReferences;
     public readonly everyReferences = this.referencesContainer.everyReferences;
 
     //endregion -------------------- References properties --------------------

@@ -1,8 +1,11 @@
 import type {Entity}           from './Entity';
 import type {EntityCategory}   from '../category/EntityCategory';
 import type {EntityReferences} from '../properties/EntityReferences';
-import type {Property}         from '../properties/Property';
+import type {GameStyles}       from '../gameStyle/GameStyles';
 import type {Name}             from '../../lang/name/Name';
+import type {Property}         from '../properties/Property';
+import type {Themes}           from '../theme/Themes';
+import type {Times}            from '../time/Times';
 
 export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     implements Entity<PROPERTY> {
@@ -400,13 +403,13 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     //endregion -------------------- Time properties --------------------
 
     //endregion -------------------- Properties --------------------
-    //region -------------------- References properties --------------------
+    //region -------------------- References --------------------
 
     public get referencesContainer() {
         return this.#referencesContainer;
     }
 
-    //region -------------------- Game style references properties --------------------
+    //region -------------------- Game style references --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return this.referencesContainer.referenceInSuperMarioBrosStyle;
@@ -428,8 +431,8 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.referencesContainer.referenceInSuperMario3DWorldStyle;
     }
 
-    //endregion -------------------- Game style references properties --------------------
-    //region -------------------- Theme references properties --------------------
+    //endregion -------------------- Game style references --------------------
+    //region -------------------- Theme references --------------------
 
     public get referenceInGroundTheme() {
         return this.referencesContainer.referenceInGroundTheme;
@@ -471,8 +474,8 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.referencesContainer.referenceInCastleTheme;
     }
 
-    //endregion -------------------- Theme references properties --------------------
-    //region -------------------- Time references properties --------------------
+    //endregion -------------------- Theme references --------------------
+    //region -------------------- Time references --------------------
 
     public get referenceInDayTheme() {
         return this.referencesContainer.referenceInDayTheme;
@@ -482,13 +485,33 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.referencesContainer.referenceInNightTheme;
     }
 
-    //endregion -------------------- Time references properties --------------------
+    //endregion -------------------- Time references --------------------
+
+    public getReferenceFrom(theme: Themes,): Entity
+    public getReferenceFrom(time: Times,): Entity
+    public getReferenceFrom(gameStyle: GameStyles,): Entity
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): Entity
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
+        return this.referencesContainer.getReferenceFrom(gameStyleOrThemeOrTime);
+    }
+
+    public get everyGameStyleReferences() {
+        return this.referencesContainer.everyGameStyleReferences;
+    }
+
+    public get everyThemeReferences() {
+        return this.referencesContainer.everyThemeReferences;
+    }
+
+    public get everyTimeReferences() {
+        return this.referencesContainer.everyTimeReferences;
+    }
 
     public get everyReferences() {
         return this.referencesContainer.everyReferences;
     }
 
-    //endregion -------------------- References properties --------------------
+    //endregion -------------------- References --------------------
 
     public toGameStyleMap() {
         return this.propertyContainer.toGameStyleMap();

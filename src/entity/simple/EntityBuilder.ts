@@ -2,8 +2,8 @@ import type {Builder}               from '../../util/Builder';
 import type {DebugEntityReferences} from './EntityLoader';
 import type {Entity}                from './Entity';
 import type {EntityCategory}        from '../category/EntityCategory';
-import type {EntityLink}     from '../entityTypes';
-import type {EntityTemplate} from './Entity.template';
+import type {EntityLink}            from '../entityTypes';
+import type {EntityTemplate}        from './Entity.template';
 
 import {EntityReferencesContainer}            from '../properties/EntityReferencesContainer';
 import {EmptyEntity}                          from './EmptyEntity';
@@ -70,6 +70,8 @@ export class EntityBuilder
     private __createReferences() {
         const reference = this.template.properties.reference;
 
+        //region -------------------- Single reference --------------------
+
         const inSuperMarioBros = this.__createNullableEntityCallbackFor(reference.style.superMarioBros);
         const inSuperMarioBros3 = this.__createNullableEntityCallbackFor(reference.style.superMarioBros3);
         const inSuperMarioWorld = this.__createNullableEntityCallbackFor(reference.style.superMarioWorld);
@@ -87,17 +89,32 @@ export class EntityBuilder
         const inAirshipTheme = this.__createNullableEntityCallbackFor(reference.theme.airship);
         const inCastleTheme = this.__createNullableEntityCallbackFor(reference.theme.castle);
 
-        const inDayTheme = this.__createEntityCallbackFor(reference.day);
-        const inNightTheme = this.__createNullableEntityCallbackFor(reference.night);
+        const inDayTheme = this.__createEntityCallbackFor(reference.time.day);
+        const inNightTheme = this.__createNullableEntityCallbackFor(reference.time.night);
 
-        const allReferences = reference.all === null ? () => [] : () => reference.all!
-            .map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+        //endregion -------------------- Single reference --------------------
+        //region -------------------- Group reference --------------------
+
+        let everyGameStyleReferences: () => readonly Entity[];
+        let everyThemeReferences: () => readonly Entity[];
+        let everyTimeReferences: () => readonly Entity[];
+        let everyReferences: () => readonly Entity[];
+        if (reference.group.all === null) {
+            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = () => [];
+        } else {
+            everyGameStyleReferences = reference.group.gameStyle == null ? () => [] : () => Array.from(reference.group.gameStyle!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+            everyThemeReferences = reference.group.theme == null ? () => [] : () => Array.from(reference.group.theme!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+            everyTimeReferences = reference.group.time == null ? () => [] : () => Array.from(reference.group.time!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+            everyReferences = () => Array.from(reference.group.all!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+        }
+
+        //endregion -------------------- Group reference --------------------
 
         return new EntityReferencesContainer(
             inSuperMarioBros, inSuperMarioBros3, inSuperMarioWorld, inNewSuperMarioBros, inSuperMario3DWorld,
             inGroundTheme, inUndergroundTheme, inUnderwaterTheme, inDesertTheme, inSnowTheme, inSkyTheme, inForestTheme, inGhostHouseTheme, inAirshipTheme, inCastleTheme,
             inDayTheme, inNightTheme,
-            allReferences,
+            everyGameStyleReferences, everyThemeReferences, everyTimeReferences, everyReferences,
         );
     }
 

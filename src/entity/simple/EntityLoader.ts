@@ -173,6 +173,8 @@ export interface DebugEntityReferences {
 export class EntityLoader
     implements Loader<ReadonlyMap<string, DebugEntityReferences>> {
 
+    public static readonly THIS_REFERENCE = 'this';
+
     static readonly #instance = new EntityLoader();
 
     //region ---------- External object references ----------
@@ -187,7 +189,7 @@ export class EntityLoader
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
         this.#everyEntityLimits = new CallbackCaller(() => EntityLimitLoader.get.load());
         this.#everyEntitiesMap = new CallbackCaller(() => {
-            const [unknownCharacter, thisText,] = ['?', 'this',];
+            const [unknownCharacter, thisText,] = ['?', EntityLoader.THIS_REFERENCE,];
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
             EntityBuilder.references = references;
@@ -323,6 +325,7 @@ class TemplateCreator {
         return {
             properties: {
                 //region ---------- Basic properties ----------
+
                 isIn: {
                     game: {
                         1: isInSuperMarioMaker1,
@@ -358,9 +361,10 @@ class TemplateCreator {
                 hasAMushroomVariant: content[3],
                 canBeInAParachute: content[4],
                 canHaveWings: content[5],
-                //endregion ---------- Basic properties ----------
 
+                //endregion ---------- Basic properties ----------
                 //region ---------- Specific properties ----------
+
                 canContainOrSpawnAKey: content[6],
 
                 canBePutInAOnOffBlock: content[7],
@@ -400,8 +404,8 @@ class TemplateCreator {
                 isGlobalGroundOrGlobal: content[24],
 
                 canMakeASoundOutOfAMusicBlock: content[25],
-                //endregion ---------- Specific properties ----------
 
+                //endregion ---------- Specific properties ----------
                 limits: {
                     editor: content[26],
                     whilePlaying: {
@@ -430,7 +434,6 @@ class TemplateCreator {
                         },
                     },
                 },
-
                 reference: {
                     style: {
                         superMarioBros: superMarioBrosLink,
@@ -451,9 +454,16 @@ class TemplateCreator {
                         airship: airshipLink,
                         castle: castleLink,
                     },
-                    day: dayLink,
-                    night: nightLink,
-                    all: null,
+                    time: {
+                        day: dayLink,
+                        night: nightLink,
+                    },
+                    group: {
+                        all: null,
+                        gameStyle: null,
+                        theme: null,
+                        time: null,
+                    },
                 },
             },
             name: {
@@ -537,19 +547,34 @@ class NameCreator {
 
 }
 
+//region -------------------- Reference to watch --------------------
+
+interface ReferenceHolder {
+    reference: EntityTemplate,
+    type: ReferenceType,
+    value: EntityLink,
+    errorIfNeverFound: () => ReferenceError
+}
+
+type ReferenceType = | typeof ReferencesToWatch['TIME'] | typeof ReferencesToWatch['THEME'] | typeof ReferencesToWatch['GAME_STYLE'];
+
 class ReferencesToWatch {
 
     //region -------------------- Attributes --------------------
 
+    public static readonly TIME = 'time';
+    public static readonly THEME = 'theme';
+    public static readonly GAME_STYLE = 'gameStyle';
+
     readonly #englishNames;
-    readonly #alreadyAddedName: string[];
-    readonly #references: { reference: EntityTemplate, value: EntityLink, errorIfNeverFound: () => ReferenceError }[];
+    readonly #alreadyAddedName: Set<string>;
+    readonly #references: ReferenceHolder[];
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(englishNames: Map<string, DebugEntityReferences>,) {
         this.#englishNames = englishNames;
-        this.#alreadyAddedName = [];
+        this.#alreadyAddedName = new Set();
         this.#references = [];
     }
 
@@ -573,28 +598,44 @@ class ReferencesToWatch {
     public addReference(reference: EntityTemplate,): void {
         const otherReference = reference.properties.reference;
         ([
-            otherReference.day, otherReference.night,
-            otherReference.style.superMarioBros, otherReference.style.superMarioBros3, otherReference.style.superMarioWorld, otherReference.style.newSuperMarioBrosU, otherReference.style.superMario3DWorld,
-            otherReference.theme.ground, otherReference.theme.underground, otherReference.theme.underwater, otherReference.theme.desert, otherReference.theme.snow, otherReference.theme.sky, otherReference.theme.forest, otherReference.theme.ghostHouse, otherReference.theme.airship, otherReference.theme.castle,
-        ].filter(otherReference => otherReference !== null) as string[])
-            .filter(otherReference => otherReference !== 'this')
-            .filter(otherReference => !this.alreadyAddedName.includes(otherReference))
-            .forEach(otherReference => this.__addReference(reference, otherReference));
+            [otherReference.time.day, ReferencesToWatch.TIME,],
+            [otherReference.time.night, ReferencesToWatch.TIME,],
+
+            [otherReference.style.superMarioBros, ReferencesToWatch.GAME_STYLE,],
+            [otherReference.style.superMarioBros3, ReferencesToWatch.GAME_STYLE,],
+            [otherReference.style.superMarioWorld, ReferencesToWatch.GAME_STYLE,],
+            [otherReference.style.newSuperMarioBrosU, ReferencesToWatch.GAME_STYLE,],
+            [otherReference.style.superMario3DWorld, ReferencesToWatch.GAME_STYLE,],
+
+            [otherReference.theme.ground, ReferencesToWatch.THEME,],
+            [otherReference.theme.underground, ReferencesToWatch.THEME,],
+            [otherReference.theme.underwater, ReferencesToWatch.THEME,],
+            [otherReference.theme.desert, ReferencesToWatch.THEME,],
+            [otherReference.theme.snow, ReferencesToWatch.THEME,],
+            [otherReference.theme.sky, ReferencesToWatch.THEME,],
+            [otherReference.theme.forest, ReferencesToWatch.THEME,],
+            [otherReference.theme.ghostHouse, ReferencesToWatch.THEME,],
+            [otherReference.theme.airship, ReferencesToWatch.THEME,],
+            [otherReference.theme.castle, ReferencesToWatch.THEME,],
+        ].filter(([otherReference]) => otherReference !== null) as [EntityLink, ReferenceType][])
+            .filter(([otherReference]) => otherReference !== EntityLoader.THIS_REFERENCE)
+            .forEach(([otherReference, referenceType,]) => this.__addReference(reference, otherReference, referenceType,));
     }
 
-    private __addReference(template: EntityTemplate, reference: string,): void {
+    private __addReference(template: EntityTemplate, reference: EntityLink, referenceType: ReferenceType,): void {
         if (reference.includes('/'))
             reference.split(' / ')
-                .filter(splitReference => splitReference !== 'this')
-                .forEach((splitReference, index) => this.__addReferenceToArray(template, splitReference, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`)));
+                .filter(splitReference => splitReference !== EntityLoader.THIS_REFERENCE)
+                .forEach((splitReference, index,) => this.__addReferenceToArray(template, splitReference, referenceType, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),));
         else
-            this.__addReferenceToArray(template, reference, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`));
-        this.alreadyAddedName.push(reference);
+            this.__addReferenceToArray(template, reference, referenceType, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),);
+        this.alreadyAddedName.add(reference);
     }
 
-    private __addReferenceToArray(template: EntityTemplate, reference: string, errorIfNeverFound: () => ReferenceError,): void {
+    private __addReferenceToArray(template: EntityTemplate, reference: EntityLink, referenceType: ReferenceType, errorIfNeverFound: () => ReferenceError,): void {
         this.references.push({
             reference: template,
+            type: referenceType,
             value: reference,
             errorIfNeverFound: errorIfNeverFound,
         });
@@ -603,29 +644,49 @@ class ReferencesToWatch {
     public testReferences(): void {
         this.references.forEach(englishReferenceToWatch => {
             const referenceWatched = this.englishNames.get(englishReferenceToWatch.value);
-            if (referenceWatched === undefined)
+            if (referenceWatched == null)
                 throw englishReferenceToWatch.errorIfNeverFound();
         });
     }
 
+    /**
+     * Add every references on both individual {@link references}
+     * and the {@link ReferenceHolder.value reference value} inside {@link ReferenceHolder}.
+     *
+     * It also add each reference into the proper type ({@link ReferenceType}).
+     *
+     * @see EntityReferencesTemplate.group
+     */
     public setReferences(): void {
-        this.references.forEach(englishReferenceToWatch => {
-            const referenceWatched = this.englishNames.get(englishReferenceToWatch.value)!;
+        this.references.forEach(reference => {
+            const referenceWatched = this.englishNames.get(reference.value)!;
 
-            //Addition on both references to their other reference table.
+            const referenceToWatchTemplate = reference.reference;
+            const referenceWatchedTemplate = referenceWatched.template;
 
-            referenceWatched.template.properties.reference.all ??= [];
-            if (!referenceWatched.template.properties.reference.all.includes(englishReferenceToWatch.reference))
-                referenceWatched.template.properties.reference.all.push(englishReferenceToWatch.reference);
-
-            englishReferenceToWatch.reference.properties.reference.all ??= [];
-            if (!englishReferenceToWatch.reference.properties.reference.all.includes(referenceWatched.template))
-                englishReferenceToWatch.reference.properties.reference.all.push(referenceWatched.template);
+            (referenceWatchedTemplate.properties.reference.group.all ??= new Set()).add(referenceToWatchTemplate);
+            (referenceToWatchTemplate.properties.reference.group.all ??= new Set()).add(referenceWatchedTemplate);
+            switch (reference.type) {
+                case ReferencesToWatch.GAME_STYLE:
+                    (referenceWatchedTemplate.properties.reference.group.gameStyle ??= new Set()).add(referenceToWatchTemplate);
+                    (referenceToWatchTemplate.properties.reference.group.gameStyle ??= new Set()).add(referenceWatchedTemplate);
+                    break;
+                case ReferencesToWatch.THEME:
+                    (referenceWatchedTemplate.properties.reference.group.theme ??= new Set()).add(referenceToWatchTemplate);
+                    (referenceToWatchTemplate.properties.reference.group.theme ??= new Set()).add(referenceWatchedTemplate);
+                    break;
+                case ReferencesToWatch.TIME:
+                    (referenceWatchedTemplate.properties.reference.group.time ??= new Set()).add(referenceToWatchTemplate);
+                    (referenceToWatchTemplate.properties.reference.group.time ??= new Set()).add(referenceWatchedTemplate);
+                    break;
+            }
         });
     }
 
     //endregion -------------------- Methods --------------------
 
 }
+
+//endregion -------------------- Reference to watch --------------------
 
 //endregion -------------------- Template related methods & classes --------------------

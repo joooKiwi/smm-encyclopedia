@@ -27,9 +27,16 @@ export interface EntityReferencesTemplate {
         castle: | EntityLink | null
     }
 
-    day: EntityLink
-    night: | EntityLink | null
+    time: {
+        day: EntityLink
+        night: | EntityLink | null
+    }
 
-    all: | EntityTemplate[] | null
+    group: {
+        gameStyle: | Set<EntityTemplate> | null
+        theme: | Set<EntityTemplate> | null
+        time: | Set<EntityTemplate> | null
+        all: | Set<EntityTemplate> | null
+    }
 
 }
