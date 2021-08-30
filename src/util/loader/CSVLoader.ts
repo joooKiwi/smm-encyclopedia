@@ -38,7 +38,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>,) {
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
-        if (this.originalHeaders.length != this.headers.size)
+        if (this.originalHeaders.length !== this.headers.size)
             throw new RangeError(`There is one or more duplicate header in the csv file.(${this.headers.size}/${this.originalHeaders.length})`);
         this.#originalContent = originalContent;
         this.#callbackToCreateObject = callbackToCreateObject;
