@@ -1,9 +1,9 @@
-import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoaderTypes';
-import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './converter/PredefinedConverterTypes';
+import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackToCreateObject, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoader.types';
+import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './converter/PredefinedConverter.types';
 
-import {HeaderContainer}                     from './HeaderContainer';
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
+import {HeaderContainer}                     from './HeaderContainer';
 import {PredefinedConverter}                 from './converter/PredefinedConverter';
 
 export class CSVLoader<A extends any[] = any[], T = any, H extends string = string, > {
@@ -13,34 +13,36 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
     public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
 
-    readonly #headers;
-    readonly #originalContent;
-    readonly #callbackToCreateObject;
+    readonly #originalHeaders: readonly H[];
+    readonly #headers: readonly SimpleHeader<H>[];
+    readonly #originalContent: string[][];
+    readonly #callbackToCreateObject: CallbackToCreateObject<A, T>;
 
-    readonly #headerContainerMap;
-    readonly #headersFollowed;
-    readonly #convertedContent;
-    readonly #content;
+    readonly #headerContainerMap: Map<SimpleHeader<H>, HeaderContainer<H, this['headers']>>;
+    readonly #headersFollowed: SimpleHeader<H>[];
+    readonly #convertedContent: A[];
+    readonly #content: T[];
 
     #callbackOnBeforeFinalObjectCreated: CallbackOnBeforeFinalObjectCreated<A>;
     #callbackOnAfterFinalObjectCreated: CallbackOnAfterFinalObjectCreated<A, T>;
-    #callbackOnBeforeSingleContentConverted: CallbackOnBeforeSingleContentConverted;
-    #callbackOnAfterSingleContentConverted: CallbackOnAfterSingleContentConverted<A>;
+    #callbackOnBeforeSingleContentConverted: CallbackOnBeforeSingleContentConverted<H>;
+    #callbackOnAfterSingleContentConverted: CallbackOnAfterSingleContentConverted<H, A>;
     #callbackOnInitialisationStart: CallbackOnInitialisationStart;
     #callbackOnInitialisationEnd: CallbackOnInitialisationEnd<A, T>;
     #defaultConversion?: PredefinedConversion;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalContent: string[][], callbackToCreateObject: (convertedContent: A,) => T,) {
-        this.#headers = originalContent.shift()! as readonly SimpleHeader<H>[];
+    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>,) {
+        this.#originalHeaders = originalContent.shift()! as unknown as H[];
+        this.#headers = this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>);
         this.#originalContent = originalContent;
         this.#callbackToCreateObject = callbackToCreateObject;
 
-        this.#headerContainerMap = new Map<SimpleHeader<H>, HeaderContainer<H, this['headers']>>();
-        this.#headersFollowed = [] as SimpleHeader<H>[];
-        this.#convertedContent = [] as A[];
-        this.#content = [] as T[];
+        this.#headerContainerMap = new Map();
+        this.#headersFollowed = [];
+        this.#convertedContent = [];
+        this.#content = [];
 
         this.#callbackOnBeforeFinalObjectCreated = null;
         this.#callbackOnAfterFinalObjectCreated = null;
@@ -55,7 +57,15 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Headers methods --------------------
 
     /**
-     * The headers on the {@link this.originalContent original content}.
+     * The original headers on the {@link this.originalContent original content}.
+     */
+    public get originalHeaders(): readonly H[] {
+        return this.#originalHeaders;
+    }
+
+    /**
+     * The headers on the {@link this.originalContent original content}
+     * used by the Loader to interact with every comparisons.
      */
     public get headers(): readonly SimpleHeader<H>[] {
         return this.#headers;
@@ -135,7 +145,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- Content methods --------------------
     //region -------------------- Callback to create the object --------------------
 
-    protected get callbackToCreateObject() {
+    protected get callbackToCreateObject(): CallbackToCreateObject<A, T> {
         return this.#callbackToCreateObject;
     }
 
@@ -240,7 +250,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         return this.#callbackOnBeforeSingleContentConverted;
     }
 
-    protected set callbackOnBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted,) {
+    protected set callbackOnBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted<H>,) {
         this.onBeforeSingleContentConverted(callback);
     }
 
@@ -259,7 +269,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      *
      * @param callback the callback to set
      */
-    public onBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted,): this {
+    public onBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted<H>,): this {
         this.#callbackOnBeforeSingleContentConverted = callback;
         return this;
     }
@@ -271,7 +281,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         return this.#callbackOnAfterSingleContentConverted;
     }
 
-    protected set callbackOnAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<A>,) {
+    protected set callbackOnAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<H, A>,) {
         this.onAfterSingleContentConverted(callback);
     }
 
@@ -291,7 +301,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      *
      * @param callback the callback to set
      */
-    public onAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<A>,): this {
+    public onAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<H, A>,): this {
         this.#callbackOnAfterSingleContentConverted = callback;
         return this;
     }
@@ -568,15 +578,16 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- Convertor usage methods --------------------
     //region -------------------- Initialisation methods --------------------
 
-    protected _convertOriginalContent(headerConverterHolder: HeadersConverterHolder, content: string,): keyof A {
+    protected _convertOriginalContent(headerConverterHolder: HeadersConverterHolder<H>, content: string,): keyof A {
         return headerConverterHolder.convertor(content).convertedValue as keyof A;
     }
 
     protected _initialiseContent(): this {
         this.callbackOnInitialisationStart?.(this.originalContent);
         //TODO verify every headers to include them as those followed.
-        const headersConverterHolders: readonly HeadersConverterHolder[] = this.headers.map((header, index,) => ({
+        const headersConverterHolders: readonly HeadersConverterHolder<H>[] = this.headers.map((header, index,) => ({
             index: index,
+            originalHeader: this.originalHeaders[index],
             header: header.toLowerCase() as SimpleHeader<H>,
             convertor: this._getConverterBasedOnHeader(header.toLowerCase() as SimpleHeader<H>),
         }));
@@ -584,9 +595,10 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         this.originalContent.forEach(
             originalContent => this.addContent(originalContent, originalContent
                 .map((content, index,) => {
-                    this.callbackOnBeforeSingleContentConverted?.(content);
-                    const convertedValue = this._convertOriginalContent(headersConverterHolders[index], content,);
-                    this.callbackOnAfterSingleContentConverted?.(convertedValue, content,);
+                    const headerConverterHolder = headersConverterHolders[index];
+                    this.callbackOnBeforeSingleContentConverted?.(content, headerConverterHolder.originalHeader,);
+                    const convertedValue = this._convertOriginalContent(headerConverterHolder, content,);
+                    this.callbackOnAfterSingleContentConverted?.(convertedValue, content, headerConverterHolder.originalHeader,);
                     return convertedValue;
                 }) as A)
         );

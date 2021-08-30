@@ -1,4 +1,4 @@
-import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderTypeOrConvertor} from './CSVLoaderTypes';
+import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderTypeOrConvertor} from './CSVLoader.types';
 import {PredefinedConverter}                                                                                                          from './converter/PredefinedConverter';
 import {GenericStringToAnyConverter}                                                                                                  from './converter/GenericStringToAnyConverter';
 import {CSVLoader}                                                                                                                    from './CSVLoader';
