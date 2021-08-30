@@ -233,8 +233,10 @@ export class EntityLoader
 
                 .convertToNullableNumberAnd('Variable', 'offscreenSpawningHorizontalRange',)
                 .convertToNullableNumberAnd(['Variable', 'Infinity',], 'offscreenDespawningHorizontalRange',)
-                .convertToNullableNumber('offscreenSpawningUpwardVerticalRange', 'offscreenDespawningUpwardVerticalRange',
-                    'offscreenSpawningDownwardVerticalRange', 'offscreenDespawningDownwardVerticalRange',)
+                .convertToNullableNumber(
+                    'offscreenSpawningUpwardVerticalRange', 'offscreenDespawningUpwardVerticalRange',
+                    'offscreenSpawningDownwardVerticalRange', 'offscreenDespawningDownwardVerticalRange',
+                )
 
                 .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inDayTheme',)
                 .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inNightTheme',)
