@@ -55,6 +55,37 @@ export class EmptyIsInProperty
     public readonly isInNightTheme = null;
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    public readonly limitContainer = this;
+
+    public readonly editorLimitContainer = null;
+    public readonly editorLimit = null;
+    public readonly isEditorLimitKnown = true;
+
+    public readonly isInGeneralLimitWhilePlayingContainer = null;
+    public readonly isInGeneralLimitWhilePlaying = null;
+    public readonly isInGeneralLimitWhilePlayingComment = null;
+
+    public readonly isInGlobalGeneralLimitWhilePlayingContainer = null;
+    public readonly isInGlobalGeneralLimitWhilePlaying = null;
+    public readonly isInGlobalGeneralLimitWhilePlayingComment = null;
+
+    public readonly isInPowerUpLimitWhilePlayingContainer = null;
+    public readonly isInPowerUpLimitWhilePlaying = null;
+    public readonly isInPowerUpLimitWhilePlayingComment = null;
+
+    public readonly isInProjectileLimitWhilePlayingContainer = null;
+    public readonly isInProjectileLimitWhilePlaying = null;
+    public readonly isInProjectileLimitWhilePlayingKnown = true;
+    public readonly isInProjectileLimitWhilePlayingComment = null;
+
+    public readonly customLimitWhilePlayingContainer = null;
+    public readonly customLimitWhilePlaying = null;
+    public readonly isCustomLimitWhilePlayingKnown = true;
+    public readonly customLimitWhilePlayingComment = null;
+
+    //endregion -------------------- Limit properties --------------------
 
     public toGameStyleMap(): never {
         throw new ReferenceError(`An ${this} cannot have a game style map.`);

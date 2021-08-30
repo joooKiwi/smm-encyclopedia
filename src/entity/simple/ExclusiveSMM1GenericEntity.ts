@@ -12,7 +12,7 @@ export class ExclusiveSMM1GenericEntity
     implements ExclusiveSMM1Entity {
 
     public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
-        super(name, validateIsEmptyCategory(category), validateIsInProperty(property), references);
+        super(name, validateIsEmptyCategory(category), validateProperty(property), references);
     }
 
 }
@@ -23,7 +23,7 @@ function validateIsEmptyCategory(category: EntityCategory,): EmptyEntityCategory
     return category;
 }
 
-function validateIsInProperty(property: Property,): ExclusiveSMM1Property {
+function validateProperty(property: Property,): ExclusiveSMM1Property {
     if (!property.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to true for a SMM1 exclusive property.');
     if (property.isInSuperMarioMaker2)
@@ -33,16 +33,23 @@ function validateIsInProperty(property: Property,): ExclusiveSMM1Property {
         || property.isInSuperMarioBros3Style
         || property.isInSuperMarioWorldStyle
         || property.isInNewSuperMarioBrosUStyle
-        || property.isInSuperMario3DWorldStyle !== null)
+        || property.isInSuperMario3DWorldStyle != null)
         throw new TypeError('The possible SMM1 entity can only be in the SMB style');
 
-    if (!(property.isInGroundTheme && property.isInUndergroundTheme && property.isInUnderwaterTheme && property.isInDesertTheme === null
-        && property.isInSnowTheme === null && property.isInSkyTheme === null && property.isInForestTheme === null && property.isInGhostHouseTheme
+    if (!(property.isInGroundTheme && property.isInUndergroundTheme && property.isInUnderwaterTheme && property.isInDesertTheme == null
+        && property.isInSnowTheme == null && property.isInSkyTheme == null && property.isInForestTheme == null && property.isInGhostHouseTheme
         && property.isInAirshipTheme && property.isInCastleTheme))
         throw new TypeError('A SMM1 entity is never in the desert, snow, sky and forest theme. The rest should always be set to true.');
 
-    if (!(property.isInDayTheme && property.isInNightTheme === null))
+    if (!(property.isInDayTheme && property.isInNightTheme == null))
         throw new TypeError('A SMM1 entity is never in the night theme, but always in the day theme.');
+
+    if (property.editorLimit != null
+        && property.isInGeneralLimitWhilePlaying != null && property.isInGlobalGeneralLimitWhilePlaying != null
+        && property.isInPowerUpLimitWhilePlaying != null
+        && property.isInProjectileLimitWhilePlaying != null
+        && property.customLimitWhilePlaying != null)
+        throw new TypeError('A SMM1 entity doesn\'t have any limit since it is only applicable to a SMM2 entity.');
 
     return property as ExclusiveSMM1Property;
 }

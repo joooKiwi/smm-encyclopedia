@@ -6,7 +6,7 @@ import type {BooleanTimeTemplate}           from '../time/Time.template';
 /**
  * @template
  */
-export interface PropertyTemplate {
+export interface IsInPropertyTemplate {
 
     game: BooleanGameTemplate
 

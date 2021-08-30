@@ -163,9 +163,40 @@ export class EmptyEntity
     public readonly isInNightTheme = this.propertyContainer.isInNightTheme;
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    public readonly limitContainer = this.propertyContainer.limitContainer;
+
+    public readonly editorLimitContainer = this.propertyContainer.editorLimitContainer;
+    public readonly editorLimit = this.propertyContainer.editorLimit;
+    public readonly isEditorLimitKnown = this.propertyContainer.isEditorLimitKnown;
+
+    public readonly isInGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGeneralLimitWhilePlayingContainer;
+    public readonly isInGeneralLimitWhilePlaying = this.propertyContainer.isInGeneralLimitWhilePlaying;
+    public readonly isInGeneralLimitWhilePlayingComment = this.propertyContainer.isInGeneralLimitWhilePlayingComment;
+
+    public readonly isInGlobalGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    public readonly isInGlobalGeneralLimitWhilePlaying = this.propertyContainer.isInGlobalGeneralLimitWhilePlaying;
+    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.propertyContainer.isInGlobalGeneralLimitWhilePlayingComment;
+
+    public readonly isInPowerUpLimitWhilePlayingContainer = this.propertyContainer.isInPowerUpLimitWhilePlayingContainer;
+    public readonly isInPowerUpLimitWhilePlaying = this.propertyContainer.isInPowerUpLimitWhilePlaying;
+    public readonly isInPowerUpLimitWhilePlayingComment = this.propertyContainer.isInPowerUpLimitWhilePlayingComment;
+
+    public readonly isInProjectileLimitWhilePlayingContainer = this.propertyContainer.isInProjectileLimitWhilePlayingContainer;
+    public readonly isInProjectileLimitWhilePlaying = this.propertyContainer.isInProjectileLimitWhilePlaying;
+    public readonly isInProjectileLimitWhilePlayingKnown = this.propertyContainer.isInProjectileLimitWhilePlayingKnown;
+    public readonly isInProjectileLimitWhilePlayingComment = this.propertyContainer.isInProjectileLimitWhilePlayingComment;
+
+    public readonly customLimitWhilePlayingContainer = this.propertyContainer.customLimitWhilePlayingContainer;
+    public readonly customLimitWhilePlaying = this.propertyContainer.customLimitWhilePlaying;
+    public readonly isCustomLimitWhilePlayingKnown = this.propertyContainer.isCustomLimitWhilePlayingKnown;
+    public readonly customLimitWhilePlayingComment = this.propertyContainer.customLimitWhilePlayingComment;
+
+    //endregion -------------------- Limit properties --------------------
 
     //endregion -------------------- Properties --------------------
-    //region -------------------- References properties --------------------
+    //region -------------------- References --------------------
 
     public readonly referencesContainer = EmptyEntityReference.get;
 
@@ -249,7 +280,7 @@ export class EmptyEntity
     public readonly everyTimeReferences = this.referencesContainer.everyTimeReferences;
     public readonly everyReferences = this.referencesContainer.everyReferences;
 
-    //endregion -------------------- References properties --------------------
+    //endregion -------------------- References --------------------
 
     public toGameStyleMap(): never {
         throw new ReferenceError(`An ${this} cannot have a game style map.`);

@@ -11,13 +11,18 @@ export class ExclusiveSM3DWGenericEntity
     implements ExclusiveSM3DWEntity {
 
     public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
-        super(name, category, validateIsInProperty(property), references);
+        super(name, category, validateProperty(property), references);
     }
 
 }
 
-function validateIsInProperty(property: Property,): ExclusiveSMM2PropertyInSM3DW {
-    if (property.isInNightTheme !== null)
-        throw new TypeError('The property isInNightTheme should always be set to a null for a SMM2 exclusive property when it is exclusively in the SM3DW style.');
+function validateProperty(property: Property,): ExclusiveSMM2PropertyInSM3DW {
+    if (property.isInNightTheme != null)
+        throw new TypeError('The property isInNightTheme should always be set to a null for a SM3DW exclusive property.');
+
+    // if (typeof property.isInProjectileLimitWhilePlaying !== 'boolean')
+    //     throw new TypeError('The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.');
+    //FIXME the projectile limit should be a boolean only instead of "TRUE" or "FALSE".
+
     return property as ExclusiveSMM2PropertyInSM3DW;
 }

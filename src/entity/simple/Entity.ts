@@ -226,6 +226,71 @@ export interface Entity<PROPERTY extends Property = Property, >
     get isInNightTheme(): this['timeContainer']['isInNightTheme']
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    get limitContainer(): this['propertyContainer']['limitContainer']
+
+    //region -------------------- Editor limit --------------------
+
+    get editorLimitContainer(): this['limitContainer']['editorLimitContainer']
+
+    get editorLimit(): this['limitContainer']['editorLimit']
+
+    get isEditorLimitKnown(): this['limitContainer']['isEditorLimitKnown']
+
+    //endregion -------------------- Editor limit --------------------
+    //region -------------------- General limit --------------------
+
+    get isInGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGeneralLimitWhilePlayingContainer']
+
+    get isInGeneralLimitWhilePlaying(): this['limitContainer']['isInGeneralLimitWhilePlaying']
+
+    get isInGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGeneralLimitWhilePlayingComment']
+
+    //region -------------------- Global general limit --------------------
+
+    get isInGlobalGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingContainer']
+
+    get isInGlobalGeneralLimitWhilePlaying(): this['limitContainer']['isInGlobalGeneralLimitWhilePlaying']
+
+    get isInGlobalGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingComment']
+
+    //endregion -------------------- Global general limit --------------------
+
+    //endregion -------------------- General limit --------------------
+    //region -------------------- Power-up limit --------------------
+
+    get isInPowerUpLimitWhilePlayingContainer(): this['limitContainer']['isInPowerUpLimitWhilePlayingContainer']
+
+    get isInPowerUpLimitWhilePlaying(): this['limitContainer']['isInPowerUpLimitWhilePlaying']
+
+    get isInPowerUpLimitWhilePlayingComment(): this['limitContainer']['isInPowerUpLimitWhilePlayingComment']
+
+    //endregion -------------------- Power-up limit --------------------
+    //region -------------------- Projectile limit --------------------
+
+    get isInProjectileLimitWhilePlayingContainer(): this['limitContainer']['isInProjectileLimitWhilePlayingContainer']
+
+    get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying']
+
+    get isInProjectileLimitWhilePlayingKnown(): this['limitContainer']['isInProjectileLimitWhilePlayingKnown']
+
+    get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment']
+
+    //endregion -------------------- Projectile limit --------------------
+    //region -------------------- Custom limit --------------------
+
+    get customLimitWhilePlayingContainer(): this['limitContainer']['customLimitWhilePlayingContainer']
+
+    get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying']
+
+    get isCustomLimitWhilePlayingKnown(): this['limitContainer']['isCustomLimitWhilePlayingKnown']
+
+    get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment']
+
+    //endregion -------------------- Custom limit --------------------
+
+    //endregion -------------------- Limit properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References properties --------------------

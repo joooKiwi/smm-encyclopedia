@@ -11,13 +11,13 @@ export class ExclusiveSMM2GenericEntityInAnyStyle
     implements ExclusiveSMM2EntityInAnyStyle {
 
     public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
-        super(name, category, validateIsInProperty(property), references);
+        super(name, category, validateProperty(property), references);
     }
 
 }
 
-function validateIsInProperty(isInProperty: Property,): ExclusiveSMM2PropertyInAnyStyle {
-    if (isInProperty.isInNightTheme === null)
+function validateProperty(property: Property,): ExclusiveSMM2PropertyInAnyStyle {
+    if (property.isInNightTheme == null)
         throw new TypeError('The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property when it is included in at least one of those styles (SMB, SMB3, SMW or NSMBU).');
-    return isInProperty as ExclusiveSMM2PropertyInAnyStyle;
+    return property as ExclusiveSMM2PropertyInAnyStyle;
 }

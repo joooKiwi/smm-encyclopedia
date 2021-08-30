@@ -1,19 +1,20 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import type {Entity}                                                                                                                                             from './Entity';
-import type {EntityCategory}                                                                                                                                     from '../category/EntityCategory';
-import type {EntityLimit}                                                                                                                                        from '../limit/EntityLimit';
-import type {CustomLimitType, EditorLimitType, EntityLink, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import type {EntityTemplate}                                                                                                                                     from './Entity.template';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                                                             from '../../lang/Loader.types';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                     from '../game/Loader.types';
-import type {Loader}                                                                                                                                             from '../../util/loader/Loader';
-import type {PossibleCourseTheme}                                                                                                                                from '../theme/Themes.types';
-import type {PossibleEntityCategories}                                                                                                                           from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                                                                                                               from '../limit/EntityLimits.types';
-import type {PossibleGameStyleAcronym}                                                                                                                           from '../gameStyle/GameStyles.types';
-import type {PossibleTimeName}                                                                                                                                   from '../time/Times.types';
-import type {SMM2NameTemplate}                                                                                                                                   from '../lang/SMM2Name.template';
+import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                from './Entity';
+import type {EntityCategory}                                                                                                                                                                                                                                                                                                                                                                                                                        from '../category/EntityCategory';
+import type {EntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                                           from '../limit/EntityLimit';
+import type {EntityLink, PossibleLightSource}                                                                                                                                                                                                                                                                                                                                                                                                       from '../entityTypes';
+import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                        from './Entity.template';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                from '../../lang/Loader.types';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                        from '../game/Loader.types';
+import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                from '../../util/loader/Loader';
+import type {PossibleCourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                   from '../theme/Themes.types';
+import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                                                                                                                                                              from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                  from '../limit/EntityLimits.types';
+import type {PossibleGameStyleAcronym}                                                                                                                                                                                                                                                                                                                                                                                                              from '../gameStyle/GameStyles.types';
+import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                      from '../time/Times.types';
+import type {SMM2NameTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                      from '../lang/SMM2Name.template';
 
 import {CallbackCaller}               from '../../util/CallbackCaller';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
@@ -39,7 +40,7 @@ type Headers =
     | 'editorLimit'
     | `${`whilePlaying_${| `isInGEL${| '' | '_isSuperGlobal'}` | 'isInPEL' | 'isInPJL' | 'customLimit'}`}${| '' | '_comment'}`
 
-    | `whilePlaying_offscreen${| 'Spawning' | 'Despawning'}${| 'Horizontal' | `${| 'Upward' | 'Downward'}Vertical`}Range`
+    | `offscreen${| 'Spawning' | 'Despawning'}${| 'Horizontal' | `${| 'Upward' | 'Downward'}Vertical`}Range`
 
     | `in${PossibleTimeName}Theme`
     | `in${| Exclude<PossibleCourseTheme, 'Ghost House'> | 'GhostHouse'}Theme`
@@ -104,7 +105,7 @@ type ExclusivePropertiesArray = [
     whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType,
     whilePlaying_isInGEL_isSuperGlobal_comment: | string | null,
 
-    whilePlaying_isInPEL: | boolean | null,
+    whilePlaying_isInPEL: PowerUpEntityLimitType,
     whilePlaying_isInPEL_comment: | string | null,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
@@ -116,14 +117,14 @@ type ExclusivePropertiesArray = [
     //endregion ---------- Entity limit properties ----------
     //region ---------- Spawning / Despawning range properties ----------
 
-    whilePlaying_offscreenSpawningHorizontalRange: | number | 'Variable' | null,
-    whilePlaying_offscreenDespawningHorizontalRange: | number | 'Variable' | 'Infinity' | null,
+    offscreenSpawningHorizontalRange: OffscreenSpawningHorizontalRangeLimitType,
+    offscreenDespawningHorizontalRange: OffscreenDespawningHorizontalRangeLimitType,
 
-    whilePlaying_offscreenSpawingUpwardVerticalRange: | number | null,
-    whilePlaying_offscreenDespawningUpwardVerticalRange: | number | null,
+    offscreenSpawingUpwardVerticalRange: OffscreenSpawningUpwardVerticalRangeLimitType,
+    offscreenDespawningUpwardVerticalRange: OffscreenDespawningUpwardVerticalRangeLimitType,
 
-    whilePlaying_offscreenSpawningDownwardVerticalRange: | number | null,
-    whilePlaying_offscreenDespawningDownwardVerticalRange: | number | null,
+    offscreenSpawningDownwardVerticalRange: OffscreenSpawningDownwardVerticalRangeLimitType,
+    offscreenDespawningDownwardVerticalRange: OffscreenDespawningDownwardVerticalRangeLimitType,
 
     //endregion ---------- Spawning / Despawning range properties ----------
     //region ---------- Reference on specific condition properties ----------
@@ -221,12 +222,12 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBooleanAnd(['number',/*2*/ 'Only when collected',], 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
-                .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out',], 'whilePlaying_isInPJL',)
+                .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
                 .convertToEmptyableStringAnd(this.entityLimitsNames, 'whilePlaying_customLimit',)
-                .convertToNullableNumberAnd('Variable', 'whilePlaying_offscreenSpawningHorizontalRange',)
-                .convertToNullableNumberAnd(['Variable', 'Infinity',], 'whilePlaying_offscreenDespawningHorizontalRange',)
-                .convertToNullableNumber('whilePlaying_offscreenSpawningUpwardVerticalRange', 'whilePlaying_offscreenDespawningUpwardVerticalRange',
-                    'whilePlaying_offscreenSpawningDownwardVerticalRange', 'whilePlaying_offscreenDespawningDownwardVerticalRange',)
+                .convertToNullableNumberAnd('Variable', 'offscreenSpawningHorizontalRange',)
+                .convertToNullableNumberAnd(['Variable', 'Infinity',], 'offscreenDespawningHorizontalRange',)
+                .convertToNullableNumber('offscreenSpawningUpwardVerticalRange', 'offscreenDespawningUpwardVerticalRange',
+                    'offscreenSpawningDownwardVerticalRange', 'offscreenDespawningDownwardVerticalRange',)
                 .convertToEmptyableString(
                     'whilePlaying_isInGEL_comment', 'whilePlaying_isInGEL_isSuperGlobal_comment',
                     'whilePlaying_isInPEL_comment',
@@ -416,21 +417,21 @@ class TemplateCreator {
                         isInPEL: {value: content[31], comment: content[32],},
                         isInPJL: {value: content[33], comment: content[34],},
                         customLimit: {value: content[35], comment: content[36],},
-                        offscreenRange: {
-                            spawning: {
-                                horizontal: content[37],
-                                vertical: {
-                                    upward: content[39],
-                                    downward: content[41],
-                                },
-                            },
-                            despawning: {
-                                horizontal: content[38],
-                                vertical: {
-                                    upward: content[40],
-                                    downward: content[42],
-                                },
-                            },
+                    },
+                },
+                offscreenRange: {
+                    spawning: {
+                        horizontal: content[37],
+                        vertical: {
+                            upward: content[39],
+                            downward: content[41],
+                        },
+                    },
+                    despawning: {
+                        horizontal: content[38],
+                        vertical: {
+                            upward: content[40],
+                            downward: content[42],
                         },
                     },
                 },

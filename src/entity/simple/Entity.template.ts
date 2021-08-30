@@ -1,9 +1,10 @@
-import type {EntityLink, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PossibleLightSource, ProjectileEntityLimitType} from '../entityTypes';
-import type {EntityReferencesTemplate}                                                                                         from '../properties/EntityReferences.template';
-import type {PossibleEntityCategories}                                   from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                       from '../limit/EntityLimits.types';
-import type {PropertyTemplate}                                           from '../properties/Property.template';
-import type {SMM2NameTemplate}                                           from '../lang/SMM2Name.template';
+import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType} from '../properties/limit/Loader.types';
+import type {EntityLink, PossibleLightSource}                                                                                                                                                                                                                                                            from '../entityTypes';
+import type {EntityReferencesTemplate}                                                                                                                                                                                                                                                                   from '../properties/EntityReferences.template';
+import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                      from '../properties/limit/LimitProperty.template';
+import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                   from '../category/EntityCategories.types';
+import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                       from '../properties/IsInProperty.template';
+import type {SMM2NameTemplate}                                                                                                                                                                                                                                                                           from '../lang/SMM2Name.template';
 
 /**
  * @template
@@ -13,7 +14,7 @@ export interface EntityTemplate {
     properties: {
         //region ---------- Basic properties ----------
 
-        isIn: PropertyTemplate
+        isIn: IsInPropertyTemplate
 
         categoryInTheEditor: | PossibleEntityCategories | null
 
@@ -67,31 +68,20 @@ export interface EntityTemplate {
 
         //endregion ---------- Specific properties ----------
 
-        limits: {
-            editor: | PossibleEntityLimits | '?' | null
-            whilePlaying: {
-                isInGEL: {
-                    value: LimitWithComment<GeneralEntityLimitType>
-                    isSuperGlobal: LimitWithComment<GeneralGlobalEntityLimitType>
+        limits: LimitPropertyTemplate
+        offscreenRange: {
+            spawning: {
+                horizontal: OffscreenSpawningHorizontalRangeLimitType
+                vertical: {
+                    upward: OffscreenSpawningUpwardVerticalRangeLimitType
+                    downward: OffscreenSpawningDownwardVerticalRangeLimitType
                 }
-                isInPEL: LimitWithComment<| boolean | null>
-                isInPJL: LimitWithComment<ProjectileEntityLimitType>
-                customLimit: LimitWithComment<| PossibleEntityLimits | '?' | null>
-                offscreenRange: {
-                    spawning: {
-                        horizontal: | number | 'Variable' | null
-                        vertical: {
-                            upward: | number | null
-                            downward: | number | null
-                        }
-                    }
-                    despawning: {
-                        horizontal: | number | 'Variable' | 'Infinity' | null
-                        vertical: {
-                            upward: | number | null
-                            downward: | number | null
-                        }
-                    }
+            }
+            despawning: {
+                horizontal: OffscreenDespawningHorizontalRangeLimitType
+                vertical: {
+                    upward: OffscreenDespawningUpwardVerticalRangeLimitType
+                    downward: OffscreenDespawningDownwardVerticalRangeLimitType
                 }
             }
         }
@@ -103,7 +93,3 @@ export interface EntityTemplate {
 
 }
 
-export interface LimitWithComment<T> {
-    value: T
-    comment: | string | null
-}

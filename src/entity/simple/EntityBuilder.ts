@@ -1,10 +1,12 @@
-import type {Builder}               from '../../util/Builder';
-import type {DebugEntityReferences} from './EntityLoader';
-import type {Entity}                from './Entity';
-import type {EntityCategory}        from '../category/EntityCategory';
-import type {EntityLink}            from '../entityTypes';
-import type {EntityTemplate}        from './Entity.template';
+import type {Builder}                                                                                                       from '../../util/Builder';
+import type {CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from '../properties/limit/LimitProperty.types';
+import type {DebugEntityReferences}                                                                                         from './EntityLoader';
+import type {Entity}                                                                                                        from './Entity';
+import type {EntityCategory}                                                                                                from '../category/EntityCategory';
+import type {EntityLink}                                                                                                    from '../entityTypes';
+import type {EntityTemplate}                                                                                                from './Entity.template';
 
+import {EntityLimits}                         from '../limit/EntityLimits';
 import {EntityReferencesContainer}            from '../properties/EntityReferencesContainer';
 import {EmptyEntity}                          from './EmptyEntity';
 import {EmptyEntityCategory}                  from '../category/EmptyEntityCategory';
@@ -55,14 +57,38 @@ export class EntityBuilder
     }
 
 
-    private __createIsInProperty() {
+    private __createIsInProperty(): [boolean, boolean,
+        boolean, boolean, boolean, boolean, | boolean | null,
+        boolean, boolean, boolean, | boolean | null, | boolean | null, | boolean | null, | boolean | null, boolean, boolean, boolean,
+        boolean, | boolean | null,] {
         const isIn = this.template.properties.isIn;
 
-        return new PropertyContainer(
+        return [
             isIn.game['1'], isIn.game['2'],
             isIn.style.superMarioBros, isIn.style.superMarioBros3, isIn.style.superMarioWorld, isIn.style.newSuperMarioBrosU, isIn.style.superMario3DWorld,
             isIn.theme.ground, isIn.theme.underground, isIn.theme.underwater, isIn.theme.desert, isIn.theme.snow, isIn.theme.sky, isIn.theme.forest, isIn.theme.ghostHouse, isIn.theme.airship, isIn.theme.castle,
             isIn.time.day, isIn.time.night,
+        ];
+
+    }
+
+    private __createLimitProperty(): [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
+        const limits = this.template.properties.limits;
+
+        const editorLimit: EditorLimitReceived = EntityLimits.getValue(limits.editor) ?? limits.editor as | '?' | null;
+        const generalLimit: GeneralLimitReceived = limits.whilePlaying.isInGEL.isSuperGlobal.value == null ? [limits.whilePlaying.isInGEL.value.value, limits.whilePlaying.isInGEL.value.comment,] : [[limits.whilePlaying.isInGEL.value.value, limits.whilePlaying.isInGEL.value.comment,], [limits.whilePlaying.isInGEL.isSuperGlobal.value, limits.whilePlaying.isInGEL.isSuperGlobal.comment,],];
+        const powerUpLimit: PowerUpLimitReceived = [limits.whilePlaying.isInPEL.value, limits.whilePlaying.isInPEL.comment,];
+        const projectileLimit: ProjectileLimitReceived = [limits.whilePlaying.isInPJL.value, limits.whilePlaying.isInPJL.comment,];
+        const customLimit: CustomLimitReceived = [EntityLimits.getValue(limits.whilePlaying.customLimit.value) ?? limits.whilePlaying.customLimit.value as '?' | null, limits.whilePlaying.customLimit.comment,];
+
+        return [editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,];
+    }
+
+    private __createProperty() {
+
+        return new PropertyContainer(
+            ...this.__createIsInProperty(),
+            ...this.__createLimitProperty(),
         );
     }
 
@@ -129,7 +155,7 @@ export class EntityBuilder
     //endregion -------------------- Build helper methods --------------------
 
     public build() {
-        const isInProperty = this.__createIsInProperty();
+        const isInProperty = this.__createProperty();
         return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
             ? new ExclusiveSMM1GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2

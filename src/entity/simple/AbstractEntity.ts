@@ -393,14 +393,121 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     }
 
     public get isInDayTheme(): this['timeContainer']['isInDayTheme'] {
-        return this.propertyContainer.isInDayTheme;
+        return this.timeContainer.isInDayTheme;
     }
 
     public get isInNightTheme(): this['timeContainer']['isInNightTheme'] {
-        return this.propertyContainer.isInNightTheme;
+        return this.timeContainer.isInNightTheme;
     }
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    public get limitContainer(): this['propertyContainer']['limitContainer'] {
+        return this.propertyContainer.limitContainer;
+    }
+
+    //region -------------------- Editor limit --------------------
+
+    public get editorLimitContainer(): this['limitContainer']['editorLimitContainer'] {
+        return this.limitContainer.editorLimitContainer;
+    }
+
+    public get editorLimit(): this['limitContainer']['editorLimit'] {
+        return this.limitContainer.editorLimit;
+    }
+
+    public get isEditorLimitKnown(): this['limitContainer']['isEditorLimitKnown'] {
+        return this.limitContainer.isEditorLimitKnown;
+    }
+
+    //endregion -------------------- Editor limit --------------------
+    //region -------------------- General limit --------------------
+
+    public get isInGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGeneralLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInGeneralLimitWhilePlayingContainer;
+    }
+
+    public get isInGeneralLimitWhilePlaying(): this['limitContainer']['isInGeneralLimitWhilePlaying'] {
+        return this.limitContainer.isInGeneralLimitWhilePlaying;
+    }
+
+    public get isInGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGeneralLimitWhilePlayingComment'] {
+        return this.limitContainer.isInGeneralLimitWhilePlayingComment;
+    }
+
+    //region -------------------- Global general limit --------------------
+
+    public get isInGlobalGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    }
+
+    public get isInGlobalGeneralLimitWhilePlaying(): this['limitContainer']['isInGlobalGeneralLimitWhilePlaying'] {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlaying;
+    }
+
+    public get isInGlobalGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingComment'] {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Global general limit --------------------
+
+    //endregion -------------------- General limit --------------------
+    //region -------------------- Power-up limit --------------------
+
+    public get isInPowerUpLimitWhilePlayingContainer(): this['limitContainer']['isInPowerUpLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInPowerUpLimitWhilePlayingContainer;
+    }
+
+    public get isInPowerUpLimitWhilePlaying(): this['limitContainer']['isInPowerUpLimitWhilePlaying'] {
+        return this.limitContainer.isInPowerUpLimitWhilePlaying;
+    }
+
+    public get isInPowerUpLimitWhilePlayingComment(): this['limitContainer']['isInPowerUpLimitWhilePlayingComment'] {
+        return this.limitContainer.isInPowerUpLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Power-up limit --------------------
+    //region -------------------- Projectile limit --------------------
+
+    public get isInProjectileLimitWhilePlayingContainer(): this['limitContainer']['isInProjectileLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingContainer;
+    }
+
+    public get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying'] {
+        return this.limitContainer.isInProjectileLimitWhilePlaying;
+    }
+
+    public get isInProjectileLimitWhilePlayingKnown(): this['limitContainer']['isInProjectileLimitWhilePlayingKnown'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingKnown;
+    }
+
+    public get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Projectile limit --------------------
+    //region -------------------- Custom limit --------------------
+
+    public get customLimitWhilePlayingContainer(): this['limitContainer']['customLimitWhilePlayingContainer'] {
+        return this.limitContainer.customLimitWhilePlayingContainer;
+    }
+
+    public get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying'] {
+        return this.limitContainer.customLimitWhilePlaying;
+    }
+
+    public get isCustomLimitWhilePlayingKnown(): this['limitContainer']['isCustomLimitWhilePlayingKnown'] {
+        return this.limitContainer.isCustomLimitWhilePlayingKnown;
+    }
+
+    public get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment'] {
+        return this.limitContainer.customLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Custom limit --------------------
+
+    //endregion -------------------- Limit properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References --------------------
