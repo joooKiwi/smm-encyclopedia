@@ -20,6 +20,8 @@ export interface HeadersConverterHolder<H extends string = string, > {
 
     get index(): number
 
+    get originalHeader(): H
+
     get header(): SimpleHeader<H>
 
     get convertor(): ConversionCallbackToConverter
@@ -35,14 +37,15 @@ export type ArrayOfMixedConvertorInstance = [conversionCallbacksToConverter: rea
 //endregion -------------------- Mixed convertor types --------------------
 //region -------------------- Callback types --------------------
 
+export type CallbackToCreateObject<A extends any[] = any[], T = any, > = (convertedValue: A,) => T;
 export type ValidationCallback = (value: string,) => boolean;
 export type ConversionCallbackToAny = (value: string,) => any;
 
 export type CallbackOnBeforeFinalObjectCreated<A extends any[] = any[], > = | ((convertedContent: A, originalContent: readonly string[],) => void) | null;
 export type CallbackOnAfterFinalObjectCreated<A extends any[] = any[], T = any, > = | ((finalContent: T, convertedContent: A, originalContent: readonly string[],) => void) | null;
 
-export type CallbackOnBeforeSingleContentConverted = | ((originalValue: string,) => void) | null;
-export type CallbackOnAfterSingleContentConverted<A extends any[] = any[], > = | ((content: keyof A, originalValue: string,) => void) | null;
+export type CallbackOnBeforeSingleContentConverted<H extends string = string, > = | ((originalValue: string, header: H,) => void) | null;
+export type CallbackOnAfterSingleContentConverted<H extends string = string, A extends any[] = any[], > = | ((content: keyof A, originalValue: string, header: H,) => void) | null;
 
 export type CallbackOnInitialisationStart = | ((originalContents: readonly string[][],) => void) | null;
 export type CallbackOnInitialisationEnd<A extends any[] = any[], T = any, > = | ((finalContents: readonly T[], convertedContents: readonly A[], originalContents: readonly string[][],) => void) | null;
