@@ -174,6 +174,7 @@ export interface DebugEntityReferences {
 export class EntityLoader
     implements Loader<ReadonlyMap<string, DebugEntityReferences>> {
 
+    public static readonly UNKNOWN_CHARACTER = '?';
     public static readonly THIS_REFERENCE = 'this';
 
     static readonly #instance = new EntityLoader();
@@ -190,7 +191,6 @@ export class EntityLoader
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
         this.#everyEntityLimits = new CallbackCaller(() => EntityLimitLoader.get.load());
         this.#everyEntitiesMap = new CallbackCaller(() => {
-            const [unknownCharacter, thisText,] = ['?', EntityLoader.THIS_REFERENCE,];
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
             EntityBuilder.references = references;
@@ -198,32 +198,32 @@ export class EntityLoader
 
             const csvLoader = new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .convertToEmptyableStringAnd(this.entityCategoriesNames, 'categoryInTheEditor',)
+                .convertTo(this.entityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
-                .convertToNullableBooleanAnd(unknownCharacter, 'canBeInAParachute', 'canHaveWings',)
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeInAParachute', 'canHaveWings',)
 
                 .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
 
-                .convertToNullableBooleanAnd(unknownCharacter, 'canBePutOnATrack',)
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
                 .convertToEmptyableStringAnd(this.entityLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
-                .convertToNullableBooleanAnd(unknownCharacter, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
                 .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
-                .convertToEmptyableStringAnd([unknownCharacter, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
-                .convertToNullableBooleanAnd(unknownCharacter, 'lightSourceEmitted_isInSMB',)
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
                 .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
                 .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
-                .convertToNullableBooleanAnd(unknownCharacter, 'canMakeASoundOutOfAMusicBlock',)
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canMakeASoundOutOfAMusicBlock',)
 
-                .convertToEmptyableStringAnd([unknownCharacter, ...this.entityLimitsNames,], 'editorLimit',)
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...this.entityLimitsNames,], 'editorLimit',)
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBooleanAnd(['number',/*2*/ 'Only when collected',], 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
-                .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
-                .convertToEmptyableStringAnd(this.entityLimitsNames, 'whilePlaying_customLimit',)
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...this.entityLimitsNames,], 'whilePlaying_customLimit',)
                 .convertToEmptyableString(
                     'whilePlaying_isInGEL_comment', 'whilePlaying_isInGEL_isSuperGlobal_comment',
                     'whilePlaying_isInPEL_comment',
@@ -236,14 +236,14 @@ export class EntityLoader
                 .convertToNullableNumber('offscreenSpawningUpwardVerticalRange', 'offscreenDespawningUpwardVerticalRange',
                     'offscreenSpawningDownwardVerticalRange', 'offscreenDespawningDownwardVerticalRange',)
 
-                .convertToStringAnd(thisText, 'inDayTheme',)
-                .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
+                .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inDayTheme',)
+                .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inNightTheme',)
 
-                .convertToStringAnd(thisText, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
-                .convertToEmptyableStringAnd(thisText, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
-                .convertToStringAnd(thisText, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+                .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+                .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+                .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
 
-                .convertToEmptyableStringAnd(thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+                .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inDayTheme',)
                 // .convertToNullableHeadersAnd(['english', 'americanEnglish',], thisText,'inNightTheme',)
                 //
