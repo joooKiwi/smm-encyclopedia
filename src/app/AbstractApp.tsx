@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import Navigation         from "../navigation/Navigation";
-import Footer             from "../navigation/Footer";
+import React, {Component} from 'react';
+
+import Navigation from '../navigation/Navigation';
+import Footer     from '../navigation/Footer';
 
 export default abstract class AbstractApp<T = {}>
     extends Component<T> {
@@ -16,7 +17,7 @@ export default abstract class AbstractApp<T = {}>
                 {this._mainContent()}
             </main>
             <Footer/>
-        </>)
+        </>);
     }
 
 }
