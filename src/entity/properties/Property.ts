@@ -1,72 +1,38 @@
-import type {GameProperty}      from './GameProperty';
-import type {GameStyleProperty} from './GameStyleProperty';
-import type {ThemeProperty}     from './ThemeProperty';
-import type {TimeProperty}      from './TimeProperty';
+import type {AbstractExclusiveSMM2GameProperty, ExclusiveSMM1GameProperty, ExclusiveSMM2GameProperty, ExclusiveSMM2GamePropertyInSM3DW, GameProperty}                          from './GameProperty';
+import type {AbstractExclusiveSMM2GameStyleProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2GameStylePropertyInSM3DW, GameStyleProperty} from './GameStyleProperty';
+import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2ThemePropertyInSM3DW, ThemeProperty} from './ThemeProperty';
+import type {AbstractExclusiveSMM2TimeProperty, ExclusiveSMM1TimeProperty, ExclusiveSMM2TimeProperty, ExclusiveSMM2TimePropertyInSM3DW, TimeProperty} from './TimeProperty';
+import type {AbstractExclusiveSMM2LimitProperty, ExclusiveSMM1LimitProperty, ExclusiveSMM2LimitProperty, LimitProperty}                               from './limit/LimitProperty';
+import {ExclusiveSMM2LimitPropertyInSM3DW}                                                                                                            from './limit/LimitProperty';
 
-export interface Property
-    extends GameProperty, GameStyleProperty, ThemeProperty, TimeProperty {
+export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE extends GameStyleProperty = GameStyleProperty, THEME extends ThemeProperty = ThemeProperty, TIME extends TimeProperty = TimeProperty, LIMIT extends LimitProperty = LimitProperty, >
+    extends GameProperty<GAME['isInSuperMarioMaker1'], GAME['isInSuperMarioMaker2']>,
+        GameStyleProperty<GAME_STYLE['isInSuperMarioBrosStyle'], GAME_STYLE['isInSuperMarioBros3Style'], GAME_STYLE['isInSuperMarioWorldStyle'], GAME_STYLE['isInNewSuperMarioBrosUStyle'], GAME_STYLE['isInSuperMario3DWorldStyle']>,
+        ThemeProperty<THEME['isInGroundTheme'], THEME['isInUndergroundTheme'], THEME['isInUnderwaterTheme'], THEME['isInDesertTheme'], THEME['isInSnowTheme'], THEME['isInSkyTheme'], THEME['isInForestTheme'], THEME['isInGhostHouseTheme'], THEME['isInAirshipTheme'], THEME['isInCastleTheme']>,
+        TimeProperty<TIME['isInDayTheme'], TIME['isInNightTheme']>,
+        LimitProperty<LIMIT['editorLimit'], LIMIT['isInGeneralLimitWhilePlaying'], LIMIT['isInGlobalGeneralLimitWhilePlaying'], LIMIT['isInPowerUpLimitWhilePlaying'], LIMIT['isInProjectileLimitWhilePlaying'], LIMIT['customLimitWhilePlaying']> {
 
-    //region -------------------- Game properties --------------------
+    get gameContainer(): GAME
 
-    get gameContainer(): GameProperty
+    get gameStyleContainer(): GAME_STYLE
 
+    get themeContainer(): THEME
 
-    get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+    get timeContainer(): TIME
 
-    get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
-
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- Game style properties --------------------
-
-    get gameStyleContainer(): GameStyleProperty
-
-
-    get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle']
-
-    get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style']
-
-    get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle']
-
-    get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle']
-
-    get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle']
-
-    //endregion -------------------- Game style properties --------------------
-    //region -------------------- Theme properties --------------------
-
-    get themeContainer(): ThemeProperty
-
-
-    get isInGroundTheme(): this['themeContainer']['isInGroundTheme']
-
-    get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme']
-
-    get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme']
-
-    get isInDesertTheme(): this['themeContainer']['isInDesertTheme']
-
-    get isInSnowTheme(): this['themeContainer']['isInSnowTheme']
-
-    get isInSkyTheme(): this['themeContainer']['isInSkyTheme']
-
-    get isInForestTheme(): this['themeContainer']['isInForestTheme']
-
-    get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme']
-
-    get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme']
-
-    get isInCastleTheme(): this['themeContainer']['isInCastleTheme']
-
-    //endregion -------------------- Theme properties --------------------
-    //region -------------------- Time properties --------------------
-
-    get timeContainer(): TimeProperty
-
-
-    get isInDayTheme(): this['timeContainer']['isInDayTheme']
-
-    get isInNightTheme(): this['timeContainer']['isInNightTheme']
-
-    //endregion -------------------- Time properties --------------------
+    get limitContainer(): LIMIT
 
 }
+
+export type ExclusiveSMM1Property
+    = Property<ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty, ExclusiveSMM1LimitProperty>
+      & ExclusiveSMM1GameProperty & ExclusiveSMM1GameStyleProperty & ExclusiveSMM1ThemeProperty & ExclusiveSMM1TimeProperty & ExclusiveSMM1LimitProperty;
+export type AbstractExclusiveSMM2Property<GAME extends AbstractExclusiveSMM2GameProperty = AbstractExclusiveSMM2GameProperty, GAME_STYLE extends AbstractExclusiveSMM2GameStyleProperty = AbstractExclusiveSMM2GameStyleProperty, THEME extends AbstractExclusiveSMM2ThemeProperty = AbstractExclusiveSMM2ThemeProperty, TIME extends AbstractExclusiveSMM2TimeProperty = AbstractExclusiveSMM2TimeProperty, LIMIT extends AbstractExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty, >
+    = Property<GAME, GAME_STYLE, THEME, TIME, LIMIT>
+      & AbstractExclusiveSMM2GameProperty & AbstractExclusiveSMM2GameStyleProperty & AbstractExclusiveSMM2ThemeProperty & AbstractExclusiveSMM2TimeProperty & AbstractExclusiveSMM2LimitProperty;
+export type ExclusiveSMM2PropertyInSM3DW
+    = AbstractExclusiveSMM2Property<ExclusiveSMM2GamePropertyInSM3DW, ExclusiveSMM2GameStylePropertyInSM3DW, ExclusiveSMM2ThemePropertyInSM3DW, ExclusiveSMM2TimePropertyInSM3DW, ExclusiveSMM2LimitPropertyInSM3DW>
+      & ExclusiveSMM2GamePropertyInSM3DW & ExclusiveSMM2GameStylePropertyInSM3DW & ExclusiveSMM2ThemePropertyInSM3DW & ExclusiveSMM2TimePropertyInSM3DW & ExclusiveSMM2LimitPropertyInSM3DW;
+export type ExclusiveSMM2Property
+    = AbstractExclusiveSMM2Property<ExclusiveSMM2GameProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2TimeProperty, ExclusiveSMM2LimitProperty>
+      & ExclusiveSMM2GameProperty & ExclusiveSMM2GameStyleProperty & ExclusiveSMM2ThemeProperty & ExclusiveSMM2TimeProperty & ExclusiveSMM2LimitProperty;

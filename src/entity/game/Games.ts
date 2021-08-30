@@ -1,12 +1,13 @@
+import type {ClassWithEnglishName, PropertyGetter}                                       from '../PropertyGetter';
 import type {GameProperty}                                                               from '../properties/GameProperty';
 import type {GamesArray, GamesNames, GamesOrdinals, PossibleGameName, PossibleImagePath} from './Games.types';
-import type {PropertyGetter}                                                             from '../PropertyGetter';
 
 import {Enum} from '../../util/enum/Enum';
 
 export abstract class Games
     extends Enum<GamesOrdinals, GamesNames>
-    implements PropertyGetter<PossibleGameName, GameProperty> {
+    implements ClassWithEnglishName<PossibleGameName>,
+        PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
 

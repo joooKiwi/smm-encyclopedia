@@ -11,6 +11,7 @@ export type EntityLimitTypesOrdinals = | 0 | 1;
 export type EntityLimitTypesNames = Uppercase<PossibleEntityLimitTypeEnglishName>;
 
 export type PossibleEntityLimitTypeEnglishName = | 'Playing' | 'Editor';
+export type PossibleEntityLimitTypeEnglishCommonText = | 'While playing' | 'In the editor';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

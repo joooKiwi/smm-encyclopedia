@@ -1,10 +1,10 @@
-import type {ExclusiveSMM2GameProperty} from '../properties/exclusive/ExclusiveSMM2GameProperty';
-import type {Theme}                     from './Theme';
+import type {AbstractExclusiveSMM2GameProperty} from '../properties/GameProperty';
+import type {Theme}                             from './Theme';
 
 export interface WorldTheme
-    extends Theme, ExclusiveSMM2GameProperty {
+    extends Theme, AbstractExclusiveSMM2GameProperty {
 
-    get isInProperty(): ExclusiveSMM2GameProperty
+    get isInProperty(): AbstractExclusiveSMM2GameProperty
 
 
     get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1']
