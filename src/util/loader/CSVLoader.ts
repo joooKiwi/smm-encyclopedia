@@ -19,7 +19,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     readonly #callbackToCreateObject: CallbackToCreateObject<A, T>;
 
     readonly #headerContainerMap: Map<SimpleHeader<H>, HeaderContainer<H, this['headersAsArray']>>;
-    readonly #headersFollowed: SimpleHeader<H>[];
     readonly #convertedContent: A[];
     readonly #content: T[];
 
@@ -42,7 +41,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         this.#callbackToCreateObject = callbackToCreateObject;
 
         this.#headerContainerMap = new Map();
-        this.#headersFollowed = [];
         this.#convertedContent = [];
         this.#content = [];
 
@@ -118,20 +116,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
     //endregion -------------------- Headers to convert methods --------------------
-    //region -------------------- Headers followed methods --------------------
-
-    /**
-     * An array of every headers followed for the conversion.
-     */
-    public get headersFollowed(): ArrayOfHeaders<H> {
-        return this._headersFollowed;
-    }
-
-    public get _headersFollowed(): SimpleHeader<H>[] {
-        return this.#headersFollowed;
-    }
-
-    //endregion -------------------- Headers followed methods --------------------
     //region -------------------- Content methods --------------------
 
     /**
@@ -399,11 +383,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         if (!this._headerContainerMap.has(header))
             this._headerContainerMap.set(header, new HeaderContainer(header, this.headersAsArray,));
         this._headerContainerMap.get(header)!.addHeaderTypeOrConvertor(headerTypeOrConvertor);
-        return this;
-    }
-
-    protected addHeaderFollowed(...headers: ArrayOfHeaders<H>): this {
-        this._headersFollowed.concat(...headers);
         return this;
     }
 
