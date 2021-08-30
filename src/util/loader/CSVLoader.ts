@@ -11,7 +11,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Attributes --------------------
 
     public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
+    public static GENERIC_DOES_THROW_ERROR: boolean = true;
     public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
+
+    #doesThrowError?: boolean;
+    #defaultConversion?: PossiblePredefinedConversionWithoutValues;
 
     readonly #originalHeaders: readonly H[];
     readonly #headers: ReadonlySet<SimpleHeader<H>>;
@@ -28,7 +32,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     #callbackOnAfterSingleContentConverted: CallbackOnAfterSingleContentConverted<H, A>;
     #callbackOnInitialisationStart: CallbackOnInitialisationStart;
     #callbackOnInitialisationEnd: CallbackOnInitialisationEnd<A, T>;
-    #defaultConversion?: PredefinedConversion;
 
     //endregion -------------------- Attributes --------------------
 
@@ -53,6 +56,51 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
     //region -------------------- Getter and setter methods --------------------
+
+    //region -------------------- Default values methods --------------------
+
+    //region -------------------- Default does throw error methods --------------------
+
+    protected get doesThrowError(): boolean {
+        return this.#doesThrowError ?? CSVLoader.GENERIC_DOES_THROW_ERROR;
+    }
+
+    protected set doesThrowError(value: boolean,) {
+        this.setDoesThrowError(value);
+    }
+
+    public setDoesThrowError(doesThrowError: boolean,): this {
+        this.#doesThrowError = doesThrowError;
+        return this;
+    }
+
+    //endregion -------------------- Default does throw error methods --------------------
+    //region -------------------- Default conversion methods --------------------
+
+    protected get defaultConversion(): PossiblePredefinedConversionWithoutValues {
+        return this.#defaultConversion ?? CSVLoader.GENERIC_DEFAULT_CONVERSION;
+    }
+
+    protected set defaultConversion(value: PossiblePredefinedConversionWithoutValues,) {
+        this.setDefaultConversion(value);
+    }
+
+    /**
+     * Set the default {@link PredefinedConversion} on the current {@link CSVLoader loader instance}.
+     * If the current default conversion is not defined,
+     * then the {@link GENERIC_DEFAULT_CONVERSION generic default conversion} is used.
+     *
+     * @param defaultConversion
+     * @see GENERIC_DEFAULT_CONVERSION
+     */
+    public setDefaultConversion(defaultConversion: PossiblePredefinedConversionWithoutValues,): this {
+        this.#defaultConversion = defaultConversion;
+        return this;
+    }
+
+    //endregion -------------------- Default conversion methods --------------------
+
+    //endregion -------------------- Default values methods --------------------
 
     //region -------------------- Headers methods --------------------
 
@@ -140,30 +188,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
     //endregion -------------------- Callback to create the object --------------------
-    //region -------------------- Default conversion methods --------------------
 
-    protected get defaultConversion() {
-        return this.#defaultConversion ?? CSVLoader.GENERIC_DEFAULT_CONVERSION;
-    }
-
-    protected set defaultConversion(value: PredefinedConversion) {
-        this.#defaultConversion = value;
-    }
-
-    /**
-     * Set the default {@link PredefinedConversion} on the current {@link CSVLoader loader instance}.
-     * If the current default conversion is not defined,
-     * then the {@link GENERIC_DEFAULT_CONVERSION generic default conversion} is used.
-     *
-     * @param defaultConversion
-     * @see GENERIC_DEFAULT_CONVERSION
-     */
-    public setDefaultConversion(defaultConversion: PredefinedConversion,): this {
-        this.defaultConversion = defaultConversion;
-        return this;
-    }
-
-    //endregion -------------------- Default conversion methods --------------------
     //region -------------------- Triggers methods --------------------
 
     //region -------------------- On before final object created methods --------------------
