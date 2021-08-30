@@ -1,5 +1,5 @@
-import type {ArrayHeaderTypeOrConvertor, ArrayOfHeaders, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackToCreateObject, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoader.types';
-import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './converter/PredefinedConverter.types';
+import type {ArrayHeaderTypeOrConvertor, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackToCreateObject, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoader.types';
+import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './converter/PredefinedConverter.types';
 
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
@@ -38,7 +38,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>,) {
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
-        if (this.originalHeaders.length !== this.headers.size)
+        if (this.doesThrowError && this.originalHeaders.length !== this.headers.size)
             throw new RangeError(`There is one or more duplicate header in the csv file.(${this.headers.size}/${this.originalHeaders.length})`);
         this.#originalContent = originalContent;
         this.#callbackToCreateObject = callbackToCreateObject;
@@ -553,7 +553,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Header conversion methods --------------------
 
     protected _validateHeaderNotIncludedInArrayOfHeadersReceived(header: SimpleHeader<H>, headers: ArrayOfHeadersReceived<H>,): void | never {
-        if (headers.includes(header))
+        if (this.doesThrowError && headers.includes(header))
             throw new EvalError(`Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(', ')})`);
     }
 
@@ -681,7 +681,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
                 if (conversionCallbackToConverter(value).isValueValid(value))
                     return conversionCallbackToConverter(value).convertTheValue(value);
             }
-            throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
+            if (this.doesThrowError)
+                throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
         };
 
         return containNullable
