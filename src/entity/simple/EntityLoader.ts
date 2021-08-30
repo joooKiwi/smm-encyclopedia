@@ -224,16 +224,17 @@ export class EntityLoader
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToEmptyableStringAnd(['boolean', unknownCharacter, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
                 .convertToEmptyableStringAnd(this.entityLimitsNames, 'whilePlaying_customLimit',)
-                .convertToNullableNumberAnd('Variable', 'offscreenSpawningHorizontalRange',)
-                .convertToNullableNumberAnd(['Variable', 'Infinity',], 'offscreenDespawningHorizontalRange',)
-                .convertToNullableNumber('offscreenSpawningUpwardVerticalRange', 'offscreenDespawningUpwardVerticalRange',
-                    'offscreenSpawningDownwardVerticalRange', 'offscreenDespawningDownwardVerticalRange',)
                 .convertToEmptyableString(
                     'whilePlaying_isInGEL_comment', 'whilePlaying_isInGEL_isSuperGlobal_comment',
                     'whilePlaying_isInPEL_comment',
                     'whilePlaying_isInPJL_comment',
                     'whilePlaying_customLimit_comment',
                 )
+
+                .convertToNullableNumberAnd('Variable', 'offscreenSpawningHorizontalRange',)
+                .convertToNullableNumberAnd(['Variable', 'Infinity',], 'offscreenDespawningHorizontalRange',)
+                .convertToNullableNumber('offscreenSpawningUpwardVerticalRange', 'offscreenDespawningUpwardVerticalRange',
+                    'offscreenSpawningDownwardVerticalRange', 'offscreenDespawningDownwardVerticalRange',)
 
                 .convertToStringAnd(thisText, 'inDayTheme',)
                 .convertToEmptyableStringAnd(thisText, 'inNightTheme',)
