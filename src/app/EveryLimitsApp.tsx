@@ -1,5 +1,3 @@
-import './EveryLimitsApp.scss';
-
 import React from 'react';
 
 import type {SingleTableContent} from './tools/table/Table.types';
@@ -10,7 +8,9 @@ import {EntityLimit}                   from '../entity/limit/EntityLimit';
 import {EntityLimitLoader}             from '../entity/limit/EntityLimitLoader';
 import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextContainer';
 import Table                           from './tools/table/Table';
+import TextContainer                   from './tools/text/TextContainer';
 
 export default class EveryLimitsApp
     extends AbstractApp {
@@ -34,27 +34,17 @@ export default class EveryLimitsApp
             : `${entityLimit.acronym} / ${entityLimit.alternativeAcronym}`;
     }
 
-    private static __getAmount(entityLimit: EntityLimit): JSX.Element {
-        return entityLimit.isAmountUnknown
-            ? <span className="is-unknown">{entityLimit.amount}</span>
-            : <span>{entityLimit.amount}</span>;
-    }
-
-    private static __getType(entityLimit: EntityLimit): JSX.Element {
-        return <span><GameContentTranslationComponent translationCallback={translation => translation(entityLimit.type.englishCommonText)}/></span>;
-    }
-
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const [englishName, entityLimit,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <span>{EveryLimitsApp.__getAcronym(entityLimit)}</span>,
+                <TextContainer content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
                 <GameContentTranslationComponent translationCallback={translation => translation(entityLimit.fullName)}/>,
                 entityLimit.alternativeName == null ? <></> : <GameContentTranslationComponent translationCallback={translation => translation(entityLimit.alternativeName!)}/>,
-                EveryLimitsApp.__getAmount(entityLimit),
-                EveryLimitsApp.__getType(entityLimit),
+                <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
+                <GameContentTranslationComponent isInSpan={true} translationCallback={translation => translation(entityLimit.type.englishCommonText)}/>,
             ]);
             index++;
         }
