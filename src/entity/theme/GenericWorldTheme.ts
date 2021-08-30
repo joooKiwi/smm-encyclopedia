@@ -1,6 +1,6 @@
-import type {ExclusiveSMM2GameProperty} from '../properties/GameProperty';
-import type {Name}                      from '../../lang/name/Name';
-import type {WorldTheme}                from './WorldTheme';
+import type {AbstractExclusiveSMM2GameProperty} from '../properties/GameProperty';
+import type {Name}                              from '../../lang/name/Name';
+import type {WorldTheme}                        from './WorldTheme';
 
 import {AbstractTheme}         from './AbstractTheme';
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
@@ -16,7 +16,7 @@ export class GenericWorldTheme
     //region -------------------- Game properties --------------------
 
     public get isInProperty() {
-        return super.isInProperty as ExclusiveSMM2GameProperty;
+        return super.isInProperty as AbstractExclusiveSMM2GameProperty;
     }
 
     public get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1'] {

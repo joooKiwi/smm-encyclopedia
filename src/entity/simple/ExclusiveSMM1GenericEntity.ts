@@ -7,6 +7,9 @@ import type {Name}                            from '../../lang/name/Name';
 import {EmptyEntityCategory} from '../category/EmptyEntityCategory';
 import {GenericEntity}       from './GenericEntity';
 
+/**
+ * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_1 Super Mario Maker 1} {@link Games game}.
+ */
 export class ExclusiveSMM1GenericEntity
     extends GenericEntity<ExclusiveSMM1Property>
     implements ExclusiveSMM1Entity {

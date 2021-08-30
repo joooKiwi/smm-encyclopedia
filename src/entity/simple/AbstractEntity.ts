@@ -7,6 +7,11 @@ import type {Property}         from '../properties/Property';
 import type {Themes}           from '../theme/Themes';
 import type {Times}            from '../time/Times';
 
+/**
+ * A simple entity implementation, but without any specification.
+ *
+ * @note It use the generic to have a type based on the property used for each methods in {@link Property}.
+ */
 export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     implements Entity<PROPERTY> {
 
@@ -25,7 +30,6 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         this.#propertyContainer = property;
         this.#referencesContainer = references;
     }
-
 
     //region -------------------- Name properties --------------------
 

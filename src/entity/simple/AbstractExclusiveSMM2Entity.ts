@@ -1,14 +1,17 @@
-import type {EntityCategory}                  from '../category/EntityCategory';
-import type {EntityReferences}                from '../properties/EntityReferences';
-import type {ExclusiveSMM2Entity}             from './Entity';
-import type {ExclusiveSMM2Property, Property} from '../properties/Property';
-import type {Name}                            from '../../lang/name/Name';
+import type {AbstractExclusiveSMM2Entity as AbstractExclusiveSMM2EntityInterface} from './Entity';
+import type {AbstractExclusiveSMM2Property, Property}                             from '../properties/Property';
+import type {EntityCategory}                                                      from '../category/EntityCategory';
+import type {EntityReferences}                                                    from '../properties/EntityReferences';
+import type {Name}                                                                from '../../lang/name/Name';
 
 import {GenericEntity} from './GenericEntity';
 
-export abstract class AbstractExclusiveSMM2Entity<T extends ExclusiveSMM2Property = ExclusiveSMM2Property,>
+/**
+ * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}.
+ */
+export abstract class AbstractExclusiveSMM2Entity<T extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
     extends GenericEntity<T>
-    implements ExclusiveSMM2Entity {
+    implements AbstractExclusiveSMM2EntityInterface {
 
     protected constructor(name: Name, category: EntityCategory, property: T, references: EntityReferences,) {
         super(name, category, validateProperty(property), references,);
@@ -16,7 +19,7 @@ export abstract class AbstractExclusiveSMM2Entity<T extends ExclusiveSMM2Propert
 
 }
 
-function validateProperty<T extends ExclusiveSMM2Property,>(property: Property): T {
+function validateProperty<T extends AbstractExclusiveSMM2Property, >(property: Property): T {
     if (property.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to false for a SMM2 exclusive property.');
     if (!property.isInSuperMarioMaker2)

@@ -7,6 +7,6 @@ export interface GameProperty<SMM1 extends boolean = boolean, SMM2 extends boole
 }
 
 export type ExclusiveSMM1GameProperty = GameProperty<true, false>;
-export type ExclusiveSMM2GameProperty = GameProperty<false, true>;
-export type ExclusiveSMM2GamePropertyInSM3DW = ExclusiveSMM2GameProperty;
-export type ExclusiveSMM2GamePropertyInAnyStyle = ExclusiveSMM2GameProperty;
+export type AbstractExclusiveSMM2GameProperty = GameProperty<false, true>;
+export type ExclusiveSMM2GamePropertyInSM3DW = AbstractExclusiveSMM2GameProperty;
+export type ExclusiveSMM2GameProperty = AbstractExclusiveSMM2GameProperty;

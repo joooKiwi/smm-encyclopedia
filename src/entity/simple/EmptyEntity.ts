@@ -7,6 +7,9 @@ import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyName}            from '../../lang/name/EmptyName';
 
 /**
+ * An empty entity with the default values of nothing
+ *
+ * @note A value that is equivalent to nothing can be false, null and itself
  * @nullObjectPattern
  * @singleton
  */

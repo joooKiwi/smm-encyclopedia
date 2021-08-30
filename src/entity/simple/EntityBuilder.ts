@@ -6,16 +6,17 @@ import type {EntityCategory}                                                    
 import type {EntityLink}                                                                                                    from '../entityTypes';
 import type {EntityTemplate}                                                                                                from './Entity.template';
 
-import {EntityLimits}                         from '../limit/EntityLimits';
-import {EntityReferencesContainer}            from '../properties/EntityReferencesContainer';
-import {EmptyEntity}                          from './EmptyEntity';
-import {EmptyEntityCategory}                  from '../category/EmptyEntityCategory';
-import {ExclusiveSM3DWGenericEntity}          from './ExclusiveSM3DWGenericEntity';
-import {ExclusiveSMM1GenericEntity}           from './ExclusiveSMM1GenericEntity';
-import {ExclusiveSMM2GenericEntityInAnyStyle} from './ExclusiveSMM2GenericEntityInAnyStyle';
-import {GenericEntity}                        from './GenericEntity';
-import {PropertyContainer}                    from '../properties/PropertyContainer';
-import {NameBuilder}                          from '../lang/NameBuilder';
+import {EntityLimits}                from '../limit/EntityLimits';
+import {EntityReferencesContainer}   from '../properties/EntityReferencesContainer';
+import {EMPTY_ARRAY}                 from '../../util/emptyVariables';
+import {EmptyEntity}                 from './EmptyEntity';
+import {EmptyEntityCategory}         from '../category/EmptyEntityCategory';
+import {ExclusiveSM3DWGenericEntity} from './ExclusiveSM3DWGenericEntity';
+import {ExclusiveSMM1GenericEntity}  from './ExclusiveSMM1GenericEntity';
+import {ExclusiveSMM2GenericEntity}  from './ExclusiveSMM2GenericEntity';
+import {GenericEntity}               from './GenericEntity';
+import {PropertyContainer}           from '../properties/PropertyContainer';
+import {NameBuilder}                 from '../lang/NameBuilder';
 
 export class EntityBuilder
     implements Builder<Entity> {
@@ -29,6 +30,7 @@ export class EntityBuilder
     //region -------------------- Attributes --------------------
 
     public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
+    public static readonly EMPTY_ARRAY_CALLBACK = () => EMPTY_ARRAY;
 
     readonly #template;
     readonly #selfCallback = () => this.build();
@@ -46,18 +48,24 @@ export class EntityBuilder
         return this.#template;
     }
 
+    //region -------------------- Name helper methods --------------------
 
     private __createName() {
         return new NameBuilder(this.template.name).build();
     }
+
+    //endregion -------------------- Name helper methods --------------------
+    //region -------------------- Entity category helper methods --------------------
 
     private __getEntityCategory() {
         const category = this.template.properties.categoryInTheEditor;
         return category === null ? EmptyEntityCategory.get : EntityBuilder.categoriesMap.get(category)!;
     }
 
+    //endregion -------------------- Entity category helper methods --------------------
+    //region -------------------- Property helper methods --------------------
 
-    private __createIsInProperty(): [boolean, boolean,
+    private __createIsInPropertyAttributes(): [boolean, boolean,
         boolean, boolean, boolean, boolean, | boolean | null,
         boolean, boolean, boolean, | boolean | null, | boolean | null, | boolean | null, | boolean | null, boolean, boolean, boolean,
         boolean, | boolean | null,] {
@@ -72,7 +80,7 @@ export class EntityBuilder
 
     }
 
-    private __createLimitProperty(): [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
+    private __createLimitPropertyAttributes(): [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
         const limits = this.template.properties.limits;
 
         const editorLimit: EditorLimitReceived = EntityLimits.getValue(limits.editor) ?? limits.editor as | '?' | null;
@@ -87,11 +95,13 @@ export class EntityBuilder
     private __createProperty() {
 
         return new PropertyContainer(
-            ...this.__createIsInProperty(),
-            ...this.__createLimitProperty(),
+            ...this.__createIsInPropertyAttributes(),
+            ...this.__createLimitPropertyAttributes(),
         );
     }
 
+    //endregion -------------------- Property helper methods --------------------
+    //region -------------------- Entity references helper methods --------------------
 
     private __createReferences() {
         const reference = this.template.properties.reference;
@@ -125,13 +135,13 @@ export class EntityBuilder
         let everyThemeReferences: () => readonly Entity[];
         let everyTimeReferences: () => readonly Entity[];
         let everyReferences: () => readonly Entity[];
-        if (reference.group.all === null) {
-            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = () => [];
-        } else {
-            everyGameStyleReferences = reference.group.gameStyle == null ? () => [] : () => Array.from(reference.group.gameStyle!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
-            everyThemeReferences = reference.group.theme == null ? () => [] : () => Array.from(reference.group.theme!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
-            everyTimeReferences = reference.group.time == null ? () => [] : () => Array.from(reference.group.time!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
-            everyReferences = () => Array.from(reference.group.all!).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+        if (reference.group.all === null)
+            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = this.__createReferenceArrayCallback(null);
+        else {
+            everyGameStyleReferences = this.__createReferenceArrayCallback(reference.group.gameStyle);
+            everyThemeReferences = this.__createReferenceArrayCallback(reference.group.theme);
+            everyTimeReferences = this.__createReferenceArrayCallback(reference.group.time);
+            everyReferences = this.__createReferenceArrayCallback(reference.group.all);
         }
 
         //endregion -------------------- Group reference --------------------
@@ -144,24 +154,37 @@ export class EntityBuilder
         );
     }
 
+    private __createReferenceArrayCallback(set: Set<EntityTemplate> | null,): () => readonly Entity[] {
+        return set == null
+            ? EntityBuilder.EMPTY_ARRAY_CALLBACK
+            : () => Array.from(set).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+    }
+
     private __createEntityCallbackFor(link: EntityLink,): () => Entity {
-        return link === 'this' ? this.#selfCallback : () => EntityBuilder.references.get(link)!.entity!;
+        return link === 'this'
+            ? this.#selfCallback
+            : () => EntityBuilder.references.get(link)!.entity!;
     }
 
     private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => Entity {
-        return link === null ? EntityBuilder.EMPTY_ENTITY_CALLBACK : this.__createEntityCallbackFor(link);
+        return link === null
+            ? EntityBuilder.EMPTY_ENTITY_CALLBACK
+            : this.__createEntityCallbackFor(link);
     }
+
+    //endregion -------------------- Entity references helper methods --------------------
 
     //endregion -------------------- Build helper methods --------------------
 
     public build() {
         const isInProperty = this.__createProperty();
+
         return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
             ? new ExclusiveSMM1GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
                     ? new ExclusiveSM3DWGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                    : new ExclusiveSMM2GenericEntityInAnyStyle(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new ExclusiveSMM2GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
                 : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 

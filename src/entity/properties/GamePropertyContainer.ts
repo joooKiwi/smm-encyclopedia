@@ -1,4 +1,4 @@
-import type {ExclusiveSMM1GameProperty, ExclusiveSMM2GameProperty, GameProperty} from './GameProperty';
+import type {AbstractExclusiveSMM2GameProperty, ExclusiveSMM1GameProperty, GameProperty} from './GameProperty';
 
 /**
  * @multiton
@@ -9,7 +9,7 @@ export class GamePropertyContainer
 
     //region -------------------- predefined containers --------------------
     static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new GamePropertyContainer(true,  false,) as ExclusiveSMM1GameProperty;
-    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new GamePropertyContainer(false, true, ) as ExclusiveSMM2GameProperty;
+    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new GamePropertyContainer(false, true, ) as AbstractExclusiveSMM2GameProperty;
 
     static readonly #IS_IN_BOTH_GAMES_PROPERTY =               new GamePropertyContainer(true,  true, );
     static readonly #IS_IN_NO_GAMES_PROPERTY =                 new GamePropertyContainer(false, false,);
@@ -38,7 +38,7 @@ export class GamePropertyContainer
     //region -------------------- Provider/Multiton method --------------------
 
     public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): ExclusiveSMM1GameProperty
-    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): ExclusiveSMM2GameProperty
+    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): AbstractExclusiveSMM2GameProperty
     public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): GameProperty
     /**
      * <p>

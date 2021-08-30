@@ -6,6 +6,10 @@ import type {Name}                                   from '../../lang/name/Name'
 
 import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
 
+/**
+ * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}
+ * and is exclusive to the {@link GameStyles.SUPER_MARIO_3D_WORLD  Mario 3D World} {@link GameStyles game style}.
+ */
 export class ExclusiveSM3DWGenericEntity
     extends AbstractExclusiveSMM2Entity<ExclusiveSMM2PropertyInSM3DW>
     implements ExclusiveSM3DWEntity {

@@ -1,4 +1,4 @@
-import type {ExclusiveSMM1GameStyleProperty, ExclusiveSMM2GameStyleProperty, GameStyleProperty} from './GameStyleProperty';
+import type {AbstractExclusiveSMM2GameStyleProperty, ExclusiveSMM1GameStyleProperty, GameStyleProperty} from './GameStyleProperty';
 
 import {GameStyles} from '../gameStyle/GameStyles';
 
@@ -12,25 +12,25 @@ export class GameStylePropertyContainer
     //region -------------------- predefined containers --------------------
 
     static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, null, ) as ExclusiveSMM1GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, false,) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, false,) as AbstractExclusiveSMM2GameStyleProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY =                new GameStylePropertyContainer(false, true,  false, false, false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMW_PROPERTY =                 new GameStylePropertyContainer(false, false, true,  false, false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY =               new GameStylePropertyContainer(false, false, false, true,  false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY =               new GameStylePropertyContainer(false, false, false, false, true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB3_PROPERTY =                new GameStylePropertyContainer(false, true,  false, false, false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_PROPERTY =                 new GameStylePropertyContainer(false, false, true,  false, false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_NSMBU_PROPERTY =               new GameStylePropertyContainer(false, false, false, true,  false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SM3DW_PROPERTY =               new GameStylePropertyContainer(false, false, false, false, true, ) as AbstractExclusiveSMM2GameStyleProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY =        new GameStylePropertyContainer(true,  true,  false, false, false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY =       new GameStylePropertyContainer(false, false, true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY =       new GameStylePropertyContainer(false, false, true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_AND_SMB3_PROPERTY =        new GameStylePropertyContainer(true,  true,  false, false, false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_AND_NSMBU_PROPERTY =       new GameStylePropertyContainer(false, false, true,  true,  false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_AND_SM3DW_PROPERTY =       new GameStylePropertyContainer(false, false, true,  false, true, ) as AbstractExclusiveSMM2GameStyleProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW =             new GameStylePropertyContainer(true,  true,  true,  false, false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU =           new GameStylePropertyContainer(true,  true,  false, true,  false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY = new GameStylePropertyContainer(false, false, true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_SMW =             new GameStylePropertyContainer(true,  true,  true,  false, false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_AND_NSMBU =           new GameStylePropertyContainer(true,  true,  false, true,  false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMW_NSMBU_AND_SM3DW_PROPERTY = new GameStylePropertyContainer(false, false, true,  true,  true, ) as AbstractExclusiveSMM2GameStyleProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as AbstractExclusiveSMM2GameStyleProperty;
 
-    static readonly #IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  false,) as ExclusiveSMM2GameStyleProperty;
-    static readonly #IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as ExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_NO_GAME_STYLES_PROPERTY =                   new GameStylePropertyContainer(false, false, false, false, null, );
 
     //endregion -------------------- predefined containers --------------------
@@ -82,7 +82,7 @@ export class GameStylePropertyContainer
 
     public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): GameStyleProperty
     public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): ExclusiveSMM1GameStyleProperty
-    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,): ExclusiveSMM2GameStyleProperty
+    public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,): AbstractExclusiveSMM2GameStyleProperty
     public static get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,): GameStyleProperty
     /**
      * <p>

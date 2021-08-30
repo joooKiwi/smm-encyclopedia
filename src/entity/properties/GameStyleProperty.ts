@@ -22,7 +22,7 @@ export interface GameStyleProperty<SMB extends boolean = boolean, SMB3 extends b
 }
 
 export type ExclusiveSMM1GameStyleProperty = GameStyleProperty<true, false, false, false, null>;
-export type ExclusiveSMM2GameStyleProperty<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends boolean = boolean, >
+export type AbstractExclusiveSMM2GameStyleProperty<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends boolean = boolean, >
     = GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>;
-export type ExclusiveSMM2GameStylePropertyInSM3DW = ExclusiveSMM2GameStyleProperty<false, false, false, false, true>;
-export type ExclusiveSMM2GameStylePropertyInAnyStyle = ExclusiveSMM2GameStyleProperty;
+export type ExclusiveSMM2GameStylePropertyInSM3DW = AbstractExclusiveSMM2GameStyleProperty<false, false, false, false, true>;
+export type ExclusiveSMM2GameStyleProperty = AbstractExclusiveSMM2GameStyleProperty;

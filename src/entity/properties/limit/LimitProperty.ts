@@ -91,7 +91,7 @@ export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | P
 }
 
 export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null>;
-export type ExclusiveSMM2LimitProperty<EDITOR extends | PossibleEditorLimit | null = | PossibleEditorLimit | null, GENERAL extends | boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends | PossibleProjectileLimitWhilePlaying = | PossibleProjectileLimitWhilePlaying, CUSTOM extends | PossibleCustomLimitWhilePlaying | null = | PossibleCustomLimitWhilePlaying | null, >
+export type AbstractExclusiveSMM2LimitProperty<EDITOR extends | PossibleEditorLimit | null = | PossibleEditorLimit | null, GENERAL extends | boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends | PossibleProjectileLimitWhilePlaying = | PossibleProjectileLimitWhilePlaying, CUSTOM extends | PossibleCustomLimitWhilePlaying | null = | PossibleCustomLimitWhilePlaying | null, >
     = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM>;
-export type ExclusiveSMM2LimitPropertyInSM3DW = ExclusiveSMM2LimitProperty<| PossibleEditorLimit | null, boolean, boolean, boolean, boolean>;
-export type ExclusiveSMM2LimitPropertyInAnyStyle = ExclusiveSMM2LimitProperty;
+export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<| PossibleEditorLimit | null, boolean, boolean, boolean, boolean>;
+export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;

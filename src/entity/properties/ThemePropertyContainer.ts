@@ -1,4 +1,4 @@
-import type {ExclusiveSMM1ThemeProperty,ExclusiveSMM2ThemeProperty, ThemeProperty} from './ThemeProperty';
+import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ThemeProperty} from './ThemeProperty';
 
 import {Themes} from '../theme/Themes';
 
@@ -14,19 +14,19 @@ export class ThemePropertyContainer
     static readonly #IS_IN_NO_THEMES =                              new ThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
     static readonly #IS_IN_SMM1_THEMES =                            new ThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as ExclusiveSMM1ThemeProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_GROUND_THEME =                 new ThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new ThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_GROUND_THEME =                 new ThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new ThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new ThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as ExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new ThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new ThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as AbstractExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new ThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_SNOW_THEME =                   new ThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as ExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new ThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_SNOW_THEME =                   new ThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new ThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
 
-    static readonly #IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new ThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new ThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new ThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new ThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
 
-    static readonly #IS_IN_EVERY_THEMES =                           new ThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as ExclusiveSMM2ThemeProperty;
+    static readonly #IS_IN_EVERY_THEMES =                           new ThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
 
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
