@@ -421,8 +421,8 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.limitContainer.editorLimit;
     }
 
-    public get isEditorLimitKnown(): this['limitContainer']['isEditorLimitKnown'] {
-        return this.limitContainer.isEditorLimitKnown;
+    public get isEditorLimitUnknown(): this['limitContainer']['isEditorLimitUnknown'] {
+        return this.limitContainer.isEditorLimitUnknown;
     }
 
     //endregion -------------------- Editor limit --------------------
@@ -482,8 +482,8 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.limitContainer.isInProjectileLimitWhilePlaying;
     }
 
-    public get isInProjectileLimitWhilePlayingKnown(): this['limitContainer']['isInProjectileLimitWhilePlayingKnown'] {
-        return this.limitContainer.isInProjectileLimitWhilePlayingKnown;
+    public get isInProjectileLimitWhilePlayingUnknown(): this['limitContainer']['isInProjectileLimitWhilePlayingUnknown'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     }
 
     public get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment'] {
@@ -501,8 +501,8 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.limitContainer.customLimitWhilePlaying;
     }
 
-    public get isCustomLimitWhilePlayingKnown(): this['limitContainer']['isCustomLimitWhilePlayingKnown'] {
-        return this.limitContainer.isCustomLimitWhilePlayingKnown;
+    public get isCustomLimitWhilePlayingUnknown(): this['limitContainer']['isCustomLimitWhilePlayingUnknown'] {
+        return this.limitContainer.isCustomLimitWhilePlayingUnknown;
     }
 
     public get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment'] {

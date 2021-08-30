@@ -172,7 +172,7 @@ export class EmptyEntity
 
     public readonly editorLimitContainer = this.propertyContainer.editorLimitContainer;
     public readonly editorLimit = this.propertyContainer.editorLimit;
-    public readonly isEditorLimitKnown = this.propertyContainer.isEditorLimitKnown;
+    public readonly isEditorLimitUnknown = this.propertyContainer.isEditorLimitUnknown;
 
     public readonly isInGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGeneralLimitWhilePlayingContainer;
     public readonly isInGeneralLimitWhilePlaying = this.propertyContainer.isInGeneralLimitWhilePlaying;
@@ -188,12 +188,12 @@ export class EmptyEntity
 
     public readonly isInProjectileLimitWhilePlayingContainer = this.propertyContainer.isInProjectileLimitWhilePlayingContainer;
     public readonly isInProjectileLimitWhilePlaying = this.propertyContainer.isInProjectileLimitWhilePlaying;
-    public readonly isInProjectileLimitWhilePlayingKnown = this.propertyContainer.isInProjectileLimitWhilePlayingKnown;
+    public readonly isInProjectileLimitWhilePlayingUnknown = this.propertyContainer.isInProjectileLimitWhilePlayingUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.propertyContainer.isInProjectileLimitWhilePlayingComment;
 
     public readonly customLimitWhilePlayingContainer = this.propertyContainer.customLimitWhilePlayingContainer;
     public readonly customLimitWhilePlaying = this.propertyContainer.customLimitWhilePlaying;
-    public readonly isCustomLimitWhilePlayingKnown = this.propertyContainer.isCustomLimitWhilePlayingKnown;
+    public readonly isCustomLimitWhilePlayingUnknown = this.propertyContainer.isCustomLimitWhilePlayingUnknown;
     public readonly customLimitWhilePlayingComment = this.propertyContainer.customLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------

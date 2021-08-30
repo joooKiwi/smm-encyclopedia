@@ -157,8 +157,8 @@ export class PropertyContainer
         return this.limitContainer.editorLimit;
     }
 
-    public get isEditorLimitKnown() {
-        return this.limitContainer.isEditorLimitKnown;
+    public get isEditorLimitUnknown() {
+        return this.limitContainer.isEditorLimitUnknown;
     }
 
     //endregion -------------------- Editor limit --------------------
@@ -218,8 +218,8 @@ export class PropertyContainer
         return this.limitContainer.isInProjectileLimitWhilePlaying;
     }
 
-    public get isInProjectileLimitWhilePlayingKnown() {
-        return this.limitContainer.isInProjectileLimitWhilePlayingKnown;
+    public get isInProjectileLimitWhilePlayingUnknown() {
+        return this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     }
 
     public get isInProjectileLimitWhilePlayingComment() {
@@ -237,8 +237,8 @@ export class PropertyContainer
         return this.limitContainer.customLimitWhilePlaying;
     }
 
-    public get isCustomLimitWhilePlayingKnown() {
-        return this.limitContainer.isCustomLimitWhilePlayingKnown;
+    public get isCustomLimitWhilePlayingUnknown() {
+        return this.limitContainer.isCustomLimitWhilePlayingUnknown;
     }
 
     public get customLimitWhilePlayingComment() {

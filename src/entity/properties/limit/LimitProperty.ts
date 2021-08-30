@@ -23,7 +23,7 @@ export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | P
 
     get editorLimit(): EDITOR
 
-    get isEditorLimitKnown(): boolean
+    get isEditorLimitUnknown(): boolean
 
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
@@ -60,7 +60,7 @@ export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | P
 
     get isInProjectileLimitWhilePlaying(): PROJECTILE
 
-    get isInProjectileLimitWhilePlayingKnown(): boolean
+    get isInProjectileLimitWhilePlayingUnknown(): boolean
 
     get isInProjectileLimitWhilePlayingComment(): | string | null
 
@@ -71,7 +71,7 @@ export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | P
 
     get customLimitWhilePlaying(): CUSTOM
 
-    get isCustomLimitWhilePlayingKnown(): boolean
+    get isCustomLimitWhilePlayingUnknown(): boolean
 
     get customLimitWhilePlayingComment(): | string | null
 

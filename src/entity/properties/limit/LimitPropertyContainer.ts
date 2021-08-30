@@ -103,7 +103,7 @@ export class LimitPropertyContainer
         return this.#editorLimitHolder.get;
     }
 
-    public get isEditorLimitKnown() {
+    public get isEditorLimitUnknown() {
         return this.#isEditorLimitKnownHolder.get;
     }
 
@@ -164,7 +164,7 @@ export class LimitPropertyContainer
         return this.#isProjectileLimitHolder.get;
     }
 
-    public get isInProjectileLimitWhilePlayingKnown() {
+    public get isInProjectileLimitWhilePlayingUnknown() {
         return this.#isProjectileLimitKnownHolder.get;
     }
 
@@ -183,7 +183,7 @@ export class LimitPropertyContainer
         return this.#isCustomLimitHolder.get;
     }
 
-    public get isCustomLimitWhilePlayingKnown() {
+    public get isCustomLimitWhilePlayingUnknown() {
         return this.#isCustomLimitKnownHolder.get;
     }
 

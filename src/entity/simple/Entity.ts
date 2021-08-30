@@ -236,7 +236,7 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     get editorLimit(): this['limitContainer']['editorLimit']
 
-    get isEditorLimitKnown(): this['limitContainer']['isEditorLimitKnown']
+    get isEditorLimitUnknown(): this['limitContainer']['isEditorLimitUnknown']
 
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
@@ -273,7 +273,7 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying']
 
-    get isInProjectileLimitWhilePlayingKnown(): this['limitContainer']['isInProjectileLimitWhilePlayingKnown']
+    get isInProjectileLimitWhilePlayingUnknown(): this['limitContainer']['isInProjectileLimitWhilePlayingUnknown']
 
     get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment']
 
@@ -284,7 +284,7 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying']
 
-    get isCustomLimitWhilePlayingKnown(): this['limitContainer']['isCustomLimitWhilePlayingKnown']
+    get isCustomLimitWhilePlayingUnknown(): this['limitContainer']['isCustomLimitWhilePlayingUnknown']
 
     get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment']
 
