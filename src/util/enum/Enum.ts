@@ -1,5 +1,6 @@
-import {Enumerable}       from './Enumerable';
-import {EnumerableStatic} from './EnumerableStatic';
+import type {Enumerable}       from './Enumerable';
+import type {EnumerableStatic} from './EnumerableStatic';
+
 import {getLastOrdinalOn} from './enumUtilityMethods';
 
 export abstract class Enum<O extends number = number, N extends string = string, >
@@ -17,9 +18,13 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
     //region -------------------- Enum methods --------------------
 
+    /**
+     * Get the ordinal on the current enum instance.
+     */
     public get ordinal(): O {
         return this.#ordinal;
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

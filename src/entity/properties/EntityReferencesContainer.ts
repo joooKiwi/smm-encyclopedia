@@ -1,5 +1,8 @@
 import type {Entity}           from '../simple/Entity';
 import type {EntityReferences} from './EntityReferences';
+import type {GameStyles}       from '../gameStyle/GameStyles';
+import type {Themes}           from '../theme/Themes';
+import type {Times}            from '../time/Times';
 
 import {CallbackCaller} from '../../util/CallbackCaller';
 
@@ -28,6 +31,9 @@ export class EntityReferencesContainer
     readonly #referenceInDayTheme: CallbackCaller<Entity>;
     readonly #referenceInNightTheme: CallbackCaller<Entity>;
 
+    readonly #everyGameStyleReferences: CallbackCaller<readonly Entity[]>;
+    readonly #everyThemeReferences: CallbackCaller<readonly Entity[]>;
+    readonly #everyTimeReferences: CallbackCaller<readonly Entity[]>;
     readonly #everyReferences: CallbackCaller<readonly Entity[]>;
 
     //endregion -------------------- Attributes --------------------
@@ -35,7 +41,7 @@ export class EntityReferencesContainer
     public constructor(referenceInSuperMarioBrosStyle: () => Entity, referenceInSuperMarioBros3Style: () => Entity, referenceInSuperMarioWorldStyle: () => Entity, referenceInNewSuperMarioBrosUStyle: () => Entity, referenceInSuperMario3DWorldStyle: () => Entity,
                        referenceInGroundTheme: () => Entity, referenceInUndergroundTheme: () => Entity, referenceInUnderwaterTheme: () => Entity, referenceInDesertTheme: () => Entity, referenceInSnowTheme: () => Entity, referenceInSkyTheme: () => Entity, referenceInForestTheme: () => Entity, referenceInGhostHouseTheme: () => Entity, referenceInAirshipTheme: () => Entity, referenceInCastleTheme: () => Entity,
                        referenceInDayTheme: () => Entity, referenceInNightTheme: () => Entity,
-                       referenceAll: () => Entity[],) {
+                       everyGameStyleReferences: () => readonly Entity[], everyThemeReferences: () => readonly Entity[], everyTimeReferences: () => readonly Entity[], everyReferences: () => readonly Entity[],) {
         this.#referenceInSuperMarioBrosStyle = new CallbackCaller(referenceInSuperMarioBrosStyle);
         this.#referenceInSuperMarioBros3Style = new CallbackCaller(referenceInSuperMarioBros3Style);
         this.#referenceInSuperMarioWorldStyle = new CallbackCaller(referenceInSuperMarioWorldStyle);
@@ -56,11 +62,16 @@ export class EntityReferencesContainer
         this.#referenceInDayTheme = new CallbackCaller(referenceInDayTheme);
         this.#referenceInNightTheme = new CallbackCaller(referenceInNightTheme);
 
-        this.#everyReferences = new CallbackCaller(referenceAll);
+        this.#everyGameStyleReferences = new CallbackCaller(everyGameStyleReferences);
+        this.#everyThemeReferences = new CallbackCaller(everyThemeReferences);
+        this.#everyTimeReferences = new CallbackCaller(everyTimeReferences);
+        this.#everyReferences = new CallbackCaller(everyReferences);
     }
 
 
     //region -------------------- References methods --------------------
+
+    //region -------------------- Game style references --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return this.#referenceInSuperMarioBrosStyle.get;
@@ -82,6 +93,8 @@ export class EntityReferencesContainer
         return this.#referenceInSuperMario3DWorldStyle.get;
     }
 
+    //endregion -------------------- Game style references --------------------
+    //region -------------------- Theme references --------------------
 
     public get referenceInGroundTheme() {
         return this.#referenceInGroundTheme.get;
@@ -123,6 +136,8 @@ export class EntityReferencesContainer
         return this.#referenceInCastleTheme.get;
     }
 
+    //endregion -------------------- Theme references --------------------
+    //region -------------------- Time references --------------------
 
     public get referenceInDayTheme() {
         return this.#referenceInDayTheme.get;
@@ -132,6 +147,27 @@ export class EntityReferencesContainer
         return this.#referenceInNightTheme.get;
     }
 
+    //endregion -------------------- Time references --------------------
+
+    public getReferenceFrom(theme: Themes,): Entity
+    public getReferenceFrom(time: Times,): Entity
+    public getReferenceFrom(gameStyle: GameStyles,): Entity
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): Entity
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
+        return gameStyleOrThemeOrTime.getReference(this);
+    }
+
+    public get everyGameStyleReferences() {
+        return this.#everyGameStyleReferences.get;
+    }
+
+    public get everyThemeReferences() {
+        return this.#everyThemeReferences.get;
+    }
+
+    public get everyTimeReferences() {
+        return this.#everyTimeReferences.get;
+    }
 
     public get everyReferences() {
         return this.#everyReferences.get;

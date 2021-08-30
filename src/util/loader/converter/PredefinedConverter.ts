@@ -1,5 +1,5 @@
 import type {Converter}                                                                                                                        from './Converter';
-import type {BasicPredefinedConversion, PredefinedConversion, PredefinedConverterArray, PredefinedConverterNames, PredefinedConverterOrdinals} from './PredefinedConverterTypes';
+import type {BasicPredefinedConversion, PredefinedConversion, PredefinedConverterArray, PredefinedConverterNames, PredefinedConverterOrdinals} from './PredefinedConverter.types';
 import type {ConversionCallbackToAny, ValidationCallback}                                                                                      from '../CSVLoader.types';
 
 import {ConverterPatterns}                from './ConverterPatterns';
@@ -7,8 +7,8 @@ import {ConverterUtil}                    from './ConverterUtil';
 import {Enum}                             from '../../enum/Enum';
 import {StringToBooleanConverter}         from './StringToBooleanConverter';
 import {StringToEmptyableStringConverter} from './StringToEmptyableStringConverter';
-import {StringToNullableNumberConverter}  from './StringToNullableNumberConverter';
 import {StringToNullableBooleanConverter} from './StringToNullableBooleanConverter';
+import {StringToNullableNumberConverter}  from './StringToNullableNumberConverter';
 import {StringToNullableStringConverter}  from './StringToNullableStringConverter';
 import {StringToNumberConverter}          from './StringToNumberConverter';
 import {StringToStringConverter}          from './StringToStringConverter';

@@ -1,29 +1,15 @@
-import type {PropertyGetter} from '../PropertyGetter';
-import type {TimeProperty}   from '../properties/TimeProperty';
-import type {SimpleEnum}     from '../../util/enum/EnumTypes';
+import type {ClassWithEnglishName, PropertyGetter, PropertyReferenceGetter} from '../PropertyGetter';
+import type {Entity}                                                  from '../simple/Entity';
+import type {PossibleTimeName, TimesArray, TimesNames, TimesOrdinals}       from './Times.types';
+import type {TimeProperty}                                                  from '../properties/TimeProperty';
+import type {TimeReferences}                                          from '../properties/TimeReferences';
 
 import {Enum} from '../../util/enum/Enum';
 
-//region -------------------- Time texts --------------------
-
-export type PossibleTimeName = | 'Day' | 'Night';
-
-//endregion -------------------- Time texts --------------------
-//region -------------------- Enum types --------------------
-
-export type TimesOrdinals = | 0 | 1;
-export type TimesNames = | 'DAY' | 'NIGHT';
-export type SimpleTimes<T = Times, > = SimpleEnum<TimesNames, T>;
-export type TimesArray<T = Times, > = readonly [
-    SimpleTimes<T>['DAY'],
-    SimpleTimes<T>['NIGHT'],
-];
-
-//endregion -------------------- Enum types --------------------
-
 export abstract class Times
     extends Enum<TimesOrdinals, TimesNames>
-    implements PropertyGetter<PossibleTimeName, TimeProperty> {
+    implements ClassWithEnglishName<PossibleTimeName>,
+        PropertyGetter<TimeProperty>, PropertyReferenceGetter<TimeReferences> {
 
     //region -------------------- Enum instances --------------------
 
@@ -33,11 +19,19 @@ export abstract class Times
             return property.isInDayTheme;
         }
 
+        public getReference(referenceProperty: TimeReferences,): Entity{
+            return referenceProperty.referenceInDayTheme;
+        }
+
     }  ('Day',);
     public static readonly NIGHT = new class Times_Night extends Times {
 
         public get(property: TimeProperty,): boolean {
             return property.isInNightTheme === true;
+        }
+
+        public getReference(referenceProperty: TimeReferences,): Entity{
+            return referenceProperty.referenceInNightTheme;
         }
 
     }('Night',);
@@ -68,7 +62,9 @@ export abstract class Times
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract get(property: TimeProperty): boolean;
+    public abstract get(property: TimeProperty,): boolean;
+
+    public abstract getReference(referenceProperty: TimeReferences,): Entity;
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

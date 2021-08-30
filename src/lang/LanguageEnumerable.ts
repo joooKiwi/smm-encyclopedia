@@ -3,7 +3,7 @@ import type {CanadianOrEuropeanOriginal}                                        
 import type {ChineseOriginal}                                                                                                                                  from './name/containers/ChineseLanguage';
 import type {ClassWithEveryLanguages}                                                                                                                          from './ClassWithEveryLanguages';
 import type {ClassWithLanguages}                                                                                                                               from './ClassWithLanguages';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName} from './EveryLanguages';
+import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName} from './EveryLanguages.types';
 
 export interface LanguageEnumerable {
 

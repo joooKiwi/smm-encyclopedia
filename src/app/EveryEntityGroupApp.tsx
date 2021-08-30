@@ -1,6 +1,6 @@
-import React       from "react";
+import React from 'react';
 
-import AbstractApp from "./AbstractApp";
+import AbstractApp from './AbstractApp';
 
 export default class EveryEntityGroupApp
     extends AbstractApp {

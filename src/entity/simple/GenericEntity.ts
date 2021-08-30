@@ -5,6 +5,9 @@ import type {Property}         from '../properties/Property';
 
 import {AbstractEntity} from './AbstractEntity';
 
+/**
+ * An entity that is not exclusive to any {@link GameStyles game style}.
+ */
 export class GenericEntity<T extends Property = Property>
     extends AbstractEntity<T> {
 

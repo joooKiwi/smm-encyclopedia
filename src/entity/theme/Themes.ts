@@ -1,50 +1,23 @@
-import type {CourseTheme}                 from './CourseTheme';
-import type {PropertyGetterWithReference} from '../PropertyGetter';
-import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
-import type {ThemeProperty}               from '../properties/ThemeProperty';
-import type {WorldTheme}                  from './WorldTheme';
+import type {ClassWithEnglishName, ClassWithReference, PropertyGetter, PropertyReferenceGetter}                                             from '../PropertyGetter';
+import type {CourseTheme}                                                                                                                   from './CourseTheme';
+import type {Entity}                                                                                                                        from '../simple/Entity';
+import type {PossibleTheme, ThemePath, ThemesArray, ThemesArrayAsOnlyCourseTheme, ThemesArrayAsOnlyWorldTheme, ThemesNames, ThemesOrdinals} from './Themes.types';
+import type {ThemeProperty}                                                                                                                 from '../properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                               from '../properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                    from './WorldTheme';
 
-import {Enum}             from '../../util/enum/Enum';
-import {ThemeLoader}      from './ThemeLoader';
+import {Enum}        from '../../util/enum/Enum';
+import {ThemeLoader} from './ThemeLoader';
+import {EmptyEntity} from '../simple/EmptyEntity';
 
-//region -------------------- Theme texts --------------------
-
-type ThemesInBothCourseAndWorld = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest';
-export type PossibleCourseTheme = | ThemesInBothCourseAndWorld | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle';
-export type PossibleWorldTheme = | ThemesInBothCourseAndWorld | 'Volcano' | 'Space';
-export type PossibleTheme = | PossibleCourseTheme | PossibleWorldTheme;
-
-export type ThemePath = `/game/themes/${PossibleTheme | string}`
-
-//endregion -------------------- Theme texts --------------------
-//region -------------------- Enum types --------------------
-
-export type ThemesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-export type ThemesNames =
-    | 'GROUND' | 'UNDERGROUND' | 'UNDERWATER' | 'DESERT' | 'SNOW' |
-    'SKY' | 'FOREST' | 'GHOST_HOUSE' | 'AIRSHIP' | 'CASTLE' |
-
-    'VOLCANO' | 'SPACE';
-export type SimpleThemes<T = Themes, > = SimpleEnum<ThemesNames, T>;
-export type ThemesArray<T = Themes, > = readonly [
-    ...ThemesArrayAsOnlyCourseTheme<T>,
-
-    SimpleThemes<T>['VOLCANO'], SimpleThemes<T>['SPACE'],
-];
-export type ThemesArrayAsOnlyCourseTheme<T = Themes, > = readonly [
-    SimpleThemes<T>['GROUND'], SimpleThemes<T>['UNDERGROUND'], SimpleThemes<T>['UNDERWATER'], SimpleThemes<T>['DESERT'], SimpleThemes<T>['SNOW'],
-    SimpleThemes<T>['SKY'], SimpleThemes<T>['FOREST'], SimpleThemes<T>['GHOST_HOUSE'], SimpleThemes<T>['AIRSHIP'], SimpleThemes<T>['CASTLE'],
-];
-export type ThemesArrayAsOnlyWorldTheme<T = Themes, > = readonly [
-    SimpleThemes<T>['GROUND'], SimpleThemes<T>['UNDERGROUND'], SimpleThemes<T>['DESERT'], SimpleThemes<T>['SNOW'],
-    SimpleThemes<T>['SKY'], SimpleThemes<T>['FOREST'], SimpleThemes<T>['VOLCANO'], SimpleThemes<T>['SPACE'],
-];
-
-//endregion -------------------- Enum types --------------------
-
+/**
+ * @recursiveReferenceVia<{@link ThemeBuilder}, {@link ThemeLoader}>
+ * @recursiveReference<{@link ThemeLoader}>
+ */
 export class Themes
     extends Enum<ThemesOrdinals, ThemesNames>
-    implements PropertyGetterWithReference<PossibleTheme, ThemeProperty, readonly [CourseTheme, WorldTheme]> {
+    implements ClassWithEnglishName<PossibleTheme>, ClassWithReference<readonly [CourseTheme, WorldTheme]>,
+        PropertyGetter<ThemeProperty>, PropertyReferenceGetter<ThemeReferences> {
 
     //region -------------------- Enum instances --------------------
 
@@ -54,11 +27,19 @@ export class Themes
             return property.isInGroundTheme;
         }
 
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInGroundTheme;
+        }
+
     }     ('Ground',);
     public static readonly UNDERGROUND = new class Themes_Underground extends Themes {
 
         public _get(property: ThemeProperty,): | boolean | null {
             return property.isInUndergroundTheme;
+        }
+
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInUndergroundTheme;
         }
 
     }('Underground',);
@@ -68,11 +49,19 @@ export class Themes
             return property.isInUnderwaterTheme;
         }
 
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInUnderwaterTheme;
+        }
+
     } ('Underwater',);
     public static readonly DESERT =      new class Themes_Desert extends Themes {
 
         public _get(property: ThemeProperty,): | boolean | null {
             return property.isInDesertTheme;
+        }
+
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInDesertTheme;
         }
 
     }     ('Desert',);
@@ -82,11 +71,19 @@ export class Themes
             return property.isInSnowTheme;
         }
 
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInSnowTheme;
+        }
+
     }       ('Snow',);
     public static readonly SKY =         new class Themes_Sky extends Themes {
 
         public _get(property: ThemeProperty,): | boolean | null {
             return property.isInSkyTheme;
+        }
+
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInSkyTheme;
         }
 
     }        ('Sky',);
@@ -96,11 +93,19 @@ export class Themes
             return property.isInForestTheme;
         }
 
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInForestTheme;
+        }
+
     }     ('Forest',);
     public static readonly GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
 
         public _get(property: ThemeProperty,): | boolean | null {
             return property.isInGhostHouseTheme;
+        }
+
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInGhostHouseTheme;
         }
 
     } ('Ghost House',);
@@ -110,11 +115,19 @@ export class Themes
             return property.isInAirshipTheme;
         }
 
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInAirshipTheme;
+        }
+
     }    ('Airship',);
     public static readonly CASTLE =      new class Themes_Castle extends Themes {
 
         public _get(property: ThemeProperty,): | boolean | null {
             return property.isInCastleTheme;
+        }
+
+        public getReference(referenceProperty: ThemeReferences,): Entity {
+            return referenceProperty.referenceInCastleTheme;
         }
 
     }     ('Castle', 'Castle - Volcano',);
@@ -133,7 +146,7 @@ export class Themes
     static #COURSES: ThemesArrayAsOnlyCourseTheme;
     static #WORLDS: ThemesArrayAsOnlyWorldTheme;
 
-    #references?: readonly [CourseTheme, WorldTheme];
+    #reference?: readonly [CourseTheme, WorldTheme];
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName;
@@ -155,16 +168,16 @@ export class Themes
         return this.#englishName;
     }
 
-    public get references() {
-        return this.#references ??= ThemeLoader.get.load().get(this.englishName)!;
+    public get reference() {
+        return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
     }
 
     public get courseTheme() {
-        return this.#courseTheme ??= this.references[0];
+        return this.#courseTheme ??= this.reference[0];
     }
 
     public get worldTheme() {
-        return this.#worldTheme ??= this.references[1];
+        return this.#worldTheme ??= this.reference[1];
     }
 
     public get imagePath() {
@@ -188,6 +201,10 @@ export class Themes
 
     public get(property: ThemeProperty,): boolean {
         return this._get(property) ?? false;
+    }
+
+    public getReference(referenceProperty: ThemeReferences,): Entity {
+        return EmptyEntity.get;
     }
 
 

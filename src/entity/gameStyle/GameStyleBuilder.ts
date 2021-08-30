@@ -1,9 +1,9 @@
 import type {Builder}               from '../../util/Builder';
 import type {DebugEntityReferences} from '../simple/EntityLoader';
 import type {Entity}                from '../simple/Entity';
-import type {GameStyle}             from './GameStyle';
-import type {GameStyleTemplate}     from './GameStyleTemplate';
-import type {Name}                  from '../../lang/name/Name';
+import type {GameStyle}         from './GameStyle';
+import type {GameStyleTemplate} from './GameStyle.template';
+import type {Name}              from '../../lang/name/Name';
 
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 import {GameStyles}            from './GameStyles';

@@ -2,17 +2,22 @@ import './index.scss';
 import './lang/i18n';
 import 'bootstrap/dist/js/bootstrap.esm';
 
+import {IntlProvider}  from 'react-intl';
 import React           from 'react';
 import ReactDOM        from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import Routes          from './routes/Routes';
-import {IntlProvider}  from 'react-intl';
 
+import {EveryLanguages}   from './lang/EveryLanguages';
 import {ProjectLanguages} from './lang/ProjectLanguages';
 
-//FIXME have the language properly work with the language change.
+EveryLanguages.default ??= 'en_AM';
+ProjectLanguages.currentLanguage ??=  'en_AM';
+
+const currentLanguage = ProjectLanguages.currentLanguage.internationalAcronym;
+
 ReactDOM.render(
-    <IntlProvider locale={ProjectLanguages.currentLanguage.internationalAcronym} key="reactLanguageProvider">
+    <IntlProvider locale={currentLanguage} key={`reactLanguageProvider_${currentLanguage}`}>
         <React.StrictMode>
             <Routes/>
         </React.StrictMode>

@@ -1,122 +1,14 @@
 import i18n from 'i18next';
 
-import type {ClassWithEveryLanguages}    from './ClassWithEveryLanguages';
-import type {ClassWithLanguages}         from './ClassWithLanguages';
-import type {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
-import type {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
-import type {ChineseOriginal}            from './name/containers/ChineseLanguage';
-import type {LanguageEnumerable}         from './LanguageEnumerable';
-import type {SimpleEnum}                 from '../util/enum/EnumTypes';
+import type {BasicAcronym, BasicEnglishName, BasicOriginalName, EveryLanguagesArray, EveryLanguagesNames, EveryLanguagesOrdinals, PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleNonNullableValue, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName} from './EveryLanguages.types';
+import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithEveryLanguages';
+import type {ClassWithLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                        from './ClassWithLanguages';
+import type {AmericanOrEuropeanOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                from './name/containers/AmericanAndEuropeanLanguage';
+import type {CanadianOrEuropeanOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                from './name/containers/CanadianAndEuropeanLanguage';
+import type {ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                           from './name/containers/ChineseLanguage';
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                        from './LanguageEnumerable';
 
 import {Enum} from '../util/enum/Enum';
-
-//region -------------------- Every language text --------------------
-
-//region -------------------- Acronyms --------------------
-
-type BasicAcronym = | 'en' | 'fr' | 'es' | 'pt' | 'zh';
-export type PossibleProjectLanguagesAcronym =
-    | 'en_AM' | 'en_EU'
-    | 'fr_CA' | 'fr_EU'
-    | 'de'
-    | 'es_AM' | 'es_EU'
-    | 'it' | 'nl'
-    | 'pt_AM' | 'pt_EU'
-    | 'ru' | 'ja'
-    | 'zh_T' | 'zh_S'
-    | 'ko';
-export type PossibleEveryLanguagesAcronym = | BasicAcronym | PossibleProjectLanguagesAcronym;
-
-export type PossibleProjectLanguagesInternationalAcronym =
-    | 'en-US' | 'en-EU'
-    | 'fr-CA' | 'fr-EU'
-    | 'de'
-    | 'es-US' | 'es-EU'
-    | 'it' | 'nl'
-    | 'pt-US' | 'pt-EU'
-    | 'ru' | 'ja'
-    | 'zh'
-    | 'ko';
-export type PossibleEveryLanguagesInternationalAcronym = | BasicAcronym | PossibleProjectLanguagesInternationalAcronym;
-
-//endregion -------------------- Acronyms --------------------
-//region -------------------- Names --------------------
-
-type BasicEnglishName = | 'English' | 'French' | 'Spanish' | 'Portuguese' | 'Chinese';
-export type PossibleProjectLanguagesEnglishName =
-    | `English (${'America' | 'Europe'})`
-    | `French (${'Canada' | 'Europe'})`
-    | 'German'
-    | `Spanish (${'America' | 'Europe'})`
-    | 'Dutch' | 'Italian'
-    | `Portuguese (${'America' | 'Europe'})`
-    | 'Russian' | 'Japanese'
-    | `${'Traditional' | 'Simplified'} chinese`
-    | 'Korean';
-export type PossibleEveryLanguagesEnglishName = | BasicEnglishName | PossibleProjectLanguagesEnglishName;
-
-type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人';
-export type PossibleProjectLanguagesOriginalName =
-    | `English (${'America' | 'Europe'})`
-    | `Français (${'Canada' | 'Europe'})`
-    | 'Deutsche'
-    | `Español (${'America' | 'Europa'})`
-    | `Português (${'América' | 'Europa'})`//Canadá
-    | 'Nederlands' | 'Italiano'
-    | 'русский' | '日本語'
-    | '简体中文' | '繁體中文'
-    | '한국어';
-export type PossibleEveryLanguagesOriginalName = | BasicOriginalName | PossibleProjectLanguagesOriginalName;
-
-//endregion -------------------- Names --------------------
-
-export type PossibleNonNullableValue = | EveryLanguages
-    | EveryLanguagesOrdinals
-    | PossibleEveryLanguagesAcronym
-    | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName;
-
-//endregion -------------------- Every language text --------------------
-//region -------------------- Enum types --------------------
-
-export type EveryLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-    | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20;
-export type ProjectLanguagesNames = | `${| 'AMERICAN' | 'EUROPEAN'}_${| 'ENGLISH' | 'SPANISH' | 'PORTUGUESE'}`
-    | `${| 'CANADIAN' | 'EUROPEAN'}_FRENCH`
-    | 'GERMAN' | 'ITALIAN' | 'DUTCH' | 'RUSSIAN' | 'JAPANESE' | 'KOREAN'
-    | `CHINESE_${| 'TRADITIONAL' | 'SIMPLIFIED'}`;
-export type EveryLanguagesNames = | ProjectLanguagesNames | Uppercase<BasicEnglishName>;
-
-export type SimpleProjectLanguages<T = EveryLanguages, > = SimpleEnum<ProjectLanguagesNames, T>;
-export type ProjectLanguagesArray<T = EveryLanguages, > = readonly [
-    SimpleProjectLanguages<T>['AMERICAN_ENGLISH'], SimpleProjectLanguages<T>['EUROPEAN_ENGLISH'],
-    SimpleProjectLanguages<T>['CANADIAN_FRENCH'], SimpleProjectLanguages<T>['EUROPEAN_FRENCH'],
-    SimpleProjectLanguages<T>['GERMAN'],
-    SimpleProjectLanguages<T>['AMERICAN_SPANISH'], SimpleProjectLanguages<T>['EUROPEAN_SPANISH'],
-    SimpleProjectLanguages<T>['ITALIAN'],
-    SimpleProjectLanguages<T>['DUTCH'],
-    SimpleProjectLanguages<T>['AMERICAN_PORTUGUESE'], SimpleProjectLanguages<T>['EUROPEAN_PORTUGUESE'],
-    SimpleProjectLanguages<T>['RUSSIAN'],
-    SimpleProjectLanguages<T>['JAPANESE'],
-    SimpleProjectLanguages<T>['CHINESE_TRADITIONAL'], SimpleProjectLanguages<T>['CHINESE_SIMPLIFIED'],
-    SimpleProjectLanguages<T>['KOREAN'],
-];
-
-export type SimpleEveryLanguages<T = EveryLanguages, > = SimpleEnum<EveryLanguagesNames, T>;
-export type EveryLanguagesArray<T = EveryLanguages, > = readonly [
-    SimpleEveryLanguages<T>['ENGLISH'], SimpleEveryLanguages<T>['AMERICAN_ENGLISH'], SimpleEveryLanguages<T>['EUROPEAN_ENGLISH'],
-    SimpleEveryLanguages<T>['FRENCH'], SimpleEveryLanguages<T>['CANADIAN_FRENCH'], SimpleEveryLanguages<T>['EUROPEAN_FRENCH'],
-    SimpleEveryLanguages<T>['GERMAN'],
-    SimpleEveryLanguages<T>['SPANISH'], SimpleEveryLanguages<T>['AMERICAN_SPANISH'], SimpleEveryLanguages<T>['EUROPEAN_SPANISH'],
-    SimpleEveryLanguages<T>['ITALIAN'],
-    SimpleEveryLanguages<T>['DUTCH'],
-    SimpleEveryLanguages<T>['PORTUGUESE'], SimpleEveryLanguages<T>['AMERICAN_PORTUGUESE'], SimpleEveryLanguages<T>['EUROPEAN_PORTUGUESE'],
-    SimpleEveryLanguages<T>['RUSSIAN'],
-    SimpleEveryLanguages<T>['JAPANESE'],
-    SimpleEveryLanguages<T>['CHINESE'], SimpleEveryLanguages<T>['CHINESE_TRADITIONAL'], SimpleEveryLanguages<T>['CHINESE_SIMPLIFIED'],
-    SimpleEveryLanguages<T>['KOREAN'],
-];
-
-//endregion -------------------- Enum types --------------------
 
 export abstract class EveryLanguages
     extends Enum<EveryLanguagesOrdinals, EveryLanguagesNames>
@@ -461,10 +353,11 @@ export abstract class EveryLanguages
 
 
     public static getValue(value: | null | undefined,): null
+    public static getValue(value: PossibleNonNullableValue,): EveryLanguages
     public static getValue<O extends EveryLanguagesOrdinals, >(ordinal: O,): EveryLanguagesArray[O]
     public static getValue<O extends number, >(ordinal: O,): | NonNullable<EveryLanguagesArray[O]> | null
-    public static getValue<I extends EveryLanguages, >(value: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EveryLanguages
+    public static getValue<I extends EveryLanguages, >(instance: I,): I
+    public static getValue(nameOrAcronym: | PossibleEveryLanguagesAcronym | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName | EveryLanguagesNames,): EveryLanguages
     public static getValue(nameOrAcronym: string,): | EveryLanguages | null
     public static getValue(value: | null | undefined | EveryLanguages | string | number,): | EveryLanguages | null
     public static getValue(value: | null | undefined | EveryLanguages | string | number,): | EveryLanguages | null {
@@ -502,6 +395,3 @@ export abstract class EveryLanguages
     //endregion -------------------- Enum methods --------------------
 
 }
-
-EveryLanguages.default ??= 'en_AM';
-EveryLanguages.currentLanguage ??= 'en_AM';

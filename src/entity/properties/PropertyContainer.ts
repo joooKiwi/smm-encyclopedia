@@ -1,13 +1,16 @@
-import type {GameProperty}      from './GameProperty';
-import type {GameStyleProperty} from './GameStyleProperty';
-import type {Property}          from './Property';
-import type {ThemeProperty}     from './ThemeProperty';
-import type {TimeProperty}      from './TimeProperty';
+import type {CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './limit/LimitProperty.types';
+import type {GameProperty}                                                                                                  from './GameProperty';
+import type {GameStyleProperty}                                                                                             from './GameStyleProperty';
+import type {Property}                                                                                                      from './Property';
+import type {LimitProperty}                                                                                                 from './limit/LimitProperty';
+import type {ThemeProperty}                                                                                                 from './ThemeProperty';
+import type {TimeProperty}                                                                                                  from './TimeProperty';
 
 import {GamePropertyContainer}      from './GamePropertyContainer';
 import {GameStylePropertyContainer} from './GameStylePropertyContainer';
 import {ThemePropertyContainer}     from './ThemePropertyContainer';
 import {TimePropertyContainer}      from './TimePropertyContainer';
+import {LimitPropertyContainer}     from './limit/LimitPropertyContainer';
 
 export class PropertyContainer
     implements Property {
@@ -18,17 +21,20 @@ export class PropertyContainer
     readonly #gameStyleContainer: GameStyleProperty;
     readonly #themeContainer: ThemeProperty;
     readonly #timeContainer: TimeProperty;
+    readonly #limitContainer: LimitProperty;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,
                        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
-                       isInDayTheme: boolean, isInNightTheme: | boolean | null,) {
+                       isInDayTheme: boolean, isInNightTheme: | boolean | null,
+                       editorLimit: EditorLimitReceived, generalLimit: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, customLimit: CustomLimitReceived,) {
         this.#gameContainer = GamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
         this.#gameStyleContainer = GameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
         this.#themeContainer = ThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
         this.#timeContainer = TimePropertyContainer.get(isInDayTheme, isInNightTheme,);
+        this.#limitContainer = LimitPropertyContainer.get(editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,);
     }
 
     //region -------------------- Game properties --------------------
@@ -135,6 +141,112 @@ export class PropertyContainer
     }
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    public get limitContainer() {
+        return this.#limitContainer;
+    }
+
+    //region -------------------- Editor limit --------------------
+
+    public get editorLimitContainer() {
+        return this.limitContainer.editorLimitContainer;
+    }
+
+    public get editorLimit() {
+        return this.limitContainer.editorLimit;
+    }
+
+    public get isEditorLimitKnown() {
+        return this.limitContainer.isEditorLimitKnown;
+    }
+
+    //endregion -------------------- Editor limit --------------------
+    //region -------------------- General limit --------------------
+
+    public get isInGeneralLimitWhilePlayingContainer() {
+        return this.limitContainer.isInGeneralLimitWhilePlayingContainer;
+    }
+
+    public get isInGeneralLimitWhilePlaying() {
+        return this.limitContainer.isInGeneralLimitWhilePlaying;
+    }
+
+    public get isInGeneralLimitWhilePlayingComment() {
+        return this.limitContainer.isInGeneralLimitWhilePlayingComment;
+    }
+
+    //region -------------------- Global general limit --------------------
+
+    public get isInGlobalGeneralLimitWhilePlayingContainer() {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    }
+
+    public get isInGlobalGeneralLimitWhilePlaying() {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlaying;
+    }
+
+    public get isInGlobalGeneralLimitWhilePlayingComment() {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Global general limit --------------------
+
+    //endregion -------------------- General limit --------------------
+    //region -------------------- Power-up limit --------------------
+
+    public get isInPowerUpLimitWhilePlayingContainer() {
+        return this.limitContainer.isInPowerUpLimitWhilePlayingContainer;
+    }
+
+    public get isInPowerUpLimitWhilePlaying() {
+        return this.limitContainer.isInPowerUpLimitWhilePlaying;
+    }
+
+    public get isInPowerUpLimitWhilePlayingComment() {
+        return this.limitContainer.isInPowerUpLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Power-up limit --------------------
+    //region -------------------- Projectile limit --------------------
+
+    public get isInProjectileLimitWhilePlayingContainer() {
+        return this.limitContainer.isInProjectileLimitWhilePlayingContainer;
+    }
+
+    public get isInProjectileLimitWhilePlaying() {
+        return this.limitContainer.isInProjectileLimitWhilePlaying;
+    }
+
+    public get isInProjectileLimitWhilePlayingKnown() {
+        return this.limitContainer.isInProjectileLimitWhilePlayingKnown;
+    }
+
+    public get isInProjectileLimitWhilePlayingComment() {
+        return this.limitContainer.isInProjectileLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Projectile limit --------------------
+    //region -------------------- Custom limit --------------------
+
+    public get customLimitWhilePlayingContainer() {
+        return this.limitContainer.customLimitWhilePlayingContainer;
+    }
+
+    public get customLimitWhilePlaying() {
+        return this.limitContainer.customLimitWhilePlaying;
+    }
+
+    public get isCustomLimitWhilePlayingKnown() {
+        return this.limitContainer.isCustomLimitWhilePlayingKnown;
+    }
+
+    public get customLimitWhilePlayingComment() {
+        return this.limitContainer.customLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Custom limit --------------------
+    //endregion -------------------- Limit properties --------------------
 
     public toGameStyleMap() {
         return this.gameStyleContainer.toGameStyleMap();

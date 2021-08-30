@@ -2,17 +2,18 @@ import './EveryGameStylesApp.scss';
 
 import React from 'react';
 
-import type {SingleTableContent} from './tools/table/Table';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import GameComponent                   from '../entity/game/GameComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {GameStyle}                     from '../entity/gameStyle/GameStyle';
 import {GameStyleLoader}               from '../entity/gameStyle/GameStyleLoader';
 import {GameStyles}                    from '../entity/gameStyle/GameStyles';
+import {Games}                         from '../entity/game/Games';
 import Table                           from './tools/table/Table';
 import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
 
 export default class EveryGameStylesApp
     extends AbstractApp {
@@ -35,7 +36,8 @@ export default class EveryGameStylesApp
                 <>{index}</>,
                 <img src={this.enum[index - 1].largeImagePath} alt={englishName}/>,
                 <SMM2NameComponent id="theme_name" name={gameStyle} popoverOrientation="left"/>,
-                <GameComponent reference={gameStyle} name={gameStyle}/>,
+                <YesOrNoResultContainer boolean={gameStyle.isInSuperMarioMaker1}/>,
+                <YesOrNoResultContainer boolean={gameStyle.isInSuperMarioMaker2}/>,
             ]);
             index++;
         }
@@ -52,8 +54,8 @@ export default class EveryGameStylesApp
                 '#',
                 {key: 'image', element: <ContentTranslationComponent translationCallback={translation => translation('Image')}/>,},
                 {key: 'language', element: <ContentTranslationComponent translationCallback={translation => translation('Language')}/>,},
-                {key: 'game', element: <GameContentTranslationComponent translationCallback={translation => translation('Game')}/>,},
-
+                {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
             ]}
             content={this.content}
         />;

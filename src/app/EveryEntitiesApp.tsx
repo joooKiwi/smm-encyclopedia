@@ -3,7 +3,7 @@ import './EveryEntitiesApp.scss';
 import React from 'react';
 
 import type {DebugEntityReferences} from '../entity/simple/EntityLoader';
-import type {SingleTableContent}           from './tools/table/Table';
+import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -39,7 +39,7 @@ export default class EveryEntitiesApp
                 <GameStyleComponent reference={entity} name={entity}/>,
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
-                <SMM2NameComponent id="entityCategory_name" name={entity.category} popoverOrientation="left"/>,
+                <SMM2NameComponent id={`entityCategory_name_${index}`} name={entity.category} popoverOrientation="left"/>,
             ]);
             index++;
         }

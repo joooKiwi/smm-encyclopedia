@@ -1,11 +1,19 @@
 import type {Entity}           from './Entity';
 import type {EntityCategory}   from '../category/EntityCategory';
 import type {EntityReferences} from '../properties/EntityReferences';
-import type {Property}         from '../properties/Property';
+import type {GameStyles}       from '../gameStyle/GameStyles';
 import type {Name}             from '../../lang/name/Name';
+import type {Property}         from '../properties/Property';
+import type {Themes}           from '../theme/Themes';
+import type {Times}            from '../time/Times';
 
-export abstract class AbstractEntity<T extends Property = Property>
-    implements Entity {
+/**
+ * A simple entity implementation, but without any specification.
+ *
+ * @note It use the generic to have a type based on the property used for each methods in {@link Property}.
+ */
+export abstract class AbstractEntity<PROPERTY extends Property = Property, >
+    implements Entity<PROPERTY> {
 
     //region -------------------- Attributes --------------------
 
@@ -16,13 +24,12 @@ export abstract class AbstractEntity<T extends Property = Property>
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, category: EntityCategory, isInProperty: T, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, property: PROPERTY, references: EntityReferences,) {
         this.#name = name;
         this.#category = category;
-        this.#propertyContainer = isInProperty;
+        this.#propertyContainer = property;
         this.#referencesContainer = references;
     }
-
 
     //region -------------------- Name properties --------------------
 
@@ -290,7 +297,7 @@ export abstract class AbstractEntity<T extends Property = Property>
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
 
-    public get propertyContainer(): T {
+    public get propertyContainer(): PROPERTY {
         return this.#propertyContainer;
     }
 
@@ -390,23 +397,130 @@ export abstract class AbstractEntity<T extends Property = Property>
     }
 
     public get isInDayTheme(): this['timeContainer']['isInDayTheme'] {
-        return this.propertyContainer.isInDayTheme;
+        return this.timeContainer.isInDayTheme;
     }
 
     public get isInNightTheme(): this['timeContainer']['isInNightTheme'] {
-        return this.propertyContainer.isInNightTheme;
+        return this.timeContainer.isInNightTheme;
     }
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    public get limitContainer(): this['propertyContainer']['limitContainer'] {
+        return this.propertyContainer.limitContainer;
+    }
+
+    //region -------------------- Editor limit --------------------
+
+    public get editorLimitContainer(): this['limitContainer']['editorLimitContainer'] {
+        return this.limitContainer.editorLimitContainer;
+    }
+
+    public get editorLimit(): this['limitContainer']['editorLimit'] {
+        return this.limitContainer.editorLimit;
+    }
+
+    public get isEditorLimitKnown(): this['limitContainer']['isEditorLimitKnown'] {
+        return this.limitContainer.isEditorLimitKnown;
+    }
+
+    //endregion -------------------- Editor limit --------------------
+    //region -------------------- General limit --------------------
+
+    public get isInGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGeneralLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInGeneralLimitWhilePlayingContainer;
+    }
+
+    public get isInGeneralLimitWhilePlaying(): this['limitContainer']['isInGeneralLimitWhilePlaying'] {
+        return this.limitContainer.isInGeneralLimitWhilePlaying;
+    }
+
+    public get isInGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGeneralLimitWhilePlayingComment'] {
+        return this.limitContainer.isInGeneralLimitWhilePlayingComment;
+    }
+
+    //region -------------------- Global general limit --------------------
+
+    public get isInGlobalGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    }
+
+    public get isInGlobalGeneralLimitWhilePlaying(): this['limitContainer']['isInGlobalGeneralLimitWhilePlaying'] {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlaying;
+    }
+
+    public get isInGlobalGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingComment'] {
+        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Global general limit --------------------
+
+    //endregion -------------------- General limit --------------------
+    //region -------------------- Power-up limit --------------------
+
+    public get isInPowerUpLimitWhilePlayingContainer(): this['limitContainer']['isInPowerUpLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInPowerUpLimitWhilePlayingContainer;
+    }
+
+    public get isInPowerUpLimitWhilePlaying(): this['limitContainer']['isInPowerUpLimitWhilePlaying'] {
+        return this.limitContainer.isInPowerUpLimitWhilePlaying;
+    }
+
+    public get isInPowerUpLimitWhilePlayingComment(): this['limitContainer']['isInPowerUpLimitWhilePlayingComment'] {
+        return this.limitContainer.isInPowerUpLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Power-up limit --------------------
+    //region -------------------- Projectile limit --------------------
+
+    public get isInProjectileLimitWhilePlayingContainer(): this['limitContainer']['isInProjectileLimitWhilePlayingContainer'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingContainer;
+    }
+
+    public get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying'] {
+        return this.limitContainer.isInProjectileLimitWhilePlaying;
+    }
+
+    public get isInProjectileLimitWhilePlayingKnown(): this['limitContainer']['isInProjectileLimitWhilePlayingKnown'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingKnown;
+    }
+
+    public get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment'] {
+        return this.limitContainer.isInProjectileLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Projectile limit --------------------
+    //region -------------------- Custom limit --------------------
+
+    public get customLimitWhilePlayingContainer(): this['limitContainer']['customLimitWhilePlayingContainer'] {
+        return this.limitContainer.customLimitWhilePlayingContainer;
+    }
+
+    public get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying'] {
+        return this.limitContainer.customLimitWhilePlaying;
+    }
+
+    public get isCustomLimitWhilePlayingKnown(): this['limitContainer']['isCustomLimitWhilePlayingKnown'] {
+        return this.limitContainer.isCustomLimitWhilePlayingKnown;
+    }
+
+    public get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment'] {
+        return this.limitContainer.customLimitWhilePlayingComment;
+    }
+
+    //endregion -------------------- Custom limit --------------------
+
+    //endregion -------------------- Limit properties --------------------
 
     //endregion -------------------- Properties --------------------
-    //region -------------------- References properties --------------------
+    //region -------------------- References --------------------
 
     public get referencesContainer() {
         return this.#referencesContainer;
     }
 
-    //region -------------------- Game style references properties --------------------
+    //region -------------------- Game style references --------------------
 
     public get referenceInSuperMarioBrosStyle() {
         return this.referencesContainer.referenceInSuperMarioBrosStyle;
@@ -428,8 +542,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.referencesContainer.referenceInSuperMario3DWorldStyle;
     }
 
-    //endregion -------------------- Game style references properties --------------------
-    //region -------------------- Theme references properties --------------------
+    //endregion -------------------- Game style references --------------------
+    //region -------------------- Theme references --------------------
 
     public get referenceInGroundTheme() {
         return this.referencesContainer.referenceInGroundTheme;
@@ -471,8 +585,8 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.referencesContainer.referenceInCastleTheme;
     }
 
-    //endregion -------------------- Theme references properties --------------------
-    //region -------------------- Time references properties --------------------
+    //endregion -------------------- Theme references --------------------
+    //region -------------------- Time references --------------------
 
     public get referenceInDayTheme() {
         return this.referencesContainer.referenceInDayTheme;
@@ -482,13 +596,33 @@ export abstract class AbstractEntity<T extends Property = Property>
         return this.referencesContainer.referenceInNightTheme;
     }
 
-    //endregion -------------------- Time references properties --------------------
+    //endregion -------------------- Time references --------------------
+
+    public getReferenceFrom(theme: Themes,): Entity
+    public getReferenceFrom(time: Times,): Entity
+    public getReferenceFrom(gameStyle: GameStyles,): Entity
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): Entity
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
+        return this.referencesContainer.getReferenceFrom(gameStyleOrThemeOrTime);
+    }
+
+    public get everyGameStyleReferences() {
+        return this.referencesContainer.everyGameStyleReferences;
+    }
+
+    public get everyThemeReferences() {
+        return this.referencesContainer.everyThemeReferences;
+    }
+
+    public get everyTimeReferences() {
+        return this.referencesContainer.everyTimeReferences;
+    }
 
     public get everyReferences() {
         return this.referencesContainer.everyReferences;
     }
 
-    //endregion -------------------- References properties --------------------
+    //endregion -------------------- References --------------------
 
     public toGameStyleMap() {
         return this.propertyContainer.toGameStyleMap();

@@ -1,0 +1,8 @@
+.is-unknown {
+  color: var(--bs-red);
+
+  &:after {
+    content: '?';
+  }
+
+}

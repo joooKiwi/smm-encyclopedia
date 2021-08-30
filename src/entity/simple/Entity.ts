@@ -1,10 +1,20 @@
-import type {EntityReferences} from '../properties/EntityReferences';
-import type {EntityCategory}   from '../category/EntityCategory';
-import type {Name}             from '../../lang/name/Name';
-import type {Property}         from '../properties/Property';
+import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from '../properties/Property';
+import type {EntityReferences}                                                                                                      from '../properties/EntityReferences';
+import type {EntityCategory}                                                                                                        from '../category/EntityCategory';
+import type {GameProperty}                                                                                                          from '../properties/GameProperty';
+import type {GameStyleProperty}                                                                                                   from '../properties/GameStyleProperty';
+import type {ThemeProperty}                                                                                                       from '../properties/ThemeProperty';
+import type {TimeProperty}                                                                                                          from '../properties/TimeProperty';
+import type {Name}                                                                                                                  from '../../lang/name/Name';
 
-export interface Entity
-    extends Name, Property, EntityReferences {
+export interface Entity<PROPERTY extends Property = Property, >
+    extends Name,
+        Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
+        GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
+        GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,
+        ThemeProperty<PROPERTY['isInGroundTheme'], PROPERTY['isInUndergroundTheme'], PROPERTY['isInUnderwaterTheme'], PROPERTY['isInDesertTheme'], PROPERTY['isInSnowTheme'], PROPERTY['isInSkyTheme'], PROPERTY['isInForestTheme'], PROPERTY['isInGhostHouseTheme'], PROPERTY['isInAirshipTheme'], PROPERTY['isInCastleTheme']>,
+        TimeProperty<PROPERTY['isInDayTheme'], PROPERTY['isInNightTheme']>,
+        EntityReferences {
 
     //region -------------------- Name properties --------------------
 
@@ -156,9 +166,131 @@ export interface Entity
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
 
-    get propertyContainer(): Property
+    get propertyContainer(): PROPERTY
 
-    //TODO add property types on other methods when the Property interface is finished
+    //region -------------------- Game properties --------------------
+
+    get gameContainer(): this['propertyContainer']['gameContainer']
+
+    get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+
+    get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
+
+    //endregion -------------------- Game properties --------------------
+    //region -------------------- Game style properties --------------------
+
+    get gameStyleContainer(): this['propertyContainer']['gameStyleContainer']
+
+    get isInSuperMarioBrosStyle(): this['gameStyleContainer']['isInSuperMarioBrosStyle']
+
+    get isInSuperMarioBros3Style(): this['gameStyleContainer']['isInSuperMarioBros3Style']
+
+    get isInSuperMarioWorldStyle(): this['gameStyleContainer']['isInSuperMarioWorldStyle']
+
+    get isInNewSuperMarioBrosUStyle(): this['gameStyleContainer']['isInNewSuperMarioBrosUStyle']
+
+    get isInSuperMario3DWorldStyle(): this['gameStyleContainer']['isInSuperMario3DWorldStyle']
+
+    //endregion -------------------- Game style properties --------------------
+    //region -------------------- Theme properties --------------------
+
+    get themeContainer(): this['propertyContainer']['themeContainer']
+
+    get isInGroundTheme(): this['themeContainer']['isInGroundTheme']
+
+    get isInUndergroundTheme(): this['themeContainer']['isInUndergroundTheme']
+
+    get isInUnderwaterTheme(): this['themeContainer']['isInUnderwaterTheme']
+
+    get isInDesertTheme(): this['themeContainer']['isInDesertTheme']
+
+    get isInSnowTheme(): this['themeContainer']['isInSnowTheme']
+
+    get isInSkyTheme(): this['themeContainer']['isInSkyTheme']
+
+    get isInForestTheme(): this['themeContainer']['isInForestTheme']
+
+    get isInGhostHouseTheme(): this['themeContainer']['isInGhostHouseTheme']
+
+    get isInAirshipTheme(): this['themeContainer']['isInAirshipTheme']
+
+    get isInCastleTheme(): this['themeContainer']['isInCastleTheme']
+
+    //endregion -------------------- Theme properties --------------------
+    //region -------------------- Time properties --------------------
+
+    get timeContainer(): this['propertyContainer']['timeContainer']
+
+    get isInDayTheme(): this['timeContainer']['isInDayTheme']
+
+    get isInNightTheme(): this['timeContainer']['isInNightTheme']
+
+    //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    get limitContainer(): this['propertyContainer']['limitContainer']
+
+    //region -------------------- Editor limit --------------------
+
+    get editorLimitContainer(): this['limitContainer']['editorLimitContainer']
+
+    get editorLimit(): this['limitContainer']['editorLimit']
+
+    get isEditorLimitKnown(): this['limitContainer']['isEditorLimitKnown']
+
+    //endregion -------------------- Editor limit --------------------
+    //region -------------------- General limit --------------------
+
+    get isInGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGeneralLimitWhilePlayingContainer']
+
+    get isInGeneralLimitWhilePlaying(): this['limitContainer']['isInGeneralLimitWhilePlaying']
+
+    get isInGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGeneralLimitWhilePlayingComment']
+
+    //region -------------------- Global general limit --------------------
+
+    get isInGlobalGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingContainer']
+
+    get isInGlobalGeneralLimitWhilePlaying(): this['limitContainer']['isInGlobalGeneralLimitWhilePlaying']
+
+    get isInGlobalGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingComment']
+
+    //endregion -------------------- Global general limit --------------------
+
+    //endregion -------------------- General limit --------------------
+    //region -------------------- Power-up limit --------------------
+
+    get isInPowerUpLimitWhilePlayingContainer(): this['limitContainer']['isInPowerUpLimitWhilePlayingContainer']
+
+    get isInPowerUpLimitWhilePlaying(): this['limitContainer']['isInPowerUpLimitWhilePlaying']
+
+    get isInPowerUpLimitWhilePlayingComment(): this['limitContainer']['isInPowerUpLimitWhilePlayingComment']
+
+    //endregion -------------------- Power-up limit --------------------
+    //region -------------------- Projectile limit --------------------
+
+    get isInProjectileLimitWhilePlayingContainer(): this['limitContainer']['isInProjectileLimitWhilePlayingContainer']
+
+    get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying']
+
+    get isInProjectileLimitWhilePlayingKnown(): this['limitContainer']['isInProjectileLimitWhilePlayingKnown']
+
+    get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment']
+
+    //endregion -------------------- Projectile limit --------------------
+    //region -------------------- Custom limit --------------------
+
+    get customLimitWhilePlayingContainer(): this['limitContainer']['customLimitWhilePlayingContainer']
+
+    get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying']
+
+    get isCustomLimitWhilePlayingKnown(): this['limitContainer']['isCustomLimitWhilePlayingKnown']
+
+    get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment']
+
+    //endregion -------------------- Custom limit --------------------
+
+    //endregion -------------------- Limit properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References properties --------------------
@@ -214,3 +346,8 @@ export interface Entity
     //endregion -------------------- References properties --------------------
 
 }
+
+export type ExclusiveSMM1Entity = Entity<ExclusiveSMM1Property> & ExclusiveSMM1Property;
+export type AbstractExclusiveSMM2Entity<PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<PROPERTY> & AbstractExclusiveSMM2Property;
+export type ExclusiveSM3DWEntity = AbstractExclusiveSMM2Entity<ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW;
+export type ExclusiveSMM2Entity = AbstractExclusiveSMM2Entity<ExclusiveSMM2Property> & ExclusiveSMM2Property;

@@ -1,30 +1,41 @@
-import type {EntityCategory}        from '../category/EntityCategory';
-import type {EntityReferences}      from '../properties/EntityReferences';
-import type {ExclusiveSMM2Entity}   from './ExclusiveSMM2Entity';
-import type {ExclusiveSMM2Property} from '../properties/exclusive/ExclusiveSMM2Property';
-import type {Name}                  from '../../lang/name/Name';
-import type {Property}              from '../properties/Property';
+import type {AbstractExclusiveSMM2Entity as AbstractExclusiveSMM2EntityInterface} from './Entity';
+import type {AbstractExclusiveSMM2Property, Property}                             from '../properties/Property';
+import type {EntityCategory}                                                      from '../category/EntityCategory';
+import type {EntityReferences}                                                    from '../properties/EntityReferences';
+import type {Name}                                                                from '../../lang/name/Name';
 
 import {GenericEntity} from './GenericEntity';
 
-export abstract class AbstractExclusiveSMM2Entity<T extends ExclusiveSMM2Property = ExclusiveSMM2Property>
+/**
+ * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}.
+ */
+export abstract class AbstractExclusiveSMM2Entity<T extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
     extends GenericEntity<T>
-    implements ExclusiveSMM2Entity {
+    implements AbstractExclusiveSMM2EntityInterface {
 
     protected constructor(name: Name, category: EntityCategory, property: T, references: EntityReferences,) {
-        super(name, category, validateIsInProperty(property), references,);
+        super(name, category, validateProperty(property), references,);
     }
 
 }
 
-function validateIsInProperty<T extends ExclusiveSMM2Property>(isInProperty: Property): T {
-    if (isInProperty.isInSuperMarioMaker1)
+function validateProperty<T extends AbstractExclusiveSMM2Property, >(property: Property): T {
+    if (property.isInSuperMarioMaker1)
         throw new TypeError('The property isInSMM1 should always be set to false for a SMM2 exclusive property.');
-    if (!isInProperty.isInSuperMarioMaker2)
+    if (!property.isInSuperMarioMaker2)
         throw new TypeError('The property isInSMM2 should always be set to true for a SMM2 exclusive property.');
 
-    if (isInProperty.isInSuperMario3DWorldStyle === null)
+    if (property.isInSuperMario3DWorldStyle == null)
         throw new TypeError('The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.');
 
-    return isInProperty as T;
+    if (property.isInGeneralLimitWhilePlaying == null)
+        throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
+    if (property.isInGlobalGeneralLimitWhilePlaying == null)
+        throw new TypeError('The property isInGlobalGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
+    if (property.isInPowerUpLimitWhilePlaying == null)
+        throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
+    if (property.isInProjectileLimitWhilePlaying == null && !property.isInProjectileLimitWhilePlayingKnown)
+        throw new TypeError('The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.');
+
+    return property as T;
 }

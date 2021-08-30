@@ -1,8 +1,9 @@
 import everyEntityCategories from '../../resources/Entity categories.csv';
 
 import type {EntityCategory}         from './EntityCategory';
-import type {EntityCategoryTemplate} from './EntityCategoryTemplate';
-import type {Loader}                 from '../../util/Loader';
+import type {EntityCategoryTemplate} from './EntityCategory.template';
+import type {Loader}                 from '../../util/loader/Loader';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CallbackCaller}        from '../../util/CallbackCaller';
 import {CSVLoader}             from '../../util/loader/CSVLoader';
@@ -10,41 +11,9 @@ import {EntityCategoryBuilder} from './EntityCategoryBuilder';
 
 //region -------------------- CSV array related types --------------------
 
-type EntityCategoryPropertiesArray = [
-    //region ---------- Language properties ----------
-
-    english: | string | null,
-    americanEnglish: | string | null,
-    europeanEnglish: | string | null,
-
-    french: | string | null,
-    canadianFrench: | string | null,
-    europeanFrench: | string | null,
-
-    german: | string | null,
-
-    spanish: | string | null,
-    americanSpanish: | string | null,
-    europeanSpanish: | string | null,
-
-    italian: | string | null,
-
-    dutch: | string | null,
-
-    portuguese: | string | null,
-    americanPortuguese: | string | null,
-    europeanPortuguese: | string | null,
-
-    russian: | string | null,
-
-    japanese: | string | null,
-
-    chinese: | string | null,
-    simplifiedChinese: | string | null,
-    tradionalChinese: | string | null,
-
-    korean: | string | null,
-    //endregion ---------- Language properties ----------
+type Headers = LanguagesHeaders;
+type PropertiesArray = [
+    ...LanguagesPropertyArray
 ];
 
 //endregion -------------------- CSV array related types --------------------
@@ -69,7 +38,7 @@ export class EntityCategoryLoader
         this.#everyEntityCategoriesMap = new CallbackCaller(() => {
             const finalReferences: Map<string, EntityCategory> = new Map();
 
-            const csvLoader = new CSVLoader<EntityCategoryPropertiesArray, EntityCategoryBuilder>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
+            const csvLoader = new CSVLoader<PropertiesArray, EntityCategoryBuilder, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .convertToEmptyableString(
                     'english', 'americanEnglish', 'europeanEnglish',
                     'french', 'canadianFrench', 'europeanFrench',
@@ -105,7 +74,7 @@ export class EntityCategoryLoader
 
 class TemplateCreator {
 
-    public static createTemplate(content: EntityCategoryPropertiesArray): EntityCategoryTemplate {
+    public static createTemplate(content: PropertiesArray): EntityCategoryTemplate {
         return {
             entities: null,
             name: {

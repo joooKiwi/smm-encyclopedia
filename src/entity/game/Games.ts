@@ -1,30 +1,13 @@
-import type {GameProperty}   from '../properties/GameProperty';
-import type {PropertyGetter} from '../PropertyGetter';
-import type {SimpleEnum}     from '../../util/enum/EnumTypes';
+import type {ClassWithEnglishName, PropertyGetter}                                       from '../PropertyGetter';
+import type {GameProperty}                                                               from '../properties/GameProperty';
+import type {GamesArray, GamesNames, GamesOrdinals, PossibleGameName, PossibleImagePath} from './Games.types';
 
 import {Enum} from '../../util/enum/Enum';
 
-//region -------------------- Game texts --------------------
-
-export type PossibleGameName = `Super Mario Maker${'' | ' 2'}`;
-export type PossibleImagePath = `/game/logos/${PossibleGameName}.png`;
-
-//endregion -------------------- Game texts --------------------
-//region -------------------- Enum types --------------------
-
-export type GamesOrdinals = 0 | 1;
-export type GamesNames = 'SUPER_MARIO_MAKER_1' | 'SUPER_MARIO_MAKER_2';
-export type SimpleGames<T = Games, > = SimpleEnum<GamesNames, T>;
-export type GamesArray<T = Games, > = readonly [
-    SimpleGames<T>['SUPER_MARIO_MAKER_1'],
-    SimpleGames<T>['SUPER_MARIO_MAKER_2'],
-];
-
-//endregion -------------------- Enum types --------------------
-
 export abstract class Games
     extends Enum<GamesOrdinals, GamesNames>
-    implements PropertyGetter<PossibleGameName, GameProperty> {
+    implements ClassWithEnglishName<PossibleGameName>,
+        PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
 
@@ -47,15 +30,15 @@ export abstract class Games
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #englishName;
-    readonly #imagePath;
+    readonly #englishName: PossibleGameName;
+    readonly #imagePath: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleGameName,) {
         super(Games);
         this.#englishName = englishName;
-        this.#imagePath = '/game/logos/' + englishName + '.png' as PossibleImagePath;
+        this.#imagePath = `/game/logos/${englishName}.png`;
     }
 
     //region -------------------- Getter methods --------------------
