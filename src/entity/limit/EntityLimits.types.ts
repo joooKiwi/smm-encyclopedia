@@ -1,5 +1,5 @@
-import type {SimpleEnum}   from '../../util/enum/Enum.types';
 import type {EntityLimits} from './EntityLimits';
+import type {SimpleEnum}   from '../../util/enum/Enum.types';
 
 //region -------------------- Number types --------------------
 
@@ -47,7 +47,7 @@ export type PossibleStartingEntityLimits =
 
     | `${| '10 / 30 / 50' | 'Pink'} Coin` | 'Key'
 
-    | 'Power-up' | `${| 'Fire' | 'Super'}ball` | 'Link\'s Bomb' | `Player ${| 'Crate' | 'Cannonball'}` | 'Boomerang' | 'Hatched Yoshi'
+    | 'Power-up' | `Player\'s ${| `${| 'Fire' | 'Super'}ball` | 'Crate' | 'Cannonball' | 'Boomerang'}` | 'Link\'s Bomb' | 'Hatched Yoshi'
 
     | 'Enemy + Other' | 'Charvaargh' | 'Piranha Creeper'
     | 'Bowser / Bowser Jr.' | 'Boom Boom / Pom Pom' | 'Koopaling'

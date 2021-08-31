@@ -14,3 +14,5 @@ export const EMPTY_ARRAY = [] as readonly never[];
  * But it use never to be possible to use it in other types of {@link Map}.
  */
 export const EMPTY_MAP = new Map() as Map<any, never> as ReadonlyMap<any, never>;
+
+export const EMPTY_OBJECT = {};
