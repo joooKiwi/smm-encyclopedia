@@ -1,5 +1,7 @@
-import type {LimitProperty}       from '../properties/limit/LimitProperty';
-import {useTranslation}           from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+
+import type {LimitProperty} from '../properties/limit/LimitProperty';
+
 import PossiblyKnownTextContainer from '../../app/tools/text/PossiblyKnownTextContainer';
 
 interface EditorLimitProperties {
