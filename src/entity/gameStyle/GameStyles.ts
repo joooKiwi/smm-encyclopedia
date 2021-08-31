@@ -1,9 +1,11 @@
-import type {ClassWithEnglishName, ClassWithReference, PropertyGetter, PropertyReferenceGetter}                                                                                         from '../PropertyGetter';
+import type {ClassWithEnglishName}                                                                                                                                                      from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                        from '../ClassWithReference';
 import type {Entity}                                                                                                                                                                    from '../simple/Entity';
 import type {GameStyle}                                                                                                                                                                 from './GameStyle';
 import type {GameStyleProperty}                                                                                                                                                         from '../properties/GameStyleProperty';
 import type {GameStylesArray, GameStylesNames, GameStylesOrdinals, LargeImagePath, MediumImagePath, PossibleGameStyleAcronym, PossibleGameStyleName, SmallImagePath, StartingImagePath} from './GameStyles.types';
 import type {GameStyleReferences}                                                                                                                                                       from '../properties/GameStyleReferences';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                   from '../PropertyGetter';
 
 import {Enum}            from '../../util/enum/Enum';
 import {GameStyleLoader} from './GameStyleLoader';

@@ -1,6 +1,7 @@
-import type {ClassWithEnglishName, PropertyGetter}                                       from '../PropertyGetter';
+import type {ClassWithEnglishName}                                                       from '../ClassWithEnglishName';
 import type {GameProperty}                                                               from '../properties/GameProperty';
 import type {GamesArray, GamesNames, GamesOrdinals, PossibleGameName, PossibleImagePath} from './Games.types';
+import type {PropertyGetter}                                                             from '../PropertyGetter';
 
 import {Enum} from '../../util/enum/Enum';
 

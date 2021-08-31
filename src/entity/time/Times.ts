@@ -1,7 +1,8 @@
-import type {ClassWithEnglishName, PropertyGetter, PropertyReferenceGetter} from '../PropertyGetter';
+import type {ClassWithEnglishName}                                    from '../ClassWithEnglishName';
 import type {Entity}                                                  from '../simple/Entity';
-import type {PossibleTimeName, TimesArray, TimesNames, TimesOrdinals}       from './Times.types';
-import type {TimeProperty}                                                  from '../properties/TimeProperty';
+import type {PossibleTimeName, TimesArray, TimesNames, TimesOrdinals} from './Times.types';
+import type {PropertyGetter, PropertyReferenceGetter}                 from '../PropertyGetter';
+import type {TimeProperty}                                            from '../properties/TimeProperty';
 import type {TimeReferences}                                          from '../properties/TimeReferences';
 
 import {Enum} from '../../util/enum/Enum';

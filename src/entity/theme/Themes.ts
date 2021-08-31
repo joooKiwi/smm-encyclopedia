@@ -1,7 +1,9 @@
-import type {ClassWithEnglishName, ClassWithReference, PropertyGetter, PropertyReferenceGetter}                                             from '../PropertyGetter';
+import type {ClassWithEnglishName}                                                                                                          from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                            from '../ClassWithReference';
 import type {CourseTheme}                                                                                                                   from './CourseTheme';
 import type {Entity}                                                                                                                        from '../simple/Entity';
 import type {PossibleTheme, ThemePath, ThemesArray, ThemesArrayAsOnlyCourseTheme, ThemesArrayAsOnlyWorldTheme, ThemesNames, ThemesOrdinals} from './Themes.types';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                       from '../PropertyGetter';
 import type {ThemeProperty}                                                                                                                 from '../properties/ThemeProperty';
 import type {ThemeReferences}                                                                                                               from '../properties/ThemeReferences';
 import type {WorldTheme}                                                                                                                    from './WorldTheme';

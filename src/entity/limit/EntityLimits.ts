@@ -1,4 +1,5 @@
-import type {ClassWithEnglishName, ClassWithReference}                                                                                                                                                                             from '../PropertyGetter';
+import type {ClassWithEnglishName}                                                                                                                                                                                                 from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                   from '../ClassWithReference';
 import type {ClassWithTranslationArguments}                                                                                                                                                                                        from '../ClassWithTranslationArguments';
 import type {EntityLimit}                                                                                                                                                                                                          from './EntityLimit';
 import type {EntityLimitsArray, EntityLimitsNames, EntityLimitsOrdinals, PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits, PossibleStartingEntityLimits} from './EntityLimits.types';
@@ -8,7 +9,6 @@ import type {PossibleTranslations}                                              
 import {EntityLimitLoader}      from './EntityLimitLoader';
 import {EntityLimitTranslation} from './EntityLimitTranslation';
 import {Enum}                   from '../../util/enum/Enum';
-
 
 type EnglishNameReceived = | PossibleStartingEntityLimits | [englishName: PossibleAcronymEntityLimits, englishAcronym: PossibleStartingEntityLimits,];
 type AlternativeEnglishNameReceived = | PossibleAlternativeEntityLimits | [alternativeEnglishName: PossibleAlternativeAcronymEntityLimits, alternativeEnglishAcronym: PossibleAlternativeEntityLimits,];
