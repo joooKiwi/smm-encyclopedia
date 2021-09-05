@@ -10,10 +10,28 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- Attributes --------------------
 
+    /**
+     * Any {@link PossiblePredefinedConversionWithoutValues} in new instance when it will be constructed.
+     */
     public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
+    /**
+     * Whenever a new instance will throw an error or ignore every possible errors.
+     *
+     * @note It is recommended in <u>development</u> and <u>testing</u> to have it enable, but not in <u>production</u>.
+     */
     public static GENERIC_DOES_THROW_ERROR: boolean = true;
+    /**
+     * Whenever a new instance will have
+     * the original content received in the constructor is a reference
+     * or a copy of the original content.
+     */
+    public static GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE: boolean = false;
+    /**
+     * The custom callback name used in the {@link HeaderContainer}.
+     */
     public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
 
+    #hasOriginalContentAsReference: boolean;
     #doesThrowError?: boolean;
     #defaultConversion?: PossiblePredefinedConversionWithoutValues;
 
@@ -35,7 +53,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>,) {
+    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>, hasOriginalContentAsReference?: boolean,) {
+        this.#hasOriginalContentAsReference = hasOriginalContentAsReference ?? CSVLoader.GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE;
+        if (this.hasOriginalContentAsReference)
+            originalContent = [...originalContent.map(originalValue => [...originalValue])];
+
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
         if (this.doesThrowError && this.originalHeaders.length !== this.headers.size)
@@ -57,6 +79,13 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- Getter and setter methods --------------------
 
+    //region -------------------- Has original content as reference methods --------------------
+
+    public get hasOriginalContentAsReference(): boolean {
+        return this.#hasOriginalContentAsReference;
+    }
+
+    //endregion -------------------- Has original content as reference methods --------------------
     //region -------------------- Default values methods --------------------
 
     //region -------------------- Default does throw error methods --------------------
