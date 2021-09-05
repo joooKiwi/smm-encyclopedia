@@ -1,6 +1,12 @@
 import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
+import {LimitAmountCommentType, PossibleLimitAmount}                                                                                                    from './Loader.types';
 
 export interface LimitPropertyTemplate {
+
+    amount: {
+        value: PossibleLimitAmount
+        comment: LimitAmountCommentType
+    }
 
     editor: EditorLimitType
 

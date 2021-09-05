@@ -61,7 +61,7 @@ export class EmptyIsInProperty
 
     public readonly editorLimitContainer = null;
     public readonly editorLimit = null;
-    public readonly isEditorLimitKnown = true;
+    public readonly isEditorLimitUnknown = true;
 
     public readonly isInGeneralLimitWhilePlayingContainer = null;
     public readonly isInGeneralLimitWhilePlaying = null;
@@ -77,12 +77,12 @@ export class EmptyIsInProperty
 
     public readonly isInProjectileLimitWhilePlayingContainer = null;
     public readonly isInProjectileLimitWhilePlaying = null;
-    public readonly isInProjectileLimitWhilePlayingKnown = true;
+    public readonly isInProjectileLimitWhilePlayingUnknown = true;
     public readonly isInProjectileLimitWhilePlayingComment = null;
 
     public readonly customLimitWhilePlayingContainer = null;
     public readonly customLimitWhilePlaying = null;
-    public readonly isCustomLimitWhilePlayingKnown = true;
+    public readonly isCustomLimitWhilePlayingUnknown = true;
     public readonly customLimitWhilePlayingComment = null;
 
     //endregion -------------------- Limit properties --------------------

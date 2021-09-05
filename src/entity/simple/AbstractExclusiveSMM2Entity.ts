@@ -34,7 +34,7 @@ function validateProperty<T extends AbstractExclusiveSMM2Property, >(property: P
         throw new TypeError('The property isInGlobalGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
     if (property.isInPowerUpLimitWhilePlaying == null)
         throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
-    if (property.isInProjectileLimitWhilePlaying == null && !property.isInProjectileLimitWhilePlayingKnown)
+    if (property.isInProjectileLimitWhilePlaying == null && !property.isInProjectileLimitWhilePlayingUnknown)
         throw new TypeError('The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.');
 
     return property as T;

@@ -24,9 +24,8 @@ function validateProperty(property: Property,): ExclusiveSMM2PropertyInSM3DW {
     if (property.isInNightTheme != null)
         throw new TypeError('The property isInNightTheme should always be set to a null for a SM3DW exclusive property.');
 
-    // if (typeof property.isInProjectileLimitWhilePlaying !== 'boolean')
-    //     throw new TypeError('The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.');
-    //FIXME the projectile limit should be a boolean only instead of "TRUE" or "FALSE".
+    if (typeof property.isInProjectileLimitWhilePlaying !== 'boolean')
+        throw new TypeError('The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.');
 
     return property as ExclusiveSMM2PropertyInSM3DW;
 }

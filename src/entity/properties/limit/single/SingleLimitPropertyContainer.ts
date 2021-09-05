@@ -12,6 +12,7 @@ export class SingleLimitPropertyContainer<T>
 
     //region -------------------- Predefined containers --------------------
 
+    public static readonly NULL_LIMIT = new SingleLimitPropertyContainer(null, false, null,);
     public static readonly UNKNOWN_LIMIT = new SingleLimitPropertyContainer(null, true, null,);
 
     //endregion -------------------- Predefined containers --------------------
@@ -46,14 +47,14 @@ export class SingleLimitPropertyContainer<T>
     //endregion -------------------- Getter methods ---------------------
     //region -------------------- Provider methods ----------
 
-    public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>,]
-    public static newLimitThatCanBeUnknown<T>(value: '?' | null, isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>,]
+    public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<false>,]
+    public static newLimitThatCanBeUnknown<T>(value: '?', isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T>, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>,]
     public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>,]
     public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown: boolean = false,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>,] {
-        if (value == null || value === '?')
-            return value == null
-                ? [null, CallbackCaller.NULL, CallbackCaller.TRUE,]
-                : [this.UNKNOWN_LIMIT, CallbackCaller.NULL, CallbackCaller.TRUE,];
+        if (value == null)
+            return [this.NULL_LIMIT, CallbackCaller.NULL, CallbackCaller.FALSE,];
+        if (value === '?')
+            return [this.UNKNOWN_LIMIT, CallbackCaller.NULL, CallbackCaller.TRUE,];
 
         const container = new SingleLimitPropertyContainer(value, isUnknown, null,);
 
@@ -70,14 +71,14 @@ export class SingleLimitPropertyContainer<T>
         return [container, new CallbackCaller(() => container.value), new CallbackCaller(() => container.comment),];
     }
 
-    public static newLimitWithCommentThatCanBeUnknown(value: null, comment?: any, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>, comment: CallbackCaller<null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: '?' | null, comment?: any, isUnknown?: any,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>, comment: CallbackCaller<null>,]
+    public static newLimitWithCommentThatCanBeUnknown(value: null, comment?: any, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<false>, comment: CallbackCaller<null>,]
+    public static newLimitWithCommentThatCanBeUnknown<T>(value: '?', comment?: any, isUnknown?: any,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T>, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>, comment: CallbackCaller<null>,]
     public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment?: | string | null, isUnknown?: boolean,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>, comment: CallbackCaller<| string | null>,]
     public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment: | string | null = null, isUnknown: boolean = false,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>, comment: CallbackCaller<| string | null>,] {
-        if (value == null || value === '?')
-            return value == null
-                ? [null, CallbackCaller.NULL, CallbackCaller.TRUE, CallbackCaller.NULL,]
-                : [this.UNKNOWN_LIMIT, CallbackCaller.NULL, CallbackCaller.TRUE, CallbackCaller.NULL,];
+        if (value == null)
+            return [this.NULL_LIMIT, CallbackCaller.NULL, CallbackCaller.FALSE, CallbackCaller.NULL,];
+        if (value === '?')
+            return [this.UNKNOWN_LIMIT, CallbackCaller.NULL, CallbackCaller.TRUE, CallbackCaller.NULL,];
 
         const container = new SingleLimitPropertyContainer(value, isUnknown, comment,);
         return [container, new CallbackCaller(() => container.value), new CallbackCaller(() => container.isUnknown), new CallbackCaller(() => container.comment),];

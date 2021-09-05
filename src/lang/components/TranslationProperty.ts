@@ -8,4 +8,6 @@ export interface TranslationProperty<T extends Namespace> {
 
     translationCallback: (translation: TFunction<T>,) => string
 
+    isInSpan?: boolean
+
 }

@@ -1,10 +1,10 @@
-import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType} from '../properties/limit/Loader.types';
-import type {EntityLink, PossibleLightSource}                                                                                                                                                                                                                                                            from '../entityTypes';
-import type {EntityReferencesTemplate}                                                                                                                                                                                                                                                                   from '../properties/EntityReferences.template';
-import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                      from '../properties/limit/LimitProperty.template';
-import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                   from '../category/EntityCategories.types';
-import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                       from '../properties/IsInProperty.template';
-import type {SMM2NameTemplate}                                                                                                                                                                                                                                                                           from '../lang/SMM2Name.template';
+import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EntityLink, EveryPossibleLinkedBehaviourAcronymArray, PossibleEntityType, PossibleLightSource}                                                                                                                                                                     from '../entityTypes';
+import type {EntityReferencesTemplate}                                                                                                                                                                                                                                                                                                                 from '../properties/EntityReferences.template';
+import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                                                                     from '../properties/IsInProperty.template';
+import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                                                                    from '../properties/limit/LimitProperty.template';
+import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType} from '../properties/limit/Loader.types';
+import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                                                                 from '../category/EntityCategories.types';
+import type {SMM2NameTemplate}                                                                                                                                                                                                                                                                                                                         from '../lang/SMM2Name.template';
 
 /**
  * @template
@@ -12,6 +12,8 @@ import type {SMM2NameTemplate}                                                  
 export interface EntityTemplate {
 
     properties: {
+        editorType: PossibleEntityType
+
         //region ---------- Basic properties ----------
 
         isIn: IsInPropertyTemplate
@@ -69,7 +71,23 @@ export interface EntityTemplate {
         //endregion ---------- Specific properties ----------
 
         limits: LimitPropertyTemplate
+        canRespawn: {
+            value: CanRespawnType
+            online: {
+                value: CanRespawnOnlineType
+                insideABlock: CanRespawnOnlineOutOfABlockType
+            }
+        }
+        behaviour: {
+            solo: EveryPossibleLinkedBehaviourAcronymArray
+            localCoop: EveryPossibleLinkedBehaviourAcronymArray
+            online: {
+                coop: EveryPossibleLinkedBehaviourAcronymArray
+                versus: EveryPossibleLinkedBehaviourAcronymArray
+            }
+        }
         offscreenRange: {
+            referencePoint: OffscreenSpawningAndDespawningReferencePoint
             spawning: {
                 horizontal: OffscreenSpawningHorizontalRangeLimitType
                 vertical: {
