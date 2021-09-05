@@ -13,51 +13,53 @@ export type EntityLimitsOrdinals =
 //region -------------------- String types --------------------
 
 export type EntityLimitsNames =
-    `${| `${| 'GENERAL' | 'POWER_UP'}_ENTITY`
+    | `${| 'GENERAL' | 'POWER_UP'}_ENTITY_LIMIT_${| 'WHILE_PLAYING' | 'EDITOR'}`
 
-       | 'LOOSE_COIN' | 'SOUND_EFFECT' | 'CORPSE' | 'PROJECTILE'
+    | `${| 'LOOSE_COIN' | 'SOUND_EFFECT' | 'CORPSE' | 'PROJECTILE'
 
-       | 'GROUND' | 'BLOCK' | 'OTHER_GROUND_AND_VINE' | 'CLEAR_PIPE'
+         | 'GROUND' | 'BLOCK' | 'OTHER_GROUND_AND_VINE' | 'CLEAR_PIPE'
 
-       | 'GROWN_VINE' | 'CHECKPOINT' | 'TRACK' | `${| 'SNAKE' | 'EXCLAMATION' | 'TRACK'}_BLOCK`
+         | 'GROWN_VINE' | 'CHECKPOINT_FLAG' | 'TRACK' | `${| 'SNAKE' | 'EXCLAMATION' | 'TRACK'}_BLOCK`
 
-       | 'ICICLE' | 'ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK' | 'ENTITY_HELD_BY_TWISTER'
+         | 'ICICLE' | 'ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK' | 'ENTITY_HELD_BY_A_TWISTER'
 
-       | `${| '_10_OR_30_OR_50' | 'PINK'}_COIN` | 'KEY'
+         | `${| '_10_OR_30_OR_50' | 'PINK'}_COIN` | 'KEY'
 
-       | 'POWER_UP' | `${| 'FIRE' | 'SUPER'}BALL` | 'LINK_BOMB' | `PLAYER_${| 'CRATE' | 'CANNONBALL'}` | 'BOOMERANG' | 'HATCHED_YOSHI'
+         | `${| 'FIRE' | 'SUPER'}BALL` | 'LINK_BOMB' | `PLAYER_${| 'CRATE' | 'CANNONBALL'}` | 'BOOMERANG' | 'HATCHED_YOSHI'
 
-       | 'ENEMY_AND_OTHER' | 'CHARVAARGH' | 'PIRANHA_CREEPER'
-       | 'BOWSER_AND_BOWSER_JR' | 'BOOM_BOOM_AND_POM_POM' | 'KOOPALING'
-       | 'ANGRY_SUN_MOON' | 'PHANTO' | 'KOOPA_TROOPA_CAR'
+         | 'CHARVAARGH' | 'PIRANHA_CREEPER'
+         | 'BOWSER_AND_BOWSER_JR' | 'BOOM_BOOM_AND_POM_POM' | 'KOOPALING'
+         | 'ANGRY_SUN_MOON' | 'PHANTO' | 'KOOPA_TROOPA_CAR'
 
-       | `WARP_${| 'DOOR' | 'BOX'}`}_LIMIT`;
+         | `WARP_${| 'DOOR' | 'BOX'}`}_LIMIT`;
 
-export type PossibleAcronymEntityLimits = `${'GE' | 'PE' | 'LC' | 'SE' | 'C' | 'PJ' | 'GV' | 'HY'}L`;
-export type PossibleStartingEntityLimits =
-    | `${| 'General' | 'Power-up'} Entity`
+export type PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying = `${| 'GE' | 'PE'}L (${| 'WP' | 'E'})`;
+export type PossibleStartingEntityLimitsInBothEditorAndWhilePlaying = `${| 'General' | 'Power-up'} Entity`;
 
+export type PossibleAcronymEntityLimits = | PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'GV' | 'HY'}L`;
+export type PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying =
     | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile'
 
     | 'Ground' | 'Block' | 'Other Ground + Vine' | 'Clear Pipe'
 
-    | 'Grown Vine' | 'Checkpoint' | 'Track' | `${| 'Snake ' | '!-' | 'Track '}Block`
+    | 'Grown Vine' | 'Checkpoint Flag' | 'Track' | `${| 'Snake ' | '! ' | 'Track '}Block`
 
-    | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block' | 'Entity Held By Twister'
+    | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block' | 'Entity Held By A Twister'
 
     | `${| '10 / 30 / 50' | 'Pink'} Coin` | 'Key'
 
     | 'Power-up' | `Player\'s ${| `${| 'Fire' | 'Super'}ball` | 'Crate' | 'Cannonball' | 'Boomerang'}` | 'Link\'s Bomb' | 'Hatched Yoshi'
 
     | 'Enemy + Other' | 'Charvaargh' | 'Piranha Creeper'
-    | 'Bowser / Bowser Jr.' | 'Boom Boom / Pom Pom' | 'Koopaling'
+    | 'Bowser (Jr.)' | 'Boom Boom / Pom Pom' | 'Koopaling'
     | 'Angry Sun / Moon' | 'Phanto' | 'Koopa Troopa Car'
 
     | `Warp ${| 'Door' | 'Box'}`;
-export type PossibleEntityLimits = `${PossibleStartingEntityLimits} Limit`;
+export type PossibleStartingEntityLimits = | PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying | PossibleStartingEntityLimitsInBothEditorAndWhilePlaying;
+export type PossibleEntityLimits = | `${PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying} Limit` | `${PossibleStartingEntityLimitsInBothEditorAndWhilePlaying} Limit (${| 'While Playing' | 'Editor'})`;
 
-export type PossibleAlternativeAcronymEntityLimits = `EL${'B' | 'C'}`
-export type PossibleAlternativeEntityLimits = `Entity Limit ${'B' | 'C'}` | `Ground Limit ${1 | 2 | 3}` | 'General Enemy Limit';
+export type PossibleAlternativeAcronymEntityLimits = `EL${| 'B' | 'C'}`;
+export type PossibleAlternativeEntityLimits = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -68,24 +70,25 @@ export type SimpleEntityLimits<T = EntityLimits, > = SimpleEnum<EntityLimitsName
 //region -------------------- Array types --------------------
 
 export type EntityLimitsArray<T = EntityLimits, > = readonly [
-    SimpleEntityLimits<T>[ 'GENERAL_ENTITY_LIMIT' ], SimpleEntityLimits<T>[ 'POWER_UP_ENTITY_LIMIT'    ],
-    SimpleEntityLimits<T>[ 'LOOSE_COIN_LIMIT' ], SimpleEntityLimits<T>[ 'SOUND_EFFECT_LIMIT' ], SimpleEntityLimits<T>[ 'CORPSE_LIMIT' ], SimpleEntityLimits<T>[ 'PROJECTILE_LIMIT'],
+    SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'],
 
-    SimpleEntityLimits<T>[ 'GROUND_LIMIT' ], SimpleEntityLimits<T>[ 'BLOCK_LIMIT' ], SimpleEntityLimits<T>[ 'OTHER_GROUND_AND_VINE_LIMIT' ], SimpleEntityLimits<T>[ 'CLEAR_PIPE_LIMIT'],
+    SimpleEntityLimits<T>['LOOSE_COIN_LIMIT'], SimpleEntityLimits<T>['SOUND_EFFECT_LIMIT'], SimpleEntityLimits<T>['CORPSE_LIMIT'], SimpleEntityLimits<T>['PROJECTILE_LIMIT'],
 
-    SimpleEntityLimits<T>[ 'GROWN_VINE_LIMIT' ], SimpleEntityLimits<T>[ 'CHECKPOINT_LIMIT' ], SimpleEntityLimits<T>[ 'TRACK_LIMIT' ], SimpleEntityLimits<T>[ 'SNAKE_BLOCK_LIMIT' ], SimpleEntityLimits<T>[ 'EXCLAMATION_BLOCK_LIMIT' ], SimpleEntityLimits<T>[ 'TRACK_BLOCK_LIMIT'],
+    SimpleEntityLimits<T>['GROUND_LIMIT'], SimpleEntityLimits<T>['BLOCK_LIMIT'], SimpleEntityLimits<T>['OTHER_GROUND_AND_VINE_LIMIT'], SimpleEntityLimits<T>['CLEAR_PIPE_LIMIT'],
 
-    SimpleEntityLimits<T>[ 'ICICLE_LIMIT' ], SimpleEntityLimits<T>[ 'ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT' ], SimpleEntityLimits<T>[ 'ENTITY_HELD_BY_TWISTER_LIMIT'],
+    SimpleEntityLimits<T>['GROWN_VINE_LIMIT'], SimpleEntityLimits<T>['CHECKPOINT_FLAG_LIMIT'], SimpleEntityLimits<T>['TRACK_LIMIT'], SimpleEntityLimits<T>['SNAKE_BLOCK_LIMIT'], SimpleEntityLimits<T>['EXCLAMATION_BLOCK_LIMIT'], SimpleEntityLimits<T>['TRACK_BLOCK_LIMIT'],
 
-    SimpleEntityLimits<T>[ '_10_OR_30_OR_50_COIN_LIMIT' ], SimpleEntityLimits<T>[ 'PINK_COIN_LIMIT' ], SimpleEntityLimits<T>[ 'KEY_LIMIT'],
+    SimpleEntityLimits<T>['ICICLE_LIMIT'], SimpleEntityLimits<T>['ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT'], SimpleEntityLimits<T>['ENTITY_HELD_BY_A_TWISTER_LIMIT'],
 
-    SimpleEntityLimits<T>[ 'POWER_UP_LIMIT' ], SimpleEntityLimits<T>[ 'FIREBALL_LIMIT' ], SimpleEntityLimits<T>[ 'SUPERBALL_LIMIT' ], SimpleEntityLimits<T>[ 'LINK_BOMB_LIMIT' ], SimpleEntityLimits<T>[ 'PLAYER_CRATE_LIMIT' ], SimpleEntityLimits<T>[ 'BOOMERANG_LIMIT' ], SimpleEntityLimits<T>[ 'PLAYER_CANNONBALL_LIMIT' ], SimpleEntityLimits<T>[ 'HATCHED_YOSHI_LIMIT'],
+    SimpleEntityLimits<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEntityLimits<T>['PINK_COIN_LIMIT'], SimpleEntityLimits<T>['KEY_LIMIT'],
 
-    SimpleEntityLimits<T>[ 'ENEMY_AND_OTHER_LIMIT' ], SimpleEntityLimits<T>[ 'CHARVAARGH_LIMIT' ], SimpleEntityLimits<T>[ 'PIRANHA_CREEPER_LIMIT'],
-    SimpleEntityLimits<T>[ 'BOWSER_AND_BOWSER_JR_LIMIT' ], SimpleEntityLimits<T>[ 'BOOM_BOOM_AND_POM_POM_LIMIT' ], SimpleEntityLimits<T>[ 'KOOPALING_LIMIT'],
-    SimpleEntityLimits<T>[ 'ANGRY_SUN_MOON_LIMIT' ], SimpleEntityLimits<T>[ 'PHANTO_LIMIT' ], SimpleEntityLimits<T>[ 'KOOPA_TROOPA_CAR_LIMIT'],
+    SimpleEntityLimits<T>['POWER_UP_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['FIREBALL_LIMIT'], SimpleEntityLimits<T>['SUPERBALL_LIMIT'], SimpleEntityLimits<T>['LINK_BOMB_LIMIT'], SimpleEntityLimits<T>['PLAYER_CRATE_LIMIT'], SimpleEntityLimits<T>['BOOMERANG_LIMIT'], SimpleEntityLimits<T>['PLAYER_CANNONBALL_LIMIT'], SimpleEntityLimits<T>['HATCHED_YOSHI_LIMIT'],
 
-    SimpleEntityLimits<T>[ 'WARP_DOOR_LIMIT' ], SimpleEntityLimits<T>[ 'WARP_BOX_LIMIT'],
+    SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['CHARVAARGH_LIMIT'], SimpleEntityLimits<T>['PIRANHA_CREEPER_LIMIT'],
+    SimpleEntityLimits<T>['BOWSER_AND_BOWSER_JR_LIMIT'], SimpleEntityLimits<T>['BOOM_BOOM_AND_POM_POM_LIMIT'], SimpleEntityLimits<T>['KOOPALING_LIMIT'],
+    SimpleEntityLimits<T>['ANGRY_SUN_MOON_LIMIT'], SimpleEntityLimits<T>['PHANTO_LIMIT'], SimpleEntityLimits<T>['KOOPA_TROOPA_CAR_LIMIT'],
+
+    SimpleEntityLimits<T>['WARP_DOOR_LIMIT'], SimpleEntityLimits<T>['WARP_BOX_LIMIT'],
 ];
 
 //endregion -------------------- Array types --------------------

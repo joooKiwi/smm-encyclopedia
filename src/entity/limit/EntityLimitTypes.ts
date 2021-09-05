@@ -7,8 +7,8 @@ export class EntityLimitTypes
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly PLAYING = new EntityLimitTypes('Playing', 'While playing',);
-    public static readonly EDITOR =  new EntityLimitTypes('Editor',  'In the editor',);
+    public static readonly WHILE_PLAYING = new EntityLimitTypes('While Playing', 'While playing',);
+    public static readonly EDITOR =        new EntityLimitTypes('Editor',        'In the editor',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -71,7 +71,7 @@ export class EntityLimitTypes
 
     public static get values(): EntityLimitTypesArray {
         return this.#VALUES ??= [
-            this.PLAYING,
+            this.WHILE_PLAYING,
             this.EDITOR,
         ];
     }

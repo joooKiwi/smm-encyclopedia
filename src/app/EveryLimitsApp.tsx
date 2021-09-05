@@ -11,6 +11,7 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextContainer';
 import Table                           from './tools/table/Table';
 import TextContainer                   from './tools/text/TextContainer';
+import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 
 export default class EveryLimitsApp
     extends AbstractApp {
@@ -41,8 +42,8 @@ export default class EveryLimitsApp
             content.push([englishName,
                 <>{index}</>,
                 <TextContainer content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
-                <GameContentTranslationComponent translationCallback={translation => translation(entityLimit.fullName)}/>,
-                entityLimit.alternativeName == null ? <></> : <GameContentTranslationComponent translationCallback={translation => translation(entityLimit.alternativeName!)}/>,
+                <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
+                <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                 <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
                 <GameContentTranslationComponent isInSpan={true} translationCallback={translation => translation(entityLimit.type.englishCommonText)}/>,
             ]);
@@ -58,7 +59,7 @@ export default class EveryLimitsApp
             headers={[
                 '#',
                 {key: 'acronym', element: <ContentTranslationComponent translationCallback={translation => translation('Acronym(s)')}/>,},
-                {key: 'fullName', element: <ContentTranslationComponent translationCallback={translation => translation('Full name')}/>,},
+                {key: 'name', element: <ContentTranslationComponent translationCallback={translation => translation('Name')}/>,},
                 {key: 'alternativeName', element: <ContentTranslationComponent translationCallback={translation => translation('Alternative name')}/>,},
                 {key: 'limit', element: <ContentTranslationComponent translationCallback={translation => translation('Limit')}/>,},
                 {key: 'type', element: <ContentTranslationComponent translationCallback={translation => translation('Type')}/>,},

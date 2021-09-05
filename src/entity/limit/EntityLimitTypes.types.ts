@@ -8,9 +8,9 @@ export type EntityLimitTypesOrdinals = | 0 | 1;
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type EntityLimitTypesNames = Uppercase<PossibleEntityLimitTypeEnglishName>;
+export type EntityLimitTypesNames = 'WHILE_PLAYING' | 'EDITOR';
 
-export type PossibleEntityLimitTypeEnglishName = | 'Playing' | 'Editor';
+export type PossibleEntityLimitTypeEnglishName = | 'While Playing' | 'Editor';
 export type PossibleEntityLimitTypeEnglishCommonText = | 'While playing' | 'In the editor';
 
 //endregion -------------------- String types --------------------
@@ -22,9 +22,9 @@ export type SimpleEntityLimitTypes<T = EntityLimitTypes, > = SimpleEnum<EntityLi
 //region -------------------- Array types --------------------
 
 export type EntityLimitTypesArray<T = EntityLimitTypes, > = readonly [
-    SimpleEntityLimitTypes<T>['PLAYING'],
+    SimpleEntityLimitTypes<T>['WHILE_PLAYING'],
     SimpleEntityLimitTypes<T>['EDITOR'],
 ];
-export type EntityLimitTypeEnglishNameArray = readonly ['Playing', 'Editor',];
+export type EntityLimitTypeEnglishNameArray = readonly ['While Playing', 'Editor',];
 
 //endregion -------------------- Array types --------------------

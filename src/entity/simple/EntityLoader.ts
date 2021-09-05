@@ -4,7 +4,6 @@ import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnTy
 import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './Entity';
 import type {EntityCategory}                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../category/EntityCategory';
-import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../limit/EntityLimit';
 import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './Entity.template';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                              from '../../lang/Loader.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                      from '../game/Loader.types';
@@ -20,8 +19,8 @@ import {CallbackCaller}               from '../../util/CallbackCaller';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
 import {EntityBuilder}                from './EntityBuilder';
-import {EntityLimitLoader}            from '../limit/EntityLimitLoader';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
+import {EntityLimits}                 from '../limit/EntityLimits';
 
 //region -------------------- CSV array related types --------------------
 
@@ -32,7 +31,7 @@ type Headers =
     | 'categoryInTheEditor'
     | 'hasAMushroomVariant' | `can${| 'BeInAParachute' | 'HaveWings'}`
 
-    | 'canContainOrSpawnAKey' | 'canBePutInAOnOffBlock' | `${| 'editorLimit_' | 'whilePlaying_' | ''}canBePutOnATrack`
+    | 'canContainOrSpawnAKey' | 'isAffectedDirectlyByAnOnOrOffState' | `${| 'editorLimit_' | 'whilePlaying_' | ''}canBePutOnATrack`
     | 'canSpawnOutOfAPipe' | 'canBePutInASwingingClaw'
     | 'canBeThrownByALakitu' | 'canBePutInALakituCloud'
     | 'canBePutInAClownCar' | 'canBeFiredOutOfABulletLauncher' | `canBePutInA${| 'Block' | 'Tree'}`
@@ -69,7 +68,7 @@ type ExclusivePropertiesArray2 = [
 
     canContainOrSpawnAKey: | boolean | null,
 
-    canBePutInAOnOffBlock: | boolean | null,
+    isAffectedDirectlyByAnOnOrOffState: | boolean | null,
 
     canBePutOnATrack: | boolean | '?' | null,
     editorLimit_canBePutOnATrack: | PossibleEntityLimits | null,
@@ -105,6 +104,9 @@ type ExclusivePropertiesArray2 = [
 
     //endregion ---------- Specific properties ----------
     //region ---------- Entity limit properties ----------
+
+    limitAmount: 1 | 2 | '?' | null,
+    limitAmount_comment: | string | null,
 
     editorLimit: EditorLimitType,
 
@@ -171,7 +173,8 @@ type ExclusivePropertiesArray2 = [
     //endregion ---------- Reference on specific condition properties ----------
 ];
 
-//region -------------------- Exclusive properties --------------------
+//endregion -------------------- Exclusive properties --------------------
+
 type PropertiesArray = [
     ...ExclusivePropertiesArray1,
     ...GamesPropertyArray,
@@ -205,14 +208,12 @@ export class EntityLoader
     //region ---------- External object references ----------
 
     readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
-    readonly #everyEntityLimits: CallbackCaller<Map<string, EntityLimitWithPossibleAlternativeEntityLimit>>;
     readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
 
     //endregion ---------- External object references ----------
 
     private constructor() {
         this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
-        this.#everyEntityLimits = new CallbackCaller(() => EntityLimitLoader.get.load());
         this.#everyEntitiesMap = new CallbackCaller(() => {
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
@@ -220,17 +221,22 @@ export class EntityLoader
             EntityBuilder.references = references;
             EntityBuilder.categoriesMap = this.entityCategories;
 
+            //region -------------------- CSV Loader --------------------
+
             const csvLoader = new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
+                .setDefaultConversion('emptyable string')
+
                 .convertTo(['Entity', 'Projectile', 'Entity & Projectile', '(Entity) & Projectile',], 'entityType',)
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertTo(this.entityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeInAParachute', 'canHaveWings',)
 
-                .convertToNullableBoolean('canContainOrSpawnAKey', 'canBePutInAOnOffBlock',)
+                .convertToNullableBoolean('canContainOrSpawnAKey',)
+                .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
-                .convertToEmptyableStringAnd(this.entityLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertToEmptyableStringAnd(EntityLimits.everyEnglishNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
@@ -243,29 +249,23 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canMakeASoundOutOfAMusicBlock',)
 
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...this.entityLimitsNames,], 'editorLimit',)
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,], 'editorLimit',)
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBooleanAnd(['number',/*2*/ 'Only when collected',], 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...this.entityLimitsNames,], 'whilePlaying_customLimit',)
-                .convertToEmptyableString(
-                    'whilePlaying_isInGEL_comment', 'whilePlaying_isInGEL_isSuperGlobal_comment',
-                    'whilePlaying_isInPEL_comment',
-                    'whilePlaying_isInPJL_comment',
-                    'whilePlaying_customLimit_comment',
-                )
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,], 'whilePlaying_customLimit',)
 
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine',], 'canRespawn',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)
                 .convertToEmptyableString('behaviour_solo', 'behaviour_localCoop', 'behaviour_onlineCoop', 'behaviour_onlineVS',)//TODO change to any possible behaviour type
 
-                .convertToNullableNumberAnd(['Variable', EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningHorizontalRange',)
-                .convertToNullableNumberAnd(['Variable', 'string',], 'offscreenDespawningHorizontalRange',)
-                .convertToNullableNumberAnd(['string', EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningUpwardVerticalRange')
-                .convertToNullableNumberAnd('string', 'offscreenSpawningUpwardVerticalRange',)
-                .convertToNullableNumberAnd(['string', EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningDownwardVerticalRange',)
-                .convertToNullableNumberAnd('string', 'offscreenDespawningDownwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, 'Variable', EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningHorizontalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, 'Variable',], 'offscreenDespawningHorizontalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningUpwardVerticalRange')
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER,], 'offscreenSpawningUpwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningDownwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER,], 'offscreenDespawningDownwardVerticalRange',)
 
                 .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inDayTheme',)
                 .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inNightTheme',)
@@ -284,17 +284,6 @@ export class EntityLoader
                 //
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
 
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
-                )
                 .onAfterFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
                     const name = finalContent.name;
                     NameCreator.addEnglishReference(name, references, originalContent, convertedContent, finalContent);
@@ -306,6 +295,8 @@ export class EntityLoader
                     references.forEach(reference => reference.entity = new GenericSingleInstanceBuilder(new EntityBuilder(reference.template)).build());
                 })
                 .load();
+
+            //endregion -------------------- CSV Loader --------------------
 
             console.log('-------------------- entity has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
@@ -326,14 +317,6 @@ export class EntityLoader
         return [...this.entityCategories.keys()];
     }
 
-    private get entityLimits() {
-        return this.#everyEntityLimits.get;
-    }
-
-    private get entityLimitsNames() {
-        return [...this.entityLimits.keys()];
-    }
-
 
     public load() {
         return this.#everyEntitiesMap.get;
@@ -349,11 +332,11 @@ class TemplateCreator {
         const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
             [content[1], content[2]];
         const [dayLink, nightLink] =
-            [content[52], content[53],];
+            [content[54], content[55],];
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-            [content[54], content[55], content[56], content[57], content[58], content[59], content[60], content[61], content[62], content[63],];
+            [content[56], content[57], content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65],];
         const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] =
-            [content[64], content[65], content[66], content[67], content[68]];
+            [content[66], content[67], content[68], content[69], content[70]];
 
         return {
             properties: {
@@ -442,46 +425,50 @@ class TemplateCreator {
 
                 //endregion ---------- Specific properties ----------
                 limits: {
-                    editor: content[27],
+                    amount: {
+                        value: content[27],
+                        comment: content[28],
+                    },
+                    editor: content[29],
                     whilePlaying: {
                         isInGEL: {
-                            value: {value: content[28], comment: content[29],},
-                            isSuperGlobal: {value: content[30], comment: content[31],},
+                            value: {value: content[30], comment: content[31],},
+                            isSuperGlobal: {value: content[32], comment: content[33],},
                         },
-                        isInPEL: {value: content[32], comment: content[33],},
-                        isInPJL: {value: content[34], comment: content[35],},
-                        customLimit: {value: content[36], comment: content[37],},
+                        isInPEL: {value: content[34], comment: content[35],},
+                        isInPJL: {value: content[36], comment: content[37],},
+                        customLimit: {value: content[38], comment: content[39],},
                     },
                 },
                 canRespawn: {
-                    value: content[38],
+                    value: content[40],
                     online: {
-                        value: content[39],
-                        insideABlock: content[40],
+                        value: content[41],
+                        insideABlock: content[42],
                     }
                 },
                 behaviour: {
-                    solo: this.__convertToBehaviourArray(content[41]),
-                    localCoop: this.__convertToBehaviourArray(content[42]),
+                    solo: this.__convertToBehaviourArray(content[43]),
+                    localCoop: this.__convertToBehaviourArray(content[44]),
                     online: {
-                        coop: this.__convertToBehaviourArray(content[43]),
-                        versus: this.__convertToBehaviourArray(content[44]),
+                        coop: this.__convertToBehaviourArray(content[45]),
+                        versus: this.__convertToBehaviourArray(content[46]),
                     },
                 },
                 offscreenRange: {
-                    referencePoint: content[45],
+                    referencePoint: content[47],
                     spawning: {
-                        horizontal: content[46],
+                        horizontal: content[48],
                         vertical: {
-                            upward: content[48],
-                            downward: content[50],
+                            upward: content[50],
+                            downward: content[52],
                         },
                     },
                     despawning: {
-                        horizontal: content[47],
+                        horizontal: content[49],
                         vertical: {
-                            upward: content[49],
-                            downward: content[51],
+                            upward: content[51],
+                            downward: content[53],
                         },
                     },
                 },
@@ -519,36 +506,36 @@ class TemplateCreator {
             },
             name: {
                 english: {
-                    simple: content[69],
-                    american: content[70],
-                    european: content[71],
+                    simple: content[71],
+                    american: content[72],
+                    european: content[73],
                 },
                 french: {
-                    simple: content[72],
-                    canadian: content[73],
-                    european: content[74],
+                    simple: content[74],
+                    canadian: content[75],
+                    european: content[76],
                 },
-                german: content[75],
+                german: content[77],
                 spanish: {
-                    simple: content[76],
-                    american: content[77],
-                    european: content[78],
+                    simple: content[78],
+                    american: content[79],
+                    european: content[80],
                 },
-                italian: content[79],
-                dutch: content[80],
+                italian: content[81],
+                dutch: content[82],
                 portuguese: {
-                    simple: content[81],
-                    american: content[82],
-                    european: content[83],
+                    simple: content[83],
+                    american: content[84],
+                    european: content[85],
                 },
-                russian: content[84],
-                japanese: content[85],
+                russian: content[86],
+                japanese: content[87],
                 chinese: {
-                    simple: content[86],
-                    simplified: content[87],
-                    traditional: content[88],
+                    simple: content[88],
+                    simplified: content[89],
+                    traditional: content[90],
                 },
-                korean: content[89],
+                korean: content[91],
             },
         };
     }

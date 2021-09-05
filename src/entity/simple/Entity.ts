@@ -18,76 +18,76 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     //region -------------------- Name properties --------------------
 
-    get name(): Name
+    get nameContainer(): Name
 
 
-    get languageValue(): this['name']['languageValue']
+    get languageValue(): this['nameContainer']['languageValue']
 
 
-    get originalEnglish(): this['name']['originalEnglish']
+    get originalEnglish(): this['nameContainer']['originalEnglish']
 
-    get english(): this['name']['english']
+    get english(): this['nameContainer']['english']
 
-    get americanEnglish(): this['name']['americanEnglish']
+    get americanEnglish(): this['nameContainer']['americanEnglish']
 
-    get europeanEnglish(): this['name']['europeanEnglish']
-
-
-    get originalFrench(): this['name']['originalFrench']
-
-    get french(): this['name']['french']
-
-    get canadianFrench(): this['name']['canadianFrench']
-
-    get europeanFrench(): this['name']['europeanFrench']
+    get europeanEnglish(): this['nameContainer']['europeanEnglish']
 
 
-    get german(): this['name']['german']
+    get originalFrench(): this['nameContainer']['originalFrench']
+
+    get french(): this['nameContainer']['french']
+
+    get canadianFrench(): this['nameContainer']['canadianFrench']
+
+    get europeanFrench(): this['nameContainer']['europeanFrench']
 
 
-    get originalSpanish(): this['name']['originalSpanish']
-
-    get spanish(): this['name']['spanish']
-
-    get americanSpanish(): this['name']['americanSpanish']
-
-    get europeanSpanish(): this['name']['europeanSpanish']
+    get german(): this['nameContainer']['german']
 
 
-    get italian(): this['name']['italian']
+    get originalSpanish(): this['nameContainer']['originalSpanish']
+
+    get spanish(): this['nameContainer']['spanish']
+
+    get americanSpanish(): this['nameContainer']['americanSpanish']
+
+    get europeanSpanish(): this['nameContainer']['europeanSpanish']
 
 
-    get dutch(): this['name']['dutch']
+    get italian(): this['nameContainer']['italian']
 
 
-    get originalPortuguese(): this['name']['originalPortuguese']
-
-    get portuguese(): this['name']['portuguese']
-
-    get americanPortuguese(): this['name']['americanPortuguese']
-
-    get europeanPortuguese(): this['name']['europeanPortuguese']
+    get dutch(): this['nameContainer']['dutch']
 
 
-    get russian(): this['name']['russian']
+    get originalPortuguese(): this['nameContainer']['originalPortuguese']
+
+    get portuguese(): this['nameContainer']['portuguese']
+
+    get americanPortuguese(): this['nameContainer']['americanPortuguese']
+
+    get europeanPortuguese(): this['nameContainer']['europeanPortuguese']
 
 
-    get japanese(): this['name']['japanese']
+    get russian(): this['nameContainer']['russian']
 
 
-    get originalChinese(): this['name']['originalChinese']
-
-    get chinese(): this['name']['chinese']
-
-    get simplifiedChinese(): this['name']['simplifiedChinese']
-
-    get traditionalChinese(): this['name']['traditionalChinese']
+    get japanese(): this['nameContainer']['japanese']
 
 
-    get korean(): this['name']['korean']
+    get originalChinese(): this['nameContainer']['originalChinese']
+
+    get chinese(): this['nameContainer']['chinese']
+
+    get simplifiedChinese(): this['nameContainer']['simplifiedChinese']
+
+    get traditionalChinese(): this['nameContainer']['traditionalChinese']
 
 
-    get individualValues(): this['name']['individualValues']
+    get korean(): this['nameContainer']['korean']
+
+
+    get individualValues(): this['nameContainer']['individualValues']
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------
