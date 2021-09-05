@@ -1,22 +1,12 @@
-import {AbstractStringConverter} from './AbstractStringConverter';
+import {AbstractStringToSingleValueConvertor} from './AbstractStringToSingleValueConvertor';
 
 export class StringToSingleStringConverter<S extends string, >
-    extends AbstractStringConverter<S> {
-
-    readonly #singleValue: S;
+    extends AbstractStringToSingleValueConvertor<S> {
 
     public constructor(originalValue: string, singleValue: S,) {
-        super(originalValue);
-        this.#singleValue = singleValue;
+        super(originalValue, singleValue,);
     }
 
-    //region -------------------- Getter methods --------------------
-
-    public get singleValue(): S {
-        return this.#singleValue;
-    }
-
-    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): S {
@@ -25,10 +15,6 @@ export class StringToSingleStringConverter<S extends string, >
 
     public isValueValid(value: string,): boolean {
         return value === this.singleValue;
-    }
-
-    protected _newError(): TypeError {
-        return new TypeError(`The value "${this.originalValue}" is not "${this.singleValue}".`);
     }
 
     //endregion -------------------- Methods --------------------

@@ -10,10 +10,29 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- Attributes --------------------
 
+    /**
+     * Any {@link PossiblePredefinedConversionWithoutValues} in new instance when it will be constructed.
+     */
     public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
+    /**
+     * Whenever a new instance will throw an error or ignore every possible errors.
+     *
+     * @note It is recommended in <u>development</u> and <u>testing</u> to have it enable, but not in <u>production</u>.
+     */
     public static GENERIC_DOES_THROW_ERROR: boolean = true;
+    /**
+     * Whenever a new instance will have
+     * the original content received in the constructor is a reference
+     * or a copy of the original content.
+     */
+    public static GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE: boolean = false;
+    /**
+     * The custom callback name used in the {@link HeaderContainer}.
+     */
     public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
+    public static readonly TRUE_CALLBACK = () => true as const;
 
+    readonly #hasOriginalContentAsReference: boolean;
     #doesThrowError?: boolean;
     #defaultConversion?: PossiblePredefinedConversionWithoutValues;
 
@@ -35,7 +54,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>,) {
+    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>, hasOriginalContentAsReference?: boolean,) {
+        this.#hasOriginalContentAsReference = hasOriginalContentAsReference ?? CSVLoader.GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE;
+        if (this.hasOriginalContentAsReference)
+            originalContent = [...originalContent.map(originalValue => [...originalValue])];
+
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
         if (this.doesThrowError && this.originalHeaders.length !== this.headers.size)
@@ -57,6 +80,13 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- Getter and setter methods --------------------
 
+    //region -------------------- Has original content as reference methods --------------------
+
+    public get hasOriginalContentAsReference(): boolean {
+        return this.#hasOriginalContentAsReference;
+    }
+
+    //endregion -------------------- Has original content as reference methods --------------------
     //region -------------------- Default values methods --------------------
 
     //region -------------------- Default does throw error methods --------------------
@@ -440,7 +470,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * @param validValueOrConvertor an array or a simple header or convertor
      * @protected
      */
-    protected _addTypeToHeaderTypeOrConvertor<E extends string>(typeOrHeader: PredefinedConversion | SimpleHeader<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<E>,): ArrayHeaderTypeOrConvertor {
+    protected _addTypeToHeaderTypeOrConvertor<T extends | number | boolean | string>(typeOrHeader: PredefinedConversion | SimpleHeader<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<T>,): ArrayHeaderTypeOrConvertor {
         return [typeOrHeader, validValueOrConvertor,].flat();
     }
 
@@ -455,11 +485,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
 
-    public convertToBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean'>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean' | boolean>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('boolean', headerTypeOrConvertor,), ...headers,);
     }
 
-    public convertToNullableBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToNullableBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | boolean | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable boolean', headerTypeOrConvertor,), ...headers,);
     }
 
@@ -475,11 +505,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
 
-    public convertToNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number'>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number' | number>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('number', headerTypeOrConvertor,), ...headers,);
     }
 
-    public convertToNullableNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToNullableNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | number | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable number', headerTypeOrConvertor,), ...headers,);
     }
 
@@ -644,16 +674,21 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Mixed Convertor creation methods --------------------
 
     protected _createContainValidations(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ArrayOfValidationsArrayOfValidations {
-        const containNullable = Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes('nullable')) != null;
-        const containEmptyableString = headerContainer.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING) != null;
-        return [containNullable, containEmptyableString,];
+        return [
+            Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes('nullable')) != null,
+            headerContainer.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING) != null,
+        ];
     }
 
     protected _createMixedConvertorInstance(headerContainer: HeaderContainer<H, this['headersAsArray']>, validations: ArrayOfValidationsArrayOfValidations,): ArrayOfMixedConvertorInstance {
-        const [containNullable, containEmptyableString,] = validations;
+        return [
+            headerContainer.createConversionCallbacks(),
+            this._createMixedConvertorInstanceTypes(headerContainer, validations,),
+        ];
+    }
 
-        const conversionCallbacksToConverter = headerContainer.createConversionCallbacks();
-        const mixedTypeOnConverter = (containNullable ? 'nullable' : '')
+    protected _createMixedConvertorInstanceTypes(headerContainer: HeaderContainer<H, this['headersAsArray']>, [containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations,): string {
+        return (containNullable ? 'nullable' : '')
             + ' ('
             + (containEmptyableString ? '"", ' : '')
             + (headerContainer.predefinedConvertors.size === 0 ? '' : `predefined convertor: (${Array.from(headerContainer.predefinedConvertors).map(predefinedConvertor => predefinedConvertor.nameAsNonNullable).join(', ')})`)
@@ -661,21 +696,9 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
             + (headerContainer.singleValuesToValidate.size === 0 ? '' : `values: (${Array.from(headerContainer.singleValuesToValidate).map(singleValue => `"${singleValue}"`).join(', ')})`)
             + (headerContainer.convertorCallbacks.size === 0 ? '' : `${CSVLoader.CUSTOM_CALLBACK_NAME} x${headerContainer.convertorCallbacks.size}`)
             + ')';
-
-        return [conversionCallbacksToConverter, mixedTypeOnConverter,];
     }
 
-    protected _interpretConvertorInstance(validations: ArrayOfValidationsArrayOfValidations, mixedConvertorInstance: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
-        const [containNullable, containEmptyableString,] = validations;
-        const [conversionCallbacksToConverter, mixedTypeOnConverter,] = mixedConvertorInstance;
-
-        const finalValidationComponentOnConverter: ValidationCallback = value => {
-            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
-                if (conversionCallbackToConverter(value).isValueValid(value))
-                    return true;
-            }
-            return false;
-        };
+    protected _interpretConvertorInstance([containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations, [conversionCallbacksToConverter, mixedTypeOnConverter,]: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
         const finalConversionComponentOnConverter: ConversionCallbackToAny = value => {
             for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
                 if (conversionCallbackToConverter(value).isValueValid(value))
@@ -685,18 +708,32 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
                 throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
         };
 
+        if (!this.doesThrowError)
+            return containNullable
+                ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
+                    value => finalConversionComponentOnConverter(value),)
+                : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
+                    value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
+
+        const finalValidationComponentOnConverter: ValidationCallback = value => {
+            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
+                if (conversionCallbackToConverter(value).isValueValid(value))
+                    return true;
+            }
+            return false;
+        };
+
         return containNullable
             ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter,
                 value => finalValidationComponentOnConverter(value),
-                value => finalConversionComponentOnConverter(value))
+                value => finalConversionComponentOnConverter(value),)
             : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
                 value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
-                value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value));
+                value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
     }
 
     protected _createMixedConvertor(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ConversionCallbackToConverter {
         const validations = this._createContainValidations(headerContainer);
-
         const mixedConvertorInstance = this._createMixedConvertorInstance(headerContainer, validations,);
 
         return this._interpretConvertorInstance(validations, mixedConvertorInstance);

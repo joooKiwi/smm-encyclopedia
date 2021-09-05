@@ -1,10 +1,10 @@
-import type {Converter}            from './converter/Converter';
-import type {PredefinedConversion} from './converter/PredefinedConverter.types';
+import type {Converter}                                            from './converter/Converter';
+import type {PredefinedConversion, SinglePrimitiveValueConversion} from './converter/PredefinedConverter.types';
 
 export type ConversionCallbackToConverter = (value: string,) => Converter<string, any>;
 
-export type PossiblePredefinedConversionWithoutValues = Exclude<PredefinedConversion, `${| 'nullable ' | ''}single string`>;
-export type SimpleHeaderTypeOrConvertor = | PossiblePredefinedConversionWithoutValues | string | ConversionCallbackToConverter;
+export type PossiblePredefinedConversionWithoutValues = Exclude<PredefinedConversion, `${| 'nullable ' | ''}${SinglePrimitiveValueConversion}`>;
+export type SimpleHeaderTypeOrConvertor = | PossiblePredefinedConversionWithoutValues | number | boolean | string | ConversionCallbackToConverter;
 export type ArrayHeaderTypeOrConvertor = readonly SimpleHeaderTypeOrConvertor[];
 export type ArrayOrSimpleHeaderTypeOrConvertor = | SimpleHeaderTypeOrConvertor | ArrayHeaderTypeOrConvertor;
 export type ArrayOrSimpleHeaderTypeConvertorExcluding<T> = | Exclude<SimpleHeaderTypeOrConvertor, T> | readonly Exclude<SimpleHeaderTypeOrConvertor, T>[]
@@ -31,8 +31,8 @@ export interface HeadersConverterHolder<H extends string = string, > {
 //endregion -------------------- Headers types --------------------
 //region -------------------- Mixed convertor types --------------------
 
-export type ArrayOfValidationsArrayOfValidations = [containNullable: boolean, containEmptyableString: boolean,];
-export type ArrayOfMixedConvertorInstance = [conversionCallbacksToConverter: readonly ConversionCallbackToConverter[], mixedTypeOnConvertor: string,];
+export type ArrayOfValidationsArrayOfValidations = readonly [containNullable: boolean, containEmptyableString: boolean,];
+export type ArrayOfMixedConvertorInstance = readonly [conversionCallbacksToConverter: readonly ConversionCallbackToConverter[], mixedTypeOnConvertor: string,];
 
 //endregion -------------------- Mixed convertor types --------------------
 //region -------------------- Callback types --------------------
