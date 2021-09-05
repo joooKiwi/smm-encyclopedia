@@ -683,11 +683,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     protected _createMixedConvertorInstance(headerContainer: HeaderContainer<H, this['headersAsArray']>, validations: ArrayOfValidationsArrayOfValidations,): ArrayOfMixedConvertorInstance {
         return [
             headerContainer.createConversionCallbacks(),
-            this._createMixedConvertorInstanceName(headerContainer, validations,),
+            this._createMixedConvertorInstanceTypes(headerContainer, validations,),
         ];
     }
 
-    protected _createMixedConvertorInstanceName(headerContainer: HeaderContainer<H, this['headersAsArray']>, [containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations,): string {
+    protected _createMixedConvertorInstanceTypes(headerContainer: HeaderContainer<H, this['headersAsArray']>, [containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations,): string {
         return (containNullable ? 'nullable' : '')
             + ' ('
             + (containEmptyableString ? '"", ' : '')
@@ -710,8 +710,10 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
         if (!this.doesThrowError)
             return containNullable
-                ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK, value => finalConversionComponentOnConverter(value),)
-                : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK, value => finalConversionComponentOnConverter(value),);
+                ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
+                        value => finalConversionComponentOnConverter(value),)
+                : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
+                        value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
 
         const finalValidationComponentOnConverter: ValidationCallback = value => {
             for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
@@ -723,11 +725,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
         return containNullable
             ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter,
-                value => finalValidationComponentOnConverter(value),
-                value => finalConversionComponentOnConverter(value))
+                    value => finalValidationComponentOnConverter(value),
+                    value => finalConversionComponentOnConverter(value),)
             : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
-                value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
-                value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value));
+                    value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
+                    value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
     }
 
     protected _createMixedConvertor(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ConversionCallbackToConverter {
