@@ -30,8 +30,9 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * The custom callback name used in the {@link HeaderContainer}.
      */
     public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
+    public static readonly TRUE_CALLBACK = () => true as const;
 
-    #hasOriginalContentAsReference: boolean;
+    readonly #hasOriginalContentAsReference: boolean;
     #doesThrowError?: boolean;
     #defaultConversion?: PossiblePredefinedConversionWithoutValues;
 
@@ -673,16 +674,21 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Mixed Convertor creation methods --------------------
 
     protected _createContainValidations(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ArrayOfValidationsArrayOfValidations {
-        const containNullable = Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes('nullable')) != null;
-        const containEmptyableString = headerContainer.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING) != null;
-        return [containNullable, containEmptyableString,];
+        return [
+            Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes('nullable')) != null,
+            headerContainer.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING) != null,
+        ];
     }
 
     protected _createMixedConvertorInstance(headerContainer: HeaderContainer<H, this['headersAsArray']>, validations: ArrayOfValidationsArrayOfValidations,): ArrayOfMixedConvertorInstance {
-        const [containNullable, containEmptyableString,] = validations;
+        return [
+            headerContainer.createConversionCallbacks(),
+            this._createMixedConvertorInstanceName(headerContainer, validations,),
+        ];
+    }
 
-        const conversionCallbacksToConverter = headerContainer.createConversionCallbacks();
-        const mixedTypeOnConverter = (containNullable ? 'nullable' : '')
+    protected _createMixedConvertorInstanceName(headerContainer: HeaderContainer<H, this['headersAsArray']>, [containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations,): string {
+        return (containNullable ? 'nullable' : '')
             + ' ('
             + (containEmptyableString ? '"", ' : '')
             + (headerContainer.predefinedConvertors.size === 0 ? '' : `predefined convertor: (${Array.from(headerContainer.predefinedConvertors).map(predefinedConvertor => predefinedConvertor.nameAsNonNullable).join(', ')})`)
@@ -690,21 +696,9 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
             + (headerContainer.singleValuesToValidate.size === 0 ? '' : `values: (${Array.from(headerContainer.singleValuesToValidate).map(singleValue => `"${singleValue}"`).join(', ')})`)
             + (headerContainer.convertorCallbacks.size === 0 ? '' : `${CSVLoader.CUSTOM_CALLBACK_NAME} x${headerContainer.convertorCallbacks.size}`)
             + ')';
-
-        return [conversionCallbacksToConverter, mixedTypeOnConverter,];
     }
 
-    protected _interpretConvertorInstance(validations: ArrayOfValidationsArrayOfValidations, mixedConvertorInstance: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
-        const [containNullable, containEmptyableString,] = validations;
-        const [conversionCallbacksToConverter, mixedTypeOnConverter,] = mixedConvertorInstance;
-
-        const finalValidationComponentOnConverter: ValidationCallback = value => {
-            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
-                if (conversionCallbackToConverter(value).isValueValid(value))
-                    return true;
-            }
-            return false;
-        };
+    protected _interpretConvertorInstance([containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations, [conversionCallbacksToConverter, mixedTypeOnConverter,]: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
         const finalConversionComponentOnConverter: ConversionCallbackToAny = value => {
             for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
                 if (conversionCallbackToConverter(value).isValueValid(value))
@@ -712,6 +706,19 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
             }
             if (this.doesThrowError)
                 throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
+        };
+
+        if (!this.doesThrowError)
+            return containNullable
+                ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK, value => finalConversionComponentOnConverter(value),)
+                : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK, value => finalConversionComponentOnConverter(value),);
+
+        const finalValidationComponentOnConverter: ValidationCallback = value => {
+            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
+                if (conversionCallbackToConverter(value).isValueValid(value))
+                    return true;
+            }
+            return false;
         };
 
         return containNullable
@@ -725,7 +732,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     protected _createMixedConvertor(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ConversionCallbackToConverter {
         const validations = this._createContainValidations(headerContainer);
-
         const mixedConvertorInstance = this._createMixedConvertorInstance(headerContainer, validations,);
 
         return this._interpretConvertorInstance(validations, mixedConvertorInstance);
