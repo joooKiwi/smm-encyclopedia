@@ -1,44 +1,25 @@
-import type {PropertyGetterWithReference} from '../PropertyGetter';
-import type {GameStyle}                   from './GameStyle';
-import type {GameStyleProperty}           from '../properties/GameStyleProperty';
-import type {SimpleEnum}                  from '../../util/enum/EnumTypes';
+import type {ClassWithEnglishName}                                                                                                                                                      from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                        from '../ClassWithReference';
+import type {Entity}                                                                                                                                                                    from '../simple/Entity';
+import type {GameStyle}                                                                                                                                                                 from './GameStyle';
+import type {GameStyleProperty}                                                                                                                                                         from '../properties/GameStyleProperty';
+import type {GameStylesArray, GameStylesNames, GameStylesOrdinals, LargeImagePath, MediumImagePath, PossibleGameStyleAcronym, PossibleGameStyleName, SmallImagePath, StartingImagePath} from './GameStyles.types';
+import type {GameStyleReferences}                                                                                                                                                       from '../properties/GameStyleReferences';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                   from '../PropertyGetter';
 
-import {GameStyleLoader}  from './GameStyleLoader';
-import {getLastOrdinalOn} from '../../util/enum/enumUtilityMethods';
-
-//region -------------------- game style texts --------------------
-
-export type PossibleGameStyleName = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
-
-type StartingImagePath = `/game/styles/${PossibleGameStyleName}`;
-export type SmallImagePath = `${StartingImagePath} - small.png`;
-export type MediumImagePath = `${StartingImagePath} - medium.png`;
-export type LargeImagePath = `${StartingImagePath} - large.png`;
-export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | 'large'}.png`;
-
-//endregion -------------------- game style texts --------------------
-//region -------------------- Enum types --------------------
-
-export type GameStylesOrdinals = | 0 | 1 | 2 | 3 | 4;
-export type GameStylesNames = | 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD';
-export type SimpleGameStyles<T = GameStyles, > = SimpleEnum<GameStylesNames, T>;
-export type GameStylesArray<T = GameStyles, > = readonly [
-    SimpleGameStyles<T>['SUPER_MARIO_BROS'],
-    SimpleGameStyles<T>['SUPER_MARIO_BROS_3'],
-    SimpleGameStyles<T>['SUPER_MARIO_WORLD'],
-    SimpleGameStyles<T>['NEW_SUPER_MARIO_BROS_U'],
-    SimpleGameStyles<T>['SUPER_MARIO_3D_WORLD'],
-];
-
-//endregion -------------------- Enum types --------------------
+import {Enum}            from '../../util/enum/Enum';
+import {GameStyleLoader} from './GameStyleLoader';
 
 /**
- * @enum
+ * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
+ * @recursiveReference<{@link GameStyleLoader}>
  */
 export abstract class GameStyles
-    implements PropertyGetterWithReference<PossibleGameStyleName, GameStyleProperty, GameStyle> {
+    extends Enum<GameStylesOrdinals, GameStylesNames>
+    implements ClassWithEnglishName<PossibleGameStyleName>, ClassWithReference<GameStyle>,
+        PropertyGetter<GameStyleProperty>, PropertyReferenceGetter<GameStyleReferences> {
 
-    //region -------------------- enum instances --------------------
+    //region -------------------- Enum instances --------------------
 
     public static readonly SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles {
 
@@ -46,67 +27,91 @@ export abstract class GameStyles
             return property.isInSuperMarioBrosStyle;
         }
 
-    }    ('Super Mario Bros.',);
+        public getReference(referenceProperty: GameStyleReferences,): Entity {
+            return referenceProperty.referenceInSuperMarioBrosStyle;
+        }
+
+    }    ('SMB',   'Super Mario Bros.',      );
     public static readonly SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles {
 
         public get(property: GameStyleProperty,): boolean {
             return property.isInSuperMarioBros3Style;
         }
 
-    }   ('Super Mario Bros. 3',);
+        public getReference(referenceProperty: GameStyleReferences,): Entity {
+            return referenceProperty.referenceInSuperMarioBros3Style;
+        }
+
+    }   ('SMB3',  'Super Mario Bros. 3',    );
     public static readonly SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles {
 
         public get(property: GameStyleProperty,): boolean {
             return property.isInSuperMarioWorldStyle;
         }
 
-    }   ('Super Mario World',);
+        public getReference(referenceProperty: GameStyleReferences,): Entity {
+            return referenceProperty.referenceInSuperMarioWorldStyle;
+        }
+
+    }   ('SMW',   'Super Mario World',      );
     public static readonly NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles {
 
         public get(property: GameStyleProperty,): boolean {
             return property.isInNewSuperMarioBrosUStyle;
         }
 
-    }('New Super Mario Bros. U',);
+        public getReference(referenceProperty: GameStyleReferences,): Entity {
+            return referenceProperty.referenceInNewSuperMarioBrosUStyle;
+        }
+
+    }('NSMBU', 'New Super Mario Bros. U',);
     public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles {
 
         public get(property: GameStyleProperty,): boolean {
             return property.isInSuperMario3DWorldStyle === true;
         }
 
-    } ('Super Mario 3D World',);
+        public getReference(referenceProperty: GameStyleReferences,): Entity {
+            return referenceProperty.referenceInSuperMario3DWorldStyle;
+        }
 
-    //endregion -------------------- enum instances --------------------
+    } ('SM3DW', 'Super Mario 3D World',   );
+
+    //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
     static #VALUES: GameStylesArray;
-    readonly #ordinal: GameStylesOrdinals;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    #references?: GameStyle;
+    #reference?: GameStyle;
+    readonly #acronym;
     readonly #englishName;
     readonly #startingImagePath: StartingImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleGameStyleName,) {
-        this.#ordinal = getLastOrdinalOn(GameStyles);
+    private constructor(acronym: PossibleGameStyleAcronym, englishName: PossibleGameStyleName,) {
+        super(GameStyles);
+        this.#acronym = acronym;
         this.#englishName = englishName;
         this.#startingImagePath = `/game/styles/${englishName}`;
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Getter methods --------------------
 
-    public get englishName() {
-        return this.#englishName;
+    public get reference() {
+        return this.#reference ??= GameStyleLoader.get.load().get(this.englishName)!;
     }
 
-    public abstract get(property: GameStyleProperty,): boolean;
 
-    public get references() {
-        return this.#references ??= GameStyleLoader.get.load().get(this.englishName)!;
+    public get acronym(): PossibleGameStyleAcronym {
+        return this.#acronym;
+    }
+
+    public get englishName(): PossibleGameStyleName {
+        return this.#englishName;
     }
 
     public get startingImagePath(): StartingImagePath {
@@ -125,16 +130,33 @@ export abstract class GameStyles
         return `${this.startingImagePath} - large.png`;
     }
 
-    //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
-    public static getValue(value: | GameStyles | PossibleGameStyleName,): GameStyles
-    public static getValue(value: string,): | GameStyles | null
-    public static getValue(value: | GameStyles | string,): | GameStyles | null
-    public static getValue(value: | GameStyles | string,): | GameStyles | null {
-        return typeof value === 'string'
-            ? this.values.find(theme => theme.englishName === value) ?? null
-            : value;
+    public abstract get(property: GameStyleProperty,): boolean;
+
+    public abstract getReference(referenceProperty: GameStyleReferences,): Entity;
+
+    //endregion -------------------- Methods --------------------
+    //region -------------------- Enum methods --------------------
+
+    public static getValue(nullValue: null | undefined,): null
+    public static getValue<O extends GameStylesOrdinals = GameStylesOrdinals>(ordinal: O,): GameStylesArray[O]
+    public static getValue<O extends number = number>(ordinal: O,): | NonNullable<GameStylesArray[O]> | null
+    public static getValue(name: PossibleGameStyleName,): GameStyles
+    public static getValue(name: string,): | GameStyles | null
+    public static getValue<I extends GameStyles = GameStyles, >(instance: I,): I
+    public static getValue(value: | GameStyles | string | number | null | undefined,): | GameStyles | null
+    public static getValue(value: | GameStyles | string | number | null | undefined,): | GameStyles | null {
+        return value == null
+            ? null
+            : typeof value === 'string'
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.values.find(theme => theme.englishName === value)
+                    ?? null
+                : typeof value === 'number'
+                    ? this.values[value] ?? null
+                    : value;
     }
 
     public static get values(): GameStylesArray {
@@ -147,10 +169,11 @@ export abstract class GameStyles
         ];
     }
 
+
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }

@@ -12,7 +12,7 @@ export interface DateTimeFormat {
 
 /**
  * A simple date component that return a date
- * from the {@link Languages.currentLanguage current language}.
+ * from the {@link DateDayLanguages.currentLanguage current language}.
  *
  * @param props
  * @constructor

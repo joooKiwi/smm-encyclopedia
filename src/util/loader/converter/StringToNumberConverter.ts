@@ -8,6 +8,7 @@ export class StringToNumberConverter
         super(originalValue.toLowerCase());
     }
 
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): number {
         return Number(validValue);
@@ -20,5 +21,7 @@ export class StringToNumberConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a number`);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

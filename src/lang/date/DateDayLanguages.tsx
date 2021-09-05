@@ -1,19 +1,11 @@
-import type {DayNumber}                                                   from './types';
-import type {PossibleNonNullableValue as ProjectPossibleNonNullableValue} from '../ProjectLanguages';
-import type {EveryLanguages, ProjectLanguagesArray}                       from '../EveryLanguages';
-import type {ProjectLanguagesOrdinals}                                    from '../ProjectLanguages';
+import type {DayNumber}                                                                                                                                                from './types';
+import type {ProjectLanguagesOrdinals}                                                                                                                                 from '../ProjectLanguages.types';
+import type {EveryLanguages}                                                                                                                                           from '../EveryLanguages';
+import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from '../EveryLanguages.types';
+import type {PossibleNonNullableValue}                                                                                                                                 from './DateDayLanguages.types';
 
 import {ProjectLanguages} from '../ProjectLanguages';
 
-//region -------------------- Languages types --------------------
-
-export type PossibleNonNullableValue = | DateDayLanguages | ProjectPossibleNonNullableValue;
-
-//endregion -------------------- Languages types --------------------
-
-/**
- * @enum
- */
 export abstract class DateDayLanguages
     extends ProjectLanguages {
 
@@ -141,9 +133,13 @@ export abstract class DateDayLanguages
     }            (ProjectLanguages.KOREAN,             );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Enum attributes --------------------
 
     static #VALUES?: ProjectLanguagesArray<DateDayLanguages>;
+
+    //endregion -------------------- Enum attributes --------------------
+    //region -------------------- Attributes --------------------
+
     readonly #reference;
 
     //endregion -------------------- Attributes --------------------
@@ -153,45 +149,50 @@ export abstract class DateDayLanguages
         this.#reference = language;
     }
 
-    //region -------------------- Methods --------------------
-
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     public get reference() {
         return this.#reference;
     }
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public abstract newDayComponent(day: DayNumber,): JSX.Element;
 
 
     public static get currentLanguage(): DateDayLanguages {
-        return this.getValue(ProjectLanguages.currentLanguage);
+        return this.getValue(ProjectLanguages.currentLanguage)!;
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- enum methods --------------------
+    //region -------------------- Enum methods --------------------
 
     public static get default(): DateDayLanguages {
-        return this.getValue(ProjectLanguages.default);
+        return this.getValue(ProjectLanguages.default)!;
     }
 
 
     public static getValue(nullValue: | null | undefined,): null
+    public static getValue(value: PossibleNonNullableValue,): DateDayLanguages
     public static getValue<O extends ProjectLanguagesOrdinals, >(ordinal: O,): ProjectLanguagesArray<DateDayLanguages>[O]
     public static getValue<O extends number, >(ordinal: O,): | NonNullable<ProjectLanguagesArray<DateDayLanguages>[O]> | null
-    public static getValue(value: PossibleNonNullableValue,): DateDayLanguages
+    public static getValue(nameOrAcronym: | PossibleProjectLanguagesAcronym | PossibleProjectLanguagesEnglishName | PossibleProjectLanguagesOriginalName | ProjectLanguagesNames,): DateDayLanguages
     public static getValue(nameOrAcronym: string,): | DateDayLanguages | null
     public static getValue<I extends DateDayLanguages, >(instance: I,): I
     public static getValue(instance: | EveryLanguages | ProjectLanguages,): | DateDayLanguages | null
     public static getValue(value: | null | undefined | ProjectLanguages | EveryLanguages | DateDayLanguages | string | number,): | DateDayLanguages | null
     public static getValue(value: | null | undefined | ProjectLanguages | EveryLanguages | DateDayLanguages | string | number,): | DateDayLanguages | null {
-        return typeof value === 'string'
-            ? this.getValue(ProjectLanguages.getValue(value) ?? '')
-            : value instanceof DateDayLanguages
-                ? value
-                : this.values.find(language => language.reference === value) ?? null;
+        return value == null
+            ? null
+            : typeof value === 'string'
+                ? Reflect.get(this, value.toUpperCase(),)
+                    ?? this.getValue(ProjectLanguages.getValue(value))
+                : typeof value === 'number'
+                    ? this.values[value] ?? null
+                    : value instanceof DateDayLanguages
+                        ? value
+                        : this.values.find(language => language.reference === value) ?? null;
     }
 
     public static get values(): ProjectLanguagesArray<DateDayLanguages> {
@@ -215,6 +216,6 @@ export abstract class DateDayLanguages
         return this.values[Symbol.iterator]();
     }
 
-    //endregion -------------------- enum methods --------------------
+    //endregion -------------------- Enum methods --------------------
 
 }

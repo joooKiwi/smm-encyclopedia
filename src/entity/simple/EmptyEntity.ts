@@ -1,12 +1,13 @@
-import type {Entity} from './Entity';
-
-import {EMPTY_MAP}            from '../../util/emptyVariables';
+import type {Entity}          from './Entity';
 import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
 import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyName}            from '../../lang/name/EmptyName';
 
 /**
+ * An empty entity with the default values of nothing
+ *
+ * @note A value that is equivalent to nothing can be false, null and itself
  * @nullObjectPattern
  * @singleton
  */
@@ -25,48 +26,48 @@ export class EmptyEntity
 
     //region -------------------- Name properties --------------------
 
-    public readonly name = EmptyName.get;
+    public readonly nameContainer = EmptyName.get;
 
-    public readonly languageValue = this.name.languageValue;
+    public readonly languageValue = this.nameContainer.languageValue;
 
-    public readonly originalEnglish = this.name.originalEnglish;
-    public readonly english = this.name.english;
-    public readonly americanEnglish = this.name.americanEnglish;
-    public readonly europeanEnglish = this.name.europeanEnglish;
+    public readonly originalEnglish = this.nameContainer.originalEnglish;
+    public readonly english = this.nameContainer.english;
+    public readonly americanEnglish = this.nameContainer.americanEnglish;
+    public readonly europeanEnglish = this.nameContainer.europeanEnglish;
 
-    public readonly originalFrench = this.name.originalFrench;
-    public readonly french = this.name.french;
-    public readonly canadianFrench = this.name.canadianFrench;
-    public readonly europeanFrench = this.name.europeanFrench;
+    public readonly originalFrench = this.nameContainer.originalFrench;
+    public readonly french = this.nameContainer.french;
+    public readonly canadianFrench = this.nameContainer.canadianFrench;
+    public readonly europeanFrench = this.nameContainer.europeanFrench;
 
-    public readonly german = this.name.german;
+    public readonly german = this.nameContainer.german;
 
-    public readonly originalSpanish = this.name.originalSpanish;
-    public readonly spanish = this.name.spanish;
-    public readonly americanSpanish = this.name.americanSpanish;
-    public readonly europeanSpanish = this.name.europeanSpanish;
+    public readonly originalSpanish = this.nameContainer.originalSpanish;
+    public readonly spanish = this.nameContainer.spanish;
+    public readonly americanSpanish = this.nameContainer.americanSpanish;
+    public readonly europeanSpanish = this.nameContainer.europeanSpanish;
 
-    public readonly italian = this.name.italian;
+    public readonly italian = this.nameContainer.italian;
 
-    public readonly dutch = this.name.dutch;
+    public readonly dutch = this.nameContainer.dutch;
 
-    public readonly originalPortuguese = this.name.originalPortuguese;
-    public readonly portuguese = this.name.portuguese;
-    public readonly americanPortuguese = this.name.americanPortuguese;
-    public readonly europeanPortuguese = this.name.europeanPortuguese;
+    public readonly originalPortuguese = this.nameContainer.originalPortuguese;
+    public readonly portuguese = this.nameContainer.portuguese;
+    public readonly americanPortuguese = this.nameContainer.americanPortuguese;
+    public readonly europeanPortuguese = this.nameContainer.europeanPortuguese;
 
-    public readonly russian = this.name.russian;
+    public readonly russian = this.nameContainer.russian;
 
-    public readonly japanese = this.name.japanese;
+    public readonly japanese = this.nameContainer.japanese;
 
-    public readonly originalChinese = this.name.originalChinese;
-    public readonly chinese = this.name.chinese;
-    public readonly simplifiedChinese = this.name.simplifiedChinese;
-    public readonly traditionalChinese = this.name.traditionalChinese;
+    public readonly originalChinese = this.nameContainer.originalChinese;
+    public readonly chinese = this.nameContainer.chinese;
+    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
+    public readonly traditionalChinese = this.nameContainer.traditionalChinese;
 
-    public readonly korean = this.name.korean;
+    public readonly korean = this.nameContainer.korean;
 
-    public readonly individualValues = this.name.individualValues;
+    public readonly individualValues = this.nameContainer.individualValues;
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------
@@ -163,9 +164,40 @@ export class EmptyEntity
     public readonly isInNightTheme = this.propertyContainer.isInNightTheme;
 
     //endregion -------------------- Time properties --------------------
+    //region -------------------- Limit properties --------------------
+
+    public readonly limitContainer = this.propertyContainer.limitContainer;
+
+    public readonly editorLimitContainer = this.propertyContainer.editorLimitContainer;
+    public readonly editorLimit = this.propertyContainer.editorLimit;
+    public readonly isEditorLimitUnknown = this.propertyContainer.isEditorLimitUnknown;
+
+    public readonly isInGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGeneralLimitWhilePlayingContainer;
+    public readonly isInGeneralLimitWhilePlaying = this.propertyContainer.isInGeneralLimitWhilePlaying;
+    public readonly isInGeneralLimitWhilePlayingComment = this.propertyContainer.isInGeneralLimitWhilePlayingComment;
+
+    public readonly isInGlobalGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    public readonly isInGlobalGeneralLimitWhilePlaying = this.propertyContainer.isInGlobalGeneralLimitWhilePlaying;
+    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.propertyContainer.isInGlobalGeneralLimitWhilePlayingComment;
+
+    public readonly isInPowerUpLimitWhilePlayingContainer = this.propertyContainer.isInPowerUpLimitWhilePlayingContainer;
+    public readonly isInPowerUpLimitWhilePlaying = this.propertyContainer.isInPowerUpLimitWhilePlaying;
+    public readonly isInPowerUpLimitWhilePlayingComment = this.propertyContainer.isInPowerUpLimitWhilePlayingComment;
+
+    public readonly isInProjectileLimitWhilePlayingContainer = this.propertyContainer.isInProjectileLimitWhilePlayingContainer;
+    public readonly isInProjectileLimitWhilePlaying = this.propertyContainer.isInProjectileLimitWhilePlaying;
+    public readonly isInProjectileLimitWhilePlayingUnknown = this.propertyContainer.isInProjectileLimitWhilePlayingUnknown;
+    public readonly isInProjectileLimitWhilePlayingComment = this.propertyContainer.isInProjectileLimitWhilePlayingComment;
+
+    public readonly customLimitWhilePlayingContainer = this.propertyContainer.customLimitWhilePlayingContainer;
+    public readonly customLimitWhilePlaying = this.propertyContainer.customLimitWhilePlaying;
+    public readonly isCustomLimitWhilePlayingUnknown = this.propertyContainer.isCustomLimitWhilePlayingUnknown;
+    public readonly customLimitWhilePlayingComment = this.propertyContainer.customLimitWhilePlayingComment;
+
+    //endregion -------------------- Limit properties --------------------
 
     //endregion -------------------- Properties --------------------
-    //region -------------------- References properties --------------------
+    //region -------------------- References --------------------
 
     public readonly referencesContainer = EmptyEntityReference.get;
 
@@ -240,10 +272,16 @@ export class EmptyEntity
         return this.referencesContainer.referenceInNightTheme;
     }
 
+    public getReferenceFrom() {
+        return this.referencesContainer.getReferenceFrom();
+    }
 
+    public readonly everyGameStyleReferences = this.referencesContainer.everyGameStyleReferences;
+    public readonly everyThemeReferences = this.referencesContainer.everyThemeReferences;
+    public readonly everyTimeReferences = this.referencesContainer.everyTimeReferences;
     public readonly everyReferences = this.referencesContainer.everyReferences;
 
-    //endregion -------------------- References properties --------------------
+    //endregion -------------------- References --------------------
 
     public toGameStyleMap(): never {
         throw new ReferenceError(`An ${this} cannot have a game style map.`);
@@ -258,7 +296,7 @@ export class EmptyEntity
     }
 
     public toNameMap() {
-        return EMPTY_MAP;
+        return this.nameContainer.toNameMap();
     }
 
     public toString(): 'Empty entity' {

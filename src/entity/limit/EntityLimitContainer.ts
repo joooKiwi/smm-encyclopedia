@@ -1,90 +1,18 @@
-import type {EntityLimit}                from './EntityLimit';
-import type {EntityLimitFullName}        from './properties/EntityLimitFullName';
-import type {EntityLimitAlternativeName} from './properties/EntityLimitAlternativeName';
-import type {EntityLimitTypes}           from './EntityLimitTypes';
-import type {EntityLimitAmount}          from './properties/EntityLimitAmount';
+import type {AlternativeEntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
+import type {EntityLimitAmount}                                                     from './properties/EntityLimitAmount';
+import type {EntityLimitLink}                                                       from './properties/EntityLimitLink';
+import type {EntityLimitTypes}                                                      from './EntityLimitTypes';
+import type {Name}                                                                  from '../../lang/name/Name';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits}   from './EntityLimits.types';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
+import {AbstractEntityLimitContainer} from './AbstractEntityLimitContainer';
 
 export class EntityLimitContainer
-    implements EntityLimit {
+    extends AbstractEntityLimitContainer<| PossibleAcronymEntityLimits | null>
+    implements EntityLimitWithPossibleAlternativeEntityLimit {
 
-    //region -------------------- Attributes --------------------
-
-    readonly #fullName;
-
-    readonly #alternativeNameContainer;
-    readonly #alternativeNameCallback: CallbackCaller<EntityLimitAlternativeName['name']>;
-    readonly #alternativeAcronymCallback: CallbackCaller<EntityLimitAlternativeName['acronym']>;
-
-    readonly #type;
-    readonly #limit;
-
-    //endregion -------------------- Attributes --------------------
-
-    public constructor(fullName: EntityLimitFullName, alternativeName: EntityLimitAlternativeName | null, type: EntityLimitTypes, limit: EntityLimitAmount,) {
-        this.#fullName = fullName;
-        this.#alternativeNameContainer = alternativeName;
-        if (alternativeName == null) {
-            this.#alternativeNameCallback = new CallbackCaller(() => null);
-            this.#alternativeAcronymCallback = new CallbackCaller(() => null);
-        } else {
-            this.#alternativeNameCallback = new CallbackCaller(() => alternativeName.name);
-            this.#alternativeAcronymCallback = new CallbackCaller(() => alternativeName.acronym);
-        }
-        this.#type = type;
-        this.#limit = limit;
+    public constructor(name: Name, acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+        super(name, acronym, alternative, type, limitAmount, link,);
     }
-
-    //region -------------------- Name --------------------
-
-    public get full() {
-        return this.#fullName;
-    }
-
-    public get fullName() {
-        return this.full.name;
-    }
-
-    public get acronym() {
-        return this.full.acronym;
-    }
-
-
-    public get alternative() {
-        return this.#alternativeNameContainer;
-    }
-
-    public get alternativeName() {
-        return this.#alternativeNameCallback.get;
-    }
-
-    public get alternativeAcronym() {
-        return this.#alternativeAcronymCallback.get;
-    }
-
-    //endregion -------------------- Name --------------------
-    //region -------------------- Type --------------------
-
-    public get type() {
-        return this.#type;
-    }
-
-    //endregion -------------------- Type --------------------
-    //region -------------------- Limit amount --------------------
-
-    public get limit() {
-        return this.#limit;
-    }
-
-    public get amount() {
-        return this.limit.amount;
-    }
-
-    public get isAmountUnknown() {
-        return this.limit.isUnknown;
-    }
-
-    //endregion -------------------- Limit amount --------------------
 
 }

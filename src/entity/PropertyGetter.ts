@@ -1,14 +1,13 @@
-export interface PropertyGetter<Name extends string, Property> {
+import type {Entity} from './simple/Entity';
 
-    englishName: Name
+export interface PropertyGetter<Property, > {
 
     get(property: Property,): boolean
 
 }
 
-export interface PropertyGetterWithReference<Name extends string, Property, Reference>
-    extends PropertyGetter<Name, Property> {
+export interface PropertyReferenceGetter<ReferenceProperty, > {
 
-    references: Reference
+    getReference(referenceProperty: ReferenceProperty,): Entity
 
 }

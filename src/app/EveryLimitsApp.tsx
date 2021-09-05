@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type{SingleTableContent} from './tools/table/Table';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -8,7 +8,10 @@ import {EntityLimit}                   from '../entity/limit/EntityLimit';
 import {EntityLimitLoader}             from '../entity/limit/EntityLimitLoader';
 import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextContainer';
 import Table                           from './tools/table/Table';
+import TextContainer                   from './tools/text/TextContainer';
+import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 
 export default class EveryLimitsApp
     extends AbstractApp {
@@ -32,23 +35,17 @@ export default class EveryLimitsApp
             : `${entityLimit.acronym} / ${entityLimit.alternativeAcronym}`;
     }
 
-    private static __getLimit(entityLimit: EntityLimit): JSX.Element {
-        const amount = String(entityLimit.amount ?? '') + (entityLimit.isAmountUnknown ? '?' : '');
-        if (entityLimit.isAmountUnknown)
-            return <span className="text-danger">{amount}</span>;
-        return <span>{amount}</span>;
-    }
-
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, entityTheme,] of this.map.entries()) {
+        for (const [englishName, entityLimit,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <span>{EveryLimitsApp.__getAcronym(entityTheme)}</span>,
-                <GameContentTranslationComponent translationCallback={translation => translation(entityTheme.fullName)}/>,
-                entityTheme.alternativeName == null ? <></> : <GameContentTranslationComponent translationCallback={translation => translation(entityTheme.alternativeName!)}/>,
-                EveryLimitsApp.__getLimit(entityTheme),
+                <TextContainer content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
+                <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
+                <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
+                <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
+                <GameContentTranslationComponent isInSpan={true} translationCallback={translation => translation(entityLimit.type.englishCommonText)}/>,
             ]);
             index++;
         }
@@ -62,9 +59,10 @@ export default class EveryLimitsApp
             headers={[
                 '#',
                 {key: 'acronym', element: <ContentTranslationComponent translationCallback={translation => translation('Acronym(s)')}/>,},
-                {key: 'fullName', element: <ContentTranslationComponent translationCallback={translation => translation('Full name')}/>,},
+                {key: 'name', element: <ContentTranslationComponent translationCallback={translation => translation('Name')}/>,},
                 {key: 'alternativeName', element: <ContentTranslationComponent translationCallback={translation => translation('Alternative name')}/>,},
                 {key: 'limit', element: <ContentTranslationComponent translationCallback={translation => translation('Limit')}/>,},
+                {key: 'type', element: <ContentTranslationComponent translationCallback={translation => translation('Type')}/>,},
             ]}
             content={this.content}/>;
     }

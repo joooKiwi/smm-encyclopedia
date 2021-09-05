@@ -14,8 +14,7 @@ export abstract class AbstractStringConverter<T>
         this.#originalValue = originalValue;
     }
 
-
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     public get convertedValue(): T {
         return this.#convertedValue ??= this.convertTheValue(this.originalValue);
@@ -25,7 +24,8 @@ export abstract class AbstractStringConverter<T>
         return this.#originalValue;
     }
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public convertTheValue(value: string,): T {
         if (this.isValueValid(value))
@@ -38,5 +38,7 @@ export abstract class AbstractStringConverter<T>
     public abstract isValueValid(value: string,): boolean;
 
     protected abstract _newError(): TypeError;
+
+    //endregion -------------------- Methods --------------------
 
 }

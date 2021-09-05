@@ -1,6 +1,6 @@
-import {AbstractEmptyableStringConverter} from "./AbstractEmptyableStringConverter";
-import {ConverterUtil}                    from "./ConverterUtil";
-import {ConverterPatterns}                from "./ConverterPatterns";
+import {AbstractEmptyableStringConverter} from './AbstractEmptyableStringConverter';
+import {ConverterPatterns}                from './ConverterPatterns';
+import {ConverterUtil}                    from './ConverterUtil';
 
 export class StringToNullableNumberConverter
     extends AbstractEmptyableStringConverter<number> {
@@ -9,6 +9,7 @@ export class StringToNullableNumberConverter
         super(originalValue);
     }
 
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): number {
         return ConverterUtil.convertToNumber(validValue);
@@ -21,5 +22,7 @@ export class StringToNullableNumberConverter
     protected _newError(): TypeError {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a number`);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

@@ -3,11 +3,12 @@ import './EveryEntitiesApp.scss';
 import React from 'react';
 
 import type {DebugEntityReferences} from '../entity/simple/EntityLoader';
-import type {SingleTableContent}           from './tools/table/Table';
+import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent            from '../entity/theme/CourseThemeComponent';
+import EditorLimitComponent            from '../entity/limit/EditorLimitComponent';
 import {EntityLoader}                  from '../entity/simple/EntityLoader';
 import GameComponent                   from '../entity/game/GameComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -39,7 +40,8 @@ export default class EveryEntitiesApp
                 <GameStyleComponent reference={entity} name={entity}/>,
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
-                <SMM2NameComponent id="entityCategory_name" name={entity.category} popoverOrientation="left"/>,
+                <SMM2NameComponent id={`entityCategory_name_${index}`} name={entity.category} popoverOrientation="left"/>,
+                <EditorLimitComponent limit={entity}/>,
             ]);
             index++;
         }
@@ -60,6 +62,7 @@ export default class EveryEntitiesApp
                 {key: 'courseTheme', element: <GameContentTranslationComponent translationCallback={translation => translation('Course Theme.spoken')}/>,},
                 {key: 'time', element: <GameContentTranslationComponent translationCallback={translation => translation('Time')}/>,},
                 {key: 'category', element: <GameContentTranslationComponent translationCallback={translation => translation('Category')}/>,},
+                {key: 'editorLimit', element: <GameContentTranslationComponent translationCallback={translation => translation('Limit in the editor')}/>,}
             ]}
             content={this.content}
         />;

@@ -7,6 +7,7 @@ export abstract class AbstractEmptyableStringConverter<T>
         super(originalValue);
     }
 
+    //region -------------------- Methods --------------------
 
     public convertTheValue(value: string,): | T | null {
         return value === '' ? null : super.convertTheValue(value);
@@ -17,5 +18,7 @@ export abstract class AbstractEmptyableStringConverter<T>
     }
 
     protected abstract _isValueValid(nonEmptyValue: string,): boolean
+
+    //endregion -------------------- Methods --------------------
 
 }

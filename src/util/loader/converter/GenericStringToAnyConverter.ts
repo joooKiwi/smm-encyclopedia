@@ -21,7 +21,7 @@ export class GenericStringToAnyConverter<T>
         this.#convertTheValueCallback = convertTheValueCallback;
     }
 
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     protected get typeName() {
         return this.#typeName;
@@ -35,7 +35,8 @@ export class GenericStringToAnyConverter<T>
         return this.#convertTheValueCallback;
     }
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected _convertTheValue(validValue: string,): T {
         return this.convertTheValueCallback(validValue);
@@ -48,5 +49,7 @@ export class GenericStringToAnyConverter<T>
     public isValueValid(value: string,): boolean {
         return this.isValueValidCallback(value);
     }
+
+    //endregion -------------------- Methods --------------------
 
 }

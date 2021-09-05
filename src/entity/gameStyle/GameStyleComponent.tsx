@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type {GameStyles}        from './GameStyles';
 import type {GameStyleProperty} from '../properties/GameStyleProperty';
+import type {GameStyles}        from './GameStyles';
 
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';

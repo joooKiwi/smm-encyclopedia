@@ -3,11 +3,11 @@ import type {CanadianOrEuropeanOriginal}                                        
 import type {ChineseOriginal}                                                                                                                                  from './name/containers/ChineseLanguage';
 import type {ClassWithEveryLanguages}                                                                                                                          from './ClassWithEveryLanguages';
 import type {ClassWithLanguages}                                                                                                                               from './ClassWithLanguages';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName} from './EveryLanguages';
+import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName} from './EveryLanguages.types';
 
 export interface LanguageEnumerable {
 
-    //region -------------------- Getter --------------------
+    //region -------------------- Getter methods --------------------
 
     get projectAcronym(): PossibleEveryLanguagesAcronym
 
@@ -21,7 +21,7 @@ export interface LanguageEnumerable {
 
     get isCurrentLanguageOrAssociatedWithIt(): boolean
 
-    //endregion -------------------- Getter --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     get(classWithLanguages: ClassWithLanguages,): string
