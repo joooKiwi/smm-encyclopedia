@@ -17,30 +17,41 @@ import type {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuro
 export interface ClassWithEveryLanguages
     extends ClassWithLanguages {
 
+    //region -------------------- English properties --------------------
+
     get english(): string
 
     get originalEnglish(): AmericanOrEuropeanOriginal
 
+    //endregion -------------------- English properties --------------------
+    //region -------------------- French properties --------------------
 
     get french(): string
 
     get originalFrench(): CanadianOrEuropeanOriginal
 
+    //endregion -------------------- French properties --------------------
+    //region -------------------- Spanish properties --------------------
 
     get spanish(): string
 
     get originalSpanish(): AmericanOrEuropeanOriginal
 
+    //endregion -------------------- Spanish properties --------------------
+    //region -------------------- Portuguese properties --------------------
 
     get portuguese(): string
 
     get originalPortuguese(): AmericanOrEuropeanOriginal
 
+    //endregion -------------------- Portuguese properties --------------------
+    //region -------------------- Chinese properties --------------------
 
     get chinese(): string
 
     get originalChinese(): ChineseOriginal
 
+    //endregion -------------------- Chinese properties --------------------
 
     get individualValues(): readonly EveryLanguages[]//TODO find a better name
 
