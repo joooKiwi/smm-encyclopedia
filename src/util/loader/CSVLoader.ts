@@ -470,7 +470,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * @param validValueOrConvertor an array or a simple header or convertor
      * @protected
      */
-    protected _addTypeToHeaderTypeOrConvertor<E extends string>(typeOrHeader: PredefinedConversion | SimpleHeader<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<E>,): ArrayHeaderTypeOrConvertor {
+    protected _addTypeToHeaderTypeOrConvertor<T extends | number | boolean | string>(typeOrHeader: PredefinedConversion | SimpleHeader<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<T>,): ArrayHeaderTypeOrConvertor {
         return [typeOrHeader, validValueOrConvertor,].flat();
     }
 
@@ -485,11 +485,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
 
-    public convertToBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean'>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean' | boolean>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('boolean', headerTypeOrConvertor,), ...headers,);
     }
 
-    public convertToNullableBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToNullableBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | boolean | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable boolean', headerTypeOrConvertor,), ...headers,);
     }
 
@@ -505,11 +505,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
 
-    public convertToNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number'>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number' | number>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('number', headerTypeOrConvertor,), ...headers,);
     }
 
-    public convertToNullableNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
+    public convertToNullableNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | number | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
         return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable number', headerTypeOrConvertor,), ...headers,);
     }
 
@@ -711,9 +711,9 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         if (!this.doesThrowError)
             return containNullable
                 ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
-                        value => finalConversionComponentOnConverter(value),)
+                    value => finalConversionComponentOnConverter(value),)
                 : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
-                        value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
+                    value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
 
         const finalValidationComponentOnConverter: ValidationCallback = value => {
             for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
@@ -725,11 +725,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
         return containNullable
             ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter,
-                    value => finalValidationComponentOnConverter(value),
-                    value => finalConversionComponentOnConverter(value),)
+                value => finalValidationComponentOnConverter(value),
+                value => finalConversionComponentOnConverter(value),)
             : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
-                    value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
-                    value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
+                value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
+                value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
     }
 
     protected _createMixedConvertor(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ConversionCallbackToConverter {

@@ -1,10 +1,10 @@
-import type {Converter}            from './converter/Converter';
-import type {PredefinedConversion} from './converter/PredefinedConverter.types';
+import type {Converter}                                            from './converter/Converter';
+import type {PredefinedConversion, SinglePrimitiveValueConversion} from './converter/PredefinedConverter.types';
 
 export type ConversionCallbackToConverter = (value: string,) => Converter<string, any>;
 
-export type PossiblePredefinedConversionWithoutValues = Exclude<PredefinedConversion, `${| 'nullable ' | ''}single string`>;
-export type SimpleHeaderTypeOrConvertor = | PossiblePredefinedConversionWithoutValues | string | ConversionCallbackToConverter;
+export type PossiblePredefinedConversionWithoutValues = Exclude<PredefinedConversion, `${| 'nullable ' | ''}${SinglePrimitiveValueConversion}`>;
+export type SimpleHeaderTypeOrConvertor = | PossiblePredefinedConversionWithoutValues | number | boolean | string | ConversionCallbackToConverter;
 export type ArrayHeaderTypeOrConvertor = readonly SimpleHeaderTypeOrConvertor[];
 export type ArrayOrSimpleHeaderTypeOrConvertor = | SimpleHeaderTypeOrConvertor | ArrayHeaderTypeOrConvertor;
 export type ArrayOrSimpleHeaderTypeConvertorExcluding<T> = | Exclude<SimpleHeaderTypeOrConvertor, T> | readonly Exclude<SimpleHeaderTypeOrConvertor, T>[]
