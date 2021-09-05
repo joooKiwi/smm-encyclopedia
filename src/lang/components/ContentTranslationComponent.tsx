@@ -1,11 +1,7 @@
-import {useTranslation} from 'react-i18next';
-
 import type {TranslationProperty} from './TranslationProperty';
 
-export default function ContentTranslationComponent({translationCallback, isInSpan = false,}: TranslationProperty<'content'>,) {
-    const {t} = useTranslation('content');
+import AnyTranslationComponent from './AnyTranslationComponent';
 
-    return isInSpan
-        ? <span>{translationCallback(t)}</span>
-        : <>{translationCallback(t)}</>;
+export default function ContentTranslationComponent({translationCallback, isInSpan = false,}: TranslationProperty<'content'>,) {
+    return <AnyTranslationComponent translationCallback={translationCallback} isInSpan={isInSpan} namespace="content"/>;
 }
