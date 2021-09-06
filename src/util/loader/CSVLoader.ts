@@ -16,6 +16,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * Any {@link PossiblePredefinedConversionWithoutValues} in new instance when it will be constructed.
      */
     public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
+    public static readonly NULLABLE_STRING = 'nullable';
     /**
      * Whenever a new instance will throw an error or ignore every possible errors.
      *
@@ -516,60 +517,60 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Boolean conversion methods --------------------
 
     public convertToBoolean(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('boolean', ...headers,);
+        return this.convertTo(PredefinedConverter.BOOLEAN.name, ...headers,);
     }
 
     public convertToNullableBoolean(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('nullable boolean', ...headers,);
+        return this.convertTo(PredefinedConverter.NULLABLE_BOOLEAN.name, ...headers,);
     }
 
 
     public convertToBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean' | boolean>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('boolean', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.BOOLEAN.name, headerTypeOrConvertor,), ...headers,);
     }
 
     public convertToNullableBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | boolean | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable boolean', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_BOOLEAN.name, headerTypeOrConvertor,), ...headers,);
     }
 
     //endregion -------------------- Boolean conversion methods --------------------
     //region -------------------- Number conversion methods --------------------
 
     public convertToNumber(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('number', ...headers,);
+        return this.convertTo(PredefinedConverter.NUMBER.name, ...headers,);
     }
 
     public convertToNullableNumber(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('nullable number', ...headers,);
+        return this.convertTo(PredefinedConverter.NULLABLE_NUMBER.name, ...headers,);
     }
 
 
     public convertToNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number' | number>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('number', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NUMBER.name, headerTypeOrConvertor,), ...headers,);
     }
 
     public convertToNullableNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | number | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable number', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_NUMBER.name, headerTypeOrConvertor,), ...headers,);
     }
 
     //endregion -------------------- Number conversion methods --------------------
     //region -------------------- String conversion methods --------------------
 
     public convertToString(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('string', ...headers,);
+        return this.convertTo(PredefinedConverter.STRING.name, ...headers,);
     }
 
     public convertToEmptyableString(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('emptyable string', ...headers,);
+        return this.convertTo(PredefinedConverter.EMPTYABLE_STRING.name, ...headers,);
     }
 
     public convertToNullableString(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo('nullable string', ...headers,);
+        return this.convertTo(PredefinedConverter.NULLABLE_STRING.name, ...headers,);
     }
 
 
     public convertToStringAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | 'nullable string' | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('string', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.STRING.name, headerTypeOrConvertor,), ...headers,);
     }
 
     /**
@@ -592,7 +593,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * @see this.convertTo
      */
     public convertToEmptyableStringAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('emptyable string', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.EMPTYABLE_STRING.name, headerTypeOrConvertor,), ...headers,);
     }
 
     /**
@@ -615,7 +616,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * @see this.convertTo
      */
     public convertToNullableStringAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor('nullable string', headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_STRING.name, headerTypeOrConvertor,), ...headers,);
     }
 
     //endregion -------------------- String conversion methods --------------------
@@ -714,7 +715,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     protected _createContainValidations(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ArrayOfValidationsArrayOfValidations {
         return [
-            Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes('nullable')) != null,
+            Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes(CSVLoader.NULLABLE_STRING)) != null,
             headerContainer.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING) != null,
         ];
     }
