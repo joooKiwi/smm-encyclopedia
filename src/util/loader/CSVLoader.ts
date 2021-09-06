@@ -1,5 +1,5 @@
-import type {ArrayHeaderTypeOrConvertor, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackToCreateObject, ConversionCallbackToAny, ConversionCallbackToConverter, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived, ValidationCallback} from './CSVLoader.types';
-import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './converter/PredefinedConverter.types';
+import type {ArrayHeaderTypeOrConvertor, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackToCreateObject, ConversionCallbackToConverter, CustomConversionCallbackToAnyCallback, CustomConversionCallbackToAnyCallbackWithError, CustomValidationCallback, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived} from './CSVLoader.types';
+import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from './converter/PredefinedConverter.types';
 
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
@@ -9,6 +9,8 @@ import {PredefinedConverter}                 from './converter/PredefinedConvert
 export class CSVLoader<A extends any[] = any[], T = any, H extends string = string, > {
 
     //region -------------------- Attributes --------------------
+
+    //region -------------------- Static attributes --------------------
 
     /**
      * Any {@link PossiblePredefinedConversionWithoutValues} in new instance when it will be constructed.
@@ -26,11 +28,46 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * or a copy of the original content.
      */
     public static GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE: boolean = false;
+
+    //endregion -------------------- Static attributes --------------------
+    //region -------------------- Static custom callback attributes --------------------
+
     /**
      * The custom callback name used in the {@link HeaderContainer}.
      */
     public static readonly CUSTOM_CALLBACK_NAME = 'custom callback';
     public static readonly TRUE_CALLBACK = () => true as const;
+    public static readonly CUSTOM_VALIDATION_CALLBACK: CustomValidationCallback = (value, conversionCallbacksToConverter,) => {
+        for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
+            if (conversionCallbackToConverter(value).isValueValid(value))
+                return true;
+        }
+        return false;
+    };
+    public static readonly CUSTOM_VALIDATION_CALLBACK_WITH_EMPTYABLE_STRING: CustomValidationCallback = (value, conversionCallbacksToConverter,) =>
+        value === '' || CSVLoader.CUSTOM_VALIDATION_CALLBACK(value, conversionCallbacksToConverter,);
+
+    static readonly #CONVERSION_CALLBACK_LOOP = (value: string, conversionCallbacksToConverter: readonly ConversionCallbackToConverter[],) => {
+        for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
+            if (conversionCallbackToConverter(value).isValueValid(value))
+                return conversionCallbackToConverter(value).convertTheValue(value);
+        }
+    };
+    public static readonly CUSTOM_CONVERSION_CALLBACK: CustomConversionCallbackToAnyCallback = (value, conversionCallbacksToConverter,) =>
+        CSVLoader.#CONVERSION_CALLBACK_LOOP(value, conversionCallbacksToConverter,);
+    public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING: CustomConversionCallbackToAnyCallback = (value, conversionCallbacksToConverter,) =>
+        value === '' ? null : CSVLoader.CUSTOM_CONVERSION_CALLBACK(value, conversionCallbacksToConverter,);
+    public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS: CustomConversionCallbackToAnyCallbackWithError = (value, mixedTypeOnConverter, conversionCallbacksToConverter,) => {
+        const returnValue = CSVLoader.#CONVERSION_CALLBACK_LOOP(value, conversionCallbacksToConverter,);
+        if (returnValue === undefined)
+            throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
+        return returnValue;
+    };
+    public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING_WITH_ERRORS: CustomConversionCallbackToAnyCallbackWithError = (value, mixedTypeOnConverter, conversionCallbacksToConverter,) =>
+        value === '' ? null : CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS(value, mixedTypeOnConverter, conversionCallbacksToConverter,);
+
+    //endregion -------------------- Static custom callback attributes --------------------
+    //region -------------------- Instance attributes --------------------
 
     readonly #hasOriginalContentAsReference: boolean;
     #doesThrowError?: boolean;
@@ -51,6 +88,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     #callbackOnAfterSingleContentConverted: CallbackOnAfterSingleContentConverted<H, A>;
     #callbackOnInitialisationStart: CallbackOnInitialisationStart;
     #callbackOnInitialisationEnd: CallbackOnInitialisationEnd<A, T>;
+
+    //endregion -------------------- Instance attributes --------------------
 
     //endregion -------------------- Attributes --------------------
 
@@ -699,37 +738,27 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
     protected _interpretConvertorInstance([containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations, [conversionCallbacksToConverter, mixedTypeOnConverter,]: ArrayOfMixedConvertorInstance,): ConversionCallbackToConverter {
-        const finalConversionComponentOnConverter: ConversionCallbackToAny = value => {
-            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
-                if (conversionCallbackToConverter(value).isValueValid(value))
-                    return conversionCallbackToConverter(value).convertTheValue(value);
-            }
-            if (this.doesThrowError)
-                throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
-        };
-
         if (!this.doesThrowError)
             return containNullable
                 ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
-                    value => finalConversionComponentOnConverter(value),)
-                : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
-                    value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
-
-        const finalValidationComponentOnConverter: ValidationCallback = value => {
-            for (const conversionCallbackToConverter of conversionCallbacksToConverter) {
-                if (conversionCallbackToConverter(value).isValueValid(value))
-                    return true;
-            }
-            return false;
-        };
+                    value => CSVLoader.CUSTOM_VALIDATION_CALLBACK(value, conversionCallbacksToConverter,),)
+                : containEmptyableString
+                    ? value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
+                        value => CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING(value, conversionCallbacksToConverter,),)
+                    : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter, CSVLoader.TRUE_CALLBACK,
+                        value => CSVLoader.CUSTOM_CONVERSION_CALLBACK(value, conversionCallbacksToConverter,),);
 
         return containNullable
             ? value => new GenericStringToAnyNullableConverter(value, mixedTypeOnConverter,
-                value => finalValidationComponentOnConverter(value),
-                value => finalConversionComponentOnConverter(value),)
-            : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
-                value => (containEmptyableString ? value === '' : false) || finalValidationComponentOnConverter(value),
-                value => containEmptyableString && value === '' ? null : finalConversionComponentOnConverter(value),);
+                value => CSVLoader.CUSTOM_VALIDATION_CALLBACK(value, conversionCallbacksToConverter,),
+                value => CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS(value, mixedTypeOnConverter, conversionCallbacksToConverter,),)
+            : containEmptyableString
+                ? value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
+                    value => CSVLoader.CUSTOM_VALIDATION_CALLBACK_WITH_EMPTYABLE_STRING(value, conversionCallbacksToConverter,),
+                    value => CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING_WITH_ERRORS(value, mixedTypeOnConverter, conversionCallbacksToConverter,),)
+                : value => new GenericStringToAnyConverter(value, mixedTypeOnConverter,
+                    value => CSVLoader.CUSTOM_VALIDATION_CALLBACK(value, conversionCallbacksToConverter,),
+                    value => CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS(value, mixedTypeOnConverter, conversionCallbacksToConverter,),);
     }
 
     protected _createMixedConvertor(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ConversionCallbackToConverter {
