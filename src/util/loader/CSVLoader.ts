@@ -17,6 +17,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      */
     public static GENERIC_DEFAULT_CONVERSION: PossiblePredefinedConversionWithoutValues = 'emptyable string';
     public static readonly NULLABLE_STRING = 'nullable';
+    public static readonly COMMA_AND_SPACE_STRING = ', ';
     /**
      * Whenever a new instance will throw an error or ignore every possible errors.
      *
@@ -102,7 +103,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
         if (this.doesThrowError && this.originalHeaders.length !== this.headers.size)
-            throw new RangeError(`There is one or more duplicate header in the csv file. (${this.headers.size}/${this.originalHeaders.length})\n[${this.originalHeaders.join(', ')}]`);
+            throw new RangeError(`There is one or more duplicate header in the csv file. (${this.headers.size}/${this.originalHeaders.length})\n[${this.originalHeaders.join(CSVLoader.COMMA_AND_SPACE_STRING)}]`);
         this.#originalContent = originalContent;
         this.#callbackToCreateObject = callbackToCreateObject;
 
@@ -624,7 +625,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     protected _validateHeaderNotIncludedInArrayOfHeadersReceived(header: SimpleHeader<H>, headers: ArrayOfHeadersReceived<H>,): void | never {
         if (this.doesThrowError && headers.includes(header))
-            throw new EvalError(`Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(', ')})`);
+            throw new EvalError(`Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`);
     }
 
     public convertToHeader(header: SimpleHeaderReceived<H>, ...headers: ArrayOfHeadersReceived<H>): this | never {
@@ -728,12 +729,12 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
     protected _createMixedConvertorInstanceTypes(headerContainer: HeaderContainer<H, this['headersAsArray']>, [containNullable, containEmptyableString,]: ArrayOfValidationsArrayOfValidations,): string {
-        return (containNullable ? 'nullable' : '')
+        return (containNullable ? CSVLoader.NULLABLE_STRING : '')
             + ' ('
             + (containEmptyableString ? '"", ' : '')
-            + (headerContainer.predefinedConvertors.size === 0 ? '' : `predefined convertor: (${Array.from(headerContainer.predefinedConvertors).map(predefinedConvertor => predefinedConvertor.nameAsNonNullable).join(', ')})`)
-            + (headerContainer.followingHeaders.size === 0 ? '' : `headers: (${Array.from(headerContainer.followingHeaders).join(', ')})`)
-            + (headerContainer.singleValuesToValidate.size === 0 ? '' : `values: (${Array.from(headerContainer.singleValuesToValidate).map(singleValue => `"${singleValue}"`).join(', ')})`)
+            + (headerContainer.predefinedConvertors.size === 0 ? '' : `predefined convertor: (${Array.from(headerContainer.predefinedConvertors).map(predefinedConvertor => predefinedConvertor.nameAsNonNullable).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
+            + (headerContainer.followingHeaders.size === 0 ? '' : `headers: (${Array.from(headerContainer.followingHeaders).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
+            + (headerContainer.singleValuesToValidate.size === 0 ? '' : `values: (${Array.from(headerContainer.singleValuesToValidate).map(singleValue => `"${singleValue}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
             + (headerContainer.convertorCallbacks.size === 0 ? '' : `${CSVLoader.CUSTOM_CALLBACK_NAME} x${headerContainer.convertorCallbacks.size}`)
             + ')';
     }
