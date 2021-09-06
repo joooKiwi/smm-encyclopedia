@@ -54,8 +54,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>, hasOriginalContentAsReference?: boolean,) {
-        this.#hasOriginalContentAsReference = hasOriginalContentAsReference ?? CSVLoader.GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE;
+    public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>, hasOriginalContentAsReference: boolean = CSVLoader.GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE,) {
+        this.#hasOriginalContentAsReference = hasOriginalContentAsReference;
         if (!this.hasOriginalContentAsReference)
             originalContent = [...originalContent.map(originalValue => [...originalValue])];
 
