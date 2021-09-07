@@ -41,6 +41,10 @@ export type CallbackToCreateObject<A extends any[] = any[], T = any, > = (conver
 export type ValidationCallback = (value: string,) => boolean;
 export type ConversionCallbackToAny = (value: string,) => any;
 
+export type CustomValidationCallback = (value: string, conversionCallbacksToConverter: readonly ConversionCallbackToConverter[],) => boolean;
+export type CustomConversionCallbackToAnyCallback = (value: string, conversionCallbacksToConverter: readonly ConversionCallbackToConverter[],) => any;
+export type CustomConversionCallbackToAnyCallbackWithError = (value: string, mixedTypeOnConverter: string, conversionCallbacksToConverter: readonly ConversionCallbackToConverter[],) => any;
+
 export type CallbackOnBeforeFinalObjectCreated<A extends any[] = any[], > = | ((convertedContent: A, originalContent: readonly string[],) => void) | null;
 export type CallbackOnAfterFinalObjectCreated<A extends any[] = any[], T = any, > = | ((finalContent: T, convertedContent: A, originalContent: readonly string[],) => void) | null;
 
