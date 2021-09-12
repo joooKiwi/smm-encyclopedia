@@ -9,13 +9,13 @@ export interface SMM2NameTemplate {
         european: | string | null
     }
 
+    german: | string | null
+
     french: {
         simple: | string | null
         canadian: | string | null
         european: | string | null
     }
-
-    german: | string | null
 
     spanish: {
         simple: | string | null

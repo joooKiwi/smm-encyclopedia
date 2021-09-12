@@ -25,7 +25,7 @@ export type EntityLimitsNames =
 
          | `${| '_10_OR_30_OR_50' | 'PINK'}_COIN` | 'KEY'
 
-         | `${| 'FIRE' | 'SUPER'}BALL` | 'LINK_BOMB' | `PLAYER_${| 'CRATE' | 'CANNONBALL'}` | 'BOOMERANG' | 'HATCHED_YOSHI'
+         | `${`${| 'FIRE' | 'SUPER'}BALL` | 'BOOMERANG' | 'CANNONBALL'}_THROWN_BY_A_PLAYER` | 'LINK_BOMB' | 'PLAYER_CRATE' | 'HATCHED_YOSHI'
 
          | 'CHARVAARGH' | 'PIRANHA_CREEPER'
          | 'BOWSER_AND_BOWSER_JR' | 'BOOM_BOOM_AND_POM_POM' | 'KOOPALING'
@@ -48,7 +48,7 @@ export type PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying =
 
     | `${| '10 / 30 / 50' | 'Pink'} Coin` | 'Key'
 
-    | 'Power-up' | `Player\'s ${| `${| 'Fire' | 'Super'}ball` | 'Crate' | 'Cannonball' | 'Boomerang'}` | 'Link\'s Bomb' | 'Hatched Yoshi'
+    | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Cannonball' | 'Boomerang'} thrown by a player` | 'Player\'s Crate' | 'Link\'s Bomb' | 'Hatched Yoshi'
 
     | 'Enemy + Other' | 'Charvaargh' | 'Piranha Creeper'
     | 'Bowser (Jr.)' | 'Boom Boom / Pom Pom' | 'Koopaling'
@@ -82,7 +82,10 @@ export type EntityLimitsArray<T = EntityLimits, > = readonly [
 
     SimpleEntityLimits<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEntityLimits<T>['PINK_COIN_LIMIT'], SimpleEntityLimits<T>['KEY_LIMIT'],
 
-    SimpleEntityLimits<T>['POWER_UP_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['FIREBALL_LIMIT'], SimpleEntityLimits<T>['SUPERBALL_LIMIT'], SimpleEntityLimits<T>['LINK_BOMB_LIMIT'], SimpleEntityLimits<T>['PLAYER_CRATE_LIMIT'], SimpleEntityLimits<T>['BOOMERANG_LIMIT'], SimpleEntityLimits<T>['PLAYER_CANNONBALL_LIMIT'], SimpleEntityLimits<T>['HATCHED_YOSHI_LIMIT'],
+    SimpleEntityLimits<T>['POWER_UP_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['FIREBALL_THROWN_BY_A_PLAYER_LIMIT'], SimpleEntityLimits<T>['SUPERBALL_THROWN_BY_A_PLAYER_LIMIT'],
+    SimpleEntityLimits<T>['LINK_BOMB_LIMIT'], SimpleEntityLimits<T>['PLAYER_CRATE_LIMIT'],
+    SimpleEntityLimits<T>['BOOMERANG_THROWN_BY_A_PLAYER_LIMIT'], SimpleEntityLimits<T>['CANNONBALL_THROWN_BY_A_PLAYER_LIMIT'],
+    SimpleEntityLimits<T>['HATCHED_YOSHI_LIMIT'],
 
     SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['CHARVAARGH_LIMIT'], SimpleEntityLimits<T>['PIRANHA_CREEPER_LIMIT'],
     SimpleEntityLimits<T>['BOWSER_AND_BOWSER_JR_LIMIT'], SimpleEntityLimits<T>['BOOM_BOOM_AND_POM_POM_LIMIT'], SimpleEntityLimits<T>['KOOPALING_LIMIT'],
