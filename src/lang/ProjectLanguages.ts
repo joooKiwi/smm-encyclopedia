@@ -49,22 +49,22 @@ export class ProjectLanguages
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,   );
-    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,   );
-    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,    );
-    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,    );
-    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,             );
-    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,   );
-    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,   );
-    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,            );
-    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,              );
-    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE,);
-    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE,);
-    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,            );
-    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,           );
-    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE,);
-    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE, );
-    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,             );
+    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,   true, );
+    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,   true, );
+    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,    true, );
+    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,    true, );
+    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,             true, );
+    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,   true, );
+    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,   true, );
+    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,            true, );
+    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,              true, );
+    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE,false,);
+    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE,false,);
+    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,            true, );
+    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,           true, );
+    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE,true, );
+    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE, true, );
+    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,             true, );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -75,18 +75,22 @@ export class ProjectLanguages
     //region -------------------- Attributes --------------------
 
     readonly #language: EveryLanguages;
+    readonly #isASupportedLanguageInSMM: boolean;
 
     //endregion -------------------- Attributes --------------------
 
     protected constructor(language: ProjectLanguages,)
     // @ts-ignore
-    private constructor(language: EveryLanguages,)
-    protected constructor(language: EveryLanguages | ProjectLanguages,) {
+    private constructor(language: EveryLanguages, isASupportedLanguageInSMM: boolean,)
+    protected constructor(language: EveryLanguages | ProjectLanguages, isASupportedLanguageInSMM?: boolean,) {
         super(ProjectLanguages);
-        if (language instanceof ProjectLanguages)
+        if (language instanceof ProjectLanguages) {
             this.#language = language.language;
-        else
+            this.#isASupportedLanguageInSMM = language.isASupportedLanguageInSMM;
+        } else {
             this.#language = language;
+            this.#isASupportedLanguageInSMM = isASupportedLanguageInSMM as boolean;
+        }
     }
 
     //region -------------------- Getter methods --------------------
@@ -117,6 +121,10 @@ export class ProjectLanguages
 
     public get isCurrentLanguageOrAssociatedWithIt(): boolean {
         return this.language.isCurrentLanguageOrAssociatedWithIt;
+    }
+
+    public get isASupportedLanguageInSMM(): boolean {
+        return this.#isASupportedLanguageInSMM;
     }
 
     //endregion -------------------- Getter methods --------------------
