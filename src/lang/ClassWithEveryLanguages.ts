@@ -1,8 +1,6 @@
-import type {ClassWithLanguages}         from './ClassWithLanguages';
-import type {EveryLanguages}             from './EveryLanguages';
-import type {ChineseOriginal}            from './name/containers/ChineseLanguage';
-import type {AmericanOrEuropeanOriginal} from './name/containers/AmericanAndEuropeanLanguage';
-import type {CanadianOrEuropeanOriginal} from './name/containers/CanadianAndEuropeanLanguage';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './name/containers/Language';
+import type {ClassWithLanguages}                                                      from './ClassWithLanguages';
+import type {EveryLanguages}                                                          from './EveryLanguages';
 
 /**
  * <p>
@@ -53,7 +51,7 @@ export interface ClassWithEveryLanguages
 
     //endregion -------------------- Chinese properties --------------------
 
-    get individualValues(): readonly EveryLanguages[]//TODO find a better name
+    get individualValues(): readonly EveryLanguages[]//TODO change to originalLanguages
 
 
     /**

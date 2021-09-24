@@ -1,8 +1,6 @@
-import type {AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
-import type {Builder}                    from '../../util/Builder';
-import type {CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
-import type {ChineseOriginal}            from './containers/ChineseLanguage';
-import type {Name}                       from './Name';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language';
+import type {Builder}                                                                 from '../../util/Builder';
+import type {Name}                                                                    from './Name';
 
 import {NameContainer} from './NameContainer';
 
