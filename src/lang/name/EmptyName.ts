@@ -94,7 +94,7 @@ export class EmptyName
 
     //endregion -------------------- Korean properties --------------------
 
-    public readonly individualValues = EMPTY_ARRAY;
+    public readonly originalLanguages = EMPTY_ARRAY;
 
     //endregion -------------------- Name properties --------------------
 

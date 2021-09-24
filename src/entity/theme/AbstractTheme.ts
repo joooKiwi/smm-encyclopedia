@@ -19,7 +19,7 @@ export class AbstractTheme
 
     //region -------------------- Name properties --------------------
 
-    public get name() {
+    public get name(): Name {
         return this.#name;
     }
 
@@ -143,14 +143,14 @@ export class AbstractTheme
         return this.name.korean;
     }
 
-    public get individualValues() {
-        return this.name.individualValues;
+    public get originalLanguages() {
+        return this.name.originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Game properties --------------------
 
-    public get isInProperty() {
+    public get isInProperty(): GameProperty {
         return this.#isInProperty;
     }
 

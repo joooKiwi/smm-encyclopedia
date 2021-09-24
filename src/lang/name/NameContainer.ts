@@ -200,7 +200,7 @@ export class NameContainer
 
     //endregion -------------------- Korean properties --------------------
 
-    public get individualValues() {
+    public get originalLanguages() {
         return this.#originalLanguages;
     }
 

@@ -51,7 +51,7 @@ export interface ClassWithEveryLanguages
 
     //endregion -------------------- Chinese properties --------------------
 
-    get individualValues(): readonly EveryLanguages[]//TODO change to originalLanguages
+    get originalLanguages(): readonly EveryLanguages[]
 
 
     /**

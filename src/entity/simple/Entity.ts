@@ -87,7 +87,7 @@ export interface Entity<PROPERTY extends Property = Property, >
     get korean(): this['nameContainer']['korean']
 
 
-    get individualValues(): this['nameContainer']['individualValues']
+    get originalLanguages(): this['nameContainer']['originalLanguages']
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------

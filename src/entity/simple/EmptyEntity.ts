@@ -67,7 +67,7 @@ export class EmptyEntity
 
     public readonly korean = this.nameContainer.korean;
 
-    public readonly individualValues = this.nameContainer.individualValues;
+    public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------

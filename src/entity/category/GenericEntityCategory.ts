@@ -17,7 +17,7 @@ export class GenericEntityCategory
 
     //region -------------------- Name properties --------------------
 
-    public get name() {
+    public get name(): Name {
         return this.#name;
     }
 
@@ -142,8 +142,8 @@ export class GenericEntityCategory
     }
 
 
-    public get individualValues() {
-        return this.name.individualValues;
+    public get originalLanguages() {
+        return this.name.originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
