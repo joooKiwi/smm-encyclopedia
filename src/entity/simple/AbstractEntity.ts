@@ -33,7 +33,7 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
 
     //region -------------------- Name properties --------------------
 
-    public get nameContainer() {
+    public get nameContainer(): Name {
         return this.#nameContainer;
     }
 
@@ -158,14 +158,14 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     }
 
 
-    public get individualValues() {
-        return this.nameContainer.individualValues;
+    public get originalLanguages() {
+        return this.nameContainer.originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------
 
-    public get category() {
+    public get category(): EntityCategory {
         return this.#category;
     }
 

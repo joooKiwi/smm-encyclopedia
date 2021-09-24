@@ -64,7 +64,7 @@ export class EmptyGameStyle
 
     public readonly korean = this.name.korean;
 
-    public readonly individualValues = this.name.individualValues;
+    public readonly originalLanguages = this.name.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Game properties --------------------

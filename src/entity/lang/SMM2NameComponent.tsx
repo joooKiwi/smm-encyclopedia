@@ -19,7 +19,7 @@ export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2N
     const {t: contentTranslation,} = useTranslation('content');
 
     const elementId = id + '_' + name.english.toLowerCase().replace(' ', '_');
-    const languagesToDisplay = name.individualValues.filter(language => !language.isCurrentLanguage);
+    const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
     let content = '<ol class="m-0">';
     name.toNameMap().forEach((value, language,) => {
         if (languagesToDisplay.includes(language)) {
