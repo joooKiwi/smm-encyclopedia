@@ -85,7 +85,7 @@ export class EmptyEntityLimit
 
     public readonly korean = this.nameContainer.korean;
 
-    public readonly individualValues = this.nameContainer.individualValues;
+    public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name --------------------
     //region -------------------- Alternative entity limit --------------------
@@ -137,7 +137,7 @@ export class EmptyEntityLimit
 
     public readonly alternativeKorean = this.alternativeNameContainer.korean;
 
-    public readonly alternativeIndividualValues = this.alternativeNameContainer.individualValues;
+    public readonly alternativeOriginalLanguages = this.alternativeNameContainer.originalLanguages;
 
     //endregion -------------------- Name --------------------
     //region -------------------- Limit amount --------------------

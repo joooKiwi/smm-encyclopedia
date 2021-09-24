@@ -174,8 +174,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get individualValues() {
-        return this.nameContainer.individualValues;
+    public get originalLanguages() {
+        return this.nameContainer.originalLanguages;
     }
 
     //endregion -------------------- Name --------------------
@@ -316,8 +316,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeIndividualValues() {
-        return this.alternativeNameContainer.individualValues;
+    public get alternativeOriginalLanguages() {
+        return this.alternativeNameContainer.originalLanguages;
     }
 
     //endregion -------------------- Name --------------------

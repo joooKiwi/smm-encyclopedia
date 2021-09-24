@@ -1,36 +1,29 @@
-import type {AmericanAndEuropeanLanguage, AmericanOrEuropeanOriginal} from './containers/AmericanAndEuropeanLanguage';
-import type {CanadianAndEuropeanLanguage, CanadianOrEuropeanOriginal} from './containers/CanadianAndEuropeanLanguage';
-import type {ChineseLanguage, ChineseOriginal}                        from './containers/ChineseLanguage';
-import type {SimpleLanguage}                                          from './containers/SimpleLanguage';
-import type {Name}                                                    from './Name';
+import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from './containers/Language';
+import type {Name}                                                                                                                                              from './Name';
 
-import {AmericanAndEuropeanLanguageContainer} from './containers/AmericanAndEuropeanLanguageContainer';
-import {CanadianAndEuropeanLanguageContainer} from './containers/CanadianAndEuropeanLanguageContainer';
-import {CallbackCaller}                       from '../../util/CallbackCaller';
-import {ChineseLanguageContainer}             from './containers/ChineseLanguageContainer';
-import {EveryLanguages}                       from '../EveryLanguages';
-import {ProjectLanguages}                     from '../ProjectLanguages';
-import {SimpleLanguageContainer}              from './containers/SimpleLanguageContainer';
+import {EveryLanguages}    from '../EveryLanguages';
+import {ProjectLanguages}  from '../ProjectLanguages';
+import {LanguageContainer} from './containers/LanguageContainer';
 
 export class NameContainer
     implements Name {
 
     //region -------------------- Attributes --------------------
 
-    readonly #individualValues: readonly EveryLanguages[];
-    readonly #mapCaller: CallbackCaller<Map<EveryLanguages, string>>;
+    readonly #originalLanguages: readonly EveryLanguages[];
+    #map?: Map<EveryLanguages, string>;
 
-    readonly #english: AmericanAndEuropeanLanguage;
-    readonly #french: CanadianAndEuropeanLanguage;
-    readonly #german: SimpleLanguage;
-    readonly #spanish: AmericanAndEuropeanLanguage;
-    readonly #italian: SimpleLanguage;
-    readonly #dutch: SimpleLanguage;
-    readonly #portuguese: AmericanAndEuropeanLanguage;
-    readonly #russian: SimpleLanguage;
-    readonly #japanese: SimpleLanguage;
-    readonly #chinese: ChineseLanguage;
-    readonly #korean: SimpleLanguage;
+    readonly #english: Language<string, AmericanOrEuropeanArray>;
+    readonly #french: Language<string, CanadianOrEuropeanArray>;
+    readonly #german: Language<string>;
+    readonly #spanish: Language<string, AmericanOrEuropeanArray>;
+    readonly #italian: Language<string>;
+    readonly #dutch: Language<string>;
+    readonly #portuguese: Language<string, AmericanOrEuropeanArray>;
+    readonly #russian: Language<string>;
+    readonly #japanese: Language<string>;
+    readonly #chinese: Language<string, ChineseArray>;
+    readonly #korean: Language<string>;
 
     //endregion -------------------- Attributes --------------------
 
@@ -45,107 +38,21 @@ export class NameContainer
                        japanese: string,
                        chinese: ChineseOriginal,
                        korean: string,) {
-        const individualValues = [];
+        const originalLanguages: EveryLanguages[] = [];
 
-        //region -------------------- English initialisation --------------------
+        this.#english = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.ENGLISH, originalLanguages, english,);
+        this.#french = NameContainer.__newLanguageContainer<string, CanadianOrEuropeanArray>(EveryLanguages.FRENCH, originalLanguages, french,);
+        this.#german = NameContainer.__newLanguageContainer(EveryLanguages.GERMAN, originalLanguages, german,);
+        this.#spanish = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.SPANISH, originalLanguages, spanish,);
+        this.#italian = NameContainer.__newLanguageContainer(EveryLanguages.ITALIAN, originalLanguages, italian,);
+        this.#dutch = NameContainer.__newLanguageContainer(EveryLanguages.DUTCH, originalLanguages, dutch,);
+        this.#portuguese = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
+        this.#russian = NameContainer.__newLanguageContainer(EveryLanguages.RUSSIAN, originalLanguages, russian,);
+        this.#japanese = NameContainer.__newLanguageContainer(EveryLanguages.JAPANESE, originalLanguages, japanese,);
+        this.#chinese = NameContainer.__newLanguageContainer<string, ChineseArray>(EveryLanguages.CHINESE, originalLanguages, chinese,);
+        this.#korean = NameContainer.__newLanguageContainer(EveryLanguages.KOREAN, originalLanguages, korean,);
 
-        if (typeof english === 'string') {
-            this.#english = new AmericanAndEuropeanLanguageContainer(english);
-            individualValues.push(EveryLanguages.ENGLISH);
-        } else {
-            this.#english = new AmericanAndEuropeanLanguageContainer(...english);
-            individualValues.push(EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH,);
-        }
-
-        //endregion -------------------- English initialisation --------------------
-        //region -------------------- French initialisation --------------------
-
-        if (typeof french === 'string') {
-            this.#french = new CanadianAndEuropeanLanguageContainer(french);
-            individualValues.push(EveryLanguages.FRENCH);
-        } else {
-            this.#french = new CanadianAndEuropeanLanguageContainer(...french);
-            individualValues.push(EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH,);
-        }
-
-        //endregion -------------------- French initialisation --------------------
-        //region -------------------- German initialisation --------------------
-
-        this.#german = new SimpleLanguageContainer(german);
-        individualValues.push(EveryLanguages.GERMAN);
-
-        //endregion -------------------- German initialisation --------------------
-        //region -------------------- Spanish initialisation --------------------
-
-        if (typeof spanish === 'string') {
-            this.#spanish = new AmericanAndEuropeanLanguageContainer(spanish);
-            individualValues.push(EveryLanguages.SPANISH);
-
-        } else {
-            this.#spanish = new AmericanAndEuropeanLanguageContainer(...spanish);
-            individualValues.push(EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH,);
-        }
-
-        //endregion -------------------- Spanish initialisation --------------------
-        //region -------------------- Italian initialisation --------------------
-
-        this.#italian = new SimpleLanguageContainer(italian);
-        individualValues.push(EveryLanguages.ITALIAN);
-
-        //endregion -------------------- Italian initialisation --------------------
-        //region -------------------- Dutch initialisation --------------------
-
-        this.#dutch = new SimpleLanguageContainer(dutch);
-        individualValues.push(EveryLanguages.DUTCH);
-
-        //endregion -------------------- Dutch initialisation --------------------
-        //region -------------------- Portuguese initialisation --------------------
-
-        if (typeof portuguese === 'string') {
-            this.#portuguese = new AmericanAndEuropeanLanguageContainer(portuguese);
-            individualValues.push(EveryLanguages.PORTUGUESE);
-        } else {
-            this.#portuguese = new AmericanAndEuropeanLanguageContainer(...portuguese);
-            individualValues.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
-        }
-
-        //endregion -------------------- Portuguese initialisation --------------------
-        //region -------------------- Russian initialisation --------------------
-
-        this.#russian = new SimpleLanguageContainer(russian);
-        individualValues.push(EveryLanguages.RUSSIAN);
-
-        //endregion -------------------- Russian initialisation --------------------
-        //region -------------------- Japanese initialisation --------------------
-
-        this.#japanese = new SimpleLanguageContainer(japanese);
-        individualValues.push(EveryLanguages.JAPANESE);
-
-        //endregion -------------------- Japanese initialisation --------------------
-        //region -------------------- Chinese initialisation --------------------
-
-        if (typeof chinese === 'string') {
-            this.#chinese = new ChineseLanguageContainer(chinese);
-            individualValues.push(EveryLanguages.CHINESE);
-        } else {
-            this.#chinese = new ChineseLanguageContainer(...chinese);
-            individualValues.push(EveryLanguages.SIMPLIFIED_CHINESE, EveryLanguages.TRADITIONAL_CHINESE,);
-        }
-
-        //endregion -------------------- Chinese initialisation --------------------
-        //region -------------------- Korean initialisation --------------------
-
-        this.#korean = new SimpleLanguageContainer(korean);
-        individualValues.push(EveryLanguages.KOREAN);
-
-        //endregion -------------------- Korean initialisation --------------------
-
-        this.#individualValues = individualValues;
-        this.#mapCaller = new CallbackCaller(() => {
-            const map = new Map<EveryLanguages, string>();
-            EveryLanguages.values.forEach(language => map.set(language, language.get(this)));
-            return map;
-        });
+        this.#originalLanguages = originalLanguages;
     }
 
 
@@ -162,15 +69,15 @@ export class NameContainer
     }
 
     public get english() {
-        return this.#english.value;
+        return this.#english.get();
     }
 
     public get americanEnglish() {
-        return this.#english.american;
+        return this.#english.get(0);
     }
 
     public get europeanEnglish() {
-        return this.#english.european;
+        return this.#english.get(1);
     }
 
     //endregion -------------------- English properties --------------------
@@ -181,22 +88,22 @@ export class NameContainer
     }
 
     public get french() {
-        return this.#french.value;
+        return this.#french.get();
     }
 
     public get canadianFrench() {
-        return this.#french.canadian;
+        return this.#french.get(0);
     }
 
     public get europeanFrench() {
-        return this.#french.european;
+        return this.#french.get(1);
     }
 
     //endregion -------------------- French properties --------------------
     //region -------------------- German properties --------------------
 
     public get german() {
-        return this.#german.value;
+        return this.#german.original;
     }
 
     //endregion -------------------- German properties --------------------
@@ -207,29 +114,29 @@ export class NameContainer
     }
 
     public get spanish() {
-        return this.#spanish.value;
+        return this.#spanish.get();
     }
 
     public get americanSpanish() {
-        return this.#spanish.american;
+        return this.#spanish.get(0);
     }
 
     public get europeanSpanish() {
-        return this.#spanish.european;
+        return this.#spanish.get(1);
     }
 
     //endregion -------------------- Spanish properties --------------------
     //region -------------------- Italian properties --------------------
 
     public get italian() {
-        return this.#italian.value;
+        return this.#italian.original;
     }
 
     //endregion -------------------- Italian properties --------------------
     //region -------------------- Dutch properties --------------------
 
     public get dutch() {
-        return this.#dutch.value;
+        return this.#dutch.original;
     }
 
     //endregion -------------------- Dutch properties --------------------
@@ -240,29 +147,29 @@ export class NameContainer
     }
 
     public get portuguese() {
-        return this.#portuguese.value;
+        return this.#portuguese.get();
     }
 
     public get americanPortuguese() {
-        return this.#portuguese.american;
+        return this.#portuguese.get(0);
     }
 
     public get europeanPortuguese() {
-        return this.#portuguese.european;
+        return this.#portuguese.get(1);
     }
 
     //endregion -------------------- Portuguese properties --------------------
     //region -------------------- Russian properties --------------------
 
     public get russian() {
-        return this.#russian.value;
+        return this.#russian.original;
     }
 
     //endregion -------------------- Russian properties --------------------
     //region -------------------- Japanese properties --------------------
 
     public get japanese() {
-        return this.#japanese.value;
+        return this.#japanese.original;
     }
 
     //endregion -------------------- Japanese properties --------------------
@@ -273,34 +180,77 @@ export class NameContainer
     }
 
     public get chinese() {
-        return this.#chinese.value;
+        return this.#chinese.get();
     }
 
     public get simplifiedChinese() {
-        return this.#chinese.traditional;
+        return this.#chinese.get(0);
     }
 
     public get traditionalChinese() {
-        return this.#chinese.simplified;
+        return this.#chinese.get(1);
     }
 
     //endregion -------------------- Chinese properties --------------------
     //region -------------------- Korean properties --------------------
 
     public get korean() {
-        return this.#korean.value;
+        return this.#korean.original;
     }
 
     //endregion -------------------- Korean properties --------------------
 
-    public get individualValues() {
-        return this.#individualValues;
+    public get originalLanguages() {
+        return this.#originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
-        return this.#mapCaller.get;
+        return this.#map ??= new Map(EveryLanguages.values.map(language => [language, language.get(this),]));
+    }
+
+
+    private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: S,): Language<S>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): Language<S, A>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,) {
+        const languageContainer = LanguageContainer.newInstance<S, A>(value);
+        switch (language) {
+            case EveryLanguages.ENGLISH:
+                if (typeof value === 'string')
+                    originalLanguages.push(EveryLanguages.ENGLISH);
+                else
+                    originalLanguages.push(EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH,);
+                break;
+            case EveryLanguages.FRENCH:
+                if (typeof value === 'string')
+                    originalLanguages.push(EveryLanguages.FRENCH);
+                else
+                    originalLanguages.push(EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH,);
+                break;
+            case EveryLanguages.SPANISH:
+                if (typeof value === 'string')
+                    originalLanguages.push(EveryLanguages.SPANISH);
+                else
+                    originalLanguages.push(EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH,);
+                break;
+            case EveryLanguages.PORTUGUESE:
+                if (typeof value === 'string')
+                    originalLanguages.push(EveryLanguages.PORTUGUESE);
+                else
+                    originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
+                break;
+            case EveryLanguages.CHINESE:
+                if (typeof value === 'string')
+                    originalLanguages.push(EveryLanguages.CHINESE);
+                else
+                    originalLanguages.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,);
+                break;
+            default:
+                originalLanguages.push(language);
+        }
+
+        return languageContainer;
     }
 
 }
