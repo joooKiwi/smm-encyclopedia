@@ -9,10 +9,10 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     readonly #otherHeaders: A;
 
     readonly #originalValues: Set<SimpleHeaderTypeOrConvertor>;
-    readonly #headerTypeOrConvertorSet: Set<(| PredefinedConverter | SimpleHeader<A[number]> | string | ConversionCallbackToConverter)>;
+    readonly #headerTypeOrConvertorSet: Set<(| PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter)>;
     readonly #predefinedConvertors: Set<PredefinedConverter>;
     readonly #followingHeaders: Set<SimpleHeader<A[number]>>;
-    readonly #singleValuesToValidate: Set<string>;
+    readonly #singleValuesToValidate: Set<| number | boolean | string>;
     readonly #convertorCallbacks: Set<ConversionCallbackToConverter>;
 
     public constructor(header: SimpleHeaderReceived<H>, otherHeaders: A,) {
@@ -60,7 +60,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      * @see _addSingleValueToValidate
      * @see _addConvertorCallbacks
      */
-    public get headerTypeOrConvertorSet(): ReadonlySet<| PredefinedConverter | SimpleHeader<A[number]> | string | ConversionCallbackToConverter> {
+    public get headerTypeOrConvertorSet(): ReadonlySet<| PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter> {
         return this.#headerTypeOrConvertorSet;
     }
 
@@ -85,7 +85,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     /**
      * The single values to be used while doing validations.
      */
-    public get singleValuesToValidate(): ReadonlySet<string> {
+    public get singleValuesToValidate(): ReadonlySet<| boolean | number | string> {
         return this.#singleValuesToValidate;
     }
 
@@ -146,7 +146,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
         return this;
     }
 
-    protected _addSingleValueToValidate(value: string,): this {
+    protected _addSingleValueToValidate(value: | string | number | boolean,): this {
         this.#originalValues.add(value);
         this.#headerTypeOrConvertorSet.add(value);
         this.#singleValuesToValidate.add(value);
@@ -174,6 +174,10 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
                 } else
                     this._addPredefinedConvertor(headerTypeOrConvertor, predefinedConvertor);
                 break;
+            case 'boolean':
+            case 'number':
+                this._addSingleValueToValidate(headerTypeOrConvertor,);
+                break;
             case 'object':
                 headerTypeOrConvertor.forEach(headerTypeOrConvertor => this.addHeaderTypeOrConvertor(headerTypeOrConvertor));
                 break;
@@ -188,15 +192,20 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
         return Array.from(this.headerTypeOrConvertorSet).map(headerTypeOrConvertor => this._createSingleConversionCallback(headerTypeOrConvertor));
     }
 
-    protected _createSingleConversionCallback(headerTypeOrConvertor: | PredefinedConverter | SimpleHeader<A[number]> | string | ConversionCallbackToConverter,): ConversionCallbackToConverter {
-        if (typeof headerTypeOrConvertor === 'string') {
-            // if(this.followingHeaders.includes(predefinedConvertorOrHeaderOrValueOrConversionCallback))
-            //     //TODO create header following callback;
-            return value => PredefinedConverter.SINGLE_STRING.newConvertor(value, headerTypeOrConvertor,);
+    protected _createSingleConversionCallback(headerTypeOrConvertor: | PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter,): ConversionCallbackToConverter {
+        switch (typeof headerTypeOrConvertor) {
+            case 'string':
+                // if(this.followingHeaders.includes(predefinedConvertorOrHeaderOrValueOrConversionCallback))
+                //     //TODO create header following callback;
+                return value => PredefinedConverter.SINGLE_STRING.newConvertor(value, headerTypeOrConvertor,);
+            case 'boolean':
+                return value => PredefinedConverter.SINGLE_BOOLEAN.newConvertor(value, headerTypeOrConvertor,);
+            case 'number':
+                return value => PredefinedConverter.SINGLE_NUMBER.newConvertor(value, headerTypeOrConvertor,);
         }
         if (headerTypeOrConvertor instanceof PredefinedConverter)
             return value => headerTypeOrConvertor.newConvertor(value, null,);
-        return value => new GenericStringToAnyConverter(value, CSVLoader.CUSTOM_CALLBACK_NAME, () => true, headerTypeOrConvertor,);
+        return value => new GenericStringToAnyConverter(value, CSVLoader.CUSTOM_CALLBACK_NAME, CSVLoader.TRUE_CALLBACK, headerTypeOrConvertor,);
     }
 
 }

@@ -12,7 +12,9 @@ import {StringToNullableNumberConverter}  from './StringToNullableNumberConverte
 import {StringToNullableStringConverter}  from './StringToNullableStringConverter';
 import {StringToNumberConverter}          from './StringToNumberConverter';
 import {StringToStringConverter}          from './StringToStringConverter';
+import {StringToSingleNumberConverter}    from './StringToSingleNumberConverter';
 import {StringToSingleStringConverter}    from './StringToSingleStringConverter';
+import {StringToSingleBooleanConverter}   from './StringToSingleBooleanConverter';
 
 export abstract class PredefinedConverter
     extends Enum<PredefinedConverterOrdinals, PredefinedConverterNames> {
@@ -124,7 +126,57 @@ export abstract class PredefinedConverter
         }
 
     } ('nullable string',  'string', );
-    public static readonly SINGLE_STRING =   new class PredefinedConverter_SingleString extends PredefinedConverter {
+    public static readonly SINGLE_NUMBER =    new class PredefinedConverter_SingleString extends PredefinedConverter {
+
+        public newConvertor(value: string, validatingValue: number,): Converter<string, number>
+        public newConvertor(value: string, validatingValue: any[],): never
+        public newConvertor(value: string, validatingValue: any,): | Converter<string, number> | never
+        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, number> | never {
+            if (typeof validatingValue !== 'number')
+                throw new TypeError('The validating value cannot be a different value than a number');
+            return new StringToSingleNumberConverter(value, validatingValue,);
+        }
+
+        public newValidation(validatingValue: number,): ValidationCallback
+        public newValidation(validatingValue: any[],): never
+        public newValidation(validatingValue: any,): | ValidationCallback | never
+        public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
+            if (typeof validatingValue !== 'number')
+                throw new TypeError('The validating value cannot be a different value than a number');
+            return value => Number(value) === validatingValue;
+        }
+
+        public newConversion(value: string,): string {
+            return value;
+        }
+
+    }   ('single number',             );
+    public static readonly SINGLE_BOOLEAN =    new class PredefinedConverter_SingleString extends PredefinedConverter {
+
+        public newConvertor(value: string, validatingValue: boolean,): Converter<string, boolean>
+        public newConvertor(value: string, validatingValue: any[],): never
+        public newConvertor(value: string, validatingValue: any,): | Converter<string, boolean> | never
+        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, boolean> | never {
+            if (typeof validatingValue !== 'boolean')
+                throw new TypeError('The validating value cannot be a different value than a boolean');
+            return new StringToSingleBooleanConverter(value, validatingValue,);
+        }
+
+        public newValidation(validatingValue: boolean,): ValidationCallback
+        public newValidation(validatingValue: any[],): never
+        public newValidation(validatingValue: any,): | ValidationCallback | never
+        public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
+            if (typeof validatingValue !== 'boolean')
+                throw new TypeError('The validating value cannot be a different value than a boolean');
+            return value => Boolean(value) === validatingValue;
+        }
+
+        public newConversion(value: string,): string {
+            return value;
+        }
+
+    }  ('single boolean',            );
+    public static readonly SINGLE_STRING =    new class PredefinedConverter_SingleString extends PredefinedConverter {
 
         public newConvertor(value: string, validatingValue: string,): Converter<string, string>
         public newConvertor(value: string, validatingValue: any[],): never
@@ -148,7 +200,7 @@ export abstract class PredefinedConverter
             return value;
         }
 
-    }    ('single string',              );
+    }   ('single string',             );
     //TODO add string to emptyable single string converter
     //TODO add string to array of string converter
     //TODO add string to array of nullable string converter
@@ -249,6 +301,7 @@ export abstract class PredefinedConverter
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,
             this.STRING, this.EMPTYABLE_STRING, this.NULLABLE_STRING,
+            this.SINGLE_NUMBER, this.SINGLE_BOOLEAN, this.SINGLE_STRING,
         ];
     }
 
