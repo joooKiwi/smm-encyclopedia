@@ -6,9 +6,8 @@ import type {GameStyleTemplate}                                                 
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                               from '../game/Loader.types';
 import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
 
-import {CallbackCaller}   from '../../util/CallbackCaller';
-import {EntityLoader}     from '../simple/EntityLoader';
 import {CSVLoader}        from '../../util/loader/CSVLoader';
+import {EntityLoader}     from '../simple/EntityLoader';
 import {GameStyleBuilder} from './GameStyleBuilder';
 
 //region -------------------- CSV array related types --------------------
@@ -33,25 +32,11 @@ export class GameStyleLoader
     static readonly #instance = new GameStyleLoader();
     //region -------------------- Attributes --------------------
 
-    readonly #everyGameStyleMap: CallbackCaller<Map<string, GameStyle>>;
+    #everyGameStyleMap?: Map<string, GameStyle>;
 
     //endregion -------------------- Attributes --------------------
 
     private constructor() {
-        this.#everyGameStyleMap = new CallbackCaller(() => {
-            const finalReferences: Map<string, GameStyle> = new Map();
-            GameStyleBuilder.entitiesMap = EntityLoader.get.load();
-
-            const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
-                .setDefaultConversion('emptyable string')
-                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
-                .load();
-
-            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
-            return finalReferences;
-        });
     }
 
     public static get get() {
@@ -60,7 +45,30 @@ export class GameStyleLoader
 
 
     public load() {
-        return this.#everyGameStyleMap.get;
+        if (this.#everyGameStyleMap == null) {
+            const references: Map<string, GameStyle> = new Map();
+
+            //region -------------------- Builder initialisation --------------------
+
+            GameStyleBuilder.entitiesMap = EntityLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
+            //region -------------------- CSV Loader --------------------
+
+            const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .setDefaultConversion('emptyable string')
+                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+                .load();
+
+            //endregion -------------------- CSV Loader --------------------
+
+            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
+
+            this.#everyGameStyleMap = references;
+        }
+        return this.#everyGameStyleMap;
     }
 
 }

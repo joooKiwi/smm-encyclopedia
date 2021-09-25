@@ -7,10 +7,9 @@ import type {Loader}                                                            
 import type {ThemeTemplate}                                                                                                from './Theme.template';
 import type {WorldTheme}                                                                                                   from './WorldTheme';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
-import {CSVLoader}      from '../../util/loader/CSVLoader';
-import {EntityLoader}   from '../simple/EntityLoader';
-import {ThemeBuilder}   from './ThemeBuilder';
+import {CSVLoader}    from '../../util/loader/CSVLoader';
+import {EntityLoader} from '../simple/EntityLoader';
+import {ThemeBuilder} from './ThemeBuilder';
 
 //region -------------------- CSV array related types --------------------
 
@@ -41,29 +40,11 @@ export class ThemeLoader
 
     //region ---------- external object references ----------
 
-    readonly #everyThemeMap: CallbackCaller<Map<string, readonly [CourseTheme, WorldTheme]>>;
+    #everyThemeMap?: Map<string, readonly [CourseTheme, WorldTheme]>;
 
     //endregion ---------- external object references ----------
 
     private constructor() {
-        this.#everyThemeMap = new CallbackCaller(() => {
-            const finalReferences: Map<string, readonly [CourseTheme, WorldTheme]> = new Map();
-
-            ThemeBuilder.entitiesMap = EntityLoader.get.load();
-
-            const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
-                .setDefaultConversion('emptyable string')
-                .convertToBoolean(
-                    'isInCourseTheme', 'isInWorldTheme',
-                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
-                )
-                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
-                .load();
-
-            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
-            return finalReferences;
-        });
     }
 
     public static get get() {
@@ -72,11 +53,36 @@ export class ThemeLoader
 
 
     public load() {
-        return this.#everyThemeMap.get;
+        if (this.#everyThemeMap == null) {
+            const references: Map<string, readonly [CourseTheme, WorldTheme]> = new Map();
+
+            //region -------------------- Builder initialisation --------------------
+
+            ThemeBuilder.entitiesMap = EntityLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
+            //region -------------------- CSV Loader --------------------
+
+            const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .setDefaultConversion('emptyable string')
+                .convertToBoolean(
+                    'isInCourseTheme', 'isInWorldTheme',
+                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                )
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+                .load();
+
+            //endregion -------------------- CSV Loader --------------------
+
+            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
+
+            this.#everyThemeMap = references;
+        }
+        return this.#everyThemeMap;
     }
 
 }
-
 
 //region -------------------- Template related methods & classes --------------------
 

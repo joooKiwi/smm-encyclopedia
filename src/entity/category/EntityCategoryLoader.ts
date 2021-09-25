@@ -5,7 +5,6 @@ import type {EntityCategoryTemplate}                                            
 import type {Loader}                                                                                                       from '../../util/loader/Loader';
 import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
 
-import {CallbackCaller}        from '../../util/CallbackCaller';
 import {CSVLoader}             from '../../util/loader/CSVLoader';
 import {EntityCategoryBuilder} from './EntityCategoryBuilder';
 
@@ -30,13 +29,23 @@ export class EntityCategoryLoader
     static readonly #instance = new EntityCategoryLoader();
     //region -------------------- Attributes --------------------
 
-    readonly #everyEntityCategoriesMap: CallbackCaller<Map<string, EntityCategory>>;
+    #everyEntityCategoriesMap?: Map<string, EntityCategory>;
 
     //endregion -------------------- Attributes --------------------
 
     private constructor() {
-        this.#everyEntityCategoriesMap = new CallbackCaller(() => {
-            const finalReferences: Map<string, EntityCategory> = new Map();
+    }
+
+    public static get get() {
+        return this.#instance;
+    }
+
+
+    public load() {
+        if (this.#everyEntityCategoriesMap == null) {
+            const references: Map<string, EntityCategory> = new Map();
+
+            //region -------------------- CSV Loader --------------------
 
             const csvLoader = new CSVLoader<PropertiesArray, EntityCategoryBuilder, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .convertToEmptyableString(
@@ -49,22 +58,16 @@ export class EntityCategoryLoader
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
                     'korean',
                 )
-                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
                 .load();
+            //endregion -------------------- CSV Loader --------------------
 
             console.log('-------------------- entity category has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
-            return finalReferences;
-        });
-    }
 
-    public static get get() {
-        return this.#instance;
-    }
-
-
-    public load() {
-        return this.#everyEntityCategoriesMap.get;
+            this.#everyEntityCategoriesMap = references;
+        }
+        return this.#everyEntityCategoriesMap;
     }
 
 }

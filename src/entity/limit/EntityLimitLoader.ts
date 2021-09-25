@@ -9,12 +9,11 @@ import type {PossibleEntityLimitTypeEnglishName}                                
 import type {PossibleGroupName, SingleEntityName}                                                                                                                                                                               from '../entityTypes';
 import type {SMM2NameWithoutPortugueseTemplate}                                                                                                                                                                                 from '../lang/SMM2Name.template';
 
+import {CSVLoader}          from '../../util/loader/CSVLoader';
 import {EMPTY_ARRAY}        from '../../util/emptyVariables';
+import {EntityLimitBuilder} from './EntityLimitBuilder';
 import {EntityLimits}       from './EntityLimits';
 import {EntityLimitTypes}   from './EntityLimitTypes';
-import {CallbackCaller}     from '../../util/CallbackCaller';
-import {CSVLoader}          from '../../util/loader/CSVLoader';
-import {EntityLimitBuilder} from './EntityLimitBuilder';
 import {EntityLoader}       from '../simple/EntityLoader';
 
 //region -------------------- CSV array related types --------------------
@@ -60,15 +59,26 @@ export class EntityLimitLoader
 
     static readonly #instance = new EntityLimitLoader();
 
-    readonly #everyLimits: CallbackCaller<Map<string, EntityLimit>>;
+    #everyLimitsMap?: Map<string, EntityLimit>;
 
     private constructor() {
-        this.#everyLimits = new CallbackCaller(() => {
+    }
+
+    public static get get() {
+        return this.#instance;
+    }
+
+
+    public load(): Map<string, EntityLimit> {
+        if (this.#everyLimitsMap == null) {
             const references: Map<PossibleEntityLimits, EntityLimit> = new Map();
+
+            //region -------------------- Builder initialisation --------------------
 
             EntityLimitBuilder.references = references;
             EntityLimitBuilder.entitiesMap = EntityLoader.get.load();
 
+            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, EntityLimit, Headers>(everyThemes, convertedContent => new EntityLimitBuilder(TemplateCreator.createTemplate(convertedContent)).build())
@@ -90,17 +100,10 @@ export class EntityLimitLoader
 
             console.log('-------------------- entity limit has been loaded --------------------');// temporary console.log
             console.log(references);// temporary console.log
-            return references;
-        });
-    }
 
-    public static get get() {
-        return this.#instance;
-    }
-
-
-    public load(): Map<string, EntityLimit> {
-        return this.#everyLimits.get;
+            this.#everyLimitsMap = references;
+        }
+        return this.#everyLimitsMap;
     }
 
 }

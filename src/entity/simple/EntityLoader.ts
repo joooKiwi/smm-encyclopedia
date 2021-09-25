@@ -241,9 +241,12 @@ export class EntityLoader
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
 
+            //region -------------------- Builder initialisation --------------------
+
             EntityBuilder.references = references;
             EntityBuilder.categoriesMap = this.entityCategories;
 
+            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             const csvLoader = new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
