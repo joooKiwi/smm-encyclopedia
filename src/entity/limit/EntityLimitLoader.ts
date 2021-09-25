@@ -1,13 +1,13 @@
 import everyThemes from '../../resources/Entity limits.csv';
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate}                                               from './EntityLimit.template';
-import type {EntityLimit}                                                                                                                                              from './EntityLimit';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray, PropertiesArrayAsFunctionParameter as LanguagePropertiesArrayAsFunctionParameter} from '../../lang/Loader.types';
-import type {Loader}                                                                                                                                                   from '../../util/loader/Loader';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}                               from './EntityLimits.types';
-import type {PossibleEntityLimitTypeEnglishName}                                                                                                                       from './EntityLimitTypes.types';
-import type {PossibleGroupName, SingleEntityName}                                                                                                                      from '../entityTypes';
-import type {SMM2NameTemplate}                                                                                                                                         from '../lang/SMM2Name.template';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate}                                                                                                        from './EntityLimit.template';
+import type {EntityLimit}                                                                                                                                                                                                       from './EntityLimit';
+import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayAsFunctionParameterExcludingPortuguese as LanguagePropertiesArrayAsFunctionParameter, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                                                                                                                                                                                            from '../../util/loader/Loader';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}                                                                                        from './EntityLimits.types';
+import type {PossibleEntityLimitTypeEnglishName}                                                                                                                                                                                from './EntityLimitTypes.types';
+import type {PossibleGroupName, SingleEntityName}                                                                                                                                                                               from '../entityTypes';
+import type {SMM2NameWithoutPortugueseTemplate}                                                                                                                                                                                 from '../lang/SMM2Name.template';
 
 import {EMPTY_ARRAY}        from '../../util/emptyVariables';
 import {EntityLimits}       from './EntityLimits';
@@ -119,11 +119,13 @@ class TemplateCreator {
         entitiesName: EMPTY_ARRAY,
     };
 
+    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+
     public static createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = content[1];
         const acronym = content[2];
         const groupNameAndEntitiesName = [content[5], content[6], content[7],] as const;
-        const languages: LanguagePropertiesArrayAsFunctionParameter = [content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24], content[25], content[26], content[27], content[28],];
+        const languages: LanguagePropertiesArrayAsFunctionParameter = [content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24], content[25],];
 
         return type == null
             ? this.__createAlternativeLimitTemplate(acronym, groupNameAndEntitiesName, languages,)
@@ -215,7 +217,7 @@ class TemplateCreator {
         };
     }
 
-    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, chinese, simplifiedChinese, traditionalChinese, japanese, korean,]: LanguagePropertiesArrayAsFunctionParameter,): SMM2NameTemplate {
+    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, russian, chinese, simplifiedChinese, traditionalChinese, japanese, korean,]: LanguagePropertiesArrayAsFunctionParameter,): SMM2NameWithoutPortugueseTemplate {
         return {
             english: {
                 simple: english,
@@ -235,11 +237,7 @@ class TemplateCreator {
             },
             italian: italian,
             dutch: dutch,
-            portuguese: {
-                simple: portuguese,
-                american: americanPortuguese,
-                european: europeanPortuguese,
-            },
+            portuguese: this.#EMPTY_PORTUGUESE,
             russian: russian,
             chinese: {
                 simple: chinese,

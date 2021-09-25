@@ -1,9 +1,9 @@
 import everyEntityCategories from '../../resources/Entity categories.csv';
 
-import type {EntityCategory}         from './EntityCategory';
-import type {EntityCategoryTemplate} from './EntityCategory.template';
-import type {Loader}                 from '../../util/loader/Loader';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {EntityCategory}                                                                                               from './EntityCategory';
+import type {EntityCategoryTemplate}                                                                                       from './EntityCategory.template';
+import type {Loader}                                                                                                       from '../../util/loader/Loader';
+import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CallbackCaller}        from '../../util/CallbackCaller';
 import {CSVLoader}             from '../../util/loader/CSVLoader';
@@ -45,7 +45,6 @@ export class EntityCategoryLoader
                     'german',
                     'spanish', 'americanSpanish', 'europeanSpanish',
                     'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
                     'russian', 'japanese',
                     'chinese', 'simplifiedChinese', 'traditionalChinese',
                     'korean',
@@ -74,6 +73,8 @@ export class EntityCategoryLoader
 
 class TemplateCreator {
 
+    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+
     public static createTemplate(content: PropertiesArray): EntityCategoryTemplate {
         return {
             entities: null,
@@ -96,19 +97,15 @@ class TemplateCreator {
                 },
                 italian: content[10],
                 dutch: content[11],
-                portuguese: {
-                    simple: content[12],
-                    american: content[13],
-                    european: content[14],
-                },
-                russian: content[15],
-                japanese: content[16],
+                portuguese: this.#EMPTY_PORTUGUESE,
+                russian: content[12],
+                japanese: content[13],
                 chinese: {
-                    simple: content[17],
-                    simplified: content[18],
-                    traditional: content[19],
+                    simple: content[14],
+                    simplified: content[15],
+                    traditional: content[16],
                 },
-                korean: content[20],
+                korean: content[17],
             },
         };
     }

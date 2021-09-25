@@ -1,10 +1,10 @@
 import everyGameStyles from '../../resources/Game styles.csv';
 
-import type {Loader}                                                                 from '../../util/loader/Loader';
-import type {GameStyle}                                                      from './GameStyle';
-import type {GameStyleTemplate}                                              from './GameStyle.template';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray} from '../game/Loader.types';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                                                                                       from '../../util/loader/Loader';
+import type {GameStyle}                                                                                                    from './GameStyle';
+import type {GameStyleTemplate}                                                                                            from './GameStyle.template';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                               from '../game/Loader.types';
+import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CallbackCaller}   from '../../util/CallbackCaller';
 import {EntityLoader}     from '../simple/EntityLoader';
@@ -43,18 +43,8 @@ export class GameStyleLoader
             GameStyleBuilder.entitiesMap = EntityLoader.get.load();
 
             const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .setDefaultConversion('emptyable string')
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
-                )
                 .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
 
@@ -78,6 +68,8 @@ export class GameStyleLoader
 //region -------------------- Template related methods & classes --------------------
 
 class TemplateCreator {
+
+    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
 
     public static createTemplate(content: PropertiesArray): GameStyleTemplate {
         return {
@@ -106,19 +98,15 @@ class TemplateCreator {
                 },
                 italian: content[12],
                 dutch: content[13],
-                portuguese: {
-                    simple: content[14],
-                    american: content[15],
-                    european: content[16],
-                },
-                russian: content[17],
-                japanese: content[18],
+                portuguese: this.#EMPTY_PORTUGUESE,
+                russian: content[14],
+                japanese: content[15],
                 chinese: {
-                    simple: content[19],
-                    simplified: content[20],
-                    traditional: content[21],
+                    simple: content[16],
+                    simplified: content[17],
+                    traditional: content[18],
                 },
-                korean: content[22],
+                korean: content[19],
             }
         };
     }

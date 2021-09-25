@@ -23,9 +23,9 @@ export type EntityLimitsNames =
 
          | 'ICICLE' | 'ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK' | 'ENTITY_HELD_BY_A_TWISTER'
 
-         | `${| '_10_OR_30_OR_50' | 'PINK'}_COIN` | 'KEY'
+         | `${| '_10_OR_30_OR_50' | 'PINK'}_COIN` | 'KEY_COLLECTED'
 
-         | `${`${| 'FIRE' | 'SUPER'}BALL` | 'BOOMERANG' | 'CANNONBALL'}_THROWN_BY_A_PLAYER` | 'LINK_BOMB' | 'PLAYER_CRATE' | 'HATCHED_YOSHI'
+         | `${`${| 'FIRE' | 'SUPER'}BALL` | 'BOOMERANG' | 'CANNONBALL'}_THROWN_BY_A_PLAYER` | 'LINK_BOMB' | 'BUILDER_BOX' | 'HATCHED_YOSHI'
 
          | 'CHARVAARGH' | 'PIRANHA_CREEPER'
          | 'BOWSER_AND_BOWSER_JR' | 'BOOM_BOOM_AND_POM_POM' | 'KOOPALING'
@@ -46,9 +46,9 @@ export type PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying =
 
     | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block' | 'Entity Held By A Twister'
 
-    | `${| '10 / 30 / 50' | 'Pink'} Coin` | 'Key'
+    | `${| '10 / 30 / 50' | 'Pink'} Coin` | 'Key Collected'
 
-    | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Cannonball' | 'Boomerang'} thrown by a player` | 'Player\'s Crate' | 'Link\'s Bomb' | 'Hatched Yoshi'
+    | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Cannonball' | 'Boomerang'} thrown by a player` | 'Builder Box' | 'Link\'s Bomb' | 'Hatched Yoshi'
 
     | 'Enemy + Other' | 'Charvaargh' | 'Piranha Creeper'
     | 'Bowser (Jr.)' | 'Boom Boom / Pom Pom' | 'Koopaling'
@@ -80,10 +80,10 @@ export type EntityLimitsArray<T = EntityLimits, > = readonly [
 
     SimpleEntityLimits<T>['ICICLE_LIMIT'], SimpleEntityLimits<T>['ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT'], SimpleEntityLimits<T>['ENTITY_HELD_BY_A_TWISTER_LIMIT'],
 
-    SimpleEntityLimits<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEntityLimits<T>['PINK_COIN_LIMIT'], SimpleEntityLimits<T>['KEY_LIMIT'],
+    SimpleEntityLimits<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEntityLimits<T>['PINK_COIN_LIMIT'], SimpleEntityLimits<T>['KEY_COLLECTED_LIMIT'],
 
     SimpleEntityLimits<T>['POWER_UP_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['FIREBALL_THROWN_BY_A_PLAYER_LIMIT'], SimpleEntityLimits<T>['SUPERBALL_THROWN_BY_A_PLAYER_LIMIT'],
-    SimpleEntityLimits<T>['LINK_BOMB_LIMIT'], SimpleEntityLimits<T>['PLAYER_CRATE_LIMIT'],
+    SimpleEntityLimits<T>['LINK_BOMB_LIMIT'], SimpleEntityLimits<T>['BUILDER_BOX_LIMIT'],
     SimpleEntityLimits<T>['BOOMERANG_THROWN_BY_A_PLAYER_LIMIT'], SimpleEntityLimits<T>['CANNONBALL_THROWN_BY_A_PLAYER_LIMIT'],
     SimpleEntityLimits<T>['HATCHED_YOSHI_LIMIT'],
 

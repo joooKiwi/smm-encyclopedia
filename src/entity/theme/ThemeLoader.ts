@@ -1,11 +1,11 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseTheme}                                                            from './CourseTheme';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Loader}        from '../../util/loader/Loader';
-import type {ThemeTemplate} from './Theme.template';
-import type {WorldTheme}    from './WorldTheme';
+import type {CourseTheme}                                                                                                  from './CourseTheme';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                               from '../game/Loader.types';
+import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                                                                                       from '../../util/loader/Loader';
+import type {ThemeTemplate}                                                                                                from './Theme.template';
+import type {WorldTheme}                                                                                                   from './WorldTheme';
 
 import {CallbackCaller} from '../../util/CallbackCaller';
 import {CSVLoader}      from '../../util/loader/CSVLoader';
@@ -52,20 +52,10 @@ export class ThemeLoader
             ThemeBuilder.entitiesMap = EntityLoader.get.load();
 
             const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .setDefaultConversion('emptyable string')
                 .convertToBoolean(
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
-                )
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
                 )
                 .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
                 .load();
@@ -91,6 +81,8 @@ export class ThemeLoader
 //region -------------------- Template related methods & classes --------------------
 
 class TemplateCreator {
+
+    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
 
     public static createTemplate(content: PropertiesArray): ThemeTemplate {
         return {
@@ -123,19 +115,15 @@ class TemplateCreator {
                 },
                 italian: content[14],
                 dutch: content[15],
-                portuguese: {
-                    simple: content[16],
-                    american: content[17],
-                    european: content[18],
-                },
-                russian: content[19],
-                japanese: content[20],
+                portuguese: this.#EMPTY_PORTUGUESE,
+                russian: content[16],
+                japanese: content[17],
                 chinese: {
-                    simple: content[21],
-                    simplified: content[22],
-                    traditional: content[23],
+                    simple: content[18],
+                    simplified: content[19],
+                    traditional: content[20],
                 },
-                korean: content[24],
+                korean: content[21],
             }
         };
     }

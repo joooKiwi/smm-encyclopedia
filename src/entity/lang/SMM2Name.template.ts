@@ -3,6 +3,7 @@
  */
 export interface SMM2NameTemplate {
 
+
     english: {
         simple: | string | null
         american: | string | null
@@ -44,5 +45,19 @@ export interface SMM2NameTemplate {
     japanese: | string | null
 
     korean: | string | null
+
+}
+
+/**
+ * @template
+ */
+export interface SMM2NameWithoutPortugueseTemplate
+    extends SMM2NameTemplate {
+
+    portuguese: {
+        simple: null
+        american: null
+        european: null
+    }
 
 }

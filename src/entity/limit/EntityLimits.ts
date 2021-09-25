@@ -45,13 +45,13 @@ export class EntityLimits
 
     public static readonly _10_OR_30_OR_50_COIN_LIMIT =                     new EntityLimits('10 / 30 / 50 Coin',                                                                 );
     public static readonly PINK_COIN_LIMIT =                                new EntityLimits('Pink Coin',                                                                         );
-    public static readonly KEY_LIMIT =                                      new EntityLimits('Key',                                                                               );
+    public static readonly KEY_COLLECTED_LIMIT =                            new EntityLimits('Key Collected',                                                                               );
 
     public static readonly POWER_UP_ENTITY_LIMIT_EDITOR =                   new EntityLimits(['PEL (E)', 'Power-up Entity', false,],                                              );
     public static readonly FIREBALL_THROWN_BY_A_PLAYER_LIMIT =              new EntityLimits('Fireball thrown by a player',                                                       );
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER_LIMIT =             new EntityLimits('Superball thrown by a player',                                                      );
     public static readonly LINK_BOMB_LIMIT =                                new EntityLimits('Link\'s Bomb',                                                                      );
-    public static readonly PLAYER_CRATE_LIMIT =                             new EntityLimits('Player\'s Crate',                                                                   );
+    public static readonly BUILDER_BOX_LIMIT =                              new EntityLimits('Builder Box',                                                                       );
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER_LIMIT =             new EntityLimits('Boomerang thrown by a player',                                                      );
     public static readonly CANNONBALL_THROWN_BY_A_PLAYER_LIMIT =            new EntityLimits('Cannonball thrown by a player',                                                     );
     public static readonly HATCHED_YOSHI_LIMIT =                            new EntityLimits(['HYL', 'Hatched Yoshi',],                                                           );
@@ -191,11 +191,11 @@ export class EntityLimits
             this.SNAKE_BLOCK_LIMIT, this.EXCLAMATION_BLOCK_LIMIT, this.TRACK_BLOCK_LIMIT,
             this.ICICLE_LIMIT, this.ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT, this.ENTITY_HELD_BY_A_TWISTER_LIMIT,
 
-            this._10_OR_30_OR_50_COIN_LIMIT, this.PINK_COIN_LIMIT, this.KEY_LIMIT,
+            this._10_OR_30_OR_50_COIN_LIMIT, this.PINK_COIN_LIMIT, this.KEY_COLLECTED_LIMIT,
 
             this.POWER_UP_ENTITY_LIMIT_EDITOR,
             this.FIREBALL_THROWN_BY_A_PLAYER_LIMIT, this.SUPERBALL_THROWN_BY_A_PLAYER_LIMIT,
-            this.LINK_BOMB_LIMIT, this.PLAYER_CRATE_LIMIT, this.BOOMERANG_THROWN_BY_A_PLAYER_LIMIT, this.CANNONBALL_THROWN_BY_A_PLAYER_LIMIT,
+            this.LINK_BOMB_LIMIT, this.BUILDER_BOX_LIMIT, this.BOOMERANG_THROWN_BY_A_PLAYER_LIMIT, this.CANNONBALL_THROWN_BY_A_PLAYER_LIMIT,
             this.HATCHED_YOSHI_LIMIT,
 
             this.GENERAL_ENTITY_LIMIT_EDITOR,

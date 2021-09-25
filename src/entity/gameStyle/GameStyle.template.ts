@@ -1,5 +1,5 @@
-import type {BooleanGameTemplate} from '../game/Game.template';
-import type {SMM2NameTemplate}    from '../lang/SMM2Name.template';
+import type {BooleanGameTemplate}               from '../game/Game.template';
+import type {SMM2NameWithoutPortugueseTemplate} from '../lang/SMM2Name.template';
 
 /**
  * @template
@@ -9,7 +9,7 @@ export interface GameStyleTemplate {
     isIn: {
         game: BooleanGameTemplate
     }
-    name: SMM2NameTemplate
+    name: SMM2NameWithoutPortugueseTemplate
 
 }
 

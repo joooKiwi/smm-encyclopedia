@@ -34,7 +34,7 @@ export class LimitPropertyContainer
     static readonly #BLOCK_LIMIT_IN_EDITOR_ONLY_PROPERTY =                 new LimitPropertyContainer(EntityLimits.BLOCK_LIMIT,                         [LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,], LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
     static readonly #OTHER_GROUND_AND_VINE_LIMIT_IN_EDITOR_ONLY_PROPERTY = new LimitPropertyContainer(EntityLimits.OTHER_GROUND_AND_VINE_LIMIT,         [LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,], LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
     static readonly #GENERAL_LIMIT_ONLY_PROPERTY =                         new LimitPropertyContainer(EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING,  [LimitPropertyContainer.#TRUE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,],  LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
-    static readonly #KEY_PROPERTY =                                        new LimitPropertyContainer(EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING,  [LimitPropertyContainer.#TRUE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,],  LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          [EntityLimits.KEY_LIMIT, null,],          );
+    static readonly #KEY_COLLECTED_PROPERTY =                              new LimitPropertyContainer(EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING,  [LimitPropertyContainer.#TRUE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,],  LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          [EntityLimits.KEY_COLLECTED_LIMIT, null,], );
     static readonly #WARP_DOOR_ONLY_PROPERTY =                             new LimitPropertyContainer(EntityLimits.WARP_DOOR_LIMIT,                     [LimitPropertyContainer.#TRUE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,],  LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
     static readonly #WARP_BOX_ONLY_PROPERTY =                              new LimitPropertyContainer(EntityLimits.WARP_BOX_LIMIT,                      [LimitPropertyContainer.#TRUE_LIMIT, LimitPropertyContainer.#TRUE_LIMIT,],   LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
 
@@ -248,8 +248,8 @@ export class LimitPropertyContainer
                     && _projectileLimit === false && projectileLimitComment == null) {
                     if (_customLimit == null && customLimitComment == null)
                         return this.#GENERAL_LIMIT_ONLY_PROPERTY;
-                    if (_customLimit === EntityLimits.KEY_LIMIT && customLimitComment == null)
-                        return this.#KEY_PROPERTY;
+                    if (_customLimit === EntityLimits.KEY_COLLECTED_LIMIT && customLimitComment == null)
+                        return this.#KEY_COLLECTED_PROPERTY;
                 }
                 break;
             case EntityLimits.WARP_DOOR_LIMIT:
