@@ -8,9 +8,9 @@ export type EntityCategoriesOrdinals = | 0 | 1 | 2 | 3;
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type EntityCategoriesNames = |Uppercase<PossibleEntityCategories>;
+export type EntityCategoriesNames = Uppercase<PossibleEntityCategoriesName>;
 
-export type PossibleEntityCategories = | 'Terrain' | 'Item' | 'Enemy' | 'Gizmo';
+export type PossibleEntityCategoriesName = | 'Terrain' | 'Item' | 'Enemy' | 'Gizmo';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

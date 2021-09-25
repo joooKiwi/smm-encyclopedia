@@ -9,7 +9,7 @@ import type {HeadersWithPortuguese as LanguagesHeaders, PropertiesArrayWithPortu
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../game/Loader.types';
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../../util/loader/Loader';
 import type {PossibleCourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../theme/Themes.types';
-import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../category/EntityCategories.types';
+import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../category/EntityCategories.types';
 import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../limit/EntityLimits.types';
 import type {PossibleGameStyleAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../gameStyle/GameStyles.types';
 import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../time/Times.types';
@@ -58,7 +58,7 @@ type ExclusivePropertiesArray1 = [
 type ExclusivePropertiesArray2 = [
     //region ---------- Basic properties ----------
 
-    categoryInTheEditor: | PossibleEntityCategories | null,
+    categoryInTheEditor: | PossibleEntityCategoriesName | null,
 
     hasAMushroomVariant: HasAMushroomVariant,
     canBeInAParachute: CanBeInAParachute,
@@ -192,10 +192,10 @@ type PropertiesArray = [
 
 export interface DebugEntityReferences {
 
-    originalContent: readonly string[]
-    arrayConverted: PropertiesArray
-    template: EntityTemplate
-    entity?: Entity
+    originalContent: readonly string[];
+    arrayConverted: PropertiesArray;
+    template: EntityTemplate;
+    entity?: Entity;
 
 }
 
@@ -613,10 +613,10 @@ class NameCreator {
 
 interface ReferenceHolder {
 
-    reference: EntityTemplate
-    type: ReferenceType
-    value: EntityLink
-    errorIfNeverFound: () => ReferenceError
+    reference: EntityTemplate;
+    type: ReferenceType;
+    value: EntityLink;
+    errorIfNeverFound: () => ReferenceError;
 
 }
 

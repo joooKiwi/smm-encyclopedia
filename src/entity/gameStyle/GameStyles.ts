@@ -1,3 +1,4 @@
+import type {ClassWithAcronym}                                                                                                                                                          from '../ClassWithAcronym';
 import type {ClassWithEnglishName}                                                                                                                                                      from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                        from '../ClassWithReference';
 import type {Entity}                                                                                                                                                                    from '../simple/Entity';
@@ -16,8 +17,11 @@ import {GameStyleLoader} from './GameStyleLoader';
  */
 export abstract class GameStyles
     extends Enum<GameStylesOrdinals, GameStylesNames>
-    implements ClassWithEnglishName<PossibleGameStyleName>, ClassWithReference<GameStyle>,
-        PropertyGetter<GameStyleProperty>, PropertyReferenceGetter<GameStyleReferences> {
+    implements ClassWithReference<GameStyle>,
+        ClassWithAcronym<PossibleGameStyleAcronym>,
+        ClassWithEnglishName<PossibleGameStyleName>,
+        PropertyReferenceGetter<GameStyleReferences>,
+        PropertyGetter<GameStyleProperty> {
 
     //region -------------------- Enum instances --------------------
 
@@ -101,7 +105,7 @@ export abstract class GameStyles
 
     //region -------------------- Getter methods --------------------
 
-    public get reference() {
+    public get reference(): GameStyle {
         return this.#reference ??= GameStyleLoader.get.load().get(this.englishName)!;
     }
 

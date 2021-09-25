@@ -1,4 +1,5 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                              from '../ClassWithEnglishName';
+import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                                                                                          from '../ClassWithAcronym';
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                from '../ClassWithReference';
 import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                     from './EntityLimit';
 import type {EntityLimitsArray, EntityLimitsNames, EntityLimitsOrdinals, PossibleAcronymEntityLimits, PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits, PossibleStartingEntityLimits, PossibleStartingEntityLimitsInBothEditorAndWhilePlaying, PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying} from './EntityLimits.types';
@@ -7,16 +8,15 @@ import {EntityLimitLoader} from './EntityLimitLoader';
 import {EntityLimitTypes}  from './EntityLimitTypes';
 import {Enum}              from '../../util/enum/Enum';
 
-type EnglishNameReceived = | PossibleStartingEntityLimits | [englishName: PossibleAcronymEntityLimits, englishAcronym: PossibleStartingEntityLimits,] | [englishName: PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEntityLimitsInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
-type AlternativeEnglishNameReceived = | PossibleAlternativeEntityLimits | [alternativeEnglishName: PossibleAlternativeAcronymEntityLimits, alternativeEnglishAcronym: PossibleAlternativeEntityLimits,];
-
 /**
  * @recursiveReferenceVia<{@link EntityLimitBuilder}, {@link EntityLimitLoader}>
  * @recursiveReference<{@link EntityLimitLoader}>
  */
 export class EntityLimits
     extends Enum<EntityLimitsOrdinals, EntityLimitsNames>
-    implements ClassWithEnglishName<PossibleEntityLimits>, ClassWithReference<EntityLimitWithPossibleAlternativeEntityLimit> {
+    implements ClassWithReference<EntityLimitWithPossibleAlternativeEntityLimit>,
+        ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
+        ClassWithEnglishName<PossibleEntityLimits> {
 
     //region -------------------- Enum instances --------------------
 
@@ -113,6 +113,11 @@ export class EntityLimits
 
     //region -------------------- Getter methods --------------------
 
+    public get reference(): EntityLimitWithPossibleAlternativeEntityLimit {
+        return this.#reference ??= EntityLimitLoader.get.load().get(this.englishName)! as EntityLimitWithPossibleAlternativeEntityLimit;
+    }
+
+
     public get acronym(): PossibleAcronymEntityLimits | null {
         return this.#acronym;
     }
@@ -127,10 +132,6 @@ export class EntityLimits
 
     public get alternativeEnglishName(): PossibleAlternativeEntityLimits | null {
         return this.#alternativeEnglishName;
-    }
-
-    public get reference() {
-        return this.#reference ??= EntityLimitLoader.get.load().get(this.englishName)! as EntityLimitWithPossibleAlternativeEntityLimit;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -216,3 +217,6 @@ export class EntityLimits
     //endregion -------------------- Enum methods --------------------
 
 }
+
+type EnglishNameReceived = | PossibleStartingEntityLimits | [englishName: PossibleAcronymEntityLimits, englishAcronym: PossibleStartingEntityLimits,] | [englishName: PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEntityLimitsInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
+type AlternativeEnglishNameReceived = | PossibleAlternativeEntityLimits | [alternativeEnglishName: PossibleAlternativeAcronymEntityLimits, alternativeEnglishAcronym: PossibleAlternativeEntityLimits,];

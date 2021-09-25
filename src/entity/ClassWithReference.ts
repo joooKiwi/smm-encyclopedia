@@ -1,5 +1,5 @@
-export interface ClassWithReference<Reference extends object, > {
+export interface ClassWithReference<REFERENCE extends object, > {
 
-    get reference(): Reference
+    get reference(): REFERENCE
 
 }

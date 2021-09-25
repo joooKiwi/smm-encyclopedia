@@ -1,5 +1,5 @@
-export interface ClassWithEnglishName<Name extends string, > {
+export interface ClassWithEnglishName<NAME extends string, > {
 
-    get englishName(): Name
+    get englishName(): NAME
 
 }

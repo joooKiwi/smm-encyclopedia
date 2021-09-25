@@ -18,8 +18,10 @@ import {EmptyEntity} from '../simple/EmptyEntity';
  */
 export class Themes
     extends Enum<ThemesOrdinals, ThemesNames>
-    implements ClassWithEnglishName<PossibleTheme>, ClassWithReference<readonly [CourseTheme, WorldTheme]>,
-        PropertyGetter<ThemeProperty>, PropertyReferenceGetter<ThemeReferences> {
+    implements ClassWithReference<readonly [CourseTheme, WorldTheme,]>,
+        ClassWithEnglishName<PossibleTheme>,
+        PropertyReferenceGetter<ThemeReferences>,
+        PropertyGetter<ThemeProperty> {
 
     //region -------------------- Enum instances --------------------
 
@@ -166,12 +168,13 @@ export class Themes
 
     //region -------------------- Getter methods --------------------
 
-    public get englishName() {
-        return this.#englishName;
+    public get reference(): readonly [CourseTheme, WorldTheme,] {
+        return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
     }
 
-    public get reference() {
-        return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
+
+    public get englishName() {
+        return this.#englishName;
     }
 
     public get courseTheme() {
