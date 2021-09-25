@@ -1,12 +1,12 @@
-import type {Builder}          from '../util/Builder';
-import type {Name}             from '../lang/name/Name';
-import type {SMM2NameTemplate} from './lang/SMM2Name.template';
+import type {Builder}                        from '../util/Builder';
+import type {Name}                           from '../lang/name/Name';
+import type {SMM2NameTemplateWithPortuguese} from './lang/SMM2Name.template';
 
 import {NameBuilder} from './lang/NameBuilder';
 import {NameCreator} from './lang/NameCreator';
 
 interface TemplateWithNameTemplate {
-    name: SMM2NameTemplate
+    name: SMM2NameTemplateWithPortuguese
 }
 
 export abstract class TemplateBuilder<T extends TemplateWithNameTemplate, U>

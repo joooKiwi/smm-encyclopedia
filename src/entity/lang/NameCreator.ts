@@ -1,11 +1,11 @@
-import type {SMM2NameTemplate} from './SMM2Name.template';
+import type {SMM2NameTemplate, SMM2NameTemplateWithPortuguese} from './SMM2Name.template';
 
 /**
- * A class made to help the {@link SMM2NameTemplate}.
+ * A class made to help the {@link SMM2NameTemplateWithPortuguese}.
  */
 export class NameCreator {
 
-    private static __testName(name: SMM2NameTemplate,): void {
+    private static __testName(name: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese,): void {
         //README since some references are still not complete, they are in comment
         if (name.english.simple === null && (name.english.american === null || name.english.european === null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -35,7 +35,7 @@ export class NameCreator {
      * @param templateMap the template map reference
      * @param template the template to add to the map
      */
-    public static addEnglishReference<T>(name: SMM2NameTemplate, templateMap: Map<string, T>, template: T,): void {
+    public static addEnglishReference<T>(name: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese, templateMap: Map<string, T>, template: T,): void {
         this.__testName(name);
         const englishReferenceName = name.english.simple ?? name.english.american;
         if (englishReferenceName == null)

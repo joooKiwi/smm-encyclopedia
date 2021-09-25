@@ -1,9 +1,9 @@
 import everyEntityCategories from '../../resources/Entity categories.csv';
 
-import type {EntityCategory}                                                                                               from './EntityCategory';
-import type {EntityCategoryTemplate}                                                                                       from './EntityCategory.template';
-import type {Loader}                                                                                                       from '../../util/loader/Loader';
-import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {EntityCategory}                                                         from './EntityCategory';
+import type {EntityCategoryTemplate}                                                 from './EntityCategory.template';
+import type {Loader}                                                                 from '../../util/loader/Loader';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CSVLoader}             from '../../util/loader/CSVLoader';
 import {EntityCategoryBuilder} from './EntityCategoryBuilder';

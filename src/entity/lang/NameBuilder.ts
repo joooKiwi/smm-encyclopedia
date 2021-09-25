@@ -1,6 +1,6 @@
-import type {Builder}          from '../../util/Builder';
-import type {SMM2NameTemplate} from './SMM2Name.template';
-import type {Name}             from '../../lang/name/Name';
+import type {Builder}                                          from '../../util/Builder';
+import type {SMM2NameTemplate, SMM2NameTemplateWithPortuguese} from './SMM2Name.template';
+import type {Name}                                             from '../../lang/name/Name';
 
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
 
@@ -13,7 +13,7 @@ export class NameBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: SMM2NameTemplate,) {
+    public constructor(template: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese,) {
         this.#template = template;
     }
 

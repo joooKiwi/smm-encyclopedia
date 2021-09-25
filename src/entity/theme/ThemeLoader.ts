@@ -1,11 +1,11 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseTheme}                                                                                                  from './CourseTheme';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                               from '../game/Loader.types';
-import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Loader}                                                                                                       from '../../util/loader/Loader';
-import type {ThemeTemplate}                                                                                                from './Theme.template';
-import type {WorldTheme}                                                                                                   from './WorldTheme';
+import type {CourseTheme}                                                            from './CourseTheme';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                                                 from '../../util/loader/Loader';
+import type {ThemeTemplate}                                                          from './Theme.template';
+import type {WorldTheme}                                                             from './WorldTheme';
 
 import {CSVLoader}    from '../../util/loader/CSVLoader';
 import {EntityLoader} from '../simple/EntityLoader';

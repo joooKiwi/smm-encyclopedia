@@ -1,7 +1,7 @@
 import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                        from '../entityTypes';
-import type {SMM2NameTemplate}                                                                                                           from '../lang/SMM2Name.template';
+import type {SMM2NameTemplateWithPortuguese}                                                                                             from '../lang/SMM2Name.template';
 
 //region -------------------- Limit types --------------------
 
@@ -63,7 +63,7 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
 
     link: LinkTemplate
 
-    name: SMM2NameTemplate
+    name: SMM2NameTemplateWithPortuguese
 
 }
 

@@ -1,8 +1,7 @@
 /**
  * @template
  */
-export interface SMM2NameTemplate {
-
+export interface SMM2NameTemplate<PORTUGUESE extends string | null = null, > {
 
     english: {
         simple: | string | null
@@ -29,9 +28,9 @@ export interface SMM2NameTemplate {
     dutch: | string | null
 
     portuguese: {
-        simple: | string | null
-        american: | string | null
-        european: | string | null
+        simple: PORTUGUESE
+        american: PORTUGUESE
+        european: PORTUGUESE
     }
 
     russian: | string | null
@@ -51,13 +50,7 @@ export interface SMM2NameTemplate {
 /**
  * @template
  */
-export interface SMM2NameWithoutPortugueseTemplate
-    extends SMM2NameTemplate {
-
-    portuguese: {
-        simple: null
-        american: null
-        european: null
-    }
+export interface SMM2NameTemplateWithPortuguese
+    extends SMM2NameTemplate<string | null> {
 
 }

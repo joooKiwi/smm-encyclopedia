@@ -1,13 +1,13 @@
 import everyThemes from '../../resources/Entity limits.csv';
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate}                                                                                                        from './EntityLimit.template';
-import type {EntityLimit}                                                                                                                                                                                                       from './EntityLimit';
-import type {HeadersExcludingPortuguese as LanguagesHeaders, PropertiesArrayAsFunctionParameterExcludingPortuguese as LanguagePropertiesArrayAsFunctionParameter, PropertiesArrayExcludingPortuguese as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Loader}                                                                                                                                                                                                            from '../../util/loader/Loader';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}                                                                                        from './EntityLimits.types';
-import type {PossibleEntityLimitTypeEnglishName}                                                                                                                                                                                from './EntityLimitTypes.types';
-import type {PossibleGroupName, SingleEntityName}                                                                                                                                                                               from '../entityTypes';
-import type {SMM2NameWithoutPortugueseTemplate}                                                                                                                                                                                 from '../lang/SMM2Name.template';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate}                                               from './EntityLimit.template';
+import type {EntityLimit}                                                                                                                                              from './EntityLimit';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray, PropertiesArrayAsFunctionParameter as LanguagePropertiesArrayAsFunctionParameter} from '../../lang/Loader.types';
+import type {Loader}                                                                                                                                                   from '../../util/loader/Loader';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}                               from './EntityLimits.types';
+import type {PossibleEntityLimitTypeEnglishName}                                                                                                                       from './EntityLimitTypes.types';
+import type {PossibleGroupName, SingleEntityName}                                                                                                                      from '../entityTypes';
+import type {SMM2NameTemplate}                                                                                                                                         from '../lang/SMM2Name.template';
 
 import {CSVLoader}          from '../../util/loader/CSVLoader';
 import {EMPTY_ARRAY}        from '../../util/emptyVariables';
@@ -220,7 +220,7 @@ class TemplateCreator {
         };
     }
 
-    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, russian, chinese, simplifiedChinese, traditionalChinese, japanese, korean,]: LanguagePropertiesArrayAsFunctionParameter,): SMM2NameWithoutPortugueseTemplate {
+    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, russian, chinese, simplifiedChinese, traditionalChinese, japanese, korean,]: LanguagePropertiesArrayAsFunctionParameter,): SMM2NameTemplate {
         return {
             english: {
                 simple: english,
