@@ -15,7 +15,7 @@ export type EntityLimitsOrdinals =
 export type EntityLimitsNames =
     | `${| 'GENERAL' | 'POWER_UP'}_ENTITY_LIMIT_${| 'WHILE_PLAYING' | 'EDITOR'}`
 
-    | `${| 'LOOSE_COIN' | 'SOUND_EFFECT' | 'CORPSE' | 'PROJECTILE'
+    | `${| 'LOOSE_COIN' | 'SOUND_EFFECT' | 'CORPSE' | 'PROJECTILE' | 'LIGHT_SOURCE'
 
          | 'GROUND' | 'BLOCK' | 'OTHER_GROUND_AND_VINE' | 'CLEAR_PIPE'
 
@@ -36,9 +36,9 @@ export type EntityLimitsNames =
 export type PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying = `${| 'GE' | 'PE'}L (${| 'WP' | 'E'})`;
 export type PossibleStartingEntityLimitsInBothEditorAndWhilePlaying = `${| 'General' | 'Power-up'} Entity`;
 
-export type PossibleAcronymEntityLimits = | PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'GV' | 'HY'}L`;
+export type PossibleAcronymEntityLimits = | PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'GV' | 'HY'}L`;
 export type PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying =
-    | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile'
+    | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile' | 'Light Source'
 
     | 'Ground' | 'Block' | 'Other Ground + Vine' | 'Clear Pipe'
 
@@ -72,7 +72,7 @@ export type SimpleEntityLimits<T = EntityLimits, > = SimpleEnum<EntityLimitsName
 export type EntityLimitsArray<T = EntityLimits, > = readonly [
     SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'],
 
-    SimpleEntityLimits<T>['LOOSE_COIN_LIMIT'], SimpleEntityLimits<T>['SOUND_EFFECT_LIMIT'], SimpleEntityLimits<T>['CORPSE_LIMIT'], SimpleEntityLimits<T>['PROJECTILE_LIMIT'],
+    SimpleEntityLimits<T>['LOOSE_COIN_LIMIT'], SimpleEntityLimits<T>['SOUND_EFFECT_LIMIT'], SimpleEntityLimits<T>['CORPSE_LIMIT'], SimpleEntityLimits<T>['PROJECTILE_LIMIT'],SimpleEntityLimits<T>['LIGHT_SOURCE_LIMIT'],
 
     SimpleEntityLimits<T>['GROUND_LIMIT'], SimpleEntityLimits<T>['BLOCK_LIMIT'], SimpleEntityLimits<T>['OTHER_GROUND_AND_VINE_LIMIT'], SimpleEntityLimits<T>['CLEAR_PIPE_LIMIT'],
 

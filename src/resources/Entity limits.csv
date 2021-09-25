@@ -1,4 +1,4 @@
-alternative,type,acronym,limit,limit_comment,link_groupName,link_entity1,link_entity2,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,russian,japanese,chinese,simplifiedChinese,traditionalChinese,korean
+alternative,type,acronym,limit,limit_comment,link_groupName,link_entity1,link_entity2,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
 Entity Limit B,While Playing,GEL (WP),100,,,,,General Entity Limit (While Playing),,,Limite d'entité générale (en jouant),,,,,,,,,,,,,,
 ,,ELB,,,,,,Entity Limit B,,,Limite d'entité B,,,,,,,,,,,,,,
 Entity Limit C,While Playing,PEL (WP),100,,,,,Power-up Entity Limit (While Playing),,,Limite de d'entité d'amélioration (en jouant),,,,,,,,,,,,,,
@@ -7,6 +7,7 @@ Entity Limit C,While Playing,PEL (WP),100,,,,,Power-up Entity Limit (While Playi
 ,While Playing,SEL,?,,,,,Sound Effect Limit,,,Limite d'effet sonore,,,,,,,,,,,,,,
 ,While Playing,CL,?,,,,,Corpse Limit,,,Limite de corps,,,,,,,,,,,,,,
 ,While Playing,PJL,100,,,,,Projectile Limit,,,Limite de projectile,,,,,,,,,,,,,,
+,While Playing,LSL,500,,,,,Light Source Limit,,,Limite de source de lumière,,,,,,,,,,,,,,
 Ground Limit 1,Editor,,4000,,,Ground,,Ground Limit,,,Limite de sol,,,,,,,,,,,,,,
 ,,,,,,Ground,,Ground Limit 1,,,Limite de sol 1,,,,,,,,,,,,,,
 Ground Limit 2,Editor,,400,,,,,Block Limit,,,Limite de bloc,,,,,,,,,,,,,,

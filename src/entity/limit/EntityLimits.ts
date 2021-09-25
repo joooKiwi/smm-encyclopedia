@@ -27,6 +27,7 @@ export class EntityLimits
     public static readonly SOUND_EFFECT_LIMIT =                             new EntityLimits(['SEL', 'Sound Effect',],                                                            );
     public static readonly CORPSE_LIMIT =                                   new EntityLimits(['CL', 'Corpse',],                                                                   );
     public static readonly PROJECTILE_LIMIT =                               new EntityLimits(['PJL', 'Projectile',],                                                              );
+    public static readonly LIGHT_SOURCE_LIMIT =                             new EntityLimits(['LSL', 'Light Source',],                                                            );
 
     public static readonly GROUND_LIMIT =                                   new EntityLimits('Ground', 'Ground Limit 1',                                        );
     public static readonly BLOCK_LIMIT =                                    new EntityLimits('Block', 'Ground Limit 2',                                         );
@@ -45,7 +46,7 @@ export class EntityLimits
 
     public static readonly _10_OR_30_OR_50_COIN_LIMIT =                     new EntityLimits('10 / 30 / 50 Coin',                                                                 );
     public static readonly PINK_COIN_LIMIT =                                new EntityLimits('Pink Coin',                                                                         );
-    public static readonly KEY_COLLECTED_LIMIT =                            new EntityLimits('Key Collected',                                                                               );
+    public static readonly KEY_COLLECTED_LIMIT =                            new EntityLimits('Key Collected',                                                                     );
 
     public static readonly POWER_UP_ENTITY_LIMIT_EDITOR =                   new EntityLimits(['PEL (E)', 'Power-up Entity', false,],                                              );
     public static readonly FIREBALL_THROWN_BY_A_PLAYER_LIMIT =              new EntityLimits('Fireball thrown by a player',                                                       );
@@ -183,7 +184,7 @@ export class EntityLimits
         return this.#VALUES ??= [
             this.GENERAL_ENTITY_LIMIT_WHILE_PLAYING, this.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING,
 
-            this.LOOSE_COIN_LIMIT, this.SOUND_EFFECT_LIMIT, this.CORPSE_LIMIT, this.PROJECTILE_LIMIT,
+            this.LOOSE_COIN_LIMIT, this.SOUND_EFFECT_LIMIT, this.CORPSE_LIMIT, this.PROJECTILE_LIMIT, this.LIGHT_SOURCE_LIMIT,
 
             this.GROUND_LIMIT, this.BLOCK_LIMIT, this.OTHER_GROUND_AND_VINE_LIMIT, this.CLEAR_PIPE_LIMIT,
 
