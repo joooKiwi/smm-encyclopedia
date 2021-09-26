@@ -8,8 +8,8 @@ import {LanguageChangerTab}         from './LanguageChangerTab';
 export default class ChangeTheLanguageTab
     extends PureComponent<{}, { currentLanguage: ProjectLanguages }> {
 
-    public constructor() {
-        super({});
+    public constructor(props: {},) {
+        super(props);
         this.state = {
             currentLanguage: ProjectLanguages.currentLanguage,
         };
