@@ -1,6 +1,6 @@
 import type {Namespace, TFunction} from 'react-i18next';
 
-import type {ReactProperty} from '../../util/ReactProperty';
+import type {SimpleReactPropertyWithChildren} from '../../util/ReactProperty';
 
 export type TranslationReturnType = | string | JSX.Element;
 export type ContentCallback = (translation: TFunction<'content'>,) => TranslationReturnType;
@@ -9,9 +9,7 @@ export type EntityContentCallback = (translation: TFunction<'entityContent'>,) =
 export type LanguageCallback = (translation: TFunction<'language'>,) => TranslationReturnType;
 
 export interface TranslationProperty<N extends Namespace, >
-    extends ReactProperty {
-
-    translationCallback: (translation: TFunction<N>,) => TranslationReturnType;
+    extends SimpleReactPropertyWithChildren<(translation: TFunction<N>,) => TranslationReturnType> {
 
     isInSpan?: boolean;
 
