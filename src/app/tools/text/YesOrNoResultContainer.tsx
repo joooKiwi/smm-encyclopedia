@@ -13,10 +13,10 @@ export interface YesOrNoTextContent {
  * @param props {@link YesOrNoTextContent} a simple boolean value property
  * @return {@link BooleanResultContainer}
  */
-export default function YesOrNoResultContainer(props: YesOrNoTextContent,): JSX.Element {
-    const {t: translation} = useTranslation('content');
+export default function YesOrNoResultContainer({boolean,}: YesOrNoTextContent,): JSX.Element {
+    const {t: translation,} = useTranslation('content');
     return <BooleanResultContainer
-        boolean={props.boolean}
+        boolean={boolean}
         trueValue={translation('Yes')}
         falseValue={translation('No')}
     />;
