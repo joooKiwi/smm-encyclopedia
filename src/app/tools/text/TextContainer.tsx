@@ -1,6 +1,9 @@
+import type {ReactProperty} from '../../../util/ReactProperty';
+
 export type PossibleTextContent = | string | number | boolean;
 
-export interface TextContent<T extends PossibleTextContent = PossibleTextContent, > {
+export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
+    extends ReactProperty {
 
     content: | null | undefined | T
 
@@ -8,7 +11,7 @@ export interface TextContent<T extends PossibleTextContent = PossibleTextContent
 
 }
 
-export default function TextContainer<T extends PossibleTextContent = PossibleTextContent, >({content, classes,}: TextContent<T>,) {
+export default function TextContainer<T extends PossibleTextContent = PossibleTextContent, >({content, classes,}: TextProperties<T>,) {
     if (classes == null)
         return <span>{content}</span>;
     return <span className={classes.join(' ')}>{content}</span>;

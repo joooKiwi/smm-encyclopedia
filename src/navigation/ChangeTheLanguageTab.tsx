@@ -1,12 +1,21 @@
 import React, {PureComponent} from 'react';
 
+import type {ReactState} from '../util/ReactState';
+
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
 import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
 import {ProjectLanguages}           from '../lang/ProjectLanguages';
 import {LanguageChangerTab}         from './LanguageChangerTab';
 
+interface ChangeTheLanguageTabStates
+    extends ReactState {
+
+    currentLanguage: ProjectLanguages
+
+}
+
 export default class ChangeTheLanguageTab
-    extends PureComponent<{}, { currentLanguage: ProjectLanguages }> {
+    extends PureComponent<{}, ChangeTheLanguageTabStates> {
 
     public constructor(props: {},) {
         super(props);
@@ -24,9 +33,10 @@ export default class ChangeTheLanguageTab
                 return {
                     language: language,
                     htmlElement: language === ProjectLanguages.currentLanguage
-                        ? <span className="dropdown-item disabled">
-                              <LanguageTranslationComponent translationCallback={translation => translation(language.englishName)}/>
-                          </span>
+                        ? <LanguageTranslationComponent translationCallback={translation =>
+                              <span className="dropdown-item disabled">
+                                  {translation(language.englishName)}
+                              </span>}/>
                         : <LanguageChangerTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>
                 };
             }
@@ -35,9 +45,7 @@ export default class ChangeTheLanguageTab
 
     public render() {
         return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
-            <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <ContentTranslationComponent translationCallback={translation => translation('Change the language')}/>
-            </span>
+            <ContentTranslationComponent translationCallback={translation => <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{translation('Change the language')}</span>}/>
             <ul id="languageChanger-dropdown-menu" className="dropdown-menu" aria-labelledby="languageChanger-navigation-button">
                 {this.__retrieveEveryLanguages()}
             </ul>

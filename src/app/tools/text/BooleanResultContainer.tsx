@@ -1,4 +1,4 @@
-import BooleanTextContainer, {BooleanTextContent} from './BooleanTextContainer';
+import BooleanTextContainer, {BooleanTextProperties} from './BooleanTextContainer';
 
 /**
  * Create a coloration based on the boolean value.
@@ -6,7 +6,7 @@ import BooleanTextContainer, {BooleanTextContent} from './BooleanTextContainer';
  * The {@link BooleanResultContainer.render render} method return a new {@link BooleanTextContainer}
  * with the classes "text-success" or "text-danger".
  */
-export default function BooleanResultContainer({boolean, trueValue, falseValue, classes,}: BooleanTextContent,) {
+export default function BooleanResultContainer({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
     return <BooleanTextContainer
         classes={[...(classes ?? []), ...[boolean ? 'text-success' : 'text-danger']]}
         boolean={boolean}

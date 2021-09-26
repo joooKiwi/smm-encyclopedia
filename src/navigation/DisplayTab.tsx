@@ -12,18 +12,20 @@ export default class DisplayTab
 
 
     private static _createLi(key: string, partialPath: string, textContentCallback: GameContentCallback,): JSX.Element {
-        return <li className="dropdown-item">
-            <Link key={key} className="nav-link active" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/${partialPath}`}>
-                <GameContentTranslationComponent translationCallback={textContentCallback}/>
-            </Link>
-        </li>;
+        return <GameContentTranslationComponent translationCallback={translation =>
+            <li className="dropdown-item">
+                <Link key={key} className="nav-link active" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/${partialPath}`}>
+                    {textContentCallback(translation)}
+                </Link>
+            </li>}/>;
     }
 
     public render(): JSX.Element {
         return <li className="nav-item dropdown">
-            <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <ContentTranslationComponent translationCallback={translation => translation('Display')}/>…
-            </span>
+            <ContentTranslationComponent translationCallback={translation =>
+                <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {translation('Display')}…
+                </span>}/>
             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 {DisplayTab._createLi('navigationEveryEntities', 'every/entity', translation => translation('Display every entities'),)}
                 {DisplayTab._createLi('navigationEveryCategories', 'every/category', translation => translation('Display every entity categories'),)}

@@ -1,9 +1,9 @@
 import {PureComponent, ReactNode} from 'react';
 
-import type {SimpleImageHeader, SimpleReactHeader, SimpleTableComponent} from './Table.types';
+import type {SimpleTableProperties, SingleHeaderContent} from './Table.types';
 
 export default class Table
-    extends PureComponent<SimpleTableComponent> {
+    extends PureComponent<SimpleTableProperties> {
 
     protected get id() {
         return this.props.id;
@@ -21,11 +21,11 @@ export default class Table
         return this.props.content;
     }
 
-    private static __getHeaderKey(header: | string | SimpleImageHeader | SimpleReactHeader,): string {
+    private static __getHeaderKey(header: SingleHeaderContent,): string {
         return typeof header === 'string' ? header : header.key;
     }
 
-    private static __getHeaderContent(header: | string | SimpleImageHeader | SimpleReactHeader,): JSX.Element {
+    private static __getHeaderContent(header: SingleHeaderContent,): JSX.Element {
         return typeof header === 'string'
             ? <span>{header}</span>
             : 'element' in header

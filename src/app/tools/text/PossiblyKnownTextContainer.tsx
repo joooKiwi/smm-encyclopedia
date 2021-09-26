@@ -1,17 +1,17 @@
 import './PossiblyKnownTextContainer.scss';
 
-import type {PossibleTextContent, TextContent} from './TextContainer';
+import type {PossibleTextContent, TextProperties} from './TextContainer';
 
 import TextContainer from './TextContainer';
 
-export interface PossiblyKnownTextContent<T extends PossibleTextContent = PossibleTextContent, >
-    extends TextContent<T> {
+export interface PossiblyKnownTextProperties<T extends PossibleTextContent = PossibleTextContent, >
+    extends TextProperties<T> {
 
     isKnown: boolean
 
 }
 
-export default function PossiblyKnownTextContainer<T extends PossibleTextContent = PossibleTextContent, >({content, classes, isKnown,}: PossiblyKnownTextContent<T>,) {
+export default function PossiblyKnownTextContainer<T extends PossibleTextContent = PossibleTextContent, >({content, classes, isKnown,}: PossiblyKnownTextProperties<T>,) {
     const classesToSend = [...(classes ?? []), ...(isKnown ? [] : ['is-unknown']),];
     return <TextContainer classes={classesToSend.length === 0 ? null : classesToSend} content={content}/>;
 }

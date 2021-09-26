@@ -32,7 +32,7 @@ export default class CourseThemeComponent
     }
 
     protected _renderComponentForAll(): JSX.Element {
-        return <span><GameContentTranslationComponent translationCallback={translation => translation('Every themes')}/></span>;
+        return <GameContentTranslationComponent translationCallback={translation => <span>{translation('Every themes')}</span>}/>;
     }
 
 }

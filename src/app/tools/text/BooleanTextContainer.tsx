@@ -1,6 +1,9 @@
 import TextContainer from './TextContainer';
 
-export interface BooleanTextContent /*extends React.HTMLAttributes<HTMLSpanElement>*/
+import type {ReactProperty} from '../../../util/ReactProperty';
+
+export interface BooleanTextProperties
+    extends ReactProperty/*React.HTMLAttributes<HTMLSpanElement>*/
 {
 
     boolean: boolean
@@ -14,7 +17,7 @@ export interface BooleanTextContent /*extends React.HTMLAttributes<HTMLSpanEleme
  * Create a simple {@link TextContainer}
  * with a variable value based on a simple boolean.
  */
-export default function BooleanTextContainer({boolean, trueValue, falseValue, classes,}: BooleanTextContent,) {
+export default function BooleanTextContainer({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
     const content = boolean ? trueValue : falseValue;
     if (classes == null)
         return <TextContainer content={content}/>;

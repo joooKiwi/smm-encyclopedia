@@ -1,24 +1,28 @@
 import {FormattedDateParts} from 'react-intl';
 
 import type {DayNumber, MonthNumber} from './types';
+import type {ReactProperty}          from '../../util/ReactProperty';
 
 import {DateDayLanguages} from './DateDayLanguages';
 
-export interface DateTimeFormat {
+export interface DateTimeFormatProperties
+    extends ReactProperty {
+
     year: number
+
     month: MonthNumber
+
     day: DayNumber
+
 }
 
 /**
  * A simple date component that return a date
  * from the {@link DateDayLanguages.currentLanguage current language}.
  *
- * @param props
- * @constructor
  * @see https://formatjs.io/docs/react-intl/components#formatteddate
  */
-export default function SimpleDate({year, month, day,}: DateTimeFormat) {
+export default function SimpleDate({year, month, day,}: DateTimeFormatProperties,) {
     return <FormattedDateParts
         value={new Date(year, month - 1, day,)}
         year="numeric"
