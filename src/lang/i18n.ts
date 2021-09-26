@@ -75,6 +75,8 @@ declare module 'react-i18next' {
 }
 
 const resources: Resource = {
+    //region -------------------- English --------------------
+
     en: {
         language: englishLanguage,
         content: englishContent,
@@ -87,6 +89,10 @@ const resources: Resource = {
     en_EU: {
         content: europeanEnglishContent,
     },
+
+    //endregion -------------------- English --------------------
+    //region -------------------- French --------------------
+
     fr: {
         language: frenchLanguage,
         content: frenchContent,
@@ -99,38 +105,58 @@ const resources: Resource = {
     fr_EU: {
         content: europeanFrenchContent,
     },
+
+    //endregion -------------------- French --------------------
+    //region -------------------- German --------------------
+
     de: {
         language: germanLanguage,
         content: germanContent,
         gameContent: germanGameContent,
         entityContent: germanEntityContent,
     },
+
+    //endregion -------------------- German --------------------
+    //region -------------------- Spanish --------------------
+
     es: {
         language: spanishLanguage,
         content: spanishContent,
         gameContent: spanishGameContent,
         entityContent: spanishEntityContent,
     },
-    sp_AM: {
+    es_AM: {
         content: americanSpanishContent,
         entityContent: americanSpanishEntityContent,
     },
-    sp_EU: {
+    es_EU: {
         content: europeanSpanishContent,
         entityContent: europeanSpanishEntityContent,
     },
+
+    //endregion -------------------- Spanish --------------------
+    //region -------------------- Italian --------------------
+
     it: {
         language: italianLanguage,
         content: italianContent,
         gameContent: italianGameContent,
         entityContent: italianEntityContent,
     },
+
+    //endregion -------------------- Italian --------------------
+    //region -------------------- Dutch --------------------
+
     nl: {
         language: dutchLanguage,
         content: dutchContent,
         gameContent: dutchGameContent,
         entityContent: dutchEntityContent,
     },
+
+    //endregion -------------------- Dutch --------------------
+    //region -------------------- Portuguese --------------------
+
     pt: {
         language: portugueseLanguage,
         content: portugueseContent,
@@ -143,18 +169,30 @@ const resources: Resource = {
     pt_EU: {
         content: europeanPortugueseContent,
     },
+
+    //endregion -------------------- Portuguese --------------------
+    //region -------------------- Russian --------------------
+
     ru: {
         language: russianLanguage,
         content: russianContent,
         gameContent: russianGameContent,
         entityContent: russianEntityContent,
     },
+
+    //endregion -------------------- Russian --------------------
+    //region -------------------- Japanese --------------------
+
     ja: {
         language: japaneseLanguage,
         content: japaneseContent,
         gameContent: japaneseGameContent,
         entityContent: japaneseEntityContent,
     },
+
+    //endregion -------------------- Japanese --------------------
+    //region -------------------- Chinese --------------------
+
     zh: {
         language: chineseLanguage,
         content: chineseContent,
@@ -173,12 +211,18 @@ const resources: Resource = {
         gameContent: simplifiedChineseGameContent,
         entityContent: simplifiedChineseEntityContent,
     },
+
+    //endregion -------------------- Chinese --------------------
+    //region -------------------- Korean --------------------
+
     ko: {
         language: koreanLanguage,
         content: koreanContent,
         gameContent: koreanGameContent,
         entityContent: koreanEntityContent,
     },
+
+    //endregion -------------------- Korean --------------------
 };
 
 i18n
