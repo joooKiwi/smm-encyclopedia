@@ -9,7 +9,7 @@
  *     but not the simple language.
  * </p>
  */
-export interface ClassWithLanguages {
+export interface ClassWithOnlyProjectLanguages {
 
     //region -------------------- English properties --------------------
 
