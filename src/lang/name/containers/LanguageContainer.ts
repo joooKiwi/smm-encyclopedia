@@ -47,12 +47,15 @@ export class LanguageContainer<S extends | string | never, A extends | readonly 
         return this._arrayValue[index] ?? this._singleValue;
     }
 
+}
 
-    public static newInstance<S extends string, >(value: S,): LanguageContainer<S>
-    public static newInstance<A extends readonly string[], >(value: A,): LanguageContainer<never, A>
-    public static newInstance<S extends string, A extends readonly string[], >(value: | S | A,): LanguageContainer<S, A>
-    public static newInstance<S extends string, A extends readonly string[], >(value: | S | A,) {
-        return new LanguageContainer(value);
+export namespace LanguageContainer {
+
+    export function newInstance<S extends string, >(value: S,): Language<S>
+    export function newInstance<A extends readonly string[], >(value: A,): Language<never, A>
+    export function newInstance<S extends string, A extends readonly string[], >(value: | S | A,): Language<S, A>
+    export function newInstance<S extends string, A extends readonly string[], >(value: | S | A,): Language<S, A> {
+        return new LanguageContainer<S, A>(value);
     }
 
 }

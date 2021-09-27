@@ -60,6 +60,8 @@ export interface Entity<PROPERTY extends Property = Property, >
     get dutch(): this['nameContainer']['dutch']
 
 
+    get isPortugueseUsed(): this['nameContainer']['isPortugueseUsed']
+
     get originalPortuguese(): this['nameContainer']['originalPortuguese']
 
     get portuguese(): this['nameContainer']['portuguese']

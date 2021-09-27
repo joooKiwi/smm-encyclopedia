@@ -1,14 +1,23 @@
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from './containers/Language';
 import type {Name}                                                                                                                                              from './Name';
 
-import {EveryLanguages}    from '../EveryLanguages';
-import {ProjectLanguages}  from '../ProjectLanguages';
-import {LanguageContainer} from './containers/LanguageContainer';
+import {EveryLanguages}            from '../EveryLanguages';
+import {ProjectLanguages}          from '../ProjectLanguages';
+import {LanguageContainer}         from './containers/LanguageContainer';
+import {OptionalLanguage}          from './containers/OptionalLanguage';
+import {OptionalLanguageContainer} from './containers/OptionalLanguageContainer';
 
 export class NameContainer
     implements Name {
 
     //region -------------------- Attributes --------------------
+
+    /**
+     * The optional languages used in the project.
+     *
+     * @see ProjectLanguages.isASupportedLanguageInSMM for the usage outside this class.
+     */
+    public static readonly OPTIONAL_LANGUAGES = [EveryLanguages.PORTUGUESE,] as const;
 
     readonly #originalLanguages: readonly EveryLanguages[];
     #map?: Map<EveryLanguages, string>;
@@ -19,7 +28,7 @@ export class NameContainer
     readonly #spanish: Language<string, AmericanOrEuropeanArray>;
     readonly #italian: Language<string>;
     readonly #dutch: Language<string>;
-    readonly #portuguese: Language<string, AmericanOrEuropeanArray>;
+    readonly #portuguese: OptionalLanguage<boolean, string, AmericanOrEuropeanArray>;
     readonly #russian: Language<string>;
     readonly #japanese: Language<string>;
     readonly #chinese: Language<string, ChineseArray>;
@@ -142,6 +151,10 @@ export class NameContainer
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
+    public get isPortugueseUsed(): boolean {
+        return this.#portuguese.isUsed;
+    }
+
     public get originalPortuguese() {
         return this.#portuguese.original;
     }
@@ -207,44 +220,50 @@ export class NameContainer
     //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
-        return this.#map ??= new Map(EveryLanguages.values.map(language => [language, language.get(this),]));
+        return this.#map ??= new Map(this.originalLanguages.map(language => [language, language.get(this),]));
     }
 
 
+    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): Language<S>
     private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: S,): Language<S>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<boolean, S, A>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): Language<S, A>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,) {
-        const languageContainer = LanguageContainer.newInstance<S, A>(value);
+        const languageContainer = this.OPTIONAL_LANGUAGES.includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value);
+
+        const isValueString = typeof value === 'string';
+
         switch (language) {
             case EveryLanguages.ENGLISH:
-                if (typeof value === 'string')
+                if (isValueString)
                     originalLanguages.push(EveryLanguages.ENGLISH);
                 else
                     originalLanguages.push(EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH,);
                 break;
             case EveryLanguages.FRENCH:
-                if (typeof value === 'string')
+                if (isValueString)
                     originalLanguages.push(EveryLanguages.FRENCH);
                 else
                     originalLanguages.push(EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH,);
                 break;
             case EveryLanguages.SPANISH:
-                if (typeof value === 'string')
+                if (isValueString)
                     originalLanguages.push(EveryLanguages.SPANISH);
                 else
                     originalLanguages.push(EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH,);
                 break;
-            case EveryLanguages.PORTUGUESE:
-                if (typeof value === 'string')
-                    originalLanguages.push(EveryLanguages.PORTUGUESE);
-                else
-                    originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
-                break;
             case EveryLanguages.CHINESE:
-                if (typeof value === 'string')
+                if (isValueString)
                     originalLanguages.push(EveryLanguages.CHINESE);
                 else
                     originalLanguages.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,);
+                break;
+            case EveryLanguages.PORTUGUESE:
+                if ((languageContainer as OptionalLanguage<boolean, S, A>).isUsed)
+                    if (isValueString)
+                        originalLanguages.push(EveryLanguages.PORTUGUESE);
+                    else
+                        originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
                 break;
             default:
                 originalLanguages.push(language);
@@ -254,3 +273,5 @@ export class NameContainer
     }
 
 }
+
+type OptionalLanguages = typeof EveryLanguages.PORTUGUESE;

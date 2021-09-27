@@ -47,6 +47,7 @@ export class EmptyEntityCategory
 
     public readonly dutch = this.name.dutch;
 
+    public readonly isPortugueseUsed = this.name.isPortugueseUsed
     public readonly originalPortuguese = this.name.originalPortuguese;
     public readonly portuguese = this.name.portuguese;
     public readonly americanPortuguese = this.name.americanPortuguese;

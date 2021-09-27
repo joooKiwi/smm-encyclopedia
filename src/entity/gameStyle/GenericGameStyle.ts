@@ -100,6 +100,10 @@ export class GenericGameStyle
     }
 
 
+    public get isPortugueseUsed() {
+        return this.name.isPortugueseUsed;
+    }
+
     public get originalPortuguese() {
         return this.name.originalPortuguese;
     }

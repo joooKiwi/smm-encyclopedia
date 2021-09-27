@@ -39,7 +39,6 @@ export class EmptyCourseTheme
 
     public readonly german = this.name.german;
 
-
     public readonly originalSpanish = this.name.originalSpanish;
     public readonly spanish = this.name.spanish;
     public readonly americanSpanish = this.name.americanSpanish;
@@ -49,6 +48,7 @@ export class EmptyCourseTheme
 
     public readonly dutch = this.name.dutch;
 
+    public readonly isPortugueseUsed = this.name.isPortugueseUsed;
     public readonly originalPortuguese = this.name.originalPortuguese;
     public readonly portuguese = this.name.portuguese;
     public readonly americanPortuguese = this.name.americanPortuguese;

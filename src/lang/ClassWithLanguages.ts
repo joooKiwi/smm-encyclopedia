@@ -49,6 +49,8 @@ export interface ClassWithLanguages {
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
+    get isPortugueseUsed(): boolean
+
     get americanPortuguese(): string
 
     get europeanPortuguese(): string

@@ -109,6 +109,10 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     }
 
 
+    public get isPortugueseUsed() {
+        return this.nameContainer.isPortugueseUsed;
+    }
+
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }

@@ -95,6 +95,10 @@ export class AbstractTheme
     }
 
 
+    public get isPortugueseUsed() {
+        return this.name.isPortugueseUsed;
+    }
+
     public get originalPortuguese() {
         return this.name.originalPortuguese;
     }
