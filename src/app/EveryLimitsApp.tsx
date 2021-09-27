@@ -45,7 +45,7 @@ export default class EveryLimitsApp
                 <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                 <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                 <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
-                <GameContentTranslationComponent isInSpan={true} children={translation => translation(entityLimit.type.englishCommonText)}/>,
+                <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
             ]);
             index++;
         }
@@ -55,14 +55,14 @@ export default class EveryLimitsApp
     protected _mainContent(): JSX.Element {
         return <Table
             id="entityLimit_table"
-            caption={<GameContentTranslationComponent>{translation => translation('Every entity limits')}</GameContentTranslationComponent>}
+            caption={<GameContentTranslationComponent translationKey="Every entity limits"/>}
             headers={[
                 '#',
-                {key: 'acronym', element: <ContentTranslationComponent>{translation => translation('Acronym(s)')}</ContentTranslationComponent>,},
-                {key: 'name', element: <ContentTranslationComponent>{translation => translation('Name')}</ContentTranslationComponent>,},
-                {key: 'alternativeName', element: <ContentTranslationComponent>{translation => translation('Alternative name')}</ContentTranslationComponent>,},
-                {key: 'limit', element: <ContentTranslationComponent>{translation => translation('Limit')}</ContentTranslationComponent>,},
-                {key: 'type', element: <ContentTranslationComponent>{translation => translation('Type')}</ContentTranslationComponent>,},
+                {key: 'acronym', element: <ContentTranslationComponent translationKey="Acronym(s)"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
+                {key: 'alternativeName', element: <ContentTranslationComponent translationKey="Alternative name"/>,},
+                {key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>,},
+                {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,},
             ]}
             content={this.content}/>;
     }

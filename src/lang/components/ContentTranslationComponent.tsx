@@ -1,7 +1,7 @@
-import type {TranslationProperty} from './TranslationProperty';
+import type {SimpleTranslationProperty, TranslationProperty} from './TranslationProperty';
 
 import AnyTranslationComponent from './AnyTranslationComponent';
 
-export default function ContentTranslationComponent({children, isInSpan = AnyTranslationComponent.DEFAULT_IS_IN_SPAN,}: TranslationProperty<'content'>,) {
-    return <AnyTranslationComponent isInSpan={isInSpan} namespace="content">{children}</AnyTranslationComponent>;
+export default function ContentTranslationComponent(props: |TranslationProperty<'content'> | SimpleTranslationProperty<'content'>,) {
+    return <AnyTranslationComponent namespace="content" {...props}/>;
 }

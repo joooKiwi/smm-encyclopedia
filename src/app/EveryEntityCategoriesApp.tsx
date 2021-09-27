@@ -44,10 +44,10 @@ export default class EveryEntityCategoriesApp
 
         return <Table
             id="entityCategory_table"
-            caption={<GameContentTranslationComponent>{translation => translation('Every entity categories')}</GameContentTranslationComponent>}
+            caption={<GameContentTranslationComponent translationKey="Every entity categories"/>}
             headers={[
                 '#',
-                {key: 'language', element: <ContentTranslationComponent>{translation => translation('Language')}</ContentTranslationComponent>,},
+                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
             ]}
             content={this.content}
         />;

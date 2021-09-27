@@ -49,11 +49,11 @@ export default class EveryGameStylesApp
 
         return <Table
             id="gameStyle_table"
-            caption={<GameContentTranslationComponent>{translation => translation('Every game styles')}</GameContentTranslationComponent>}
+            caption={<GameContentTranslationComponent translationKey="Every game styles"/>}
             headers={[
                 '#',
-                {key: 'image', element: <ContentTranslationComponent>{translation => translation('Image')}</ContentTranslationComponent>,},
-                {key: 'language', element: <ContentTranslationComponent>{translation => translation('Language')}</ContentTranslationComponent>,},
+                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
+                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
             ]}

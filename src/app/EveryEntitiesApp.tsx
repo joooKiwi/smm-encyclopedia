@@ -53,16 +53,16 @@ export default class EveryEntitiesApp
 
         return <Table
             id="entity_table"
-            caption={<GameContentTranslationComponent>{translation => translation('Every entities')}</GameContentTranslationComponent>}
+            caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
                 '#',
-                {key: 'language', element: <ContentTranslationComponent>{translation => translation('Language')}</ContentTranslationComponent>,},
-                {key: 'game', element: <GameContentTranslationComponent>{translation => translation('Game')}</GameContentTranslationComponent>,},
-                {key: 'gameStyle', element: <GameContentTranslationComponent>{translation => translation('Game Style')}</GameContentTranslationComponent>,},
-                {key: 'courseTheme', element: <GameContentTranslationComponent>{translation => translation('Course Theme.spoken')}</GameContentTranslationComponent>,},
-                {key: 'time', element: <GameContentTranslationComponent>{translation => translation('Time')}</GameContentTranslationComponent>,},
-                {key: 'category', element: <GameContentTranslationComponent>{translation => translation('Category')}</GameContentTranslationComponent>,},
-                {key: 'editorLimit', element: <GameContentTranslationComponent>{translation => translation('Limit in the editor')}</GameContentTranslationComponent>,}
+                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
+                {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
+                {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game Style"/>,},
+                {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course Theme.spoken"/>,},
+                {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,},
+                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
+                {key: 'editorLimit', element: <GameContentTranslationComponent translationKey="Limit in the editor"/>,}
             ]}
             content={this.content}
         />;
