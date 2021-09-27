@@ -4,9 +4,9 @@ import {OptionalLanguage}  from './OptionalLanguage';
 /**
  * @provider
  */
-export class OptionalLanguageContainer<U extends boolean, S extends | string | never, A extends | readonly string[] | never = never, >
+export class OptionalLanguageContainer<S extends | string | never, A extends | readonly string[] | never = never, U extends boolean = boolean, >
     extends LanguageContainer<S, A>
-    implements OptionalLanguage<U, S, A> {
+    implements OptionalLanguage<S, A, U> {
 
     readonly #isUsed;
 
@@ -23,11 +23,11 @@ export class OptionalLanguageContainer<U extends boolean, S extends | string | n
 
 export namespace OptionalLanguageContainer {
 
-    export function newInstance<U extends boolean, S extends string, >(value: S,): OptionalLanguage<U, S>
-    export function newInstance<U extends boolean, A extends readonly string[], >(value: A,): OptionalLanguage<U, never, A>
-    export function newInstance<U extends boolean, S extends string, A extends readonly string[], >(value: | S | A,): OptionalLanguage<U, S, A>
-    export function newInstance<U extends boolean, S extends string, A extends readonly string[], >(value: | S | A,): OptionalLanguage<U, S, A> {
-        return new OptionalLanguageContainer<U, S, A>(value);
+    export function newInstance<U extends boolean, S extends string, >(value: S,): OptionalLanguage<S, never, U>
+    export function newInstance<U extends boolean, A extends readonly string[], >(value: A,): OptionalLanguage<never, A, U>
+    export function newInstance<U extends boolean, S extends string, A extends readonly string[], >(value: | S | A,): OptionalLanguage<S, A, U>
+    export function newInstance<U extends boolean, S extends string, A extends readonly string[], >(value: | S | A,): OptionalLanguage<S, A, U> {
+        return new OptionalLanguageContainer<S, A, U>(value);
     }
 
 }

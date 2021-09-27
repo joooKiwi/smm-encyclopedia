@@ -28,7 +28,7 @@ export class NameContainer
     readonly #spanish: Language<string, AmericanOrEuropeanArray>;
     readonly #italian: Language<string>;
     readonly #dutch: Language<string>;
-    readonly #portuguese: OptionalLanguage<boolean, string, AmericanOrEuropeanArray>;
+    readonly #portuguese: OptionalLanguage<string, AmericanOrEuropeanArray>;
     readonly #russian: Language<string>;
     readonly #japanese: Language<string>;
     readonly #chinese: Language<string, ChineseArray>;
@@ -224,9 +224,9 @@ export class NameContainer
     }
 
 
-    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): Language<S>
+    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): OptionalLanguage<S>
     private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: S,): Language<S>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<boolean, S, A>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<S, A>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): Language<S, A>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,) {
         const languageContainer = this.OPTIONAL_LANGUAGES.includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value);
@@ -259,7 +259,7 @@ export class NameContainer
                     originalLanguages.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,);
                 break;
             case EveryLanguages.PORTUGUESE:
-                if ((languageContainer as OptionalLanguage<boolean, S, A>).isUsed)
+                if ((languageContainer as OptionalLanguage<S, A>).isUsed)
                     if (isValueString)
                         originalLanguages.push(EveryLanguages.PORTUGUESE);
                     else
@@ -274,4 +274,4 @@ export class NameContainer
 
 }
 
-type OptionalLanguages = typeof EveryLanguages.PORTUGUESE;
+type OptionalLanguages = typeof NameContainer['OPTIONAL_LANGUAGES'][number];
