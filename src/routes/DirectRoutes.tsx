@@ -5,13 +5,13 @@ import {ProjectLanguages}  from '../lang/ProjectLanguages';
 import {redirectToHome}    from './redirectToHome';
 
 export default function DirectRoutes() {
-    const {lang} = useParams<{ lang?: string, }>();
+    const parameters = useParams<{ lang?: string, }>();
     const location = useLocation();
 
-    if (lang == null)
+    if (parameters.lang == null)
         return redirectToHome();
 
-    const currentLanguage = ProjectLanguages.setCurrentLanguage(lang).getValue(lang);
+    const currentLanguage = ProjectLanguages.setCurrentLanguage(parameters.lang).getValue(parameters.lang);
     if (currentLanguage == null)
         return redirectToHome();
 
