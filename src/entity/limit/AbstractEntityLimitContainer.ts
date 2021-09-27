@@ -271,6 +271,10 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
+    public get alternativeIsPortugueseUsed() {
+        return this.alternativeNameContainer.isPortugueseUsed;
+    }
+
     public get alternativeOriginalPortuguese() {
         return this.alternativeNameContainer.originalPortuguese;
     }

@@ -1,14 +1,14 @@
 import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from '../properties/Property';
-import type {EntityReferences}                                                                                                      from '../properties/EntityReferences';
-import type {EntityCategory}                                                                                                        from '../category/EntityCategory';
-import type {GameProperty}                                                                                                          from '../properties/GameProperty';
+import type {EntityReferences}                                                                                                    from '../properties/EntityReferences';
+import type {EntityCategory}                                                                                                      from '../category/EntityCategory';
+import type {GameProperty}                                                                                                        from '../properties/GameProperty';
 import type {GameStyleProperty}                                                                                                   from '../properties/GameStyleProperty';
 import type {ThemeProperty}                                                                                                       from '../properties/ThemeProperty';
-import type {TimeProperty}                                                                                                          from '../properties/TimeProperty';
-import type {Name}                                                                                                                  from '../../lang/name/Name';
+import type {TimeProperty}                                                                                                        from '../properties/TimeProperty';
+import type {NameWithAName}                                                                                                       from '../../lang/name/NameWithAName';
 
 export interface Entity<PROPERTY extends Property = Property, >
-    extends Name,
+    extends NameWithAName,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
         GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
         GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,
@@ -17,9 +17,6 @@ export interface Entity<PROPERTY extends Property = Property, >
         EntityReferences {
 
     //region -------------------- Name properties --------------------
-
-    get nameContainer(): Name
-
 
     get languageValue(): this['nameContainer']['languageValue']
 
@@ -97,7 +94,7 @@ export interface Entity<PROPERTY extends Property = Property, >
     get category(): EntityCategory
 
 
-    get categoryName(): this['category']['name']
+    get categoryName(): this['category']['nameContainer']
 
 
     get categoryLanguageValue(): this['categoryName']['languageValue']
@@ -138,6 +135,8 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     get categoryDutch(): this['categoryName']['dutch']
 
+
+    get categoryIsPortugueseUsed(): this['categoryName']['isPortugueseUsed']
 
     get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese']
 

@@ -23,49 +23,49 @@ export class EmptyGameStyle
 
     //region -------------------- Name properties --------------------
 
-    public readonly name = EmptyName.get;
+    public readonly nameContainer = EmptyName.get;
 
-    public readonly languageValue = this.name.languageValue;
+    public readonly languageValue = this.nameContainer.languageValue;
 
-    public readonly originalEnglish = this.name.originalEnglish;
-    public readonly english = this.name.english;
-    public readonly americanEnglish = this.name.americanEnglish;
-    public readonly europeanEnglish = this.name.europeanEnglish;
+    public readonly originalEnglish = this.nameContainer.originalEnglish;
+    public readonly english = this.nameContainer.english;
+    public readonly americanEnglish = this.nameContainer.americanEnglish;
+    public readonly europeanEnglish = this.nameContainer.europeanEnglish;
 
-    public readonly originalFrench = this.name.originalFrench;
-    public readonly french = this.name.french;
-    public readonly canadianFrench = this.name.canadianFrench;
-    public readonly europeanFrench = this.name.europeanFrench;
+    public readonly originalFrench = this.nameContainer.originalFrench;
+    public readonly french = this.nameContainer.french;
+    public readonly canadianFrench = this.nameContainer.canadianFrench;
+    public readonly europeanFrench = this.nameContainer.europeanFrench;
 
-    public readonly german = this.name.german;
+    public readonly german = this.nameContainer.german;
 
-    public readonly originalSpanish = this.name.originalSpanish;
-    public readonly spanish = this.name.spanish;
-    public readonly americanSpanish = this.name.americanSpanish;
-    public readonly europeanSpanish = this.name.europeanSpanish;
+    public readonly originalSpanish = this.nameContainer.originalSpanish;
+    public readonly spanish = this.nameContainer.spanish;
+    public readonly americanSpanish = this.nameContainer.americanSpanish;
+    public readonly europeanSpanish = this.nameContainer.europeanSpanish;
 
-    public readonly italian = this.name.italian;
+    public readonly italian = this.nameContainer.italian;
 
-    public readonly dutch = this.name.dutch;
+    public readonly dutch = this.nameContainer.dutch;
 
-    public readonly isPortugueseUsed = this.name.isPortugueseUsed;
-    public readonly originalPortuguese = this.name.originalPortuguese;
-    public readonly portuguese = this.name.portuguese;
-    public readonly americanPortuguese = this.name.americanPortuguese;
-    public readonly europeanPortuguese = this.name.europeanPortuguese;
+    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed;
+    public readonly originalPortuguese = this.nameContainer.originalPortuguese;
+    public readonly portuguese = this.nameContainer.portuguese;
+    public readonly americanPortuguese = this.nameContainer.americanPortuguese;
+    public readonly europeanPortuguese = this.nameContainer.europeanPortuguese;
 
-    public readonly russian = this.name.russian;
+    public readonly russian = this.nameContainer.russian;
 
-    public readonly japanese = this.name.japanese;
+    public readonly japanese = this.nameContainer.japanese;
 
-    public readonly originalChinese = this.name.originalChinese;
-    public readonly chinese = this.name.chinese;
-    public readonly simplifiedChinese = this.name.simplifiedChinese;
-    public readonly traditionalChinese = this.name.traditionalChinese;
+    public readonly originalChinese = this.nameContainer.originalChinese;
+    public readonly chinese = this.nameContainer.chinese;
+    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
+    public readonly traditionalChinese = this.nameContainer.traditionalChinese;
 
-    public readonly korean = this.name.korean;
+    public readonly korean = this.nameContainer.korean;
 
-    public readonly originalLanguages = this.name.originalLanguages;
+    public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Game properties --------------------

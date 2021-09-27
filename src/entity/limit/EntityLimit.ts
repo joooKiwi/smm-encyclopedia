@@ -2,21 +2,19 @@ import type {EntityLimitAmount}                                                 
 import type {EntityLimitLink}                                                     from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                                                    from './EntityLimitTypes';
 import type {EveryLanguages}                                                      from '../../lang/EveryLanguages';
-import type {Name}                                                                from '../../lang/name/Name';
+import type {NameWithAName}                                                       from '../../lang/name/NameWithAName';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits} from './EntityLimits.types';
 
 export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
-    extends Name,
+    extends NameWithAName,
         EntityLimitAmount<LIMIT_AMOUNT['amount'], LIMIT_AMOUNT['isAmountUnknown'], LIMIT_AMOUNT['amountComment']>,
         EntityLimitLink {
 
     get type(): TYPE
 
     get acronym(): ACRONYM
-
-    get nameContainer(): Name
 
     //region -------------------- Alternative entity limit --------------------
 
@@ -67,6 +65,8 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
 
     get alternativeDutch(): AlternativeEntityLimit['dutch']
 
+
+    get alternativeIsPortugueseUsed(): AlternativeEntityLimit['isPortugueseUsed']
 
     get alternativeOriginalPortuguese(): AlternativeEntityLimit['originalPortuguese']
 

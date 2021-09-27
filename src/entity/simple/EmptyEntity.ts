@@ -75,7 +75,7 @@ export class EmptyEntity
 
     public readonly category = EmptyEntityCategory.get;
 
-    public readonly categoryName = this.category.name;
+    public readonly categoryName = this.category.nameContainer;
 
     public readonly categoryLanguageValue = this.categoryName.languageValue;
 
@@ -101,6 +101,7 @@ export class EmptyEntity
 
     public readonly categoryDutch = this.categoryName.dutch;
 
+    public readonly categoryIsPortugueseUsed = this.categoryName.isPortugueseUsed;
     public readonly categoryOriginalPortuguese = this.categoryName.originalPortuguese;
     public readonly categoryPortuguese = this.categoryName.portuguese;
     public readonly categoryAmericanPortuguese = this.categoryName.americanPortuguese;

@@ -122,6 +122,7 @@ export class EmptyEntityLimit
 
     public readonly alternativeDutch = this.alternativeNameContainer.dutch;
 
+    public readonly alternativeIsPortugueseUsed = this.alternativeNameContainer.isPortugueseUsed;
     public readonly alternativeOriginalPortuguese = this.alternativeNameContainer.originalPortuguese;
     public readonly alternativePortuguese = this.alternativeNameContainer.portuguese;
     public readonly alternativeAmericanPortuguese = this.alternativeNameContainer.americanPortuguese;
