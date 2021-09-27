@@ -4,11 +4,12 @@ import React                                    from 'react';
 import DirectRoutes        from './DirectRoutes';
 import {everySimpleRoutes} from './everyRoutes';
 import {ProjectLanguages}  from '../lang/ProjectLanguages';
+import {redirectToHome}    from './redirectToHome';
 
 export default function Routes() {
     return <BrowserRouter>
         <Switch>
-            <Route exact path="/"><Redirect to={`/${ProjectLanguages.default.projectAcronym}/home`}/></Route>
+            <Route exact path="/">{redirectToHome()}</Route>
             {renderRoutesInSwitch()}
             <Route path="/:lang"><DirectRoutes/></Route>
         </Switch>
