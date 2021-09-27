@@ -10,11 +10,11 @@ import HomeApp                  from '../app/HomeApp';
 import {SimpleRouteContainer}   from './SimpleRouteContainer';
 
 export const everySimpleRoutes = [
-    SimpleRouteContainer.newInstance('/home',            () => <HomeApp/>,                 ),
-    SimpleRouteContainer.newInstance('/every/entity',    () => <EveryEntitiesApp/>,        ),
-    SimpleRouteContainer.newInstance('/every/gameStyle', () => <EveryGameStylesApp/>,      ),
-    SimpleRouteContainer.newInstance('/every/category',  () => <EveryEntityCategoriesApp/>,),
-    SimpleRouteContainer.newInstance('/every/group',     () => <EveryEntityGroupApp/>,     ),
-    SimpleRouteContainer.newInstance('/every/limit',     () => <EveryLimitsApp/>,          ),
-    SimpleRouteContainer.newInstance('/every/theme',     () => <EveryThemesApp/>,          ),
+    SimpleRouteContainer.newInstance('home',            '/home',            () => <HomeApp/>,                 ),
+    SimpleRouteContainer.newInstance('everyEntities',   '/every/entity',    () => <EveryEntitiesApp/>,        ),
+    SimpleRouteContainer.newInstance('everyGameStyles', '/every/gameStyle', () => <EveryGameStylesApp/>,      ),
+    SimpleRouteContainer.newInstance('everyCategories', '/every/category',  () => <EveryEntityCategoriesApp/>,),
+    SimpleRouteContainer.newInstance('everyGroups',     '/every/group',     () => <EveryEntityGroupApp/>,     ),
+    SimpleRouteContainer.newInstance('everyLimits',     '/every/limit',     () => <EveryLimitsApp/>,          ),
+    SimpleRouteContainer.newInstance('everyThemes',     '/every/theme',     () => <EveryThemesApp/>,          ),
 ];

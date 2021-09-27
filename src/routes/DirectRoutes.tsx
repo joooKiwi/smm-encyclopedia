@@ -18,4 +18,3 @@ export default function DirectRoutes() {
     return everySimpleRoutes.find(route => location.pathname === `/${currentLanguage.projectAcronym}${route.path}`)?.renderCallback()
         ?? redirectToHome(currentLanguage);
 }
-
