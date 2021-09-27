@@ -1,26 +1,9 @@
-import {BrowserRouter, Redirect, Route, Switch, useLocation, useParams} from 'react-router-dom';
-import React                                                            from 'react';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
+import React                                    from 'react';
 
-import EveryEntitiesApp         from '../app/EveryEntitiesApp';
-import EveryEntityCategoriesApp from '../app/EveryEntityCategoriesApp';
-import EveryEntityGroupApp      from '../app/EveryEntityGroupApp';
-import EveryGameStylesApp       from '../app/EveryGameStylesApp';
-import EveryLimitsApp           from '../app/EveryLimitsApp';
-import EveryThemesApp           from '../app/EveryThemesApp';
-import HomeApp                  from '../app/HomeApp';
-import {ProjectLanguages}       from '../lang/ProjectLanguages';
-
-type SimpleRoute = { path: string, renderCallback: () => JSX.Element, };
-
-const everySimpleRoutes: SimpleRoute[] = [
-    {path: '/home',            renderCallback: () => <HomeApp/>,                 },
-    {path: '/every/entity',    renderCallback: () => <EveryEntitiesApp/>,        },
-    {path: '/every/gameStyle', renderCallback: () => <EveryGameStylesApp/>,      },
-    {path: '/every/category',  renderCallback: () => <EveryEntityCategoriesApp/>,},
-    {path: '/every/group',     renderCallback: () => <EveryEntityGroupApp/>,     },
-    {path: '/every/limit',     renderCallback: () => <EveryLimitsApp/>,          },
-    {path: '/every/theme',     renderCallback: () => <EveryThemesApp/>,          },
-];
+import DirectRoutes        from './DirectRoutes';
+import {everySimpleRoutes} from './everyRoutes';
+import {ProjectLanguages}  from '../lang/ProjectLanguages';
 
 export default function Routes() {
     return <BrowserRouter>
@@ -40,16 +23,3 @@ function renderRoutesInSwitch() {
     );
 }
 
-function DirectRoutes() {
-    const params: { lang?: string } = useParams();
-    const location = useLocation();
-    if ('lang' in params && typeof params.lang === 'string') {
-        const currentLanguage = ProjectLanguages.getValue(params.lang);
-        if (ProjectLanguages.currentLanguage !== currentLanguage)
-            ProjectLanguages.currentLanguage = params.lang;
-        if (currentLanguage != null)
-            return everySimpleRoutes.find(route => location.pathname === '/' + currentLanguage.projectAcronym + route.path)?.renderCallback()
-                ?? <Redirect to={`/${currentLanguage.projectAcronym}/home`}/>;
-    }
-    return <Redirect to={`/${ProjectLanguages.default.projectAcronym}/home`}/>;
-}
