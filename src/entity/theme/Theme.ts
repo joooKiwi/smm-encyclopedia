@@ -1,10 +1,8 @@
-import type {GameProperty} from '../properties/GameProperty';
-import type {Name}         from '../../lang/name/Name';
+import type {GameProperty}  from '../properties/GameProperty';
+import type {NameWithAName} from '../../lang/name/NameWithAName';
 
 export interface Theme
-    extends Name, GameProperty {
-
-    get name(): Name
+    extends NameWithAName, GameProperty {
 
     get isInProperty(): GameProperty
 

@@ -33,10 +33,11 @@ export default class ChangeTheLanguageTab
                 return {
                     language: language,
                     htmlElement: language === ProjectLanguages.currentLanguage
-                        ? <LanguageTranslationComponent translationCallback={translation =>
-                              <span className="dropdown-item disabled">
+                        ? <LanguageTranslationComponent>{translation =>
+                            <span className="dropdown-item disabled">
                                   {translation(language.englishName)}
-                              </span>}/>
+                              </span>
+                        }</LanguageTranslationComponent>
                         : <LanguageChangerTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>
                 };
             }
@@ -45,7 +46,11 @@ export default class ChangeTheLanguageTab
 
     public render() {
         return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
-            <ContentTranslationComponent translationCallback={translation => <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{translation('Change the language')}</span>}/>
+            <ContentTranslationComponent>{translation =>
+                <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {translation('Change the language')}
+                </span>
+            }</ContentTranslationComponent>
             <ul id="languageChanger-dropdown-menu" className="dropdown-menu" aria-labelledby="languageChanger-navigation-button">
                 {this.__retrieveEveryLanguages()}
             </ul>

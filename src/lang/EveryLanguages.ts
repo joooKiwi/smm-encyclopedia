@@ -3,7 +3,6 @@ import i18n from 'i18next';
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                   from './name/containers/Language';
 import type {BasicAcronym, BasicEnglishName, BasicOriginalName, EveryLanguagesArray, EveryLanguagesNames, EveryLanguagesOrdinals, PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleNonNullableValue, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName} from './EveryLanguages.types';
 import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithEveryLanguages';
-import type {ClassWithLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                        from './ClassWithLanguages';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                        from './LanguageEnumerable';
 
 import {Enum} from '../util/enum/Enum';
@@ -90,8 +89,8 @@ export abstract class EveryLanguages
     }    ('fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   EveryLanguages.FRENCH,    );
     public static readonly GERMAN =              new class EveryLanguages_German extends EveryLanguages {
 
-        public get(classWithLanguages: ClassWithLanguages,): string {
-            return classWithLanguages.german;
+        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+            return classWithEveryLanguages.german;
         }
 
     }            ('de',    'de',    'German',               'Deutsche',                                      );
@@ -134,15 +133,15 @@ export abstract class EveryLanguages
     }   ('es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    EveryLanguages.SPANISH,   );
     public static readonly ITALIAN =             new class EveryLanguages_Italian extends EveryLanguages {
 
-        public get(classWithLanguages: ClassWithLanguages,): string {
-            return classWithLanguages.italian;
+        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+            return classWithEveryLanguages.italian;
         }
 
     }           ('it',    'it',    'Italian',              'Italiano',                                      );
     public static readonly DUTCH =               new class EveryLanguages_Dutch extends EveryLanguages {
 
-        public get(classWithLanguages: ClassWithLanguages,): string {
-            return classWithLanguages.dutch;
+        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+            return classWithEveryLanguages.dutch;
         }
 
     }             ('nl',    'nl',    'Dutch',                'Nederlands',                                    );
@@ -181,15 +180,15 @@ export abstract class EveryLanguages
     }('pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  EveryLanguages.PORTUGUESE,);
     public static readonly RUSSIAN =             new class EveryLanguages_Russian extends EveryLanguages {
 
-        public get(classWithLanguages: ClassWithLanguages): string {
-            return classWithLanguages.russian;
+        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+            return classWithEveryLanguages.russian;
         }
 
     }           ('ru',    'ru',    'Russian',              'русский',                                       );
     public static readonly JAPANESE =            new class EveryLanguages_Japanese extends EveryLanguages {
 
-        public get(classWithLanguages: ClassWithLanguages,): string {
-            return classWithLanguages.japanese;
+        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+            return classWithEveryLanguages.japanese;
         }
 
     }          ('ja',    'ja',    'Japanese',             '日本語',                                         );
@@ -228,8 +227,8 @@ export abstract class EveryLanguages
     }('zh_S',  'zh',    'Simplified chinese',   '繁體中文',              EveryLanguages.CHINESE,  );
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
-        public get(classWithLanguages: ClassWithLanguages,): string {
-            return classWithLanguages.korean;
+        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+            return classWithEveryLanguages.korean;
         }
 
     }            ('ko',    'ko',    'Korean',               '한국어',                                         );
@@ -298,7 +297,7 @@ export abstract class EveryLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract get(classWithLanguages: ClassWithLanguages,): string;
+    public abstract get(classWithEveryLanguages: ClassWithEveryLanguages,): string;
 
     public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal {
         return this.parent?.original(classWithEveryLanguages) ?? this.get(classWithEveryLanguages);

@@ -27,7 +27,7 @@ export default class GameStyleComponent
     }
 
     protected _renderComponentForAll(): JSX.Element {
-        return <GameContentTranslationComponent translationCallback={translation => <span>{translation('Every game styles')}</span>}/>;
+        return <GameContentTranslationComponent children={translation => <span>{translation('Every game styles')}</span>}/>;
     }
 
 

@@ -30,7 +30,7 @@ export default class TimeComponent
     }
 
     protected _renderComponentForAll(): JSX.Element {
-        return <GameContentTranslationComponent translationCallback={translation => <span>{translation('Every times')}</span>}/>;
+        return <GameContentTranslationComponent children={translation => <span>{translation('Every times')}</span>}/>;
     }
 
 }

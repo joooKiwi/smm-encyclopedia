@@ -109,6 +109,10 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     }
 
 
+    public get isPortugueseUsed() {
+        return this.nameContainer.isPortugueseUsed;
+    }
+
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }
@@ -171,7 +175,7 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
 
 
     public get categoryName() {
-        return this.category.name;
+        return this.category.nameContainer;
     }
 
 
@@ -245,6 +249,10 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.categoryName.dutch;
     }
 
+
+    public get categoryIsPortugueseUsed() {
+        return this.categoryName.isPortugueseUsed;
+    }
 
     public get categoryOriginalPortuguese() {
         return this.categoryName.originalPortuguese;

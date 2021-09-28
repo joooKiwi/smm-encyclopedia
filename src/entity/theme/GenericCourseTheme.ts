@@ -26,7 +26,7 @@ export class GenericCourseTheme
     }
 
     public toNameMap() {
-        return this.name.toNameMap();
+        return this.nameContainer.toNameMap();
     }
 
 }

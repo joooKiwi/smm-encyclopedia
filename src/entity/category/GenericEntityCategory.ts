@@ -17,139 +17,143 @@ export class GenericEntityCategory
 
     //region -------------------- Name properties --------------------
 
-    public get name(): Name {
+    public get nameContainer(): Name {
         return this.#name;
     }
 
 
     public get languageValue() {
-        return this.name.languageValue;
+        return this.nameContainer.languageValue;
     }
 
 
     public get originalEnglish() {
-        return this.name.originalEnglish;
+        return this.nameContainer.originalEnglish;
     }
 
     public get english() {
-        return this.name.english;
+        return this.nameContainer.english;
     }
 
     public get americanEnglish() {
-        return this.name.americanEnglish;
+        return this.nameContainer.americanEnglish;
     }
 
     public get europeanEnglish() {
-        return this.name.europeanEnglish;
+        return this.nameContainer.europeanEnglish;
     }
 
 
     public get originalFrench() {
-        return this.name.originalFrench;
+        return this.nameContainer.originalFrench;
     }
 
     public get french() {
-        return this.name.french;
+        return this.nameContainer.french;
     }
 
     public get canadianFrench() {
-        return this.name.canadianFrench;
+        return this.nameContainer.canadianFrench;
     }
 
     public get europeanFrench() {
-        return this.name.europeanFrench;
+        return this.nameContainer.europeanFrench;
     }
 
 
     public get german() {
-        return this.name.german;
+        return this.nameContainer.german;
     }
 
 
     public get originalSpanish() {
-        return this.name.originalSpanish;
+        return this.nameContainer.originalSpanish;
     }
 
     public get spanish() {
-        return this.name.spanish;
+        return this.nameContainer.spanish;
     }
 
     public get americanSpanish() {
-        return this.name.americanSpanish;
+        return this.nameContainer.americanSpanish;
     }
 
     public get europeanSpanish() {
-        return this.name.europeanSpanish;
+        return this.nameContainer.europeanSpanish;
     }
 
 
     public get italian() {
-        return this.name.italian;
+        return this.nameContainer.italian;
     }
 
 
     public get dutch() {
-        return this.name.dutch;
+        return this.nameContainer.dutch;
     }
 
 
+    public get isPortugueseUsed() {
+        return this.nameContainer.isPortugueseUsed;
+    }
+
     public get originalPortuguese() {
-        return this.name.originalPortuguese;
+        return this.nameContainer.originalPortuguese;
     }
 
     public get portuguese() {
-        return this.name.portuguese;
+        return this.nameContainer.portuguese;
     }
 
     public get americanPortuguese() {
-        return this.name.americanPortuguese;
+        return this.nameContainer.americanPortuguese;
     }
 
     public get europeanPortuguese() {
-        return this.name.europeanPortuguese;
+        return this.nameContainer.europeanPortuguese;
     }
 
 
     public get russian() {
-        return this.name.russian;
+        return this.nameContainer.russian;
     }
 
 
     public get japanese() {
-        return this.name.japanese;
+        return this.nameContainer.japanese;
     }
 
 
     public get originalChinese() {
-        return this.name.originalChinese;
+        return this.nameContainer.originalChinese;
     }
 
     public get chinese() {
-        return this.name.chinese;
+        return this.nameContainer.chinese;
     }
 
     public get simplifiedChinese() {
-        return this.name.simplifiedChinese;
+        return this.nameContainer.simplifiedChinese;
     }
 
     public get traditionalChinese() {
-        return this.name.traditionalChinese;
+        return this.nameContainer.traditionalChinese;
     }
 
 
     public get korean() {
-        return this.name.korean;
+        return this.nameContainer.korean;
     }
 
 
     public get originalLanguages() {
-        return this.name.originalLanguages;
+        return this.nameContainer.originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
-        return this.name.toNameMap();
+        return this.nameContainer.toNameMap();
     }
 
 }

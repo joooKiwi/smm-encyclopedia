@@ -1,6 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                          from './name/containers/Language';
 import type {ClassWithEveryLanguages}                                                                                                                          from './ClassWithEveryLanguages';
-import type {ClassWithLanguages}                                                                                                                               from './ClassWithLanguages';
 import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName} from './EveryLanguages.types';
 
 export interface LanguageEnumerable {
@@ -22,7 +21,7 @@ export interface LanguageEnumerable {
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    get(classWithLanguages: ClassWithLanguages,): string
+    get(classWithEveryLanguages: ClassWithEveryLanguages,): string
 
     original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
 

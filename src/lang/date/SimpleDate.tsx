@@ -1,4 +1,5 @@
 import {FormattedDateParts} from 'react-intl';
+import {Fragment}           from 'react';
 
 import type {DayNumber, MonthNumber} from './types';
 import type {ReactProperty}          from '../../util/ReactProperty';
@@ -23,11 +24,14 @@ export interface DateTimeFormatProperties
  * @see https://formatjs.io/docs/react-intl/components#formatteddate
  */
 export default function SimpleDate({year, month, day,}: DateTimeFormatProperties,) {
+    const date = new Date(year, month - 1, day,);
+
     return <FormattedDateParts
-        value={new Date(year, month - 1, day,)}
+        value={date}
         year="numeric"
         month="long"
         day="numeric">
-        {parts => <>{parts.map(part => <>{part.type === 'day' ? DateDayLanguages.currentLanguage.newDayComponent(Number(part.value) as DayNumber) : part.value}</>)}</>}
+        {parts => <>{parts.map(({type, value,}) => type === 'day' ? <Fragment key={`${date} - ${type}`}>{DateDayLanguages.currentLanguage.newDayComponent(Number(value) as DayNumber)}</Fragment> : value)}</>}
     </FormattedDateParts>;
 }
+
