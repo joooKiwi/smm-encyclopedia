@@ -1,4 +1,4 @@
-import {Popover as BootstrapPopover} from 'bootstrap';
+import type {Popover as BootstrapPopover} from 'bootstrap';
 
 export interface PopoverConfiguration {
 

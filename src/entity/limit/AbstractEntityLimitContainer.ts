@@ -125,6 +125,10 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
+    public get isPortugueseUsed() {
+        return this.nameContainer.isPortugueseUsed;
+    }
+
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }
@@ -266,6 +270,10 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
         return this.alternativeNameContainer.dutch;
     }
 
+
+    public get alternativeIsPortugueseUsed() {
+        return this.alternativeNameContainer.isPortugueseUsed;
+    }
 
     public get alternativeOriginalPortuguese() {
         return this.alternativeNameContainer.originalPortuguese;

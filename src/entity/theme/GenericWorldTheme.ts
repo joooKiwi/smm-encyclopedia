@@ -30,7 +30,7 @@ export class GenericWorldTheme
     //endregion -------------------- Game properties --------------------
 
     public toNameMap() {
-        return this.name.toNameMap();
+        return this.nameContainer.toNameMap();
     }
 
 }

@@ -1,8 +1,10 @@
-import {PopoverConfiguration} from './Popover.types';
-import Popover                from './Popover';
+import Popover from './Popover';
+
+import type {PopoverConfiguration} from './Popover.types';
+import type {ReactProperty}        from '../../util/ReactProperty';
 
 interface Properties
-    extends PopoverConfiguration {
+    extends ReactProperty, PopoverConfiguration {
 
     children: string | JSX.Element
 

@@ -9,7 +9,7 @@
  *     but not the simple language.
  * </p>
  */
-export interface ClassWithLanguages {
+export interface ClassWithOnlyProjectLanguages {
 
     //region -------------------- English properties --------------------
 
@@ -48,6 +48,8 @@ export interface ClassWithLanguages {
 
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
+
+    get isPortugueseUsed(): boolean
 
     get americanPortuguese(): string
 

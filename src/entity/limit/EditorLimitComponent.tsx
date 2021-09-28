@@ -1,8 +1,10 @@
 import type {LimitProperty} from '../properties/limit/LimitProperty';
+import type {ReactProperty} from '../../util/ReactProperty';
 
 import PossiblyKnownTextContainer from '../../app/tools/text/PossiblyKnownTextContainer';
 
-interface EditorLimitProperties {
+interface EditorLimitProperties
+    extends ReactProperty {
 
     limit: LimitProperty
 

@@ -1,6 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                    from './name/containers/Language';
 import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages';
-import type {ClassWithLanguages}                                                                                                                                                                                                                                                                                         from './ClassWithLanguages';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                         from './LanguageEnumerable';
 import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                                                                                                                         from './ProjectLanguages.types';
 import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
@@ -15,7 +14,7 @@ import {EveryLanguages} from './EveryLanguages';
  * </p>
  *
  * <p>
- *     The other utility class is the getter and setter from a {@link ClassWithLanguages}
+ *     The other utility class is the getter and setter from a {@link ClassWithEveryLanguages}
  *     to retrieve its property by the instance that is used.
  * </p>
  *
@@ -128,8 +127,8 @@ export class ProjectLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(classWithLanguages: ClassWithLanguages,): string {
-        return this.language.get(classWithLanguages);
+    public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        return this.language.get(classWithEveryLanguages);
     }
 
     public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal {

@@ -1,29 +1,37 @@
 import {FormattedDateParts} from 'react-intl';
+import {Fragment}           from 'react';
 
 import type {DayNumber, MonthNumber} from './types';
+import type {ReactProperty}          from '../../util/ReactProperty';
 
 import {DateDayLanguages} from './DateDayLanguages';
 
-export interface DateTimeFormat {
+export interface DateTimeFormatProperties
+    extends ReactProperty {
+
     year: number
+
     month: MonthNumber
+
     day: DayNumber
+
 }
 
 /**
  * A simple date component that return a date
  * from the {@link DateDayLanguages.currentLanguage current language}.
  *
- * @param props
- * @constructor
  * @see https://formatjs.io/docs/react-intl/components#formatteddate
  */
-export default function SimpleDate({year, month, day,}: DateTimeFormat) {
+export default function SimpleDate({year, month, day,}: DateTimeFormatProperties,) {
+    const date = new Date(year, month - 1, day,);
+
     return <FormattedDateParts
-        value={new Date(year, month - 1, day,)}
+        value={date}
         year="numeric"
         month="long"
         day="numeric">
-        {parts => <>{parts.map(part => <>{part.type === 'day' ? DateDayLanguages.currentLanguage.newDayComponent(Number(part.value) as DayNumber) : part.value}</>)}</>}
+        {parts => <>{parts.map(({type, value,}) => type === 'day' ? <Fragment key={`${date} - ${type}`}>{DateDayLanguages.currentLanguage.newDayComponent(Number(value) as DayNumber)}</Fragment> : value)}</>}
     </FormattedDateParts>;
 }
+

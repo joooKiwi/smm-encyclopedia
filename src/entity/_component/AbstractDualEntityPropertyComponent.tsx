@@ -1,28 +1,7 @@
-import {PureComponent} from 'react';
-
-import type {Name} from '../../lang/name/Name';
-
-export interface AbstractDualEntityProperty<R> {
-
-    reference: R
-
-    name: Name
-
-}
+import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
 
 export abstract class AbstractDualEntityPropertyComponent<R>
-    extends PureComponent<AbstractDualEntityProperty<R>> {
-
-    protected get reference() {
-        return this.props.reference;
-    }
-
-    protected get name() {
-        return this.props.name;
-    }
-
-
-    protected abstract get _isInAll(): boolean;
+    extends AbstractEntityPropertyThatCanDisplayAllComponent<R> {
 
     protected abstract get _isInFirst(): boolean;
 
@@ -31,8 +10,6 @@ export abstract class AbstractDualEntityPropertyComponent<R>
     protected abstract _renderFirstComponent(): JSX.Element;
 
     protected abstract _renderSecondComponent(): JSX.Element;
-
-    protected abstract _renderComponentForAll(): JSX.Element;
 
     public render(): JSX.Element {
         if (this._isInAll)

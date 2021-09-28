@@ -1,20 +1,22 @@
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import type {Name} from '../../lang/name/Name';
+import type {Name}          from '../../lang/name/Name';
+import type {ReactProperty} from '../../util/ReactProperty';
 
 import {EveryLanguages} from '../../lang/EveryLanguages';
 import SpanPopover      from '../../bootstrap/popover/SpanPopover';
 
-interface SMM2NameProperty {
+interface SMM2NameProperties
+    extends ReactProperty {
 
-    popoverOrientation?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
+    popoverOrientation?: | 'auto' | 'top' | 'bottom' | 'left' | 'right'
     id: string
     name: Name
 
 }
 
-export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2NameProperty,): JSX.Element {
+export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2NameProperties,): JSX.Element {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 

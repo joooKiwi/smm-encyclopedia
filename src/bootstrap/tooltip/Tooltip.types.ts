@@ -1,4 +1,4 @@
-import {Tooltip as BootstrapTooltip} from 'bootstrap';
+import type {Tooltip as BootstrapTooltip} from 'bootstrap';
 
 export interface TooltipConfiguration {
 

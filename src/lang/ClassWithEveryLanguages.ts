@@ -1,5 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './name/containers/Language';
-import type {ClassWithLanguages}                                                      from './ClassWithLanguages';
+import type {ClassWithOnlyProjectLanguages}                                           from './ClassWithOnlyProjectLanguages';
 import type {EveryLanguages}                                                          from './EveryLanguages';
 
 /**
@@ -9,11 +9,11 @@ import type {EveryLanguages}                                                    
  *
  * <p>
  *     As a reference, this class utilise the simple language without the region as well
- *     as every languages included inside {@link ClassWithLanguages}
+ *     as every languages included inside {@link ClassWithOnlyProjectLanguages}
  * </p>
  */
 export interface ClassWithEveryLanguages
-    extends ClassWithLanguages {
+    extends ClassWithOnlyProjectLanguages {
 
     //region -------------------- English properties --------------------
 

@@ -1,8 +1,6 @@
-import type {Name} from '../../lang/name/Name';
+import type {NameWithAName} from '../../lang/name/NameWithAName';
 
 export interface EntityCategory
-    extends Name {
-
-    get name(): Name
+    extends NameWithAName {
 
 }

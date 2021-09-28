@@ -9,10 +9,12 @@ import {ProjectLanguages}          from '../lang/ProjectLanguages';
 export default function Navigation() {
     return <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container-fluid">
-            <Link key="navigationHome" className="navbar-brand" aria-current="page" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/home`}>
-                <ContentTranslationComponent translationCallback={translation => translation('Home')}/>
-            </Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <ContentTranslationComponent>{translation =>
+                <Link key="navigationHome" className="navbar-brand" aria-current="page" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/home`}>
+                    {translation('Home')}
+                </Link>
+            }</ContentTranslationComponent>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"/>
             </button>
             <div id="navbar-container" className="collapse navbar-collapse">

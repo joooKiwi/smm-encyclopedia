@@ -1,4 +1,7 @@
+import type {ReactProperty} from '../../../util/ReactProperty';
 
+export type SingleCaptionContent = | string | JSX.Element;
+export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader;
 export type SingleTableContent = [key: string, ...content: JSX.Element[]];
 
 export interface SimpleImageHeader {
@@ -19,11 +22,12 @@ export interface SimpleReactHeader {
 
 }
 
-export interface SimpleTableComponent {
+export interface SimpleTableProperties
+    extends ReactProperty {
 
     id: string
-    caption: string | JSX.Element
-    headers: readonly (| string | SimpleImageHeader | SimpleReactHeader)[]
+    caption: SingleCaptionContent
+    headers: readonly SingleHeaderContent[]
     content: readonly SingleTableContent[]
 
 }
