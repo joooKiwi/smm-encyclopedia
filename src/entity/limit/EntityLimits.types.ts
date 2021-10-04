@@ -17,7 +17,7 @@ export type EntityLimitsNames =
 
     | `${| 'LOOSE_COIN' | 'SOUND_EFFECT' | 'CORPSE' | 'PROJECTILE' | 'LIGHT_SOURCE'
 
-         | 'GROUND' | 'BLOCK' | 'OTHER_GROUND_AND_VINE' | 'CLEAR_PIPE'
+         | 'GROUND' | 'BLOCK' | 'PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE' | 'CLEAR_PIPE'
 
          | 'GROWN_VINE' | 'CHECKPOINT_FLAG' | 'TRACK' | `${| 'SNAKE' | 'EXCLAMATION' | 'TRACK'}_BLOCK`
 
@@ -25,7 +25,7 @@ export type EntityLimitsNames =
 
          | `${| '_10_OR_30_OR_50' | 'PINK'}_COIN` | 'KEY_COLLECTED'
 
-         | `${`${| 'FIRE' | 'SUPER'}BALL` | 'BOOMERANG' | 'CANNONBALL'}_THROWN_BY_A_PLAYER` | 'LINK_BOMB' | 'BUILDER_BOX' | 'HATCHED_YOSHI'
+         | `${`${| 'FIRE' | 'SUPER'}BALL` | 'BOOMERANG' | 'BUILDER_BOX' | 'CANNONBALL'}_THROWN_BY_A_PLAYER` | 'BOMB_THROWN_BY_A_LINK' | 'HATCHED_YOSHI'
 
          | 'CHARVAARGH' | 'PIRANHA_CREEPER'
          | 'BOWSER_AND_BOWSER_JR' | 'BOOM_BOOM_AND_POM_POM' | 'KOOPALING'
@@ -40,17 +40,17 @@ export type PossibleAcronymEntityLimits = | PossibleAcronymEntityLimitsInBothEdi
 export type PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying =
     | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile' | 'Light Source'
 
-    | 'Ground' | 'Block' | 'Other Ground + Vine' | 'Clear Pipe'
+    | 'Ground' | 'Block' | 'Platform / Slope / Conveyor Belt / Pipe / Vine' | 'Clear Pipe'
 
     | 'Grown Vine' | 'Checkpoint Flag' | 'Track' | `${| 'Snake ' | '! ' | 'Track '}Block`
 
     | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block' | 'Entity Held By A Twister'
 
-    | `${| '10 / 30 / 50' | 'Pink'} Coin` | 'Key Collected'
+    | `${| '[10- / 30- / 50-]' | 'Pink'} Coin` | 'Key Collected'
 
-    | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Cannonball' | 'Boomerang'} thrown by a player` | 'Builder Box' | 'Link\'s Bomb' | 'Hatched Yoshi'
+    | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Builder Box' | 'Boomerang' | 'Cannonball'} thrown by a player` | 'Bomb thrown by a Link' | 'Hatched Yoshi'
 
-    | 'Enemy + Other' | 'Charvaargh' | 'Piranha Creeper'
+    | 'Charvaargh' | 'Piranha Creeper'
     | 'Bowser (Jr.)' | 'Boom Boom / Pom Pom' | 'Koopaling'
     | 'Angry Sun / Moon' | 'Phanto' | 'Koopa Troopa Car'
 
@@ -72,9 +72,9 @@ export type SimpleEntityLimits<T = EntityLimits, > = SimpleEnum<EntityLimitsName
 export type EntityLimitsArray<T = EntityLimits, > = readonly [
     SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEntityLimits<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'],
 
-    SimpleEntityLimits<T>['LOOSE_COIN_LIMIT'], SimpleEntityLimits<T>['SOUND_EFFECT_LIMIT'], SimpleEntityLimits<T>['CORPSE_LIMIT'], SimpleEntityLimits<T>['PROJECTILE_LIMIT'],SimpleEntityLimits<T>['LIGHT_SOURCE_LIMIT'],
+    SimpleEntityLimits<T>['LOOSE_COIN_LIMIT'], SimpleEntityLimits<T>['SOUND_EFFECT_LIMIT'], SimpleEntityLimits<T>['CORPSE_LIMIT'], SimpleEntityLimits<T>['PROJECTILE_LIMIT'], SimpleEntityLimits<T>['LIGHT_SOURCE_LIMIT'],
 
-    SimpleEntityLimits<T>['GROUND_LIMIT'], SimpleEntityLimits<T>['BLOCK_LIMIT'], SimpleEntityLimits<T>['OTHER_GROUND_AND_VINE_LIMIT'], SimpleEntityLimits<T>['CLEAR_PIPE_LIMIT'],
+    SimpleEntityLimits<T>['GROUND_LIMIT'], SimpleEntityLimits<T>['BLOCK_LIMIT'], SimpleEntityLimits<T>['PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT'], SimpleEntityLimits<T>['CLEAR_PIPE_LIMIT'],
 
     SimpleEntityLimits<T>['GROWN_VINE_LIMIT'], SimpleEntityLimits<T>['CHECKPOINT_FLAG_LIMIT'], SimpleEntityLimits<T>['TRACK_LIMIT'], SimpleEntityLimits<T>['SNAKE_BLOCK_LIMIT'], SimpleEntityLimits<T>['EXCLAMATION_BLOCK_LIMIT'], SimpleEntityLimits<T>['TRACK_BLOCK_LIMIT'],
 
@@ -83,7 +83,7 @@ export type EntityLimitsArray<T = EntityLimits, > = readonly [
     SimpleEntityLimits<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEntityLimits<T>['PINK_COIN_LIMIT'], SimpleEntityLimits<T>['KEY_COLLECTED_LIMIT'],
 
     SimpleEntityLimits<T>['POWER_UP_ENTITY_LIMIT_EDITOR'], SimpleEntityLimits<T>['FIREBALL_THROWN_BY_A_PLAYER_LIMIT'], SimpleEntityLimits<T>['SUPERBALL_THROWN_BY_A_PLAYER_LIMIT'],
-    SimpleEntityLimits<T>['LINK_BOMB_LIMIT'], SimpleEntityLimits<T>['BUILDER_BOX_LIMIT'],
+    SimpleEntityLimits<T>['BOMB_THROWN_BY_A_LINK_LIMIT'], SimpleEntityLimits<T>['BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT'],
     SimpleEntityLimits<T>['BOOMERANG_THROWN_BY_A_PLAYER_LIMIT'], SimpleEntityLimits<T>['CANNONBALL_THROWN_BY_A_PLAYER_LIMIT'],
     SimpleEntityLimits<T>['HATCHED_YOSHI_LIMIT'],
 

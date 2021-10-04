@@ -20,55 +20,55 @@ export class EntityLimits
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly GENERAL_ENTITY_LIMIT_WHILE_PLAYING =             new EntityLimits(['GEL (WP)', 'General Entity', true,], ['ELB', 'Entity Limit B',], );
-    public static readonly POWER_UP_ENTITY_LIMIT_WHILE_PLAYING =            new EntityLimits(['PEL (WP)', 'Power-up Entity', true,], ['ELC', 'Entity Limit C',],);
+    public static readonly GENERAL_ENTITY_LIMIT_WHILE_PLAYING =                       new EntityLimits(['GEL (WP)', 'General Entity', true,], ['ELB', 'Entity Limit B',], );
+    public static readonly POWER_UP_ENTITY_LIMIT_WHILE_PLAYING =                      new EntityLimits(['PEL (WP)', 'Power-up Entity', true,], ['ELC', 'Entity Limit C',],);
 
-    public static readonly LOOSE_COIN_LIMIT =                               new EntityLimits(['LCL', 'Loose Coin',],                                                              );
-    public static readonly SOUND_EFFECT_LIMIT =                             new EntityLimits(['SEL', 'Sound Effect',],                                                            );
-    public static readonly CORPSE_LIMIT =                                   new EntityLimits(['CL', 'Corpse',],                                                                   );
-    public static readonly PROJECTILE_LIMIT =                               new EntityLimits(['PJL', 'Projectile',],                                                              );
-    public static readonly LIGHT_SOURCE_LIMIT =                             new EntityLimits(['LSL', 'Light Source',],                                                            );
+    public static readonly LOOSE_COIN_LIMIT =                                         new EntityLimits(['LCL', 'Loose Coin',],                                                              );
+    public static readonly SOUND_EFFECT_LIMIT =                                       new EntityLimits(['SEL', 'Sound Effect',],                                                            );
+    public static readonly CORPSE_LIMIT =                                             new EntityLimits(['CL', 'Corpse',],                                                                   );
+    public static readonly PROJECTILE_LIMIT =                                         new EntityLimits(['PJL', 'Projectile',],                                                              );
+    public static readonly LIGHT_SOURCE_LIMIT =                                       new EntityLimits(['LSL', 'Light Source',],                                                            );
 
-    public static readonly GROUND_LIMIT =                                   new EntityLimits('Ground', 'Ground Limit 1',                                        );
-    public static readonly BLOCK_LIMIT =                                    new EntityLimits('Block', 'Ground Limit 2',                                         );
-    public static readonly OTHER_GROUND_AND_VINE_LIMIT =                    new EntityLimits('Other Ground + Vine', 'Ground Limit 3',                           );
-    public static readonly CLEAR_PIPE_LIMIT =                               new EntityLimits('Clear Pipe',                                                                        );
+    public static readonly GROUND_LIMIT =                                             new EntityLimits('Ground', 'Ground Limit 1',                                        );
+    public static readonly BLOCK_LIMIT =                                              new EntityLimits('Block', 'Ground Limit 2',                                         );
+    public static readonly PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT = new EntityLimits('Platform / Slope / Conveyor Belt / Pipe / Vine', 'Ground Limit 3',);
+    public static readonly CLEAR_PIPE_LIMIT =                                         new EntityLimits('Clear Pipe',                                                                        );
 
-    public static readonly GROWN_VINE_LIMIT =                               new EntityLimits(['GVL', 'Grown Vine',],                                                              );
-    public static readonly CHECKPOINT_FLAG_LIMIT =                          new EntityLimits('Checkpoint Flag',                                                                   );
-    public static readonly TRACK_LIMIT =                                    new EntityLimits('Track',                                                                             );
-    public static readonly SNAKE_BLOCK_LIMIT =                              new EntityLimits('Snake Block',                                                                       );
-    public static readonly EXCLAMATION_BLOCK_LIMIT =                        new EntityLimits('! Block',                                                                           );
-    public static readonly TRACK_BLOCK_LIMIT =                              new EntityLimits('Track Block',                                                                       );
-    public static readonly ICICLE_LIMIT =                                   new EntityLimits('Icicle',                                                                            );
-    public static readonly ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT = new EntityLimits('One-Way Wall / Arrow Sign / Dash Block',                                            );
-    public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                 new EntityLimits('Entity Held By A Twister',                                                          );
+    public static readonly GROWN_VINE_LIMIT =                                         new EntityLimits(['GVL', 'Grown Vine',],                                                              );
+    public static readonly CHECKPOINT_FLAG_LIMIT =                                    new EntityLimits('Checkpoint Flag',                                                                   );
+    public static readonly TRACK_LIMIT =                                              new EntityLimits('Track',                                                                             );
+    public static readonly SNAKE_BLOCK_LIMIT =                                        new EntityLimits('Snake Block',                                                                       );
+    public static readonly EXCLAMATION_BLOCK_LIMIT =                                  new EntityLimits('! Block',                                                                           );
+    public static readonly TRACK_BLOCK_LIMIT =                                        new EntityLimits('Track Block',                                                                       );
+    public static readonly ICICLE_LIMIT =                                             new EntityLimits('Icicle',                                                                            );
+    public static readonly ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT =           new EntityLimits('One-Way Wall / Arrow Sign / Dash Block',                                            );
+    public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                           new EntityLimits('Entity Held By A Twister',                                                          );
 
-    public static readonly _10_OR_30_OR_50_COIN_LIMIT =                     new EntityLimits('10 / 30 / 50 Coin',                                                                 );
-    public static readonly PINK_COIN_LIMIT =                                new EntityLimits('Pink Coin',                                                                         );
-    public static readonly KEY_COLLECTED_LIMIT =                            new EntityLimits('Key Collected',                                                                     );
+    public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new EntityLimits('[10- / 30- / 50-] Coin',                                                            );
+    public static readonly PINK_COIN_LIMIT =                                          new EntityLimits('Pink Coin',                                                                         );
+    public static readonly KEY_COLLECTED_LIMIT =                                      new EntityLimits('Key Collected',                                                                     );
 
-    public static readonly POWER_UP_ENTITY_LIMIT_EDITOR =                   new EntityLimits(['PEL (E)', 'Power-up Entity', false,],                                              );
-    public static readonly FIREBALL_THROWN_BY_A_PLAYER_LIMIT =              new EntityLimits('Fireball thrown by a player',                                                       );
-    public static readonly SUPERBALL_THROWN_BY_A_PLAYER_LIMIT =             new EntityLimits('Superball thrown by a player',                                                      );
-    public static readonly LINK_BOMB_LIMIT =                                new EntityLimits('Link\'s Bomb',                                                                      );
-    public static readonly BUILDER_BOX_LIMIT =                              new EntityLimits('Builder Box',                                                                       );
-    public static readonly BOOMERANG_THROWN_BY_A_PLAYER_LIMIT =             new EntityLimits('Boomerang thrown by a player',                                                      );
-    public static readonly CANNONBALL_THROWN_BY_A_PLAYER_LIMIT =            new EntityLimits('Cannonball thrown by a player',                                                     );
-    public static readonly HATCHED_YOSHI_LIMIT =                            new EntityLimits(['HYL', 'Hatched Yoshi',],                                                           );
+    public static readonly POWER_UP_ENTITY_LIMIT_EDITOR =                             new EntityLimits(['PEL (E)', 'Power-up Entity', false,],                                              );
+    public static readonly FIREBALL_THROWN_BY_A_PLAYER_LIMIT =                        new EntityLimits('Fireball thrown by a player',                                                       );
+    public static readonly SUPERBALL_THROWN_BY_A_PLAYER_LIMIT =                       new EntityLimits('Superball thrown by a player',                                                      );
+    public static readonly BOMB_THROWN_BY_A_LINK_LIMIT =                              new EntityLimits('Bomb thrown by a Link',                                                             );
+    public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT =                     new EntityLimits('Builder Box thrown by a player',                                                    );
+    public static readonly BOOMERANG_THROWN_BY_A_PLAYER_LIMIT =                       new EntityLimits('Boomerang thrown by a player',                                                      );
+    public static readonly CANNONBALL_THROWN_BY_A_PLAYER_LIMIT =                      new EntityLimits('Cannonball thrown by a player',                                                     );
+    public static readonly HATCHED_YOSHI_LIMIT =                                      new EntityLimits(['HYL', 'Hatched Yoshi',],                                                           );
 
-    public static readonly GENERAL_ENTITY_LIMIT_EDITOR =                    new EntityLimits(['GEL (WP)', 'General Entity', false,], 'General Enemy Limit',     );
-    public static readonly CHARVAARGH_LIMIT =                               new EntityLimits('Charvaargh',                                                                        );
-    public static readonly PIRANHA_CREEPER_LIMIT =                          new EntityLimits('Piranha Creeper',                                                                   );
-    public static readonly BOWSER_AND_BOWSER_JR_LIMIT =                     new EntityLimits('Bowser (Jr.)',                                                                      );
-    public static readonly BOOM_BOOM_AND_POM_POM_LIMIT =                    new EntityLimits('Boom Boom / Pom Pom',                                                               );
-    public static readonly KOOPALING_LIMIT =                                new EntityLimits('Koopaling',                                                                         );
-    public static readonly ANGRY_SUN_MOON_LIMIT =                           new EntityLimits('Angry Sun / Moon',                                                                  );
-    public static readonly PHANTO_LIMIT =                                   new EntityLimits('Phanto',                                                                            );
-    public static readonly KOOPA_TROOPA_CAR_LIMIT =                         new EntityLimits('Koopa Troopa Car',                                                                  );
+    public static readonly GENERAL_ENTITY_LIMIT_EDITOR =                              new EntityLimits(['GEL (WP)', 'General Entity', false,], 'General Enemy Limit',     );
+    public static readonly CHARVAARGH_LIMIT =                                         new EntityLimits('Charvaargh',                                                                        );
+    public static readonly PIRANHA_CREEPER_LIMIT =                                    new EntityLimits('Piranha Creeper',                                                                   );
+    public static readonly BOWSER_AND_BOWSER_JR_LIMIT =                               new EntityLimits('Bowser (Jr.)',                                                                      );
+    public static readonly BOOM_BOOM_AND_POM_POM_LIMIT =                              new EntityLimits('Boom Boom / Pom Pom',                                                               );
+    public static readonly KOOPALING_LIMIT =                                          new EntityLimits('Koopaling',                                                                         );
+    public static readonly ANGRY_SUN_MOON_LIMIT =                                     new EntityLimits('Angry Sun / Moon',                                                                  );
+    public static readonly PHANTO_LIMIT =                                             new EntityLimits('Phanto',                                                                            );
+    public static readonly KOOPA_TROOPA_CAR_LIMIT =                                   new EntityLimits('Koopa Troopa Car',                                                                  );
 
-    public static readonly WARP_DOOR_LIMIT =                                new EntityLimits('Warp Door',                                                                         );
-    public static readonly WARP_BOX_LIMIT =                                 new EntityLimits('Warp Box',                                                                          );
+    public static readonly WARP_DOOR_LIMIT =                                          new EntityLimits('Warp Door',                                                                         );
+    public static readonly WARP_BOX_LIMIT =                                           new EntityLimits('Warp Box',                                                                          );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -187,7 +187,7 @@ export class EntityLimits
 
             this.LOOSE_COIN_LIMIT, this.SOUND_EFFECT_LIMIT, this.CORPSE_LIMIT, this.PROJECTILE_LIMIT, this.LIGHT_SOURCE_LIMIT,
 
-            this.GROUND_LIMIT, this.BLOCK_LIMIT, this.OTHER_GROUND_AND_VINE_LIMIT, this.CLEAR_PIPE_LIMIT,
+            this.GROUND_LIMIT, this.BLOCK_LIMIT, this.PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT, this.CLEAR_PIPE_LIMIT,
 
             this.GROWN_VINE_LIMIT, this.CHECKPOINT_FLAG_LIMIT, this.TRACK_LIMIT,
             this.SNAKE_BLOCK_LIMIT, this.EXCLAMATION_BLOCK_LIMIT, this.TRACK_BLOCK_LIMIT,
@@ -197,7 +197,7 @@ export class EntityLimits
 
             this.POWER_UP_ENTITY_LIMIT_EDITOR,
             this.FIREBALL_THROWN_BY_A_PLAYER_LIMIT, this.SUPERBALL_THROWN_BY_A_PLAYER_LIMIT,
-            this.LINK_BOMB_LIMIT, this.BUILDER_BOX_LIMIT, this.BOOMERANG_THROWN_BY_A_PLAYER_LIMIT, this.CANNONBALL_THROWN_BY_A_PLAYER_LIMIT,
+            this.BOMB_THROWN_BY_A_LINK_LIMIT, this.BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT, this.BOOMERANG_THROWN_BY_A_PLAYER_LIMIT, this.CANNONBALL_THROWN_BY_A_PLAYER_LIMIT,
             this.HATCHED_YOSHI_LIMIT,
 
             this.GENERAL_ENTITY_LIMIT_EDITOR,
