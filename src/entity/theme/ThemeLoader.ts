@@ -1,11 +1,10 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseTheme}                                                            from './CourseTheme';
+import type {CourseAndWorldTheme}                                                    from './Themes.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {Loader}                                                                 from '../../util/loader/Loader';
 import type {ThemeTemplate}                                                          from './Theme.template';
-import type {WorldTheme}                                                             from './WorldTheme';
 
 import {CSVLoader}    from '../../util/loader/CSVLoader';
 import {EntityLoader} from '../simple/EntityLoader';
@@ -34,13 +33,13 @@ type PropertiesArray = [
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link Themes}>
  */
 export class ThemeLoader
-    implements Loader<ReadonlyMap<string, readonly [CourseTheme, WorldTheme]>> {
+    implements Loader<ReadonlyMap<string, CourseAndWorldTheme>> {
 
     static readonly #instance = new ThemeLoader();
 
     //region ---------- external object references ----------
 
-    #everyThemeMap?: Map<string, readonly [CourseTheme, WorldTheme]>;
+    #everyThemeMap?: Map<string, CourseAndWorldTheme>;
 
     //endregion ---------- external object references ----------
 
@@ -54,7 +53,7 @@ export class ThemeLoader
 
     public load() {
         if (this.#everyThemeMap == null) {
-            const references: Map<string, readonly [CourseTheme, WorldTheme]> = new Map();
+            const references: Map<string, CourseAndWorldTheme> = new Map();
 
             //region -------------------- Builder initialisation --------------------
 
