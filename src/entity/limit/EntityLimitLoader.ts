@@ -1,20 +1,19 @@
 import everyThemes from '../../resources/Entity limits.csv';
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate}                                               from './EntityLimit.template';
-import type {EntityLimit}                                                                                                                                              from './EntityLimit';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray, PropertiesArrayAsFunctionParameter as LanguagePropertiesArrayAsFunctionParameter} from '../../lang/Loader.types';
-import type {Loader}                                                                                                                                                   from '../../util/loader/Loader';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}                               from './EntityLimits.types';
-import type {PossibleEntityLimitTypeEnglishName}                                                                                                                       from './EntityLimitTypes.types';
-import type {PossibleGroupName, SingleEntityName}                                                                                                                      from '../entityTypes';
-import type {SMM2NameTemplate}                                                                                                                                         from '../lang/SMM2Name.template';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EmptyLinkTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate}                                                      from './EntityLimit.template';
+import type {EntityLimit}                                                                                                                                                                        from './EntityLimit';
+import type {Headers as LanguagesHeaders, DefaultNonNullablePropertiesArray as LanguagesPropertyArray, DefaultPropertiesArrayAsFunctionParameter as LanguagePropertiesArrayAsFunctionParameter} from '../../lang/Loader.types';
+import type {Loader}                                                                                                                                                                             from '../../util/loader/Loader';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}                                                         from './EntityLimits.types';
+import type {PossibleEntityLimitTypeEnglishName}                                                                                                                                                 from './EntityLimitTypes.types';
+import type {PossibleGroupName, SingleEntityName}                                                                                                                                                from '../entityTypes';
+import type {SMM2NameTemplate}                                                                                                                                                                   from '../lang/SMM2Name.template';
 
-import {CSVLoader}          from '../../util/loader/CSVLoader';
-import {EMPTY_ARRAY}        from '../../util/emptyVariables';
-import {EntityLimitBuilder} from './EntityLimitBuilder';
-import {EntityLimits}       from './EntityLimits';
-import {EntityLimitTypes}   from './EntityLimitTypes';
-import {EntityLoader}       from '../simple/EntityLoader';
+import {CSVLoader}                                 from '../../util/loader/CSVLoader';
+import {EntityLimitBuilder}                        from './EntityLimitBuilder';
+import {EntityLimits}                              from './EntityLimits';
+import {EntityLimitTypes}                          from './EntityLimitTypes';
+import {EntityLoader}                              from '../simple/EntityLoader';
 
 //region -------------------- CSV array related types --------------------
 
@@ -24,7 +23,7 @@ type Headers =
     | 'alternative'
     | 'type' | 'acronym'
     | `limit${| '' | '_comment'}`
-    | `link_${| 'groupName' | `entity${| 1 | 2}`}`
+    | `link_${| 'groupName' | 'entity'}`
     | LanguagesHeaders;
 
 type ExclusivePropertyArray = [
@@ -38,8 +37,7 @@ type ExclusivePropertyArray = [
     limit_comment: | string | null,
 
     link_groupName: | PossibleGroupName | null,
-    link_entity1: | SingleEntityName | null,
-    link_entity2: | SingleEntityName | null,
+    link_entity: | SingleEntityName | null,
 
 ];
 type PropertiesArray = [
@@ -89,7 +87,7 @@ export class EntityLimitLoader
                 .convertToEmptyableStringAnd([...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,], 'acronym',)
                 .convertToNullableNumberAnd(['?', 'string',], 'limit')
                 .convertToEmptyableString('link_groupName')//TODO change to every group name
-                .convertToEmptyableString('link_entity1', 'link_entity2',)//TODO change to every entity name
+                .convertToEmptyableString('link_entity',)//TODO change to every entity name
 
                 .convertTo([...EntityLimits.everyEnglishNames, ...EntityLimits.everyAlternativeEnglishNames,], 'english')
 
@@ -117,9 +115,9 @@ class TemplateCreator {
         isUnknown: false,
         comment: null,
     };
-    public static readonly EMPTY_LINK_TEMPLATE: LinkTemplate = {
+    public static readonly EMPTY_LINK_TEMPLATE: EmptyLinkTemplate = {
         groupName: null,
-        entitiesName: EMPTY_ARRAY,
+        entityName: null,
     };
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
@@ -127,15 +125,15 @@ class TemplateCreator {
     public static createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = content[1];
         const acronym = content[2];
-        const groupNameAndEntitiesName = [content[5], content[6], content[7],] as const;
-        const languages: LanguagePropertiesArrayAsFunctionParameter = [content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24], content[25],];
+        const groupNameAndEntitiesName = [content[5], content[6],] as const;
+        const languages = [content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24],] as LanguagePropertiesArrayAsFunctionParameter;
 
         return type == null
             ? this.__createAlternativeLimitTemplate(acronym, groupNameAndEntitiesName, languages,)
             : this.__createLimitTemplate(content, type, acronym, groupNameAndEntitiesName, languages,);
     }
 
-    private static __createLimitTemplate(content: PropertiesArray, type: PossibleEntityLimitTypeEnglishName, acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: readonly [| PossibleGroupName | null, | SingleEntityName | null, | SingleEntityName | null,], languages: LanguagePropertiesArrayAsFunctionParameter,): EntityLimitTemplate {
+    private static __createLimitTemplate(content: PropertiesArray, type: PossibleEntityLimitTypeEnglishName, acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagePropertiesArrayAsFunctionParameter,): EntityLimitTemplate {
         return {
 
             references: {
@@ -156,7 +154,7 @@ class TemplateCreator {
         };
     }
 
-    private static __createAlternativeLimitTemplate(acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: readonly [| PossibleGroupName | null, | SingleEntityName | null, | SingleEntityName | null,], languages: LanguagePropertiesArrayAsFunctionParameter,): AlternativeLimitTemplate {
+    private static __createAlternativeLimitTemplate(acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: | readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagePropertiesArrayAsFunctionParameter,): AlternativeLimitTemplate {
         return {
             references: {
                 regular: null,
@@ -176,7 +174,7 @@ class TemplateCreator {
     }
 
 
-    private static __convertToLimitTemplate(limit: PossibleLimitNumber, limitComment: | string | null,): | LimitAmountTemplate {
+    private static __convertToLimitTemplate(limit: PossibleLimitNumber, limitComment: | string | null,): LimitAmountTemplate {
         switch (typeof limit) {
             case 'number':
                 return {
@@ -200,23 +198,17 @@ class TemplateCreator {
         return this.EMPTY_LIMIT_AMOUNT_TEMPLATE;
     }
 
-    private static __convertToLinkTemplate(groupName: | PossibleGroupName | null, entity1: | SingleEntityName | null, entity2: | SingleEntityName | null,): | LinkTemplate {
-        if (entity1 == null && entity2 == null)
-            if (groupName == null)
-                return this.EMPTY_LINK_TEMPLATE;
-        if (entity1 == null)
+    private static __convertToLinkTemplate(groupName: | PossibleGroupName | null, entity: | SingleEntityName | null,): LinkTemplate {
+        if (entity == null && groupName == null)
+            return this.EMPTY_LINK_TEMPLATE;
+        if (entity == null)
             return {
                 groupName: groupName,
-                entitiesName: EMPTY_ARRAY,
-            };
-        if (entity2 == null)
-            return {
-                groupName: null,
-                entitiesName: [entity1,],
+                entityName: null,
             };
         return {
             groupName: null,
-            entitiesName: [entity1, entity2,],
+            entityName: entity,
         };
     }
 

@@ -116,11 +116,7 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     get alternativeGroupName(): AlternativeEntityLimit['groupName']
 
 
-    get alternativeEntities(): AlternativeEntityLimit['entities']
-
-    get alternativeEntity1(): AlternativeEntityLimit['entity1']
-
-    get alternativeEntity2(): AlternativeEntityLimit['entity2']
+    get alternativeEntityName(): AlternativeEntityLimit['entityName']
 
     //endregion -------------------- Link --------------------
 

@@ -2,9 +2,12 @@ import type {EntityLimit}       from './EntityLimit';
 import type {EntityLimitAmount} from './properties/EntityLimitAmount';
 import type {EntityLimitLink}   from './properties/EntityLimitLink';
 
-import {EMPTY_ARRAY, EMPTY_OBJECT} from '../../util/emptyVariables';
-import {EmptyName}                 from '../../lang/name/EmptyName';
+import {EMPTY_OBJECT} from '../../util/emptyVariables';
+import {EmptyName}    from '../../lang/name/EmptyName';
 
+/**
+ * @singleton
+ */
 export class EmptyEntityLimit
     implements EntityLimit {
 
@@ -13,11 +16,9 @@ export class EmptyEntityLimit
         isAmountUnknown: false,
         amountComment: null,
     };
-    public static readonly EMPTY_LINK_CONTAINER: EntityLimitLink<{}, readonly []> = {
+    public static readonly EMPTY_LINK_CONTAINER: EntityLimitLink<{}, {}> = {
         groupName: EMPTY_OBJECT,
-        entities: EMPTY_ARRAY,
-        entity1: undefined,
-        entity2: undefined,
+        entityName: EMPTY_OBJECT,
     };
 
     static readonly #instance = new EmptyEntityLimit();
@@ -156,9 +157,7 @@ export class EmptyEntityLimit
     public readonly alternativeLinkContainer = EmptyEntityLimit.EMPTY_LINK_CONTAINER;
 
     public readonly alternativeGroupName = this.alternativeLinkContainer.groupName;
-    public readonly alternativeEntities = this.alternativeLinkContainer.entities;
-    public readonly alternativeEntity1 = this.alternativeLinkContainer.entity1;
-    public readonly alternativeEntity2 = this.alternativeLinkContainer.entity2;
+    public readonly alternativeEntityName = this.alternativeLinkContainer.entityName;
 
     //endregion -------------------- Link --------------------
 
@@ -177,9 +176,7 @@ export class EmptyEntityLimit
     public readonly linkContainer = EmptyEntityLimit.EMPTY_LINK_CONTAINER;
 
     public readonly groupName = this.linkContainer.groupName;
-    public readonly entities = this.linkContainer.entities;
-    public readonly entity1 = this.linkContainer.entity1;
-    public readonly entity2 = this.linkContainer.entity2;
+    public readonly entityName = this.linkContainer.entityName;
 
     //endregion -------------------- Link --------------------
 

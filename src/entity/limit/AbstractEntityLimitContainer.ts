@@ -361,16 +361,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeEntities(): this['alternativeLinkContainer']['entities'] {
-        return this.alternativeLinkContainer.entities;
-    }
-
-    public get alternativeEntity1(): this['alternativeEntities'][0] {
-        return this.alternativeEntities[0];
-    }
-
-    public get alternativeEntity2(): this['alternativeEntities'][1] {
-        return this.alternativeEntities[1];
+    public get alternativeEntityName(): this['alternativeLinkContainer']['entityName'] {
+        return this.alternativeLinkContainer.entityName;
     }
 
     //endregion -------------------- Link --------------------
@@ -408,16 +400,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get entities(): this['linkContainer']['entities'] {
-        return this.linkContainer.entities;
-    }
-
-    public get entity1(): this['entities'][0] {
-        return this.entities[0];
-    }
-
-    public get entity2(): this['entities'][1] {
-        return this.entities[1];
+    public get entityName(): this['linkContainer']['entityName'] {
+        return this.linkContainer.entityName;
     }
 
     //endregion -------------------- Link --------------------

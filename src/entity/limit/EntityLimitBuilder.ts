@@ -4,12 +4,12 @@ import type {Builder}                                                           
 import type {DebugEntityReferences}                                                              from '../simple/EntityLoader';
 import type {Entity}                                                                             from '../simple/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
-import type {EntityLimitLink, EntityLimitLinkOfEntities}                                         from './properties/EntityLimitLink';
+import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
 import type {PossibleAlternativeEntityLimits, PossibleEntityLimits}                              from './EntityLimits.types';
 import type {SingleEntityName}                                                                   from '../entityTypes';
 
 import {AlternativeEntityLimitContainer} from './AlternativeEntityLimitContainer';
-import {EMPTY_ARRAY, EMPTY_OBJECT}       from '../../util/emptyVariables';
+import {EMPTY_OBJECT}                    from '../../util/emptyVariables';
 import {EntityLimitContainer}            from './EntityLimitContainer';
 import {EntityLimitTypes}                from './EntityLimitTypes';
 import {EntityLimits}                    from './EntityLimits';
@@ -67,30 +67,21 @@ export class EntityLimitBuilder
     private __createLink(): EntityLimitLink {
         const link = this.template.link;
         const groupName = link.groupName;
-        const entities = link.entitiesName;
+        const entityName = link.entityName;
 
-        if (groupName == null && entities.length === 0)
+        if (groupName == null && entityName == null)
             return EmptyEntityLimit.EMPTY_LINK_CONTAINER;//TODO change to limit link object instead
 
         if (groupName != null)
             return {
                 groupName: {name: groupName},
-                entities: EMPTY_ARRAY,
-                entity1: undefined,
-                entity2: undefined,
+                entityName: EMPTY_OBJECT,
             };//TODO change to limit link object instead
-        const [entity1, entity2,] = entities;
-
-        const entityArray: EntityLimitLinkOfEntities = entity2 == null
-            ? [EntityLimitBuilder.__getEntity(entity1!),]
-            : [EntityLimitBuilder.__getEntity(entity1!), EntityLimitBuilder.__getEntity(entity2),];
 
         return {
             groupName: EMPTY_OBJECT,
-            entities: entityArray,
-            entity1: entityArray[0],
-            entity2: entityArray[1],
-        };//TODO change to limit link object instead
+            entityName: {name: EntityLimitBuilder.__getEntity(entityName!),},
+        };
     }
 
     //endregion -------------------- Link helper methods --------------------
