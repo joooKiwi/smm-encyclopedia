@@ -79,7 +79,7 @@ class TemplateCreator {
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
 
-    public static createTemplate(content: PropertiesArray): GameStyleTemplate {
+    public static createTemplate(content: PropertiesArray,): GameStyleTemplate {
         return {
             isIn: {
                 game: {
@@ -111,8 +111,8 @@ class TemplateCreator {
                 japanese: content[15],
                 chinese: {
                     simple: content[16],
-                    simplified: content[17],
-                    traditional: content[18],
+                    traditional: content[17],
+                    simplified: content[18],
                 },
                 korean: content[19],
             }

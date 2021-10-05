@@ -126,8 +126,8 @@ class TemplateCreator {
                 japanese: content[17],
                 chinese: {
                     simple: content[18],
-                    simplified: content[19],
-                    traditional: content[20],
+                    traditional: content[19],
+                    simplified: content[20],
                 },
                 korean: content[21],
             }

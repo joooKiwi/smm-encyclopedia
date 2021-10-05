@@ -148,12 +148,12 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.nameContainer.chinese;
     }
 
-    public get simplifiedChinese() {
-        return this.nameContainer.simplifiedChinese;
-    }
-
     public get traditionalChinese() {
         return this.nameContainer.traditionalChinese;
+    }
+
+    public get simplifiedChinese() {
+        return this.nameContainer.simplifiedChinese;
     }
 
 
@@ -284,12 +284,12 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
         return this.categoryName.chinese;
     }
 
-    public get categorySimplifiedChinese() {
-        return this.categoryName.simplifiedChinese;
-    }
-
     public get categoryTraditionalChinese() {
         return this.categoryName.traditionalChinese;
+    }
+
+    public get categorySimplifiedChinese() {
+        return this.categoryName.simplifiedChinese;
     }
 
 

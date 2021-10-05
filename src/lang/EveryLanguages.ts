@@ -195,7 +195,7 @@ export abstract class EveryLanguages
     public static readonly CHINESE =             new class EveryLanguages_Chinese extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
-            return EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage || EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage;
+            return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
         }
 
         public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
@@ -203,17 +203,6 @@ export abstract class EveryLanguages
         }
 
     }           ('zh',    'zh',    'Chinese',              '中国人',                                         );
-    public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
-
-        public get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage;
-        }
-
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
-            return classWithEveryLanguages.simplifiedChinese;
-        }
-
-    } ('zh_T',  'zh',    'Traditional chinese',  '简体中文',              EveryLanguages.CHINESE,  );
     public static readonly TRADITIONAL_CHINESE = new class EveryLanguages_TraditionalChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -224,7 +213,18 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.traditionalChinese;
         }
 
-    }('zh_S',  'zh',    'Simplified chinese',   '繁體中文',              EveryLanguages.CHINESE,  );
+    }('zh_T',  'zh',    'Traditional chinese',  '繁體中文',              EveryLanguages.CHINESE,  );
+    public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
+
+        public get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage;
+        }
+
+        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+            return classWithEveryLanguages.simplifiedChinese;
+        }
+
+    } ('zh_S',  'zh',    'Simplified chinese',   '简体中文',              EveryLanguages.CHINESE,  );
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
         public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {

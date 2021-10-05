@@ -37,8 +37,8 @@ export interface SMM2NameTemplate<PORTUGUESE extends string | null = null, > {
 
     chinese: {
         simple: | string | null
-        simplified: | string | null
         traditional: | string | null
+        simplified: | string | null
     }
 
     japanese: | string | null

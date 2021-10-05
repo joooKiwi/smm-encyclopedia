@@ -164,12 +164,12 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
         return this.nameContainer.chinese;
     }
 
-    public get simplifiedChinese() {
-        return this.nameContainer.simplifiedChinese;
-    }
-
     public get traditionalChinese() {
         return this.nameContainer.traditionalChinese;
+    }
+
+    public get simplifiedChinese() {
+        return this.nameContainer.simplifiedChinese;
     }
 
 
@@ -310,12 +310,12 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
         return this.alternativeNameContainer.chinese;
     }
 
-    public get alternativeSimplifiedChinese() {
-        return this.alternativeNameContainer.simplifiedChinese;
-    }
-
     public get alternativeTraditionalChinese() {
         return this.alternativeNameContainer.traditionalChinese;
+    }
+
+    public get alternativeSimplifiedChinese() {
+        return this.alternativeNameContainer.simplifiedChinese;
     }
 
 

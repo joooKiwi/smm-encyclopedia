@@ -196,12 +196,12 @@ export class NameContainer
         return this.#chinese.get();
     }
 
-    public get simplifiedChinese() {
-        return this.#chinese.get(0);
-    }
-
     public get traditionalChinese() {
         return this.#chinese.get(1);
+    }
+
+    public get simplifiedChinese() {
+        return this.#chinese.get(0);
     }
 
     //endregion -------------------- Chinese properties --------------------

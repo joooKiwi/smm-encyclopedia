@@ -87,9 +87,9 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
 
     get alternativeChinese(): AlternativeEntityLimit['chinese']
 
-    get alternativeSimplifiedChinese(): AlternativeEntityLimit['simplifiedChinese']
-
     get alternativeTraditionalChinese(): AlternativeEntityLimit['traditionalChinese']
+
+    get alternativeSimplifiedChinese(): AlternativeEntityLimit['simplifiedChinese']
 
 
     get alternativeKorean(): AlternativeEntityLimit['korean']

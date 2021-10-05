@@ -82,8 +82,8 @@ export class EmptyEntityLimit
 
     public readonly originalChinese = this.nameContainer.originalChinese;
     public readonly chinese = this.nameContainer.chinese;
-    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
     public readonly traditionalChinese = this.nameContainer.traditionalChinese;
+    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
 
     public readonly korean = this.nameContainer.korean;
 
@@ -135,8 +135,8 @@ export class EmptyEntityLimit
 
     public readonly alternativeOriginalChinese = this.alternativeNameContainer.originalChinese;
     public readonly alternativeChinese = this.alternativeNameContainer.chinese;
-    public readonly alternativeSimplifiedChinese = this.alternativeNameContainer.simplifiedChinese;
     public readonly alternativeTraditionalChinese = this.alternativeNameContainer.traditionalChinese;
+    public readonly alternativeSimplifiedChinese = this.alternativeNameContainer.simplifiedChinese;
 
     public readonly alternativeKorean = this.alternativeNameContainer.korean;
 

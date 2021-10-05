@@ -85,8 +85,8 @@ export class EmptyName
 
     public readonly originalChinese = EMPTY_STRING;
     public readonly chinese = EMPTY_STRING;
-    public readonly simplifiedChinese = EMPTY_STRING;
     public readonly traditionalChinese = EMPTY_STRING;
+    public readonly simplifiedChinese = EMPTY_STRING;
 
     //endregion -------------------- Chinese properties --------------------
     //region -------------------- Korean properties --------------------

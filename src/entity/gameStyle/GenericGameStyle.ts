@@ -139,12 +139,12 @@ export class GenericGameStyle
         return this.nameContainer.chinese;
     }
 
-    public get simplifiedChinese() {
-        return this.nameContainer.simplifiedChinese;
-    }
-
     public get traditionalChinese() {
         return this.nameContainer.traditionalChinese;
+    }
+
+    public get simplifiedChinese() {
+        return this.nameContainer.simplifiedChinese;
     }
 
 

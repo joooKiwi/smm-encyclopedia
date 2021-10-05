@@ -212,7 +212,7 @@ class TemplateCreator {
         };
     }
 
-    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, russian, chinese, simplifiedChinese, traditionalChinese, japanese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
+    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, russian, chinese, traditionalChinese, simplifiedChinese, japanese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
         return {
             english: {
                 simple: english,
@@ -236,8 +236,8 @@ class TemplateCreator {
             russian: russian,
             chinese: {
                 simple: chinese,
-                simplified: simplifiedChinese,
                 traditional: traditionalChinese,
+                simplified: simplifiedChinese,
             },
             japanese: japanese,
             korean: korean,

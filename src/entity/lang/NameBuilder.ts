@@ -22,6 +22,7 @@ export class NameBuilder
     }
 
     public build() {
+        //TODO interpret single or triple values.
         return new OriginalNameBuilder()
             .setEnglish(this.template.english.simple ?? [this.template.english.american, this.template.english.european,] as string | [string, string,])
             .setGerman(this.template.german as string)
@@ -32,7 +33,7 @@ export class NameBuilder
             .setPortuguese(this.template.portuguese.simple ?? [this.template.portuguese.american, this.template.portuguese.european,] as string | [string, string,])
             .setRussian(this.template.russian as string)
             .setJapanese(this.template.japanese as string)
-            .setChinese(this.template.chinese.simple ?? [this.template.chinese.simplified, this.template.chinese.traditional,] as string | [string, string,])
+            .setChinese(this.template.chinese.simple ?? [this.template.chinese.traditional, this.template.chinese.simplified,] as string | [string, string,])
             .setKorean(this.template.korean as string)
             .build();
     }

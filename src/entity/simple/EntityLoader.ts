@@ -552,8 +552,8 @@ class TemplateCreator {
                 japanese: content[87],
                 chinese: {
                     simple: content[88],
-                    simplified: content[89],
-                    traditional: content[90],
+                    traditional: content[89],
+                    simplified: content[90],
                 },
                 korean: content[91],
             },
@@ -594,7 +594,7 @@ class NameCreator {
         // if (name.portuguese.simple === null && (name.portuguese.simplified === null || name.portuguese.traditional === null))
         //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
         // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
-        //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
+        //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "traditional"("${name.chinese.traditional}") and "simplified"("${name.chinese.simplified}") name separated.`);
     }
 
     public static addEnglishReference(name: SMM2NameTemplateWithPortuguese, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
