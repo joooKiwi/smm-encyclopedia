@@ -57,6 +57,7 @@ export class GameStyleLoader
 
             const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .setDefaultConversion('emptyable string')
+
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
                 .load();

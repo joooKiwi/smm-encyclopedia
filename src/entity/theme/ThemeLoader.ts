@@ -64,6 +64,7 @@ export class ThemeLoader
 
             const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .setDefaultConversion('emptyable string')
+
                 .convertToBoolean(
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
@@ -89,7 +90,7 @@ class TemplateCreator {
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
 
-    public static createTemplate(content: PropertiesArray): ThemeTemplate {
+    public static createTemplate(content: PropertiesArray,): ThemeTemplate {
         return {
             isIn: {
                 game: {

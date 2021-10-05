@@ -48,18 +48,11 @@ export class EntityCategoryLoader
             //region -------------------- CSV Loader --------------------
 
             const csvLoader = new CSVLoader<PropertiesArray, EntityCategoryBuilder, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
-                )
+                .setDefaultConversion('emptyable string')
+
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
                 .load();
+
             //endregion -------------------- CSV Loader --------------------
 
             console.log('-------------------- entity category has been loaded --------------------');// temporary console.log
@@ -78,7 +71,7 @@ class TemplateCreator {
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
 
-    public static createTemplate(content: PropertiesArray): EntityCategoryTemplate {
+    public static createTemplate(content: PropertiesArray,): EntityCategoryTemplate {
         return {
             entities: null,
             name: {
