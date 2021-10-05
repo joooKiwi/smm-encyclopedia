@@ -9,11 +9,10 @@ import type {PossibleEntityLimitTypeEnglishName}                                
 import type {PossibleGroupName, SingleEntityName}                                                                                           from '../entityTypes';
 import type {SMM2NameTemplate}                                                                                                              from '../lang/SMM2Name.template';
 
-import {CSVLoader}          from '../../util/loader/CSVLoader';
-import {EntityLimitBuilder} from './EntityLimitBuilder';
-import {EntityLimits}       from './EntityLimits';
-import {EntityLimitTypes}   from './EntityLimitTypes';
-import {EntityLoader}       from '../simple/EntityLoader';
+import {CSVLoader}               from '../../util/loader/CSVLoader';
+import {EntityLimitBuilder}      from './EntityLimitBuilder';
+import {EntityLoader}            from '../simple/EntityLoader';
+import {HeaderTypesForConvertor} from '../../util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -82,14 +81,14 @@ export class EntityLimitLoader
             new CSVLoader<PropertiesArray, EntityLimit, Headers>(everyThemes, convertedContent => new EntityLimitBuilder(TemplateCreator.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertToEmptyableStringAnd(EntityLimits.everyAlternativeAcronyms, 'alternative',)
-                .convertToEmptyableStringAnd(EntityLimitTypes.everyEnglishNames, 'type',)
-                .convertToEmptyableStringAnd([...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,], 'acronym',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
                 .convertToNullableNumberAnd(['?', 'string',], 'limit')
-                .convertToEmptyableString('link_groupName')//TODO change to every group name
-                .convertToEmptyableString('link_entity',)//TODO change to every entity name
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGroupNames, 'link_groupName')
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleEntityNames, 'link_entity',)
 
-                .convertTo([...EntityLimits.everyEnglishNames, ...EntityLimits.everyAlternativeEnglishNames,], 'english')
+                .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.nameContainer.english as PossibleEntityLimits, finalContent,))
                 .load();

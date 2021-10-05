@@ -19,7 +19,7 @@ import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
 import {EntityBuilder}                from './EntityBuilder';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
-import {EntityLimits}                 from '../limit/EntityLimits';
+import {HeaderTypesForConvertor}      from '../../util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -192,10 +192,10 @@ type PropertiesArray = [
 
 export interface DebugEntityReferences {
 
-    originalContent: readonly string[];
-    arrayConverted: PropertiesArray;
-    template: EntityTemplate;
-    entity?: Entity;
+    originalContent: readonly string[]
+    arrayConverted: PropertiesArray
+    template: EntityTemplate
+    entity?: Entity
 
 }
 
@@ -244,7 +244,7 @@ export class EntityLoader
             //region -------------------- Builder initialisation --------------------
 
             EntityBuilder.references = references;
-            EntityBuilder.categoriesMap = this.entityCategories;
+            EntityBuilder.categoriesMap = EntityCategoryLoader.get.load();
 
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
@@ -254,7 +254,7 @@ export class EntityLoader
 
                 .convertTo(['Entity', 'Projectile', 'Entity & Projectile', '(Entity) & Projectile',], 'entityType',)
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .convertTo(this.entityCategoriesNames, 'categoryInTheEditor',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeInAParachute', 'canHaveWings',)
 
@@ -262,7 +262,7 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
-                .convertToEmptyableStringAnd(EntityLimits.everyEnglishNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
@@ -279,12 +279,12 @@ export class EntityLoader
 
                 .convertTo([1, 2, '1?', EntityLoader.UNKNOWN_CHARACTER,], 'limitAmount',)
 
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,], 'editorLimit',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBooleanAnd('Only when collected', 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,], 'whilePlaying_customLimit',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'whilePlaying_customLimit',)
 
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine',], 'canRespawn',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)

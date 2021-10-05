@@ -1,0 +1,236 @@
+import type {EntityLimitTypeEnglishNameArray}                                                                                            from '../../entity/limit/EntityLimitTypes.types';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from '../../entity/limit/EntityLimits.types';
+
+import {EntityCategoryLoader} from '../../entity/category/EntityCategoryLoader';
+import {EntityLimits}         from '../../entity/limit/EntityLimits';
+import {EntityLimitTypes}     from '../../entity/limit/EntityLimitTypes';
+
+//region -------------------- External types --------------------
+
+type StringConstant = 'string';
+
+type UnknownCharacter = '?';
+
+type EveryPossibleEntityNames = readonly string[];
+
+type EveryPossibleGroupNames = readonly string[];
+
+type EveryPossibleCategoriesNames = readonly string[];
+
+type EveryPossibleLimitsAcronyms = readonly (| PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits)[];
+type EveryAlternativeLimitsAcronyms = readonly PossibleAcronymEntityLimits[];
+type EveryPossibleLimitsNames = readonly (| PossibleEntityLimits | PossibleAlternativeEntityLimits)[];
+type EveryLimitsNamesOrUnknown = readonly (| PossibleEntityLimits | UnknownCharacter)[];
+
+type EveryPossibleLimitTypesNames = EntityLimitTypeEnglishNameArray;
+
+//endregion -------------------- External types --------------------
+
+interface HeaderTypesForConvertorI {
+
+    //region -------------------- Entity getter methods --------------------
+
+    get everyPossibleEntityNames(): | EveryPossibleEntityNames | StringConstant
+
+    //endregion -------------------- Entity getter methods --------------------
+    //region -------------------- Entity group getter methods --------------------
+
+    get everyPossibleGroupNames(): | EveryPossibleGroupNames | StringConstant
+
+    //endregion -------------------- Entity group getter methods --------------------
+    //region -------------------- Entity category getter methods --------------------
+
+    get everyPossibleEntityCategoriesNames(): | EveryPossibleCategoriesNames | StringConstant
+
+    //endregion -------------------- Entity group getter methods --------------------
+    //region -------------------- Entity limits getter methods --------------------
+
+    get everyPossibleLimitsAcronyms(): | EveryPossibleLimitsAcronyms | StringConstant
+
+    get everyAlternativeLimitAcronyms(): | EveryAlternativeLimitsAcronyms | StringConstant
+
+    get everyPossibleLimitsNames(): | EveryPossibleLimitsNames | StringConstant
+
+    get everyLimitsNamesOrUnknown(): | EveryLimitsNamesOrUnknown | StringConstant
+
+    //endregion -------------------- Entity limits getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    get everyPossibleLimitTypesNames(): | EveryPossibleLimitTypesNames | StringConstant
+
+    //endregion -------------------- Entity limit type getter methods --------------------
+
+}
+
+/**
+ * @singleton
+ */
+class HeaderTypesForConvertorForTestAndDevelopment
+    implements HeaderTypesForConvertorI {
+
+    static #instance?: HeaderTypesForConvertorForTestAndDevelopment;
+
+    //region -------------------- Attributes --------------------
+
+    static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
+
+    #everyPossibleEntityNames?: EveryPossibleEntityNames;
+
+    #everyPossibleGroupNames?: EveryPossibleGroupNames;
+
+    #everyPossibleEntityCategoriesNames?: EveryPossibleCategoriesNames;
+
+    #everyPossibleLimitsAcronyms?: EveryPossibleLimitsAcronyms;
+    #everyAlternativeLimitAcronyms?: EveryAlternativeLimitsAcronyms;
+    #everyPossibleLimitsNames?: EveryPossibleLimitsNames;
+    #everyLimitsNamesOrUnknown?: EveryLimitsNamesOrUnknown;
+
+    #everyPossibleLimitTypesNames?: EveryPossibleLimitTypesNames;
+
+    //endregion -------------------- Attributes --------------------
+
+    private constructor() {
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //region -------------------- Entity getter methods --------------------
+
+    public get everyPossibleEntityNames() {
+        //TODO implements this methods
+        return this.#everyPossibleEntityNames ??= [];
+    }
+
+    //endregion -------------------- Entity getter methods --------------------
+    //region -------------------- Entity group getter methods --------------------
+
+    public get everyPossibleGroupNames() {
+        //TODO implements this methods
+        return this.#everyPossibleGroupNames ??= [];
+    }
+
+    //endregion -------------------- Entity group getter methods --------------------
+    //region -------------------- Entity category getter methods --------------------
+
+    public get everyPossibleEntityCategoriesNames() {
+        //TODO change to enum usage instead (when it will be created)
+        return this.#everyPossibleEntityCategoriesNames ??= [...EntityCategoryLoader.get.load().keys()];
+    }
+
+    //endregion -------------------- Entity group getter methods --------------------
+    //region -------------------- Entity limits getter methods --------------------
+
+    public get everyPossibleLimitsAcronyms() {
+        return this.#everyPossibleLimitsAcronyms ??= [...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,];
+    }
+
+    public get everyAlternativeLimitAcronyms() {
+        return this.#everyAlternativeLimitAcronyms ??= EntityLimits.everyAcronyms;
+    }
+
+    public get everyPossibleLimitsNames() {
+        return this.#everyPossibleLimitsNames ??= [...EntityLimits.everyEnglishNames, ...EntityLimits.everyAlternativeEnglishNames,];
+    }
+
+    public get everyLimitsNamesOrUnknown() {
+        return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,];
+    }
+
+    //endregion -------------------- Entity limits getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleLimitTypesNames() {
+        return this.#everyPossibleLimitTypesNames ??= EntityLimitTypes.everyEnglishNames;
+    }
+
+    //endregion -------------------- Entity limit type getter methods --------------------
+
+}
+
+/**
+ * @singleton
+ */
+class HeaderTypesForConvertorForProduction
+    implements HeaderTypesForConvertorI {
+
+    static #instance?: HeaderTypesForConvertorForProduction;
+
+    //region -------------------- Attributes --------------------
+
+    static readonly #STRING_VALUE: StringConstant = 'string';
+
+    //endregion -------------------- Attributes --------------------
+
+    private constructor() {
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //region -------------------- Entity getter methods --------------------
+
+    public get everyPossibleEntityNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity getter methods --------------------
+    //region -------------------- Entity group getter methods --------------------
+
+    public get everyPossibleGroupNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity group getter methods --------------------
+    //region -------------------- Entity category getter methods --------------------
+
+    public get everyPossibleEntityCategoriesNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity group getter methods --------------------
+    //region -------------------- Entity limits getter methods --------------------
+
+    public get everyPossibleLimitsAcronyms(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    public get everyAlternativeLimitAcronyms(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    public get everyPossibleLimitsNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    public get everyLimitsNamesOrUnknown(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity limits getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleLimitTypesNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity limit type getter methods --------------------
+
+}
+
+/**
+ * <p>
+ *  A dynamic variable to make the production built faster.
+ *  Mainly to avoid any useless validations (since they will never be used).
+ * </p>
+ *
+ * <p>
+ *  The constant is made of the {@link HeaderTypesForConvertorForProduction production build (HeaderTypesForConvertorForProduction)}
+ *  and the {@link HeaderTypesForConvertorForTestAndDevelopment test & development build (HeaderTypesForConvertorForTestAndDevelopment)}.
+ * </p>
+ * @see HeaderTypesForConvertorI
+ */
+const HeaderTypesForConvertor = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
+export {HeaderTypesForConvertor};
