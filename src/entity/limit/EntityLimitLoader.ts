@@ -12,7 +12,7 @@ import type {SMM2NameTemplate}                                                  
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLimitBuilder}      from './EntityLimitBuilder';
 import {EntityLoader}            from '../simple/EntityLoader';
-import {HeaderTypesForConvertor} from '../../util/loader/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 

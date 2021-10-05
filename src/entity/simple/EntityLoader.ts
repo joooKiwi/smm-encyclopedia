@@ -18,7 +18,7 @@ import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
 import {EntityBuilder}                from './EntityBuilder';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
-import {HeaderTypesForConvertor}      from '../../util/loader/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor}      from '../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 

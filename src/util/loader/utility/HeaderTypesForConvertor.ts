@@ -1,72 +1,16 @@
-import type {EntityLimitTypeEnglishNameArray}                                                                                            from '../../entity/limit/EntityLimitTypes.types';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from '../../entity/limit/EntityLimits.types';
+import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                        from '../../../entity/limit/EntityLimitTypes.types';
+import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
 
-import {EntityCategoryLoader} from '../../entity/category/EntityCategoryLoader';
-import {EntityLimits}         from '../../entity/limit/EntityLimits';
-import {EntityLimitTypes}     from '../../entity/limit/EntityLimitTypes';
+import {EntityCategoryLoader} from '../../../entity/category/EntityCategoryLoader';
+import {EntityLimits}         from '../../../entity/limit/EntityLimits';
+import {EntityLimitTypes}     from '../../../entity/limit/EntityLimitTypes';
 
-//region -------------------- External types --------------------
-
-type StringConstant = 'string';
-
-type UnknownCharacter = '?';
-
-type EveryPossibleEntityNames = readonly string[];
-
-type EveryPossibleGroupNames = readonly string[];
-
-type EveryPossibleCategoriesNames = readonly string[];
-
-type EveryPossibleLimitsAcronyms = readonly (| PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits)[];
-type EveryAlternativeLimitsAcronyms = readonly PossibleAcronymEntityLimits[];
-type EveryPossibleLimitsNames = readonly (| PossibleEntityLimits | PossibleAlternativeEntityLimits)[];
-type EveryLimitsNamesOrUnknown = readonly (| PossibleEntityLimits | UnknownCharacter)[];
-
-type EveryPossibleLimitTypesNames = EntityLimitTypeEnglishNameArray;
-
-//endregion -------------------- External types --------------------
-
-interface HeaderTypesForConvertorI {
-
-    //region -------------------- Entity getter methods --------------------
-
-    get everyPossibleEntityNames(): | EveryPossibleEntityNames | StringConstant
-
-    //endregion -------------------- Entity getter methods --------------------
-    //region -------------------- Entity group getter methods --------------------
-
-    get everyPossibleGroupNames(): | EveryPossibleGroupNames | StringConstant
-
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity category getter methods --------------------
-
-    get everyPossibleEntityCategoriesNames(): | EveryPossibleCategoriesNames | StringConstant
-
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity limits getter methods --------------------
-
-    get everyPossibleLimitsAcronyms(): | EveryPossibleLimitsAcronyms | StringConstant
-
-    get everyAlternativeLimitAcronyms(): | EveryAlternativeLimitsAcronyms | StringConstant
-
-    get everyPossibleLimitsNames(): | EveryPossibleLimitsNames | StringConstant
-
-    get everyLimitsNamesOrUnknown(): | EveryLimitsNamesOrUnknown | StringConstant
-
-    //endregion -------------------- Entity limits getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
-
-    get everyPossibleLimitTypesNames(): | EveryPossibleLimitTypesNames | StringConstant
-
-    //endregion -------------------- Entity limit type getter methods --------------------
-
-}
 
 /**
  * @singleton
  */
 class HeaderTypesForConvertorForTestAndDevelopment
-    implements HeaderTypesForConvertorI {
+    implements HeaderTypesForConvertorDefinition {
 
     static #instance?: HeaderTypesForConvertorForTestAndDevelopment;
 
@@ -85,7 +29,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleLimitsNames?: EveryPossibleLimitsNames;
     #everyLimitsNamesOrUnknown?: EveryLimitsNamesOrUnknown;
 
-    #everyPossibleLimitTypesNames?: EveryPossibleLimitTypesNames;
+    #everyPossibleLimitTypesNames?: EntityLimitTypeEnglishNameArray;
 
     //endregion -------------------- Attributes --------------------
 
@@ -153,7 +97,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
  * @singleton
  */
 class HeaderTypesForConvertorForProduction
-    implements HeaderTypesForConvertorI {
+    implements HeaderTypesForConvertorDefinition {
 
     static #instance?: HeaderTypesForConvertorForProduction;
 
@@ -230,7 +174,7 @@ class HeaderTypesForConvertorForProduction
  *  The constant is made of the {@link HeaderTypesForConvertorForProduction production build (HeaderTypesForConvertorForProduction)}
  *  and the {@link HeaderTypesForConvertorForTestAndDevelopment test & development build (HeaderTypesForConvertorForTestAndDevelopment)}.
  * </p>
- * @see HeaderTypesForConvertorI
+ * @see HeaderTypesForConvertorDefinition
  */
 const HeaderTypesForConvertor = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
 export {HeaderTypesForConvertor};
