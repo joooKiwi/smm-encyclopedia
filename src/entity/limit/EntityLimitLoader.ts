@@ -54,20 +54,19 @@ type PropertiesArray = [
 export class EntityLimitLoader
     implements Loader<ReadonlyMap<string, EntityLimit>> {
 
-    static readonly #instance = new EntityLimitLoader();
-
-    #everyLimitsMap?: Map<string, EntityLimit>;
+    static #instance?: EntityLimitLoader;
+    #map?: Map<string, EntityLimit>;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load(): Map<string, EntityLimit> {
-        if (this.#everyLimitsMap == null) {
+        if (this.#map == null) {
             const references: Map<PossibleEntityLimits, EntityLimit> = new Map();
 
             //region -------------------- Builder initialisation --------------------
@@ -98,9 +97,9 @@ export class EntityLimitLoader
             console.log('-------------------- entity limit has been loaded --------------------');// temporary console.log
             console.log(references);// temporary console.log
 
-            this.#everyLimitsMap = references;
+            this.#map = references;
         }
-        return this.#everyLimitsMap;
+        return this.#map;
     }
 
 }

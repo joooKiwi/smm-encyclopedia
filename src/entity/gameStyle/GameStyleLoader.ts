@@ -29,23 +29,19 @@ type PropertiesArray = [
 export class GameStyleLoader
     implements Loader<ReadonlyMap<string, GameStyle>> {
 
-    static readonly #instance = new GameStyleLoader();
-    //region -------------------- Attributes --------------------
-
-    #everyGameStyleMap?: Map<string, GameStyle>;
-
-    //endregion -------------------- Attributes --------------------
+    static #instance?: GameStyleLoader;
+    #map?: Map<string, GameStyle>;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load() {
-        if (this.#everyGameStyleMap == null) {
+        if (this.#map == null) {
             const references: Map<string, GameStyle> = new Map();
 
             //region -------------------- Builder initialisation --------------------
@@ -67,9 +63,9 @@ export class GameStyleLoader
             console.log('-------------------- game style has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
 
-            this.#everyGameStyleMap = references;
+            this.#map = references;
         }
-        return this.#everyGameStyleMap;
+        return this.#map;
     }
 
 }

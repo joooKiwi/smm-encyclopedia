@@ -26,23 +26,19 @@ type PropertiesArray = [
 export class EntityCategoryLoader
     implements Loader<ReadonlyMap<string, EntityCategory>> {
 
-    static readonly #instance = new EntityCategoryLoader();
-    //region -------------------- Attributes --------------------
-
-    #everyEntityCategoriesMap?: Map<string, EntityCategory>;
-
-    //endregion -------------------- Attributes --------------------
+    static #instance?: EntityCategoryLoader;
+    #map?: Map<string, EntityCategory>;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load() {
-        if (this.#everyEntityCategoriesMap == null) {
+        if (this.#map == null) {
             const references: Map<string, EntityCategory> = new Map();
 
             //region -------------------- CSV Loader --------------------
@@ -58,9 +54,9 @@ export class EntityCategoryLoader
             console.log('-------------------- entity category has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
 
-            this.#everyEntityCategoriesMap = references;
+            this.#map = references;
         }
-        return this.#everyEntityCategoriesMap;
+        return this.#map;
     }
 
 }

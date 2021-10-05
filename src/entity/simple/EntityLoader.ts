@@ -208,24 +208,19 @@ export class EntityLoader
     public static readonly INFINITE_CHARACTER = '∞';
     public static readonly THIS_REFERENCE = 'this';
 
-    static readonly #instance = new EntityLoader();
-
-    //region ---------- External object references ----------
-
-    #everyEntitiesMap?: Map<string, DebugEntityReferences>;
-
-    //endregion ---------- External object references ----------
+    static #instance?: EntityLoader;
+    #map?: Map<string, DebugEntityReferences>;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load() {
-        if (this.#everyEntitiesMap == null) {
+        if (this.#map == null) {
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
 
@@ -320,9 +315,9 @@ export class EntityLoader
             console.log('-------------------- entity has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
 
-            this.#everyEntitiesMap = references;
+            this.#map = references;
         }
-        return this.#everyEntitiesMap;
+        return this.#map;
     }
 
 }

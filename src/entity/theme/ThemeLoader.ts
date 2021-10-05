@@ -35,24 +35,19 @@ type PropertiesArray = [
 export class ThemeLoader
     implements Loader<ReadonlyMap<string, CourseAndWorldTheme>> {
 
-    static readonly #instance = new ThemeLoader();
-
-    //region ---------- external object references ----------
-
-    #everyThemeMap?: Map<string, CourseAndWorldTheme>;
-
-    //endregion ---------- external object references ----------
+    static #instance?: ThemeLoader;
+    #map?: Map<string, CourseAndWorldTheme>;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load() {
-        if (this.#everyThemeMap == null) {
+        if (this.#map == null) {
             const references: Map<string, CourseAndWorldTheme> = new Map();
 
             //region -------------------- Builder initialisation --------------------
@@ -77,9 +72,9 @@ export class ThemeLoader
             console.log('-------------------- theme has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
 
-            this.#everyThemeMap = references;
+            this.#map = references;
         }
-        return this.#everyThemeMap;
+        return this.#map;
     }
 
 }
