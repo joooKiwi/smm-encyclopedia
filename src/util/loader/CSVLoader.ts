@@ -1,5 +1,5 @@
-import type {ArrayHeaderTypeOrConvertor, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackToCreateObject, ConversionCallbackToConverter, CustomConversionCallbackToAnyCallback, CustomConversionCallbackToAnyCallbackWithError, CustomValidationCallback, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived} from './CSVLoader.types';
-import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from './converter/PredefinedConverter.types';
+import type {ArrayHeaderTypeOrConvertor, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackOnLoader, CallbackToCreateObject, ConversionCallbackToConverter, CustomConversionCallbackToAnyCallback, CustomConversionCallbackToAnyCallbackWithError, CustomValidationCallback, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived} from './CSVLoader.types';
+import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from './converter/PredefinedConverter.types';
 
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
@@ -492,6 +492,20 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     }
 
     //endregion -------------------- Direct use on private members methods --------------------
+    //region -------------------- Callback usage methods --------------------
+
+    /**
+     * Execute any callbacks on the current {@link CSVLoader}.
+     *
+     * @note The callbacks will be executed on the method call.
+     * @param callbacks the callbacks to execute on the {@link CSVLoader} instance (this instance).
+     */
+    public executeCallbackOnLoader(...callbacks: CallbackOnLoader<this, A, T, H>[]): this {
+        callbacks.forEach(callback => callback(this));
+        return this;
+    }
+
+    //endregion -------------------- Callback usage methods --------------------
     //region -------------------- Convertor usage methods --------------------
 
     /**

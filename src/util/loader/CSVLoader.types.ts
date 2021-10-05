@@ -1,3 +1,4 @@
+import type {CSVLoader}                                            from './CSVLoader';
 import type {Converter}                                            from './converter/Converter';
 import type {PredefinedConversion, SinglePrimitiveValueConversion} from './converter/PredefinedConverter.types';
 
@@ -18,13 +19,13 @@ export type SimpleHeaderReceived<H extends string = string, > = | H | Lowercase<
 
 export interface HeadersConverterHolder<H extends string = string, > {
 
-    get index(): number
+    get index(): number;
 
-    get originalHeader(): H
+    get originalHeader(): H;
 
-    get header(): SimpleHeader<H>
+    get header(): SimpleHeader<H>;
 
-    get convertor(): ConversionCallbackToConverter
+    get convertor(): ConversionCallbackToConverter;
 
 }
 
@@ -36,6 +37,8 @@ export type ArrayOfMixedConvertorInstance = readonly [conversionCallbacksToConve
 
 //endregion -------------------- Mixed convertor types --------------------
 //region -------------------- Callback types --------------------
+
+export type CallbackOnLoader<L extends CSVLoader<A, T, H>, A extends any[] = any[], T = any, H extends string = string> = (loader: L,) => void;
 
 export type CallbackToCreateObject<A extends any[] = any[], T = any, > = (convertedValue: A,) => T;
 export type ValidationCallback = (value: string,) => boolean;
