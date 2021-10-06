@@ -1,10 +1,11 @@
-import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EntityLink, EveryPossibleLinkedBehaviourAcronymArray, PossibleEntityType, PossibleLightSource}                                                                                                                                                                     from '../entityTypes';
-import type {EntityReferencesTemplate}                                                                                                                                                                                                                                                                                                                 from '../properties/EntityReferences.template';
-import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                                                                     from '../properties/IsInProperty.template';
-import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                                                                    from '../properties/limit/LimitProperty.template';
-import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType} from '../properties/limit/Loader.types';
-import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                                                                 from '../category/EntityCategories.types';
-import type {SMM2NameTemplate}                                                                                                                                                                                                                                                                                                                         from '../lang/SMM2Name.template';
+import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBeInAParachute, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeStacked, CanBeThrownByALakitu, CanContainOrSpawnAKey, CanGoThroughWalls, CanHaveWings, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, EntityLink, HasALightSourceEmittedInSMB, HasAMushroomVariant, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource} from '../entityTypes';
+import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../behaviours/Loader.types';
+import type {EntityReferencesTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../properties/EntityReferences.template';
+import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../properties/IsInProperty.template';
+import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../properties/limit/LimitProperty.template';
+import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType}                                                                                                                                                                                                                                                             from '../properties/limit/Loader.types';
+import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../category/EntityCategories.types';
+import type {SMM2NameTemplateWithPortuguese}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../lang/SMM2Name.template';
 
 /**
  * @template
@@ -18,55 +19,59 @@ export interface EntityTemplate {
 
         isIn: IsInPropertyTemplate
 
-        categoryInTheEditor: | PossibleEntityCategories | null
+        categoryInTheEditor: | PossibleEntityCategoriesName | null
 
-        hasAMushroomVariant: | boolean | null
-        canBeInAParachute: | boolean | '?' | null
-        canHaveWings: boolean | '?'
+        hasAMushroomVariant: HasAMushroomVariant
+        canBeInAParachute: CanBeInAParachute
+        canHaveWings: CanHaveWings
 
         //endregion ---------- Basic properties ----------
 
         //region ---------- Specific properties ----------
 
-        canContainOrSpawnAKey: | boolean | null
+        canContainOrSpawnAKey: CanContainOrSpawnAKey
 
-        canBePutInAOnOffBlock: | boolean | null
+        isAffectedDirectlyByAnOnOrOffState: IsAffectedDirectlyByAnOnOrOffState
 
         canBePutOnATrack: {
-            value: | boolean | '?' | null
+            value: CanBePutOnATrack
             editorLimit: | EntityLink | null
             whilePlaying: | EntityLink | null
         }
 
-        canSpawnOutOfAPipe: | boolean | null
+        canSpawnOutOfAPipe: CanSpawnOutOfAPipe
 
-        canBePutInASwingingClaw: | boolean | null
+        canBePutInASwingingClaw: CanBePutInASwingingClaw
 
-        canBeThrownByALakitu: | boolean | '?' | null
-        canBePutInALakituCloud: | boolean | '?' | null
+        canBeThrownByALakitu: CanBeThrownByALakitu
+        canBePutInALakituCloud: CanBePutInALakituCloud
 
-        canBePutInAClownCar: | boolean | null
+        canBePutInAClownCar: CanBePutInAClownCar
 
-        canBeFiredOutOfABulletLauncher: | boolean | null
+        canBeFiredOutOfABulletLauncher: CanBeFiredOutOfABulletLauncher
 
-        canBePutInABlock: | boolean | null
+        canBePutInABlock: CanBePutInABlock
 
-        canBePutInATree: | boolean | null
+        canBePutInATree: CanBePutInATree
 
         lightSourceEmitted: {
             value: PossibleLightSource
-            isInSMB: | boolean | null
+            isInSMB: HasALightSourceEmittedInSMB
         }
 
-        canIgniteABobOmb: | boolean | 'NSMBU' | null
+        canSurviveInTheLavaOrThePoison: CanSurviveInTheLavaOrThePoison
 
-        canGoThroughWalls: | boolean | null
+        canIgniteABobOmb: CanIgniteABobOmb
 
-        canBeStacked: | boolean | null
+        canBeAffectedByATwister: CanBeAffectedByATwister
 
-        isGlobalGroundOrGlobal: | boolean | 'SM3DW' | null
+        canGoThroughWalls: CanGoThroughWalls
 
-        canMakeASoundOutOfAMusicBlock: | boolean | '?' | null
+        canBeStacked: CanBeStacked
+
+        isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal
+
+        canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock
 
         //endregion ---------- Specific properties ----------
 
@@ -107,7 +112,13 @@ export interface EntityTemplate {
         reference: EntityReferencesTemplate
     }
 
-    name: SMM2NameTemplate
+    name: EntityNameTemplate
 
 }
 
+interface EntityNameTemplate
+    extends SMM2NameTemplateWithPortuguese {
+
+    hasAReferenceInMarioMaker: HasAReferenceInMarioMaker
+
+}

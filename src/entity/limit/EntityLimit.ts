@@ -10,7 +10,9 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
     extends NameWithAName,
         EntityLimitAmount<LIMIT_AMOUNT['amount'], LIMIT_AMOUNT['isAmountUnknown'], LIMIT_AMOUNT['amountComment']>,
-        EntityLimitLink {
+        EntityLimitLink/*,
+        ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
+        ClassWithEnglishName<PossibleEntityLimits>*/ {
 
     get type(): TYPE
 
@@ -87,9 +89,9 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
 
     get alternativeChinese(): AlternativeEntityLimit['chinese']
 
-    get alternativeSimplifiedChinese(): AlternativeEntityLimit['simplifiedChinese']
-
     get alternativeTraditionalChinese(): AlternativeEntityLimit['traditionalChinese']
+
+    get alternativeSimplifiedChinese(): AlternativeEntityLimit['simplifiedChinese']
 
 
     get alternativeKorean(): AlternativeEntityLimit['korean']
@@ -116,11 +118,7 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     get alternativeGroupName(): AlternativeEntityLimit['groupName']
 
 
-    get alternativeEntities(): AlternativeEntityLimit['entities']
-
-    get alternativeEntity1(): AlternativeEntityLimit['entity1']
-
-    get alternativeEntity2(): AlternativeEntityLimit['entity2']
+    get alternativeEntityName(): AlternativeEntityLimit['entityName']
 
     //endregion -------------------- Link --------------------
 

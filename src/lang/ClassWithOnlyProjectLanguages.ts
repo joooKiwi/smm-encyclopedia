@@ -68,9 +68,9 @@ export interface ClassWithOnlyProjectLanguages {
     //endregion -------------------- Japanese properties --------------------
     //region -------------------- Chinese properties --------------------
 
-    get simplifiedChinese(): string
-
     get traditionalChinese(): string
+
+    get simplifiedChinese(): string
 
     //endregion -------------------- Chinese properties --------------------
     //region -------------------- Korean properties --------------------

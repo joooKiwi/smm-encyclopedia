@@ -33,8 +33,8 @@ import {EveryLanguages} from './EveryLanguages';
  *     <li>pt_EU - European Portuguese</li>
  *     <li>ru    - Russian</li>
  *     <li>ja    - Japanese</li>
- *     <li>zh_S  - Simplified Chinese</li>
  *     <li>zh_T  - Traditional Chinese</li>
+ *     <li>zh_S  - Simplified Chinese</li>
  *     <li>ko    - Korean</li>
  * </ol>
  *

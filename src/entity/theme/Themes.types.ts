@@ -1,5 +1,7 @@
-import type {SimpleEnum} from '../../util/enum/Enum.types';
-import type {Themes}     from './Themes';
+import type {CourseTheme} from './CourseTheme';
+import type {SimpleEnum}  from '../../util/enum/Enum.types';
+import type {Themes}      from './Themes';
+import type {WorldTheme}  from './WorldTheme';
 
 //region -------------------- Number types --------------------
 
@@ -28,6 +30,8 @@ export type SimpleThemes<T = Themes, > = SimpleEnum<ThemesNames, T>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
+
+export type CourseAndWorldTheme = readonly [CourseTheme, WorldTheme,];
 
 export type ThemesArray<T = Themes, > = readonly [
     ...ThemesArrayAsOnlyCourseTheme<T>,

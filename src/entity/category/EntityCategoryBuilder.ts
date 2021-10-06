@@ -3,11 +3,11 @@ import type {EntityCategory}         from './EntityCategory';
 import type {EntityCategoryTemplate} from './EntityCategory.template';
 import type {Name}                   from '../../lang/name/Name';
 
-import {GenericEntityCategory} from './GenericEntityCategory';
-import {TemplateBuilder}       from '../TemplateBuilder';
+import {GenericEntityCategory}   from './GenericEntityCategory';
+import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
 
 export class EntityCategoryBuilder
-    extends TemplateBuilder<EntityCategoryTemplate, EntityCategory>
+    extends TemplateBuilderWithName<EntityCategoryTemplate, EntityCategory>
     implements Builder<EntityCategory> {
 
     //region -------------------- Attributes --------------------

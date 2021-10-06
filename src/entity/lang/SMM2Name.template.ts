@@ -1,7 +1,7 @@
 /**
  * @template
  */
-export interface SMM2NameTemplate {
+export interface SMM2NameTemplate<PORTUGUESE extends string | null = null, > {
 
     english: {
         simple: | string | null
@@ -9,13 +9,13 @@ export interface SMM2NameTemplate {
         european: | string | null
     }
 
+    german: | string | null
+
     french: {
         simple: | string | null
         canadian: | string | null
         european: | string | null
     }
-
-    german: | string | null
 
     spanish: {
         simple: | string | null
@@ -28,21 +28,29 @@ export interface SMM2NameTemplate {
     dutch: | string | null
 
     portuguese: {
-        simple: | string | null
-        american: | string | null
-        european: | string | null
+        simple: PORTUGUESE
+        american: PORTUGUESE
+        european: PORTUGUESE
     }
 
     russian: | string | null
 
     chinese: {
         simple: | string | null
-        simplified: | string | null
         traditional: | string | null
+        simplified: | string | null
     }
 
     japanese: | string | null
 
     korean: | string | null
+
+}
+
+/**
+ * @template
+ */
+export interface SMM2NameTemplateWithPortuguese
+    extends SMM2NameTemplate<string | null> {
 
 }

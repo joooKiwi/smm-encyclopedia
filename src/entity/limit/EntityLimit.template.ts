@@ -1,55 +1,61 @@
 import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                        from '../entityTypes';
-import type {SMM2NameTemplate}                                                                                                           from '../lang/SMM2Name.template';
+import type {SMM2NameTemplateWithPortuguese}                                                                                             from '../lang/SMM2Name.template';
 
 //region -------------------- Limit types --------------------
 
-/**
- * @template
- */
-export interface LimitAmountTemplate {
+//region -------------------- Limit amount types --------------------
 
-    amount: | number | null
+interface AbstractLimitAmountTemplate<AMOUNT extends | number | null = | number | null, IS_UNKNOWN extends boolean = boolean, COMMENT extends | string | null = | string | null, > {
 
-    isUnknown: boolean
+    amount: AMOUNT
 
-    comment: | string | null
+    isUnknown: IS_UNKNOWN
 
-}
-
-/**
- * @template
- */
-export interface EmptyLimitAmountTemplate
-    extends LimitAmountTemplate {
-
-    amount: null
-
-    isUnknown: false
-
-    comment: null
+    comment: COMMENT
 
 }
 
 /**
  * @template
  */
-export interface LinkTemplate {
+export type LimitAmountTemplate = AbstractLimitAmountTemplate;
 
-    groupName: | PossibleGroupName | null
+/**
+ * @template
+ */
+export type EmptyLimitAmountTemplate = AbstractLimitAmountTemplate<null, false, null>;
 
-    entitiesName: | readonly [] | readonly [SingleEntityName,] | readonly [SingleEntityName, SingleEntityName,]
+//endregion -------------------- Limit amount types --------------------
+//region -------------------- Link types --------------------
+
+interface AbstractLinkTemplate<GROUP extends PossibleGroupName | null, ENTITY extends SingleEntityName | null, > {
+
+    groupName: GROUP
+
+    entityName: ENTITY
 
 }
+
+/**
+ * @template
+ */
+export type EmptyLinkTemplate = AbstractLinkTemplate<null, null>;
+/**
+ * @template
+ */
+export type LinkTemplate = AbstractLinkTemplate<PossibleGroupName, null> | AbstractLinkTemplate<null, SingleEntityName> | EmptyLinkTemplate;
+
+//endregion -------------------- Link types --------------------
 
 //endregion -------------------- Limit types --------------------
 
-interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeEntityLimits | null,
-    TYPE extends | PossibleEntityLimitTypeEnglishName | null,
-    ACRONYM extends string,
-    LIMIT_AMOUNT extends LimitAmountTemplate,
-    REGULAR_REFERENCE extends | PossibleEntityLimits | null, > {
+interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeEntityLimits | null = | PossibleAlternativeEntityLimits | null,
+    TYPE extends | PossibleEntityLimitTypeEnglishName | null = | PossibleEntityLimitTypeEnglishName | null,
+    ACRONYM extends | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits = | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits,
+    LIMIT_AMOUNT extends LimitAmountTemplate = LimitAmountTemplate,
+    REGULAR_REFERENCE extends | PossibleEntityLimits | null = | PossibleEntityLimits | null, > {
 
     references: {
         regular: PossibleEntityLimits | null
@@ -63,7 +69,7 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
 
     link: LinkTemplate
 
-    name: SMM2NameTemplate
+    name: SMM2NameTemplateWithPortuguese
 
 }
 

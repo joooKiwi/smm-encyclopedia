@@ -63,8 +63,8 @@ export class EmptyEntity
 
     public readonly originalChinese = this.nameContainer.originalChinese;
     public readonly chinese = this.nameContainer.chinese;
-    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
     public readonly traditionalChinese = this.nameContainer.traditionalChinese;
+    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
 
     public readonly korean = this.nameContainer.korean;
 
@@ -111,8 +111,8 @@ export class EmptyEntity
 
     public readonly categoryOriginalChinese = this.categoryName.originalChinese;
     public readonly categoryChinese = this.categoryName.chinese;
-    public readonly categorySimplifiedChinese = this.categoryName.simplifiedChinese;
     public readonly categoryTraditionalChinese = this.categoryName.traditionalChinese;
+    public readonly categorySimplifiedChinese = this.categoryName.simplifiedChinese;
 
     public readonly categoryKorean = this.categoryName.korean;
 

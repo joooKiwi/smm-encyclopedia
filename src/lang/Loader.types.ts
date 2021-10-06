@@ -1,50 +1,96 @@
+//region -------------------- Headers --------------------
+
 export type Headers = | 'english' | 'spanish' | 'portuguese' | `${'american' | 'european'}${'English' | 'Spanish' | 'Portuguese'}`
                       | 'french' | `${'canadian' | 'european'}French` | 'german' | 'italian' | 'dutch' | 'russian' | 'japanese'
                       | 'chinese' | `${'simplified' | 'traditional'}Chinese` | 'korean';
-export type PropertiesArray<EVERY_TYPES extends | string | null = | string | null, > = [
-    english: EVERY_TYPES,
-    americanEnglish: EVERY_TYPES,
-    europeanEnglish: EVERY_TYPES,
+export type HeadersWithPortuguese = Headers | 'portuguese' | `${'american' | 'european'}Portuguese`;
 
-    french: EVERY_TYPES,
-    canadianFrench: EVERY_TYPES,
-    europeanFrench: EVERY_TYPES,
+//endregion -------------------- Headers --------------------
+//region -------------------- Properties --------------------
 
-    german: EVERY_TYPES,
+//region -------------------- Single property --------------------
 
-    spanish: EVERY_TYPES,
-    americanSpanish: EVERY_TYPES,
-    europeanSpanish: EVERY_TYPES,
+type NonNullableLanguage = string;
+type NonNullableArrayLanguage = | [string, null, null,] | [null, string, string,];
+type NullableLanguage = | NonNullableLanguage | null;
+type NullableArrayLanguage = | NonNullableArrayLanguage | [null, null, null,];
 
-    italian: EVERY_TYPES,
+//endregion -------------------- Single property --------------------
+//region -------------------- PropertiesArray --------------------
 
-    dutch: EVERY_TYPES,
-
-    portuguese: EVERY_TYPES,
-    americanPortuguese: EVERY_TYPES,
-    europeanPortuguese: EVERY_TYPES,
-
-    russian: EVERY_TYPES,
-
-    japanese: EVERY_TYPES,
-
-    chinese: EVERY_TYPES,
-    simplifiedChinese: EVERY_TYPES,
-    tradionalChinese: EVERY_TYPES,
-
-    korean: EVERY_TYPES,
+export type PropertiesArray<ENGLISH extends NullableLanguage = NullableLanguage, AMERICAN_ENGLISH extends NullableLanguage = NullableLanguage, EUROPEAN_ENGLISH extends NullableLanguage = NullableLanguage,
+    FRENCH extends NullableLanguage = NullableLanguage, CANADIAN_FRENCH extends NullableLanguage = NullableLanguage, EUROPEAN_FRENCH extends NullableLanguage = NullableLanguage,
+    GERMAN extends NullableLanguage = NullableLanguage,
+    SPANISH extends NullableLanguage = NullableLanguage, AMERICAN_SPANISH extends NullableLanguage = NullableLanguage, EUROPEAN_SPANISH extends NullableLanguage = NullableLanguage,
+    ITALIAN extends NullableLanguage = NullableLanguage,
+    DUTCH extends NullableLanguage = NullableLanguage,
+    RUSSIAN extends NullableLanguage = NullableLanguage,
+    JAPANESE extends NullableLanguage = NullableLanguage,
+    CHINESE extends NullableLanguage = NullableLanguage, TRADITIONAL_CHINESE extends NullableLanguage = NullableLanguage, SIMPLIFIED_CHINESE extends NullableLanguage = NullableLanguage,
+    KOREAN extends NullableLanguage = NullableLanguage, >
+    = readonly [
+    english: ENGLISH, americanEnglish: AMERICAN_ENGLISH, europeanEnglish: EUROPEAN_ENGLISH,
+    french: FRENCH, canadianFrench: CANADIAN_FRENCH, europeanFrench: EUROPEAN_FRENCH,
+    german: GERMAN,
+    spanish: SPANISH, americanSpanish: AMERICAN_SPANISH, europeanSpanish: EUROPEAN_SPANISH,
+    italian: ITALIAN,
+    dutch: DUTCH,
+    russian: RUSSIAN,
+    japanese: JAPANESE,
+    chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
+    korean: KOREAN,
+];
+export type PropertiesArrayWithPortuguese<ENGLISH extends NullableLanguage = NullableLanguage, AMERICAN_ENGLISH extends NullableLanguage = NullableLanguage, EUROPEAN_ENGLISH extends NullableLanguage = NullableLanguage,
+    FRENCH extends NullableLanguage = NullableLanguage, CANADIAN_FRENCH extends NullableLanguage = NullableLanguage, EUROPEAN_FRENCH extends NullableLanguage = NullableLanguage,
+    GERMAN extends NullableLanguage = NullableLanguage,
+    SPANISH extends NullableLanguage = NullableLanguage, AMERICAN_SPANISH extends NullableLanguage = NullableLanguage, EUROPEAN_SPANISH extends NullableLanguage = NullableLanguage,
+    ITALIAN extends NullableLanguage = NullableLanguage,
+    DUTCH extends NullableLanguage = NullableLanguage,
+    PORTUGUESE extends NullableLanguage = NullableLanguage, AMERICAN_PORTUGUESE extends NullableLanguage = NullableLanguage, EUROPEAN_PORTUGUESE extends NullableLanguage = NullableLanguage,
+    RUSSIAN extends NullableLanguage = NullableLanguage,
+    JAPANESE extends NullableLanguage = NullableLanguage,
+    CHINESE extends NullableLanguage = NullableLanguage, TRADITIONAL_CHINESE extends NullableLanguage = NullableLanguage, SIMPLIFIED_CHINESE extends NullableLanguage = NullableLanguage,
+    KOREAN extends NullableLanguage = NullableLanguage, >
+    = readonly [
+    english: ENGLISH, americanEnglish: AMERICAN_ENGLISH, europeanEnglish: EUROPEAN_ENGLISH,
+    french: FRENCH, canadianFrench: CANADIAN_FRENCH, europeanFrench: EUROPEAN_FRENCH,
+    german: GERMAN,
+    spanish: SPANISH, americanSpanish: AMERICAN_SPANISH, europeanSpanish: EUROPEAN_SPANISH,
+    italian: ITALIAN,
+    dutch: DUTCH,
+    portuguese: PORTUGUESE, americanPortuguese: AMERICAN_PORTUGUESE, europeanPortuguese: EUROPEAN_PORTUGUESE,
+    russian: RUSSIAN,
+    japanese: JAPANESE,
+    chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
+    korean: KOREAN,
 ];
 
-export type PropertiesArrayAsFunctionParameter<EVERY_TYPES extends | string | null = | string | null, > = readonly [
-    english: | string | null, americanEnglish: | string | null, europeanEnglish: | string | null,
-    french: | string | null, canadianFrench: | string | null, europeanFrench: | string | null,
-    german: | string | null,
-    spanish: | string | null, americanSpanish: | string | null, europeanSpanish: | string | null,
-    italian: | string | null,
-    dutch: | string | null,
-    portuguese: | string | null, americanPortuguese: | string | null, europeanPortuguese: | string | null,
-    russian: | string | null,
-    japanese: | string | null,
-    chinese: | string | null, simplifiedChinese: | string | null, traditionalChinese: | string | null,
-    korean: | string | null,
+export type NonNullablePropertiesArray = readonly [
+    /*english*/ ...NonNullableArrayLanguage,
+    /*french*/ ...NonNullableArrayLanguage,
+    /*german*/ NonNullableLanguage,
+    /*spanish*/  ...NonNullableArrayLanguage,
+    /*italian*/ NonNullableLanguage,
+    /*dutch*/ NonNullableLanguage,
+    /*russian*/ NonNullableLanguage,
+    /*japanese*/ NonNullableLanguage,
+    /*chinese*/  ...NonNullableArrayLanguage,
+    /*korean*/ NonNullableLanguage,
 ];
+export type DefaultNonNullablePropertiesArray = readonly [
+    /*english*/ ...NonNullableArrayLanguage,
+    /*french*/ ...NonNullableArrayLanguage,
+    /*german*/ NullableLanguage,
+    /*spanish*/  ...NullableArrayLanguage,
+    /*italian*/ NullableLanguage,
+    /*dutch*/ NullableLanguage,
+    /*russian*/ NullableLanguage,
+    /*japanese*/ NullableLanguage,
+    /*chinese*/  ...NullableArrayLanguage,
+    /*korean*/ NullableLanguage,
+];
+
+
+//endregion -------------------- PropertiesArray ------------------
+
+//endregion -------------------- Properties --------------------

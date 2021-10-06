@@ -1,10 +1,12 @@
-import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
-import {LimitAmountCommentType, PossibleLimitAmount}                                                                                                    from './Loader.types';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from './Loader.types';
 
+/**
+ * @template
+ */
 export interface LimitPropertyTemplate {
 
     amount: {
-        value: PossibleLimitAmount
+        value: LimitAmountType
         comment: LimitAmountCommentType
     }
 
@@ -12,17 +14,24 @@ export interface LimitPropertyTemplate {
 
     whilePlaying: {
         isInGEL: {
-            value: LimitWithComment<GeneralEntityLimitType>
-            isSuperGlobal: LimitWithComment<GeneralGlobalEntityLimitType>
+            value: LimitWithCommentTemplate<GeneralEntityLimitType, GeneralEntityLimitCommentType>
+            isSuperGlobal: LimitWithCommentTemplate<GeneralGlobalEntityLimitType, GeneralGlobalEntityLimitCommentType>
         }
-        isInPEL: LimitWithComment<PowerUpEntityLimitType>
-        isInPJL: LimitWithComment<ProjectileEntityLimitType>
-        customLimit: LimitWithComment<CustomLimitType>
+        isInPEL: LimitWithCommentTemplate<PowerUpEntityLimitType, PowerUpEntityLimitCommentType>
+        isInPJL: LimitWithCommentTemplate<ProjectileEntityLimitType, ProjectileEntityLimitCommentType>
+        customLimit: LimitWithCommentTemplate<CustomLimitType, CustomLimitCommentType>
     }
 
 }
 
-export interface LimitWithComment<T extends | EditorLimitType | GeneralEntityLimitType | GeneralGlobalEntityLimitType | PowerUpEntityLimitType | ProjectileEntityLimitType | CustomLimitType> {
-    value: T
+/**
+ * @template
+ */
+export interface LimitWithCommentTemplate<TYPE extends | EditorLimitType | GeneralEntityLimitType | GeneralGlobalEntityLimitType | PowerUpEntityLimitType | ProjectileEntityLimitType | CustomLimitType,
+    COMMENT extends | GeneralEntityLimitCommentType | GeneralGlobalEntityLimitCommentType | PowerUpEntityLimitCommentType | ProjectileEntityLimitCommentType | CustomLimitCommentType> {
+
+    value: TYPE
+
     comment: | string | null
+
 }

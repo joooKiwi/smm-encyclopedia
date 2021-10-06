@@ -1,14 +1,13 @@
 import everyGameStyles from '../../resources/Game styles.csv';
 
 import type {Loader}                                                                 from '../../util/loader/Loader';
-import type {GameStyle}                                                      from './GameStyle';
-import type {GameStyleTemplate}                                              from './GameStyle.template';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray} from '../game/Loader.types';
+import type {GameStyle}                                                              from './GameStyle';
+import type {GameStyleTemplate}                                                      from './GameStyle.template';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
-import {CallbackCaller}   from '../../util/CallbackCaller';
-import {EntityLoader}     from '../simple/EntityLoader';
 import {CSVLoader}        from '../../util/loader/CSVLoader';
+import {EntityLoader}     from '../simple/EntityLoader';
 import {GameStyleBuilder} from './GameStyleBuilder';
 
 //region -------------------- CSV array related types --------------------
@@ -30,47 +29,43 @@ type PropertiesArray = [
 export class GameStyleLoader
     implements Loader<ReadonlyMap<string, GameStyle>> {
 
-    static readonly #instance = new GameStyleLoader();
-    //region -------------------- Attributes --------------------
-
-    readonly #everyGameStyleMap: CallbackCaller<Map<string, GameStyle>>;
-
-    //endregion -------------------- Attributes --------------------
+    static #instance?: GameStyleLoader;
+    #map?: Map<string, GameStyle>;
 
     private constructor() {
-        this.#everyGameStyleMap = new CallbackCaller(() => {
-            const finalReferences: Map<string, GameStyle> = new Map();
-            GameStyleBuilder.entitiesMap = EntityLoader.get.load();
-
-            const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
-                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
-                )
-                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
-                .load();
-
-            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
-            return finalReferences;
-        });
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load() {
-        return this.#everyGameStyleMap.get;
+        if (this.#map == null) {
+            const references: Map<string, GameStyle> = new Map();
+
+            //region -------------------- Builder initialisation --------------------
+
+            GameStyleBuilder.entitiesMap = EntityLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
+            //region -------------------- CSV Loader --------------------
+
+            const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .setDefaultConversion('emptyable string')
+
+                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+                .load();
+
+            //endregion -------------------- CSV Loader --------------------
+
+            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
+
+            this.#map = references;
+        }
+        return this.#map;
     }
 
 }
@@ -79,7 +74,9 @@ export class GameStyleLoader
 
 class TemplateCreator {
 
-    public static createTemplate(content: PropertiesArray): GameStyleTemplate {
+    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+
+    public static createTemplate(content: PropertiesArray,): GameStyleTemplate {
         return {
             isIn: {
                 game: {
@@ -106,19 +103,15 @@ class TemplateCreator {
                 },
                 italian: content[12],
                 dutch: content[13],
-                portuguese: {
-                    simple: content[14],
-                    american: content[15],
-                    european: content[16],
-                },
-                russian: content[17],
-                japanese: content[18],
+                portuguese: this.#EMPTY_PORTUGUESE,
+                russian: content[14],
+                japanese: content[15],
                 chinese: {
-                    simple: content[19],
-                    simplified: content[20],
-                    traditional: content[21],
+                    simple: content[16],
+                    traditional: content[17],
+                    simplified: content[18],
                 },
-                korean: content[22],
+                korean: content[19],
             }
         };
     }

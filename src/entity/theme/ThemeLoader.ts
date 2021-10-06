@@ -1,16 +1,14 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseTheme}                                                            from './CourseTheme';
+import type {CourseAndWorldTheme}                                                    from './Themes.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Loader}        from '../../util/loader/Loader';
-import type {ThemeTemplate} from './Theme.template';
-import type {WorldTheme}    from './WorldTheme';
+import type {Loader}                                                                 from '../../util/loader/Loader';
+import type {ThemeTemplate}                                                          from './Theme.template';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
-import {CSVLoader}      from '../../util/loader/CSVLoader';
-import {EntityLoader}   from '../simple/EntityLoader';
-import {ThemeBuilder}   from './ThemeBuilder';
+import {CSVLoader}    from '../../util/loader/CSVLoader';
+import {EntityLoader} from '../simple/EntityLoader';
+import {ThemeBuilder} from './ThemeBuilder';
 
 //region -------------------- CSV array related types --------------------
 
@@ -35,64 +33,59 @@ type PropertiesArray = [
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link Themes}>
  */
 export class ThemeLoader
-    implements Loader<ReadonlyMap<string, readonly [CourseTheme, WorldTheme]>> {
+    implements Loader<ReadonlyMap<string, CourseAndWorldTheme>> {
 
-    static readonly #instance = new ThemeLoader();
-
-    //region ---------- external object references ----------
-
-    readonly #everyThemeMap: CallbackCaller<Map<string, readonly [CourseTheme, WorldTheme]>>;
-
-    //endregion ---------- external object references ----------
+    static #instance?: ThemeLoader;
+    #map?: Map<string, CourseAndWorldTheme>;
 
     private constructor() {
-        this.#everyThemeMap = new CallbackCaller(() => {
-            const finalReferences: Map<string, readonly [CourseTheme, WorldTheme]> = new Map();
-
-            ThemeBuilder.entitiesMap = EntityLoader.get.load();
-
-            const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
-                .convertToBoolean(
-                    'isInCourseTheme', 'isInWorldTheme',
-                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
-                )
-                .convertToEmptyableString(
-                    'english', 'americanEnglish', 'europeanEnglish',
-                    'french', 'canadianFrench', 'europeanFrench',
-                    'german',
-                    'spanish', 'americanSpanish', 'europeanSpanish',
-                    'dutch', 'italian',
-                    'portuguese', 'americanPortuguese', 'europeanPortuguese',
-                    'russian', 'japanese',
-                    'chinese', 'simplifiedChinese', 'traditionalChinese',
-                    'korean',
-                )
-                .onAfterFinalObjectCreated(finalContent => finalReferences.set(finalContent.englishReference, finalContent.build(),))
-                .load();
-
-            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
-            return finalReferences;
-        });
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
     public load() {
-        return this.#everyThemeMap.get;
+        if (this.#map == null) {
+            const references: Map<string, CourseAndWorldTheme> = new Map();
+
+            //region -------------------- Builder initialisation --------------------
+
+            ThemeBuilder.entitiesMap = EntityLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
+            //region -------------------- CSV Loader --------------------
+
+            const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
+                .setDefaultConversion('emptyable string')
+
+                .convertToBoolean(
+                    'isInCourseTheme', 'isInWorldTheme',
+                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                )
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+                .load();
+
+            //endregion -------------------- CSV Loader --------------------
+
+            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
+            console.log(csvLoader.content);// temporary console.log
+
+            this.#map = references;
+        }
+        return this.#map;
     }
 
 }
-
 
 //region -------------------- Template related methods & classes --------------------
 
 class TemplateCreator {
 
-    public static createTemplate(content: PropertiesArray): ThemeTemplate {
+    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+
+    public static createTemplate(content: PropertiesArray,): ThemeTemplate {
         return {
             isIn: {
                 game: {
@@ -123,19 +116,15 @@ class TemplateCreator {
                 },
                 italian: content[14],
                 dutch: content[15],
-                portuguese: {
-                    simple: content[16],
-                    american: content[17],
-                    european: content[18],
-                },
-                russian: content[19],
-                japanese: content[20],
+                portuguese: this.#EMPTY_PORTUGUESE,
+                russian: content[16],
+                japanese: content[17],
                 chinese: {
-                    simple: content[21],
-                    simplified: content[22],
-                    traditional: content[23],
+                    simple: content[18],
+                    traditional: content[19],
+                    simplified: content[20],
                 },
-                korean: content[24],
+                korean: content[21],
             }
         };
     }
