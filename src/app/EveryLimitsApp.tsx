@@ -39,15 +39,17 @@ export default class EveryLimitsApp
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const [englishName, entityLimit,] of this.map.entries()) {
-            content.push([englishName,
-                <>{index}</>,
-                <TextContainer content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
-                <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
-                <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
-                <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
-                <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
-            ]);
-            index++;
+            if (entityLimit != entityLimit.alternativeContainer) {
+                content.push([englishName,
+                    <>{index}</>,
+                    <TextContainer content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
+                    <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
+                    <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
+                    <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
+                    <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
+                ]);
+                index++;
+            }
         }
         return content;
     }

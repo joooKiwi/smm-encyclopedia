@@ -32,6 +32,6 @@ export namespace OptionalLanguageContainer {
 
 }
 
-function isEmptyStringOrUndefined(value: | string | undefined): boolean {
+function isEmptyStringOrUndefined(value: | string | undefined,): boolean {
     return value != null && value !== '';
 }

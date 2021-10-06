@@ -42,7 +42,7 @@ export class EntityLimitBuilder
     //region -------------------- Name methods --------------------
 
     private __createName() {
-        return new NameBuilder(this.template.name).build();
+        return new NameBuilder(this.template.name, false,).build();
     }
 
     //region -------------------- Name methods --------------------

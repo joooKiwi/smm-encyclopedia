@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                      from './ClassWithEveryLanguages';
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                   from './name/containers/Language';
 import type {BasicAcronym, BasicEnglishName, BasicOriginalName, EveryLanguagesArray, EveryLanguagesNames, EveryLanguagesOrdinals, PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleNonNullableValue, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName} from './EveryLanguages.types';
-import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithEveryLanguages';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                        from './LanguageEnumerable';
 
 import {Enum} from '../util/enum/Enum';
@@ -19,219 +19,251 @@ export abstract class EveryLanguages
             return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['english'] {
+            return this.get(classWithEveryLanguages);
+        }
+
+        public get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['english'] {
             return classWithEveryLanguages.english;
         }
 
-        public original(classWithEveryLanguages: ClassWithEveryLanguages,): AmericanOrEuropeanOriginal {
+        public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['originalEnglish'] {
             return classWithEveryLanguages.originalEnglish;
         }
 
-    }           ('en',    'en',    'English',              'English',                                       );
+    }           (true,  'en',    'en',    'English',              'English',                                       );
     public static readonly AMERICAN_ENGLISH =    new class EveryLanguages_AmericanEnglish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['americanEnglish'] {
+            return this.get(classWithEveryLanguages);
+        }
+
+        public get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['americanEnglish'] {
             return classWithEveryLanguages.americanEnglish;
         }
 
-    }   ('en_AM', 'en-US', 'English (America)',    'English (America)',   EveryLanguages.ENGLISH,   );
+    }   (true,  'en_AM', 'en-US', 'English (America)',    'English (America)',   EveryLanguages.ENGLISH,   );
     public static readonly EUROPEAN_ENGLISH =    new class EveryLanguages_EuropeanEnglish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['europeanEnglish'] {
+            return this.get(classWithEveryLanguages);
+        }
+
+        public get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['europeanEnglish'] {
             return classWithEveryLanguages.europeanEnglish;
         }
 
-    }   ('en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    EveryLanguages.ENGLISH,   );
+    }   (true,  'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    EveryLanguages.ENGLISH,   );
     public static readonly FRENCH =              new class EveryLanguages_French extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['french'] {
+            return this.get(classWithEveryLanguages);
+        }
+
+        public get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['french'] {
             return classWithEveryLanguages.french;
         }
 
-        public original(classWithEveryLanguages: ClassWithEveryLanguages,): AmericanOrEuropeanOriginal {
+        public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['originalFrench'] {
             return classWithEveryLanguages.originalFrench;
         }
 
-    }            ('fr',    'fr',    'French',               'Français',                                      );
+    }            (true,  'fr',    'fr',    'French',               'Français',                                      );
     public static readonly CANADIAN_FRENCH =     new class EveryLanguages_CanadianFrench extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['canadianFrench'] {
+            return this.get(classWithEveryLanguages);
+        }
+
+        public get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['canadianFrench'] {
             return classWithEveryLanguages.canadianFrench;
         }
 
-    }    ('fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   EveryLanguages.FRENCH,    );
+    }    (true,  'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   EveryLanguages.FRENCH,    );
     public static readonly EUROPEAN_FRENCH =     new class EveryLanguages_EuropeanFrench extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['europeanFrench'] {
+            return this.get(classWithEveryLanguages);
+        }
+
+        public get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['europeanFrench'] {
             return classWithEveryLanguages.europeanFrench;
         }
 
-    }    ('fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   EveryLanguages.FRENCH,    );
+    }    (true,  'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   EveryLanguages.FRENCH,    );
     public static readonly GERMAN =              new class EveryLanguages_German extends EveryLanguages {
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        protected _get<T extends | ClassWithEveryLanguages | CompleteClassWithEveryLanguages>(classWithEveryLanguages: T,): T['german'] {
             return classWithEveryLanguages.german;
         }
 
-    }            ('de',    'de',    'German',               'Deutsche',                                      );
+    }            (false, 'de',    'de',    'German',               'Deutsche',                                      );
     public static readonly SPANISH =             new class EveryLanguages_Spanish extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['spanish'] {
             return classWithEveryLanguages.spanish;
         }
 
-        public original(classWithEveryLanguages: ClassWithEveryLanguages,): ChineseOriginal {
+        public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['originalSpanish'] {
             return classWithEveryLanguages.originalSpanish;
         }
 
-    }           ('es',    'es',    'Spanish',              'Español',                                       );
+    }           (false, 'es',    'es',    'Spanish',              'Español',                                       );
     public static readonly AMERICAN_SPANISH =    new class EveryLanguages_AmericanSpanish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['americanSpanish'] {
             return classWithEveryLanguages.americanSpanish;
         }
 
-    }   ('es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   EveryLanguages.SPANISH,   );
+    }   (false, 'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   EveryLanguages.SPANISH,   );
     public static readonly EUROPEAN_SPANISH =    new class EveryLanguages_EuropeanSpanish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['europeanSpanish'] {
             return classWithEveryLanguages.europeanSpanish;
         }
 
-    }   ('es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    EveryLanguages.SPANISH,   );
+    }   (false, 'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    EveryLanguages.SPANISH,   );
     public static readonly ITALIAN =             new class EveryLanguages_Italian extends EveryLanguages {
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['italian'] {
             return classWithEveryLanguages.italian;
         }
 
-    }           ('it',    'it',    'Italian',              'Italiano',                                      );
+    }           (false, 'it',    'it',    'Italian',              'Italiano',                                      );
     public static readonly DUTCH =               new class EveryLanguages_Dutch extends EveryLanguages {
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['dutch'] {
             return classWithEveryLanguages.dutch;
         }
 
-    }             ('nl',    'nl',    'Dutch',                'Nederlands',                                    );
+    }             (false, 'nl',    'nl',    'Dutch',                'Nederlands',                                    );
     public static readonly PORTUGUESE =          new class EveryLanguages_Portuguese extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['portuguese'] {
             return classWithEveryLanguages.portuguese;
         }
 
-    }        ('pt',    'pt',    'Portuguese',           'Português',                                     );
+        public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['originalPortuguese'] {
+            return classWithEveryLanguages.originalPortuguese;
+        }
+
+    }        (false, 'pt',    'pt',    'Portuguese',           'Português',                                     );
     public static readonly AMERICAN_PORTUGUESE = new class EveryLanguages_AmericanPortuguese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['americanPortuguese'] {
             return classWithEveryLanguages.americanPortuguese;
         }
 
-    }('pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', EveryLanguages.PORTUGUESE,);
+    }(false, 'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', EveryLanguages.PORTUGUESE,);
     public static readonly EUROPEAN_PORTUGUESE = new class EveryLanguages_EuropeanPortuguese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['europeanPortuguese'] {
             return classWithEveryLanguages.europeanPortuguese;
         }
 
-    }('pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  EveryLanguages.PORTUGUESE,);
+    }(false, 'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  EveryLanguages.PORTUGUESE,);
     public static readonly RUSSIAN =             new class EveryLanguages_Russian extends EveryLanguages {
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages): string {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['russian'] {
             return classWithEveryLanguages.russian;
         }
 
-    }           ('ru',    'ru',    'Russian',              'русский',                                       );
+    }           (false, 'ru',    'ru',    'Russian',              'русский',                                       );
     public static readonly JAPANESE =            new class EveryLanguages_Japanese extends EveryLanguages {
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['japanese'] {
             return classWithEveryLanguages.japanese;
         }
 
-    }          ('ja',    'ja',    'Japanese',             '日本語',                                         );
+    }          (false, 'ja',    'ja',    'Japanese',             '日本語',                                         );
     public static readonly CHINESE =             new class EveryLanguages_Chinese extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['chinese'] {
             return classWithEveryLanguages.chinese;
         }
 
-    }           ('zh',    'zh',    'Chinese',              '中国人',                                         );
+        public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['originalChinese'] {
+            return classWithEveryLanguages.originalChinese;
+        }
+
+    }           (false, 'zh',    'zh',    'Chinese',              '中国人',                                         );
     public static readonly TRADITIONAL_CHINESE = new class EveryLanguages_TraditionalChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['traditionalChinese'] {
             return classWithEveryLanguages.traditionalChinese;
         }
 
-    }('zh_T',  'zh',    'Traditional chinese',  '繁體中文',              EveryLanguages.CHINESE,  );
+    }(false, 'zh_T',  'zh',    'Traditional chinese',  '繁體中文',              EveryLanguages.CHINESE,  );
     public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
             return this.isCurrentLanguage && EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage;
         }
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,) {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['simplifiedChinese'] {
             return classWithEveryLanguages.simplifiedChinese;
         }
 
-    } ('zh_S',  'zh',    'Simplified chinese',   '简体中文',              EveryLanguages.CHINESE,  );
+    } (false, 'zh_S',  'zh',    'Simplified chinese',   '简体中文',              EveryLanguages.CHINESE,  );
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
-        public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['korean'] {
             return classWithEveryLanguages.korean;
         }
 
-    }            ('ko',    'ko',    'Korean',               '한국어',                                         );
+    }            (false, 'ko',    'ko',    'Korean',               '한국어',                                         );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -243,7 +275,9 @@ export abstract class EveryLanguages
     //region -------------------- Attributes --------------------
 
     static #CURRENT_LANGUAGE: EveryLanguages;
+    public static readonly UNKNOWN_STRING = '???';
 
+    readonly #isACompleteLanguage: boolean;
     readonly #projectAcronym: PossibleEveryLanguagesAcronym;
     readonly #internationalAcronym: PossibleEveryLanguagesInternationalAcronym;
     readonly #englishName: PossibleEveryLanguagesEnglishName;
@@ -252,11 +286,12 @@ export abstract class EveryLanguages
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
-    private constructor(projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName,)
-    private constructor(projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName, parent: EveryLanguages,)
-    private constructor(projectAcronym: PossibleEveryLanguagesAcronym, internationalAcronym: PossibleEveryLanguagesInternationalAcronym, englishName: PossibleEveryLanguagesEnglishName, originalName: PossibleEveryLanguagesOriginalName, parent: | EveryLanguages | null = null,) {
+    private constructor(isACompleteLanguage: boolean, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName, parent: EveryLanguages,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleEveryLanguagesAcronym, internationalAcronym: PossibleEveryLanguagesInternationalAcronym, englishName: PossibleEveryLanguagesEnglishName, originalName: PossibleEveryLanguagesOriginalName, parent: | EveryLanguages | null = null,) {
         super(EveryLanguages);
+        this.#isACompleteLanguage = isACompleteLanguage;
         this.#projectAcronym = projectAcronym;
         this.#internationalAcronym = internationalAcronym;
         this.#englishName = englishName;
@@ -265,6 +300,10 @@ export abstract class EveryLanguages
     }
 
     //region -------------------- Getter methods --------------------
+
+    public get isACompleteLanguage(): boolean {
+        return this.#isACompleteLanguage;
+    }
 
     public get projectAcronym(): PossibleEveryLanguagesAcronym {
         return this.#projectAcronym;
@@ -297,9 +336,17 @@ export abstract class EveryLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract get(classWithEveryLanguages: ClassWithEveryLanguages,): string;
+    protected abstract _get<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string;
+    protected abstract _get<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | null;
+    protected abstract _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | null;
 
-    public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal {
+    public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages);
+    }
+
+    public original<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
+    public original<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
         return this.parent?.original(classWithEveryLanguages) ?? this.get(classWithEveryLanguages);
     }
 
