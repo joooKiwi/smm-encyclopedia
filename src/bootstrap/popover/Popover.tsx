@@ -1,12 +1,19 @@
 import {Popover as BootstrapPopover} from 'bootstrap';
-import {useEffect}                   from 'react';
+import {ReactElement, useEffect}     from 'react';
 
 import type {PopoverConfiguration}      from './Popover.types';
 import type {ReactPropertyWithChildren} from '../../util/ReactProperty';
 
-export default function Popover<T extends JSX.Element = JSX.Element, >({children, option, elementId,}: ReactPropertyWithChildren<PopoverConfiguration, T>,): T {
+/**
+ * Create a new {@link BootstrapPopover Popover} instance once the element is rendered
+ *
+ * @param properties the properties received (containing the content, the option & the id)
+ * @constructor
+ * @see https://getbootstrap.com/docs/5.1/components/popovers/
+ */
+export default function Popover<T extends ReactElement = ReactElement, >({children, option, elementId,}: ReactPropertyWithChildren<PopoverConfiguration, T>,): T {
     useEffect(() => {
-        new BootstrapPopover(document.getElementById(elementId)!, option,);
+        BootstrapPopover.getOrCreateInstance(document.getElementById(elementId)!, option,);
     });
     return children;
 }

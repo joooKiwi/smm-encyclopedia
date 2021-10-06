@@ -1,3 +1,5 @@
+import type {ReactElement as SourceReactElement} from 'react';
+
 /**
  * A simple interface to help identify a react property
  */
@@ -19,3 +21,6 @@ export interface SimpleReactPropertyWithChildren<T>
     children: T
 
 }
+
+export type ReactElement = SourceReactElement;
+export type ReactElementOrString = | SourceReactElement | string;
