@@ -10,7 +10,8 @@ import {Enum} from '../../util/enum/Enum';
 export abstract class Times
     extends Enum<TimesOrdinals, TimesNames>
     implements ClassWithEnglishName<PossibleTimeName>,
-        PropertyGetter<TimeProperty>, PropertyReferenceGetter<TimeReferences> {
+        PropertyReferenceGetter<TimeReferences>,
+        PropertyGetter<TimeProperty> {
 
     //region -------------------- Enum instances --------------------
 

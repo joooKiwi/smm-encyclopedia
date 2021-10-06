@@ -1,6 +1,6 @@
-import type {Builder}          from '../../util/Builder';
-import type {SMM2NameTemplate} from './SMM2Name.template';
-import type {Name}             from '../../lang/name/Name';
+import type {Builder}                                          from '../../util/Builder';
+import type {SMM2NameTemplate, SMM2NameTemplateWithPortuguese} from './SMM2Name.template';
+import type {Name}                                             from '../../lang/name/Name';
 
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
 
@@ -14,7 +14,7 @@ export class NameBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: SMM2NameTemplate, isACompleteName: boolean,) {
+    public constructor(template: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese, isACompleteName: boolean,) {
         this.#template = template;
         this.#isACompleteName = isACompleteName;
     }
@@ -43,6 +43,7 @@ export class NameBuilder
     }
 
     public build() {
+        //TODO interpret single or triple values.
         return new OriginalNameBuilder()
             .setEnglish(NameBuilder.__interpretEnglishTranslation(false, this.template.english.simple, this.template.english.american, this.template.english.european,))
             .setFrench(NameBuilder.__interpretEnglishTranslation(false, this.template.french.simple, this.template.french.canadian, this.template.french.european,))

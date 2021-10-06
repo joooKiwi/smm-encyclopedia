@@ -1,12 +1,12 @@
-import type {ClassWithEnglishName}                                                                                                          from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                            from '../ClassWithReference';
-import type {CourseTheme}                                                                                                                   from './CourseTheme';
-import type {Entity}                                                                                                                        from '../simple/Entity';
-import type {PossibleTheme, ThemePath, ThemesArray, ThemesArrayAsOnlyCourseTheme, ThemesArrayAsOnlyWorldTheme, ThemesNames, ThemesOrdinals} from './Themes.types';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                       from '../PropertyGetter';
-import type {ThemeProperty}                                                                                                                 from '../properties/ThemeProperty';
-import type {ThemeReferences}                                                                                                               from '../properties/ThemeReferences';
-import type {WorldTheme}                                                                                                                    from './WorldTheme';
+import type {ClassWithEnglishName}                                                                                                                               from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                 from '../ClassWithReference';
+import type {CourseAndWorldTheme, PossibleTheme, ThemePath, ThemesArray, ThemesArrayAsOnlyCourseTheme, ThemesArrayAsOnlyWorldTheme, ThemesNames, ThemesOrdinals} from './Themes.types';
+import type {CourseTheme}                                                                                                                                        from './CourseTheme';
+import type {Entity}                                                                                                                                             from '../simple/Entity';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                            from '../PropertyGetter';
+import type {ThemeProperty}                                                                                                                                      from '../properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                                                    from '../properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                                         from './WorldTheme';
 
 import {Enum}        from '../../util/enum/Enum';
 import {ThemeLoader} from './ThemeLoader';
@@ -18,8 +18,10 @@ import {EmptyEntity} from '../simple/EmptyEntity';
  */
 export class Themes
     extends Enum<ThemesOrdinals, ThemesNames>
-    implements ClassWithEnglishName<PossibleTheme>, ClassWithReference<readonly [CourseTheme, WorldTheme]>,
-        PropertyGetter<ThemeProperty>, PropertyReferenceGetter<ThemeReferences> {
+    implements ClassWithReference<readonly [CourseTheme, WorldTheme,]>,
+        ClassWithEnglishName<PossibleTheme>,
+        PropertyReferenceGetter<ThemeReferences>,
+        PropertyGetter<ThemeProperty> {
 
     //region -------------------- Enum instances --------------------
 
@@ -148,7 +150,7 @@ export class Themes
     static #COURSES: ThemesArrayAsOnlyCourseTheme;
     static #WORLDS: ThemesArrayAsOnlyWorldTheme;
 
-    #reference?: readonly [CourseTheme, WorldTheme];
+    #reference?: CourseAndWorldTheme;
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName;
@@ -166,12 +168,13 @@ export class Themes
 
     //region -------------------- Getter methods --------------------
 
-    public get englishName() {
-        return this.#englishName;
+    public get reference(): readonly [CourseTheme, WorldTheme,] {
+        return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
     }
 
-    public get reference() {
-        return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
+
+    public get englishName() {
+        return this.#englishName;
     }
 
     public get courseTheme() {

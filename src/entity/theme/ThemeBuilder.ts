@@ -6,16 +6,16 @@ import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
 import type {WorldTheme}            from './WorldTheme';
 
-import {EmptyCourseTheme}      from './EmptyCourseTheme';
-import {EmptyWorldTheme}       from './EmptyWorldTheme';
-import {GamePropertyContainer} from '../properties/GamePropertyContainer';
-import {GenericCourseTheme}    from './GenericCourseTheme';
-import {GenericWorldTheme}     from './GenericWorldTheme';
-import {TemplateBuilder}       from '../TemplateBuilder';
-import {Themes}                from './Themes';
+import {EmptyCourseTheme}        from './EmptyCourseTheme';
+import {EmptyWorldTheme}         from './EmptyWorldTheme';
+import {GamePropertyContainer}   from '../properties/GamePropertyContainer';
+import {GenericCourseTheme}      from './GenericCourseTheme';
+import {GenericWorldTheme}       from './GenericWorldTheme';
+import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
+import {Themes}                  from './Themes';
 
 export class ThemeBuilder
-    extends TemplateBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
+    extends TemplateBuilderWithName<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
     implements Builder<readonly [CourseTheme, WorldTheme,]> {
 
     //region ---------- external object references ----------

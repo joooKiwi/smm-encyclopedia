@@ -78,9 +78,9 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     get chinese(): this['nameContainer']['chinese']
 
-    get simplifiedChinese(): this['nameContainer']['simplifiedChinese']
-
     get traditionalChinese(): this['nameContainer']['traditionalChinese']
+
+    get simplifiedChinese(): this['nameContainer']['simplifiedChinese']
 
 
     get korean(): this['nameContainer']['korean']
@@ -157,9 +157,9 @@ export interface Entity<PROPERTY extends Property = Property, >
 
     get categoryChinese(): this['categoryName']['chinese']
 
-    get categorySimplifiedChinese(): this['categoryName']['simplifiedChinese']
-
     get categoryTraditionalChinese(): this['categoryName']['traditionalChinese']
+
+    get categorySimplifiedChinese(): this['categoryName']['simplifiedChinese']
 
 
     get categoryKorean(): this['categoryName']['korean']

@@ -1,26 +1,25 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EntityLink, EveryPossibleLinkedBehaviourAcronymArray, PossibleEntityType, PossibleLightSource, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                 from '../entityTypes';
-import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
-import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './Entity';
-import type {EntityCategory}                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../category/EntityCategory';
-import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './Entity.template';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                              from '../../lang/Loader.types';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                      from '../game/Loader.types';
-import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../../util/loader/Loader';
-import type {PossibleCourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../theme/Themes.types';
-import type {PossibleEntityCategories}                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../limit/EntityLimits.types';
-import type {PossibleGameStyleAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../gameStyle/GameStyles.types';
-import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../time/Times.types';
-import type {SMM2NameTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../lang/SMM2Name.template';
+import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBeInAParachute, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeStacked, CanBeThrownByALakitu, CanContainOrSpawnAKey, CanGoThroughWalls, CanHaveWings, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, EntityLink, HasALightSourceEmittedInSMB, HasAMushroomVariant, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource}                                                                                      from '../entityTypes';
+import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../behaviours/Loader.types';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity';
+import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './Entity.template';
+import type {HeadersWithPortuguese as LanguagesHeaders, PropertiesArrayWithPortuguese as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../../lang/Loader.types';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../game/Loader.types';
+import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/loader/Loader';
+import type {PossibleCourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../theme/Themes.types';
+import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../limit/EntityLimits.types';
+import type {PossibleGameStyleAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../gameStyle/GameStyles.types';
+import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../time/Times.types';
+import type {SMM2NameTemplateWithPortuguese}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../lang/SMM2Name.template';
 
-import {CallbackCaller}               from '../../util/CallbackCaller';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
 import {EntityBuilder}                from './EntityBuilder';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
-import {EntityLimits}                 from '../limit/EntityLimits';
+import {HeaderTypesForConvertor}      from '../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -36,7 +35,9 @@ type Headers =
     | 'canBeThrownByALakitu' | 'canBePutInALakituCloud'
     | 'canBePutInAClownCar' | 'canBeFiredOutOfABulletLauncher' | `canBePutInA${| 'Block' | 'Tree'}`
     | `lightSourceEmitted${| '' | '_isInSMB'}`
-    | 'canIgniteABobOmb' | 'canGoThroughWalls' | 'canBeStacked' | 'isGlobalGroundOrGlobal' | 'canMakeASoundOutOfAMusicBlock'
+    | 'canSurviveInTheLavaOrThePoison' | 'canIgniteABobOmb' | 'canBeAffectedByATwister' | 'canGoThroughWalls' | 'canBeStacked' | 'isGlobalGroundOrGlobal' | 'canMakeASoundOutOfAMusicBlock'
+
+    | `limitAmount${| '' | '_comment'}`
 
     | 'editorLimit'
     | `${`whilePlaying_${| `isInGEL${| '' | '_isSuperGlobal'}` | 'isInPEL' | 'isInPJL' | 'customLimit'}`}${| '' | '_comment'}`
@@ -48,7 +49,7 @@ type Headers =
     | `in${| Exclude<PossibleCourseTheme, 'Ghost House'> | 'GhostHouse'}Theme`
     | `in${PossibleGameStyleAcronym}GameStyle`
 
-    | LanguagesHeaders;
+    | 'hasANameReferencedInMarioMaker' | LanguagesHeaders;
 //region -------------------- Exclusive properties --------------------
 
 type ExclusivePropertiesArray1 = [
@@ -57,72 +58,76 @@ type ExclusivePropertiesArray1 = [
 type ExclusivePropertiesArray2 = [
     //region ---------- Basic properties ----------
 
-    categoryInTheEditor: | PossibleEntityCategories | null,
+    categoryInTheEditor: | PossibleEntityCategoriesName | null,
 
-    hasAMushroomVariant: | boolean | null,
-    canBeInAParachute: | boolean | '?' | null,
-    canHaveWings: boolean | '?',
+    hasAMushroomVariant: HasAMushroomVariant,
+    canBeInAParachute: CanBeInAParachute,
+    canHaveWings: CanHaveWings,
 
     //endregion ---------- Basic properties ----------
     //region ---------- Specific properties ----------
 
-    canContainOrSpawnAKey: | boolean | null,
+    canContainOrSpawnAKey: CanContainOrSpawnAKey,
 
-    isAffectedDirectlyByAnOnOrOffState: | boolean | null,
+    isAffectedDirectlyByAnOnOrOffState: IsAffectedDirectlyByAnOnOrOffState,
 
-    canBePutOnATrack: | boolean | '?' | null,
+    canBePutOnATrack: CanBePutOnATrack,
     editorLimit_canBePutOnATrack: | PossibleEntityLimits | null,
     whilePlaying_canBePutOnATrack: | PossibleEntityLimits | null,
 
-    canSpawnOutOfAPipe: | boolean | null,
+    canSpawnOutOfAPipe: CanSpawnOutOfAPipe,
 
-    canBePutInASwingingClaw: | boolean | null,
+    canBePutInASwingingClaw: CanBePutInASwingingClaw,
 
-    canBeThrownByALakitu: | boolean | '?' | null,
-    canBePutInALakituCloud: | boolean | '?' | null,
+    canBeThrownByALakitu: CanBeThrownByALakitu,
+    canBePutInALakituCloud: CanBePutInALakituCloud,
 
-    canBePutInAClownCar: | boolean | null,
+    canBePutInAClownCar: CanBePutInAClownCar,
 
-    canBeFiredOutOfABulletLauncher: | boolean | null,
+    canBeFiredOutOfABulletLauncher: CanBeFiredOutOfABulletLauncher,
 
-    canBePutInABlock: | boolean | null,
+    canBePutInABlock: CanBePutInABlock,
 
-    canBePutInATree: | boolean | null,
+    canBePutInATree: CanBePutInATree,
 
     lightSourceEmitted: PossibleLightSource,
-    lightSourceEmitted_isInSMB: | boolean | null,
+    lightSourceEmitted_isInSMB: HasALightSourceEmittedInSMB,
 
-    canIgniteABobOmb: | boolean | 'NSMBU' | null,
+    canSurviveInTheLavaOrThePoison: CanSurviveInTheLavaOrThePoison,
 
-    canGoThroughWalls: | boolean | null,
+    canIgniteABobOmb: CanIgniteABobOmb,
 
-    canBeStacked: | boolean | null,
+    canBeAffectedByATwister: CanBeAffectedByATwister,
 
-    isGlobalGroundOrGlobal: | boolean | 'SM3DW' | null,
+    canGoThroughWalls: CanGoThroughWalls,
 
-    canMakeASoundOutOfAMusicBlock: | boolean | '?' | null,
+    canBeStacked: CanBeStacked,
+
+    isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal,
+
+    canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,
 
     //endregion ---------- Specific properties ----------
     //region ---------- Entity limit properties ----------
 
-    limitAmount: 1 | 2 | '?' | null,
-    limitAmount_comment: | string | null,
+    limitAmount: LimitAmountType,
+    limitAmount_comment: LimitAmountCommentType,
 
     editorLimit: EditorLimitType,
 
     whilePlaying_isInGEL: GeneralEntityLimitType,
-    whilePlaying_isInGel_comment: | string | null,
+    whilePlaying_isInGel_comment: GeneralEntityLimitCommentType,
     whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType,
-    whilePlaying_isInGEL_isSuperGlobal_comment: | string | null,
+    whilePlaying_isInGEL_isSuperGlobal_comment: GeneralGlobalEntityLimitCommentType,
 
     whilePlaying_isInPEL: PowerUpEntityLimitType,
-    whilePlaying_isInPEL_comment: | string | null,
+    whilePlaying_isInPEL_comment: PowerUpEntityLimitCommentType,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
-    whilePlaying_isInPJL_comment: | string | null,
+    whilePlaying_isInPJL_comment: ProjectileEntityLimitCommentType,
 
     whilePlaying_customLimit: CustomLimitType,
-    whilePlaying_customLimit_comment: | string | null,
+    whilePlaying_customLimit_comment: CustomLimitCommentType,
 
     //endregion ---------- Entity limit properties ----------
     //region ---------- Spawning / Despawning range properties ----------
@@ -171,6 +176,7 @@ type ExclusivePropertiesArray2 = [
     inSM3DWGameStyle: | EntityLink | null,
 
     //endregion ---------- Reference on specific condition properties ----------
+    hasAReferenceInMarioMaker: HasAReferenceInMarioMaker,
 ];
 
 //endregion -------------------- Exclusive properties --------------------
@@ -203,32 +209,36 @@ export class EntityLoader
     public static readonly INFINITE_CHARACTER = '∞';
     public static readonly THIS_REFERENCE = 'this';
 
-    static readonly #instance = new EntityLoader();
-
-    //region ---------- External object references ----------
-
-    readonly #everyEntityCategories: CallbackCaller<Map<string, EntityCategory>>;
-    readonly #everyEntitiesMap: CallbackCaller<Map<string, DebugEntityReferences>>;
-
-    //endregion ---------- External object references ----------
+    static #instance?: EntityLoader;
+    #map?: Map<string, DebugEntityReferences>;
 
     private constructor() {
-        this.#everyEntityCategories = new CallbackCaller(() => EntityCategoryLoader.get.load());
-        this.#everyEntitiesMap = new CallbackCaller(() => {
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+
+    public load() {
+        if (this.#map == null) {
             const references: Map<string, DebugEntityReferences> = new Map();
             const referencesToWatch = new ReferencesToWatch(references);
 
-            EntityBuilder.references = references;
-            EntityBuilder.categoriesMap = this.entityCategories;
+            //region -------------------- Builder initialisation --------------------
 
+            EntityBuilder.references = references;
+            EntityBuilder.categoriesMap = EntityCategoryLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             const csvLoader = new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .setDefaultConversion('emptyable string')
 
-                .convertTo(['Entity', 'Projectile', 'Entity & Projectile', '(Entity) & Projectile',], 'entityType',)
+                .convertTo(['(Entity)', 'Entity', 'Projectile',], 'entityType',)
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .convertTo(this.entityCategoriesNames, 'categoryInTheEditor',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeInAParachute', 'canHaveWings',)
 
@@ -236,25 +246,29 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
-                .convertToEmptyableStringAnd(EntityLimits.everyEnglishNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
                 .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Project a light in front of them', 'Variable', 'Custom',], 'lightSourceEmitted')
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Full light when falling', 'Full light when collected', 'Full light when shooting', 'Dim light / Full light when falling or collected', 'Project a light in front of them', 'Only when lit',], 'lightSourceEmitted')
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
-                .convertToNullableBooleanAnd('NSMBU', 'canIgniteABobOmb',)
+                .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Only in the ground', 'float', 'melt to Coin',], 'canSurviveInTheLavaOrThePoison',)
+                .convertToNullableBooleanAnd(['NSMBU', 'Castle', 'Castle / Night Forest',], 'canIgniteABobOmb',)
+                .convertToNullableBooleanAnd(['When falling', 'Parachute',], 'canBeAffectedByATwister',)
                 .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canMakeASoundOutOfAMusicBlock',)
 
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,], 'editorLimit',)
+                .convertTo([1, 2, '1?', EntityLoader.UNKNOWN_CHARACTER,], 'limitAmount',)
+
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
-                .convertToNullableBooleanAnd(['number',/*2*/ 'Only when collected',], 'whilePlaying_isInGEL',)
+                .convertToNullableBooleanAnd('Only when collected', 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,], 'whilePlaying_customLimit',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'whilePlaying_customLimit',)
 
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine',], 'canRespawn',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)
@@ -283,6 +297,7 @@ export class EntityLoader
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
                 //
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+                .convertToNullableBooleanAnd(['French only', 'Only spoken (in english) in Editor',], 'hasANameReferencedInMarioMaker')
 
                 .onAfterFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
                     const name = finalContent.name;
@@ -300,26 +315,10 @@ export class EntityLoader
 
             console.log('-------------------- entity has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
-            return references;
-        });
-    }
 
-    public static get get() {
-        return this.#instance;
-    }
-
-
-    private get entityCategories() {
-        return this.#everyEntityCategories.get;
-    }
-
-    private get entityCategoriesNames() {
-        return [...this.entityCategories.keys()];
-    }
-
-
-    public load() {
-        return this.#everyEntitiesMap.get;
+            this.#map = references;
+        }
+        return this.#map;
     }
 
 }
@@ -332,11 +331,11 @@ class TemplateCreator {
         const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
             [content[1], content[2]];
         const [dayLink, nightLink] =
-            [content[54], content[55],];
+            [content[56], content[57],];
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-            [content[56], content[57], content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65],];
+            [content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65], content[66], content[67],];
         const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] =
-            [content[66], content[67], content[68], content[69], content[70]];
+            [content[68], content[69], content[70], content[71], content[72]];
 
         return {
             properties: {
@@ -385,7 +384,7 @@ class TemplateCreator {
 
                 canContainOrSpawnAKey: content[7],
 
-                canBePutInAOnOffBlock: content[8],
+                isAffectedDirectlyByAnOnOrOffState: content[8],
 
                 canBePutOnATrack: {
                     value: content[9],
@@ -413,62 +412,66 @@ class TemplateCreator {
                     isInSMB: content[21]
                 },
 
-                canIgniteABobOmb: content[22],
+                canSurviveInTheLavaOrThePoison: content[22],
 
-                canGoThroughWalls: content[23],
+                canIgniteABobOmb: content[23],
 
-                canBeStacked: content[24],
+                canBeAffectedByATwister: content[24],
 
-                isGlobalGroundOrGlobal: content[25],
+                canGoThroughWalls: content[25],
 
-                canMakeASoundOutOfAMusicBlock: content[26],
+                canBeStacked: content[26],
+
+                isGlobalGroundOrGlobal: content[27],
+
+                canMakeASoundOutOfAMusicBlock: content[28],
 
                 //endregion ---------- Specific properties ----------
                 limits: {
                     amount: {
-                        value: content[27],
-                        comment: content[28],
+                        value: content[29],
+                        comment: content[30],
                     },
-                    editor: content[29],
+                    editor: content[31],
                     whilePlaying: {
                         isInGEL: {
-                            value: {value: content[30], comment: content[31],},
-                            isSuperGlobal: {value: content[32], comment: content[33],},
+                            value: {value: content[32], comment: content[33],},
+                            isSuperGlobal: {value: content[34], comment: content[35],},
                         },
-                        isInPEL: {value: content[34], comment: content[35],},
-                        isInPJL: {value: content[36], comment: content[37],},
-                        customLimit: {value: content[38], comment: content[39],},
+                        isInPEL: {value: content[36], comment: content[37],},
+                        isInPJL: {value: content[38], comment: content[39],},
+                        customLimit: {value: content[40], comment: content[41],},
                     },
                 },
                 canRespawn: {
-                    value: content[40],
+                    value: content[42],
                     online: {
-                        value: content[41],
-                        insideABlock: content[42],
+                        value: content[43],
+                        insideABlock: content[44],
                     }
                 },
                 behaviour: {
-                    solo: this.__convertToBehaviourArray(content[43]),
-                    localCoop: this.__convertToBehaviourArray(content[44]),
+                    solo: this.__convertToBehaviourArray(content[45]),
+                    localCoop: this.__convertToBehaviourArray(content[46]),
                     online: {
-                        coop: this.__convertToBehaviourArray(content[45]),
-                        versus: this.__convertToBehaviourArray(content[46]),
+                        coop: this.__convertToBehaviourArray(content[47]),
+                        versus: this.__convertToBehaviourArray(content[48]),
                     },
                 },
                 offscreenRange: {
-                    referencePoint: content[47],
+                    referencePoint: content[49],
                     spawning: {
-                        horizontal: content[48],
+                        horizontal: content[50],
                         vertical: {
-                            upward: content[50],
-                            downward: content[52],
+                            upward: content[52],
+                            downward: content[54],
                         },
                     },
                     despawning: {
-                        horizontal: content[49],
+                        horizontal: content[51],
                         vertical: {
-                            upward: content[51],
-                            downward: content[53],
+                            upward: content[53],
+                            downward: content[55],
                         },
                     },
                 },
@@ -505,35 +508,36 @@ class TemplateCreator {
                 },
             },
             name: {
+                hasAReferenceInMarioMaker: content[73],
                 english: {
-                    simple: content[71],
-                    american: content[72],
-                    european: content[73],
-                },
-                french: {
                     simple: content[74],
-                    canadian: content[75],
+                    american: content[75],
                     european: content[76],
                 },
-                german: content[77],
-                spanish: {
-                    simple: content[78],
-                    american: content[79],
-                    european: content[80],
+                french: {
+                    simple: content[77],
+                    canadian: content[78],
+                    european: content[79],
                 },
-                italian: content[81],
-                dutch: content[82],
+                german: content[80],
+                spanish: {
+                    simple: content[81],
+                    american: content[82],
+                    european: content[83],
+                },
+                italian: content[84],
+                dutch: content[85],
                 portuguese: {
-                    simple: content[83],
-                    american: content[84],
-                    european: content[85],
+                    simple: content[92],
+                    american: content[93],
+                    european: content[94],
                 },
                 russian: content[86],
                 japanese: content[87],
                 chinese: {
                     simple: content[88],
-                    simplified: content[89],
-                    traditional: content[90],
+                    traditional: content[89],
+                    simplified: content[90],
                 },
                 korean: content[91],
             },
@@ -563,7 +567,7 @@ class TemplateCreator {
  */
 class NameCreator {
 
-    private static __testName(name: SMM2NameTemplate,): void {
+    private static __testName(name: SMM2NameTemplateWithPortuguese,): void {
         //README since some references are still not complete, they are in comment
         if (name.english.simple === null && (name.english.american === null || name.english.european === null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -574,10 +578,10 @@ class NameCreator {
         // if (name.portuguese.simple === null && (name.portuguese.simplified === null || name.portuguese.traditional === null))
         //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
         // if (name.chinese.simple === null && (name.chinese.simplified === null || name.chinese.traditional === null))
-        //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "simplified"("${name.chinese.simplified}") and "traditional"("${name.chinese.traditional}") name separated.`);
+        //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "traditional"("${name.chinese.traditional}") and "simplified"("${name.chinese.simplified}") name separated.`);
     }
 
-    public static addEnglishReference(name: SMM2NameTemplate, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
+    public static addEnglishReference(name: SMM2NameTemplateWithPortuguese, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
         this.__testName(name);
         const englishReferenceName = name.english.simple ?? name.english.american;
         if (englishReferenceName == null)
@@ -592,10 +596,12 @@ class NameCreator {
 //region -------------------- Reference to watch --------------------
 
 interface ReferenceHolder {
-    reference: EntityTemplate,
-    type: ReferenceType,
-    value: EntityLink,
-    errorIfNeverFound: () => ReferenceError
+
+    reference: EntityTemplate;
+    type: ReferenceType;
+    value: EntityLink;
+    errorIfNeverFound: () => ReferenceError;
+
 }
 
 type ReferenceType = | typeof ReferencesToWatch['TIME'] | typeof ReferencesToWatch['THEME'] | typeof ReferencesToWatch['GAME_STYLE'];

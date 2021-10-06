@@ -1,13 +1,13 @@
 import type {Entity} from './simple/Entity';
 
-export interface PropertyGetter<Property, > {
+export interface PropertyGetter<PROPERTY, > {
 
-    get(property: Property,): boolean
+    get(property: PROPERTY,): boolean
 
 }
 
-export interface PropertyReferenceGetter<ReferenceProperty, > {
+export interface PropertyReferenceGetter<REFERENCE_PROPERTY, > {
 
-    getReference(referenceProperty: ReferenceProperty,): Entity
+    getReference(referenceProperty: REFERENCE_PROPERTY,): Entity
 
 }

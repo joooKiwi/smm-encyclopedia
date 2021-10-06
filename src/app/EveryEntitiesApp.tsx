@@ -41,7 +41,7 @@ export default class EveryEntitiesApp
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
                 <SMM2NameComponent id={`entityCategory_name_${index}`} name={entity.category} popoverOrientation="left"/>,
-                <EditorLimitComponent limit={entity}/>,
+                <EditorLimitComponent index={index} limit={entity}/>,
             ]);
             index++;
         }

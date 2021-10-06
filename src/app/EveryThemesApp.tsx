@@ -2,11 +2,11 @@ import './EveryThemesApp.scss';
 
 import React from 'react';
 
-import type {SingleTableContent} from './tools/table/Table.types';
+import type {CourseAndWorldTheme} from '../entity/theme/Themes.types';
+import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {CourseTheme}                   from '../entity/theme/CourseTheme';
 import {EmptyCourseTheme}              from '../entity/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}               from '../entity/theme/EmptyWorldTheme';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -15,13 +15,12 @@ import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 import Table                           from './tools/table/Table';
 import {ThemeLoader}                   from '../entity/theme/ThemeLoader';
 import {Themes}                        from '../entity/theme/Themes';
-import {WorldTheme}                    from '../entity/theme/WorldTheme';
 import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
 
 export default class EveryThemesApp
     extends AbstractApp {
 
-    #themes?: Map<string, readonly [CourseTheme, WorldTheme]>;
+    #themes?: Map<string, CourseAndWorldTheme>;
 
     protected get map() {
         return this.#themes ??= ThemeLoader.get.load();

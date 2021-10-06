@@ -60,8 +60,8 @@ export class EmptyCourseTheme
 
     public readonly originalChinese = this.nameContainer.originalChinese;
     public readonly chinese = this.nameContainer.chinese;
-    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
     public readonly traditionalChinese = this.nameContainer.traditionalChinese;
+    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
 
     public readonly korean = this.nameContainer.korean;
 

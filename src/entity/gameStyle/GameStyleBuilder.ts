@@ -5,18 +5,19 @@ import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
 
-import {GamePropertyContainer} from '../properties/GamePropertyContainer';
-import {GameStyles}            from './GameStyles';
-import {GenericGameStyle}      from './GenericGameStyle';
-import {TemplateBuilder}       from '../TemplateBuilder';
+import {GamePropertyContainer}   from '../properties/GamePropertyContainer';
+import {GameStyles}              from './GameStyles';
+import {GenericGameStyle}        from './GenericGameStyle';
+import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
 
 export class GameStyleBuilder
-    extends TemplateBuilder<GameStyleTemplate, GameStyle>
+    extends TemplateBuilderWithName<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
     //region ---------- external object references ----------
 
     public static entitiesMap: Map<string, DebugEntityReferences>;
+
     //endregion ---------- external object references ----------
     //region -------------------- Attributes --------------------
 
