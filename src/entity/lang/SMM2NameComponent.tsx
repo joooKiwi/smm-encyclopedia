@@ -30,20 +30,22 @@ export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2N
 
     const elementId = id + '_' + name.english.toLowerCase().replace(' ', '_');
 
-    return <SpanPopover elementId={elementId} option={createOption(createContent(name, languageTranslation,), popoverOrientation, contentTranslation,)}>
+    return <SpanPopover elementId={elementId} option={createOption(createContent(elementId, name, languageTranslation,), popoverOrientation, contentTranslation,)}>
         {EveryLanguages.currentLanguage.get(name)}
     </SpanPopover>;
 }
 
-function createContent(name: Name, languageTranslation: TFunction<'language'>,): string {
+function createContent(elementId: string, name: Name, languageTranslation: TFunction<'language'>,): string {
     const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
-    let content = '<ol class="m-0">';
+
+
+    let content = `<table id="${elementId}_table" class="table table-striped"><tbody>`;
     name.toNameMap().forEach((value, language,) => {
         if (languagesToDisplay.includes(language)) {
-            content += `<li>${languageTranslation(language.englishName)}: ${value}</li>`;
+            content += `<tr><th>${languageTranslation(language.englishName)}</th><td>${value}</td></tr>`;
         }
     });
-    content += '</ol>';
+    content += `</tbody></table>`;
 
     return content;
 }
@@ -54,6 +56,7 @@ function createOption(content: string, popoverOrientation: | PopoverOrientation 
         content: content,
         html: true,
         trigger: 'hover focus',
+        sanitize: false,/*README the sanitize option is disabled since it could not load the table properly*/
     };
     if (popoverOrientation != null)
         option.placement = popoverOrientation;
