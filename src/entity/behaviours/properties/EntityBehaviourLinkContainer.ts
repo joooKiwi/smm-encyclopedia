@@ -2,6 +2,7 @@ import {EntityBehaviourLink}                 from './EntityBehaviourLink';
 import {Entity}                              from '../../simple/Entity';
 import {PossibleGroupName, SingleEntityName} from '../../entityTypes';
 import {EntityLoader}                        from '../../simple/EntityLoader';
+import {CallbackCaller}                      from '../../../util/CallbackCaller';
 
 /**
  * @multiton
@@ -26,21 +27,21 @@ export class EntityBehaviourLinkContainer
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
-    readonly #groupLink;
-    readonly #entityLink;
+    readonly #groupLinkHolder: CallbackCaller<| object | null>;
+    readonly #entityLinkHolder: CallbackCaller<| Entity | null>;
 
     private constructor(groupLink: | PossibleGroupName | null, entityLink: | SingleEntityName | null,) {
-        this.#groupLink = groupLink == null ? null : EntityBehaviourLinkContainer.__getEntityGroupByName(groupLink);
-        this.#entityLink = entityLink == null ? null : EntityBehaviourLinkContainer.__getEntityByName(entityLink);
+        this.#groupLinkHolder = new CallbackCaller(() => groupLink == null ? null : EntityBehaviourLinkContainer.__getEntityGroupByName(groupLink));
+        this.#entityLinkHolder = new CallbackCaller(() => entityLink == null ? null : EntityBehaviourLinkContainer.__getEntityByName(entityLink));
     }
 
 
     public get groupLink() {
-        return this.#groupLink;
+        return this.#groupLinkHolder.get;
     }
 
     public get entityLink() {
-        return this.#entityLink;
+        return this.#entityLinkHolder.get;
     }
 
 
