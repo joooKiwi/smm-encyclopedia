@@ -15,7 +15,7 @@ export type EntityLink = | 'this' | SingleEntityName | `${SingleEntityName} / ${
 /**
  * @temporaryVariable
  */
-export type PossibleEntityType = | 'Entity' | 'Projectile' | `${| '(Entity)' | 'Entity'} & Projectile`;
+export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile';
 
 /**
  * @temporaryVariable
@@ -169,7 +169,12 @@ export type CanMakeASoundOutOfAMusicBlock = | boolean | '?' | null;
 /**
  * @temporaryLocation
  */
-export type PossibleLightSource = | '?' | `${'Dim' | 'Full'} light` | 'Project a light in front of them' | 'Variable' | null;
+export type PossibleLightSource = | '?'
+                                  | `${'Dim' | 'Full'} light`
+                                  | `Full light when ${| 'falling' | 'collected' | 'shooting'}`
+                                  | 'Dim light / Full light when falling or collected'
+                                  | 'Project a light in front of them'
+                                  | 'Only when lit' | null;
 
 //endregion -------------------- Specific properties --------------------
 

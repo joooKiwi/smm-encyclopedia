@@ -46,7 +46,7 @@ export type PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying =
 
     | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block' | 'Entity Held By A Twister'
 
-    | `${| '[10- / 30- / 50-]' | 'Pink'} Coin` | 'Key Collected'
+    | `${| '[10- / 30- / 50-]' | 'Pink '}Coin` | 'Key Collected'
 
     | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Builder Box' | 'Boomerang' | 'Cannonball'} thrown by a player` | 'Bomb thrown by a Link' | 'Hatched Yoshi'
 
