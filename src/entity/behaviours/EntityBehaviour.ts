@@ -1,9 +1,12 @@
-import type {EntityBehaviourIsInOnly}                                            from './properties/EntityBehaviourIsInOnly';
-import type {EntityBehaviourLink}                                                from './properties/EntityBehaviourLink';
-import {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
+import type {ClassWithAcronym}                                                        from '../ClassWithAcronym';
+import type {ClassWithTranslationKey}                                                 from '../../lang/ClassWithTranslationKey';
+import type {EntityBehaviourIsInOnly}                                                 from './properties/EntityBehaviourIsInOnly';
+import type {EntityBehaviourLink}                                                     from './properties/EntityBehaviourLink';
+import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
 
 export interface EntityBehaviour
-    extends EntityBehaviourIsInOnly, EntityBehaviourLink {
+    extends EntityBehaviourIsInOnly, EntityBehaviourLink,
+        ClassWithTranslationKey<PossibleTranslationKeyEntityBehaviours>, ClassWithAcronym<PossibleAcronymEntityBehaviours> {
 
     get acronym(): PossibleAcronymEntityBehaviours
 

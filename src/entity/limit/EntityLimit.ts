@@ -10,7 +10,9 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
     extends NameWithAName,
         EntityLimitAmount<LIMIT_AMOUNT['amount'], LIMIT_AMOUNT['isAmountUnknown'], LIMIT_AMOUNT['amountComment']>,
-        EntityLimitLink {
+        EntityLimitLink/*,
+        ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
+        ClassWithEnglishName<PossibleEntityLimits>*/ {
 
     get type(): TYPE
 
