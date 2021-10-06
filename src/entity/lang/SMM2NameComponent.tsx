@@ -31,7 +31,7 @@ export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2N
     const elementId = id + '_' + name.english.toLowerCase().replace(' ', '_');
 
     return <SpanPopover elementId={elementId} option={createOption(createContent(name, languageTranslation,), popoverOrientation, contentTranslation,)}>
-        {EveryLanguages.currentLanguage.get(name) ?? EveryLanguages.AMERICAN_ENGLISH.get(name)}
+        {EveryLanguages.currentLanguage.get(name)}
     </SpanPopover>;
 }
 

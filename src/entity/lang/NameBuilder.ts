@@ -56,9 +56,11 @@ export class NameBuilder
                 throw new ReferenceError('The value cannot be null');
             return value1;
         }
-        if (!canBeNullable && value1 == null && value2 == null && value3 == null)
+
+        const all3ValuesAreNull = value1 == null && value2 == null && value3 == null;
+        if (!canBeNullable && all3ValuesAreNull)
             throw new ReferenceError('The values received cannot be null.');
-        return value1 ?? [value2!, value3!,];
+        return all3ValuesAreNull ? null : value1 ?? [value2!, value3!,];
     }
 
     public build() {
