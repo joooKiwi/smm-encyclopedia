@@ -1,4 +1,4 @@
-alternative,type,acronym,limit,limit_comment,link_groupName,link_entity1,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
+alternative,type,acronym,limit,limit_comment,link_group,link_entity,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
 Entity Limit B,While Playing,GEL (WP),100,,,,General Entity Limit (While Playing),,,Limite d'entité générale (en jouant),,,,,,,,,,,,,,
 ,,ELB,,,,,Entity Limit B,,,Limite d'entité B,,,,,,,,,,,,,,
 Entity Limit C,While Playing,PEL (WP),100,,Power-ups,,Power-up Entity Limit (While Playing),,,Limite de d'entité d'amélioration (en jouant),,,,,,,,,,,,,,

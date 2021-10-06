@@ -22,7 +22,7 @@ type Headers =
     | 'alternative'
     | 'type' | 'acronym'
     | `limit${| '' | '_comment'}`
-    | `link_${| 'groupName' | 'entity'}`
+    | `link_${| 'group' | 'entity'}`
     | LanguagesHeaders;
 
 type ExclusivePropertyArray = [
@@ -83,11 +83,11 @@ export class EntityLimitLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
-                .convertToNullableNumberAnd(['?', 'string',], 'limit')
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGroupNames, 'link_groupName')
+                .convertToNullableNumberAnd(['?', 'string',], 'limit',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGroupNames, 'link_group',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleEntityNames, 'link_entity',)
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english')
+                .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.nameContainer.english as PossibleEntityLimits, finalContent,))
                 .load();
