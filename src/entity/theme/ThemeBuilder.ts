@@ -30,7 +30,7 @@ export class ThemeBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(template: ThemeTemplate,) {
-        super(template);
+        super(template, true,);
     }
 
     protected /*static*/ get _templateMap() {

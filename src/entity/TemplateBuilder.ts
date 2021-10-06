@@ -6,7 +6,7 @@ import {NameBuilder} from './lang/NameBuilder';
 import {NameCreator} from './lang/NameCreator';
 
 interface TemplateWithNameTemplate {
-    name: SMM2NameTemplate
+    name: SMM2NameTemplate;
 }
 
 export abstract class TemplateBuilder<T extends TemplateWithNameTemplate, U>
@@ -15,16 +15,22 @@ export abstract class TemplateBuilder<T extends TemplateWithNameTemplate, U>
     //region -------------------- Attributes --------------------
 
     readonly #template;
+    readonly #isACompleteName;
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(template: T,) {
+    protected constructor(template: T, isACompleteName: boolean,) {
         this.#template = template;
+        this.#isACompleteName = isACompleteName;
     }
 
 
     public get template(): T {
         return this.#template;
+    }
+
+    public get isACompleteName() {
+        return this.#isACompleteName;
     }
 
     public get englishReference() {
@@ -34,7 +40,7 @@ export abstract class TemplateBuilder<T extends TemplateWithNameTemplate, U>
     protected /*static*/ abstract get _templateMap(): Map<string, T>;
 
     protected _createName() {
-        const name = new NameBuilder(this.template.name).build();
+        const name = new NameBuilder(this.template.name, this.isACompleteName,).build();
         NameCreator.addEnglishReference(this.template.name, this._templateMap, this.template,);
         return name;
     }

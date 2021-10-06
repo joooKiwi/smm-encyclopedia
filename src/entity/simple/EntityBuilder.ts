@@ -51,7 +51,7 @@ export class EntityBuilder
     //region -------------------- Name helper methods --------------------
 
     private __createName() {
-        return new NameBuilder(this.template.name).build();
+        return new NameBuilder(this.template.name, true,).build();
     }
 
     //endregion -------------------- Name helper methods --------------------
