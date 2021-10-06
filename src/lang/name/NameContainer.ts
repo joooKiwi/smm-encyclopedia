@@ -1,71 +1,90 @@
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from './containers/Language';
+import type {EmptyableOptionalLanguage}                                                                                                                         from './containers/EmptyableOptionalLanguage';
+import type {EmptyableLanguage}                                                                                                                                 from './containers/EmptyableLanguage';
 import type {Name}                                                                                                                                              from './Name';
+import type {OptionalLanguage}                                                                                                                                  from './containers/OptionalLanguage';
 
 import {EveryLanguages}            from '../EveryLanguages';
 import {ProjectLanguages}          from '../ProjectLanguages';
 import {LanguageContainer}         from './containers/LanguageContainer';
-import {OptionalLanguage}          from './containers/OptionalLanguage';
 import {OptionalLanguageContainer} from './containers/OptionalLanguageContainer';
+import {EmptyLanguageContainer}    from './containers/EmptyLanguageContainer';
 
 export class NameContainer
     implements Name {
 
     //region -------------------- Attributes --------------------
 
-    /**
-     * The optional languages used in the project.
-     *
-     * @see ProjectLanguages.isASupportedLanguageInSMM for the usage outside this class.
-     */
-    public static readonly OPTIONAL_LANGUAGES = [EveryLanguages.PORTUGUESE,] as const;
+    static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.PORTUGUESE,] as const;
 
     readonly #originalLanguages: readonly EveryLanguages[];
     #map?: Map<EveryLanguages, string>;
 
-    readonly #english: Language<string, AmericanOrEuropeanArray>;
-    readonly #french: Language<string, CanadianOrEuropeanArray>;
-    readonly #german: Language<string>;
-    readonly #spanish: Language<string, AmericanOrEuropeanArray>;
-    readonly #italian: Language<string>;
-    readonly #dutch: Language<string>;
-    readonly #portuguese: OptionalLanguage<string, AmericanOrEuropeanArray>;
-    readonly #russian: Language<string>;
-    readonly #japanese: Language<string>;
-    readonly #chinese: Language<string, ChineseArray>;
-    readonly #korean: Language<string>;
+    readonly #englishContainer: Language<string, AmericanOrEuropeanArray>;
+    readonly #frenchContainer: Language<string, CanadianOrEuropeanArray>;
+    readonly #germanContainer: EmptyableLanguage<string>;
+    readonly #spanishContainer: EmptyableLanguage<string, AmericanOrEuropeanArray>;
+    readonly #italianContainer: EmptyableLanguage<string>;
+    readonly #dutchContainer: EmptyableLanguage<string>;
+    readonly #portugueseContainer: EmptyableOptionalLanguage<string, AmericanOrEuropeanArray>;
+    readonly #russianContainer: EmptyableLanguage<string>;
+    readonly #japaneseContainer: EmptyableLanguage<string>;
+    readonly #chineseContainer: EmptyableLanguage<string, ChineseArray>;
+    readonly #koreanContainer: EmptyableLanguage<string>;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(english: AmericanOrEuropeanOriginal,
                        french: CanadianOrEuropeanOriginal,
-                       german: string,
-                       spanish: AmericanOrEuropeanOriginal,
-                       italian: string,
-                       dutch: string,
-                       portuguese: AmericanOrEuropeanOriginal,
-                       russian: string,
-                       japanese: string,
-                       chinese: ChineseOriginal,
-                       korean: string,) {
+                       german: | string | null,
+                       spanish: | AmericanOrEuropeanOriginal | null,
+                       italian: | string | null,
+                       dutch: | string | null,
+                       portuguese: | AmericanOrEuropeanOriginal | null,
+                       russian: | string | null,
+                       japanese: | string | null,
+                       chinese: | ChineseOriginal | null,
+                       korean: | string | null,) {
         const originalLanguages: EveryLanguages[] = [];
 
-        this.#english = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.ENGLISH, originalLanguages, english,);
-        this.#french = NameContainer.__newLanguageContainer<string, CanadianOrEuropeanArray>(EveryLanguages.FRENCH, originalLanguages, french,);
-        this.#german = NameContainer.__newLanguageContainer(EveryLanguages.GERMAN, originalLanguages, german,);
-        this.#spanish = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.SPANISH, originalLanguages, spanish,);
-        this.#italian = NameContainer.__newLanguageContainer(EveryLanguages.ITALIAN, originalLanguages, italian,);
-        this.#dutch = NameContainer.__newLanguageContainer(EveryLanguages.DUTCH, originalLanguages, dutch,);
-        this.#portuguese = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
-        this.#russian = NameContainer.__newLanguageContainer(EveryLanguages.RUSSIAN, originalLanguages, russian,);
-        this.#japanese = NameContainer.__newLanguageContainer(EveryLanguages.JAPANESE, originalLanguages, japanese,);
-        this.#chinese = NameContainer.__newLanguageContainer<string, ChineseArray>(EveryLanguages.CHINESE, originalLanguages, chinese,);
-        this.#korean = NameContainer.__newLanguageContainer(EveryLanguages.KOREAN, originalLanguages, korean,);
+        this.#englishContainer = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.ENGLISH, originalLanguages, english,);
+        this.#frenchContainer = NameContainer.__newLanguageContainer<string, CanadianOrEuropeanArray>(EveryLanguages.FRENCH, originalLanguages, french,);
+        this.#germanContainer = NameContainer.__newLanguageContainer(EveryLanguages.GERMAN, originalLanguages, german,);
+        this.#spanishContainer = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.SPANISH, originalLanguages, spanish,);
+        this.#italianContainer = NameContainer.__newLanguageContainer(EveryLanguages.ITALIAN, originalLanguages, italian,);
+        this.#dutchContainer = NameContainer.__newLanguageContainer(EveryLanguages.DUTCH, originalLanguages, dutch,);
+        this.#portugueseContainer = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
+        this.#russianContainer = NameContainer.__newLanguageContainer(EveryLanguages.RUSSIAN, originalLanguages, russian,);
+        this.#japaneseContainer = NameContainer.__newLanguageContainer(EveryLanguages.JAPANESE, originalLanguages, japanese,);
+        this.#chineseContainer = NameContainer.__newLanguageContainer<string, ChineseArray>(EveryLanguages.CHINESE, originalLanguages, chinese,);
+        this.#koreanContainer = NameContainer.__newLanguageContainer(EveryLanguages.KOREAN, originalLanguages, korean,);
 
         this.#originalLanguages = originalLanguages;
     }
 
 
     //region -------------------- Name properties --------------------
+
+    /**
+     * The optional languages on the {@link Name} used in the project.
+     *
+     * As it stands, only the portuguese is there, but other languages may be added in the future when more translation are found.
+     *
+     * @see ProjectLanguages.isASupportedLanguageInSMM
+     */
+    public static get optionalLanguages(): readonly [EveryLanguages] {
+        return this._optionalLanguages;
+    }
+
+    /**
+     * The options languages on the {@link NameContainer},
+     * but as the type used by the private static attributes.
+     *
+     * @protected
+     */
+    protected static get _optionalLanguages() {
+        return this.#OPTIONAL_LANGUAGES;
+    }
 
     public get languageValue() {
         return ProjectLanguages.currentLanguage.get(this);
@@ -74,141 +93,141 @@ export class NameContainer
     //region -------------------- English properties --------------------
 
     public get originalEnglish() {
-        return this.#english.original;
+        return this.#englishContainer.original;
     }
 
     public get english() {
-        return this.#english.get();
+        return this.#englishContainer.get();
     }
 
     public get americanEnglish() {
-        return this.#english.get(0);
+        return this.#englishContainer.get(0);
     }
 
     public get europeanEnglish() {
-        return this.#english.get(1);
+        return this.#englishContainer.get(1);
     }
 
     //endregion -------------------- English properties --------------------
     //region -------------------- French properties --------------------
 
     public get originalFrench() {
-        return this.#french.original;
+        return this.#frenchContainer.original;
     }
 
     public get french() {
-        return this.#french.get();
+        return this.#frenchContainer.get();
     }
 
     public get canadianFrench() {
-        return this.#french.get(0);
+        return this.#frenchContainer.get(0);
     }
 
     public get europeanFrench() {
-        return this.#french.get(1);
+        return this.#frenchContainer.get(1);
     }
 
     //endregion -------------------- French properties --------------------
     //region -------------------- German properties --------------------
 
     public get german() {
-        return this.#german.original;
+        return this.#germanContainer.original;
     }
 
     //endregion -------------------- German properties --------------------
     //region -------------------- Spanish properties --------------------
 
     public get originalSpanish() {
-        return this.#spanish.original;
+        return this.#spanishContainer.original;
     }
 
     public get spanish() {
-        return this.#spanish.get();
+        return this.#spanishContainer.get();
     }
 
     public get americanSpanish() {
-        return this.#spanish.get(0);
+        return this.#spanishContainer.get(0);
     }
 
     public get europeanSpanish() {
-        return this.#spanish.get(1);
+        return this.#spanishContainer.get(1);
     }
 
     //endregion -------------------- Spanish properties --------------------
     //region -------------------- Italian properties --------------------
 
     public get italian() {
-        return this.#italian.original;
+        return this.#italianContainer.original;
     }
 
     //endregion -------------------- Italian properties --------------------
     //region -------------------- Dutch properties --------------------
 
     public get dutch() {
-        return this.#dutch.original;
+        return this.#dutchContainer.original;
     }
 
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
     public get isPortugueseUsed(): boolean {
-        return this.#portuguese.isUsed;
+        return this.#portugueseContainer.isUsed;
     }
 
     public get originalPortuguese() {
-        return this.#portuguese.original;
+        return this.#portugueseContainer.original;
     }
 
     public get portuguese() {
-        return this.#portuguese.get();
+        return this.#portugueseContainer.get();
     }
 
     public get americanPortuguese() {
-        return this.#portuguese.get(0);
+        return this.#portugueseContainer.get(0);
     }
 
     public get europeanPortuguese() {
-        return this.#portuguese.get(1);
+        return this.#portugueseContainer.get(1);
     }
 
     //endregion -------------------- Portuguese properties --------------------
     //region -------------------- Russian properties --------------------
 
     public get russian() {
-        return this.#russian.original;
+        return this.#russianContainer.original;
     }
 
     //endregion -------------------- Russian properties --------------------
     //region -------------------- Japanese properties --------------------
 
     public get japanese() {
-        return this.#japanese.original;
+        return this.#japaneseContainer.original;
     }
 
     //endregion -------------------- Japanese properties --------------------
     //region -------------------- Chinese properties --------------------
 
     public get originalChinese() {
-        return this.#chinese.original;
+        return this.#chineseContainer.original;
     }
 
     public get chinese() {
-        return this.#chinese.get();
+        return this.#chineseContainer.get();
     }
 
     public get traditionalChinese() {
-        return this.#chinese.get(1);
+        return this.#chineseContainer.get(1);
     }
 
     public get simplifiedChinese() {
-        return this.#chinese.get(0);
+        return this.#chineseContainer.get(0);
     }
 
     //endregion -------------------- Chinese properties --------------------
     //region -------------------- Korean properties --------------------
 
     public get korean() {
-        return this.#korean.original;
+        return this.#koreanContainer.original;
     }
 
     //endregion -------------------- Korean properties --------------------
@@ -220,18 +239,29 @@ export class NameContainer
     //endregion -------------------- Name properties --------------------
 
     public toNameMap() {
-        return this.#map ??= new Map(this.originalLanguages.map(language => [language, language.get(this),]));
+        return this.#map ??= new Map(this.originalLanguages.map(language => [language, language.get(this)!,]));
     }
 
 
-    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): OptionalLanguage<S>
-    private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: S,): Language<S>
+    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableOptionalLanguage<S>
+    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<S>
+    private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<S>
+    private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | null,): Language<S>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<S, A>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): Language<S, A>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,) {
-        const languageContainer = this.OPTIONAL_LANGUAGES.includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value);
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<S, A>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<S, A>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<S, A>
+    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,) {
+        if (value == null) {
+            if (language.isACompleteLanguage)
+                throw new ReferenceError(`The language "${language.englishName}" cannot be null if it is a complete language.`);
+            return EmptyLanguageContainer.get;
+        }
+
+        const languageContainer = this.optionalLanguages.includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value);
 
         const isValueString = typeof value === 'string';
+
 
         switch (language) {
             case EveryLanguages.ENGLISH:
@@ -274,4 +304,4 @@ export class NameContainer
 
 }
 
-type OptionalLanguages = typeof NameContainer['OPTIONAL_LANGUAGES'][number];
+type OptionalLanguages = typeof NameContainer['_optionalLanguages'][number];

@@ -1,3 +1,5 @@
+import {EmptyableLanguage} from './EmptyableLanguage';
+
 export type AmericanOrEuropeanOriginal = | string | AmericanOrEuropeanArray;
 export type AmericanOrEuropeanArray = readonly [american: string, european: string,];
 
@@ -7,12 +9,7 @@ export type CanadianOrEuropeanArray = readonly [canadian: string, european: stri
 export type ChineseOriginal = | string | ChineseArray;
 export type ChineseArray = readonly [simplified: string, traditional: string,];
 
-export interface Language<S extends | string | never, A extends | readonly string[] | never = never, > {
-
-    get original(): | S | A
-
-    get(): S
-
-    get<INDEX extends number = number, >(index: INDEX,): | NonNullable<A[INDEX]> | S
+export interface Language<S extends | string | never, A extends | readonly string[] | never = never, >
+    extends EmptyableLanguage<S, A, never, never, never> {
 
 }

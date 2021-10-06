@@ -4,8 +4,9 @@ import type {LanguageEnumerable}                                                
 import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                                                                                                                         from './ProjectLanguages.types';
 import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
 
-import {Enum}           from '../util/enum/Enum';
-import {EveryLanguages} from './EveryLanguages';
+import {Enum}                            from '../util/enum/Enum';
+import {EveryLanguages}                  from './EveryLanguages';
+import {CompleteClassWithEveryLanguages} from './ClassWithEveryLanguages';
 
 /**
  * <p>
@@ -96,6 +97,10 @@ export class ProjectLanguages
         return this.#language;
     }
 
+    public get isACompleteLanguage(): boolean {
+        return this.language.isACompleteLanguage;
+    }
+
     public get projectAcronym(): PossibleEveryLanguagesAcronym {
         return this.language.projectAcronym;
     }
@@ -127,11 +132,15 @@ export class ProjectLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+    public get<T extends CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string
+    public get<T extends ClassWithEveryLanguages, >(classWithEveryLanguages: T,): string
+    public get<T extends | ClassWithEveryLanguages | CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string {
         return this.language.get(classWithEveryLanguages);
     }
 
-    public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal {
+    public original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
+    public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    public original(classWithEveryLanguages: | ClassWithEveryLanguages | CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
         return this.language.original(classWithEveryLanguages);
     }
 
