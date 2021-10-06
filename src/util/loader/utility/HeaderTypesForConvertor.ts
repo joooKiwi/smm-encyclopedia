@@ -1,6 +1,7 @@
-import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                        from '../../../entity/limit/EntityLimitTypes.types';
-import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
+import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
+import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
 
+import {EntityBehaviours}     from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader} from '../../../entity/category/EntityCategoryLoader';
 import {EntityLimits}         from '../../../entity/limit/EntityLimits';
 import {EntityLimitTypes}     from '../../../entity/limit/EntityLimitTypes';
@@ -19,6 +20,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
 
     #everyPossibleEntityNames?: EveryPossibleEntityNames;
+
+    #everyPossibleBehavioursAcronyms?: EveryPossibleBehavioursAcronyms;
+    #everyPossibleBehavioursTranslationKeys?: EveryPossibleBehavioursTranslationKeys;
 
     #everyPossibleGroupNames?: EveryPossibleGroupNames;
 
@@ -48,6 +52,17 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Entity getter methods --------------------
+    //region -------------------- Entity behaviour methods --------------------
+
+    public get everyPossibleBehavioursAcronyms() {
+        return this.#everyPossibleBehavioursAcronyms ??= EntityBehaviours.everyAcronyms;
+    }
+
+    public get everyPossibleBehavioursTranslationKeys() {
+        return this.#everyPossibleBehavioursTranslationKeys ??= EntityBehaviours.everyTranslationKeys;
+    }
+
+    //endregion -------------------- Entity behaviour methods --------------------
     //region -------------------- Entity group getter methods --------------------
 
     public get everyPossibleGroupNames() {
@@ -121,6 +136,17 @@ class HeaderTypesForConvertorForProduction
     }
 
     //endregion -------------------- Entity getter methods --------------------
+    //region -------------------- Entity behaviour methods --------------------
+
+    public get everyPossibleBehavioursAcronyms(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    public get everyPossibleBehavioursTranslationKeys(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity behaviour methods --------------------
     //region -------------------- Entity group getter methods --------------------
 
     public get everyPossibleGroupNames(): StringConstant {
