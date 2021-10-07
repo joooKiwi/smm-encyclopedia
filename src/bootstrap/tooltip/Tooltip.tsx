@@ -1,19 +1,20 @@
-import {Tooltip as BootstrapTooltip} from 'bootstrap';
-import {useEffect}                   from 'react';
+import {useEffect} from 'react';
 
 import type {TooltipConfiguration}                    from './Tooltip.types';
 import type {ReactElement, ReactPropertyWithChildren} from '../../util/ReactProperty';
 
+import {TooltipInstance} from './TooltipInstance';
+
 /**
- * Create a new {@link BootstrapTooltip Tooltip} instance.
+ * Create a new {@link bootstrap.Tooltip Tooltip} instance.
  *
- * @param properties the properties received (containing the content, the option & the id)
+ * @param properties the properties received (containing the content, the option, the triggers & the id)
  * @constructor
  * @see https://getbootstrap.com/docs/5.1/components/tooltips/
  */
-export default function Tooltip<T extends ReactElement = ReactElement, >({children, option, elementId,}: ReactPropertyWithChildren<TooltipConfiguration,T>,): T {
+export default function Tooltip<T extends ReactElement = ReactElement, >({children, option, on: triggers, elementId,}: ReactPropertyWithChildren<TooltipConfiguration, T>,): T {
     useEffect(() => {
-       BootstrapTooltip.getOrCreateInstance(document.getElementById(elementId)!, option,);
+        new TooltipInstance(elementId, option, triggers,);
     });
     return children;
 }
