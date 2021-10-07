@@ -1,0 +1,13 @@
+@import "../configs";
+
+@include media-breakpoint-up('md') {
+
+  html {
+    &[lang="fr_CA"], &[lang="fr_EU"] {
+      #languageChanger-dropdown-menu {
+        margin-left: -0.5cm;//TODO change to bootstrap variable
+      }
+    }
+  }
+
+}
