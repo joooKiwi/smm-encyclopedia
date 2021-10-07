@@ -1,3 +1,5 @@
+import './ChangeTheLanguageTab.scss';
+
 import React, {PureComponent} from 'react';
 
 import type {ReactState} from '../util/ReactState';
