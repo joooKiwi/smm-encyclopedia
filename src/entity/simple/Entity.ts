@@ -1,13 +1,14 @@
 import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from '../properties/Property';
 import type {EntityReferences}                                                                                                    from '../properties/EntityReferences';
 import type {EntityCategory}                                                                                                      from '../category/EntityCategory';
+import type {EmptyEntityCategory}                                                                                                      from '../category/EmptyEntityCategory';
 import type {GameProperty}                                                                                                        from '../properties/GameProperty';
 import type {GameStyleProperty}                                                                                                   from '../properties/GameStyleProperty';
 import type {ThemeProperty}                                                                                                       from '../properties/ThemeProperty';
 import type {TimeProperty}                                                                                                        from '../properties/TimeProperty';
 import type {NameWithAName}                                                                                                       from '../../lang/name/NameWithAName';
 
-export interface Entity<PROPERTY extends Property = Property, >
+export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
     extends NameWithAName,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
         GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
@@ -91,7 +92,7 @@ export interface Entity<PROPERTY extends Property = Property, >
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------
 
-    get category(): EntityCategory
+    get category(): CATEGORY
 
 
     get categoryName(): this['category']['nameContainer']
@@ -348,7 +349,7 @@ export interface Entity<PROPERTY extends Property = Property, >
 
 }
 
-export type ExclusiveSMM1Entity = Entity<ExclusiveSMM1Property> & ExclusiveSMM1Property;
-export type AbstractExclusiveSMM2Entity<PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<PROPERTY> & AbstractExclusiveSMM2Property;
-export type ExclusiveSM3DWEntity = AbstractExclusiveSMM2Entity<ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW;
-export type ExclusiveSMM2Entity = AbstractExclusiveSMM2Entity<ExclusiveSMM2Property> & ExclusiveSMM2Property;
+export type ExclusiveSMM1Entity = Entity<EmptyEntityCategory, ExclusiveSMM1Property> & ExclusiveSMM1Property;
+export type AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<CATEGORY, PROPERTY> & AbstractExclusiveSMM2Property;
+export type ExclusiveSM3DWEntity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW;
+export type ExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property> & ExclusiveSMM2Property;

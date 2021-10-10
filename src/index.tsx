@@ -12,7 +12,7 @@ import {EveryLanguages}   from './lang/EveryLanguages';
 import {ProjectLanguages} from './lang/ProjectLanguages';
 
 EveryLanguages.default ??= 'en_AM';
-ProjectLanguages.currentLanguage ??=  'en_AM';
+ProjectLanguages.currentLanguage ??= 'en_AM';
 
 const currentLanguage = ProjectLanguages.currentLanguage.internationalAcronym;
 
@@ -25,9 +25,17 @@ ReactDOM.render(
     document.getElementById('root'),
 );
 
-if (process.env.NODE_ENV !== 'production') {
+window.IS_IN_PRODUCTION = process.env.NODE_ENV === 'production';
+declare global {
+    export interface Window {
+        IS_IN_PRODUCTION: boolean
+    }
+}
+if (window.IS_IN_PRODUCTION) {
     // If you want to start measuring performance in your app, pass a function
     // to log results (for example: reportWebVitals(console.log))
     // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
     reportWebVitals();
 }
+
+
