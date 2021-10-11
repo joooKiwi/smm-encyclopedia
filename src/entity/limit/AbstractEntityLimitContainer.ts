@@ -10,8 +10,9 @@ import {CallbackCaller} from '../../util/CallbackCaller';
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
-    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT> {
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
+    LINK extends EntityLimitLink = EntityLimitLink, >
+    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT, LINK> {
 
     //region -------------------- Attributes --------------------
 
@@ -336,16 +337,16 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeAmount(): this['alternativeLimitContainer']['amount'] {
-        return this.alternativeLimitContainer.amount;
+    public get alternativeAmount(): this['alternativeLimitContainer']['value'] {
+        return this.alternativeLimitContainer.value;
     }
 
-    public get alternativeIsAmountUnknown(): this['alternativeLimitContainer']['isAmountUnknown'] {
-        return this.alternativeLimitContainer.isAmountUnknown;
+    public get alternativeIsAmountUnknown(): this['alternativeLimitContainer']['isUnknown'] {
+        return this.alternativeLimitContainer.isUnknown;
     }
 
-    public get alternativeAmountComment(): this['alternativeLimitContainer']['amountComment'] {
-        return this.alternativeLimitContainer.amountComment;
+    public get alternativeAmountComment(): this['alternativeLimitContainer']['comment'] {
+        return this.alternativeLimitContainer.comment;
     }
 
     //endregion -------------------- Limit amount --------------------
@@ -356,13 +357,13 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeGroupName(): this['alternativeLinkContainer']['groupName'] {
-        return this.alternativeLinkContainer.groupName;
+    public get alternativeGroupLink(): this['alternativeLinkContainer']['group'] {
+        return this.alternativeLinkContainer.group;
     }
 
 
-    public get alternativeEntityName(): this['alternativeLinkContainer']['entityName'] {
-        return this.alternativeLinkContainer.entityName;
+    public get alternativeEntityLink(): this['alternativeLinkContainer']['entity'] {
+        return this.alternativeLinkContainer.entity;
     }
 
     //endregion -------------------- Link --------------------
@@ -375,33 +376,33 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get amount(): this['limitContainer']['amount'] {
-        return this.limitContainer.amount;
+    public get amount(): this['limitContainer']['value'] {
+        return this.limitContainer.value;
     }
 
-    public get isAmountUnknown(): this['limitContainer']['isAmountUnknown'] {
-        return this.limitContainer.isAmountUnknown;
+    public get isAmountUnknown(): this['limitContainer']['isUnknown'] {
+        return this.limitContainer.isUnknown;
     }
 
-    public get amountComment(): this['limitContainer']['amountComment'] {
-        return this.limitContainer.amountComment;
+    public get amountComment(): this['limitContainer']['comment'] {
+        return this.limitContainer.comment;
     }
 
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Link --------------------
 
-    public get linkContainer(): EntityLimitLink {
-        return this.#linkContainer;
+    public get linkContainer(): LINK {
+        return this.#linkContainer as LINK;
     }
 
 
-    public get groupName(): this['linkContainer']['groupName'] {
-        return this.linkContainer.groupName;
+    public get groupLink(): this['linkContainer']['group'] {
+        return this.linkContainer.group;
     }
 
 
-    public get entityName(): this['linkContainer']['entityName'] {
-        return this.linkContainer.entityName;
+    public get entityLink(): this['linkContainer']['entity'] {
+        return this.linkContainer.entity;
     }
 
     //endregion -------------------- Link --------------------

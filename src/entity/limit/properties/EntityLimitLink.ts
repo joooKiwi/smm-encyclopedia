@@ -1,10 +1,15 @@
-import {Entity} from '../../simple/Entity';
+import {Entity}               from '../../simple/Entity';
+import {PropertyWithNoValues} from '../../_properties/PropertyWithNoValues';
 
-export interface EntityLimitLink<GROUP_NAME extends object = object,
-    ENTITY_NAME extends object = object, > {
+export interface EntityLimitLink<GROUP extends PossibleGroupLink = PossibleGroupLink,
+    ENTITY extends PossibleEntityLink = PossibleEntityLink, >
+    extends PropertyWithNoValues {
 
-    get groupName(): GROUP_NAME
+    get group(): GROUP
 
-    get entityName(): ENTITY_NAME
+    get entity(): ENTITY
 
 }
+
+export type PossibleGroupLink = | object | null;
+export type PossibleEntityLink = | Entity | null;

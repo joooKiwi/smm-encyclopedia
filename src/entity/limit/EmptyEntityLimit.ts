@@ -1,10 +1,8 @@
 import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from '../../util/ClassWithNullObjectPattern';
 import type {EntityLimit}                                      from './EntityLimit';
-import type {EntityLimitAmount}                                from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                                  from './properties/EntityLimitLink';
-
-import {EMPTY_OBJECT} from '../../util/emptyVariables';
-import {EmptyName}    from '../../lang/name/EmptyName';
+import {EmptyName}                                             from '../../lang/name/EmptyName';
+import {EmptyEntityLimitAmount}                                from './properties/EmptyEntityLimitAmount';
+import {EmptyEntityLimitLink}                                  from './properties/EmptyEntityLimitLink';
 
 /**
  * @singleton
@@ -12,23 +10,13 @@ import {EmptyName}    from '../../lang/name/EmptyName';
 export class EmptyEntityLimit
     implements EntityLimit, ClassWithNullObjectPattern<EmptyEntityLimitName> {
 
-    public static readonly EMPTY_LIMIT_AMOUNT: EntityLimitAmount<null, false, null> = {
-        amount: null,
-        isAmountUnknown: false,
-        amountComment: null,
-    };
-    public static readonly EMPTY_LINK_CONTAINER: EntityLimitLink<{}, {}> = {
-        groupName: EMPTY_OBJECT,
-        entityName: EMPTY_OBJECT,
-    };
-
-    static readonly #instance = new EmptyEntityLimit();
+    static #instance?: EmptyEntityLimit;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -146,38 +134,38 @@ export class EmptyEntityLimit
     //endregion -------------------- Name --------------------
     //region -------------------- Limit amount --------------------
 
-    public readonly alternativeLimitContainer = EmptyEntityLimit.EMPTY_LIMIT_AMOUNT;
+    public readonly alternativeLimitContainer = EmptyEntityLimitAmount.get;
 
-    public readonly alternativeAmount = this.alternativeLimitContainer.amount;
-    public readonly alternativeIsAmountUnknown = this.alternativeLimitContainer.isAmountUnknown;
-    public readonly alternativeAmountComment = this.alternativeLimitContainer.amountComment;
+    public readonly alternativeAmount = this.alternativeLimitContainer.value;
+    public readonly alternativeIsAmountUnknown = this.alternativeLimitContainer.isUnknown;
+    public readonly alternativeAmountComment = this.alternativeLimitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Link --------------------
 
-    public readonly alternativeLinkContainer = EmptyEntityLimit.EMPTY_LINK_CONTAINER;
+    public readonly alternativeLinkContainer = EmptyEntityLimitLink.get;
 
-    public readonly alternativeGroupName = this.alternativeLinkContainer.groupName;
-    public readonly alternativeEntityName = this.alternativeLinkContainer.entityName;
+    public readonly alternativeGroupLink = this.alternativeLinkContainer.group;
+    public readonly alternativeEntityLink = this.alternativeLinkContainer.entity;
 
     //endregion -------------------- Link --------------------
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
 
-    public readonly limitContainer = EmptyEntityLimit.EMPTY_LIMIT_AMOUNT;
+    public readonly limitContainer = EmptyEntityLimitAmount.get;
 
-    public readonly amount = this.limitContainer.amount;
-    public readonly isAmountUnknown = this.limitContainer.isAmountUnknown;
-    public readonly amountComment = this.limitContainer.amountComment;
+    public readonly amount = this.limitContainer.value;
+    public readonly isAmountUnknown = this.limitContainer.isUnknown;
+    public readonly amountComment = this.limitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Link --------------------
 
-    public readonly linkContainer = EmptyEntityLimit.EMPTY_LINK_CONTAINER;
+    public readonly linkContainer = EmptyEntityLimitLink.get;
 
-    public readonly groupName = this.linkContainer.groupName;
-    public readonly entityName = this.linkContainer.entityName;
+    public readonly groupLink = this.linkContainer.group;
+    public readonly entityLink = this.linkContainer.entity;
 
     //endregion -------------------- Link --------------------
 
