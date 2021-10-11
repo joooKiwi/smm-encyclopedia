@@ -11,13 +11,13 @@ import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 export class EmptyWorldTheme
     implements WorldTheme, ClassWithNullObjectPattern<EmptyWorldThemeName> {
 
-    static readonly #instance = new EmptyWorldTheme();
+    static #instance?: EmptyWorldTheme;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

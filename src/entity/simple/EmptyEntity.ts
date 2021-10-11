@@ -15,13 +15,13 @@ import {EmptyName}            from '../../lang/name/EmptyName';
 export class EmptyEntity
     implements Entity, ClassWithNullObjectPattern<EmptyEntityName> {
 
-    static readonly #instance = new EmptyEntity();
+    static #instance?: EmptyEntity;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

@@ -10,13 +10,13 @@ import {EmptyEntity} from '../simple/EmptyEntity';
 export class EmptyEntityReference
     implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {
 
-    static readonly #instance = new EmptyEntityReference();
+    static #instance?: EmptyEntityReference;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

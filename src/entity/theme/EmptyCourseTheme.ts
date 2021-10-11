@@ -11,13 +11,13 @@ import {EmptyName}              from '../../lang/name/EmptyName';
 export class EmptyCourseTheme
     implements CourseTheme, ClassWithNullObjectPattern<EmptyCourseThemeName> {
 
-    static readonly #instance = new EmptyCourseTheme();
+    static #instance?: EmptyCourseTheme;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

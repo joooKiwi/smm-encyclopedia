@@ -9,13 +9,13 @@ import {EmptyName} from '../../lang/name/EmptyName';
 export class EmptyEntityCategory
     implements EntityCategory, ClassWithNullObjectPattern<EmptyEntityCategoryName> {
 
-    static readonly #instance = new EmptyEntityCategory();
+    static #instance?: EmptyEntityCategory;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

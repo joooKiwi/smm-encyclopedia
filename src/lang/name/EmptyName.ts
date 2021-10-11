@@ -9,13 +9,13 @@ import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
 export class EmptyName
     implements Name, ClassWithNullObjectPattern<EmptyNameName> {
 
-    static readonly #instance = new EmptyName();
+    static #instance?: EmptyName;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

@@ -11,13 +11,13 @@ import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 export class EmptyGameStyle
     implements GameStyle, ClassWithNullObjectPattern<EmptyGameStyleName> {
 
-    static readonly #instance = new EmptyGameStyle();
+    static #instance?: EmptyGameStyle;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 

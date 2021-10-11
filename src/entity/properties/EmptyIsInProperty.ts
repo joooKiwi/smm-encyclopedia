@@ -7,13 +7,13 @@ import type {Property}                                          from './Property
 export class EmptyIsInProperty
     implements Property, ClassWithNullObjectPattern<EmptyIsInPropertyName> {
 
-    public static instance = new EmptyIsInProperty();
+    static #instance?: EmptyIsInProperty;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance ??= new this();
     }
 
 
