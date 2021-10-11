@@ -1,15 +1,15 @@
-import type {CourseTheme} from './CourseTheme';
+import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/ClassWithNullObjectPattern';
+import type {CourseTheme}                                      from './CourseTheme';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 import {EmptyName}              from '../../lang/name/EmptyName';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyCourseTheme
-    implements CourseTheme {
+    implements CourseTheme, ClassWithNullObjectPattern<EmptyCourseThemeName> {
 
     static readonly #instance = new EmptyCourseTheme();
 
@@ -83,7 +83,7 @@ export class EmptyCourseTheme
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty course theme' {
+    public toString(): EmptyCourseThemeName {
         return 'Empty course theme';
     }
 

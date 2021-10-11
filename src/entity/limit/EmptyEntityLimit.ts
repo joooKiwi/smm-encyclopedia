@@ -1,6 +1,7 @@
-import type {EntityLimit}       from './EntityLimit';
-import type {EntityLimitAmount} from './properties/EntityLimitAmount';
-import type {EntityLimitLink}   from './properties/EntityLimitLink';
+import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from '../../util/ClassWithNullObjectPattern';
+import type {EntityLimit}                                      from './EntityLimit';
+import type {EntityLimitAmount}                                from './properties/EntityLimitAmount';
+import type {EntityLimitLink}                                  from './properties/EntityLimitLink';
 
 import {EMPTY_OBJECT} from '../../util/emptyVariables';
 import {EmptyName}    from '../../lang/name/EmptyName';
@@ -9,7 +10,7 @@ import {EmptyName}    from '../../lang/name/EmptyName';
  * @singleton
  */
 export class EmptyEntityLimit
-    implements EntityLimit {
+    implements EntityLimit, ClassWithNullObjectPattern<EmptyEntityLimitName> {
 
     public static readonly EMPTY_LIMIT_AMOUNT: EntityLimitAmount<null, false, null> = {
         amount: null,
@@ -189,7 +190,7 @@ export class EmptyEntityLimit
     }
 
 
-    public toString(): 'Empty entity limit' {
+    public toString(): EmptyEntityLimitName {
         return 'Empty entity limit';
     }
 

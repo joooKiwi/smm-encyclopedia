@@ -1,15 +1,15 @@
-import type {WorldTheme} from './WorldTheme';
+import type {ClassWithNullObjectPattern, EmptyWorldThemeName} from '../../util/ClassWithNullObjectPattern';
+import type {WorldTheme}                                      from './WorldTheme';
 
 import {EMPTY_MAP}             from '../../util/emptyVariables';
 import {EmptyName}             from '../../lang/name/EmptyName';
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyWorldTheme
-    implements WorldTheme {
+    implements WorldTheme, ClassWithNullObjectPattern<EmptyWorldThemeName> {
 
     static readonly #instance = new EmptyWorldTheme();
 
@@ -86,7 +86,7 @@ export class EmptyWorldTheme
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty world theme' {
+    public toString(): EmptyWorldThemeName {
         return 'Empty world theme';
     }
 

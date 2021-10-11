@@ -1,10 +1,11 @@
-import type {Property} from './Property';
+import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../util/ClassWithNullObjectPattern';
+import type {Property}                                          from './Property';
 
 /**
- * @nullObjectPattern
+ * @singleton
  */
 export class EmptyIsInProperty
-    implements Property {
+    implements Property, ClassWithNullObjectPattern<EmptyIsInPropertyName> {
 
     public static instance = new EmptyIsInProperty();
 
@@ -99,7 +100,7 @@ export class EmptyIsInProperty
         throw new ReferenceError(`An ${this} cannot have a time map.`);
     }
 
-    public toString(): 'Empty "is in property"' {
+    public toString(): EmptyIsInPropertyName {
         return 'Empty "is in property"';
     }
 

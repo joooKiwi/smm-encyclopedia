@@ -1,15 +1,15 @@
-import type {GameStyle} from './GameStyle';
+import type {ClassWithNullObjectPattern, EmptyGameStyleName} from '../../util/ClassWithNullObjectPattern';
+import type {GameStyle}                                      from './GameStyle';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyName}              from '../../lang/name/EmptyName';
 import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyGameStyle
-    implements GameStyle {
+    implements GameStyle, ClassWithNullObjectPattern<EmptyGameStyleName> {
 
     static readonly #instance = new EmptyGameStyle();
 
@@ -83,7 +83,7 @@ export class EmptyGameStyle
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty game style' {
+    public toString(): EmptyGameStyleName {
         return 'Empty game style';
     }
 
