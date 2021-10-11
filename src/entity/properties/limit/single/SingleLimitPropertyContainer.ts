@@ -2,12 +2,14 @@ import type {SingleLimitThatCanBeUnknownProperty}            from './SingleLimit
 import type {SingleLimitWithCommentProperty}                 from './SingleLimitWithCommentProperty';
 import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './SingleLimitWithCommentThatCanBeUnknownProperty';
 
-import {CallbackCaller} from '../../../../util/CallbackCaller';
+import {CallbackCaller}                               from '../../../../util/CallbackCaller';
+import {PropertyWithCommentThatCanBeUnknownContainer} from '../../../_properties/PropertyWithCommentThatCanBeUnknownContainer';
 
 /**
  * @provider
  */
 export class SingleLimitPropertyContainer<T>
+    extends PropertyWithCommentThatCanBeUnknownContainer<T>
     implements SingleLimitThatCanBeUnknownProperty<T>, SingleLimitWithCommentProperty<T>, SingleLimitWithCommentThatCanBeUnknownProperty<T> {
 
     //region -------------------- Predefined containers --------------------
@@ -16,35 +18,11 @@ export class SingleLimitPropertyContainer<T>
     public static readonly UNKNOWN_LIMIT = new SingleLimitPropertyContainer(null, true, null,);
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Attributes --------------------
-
-    readonly #value;
-    readonly #isUnknown;
-    readonly #comment;
-
-    //endregion -------------------- Attributes --------------------
 
     private constructor(value: T, isUnknown: boolean, comment: | string | null,) {
-        this.#value = value;
-        this.#isUnknown = isUnknown;
-        this.#comment = comment;
+        super(value, isUnknown, comment,);
     }
 
-    //region -------------------- Getter methods --------------------
-
-    public get value() {
-        return this.#value;
-    }
-
-    public get isUnknown() {
-        return this.#isUnknown;
-    }
-
-    public get comment() {
-        return this.#comment;
-    }
-
-    //endregion -------------------- Getter methods ---------------------
     //region -------------------- Provider methods ----------
 
     public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<false>,]

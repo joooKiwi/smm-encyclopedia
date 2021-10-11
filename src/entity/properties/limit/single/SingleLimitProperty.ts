@@ -1,5 +1,6 @@
-export interface SingleLimitProperty<T> {
+import type {Property} from '../../../_properties/Property';
 
-    get value(): T
+export interface SingleLimitProperty<T>
+    extends Property<T> {
 
 }
