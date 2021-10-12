@@ -4,6 +4,7 @@ import type {SingleLimitWithCommentProperty}                 from './SingleLimit
 import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './SingleLimitWithCommentThatCanBeUnknownProperty';
 
 import {DelayedObjectHolderContainer} from '../../../../util/holder/DelayedObjectHolderContainer';
+import {ObjectHolders}                from '../../../../util/holder/objectHolders';
 
 /**
  * @provider
@@ -53,9 +54,9 @@ export class SingleLimitPropertyContainer<T>
     public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>,]
     public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown: boolean = false,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>,] {
         if (value == null)
-            return [this.NULL_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.FALSE,];
+            return [this.NULL_LIMIT, ObjectHolders.NULL, ObjectHolders.FALSE,];
         if (value === '?')
-            return [this.UNKNOWN_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.TRUE,];
+            return [this.UNKNOWN_LIMIT, ObjectHolders.NULL, ObjectHolders.TRUE,];
 
         const container = new SingleLimitPropertyContainer(value, isUnknown, null,);
 
@@ -66,7 +67,7 @@ export class SingleLimitPropertyContainer<T>
     public static newLimitWithComment<T>(value: T | null, comment?: | string | null,): [container: SingleLimitWithCommentProperty<T> | null, value: ObjectHolder<| T | null>, comment: ObjectHolder<| string | null>,]
     public static newLimitWithComment<T>(value: T | null, comment: | string | null = null,): [container: SingleLimitWithCommentProperty<T> | null, value: ObjectHolder<| T | null>, comment: ObjectHolder<| string | null>,] {
         if (value == null)
-            return [null, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.NULL,];
+            return [null, ObjectHolders.NULL, ObjectHolders.NULL,];
 
         const container = new SingleLimitPropertyContainer(value, false, comment,);
         return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.comment),];
@@ -77,9 +78,9 @@ export class SingleLimitPropertyContainer<T>
     public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment?: | string | null, isUnknown?: boolean,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>, comment: ObjectHolder<| string | null>,]
     public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment: | string | null = null, isUnknown: boolean = false,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>, comment: ObjectHolder<| string | null>,] {
         if (value == null)
-            return [this.NULL_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.FALSE, DelayedObjectHolderContainer.NULL,];
+            return [this.NULL_LIMIT, ObjectHolders.NULL, ObjectHolders.FALSE, ObjectHolders.NULL,];
         if (value === '?')
-            return [this.UNKNOWN_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.TRUE, DelayedObjectHolderContainer.NULL,];
+            return [this.UNKNOWN_LIMIT, ObjectHolders.NULL, ObjectHolders.TRUE, ObjectHolders.NULL,];
 
         const container = new SingleLimitPropertyContainer(value, isUnknown, comment,);
         return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.isUnknown), new DelayedObjectHolderContainer(() => container.comment),];
