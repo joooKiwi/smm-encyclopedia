@@ -8,5 +8,6 @@
   "entity + wing & fast": "{{entity}} + aile & rapide",
   "entity + stump":       "{{entity}} + tronc",
   "entity + cloud":       "{{entity}} + nuage",
-  "entity + car":         "{{entity}} + voiture"
+  "entity + car":         "{{entity}} + voiture",
+  "entity + clone":       "{{entity}} + clone"
 }

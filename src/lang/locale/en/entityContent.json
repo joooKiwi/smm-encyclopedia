@@ -8,5 +8,6 @@
   "entity + wing & fast": "{{entity}} + wing & fast",
   "entity + stump":       "{{entity}} + stump",
   "entity + cloud":       "{{entity}} + cloud",
-  "entity + car":         "{{entity}} + car"
+  "entity + car":         "{{entity}} + car",
+  "entity + clone":       "{{entity}} + clone"
 }
