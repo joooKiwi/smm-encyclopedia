@@ -1,4 +1,6 @@
-import {ObjectHolder} from './ObjectHolder';
+import type {ObjectHolder, ObjectReceived} from './ObjectHolder';
+
+import {ObjectHolderContainer} from './ObjectHolderContainer';
 
 export class DelayedObjectHolderContainer<T>
     implements ObjectHolder<T> {
@@ -6,8 +8,8 @@ export class DelayedObjectHolderContainer<T>
     #object?: T;
     readonly #callback;
 
-    public constructor(callback: () => T,) {
-        this.#callback = callback;
+    public constructor(value: ObjectReceived<T>,) {
+        this.#callback = () => new ObjectHolderContainer(value).get;
     }
 
 
