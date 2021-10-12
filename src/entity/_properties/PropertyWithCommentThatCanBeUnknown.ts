@@ -1,8 +1,12 @@
-import type {PossibleComment}          from './ClassWithComment';
-import type {PropertyWithComment}      from './PropertyWithComment';
-import type {PropertyThatCanBeUnknown} from './PropertyThatCanBeUnknown';
+import type {PossibleBoolean, PossibleNumber} from './Property';
+import type {PossibleComment}                 from './ClassWithComment';
+import type {PropertyWithComment}             from './PropertyWithComment';
+import type {PropertyThatCanBeUnknown}        from './PropertyThatCanBeUnknown';
 
 export interface PropertyWithCommentThatCanBeUnknown<T, IS_UNKNOWN extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >
     extends PropertyWithComment<T, COMMENT>, PropertyThatCanBeUnknown<T, IS_UNKNOWN> {
 
 }
+
+export type BooleanPropertyWithCommentThatCanBeUnknown<B extends PossibleBoolean = PossibleBoolean, IS_UNKNOWN extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, > = PropertyWithCommentThatCanBeUnknown<B, IS_UNKNOWN, COMMENT>;
+export type NumberPropertyWithCommentThatCanBeUnknown<N extends PossibleNumber = PossibleNumber, IS_UNKNOWN extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, > = PropertyWithCommentThatCanBeUnknown<N, IS_UNKNOWN, COMMENT>;

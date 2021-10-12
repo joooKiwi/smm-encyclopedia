@@ -6,3 +6,14 @@ export interface Property<T>
     get value(): T
 
 }
+
+export type BooleanProperty<B extends PossibleBoolean = PossibleBoolean, > = Property<B>;
+export type NumberProperty<N extends PossibleNumber = PossibleNumber> = Property<N>;
+
+
+export type DEFAULT_IS_UNKNOWN = false;
+export type DEFAULT_COMMENT = null;
+export type PossibleValueReceived<T> = | T | (() => T);
+
+export type PossibleBoolean = | null | boolean;
+export type PossibleNumber = | number | null;
