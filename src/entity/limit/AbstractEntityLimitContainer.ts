@@ -180,6 +180,15 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
+    public get isGreekUsed() {
+        return this.nameContainer.isGreekUsed;
+    }
+
+    public get greek() {
+        return this.nameContainer.greek;
+    }
+
+
     public get originalLanguages() {
         return this.nameContainer.originalLanguages;
     }
@@ -323,6 +332,15 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
 
     public get alternativeKorean() {
         return this.alternativeNameContainer.korean;
+    }
+
+
+    public get alternativeIsGreekUsed() {
+        return this.alternativeNameContainer.isGreekUsed;
+    }
+
+    public get alternativeGreek() {
+        return this.alternativeNameContainer.greek;
     }
 
 

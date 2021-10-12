@@ -84,6 +84,7 @@ export class ThemeLoader
 class TemplateCreator {
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+    static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): ThemeTemplate {
         return {
@@ -125,6 +126,7 @@ class TemplateCreator {
                     simplified: content[20],
                 },
                 korean: content[21],
+                greek: this.#EMPTY_GREEK,
             }
         };
     }

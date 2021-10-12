@@ -76,6 +76,9 @@ export class EmptyEntityLimit
 
     public readonly korean = this.nameContainer.korean;
 
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
+
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name --------------------
@@ -128,6 +131,9 @@ export class EmptyEntityLimit
     public readonly alternativeSimplifiedChinese = this.alternativeNameContainer.simplifiedChinese;
 
     public readonly alternativeKorean = this.alternativeNameContainer.korean;
+
+    public readonly alternativeIsGreekUsed = this.alternativeNameContainer.isGreekUsed;
+    public readonly alternativeGreek = this.alternativeNameContainer.greek;
 
     public readonly alternativeOriginalLanguages = this.alternativeNameContainer.originalLanguages;
 

@@ -119,6 +119,7 @@ class TemplateCreator {
     };
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+    static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = content[1];
@@ -239,6 +240,7 @@ class TemplateCreator {
             },
             japanese: japanese,
             korean: korean,
+            greek: this.#EMPTY_GREEK,
         };
     }
 }

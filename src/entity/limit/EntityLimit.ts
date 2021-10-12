@@ -96,6 +96,11 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     get alternativeKorean(): AlternativeEntityLimit['korean']
 
 
+    get alternativeIsGreekUsed(): AlternativeEntityLimit['isGreekUsed']
+
+    get alternativeGreek(): AlternativeEntityLimit['greek']
+
+
     get alternativeOriginalLanguages(): AlternativeEntityLimit['originalLanguages']
 
 
