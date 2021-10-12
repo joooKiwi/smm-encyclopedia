@@ -4,4 +4,4 @@ export interface ObjectHolder<T> {
 
 }
 
-export type ObjectReceived<T> = T extends Function ? (() => T) : (| T | (() => T));
+export type ValueOrCallbackValue<T> = | T | (() => T);

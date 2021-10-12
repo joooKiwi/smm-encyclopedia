@@ -1,4 +1,5 @@
-import type {BooleanProperty, PossibleBoolean, PossibleValueReceived} from './Property';
+import type {BooleanProperty, PossibleBoolean} from './Property';
+import type {ValueOrCallbackValue}             from '../../util/holder/ObjectHolder';
 
 import {PropertyContainer} from './PropertyContainer';
 
@@ -6,7 +7,7 @@ export class BooleanPropertyContainer<B extends PossibleBoolean = PossibleBoolea
     extends PropertyContainer<B>
     implements BooleanProperty<B> {
 
-    public constructor(value: PossibleValueReceived<B>,) {
+    public constructor(value: ValueOrCallbackValue<B>,) {
         super(value,);
     }
 

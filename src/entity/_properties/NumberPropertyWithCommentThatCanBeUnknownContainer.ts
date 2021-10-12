@@ -1,6 +1,7 @@
 import type {NumberPropertyWithCommentThatCanBeUnknown} from './PropertyWithCommentThatCanBeUnknown';
 import type {PossibleComment}                           from './ClassWithComment';
-import type {PossibleNumber, PossibleValueReceived}     from './Property';
+import type {PossibleNumber}                            from './Property';
+import type {ValueOrCallbackValue}                      from '../../util/holder/ObjectHolder';
 
 import {PropertyWithCommentThatCanBeUnknownContainer} from './PropertyWithCommentThatCanBeUnknownContainer';
 
@@ -8,7 +9,7 @@ export class NumberPropertyWithCommentThatCanBeUnknownContainer<N extends Possib
     extends PropertyWithCommentThatCanBeUnknownContainer<N, IS_UNKNOWN, COMMENT>
     implements NumberPropertyWithCommentThatCanBeUnknown<N, IS_UNKNOWN, COMMENT> {
 
-    public constructor(value: PossibleValueReceived<N>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
+    public constructor(value: ValueOrCallbackValue<N>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
         super(value, isUnknown, comment,);
     }
 

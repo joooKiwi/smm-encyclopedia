@@ -1,10 +1,9 @@
-import type {ClassWithComment, PossibleComment}                                    from './ClassWithComment';
-import type {ClassThatCanBeUnknown}                                                from './ClassThatCanBeUnknown';
-import type {DEFAULT_COMMENT, DEFAULT_IS_UNKNOWN, PossibleValueReceived, Property} from './Property';
-import type {ObjectHolder}                                                         from '../../util/holder/ObjectHolder';
+import type {ClassWithComment, PossibleComment}             from './ClassWithComment';
+import type {ClassThatCanBeUnknown}                         from './ClassThatCanBeUnknown';
+import type {DEFAULT_COMMENT, DEFAULT_IS_UNKNOWN, Property} from './Property';
+import type {ObjectHolder, ValueOrCallbackValue}            from '../../util/holder/ObjectHolder';
 
-import {CallbackCaller}        from '../../util/CallbackCaller';
-import {ObjectHolderContainer} from '../../util/holder/ObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
 export abstract class AbstractProperty<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOWN, COMMENT extends PossibleComment = DEFAULT_COMMENT, >
     implements Property<T>, ClassThatCanBeUnknown<IS_UNKNOWN>, ClassWithComment<COMMENT> {
@@ -16,12 +15,12 @@ export abstract class AbstractProperty<T, IS_UNKNOWN extends boolean = DEFAULT_I
     readonly #isUnknown: IS_UNKNOWN;
     readonly #comment: COMMENT;
 
-    protected constructor(value: PossibleValueReceived<T>,)
-    protected constructor(value: PossibleValueReceived<T>, isUnknown: IS_UNKNOWN,)
-    protected constructor(value: PossibleValueReceived<T>, comment: COMMENT,)
-    protected constructor(value: PossibleValueReceived<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
-    protected constructor(value: PossibleValueReceived<T>, isUnknown_or_comment?: IS_UNKNOWN | COMMENT, comment?: COMMENT,) {
-        this.#value = value instanceof Function ? new CallbackCaller(value) : new ObjectHolderContainer<T>(value);
+    protected constructor(value: ValueOrCallbackValue<T>,)
+    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN,)
+    protected constructor(value: ValueOrCallbackValue<T>, comment: COMMENT,)
+    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
+    protected constructor(value: ValueOrCallbackValue<T>, isUnknown_or_comment?: IS_UNKNOWN | COMMENT, comment?: COMMENT,) {
+        this.#value = new DelayedObjectHolderContainer<T>(value);
         if (isUnknown_or_comment == null) {
             this.#isUnknown = AbstractProperty.#DEFAULT_IS_UNKNOWN as IS_UNKNOWN;
             this.#comment = AbstractProperty.#DEFAULT_COMMENT as COMMENT;

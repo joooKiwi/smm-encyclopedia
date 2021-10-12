@@ -1,6 +1,7 @@
 import type {BooleanPropertyWithCommentThatCanBeUnknown} from './PropertyWithCommentThatCanBeUnknown';
-import type {PossibleBoolean, PossibleValueReceived}     from './Property';
+import type {PossibleBoolean}                            from './Property';
 import type {PossibleComment}                            from './ClassWithComment';
+import type {ValueOrCallbackValue}                       from '../../util/holder/ObjectHolder';
 
 import {PropertyWithCommentThatCanBeUnknownContainer} from './PropertyWithCommentThatCanBeUnknownContainer';
 
@@ -8,7 +9,7 @@ export class BooleanPropertyWithCommentThatCanBeUnknownContainer<B extends Possi
     extends PropertyWithCommentThatCanBeUnknownContainer<B, IS_UNKNOWN, COMMENT>
     implements BooleanPropertyWithCommentThatCanBeUnknown<B, IS_UNKNOWN, COMMENT> {
 
-    public constructor(value: PossibleValueReceived<B>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
+    public constructor(value: ValueOrCallbackValue<B>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
         super(value, isUnknown, comment,);
     }
 
