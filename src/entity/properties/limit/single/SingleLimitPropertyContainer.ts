@@ -1,8 +1,9 @@
+import type {ObjectHolder}                                   from '../../../../util/holder/ObjectHolder';
 import type {SingleLimitThatCanBeUnknownProperty}            from './SingleLimitThatCanBeUnknownProperty';
 import type {SingleLimitWithCommentProperty}                 from './SingleLimitWithCommentProperty';
 import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './SingleLimitWithCommentThatCanBeUnknownProperty';
 
-import {CallbackCaller} from '../../../../util/CallbackCaller';
+import {DelayedObjectHolderContainer} from '../../../../util/holder/DelayedObjectHolderContainer';
 
 /**
  * @provider
@@ -47,41 +48,41 @@ export class SingleLimitPropertyContainer<T>
     //endregion -------------------- Getter methods ---------------------
     //region -------------------- Provider methods ----------
 
-    public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<false>,]
-    public static newLimitThatCanBeUnknown<T>(value: '?', isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T>, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>,]
-    public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>,]
-    public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown: boolean = false,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>,] {
+    public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): [container: null, value: ObjectHolder<null>, isUnknown: ObjectHolder<false>,]
+    public static newLimitThatCanBeUnknown<T>(value: '?', isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T>, value: ObjectHolder<null>, isUnknown: ObjectHolder<true>,]
+    public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>,]
+    public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown: boolean = false,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>,] {
         if (value == null)
-            return [this.NULL_LIMIT, CallbackCaller.NULL, CallbackCaller.FALSE,];
+            return [this.NULL_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.FALSE,];
         if (value === '?')
-            return [this.UNKNOWN_LIMIT, CallbackCaller.NULL, CallbackCaller.TRUE,];
+            return [this.UNKNOWN_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.TRUE,];
 
         const container = new SingleLimitPropertyContainer(value, isUnknown, null,);
 
-        return [container, new CallbackCaller(() => container.value), new CallbackCaller(() => container.isUnknown),];
+        return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.isUnknown),];
     }
 
-    public static newLimitWithComment(value: null, comment?: null,): [container: null, value: CallbackCaller<null>, comment: CallbackCaller<null>,]
-    public static newLimitWithComment<T>(value: T | null, comment?: | string | null,): [container: SingleLimitWithCommentProperty<T> | null, value: CallbackCaller<| T | null>, comment: CallbackCaller<| string | null>,]
-    public static newLimitWithComment<T>(value: T | null, comment: | string | null = null,): [container: SingleLimitWithCommentProperty<T> | null, value: CallbackCaller<| T | null>, comment: CallbackCaller<| string | null>,] {
+    public static newLimitWithComment(value: null, comment?: null,): [container: null, value: ObjectHolder<null>, comment: ObjectHolder<null>,]
+    public static newLimitWithComment<T>(value: T | null, comment?: | string | null,): [container: SingleLimitWithCommentProperty<T> | null, value: ObjectHolder<| T | null>, comment: ObjectHolder<| string | null>,]
+    public static newLimitWithComment<T>(value: T | null, comment: | string | null = null,): [container: SingleLimitWithCommentProperty<T> | null, value: ObjectHolder<| T | null>, comment: ObjectHolder<| string | null>,] {
         if (value == null)
-            return [null, CallbackCaller.NULL, CallbackCaller.NULL,];
+            return [null, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.NULL,];
 
         const container = new SingleLimitPropertyContainer(value, false, comment,);
-        return [container, new CallbackCaller(() => container.value), new CallbackCaller(() => container.comment),];
+        return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.comment),];
     }
 
-    public static newLimitWithCommentThatCanBeUnknown(value: null, comment?: any, isUnknown?: any,): [container: null, value: CallbackCaller<null>, isUnknown: CallbackCaller<false>, comment: CallbackCaller<null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: '?', comment?: any, isUnknown?: any,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T>, value: CallbackCaller<null>, isUnknown: CallbackCaller<true>, comment: CallbackCaller<null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment?: | string | null, isUnknown?: boolean,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>, comment: CallbackCaller<| string | null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment: | string | null = null, isUnknown: boolean = false,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: CallbackCaller<| T | null>, isUnknown: CallbackCaller<boolean>, comment: CallbackCaller<| string | null>,] {
+    public static newLimitWithCommentThatCanBeUnknown(value: null, comment?: any, isUnknown?: any,): [container: null, value: ObjectHolder<null>, isUnknown: ObjectHolder<false>, comment: ObjectHolder<null>,]
+    public static newLimitWithCommentThatCanBeUnknown<T>(value: '?', comment?: any, isUnknown?: any,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T>, value: ObjectHolder<null>, isUnknown: ObjectHolder<true>, comment: ObjectHolder<null>,]
+    public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment?: | string | null, isUnknown?: boolean,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>, comment: ObjectHolder<| string | null>,]
+    public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment: | string | null = null, isUnknown: boolean = false,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>, comment: ObjectHolder<| string | null>,] {
         if (value == null)
-            return [this.NULL_LIMIT, CallbackCaller.NULL, CallbackCaller.FALSE, CallbackCaller.NULL,];
+            return [this.NULL_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.FALSE, DelayedObjectHolderContainer.NULL,];
         if (value === '?')
-            return [this.UNKNOWN_LIMIT, CallbackCaller.NULL, CallbackCaller.TRUE, CallbackCaller.NULL,];
+            return [this.UNKNOWN_LIMIT, DelayedObjectHolderContainer.NULL, DelayedObjectHolderContainer.TRUE, DelayedObjectHolderContainer.NULL,];
 
         const container = new SingleLimitPropertyContainer(value, isUnknown, comment,);
-        return [container, new CallbackCaller(() => container.value), new CallbackCaller(() => container.isUnknown), new CallbackCaller(() => container.comment),];
+        return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.isUnknown), new DelayedObjectHolderContainer(() => container.comment),];
     }
 
     //endregion -------------------- Provider methods ----------

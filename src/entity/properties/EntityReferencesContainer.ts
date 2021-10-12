@@ -1,40 +1,41 @@
 import type {Entity}           from '../simple/Entity';
 import type {EntityReferences} from './EntityReferences';
 import type {GameStyles}       from '../gameStyle/GameStyles';
+import type {ObjectHolder}     from '../../util/holder/ObjectHolder';
 import type {Themes}           from '../theme/Themes';
 import type {Times}            from '../time/Times';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
 export class EntityReferencesContainer
     implements EntityReferences {
 
     //region -------------------- Attributes --------------------
 
-    readonly #referenceInSuperMarioBrosStyle: CallbackCaller<Entity>;
-    readonly #referenceInSuperMarioBros3Style: CallbackCaller<Entity>;
-    readonly #referenceInSuperMarioWorldStyle: CallbackCaller<Entity>;
-    readonly #referenceInNewSuperMarioBrosUStyle: CallbackCaller<Entity>;
-    readonly #referenceInSuperMario3DWorldStyle: CallbackCaller<Entity>;
+    readonly #referenceInSuperMarioBrosStyle: ObjectHolder<Entity>;
+    readonly #referenceInSuperMarioBros3Style: ObjectHolder<Entity>;
+    readonly #referenceInSuperMarioWorldStyle: ObjectHolder<Entity>;
+    readonly #referenceInNewSuperMarioBrosUStyle: ObjectHolder<Entity>;
+    readonly #referenceInSuperMario3DWorldStyle: ObjectHolder<Entity>;
 
-    readonly #referenceInGroundTheme: CallbackCaller<Entity>;
-    readonly #referenceInUndergroundTheme: CallbackCaller<Entity>;
-    readonly #referenceInUnderwaterTheme: CallbackCaller<Entity>;
-    readonly #referenceInDesertTheme: CallbackCaller<Entity>;
-    readonly #referenceInSnowTheme: CallbackCaller<Entity>;
-    readonly #referenceInSkyTheme: CallbackCaller<Entity>;
-    readonly #referenceInForestTheme: CallbackCaller<Entity>;
-    readonly #referenceInGhostHouseTheme: CallbackCaller<Entity>;
-    readonly #referenceInAirshipTheme: CallbackCaller<Entity>;
-    readonly #referenceInCastleTheme: CallbackCaller<Entity>;
+    readonly #referenceInGroundTheme: ObjectHolder<Entity>;
+    readonly #referenceInUndergroundTheme: ObjectHolder<Entity>;
+    readonly #referenceInUnderwaterTheme: ObjectHolder<Entity>;
+    readonly #referenceInDesertTheme: ObjectHolder<Entity>;
+    readonly #referenceInSnowTheme: ObjectHolder<Entity>;
+    readonly #referenceInSkyTheme: ObjectHolder<Entity>;
+    readonly #referenceInForestTheme: ObjectHolder<Entity>;
+    readonly #referenceInGhostHouseTheme: ObjectHolder<Entity>;
+    readonly #referenceInAirshipTheme: ObjectHolder<Entity>;
+    readonly #referenceInCastleTheme: ObjectHolder<Entity>;
 
-    readonly #referenceInDayTheme: CallbackCaller<Entity>;
-    readonly #referenceInNightTheme: CallbackCaller<Entity>;
+    readonly #referenceInDayTheme: ObjectHolder<Entity>;
+    readonly #referenceInNightTheme: ObjectHolder<Entity>;
 
-    readonly #everyGameStyleReferences: CallbackCaller<readonly Entity[]>;
-    readonly #everyThemeReferences: CallbackCaller<readonly Entity[]>;
-    readonly #everyTimeReferences: CallbackCaller<readonly Entity[]>;
-    readonly #everyReferences: CallbackCaller<readonly Entity[]>;
+    readonly #everyGameStyleReferences: ObjectHolder<readonly Entity[]>;
+    readonly #everyThemeReferences: ObjectHolder<readonly Entity[]>;
+    readonly #everyTimeReferences: ObjectHolder<readonly Entity[]>;
+    readonly #everyReferences: ObjectHolder<readonly Entity[]>;
 
     //endregion -------------------- Attributes --------------------
 
@@ -42,30 +43,30 @@ export class EntityReferencesContainer
                        referenceInGroundTheme: () => Entity, referenceInUndergroundTheme: () => Entity, referenceInUnderwaterTheme: () => Entity, referenceInDesertTheme: () => Entity, referenceInSnowTheme: () => Entity, referenceInSkyTheme: () => Entity, referenceInForestTheme: () => Entity, referenceInGhostHouseTheme: () => Entity, referenceInAirshipTheme: () => Entity, referenceInCastleTheme: () => Entity,
                        referenceInDayTheme: () => Entity, referenceInNightTheme: () => Entity,
                        everyGameStyleReferences: () => readonly Entity[], everyThemeReferences: () => readonly Entity[], everyTimeReferences: () => readonly Entity[], everyReferences: () => readonly Entity[],) {
-        this.#referenceInSuperMarioBrosStyle = new CallbackCaller(referenceInSuperMarioBrosStyle);
-        this.#referenceInSuperMarioBros3Style = new CallbackCaller(referenceInSuperMarioBros3Style);
-        this.#referenceInSuperMarioWorldStyle = new CallbackCaller(referenceInSuperMarioWorldStyle);
-        this.#referenceInNewSuperMarioBrosUStyle = new CallbackCaller(referenceInNewSuperMarioBrosUStyle);
-        this.#referenceInSuperMario3DWorldStyle = new CallbackCaller(referenceInSuperMario3DWorldStyle);
+        this.#referenceInSuperMarioBrosStyle = new DelayedObjectHolderContainer(referenceInSuperMarioBrosStyle);
+        this.#referenceInSuperMarioBros3Style = new DelayedObjectHolderContainer(referenceInSuperMarioBros3Style);
+        this.#referenceInSuperMarioWorldStyle = new DelayedObjectHolderContainer(referenceInSuperMarioWorldStyle);
+        this.#referenceInNewSuperMarioBrosUStyle = new DelayedObjectHolderContainer(referenceInNewSuperMarioBrosUStyle);
+        this.#referenceInSuperMario3DWorldStyle = new DelayedObjectHolderContainer(referenceInSuperMario3DWorldStyle);
 
-        this.#referenceInGroundTheme = new CallbackCaller(referenceInGroundTheme);
-        this.#referenceInUndergroundTheme = new CallbackCaller(referenceInUndergroundTheme);
-        this.#referenceInUnderwaterTheme = new CallbackCaller(referenceInUnderwaterTheme);
-        this.#referenceInDesertTheme = new CallbackCaller(referenceInDesertTheme);
-        this.#referenceInSnowTheme = new CallbackCaller(referenceInSnowTheme);
-        this.#referenceInSkyTheme = new CallbackCaller(referenceInSkyTheme);
-        this.#referenceInForestTheme = new CallbackCaller(referenceInForestTheme);
-        this.#referenceInGhostHouseTheme = new CallbackCaller(referenceInGhostHouseTheme);
-        this.#referenceInAirshipTheme = new CallbackCaller(referenceInAirshipTheme);
-        this.#referenceInCastleTheme = new CallbackCaller(referenceInCastleTheme);
+        this.#referenceInGroundTheme = new DelayedObjectHolderContainer(referenceInGroundTheme);
+        this.#referenceInUndergroundTheme = new DelayedObjectHolderContainer(referenceInUndergroundTheme);
+        this.#referenceInUnderwaterTheme = new DelayedObjectHolderContainer(referenceInUnderwaterTheme);
+        this.#referenceInDesertTheme = new DelayedObjectHolderContainer(referenceInDesertTheme);
+        this.#referenceInSnowTheme = new DelayedObjectHolderContainer(referenceInSnowTheme);
+        this.#referenceInSkyTheme = new DelayedObjectHolderContainer(referenceInSkyTheme);
+        this.#referenceInForestTheme = new DelayedObjectHolderContainer(referenceInForestTheme);
+        this.#referenceInGhostHouseTheme = new DelayedObjectHolderContainer(referenceInGhostHouseTheme);
+        this.#referenceInAirshipTheme = new DelayedObjectHolderContainer(referenceInAirshipTheme);
+        this.#referenceInCastleTheme = new DelayedObjectHolderContainer(referenceInCastleTheme);
 
-        this.#referenceInDayTheme = new CallbackCaller(referenceInDayTheme);
-        this.#referenceInNightTheme = new CallbackCaller(referenceInNightTheme);
+        this.#referenceInDayTheme = new DelayedObjectHolderContainer(referenceInDayTheme);
+        this.#referenceInNightTheme = new DelayedObjectHolderContainer(referenceInNightTheme);
 
-        this.#everyGameStyleReferences = new CallbackCaller(everyGameStyleReferences);
-        this.#everyThemeReferences = new CallbackCaller(everyThemeReferences);
-        this.#everyTimeReferences = new CallbackCaller(everyTimeReferences);
-        this.#everyReferences = new CallbackCaller(everyReferences);
+        this.#everyGameStyleReferences = new DelayedObjectHolderContainer(everyGameStyleReferences);
+        this.#everyThemeReferences = new DelayedObjectHolderContainer(everyThemeReferences);
+        this.#everyTimeReferences = new DelayedObjectHolderContainer(everyTimeReferences);
+        this.#everyReferences = new DelayedObjectHolderContainer(everyReferences);
     }
 
 

@@ -1,8 +1,10 @@
-import {EntityBehaviourLink}                 from './EntityBehaviourLink';
-import {Entity}                              from '../../simple/Entity';
-import {PossibleGroupName, SingleEntityName} from '../../entityTypes';
-import {EntityLoader}                        from '../../simple/EntityLoader';
-import {CallbackCaller}                      from '../../../util/CallbackCaller';
+import type {Entity}                              from '../../simple/Entity';
+import type {EntityBehaviourLink}                 from './EntityBehaviourLink';
+import type {ObjectHolder}                        from '../../../util/holder/ObjectHolder';
+import type {PossibleGroupName, SingleEntityName} from '../../entityTypes';
+
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
+import {EntityLoader}                 from '../../simple/EntityLoader';
 
 /**
  * @multiton
@@ -27,12 +29,12 @@ export class EntityBehaviourLinkContainer
     //endregion -------------------- predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
-    readonly #groupLinkHolder: CallbackCaller<| object | null>;
-    readonly #entityLinkHolder: CallbackCaller<| Entity | null>;
+    readonly #groupLinkHolder: ObjectHolder<| object | null>;
+    readonly #entityLinkHolder: ObjectHolder<| Entity | null>;
 
     private constructor(groupLink: | PossibleGroupName | null, entityLink: | SingleEntityName | null,) {
-        this.#groupLinkHolder = new CallbackCaller(() => groupLink == null ? null : EntityBehaviourLinkContainer.__getEntityGroupByName(groupLink));
-        this.#entityLinkHolder = new CallbackCaller(() => entityLink == null ? null : EntityBehaviourLinkContainer.__getEntityByName(entityLink));
+        this.#groupLinkHolder = new DelayedObjectHolderContainer(() => groupLink == null ? null : EntityBehaviourLinkContainer.__getEntityGroupByName(groupLink));
+        this.#entityLinkHolder = new DelayedObjectHolderContainer(() => entityLink == null ? null : EntityBehaviourLinkContainer.__getEntityByName(entityLink));
     }
 
 

@@ -4,9 +4,10 @@ import type {EntityLimitLink}                                                   
 import type {EntityLimitTypes}                                                    from './EntityLimitTypes';
 import type {EveryLanguages}                                                      from '../../lang/EveryLanguages';
 import type {Name}                                                                from '../../lang/name/Name';
+import type {ObjectHolder}                                                        from '../../util/holder/ObjectHolder';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits} from './EntityLimits.types';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
@@ -17,8 +18,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
 
     readonly #nameContainer: Name;
     readonly #acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null;
-    readonly #alternativeCaller: CallbackCaller<AlternativeEntityLimit>;
-    readonly #typeCaller: CallbackCaller<EntityLimitTypes>;
+    readonly #alternativeCaller: ObjectHolder<AlternativeEntityLimit>;
+    readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
     readonly #limitContainer: EntityLimitAmount;
     readonly #linkContainer: EntityLimitLink;
 
@@ -27,8 +28,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     protected constructor(name: Name, acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
         this.#nameContainer = name;
         this.#acronym = acronym;
-        this.#alternativeCaller = new CallbackCaller(alternative);
-        this.#typeCaller = new CallbackCaller(type);
+        this.#alternativeCaller = new DelayedObjectHolderContainer(alternative);
+        this.#typeCaller = new DelayedObjectHolderContainer(type);
         this.#limitContainer = limitAmount;
         this.#linkContainer = link;
     }
