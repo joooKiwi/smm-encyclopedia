@@ -9,11 +9,11 @@ import {GenericEntity} from './GenericEntity';
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}.
  */
-export abstract class AbstractExclusiveSMM2Entity<T extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
-    extends GenericEntity<T>
+export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
+    extends GenericEntity<CATEGORY, PROPERTY>
     implements AbstractExclusiveSMM2EntityInterface {
 
-    protected constructor(name: Name, category: EntityCategory, property: T, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, property: PROPERTY, references: EntityReferences,) {
         super(name, category, validateProperty(property), references,);
     }
 

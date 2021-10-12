@@ -68,6 +68,9 @@ export class EmptyEntity
 
     public readonly korean = this.nameContainer.korean;
 
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
+
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
@@ -107,6 +110,8 @@ export class EmptyEntity
     public readonly categoryAmericanPortuguese = this.categoryName.americanPortuguese;
     public readonly categoryEuropeanPortuguese = this.categoryName.europeanPortuguese;
 
+    public readonly categoryRussian = this.categoryName.russian;
+
     public readonly categoryJapanese = this.categoryName.japanese;
 
     public readonly categoryOriginalChinese = this.categoryName.originalChinese;
@@ -116,7 +121,10 @@ export class EmptyEntity
 
     public readonly categoryKorean = this.categoryName.korean;
 
-    public readonly categoryRussian = this.categoryName.russian;
+    public readonly categoryIsGreekUsed = this.categoryName.isGreekUsed;
+    public readonly categoryGreek = this.categoryName.greek;
+
+    public readonly categoryOriginalLanguages = this.categoryName.originalLanguages;
 
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------

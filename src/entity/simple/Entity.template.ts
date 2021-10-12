@@ -4,8 +4,8 @@ import type {EntityReferencesTemplate}                                          
 import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../properties/IsInProperty.template';
 import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../properties/limit/LimitProperty.template';
 import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType}                                                                                                                                                                                                                                                             from '../properties/limit/Loader.types';
-import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../category/EntityCategories.types';
-import type {SMM2NameTemplateWithPortuguese}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../lang/SMM2Name.template';
+import type {PossibleEntityCategoriesName}          from '../category/EntityCategories.types';
+import type {SMM2NameTemplateWithOptionalLanguages} from '../lang/SMM2Name.template';
 
 /**
  * @template
@@ -117,7 +117,7 @@ export interface EntityTemplate {
 }
 
 interface EntityNameTemplate
-    extends SMM2NameTemplateWithPortuguese {
+    extends SMM2NameTemplateWithOptionalLanguages {
 
     hasAReferenceInMarioMaker: HasAReferenceInMarioMaker
 

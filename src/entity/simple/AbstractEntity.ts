@@ -12,8 +12,8 @@ import type {Times}            from '../time/Times';
  *
  * @note It use the generic to have a type based on the property used for each methods in {@link Property}.
  */
-export abstract class AbstractEntity<PROPERTY extends Property = Property, >
-    implements Entity<PROPERTY> {
+export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
+    implements Entity<CATEGORY, PROPERTY> {
 
     //region -------------------- Attributes --------------------
 
@@ -24,11 +24,31 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, category: EntityCategory, property: PROPERTY, references: EntityReferences,) {
+    protected constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
         this.#nameContainer = name;
-        this.#category = category;
-        this.#propertyContainer = property;
+        this.#category = this.__testCategory(category);
+        this.#propertyContainer = this.__testProperty(property);
         this.#referencesContainer = references;
+    }
+
+    private __testCategory(category: EntityCategory,): CATEGORY {
+        return window.IS_IN_PRODUCTION
+            ? category as CATEGORY
+            : this._testCategory(category) as CATEGORY;
+    }
+
+    protected _testCategory(category: EntityCategory,): EntityCategory {
+        return category;
+    }
+
+    private __testProperty(property: Property,): PROPERTY {
+        return window.IS_IN_PRODUCTION
+            ? property as PROPERTY
+            : this._testProperty(property) as PROPERTY;
+    }
+
+    protected _testProperty(property: Property,): Property {
+        return property;
     }
 
     //region -------------------- Name properties --------------------
@@ -38,268 +58,290 @@ export abstract class AbstractEntity<PROPERTY extends Property = Property, >
     }
 
 
-    public get languageValue() {
+    public get languageValue(): this['nameContainer']['languageValue'] {
         return this.nameContainer.languageValue;
     }
 
 
-    public get originalEnglish() {
+    public get originalEnglish(): this['nameContainer']['originalEnglish'] {
         return this.nameContainer.originalEnglish;
     }
 
-    public get english() {
+    public get english(): this['nameContainer']['english'] {
         return this.nameContainer.english;
     }
 
-    public get americanEnglish() {
+    public get americanEnglish(): this['nameContainer']['americanEnglish'] {
         return this.nameContainer.americanEnglish;
     }
 
-    public get europeanEnglish() {
+    public get europeanEnglish(): this['nameContainer']['europeanEnglish'] {
         return this.nameContainer.europeanEnglish;
     }
 
 
-    public get originalFrench() {
+    public get originalFrench(): this['nameContainer']['originalFrench'] {
         return this.nameContainer.originalFrench;
     }
 
-    public get french() {
+    public get french(): this['nameContainer']['french'] {
         return this.nameContainer.french;
     }
 
-    public get canadianFrench() {
+    public get canadianFrench(): this['nameContainer']['canadianFrench'] {
         return this.nameContainer.canadianFrench;
     }
 
-    public get europeanFrench() {
+    public get europeanFrench(): this['nameContainer']['europeanFrench'] {
         return this.nameContainer.europeanFrench;
     }
 
 
-    public get german() {
+    public get german(): this['nameContainer']['german'] {
         return this.nameContainer.german;
     }
 
 
-    public get originalSpanish() {
+    public get originalSpanish(): this['nameContainer']['originalSpanish'] {
         return this.nameContainer.originalSpanish;
     }
 
-    public get spanish() {
+    public get spanish(): this['nameContainer']['spanish'] {
         return this.nameContainer.spanish;
     }
 
-    public get americanSpanish() {
+    public get americanSpanish(): this['nameContainer']['americanSpanish'] {
         return this.nameContainer.americanSpanish;
     }
 
-    public get europeanSpanish() {
+    public get europeanSpanish(): this['nameContainer']['europeanSpanish'] {
         return this.nameContainer.europeanSpanish;
     }
 
 
-    public get italian() {
+    public get italian(): this['nameContainer']['italian'] {
         return this.nameContainer.italian;
     }
 
 
-    public get dutch() {
+    public get dutch(): this['nameContainer']['dutch'] {
         return this.nameContainer.dutch;
     }
 
 
-    public get isPortugueseUsed() {
+    public get isPortugueseUsed(): this['nameContainer']['isPortugueseUsed'] {
         return this.nameContainer.isPortugueseUsed;
     }
 
-    public get originalPortuguese() {
+    public get originalPortuguese(): this['nameContainer']['originalPortuguese'] {
         return this.nameContainer.originalPortuguese;
     }
 
-    public get portuguese() {
+    public get portuguese(): this['nameContainer']['portuguese'] {
         return this.nameContainer.portuguese;
     }
 
-    public get americanPortuguese() {
+    public get americanPortuguese(): this['nameContainer']['americanPortuguese'] {
         return this.nameContainer.americanPortuguese;
     }
 
-    public get europeanPortuguese() {
+    public get europeanPortuguese(): this['nameContainer']['europeanPortuguese'] {
         return this.nameContainer.europeanPortuguese;
     }
 
 
-    public get russian() {
+    public get russian(): this['nameContainer']['russian'] {
         return this.nameContainer.russian;
     }
 
 
-    public get japanese() {
+    public get japanese(): this['nameContainer']['japanese'] {
         return this.nameContainer.japanese;
     }
 
 
-    public get originalChinese() {
+    public get originalChinese(): this['nameContainer']['originalChinese'] {
         return this.nameContainer.originalChinese;
     }
 
-    public get chinese() {
+    public get chinese(): this['nameContainer']['chinese'] {
         return this.nameContainer.chinese;
     }
 
-    public get traditionalChinese() {
+    public get traditionalChinese(): this['nameContainer']['traditionalChinese'] {
         return this.nameContainer.traditionalChinese;
     }
 
-    public get simplifiedChinese() {
+    public get simplifiedChinese(): this['nameContainer']['simplifiedChinese'] {
         return this.nameContainer.simplifiedChinese;
     }
 
 
-    public get korean() {
+    public get korean(): this['nameContainer']['korean'] {
         return this.nameContainer.korean;
     }
 
 
-    public get originalLanguages() {
+    public get isGreekUsed(): this['nameContainer']['isGreekUsed'] {
+        return this.nameContainer.isGreekUsed;
+    }
+
+    public get greek(): this['nameContainer']['greek'] {
+        return this.nameContainer.greek;
+    }
+
+
+    public get originalLanguages(): this['nameContainer']['originalLanguages'] {
         return this.nameContainer.originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
     //region -------------------- Category properties --------------------
 
-    public get category(): EntityCategory {
+    public get category(): CATEGORY {
         return this.#category;
     }
 
 
-    public get categoryName() {
+    public get categoryName(): this['category']['nameContainer'] {
         return this.category.nameContainer;
     }
 
 
-    public get categoryLanguageValue() {
+    public get categoryLanguageValue(): this['categoryName']['languageValue'] {
         return this.categoryName.languageValue;
     }
 
 
-    public get categoryOriginalEnglish() {
+    public get categoryOriginalEnglish(): this['categoryName']['originalEnglish'] {
         return this.categoryName.originalEnglish;
     }
 
-    public get categoryEnglish() {
+    public get categoryEnglish(): this['categoryName']['english'] {
         return this.categoryName.english;
     }
 
-    public get categoryAmericanEnglish() {
+    public get categoryAmericanEnglish(): this['categoryName']['americanEnglish'] {
         return this.categoryName.americanEnglish;
     }
 
-    public get categoryEuropeanEnglish() {
+    public get categoryEuropeanEnglish(): this['categoryName']['europeanEnglish'] {
         return this.categoryName.europeanEnglish;
     }
 
 
-    public get categoryOriginalFrench() {
+    public get categoryOriginalFrench(): this['categoryName']['originalFrench'] {
         return this.categoryName.originalFrench;
     }
 
-    public get categoryFrench() {
+    public get categoryFrench(): this['categoryName']['french'] {
         return this.categoryName.french;
     }
 
-    public get categoryCanadianFrench() {
+    public get categoryCanadianFrench(): this['categoryName']['canadianFrench'] {
         return this.categoryName.canadianFrench;
     }
 
-    public get categoryEuropeanFrench() {
+    public get categoryEuropeanFrench(): this['categoryName']['europeanFrench'] {
         return this.categoryName.europeanFrench;
     }
 
 
-    public get categoryGerman() {
+    public get categoryGerman(): this['categoryName']['german'] {
         return this.categoryName.german;
     }
 
 
-    public get categoryOriginalSpanish() {
+    public get categoryOriginalSpanish(): this['categoryName']['originalSpanish'] {
         return this.categoryName.originalSpanish;
     }
 
-    public get categorySpanish() {
+    public get categorySpanish(): this['categoryName']['spanish'] {
         return this.categoryName.spanish;
     }
 
-    public get categoryAmericanSpanish() {
+    public get categoryAmericanSpanish(): this['categoryName']['americanSpanish'] {
         return this.categoryName.americanSpanish;
     }
 
-    public get categoryEuropeanSpanish() {
+    public get categoryEuropeanSpanish(): this['categoryName']['europeanSpanish'] {
         return this.categoryName.europeanSpanish;
     }
 
 
-    public get categoryItalian() {
+    public get categoryItalian(): this['categoryName']['italian'] {
         return this.categoryName.italian;
     }
 
 
-    public get categoryDutch() {
+    public get categoryDutch(): this['categoryName']['dutch'] {
         return this.categoryName.dutch;
     }
 
 
-    public get categoryIsPortugueseUsed() {
+    public get categoryIsPortugueseUsed(): this['categoryName']['isPortugueseUsed'] {
         return this.categoryName.isPortugueseUsed;
     }
 
-    public get categoryOriginalPortuguese() {
+    public get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese'] {
         return this.categoryName.originalPortuguese;
     }
 
-    public get categoryPortuguese() {
+    public get categoryPortuguese(): this['categoryName']['portuguese'] {
         return this.categoryName.portuguese;
     }
 
-    public get categoryAmericanPortuguese() {
+    public get categoryAmericanPortuguese(): this['categoryName']['americanPortuguese'] {
         return this.categoryName.americanPortuguese;
     }
 
-    public get categoryEuropeanPortuguese() {
+    public get categoryEuropeanPortuguese(): this['categoryName']['europeanPortuguese'] {
         return this.categoryName.europeanPortuguese;
     }
 
 
-    public get categoryJapanese() {
+    public get categoryRussian(): this['categoryName']['russian'] {
+        return this.categoryName.russian;
+    }
+
+
+    public get categoryJapanese(): this['categoryName']['japanese'] {
         return this.categoryName.japanese;
     }
 
 
-    public get categoryOriginalChinese() {
+    public get categoryOriginalChinese(): this['categoryName']['originalChinese'] {
         return this.categoryName.originalChinese;
     }
 
-    public get categoryChinese() {
+    public get categoryChinese(): this['categoryName']['chinese'] {
         return this.categoryName.chinese;
     }
 
-    public get categoryTraditionalChinese() {
+    public get categoryTraditionalChinese(): this['categoryName']['traditionalChinese'] {
         return this.categoryName.traditionalChinese;
     }
 
-    public get categorySimplifiedChinese() {
+    public get categorySimplifiedChinese(): this['categoryName']['simplifiedChinese'] {
         return this.categoryName.simplifiedChinese;
     }
 
 
-    public get categoryKorean() {
+    public get categoryKorean(): this['categoryName']['korean'] {
         return this.categoryName.korean;
     }
 
+    public get categoryIsGreekUsed(): this['categoryName']['isGreekUsed'] {
+        return this.categoryName.isGreekUsed;
+    }
 
-    public get categoryRussian() {
-        return this.categoryName.russian;
+    public get categoryGreek(): this['categoryName']['greek'] {
+        return this.categoryName.german;
+    }
+
+
+    public get categoryOriginalLanguages(): this['nameContainer']['originalLanguages'] {
+        return this.categoryName.originalLanguages;
     }
 
     //endregion -------------------- Category properties --------------------

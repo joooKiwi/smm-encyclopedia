@@ -1,5 +1,5 @@
-import type {Name}                                             from '../lang/name/Name';
-import type {SMM2NameTemplate, SMM2NameTemplateWithPortuguese} from './lang/SMM2Name.template';
+import type {Name}                                                    from '../lang/name/Name';
+import type {SMM2NameTemplate, SMM2NameTemplateWithOptionalLanguages} from './lang/SMM2Name.template';
 
 import {NameBuilder}     from './lang/NameBuilder';
 import {NameCreator}     from './lang/NameCreator';
@@ -7,7 +7,7 @@ import {TemplateBuilder} from './TemplateBuilder';
 
 interface TemplateWithNameTemplate {
 
-    name: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese
+    name: | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages
 
 }
 

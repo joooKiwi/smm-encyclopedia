@@ -9,15 +9,17 @@ export type PossibleNonNullableValue = | EveryLanguages
 //region -------------------- Number types --------------------
 
 export type EveryLanguagesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-                                     | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20;
+                                     | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20
+                                     | 21;
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
 export type ProjectLanguagesNames = | `${| 'AMERICAN' | 'EUROPEAN'}_${| 'ENGLISH' | 'SPANISH' | 'PORTUGUESE'}`
                                     | `${| 'CANADIAN' | 'EUROPEAN'}_FRENCH`
-                                    | 'GERMAN' | 'ITALIAN' | 'DUTCH' | 'RUSSIAN' | 'JAPANESE' | 'KOREAN'
-                                    | `CHINESE_${| 'TRADITIONAL' | 'SIMPLIFIED'}`;
+                                    | 'GERMAN' | 'ITALIAN' | 'DUTCH' | 'RUSSIAN' | 'JAPANESE'
+                                    | `CHINESE_${| 'TRADITIONAL' | 'SIMPLIFIED'}` | 'KOREAN'
+                                    | 'GREEK';
 export type EveryLanguagesNames = | ProjectLanguagesNames | Uppercase<BasicEnglishName>;
 
 //region -------------------- Acronyms --------------------
@@ -32,7 +34,8 @@ export type PossibleProjectLanguagesAcronym =
     | 'pt_AM' | 'pt_EU'
     | 'ru' | 'ja'
     | 'zh_T' | 'zh_S'
-    | 'ko';
+    | 'ko'
+    | 'el';
 export type PossibleEveryLanguagesAcronym = | BasicAcronym | PossibleProjectLanguagesAcronym;
 
 export type PossibleProjectLanguagesInternationalAcronym =
@@ -44,7 +47,8 @@ export type PossibleProjectLanguagesInternationalAcronym =
     | 'pt-US' | 'pt-EU'
     | 'ru' | 'ja'
     | 'zh'
-    | 'ko';
+    | 'ko'
+    | 'el';
 export type PossibleEveryLanguagesInternationalAcronym = | BasicAcronym | PossibleProjectLanguagesInternationalAcronym;
 
 //endregion -------------------- Acronyms --------------------
@@ -60,7 +64,8 @@ export type PossibleProjectLanguagesEnglishName =
     | `Portuguese (${'America' | 'Europe'})`
     | 'Russian' | 'Japanese'
     | `${'Traditional' | 'Simplified'} chinese`
-    | 'Korean';
+    | 'Korean'
+    | 'Greek';
 export type PossibleEveryLanguagesEnglishName = | BasicEnglishName | PossibleProjectLanguagesEnglishName;
 
 export type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人';
@@ -73,7 +78,8 @@ export type PossibleProjectLanguagesOriginalName =
     | 'Nederlands' | 'Italiano'
     | 'русский' | '日本語'
     | '简体中文' | '繁體中文'
-    | '한국어';
+    | '한국어'
+    | 'ελληνικά';
 export type PossibleEveryLanguagesOriginalName = | BasicOriginalName | PossibleProjectLanguagesOriginalName;
 
 //endregion -------------------- Names --------------------
@@ -112,6 +118,7 @@ export type EveryLanguagesArray<T = EveryLanguages, > = readonly [
     SimpleEveryLanguages<T>['JAPANESE'],
     SimpleEveryLanguages<T>['CHINESE'], SimpleEveryLanguages<T>['CHINESE_TRADITIONAL'], SimpleEveryLanguages<T>['CHINESE_SIMPLIFIED'],
     SimpleEveryLanguages<T>['KOREAN'],
+    SimpleEveryLanguages<T>['GREEK'],
 ];
 
 //endregion -------------------- Array types --------------------

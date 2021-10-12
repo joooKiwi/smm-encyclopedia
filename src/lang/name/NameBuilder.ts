@@ -20,6 +20,7 @@ export class NameBuilder
     #japanese?: | string | null;
     #chinese?: | ChineseOriginal | null;
     #korean?: | string | null;
+    #greek?: | string | null;
 
     //endregion -------------------- Attributes --------------------
     //region -------------------- Getter & setter methods --------------------
@@ -222,6 +223,24 @@ export class NameBuilder
     }
 
     //endregion -------------------- Korean getter & setter methods --------------------
+    //region -------------------- Korean getter & setter methods --------------------
+
+    public get greek() {
+        return this.#greek;
+    }
+
+    protected get _greek() {
+        if (this.greek === undefined)
+            throw new ReferenceError('The greek reference has not been initialised.');
+        return this.greek;
+    }
+
+    public setGreek(value: | string | null,): this {
+        this.#greek = value;
+        return this;
+    }
+
+    //endregion -------------------- Korean getter & setter methods --------------------
 
     //endregion -------------------- Getter & setter methods --------------------
 
@@ -238,6 +257,7 @@ export class NameBuilder
             this._japanese,
             this._chinese,
             this._korean,
+            this._greek,
         );
     }
 

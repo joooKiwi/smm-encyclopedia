@@ -1,6 +1,6 @@
-import type {Builder}                                          from '../../util/Builder';
-import type {SMM2NameTemplate, SMM2NameTemplateWithPortuguese} from './SMM2Name.template';
-import type {Name}                                             from '../../lang/name/Name';
+import type {Builder}                                                 from '../../util/Builder';
+import type {SMM2NameTemplate, SMM2NameTemplateWithOptionalLanguages} from './SMM2Name.template';
+import type {Name}                                                    from '../../lang/name/Name';
 
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
 
@@ -33,7 +33,7 @@ export class NameBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese, isACompleteName: boolean,) {
+    public constructor(template: | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages, isACompleteName: boolean,) {
         this.#template = template;
         this.#isACompleteName = isACompleteName;
     }
@@ -77,6 +77,7 @@ export class NameBuilder
             .setJapanese(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.japanese,))
             .setChinese(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.chinese.simple, this.template.chinese.simplified, this.template.chinese.traditional,))
             .setKorean(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.korean,))
+            .setGreek(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES, this.template.greek,))
             .build();
     }
 
