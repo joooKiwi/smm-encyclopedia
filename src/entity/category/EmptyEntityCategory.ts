@@ -64,6 +64,9 @@ export class EmptyEntityCategory
 
     public readonly korean = this.nameContainer.korean;
 
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
+
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------

@@ -182,6 +182,15 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     }
 
 
+    public get isGreekUsed(): this['nameContainer']['isGreekUsed'] {
+        return this.nameContainer.isGreekUsed;
+    }
+
+    public get greek(): this['nameContainer']['greek'] {
+        return this.nameContainer.greek;
+    }
+
+
     public get originalLanguages(): this['nameContainer']['originalLanguages'] {
         return this.nameContainer.originalLanguages;
     }
@@ -291,6 +300,11 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     }
 
 
+    public get categoryRussian(): this['categoryName']['russian'] {
+        return this.categoryName.russian;
+    }
+
+
     public get categoryJapanese(): this['categoryName']['japanese'] {
         return this.categoryName.japanese;
     }
@@ -317,9 +331,17 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.categoryName.korean;
     }
 
+    public get categoryIsGreekUsed(): this['categoryName']['isGreekUsed'] {
+        return this.categoryName.isGreekUsed;
+    }
 
-    public get categoryRussian(): this['categoryName']['russian'] {
-        return this.categoryName.russian;
+    public get categoryGreek(): this['categoryName']['greek'] {
+        return this.categoryName.german;
+    }
+
+
+    public get categoryOriginalLanguages(): this['nameContainer']['originalLanguages'] {
+        return this.categoryName.originalLanguages;
     }
 
     //endregion -------------------- Category properties --------------------

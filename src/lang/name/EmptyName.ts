@@ -94,6 +94,12 @@ export class EmptyName
     public readonly korean = EMPTY_STRING;
 
     //endregion -------------------- Korean properties --------------------
+    //region -------------------- Greek properties --------------------
+
+    public readonly isGreekUsed = false;
+    public readonly greek = EMPTY_STRING;
+
+    //endregion -------------------- Greek properties --------------------
 
     public readonly originalLanguages = EMPTY_ARRAY;
 

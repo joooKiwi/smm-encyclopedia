@@ -2,8 +2,9 @@ import type {Entity}       from '../simple/Entity';
 import type {GameProperty} from '../properties/GameProperty';
 import type {GameStyle}    from './GameStyle';
 import type {Name}         from '../../lang/name/Name';
+import type {ObjectHolder} from '../../util/holder/ObjectHolder';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
 export class GenericGameStyle
     implements GameStyle {
@@ -12,14 +13,14 @@ export class GenericGameStyle
 
     readonly #name;
     readonly #isInProperty;
-    readonly #entities: CallbackCaller<Entity[]>;
+    readonly #entities: ObjectHolder<Entity[]>;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(name: Name, isInProperty: GameProperty, entities: () => Entity[],) {
         this.#name = name;
         this.#isInProperty = isInProperty;
-        this.#entities = new CallbackCaller(entities);
+        this.#entities = new DelayedObjectHolderContainer(entities);
     }
 
     //region -------------------- Name properties --------------------

@@ -5,7 +5,7 @@ import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnTy
 import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity';
 import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './Entity.template';
-import type {HeadersWithPortuguese as LanguagesHeaders, PropertiesArrayWithPortuguese as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../../lang/Loader.types';
+import type {HeadersWithOptionalLanguages as LanguagesHeaders, PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../../lang/Loader.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../game/Loader.types';
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/loader/Loader';
 import type {PossibleCourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../theme/Themes.types';
@@ -13,7 +13,7 @@ import type {PossibleEntityCategoriesName}                                      
 import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../limit/EntityLimits.types';
 import type {PossibleGameStyleAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../gameStyle/GameStyles.types';
 import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../time/Times.types';
-import type {SMM2NameTemplateWithPortuguese}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../lang/SMM2Name.template';
+import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../lang/SMM2Name.template';
 
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
@@ -192,10 +192,10 @@ type PropertiesArray = [
 
 export interface DebugEntityReferences {
 
-    originalContent: readonly string[]
-    arrayConverted: PropertiesArray
-    template: EntityTemplate
-    entity?: Entity
+    originalContent: readonly string[];
+    arrayConverted: PropertiesArray;
+    template: EntityTemplate;
+    entity?: Entity;
 
 }
 
@@ -540,6 +540,7 @@ class TemplateCreator {
                     simplified: content[90],
                 },
                 korean: content[91],
+                greek: content[92],
             },
         };
     }
@@ -567,7 +568,7 @@ class TemplateCreator {
  */
 class NameCreator {
 
-    private static __testName(name: SMM2NameTemplateWithPortuguese,): void {
+    private static __testName(name: SMM2NameTemplateWithOptionalLanguages,): void {
         //README since some references are still not complete, they are in comment
         if (name.english.simple == null && (name.english.american == null || name.english.european == null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -581,7 +582,7 @@ class NameCreator {
         //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "traditional"("${name.chinese.traditional}") and "simplified"("${name.chinese.simplified}") name separated.`);
     }
 
-    public static addEnglishReference(name: SMM2NameTemplateWithPortuguese, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
+    public static addEnglishReference(name: SMM2NameTemplateWithOptionalLanguages, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
         this.__testName(name);
         const englishReferenceName = name.english.simple ?? name.english.american;
         if (englishReferenceName == null)

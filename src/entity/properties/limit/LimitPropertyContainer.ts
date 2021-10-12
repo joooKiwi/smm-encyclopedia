@@ -1,7 +1,6 @@
-import type {CallbackCaller}                                                                                                                                                                                                       from '../../../util/CallbackCaller';
-import type {LimitProperty, PossibleCustomLimitWhilePlaying, PossibleEditorLimit, PossibleGeneralLimitWhilePlaying, PossibleGlobalGeneralLimitWhilePlaying, PossiblePowerUpLimitWhilePlaying, PossibleProjectileLimitWhilePlaying} from './LimitProperty';
-
 import type {CommentReceived, CustomLimitContainer, CustomLimitReceived, EditorLimitContainer, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitContainer, PowerUpLimitReceived, ProjectileLimitContainer, ProjectileLimitReceived, SingleGeneralGlobalLimitContainer, SingleGeneralGlobalLimitReceived, SingleGeneralLimitContainer} from './LimitProperty.types';
+import type {LimitProperty, PossibleCustomLimitWhilePlaying, PossibleEditorLimit, PossibleGeneralLimitWhilePlaying, PossibleGlobalGeneralLimitWhilePlaying, PossiblePowerUpLimitWhilePlaying, PossibleProjectileLimitWhilePlaying}                                                                                                          from './LimitProperty';
+import type {ObjectHolder}                                                                                                                                                                                                                                                                                                                  from '../../../util/holder/ObjectHolder';
 
 import {EntityLimits}                 from '../../limit/EntityLimits';
 import {SingleLimitPropertyContainer} from './single/SingleLimitPropertyContainer';
@@ -50,30 +49,30 @@ export class LimitPropertyContainer
     //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #editorLimitContainer: | EditorLimitContainer | null;
-    readonly #editorLimitHolder: CallbackCaller<| PossibleEditorLimit | null>;
-    readonly #isEditorLimitKnownHolder: CallbackCaller<boolean>;
+    readonly #editorLimitHolder: ObjectHolder<| PossibleEditorLimit | null>;
+    readonly #isEditorLimitKnownHolder: ObjectHolder<boolean>;
 
     readonly #isGeneralLimitContainer: | SingleGeneralLimitContainer | null;
-    readonly #isGeneralLimitHolder: CallbackCaller<| PossibleGeneralLimitWhilePlaying | null>;
-    readonly #isGeneralLimitCommentHolder: CallbackCaller<| string | null>;
+    readonly #isGeneralLimitHolder: ObjectHolder<| PossibleGeneralLimitWhilePlaying | null>;
+    readonly #isGeneralLimitCommentHolder: ObjectHolder<| string | null>;
 
     readonly #isGeneralGlobalLimitContainer: | SingleGeneralGlobalLimitContainer | null;
-    readonly #isGlobalGeneralLimitHolder: CallbackCaller<| PossibleGlobalGeneralLimitWhilePlaying | null>;
-    readonly #isGlobalGeneralLimitCommentHolder: CallbackCaller<| string | null>;
+    readonly #isGlobalGeneralLimitHolder: ObjectHolder<| PossibleGlobalGeneralLimitWhilePlaying | null>;
+    readonly #isGlobalGeneralLimitCommentHolder: ObjectHolder<| string | null>;
 
     readonly #isPowerUpLimitContainer: | PowerUpLimitContainer | null;
-    readonly #isPowerUpLimitHolder: CallbackCaller<| PossiblePowerUpLimitWhilePlaying | null>;
-    readonly #isPowerUpLimitCommentHolder: CallbackCaller<| string | null>;
+    readonly #isPowerUpLimitHolder: ObjectHolder<| PossiblePowerUpLimitWhilePlaying | null>;
+    readonly #isPowerUpLimitCommentHolder: ObjectHolder<| string | null>;
 
     readonly #isProjectileLimitContainer: | ProjectileLimitContainer | null;
-    readonly #isProjectileLimitHolder: CallbackCaller<| PossibleProjectileLimitWhilePlaying | null>;
-    readonly #isProjectileLimitKnownHolder: CallbackCaller<boolean>;
-    readonly #isProjectileLimitCommentHolder: CallbackCaller<| string | null>;
+    readonly #isProjectileLimitHolder: ObjectHolder<| PossibleProjectileLimitWhilePlaying | null>;
+    readonly #isProjectileLimitKnownHolder: ObjectHolder<boolean>;
+    readonly #isProjectileLimitCommentHolder: ObjectHolder<| string | null>;
 
     readonly #isCustomLimitContainer: | CustomLimitContainer | null;
-    readonly #isCustomLimitHolder: CallbackCaller<| PossibleCustomLimitWhilePlaying | null>;
-    readonly #isCustomLimitKnownHolder: CallbackCaller<boolean>;
-    readonly #isCustomLimitCommentHolder: CallbackCaller<| string | null>;
+    readonly #isCustomLimitHolder: ObjectHolder<| PossibleCustomLimitWhilePlaying | null>;
+    readonly #isCustomLimitKnownHolder: ObjectHolder<boolean>;
+    readonly #isCustomLimitCommentHolder: ObjectHolder<| string | null>;
 
 
     private constructor(editorLimit: EditorLimitReceived, [generalLimitOrLimit, globalLimitOrComment,]: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, customLimit: CustomLimitReceived,) {

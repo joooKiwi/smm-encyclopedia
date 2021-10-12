@@ -265,6 +265,14 @@ export abstract class EveryLanguages
 
     }            (false, 'ko',    'ko',    'Korean',               '한국어',                                         );
 
+    public static readonly GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
+
+        protected _get<T = AnyClassWithEveryLanguages extends AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['greek'] {
+            return classWithEveryLanguages.greek;
+        }
+
+    }             (false, 'el',    'el',    'Greek',                'ελληνικά',                                      );
+
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
@@ -429,6 +437,7 @@ export abstract class EveryLanguages
             this.JAPANESE,
             this.CHINESE, this.TRADITIONAL_CHINESE, this.SIMPLIFIED_CHINESE,
             this.KOREAN,
+            this.GREEK,
         ];
     }
 

@@ -87,6 +87,11 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     get korean(): this['nameContainer']['korean']
 
 
+    get isGreekUsed(): this['nameContainer']['isGreekUsed']
+
+    get greek(): this['nameContainer']['greek']
+
+
     get originalLanguages(): this['nameContainer']['originalLanguages']
 
     //endregion -------------------- Name properties --------------------
@@ -164,6 +169,14 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
 
 
     get categoryKorean(): this['categoryName']['korean']
+
+
+    get categoryIsGreekUsed(): this['categoryName']['isGreekUsed']
+
+    get categoryGreek(): this['categoryName']['greek']
+
+
+    get categoryOriginalLanguages(): this['nameContainer']['originalLanguages']
 
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------

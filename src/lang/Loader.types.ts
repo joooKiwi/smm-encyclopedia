@@ -3,7 +3,7 @@
 export type Headers = | 'english' | 'spanish' | 'portuguese' | `${'american' | 'european'}${'English' | 'Spanish' | 'Portuguese'}`
                       | 'french' | `${'canadian' | 'european'}French` | 'german' | 'italian' | 'dutch' | 'russian' | 'japanese'
                       | 'chinese' | `${'simplified' | 'traditional'}Chinese` | 'korean';
-export type HeadersWithPortuguese = Headers | 'portuguese' | `${'american' | 'european'}Portuguese`;
+export type HeadersWithOptionalLanguages = Headers | 'portuguese' | `${'american' | 'european'}Portuguese` | 'greek';
 
 //endregion -------------------- Headers --------------------
 //region -------------------- Properties --------------------
@@ -40,7 +40,7 @@ export type PropertiesArray<ENGLISH extends NullableLanguage = NullableLanguage,
     chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
     korean: KOREAN,
 ];
-export type PropertiesArrayWithPortuguese<ENGLISH extends NullableLanguage = NullableLanguage, AMERICAN_ENGLISH extends NullableLanguage = NullableLanguage, EUROPEAN_ENGLISH extends NullableLanguage = NullableLanguage,
+export type PropertiesArrayWithOptionalLanguages<ENGLISH extends NullableLanguage = NullableLanguage, AMERICAN_ENGLISH extends NullableLanguage = NullableLanguage, EUROPEAN_ENGLISH extends NullableLanguage = NullableLanguage,
     FRENCH extends NullableLanguage = NullableLanguage, CANADIAN_FRENCH extends NullableLanguage = NullableLanguage, EUROPEAN_FRENCH extends NullableLanguage = NullableLanguage,
     GERMAN extends NullableLanguage = NullableLanguage,
     SPANISH extends NullableLanguage = NullableLanguage, AMERICAN_SPANISH extends NullableLanguage = NullableLanguage, EUROPEAN_SPANISH extends NullableLanguage = NullableLanguage,
@@ -50,7 +50,8 @@ export type PropertiesArrayWithPortuguese<ENGLISH extends NullableLanguage = Nul
     RUSSIAN extends NullableLanguage = NullableLanguage,
     JAPANESE extends NullableLanguage = NullableLanguage,
     CHINESE extends NullableLanguage = NullableLanguage, TRADITIONAL_CHINESE extends NullableLanguage = NullableLanguage, SIMPLIFIED_CHINESE extends NullableLanguage = NullableLanguage,
-    KOREAN extends NullableLanguage = NullableLanguage, >
+    KOREAN extends NullableLanguage = NullableLanguage,
+    GREEK extends NullableLanguage = NullableLanguage, >
     = readonly [
     english: ENGLISH, americanEnglish: AMERICAN_ENGLISH, europeanEnglish: EUROPEAN_ENGLISH,
     french: FRENCH, canadianFrench: CANADIAN_FRENCH, europeanFrench: EUROPEAN_FRENCH,
@@ -63,6 +64,7 @@ export type PropertiesArrayWithPortuguese<ENGLISH extends NullableLanguage = Nul
     japanese: JAPANESE,
     chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
     korean: KOREAN,
+    greek: GREEK,
 ];
 
 export type NonNullablePropertiesArray = readonly [

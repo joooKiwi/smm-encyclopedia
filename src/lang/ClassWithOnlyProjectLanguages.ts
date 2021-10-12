@@ -17,7 +17,8 @@ export interface ClassWithOnlyProjectLanguages<GERMAN extends string | null = st
     RUSSIAN extends string | null = string | null,
     JAPANESE extends string | null = string | null,
     TRADITIONAL_CHINESE extends string | null = string | null, SIMPLIFIED_CHINESE extends string | null = string | null,
-    KOREAN extends string | null = string | null,> {
+    KOREAN extends string | null = string | null,
+    GREEK extends | string | null = | string | null,> {
 
     //region -------------------- English properties --------------------
 
@@ -86,5 +87,12 @@ export interface ClassWithOnlyProjectLanguages<GERMAN extends string | null = st
     get korean(): KOREAN
 
     //endregion -------------------- Korean properties --------------------
+    //region -------------------- Greek properties --------------------
+
+    get isGreekUsed(): boolean
+
+    get greek(): GREEK
+
+    //endregion -------------------- Greek properties --------------------
 
 }
