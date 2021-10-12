@@ -243,7 +243,7 @@ export class NameContainer
     }
 
     public get greek() {
-        return this.#koreanContainer.original;
+        return this.#greekContainer.original;
     }
 
     //endregion -------------------- Greek properties --------------------

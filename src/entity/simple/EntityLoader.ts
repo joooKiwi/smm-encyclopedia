@@ -540,7 +540,7 @@ class TemplateCreator {
                     simplified: content[90],
                 },
                 korean: content[91],
-                greek: content[92],
+                greek: content[95],
             },
         };
     }
