@@ -1,6 +1,11 @@
 import type {ClassThatCanBeUnknown}                     from './ClassThatCanBeUnknown';
 import type {PossibleBoolean, PossibleNumber, Property} from './Property';
 
+/**
+ * A generic property with a value
+ * and a <u>is unknown</u> property
+ * contained in it.
+ */
 export interface PropertyThatCanBeUnknown<T, IS_UNKNOWN extends boolean = boolean, >
     extends Property<T>, ClassThatCanBeUnknown<IS_UNKNOWN> {
 
