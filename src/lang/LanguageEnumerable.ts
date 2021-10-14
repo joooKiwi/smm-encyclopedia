@@ -23,6 +23,8 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleEveryLangu
 
     get isCurrentLanguageOrAssociatedWithIt(): boolean
 
+    get isDefaultLanguage(): boolean
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 

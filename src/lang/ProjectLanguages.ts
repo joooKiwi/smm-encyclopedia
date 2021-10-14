@@ -1,6 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                from './name/containers/Language';
-import type {ClassWithEveryLanguages}                                                                                                                                                                                from './ClassWithEveryLanguages';
-import type {CompleteClassWithEveryLanguages}                                                                                                                                                                             from './ClassWithEveryLanguages';
+import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                               from './ClassWithEveryLanguages';
 import type {LanguageEnumerable}                                                                                                                                                                                     from './LanguageEnumerable';
 import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                     from './ProjectLanguages.types';
 import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
@@ -123,6 +122,10 @@ export class ProjectLanguages
 
     public get isCurrentLanguageOrAssociatedWithIt(): boolean {
         return this.language.isCurrentLanguageOrAssociatedWithIt;
+    }
+
+    public get isDefaultLanguage(): boolean {
+        return this.language.isDefaultLanguage;
     }
 
     public get isASupportedLanguageInSMM(): boolean {
