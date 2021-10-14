@@ -9,7 +9,7 @@ import {Enum} from '../util/enum/Enum';
 
 export abstract class EveryLanguages
     extends Enum<EveryLanguagesOrdinals, EveryLanguagesNames>
-    implements LanguageEnumerable {
+    implements LanguageEnumerable<PossibleEveryLanguagesAcronym, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesOriginalName>  {
 
     //region -------------------- Enum instances --------------------
 
@@ -417,8 +417,8 @@ export abstract class EveryLanguages
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
-                    ?? null
+                ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
+                ?? null
                 : typeof value == 'number'
                     ? this.values[value] ?? null
                     : value ?? null;
