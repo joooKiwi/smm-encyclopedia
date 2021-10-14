@@ -267,7 +267,7 @@ export abstract class EveryLanguages
 
     public static readonly GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
 
-        protected _get<T = AnyClassWithEveryLanguages extends AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['greek'] {
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['greek'] {
             return classWithEveryLanguages.greek;
         }
 

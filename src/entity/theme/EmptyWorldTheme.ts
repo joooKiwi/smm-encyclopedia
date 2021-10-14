@@ -1,23 +1,23 @@
-import type {WorldTheme} from './WorldTheme';
+import type {ClassWithNullObjectPattern, EmptyWorldThemeName} from '../../util/ClassWithNullObjectPattern';
+import type {WorldTheme}                                      from './WorldTheme';
 
 import {EMPTY_MAP}             from '../../util/emptyVariables';
 import {EmptyName}             from '../../lang/name/EmptyName';
 import {GamePropertyContainer} from '../properties/GamePropertyContainer';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyWorldTheme
-    implements WorldTheme {
+    implements WorldTheme, ClassWithNullObjectPattern<EmptyWorldThemeName> {
 
-    static readonly #instance = new EmptyWorldTheme();
+    static #instance?: EmptyWorldTheme;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -65,6 +65,9 @@ export class EmptyWorldTheme
 
     public readonly korean = this.nameContainer.korean;
 
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
+
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
@@ -86,7 +89,7 @@ export class EmptyWorldTheme
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty world theme' {
+    public toString(): EmptyWorldThemeName {
         return 'Empty world theme';
     }
 

@@ -1,0 +1,19 @@
+//region -------------------- Variables to customize Bootstrap --------------------
+
+$enable-negative-margins: true;
+
+//endregion -------------------- Variables to customize Bootstrap --------------------
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+//region -------------------- Custom variables --------------------
+
+$grid-breakpoint-xs: #{map-get($grid-breakpoints, xs)};
+$grid-breakpoint-sm: #{map-get($grid-breakpoints, sm)};
+$grid-breakpoint-md: #{map-get($grid-breakpoints, md)};
+$grid-breakpoint-lg: #{map-get($grid-breakpoints, lg)};
+$grid-breakpoint-xl: #{map-get($grid-breakpoints, xl)};
+$grid-breakpoint-xxl: #{map-get($grid-breakpoints, xxl)};
+
+//endregion -------------------- Custom variables --------------------

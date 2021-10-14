@@ -1,22 +1,22 @@
-import type {EntityReferences} from './EntityReferences';
+import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from '../../util/ClassWithNullObjectPattern';
+import type {EntityReferences}                                     from './EntityReferences';
 
 import {EMPTY_ARRAY} from '../../util/emptyVariables';
 import {EmptyEntity} from '../simple/EmptyEntity';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntityReference
-    implements EntityReferences {
+    implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {
 
-    static readonly #instance = new EmptyEntityReference();
+    static #instance?: EmptyEntityReference;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -105,7 +105,7 @@ export class EmptyEntityReference
 
     //endregion -------------------- References methods --------------------
 
-    public toString(): 'Empty entity reference' {
+    public toString(): EmptyEntityReferenceName {
         return 'Empty entity reference';
     }
 

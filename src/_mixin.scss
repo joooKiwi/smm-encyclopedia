@@ -1,0 +1,21 @@
+//region -------------------- media breakpoint --------------------
+
+@mixin media-breakpoint-up($value,) {
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($value,) {
+  @media (max-width: $value) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lowerValue, $upperValue,) {
+  @media (min-width: $lowerValue) and (max-width: $upperValue) {
+    @content;
+  }
+}
+
+//endregion -------------------- media breakpoint --------------------

@@ -1,21 +1,21 @@
-import type {Name} from './Name';
+import type {ClassWithNullObjectPattern, EmptyNameName} from '../../util/ClassWithNullObjectPattern';
+import type {Name}                                      from './Name';
 
 import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyName
-    implements Name {
+    implements Name, ClassWithNullObjectPattern<EmptyNameName> {
 
-    static readonly #instance = new EmptyName();
+    static #instance?: EmptyName;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -109,7 +109,7 @@ export class EmptyName
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty name' {
+    public toString(): EmptyNameName {
         return 'Empty name';
     }
 

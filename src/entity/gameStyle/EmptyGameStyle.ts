@@ -1,23 +1,23 @@
-import type {GameStyle} from './GameStyle';
+import type {ClassWithNullObjectPattern, EmptyGameStyleName} from '../../util/ClassWithNullObjectPattern';
+import type {GameStyle}                                      from './GameStyle';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyName}              from '../../lang/name/EmptyName';
 import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyGameStyle
-    implements GameStyle {
+    implements GameStyle, ClassWithNullObjectPattern<EmptyGameStyleName> {
 
-    static readonly #instance = new EmptyGameStyle();
+    static #instance?: EmptyGameStyle;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -65,6 +65,9 @@ export class EmptyGameStyle
 
     public readonly korean = this.nameContainer.korean;
 
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
+
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
@@ -83,7 +86,7 @@ export class EmptyGameStyle
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty game style' {
+    public toString(): EmptyGameStyleName {
         return 'Empty game style';
     }
 

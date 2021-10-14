@@ -153,6 +153,16 @@ export class GenericGameStyle
         return this.nameContainer.korean;
     }
 
+
+    public get isGreekUsed() {
+        return this.nameContainer.isGreekUsed;
+    }
+
+    public get greek() {
+        return this.nameContainer.greek;
+    }
+
+
     public get originalLanguages() {
         return this.nameContainer.originalLanguages;
     }

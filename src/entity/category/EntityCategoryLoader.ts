@@ -66,6 +66,7 @@ export class EntityCategoryLoader
 class TemplateCreator {
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+    static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): EntityCategoryTemplate {
         return {
@@ -98,6 +99,7 @@ class TemplateCreator {
                     simplified: content[16],
                 },
                 korean: content[17],
+                greek: this.#EMPTY_GREEK,
             },
         };
     }

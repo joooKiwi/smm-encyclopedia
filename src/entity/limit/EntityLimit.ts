@@ -7,10 +7,9 @@ import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits
 
 export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
-    extends NameWithAName,
-        EntityLimitAmount<LIMIT_AMOUNT['amount'], LIMIT_AMOUNT['isAmountUnknown'], LIMIT_AMOUNT['amountComment']>,
-        EntityLimitLink/*,
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
+    LINK extends EntityLimitLink = EntityLimitLink, >
+    extends NameWithAName/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
         ClassWithEnglishName<PossibleEntityLimits>*/ {
 
@@ -97,6 +96,11 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     get alternativeKorean(): AlternativeEntityLimit['korean']
 
 
+    get alternativeIsGreekUsed(): AlternativeEntityLimit['isGreekUsed']
+
+    get alternativeGreek(): AlternativeEntityLimit['greek']
+
+
     get alternativeOriginalLanguages(): AlternativeEntityLimit['originalLanguages']
 
 
@@ -115,22 +119,40 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
     get alternativeLinkContainer(): AlternativeEntityLimit['linkContainer']
 
 
-    get alternativeGroupName(): AlternativeEntityLimit['groupName']
+    get alternativeGroupLink(): this['alternativeLinkContainer']['group']
 
 
-    get alternativeEntityName(): AlternativeEntityLimit['entityName']
+    get alternativeEntityLink(): this['alternativeLinkContainer']['entity']
 
     //endregion -------------------- Link --------------------
 
     toAlternativeNameMap(): ReadonlyMap<EveryLanguages, string>
 
     //endregion -------------------- Alternative entity limit --------------------
+    //region -------------------- Limit amount --------------------
 
     get limitContainer(): LIMIT_AMOUNT
 
-    get linkContainer(): EntityLimitLink
+    get amount(): this['limitContainer']['value']
+
+    get isAmountUnknown(): this['limitContainer']['isUnknown']
+
+    get amountComment(): this['limitContainer']['comment']
+
+    //endregion -------------------- Limit amount --------------------
+    //region -------------------- Link --------------------
+
+    get linkContainer(): LINK
+
+
+    get groupLink(): this['linkContainer']['group']
+
+
+    get entityLink(): this['linkContainer']['entity']
+
+    //endregion -------------------- Link --------------------
 
 }
 
 export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronymEntityLimits | null>;
-export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronymEntityLimits | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer']>;
+export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronymEntityLimits | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer'], EntityLimitWithPossibleAlternativeEntityLimit['linkContainer']>;

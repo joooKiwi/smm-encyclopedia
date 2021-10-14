@@ -75,6 +75,7 @@ export class GameStyleLoader
 class TemplateCreator {
 
     static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
+    static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): GameStyleTemplate {
         return {
@@ -112,6 +113,7 @@ class TemplateCreator {
                     simplified: content[18],
                 },
                 korean: content[19],
+                greek: this.#EMPTY_GREEK,
             }
         };
     }

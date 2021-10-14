@@ -1,4 +1,6 @@
-import type {Entity}          from './Entity';
+import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/ClassWithNullObjectPattern';
+import type {Entity}                                      from './Entity';
+
 import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
 import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
@@ -8,19 +10,18 @@ import {EmptyName}            from '../../lang/name/EmptyName';
  * An empty entity with the default values of nothing
  *
  * @note A value that is equivalent to nothing can be false, null and itself
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntity
-    implements Entity {
+    implements Entity, ClassWithNullObjectPattern<EmptyEntityName> {
 
-    static readonly #instance = new EmptyEntity();
+    static #instance?: EmptyEntity;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -309,7 +310,7 @@ export class EmptyEntity
         return this.nameContainer.toNameMap();
     }
 
-    public toString(): 'Empty entity' {
+    public toString(): EmptyEntityName {
         return 'Empty entity';
     }
 

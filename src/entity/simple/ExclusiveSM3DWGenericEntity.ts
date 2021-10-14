@@ -10,22 +10,24 @@ import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}
  * and is exclusive to the {@link GameStyles.SUPER_MARIO_3D_WORLD  Mario 3D World} {@link GameStyles game style}.
  */
-export class ExclusiveSM3DWGenericEntity
-    extends AbstractExclusiveSMM2Entity<ExclusiveSMM2PropertyInSM3DW>
-    implements ExclusiveSM3DWEntity {
+export class ExclusiveSM3DWGenericEntity<CATEGORY extends EntityCategory = EntityCategory, >
+    extends AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW>
+    implements ExclusiveSM3DWEntity<CATEGORY> {
 
     public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
-        super(name, category, validateProperty(property), references);
+        super(name, category, property, references,);
     }
 
-}
+    protected _testProperty(property: Property,): Property {
+        property = super._testProperty(property);
 
-function validateProperty(property: Property,): ExclusiveSMM2PropertyInSM3DW {
-    if (property.isInNightTheme != null)
-        throw new TypeError('The property isInNightTheme should always be set to a null for a SM3DW exclusive property.');
+        if (property.isInNightTheme != null)
+            throw new TypeError('The property isInNightTheme should always be set to a null for a SM3DW exclusive property.');
 
-    if (typeof property.isInProjectileLimitWhilePlaying !== 'boolean')
-        throw new TypeError('The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.');
+        if (typeof property.isInProjectileLimitWhilePlaying !== 'boolean')
+            throw new TypeError('The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.');
 
-    return property as ExclusiveSMM2PropertyInSM3DW;
+        return property;
+    }
+
 }

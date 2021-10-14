@@ -6,14 +6,17 @@ import type {Entity}                                                            
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
 import type {PossibleAlternativeEntityLimits, PossibleEntityLimits}                              from './EntityLimits.types';
-import type {SingleEntityName}                                                                   from '../entityTypes';
+import type {PossibleGroupName, SingleEntityName}                                                from '../entityTypes';
 
 import {AlternativeEntityLimitContainer} from './AlternativeEntityLimitContainer';
-import {EMPTY_OBJECT}                    from '../../util/emptyVariables';
+import {EmptyEntityLimit}                from './EmptyEntityLimit';
+import {EmptyEntityLimitAmount}          from './properties/EmptyEntityLimitAmount';
+import {EmptyEntityLimitLink}            from './properties/EmptyEntityLimitLink';
 import {EntityLimitContainer}            from './EntityLimitContainer';
 import {EntityLimitTypes}                from './EntityLimitTypes';
 import {EntityLimits}                    from './EntityLimits';
-import {EmptyEntityLimit}                from './EmptyEntityLimit';
+import {EntityLimitAmountContainer}      from './properties/EntityLimitAmountContainer';
+import {EntityLimitLinkContainer}        from './properties/EntityLimitLinkContainer';
 import {NameBuilder}                     from '../lang/NameBuilder';
 
 export class EntityLimitBuilder
@@ -51,14 +54,19 @@ export class EntityLimitBuilder
 
     private __createLimitAmount(): EntityLimitAmount {
         const limit = this.template.limit;
-        if (limit == null)
-            return EmptyEntityLimit.EMPTY_LIMIT_AMOUNT;//TODO change to limit amount object instead
-        return {amount: limit.amount, isAmountUnknown: limit.isUnknown, amountComment: limit.comment,};//TODO change to limit amount object instead
+
+        return limit == null
+            ? EmptyEntityLimitAmount.get
+            : new EntityLimitAmountContainer(limit.amount, limit.isUnknown, limit.comment,);
     }
 
 
     //endregion -------------------- Limit amount helper methods --------------------
     //region -------------------- Link helper methods --------------------
+
+    private static __getGroupEntity(groupLink: PossibleGroupName,): object {
+        return {name: groupLink,};
+    }
 
     private static __getEntity(entity: SingleEntityName,): Entity {
         return this.entitiesMap.get(entity)!.entity!;
@@ -69,19 +77,13 @@ export class EntityLimitBuilder
         const groupName = link.groupName;
         const entityName = link.entityName;
 
-        if (groupName == null && entityName == null)
-            return EmptyEntityLimit.EMPTY_LINK_CONTAINER;//TODO change to limit link object instead
+        return groupName == null && entityName == null
+            ? EmptyEntityLimitLink.get
+            : groupName == null
+                ? new EntityLimitLinkContainer(null, EntityLimitBuilder.__getEntity(entityName!),)
+                : new EntityLimitLinkContainer(EntityLimitBuilder.__getGroupEntity(groupName), null,);
 
-        if (groupName != null)
-            return {
-                groupName: {name: groupName},
-                entityName: EMPTY_OBJECT,
-            };//TODO change to limit link object instead
 
-        return {
-            groupName: EMPTY_OBJECT,
-            entityName: {name: EntityLimitBuilder.__getEntity(entityName!),},
-        };
     }
 
     //endregion -------------------- Link helper methods --------------------

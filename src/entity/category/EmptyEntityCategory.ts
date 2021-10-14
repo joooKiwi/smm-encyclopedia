@@ -1,21 +1,21 @@
-import type {EntityCategory} from './EntityCategory';
+import type {ClassWithNullObjectPattern, EmptyEntityCategoryName} from '../../util/ClassWithNullObjectPattern';
+import type {EntityCategory}                                      from './EntityCategory';
 
 import {EmptyName} from '../../lang/name/EmptyName';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntityCategory
-    implements EntityCategory {
+    implements EntityCategory, ClassWithNullObjectPattern<EmptyEntityCategoryName> {
 
-    static readonly #instance = new EmptyEntityCategory();
+    static #instance?: EmptyEntityCategory;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
 
@@ -47,7 +47,7 @@ export class EmptyEntityCategory
 
     public readonly dutch = this.nameContainer.dutch;
 
-    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed
+    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed;
     public readonly originalPortuguese = this.nameContainer.originalPortuguese;
     public readonly portuguese = this.nameContainer.portuguese;
     public readonly americanPortuguese = this.nameContainer.americanPortuguese;
@@ -75,7 +75,7 @@ export class EmptyEntityCategory
         return this.nameContainer.toNameMap();
     }
 
-    public toString(): 'Empty entity category' {
+    public toString(): EmptyEntityCategoryName {
         return 'Empty entity category';
     }
 
