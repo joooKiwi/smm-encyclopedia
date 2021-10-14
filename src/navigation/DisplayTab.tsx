@@ -1,13 +1,13 @@
 import {PureComponent} from 'react';
 import {Link}          from 'react-router-dom';
 
-import type {EveryPossibleRoutePartialPaths} from '../routes/everyRoutes.types';
-import type {GameContentCallback}            from '../lang/components/TranslationProperty';
-import type {ReactComponent}                 from '../util/react/ReactComponent';
+import type {EveryPossibleRoutes} from '../routes/everyRoutes.types';
+import type {GameContentCallback} from '../lang/components/TranslationProperty';
+import type {ReactComponent}      from '../util/react/ReactComponent';
 
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {ProjectLanguages}              from '../lang/ProjectLanguages';
+import {route}                         from '../routes/route';
 
 /**
  * @reactComponent
@@ -17,10 +17,10 @@ export default class DisplayTab
     implements ReactComponent {
 
 
-    private static _createLi(key: string, partialPath: EveryPossibleRoutePartialPaths, textContentCallback: GameContentCallback,): JSX.Element {
+    private static _createLi(key: string, route: EveryPossibleRoutes, textContentCallback: GameContentCallback,): JSX.Element {
         return <GameContentTranslationComponent>{translation =>
             <li className="dropdown-item">
-                <Link key={key} className="nav-link active" to={`/${ProjectLanguages.currentLanguage.projectAcronym}${partialPath}`}>
+                <Link key={key} className="nav-link active" to={route}>
                     {textContentCallback(translation)}
                 </Link>
             </li>
@@ -35,12 +35,12 @@ export default class DisplayTab
                 </span>
             }</ContentTranslationComponent>
             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                {DisplayTab._createLi('navigationEveryEntities', '/every/entity', translation => translation('Display every entities'),)}
-                {DisplayTab._createLi('navigationEveryCategories', '/every/category', translation => translation('Display every entity categories'),)}
-                {DisplayTab._createLi('navigationEveryGameStyles', '/every/gameStyle', translation => translation('Display every game styles'),)}
-                {DisplayTab._createLi('navigationEveryGroups', '/every/group', translation => translation('Display every entity groups'),)}
-                {DisplayTab._createLi('navigationEveryLimit', '/every/limit', translation => translation('Display every limits'),)}
-                {DisplayTab._createLi('navigationEveryTheme', '/every/theme', translation => translation('Display every themes'),)}
+                {DisplayTab._createLi('navigationEveryEntities', route('everyEntities'), translation => translation('Display every entities'),)}
+                {DisplayTab._createLi('navigationEveryCategories', route('everyCategories'), translation => translation('Display every entity categories'),)}
+                {DisplayTab._createLi('navigationEveryGameStyles', route('everyGameStyles'), translation => translation('Display every game styles'),)}
+                {DisplayTab._createLi('navigationEveryGroups', route('everyGroups'), translation => translation('Display every entity groups'),)}
+                {DisplayTab._createLi('navigationEveryLimit', route('everyLimits'), translation => translation('Display every limits'),)}
+                {DisplayTab._createLi('navigationEveryTheme', route('everyThemes'), translation => translation('Display every themes'),)}
             </ul>
         </li>;
     }
