@@ -13,7 +13,7 @@ import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 import Table                           from './tools/table/Table';
 import {ThemeLoader}                   from '../entity/theme/ThemeLoader';
 import {Themes}                        from '../entity/theme/Themes';
-import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
+import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
 /**
  * @reactComponent
@@ -44,10 +44,10 @@ export default class EveryThemesApp
             content.push([englishName,
                 <>{index}</>,
                 <img src={this.enum[index - 1].longImagePath} alt={englishName}/>,
-                <YesOrNoResultContainer boolean={isInCourseTheme}/>,
-                <YesOrNoResultContainer boolean={isInWorldTheme}/>,
-                <YesOrNoResultContainer boolean={isInSMM1}/>,
-                <YesOrNoResultContainer boolean={isInSMM2}/>,
+                <YesOrNoResultTextComponent boolean={isInCourseTheme}/>,
+                <YesOrNoResultTextComponent boolean={isInWorldTheme}/>,
+                <YesOrNoResultTextComponent boolean={isInSMM1}/>,
+                <YesOrNoResultTextComponent boolean={isInSMM2}/>,
                 <SMM2NameComponent id="theme_name" name={name} popoverOrientation="left"/>,
             ]);
             index++;

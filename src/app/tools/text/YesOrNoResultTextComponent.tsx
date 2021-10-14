@@ -2,7 +2,7 @@ import {useTranslation} from 'react-i18next';
 
 import type {ReactProperty} from '../../../util/react/ReactProperty';
 
-import BooleanResultContainer from './BooleanResultContainer';
+import BooleanResultTextComponent from './BooleanResultTextComponent';
 
 /**
  * A simple boolean value property
@@ -15,15 +15,14 @@ export interface YesOrNoTextProperties
 }
 
 /**
- * Return a new {@link BooleanResultContainer} with a value based on the translation "Yes" or "No".
+ * Return a new {@link BooleanResultTextComponent} with a value based on the translation "Yes" or "No".
  *
  * @return {@link BooleanResultContainer}
  * @reactComponent
- * @todo change to YesOrNoResultTextComponent
  */
-export default function YesOrNoResultContainer({boolean,}: YesOrNoTextProperties,): JSX.Element {
+export default function YesOrNoResultTextComponent({boolean,}: YesOrNoTextProperties,): JSX.Element {
     const {t: translation,} = useTranslation('content');
-    return <BooleanResultContainer
+    return <BooleanResultTextComponent
         boolean={boolean}
         trueValue={translation('Yes')}
         falseValue={translation('No')}

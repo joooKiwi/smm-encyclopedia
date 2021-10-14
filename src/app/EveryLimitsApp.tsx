@@ -8,7 +8,7 @@ import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextContainer';
 import Table                           from './tools/table/Table';
-import TextContainer                   from './tools/text/TextContainer';
+import TextComponent                   from './tools/text/TextComponent';
 import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 
 /**
@@ -43,7 +43,7 @@ export default class EveryLimitsApp
             if (entityLimit !== entityLimit.alternativeContainer) {
                 content.push([englishName,
                     <>{index}</>,
-                    <TextContainer content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
+                    <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
                     <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                     <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                     <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,

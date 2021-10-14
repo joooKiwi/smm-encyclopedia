@@ -1,4 +1,4 @@
-import TextContainer from './TextContainer';
+import TextComponent from './TextComponent';
 
 import type {ReactProperty} from '../../../util/react/ReactProperty';
 
@@ -7,21 +7,23 @@ export interface BooleanTextProperties
 {
 
     boolean: boolean
+
     trueValue: string
+
     falseValue: string
+
     classes?: | null | string[]
 
 }
 
 /**
- * Create a simple {@link TextContainer}
+ * Create a simple {@link TextComponent}
  * with a variable value based on a simple boolean.
  * @reactComponent
- * @todo change to BooleanTextComponent
  */
-export default function BooleanTextContainer({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
+export default function BooleanTextComponent({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
     const content = boolean ? trueValue : falseValue;
     if (classes == null)
-        return <TextContainer content={content}/>;
-    return <TextContainer content={content} classes={classes}/>;
+        return <TextComponent content={content}/>;
+    return <TextComponent content={content} classes={classes}/>;
 }

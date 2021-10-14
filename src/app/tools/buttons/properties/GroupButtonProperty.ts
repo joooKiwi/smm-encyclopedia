@@ -1,7 +1,6 @@
 import type {ReactProperty} from '../../../../util/react/ReactProperty';
 
-//TODO change to GroupButtonProperty
-export interface GroupButtonComponents<T>
+export interface GroupButtonProperty<T>
     extends ReactProperty {
 
     elements: readonly T[]

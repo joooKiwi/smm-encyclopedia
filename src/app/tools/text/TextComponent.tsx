@@ -15,9 +15,8 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
  *
  * @param properties
  * @reactComponent
- * @todo change to textComponent
  */
-export default function TextContainer<T extends PossibleTextContent = PossibleTextContent, >({content, classes,}: TextProperties<T>,) {
+export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, classes,}: TextProperties<T>,) {
     if (classes == null)
         return <span>{content}</span>;
     return <span className={classes.join(' ')}>{content}</span>;

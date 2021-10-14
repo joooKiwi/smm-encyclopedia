@@ -11,7 +11,7 @@ import {GameStyles}                    from '../entity/gameStyle/GameStyles';
 import {Games}                         from '../entity/game/Games';
 import Table                           from './tools/table/Table';
 import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
-import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
+import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
 /**
  * @reactComponent
@@ -37,8 +37,8 @@ export default class EveryGameStylesApp
                 <>{index}</>,
                 <img src={this.enum[index - 1].largeImagePath} alt={englishName}/>,
                 <SMM2NameComponent id="theme_name" name={gameStyle} popoverOrientation="left"/>,
-                <YesOrNoResultContainer boolean={gameStyle.isInSuperMarioMaker1}/>,
-                <YesOrNoResultContainer boolean={gameStyle.isInSuperMarioMaker2}/>,
+                <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
+                <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
             ]);
             index++;
         }
