@@ -1,4 +1,4 @@
-import type {SimpleTranslationProperty, TranslationProperty} from './TranslationProperty';
+import type {PossibleTranslationPropertyReceived} from './TranslationProperty';
 
 import AnyTranslationComponent from './AnyTranslationComponent';
 
@@ -7,6 +7,6 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  * @param properties
  * @reactComponent
  */
-export default function GameContentTranslationComponent(properties: | TranslationProperty<'gameContent'> | SimpleTranslationProperty<'gameContent'>,) {
+export default function GameContentTranslationComponent(properties: PossibleTranslationPropertyReceived<'gameContent'>,) {
     return <AnyTranslationComponent namespace="gameContent" {...properties}/>;
 }

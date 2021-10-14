@@ -8,7 +8,7 @@ import type {ReactState}     from '../util/react/ReactState';
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
 import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
 import {ProjectLanguages}           from '../lang/ProjectLanguages';
-import {LanguageChangerTab}         from './LanguageChangerTab';
+import LanguageChangerTab           from './LanguageChangerTab';
 
 interface ChangeTheLanguageTabStates
     extends ReactState {

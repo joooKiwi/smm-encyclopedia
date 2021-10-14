@@ -54,7 +54,7 @@ export default class EveryGameStylesApp
             headers={[
                 '#',
                 {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
-                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
             ]}

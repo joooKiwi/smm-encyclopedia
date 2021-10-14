@@ -1,23 +1,14 @@
 {
-  "yes": "yes",
   "Yes": "Yes",
-  "no":  "no",
   "No":  "No",
 
-  "white":  { "m": "white",  "f": "white" },
   "White":  { "m": "White",  "f": "White" },
-  "black":  { "m": "black",  "f": "black" },
   "Black":  { "m": "Black",  "f": "Black" },
-  "red":    { "m": "red",    "f": "red" },
   "Red":    { "m": "Red",    "f": "Red" },
-  "green":  { "m": "green",  "f": "green" },
   "Green":  { "m": "Green",  "f": "Green" },
-  "blue":   { "m": "blue",   "f": "blue" },
   "Blue":   { "m": "Blue",   "f": "Blue" },
-  "yellow": { "m": "yellow", "f": "yellow" },
   "Yellow": { "m": "Yellow", "f": "Yellow" },
 
-  "name":                "name",
   "Name":                "Name",
   "Full name":           "Full name",
   "Alternative name":    "Alternative name",
@@ -26,21 +17,15 @@
   "Acronym(s)":          "Acronym(s)",
   "Alternative acronym": "Alternative acronym",
 
-  "minimum": { "m": "minimum", "f": "minimum" },
   "Minimum": { "m": "Minimum", "f": "Minimum" },
-  "maximum": { "m": "maximum", "f": "maximum" },
   "Maximum": { "m": "Maximum", "f": "Maximum" },
 
-  "image": "image",
   "Image": "Image",
 
-  "limit": "limit",
   "Limit": "Limit",
 
   "Type": "Type",
 
-  "language":            "language",
-  "Language":            "Language",
   "In other languages":  "In other languages",
   "Change the language": "Change the language",
 
