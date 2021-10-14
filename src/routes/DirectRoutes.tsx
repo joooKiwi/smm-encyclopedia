@@ -10,7 +10,7 @@ import {redirectToHome}    from './redirectToHome';
  */
 export default function DirectRoutes() {
     const parameters = useParams<{ lang?: string, }>();
-    const location = useLocation();
+    const {pathname:pathName} = useLocation();
 
     if (parameters.lang == null)
         return redirectToHome();
@@ -19,6 +19,6 @@ export default function DirectRoutes() {
     if (currentLanguage == null)
         return redirectToHome();
 
-    return everySimpleRoutes.find(route => location.pathname === `/${currentLanguage.projectAcronym}${route.path}`)?.renderCallback()
+    return everySimpleRoutes.find(route => pathName === `/${currentLanguage.projectAcronym}${route.path}`)?.renderCallback()
         ?? redirectToHome(currentLanguage);
 }

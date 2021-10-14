@@ -1,4 +1,5 @@
-import i18n from 'i18next';
+import type {Dispatch, SetStateAction} from 'react';
+import i18n                            from 'i18next';
 
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                      from './ClassWithEveryLanguages';
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                   from './name/containers/Language';
@@ -284,6 +285,7 @@ export abstract class EveryLanguages
 
     static #CURRENT_LANGUAGE: EveryLanguages;
     public static readonly UNKNOWN_STRING = '???';
+    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleProjectLanguagesInternationalAcronym>> | null = null;
 
     readonly #isACompleteLanguage: boolean;
     readonly #projectAcronym: PossibleEveryLanguagesAcronym;
@@ -380,8 +382,12 @@ export abstract class EveryLanguages
 
     public static setCurrentLanguage(value: | EveryLanguages | string | number,): typeof EveryLanguages {
         let selectedLanguage = this.getValue(value);
-        if (selectedLanguage !== null)
-            i18n.changeLanguage((this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).projectAcronym);
+        if (selectedLanguage == null)
+            return this;
+
+        const currentLanguage = (this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML());
+        i18n.changeLanguage(currentLanguage.projectAcronym);
+        this.INTERNATIONALISATION_SET_CURRENT_LANGUAGE?.(currentLanguage.internationalAcronym as PossibleProjectLanguagesInternationalAcronym);
         return this;
     }
 
@@ -398,8 +404,10 @@ export abstract class EveryLanguages
 
     public static setDefault(value: | EveryLanguages | string | number,): typeof EveryLanguages {
         const selectedValue = this.getValue(value);
-        if(selectedValue != null)
-            this.#DEFAULT = selectedValue;
+        if (selectedValue == null)
+            return this;
+
+        this.#DEFAULT = selectedValue;
         return this;
     }
 
