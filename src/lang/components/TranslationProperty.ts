@@ -40,3 +40,7 @@ export interface SimpleAnyTranslationProperty<N extends Namespace, K extends Sin
     extends SimpleTranslationProperty<N, K>, _AnyTranslationProperty<N> {
 
 }
+
+
+export type PossibleAnyTranslationPropertyReceived<N extends Namespace, > = | AnyTranslationProperty<N> | SimpleAnyTranslationProperty<N>;
+export type PossibleTranslationPropertyReceived<N extends Namespace, > = | TranslationProperty<N> | SimpleTranslationProperty<N>;
