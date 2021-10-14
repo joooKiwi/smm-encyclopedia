@@ -1,12 +1,12 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                    from './name/containers/Language';
-import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages';
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                         from './LanguageEnumerable';
-import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                                                                                                                         from './ProjectLanguages.types';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                from './name/containers/Language';
+import type {ClassWithEveryLanguages}                                                                                                                                                                                from './ClassWithEveryLanguages';
+import type {CompleteClassWithEveryLanguages}                                                                                                                                                                             from './ClassWithEveryLanguages';
+import type {LanguageEnumerable}                                                                                                                                                                                     from './LanguageEnumerable';
+import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                     from './ProjectLanguages.types';
+import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
 
-import {Enum}                            from '../util/enum/Enum';
-import {EveryLanguages}                  from './EveryLanguages';
-import {CompleteClassWithEveryLanguages} from './ClassWithEveryLanguages';
+import {Enum}           from '../util/enum/Enum';
+import {EveryLanguages} from './EveryLanguages';
 
 /**
  * <p>
@@ -43,7 +43,7 @@ import {CompleteClassWithEveryLanguages} from './ClassWithEveryLanguages';
  */
 export class ProjectLanguages
     extends Enum<ProjectLanguagesOrdinals, ProjectLanguagesNames>
-    implements LanguageEnumerable {
+    implements LanguageEnumerable<PossibleProjectLanguagesAcronym, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -101,20 +101,20 @@ export class ProjectLanguages
         return this.language.isACompleteLanguage;
     }
 
-    public get projectAcronym(): PossibleEveryLanguagesAcronym {
-        return this.language.projectAcronym;
+    public get projectAcronym(): PossibleProjectLanguagesAcronym {
+        return this.language.projectAcronym as PossibleProjectLanguagesAcronym;
     }
 
-    public get internationalAcronym(): PossibleEveryLanguagesInternationalAcronym {
-        return this.language.internationalAcronym;
+    public get internationalAcronym(): PossibleProjectLanguagesInternationalAcronym {
+        return this.language.internationalAcronym as PossibleProjectLanguagesInternationalAcronym;
     }
 
-    public get englishName(): PossibleEveryLanguagesEnglishName {
-        return this.language.englishName;
+    public get englishName(): PossibleProjectLanguagesEnglishName {
+        return this.language.englishName as PossibleProjectLanguagesEnglishName;
     }
 
-    public get originalName(): PossibleEveryLanguagesOriginalName {
-        return this.language.originalName;
+    public get originalName(): PossibleProjectLanguagesOriginalName {
+        return this.language.originalName as PossibleProjectLanguagesOriginalName;
     }
 
     public get isCurrentLanguage(): boolean {
@@ -195,8 +195,8 @@ export class ProjectLanguages
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.getValue(EveryLanguages.getValue(value))
-                    ?? null
+                ?? this.getValue(EveryLanguages.getValue(value))
+                ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
                     : value instanceof EveryLanguages
