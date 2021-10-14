@@ -22,7 +22,7 @@ interface Properties
  * @param properties
  * @reactComponent
  */
-export function LanguageChangerTab({language, callbackToSetLanguage,}: Properties,): JSX.Element {
+export default function LanguageChangerTab({language, callbackToSetLanguage,}: Properties,): JSX.Element {
     const {t: languageTranslation,} = useTranslation('language');
     const location = useLocation();
 

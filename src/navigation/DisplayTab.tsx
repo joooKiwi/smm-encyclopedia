@@ -1,5 +1,5 @@
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import {SingleDisplayTab}          from './SingleDisplayTab';
+import SingleDisplayTab            from './SingleDisplayTab';
 
 /**
  * @reactComponent

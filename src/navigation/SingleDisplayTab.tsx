@@ -20,7 +20,7 @@ interface SingleDisplayTabProperty
 /**
  * @reactComponent
  */
-export function SingleDisplayTab({routeName, callback,}: SingleDisplayTabProperty,) {
+export default function SingleDisplayTab({routeName, callback,}: SingleDisplayTabProperty,) {
     const {pathname: pathName,} = useLocation();
 
     return <GameContentTranslationComponent>{translation =>
