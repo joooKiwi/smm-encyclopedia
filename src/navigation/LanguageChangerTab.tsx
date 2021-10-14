@@ -4,6 +4,7 @@ import {useTranslation}    from 'react-i18next';
 import type {ReactProperty} from '../util/react/ReactProperty';
 
 import {ProjectLanguages} from '../lang/ProjectLanguages';
+import {route}            from '../routes/route';
 import Tooltip            from '../bootstrap/tooltip/Tooltip';
 import {TooltipInstance}  from '../bootstrap/tooltip/TooltipInstance';
 
@@ -26,10 +27,9 @@ export function LanguageChangerTab({language, callbackToSetLanguage,}: Propertie
     const location = useLocation();
 
     const id = `languageChanger_${language.projectAcronym}`;
-    const nextLocation = location.pathname.replace(ProjectLanguages.currentLanguage.projectAcronym, language.projectAcronym,);
 
     return <Tooltip elementId={id} option={({title: languageTranslation(language.englishName), placement: 'left',})}>
-        <Link key={id} id={id} className="dropdown-item" to={nextLocation} onClick={() => {
+        <Link key={id} id={id} className="dropdown-item" to={route(location, language,)} onClick={() => {
             callbackToSetLanguage(language);
             TooltipInstance.getInstance(id).instance.dispose();
         }}>

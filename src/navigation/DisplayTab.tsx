@@ -1,48 +1,25 @@
-import {PureComponent} from 'react';
-import {Link}          from 'react-router-dom';
-
-import type {EveryPossibleRoutePartialPaths} from '../routes/everyRoutes.types';
-import type {GameContentCallback}            from '../lang/components/TranslationProperty';
-import type {ReactComponent}                 from '../util/react/ReactComponent';
-
-import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {ProjectLanguages}              from '../lang/ProjectLanguages';
+import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
+import {SingleDisplayTab}          from './SingleDisplayTab';
 
 /**
  * @reactComponent
  */
-export default class DisplayTab
-    extends PureComponent
-    implements ReactComponent {
-
-
-    private static _createLi(key: string, partialPath: EveryPossibleRoutePartialPaths, textContentCallback: GameContentCallback,): JSX.Element {
-        return <GameContentTranslationComponent>{translation =>
-            <li className="dropdown-item">
-                <Link key={key} className="nav-link active" to={`/${ProjectLanguages.currentLanguage.projectAcronym}${partialPath}`}>
-                    {textContentCallback(translation)}
-                </Link>
-            </li>
-        }</GameContentTranslationComponent>;
-    }
-
-    public render(): JSX.Element {
-        return <li className="nav-item dropdown">
-            <ContentTranslationComponent>{translation =>
-                <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+export default function DisplayTab(): JSX.Element {
+    return <li className="nav-item dropdown">
+        <ContentTranslationComponent>{translation =>
+            <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {translation('Display')}…
                 </span>
-            }</ContentTranslationComponent>
-            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                {DisplayTab._createLi('navigationEveryEntities', '/every/entity', translation => translation('Display every entities'),)}
-                {DisplayTab._createLi('navigationEveryCategories', '/every/category', translation => translation('Display every entity categories'),)}
-                {DisplayTab._createLi('navigationEveryGameStyles', '/every/gameStyle', translation => translation('Display every game styles'),)}
-                {DisplayTab._createLi('navigationEveryGroups', '/every/group', translation => translation('Display every entity groups'),)}
-                {DisplayTab._createLi('navigationEveryLimit', '/every/limit', translation => translation('Display every limits'),)}
-                {DisplayTab._createLi('navigationEveryTheme', '/every/theme', translation => translation('Display every themes'),)}
-            </ul>
-        </li>;
-    }
-
+        }</ContentTranslationComponent>
+        <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <SingleDisplayTab routeName="everyEntities" callback={translation => translation('Display every entities')}/>
+            <SingleDisplayTab routeName="everyCategories" callback={translation => translation('Display every entity categories')}/>
+            <SingleDisplayTab routeName="everyGameStyles" callback={translation => translation('Display every game styles')}/>
+            <SingleDisplayTab routeName="everyGroups" callback={translation => translation('Display every entity groups')}/>
+            <SingleDisplayTab routeName="everyLimits" callback={translation => translation('Display every limits')}/>
+            <SingleDisplayTab routeName="everyThemes" callback={translation => translation('Display every themes')}/>
+            <SingleDisplayTab routeName="everySoundEffects" callback={translation => translation('Display every sound effects')}/>
+            <SingleDisplayTab routeName="everySoundEffectCategories" callback={translation => translation('Display every sound effect categories')}/>
+        </ul>
+    </li>;
 }
