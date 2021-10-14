@@ -1,7 +1,5 @@
 import './EveryThemesApp.scss';
 
-import React from 'react';
-
 import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
@@ -13,6 +11,9 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 import Table                           from './tools/table/Table';
 
+/**
+ * @reactComponent
+ */
 export default class EveryEntityCategoriesApp
     extends AbstractApp {
 

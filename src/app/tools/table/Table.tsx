@@ -1,9 +1,15 @@
-import {PureComponent, ReactNode} from 'react';
+import type {ReactNode} from 'react';
+import {PureComponent}  from 'react';
 
+import type {ReactComponent}                             from '../../../util/react/ReactComponent';
 import type {SimpleTableProperties, SingleHeaderContent} from './Table.types';
 
+/**
+ * @reactComponent
+ */
 export default class Table
-    extends PureComponent<SimpleTableProperties> {
+    extends PureComponent<SimpleTableProperties>
+    implements ReactComponent<ReactNode> {
 
     protected get id() {
         return this.props.id;

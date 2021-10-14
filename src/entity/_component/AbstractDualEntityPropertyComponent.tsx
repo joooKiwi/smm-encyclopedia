@@ -1,5 +1,8 @@
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
 
+/**
+ * @reactComponent
+ */
 export abstract class AbstractDualEntityPropertyComponent<R>
     extends AbstractEntityPropertyThatCanDisplayAllComponent<R> {
 

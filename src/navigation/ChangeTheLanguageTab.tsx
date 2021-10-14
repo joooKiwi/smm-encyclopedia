@@ -1,8 +1,9 @@
 import './ChangeTheLanguageTab.scss';
 
-import React, {PureComponent} from 'react';
+import {PureComponent} from 'react';
 
-import type {ReactState} from '../util/react/ReactState';
+import type {ReactComponent} from '../util/react/ReactComponent';
+import type {ReactState}     from '../util/react/ReactState';
 
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
 import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
@@ -16,8 +17,12 @@ interface ChangeTheLanguageTabStates
 
 }
 
+/**
+ * @reactComponent
+ */
 export default class ChangeTheLanguageTab
-    extends PureComponent<{}, ChangeTheLanguageTabStates> {
+    extends PureComponent<{}, ChangeTheLanguageTabStates>
+    implements ReactComponent {
 
     public constructor(props: {},) {
         super(props);
@@ -49,7 +54,8 @@ export default class ChangeTheLanguageTab
     public render() {
         return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
             <ContentTranslationComponent>{translation =>
-                <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
                     {translation('Change the language')}
                 </span>
             }</ContentTranslationComponent>

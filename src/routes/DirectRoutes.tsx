@@ -4,6 +4,10 @@ import {everySimpleRoutes} from './everyRoutes';
 import {ProjectLanguages}  from '../lang/ProjectLanguages';
 import {redirectToHome}    from './redirectToHome';
 
+/**
+ *
+ * @reactComponent
+ */
 export default function DirectRoutes() {
     const parameters = useParams<{ lang?: string, }>();
     const location = useLocation();

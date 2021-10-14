@@ -16,6 +16,8 @@ export interface BooleanTextProperties
 /**
  * Create a simple {@link TextContainer}
  * with a variable value based on a simple boolean.
+ * @reactComponent
+ * @todo change to BooleanTextComponent
  */
 export default function BooleanTextContainer({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
     const content = boolean ? trueValue : falseValue;

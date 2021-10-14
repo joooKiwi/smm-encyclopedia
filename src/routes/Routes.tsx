@@ -1,11 +1,14 @@
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
-import React                                    from 'react';
 
 import DirectRoutes        from './DirectRoutes';
 import {everySimpleRoutes} from './everyRoutes';
 import {ProjectLanguages}  from '../lang/ProjectLanguages';
 import {redirectToHome}    from './redirectToHome';
 
+/**
+ *
+ * @reactComponent
+ */
 export default function Routes() {
     return <BrowserRouter>
         <Switch>
@@ -23,4 +26,3 @@ function renderRoutesInSwitch() {
         </Route>
     );
 }
-

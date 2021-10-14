@@ -1,11 +1,12 @@
-import React from 'react';
-
 import type {GameProperty} from '../properties/GameProperty';
 
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
 import {Games}                               from './Games';
 
+/**
+ * @reactComponent
+ */
 export default class GameComponent
     extends AbstractDualEntityPropertyComponent<GameProperty> {
 

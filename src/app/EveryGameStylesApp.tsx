@@ -1,7 +1,5 @@
 import './EveryGameStylesApp.scss';
 
-import React from 'react';
-
 import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
@@ -15,6 +13,9 @@ import Table                           from './tools/table/Table';
 import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
 
+/**
+ * @reactComponent
+ */
 export default class EveryGameStylesApp
     extends AbstractApp {
 

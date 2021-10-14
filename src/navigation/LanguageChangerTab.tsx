@@ -1,9 +1,9 @@
 import {Link, useLocation} from 'react-router-dom';
-import React               from 'react';
 import {useTranslation}    from 'react-i18next';
 
+import type {ReactProperty} from '../util/react/ReactProperty';
+
 import {ProjectLanguages} from '../lang/ProjectLanguages';
-import {ReactProperty}    from '../util/react/ReactProperty';
 import Tooltip            from '../bootstrap/tooltip/Tooltip';
 import {TooltipInstance}  from '../bootstrap/tooltip/TooltipInstance';
 
@@ -12,10 +12,15 @@ interface Properties
 
     language: ProjectLanguages
 
-    callbackToSetLanguage: (language: ProjectLanguages) => void
+    callbackToSetLanguage: (language: ProjectLanguages,) => void
 
 }
 
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
 export function LanguageChangerTab({language, callbackToSetLanguage,}: Properties,): JSX.Element {
     const {t: languageTranslation,} = useTranslation('language');
     const location = useLocation();

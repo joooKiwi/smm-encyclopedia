@@ -5,6 +5,8 @@ import BooleanTextContainer, {BooleanTextProperties} from './BooleanTextContaine
  *
  * The {@link BooleanResultContainer.render render} method return a new {@link BooleanTextContainer}
  * with the classes "text-success" or "text-danger".
+ * @reactComponent
+ * @todo change to BooleanResultTextComponent
  */
 export default function BooleanResultContainer({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
     return <BooleanTextContainer

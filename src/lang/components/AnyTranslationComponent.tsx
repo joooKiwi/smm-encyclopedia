@@ -1,16 +1,24 @@
-import {Namespace, useTranslation} from 'react-i18next';
+import type {Namespace} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 import type {AnyTranslationProperty, SimpleAnyTranslationProperty} from './TranslationProperty';
 
-export default function AnyTranslationComponent<N extends Namespace, >(props: | AnyTranslationProperty<N> | SimpleAnyTranslationProperty<N>,) {
-    const {namespace} = props;
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
+export default function AnyTranslationComponent<N extends Namespace, >(properties: | AnyTranslationProperty<N> | SimpleAnyTranslationProperty<N>,) {
+    const {namespace} = properties;
     const {t: translation,} = useTranslation(namespace);
 
-    if ('children' in props)
-        return <>{props.children(translation)}</>;
+    if ('children' in properties)
+        return <>{properties.children(translation)}</>;
 
-    const translationReturnValue = translation(props.translationKey, {returnObjects: true,});
+    const {translationKey} = properties;
+
+    const translationReturnValue = translation(translationKey, {returnObjects: true,});
     if (typeof translationReturnValue == 'string')
         return <>{translationReturnValue}</>;
-    throw new EvalError(`The translation key (${props.translationKey})cannot receive a translation key that contains a sub value.`);
+    throw new EvalError(`The translation key (${translationKey})cannot receive a translation key that contains a sub value.`);
 }

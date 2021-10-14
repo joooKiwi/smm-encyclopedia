@@ -1,10 +1,12 @@
-import React               from 'react';
-import type {TimeProperty} from '../properties/TimeProperty';
+import type {TimeProperty}   from '../properties/TimeProperty';
 
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
 import {Times}                               from './Times';
 
+/**
+ * @reactComponent
+ */
 export default class TimeComponent
     extends AbstractDualEntityPropertyComponent<TimeProperty> {
 

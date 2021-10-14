@@ -13,6 +13,11 @@ interface EditorLimitProperties
 
 }
 
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
 export default function EditorLimitComponent({index, limit,}: EditorLimitProperties,) {
     const editorLimit = limit.editorLimit;
 

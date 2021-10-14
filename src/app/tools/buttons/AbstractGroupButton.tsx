@@ -1,10 +1,16 @@
-import React, {Component, ReactNode} from 'react';
+import type {ReactNode} from 'react';
+import {Component}      from 'react';
 
-import {ActivatableElement}    from './elements/ActivatableElement';
-import {GroupButtonComponents} from './properties/GroupButtonProperty';
+import type {ActivatableElement}    from './elements/ActivatableElement';
+import type {GroupButtonComponents} from './properties/GroupButtonProperty';
+import type {ReactComponent}        from '../../../util/react/ReactComponent';
 
+/**
+ * @reactComponent
+ */
 export default abstract class AbstractGroupButton<T extends ActivatableElement>
-    extends Component<GroupButtonComponents<T>, any> {
+    extends Component<GroupButtonComponents<T>, any>
+    implements ReactComponent<ReactNode> {
 
     public static DEFAULT_IS_OUTLINE = true;
     public static DEFAULT_IS_VERTICAL = true;
@@ -60,7 +66,8 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
         this.elements.forEach((t, index) => {
                 let id = this.groupName + (index + 1);
                 buttons.push(
-                    <input key={`input_${this.groupName}_${index}`} type={this.isChoiceGroup ? 'radio' : 'checkbox'} className="btn-check" name={this.groupName} id={id} autoComplete="off" defaultChecked={t.isActive}/>,
+                    <input key={`input_${this.groupName}_${index}`} type={this.isChoiceGroup ? 'radio' : 'checkbox'} className="btn-check" name={this.groupName} id={id} autoComplete="off"
+                           defaultChecked={t.isActive}/>,
                     <label key={`label_${this.groupName}_${index}`} className={`btn btn${this.isOutline ? '-outline' : ''}-${this.color}`} htmlFor={id}>
                         {this._getContent(t)}
                     </label>,
@@ -71,7 +78,8 @@ export default abstract class AbstractGroupButton<T extends ActivatableElement>
     }
 
     public render(): ReactNode {
-        return <div key={`groupButton_${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group" aria-label={`Basic ${this.isChoiceGroup ? 'radio' : 'checkbox'} toggle button group`}>
+        return <div key={`groupButton_${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group"
+                    aria-label={`Basic ${this.isChoiceGroup ? 'radio' : 'checkbox'} toggle button group`}>
             {this.__getButtons()}
         </div>;
     }

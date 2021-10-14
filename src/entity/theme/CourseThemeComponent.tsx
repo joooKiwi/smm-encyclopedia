@@ -1,11 +1,12 @@
-import React from 'react';
-
 import type {ThemeProperty} from '../properties/ThemeProperty';
 import type {Themes}        from './Themes';
 
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
 
+/**
+ * @reactComponent
+ */
 export default class CourseThemeComponent
     extends AbstractEntityPropertyComponent<ThemeProperty, Themes> {
 

@@ -1,10 +1,8 @@
-import React from 'react';
-
+import type {EntityLimit}        from '../entity/limit/EntityLimit';
 import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EntityLimit}                   from '../entity/limit/EntityLimit';
 import {EntityLimitLoader}             from '../entity/limit/EntityLimitLoader';
 import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -13,6 +11,9 @@ import Table                           from './tools/table/Table';
 import TextContainer                   from './tools/text/TextContainer';
 import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
 
+/**
+ * @reactComponent
+ */
 export default class EveryLimitsApp
     extends AbstractApp {
 

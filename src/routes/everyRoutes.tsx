@@ -1,5 +1,3 @@
-import React from 'react';
-
 import EveryEntitiesApp         from '../app/EveryEntitiesApp';
 import EveryEntityCategoriesApp from '../app/EveryEntityCategoriesApp';
 import EveryEntityGroupApp      from '../app/EveryEntityGroupApp';

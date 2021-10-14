@@ -1,11 +1,13 @@
 import './GroupImageButton.scss';
 
-import React from 'react';
+import type {ActivatableImageElement} from './elements/ActivatableImageElement';
+import type {GroupButtonComponents}   from './properties/GroupButtonProperty';
 
-import AbstractGroupButton       from './AbstractGroupButton';
-import {GroupButtonComponents}   from './properties/GroupButtonProperty';
-import {ActivatableImageElement} from './elements/ActivatableImageElement';
+import AbstractGroupButton from './AbstractGroupButton';
 
+/**
+ * @reactComponent
+ */
 export default class GroupImageButton
     extends AbstractGroupButton<ActivatableImageElement> {
 

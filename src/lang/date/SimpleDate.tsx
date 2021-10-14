@@ -21,6 +21,7 @@ export interface DateTimeFormatProperties
  * A simple date component that return a date
  * from the {@link DateDayLanguages.currentLanguage current language}.
  *
+ * @reactComponent
  * @see https://formatjs.io/docs/react-intl/components#formatteddate
  */
 export default function SimpleDate({year, month, day,}: DateTimeFormatProperties,) {

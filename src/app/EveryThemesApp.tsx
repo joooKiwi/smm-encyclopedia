@@ -1,7 +1,5 @@
 import './EveryThemesApp.scss';
 
-import React from 'react';
-
 import type {CourseAndWorldTheme} from '../entity/theme/Themes.types';
 import type {SingleTableContent}  from './tools/table/Table.types';
 
@@ -17,6 +15,9 @@ import {ThemeLoader}                   from '../entity/theme/ThemeLoader';
 import {Themes}                        from '../entity/theme/Themes';
 import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
 
+/**
+ * @reactComponent
+ */
 export default class EveryThemesApp
     extends AbstractApp {
 

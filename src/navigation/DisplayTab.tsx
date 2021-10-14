@@ -1,15 +1,20 @@
-import React, {PureComponent} from 'react';
-import {Link}                 from 'react-router-dom';
+import {PureComponent} from 'react';
+import {Link}          from 'react-router-dom';
 
-import type {GameContentCallback}            from '../lang/components/TranslationProperty';
 import type {EveryPossibleRoutePartialPaths} from '../routes/everyRoutes.types';
+import type {GameContentCallback}            from '../lang/components/TranslationProperty';
+import type {ReactComponent}                 from '../util/react/ReactComponent';
 
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
 
+/**
+ * @reactComponent
+ */
 export default class DisplayTab
-    extends PureComponent {
+    extends PureComponent
+    implements ReactComponent {
 
 
     private static _createLi(key: string, partialPath: EveryPossibleRoutePartialPaths, textContentCallback: GameContentCallback,): JSX.Element {

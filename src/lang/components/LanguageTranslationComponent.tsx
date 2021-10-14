@@ -2,6 +2,11 @@ import type {SimpleTranslationProperty, TranslationProperty} from './Translation
 
 import AnyTranslationComponent from './AnyTranslationComponent';
 
-export default function LanguageTranslationComponent(props: | TranslationProperty<'language'> | SimpleTranslationProperty<'language'>,) {
-    return <AnyTranslationComponent namespace="language" {...props}/>;
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
+export default function LanguageTranslationComponent(properties: | TranslationProperty<'language'> | SimpleTranslationProperty<'language'>,) {
+    return <AnyTranslationComponent namespace="language" {...properties}/>;
 }
