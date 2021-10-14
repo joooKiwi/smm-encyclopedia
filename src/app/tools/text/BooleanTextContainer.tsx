@@ -1,6 +1,6 @@
 import TextContainer from './TextContainer';
 
-import type {ReactProperty} from '../../../util/ReactProperty';
+import type {ReactProperty} from '../../../util/react/ReactProperty';
 
 export interface BooleanTextProperties
     extends ReactProperty/*React.HTMLAttributes<HTMLSpanElement>*/

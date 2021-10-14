@@ -2,7 +2,7 @@ import './ChangeTheLanguageTab.scss';
 
 import React, {PureComponent} from 'react';
 
-import type {ReactState} from '../util/ReactState';
+import type {ReactState} from '../util/react/ReactState';
 
 import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
 import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';

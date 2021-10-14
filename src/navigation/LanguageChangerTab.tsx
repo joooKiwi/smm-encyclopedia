@@ -3,7 +3,7 @@ import React               from 'react';
 import {useTranslation}    from 'react-i18next';
 
 import {ProjectLanguages} from '../lang/ProjectLanguages';
-import {ReactProperty}    from '../util/ReactProperty';
+import {ReactProperty}    from '../util/react/ReactProperty';
 import Tooltip            from '../bootstrap/tooltip/Tooltip';
 import {TooltipInstance}  from '../bootstrap/tooltip/TooltipInstance';
 

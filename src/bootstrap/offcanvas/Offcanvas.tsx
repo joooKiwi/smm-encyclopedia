@@ -1,8 +1,9 @@
 import {ReactElement, useEffect} from 'react';
 
 import type {OffcanvasConfiguration}    from './Offcanvas.types';
-import type {ReactPropertyWithChildren} from '../../util/ReactProperty';
-import {OffcanvasInstance}              from './OffcanvasInstance';
+import type {ReactPropertyWithChildren} from '../../util/react/ReactProperty';
+
+import {OffcanvasInstance} from './OffcanvasInstance';
 
 /**
  * Create a new {@link bootstrap.Offcanvas Offcanvas} instance once the element is rendered

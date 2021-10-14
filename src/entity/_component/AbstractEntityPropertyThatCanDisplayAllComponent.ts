@@ -1,4 +1,4 @@
-import type {ReactProperty} from '../../util/ReactProperty';
+import type {ReactProperty} from '../../util/react/ReactProperty';
 import type {Name}          from '../../lang/name/Name';
 import {PureComponent}      from 'react';
 

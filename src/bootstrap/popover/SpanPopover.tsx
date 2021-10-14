@@ -1,7 +1,7 @@
 import Popover from './Popover';
 
 import type {PopoverConfiguration}                            from './Popover.types';
-import type {ReactElementOrString, ReactPropertyWithChildren} from '../../util/ReactProperty';
+import type {ReactElementOrString, ReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 export default function SpanPopover<T extends ReactElementOrString = ReactElementOrString, >({children, elementId, option,}: ReactPropertyWithChildren<PopoverConfiguration, T>,): JSX.Element {
     return <Popover elementId={elementId} option={option}>

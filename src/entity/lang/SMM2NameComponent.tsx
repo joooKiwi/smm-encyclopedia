@@ -2,7 +2,7 @@ import {Popover}                   from 'bootstrap';
 import {TFunction, useTranslation} from 'react-i18next';
 
 import type {Name}          from '../../lang/name/Name';
-import type {ReactProperty} from '../../util/ReactProperty';
+import type {ReactProperty} from '../../util/react/ReactProperty';
 
 import {EveryLanguages} from '../../lang/EveryLanguages';
 import SpanPopover      from '../../bootstrap/popover/SpanPopover';

@@ -1,6 +1,6 @@
 import type {Namespace, TFuncKey, TFunction} from 'react-i18next';
 
-import type {SimpleReactPropertyWithChildren} from '../../util/ReactProperty';
+import type {SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 export type TranslationReturnType = | string | JSX.Element;
 export type ContentCallback = (translation: TFunction<'content'>,) => TranslationReturnType;

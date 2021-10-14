@@ -1,4 +1,4 @@
-import type {ReactProperty} from '../../../util/ReactProperty';
+import type {ReactProperty} from '../../../util/react/ReactProperty';
 
 export type PossibleTextContent = | string | number | boolean;
 

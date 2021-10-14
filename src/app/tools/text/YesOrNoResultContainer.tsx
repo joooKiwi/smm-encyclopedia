@@ -2,7 +2,7 @@ import {useTranslation} from 'react-i18next';
 
 import BooleanResultContainer from './BooleanResultContainer';
 
-import type {ReactProperty} from '../../../util/ReactProperty';
+import type {ReactProperty} from '../../../util/react/ReactProperty';
 
 /**
  * A simple boolean value property

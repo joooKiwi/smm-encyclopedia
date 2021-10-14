@@ -1,7 +1,7 @@
 import {ReactElement, useEffect} from 'react';
 
 import type {PopoverConfiguration}      from './Popover.types';
-import type {ReactPropertyWithChildren} from '../../util/ReactProperty';
+import type {ReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 import {PopoverInstance} from './PopoverInstance';
 
