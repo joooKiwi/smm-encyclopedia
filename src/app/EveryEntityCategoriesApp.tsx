@@ -48,7 +48,7 @@ export default class EveryEntityCategoriesApp
             caption={<GameContentTranslationComponent translationKey="Every entity categories"/>}
             headers={[
                 '#',
-                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
             ]}
             content={this.content}
         />;
