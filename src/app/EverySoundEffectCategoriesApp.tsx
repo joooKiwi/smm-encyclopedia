@@ -5,7 +5,7 @@ import type {PossibleSoundEffectCategoriesEnglishName} from '../entity/soundEffe
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
 import {SoundEffectCategoryLoader}     from '../entity/soundEffect/category/SoundEffectCategory.loader';
 import Table                           from './tools/table/Table';

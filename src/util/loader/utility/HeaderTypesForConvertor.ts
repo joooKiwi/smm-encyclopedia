@@ -2,7 +2,7 @@ import type {EntityLimitTypeEnglishNameArray}                                   
 import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
 
 import {EntityBehaviours}                      from '../../../entity/behaviours/EntityBehaviours';
-import {EntityCategoryLoader}                  from '../../../entity/category/EntityCategoryLoader';
+import {EntityCategoryLoader}                  from '../../../entity/category/EntityCategory.loader';
 import {EntityLimits}                          from '../../../entity/limit/EntityLimits';
 import {EntityLimitTypes}                      from '../../../entity/limit/EntityLimitTypes';
 import {SoundEffectCategories}                 from '../../../entity/soundEffect/category/SoundEffectCategories';
