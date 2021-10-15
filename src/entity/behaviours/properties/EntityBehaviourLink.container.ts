@@ -4,7 +4,7 @@ import type {ObjectHolder}                        from '../../../util/holder/Obj
 import type {PossibleGroupName, SingleEntityName} from '../../entityTypes';
 
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
-import {EntityLoader}                 from '../../simple/EntityLoader';
+import {EntityLoader}                 from '../../simple/Entity.loader';
 
 /**
  * @multiton

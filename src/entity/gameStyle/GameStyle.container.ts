@@ -6,7 +6,7 @@ import type {ObjectHolder} from '../../util/holder/ObjectHolder';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
-export class GenericGameStyle
+export class GameStyleContainer
     implements GameStyle {
 
     //region -------------------- Attributes --------------------

@@ -1,13 +1,13 @@
 import type {Builder}               from '../../util/Builder';
-import type {DebugEntityReferences} from '../simple/EntityLoader';
+import type {DebugEntityReferences} from '../simple/Entity.loader';
 import type {Entity}                from '../simple/Entity';
 import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
 
-import {GamePropertyContainer}   from '../properties/GamePropertyContainer';
+import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
-import {GenericGameStyle}        from './GenericGameStyle';
+import {GameStyleContainer}      from './GameStyle.container';
 import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
 
 export class GameStyleBuilder
@@ -46,7 +46,7 @@ export class GameStyleBuilder
     }
 
     protected _build(name: Name,): GameStyle {
-        return new GenericGameStyle(
+        return new GameStyleContainer(
             name,
             GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),
             () => GameStyleBuilder.__whereEntityIs(name.english),

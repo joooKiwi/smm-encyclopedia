@@ -3,7 +3,7 @@ import type {LimitProperty, PossibleCustomLimitWhilePlaying, PossibleEditorLimit
 import type {ObjectHolder}                                                                                                                                                                                                                                                                                                                  from '../../../util/holder/ObjectHolder';
 
 import {EntityLimits}                 from '../../limit/EntityLimits';
-import {SingleLimitPropertyContainer} from './single/SingleLimitPropertyContainer';
+import {SingleLimitPropertyContainer} from './single/SingleLimitProperty.container';
 
 /**
  * @multiton

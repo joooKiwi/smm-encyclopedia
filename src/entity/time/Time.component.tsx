@@ -10,28 +10,28 @@ import {Times}                               from './Times';
 export default class TimeComponent
     extends AbstractDualEntityPropertyComponent<TimeProperty> {
 
-    protected get _isInAll(): boolean {
+    protected get _isInAll() {
         return this.reference.isInDayTheme
             && (this.reference.isInNightTheme ?? false);
     }
 
-    protected get _isInFirst(): boolean {
+    protected get _isInFirst() {
         return this.reference.isInDayTheme;
     }
 
-    protected _renderSingleComponent(time: Times,): JSX.Element {
+    protected _renderSingleComponent(time: Times,) {
         return <i key={`${this.name.english} - ${time.englishName}`} className={`time_image ${time === Times.DAY ? 'bi-sun-fill' : 'bi-moon-fill'}`}/>;
     }
 
-    protected _renderFirstComponent(): JSX.Element {
+    protected _renderFirstComponent() {
         return this._renderSingleComponent(Times.DAY);
     }
 
-    protected _renderSecondComponent(): JSX.Element {
+    protected _renderSecondComponent() {
         return this._renderSingleComponent(Times.NIGHT);
     }
 
-    protected _renderComponentForAll(): JSX.Element {
+    protected _renderComponentForAll() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every times')}</span>}/>;
     }
 

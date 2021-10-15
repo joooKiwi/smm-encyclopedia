@@ -7,8 +7,8 @@ import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}    
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CSVLoader}        from '../../util/loader/CSVLoader';
-import {EntityLoader}     from '../simple/EntityLoader';
-import {GameStyleBuilder} from './GameStyleBuilder';
+import {EntityLoader}     from '../simple/Entity.loader';
+import {GameStyleBuilder} from './GameStyle.builder';
 
 //region -------------------- CSV array related types --------------------
 

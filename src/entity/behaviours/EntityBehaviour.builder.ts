@@ -1,12 +1,12 @@
-import type {Builder}                 from '../../util/Builder';
-import type {DebugEntityReferences}   from '../simple/EntityLoader';
-import type {EntityBehaviour}         from './EntityBehaviour';
+import type {Builder}               from '../../util/Builder';
+import type {DebugEntityReferences} from '../simple/Entity.loader';
+import type {EntityBehaviour}       from './EntityBehaviour';
 import type {EntityBehaviourTemplate} from './EntityBehaviour.template';
 
-import {EntityBehaviourContainer}         from './EntityBehaviourContainer';
-import {EntityBehaviourIsInOnlyContainer} from './properties/EntityBehaviourIsInOnlyContainer';
+import {EntityBehaviourContainer}         from './EntityBehaviour.container';
+import {EntityBehaviourIsInOnlyContainer} from './properties/EntityBehaviourIsInOnly.container';
 import {TemplateBuilder}                  from '../TemplateBuilder';
-import {EntityBehaviourLinkContainer}     from './properties/EntityBehaviourLinkContainer';
+import {EntityBehaviourLinkContainer}     from './properties/EntityBehaviourLink.container';
 
 export class EntityBehaviourBuilder
     extends TemplateBuilder<EntityBehaviourTemplate, EntityBehaviour>

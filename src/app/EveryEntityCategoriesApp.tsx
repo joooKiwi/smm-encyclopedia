@@ -6,9 +6,9 @@ import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import {EntityCategories}              from '../entity/category/EntityCategories';
 import {EntityCategory}                from '../entity/category/EntityCategory';
-import {EntityCategoryLoader}          from '../entity/category/EntityCategoryLoader';
+import {EntityCategoryLoader}          from '../entity/category/EntityCategory.loader';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import Table                           from './tools/table/Table';
 
 /**
@@ -40,7 +40,7 @@ export default class EveryEntityCategoriesApp
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table

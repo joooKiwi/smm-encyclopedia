@@ -42,7 +42,7 @@ export default class EverySoundEffectCategoriesApp
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table

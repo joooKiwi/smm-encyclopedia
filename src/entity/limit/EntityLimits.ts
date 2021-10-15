@@ -4,7 +4,7 @@ import type {ClassWithReference}                                                
 import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                     from './EntityLimit';
 import type {EntityLimitsArray, EntityLimitsNames, EntityLimitsOrdinals, PossibleAcronymEntityLimits, PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits, PossibleStartingEntityLimits, PossibleStartingEntityLimitsInBothEditorAndWhilePlaying, PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying} from './EntityLimits.types';
 
-import {EntityLimitLoader} from './EntityLimitLoader';
+import {EntityLimitLoader} from './EntityLimit.loader';
 import {EntityLimitTypes}  from './EntityLimitTypes';
 import {Enum}              from '../../util/enum/Enum';
 

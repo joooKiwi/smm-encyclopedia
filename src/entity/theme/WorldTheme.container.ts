@@ -3,9 +3,9 @@ import type {Name}                              from '../../lang/name/Name';
 import type {WorldTheme}                        from './WorldTheme';
 
 import {AbstractTheme}         from './AbstractTheme';
-import {GamePropertyContainer} from '../properties/GamePropertyContainer';
+import {GamePropertyContainer} from '../properties/GameProperty.container';
 
-export class GenericWorldTheme
+export class WorldThemeContainer
     extends AbstractTheme
     implements WorldTheme {
 

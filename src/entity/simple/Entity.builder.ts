@@ -1,22 +1,22 @@
 import type {Builder}                                                                                                       from '../../util/Builder';
 import type {CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from '../properties/limit/LimitProperty.types';
-import type {DebugEntityReferences}                                                                                         from './EntityLoader';
+import type {DebugEntityReferences}                                                                                         from './Entity.loader';
 import type {Entity}                                                                                                        from './Entity';
 import type {EntityCategory}                                                                                                from '../category/EntityCategory';
 import type {EntityLink}                                                                                                    from '../entityTypes';
 import type {EntityTemplate}                                                                                                from './Entity.template';
 
-import {EntityLimits}                from '../limit/EntityLimits';
-import {EntityReferencesContainer}   from '../properties/EntityReferencesContainer';
-import {EMPTY_ARRAY}                 from '../../util/emptyVariables';
-import {EmptyEntity}                 from './EmptyEntity';
-import {EmptyEntityCategory}         from '../category/EmptyEntityCategory';
-import {ExclusiveSM3DWGenericEntity} from './ExclusiveSM3DWGenericEntity';
-import {ExclusiveSMM1GenericEntity}  from './ExclusiveSMM1GenericEntity';
-import {ExclusiveSMM2GenericEntity}  from './ExclusiveSMM2GenericEntity';
-import {GenericEntity}               from './GenericEntity';
-import {PropertyContainer}           from '../properties/PropertyContainer';
-import {NameBuilder}                 from '../lang/NameBuilder';
+import {EntityLimits}                  from '../limit/EntityLimits';
+import {EntityReferencesContainer}     from '../properties/EntityReferences.container';
+import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
+import {EmptyEntity}                   from './EmptyEntity';
+import {EmptyEntityCategory}           from '../category/EmptyEntityCategory';
+import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
+import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
+import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
+import {EntityContainer}               from './Entity.container';
+import {PropertyContainer}             from '../properties/PropertyContainer';
+import {NameBuilder}                   from '../lang/NameBuilder';
 
 export class EntityBuilder
     implements Builder<Entity> {
@@ -180,12 +180,12 @@ export class EntityBuilder
         const isInProperty = this.__createProperty();
 
         return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
-            ? new ExclusiveSMM1GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            ? new ExclusiveSMM1EntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
-                    ? new ExclusiveSM3DWGenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                    : new ExclusiveSMM2GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                : new GenericEntity(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
+                    ? new ExclusiveSM3DWEntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new ExclusiveSMM2EntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                : new EntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 
 }

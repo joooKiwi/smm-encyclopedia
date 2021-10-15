@@ -8,7 +8,7 @@ import AbstractApp from './AbstractApp';
 export default class HomeApp
     extends AbstractApp {
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         return <></>;
     }
 

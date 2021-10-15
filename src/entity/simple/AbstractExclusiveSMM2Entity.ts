@@ -4,13 +4,13 @@ import type {EntityCategory}                                                    
 import type {EntityReferences}                                                    from '../properties/EntityReferences';
 import type {Name}                                                                from '../../lang/name/Name';
 
-import {GenericEntity} from './GenericEntity';
+import {EntityContainer} from './Entity.container';
 
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}.
  */
 export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
-    extends GenericEntity<CATEGORY, PROPERTY>
+    extends EntityContainer<CATEGORY, PROPERTY>
     implements AbstractExclusiveSMM2EntityInterface<CATEGORY> {
 
     protected constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {

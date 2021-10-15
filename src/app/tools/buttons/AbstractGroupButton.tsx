@@ -61,7 +61,7 @@ export default abstract class AbstractGroupButton<T extends ActivatableProperty>
      */
     protected abstract _getContent(t: T,): | JSX.Element | string;
 
-    private __getButtons(): JSX.Element[] {
+    private __getButtons(): readonly JSX.Element[] {
         let buttons: JSX.Element[] = [];
         this.elements.forEach((t, index) => {
                 let id = this.groupName + (index + 1);
@@ -77,7 +77,7 @@ export default abstract class AbstractGroupButton<T extends ActivatableProperty>
         return buttons;
     }
 
-    public render(): ReactNode {
+    public render() {
         return <div key={`groupButton_${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group"
                     aria-label={`Basic ${this.isChoiceGroup ? 'radio' : 'checkbox'} toggle button group`}>
             {this.__getButtons()}

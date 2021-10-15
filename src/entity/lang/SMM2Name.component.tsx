@@ -30,7 +30,7 @@ interface SMM2NameProperties
  * @param properties
  * @reactComponent
  */
-export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2NameProperties,): JSX.Element {
+export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2NameProperties,) {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 

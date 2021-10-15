@@ -7,7 +7,7 @@ import type {ObjectHolder} from '../../util/holder/ObjectHolder';
 import {AbstractTheme}                from './AbstractTheme';
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
-export class GenericCourseTheme
+export class CourseThemeContainer
     extends AbstractTheme
     implements CourseTheme {
 

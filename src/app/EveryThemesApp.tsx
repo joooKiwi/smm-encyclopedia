@@ -9,9 +9,9 @@ import {EmptyCourseTheme}              from '../entity/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}               from '../entity/theme/EmptyWorldTheme';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import Table                           from './tools/table/Table';
-import {ThemeLoader}                   from '../entity/theme/ThemeLoader';
+import {ThemeLoader}                   from '../entity/theme/Theme.loader';
 import {Themes}                        from '../entity/theme/Themes';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
@@ -56,7 +56,7 @@ export default class EveryThemesApp
     }
 
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table

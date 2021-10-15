@@ -4,7 +4,7 @@ import type {EntityCategory}                                                    
 import type {EveryLanguagesNames, EveryLanguagesOrdinals}                                                          from '../../lang/EveryLanguages.types';
 import type {EntityCategoriesArray, EntityCategoriesNames, EntityCategoriesOrdinals, PossibleEntityCategoriesName} from './EntityCategories.types';
 
-import {EntityCategoryLoader} from './EntityCategoryLoader';
+import {EntityCategoryLoader} from './EntityCategory.loader';
 import {Enum}                 from '../../util/enum/Enum';
 
 export class EntityCategories

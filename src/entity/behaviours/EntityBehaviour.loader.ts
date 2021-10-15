@@ -5,9 +5,9 @@ import type {Loader}                                                            
 import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
 import type {PossibleGroupName, SingleEntityName}                                     from '../entityTypes';
 
-import {EntityLoader}            from '../simple/EntityLoader';
+import {EntityLoader}            from '../simple/Entity.loader';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityBehaviourBuilder}  from './EntityBehaviourBuilder';
+import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
 import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForConvertor';
 import {EntityBehaviourTemplate} from './EntityBehaviour.template';
 

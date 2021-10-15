@@ -14,7 +14,7 @@ export abstract class AbstractDualEntityPropertyComponent<R>
 
     protected abstract _renderSecondComponent(): JSX.Element;
 
-    public render(): JSX.Element {
+    public render() {
         if (this._isInAll)
             return this._renderComponentForAll();
         return this._isInFirst ?

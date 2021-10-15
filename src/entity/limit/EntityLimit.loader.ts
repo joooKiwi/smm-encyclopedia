@@ -10,8 +10,8 @@ import type {PossibleGroupName, SingleEntityName}                               
 import type {SMM2NameTemplate}                                                                                                              from '../lang/SMM2Name.template';
 
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityLimitBuilder}      from './EntityLimitBuilder';
-import {EntityLoader}            from '../simple/EntityLoader';
+import {EntityLimitBuilder}      from './EntityLimit.builder';
+import {EntityLoader}            from '../simple/Entity.loader';
 import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------

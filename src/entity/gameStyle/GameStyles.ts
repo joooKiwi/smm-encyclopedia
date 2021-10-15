@@ -9,7 +9,7 @@ import type {GameStyleReferences}                                               
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                   from '../PropertyGetter';
 
 import {Enum}            from '../../util/enum/Enum';
-import {GameStyleLoader} from './GameStyleLoader';
+import {GameStyleLoader} from './GameStyle.loader';
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>

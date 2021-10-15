@@ -5,13 +5,13 @@ import type {ExclusiveSMM1Property, Property} from '../properties/Property';
 import type {Name}                            from '../../lang/name/Name';
 
 import {EmptyEntityCategory} from '../category/EmptyEntityCategory';
-import {GenericEntity}       from './GenericEntity';
+import {EntityContainer}     from './Entity.container';
 
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_1 Super Mario Maker 1} {@link Games game}.
  */
-export class ExclusiveSMM1GenericEntity
-    extends GenericEntity<EmptyEntityCategory, ExclusiveSMM1Property>
+export class ExclusiveSMM1EntityContainer
+    extends EntityContainer<EmptyEntityCategory, ExclusiveSMM1Property>
     implements ExclusiveSMM1Entity {
 
     public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {

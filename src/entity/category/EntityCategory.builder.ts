@@ -3,7 +3,7 @@ import type {EntityCategory}         from './EntityCategory';
 import type {EntityCategoryTemplate} from './EntityCategory.template';
 import type {Name}                   from '../../lang/name/Name';
 
-import {GenericEntityCategory}   from './GenericEntityCategory';
+import {EntityCategoryContainer} from './EntityCategory.container';
 import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
 
 export class EntityCategoryBuilder
@@ -25,7 +25,7 @@ export class EntityCategoryBuilder
     }
 
     protected _build(name: Name,): EntityCategory {
-        return new GenericEntityCategory(
+        return new EntityCategoryContainer(
             name,
         );
     }

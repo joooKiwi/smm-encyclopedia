@@ -1,6 +1,6 @@
 import type {Builder}               from '../../util/Builder';
 import type {CourseTheme}           from './CourseTheme';
-import type {DebugEntityReferences} from '../simple/EntityLoader';
+import type {DebugEntityReferences} from '../simple/Entity.loader';
 import type {Entity}                from '../simple/Entity';
 import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
@@ -8,9 +8,9 @@ import type {WorldTheme}            from './WorldTheme';
 
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
-import {GamePropertyContainer}   from '../properties/GamePropertyContainer';
-import {GenericCourseTheme}      from './GenericCourseTheme';
-import {GenericWorldTheme}       from './GenericWorldTheme';
+import {GamePropertyContainer}   from '../properties/GameProperty.container';
+import {CourseThemeContainer}    from './CourseTheme.container';
+import {WorldThemeContainer}     from './WorldTheme.container';
 import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
 import {Themes}                  from './Themes';
 
@@ -38,7 +38,7 @@ export class ThemeBuilder
     }
 
     private __createCourseTheme(name: Name,): CourseTheme {
-        return new GenericCourseTheme(
+        return new CourseThemeContainer(
             name,
             GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),
             () => ThemeBuilder.__whereEntityIs(name.english),
@@ -62,10 +62,10 @@ export class ThemeBuilder
         const isInWorldTheme = this.template.isIn.theme.world;
 
         return isInCourseTheme && isInWorldTheme
-            ? [this.__createCourseTheme(name), new GenericWorldTheme(name),]
+            ? [this.__createCourseTheme(name), new WorldThemeContainer(name),]
             : isInCourseTheme
                 ? [this.__createCourseTheme(name), EmptyWorldTheme.get,]
-                : [EmptyCourseTheme.get, new GenericWorldTheme(name),];
+                : [EmptyCourseTheme.get, new WorldThemeContainer(name),];
     }
 
 

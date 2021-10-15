@@ -1,19 +1,19 @@
 import './EveryEntitiesApp.scss';
 
-import type {DebugEntityReferences} from '../entity/simple/EntityLoader';
+import type {DebugEntityReferences} from '../entity/simple/Entity.loader';
+import {EntityLoader}               from '../entity/simple/Entity.loader';
 import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import CourseThemeComponent            from '../entity/theme/CourseThemeComponent';
-import EditorLimitComponent            from '../entity/limit/EditorLimitComponent';
-import {EntityLoader}                  from '../entity/simple/EntityLoader';
-import GameComponent                   from '../entity/game/GameComponent';
+import CourseThemeComponent            from '../entity/theme/CourseTheme.component';
+import EditorLimitComponent            from '../entity/limit/EditorLimit.component';
+import GameComponent                   from '../entity/game/Game.component';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import GameStyleComponent              from '../entity/gameStyle/GameStyleComponent';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import GameStyleComponent              from '../entity/gameStyle/GameStyle.component';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import Table                           from './tools/table/Table';
-import TimeComponent                   from '../entity/time/TimeComponent';
+import TimeComponent                   from '../entity/time/Time.component';
 
 /**
  * @reactComponent
@@ -49,7 +49,7 @@ export default class EveryEntitiesApp
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         console.log(this.map);
 
         return <Table

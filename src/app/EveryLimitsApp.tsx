@@ -3,13 +3,13 @@ import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EntityLimitLoader}             from '../entity/limit/EntityLimitLoader';
+import {EntityLimitLoader}             from '../entity/limit/EntityLimit.loader';
 import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextContainer';
 import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 
 /**
  * @reactComponent
@@ -55,7 +55,7 @@ export default class EveryLimitsApp
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         return <Table
             id="entityLimit_table"
             caption={<GameContentTranslationComponent translationKey="Every entity limits"/>}

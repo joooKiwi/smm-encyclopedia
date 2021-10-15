@@ -13,7 +13,7 @@ export default class GroupTextButton
         super(props);
     }
 
-    protected _getContent(text: ActivatableTextProperty,): JSX.Element {
+    protected _getContent(text: ActivatableTextProperty,) {
         return <span>{text.text}</span>;
     }
 

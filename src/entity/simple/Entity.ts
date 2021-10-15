@@ -2,9 +2,9 @@ import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2
 import type {EntityReferences}                                                                                                    from '../properties/EntityReferences';
 import type {EntityCategory}                                                                                                      from '../category/EntityCategory';
 import type {EmptyEntityCategory}                                                                                                      from '../category/EmptyEntityCategory';
-import type {GameProperty}                                                                                                        from '../properties/GameProperty';
-import type {GameStyleProperty}                                                                                                   from '../properties/GameStyleProperty';
-import type {ThemeProperty}                                                                                                       from '../properties/ThemeProperty';
+import type {GameProperty}      from '../properties/GameProperty';
+import type {GameStyleProperty} from '../properties/GameStyleProperty';
+import type {ThemeProperty}     from '../properties/ThemeProperty';
 import type {TimeProperty}                                                                                                        from '../properties/TimeProperty';
 import type {NameWithAName}                                                                                                       from '../../lang/name/NameWithAName';
 

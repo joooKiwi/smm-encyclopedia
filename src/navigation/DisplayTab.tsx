@@ -4,7 +4,7 @@ import SingleDisplayTab            from './SingleDisplayTab';
 /**
  * @reactComponent
  */
-export default function DisplayTab(): JSX.Element {
+export default function DisplayTab() {
     return <li className="nav-item dropdown">
         <ContentTranslationComponent>{translation =>
             <span className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

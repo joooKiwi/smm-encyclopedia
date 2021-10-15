@@ -56,7 +56,7 @@ export default class Table
         });
     }
 
-    public render(): ReactNode {
+    public render() {
         return <table key={this.id} id={this.id} className="table table-bordered table-striped">
             <caption>{this.caption}</caption>
             <thead>

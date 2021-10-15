@@ -1,7 +1,7 @@
 import type {EntityCategory} from './EntityCategory';
 import type {Name}           from '../../lang/name/Name';
 
-export class GenericEntityCategory
+export class EntityCategoryContainer
     implements EntityCategory {
 
     //region -------------------- Attributes --------------------

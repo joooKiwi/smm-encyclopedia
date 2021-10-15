@@ -16,8 +16,8 @@ import type {PossibleTimeName}                                                  
 import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../lang/SMM2Name.template';
 
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
-import {EntityCategoryLoader}         from '../category/EntityCategoryLoader';
-import {EntityBuilder}                from './EntityBuilder';
+import {EntityCategoryLoader}         from '../category/EntityCategory.loader';
+import {EntityBuilder}                from './Entity.builder';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
 import {HeaderTypesForConvertor}      from '../../util/loader/utility/HeaderTypesForConvertor';
 

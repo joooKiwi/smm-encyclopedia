@@ -11,11 +11,11 @@ export default class GameStyleComponent
     extends AbstractEntityPropertyComponent<GameStyleProperty, GameStyles> {
 
 
-    protected get map(): ReadonlyMap<GameStyles, boolean> {
+    protected get map() {
         return this.reference.toGameStyleMap();
     }
 
-    protected get _isInAll(): boolean {
+    protected get _isInAll() {
         return this.reference.isInSuperMarioBrosStyle
             && this.reference.isInSuperMarioBros3Style
             && this.reference.isInSuperMarioWorldStyle
@@ -23,11 +23,11 @@ export default class GameStyleComponent
             && (this.reference.isInSuperMario3DWorldStyle ?? false);
     }
 
-    protected _renderSingleComponent(gameStyle: GameStyles,): JSX.Element {
+    protected _renderSingleComponent(gameStyle: GameStyles,) {
         return <img key={`${this.name.english} - ${gameStyle.englishName}`} src={gameStyle.smallImagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
     }
 
-    protected _renderComponentForAll(): JSX.Element {
+    protected _renderComponentForAll() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every game styles')}</span>}/>;
     }
 

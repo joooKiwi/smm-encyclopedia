@@ -7,7 +7,7 @@ import AbstractApp from './AbstractApp';
 export default class EveryEntityGroupApp
     extends AbstractApp {
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         return <>every entity groups</>;
     }
 

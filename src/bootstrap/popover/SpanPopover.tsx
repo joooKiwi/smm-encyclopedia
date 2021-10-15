@@ -8,7 +8,7 @@ import type {ReactElementOrString, ReactPropertyWithChildren} from '../../util/r
  * @param properties
  * @reactComponent
  */
-export default function SpanPopover<T extends ReactElementOrString = ReactElementOrString, >({children, elementId, option,}: ReactPropertyWithChildren<PopoverConfiguration, T>,): JSX.Element {
+export default function SpanPopover<T extends ReactElementOrString = ReactElementOrString, >({children, elementId, option,}: ReactPropertyWithChildren<PopoverConfiguration, T>,) {
     return <Popover elementId={elementId} option={option}>
         <span key={elementId} id={elementId} data-bs-toggle="popover">{children}</span>
     </Popover>;

@@ -6,7 +6,7 @@ import type {Loader}                                                            
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
 import {CSVLoader}             from '../../util/loader/CSVLoader';
-import {EntityCategoryBuilder} from './EntityCategoryBuilder';
+import {EntityCategoryBuilder} from './EntityCategory.builder';
 
 //region -------------------- CSV array related types --------------------
 

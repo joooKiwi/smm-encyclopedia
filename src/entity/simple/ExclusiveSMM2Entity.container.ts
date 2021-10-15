@@ -10,7 +10,7 @@ import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}
  * and is not exclusive to the {@link GameStyles.SUPER_MARIO_3D_WORLD  Mario 3D World} {@link GameStyles game style}.
  */
-export class ExclusiveSMM2GenericEntity<CATEGORY extends EntityCategory = EntityCategory, >
+export class ExclusiveSMM2EntityContainer<CATEGORY extends EntityCategory = EntityCategory, >
     extends AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property>
     implements ExclusiveSMM2Entity<CATEGORY> {
 

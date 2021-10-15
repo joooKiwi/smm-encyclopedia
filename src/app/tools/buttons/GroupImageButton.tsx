@@ -15,7 +15,7 @@ export default class GroupImageButton
         super(props);
     }
 
-    protected _getContent(image: ActivatableImageProperty,): JSX.Element {
+    protected _getContent(image: ActivatableImageProperty,) {
         return <img className="btn-image" src={image.source} alt={image.name}/>;
     }
 

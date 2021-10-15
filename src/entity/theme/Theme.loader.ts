@@ -7,8 +7,8 @@ import type {Loader}                                                            
 import type {ThemeTemplate}                                                          from './Theme.template';
 
 import {CSVLoader}    from '../../util/loader/CSVLoader';
-import {EntityLoader} from '../simple/EntityLoader';
-import {ThemeBuilder} from './ThemeBuilder';
+import {EntityLoader} from '../simple/Entity.loader';
+import {ThemeBuilder} from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
 

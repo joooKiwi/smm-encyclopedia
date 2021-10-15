@@ -1,7 +1,7 @@
 import type {AlternativeEntityLimit, EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
 import type {AlternativeLimitTemplate, EntityLimitTemplate}                                      from './EntityLimit.template';
 import type {Builder}                                                                            from '../../util/Builder';
-import type {DebugEntityReferences}                                                              from '../simple/EntityLoader';
+import type {DebugEntityReferences}                                                              from '../simple/Entity.loader';
 import type {Entity}                                                                             from '../simple/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
@@ -12,11 +12,11 @@ import {AlternativeEntityLimitContainer} from './AlternativeEntityLimitContainer
 import {EmptyEntityLimit}                from './EmptyEntityLimit';
 import {EmptyEntityLimitAmount}          from './properties/EmptyEntityLimitAmount';
 import {EmptyEntityLimitLink}            from './properties/EmptyEntityLimitLink';
-import {EntityLimitContainer}            from './EntityLimitContainer';
+import {EntityLimitContainer}            from './EntityLimit.container';
 import {EntityLimitTypes}                from './EntityLimitTypes';
 import {EntityLimits}                    from './EntityLimits';
-import {EntityLimitAmountContainer}      from './properties/EntityLimitAmountContainer';
-import {EntityLimitLinkContainer}        from './properties/EntityLimitLinkContainer';
+import {EntityLimitAmountContainer}      from './properties/EntityLimitAmount.container';
+import {EntityLimitLinkContainer}        from './properties/EntityLimitLink.container';
 import {NameBuilder}                     from '../lang/NameBuilder';
 
 export class EntityLimitBuilder

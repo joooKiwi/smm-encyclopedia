@@ -6,11 +6,11 @@ import type {LimitProperty}                                                     
 import type {ThemeProperty}                                                                                                 from './ThemeProperty';
 import type {TimeProperty}                                                                                                  from './TimeProperty';
 
-import {GamePropertyContainer}      from './GamePropertyContainer';
-import {GameStylePropertyContainer} from './GameStylePropertyContainer';
-import {ThemePropertyContainer}     from './ThemePropertyContainer';
-import {TimePropertyContainer}      from './TimePropertyContainer';
-import {LimitPropertyContainer}     from './limit/LimitPropertyContainer';
+import {GamePropertyContainer}      from './GameProperty.container';
+import {GameStylePropertyContainer} from './GameStyleProperty.container';
+import {ThemePropertyContainer}     from './ThemeProperty.container';
+import {TimePropertyContainer}      from './TimeProperty.container';
+import {LimitPropertyContainer}     from './limit/LimitProperty.container';
 
 export class PropertyContainer
     implements Property {

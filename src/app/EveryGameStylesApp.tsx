@@ -6,11 +6,11 @@ import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {GameStyle}                     from '../entity/gameStyle/GameStyle';
-import {GameStyleLoader}               from '../entity/gameStyle/GameStyleLoader';
+import {GameStyleLoader}               from '../entity/gameStyle/GameStyle.loader';
 import {GameStyles}                    from '../entity/gameStyle/GameStyles';
 import {Games}                         from '../entity/game/Games';
 import Table                           from './tools/table/Table';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
 /**
@@ -45,7 +45,7 @@ export default class EveryGameStylesApp
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table
