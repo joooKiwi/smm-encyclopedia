@@ -373,8 +373,6 @@ class TemplateCreator {
                     },
                 },
 
-                categoryInTheEditor: content[3],
-
                 hasAMushroomVariant: content[4],
                 canBeInAParachute: content[5],
                 canHaveWings: content[6],
@@ -507,6 +505,7 @@ class TemplateCreator {
                     },
                 },
             },
+            categoryInTheEditor: content[3],
             name: {
                 hasAReferenceInMarioMaker: content[73],
                 english: {

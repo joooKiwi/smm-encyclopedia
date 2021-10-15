@@ -21,8 +21,6 @@ export interface EntityTemplate
 
         isIn: IsInPropertyTemplate
 
-        categoryInTheEditor: | PossibleEntityCategoriesName | null
-
         hasAMushroomVariant: HasAMushroomVariant
         canBeInAParachute: CanBeInAParachute
         canHaveWings: CanHaveWings
@@ -113,6 +111,8 @@ export interface EntityTemplate
 
         reference: EntityReferencesTemplate
     }
+
+    categoryInTheEditor: | PossibleEntityCategoriesName | null
 
 }
 
