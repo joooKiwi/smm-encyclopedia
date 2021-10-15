@@ -22,13 +22,13 @@ import {NameBuilder}                     from '../lang/NameBuilder';
 export class EntityLimitBuilder
     implements Builder<EntityLimit> {
 
-    //region ---------- external object references ----------
+    //region -------------------- external object references --------------------
 
     public static references: Map<PossibleEntityLimits | PossibleAlternativeEntityLimits, EntityLimit>;
 
     public static entitiesMap: Map<string, DebugEntityReferences>;
 
-    //endregion ---------- external object references ----------
+    //endregion -------------------- external object references --------------------
 
     readonly #template;
 

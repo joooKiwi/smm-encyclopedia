@@ -12,11 +12,11 @@ export class EntityBehaviourBuilder
     extends TemplateBuilder<EntityBehaviourTemplate, EntityBehaviour>
     implements Builder<EntityBehaviour> {
 
-    //region ---------- external object references ----------
+    //region -------------------- external object references --------------------
 
     public static entitiesMap: Map<string, DebugEntityReferences>;
 
-    //endregion ---------- external object references ----------
+    //endregion -------------------- external object references --------------------
 
     public constructor(template: EntityBehaviourTemplate,) {
         super(template);
