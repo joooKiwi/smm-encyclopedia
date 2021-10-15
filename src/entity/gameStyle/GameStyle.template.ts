@@ -1,15 +1,16 @@
-import type {BooleanGameTemplate} from '../game/Game.template';
-import type {SMM2NameTemplate}    from '../lang/SMM2Name.template';
+import type {BooleanGameTemplate}      from '../game/Game.template';
+import type {SMM2NameTemplate}         from '../lang/SMM2Name.template';
+import type {TemplateWithNameTemplate} from '../TemplateWithName.template';
 
 /**
  * @template
  */
-export interface GameStyleTemplate {
+export interface GameStyleTemplate
+    extends TemplateWithNameTemplate<SMM2NameTemplate> {
 
     isIn: {
         game: BooleanGameTemplate
     }
-    name: SMM2NameTemplate
 
 }
 

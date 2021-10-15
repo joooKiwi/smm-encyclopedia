@@ -1,17 +1,11 @@
-import type {Name}                                                    from '../lang/name/Name';
-import type {SMM2NameTemplate, SMM2NameTemplateWithOptionalLanguages} from './lang/SMM2Name.template';
+import type {Name}                     from '../lang/name/Name';
+import type {TemplateWithNameTemplate} from './TemplateWithName.template';
 
 import {NameBuilder}     from './lang/NameBuilder';
 import {NameCreator}     from './lang/NameCreator';
 import {TemplateBuilder} from './TemplateBuilder';
 
-interface TemplateWithNameTemplate {
-
-    name: | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages
-
-}
-
-export abstract class TemplateBuilderWithName<T extends TemplateWithNameTemplate, U>
+export abstract class TemplateBuilderWithName<T extends TemplateWithNameTemplate, U, >
     extends TemplateBuilder<T, U> {
 
     //region -------------------- Attributes --------------------
@@ -47,5 +41,6 @@ export abstract class TemplateBuilderWithName<T extends TemplateWithNameTemplate
         return this._build(this._createName());
     }
 
-    protected abstract _build(name: Name): U;
+    protected abstract _build(name: Name,): U;
+
 }

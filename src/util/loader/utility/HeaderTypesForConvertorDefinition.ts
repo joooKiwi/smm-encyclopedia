@@ -1,6 +1,7 @@
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from '../../../entity/limit/EntityLimits.types';
 import type {EntityLimitTypeEnglishNameArray}                                                                                            from '../../../entity/limit/EntityLimitTypes.types';
-import {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours}                                                         from '../../../entity/behaviours/EntityBehaviours.types';
+import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours}                                                    from '../../../entity/behaviours/EntityBehaviours.types';
+import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from '../../../entity/limit/EntityLimits.types';
+import type {SoundEffectCategoriesEnglishNameArray}                                                                                      from '../../../entity/soundEffect/category/SoundEffectCategories.types';
 
 //region -------------------- External types --------------------
 
@@ -64,5 +65,10 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleLimitTypesNames(): | EntityLimitTypeEnglishNameArray | StringConstant
 
     //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Sound effect getter methods --------------------
+
+    get everyPossibleSoundEffectCategoriesNames(): | SoundEffectCategoriesEnglishNameArray | StringConstant
+
+    //endregion -------------------- Sound effect getter methods --------------------
 
 }
