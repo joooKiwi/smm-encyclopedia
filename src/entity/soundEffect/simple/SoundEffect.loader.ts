@@ -8,9 +8,10 @@ import type {PossibleSoundEffectsEnglishName}                                   
 import type {SoundEffect}                                                                                                      from './SoundEffect';
 import type {SoundEffectTemplate}                                                                                              from './SoundEffect.template';
 
-import {CSVLoader}               from '../../../util/loader/CSVLoader';
-import {SoundEffectBuilder}      from './SoundEffect.builder';
-import {HeaderTypesForConvertor} from '../../../util/loader/utility/HeaderTypesForConvertor';
+import {CSVLoader}                 from '../../../util/loader/CSVLoader';
+import {SoundEffectBuilder}        from './SoundEffect.builder';
+import {SoundEffectCategoryLoader} from '../category/SoundEffectCategory.loader';
+import {HeaderTypesForConvertor}   from '../../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -50,21 +51,29 @@ export class SoundEffectLoader
         if (this.#map == null) {
             const references: Map<PossibleSoundEffectsEnglishName, SoundEffect> = new Map();
 
+            //region -------------------- Builder initialisation --------------------
+
+            SoundEffectBuilder.categoriesMap = SoundEffectCategoryLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, SoundEffectBuilder, Headers>(everySoundEffects, convertedContent => new SoundEffectBuilder(TemplateCreator.createTemplate(convertedContent)))
+            const csvLoader = new CSVLoader<PropertiesArray, SoundEffect, Headers>(everySoundEffects, convertedContent => {
+                const content = new SoundEffectBuilder(TemplateCreator.createTemplate(convertedContent)).build();
+                references.set(content.english as PossibleSoundEffectsEnglishName, content,);
+                return content;
+            })
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'category',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectsNames, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleSoundEffectsEnglishName, finalContent.build(),))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "sound effect category" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "sound effect" has been loaded --------------------');// temporary console.log
             console.log(csvLoader.content);// temporary console.log
             this.#map = references;
         }
@@ -76,6 +85,8 @@ export class SoundEffectLoader
 //region -------------------- Template related methods & classes --------------------
 
 class TemplateCreator {
+
+    static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): | SoundEffectTemplate {
         return {
@@ -120,7 +131,7 @@ class TemplateCreator {
                 },
                 japanese: content[19],
                 korean: content[20],
-                greek: content[24],
+                greek: this.#EMPTY_GREEK,
             },
         };
     }

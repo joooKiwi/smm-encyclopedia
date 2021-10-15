@@ -1,19 +1,20 @@
-import type {Name}                from '../../../lang/name/Name';
-import type {SoundEffect}         from './SoundEffect';
-import type {SoundEffectTemplate} from './SoundEffect.template';
+import type {Name}                                     from '../../../lang/name/Name';
+import type {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
+import type {SoundEffect}                              from './SoundEffect';
+import type {SoundEffectTemplate}                      from './SoundEffect.template';
+import type {SoundEffectCategory}                      from '../category/SoundEffectCategory';
 
-import {TemplateBuilderWithName}                  from '../../TemplateBuilderWithName';
-import {SoundEffectContainer}                     from './SoundEffect.container';
-import {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
-import {SoundEffectCategory}                      from '../category/SoundEffectCategory';
-import {SoundEffectPropertyContainer}             from './properties/SoundEffectProperty.container';
+import {TemplateBuilderWithName}      from '../../TemplateBuilderWithName';
+import {SoundEffectContainer}         from './SoundEffect.container';
+import {SoundEffectPropertyContainer} from './properties/SoundEffectProperty.container';
+import {EmptySoundEffectCategory}     from '../category/EmptySoundEffectCategory';
 
 export class SoundEffectBuilder
     extends TemplateBuilderWithName<SoundEffectTemplate, SoundEffect> {
 
     //region -------------------- external object references --------------------
 
-    public static categoriesMap: Map<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
+    public static categoriesMap: ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
 
     //endregion -------------------- external object references --------------------
     //region -------------------- Attributes --------------------
@@ -34,7 +35,11 @@ export class SoundEffectBuilder
     }
 
     private __createCategory() {
-        return SoundEffectBuilder.categoriesMap.get(this.template.properties.category)!;
+        const category = this.template.properties.category;
+
+        return category == null
+            ? EmptySoundEffectCategory.get
+            : SoundEffectBuilder.categoriesMap.get(category)!;
     }
 
     private __createProperty() {
