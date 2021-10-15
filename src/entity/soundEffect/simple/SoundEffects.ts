@@ -26,7 +26,7 @@ export class SoundEffects
     public static readonly PUNCH =                    new SoundEffects('Punch',                       );
     public static readonly OINK =                     new SoundEffects('Oink',                        );
     public static readonly KUH_THUNK =                new SoundEffects('Kuh-thunk!',                  );
-    public static readonly BEEP =                     new SoundEffects('Beep',                        );
+    public static readonly BEEP =                     new SoundEffects('Beep!',                        );
     public static readonly NINJA_ATTACK =             new SoundEffects('Ninja Attack!',               );
     public static readonly ZAP =                      new SoundEffects('Zap!',                        );
 
@@ -38,27 +38,27 @@ export class SoundEffects
     public static readonly AWW =                       new SoundEffects('Aww...',                     );
 
     public static readonly FIREWORKS =                 new SoundEffects('Fireworks',                  );
-    public static readonly _FESTIVE_MUSIC_ =           new SoundEffects('(Festive Music)',            );
-    public static readonly _RAVE_MUSIC_ =              new SoundEffects('(Rave Music)',               );
     public static readonly AUDIENCE =                  new SoundEffects('Audience',                   );
     public static readonly SCATTING =                  new SoundEffects('Scatting',                   );
-    public static readonly _CALM_SILENCE_ =            new SoundEffects('(Calm Silence)',             );
+    public static readonly BIRD_CHIRPING =             new SoundEffects('Bird\'s Chirping',           );
     public static readonly SPARK =                     new SoundEffects('Spark',                      );
     public static readonly TRADITIONAL =               new SoundEffects('Traditional',                );
     public static readonly ELECTRIC_GUITAR =           new SoundEffects('Electric Guitar',            );
-    public static readonly _DISTORTION_ =              new SoundEffects('(Distortion)',               );
+    public static readonly DISTORTION =                new SoundEffects('Distortion',                 );
     public static readonly TWISTY_TURNY =              new SoundEffects('Twisty Turny',               );
     public static readonly WOOZY =                     new SoundEffects('Woozy',                      );
-    public static readonly _TELEPHONE_ =               new SoundEffects('(Telephone)',                );
+    public static readonly TELEPHONE =                 new SoundEffects('Telephone',                  );
     public static readonly FLASH =                     new SoundEffects('Flash',                      );
 
     public static readonly PEACEFUL =                  new SoundEffects('Peaceful',                   );
     public static readonly HORROR =                    new SoundEffects('Horror',                     );
     public static readonly BONUS_MUSIC =               new SoundEffects('Bonus Music',                );
+    public static readonly FESTIVE_MUSIC =             new SoundEffects('Festive Music',              );
+    public static readonly RAVE_MUSIC =                new SoundEffects('Rave Music',                 );
     public static readonly HEARTBEAT =                 new SoundEffects('Heartbeat',                  );
     public static readonly SILENCE =                   new SoundEffects('Silence',                    );
-    public static readonly _BIRD_TWEETING_NOISE_ =     new SoundEffects('(Bird Tweeting Noise)',      );
-    public static readonly _CHICKEN_S_CLUCKING_NOISE = new SoundEffects('(Chicken\'s Clucking Noise)',);
+    public static readonly BIRD_TWEETING_NOISE =       new SoundEffects('Bird\'s Tweeting Noise',     );
+    public static readonly CHICKEN_CLUCKING_NOISE =    new SoundEffects('Chicken\'s Clucking Noise',  );
     public static readonly BOSS_MUSIC =                new SoundEffects('Boss Music',                 );
     public static readonly FINAL_BOSS =                new SoundEffects('Final Boss',                 );
     public static readonly SUPER_MARIO_KART =          new SoundEffects('Super Mario Kart',           );
@@ -130,12 +130,12 @@ export class SoundEffects
             this.DING_DONG, this.BZZZT, this.GLORY, this.DOOM, this.YEAH,
             this.AWW,
 
-            this.FIREWORKS, this._FESTIVE_MUSIC_, this._RAVE_MUSIC_, this.AUDIENCE, this.SCATTING,
-            this._CALM_SILENCE_, this.SPARK, this.TRADITIONAL, this.ELECTRIC_GUITAR, this._DISTORTION_,
-            this.TWISTY_TURNY, this.WOOZY, this._TELEPHONE_, this.FLASH,
+            this.FIREWORKS, this.AUDIENCE, this.SCATTING, this.BIRD_CHIRPING, this.SPARK,
+            this.TRADITIONAL, this.ELECTRIC_GUITAR, this.DISTORTION, this.TWISTY_TURNY, this.WOOZY,
+            this.TELEPHONE, this.FLASH,
 
-            this.PEACEFUL, this.HORROR, this.BONUS_MUSIC, this.HEARTBEAT, this.SILENCE,
-            this._BIRD_TWEETING_NOISE_, this._CHICKEN_S_CLUCKING_NOISE,
+            this.PEACEFUL, this.HORROR, this.BONUS_MUSIC, this.FESTIVE_MUSIC, this.RAVE_MUSIC,
+            this.HEARTBEAT, this.SILENCE, this.BIRD_TWEETING_NOISE, this.CHICKEN_CLUCKING_NOISE,
             this.BOSS_MUSIC, this.FINAL_BOSS,
             this.SUPER_MARIO_KART, this.SUPER_MARIO_64, this.SUPER_MARIO_SUNSHINE, this.SUPER_MARIO_GALAXY,
         ];

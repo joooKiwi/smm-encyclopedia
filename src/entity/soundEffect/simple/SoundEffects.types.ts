@@ -19,12 +19,12 @@ export type SoundEffectsNames =
     | 'DING_DONG' | 'BZZZT' | 'GLORY' | 'DOOM' | 'YEAH'
     | 'AWW'
 
-    | 'FIREWORKS' | '_FESTIVE_MUSIC_' | '_RAVE_MUSIC_' | 'AUDIENCE' | 'SCATTING'
-    | '_CALM_SILENCE_' | 'SPARK' | 'TRADITIONAL' | 'ELECTRIC_GUITAR' | '_DISTORTION_'
-    | 'TWISTY_TURNY' | 'WOOZY' | '_TELEPHONE_' | 'FLASH'
+    | 'FIREWORKS' | 'AUDIENCE' | 'SCATTING'
+    | 'BIRD_CHIRPING' | 'SPARK' | 'TRADITIONAL' | 'ELECTRIC_GUITAR' | 'DISTORTION'
+    | 'TWISTY_TURNY' | 'WOOZY' | 'TELEPHONE' | 'FLASH'
 
-    | 'PEACEFUL' | 'HORROR' | 'BONUS_MUSIC' | 'HEARTBEAT' | 'SILENCE'
-    | '_BIRD_TWEETING_NOISE_' | '_CHICKEN_S_CLUCKING_NOISE'
+    | 'PEACEFUL' | 'HORROR' | 'BONUS_MUSIC' | 'FESTIVE_MUSIC' | 'RAVE_MUSIC'
+    | 'HEARTBEAT' | 'SILENCE' | 'BIRD_TWEETING_NOISE' | 'CHICKEN_CLUCKING_NOISE'
     | 'BOSS_MUSIC' | 'FINAL_BOSS'
     | `SUPER_MARIO_${| 'KART' | '64' | 'SUNSHINE' | 'GALAXY'}`;
 
@@ -33,18 +33,18 @@ export type PossibleSoundEffectsEnglishName =
     | 'Cheer' | 'Baby' | 'Party Popper' | 'Applause' | 'Near Miss'
 
     | 'Clatter' | 'Drama!' | 'Kick' | 'Jump' | 'Honk Honk'
-    | 'Punch' | 'Oink' | 'Kuh-thunk!' | 'Beep' | 'Ninja Attack!'
+    | 'Punch' | 'Oink' | 'Kuh-thunk!' | 'Beep!' | 'Ninja Attack!'
     | 'Zap!'
 
     | 'Ding Dong' | 'Bzzzt!' | 'Glory' | 'Doom' | 'Yeah!'
     | 'Aww...'
 
-    | 'Fireworks' | '(Festive Music)' | '(Rave Music)' | 'Audience' | 'Scatting'
-    | '(Calm Silence)' | 'Spark' | 'Traditional' | 'Electric Guitar' | '(Distortion)'
-    | 'Twisty Turny' | 'Woozy' | '(Telephone)' | 'Flash'
+    | 'Fireworks' | 'Audience' | 'Scatting'
+    | 'Bird\'s Chirping' | 'Spark' | 'Traditional' | 'Electric Guitar' | 'Distortion'
+    | 'Twisty Turny' | 'Woozy' | 'Telephone' | 'Flash'
 
-    | 'Peaceful' | 'Horror' | 'Bonus Music' | 'Heartbeat' | 'Silence'
-    | '(Bird Tweeting Noise)' | '(Chicken\'s Clucking Noise)'
+    | 'Peaceful' | 'Horror' | 'Bonus Music' | 'Festive Music' | 'Rave Music'
+    | 'Heartbeat' | 'Silence' | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`
     | 'Boss Music' | 'Final Boss'
     | `Super Mario ${| 'Kart' | '64' | 'Sunshine' | 'Galaxy'}`;
 
@@ -67,12 +67,12 @@ export type SoundEffectsArray<T = SoundEffects, > = readonly [
     SimpleSoundEffects<T>['DING_DONG'], SimpleSoundEffects<T>['BZZZT'], SimpleSoundEffects<T>['GLORY'], SimpleSoundEffects<T>['DOOM'], SimpleSoundEffects<T>['YEAH'],
     SimpleSoundEffects<T>['AWW'],
 
-    SimpleSoundEffects<T>['FIREWORKS'], SimpleSoundEffects<T>['_FESTIVE_MUSIC_'], SimpleSoundEffects<T>['_RAVE_MUSIC_'], SimpleSoundEffects<T>['AUDIENCE'], SimpleSoundEffects<T>['SCATTING'],
-    SimpleSoundEffects<T>['_CALM_SILENCE_'], SimpleSoundEffects<T>['SPARK'], SimpleSoundEffects<T>['TRADITIONAL'], SimpleSoundEffects<T>['ELECTRIC_GUITAR'], SimpleSoundEffects<T>['_DISTORTION_'],
-    SimpleSoundEffects<T>['TWISTY_TURNY'], SimpleSoundEffects<T>['WOOZY'], SimpleSoundEffects<T>['_TELEPHONE_'], SimpleSoundEffects<T>['FLASH'],
+    SimpleSoundEffects<T>['FIREWORKS'], SimpleSoundEffects<T>['AUDIENCE'], SimpleSoundEffects<T>['SCATTING'],
+    SimpleSoundEffects<T>['BIRD_CHIRPING'], SimpleSoundEffects<T>['SPARK'], SimpleSoundEffects<T>['TRADITIONAL'], SimpleSoundEffects<T>['ELECTRIC_GUITAR'], SimpleSoundEffects<T>['DISTORTION'],
+    SimpleSoundEffects<T>['TWISTY_TURNY'], SimpleSoundEffects<T>['WOOZY'], SimpleSoundEffects<T>['TELEPHONE'], SimpleSoundEffects<T>['FLASH'],
 
-    SimpleSoundEffects<T>['PEACEFUL'], SimpleSoundEffects<T>['HORROR'], SimpleSoundEffects<T>['BONUS_MUSIC'], SimpleSoundEffects<T>['HEARTBEAT'], SimpleSoundEffects<T>['SILENCE'],
-    SimpleSoundEffects<T>['_BIRD_TWEETING_NOISE_'], SimpleSoundEffects<T>['_CHICKEN_S_CLUCKING_NOISE'],
+    SimpleSoundEffects<T>['PEACEFUL'], SimpleSoundEffects<T>['HORROR'], SimpleSoundEffects<T>['BONUS_MUSIC'], SimpleSoundEffects<T>['FESTIVE_MUSIC'], SimpleSoundEffects<T>['RAVE_MUSIC'],
+    SimpleSoundEffects<T>['HEARTBEAT'], SimpleSoundEffects<T>['SILENCE'], SimpleSoundEffects<T>['BIRD_TWEETING_NOISE'], SimpleSoundEffects<T>['CHICKEN_CLUCKING_NOISE'],
     SimpleSoundEffects<T>['BOSS_MUSIC'], SimpleSoundEffects<T>['FINAL_BOSS'],
     SimpleSoundEffects<T>['SUPER_MARIO_KART'], SimpleSoundEffects<T>['SUPER_MARIO_64'], SimpleSoundEffects<T>['SUPER_MARIO_SUNSHINE'], SimpleSoundEffects<T>['SUPER_MARIO_GALAXY'],
 
