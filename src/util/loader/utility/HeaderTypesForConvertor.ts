@@ -1,11 +1,12 @@
 import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
 import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
 
-import {EntityBehaviours}     from '../../../entity/behaviours/EntityBehaviours';
-import {EntityCategoryLoader} from '../../../entity/category/EntityCategoryLoader';
-import {EntityLimits}         from '../../../entity/limit/EntityLimits';
-import {EntityLimitTypes}     from '../../../entity/limit/EntityLimitTypes';
-
+import {EntityBehaviours}                      from '../../../entity/behaviours/EntityBehaviours';
+import {EntityCategoryLoader}                  from '../../../entity/category/EntityCategoryLoader';
+import {EntityLimits}                          from '../../../entity/limit/EntityLimits';
+import {EntityLimitTypes}                      from '../../../entity/limit/EntityLimitTypes';
+import {SoundEffectCategories}                 from '../../../entity/soundEffect/category/SoundEffectCategories';
+import {SoundEffectCategoriesEnglishNameArray} from '../../../entity/soundEffect/category/SoundEffectCategories.types';
 
 /**
  * @singleton
@@ -34,6 +35,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyLimitsNamesOrUnknown?: EveryLimitsNamesOrUnknown;
 
     #everyPossibleLimitTypesNames?: EntityLimitTypeEnglishNameArray;
+
+    #everyPossibleSoundEffectCategoriesNames?: SoundEffectCategoriesEnglishNameArray;
 
     //endregion -------------------- Attributes --------------------
 
@@ -102,6 +105,13 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     public get everyPossibleLimitTypesNames() {
         return this.#everyPossibleLimitTypesNames ??= EntityLimitTypes.everyEnglishNames;
+    }
+
+    //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleSoundEffectCategoriesNames() {
+        return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
@@ -183,6 +193,13 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Entity limit type getter methods --------------------
 
     public get everyPossibleLimitTypesNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleSoundEffectCategoriesNames(): StringConstant {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
