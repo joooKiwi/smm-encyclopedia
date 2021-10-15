@@ -1,3 +1,5 @@
+import './AbstractApp.scss';
+
 import {Component} from 'react';
 
 import type {ReactComponent} from '../util/react/ReactComponent';

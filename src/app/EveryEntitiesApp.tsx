@@ -1,13 +1,13 @@
 import './EveryEntitiesApp.scss';
 
 import type {DebugEntityReferences} from '../entity/simple/Entity.loader';
-import {EntityLoader}               from '../entity/simple/Entity.loader';
 import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent            from '../entity/theme/CourseTheme.component';
 import EditorLimitComponent            from '../entity/limit/EditorLimit.component';
+import {EntityLoader}                  from '../entity/simple/Entity.loader';
 import GameComponent                   from '../entity/game/Game.component';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import GameStyleComponent              from '../entity/gameStyle/GameStyle.component';

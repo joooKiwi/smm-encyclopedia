@@ -1,5 +1,3 @@
-import './EveryThemesApp.scss';
-
 import type {CourseAndWorldTheme} from '../entity/theme/Themes.types';
 import type {SingleTableContent}  from './tools/table/Table.types';
 

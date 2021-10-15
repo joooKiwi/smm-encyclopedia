@@ -1,5 +1,3 @@
-import './EveryThemesApp.scss';
-
 import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
