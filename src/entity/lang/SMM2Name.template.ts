@@ -56,3 +56,5 @@ export interface SMM2NameTemplateWithOptionalLanguages
     extends SMM2NameTemplate<| string | null, | string | null> {
 
 }
+
+export type PossibleSMM2NameTemplate = | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages;

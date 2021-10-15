@@ -4,13 +4,15 @@ import type {EntityReferencesTemplate}                                          
 import type {IsInPropertyTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../properties/IsInProperty.template';
 import type {LimitPropertyTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../properties/limit/LimitProperty.template';
 import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType}                                                                                                                                                                                                                                                             from '../properties/limit/Loader.types';
-import type {PossibleEntityCategoriesName}          from '../category/EntityCategories.types';
-import type {SMM2NameTemplateWithOptionalLanguages} from '../lang/SMM2Name.template';
+import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../category/EntityCategories.types';
+import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../lang/SMM2Name.template';
+import type {TemplateWithNameTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../TemplateWithName.template';
 
 /**
  * @template
  */
-export interface EntityTemplate {
+export interface EntityTemplate
+    extends TemplateWithNameTemplate<EntityNameTemplate> {
 
     properties: {
         editorType: PossibleEntityType
@@ -111,8 +113,6 @@ export interface EntityTemplate {
 
         reference: EntityReferencesTemplate
     }
-
-    name: EntityNameTemplate
 
 }
 

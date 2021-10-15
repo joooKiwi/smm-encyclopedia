@@ -1,6 +1,6 @@
 import type {Builder} from '../util/Builder';
 
-export abstract class TemplateBuilder<T, U>
+export abstract class TemplateBuilder<T, U, >
     implements Builder<U> {
 
     //region -------------------- Attributes --------------------
