@@ -2,6 +2,7 @@ import type {EntityLimitTypeEnglishNameArray}                                   
 import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours}                                                    from '../../../entity/behaviours/EntityBehaviours.types';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from '../../../entity/limit/EntityLimits.types';
 import type {SoundEffectCategoriesEnglishNameArray}                                                                                      from '../../../entity/soundEffect/category/SoundEffectCategories.types';
+import {SoundEffectsEnglishNameArray}                                                                                                    from '../../../entity/soundEffect/simple/SoundEffects.types';
 
 //region -------------------- External types --------------------
 
@@ -66,6 +67,8 @@ export interface HeaderTypesForConvertorDefinition {
 
     //endregion -------------------- Entity limit type getter methods --------------------
     //region -------------------- Sound effect getter methods --------------------
+
+    get everyPossibleSoundEffectsNames(): | SoundEffectsEnglishNameArray | StringConstant
 
     get everyPossibleSoundEffectCategoriesNames(): | SoundEffectCategoriesEnglishNameArray | StringConstant
 
