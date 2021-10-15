@@ -2,7 +2,7 @@ import type {Name}                        from '../../../lang/name/Name';
 import type {SoundEffectCategory}         from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate} from './SoundEffectCategory.template';
 
-import {SoundEffectCategoryContainer} from './SoundEffectCategoryContainer';
+import {SoundEffectCategoryContainer} from './SoundEffectCategory.container';
 import {TemplateBuilderWithName}      from '../../TemplateBuilderWithName';
 
 export class SoundEffectCategoryBuilder
