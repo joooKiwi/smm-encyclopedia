@@ -3,10 +3,9 @@ import everySoundEffects from '../../../resources/Sound effects.csv';
 import type {HeadersWithOptionalLanguages as LanguagesHeaders, PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../../lang/Loader.types';
 import type {Loader}                                                                                                           from '../../../util/loader/Loader';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                   from '../../game/Loader.types';
-import type {PossibleSoundEffectCategoriesEnglishName}                                                                         from '../category/SoundEffectCategories.types';
+import type {PossibleSoundEffectCategoryType, SoundEffectTemplate}                                                             from './SoundEffect.template';
 import type {PossibleSoundEffectsEnglishName}                                                                                  from './SoundEffects.types';
 import type {SoundEffect}                                                                                                      from './SoundEffect';
-import type {SoundEffectTemplate}                                                                                              from './SoundEffect.template';
 
 import {CSVLoader}                 from '../../../util/loader/CSVLoader';
 import {SoundEffectBuilder}        from './SoundEffect.builder';
@@ -22,7 +21,7 @@ type Headers =
 //region -------------------- Exclusive properties --------------------
 
 type ExclusivePropertiesArray = [
-    category: | PossibleSoundEffectCategoriesEnglishName | null
+    category: PossibleSoundEffectCategoryType,
 ];
 
 //endregion -------------------- Exclusive properties --------------------
