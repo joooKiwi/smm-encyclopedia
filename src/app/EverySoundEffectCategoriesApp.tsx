@@ -12,10 +12,11 @@ import Table                           from './tools/table/Table';
 
 /**
  * @reactComponent
- * @todo create the app
  */
 export default class EverySoundEffectCategoriesApp
     extends AbstractApp {
+
+    //region -------------------- Attributes & getter methods --------------------
 
     #map?: ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
 
@@ -26,6 +27,9 @@ export default class EverySoundEffectCategoriesApp
     protected get enum() {
         return SoundEffectCategories.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -41,6 +45,8 @@ export default class EverySoundEffectCategoriesApp
 
         return content;
     }
+
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.

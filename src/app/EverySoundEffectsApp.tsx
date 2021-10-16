@@ -18,9 +18,9 @@ import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextCompo
 export default class EverySoundEffectsApp
     extends AbstractApp {
 
+    //region -------------------- Attributes & getter methods --------------------
 
     #map?: ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect>;
-
 
     protected get map() {
         return this.#map ??= SoundEffectLoader.get.load();
@@ -29,6 +29,9 @@ export default class EverySoundEffectsApp
     protected get enum() {
         return SoundEffects.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -46,6 +49,8 @@ export default class EverySoundEffectsApp
         }
         return content;
     }
+
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.

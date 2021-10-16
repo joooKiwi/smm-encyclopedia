@@ -20,6 +20,9 @@ type PropertiesArray = [
 
 //endregion -------------------- CSV array related types --------------------
 
+/**
+ * @singleton
+ */
 export class SoundEffectCategoryLoader
     implements Loader<ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>> {
 
@@ -33,24 +36,27 @@ export class SoundEffectCategoryLoader
         return this.#instance ??= new this();
     }
 
+
     public load(): ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory> {
         if (this.#map == null) {
-            const references: Map<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory> = new Map();
+            const references = new Map<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>();
 
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, SoundEffectCategoryBuilder, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
+            new CSVLoader<PropertiesArray, SoundEffectCategory, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleSoundEffectCategoriesEnglishName, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleSoundEffectCategoriesEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
             console.log('-------------------- "sound effect category" has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- "sound effect category" has been loaded --------------------');// temporary console.log
+
             this.#map = references;
         }
         return this.#map;

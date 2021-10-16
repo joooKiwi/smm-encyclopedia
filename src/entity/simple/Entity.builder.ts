@@ -5,6 +5,7 @@ import type {Entity}                                                            
 import type {EntityCategory}                                                                                                from '../category/EntityCategory';
 import type {EntityLink}                                                                                                    from '../entityTypes';
 import type {EntityTemplate}                                                                                                from './Entity.template';
+import type {PossibleEntityCategoriesName}                                                                                  from '../category/EntityCategories.types';
 
 import {EntityLimits}                  from '../limit/EntityLimits';
 import {EntityReferencesContainer}     from '../properties/EntityReferences.container';
@@ -24,7 +25,7 @@ export class EntityBuilder
     //region -------------------- external object references --------------------
 
     public static references: Map<string, DebugEntityReferences>;
-    public static categoriesMap: Map<string, EntityCategory>;
+    public static categoriesMap: ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>;
 
     //endregion -------------------- external object references --------------------
     //region -------------------- Attributes --------------------

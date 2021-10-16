@@ -1,6 +1,7 @@
-import type {Name}                        from '../../../lang/name/Name';
-import type {SoundEffectCategory}         from './SoundEffectCategory';
-import type {SoundEffectCategoryTemplate} from './SoundEffectCategory.template';
+import type {Name}                                     from '../../../lang/name/Name';
+import type {PossibleSoundEffectCategoriesEnglishName} from './SoundEffectCategories.types';
+import type {SoundEffectCategory}                      from './SoundEffectCategory';
+import type {SoundEffectCategoryTemplate}              from './SoundEffectCategory.template';
 
 import {SoundEffectCategoryContainer} from './SoundEffectCategory.container';
 import {TemplateBuilderWithName}      from '../../TemplateBuilderWithName';
@@ -10,7 +11,7 @@ export class SoundEffectCategoryBuilder
 
     //region -------------------- Attributes --------------------
 
-    static readonly #templateMap: Map<string, SoundEffectCategoryTemplate> = new Map();
+    static readonly #templateMap: Map<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategoryTemplate> = new Map();
 
     //endregion -------------------- Attributes --------------------
 

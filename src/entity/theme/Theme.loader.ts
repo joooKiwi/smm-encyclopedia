@@ -1,6 +1,6 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseAndWorldTheme}                                                    from './Themes.types';
+import type {CourseAndWorldTheme, PossibleTheme}                                     from './Themes.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {Loader}                                                                 from '../../util/loader/Loader';
@@ -33,10 +33,10 @@ type PropertiesArray = [
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link Themes}>
  */
 export class ThemeLoader
-    implements Loader<ReadonlyMap<string, CourseAndWorldTheme>> {
+    implements Loader<ReadonlyMap<PossibleTheme, CourseAndWorldTheme>> {
 
     static #instance?: ThemeLoader;
-    #map?: Map<string, CourseAndWorldTheme>;
+    #map?: Map<PossibleTheme, CourseAndWorldTheme>;
 
     private constructor() {
     }
@@ -46,9 +46,9 @@ export class ThemeLoader
     }
 
 
-    public load() {
+    public load(): ReadonlyMap<PossibleTheme, CourseAndWorldTheme> {
         if (this.#map == null) {
-            const references: Map<string, CourseAndWorldTheme> = new Map();
+            const references = new Map<PossibleTheme, CourseAndWorldTheme>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -57,20 +57,22 @@ export class ThemeLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
+            new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean(
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
                 )
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleTheme, finalContent.build(),))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
             console.log('-------------------- theme has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }

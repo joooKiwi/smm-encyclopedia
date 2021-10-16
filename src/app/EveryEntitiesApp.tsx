@@ -21,12 +21,16 @@ import TimeComponent                   from '../entity/time/Time.component';
 export default class EveryEntitiesApp
     extends AbstractApp {
 
-    #entities?: Map<string, DebugEntityReferences>;
+    //region -------------------- Attributes & getter methods --------------------
+
+    #map?: ReadonlyMap<string, DebugEntityReferences>;
 
     protected get map() {
-        return this.#entities ??= EntityLoader.get.load();
+        return this.#map ??= EntityLoader.get.load();
     }
 
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -48,6 +52,8 @@ export default class EveryEntitiesApp
         }
         return content;
     }
+
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         console.log(this.map);

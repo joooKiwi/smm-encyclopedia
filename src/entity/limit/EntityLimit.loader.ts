@@ -52,10 +52,10 @@ type PropertiesArray = [
  * @recursiveReference<{@link EntityLimits}>
  */
 export class EntityLimitLoader
-    implements Loader<ReadonlyMap<string, EntityLimit>> {
+    implements Loader<ReadonlyMap<PossibleEntityLimits, EntityLimit>> {
 
     static #instance?: EntityLimitLoader;
-    #map?: Map<string, EntityLimit>;
+    #map?: Map<PossibleEntityLimits, EntityLimit>;
 
     private constructor() {
     }
@@ -65,9 +65,9 @@ export class EntityLimitLoader
     }
 
 
-    public load(): Map<string, EntityLimit> {
+    public load(): ReadonlyMap<PossibleEntityLimits, EntityLimit> {
         if (this.#map == null) {
-            const references: Map<PossibleEntityLimits, EntityLimit> = new Map();
+            const references = new Map<PossibleEntityLimits, EntityLimit>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -89,13 +89,14 @@ export class EntityLimitLoader
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.nameContainer.english as PossibleEntityLimits, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEntityLimits, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- entity limit has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "entity limit" has been loaded --------------------');// temporary console.log
             console.log(references);// temporary console.log
+            console.log('-------------------- "entity limit" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }

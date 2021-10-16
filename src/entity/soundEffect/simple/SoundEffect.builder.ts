@@ -1,5 +1,6 @@
 import type {Name}                                     from '../../../lang/name/Name';
 import type {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
+import type {PossibleSoundEffectsEnglishName}          from './SoundEffects.types';
 import type {SoundEffect}                              from './SoundEffect';
 import type {SoundEffectTemplate}                      from './SoundEffect.template';
 import type {SoundEffectCategory}                      from '../category/SoundEffectCategory';
@@ -19,7 +20,7 @@ export class SoundEffectBuilder
     //endregion -------------------- external object references --------------------
     //region -------------------- Attributes --------------------
 
-    static readonly #templateMap: Map<string, SoundEffectTemplate> = new Map();
+    static readonly #templateMap: Map<PossibleSoundEffectsEnglishName, SoundEffectTemplate> = new Map();
 
     //endregion -------------------- Attributes --------------------
 

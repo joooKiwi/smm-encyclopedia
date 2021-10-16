@@ -26,7 +26,7 @@ export class EntityLimitBuilder
 
     public static references: Map<PossibleEntityLimits | PossibleAlternativeEntityLimits, EntityLimit>;
 
-    public static entitiesMap: Map<string, DebugEntityReferences>;
+    public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
     //endregion -------------------- external object references --------------------
 

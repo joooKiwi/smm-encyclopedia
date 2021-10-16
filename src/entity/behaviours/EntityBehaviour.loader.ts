@@ -36,10 +36,10 @@ type PropertiesArray = [
  * @recursiveReference<{@link EntityBehaviours}>
  */
 export class EntityBehaviourLoader
-    implements Loader<ReadonlyMap<string, EntityBehaviour>> {
+    implements Loader<ReadonlyMap<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>> {
 
     static #instance?: EntityBehaviourLoader;
-    #map?: Map<string, EntityBehaviour>;
+    #map?: Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>;
 
     private constructor() {
     }
@@ -48,9 +48,9 @@ export class EntityBehaviourLoader
         return this.#instance ??= new this();
     }
 
-    public load() {
+    public load(): ReadonlyMap<PossibleTranslationKeyEntityBehaviours, EntityBehaviour> {
         if (this.#map == null) {
-            const references: Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour> = new Map();
+            const references = new Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -60,7 +60,7 @@ export class EntityBehaviourLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, EntityBehaviour, Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityBehaviour, Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(TemplateCreator.createTemplate(convertedContent)).build())
                 .setDefaultConversion('boolean')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleBehavioursAcronyms, 'acronym',)
@@ -74,8 +74,9 @@ export class EntityBehaviourLoader
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log('-------------------- "game style" has been loaded --------------------');// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- "game style" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }

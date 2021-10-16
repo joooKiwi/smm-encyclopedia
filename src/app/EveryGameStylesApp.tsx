@@ -1,4 +1,5 @@
-import type {SingleTableContent} from './tools/table/Table.types';
+import type {PossibleGameStyleName} from '../entity/gameStyle/GameStyles.types';
+import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -17,15 +18,20 @@ import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextCompo
 export default class EveryGameStylesApp
     extends AbstractApp {
 
-    #themes?: Map<string, GameStyle>;
+    //region -------------------- Attributes & getter methods --------------------
+
+    #map?: ReadonlyMap<PossibleGameStyleName, GameStyle>;
 
     protected get map() {
-        return this.#themes ??= GameStyleLoader.get.load();
+        return this.#map ??= GameStyleLoader.get.load();
     }
 
     protected get enum() {
         return GameStyles.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -42,6 +48,8 @@ export default class EveryGameStylesApp
         }
         return content;
     }
+
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.

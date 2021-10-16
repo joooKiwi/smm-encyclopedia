@@ -34,6 +34,9 @@ type PropertiesArray = [
 
 //endregion -------------------- CSV array related types --------------------
 
+/**
+ * @singleton
+ */
 export class SoundEffectLoader
     implements Loader<ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect>> {
 
@@ -47,9 +50,10 @@ export class SoundEffectLoader
         return this.#instance ??= new this();
     }
 
+
     public load(): ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect> {
         if (this.#map == null) {
-            const references: Map<PossibleSoundEffectsEnglishName, SoundEffect> = new Map();
+            const references = new Map<PossibleSoundEffectsEnglishName, SoundEffect>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -58,23 +62,21 @@ export class SoundEffectLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, SoundEffect, Headers>(everySoundEffects, convertedContent => {
-                const content = new SoundEffectBuilder(TemplateCreator.createTemplate(convertedContent)).build();
-                references.set(content.english as PossibleSoundEffectsEnglishName, content,);
-                return content;
-            })
+            new CSVLoader<PropertiesArray, SoundEffect, Headers>(everySoundEffects, convertedContent => new SoundEffectBuilder(TemplateCreator.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'category',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectsNames, 'english',)
 
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleSoundEffectsEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
             console.log('-------------------- "sound effect" has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log(references);// temporary console.log
+
             this.#map = references;
         }
         return this.#map;

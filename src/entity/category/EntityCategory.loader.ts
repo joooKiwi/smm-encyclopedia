@@ -4,6 +4,7 @@ import type {EntityCategory}                                                    
 import type {EntityCategoryTemplate}                                                 from './EntityCategory.template';
 import type {Loader}                                                                 from '../../util/loader/Loader';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {PossibleEntityCategoriesName}                                           from './EntityCategories.types';
 
 import {CSVLoader}             from '../../util/loader/CSVLoader';
 import {EntityCategoryBuilder} from './EntityCategory.builder';
@@ -24,10 +25,10 @@ type PropertiesArray = [
  * @singleton
  */
 export class EntityCategoryLoader
-    implements Loader<ReadonlyMap<string, EntityCategory>> {
+    implements Loader<ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>> {
 
     static #instance?: EntityCategoryLoader;
-    #map?: Map<string, EntityCategory>;
+    #map?: Map<PossibleEntityCategoriesName, EntityCategory>;
 
     private constructor() {
     }
@@ -37,22 +38,23 @@ export class EntityCategoryLoader
     }
 
 
-    public load() {
+    public load(): ReadonlyMap<PossibleEntityCategoriesName, EntityCategory> {
         if (this.#map == null) {
-            const references: Map<string, EntityCategory> = new Map();
+            const references = new Map<PossibleEntityCategoriesName, EntityCategory>();
 
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, EntityCategoryBuilder, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)))
+            new CSVLoader<PropertiesArray, EntityCategory, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEntityCategoriesName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- entity category has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log('-------------------- "entity category" has been loaded --------------------');// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- "entity category" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }

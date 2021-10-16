@@ -6,9 +6,10 @@ import type {GameStyleTemplate}                                                 
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
-import {CSVLoader}        from '../../util/loader/CSVLoader';
-import {EntityLoader}     from '../simple/Entity.loader';
-import {GameStyleBuilder} from './GameStyle.builder';
+import {CSVLoader}             from '../../util/loader/CSVLoader';
+import {EntityLoader}          from '../simple/Entity.loader';
+import {GameStyleBuilder}      from './GameStyle.builder';
+import {PossibleGameStyleName} from './GameStyles.types';
 
 //region -------------------- CSV array related types --------------------
 
@@ -27,10 +28,10 @@ type PropertiesArray = [
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyles}>
  */
 export class GameStyleLoader
-    implements Loader<ReadonlyMap<string, GameStyle>> {
+    implements Loader<ReadonlyMap<PossibleGameStyleName, GameStyle>> {
 
     static #instance?: GameStyleLoader;
-    #map?: Map<string, GameStyle>;
+    #map?: Map<PossibleGameStyleName, GameStyle>;
 
     private constructor() {
     }
@@ -40,9 +41,9 @@ export class GameStyleLoader
     }
 
 
-    public load() {
+    public load(): ReadonlyMap<PossibleGameStyleName, GameStyle> {
         if (this.#map == null) {
-            const references: Map<string, GameStyle> = new Map();
+            const references = new Map<PossibleGameStyleName, GameStyle>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -51,17 +52,19 @@ export class GameStyleLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, GameStyleBuilder, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)))
+            new CSVLoader<PropertiesArray, GameStyle, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference, finalContent.build(),))
+
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleGameStyleName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- game style has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log('-------------------- "game style" has been loaded --------------------');// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- "game style" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }
