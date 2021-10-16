@@ -51,6 +51,11 @@ export type EmptyIsInPropertyName = 'Empty "is in property"';
 export type EmptyEntityReferenceName = 'Empty entity reference';
 
 //endregion -------------------- Entity property types --------------------
+//region -------------------- Sound effect category types --------------------
+
+export type EmptySoundEffectCategoryName = 'Empty sound effect category';
+
+//endregion -------------------- Sound effect category types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -65,6 +70,8 @@ export type EveryPossibleEmptyName =
 
     | EmptyNameName
 
-    | EmptyIsInPropertyName | EmptyEntityReferenceName;
+    | EmptyIsInPropertyName | EmptyEntityReferenceName
+
+    | EmptySoundEffectCategoryName;
 
 //endregion -------------------- Empty names types --------------------

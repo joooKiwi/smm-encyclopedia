@@ -9,19 +9,20 @@ import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
 import {GameStyleContainer}      from './GameStyle.container';
 import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
+import {PossibleGameStyleName}   from './GameStyles.types';
 
 export class GameStyleBuilder
     extends TemplateBuilderWithName<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
-    //region ---------- external object references ----------
+    //region -------------------- external object references --------------------
 
-    public static entitiesMap: Map<string, DebugEntityReferences>;
+    public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
-    //endregion ---------- external object references ----------
+    //endregion -------------------- external object references --------------------
     //region -------------------- Attributes --------------------
 
-    static readonly #templateMap: Map<string, GameStyleTemplate> = new Map();
+    static readonly #templateMap: Map<PossibleGameStyleName, GameStyleTemplate> = new Map();
 
     //endregion -------------------- Attributes --------------------
 

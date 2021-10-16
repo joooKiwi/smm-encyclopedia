@@ -1,5 +1,6 @@
-import type {EntityLimit}        from '../entity/limit/EntityLimit';
-import type {SingleTableContent} from './tools/table/Table.types';
+import type {EntityLimit}          from '../entity/limit/EntityLimit';
+import type {PossibleEntityLimits} from '../entity/limit/EntityLimits.types';
+import type {SingleTableContent}   from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -17,16 +18,20 @@ import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 export default class EveryLimitsApp
     extends AbstractApp {
 
-    #limits?: Map<string, EntityLimit>;
+    //region -------------------- Attributes & getter methods --------------------
 
+    #map?: ReadonlyMap<PossibleEntityLimits, EntityLimit>;
 
     protected get map() {
-        return this.#limits ??= EntityLimitLoader.get.load();
+        return this.#map ??= EntityLimitLoader.get.load();
     }
 
     protected get enum() {
         return EntityLimits.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     private static __getAcronym(entityLimit: EntityLimit,): '' | EntityLimit['acronym'] | `${EntityLimit['acronym']} / ${EntityLimit['alternativeAcronym']}` {
         return entityLimit.alternativeAcronym == null
@@ -54,6 +59,8 @@ export default class EveryLimitsApp
         }
         return content;
     }
+
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         return <Table

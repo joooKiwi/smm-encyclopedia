@@ -1,6 +1,5 @@
-import './EveryThemesApp.scss';
-
-import type {SingleTableContent} from './tools/table/Table.types';
+import type {PossibleEntityCategoriesName} from '../entity/category/EntityCategories.types';
+import type {SingleTableContent}           from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -17,15 +16,20 @@ import Table                           from './tools/table/Table';
 export default class EveryEntityCategoriesApp
     extends AbstractApp {
 
-    #entityCategories?: Map<string, EntityCategory>;
+    //region -------------------- Attributes & getter methods --------------------
+
+    #map?: ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>;
 
     protected get map() {
-        return this.#entityCategories ??= EntityCategoryLoader.get.load();
+        return this.#map ??= EntityCategoryLoader.get.load();
     }
 
     protected get enum() {
         return EntityCategories.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -39,6 +43,8 @@ export default class EveryEntityCategoriesApp
         }
         return content;
     }
+
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.

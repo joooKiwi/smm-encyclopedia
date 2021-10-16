@@ -7,6 +7,8 @@ import {EntityLimits}                          from '../../../entity/limit/Entit
 import {EntityLimitTypes}                      from '../../../entity/limit/EntityLimitTypes';
 import {SoundEffectCategories}                 from '../../../entity/soundEffect/category/SoundEffectCategories';
 import {SoundEffectCategoriesEnglishNameArray} from '../../../entity/soundEffect/category/SoundEffectCategories.types';
+import {SoundEffectsEnglishNameArray}          from '../../../entity/soundEffect/simple/SoundEffects.types';
+import {SoundEffects}                          from '../../../entity/soundEffect/simple/SoundEffects';
 
 /**
  * @singleton
@@ -36,6 +38,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleLimitTypesNames?: EntityLimitTypeEnglishNameArray;
 
+    #everyPossibleSoundEffectsNames?: SoundEffectsEnglishNameArray;
     #everyPossibleSoundEffectCategoriesNames?: SoundEffectCategoriesEnglishNameArray;
 
     //endregion -------------------- Attributes --------------------
@@ -109,6 +112,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     //endregion -------------------- Entity limit type getter methods --------------------
     //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleSoundEffectsNames() {
+        return this.#everyPossibleSoundEffectsNames ??= SoundEffects.everyEnglishNames;
+    }
 
     public get everyPossibleSoundEffectCategoriesNames() {
         return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
@@ -198,6 +205,10 @@ class HeaderTypesForConvertorForProduction
 
     //endregion -------------------- Entity limit type getter methods --------------------
     //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleSoundEffectsNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
 
     public get everyPossibleSoundEffectCategoriesNames(): StringConstant {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;

@@ -340,7 +340,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     }
 
 
-    public get categoryOriginalLanguages(): this['nameContainer']['originalLanguages'] {
+    public get categoryOriginalLanguages(): this['categoryName']['originalLanguages'] {
         return this.categoryName.originalLanguages;
     }
 

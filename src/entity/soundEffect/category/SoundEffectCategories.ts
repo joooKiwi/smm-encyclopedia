@@ -34,7 +34,7 @@ export class SoundEffectCategories
 
     //region -------------------- Getter methods --------------------
 
-    get englishName(): PossibleSoundEffectCategoriesEnglishName {
+    public get englishName(): PossibleSoundEffectCategoriesEnglishName {
         return this.#englishName;
     }
 
@@ -51,7 +51,7 @@ export class SoundEffectCategories
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends SoundEffectCategoriesOrdinals = SoundEffectCategoriesOrdinals>(ordinal: O,): SoundEffectCategoriesArray[O]
     public static getValue<O extends number = number>(ordinal: O,): | NonNullable<SoundEffectCategoriesArray[O]> | null
-    public static getValue(name: SoundEffectCategoriesNames,): SoundEffectCategories
+    public static getValue(name: | SoundEffectCategoriesNames | PossibleSoundEffectCategoriesEnglishName,): SoundEffectCategories
     public static getValue(name: string,): | SoundEffectCategories | null
     public static getValue<I extends SoundEffectCategories = SoundEffectCategories, >(instance: I,): I
     public static getValue(value: | SoundEffectCategories | string | number | null | undefined,): | SoundEffectCategories | null

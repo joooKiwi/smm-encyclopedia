@@ -220,9 +220,9 @@ export class EntityLoader
     }
 
 
-    public load() {
+    public load(): ReadonlyMap<string, DebugEntityReferences> {
         if (this.#map == null) {
-            const references: Map<string, DebugEntityReferences> = new Map();
+            const references = new Map<string, DebugEntityReferences>();
             const referencesToWatch = new ReferencesToWatch(references);
 
             //region -------------------- Builder initialisation --------------------
@@ -233,7 +233,7 @@ export class EntityLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            const csvLoader = new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(['(Entity)', 'Entity', 'Projectile',], 'entityType',)
@@ -313,8 +313,9 @@ export class EntityLoader
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- entity has been loaded --------------------');// temporary console.log
-            console.log(csvLoader.content);// temporary console.log
+            console.log('-------------------- "entity" has been loaded --------------------');// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- "entity" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }
@@ -372,8 +373,6 @@ class TemplateCreator {
                         night: this.__convertLinkToNullableBoolean(nightLink),
                     },
                 },
-
-                categoryInTheEditor: content[3],
 
                 hasAMushroomVariant: content[4],
                 canBeInAParachute: content[5],
@@ -507,6 +506,7 @@ class TemplateCreator {
                     },
                 },
             },
+            categoryInTheEditor: content[3],
             name: {
                 hasAReferenceInMarioMaker: content[73],
                 english: {

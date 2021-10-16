@@ -1,7 +1,5 @@
-import './EveryThemesApp.scss';
-
-import type {CourseAndWorldTheme} from '../entity/theme/Themes.types';
-import type {SingleTableContent}  from './tools/table/Table.types';
+import type {CourseAndWorldTheme, PossibleTheme} from '../entity/theme/Themes.types';
+import type {SingleTableContent}                 from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -21,15 +19,20 @@ import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextCompo
 export default class EveryThemesApp
     extends AbstractApp {
 
-    #themes?: Map<string, CourseAndWorldTheme>;
+    //region -------------------- Attributes & getter methods --------------------
+
+    #map?: ReadonlyMap<PossibleTheme, CourseAndWorldTheme>;
 
     protected get map() {
-        return this.#themes ??= ThemeLoader.get.load();
+        return this.#map ??= ThemeLoader.get.load();
     }
 
     protected get enum() {
         return Themes.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -55,6 +58,7 @@ export default class EveryThemesApp
         return content;
     }
 
+    //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.

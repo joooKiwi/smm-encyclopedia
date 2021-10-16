@@ -157,7 +157,6 @@ export class SoundEffectCategoryContainer
 
     //endregion -------------------- Name --------------------
 
-
     public toNameMap(): ReadonlyMap<EveryLanguages, string> {
         return this.nameContainer.toNameMap();
     }
