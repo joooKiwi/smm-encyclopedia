@@ -1,7 +1,7 @@
-import type {NameWithAName} from '../../lang/name/NameWithAName';
+import type {NameTrait} from '../../lang/name/NameTrait';
 
 export interface EntityCategory
-    extends NameWithAName/*,
+    extends NameTrait/*,
         ClassWithEnglishName<PossibleEntityCategoriesName>*/ {
 
 }
