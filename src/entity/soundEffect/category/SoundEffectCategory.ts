@@ -1,6 +1,6 @@
-import type {NameWithAName} from '../../../lang/name/NameWithAName';
+import type {NameTrait} from '../../../lang/name/NameTrait';
 
 export interface SoundEffectCategory
-    extends NameWithAName {
+    extends NameTrait {
 
 }

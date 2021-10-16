@@ -1,15 +1,17 @@
 import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from '../properties/Property';
 import type {EntityReferences}                                                                                                    from '../properties/EntityReferences';
 import type {EntityCategory}                                                                                                      from '../category/EntityCategory';
-import type {EmptyEntityCategory}                                                                                                      from '../category/EmptyEntityCategory';
-import type {GameProperty}      from '../properties/GameProperty';
-import type {GameStyleProperty} from '../properties/GameStyleProperty';
-import type {ThemeProperty}     from '../properties/ThemeProperty';
+import type {EmptyEntityCategory}                                                                                                 from '../category/EmptyEntityCategory';
+import type {GameProperty}                                                                                                        from '../properties/GameProperty';
+import type {GameStyleProperty}                                                                                                   from '../properties/GameStyleProperty';
+import type {NameTrait}                                                                                                           from '../../lang/name/NameTrait';
+import type {NameTraitFromACategory}                                                                                              from '../../lang/name/NameTraitFromACategory';
+import type {ThemeProperty}                                                                                                       from '../properties/ThemeProperty';
 import type {TimeProperty}                                                                                                        from '../properties/TimeProperty';
-import type {NameWithAName}                                                                                                       from '../../lang/name/NameWithAName';
 
 export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
-    extends NameWithAName,
+    extends NameTrait,
+        NameTraitFromACategory<CATEGORY>,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
         GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
         GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,
@@ -17,168 +19,6 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
         TimeProperty<PROPERTY['isInDayTheme'], PROPERTY['isInNightTheme']>,
         EntityReferences {
 
-    //region -------------------- Name properties --------------------
-
-    get languageValue(): this['nameContainer']['languageValue']
-
-
-    get originalEnglish(): this['nameContainer']['originalEnglish']
-
-    get english(): this['nameContainer']['english']
-
-    get americanEnglish(): this['nameContainer']['americanEnglish']
-
-    get europeanEnglish(): this['nameContainer']['europeanEnglish']
-
-
-    get originalFrench(): this['nameContainer']['originalFrench']
-
-    get french(): this['nameContainer']['french']
-
-    get canadianFrench(): this['nameContainer']['canadianFrench']
-
-    get europeanFrench(): this['nameContainer']['europeanFrench']
-
-
-    get german(): this['nameContainer']['german']
-
-
-    get originalSpanish(): this['nameContainer']['originalSpanish']
-
-    get spanish(): this['nameContainer']['spanish']
-
-    get americanSpanish(): this['nameContainer']['americanSpanish']
-
-    get europeanSpanish(): this['nameContainer']['europeanSpanish']
-
-
-    get italian(): this['nameContainer']['italian']
-
-
-    get dutch(): this['nameContainer']['dutch']
-
-
-    get isPortugueseUsed(): this['nameContainer']['isPortugueseUsed']
-
-    get originalPortuguese(): this['nameContainer']['originalPortuguese']
-
-    get portuguese(): this['nameContainer']['portuguese']
-
-    get americanPortuguese(): this['nameContainer']['americanPortuguese']
-
-    get europeanPortuguese(): this['nameContainer']['europeanPortuguese']
-
-
-    get russian(): this['nameContainer']['russian']
-
-
-    get japanese(): this['nameContainer']['japanese']
-
-
-    get originalChinese(): this['nameContainer']['originalChinese']
-
-    get chinese(): this['nameContainer']['chinese']
-
-    get traditionalChinese(): this['nameContainer']['traditionalChinese']
-
-    get simplifiedChinese(): this['nameContainer']['simplifiedChinese']
-
-
-    get korean(): this['nameContainer']['korean']
-
-
-    get isGreekUsed(): this['nameContainer']['isGreekUsed']
-
-    get greek(): this['nameContainer']['greek']
-
-
-    get originalLanguages(): this['nameContainer']['originalLanguages']
-
-    //endregion -------------------- Name properties --------------------
-    //region -------------------- Category properties --------------------
-
-    get category(): CATEGORY
-
-
-    get categoryName(): this['category']['nameContainer']
-
-
-    get categoryLanguageValue(): this['categoryName']['languageValue']
-
-
-    get categoryOriginalEnglish(): this['categoryName']['originalEnglish']
-
-    get categoryEnglish(): this['categoryName']['english']
-
-    get categoryAmericanEnglish(): this['categoryName']['americanEnglish']
-
-    get categoryEuropeanEnglish(): this['categoryName']['europeanEnglish']
-
-
-    get categoryOriginalFrench(): this['categoryName']['originalFrench']
-
-    get categoryFrench(): this['categoryName']['french']
-
-    get categoryCanadianFrench(): this['categoryName']['canadianFrench']
-
-    get categoryEuropeanFrench(): this['categoryName']['europeanFrench']
-
-
-    get categoryGerman(): this['categoryName']['german']
-
-
-    get categoryOriginalSpanish(): this['categoryName']['originalSpanish']
-
-    get categorySpanish(): this['categoryName']['spanish']
-
-    get categoryAmericanSpanish(): this['categoryName']['americanSpanish']
-
-    get categoryEuropeanSpanish(): this['categoryName']['europeanSpanish']
-
-
-    get categoryItalian(): this['categoryName']['italian']
-
-
-    get categoryDutch(): this['categoryName']['dutch']
-
-
-    get categoryIsPortugueseUsed(): this['categoryName']['isPortugueseUsed']
-
-    get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese']
-
-    get categoryPortuguese(): this['categoryName']['portuguese']
-
-    get categoryAmericanPortuguese(): this['categoryName']['americanPortuguese']
-
-    get categoryEuropeanPortuguese(): this['categoryName']['europeanPortuguese']
-
-
-    get categoryRussian(): this['categoryName']['russian']
-
-
-    get categoryJapanese(): this['categoryName']['japanese']
-
-
-    get categoryOriginalChinese(): this['categoryName']['originalChinese']
-
-    get categoryChinese(): this['categoryName']['chinese']
-
-    get categoryTraditionalChinese(): this['categoryName']['traditionalChinese']
-
-    get categorySimplifiedChinese(): this['categoryName']['simplifiedChinese']
-
-
-    get categoryKorean(): this['categoryName']['korean']
-
-
-    get categoryIsGreekUsed(): this['categoryName']['isGreekUsed']
-
-    get categoryGreek(): this['categoryName']['greek']
-
-
-    get categoryOriginalLanguages(): this['nameContainer']['originalLanguages']
-
-    //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
 
     get propertyContainer(): PROPERTY
