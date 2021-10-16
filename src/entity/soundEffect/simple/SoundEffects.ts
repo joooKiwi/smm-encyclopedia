@@ -1,4 +1,4 @@
-import type {PossibleSoundEffectsEnglishName, SoundEffectsArray, SoundEffectsEnglishNameArray, SoundEffectsNames, SoundEffectsOrdinals} from './SoundEffects.types';
+import type {MiddleSoundEffectImage, PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath, PossibleSoundEffectsEnglishName, PossibleSoundEffectsEnglishNameInBothGames, PossibleSoundEffectsInSMM1EnglishName, PossibleSoundEffectsInSMM2EnglishName, SoundEffectsArray, SoundEffectsEnglishNameArray, SoundEffectsNames, SoundEffectsOrdinals, StartingSoundEffectImage} from './SoundEffects.types';
 
 import {Enum} from '../../../util/enum/Enum';
 
@@ -7,64 +7,64 @@ export class SoundEffects
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SHOCK =                    new SoundEffects('Shock',                       );
-    public static readonly SCREAM =                   new SoundEffects('Scream',                      );
-    public static readonly LAUGHTER =                 new SoundEffects('Laughter',                    );
-    public static readonly GUFAW =                    new SoundEffects('Gufaw',                       );
-    public static readonly BOOO =                     new SoundEffects('Booo!',                       );
-    public static readonly CHEER =                    new SoundEffects('Cheer',                       );
-    public static readonly BABY =                     new SoundEffects('Baby',                        );
-    public static readonly PARTY_POPPER =             new SoundEffects('Party Popper',                );
-    public static readonly APPLAUSE =                 new SoundEffects('Applause',                    );
-    public static readonly NEAR_MISS =                new SoundEffects('Near Miss',                   );
+    public static readonly SHOCK =                    new SoundEffects('Shock',                      '1',        '1.1', );
+    public static readonly SCREAM =                   new SoundEffects('Scream',                     '1 (alt)',  '1.2', );
+    public static readonly LAUGHTER =                 new SoundEffects('Laughter',                   '8',        '1.3', );
+    public static readonly GUFFAW =                   new SoundEffects('Guffaw',                     null,       '1.4', );
+    public static readonly BOOO =                     new SoundEffects('Booo!',                      null,       '1.5', );
+    public static readonly CHEER =                    new SoundEffects('Cheer',                      '4 (alt)',  '1.6', );
+    public static readonly BABY =                     new SoundEffects('Baby',                       '9',        '1.7', );
+    public static readonly PARTY_POPPER =             new SoundEffects('Party Popper',               null,       '1.8', );
+    public static readonly APPLAUSE =                 new SoundEffects('Applause',                   '4',        '1.9', );
+    public static readonly NEAR_MISS =                new SoundEffects('Near Miss',                  null,       '1.10',);
 
-    public static readonly CLATTER =                  new SoundEffects('Clatter',                     );
-    public static readonly DRAMA =                    new SoundEffects('Drama!',                      );
-    public static readonly KICK =                     new SoundEffects('Kick',                        );
-    public static readonly JUMP =                     new SoundEffects('Jump',                        );
-    public static readonly HONK_HONK =                new SoundEffects('Honk Honk',                   );
-    public static readonly PUNCH =                    new SoundEffects('Punch',                       );
-    public static readonly OINK =                     new SoundEffects('Oink',                        );
-    public static readonly KUH_THUNK =                new SoundEffects('Kuh-thunk!',                  );
-    public static readonly BEEP =                     new SoundEffects('Beep!',                        );
-    public static readonly NINJA_ATTACK =             new SoundEffects('Ninja Attack!',               );
-    public static readonly ZAP =                      new SoundEffects('Zap!',                        );
+    public static readonly CLATTER =                  new SoundEffects('Clatter',                    '2',        '2.1', );
+    public static readonly DRAMA =                    new SoundEffects('Drama!',                     '2 (alt)',  '2.2', );
+    public static readonly KICK =                     new SoundEffects('Kick',                       '3',        '2.3', );
+    public static readonly JUMP =                     new SoundEffects('Jump',                       '3 (alt)',  '2.4', );
+    public static readonly HONK_HONK =                new SoundEffects('Honk Honk',                  '9 (alt)',  '2.5', );
+    public static readonly PUNCH =                    new SoundEffects('Punch',                      '6',        '2.6', );
+    public static readonly OINK =                     new SoundEffects('Oink',                       null,       '2.7', );
+    public static readonly KUH_THUNK =                new SoundEffects('Kuh-thunk!',                 null,       '2.8', );
+    public static readonly BEEP =                     new SoundEffects('Beep!',                      null,       '2.9', );
+    public static readonly NINJA_ATTACK =             new SoundEffects('Ninja Attack!',              null,       '2.10',);
+    public static readonly ZAP =                      new SoundEffects('Zap!',                       null,       '2.11',);
 
-    public static readonly DING_DONG =                 new SoundEffects('Ding Dong',                  );
-    public static readonly BZZZT =                     new SoundEffects('Bzzzt!',                     );
-    public static readonly GLORY =                     new SoundEffects('Glory',                      );
-    public static readonly DOOM =                      new SoundEffects('Doom',                       );
-    public static readonly YEAH =                      new SoundEffects('Yeah!',                      );
-    public static readonly AWW =                       new SoundEffects('Aww...',                     );
+    public static readonly DING_DONG =                 new SoundEffects('Ding Dong',                 '10',       '3.1', );
+    public static readonly BZZZT =                     new SoundEffects('Bzzzt!',                    '10 (alt)', '3.2', );
+    public static readonly GLORY =                     new SoundEffects('Glory',                     '5',        '3.3', );
+    public static readonly DOOM =                      new SoundEffects('Doom',                      '5 (alt)' , '3.4', );
+    public static readonly YEAH =                      new SoundEffects('Yeah!',                     null,       '3.5', );
+    public static readonly AWW =                       new SoundEffects('Aww...',                    null,       '3.6', );
 
-    public static readonly FIREWORKS =                 new SoundEffects('Fireworks',                  );
-    public static readonly AUDIENCE =                  new SoundEffects('Audience',                   );
-    public static readonly SCATTING =                  new SoundEffects('Scatting',                   );
-    public static readonly BIRD_CHIRPING =             new SoundEffects('Bird\'s Chirping',           );
-    public static readonly SPARK =                     new SoundEffects('Spark',                      );
-    public static readonly TRADITIONAL =               new SoundEffects('Traditional',                );
-    public static readonly ELECTRIC_GUITAR =           new SoundEffects('Electric Guitar',            );
-    public static readonly DISTORTION =                new SoundEffects('Distortion',                 );
-    public static readonly TWISTY_TURNY =              new SoundEffects('Twisty Turny',               );
-    public static readonly WOOZY =                     new SoundEffects('Woozy',                      );
-    public static readonly TELEPHONE =                 new SoundEffects('Telephone',                  );
-    public static readonly FLASH =                     new SoundEffects('Flash',                      );
+    public static readonly FIREWORKS =                 new SoundEffects('Fireworks',                 '6 (alt)',  '4.1', );
+    public static readonly AUDIENCE =                  new SoundEffects('Audience',                  null,       '4.2', );
+    public static readonly SCATTING =                  new SoundEffects('Scatting',                  null,       '4.3', );
+    public static readonly BIRD_CHIRPING =             new SoundEffects('Bird\'s Chirping',          '8 (alt)',  null,  );
+    public static readonly SPARK =                     new SoundEffects('Spark',                     null,       '4.4', );
+    public static readonly TRADITIONAL =               new SoundEffects('Traditional',               null,       '4.5', );
+    public static readonly ELECTRIC_GUITAR =           new SoundEffects('Electric Guitar',           null,       '4.6', );
+    public static readonly DISTORTION =                new SoundEffects('Distortion',                '11 (alt)', null,  );
+    public static readonly TWISTY_TURNY =              new SoundEffects('Twisty Turny',              null,       '4.7', );
+    public static readonly WOOZY =                     new SoundEffects('Woozy',                     null,       '4.8', );
+    public static readonly TELEPHONE =                 new SoundEffects('Telephone',                 '11',       null,  );
+    public static readonly FLASH =                     new SoundEffects('Flash',                     null,       '4.9', );
 
-    public static readonly PEACEFUL =                  new SoundEffects('Peaceful',                   );
-    public static readonly HORROR =                    new SoundEffects('Horror',                     );
-    public static readonly BONUS_MUSIC =               new SoundEffects('Bonus Music',                );
-    public static readonly FESTIVE_MUSIC =             new SoundEffects('Festive Music',              );
-    public static readonly RAVE_MUSIC =                new SoundEffects('Rave Music',                 );
-    public static readonly HEARTBEAT =                 new SoundEffects('Heartbeat',                  );
-    public static readonly SILENCE =                   new SoundEffects('Silence',                    );
-    public static readonly BIRD_TWEETING_NOISE =       new SoundEffects('Bird\'s Tweeting Noise',     );
-    public static readonly CHICKEN_CLUCKING_NOISE =    new SoundEffects('Chicken\'s Clucking Noise',  );
-    public static readonly BOSS_MUSIC =                new SoundEffects('Boss Music',                 );
-    public static readonly FINAL_BOSS =                new SoundEffects('Final Boss',                 );
-    public static readonly SUPER_MARIO_KART =          new SoundEffects('Super Mario Kart',           );
-    public static readonly SUPER_MARIO_64 =            new SoundEffects('Super Mario 64',             );
-    public static readonly SUPER_MARIO_SUNSHINE =      new SoundEffects('Super Mario Sunshine',       );
-    public static readonly SUPER_MARIO_GALAXY =        new SoundEffects('Super Mario Galaxy',         );
+    public static readonly PEACEFUL =                  new SoundEffects('Peaceful',                  null,       '5.1', );
+    public static readonly HORROR =                    new SoundEffects('Horror',                    null,       '5.2', );
+    public static readonly BONUS_MUSIC =               new SoundEffects('Bonus Music',               '12 (alt)', '5.3', );
+    public static readonly FESTIVE_MUSIC =             new SoundEffects('Festive Music',             '7',        null,  );
+    public static readonly RAVE_MUSIC =                new SoundEffects('Rave Music',                '7 (alt)',  null,  );
+    public static readonly HEARTBEAT =                 new SoundEffects('Heartbeat',                 '13',       '5.4', );
+    public static readonly SILENCE =                   new SoundEffects('Silence',                   '13 (alt)', '5.5', );
+    public static readonly BIRD_TWEETING_NOISE =       new SoundEffects('Bird\'s Tweeting Noise',    '14',       null,  );
+    public static readonly CHICKEN_CLUCKING_NOISE =    new SoundEffects('Chicken\'s Clucking Noise', '14 (alt)', null,  );
+    public static readonly BOSS_MUSIC =                new SoundEffects('Boss Music',                '12',       '5.6', );
+    public static readonly FINAL_BOSS =                new SoundEffects('Final Boss',                null,       '5.7', );
+    public static readonly SUPER_MARIO_KART =          new SoundEffects('Super Mario Kart',          null,       '5.8', );
+    public static readonly SUPER_MARIO_64 =            new SoundEffects('Super Mario 64',            null,       '5.9', );
+    public static readonly SUPER_MARIO_SUNSHINE =      new SoundEffects('Super Mario Sunshine',      null,       '5.10',);
+    public static readonly SUPER_MARIO_GALAXY =        new SoundEffects('Super Mario Galaxy',        null,       '5.11',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -75,18 +75,33 @@ export class SoundEffects
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
+    readonly #SMM1ImagePath: | PossibleSMM1SoundEffectImagePath | null;
+    readonly #SMM2ImagePath: | PossibleSMM2SoundEffectImagePath | null;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleSoundEffectsEnglishName,) {
+    private constructor(englishName: PossibleSoundEffectsEnglishNameInBothGames, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: StartingSoundEffectImage,)
+    private constructor(englishName: Exclude<PossibleSoundEffectsInSMM1EnglishName, PossibleSoundEffectsEnglishNameInBothGames>, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: null,)
+    private constructor(englishName: Exclude<PossibleSoundEffectsInSMM2EnglishName, PossibleSoundEffectsEnglishNameInBothGames>, SMM1PartialImage: null, SMM2PartialImage: StartingSoundEffectImage,)
+    private constructor(englishName: PossibleSoundEffectsEnglishName, SMM1PartialImage: | MiddleSoundEffectImage | null, SMM2PartialImage: StartingSoundEffectImage | null,) {
         super(SoundEffects);
         this.#englishName = englishName;
+        this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/game/sound effects/SMM1/${SMM1PartialImage} - ${englishName as PossibleSoundEffectsInSMM1EnglishName}.png`;
+        this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/game/sound effects/SMM2/${SMM2PartialImage} - ${englishName as PossibleSoundEffectsInSMM2EnglishName}.png`;
     }
 
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleSoundEffectsEnglishName {
         return this.#englishName;
+    }
+
+    public get SMM1ImagePath(): | PossibleSMM1SoundEffectImagePath | null {
+        return this.#SMM1ImagePath;
+    }
+
+    public get SMM2ImagePath(): | PossibleSMM2SoundEffectImagePath | null {
+        return this.#SMM2ImagePath;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -120,7 +135,7 @@ export class SoundEffects
 
     public static get values(): SoundEffectsArray {
         return this.#VALUES ??= [
-            this.SHOCK, this.SCREAM, this.LAUGHTER, this.GUFAW, this.BOOO,
+            this.SHOCK, this.SCREAM, this.LAUGHTER, this.GUFFAW, this.BOOO,
             this.CHEER, this.BABY, this.PARTY_POPPER, this.APPLAUSE, this.NEAR_MISS,
 
             this.CLATTER, this.DRAMA, this.KICK, this.JUMP, this.HONK_HONK,

@@ -1,5 +1,6 @@
-import type {PossibleSoundEffectsEnglishName} from '../entity/soundEffect/simple/SoundEffects.types';
-import type {SoundEffect}                     from '../entity/soundEffect/simple/SoundEffect';
+import type {PossibleSoundEffectsEnglishName}                               from '../entity/soundEffect/simple/SoundEffects.types';
+import {PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath} from '../entity/soundEffect/simple/SoundEffects.types';
+import type {SoundEffect}                                                   from '../entity/soundEffect/simple/SoundEffect';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -10,7 +11,7 @@ import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
 import Table                           from './tools/table/Table';
-import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
+import {EmptyName}                     from '../lang/name/EmptyName';
 
 /**
  * @reactComponent
@@ -33,6 +34,10 @@ export default class EverySoundEffectsApp
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
+    private static __getImageBasedBaseOnGame(isInGame: boolean, path: | PossibleSMM1SoundEffectImagePath | PossibleSMM2SoundEffectImagePath, alt: PossibleAlt,) {
+        return !isInGame ? <></> : <img src={path} alt={alt}/>;
+    }
+
     protected get content() {
         const content = [] as SingleTableContent[];
 
@@ -40,10 +45,10 @@ export default class EverySoundEffectsApp
         for (const [englishName, soundEffect,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
+                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
+                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
                 <SMM2NameComponent id="soundEffect_name" name={soundEffect} popoverOrientation="right"/>,
-                <SMM2NameComponent id={'soundEffectCategory_name'} name={soundEffect.category} popoverOrientation="right"/>,
-                <YesOrNoResultTextComponent boolean={soundEffect.isInSuperMarioMaker1}/>,
-                <YesOrNoResultTextComponent boolean={soundEffect.isInSuperMarioMaker2}/>,
+                soundEffect.categoryName === EmptyName.get ? <></> : <SMM2NameComponent id={`${index}_soundEffectCategory_name`} name={soundEffect.category} popoverOrientation="right"/>,
             ]);
             index++;
         }
@@ -60,13 +65,15 @@ export default class EverySoundEffectsApp
             caption={<GameContentTranslationComponent translationKey="Every sound effects"/>}
             headers={[
                 '#',
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
+                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
             ]}
             content={this.content}
         />;
     }
 
 }
+
+type PossibleAlt = `SMM${| 1 | 2} - ${PossibleSoundEffectsEnglishName}`;
