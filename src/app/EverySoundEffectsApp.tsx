@@ -1,17 +1,18 @@
-import type {PossibleSoundEffectsEnglishName}                               from '../entity/soundEffect/simple/SoundEffects.types';
-import {PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath} from '../entity/soundEffect/simple/SoundEffects.types';
-import type {SoundEffect}                                                   from '../entity/soundEffect/simple/SoundEffect';
+import './EverySoundEffectsApp.scss';
+
+import type {PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath, PossibleSoundEffectsEnglishName} from '../entity/soundEffect/simple/SoundEffects.types';
+import type {SoundEffect}                                                                                         from '../entity/soundEffect/simple/SoundEffect';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
+import {EmptyName}                     from '../lang/name/EmptyName';
 import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
 import Table                           from './tools/table/Table';
-import {EmptyName}                     from '../lang/name/EmptyName';
 
 /**
  * @reactComponent
