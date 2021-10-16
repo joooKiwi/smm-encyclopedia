@@ -145,8 +145,8 @@ export abstract class GameStyles
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: null | undefined,): null
-    public static getValue<O extends GameStylesOrdinals = GameStylesOrdinals>(ordinal: O,): GameStylesArray[O]
-    public static getValue<O extends number = number>(ordinal: O,): | NonNullable<GameStylesArray[O]> | null
+    public static getValue<O extends GameStylesOrdinals = GameStylesOrdinals, >(ordinal: O,): GameStylesArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<GameStylesArray[O]> | null
     public static getValue(name: PossibleGameStyleName,): GameStyles
     public static getValue(name: string,): | GameStyles | null
     public static getValue<I extends GameStyles = GameStyles, >(instance: I,): I

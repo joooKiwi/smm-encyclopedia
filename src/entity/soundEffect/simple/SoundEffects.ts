@@ -1,9 +1,11 @@
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                      from '../../ClassWithEnglishName';
 import type {MiddleSoundEffectImage, PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath, PossibleSoundEffectsEnglishName, PossibleSoundEffectsEnglishNameInBothGames, PossibleSoundEffectsInSMM1EnglishName, PossibleSoundEffectsInSMM2EnglishName, SoundEffectsArray, SoundEffectsEnglishNameArray, SoundEffectsNames, SoundEffectsOrdinals, StartingSoundEffectImage} from './SoundEffects.types';
 
 import {Enum} from '../../../util/enum/Enum';
 
 export class SoundEffects
-    extends Enum {
+    extends Enum
+    implements ClassWithEnglishName<PossibleSoundEffectsEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -69,7 +71,7 @@ export class SoundEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: SoundEffectsArray;
+    static #VALUES?: SoundEffectsArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -115,8 +117,8 @@ export class SoundEffects
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends SoundEffectsOrdinals = SoundEffectsOrdinals>(ordinal: O,): SoundEffectsArray[O]
-    public static getValue<O extends number = number>(ordinal: O,): | NonNullable<SoundEffectsArray[O]> | null
+    public static getValue<O extends SoundEffectsOrdinals = SoundEffectsOrdinals, >(ordinal: O,): SoundEffectsArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<SoundEffectsArray[O]> | null
     public static getValue(name: | SoundEffectsNames | PossibleSoundEffectsEnglishName,): SoundEffects
     public static getValue(name: string,): | SoundEffects | null
     public static getValue<I extends SoundEffects = SoundEffects, >(instance: I,): I

@@ -157,8 +157,8 @@ export class EntityLimits
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends EntityLimitsOrdinals = EntityLimitsOrdinals>(ordinal: O,): EntityLimitsArray[O]
-    public static getValue<O extends number = number>(ordinal: O,): | NonNullable<EntityLimitsArray[O]> | null
+    public static getValue<O extends EntityLimitsOrdinals = EntityLimitsOrdinals, >(ordinal: O,): EntityLimitsArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EntityLimitsArray[O]> | null
     public static getValue(name: | EntityLimitsNames | PossibleStartingEntityLimits | PossibleEntityLimits | PossibleAlternativeEntityLimits | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits,): EntityLimits
     public static getValue(name: string,): | EntityLimits | null
     public static getValue<I extends EntityLimits = EntityLimits, >(instance: I,): I
