@@ -28,6 +28,7 @@ export type SoundEffectsNames =
     | 'BOSS_MUSIC' | 'FINAL_BOSS'
     | `SUPER_MARIO_${| 'KART' | '64' | 'SUNSHINE' | 'GALAXY'}`;
 
+export type PossibleSoundEffectsEnglishNameGames = `Super Mario ${| 'Kart' | '64' | 'Sunshine' | 'Galaxy'}`;
 export type PossibleSoundEffectsEnglishNameInBothGames =
     | 'Shock' | 'Scream' | 'Laughter' | 'Cheer' | 'Baby'
     | 'Applause'
@@ -58,7 +59,7 @@ export type PossibleSoundEffectsInSMM2EnglishName =
     | 'Twisty Turny' | 'Woozy' | 'Flash'
 
     | 'Peaceful' | 'Horror' | 'Final Boss'
-    | `Super Mario ${| 'Kart' | '64' | 'Sunshine' | 'Galaxy'}`
+    | PossibleSoundEffectsEnglishNameGames;
 export type PossibleSoundEffectsEnglishName = | PossibleSoundEffectsInSMM1EnglishName | PossibleSoundEffectsInSMM2EnglishName;
 
 export type MiddleSoundEffectImage = `${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}${| '' | ' (alt)'}`;
