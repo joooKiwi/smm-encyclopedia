@@ -1,4 +1,4 @@
-import type {BooleanGameTemplate}                      from '../../game/Game.template';
+import type {SimpleGameTemplate}                       from '../../game/SimpleGame.template';
 import type {TemplateWithNameTemplate}                 from '../../TemplateWithName.template';
 import type {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
 
@@ -8,7 +8,7 @@ export interface SoundEffectTemplate
     properties: {
 
         isIn: {
-            game: BooleanGameTemplate
+            game: SimpleGameTemplate
         }
 
         category: | PossibleSoundEffectCategoriesEnglishName | null
