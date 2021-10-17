@@ -211,12 +211,9 @@ export interface DebugEntityReferences {
 export class EntityLoader
     implements Loader<ReadonlyMap<string, DebugEntityReferences>> {
 
-    public static readonly UNKNOWN_CHARACTER = '?';
-    public static readonly INFINITE_CHARACTER = '∞';
-    public static readonly THIS_REFERENCE = 'this';
+    //region -------------------- Singleton usage --------------------
 
     static #instance?: EntityLoader;
-    #map?: Map<string, DebugEntityReferences>;
 
     private constructor() {
     }
@@ -225,6 +222,13 @@ export class EntityLoader
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
+
+    public static readonly UNKNOWN_CHARACTER = '?';
+    public static readonly INFINITE_CHARACTER = '∞';
+    public static readonly THIS_REFERENCE = 'this';
+
+    #map?: Map<string, DebugEntityReferences>;
 
     public load(): ReadonlyMap<string, DebugEntityReferences> {
         if (this.#map == null) {

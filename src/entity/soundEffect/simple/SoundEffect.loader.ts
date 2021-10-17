@@ -40,8 +40,9 @@ type PropertiesArray = [
 export class SoundEffectLoader
     implements Loader<ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect>> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: SoundEffectLoader;
-    #map?: Map<PossibleSoundEffectsEnglishName, SoundEffect>;
 
     private constructor() {
     }
@@ -50,6 +51,9 @@ export class SoundEffectLoader
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
+
+    #map?: Map<PossibleSoundEffectsEnglishName, SoundEffect>;
 
     public load(): ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect> {
         if (this.#map == null) {

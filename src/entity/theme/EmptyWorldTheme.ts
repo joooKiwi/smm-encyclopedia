@@ -11,6 +11,8 @@ import {GamePropertyContainer} from '../properties/GameProperty.container';
 export class EmptyWorldTheme
     implements WorldTheme, ClassWithNullObjectPattern<EmptyWorldThemeName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyWorldTheme;
 
     private constructor() {
@@ -20,6 +22,7 @@ export class EmptyWorldTheme
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 

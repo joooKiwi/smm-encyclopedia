@@ -10,6 +10,8 @@ import {EmptyEntityLimitLink}                                  from './propertie
 export class EmptyEntityLimit
     implements EntityLimit, ClassWithNullObjectPattern<EmptyEntityLimitName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyEntityLimit;
 
     private constructor() {
@@ -19,6 +21,7 @@ export class EmptyEntityLimit
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Type --------------------
 

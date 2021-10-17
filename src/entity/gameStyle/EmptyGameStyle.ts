@@ -11,6 +11,8 @@ import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 export class EmptyGameStyle
     implements GameStyle, ClassWithNullObjectPattern<EmptyGameStyleName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyGameStyle;
 
     private constructor() {
@@ -20,6 +22,7 @@ export class EmptyGameStyle
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 

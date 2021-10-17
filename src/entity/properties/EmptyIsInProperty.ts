@@ -7,6 +7,8 @@ import type {Property}                                          from './Property
 export class EmptyIsInProperty
     implements Property, ClassWithNullObjectPattern<EmptyIsInPropertyName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyIsInProperty;
 
     private constructor() {
@@ -16,6 +18,7 @@ export class EmptyIsInProperty
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Game properties --------------------
 

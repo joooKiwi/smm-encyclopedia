@@ -10,6 +10,8 @@ import {EmptyEntity} from '../simple/EmptyEntity';
 export class EmptyEntityReference
     implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyEntityReference;
 
     private constructor() {
@@ -19,6 +21,7 @@ export class EmptyEntityReference
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- References methods --------------------
 

@@ -36,8 +36,9 @@ type PropertiesArray = [
 export class ThemeLoader
     implements Loader<ReadonlyMap<PossibleTheme, CourseAndWorldTheme>> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: ThemeLoader;
-    #map?: Map<PossibleTheme, CourseAndWorldTheme>;
 
     private constructor() {
     }
@@ -46,6 +47,9 @@ export class ThemeLoader
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
+
+    #map?: Map<PossibleTheme, CourseAndWorldTheme>;
 
     public load(): ReadonlyMap<PossibleTheme, CourseAndWorldTheme> {
         if (this.#map == null) {

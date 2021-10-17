@@ -54,8 +54,9 @@ type PropertiesArray = [
 export class EntityLimitLoader
     implements Loader<ReadonlyMap<PossibleEntityLimits, EntityLimit>> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EntityLimitLoader;
-    #map?: Map<PossibleEntityLimits, EntityLimit>;
 
     private constructor() {
     }
@@ -64,6 +65,9 @@ export class EntityLimitLoader
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
+
+    #map?: Map<PossibleEntityLimits, EntityLimit>;
 
     public load(): ReadonlyMap<PossibleEntityLimits, EntityLimit> {
         if (this.#map == null) {

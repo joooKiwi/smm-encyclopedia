@@ -9,6 +9,8 @@ import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
 export class EmptyName
     implements Name, ClassWithNullObjectPattern<EmptyNameName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyName;
 
     private constructor() {
@@ -18,6 +20,7 @@ export class EmptyName
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 

@@ -39,8 +39,9 @@ type PropertiesArray = [
 export class EntityBehaviourLoader
     implements Loader<ReadonlyMap<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EntityBehaviourLoader;
-    #map?: Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>;
 
     private constructor() {
     }
@@ -48,6 +49,10 @@ export class EntityBehaviourLoader
     public static get get() {
         return this.#instance ??= new this();
     }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    #map?: Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>;
 
     public load(): ReadonlyMap<PossibleTranslationKeyEntityBehaviours, EntityBehaviour> {
         if (this.#map == null) {

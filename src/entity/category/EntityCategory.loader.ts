@@ -28,8 +28,9 @@ type PropertiesArray = [
 export class EntityCategoryLoader
     implements Loader<ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EntityCategoryLoader;
-    #map?: Map<PossibleEntityCategoriesName, EntityCategory>;
 
     private constructor() {
     }
@@ -38,6 +39,9 @@ export class EntityCategoryLoader
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
+
+    #map?: Map<PossibleEntityCategoriesName, EntityCategory>;
 
     public load(): ReadonlyMap<PossibleEntityCategoriesName, EntityCategory> {
         if (this.#map == null) {

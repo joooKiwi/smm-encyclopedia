@@ -7,6 +7,8 @@ import type {EntityLimitAmount}                                      from './Ent
 export class EmptyEntityLimitAmount
     implements EntityLimitAmount<null, false, null>, ClassWithNullObjectPattern<EmptyEntityLimitAmountName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyEntityLimitAmount;
 
     private constructor() {
@@ -15,6 +17,8 @@ export class EmptyEntityLimitAmount
     public static get get() {
         return this.#instance ??= new this();
     }
+
+    //endregion -------------------- Singleton usage --------------------
 
     public readonly value = null;
     public readonly isUnknown = false;

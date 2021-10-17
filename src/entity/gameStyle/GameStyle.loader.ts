@@ -31,8 +31,9 @@ type PropertiesArray = [
 export class GameStyleLoader
     implements Loader<ReadonlyMap<PossibleGameStyleName, GameStyle>> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: GameStyleLoader;
-    #map?: Map<PossibleGameStyleName, GameStyle>;
 
     private constructor() {
     }
@@ -41,6 +42,9 @@ export class GameStyleLoader
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
+
+    #map?: Map<PossibleGameStyleName, GameStyle>;
 
     public load(): ReadonlyMap<PossibleGameStyleName, GameStyle> {
         if (this.#map == null) {

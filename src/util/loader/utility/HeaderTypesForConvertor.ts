@@ -16,7 +16,18 @@ import {SoundEffects}                          from '../../../entity/soundEffect
 class HeaderTypesForConvertorForTestAndDevelopment
     implements HeaderTypesForConvertorDefinition {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: HeaderTypesForConvertorForTestAndDevelopment;
+
+    private constructor() {
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Attributes --------------------
 
@@ -42,13 +53,6 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleSoundEffectCategoriesNames?: SoundEffectCategoriesEnglishNameArray;
 
     //endregion -------------------- Attributes --------------------
-
-    private constructor() {
-    }
-
-    public static get get() {
-        return this.#instance ??= new this();
-    }
 
     //region -------------------- Entity getter methods --------------------
 
@@ -131,13 +135,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
 class HeaderTypesForConvertorForProduction
     implements HeaderTypesForConvertorDefinition {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: HeaderTypesForConvertorForProduction;
-
-    //region -------------------- Attributes --------------------
-
-    static readonly #STRING_VALUE: StringConstant = 'string';
-
-    //endregion -------------------- Attributes --------------------
 
     private constructor() {
     }
@@ -145,6 +145,14 @@ class HeaderTypesForConvertorForProduction
     public static get get() {
         return this.#instance ??= new this();
     }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    //region -------------------- Attributes --------------------
+
+    static readonly #STRING_VALUE: StringConstant = 'string';
+
+    //endregion -------------------- Attributes --------------------
 
     //region -------------------- Entity getter methods --------------------
 

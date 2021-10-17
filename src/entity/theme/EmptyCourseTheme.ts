@@ -11,6 +11,8 @@ import {EmptyName}              from '../../lang/name/EmptyName';
 export class EmptyCourseTheme
     implements CourseTheme, ClassWithNullObjectPattern<EmptyCourseThemeName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyCourseTheme;
 
     private constructor() {
@@ -20,6 +22,7 @@ export class EmptyCourseTheme
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 

@@ -9,6 +9,8 @@ import {EmptyName} from '../../../lang/name/EmptyName';
 export class EmptySoundEffectCategory
     implements SoundEffectCategory, ClassWithNullObjectPattern<EmptySoundEffectCategoryName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptySoundEffectCategory;
 
     private constructor() {
@@ -17,6 +19,8 @@ export class EmptySoundEffectCategory
     public static get get() {
         return this.#instance ??= new this();
     }
+
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 

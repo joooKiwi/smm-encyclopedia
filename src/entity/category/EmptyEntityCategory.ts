@@ -9,6 +9,8 @@ import {EmptyName} from '../../lang/name/EmptyName';
 export class EmptyEntityCategory
     implements EntityCategory, ClassWithNullObjectPattern<EmptyEntityCategoryName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyEntityCategory;
 
     private constructor() {
@@ -18,6 +20,7 @@ export class EmptyEntityCategory
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 

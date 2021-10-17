@@ -15,6 +15,8 @@ import {EmptyName}            from '../../lang/name/EmptyName';
 export class EmptyEntity
     implements Entity, ClassWithNullObjectPattern<EmptyEntityName> {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyEntity;
 
     private constructor() {
@@ -24,6 +26,7 @@ export class EmptyEntity
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 
