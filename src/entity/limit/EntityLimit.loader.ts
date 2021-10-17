@@ -106,6 +106,7 @@ export class EntityLimitLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
+//TODO Move EMPTY_GREEK & __createNameTemplate() to anew AbstractTemplateCreator
 
 class TemplateCreator {
 
@@ -119,14 +120,13 @@ class TemplateCreator {
         entityName: null,
     };
 
-    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
     static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = content[1];
         const acronym = content[2];
         const groupNameAndEntitiesName = [content[5], content[6],] as const;
-        const languages: LanguagesPropertyArray = [content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24],] as LanguagesPropertyArray;
+        const languages: LanguagesPropertyArray = [content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24], content[25], content[26], content[27],] as LanguagesPropertyArray;
 
         return type == null
             ? this.__createAlternativeLimitTemplate(acronym, groupNameAndEntitiesName, languages,)
@@ -149,7 +149,7 @@ class TemplateCreator {
 
             link: this.__convertToLinkTemplate(...groupNameAndEntitiesName,),
 
-            name: this.__convertToNameTemplate(languages,),
+            name: this.__createNameTemplate(languages,),
 
         };
     }
@@ -168,7 +168,7 @@ class TemplateCreator {
 
             link: this.__convertToLinkTemplate(...groupNameAndEntitiesName,),
 
-            name: this.__convertToNameTemplate(languages,),
+            name: this.__createNameTemplate(languages,),
 
         };
     }
@@ -212,7 +212,7 @@ class TemplateCreator {
         };
     }
 
-    private static __convertToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, russian, chinese, traditionalChinese, simplifiedChinese, japanese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
+    private static __createNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
         return {
             english: {
                 simple: english,
@@ -232,7 +232,11 @@ class TemplateCreator {
             },
             italian: italian,
             dutch: dutch,
-            portuguese: this.#EMPTY_PORTUGUESE,
+            portuguese: {
+                simple: portuguese,
+                american: americanPortuguese,
+                european: europeanPortuguese,
+            },
             russian: russian,
             chinese: {
                 simple: chinese,

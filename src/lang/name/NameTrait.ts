@@ -57,8 +57,6 @@ export interface NameTrait
     get dutch(): this['nameContainer']['dutch']
 
 
-    get isPortugueseUsed(): this['nameContainer']['isPortugueseUsed']
-
     get originalPortuguese(): this['nameContainer']['originalPortuguese']
 
     get portuguese(): this['nameContainer']['portuguese']

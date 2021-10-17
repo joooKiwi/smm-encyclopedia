@@ -58,8 +58,6 @@ export interface ClassWithOnlyProjectLanguages<GERMAN extends string | null = st
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
-    get isPortugueseUsed(): boolean
-
     get americanPortuguese(): AMERICAN_PORTUGUESE
 
     get europeanPortuguese(): EUROPEAN_PORTUGUESE

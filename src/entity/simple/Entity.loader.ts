@@ -4,7 +4,7 @@ import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBeInAPa
 import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../behaviours/Loader.types';
 import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity';
-import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './Entity.template';
+import type {EntityNameTemplate, EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from './Entity.template';
 import type {HeadersWithOptionalLanguages as LanguagesHeaders, PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../../lang/Loader.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../game/Loader.types';
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/loader/Loader';
@@ -189,6 +189,11 @@ type PropertiesArray = [
 ];
 
 //endregion -------------------- CSV array related types --------------------
+//region -------------------- private types --------------------
+
+type EntityNamePropertyArray = [HasAReferenceInMarioMaker, ...LanguagesPropertyArray,];
+
+//endregion -------------------- private types --------------------
 
 export interface DebugEntityReferences {
 
@@ -325,18 +330,16 @@ export class EntityLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
+//TODO Move __createNameTemplate() to anew AbstractTemplateCreator
 
 class TemplateCreator {
 
     public static createTemplate(content: PropertiesArray,): EntityTemplate {
-        const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
-            [content[1], content[2]];
-        const [dayLink, nightLink] =
-            [content[56], content[57],];
-        const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-            [content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65], content[66], content[67],];
-        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] =
-            [content[68], content[69], content[70], content[71], content[72]];
+        const [isInSuperMarioMaker1, isInSuperMarioMaker2] = [content[1], content[2]];
+        const [dayLink, nightLink] = [content[56], content[57],];
+        const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] = [content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65], content[66], content[67],];
+        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] = [content[68], content[69], content[70], content[71], content[72]];
+        const languages: EntityNamePropertyArray = [content[73], content[74], content[75], content[76], content[77], content[78], content[79], content[80], content[81], content[82], content[83], content[84], content[85], content[86], content[87], content[88], content[89], content[90], content[91], content[92], content[93], content[94], content[95],] as EntityNamePropertyArray;
 
         return {
             properties: {
@@ -507,41 +510,7 @@ class TemplateCreator {
                 },
             },
             categoryInTheEditor: content[3],
-            name: {
-                hasAReferenceInMarioMaker: content[73],
-                english: {
-                    simple: content[74],
-                    american: content[75],
-                    european: content[76],
-                },
-                french: {
-                    simple: content[77],
-                    canadian: content[78],
-                    european: content[79],
-                },
-                german: content[80],
-                spanish: {
-                    simple: content[81],
-                    american: content[82],
-                    european: content[83],
-                },
-                italian: content[84],
-                dutch: content[85],
-                portuguese: {
-                    simple: content[92],
-                    american: content[93],
-                    european: content[94],
-                },
-                russian: content[86],
-                japanese: content[87],
-                chinese: {
-                    simple: content[88],
-                    traditional: content[89],
-                    simplified: content[90],
-                },
-                korean: content[91],
-                greek: content[95],
-            },
+            name: this.__createNameTemplate(languages),
         };
     }
 
@@ -559,6 +528,44 @@ class TemplateCreator {
 
     private static __convertToBehaviourArray(behaviour: | string | null,): EveryPossibleLinkedBehaviourAcronymArray {
         return behaviour == null ? [] : behaviour.split(' / ') as EveryPossibleLinkedBehaviourAcronymArray;
+    }
+
+    private static __createNameTemplate([hasAReferenceInMarioMaker, english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean, greek,]: EntityNamePropertyArray,): EntityNameTemplate {
+        return {
+            hasAReferenceInMarioMaker: hasAReferenceInMarioMaker,
+            english: {
+                simple: english,
+                american: americanEnglish,
+                european: europeanEnglish,
+            },
+            french: {
+                simple: french,
+                canadian: canadianFrench,
+                european: europeanFrench,
+            },
+            german: german,
+            spanish: {
+                simple: spanish,
+                american: americanSpanish,
+                european: europeanSpanish,
+            },
+            italian: italian,
+            dutch: dutch,
+            portuguese: {
+                simple: portuguese,
+                american: americanPortuguese,
+                european: europeanPortuguese,
+            },
+            russian: russian,
+            chinese: {
+                simple: chinese,
+                traditional: traditionalChinese,
+                simplified: simplifiedChinese,
+            },
+            japanese: japanese,
+            korean: korean,
+            greek: greek,
+        };
     }
 
 }

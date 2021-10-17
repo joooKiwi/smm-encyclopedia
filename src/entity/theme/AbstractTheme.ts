@@ -95,10 +95,6 @@ export class AbstractTheme
     }
 
 
-    public get isPortugueseUsed() {
-        return this.nameContainer.isPortugueseUsed;
-    }
-
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }

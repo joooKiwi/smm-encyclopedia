@@ -1,7 +1,7 @@
 import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                        from '../entityTypes';
-import type {SMM2NameTemplateWithOptionalLanguages}                                                                                      from '../lang/SMM2Name.template';
+import type {SMM2NameTemplate}                                                                                                           from '../lang/SMM2Name.template';
 import type {TemplateWithNameTemplate}                                                                                                   from '../TemplateWithName.template';
 
 //region -------------------- Limit types --------------------
@@ -57,7 +57,7 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
     ACRONYM extends | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits = | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits,
     LIMIT_AMOUNT extends LimitAmountTemplate = LimitAmountTemplate,
     REGULAR_REFERENCE extends | PossibleEntityLimits | null = | PossibleEntityLimits | null, >
-    extends TemplateWithNameTemplate<SMM2NameTemplateWithOptionalLanguages> {
+    extends TemplateWithNameTemplate<SMM2NameTemplate> {
 
     references: {
         regular: PossibleEntityLimits | null
@@ -71,7 +71,7 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
 
     link: LinkTemplate
 
-    name: SMM2NameTemplateWithOptionalLanguages
+    name: SMM2NameTemplate
 
 }
 

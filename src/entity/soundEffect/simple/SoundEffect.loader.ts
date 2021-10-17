@@ -1,16 +1,17 @@
 import everySoundEffects from '../../../resources/Sound effects.csv';
 
-import type {HeadersWithOptionalLanguages as LanguagesHeaders, PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../../lang/Loader.types';
-import type {Loader}                                                                                                           from '../../../util/loader/Loader';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                   from '../../game/Loader.types';
-import type {PossibleSoundEffectCategoryType, SoundEffectTemplate}                                                             from './SoundEffect.template';
-import type {PossibleSoundEffectsEnglishName}                                                                                  from './SoundEffects.types';
-import type {SoundEffect}                                                                                                      from './SoundEffect';
+import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../../lang/Loader.types';
+import type {Loader}                                                                 from '../../../util/loader/Loader';
+import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../../game/Loader.types';
+import type {PossibleSoundEffectCategoryType, SoundEffectTemplate}                   from './SoundEffect.template';
+import type {PossibleSoundEffectsEnglishName}                                        from './SoundEffects.types';
+import type {SoundEffect}                                                            from './SoundEffect';
 
 import {CSVLoader}                 from '../../../util/loader/CSVLoader';
 import {SoundEffectBuilder}        from './SoundEffect.builder';
 import {SoundEffectCategoryLoader} from '../category/SoundEffectCategory.loader';
 import {HeaderTypesForConvertor}   from '../../../util/loader/utility/HeaderTypesForConvertor';
+import {SMM2NameTemplate}          from '../../lang/SMM2Name.template';
 
 //region -------------------- CSV array related types --------------------
 
@@ -75,6 +76,7 @@ export class SoundEffectLoader
 
             console.log('-------------------- "sound effect" has been loaded --------------------');// temporary console.log
             console.log(references);// temporary console.log
+            console.log('-------------------- "sound effect" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }
@@ -84,12 +86,15 @@ export class SoundEffectLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
+//TODO Move EMPTY_GREEK & __createNameTemplate() to anew AbstractTemplateCreator
 
 class TemplateCreator {
 
     static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): | SoundEffectTemplate {
+        const languages: LanguagesPropertyArray = [content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23],] as LanguagesPropertyArray;
+
         return {
             properties: {
                 isIn: {
@@ -100,40 +105,44 @@ class TemplateCreator {
                 },
                 category: content[2],
             },
-            name: {
-                english: {
-                    simple: content[3],
-                    american: content[4],
-                    european: content[5],
-                },
-                french: {
-                    simple: content[6],
-                    canadian: content[7],
-                    european: content[8],
-                },
-                german: content[9],
-                spanish: {
-                    simple: content[10],
-                    american: content[11],
-                    european: content[12],
-                },
-                italian: content[13],
-                dutch: content[14],
-                portuguese: {
-                    simple: content[21],
-                    american: content[22],
-                    european: content[23],
-                },
-                russian: content[15],
-                chinese: {
-                    simple: content[16],
-                    traditional: content[17],
-                    simplified: content[18],
-                },
-                japanese: content[19],
-                korean: content[20],
-                greek: this.#EMPTY_GREEK,
+            name: this.__createToNameTemplate(languages),
+        };
+    }
+
+    private static __createToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
+        return {
+            english: {
+                simple: english,
+                american: americanEnglish,
+                european: europeanEnglish,
             },
+            french: {
+                simple: french,
+                canadian: canadianFrench,
+                european: europeanFrench,
+            },
+            german: german,
+            spanish: {
+                simple: spanish,
+                american: americanSpanish,
+                european: europeanSpanish,
+            },
+            italian: italian,
+            dutch: dutch,
+            portuguese: {
+                simple: portuguese,
+                american: americanPortuguese,
+                european: europeanPortuguese,
+            },
+            russian: russian,
+            chinese: {
+                simple: chinese,
+                traditional: traditionalChinese,
+                simplified: simplifiedChinese,
+            },
+            japanese: japanese,
+            korean: korean,
+            greek: this.#EMPTY_GREEK,
         };
     }
 

@@ -99,10 +99,6 @@ export class SoundEffectContainer
     }
 
 
-    public get isPortugueseUsed() {
-        return this.nameContainer.isPortugueseUsed;
-    }
-
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }
@@ -248,10 +244,6 @@ export class SoundEffectContainer
         return this.categoryName.dutch;
     }
 
-
-    public get categoryIsPortugueseUsed(): this['categoryName']['isPortugueseUsed'] {
-        return this.categoryName.isPortugueseUsed;
-    }
 
     public get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese'] {
         return this.categoryName.originalPortuguese;

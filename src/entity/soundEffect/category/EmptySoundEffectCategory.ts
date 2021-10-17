@@ -45,7 +45,6 @@ export class EmptySoundEffectCategory
 
     public readonly dutch = this.nameContainer.dutch;
 
-    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed;
     public readonly originalPortuguese = this.nameContainer.originalPortuguese;
     public readonly portuguese = this.nameContainer.portuguese;
     public readonly americanPortuguese = this.nameContainer.americanPortuguese;

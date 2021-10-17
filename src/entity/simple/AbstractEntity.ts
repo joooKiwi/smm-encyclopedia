@@ -129,10 +129,6 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     }
 
 
-    public get isPortugueseUsed(): this['nameContainer']['isPortugueseUsed'] {
-        return this.nameContainer.isPortugueseUsed;
-    }
-
     public get originalPortuguese(): this['nameContainer']['originalPortuguese'] {
         return this.nameContainer.originalPortuguese;
     }
@@ -278,10 +274,6 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.categoryName.dutch;
     }
 
-
-    public get categoryIsPortugueseUsed(): this['categoryName']['isPortugueseUsed'] {
-        return this.categoryName.isPortugueseUsed;
-    }
 
     public get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese'] {
         return this.categoryName.originalPortuguese;

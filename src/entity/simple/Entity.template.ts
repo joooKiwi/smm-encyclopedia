@@ -116,7 +116,10 @@ export interface EntityTemplate
 
 }
 
-interface EntityNameTemplate
+/**
+ * @template
+ */
+export interface EntityNameTemplate
     extends SMM2NameTemplateWithOptionalLanguages {
 
     hasAReferenceInMarioMaker: HasAReferenceInMarioMaker

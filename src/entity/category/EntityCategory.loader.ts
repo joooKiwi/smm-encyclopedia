@@ -5,6 +5,7 @@ import type {EntityCategoryTemplate}                                            
 import type {Loader}                                                                 from '../../util/loader/Loader';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {PossibleEntityCategoriesName}                                           from './EntityCategories.types';
+import type {SMM2NameTemplate}                                                       from '../lang/SMM2Name.template';
 
 import {CSVLoader}             from '../../util/loader/CSVLoader';
 import {EntityCategoryBuilder} from './EntityCategory.builder';
@@ -64,45 +65,55 @@ export class EntityCategoryLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
+//TODO Move EMPTY_GREEK & __createNameTemplate() to anew AbstractTemplateCreator
 
 class TemplateCreator {
 
-    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
     static readonly #EMPTY_GREEK = null;
 
     public static createTemplate(content: PropertiesArray,): EntityCategoryTemplate {
+        const languages: LanguagesPropertyArray = [content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20],] as LanguagesPropertyArray;
+
         return {
             entities: null,
-            name: {
-                english: {
-                    simple: content[0],
-                    american: content[1],
-                    european: content[2],
-                },
-                french: {
-                    simple: content[3],
-                    canadian: content[4],
-                    european: content[5],
-                },
-                german: content[6],
-                spanish: {
-                    simple: content[7],
-                    american: content[8],
-                    european: content[9],
-                },
-                italian: content[10],
-                dutch: content[11],
-                portuguese: this.#EMPTY_PORTUGUESE,
-                russian: content[12],
-                japanese: content[13],
-                chinese: {
-                    simple: content[14],
-                    traditional: content[15],
-                    simplified: content[16],
-                },
-                korean: content[17],
-                greek: this.#EMPTY_GREEK,
+            name: this.__createNameTemplate(languages),
+        };
+    }
+
+    private static __createNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
+        return {
+            english: {
+                simple: english,
+                american: americanEnglish,
+                european: europeanEnglish,
             },
+            french: {
+                simple: french,
+                canadian: canadianFrench,
+                european: europeanFrench,
+            },
+            german: german,
+            spanish: {
+                simple: spanish,
+                american: americanSpanish,
+                european: europeanSpanish,
+            },
+            italian: italian,
+            dutch: dutch,
+            portuguese: {
+                simple: portuguese,
+                american: americanPortuguese,
+                european: europeanPortuguese,
+            },
+            russian: russian,
+            chinese: {
+                simple: chinese,
+                traditional: traditionalChinese,
+                simplified: simplifiedChinese,
+            },
+            japanese: japanese,
+            korean: korean,
+            greek: this.#EMPTY_GREEK,
         };
     }
 
