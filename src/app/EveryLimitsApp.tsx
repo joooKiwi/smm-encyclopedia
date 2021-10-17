@@ -63,6 +63,8 @@ export default class EveryLimitsApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
+        console.log(this.enum);//README this log is there only to help debugging.
+
         return <Table
             id="entityLimit_table"
             caption={<GameContentTranslationComponent translationKey="Every entity limits"/>}
