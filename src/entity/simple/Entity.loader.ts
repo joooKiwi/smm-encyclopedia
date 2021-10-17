@@ -4,7 +4,7 @@ import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBeInAPa
 import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../behaviours/Loader.types';
 import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity';
-import type {EntityNameTemplate, EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from './Entity.template';
+import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './Entity.template';
 import type {HeadersWithOptionalLanguages as LanguagesHeaders, PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../../lang/Loader.types';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../game/Loader.types';
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/loader/Loader';
@@ -15,6 +15,7 @@ import type {PossibleGameStyleAcronym}                                          
 import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../time/Times.types';
 import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../lang/SMM2Name.template';
 
+import {AbstractTemplateCreator}      from '../AbstractTemplateCreator';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategory.loader';
 import {EntityBuilder}                from './Entity.builder';
@@ -238,7 +239,7 @@ export class EntityLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.get.createTemplate(convertedContent))
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(['(Entity)', 'Entity', 'Projectile',], 'entityType',)
@@ -330,15 +331,32 @@ export class EntityLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
-//TODO Move __createNameTemplate() to anew AbstractTemplateCreator
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<EntityTemplate, PropertiesArray> {
 
-    public static createTemplate(content: PropertiesArray,): EntityTemplate {
-        const [isInSuperMarioMaker1, isInSuperMarioMaker2] = [content[1], content[2]];
-        const [dayLink, nightLink] = [content[56], content[57],];
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): EntityTemplate {
+        const [isInSuperMarioMaker1, isInSuperMarioMaker2,] = [content[1], content[2],];
+        const [dayLink, nightLink,] = [content[56], content[57],];
         const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] = [content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65], content[66], content[67],];
-        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] = [content[68], content[69], content[70], content[71], content[72]];
+        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink,] = [content[68], content[69], content[70], content[71], content[72],];
         const languages: EntityNamePropertyArray = [content[73], content[74], content[75], content[76], content[77], content[78], content[79], content[80], content[81], content[82], content[83], content[84], content[85], content[86], content[87], content[88], content[89], content[90], content[91], content[92], content[93], content[94], content[95],] as EntityNamePropertyArray;
 
         return {
@@ -353,27 +371,27 @@ class TemplateCreator {
                         2: isInSuperMarioMaker2,
                     },
                     style: {
-                        superMarioBros: this.__convertLinkToOnlyBoolean(superMarioBrosLink),
-                        superMarioBros3: this.__convertLinkToOnlyBoolean(superMarioBros3Link),
-                        superMarioWorld: this.__convertLinkToOnlyBoolean(superMarioWorldLink),
-                        newSuperMarioBrosU: this.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
-                        superMario3DWorld: !isInSuperMarioMaker1 && isInSuperMarioMaker2 ? this.__convertLinkToOnlyBoolean(superMario3DWorldLink) : this.__convertLinkToNullableBoolean(superMario3DWorldLink),
+                        superMarioBros: TemplateCreator.__convertLinkToOnlyBoolean(superMarioBrosLink),
+                        superMarioBros3: TemplateCreator.__convertLinkToOnlyBoolean(superMarioBros3Link),
+                        superMarioWorld: TemplateCreator.__convertLinkToOnlyBoolean(superMarioWorldLink),
+                        newSuperMarioBrosU: TemplateCreator.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
+                        superMario3DWorld: !isInSuperMarioMaker1 && isInSuperMarioMaker2 ? TemplateCreator.__convertLinkToOnlyBoolean(superMario3DWorldLink) : TemplateCreator.__convertLinkToNullableBoolean(superMario3DWorldLink),
                     },
                     theme: {
-                        ground: this.__convertLinkToBoolean(groundLink),
-                        underground: this.__convertLinkToBoolean(undergroundLink),
-                        underwater: this.__convertLinkToBoolean(underwaterLink),
-                        desert: this.__convertLinkToNullableBoolean(desertLink),
-                        snow: this.__convertLinkToNullableBoolean(snowLink),
-                        sky: this.__convertLinkToNullableBoolean(skyLink),
-                        forest: this.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: this.__convertLinkToBoolean(ghostHouseLink),
-                        airship: this.__convertLinkToBoolean(airshipLink),
-                        castle: this.__convertLinkToBoolean(castleLink),
+                        ground: TemplateCreator.__convertLinkToBoolean(groundLink),
+                        underground: TemplateCreator.__convertLinkToBoolean(undergroundLink),
+                        underwater: TemplateCreator.__convertLinkToBoolean(underwaterLink),
+                        desert: TemplateCreator.__convertLinkToNullableBoolean(desertLink),
+                        snow: TemplateCreator.__convertLinkToNullableBoolean(snowLink),
+                        sky: TemplateCreator.__convertLinkToNullableBoolean(skyLink),
+                        forest: TemplateCreator.__convertLinkToNullableBoolean(forestLink),
+                        ghostHouse: TemplateCreator.__convertLinkToBoolean(ghostHouseLink),
+                        airship: TemplateCreator.__convertLinkToBoolean(airshipLink),
+                        castle: TemplateCreator.__convertLinkToBoolean(castleLink),
                     },
                     time: {
-                        day: this.__convertLinkToBoolean(dayLink),
-                        night: this.__convertLinkToNullableBoolean(nightLink),
+                        day: TemplateCreator.__convertLinkToBoolean(dayLink),
+                        night: TemplateCreator.__convertLinkToNullableBoolean(nightLink),
                     },
                 },
 
@@ -453,11 +471,11 @@ class TemplateCreator {
                     }
                 },
                 behaviour: {
-                    solo: this.__convertToBehaviourArray(content[45]),
-                    localCoop: this.__convertToBehaviourArray(content[46]),
+                    solo: TemplateCreator.__convertToBehaviourArray(content[45]),
+                    localCoop: TemplateCreator.__convertToBehaviourArray(content[46]),
                     online: {
-                        coop: this.__convertToBehaviourArray(content[47]),
-                        versus: this.__convertToBehaviourArray(content[48]),
+                        coop: TemplateCreator.__convertToBehaviourArray(content[47]),
+                        versus: TemplateCreator.__convertToBehaviourArray(content[48]),
                     },
                 },
                 offscreenRange: {
@@ -510,7 +528,7 @@ class TemplateCreator {
                 },
             },
             categoryInTheEditor: content[3],
-            name: this.__createNameTemplate(languages),
+            name: this._createEntityNameTemplate(languages),
         };
     }
 
@@ -528,44 +546,6 @@ class TemplateCreator {
 
     private static __convertToBehaviourArray(behaviour: | string | null,): EveryPossibleLinkedBehaviourAcronymArray {
         return behaviour == null ? [] : behaviour.split(' / ') as EveryPossibleLinkedBehaviourAcronymArray;
-    }
-
-    private static __createNameTemplate([hasAReferenceInMarioMaker, english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean, greek,]: EntityNamePropertyArray,): EntityNameTemplate {
-        return {
-            hasAReferenceInMarioMaker: hasAReferenceInMarioMaker,
-            english: {
-                simple: english,
-                american: americanEnglish,
-                european: europeanEnglish,
-            },
-            french: {
-                simple: french,
-                canadian: canadianFrench,
-                european: europeanFrench,
-            },
-            german: german,
-            spanish: {
-                simple: spanish,
-                american: americanSpanish,
-                european: europeanSpanish,
-            },
-            italian: italian,
-            dutch: dutch,
-            portuguese: {
-                simple: portuguese,
-                american: americanPortuguese,
-                european: europeanPortuguese,
-            },
-            russian: russian,
-            chinese: {
-                simple: chinese,
-                traditional: traditionalChinese,
-                simplified: simplifiedChinese,
-            },
-            japanese: japanese,
-            korean: korean,
-            greek: greek,
-        };
     }
 
 }

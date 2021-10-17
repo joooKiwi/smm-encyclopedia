@@ -5,8 +5,8 @@ import type {Loader}                                                            
 import type {PossibleSoundEffectCategoriesEnglishName}                               from './SoundEffectCategories.types';
 import type {SoundEffectCategory}                                                    from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate}                                            from './SoundEffectCategory.template';
-import type {SMM2NameTemplate}                                                       from '../../lang/SMM2Name.template';
 
+import {AbstractTemplateCreator}    from '../../AbstractTemplateCreator';
 import {CSVLoader}                  from '../../../util/loader/CSVLoader';
 import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder';
 import {HeaderTypesForConvertor}    from '../../../util/loader/utility/HeaderTypesForConvertor';
@@ -44,7 +44,7 @@ export class SoundEffectCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, SoundEffectCategory, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, SoundEffectCategory, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)
@@ -66,54 +66,32 @@ export class SoundEffectCategoryLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
-//TODO Move EMPTY_GREEK & __createNameTemplate() to anew AbstractTemplateCreator
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<SoundEffectCategoryTemplate, PropertiesArray> {
 
-    static readonly #EMPTY_GREEK = null;
+    //region -------------------- Singleton usage --------------------
 
-    public static createTemplate(content: PropertiesArray,): | SoundEffectCategoryTemplate {
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): SoundEffectCategoryTemplate {
         const languages: LanguagesPropertyArray = [content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20],] as LanguagesPropertyArray;
 
         return {
-            name: this.__createToNameTemplate(languages),
-        };
-    }
-
-    private static __createToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
-        return {
-            english: {
-                simple: english,
-                american: americanEnglish,
-                european: europeanEnglish,
-            },
-            french: {
-                simple: french,
-                canadian: canadianFrench,
-                european: europeanFrench,
-            },
-            german: german,
-            spanish: {
-                simple: spanish,
-                american: americanSpanish,
-                european: europeanSpanish,
-            },
-            italian: italian,
-            dutch: dutch,
-            portuguese: {
-                simple: portuguese,
-                american: americanPortuguese,
-                european: europeanPortuguese,
-            },
-            russian: russian,
-            chinese: {
-                simple: chinese,
-                traditional: traditionalChinese,
-                simplified: simplifiedChinese,
-            },
-            japanese: japanese,
-            korean: korean,
-            greek: this.#EMPTY_GREEK,
+            name: this._createNameTemplate(languages),
         };
     }
 

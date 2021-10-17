@@ -7,11 +7,11 @@ import type {PossibleSoundEffectCategoryType, SoundEffectTemplate}              
 import type {PossibleSoundEffectsEnglishName}                                        from './SoundEffects.types';
 import type {SoundEffect}                                                            from './SoundEffect';
 
+import {AbstractTemplateCreator}   from '../../AbstractTemplateCreator';
 import {CSVLoader}                 from '../../../util/loader/CSVLoader';
 import {SoundEffectBuilder}        from './SoundEffect.builder';
 import {SoundEffectCategoryLoader} from '../category/SoundEffectCategory.loader';
 import {HeaderTypesForConvertor}   from '../../../util/loader/utility/HeaderTypesForConvertor';
-import {SMM2NameTemplate}          from '../../lang/SMM2Name.template';
 
 //region -------------------- CSV array related types --------------------
 
@@ -62,7 +62,7 @@ export class SoundEffectLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, SoundEffect, Headers>(everySoundEffects, convertedContent => new SoundEffectBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, SoundEffect, Headers>(everySoundEffects, convertedContent => new SoundEffectBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
@@ -86,13 +86,28 @@ export class SoundEffectLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
-//TODO Move EMPTY_GREEK & __createNameTemplate() to anew AbstractTemplateCreator
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<SoundEffectTemplate, PropertiesArray> {
 
-    static readonly #EMPTY_GREEK = null;
+    //region -------------------- Singleton usage --------------------
 
-    public static createTemplate(content: PropertiesArray,): | SoundEffectTemplate {
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): SoundEffectTemplate {
         const languages: LanguagesPropertyArray = [content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23],] as LanguagesPropertyArray;
 
         return {
@@ -105,44 +120,7 @@ class TemplateCreator {
                 },
                 category: content[2],
             },
-            name: this.__createToNameTemplate(languages),
-        };
-    }
-
-    private static __createToNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
-        return {
-            english: {
-                simple: english,
-                american: americanEnglish,
-                european: europeanEnglish,
-            },
-            french: {
-                simple: french,
-                canadian: canadianFrench,
-                european: europeanFrench,
-            },
-            german: german,
-            spanish: {
-                simple: spanish,
-                american: americanSpanish,
-                european: europeanSpanish,
-            },
-            italian: italian,
-            dutch: dutch,
-            portuguese: {
-                simple: portuguese,
-                american: americanPortuguese,
-                european: europeanPortuguese,
-            },
-            russian: russian,
-            chinese: {
-                simple: chinese,
-                traditional: traditionalChinese,
-                simplified: simplifiedChinese,
-            },
-            japanese: japanese,
-            korean: korean,
-            greek: this.#EMPTY_GREEK,
+            name: this._createNameTemplate(languages),
         };
     }
 

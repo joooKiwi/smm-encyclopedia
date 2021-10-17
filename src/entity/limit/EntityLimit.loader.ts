@@ -7,8 +7,8 @@ import type {Loader}                                                            
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}    from './EntityLimits.types';
 import type {PossibleEntityLimitTypeEnglishName}                                                                                            from './EntityLimitTypes.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                           from '../entityTypes';
-import type {SMM2NameTemplate}                                                                                                              from '../lang/SMM2Name.template';
 
+import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLimitBuilder}      from './EntityLimit.builder';
 import {EntityLoader}            from '../simple/Entity.loader';
@@ -77,7 +77,7 @@ export class EntityLimitLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityLimit, Headers>(everyThemes, convertedContent => new EntityLimitBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityLimit, Headers>(everyThemes, convertedContent => new EntityLimitBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
@@ -106,23 +106,42 @@ export class EntityLimitLoader
 }
 
 //region -------------------- Template related methods & classes --------------------
-//TODO Move EMPTY_GREEK & __createNameTemplate() to anew AbstractTemplateCreator
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray> {
 
-    public static readonly EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {
         amount: null,
         isUnknown: false,
         comment: null,
     };
-    public static readonly EMPTY_LINK_TEMPLATE: EmptyLinkTemplate = {
+    static readonly #EMPTY_LINK_TEMPLATE: EmptyLinkTemplate = {
         groupName: null,
         entityName: null,
     };
+    static readonly #EMPTY_REFERENCES = {
+        regular: null,
+        alternative: null,
+    };
 
-    static readonly #EMPTY_GREEK = null;
-
-    public static createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
+    public createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = content[1];
         const acronym = content[2];
         const groupNameAndEntitiesName = [content[5], content[6],] as const;
@@ -133,7 +152,7 @@ class TemplateCreator {
             : this.__createLimitTemplate(content, type, acronym, groupNameAndEntitiesName, languages,);
     }
 
-    private static __createLimitTemplate(content: PropertiesArray, type: PossibleEntityLimitTypeEnglishName, acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagesPropertyArray,): EntityLimitTemplate {
+    private __createLimitTemplate(content: PropertiesArray, type: PossibleEntityLimitTypeEnglishName, acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagesPropertyArray,): EntityLimitTemplate {
         return {
 
             references: {
@@ -145,30 +164,28 @@ class TemplateCreator {
 
             acronym: acronym as PossibleAcronymEntityLimits,
 
-            limit: this.__convertToLimitTemplate(content[3], content[4],),
+            limit: TemplateCreator.__convertToLimitTemplate(content[3], content[4],),
 
-            link: this.__convertToLinkTemplate(...groupNameAndEntitiesName,),
+            link: TemplateCreator.__convertToLinkTemplate(...groupNameAndEntitiesName,),
 
-            name: this.__createNameTemplate(languages,),
+            name: this._createNameTemplate(languages,),
 
         };
     }
 
-    private static __createAlternativeLimitTemplate(acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: | readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagesPropertyArray,): AlternativeLimitTemplate {
+    private __createAlternativeLimitTemplate(acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: | readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagesPropertyArray,): AlternativeLimitTemplate {
         return {
-            references: {
-                regular: null,
-                alternative: null,
-            },
+
+            references: TemplateCreator.#EMPTY_REFERENCES,
 
             type: null,
             acronym: acronym as PossibleAlternativeAcronymEntityLimits,
 
-            limit: this.EMPTY_LIMIT_AMOUNT_TEMPLATE,
+            limit: TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
 
-            link: this.__convertToLinkTemplate(...groupNameAndEntitiesName,),
+            link: TemplateCreator.__convertToLinkTemplate(...groupNameAndEntitiesName,),
 
-            name: this.__createNameTemplate(languages,),
+            name: this._createNameTemplate(languages,),
 
         };
     }
@@ -195,12 +212,12 @@ class TemplateCreator {
                     comment: limitComment,
                 };
         }
-        return this.EMPTY_LIMIT_AMOUNT_TEMPLATE;
+        return this.#EMPTY_LIMIT_AMOUNT_TEMPLATE;
     }
 
     private static __convertToLinkTemplate(groupName: | PossibleGroupName | null, entity: | SingleEntityName | null,): LinkTemplate {
         if (entity == null && groupName == null)
-            return this.EMPTY_LINK_TEMPLATE;
+            return this.#EMPTY_LINK_TEMPLATE;
         if (entity == null)
             return {
                 groupName: groupName,
@@ -212,42 +229,6 @@ class TemplateCreator {
         };
     }
 
-    private static __createNameTemplate([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,]: LanguagesPropertyArray,): SMM2NameTemplate {
-        return {
-            english: {
-                simple: english,
-                american: americanEnglish,
-                european: europeanEnglish,
-            },
-            french: {
-                simple: french,
-                canadian: canadianFrench,
-                european: europeanFrench,
-            },
-            german: german,
-            spanish: {
-                simple: spanish,
-                american: americanSpanish,
-                european: europeanSpanish,
-            },
-            italian: italian,
-            dutch: dutch,
-            portuguese: {
-                simple: portuguese,
-                american: americanPortuguese,
-                european: europeanPortuguese,
-            },
-            russian: russian,
-            chinese: {
-                simple: chinese,
-                traditional: traditionalChinese,
-                simplified: simplifiedChinese,
-            },
-            japanese: japanese,
-            korean: korean,
-            greek: this.#EMPTY_GREEK,
-        };
-    }
 }
 
 //endregion -------------------- Template related methods & classes --------------------
