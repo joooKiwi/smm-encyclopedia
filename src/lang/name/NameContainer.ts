@@ -15,7 +15,7 @@ export class NameContainer
 
     //region -------------------- Attributes --------------------
 
-    static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.PORTUGUESE, EveryLanguages.GREEK,] as const;
+    static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.GREEK,] as const;
 
     readonly #originalLanguages: readonly EveryLanguages[];
     #map?: Map<EveryLanguages, string>;
@@ -26,7 +26,7 @@ export class NameContainer
     readonly #spanishContainer: EmptyableLanguage<string, AmericanOrEuropeanArray>;
     readonly #italianContainer: EmptyableLanguage<string>;
     readonly #dutchContainer: EmptyableLanguage<string>;
-    readonly #portugueseContainer: EmptyableOptionalLanguage<string, AmericanOrEuropeanArray>;
+    readonly #portugueseContainer: EmptyableLanguage<string, AmericanOrEuropeanArray>;
     readonly #russianContainer: EmptyableLanguage<string>;
     readonly #japaneseContainer: EmptyableLanguage<string>;
     readonly #chineseContainer: EmptyableLanguage<string, ChineseArray>;
@@ -77,7 +77,7 @@ export class NameContainer
      *
      * @see ProjectLanguages.isASupportedLanguageInSMM
      */
-    public static get optionalLanguages(): readonly [EveryLanguages, EveryLanguages,] {
+    public static get optionalLanguages(): readonly [EveryLanguages,] {
         return this._optionalLanguages;
     }
 
@@ -174,10 +174,6 @@ export class NameContainer
 
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
-
-    public get isPortugueseUsed(): boolean {
-        return this.#portugueseContainer.isUsed;
-    }
 
     public get originalPortuguese() {
         return this.#portugueseContainer.original;
@@ -305,11 +301,10 @@ export class NameContainer
                     originalLanguages.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,);
                 break;
             case EveryLanguages.PORTUGUESE:
-                if ((languageContainer as OptionalLanguage<S, A>).isUsed)
-                    if (isValueString)
-                        originalLanguages.push(EveryLanguages.PORTUGUESE);
-                    else
-                        originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
+                if (isValueString)
+                    originalLanguages.push(EveryLanguages.PORTUGUESE);
+                else
+                    originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
                 break;
             case EveryLanguages.GREEK:
                 if ((languageContainer as OptionalLanguage<S, A>).isUsed)

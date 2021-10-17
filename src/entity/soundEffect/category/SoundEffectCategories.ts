@@ -49,8 +49,8 @@ export class SoundEffectCategories
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends SoundEffectCategoriesOrdinals = SoundEffectCategoriesOrdinals>(ordinal: O,): SoundEffectCategoriesArray[O]
-    public static getValue<O extends number = number>(ordinal: O,): | NonNullable<SoundEffectCategoriesArray[O]> | null
+    public static getValue<O extends SoundEffectCategoriesOrdinals = SoundEffectCategoriesOrdinals, >(ordinal: O,): SoundEffectCategoriesArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<SoundEffectCategoriesArray[O]> | null
     public static getValue(name: | SoundEffectCategoriesNames | PossibleSoundEffectCategoriesEnglishName,): SoundEffectCategories
     public static getValue(name: string,): | SoundEffectCategories | null
     public static getValue<I extends SoundEffectCategories = SoundEffectCategories, >(instance: I,): I

@@ -1,15 +1,16 @@
 import everyBehaviours from '../../resources/Entity behaviours.csv';
 
 import type {EntityBehaviour}                                                         from './EntityBehaviour';
+import type {EntityBehaviourTemplate}                                                 from './EntityBehaviour.template';
 import type {Loader}                                                                  from '../../util/loader/Loader';
 import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
 import type {PossibleGroupName, SingleEntityName}                                     from '../entityTypes';
 
+import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
 import {EntityLoader}            from '../simple/Entity.loader';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
 import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForConvertor';
-import {EntityBehaviourTemplate} from './EntityBehaviour.template';
 
 //region -------------------- CSV array related types --------------------
 
@@ -60,7 +61,7 @@ export class EntityBehaviourLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityBehaviour, Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityBehaviour, Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('boolean')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleBehavioursAcronyms, 'acronym',)
@@ -87,9 +88,27 @@ export class EntityBehaviourLoader
 
 //region -------------------- Template related methods & classes --------------------
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<EntityBehaviourTemplate, PropertiesArray> {
 
-    public static createTemplate(content: PropertiesArray,): EntityBehaviourTemplate {
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): EntityBehaviourTemplate {
         return {
             acronym: content[0],
             translationKey: content[1],

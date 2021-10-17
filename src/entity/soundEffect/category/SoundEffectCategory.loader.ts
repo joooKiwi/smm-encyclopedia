@@ -2,13 +2,14 @@ import everySoundEffectCategories from '../../../resources/Sound effect categori
 
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../../lang/Loader.types';
 import type {Loader}                                                                 from '../../../util/loader/Loader';
+import type {PossibleSoundEffectCategoriesEnglishName}                               from './SoundEffectCategories.types';
 import type {SoundEffectCategory}                                                    from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate}                                            from './SoundEffectCategory.template';
 
-import {CSVLoader}                                from '../../../util/loader/CSVLoader';
-import {SoundEffectCategoryBuilder}               from './SoundEffectCategory.builder';
-import {PossibleSoundEffectCategoriesEnglishName} from './SoundEffectCategories.types';
-import {HeaderTypesForConvertor}                  from '../../../util/loader/utility/HeaderTypesForConvertor';
+import {AbstractTemplateCreator}    from '../../AbstractTemplateCreator';
+import {CSVLoader}                  from '../../../util/loader/CSVLoader';
+import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder';
+import {HeaderTypesForConvertor}    from '../../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -43,7 +44,7 @@ export class SoundEffectCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, SoundEffectCategory, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, SoundEffectCategory, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)
@@ -66,43 +67,31 @@ export class SoundEffectCategoryLoader
 
 //region -------------------- Template related methods & classes --------------------
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<SoundEffectCategoryTemplate, PropertiesArray> {
 
-    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
-    static readonly #EMPTY_GREEK = null;
+    //region -------------------- Singleton usage --------------------
 
-    public static createTemplate(content: PropertiesArray,): | SoundEffectCategoryTemplate {
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): SoundEffectCategoryTemplate {
+        const languages: LanguagesPropertyArray = [content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20],] as LanguagesPropertyArray;
+
         return {
-            name: {
-                english: {
-                    simple: content[0],
-                    american: content[1],
-                    european: content[2],
-                },
-                french: {
-                    simple: content[3],
-                    canadian: content[4],
-                    european: content[5],
-                },
-                german: content[6],
-                spanish: {
-                    simple: content[7],
-                    american: content[8],
-                    european: content[9],
-                },
-                italian: content[10],
-                dutch: content[11],
-                portuguese: this.#EMPTY_PORTUGUESE,
-                russian: content[12],
-                chinese: {
-                    simple: content[13],
-                    traditional: content[14],
-                    simplified: content[15],
-                },
-                japanese: content[16],
-                korean: content[17],
-                greek: this.#EMPTY_GREEK,
-            },
+            name: this._createNameTemplate(languages),
         };
     }
 

@@ -5,11 +5,12 @@ import type {GameStyle}                                                         
 import type {GameStyleTemplate}                                                      from './GameStyle.template';
 import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {PossibleGameStyleName}                                                  from './GameStyles.types';
 
-import {CSVLoader}             from '../../util/loader/CSVLoader';
-import {EntityLoader}          from '../simple/Entity.loader';
-import {GameStyleBuilder}      from './GameStyle.builder';
-import {PossibleGameStyleName} from './GameStyles.types';
+import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {CSVLoader}               from '../../util/loader/CSVLoader';
+import {EntityLoader}            from '../simple/Entity.loader';
+import {GameStyleBuilder}        from './GameStyle.builder';
 
 //region -------------------- CSV array related types --------------------
 
@@ -52,7 +53,7 @@ export class GameStyleLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, GameStyle, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, GameStyle, Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
@@ -75,12 +76,29 @@ export class GameStyleLoader
 
 //region -------------------- Template related methods & classes --------------------
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<GameStyleTemplate, PropertiesArray> {
 
-    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
-    static readonly #EMPTY_GREEK = null;
+    //region -------------------- Singleton usage --------------------
 
-    public static createTemplate(content: PropertiesArray,): GameStyleTemplate {
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): GameStyleTemplate {
+        const languages: LanguagesPropertyArray = [content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22],] as LanguagesPropertyArray;
+
         return {
             isIn: {
                 game: {
@@ -88,36 +106,7 @@ class TemplateCreator {
                     '2': content[1],
                 },
             },
-            name: {
-                english: {
-                    simple: content[2],
-                    american: content[3],
-                    european: content[4],
-                },
-                french: {
-                    simple: content[5],
-                    canadian: content[6],
-                    european: content[7],
-                },
-                german: content[8],
-                spanish: {
-                    simple: content[9],
-                    american: content[10],
-                    european: content[11],
-                },
-                italian: content[12],
-                dutch: content[13],
-                portuguese: this.#EMPTY_PORTUGUESE,
-                russian: content[14],
-                japanese: content[15],
-                chinese: {
-                    simple: content[16],
-                    traditional: content[17],
-                    simplified: content[18],
-                },
-                korean: content[19],
-                greek: this.#EMPTY_GREEK,
-            }
+            name: this._createNameTemplate(languages),
         };
     }
 

@@ -3,7 +3,7 @@
 export type Headers = | 'english' | 'spanish' | 'portuguese' | `${'american' | 'european'}${'English' | 'Spanish' | 'Portuguese'}`
                       | 'french' | `${'canadian' | 'european'}French` | 'german' | 'italian' | 'dutch' | 'russian' | 'japanese'
                       | 'chinese' | `${'simplified' | 'traditional'}Chinese` | 'korean';
-export type HeadersWithOptionalLanguages = Headers | 'portuguese' | `${'american' | 'european'}Portuguese` | 'greek';
+export type HeadersWithOptionalLanguages = Headers | 'greek';
 
 //endregion -------------------- Headers --------------------
 //region -------------------- Properties --------------------
@@ -24,6 +24,7 @@ export type PropertiesArray<ENGLISH extends NullableLanguage = NullableLanguage,
     SPANISH extends NullableLanguage = NullableLanguage, AMERICAN_SPANISH extends NullableLanguage = NullableLanguage, EUROPEAN_SPANISH extends NullableLanguage = NullableLanguage,
     ITALIAN extends NullableLanguage = NullableLanguage,
     DUTCH extends NullableLanguage = NullableLanguage,
+    PORTUGUESE extends NullableLanguage = NullableLanguage, AMERICAN_PORTUGUESE extends NullableLanguage = NullableLanguage, EUROPEAN_PORTUGUESE extends NullableLanguage = NullableLanguage,
     RUSSIAN extends NullableLanguage = NullableLanguage,
     JAPANESE extends NullableLanguage = NullableLanguage,
     CHINESE extends NullableLanguage = NullableLanguage, TRADITIONAL_CHINESE extends NullableLanguage = NullableLanguage, SIMPLIFIED_CHINESE extends NullableLanguage = NullableLanguage,
@@ -35,6 +36,7 @@ export type PropertiesArray<ENGLISH extends NullableLanguage = NullableLanguage,
     spanish: SPANISH, americanSpanish: AMERICAN_SPANISH, europeanSpanish: EUROPEAN_SPANISH,
     italian: ITALIAN,
     dutch: DUTCH,
+    portuguese: PORTUGUESE, americanPortuguese: AMERICAN_PORTUGUESE, europeanPortuguese: EUROPEAN_PORTUGUESE,
     russian: RUSSIAN,
     japanese: JAPANESE,
     chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
@@ -53,18 +55,18 @@ export type PropertiesArrayWithOptionalLanguages<ENGLISH extends NullableLanguag
     KOREAN extends NullableLanguage = NullableLanguage,
     GREEK extends NullableLanguage = NullableLanguage, >
     = readonly [
-    english: ENGLISH, americanEnglish: AMERICAN_ENGLISH, europeanEnglish: EUROPEAN_ENGLISH,
-    french: FRENCH, canadianFrench: CANADIAN_FRENCH, europeanFrench: EUROPEAN_FRENCH,
-    german: GERMAN,
-    spanish: SPANISH, americanSpanish: AMERICAN_SPANISH, europeanSpanish: EUROPEAN_SPANISH,
-    italian: ITALIAN,
-    dutch: DUTCH,
-    portuguese: PORTUGUESE, americanPortuguese: AMERICAN_PORTUGUESE, europeanPortuguese: EUROPEAN_PORTUGUESE,
-    russian: RUSSIAN,
-    japanese: JAPANESE,
-    chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
-    korean: KOREAN,
-    greek: GREEK,
+    ...PropertiesArray<ENGLISH, AMERICAN_ENGLISH, EUROPEAN_ENGLISH,
+        FRENCH, CANADIAN_FRENCH, EUROPEAN_FRENCH,
+        GERMAN,
+        SPANISH, AMERICAN_SPANISH, EUROPEAN_SPANISH,
+        ITALIAN,
+        DUTCH,
+        PORTUGUESE, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE,
+        RUSSIAN,
+        JAPANESE,
+        CHINESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE,
+        KOREAN>,
+    /*greek*/GREEK,
 ];
 
 export type NonNullablePropertiesArray = readonly [
@@ -74,6 +76,7 @@ export type NonNullablePropertiesArray = readonly [
     /*spanish*/  ...NonNullableArrayLanguage,
     /*italian*/ NonNullableLanguage,
     /*dutch*/ NonNullableLanguage,
+    /*portuguese*/  ...NonNullableArrayLanguage,
     /*russian*/ NonNullableLanguage,
     /*japanese*/ NonNullableLanguage,
     /*chinese*/  ...NonNullableArrayLanguage,
@@ -86,6 +89,7 @@ export type DefaultNonNullablePropertiesArray = readonly [
     /*spanish*/  ...NullableArrayLanguage,
     /*italian*/ NullableLanguage,
     /*dutch*/ NullableLanguage,
+    /*portuguese*/  ...NullableArrayLanguage,
     /*russian*/ NullableLanguage,
     /*japanese*/ NullableLanguage,
     /*chinese*/  ...NullableArrayLanguage,

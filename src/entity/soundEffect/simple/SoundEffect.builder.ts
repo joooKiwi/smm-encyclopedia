@@ -28,7 +28,6 @@ export class SoundEffectBuilder
         super(template, false,);
     }
 
-
     //region -------------------- Build helper methods --------------------
 
     protected /*static*/ get _templateMap() {

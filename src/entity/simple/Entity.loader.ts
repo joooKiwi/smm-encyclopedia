@@ -15,6 +15,7 @@ import type {PossibleGameStyleAcronym}                                          
 import type {PossibleTimeName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../time/Times.types';
 import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../lang/SMM2Name.template';
 
+import {AbstractTemplateCreator}      from '../AbstractTemplateCreator';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EntityCategoryLoader}         from '../category/EntityCategory.loader';
 import {EntityBuilder}                from './Entity.builder';
@@ -189,6 +190,11 @@ type PropertiesArray = [
 ];
 
 //endregion -------------------- CSV array related types --------------------
+//region -------------------- private types --------------------
+
+type EntityNamePropertyArray = [HasAReferenceInMarioMaker, ...LanguagesPropertyArray,];
+
+//endregion -------------------- private types --------------------
 
 export interface DebugEntityReferences {
 
@@ -233,7 +239,7 @@ export class EntityLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.createTemplate(convertedContent))
+            new CSVLoader<PropertiesArray, EntityTemplate, Headers>(everyEntities, convertedContent => TemplateCreator.get.createTemplate(convertedContent))
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(['(Entity)', 'Entity', 'Projectile',], 'entityType',)
@@ -326,17 +332,32 @@ export class EntityLoader
 
 //region -------------------- Template related methods & classes --------------------
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<EntityTemplate, PropertiesArray> {
 
-    public static createTemplate(content: PropertiesArray,): EntityTemplate {
-        const [isInSuperMarioMaker1, isInSuperMarioMaker2] =
-            [content[1], content[2]];
-        const [dayLink, nightLink] =
-            [content[56], content[57],];
-        const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] =
-            [content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65], content[66], content[67],];
-        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink] =
-            [content[68], content[69], content[70], content[71], content[72]];
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): EntityTemplate {
+        const [isInSuperMarioMaker1, isInSuperMarioMaker2,] = [content[1], content[2],];
+        const [dayLink, nightLink,] = [content[56], content[57],];
+        const [groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,] = [content[58], content[59], content[60], content[61], content[62], content[63], content[64], content[65], content[66], content[67],];
+        const [superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink,] = [content[68], content[69], content[70], content[71], content[72],];
+        const languages: EntityNamePropertyArray = [content[73], content[74], content[75], content[76], content[77], content[78], content[79], content[80], content[81], content[82], content[83], content[84], content[85], content[86], content[87], content[88], content[89], content[90], content[91], content[92], content[93], content[94], content[95],] as EntityNamePropertyArray;
 
         return {
             properties: {
@@ -350,27 +371,27 @@ class TemplateCreator {
                         2: isInSuperMarioMaker2,
                     },
                     style: {
-                        superMarioBros: this.__convertLinkToOnlyBoolean(superMarioBrosLink),
-                        superMarioBros3: this.__convertLinkToOnlyBoolean(superMarioBros3Link),
-                        superMarioWorld: this.__convertLinkToOnlyBoolean(superMarioWorldLink),
-                        newSuperMarioBrosU: this.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
-                        superMario3DWorld: !isInSuperMarioMaker1 && isInSuperMarioMaker2 ? this.__convertLinkToOnlyBoolean(superMario3DWorldLink) : this.__convertLinkToNullableBoolean(superMario3DWorldLink),
+                        superMarioBros: TemplateCreator.__convertLinkToOnlyBoolean(superMarioBrosLink),
+                        superMarioBros3: TemplateCreator.__convertLinkToOnlyBoolean(superMarioBros3Link),
+                        superMarioWorld: TemplateCreator.__convertLinkToOnlyBoolean(superMarioWorldLink),
+                        newSuperMarioBrosU: TemplateCreator.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
+                        superMario3DWorld: !isInSuperMarioMaker1 && isInSuperMarioMaker2 ? TemplateCreator.__convertLinkToOnlyBoolean(superMario3DWorldLink) : TemplateCreator.__convertLinkToNullableBoolean(superMario3DWorldLink),
                     },
                     theme: {
-                        ground: this.__convertLinkToBoolean(groundLink),
-                        underground: this.__convertLinkToBoolean(undergroundLink),
-                        underwater: this.__convertLinkToBoolean(underwaterLink),
-                        desert: this.__convertLinkToNullableBoolean(desertLink),
-                        snow: this.__convertLinkToNullableBoolean(snowLink),
-                        sky: this.__convertLinkToNullableBoolean(skyLink),
-                        forest: this.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: this.__convertLinkToBoolean(ghostHouseLink),
-                        airship: this.__convertLinkToBoolean(airshipLink),
-                        castle: this.__convertLinkToBoolean(castleLink),
+                        ground: TemplateCreator.__convertLinkToBoolean(groundLink),
+                        underground: TemplateCreator.__convertLinkToBoolean(undergroundLink),
+                        underwater: TemplateCreator.__convertLinkToBoolean(underwaterLink),
+                        desert: TemplateCreator.__convertLinkToNullableBoolean(desertLink),
+                        snow: TemplateCreator.__convertLinkToNullableBoolean(snowLink),
+                        sky: TemplateCreator.__convertLinkToNullableBoolean(skyLink),
+                        forest: TemplateCreator.__convertLinkToNullableBoolean(forestLink),
+                        ghostHouse: TemplateCreator.__convertLinkToBoolean(ghostHouseLink),
+                        airship: TemplateCreator.__convertLinkToBoolean(airshipLink),
+                        castle: TemplateCreator.__convertLinkToBoolean(castleLink),
                     },
                     time: {
-                        day: this.__convertLinkToBoolean(dayLink),
-                        night: this.__convertLinkToNullableBoolean(nightLink),
+                        day: TemplateCreator.__convertLinkToBoolean(dayLink),
+                        night: TemplateCreator.__convertLinkToNullableBoolean(nightLink),
                     },
                 },
 
@@ -450,11 +471,11 @@ class TemplateCreator {
                     }
                 },
                 behaviour: {
-                    solo: this.__convertToBehaviourArray(content[45]),
-                    localCoop: this.__convertToBehaviourArray(content[46]),
+                    solo: TemplateCreator.__convertToBehaviourArray(content[45]),
+                    localCoop: TemplateCreator.__convertToBehaviourArray(content[46]),
                     online: {
-                        coop: this.__convertToBehaviourArray(content[47]),
-                        versus: this.__convertToBehaviourArray(content[48]),
+                        coop: TemplateCreator.__convertToBehaviourArray(content[47]),
+                        versus: TemplateCreator.__convertToBehaviourArray(content[48]),
                     },
                 },
                 offscreenRange: {
@@ -507,41 +528,7 @@ class TemplateCreator {
                 },
             },
             categoryInTheEditor: content[3],
-            name: {
-                hasAReferenceInMarioMaker: content[73],
-                english: {
-                    simple: content[74],
-                    american: content[75],
-                    european: content[76],
-                },
-                french: {
-                    simple: content[77],
-                    canadian: content[78],
-                    european: content[79],
-                },
-                german: content[80],
-                spanish: {
-                    simple: content[81],
-                    american: content[82],
-                    european: content[83],
-                },
-                italian: content[84],
-                dutch: content[85],
-                portuguese: {
-                    simple: content[92],
-                    american: content[93],
-                    european: content[94],
-                },
-                russian: content[86],
-                japanese: content[87],
-                chinese: {
-                    simple: content[88],
-                    traditional: content[89],
-                    simplified: content[90],
-                },
-                korean: content[91],
-                greek: content[95],
-            },
+            name: this._createEntityNameTemplate(languages),
         };
     }
 

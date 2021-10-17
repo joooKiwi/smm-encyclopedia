@@ -55,8 +55,8 @@ export class ProjectLanguages
     public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,   true, );
     public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,            true, );
     public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,              true, );
-    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE,false,);
-    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE,false,);
+    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE,true, );//FIXME can't figure out a way to retrieve the portuguese language in SMM2
+    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE,true, );
     public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,            true, );
     public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,           true, );
     public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE,true, );

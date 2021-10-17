@@ -9,7 +9,7 @@ export type SoundEffectsOrdinals = | 0 | 1 | 2 | 3 | 4;
 //region -------------------- String types --------------------
 
 export type SoundEffectsNames =
-    | 'SHOCK' | 'SCREAM' | 'LAUGHTER' | 'GUFAW' | 'BOOO'
+    | 'SHOCK' | 'SCREAM' | 'LAUGHTER' | 'GUFFAW' | 'BOOO'
     | 'CHEER' | 'BABY' | 'PARTY_POPPER' | 'APPLAUSE' | 'NEAR_MISS'
 
     | 'CLATTER' | 'DRAMA' | 'KICK' | 'JUMP' | 'HONK_HONK'
@@ -28,25 +28,47 @@ export type SoundEffectsNames =
     | 'BOSS_MUSIC' | 'FINAL_BOSS'
     | `SUPER_MARIO_${| 'KART' | '64' | 'SUNSHINE' | 'GALAXY'}`;
 
-export type PossibleSoundEffectsEnglishName =
-    | 'Shock' | 'Scream' | 'Laughter' | 'Gufaw' | 'Booo!'
-    | 'Cheer' | 'Baby' | 'Party Popper' | 'Applause' | 'Near Miss'
+export type PossibleSoundEffectsEnglishNameGames = `Super Mario ${| 'Kart' | '64' | 'Sunshine' | 'Galaxy'}`;
+export type PossibleSoundEffectsEnglishNameInBothGames =
+    | 'Shock' | 'Scream' | 'Laughter' | 'Cheer' | 'Baby'
+    | 'Applause'
 
     | 'Clatter' | 'Drama!' | 'Kick' | 'Jump' | 'Honk Honk'
-    | 'Punch' | 'Oink' | 'Kuh-thunk!' | 'Beep!' | 'Ninja Attack!'
-    | 'Zap!'
+    | 'Punch'
 
-    | 'Ding Dong' | 'Bzzzt!' | 'Glory' | 'Doom' | 'Yeah!'
-    | 'Aww...'
+    | 'Ding Dong' | 'Bzzzt!' | 'Glory' | 'Doom'
 
-    | 'Fireworks' | 'Audience' | 'Scatting'
-    | 'Bird\'s Chirping' | 'Spark' | 'Traditional' | 'Electric Guitar' | 'Distortion'
-    | 'Twisty Turny' | 'Woozy' | 'Telephone' | 'Flash'
+    | 'Fireworks'
 
-    | 'Peaceful' | 'Horror' | 'Bonus Music' | 'Festive Music' | 'Rave Music'
-    | 'Heartbeat' | 'Silence' | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`
-    | 'Boss Music' | 'Final Boss'
-    | `Super Mario ${| 'Kart' | '64' | 'Sunshine' | 'Galaxy'}`;
+    | 'Bonus Music' | 'Heartbeat' | 'Silence' | 'Boss Music';
+export type PossibleSoundEffectsInSMM1EnglishName =
+    | PossibleSoundEffectsEnglishNameInBothGames
+    | 'Bird\'s Chirping' | 'Distortion' | 'Telephone'
+
+    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`;
+export type PossibleSoundEffectsInSMM2EnglishName =
+    | PossibleSoundEffectsEnglishNameInBothGames
+    | 'Guffaw' | 'Booo!' | 'Party Popper'
+    | 'Near Miss'
+
+    | 'Oink' | 'Kuh-thunk!' | 'Beep!' | 'Ninja Attack!' | 'Zap!'
+
+    | 'Yeah!' | 'Aww...'
+
+    | 'Audience' | 'Scatting' | 'Spark' | 'Traditional' | 'Electric Guitar'
+    | 'Twisty Turny' | 'Woozy' | 'Flash'
+
+    | 'Peaceful' | 'Horror' | 'Final Boss'
+    | PossibleSoundEffectsEnglishNameGames;
+export type PossibleSoundEffectsEnglishName = | PossibleSoundEffectsInSMM1EnglishName | PossibleSoundEffectsInSMM2EnglishName;
+
+export type MiddleSoundEffectImage = `${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}${| '' | ' (alt)'}`;
+export type PossibleSMM1SoundEffectImagePath = `/game/sound effects/SMM1/${MiddleSoundEffectImage} - ${PossibleSoundEffectsInSMM1EnglishName}.png`;
+
+type EveryPossibleSoundEffectStarting = `${| 1 | 2 | 3 | 4 | 5}.${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11}`;
+type ExcludedPossibleSoundEffectStarting = | '1.11' | `3.${| 7 | 8 | 9 | 10 | 11}` | `4.${| 10 | 11}`;
+export type StartingSoundEffectImage = Exclude<EveryPossibleSoundEffectStarting, ExcludedPossibleSoundEffectStarting>;
+export type PossibleSMM2SoundEffectImagePath = `/game/sound effects/SMM2/${StartingSoundEffectImage} - ${PossibleSoundEffectsInSMM2EnglishName}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -57,7 +79,7 @@ export type SimpleSoundEffects<T = SoundEffects, > = SimpleEnum<SoundEffectsName
 //region -------------------- Array types --------------------
 
 export type SoundEffectsArray<T = SoundEffects, > = readonly [
-    SimpleSoundEffects<T>['SHOCK'], SimpleSoundEffects<T>['SCREAM'], SimpleSoundEffects<T>['LAUGHTER'], SimpleSoundEffects<T>['GUFAW'], SimpleSoundEffects<T>['BOOO'],
+    SimpleSoundEffects<T>['SHOCK'], SimpleSoundEffects<T>['SCREAM'], SimpleSoundEffects<T>['LAUGHTER'], SimpleSoundEffects<T>['GUFFAW'], SimpleSoundEffects<T>['BOOO'],
     SimpleSoundEffects<T>['CHEER'], SimpleSoundEffects<T>['BABY'], SimpleSoundEffects<T>['PARTY_POPPER'], SimpleSoundEffects<T>['APPLAUSE'], SimpleSoundEffects<T>['NEAR_MISS'],
 
     SimpleSoundEffects<T>['CLATTER'], SimpleSoundEffects<T>['DRAMA'], SimpleSoundEffects<T>['KICK'], SimpleSoundEffects<T>['JUMP'], SimpleSoundEffects<T>['HONK_HONK'],

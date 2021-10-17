@@ -5,8 +5,24 @@ table[id$="_table"] {
     text-align: center;
   }
 
+
+  tbody tr > {
+    //region -------------------- 1 - # --------------------
+
+    :nth-child(1) {
+      width: 1cm;
+      text-align: left;
+
+      &:after {
+        content: '.';
+      }
+    }
+
+    //endregion -------------------- 1 - # --------------------
+  }
+
   th img {
-    max-height: 1cm;
+    max-height: .75cm;
   }
 
   img {

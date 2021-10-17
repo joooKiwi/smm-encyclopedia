@@ -4,7 +4,8 @@ import type {SoundEffectCategory}    from '../category/SoundEffectCategory';
 import type {SoundEffectProperty}    from './properties/SoundEffectProperty';
 
 export interface SoundEffect
-    extends NameTrait, NameTraitFromACategory<SoundEffectCategory> {
+    extends NameTrait, NameTraitFromACategory<SoundEffectCategory>,
+        SoundEffectProperty {
 
     //region -------------------- Properties --------------------
 

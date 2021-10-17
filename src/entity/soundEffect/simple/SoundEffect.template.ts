@@ -11,8 +11,10 @@ export interface SoundEffectTemplate
             game: SimpleGameTemplate
         }
 
-        category: | PossibleSoundEffectCategoriesEnglishName | null
+        category: PossibleSoundEffectCategoryType
 
     }
 
 }
+
+export type PossibleSoundEffectCategoryType = | PossibleSoundEffectCategoriesEnglishName | null;

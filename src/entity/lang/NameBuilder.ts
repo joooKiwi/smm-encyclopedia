@@ -1,6 +1,6 @@
-import type {Builder}                                                 from '../../util/Builder';
-import type {SMM2NameTemplate, SMM2NameTemplateWithOptionalLanguages} from './SMM2Name.template';
-import type {Name}                                                    from '../../lang/name/Name';
+import type {Builder}                  from '../../util/Builder';
+import type {PossibleSMM2NameTemplate} from './SMM2Name.template';
+import type {Name}                     from '../../lang/name/Name';
 
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
 
@@ -21,7 +21,7 @@ export class NameBuilder
     /**
      * A constant meant to signify an optional language.
      *
-     * As it stants, only the portuguese is optional.
+     * As it stands, only the greek is optional.
      *
      * @see ProjectLanguages.isASupportedLanguageInSMM
      * @private
@@ -33,7 +33,7 @@ export class NameBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages, isACompleteName: boolean,) {
+    public constructor(template: PossibleSMM2NameTemplate, isACompleteName: boolean,) {
         this.#template = template;
         this.#isACompleteName = isACompleteName;
     }
@@ -64,20 +64,23 @@ export class NameBuilder
     }
 
     public build() {
+        const {english, french, german, spanish, italian, dutch, portuguese, russian, japanese, chinese, korean, greek,} = this.template;
+        const isANonCompleteGame = !this.isACompleteName;
+
         //TODO change to the EveryLanguages.isACompleteLanguage instead
         return new OriginalNameBuilder()
-            .setEnglish(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_COMPLETED_LANGUAGES, this.template.english.simple, this.template.english.american, this.template.english.european,))
-            .setFrench(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_COMPLETED_LANGUAGES, this.template.french.simple, this.template.french.canadian, this.template.french.european,))
-            .setGerman(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.german,))
-            .setSpanish(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.spanish.simple, this.template.spanish.american, this.template.spanish.european,))
-            .setItalian(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.italian,))
-            .setDutch(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.dutch,))
-            .setPortuguese(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES, this.template.portuguese.simple, this.template.portuguese.american, this.template.portuguese.european,))
-            .setRussian(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.russian,))
-            .setJapanese(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.japanese,))
-            .setChinese(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.chinese.simple, this.template.chinese.simplified, this.template.chinese.traditional,))
-            .setKorean(NameBuilder.__interpretTranslation(!this.isACompleteName, this.template.korean,))
-            .setGreek(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES, this.template.greek,))
+            .setEnglish(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_COMPLETED_LANGUAGES, english.simple, english.american, english.european,))
+            .setFrench(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_COMPLETED_LANGUAGES, french.simple, french.canadian, french.european,))
+            .setGerman(NameBuilder.__interpretTranslation(isANonCompleteGame, german,))
+            .setSpanish(NameBuilder.__interpretTranslation(isANonCompleteGame, spanish.simple, spanish.american, spanish.european,))
+            .setItalian(NameBuilder.__interpretTranslation(isANonCompleteGame, italian,))
+            .setDutch(NameBuilder.__interpretTranslation(isANonCompleteGame, dutch,))
+            .setPortuguese(NameBuilder.__interpretTranslation(isANonCompleteGame, portuguese.simple, portuguese.american, portuguese.european,))
+            .setRussian(NameBuilder.__interpretTranslation(isANonCompleteGame, russian,))
+            .setJapanese(NameBuilder.__interpretTranslation(isANonCompleteGame, japanese,))
+            .setChinese(NameBuilder.__interpretTranslation(isANonCompleteGame, chinese.simple, chinese.simplified, chinese.traditional,))
+            .setKorean(NameBuilder.__interpretTranslation(isANonCompleteGame, korean,))
+            .setGreek(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES, greek,))
             .build();
     }
 

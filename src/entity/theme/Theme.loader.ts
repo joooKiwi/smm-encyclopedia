@@ -6,9 +6,10 @@ import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyAr
 import type {Loader}                                                                 from '../../util/loader/Loader';
 import type {ThemeTemplate}                                                          from './Theme.template';
 
-import {CSVLoader}    from '../../util/loader/CSVLoader';
-import {EntityLoader} from '../simple/Entity.loader';
-import {ThemeBuilder} from './Theme.builder';
+import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {CSVLoader}               from '../../util/loader/CSVLoader';
+import {EntityLoader}            from '../simple/Entity.loader';
+import {ThemeBuilder}            from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
 
@@ -57,7 +58,7 @@ export class ThemeLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.createTemplate(convertedContent)))
+            new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.get.createTemplate(convertedContent)))
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean(
@@ -83,12 +84,29 @@ export class ThemeLoader
 
 //region -------------------- Template related methods & classes --------------------
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<ThemeTemplate, PropertiesArray> {
 
-    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
-    static readonly #EMPTY_GREEK = null;
+    //region -------------------- Singleton usage --------------------
 
-    public static createTemplate(content: PropertiesArray,): ThemeTemplate {
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): ThemeTemplate {
+        const languages: LanguagesPropertyArray = [content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24],] as LanguagesPropertyArray;
+
         return {
             isIn: {
                 game: {
@@ -100,36 +118,7 @@ class TemplateCreator {
                     world: content[1],
                 },
             },
-            name: {
-                english: {
-                    simple: content[4],
-                    american: content[5],
-                    european: content[6],
-                },
-                french: {
-                    simple: content[7],
-                    canadian: content[8],
-                    european: content[9],
-                },
-                german: content[10],
-                spanish: {
-                    simple: content[11],
-                    american: content[12],
-                    european: content[13],
-                },
-                italian: content[14],
-                dutch: content[15],
-                portuguese: this.#EMPTY_PORTUGUESE,
-                russian: content[16],
-                japanese: content[17],
-                chinese: {
-                    simple: content[18],
-                    traditional: content[19],
-                    simplified: content[20],
-                },
-                korean: content[21],
-                greek: this.#EMPTY_GREEK,
-            }
+            name: this._createNameTemplate(languages),
         };
     }
 

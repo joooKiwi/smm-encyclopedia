@@ -64,7 +64,6 @@ export class EmptyName
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
-    public readonly isPortugueseUsed = false;
     public readonly originalPortuguese = EMPTY_STRING;
     public readonly portuguese = EMPTY_STRING;
     public readonly americanPortuguese = EMPTY_STRING;

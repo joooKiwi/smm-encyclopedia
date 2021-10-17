@@ -52,8 +52,6 @@ export interface NameTraitFromACategory<CATEGORY extends NameTrait, > {
     get categoryDutch(): this['categoryName']['dutch']
 
 
-    get categoryIsPortugueseUsed(): this['categoryName']['isPortugueseUsed']
-
     get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese']
 
     get categoryPortuguese(): this['categoryName']['portuguese']

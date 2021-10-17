@@ -52,8 +52,6 @@ export interface NameTraitFromAnAlternativeContainer<ALTERNATIVE_CONTAINER exten
     get alternativeDutch(): this['alternativeNameContainer']['dutch']
 
 
-    get alternativeIsPortugueseUsed(): this['alternativeNameContainer']['isPortugueseUsed']
-
     get alternativeOriginalPortuguese(): this['alternativeNameContainer']['originalPortuguese']
 
     get alternativePortuguese(): this['alternativeNameContainer']['portuguese']

@@ -6,8 +6,9 @@ import type {Loader}                                                            
 import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {PossibleEntityCategoriesName}                                           from './EntityCategories.types';
 
-import {CSVLoader}             from '../../util/loader/CSVLoader';
-import {EntityCategoryBuilder} from './EntityCategory.builder';
+import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {CSVLoader}               from '../../util/loader/CSVLoader';
+import {EntityCategoryBuilder}   from './EntityCategory.builder';
 
 //region -------------------- CSV array related types --------------------
 
@@ -44,7 +45,7 @@ export class EntityCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityCategory, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityCategory, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEntityCategoriesName, finalContent,))
@@ -65,44 +66,32 @@ export class EntityCategoryLoader
 
 //region -------------------- Template related methods & classes --------------------
 
-class TemplateCreator {
+/**
+ * @singleton
+ */
+class TemplateCreator
+    extends AbstractTemplateCreator<EntityCategoryTemplate, PropertiesArray> {
 
-    static readonly #EMPTY_PORTUGUESE = {simple: null, european: null, american: null,};
-    static readonly #EMPTY_GREEK = null;
+    //region -------------------- Singleton usage --------------------
 
-    public static createTemplate(content: PropertiesArray,): EntityCategoryTemplate {
+    static #instance?: TemplateCreator;
+
+    private constructor() {
+        super();
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public createTemplate(content: PropertiesArray,): EntityCategoryTemplate {
+        const languages: LanguagesPropertyArray = [content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20],] as LanguagesPropertyArray;
+
         return {
             entities: null,
-            name: {
-                english: {
-                    simple: content[0],
-                    american: content[1],
-                    european: content[2],
-                },
-                french: {
-                    simple: content[3],
-                    canadian: content[4],
-                    european: content[5],
-                },
-                german: content[6],
-                spanish: {
-                    simple: content[7],
-                    american: content[8],
-                    european: content[9],
-                },
-                italian: content[10],
-                dutch: content[11],
-                portuguese: this.#EMPTY_PORTUGUESE,
-                russian: content[12],
-                japanese: content[13],
-                chinese: {
-                    simple: content[14],
-                    traditional: content[15],
-                    simplified: content[16],
-                },
-                korean: content[17],
-                greek: this.#EMPTY_GREEK,
-            },
+            name: this._createNameTemplate(languages),
         };
     }
 
