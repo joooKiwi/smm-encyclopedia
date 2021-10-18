@@ -1,3 +1,35 @@
 {
+  "English":           "Inglés",
+  "English (America)": "Inglés (America)",
+  "English (Europe)":  "Inglés (Europa)",
 
+  "French":          "Francés",
+  "French (Canada)": "Francés (Canadá)",
+  "French (Europe)": "Francés (Europa)",
+
+  "German": "Alemán",
+
+  "Spanish":           "Español",
+  "Spanish (America)": "Español (America)",
+  "Spanish (Europe)":  "Español (Europa)",
+
+  "Italian": "Italiano",
+
+  "Dutch": "Neerlandés",
+
+  "Russian": "Ruso",
+
+  "Japanese": "Japonés",
+
+  "Chinese":             "Chino",
+  "Simplified chinese":  "Chino simplificado",
+  "Traditional chinese": "Chino tradicional",
+
+  "Korean":  "Coreano",
+
+  "Portuguese":           "Portugués",
+  "Portuguese (America)": "Portugués (America)",
+  "Portuguese (Europe)":  "Portugués (Europa)",
+
+  "Greek": "Griego"
 }

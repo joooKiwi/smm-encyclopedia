@@ -46,22 +46,22 @@ export class ProjectLanguages
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,   true, );
-    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,   true, );
-    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,    true, );
-    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,    true, );
-    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,             true, );
-    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,   true, );
-    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,   true, );
-    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,            true, );
-    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,              true, );
-    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE,true, );//FIXME can't figure out a way to retrieve the portuguese language in SMM2
-    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE,true, );
-    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,            true, );
-    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,           true, );
-    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE,true, );
-    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE, true, );
-    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,             true, );
+    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,    true,  true, );
+    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,    true,  true, );
+    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,     true,  true, );
+    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,     true,  true, );
+    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,              true,  true, );
+    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,    true,  true, );
+    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,    true,  true, );
+    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,             true,  true, );
+    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,               true,  true, );
+    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE, false, false,);
+    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE, true,  false,);
+    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,             true,  true, );
+    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,            true,  true, );
+    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE, true,  true, );
+    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  true,  true, );
+    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              true,  true, );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -72,21 +72,25 @@ export class ProjectLanguages
     //region -------------------- Attributes --------------------
 
     readonly #language: EveryLanguages;
-    readonly #isASupportedLanguageInSMM: boolean;
+    readonly #isASupportedLanguageInSMM1: boolean;
+    readonly #isASupportedLanguageInSMM2: boolean;
+    #isSupportedLanguageInSMM?: boolean;
 
     //endregion -------------------- Attributes --------------------
 
     protected constructor(language: ProjectLanguages,)
     // @ts-ignore
-    private constructor(language: EveryLanguages, isASupportedLanguageInSMM: boolean,)
-    protected constructor(language: EveryLanguages | ProjectLanguages, isASupportedLanguageInSMM?: boolean,) {
+    private constructor(language: EveryLanguages, isASupportedLanguageInSMM1: boolean, isASupportedLanguageInSMM2: boolean,)
+    protected constructor(language: EveryLanguages | ProjectLanguages, isASupportedLanguageInSMM1?: boolean, isASupportedLanguageInSMM2?: boolean,) {
         super(ProjectLanguages);
         if (language instanceof ProjectLanguages) {
             this.#language = language.language;
-            this.#isASupportedLanguageInSMM = language.isASupportedLanguageInSMM;
+            this.#isASupportedLanguageInSMM1 = language.isASupportedLanguageInSMM1;
+            this.#isASupportedLanguageInSMM2 = language.isASupportedLanguageInSMM2;
         } else {
             this.#language = language;
-            this.#isASupportedLanguageInSMM = isASupportedLanguageInSMM as boolean;
+            this.#isASupportedLanguageInSMM1 = isASupportedLanguageInSMM1 as boolean;
+            this.#isASupportedLanguageInSMM2 = isASupportedLanguageInSMM2 as boolean;
         }
     }
 
@@ -128,8 +132,16 @@ export class ProjectLanguages
         return this.language.isDefaultLanguage;
     }
 
+    public get isASupportedLanguageInSMM1(): boolean {
+        return this.#isASupportedLanguageInSMM1;
+    }
+
+    public get isASupportedLanguageInSMM2(): boolean {
+        return this.#isASupportedLanguageInSMM2;
+    }
+
     public get isASupportedLanguageInSMM(): boolean {
-        return this.#isASupportedLanguageInSMM;
+        return this.#isSupportedLanguageInSMM ??= this.isASupportedLanguageInSMM1 && this.isASupportedLanguageInSMM2;
     }
 
     //endregion -------------------- Getter methods --------------------

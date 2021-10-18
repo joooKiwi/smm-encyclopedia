@@ -1,3 +1,35 @@
 {
+  "English":           "Английский",
+  "English (America)": "Английский (Америка)",
+  "English (Europe)":  "Английский (Европа)",
 
+  "French":          "Французский",
+  "French (Canada)": "Французский (Канада)",
+  "French (Europe)": "Французский (Европа)",
+
+  "German": "Немецкий",
+
+  "Spanish":           "Испанский",
+  "Spanish (America)": "Испанский (Америка)",
+  "Spanish (Europe)":  "Испанский (Европа)",
+
+  "Italian": "Итальянский",
+
+  "Dutch": "Голландский",
+
+  "Russian": "Русский",
+
+  "Japanese": "Японский",
+
+  "Chinese":             "Китайский",
+  "Simplified chinese":  "упрощенный китайский",
+  "Traditional chinese": "традиционный китайский",
+
+  "Korean":  "Корейский",
+
+  "Portuguese":           "Португальский",
+  "Portuguese (America)": "Португальский (Америка)",
+  "Portuguese (Europe)":  "Португальский (Европа)",
+
+  "Greek": "Греческий"
 }
