@@ -1,21 +1,44 @@
 import everyEntityCategories from '../../resources/Entity categories.csv';
 
-import type {EntityCategory}                                                         from './EntityCategory';
-import type {EntityCategoryTemplate}                                                 from './EntityCategory.template';
-import type {Loader}                                                                 from '../../util/loader/Loader';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {PossibleEntityCategoriesName}                                           from './EntityCategories.types';
+import type {EntityCategory}                            from './EntityCategory';
+import type {EntityCategoryTemplate}                    from './EntityCategory.template';
+import type {Loader}                                    from '../../util/loader/Loader';
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {PossibleEntityCategoriesName}              from './EntityCategories.types';
 
-import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityCategoryBuilder}   from './EntityCategory.builder';
 
 //region -------------------- CSV array related types --------------------
 
-type Headers = LanguagesHeaders;
+enum Headers {
+
+    //region -------------------- Languages --------------------
+
+    english, americanEnglish, europeanEnglish,
+    french, canadianFrench, europeanFrench,
+    german,
+    spanish, americanSpanish, europeanSpanish,
+    italian,
+    dutch,
+    portuguese, americanPortuguese, europeanPortuguese,
+    russian,
+    japanese,
+    chinese, traditionalChinese, simplifiedChinese,
+    korean,
+
+    //endregion -------------------- Languages --------------------
+
+}
+
+//region -------------------- Properties --------------------
+
 type PropertiesArray = [
     ...LanguagesPropertyArray
 ];
+
+//endregion -------------------- Properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
 
@@ -49,7 +72,7 @@ export class EntityCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityCategory, Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityCategory, keyof typeof Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEntityCategoriesName, finalContent,))
@@ -68,37 +91,22 @@ export class EntityCategoryLoader
 
 }
 
-//region -------------------- Template related methods & classes --------------------
+class TemplateBuilder
+    extends AbstractTemplateBuilder<EntityCategoryTemplate, PropertiesArray, typeof Headers> {
 
-/**
- * @singleton
- */
-class TemplateCreator
-    extends AbstractTemplateCreator<EntityCategoryTemplate, PropertiesArray> {
-
-    //region -------------------- Singleton usage --------------------
-
-    static #instance?: TemplateCreator;
-
-    private constructor() {
-        super();
+    public constructor(content: PropertiesArray,) {
+        super(content);
     }
 
-    public static get get() {
-        return this.#instance ??= new this();
+    protected get _headersIndexMap() {
+        return Headers;
     }
 
-    //endregion -------------------- Singleton usage --------------------
-
-    public createTemplate(content: PropertiesArray,): EntityCategoryTemplate {
-        const languages: LanguagesPropertyArray = [content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20],] as LanguagesPropertyArray;
-
+    public build(): EntityCategoryTemplate {
         return {
             entities: null,
-            name: this._createNameTemplate(languages),
+            name: this._createNameTemplate(),
         };
     }
 
 }
-
-//endregion -------------------- Template related methods & classes --------------------

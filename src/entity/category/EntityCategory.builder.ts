@@ -17,8 +17,8 @@ export class EntityCategoryBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: EntityCategoryTemplate,) {
-        super(template, true,);
+    public constructor(templateBuilder: Builder<EntityCategoryTemplate>,) {
+        super(templateBuilder, true,);
     }
 
     protected /*static*/ get _templateMap() {

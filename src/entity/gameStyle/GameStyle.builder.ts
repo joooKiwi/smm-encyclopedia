@@ -26,8 +26,8 @@ export class GameStyleBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: GameStyleTemplate,) {
-        super(template, true,);
+    public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
+        super(templateBuilder, true,);
     }
 
 
@@ -47,9 +47,11 @@ export class GameStyleBuilder
     }
 
     protected _build(name: Name,): GameStyle {
+        const gameTemplate = this.template.isIn.game;
+
         return new GameStyleContainer(
             name,
-            GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),
+            GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
             () => GameStyleBuilder.__whereEntityIs(name.english),
         );
     }

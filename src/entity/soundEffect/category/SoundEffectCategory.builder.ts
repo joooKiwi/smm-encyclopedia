@@ -1,3 +1,4 @@
+import type {Builder}                                  from '../../../util/Builder';
 import type {Name}                                     from '../../../lang/name/Name';
 import type {PossibleSoundEffectCategoriesEnglishName} from './SoundEffectCategories.types';
 import type {SoundEffectCategory}                      from './SoundEffectCategory';
@@ -15,8 +16,8 @@ export class SoundEffectCategoryBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: SoundEffectCategoryTemplate,) {
-        super(template, false,);
+    public constructor(templateBuilder: Builder<SoundEffectCategoryTemplate>,) {
+        super(templateBuilder, false,);
     }
 
     protected /*static*/ get _templateMap() {

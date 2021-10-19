@@ -1,23 +1,46 @@
 import everySoundEffectCategories from '../../../resources/Sound effect categories.csv';
 
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../../lang/Loader.types';
-import type {Loader}                                                                 from '../../../util/loader/Loader';
-import type {PossibleSoundEffectCategoriesEnglishName}                               from './SoundEffectCategories.types';
-import type {SoundEffectCategory}                                                    from './SoundEffectCategory';
-import type {SoundEffectCategoryTemplate}                                            from './SoundEffectCategory.template';
+import type {PropertiesArray as LanguagesPropertyArray} from '../../../lang/Loader.types';
+import type {Loader}                                    from '../../../util/loader/Loader';
+import type {PossibleSoundEffectCategoriesEnglishName}  from './SoundEffectCategories.types';
+import type {SoundEffectCategory}                       from './SoundEffectCategory';
+import type {SoundEffectCategoryTemplate}               from './SoundEffectCategory.template';
 
-import {AbstractTemplateCreator}    from '../../AbstractTemplateCreator';
+import {AbstractTemplateBuilder}    from '../../_template/AbstractTemplate.builder';
 import {CSVLoader}                  from '../../../util/loader/CSVLoader';
 import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder';
 import {HeaderTypesForConvertor}    from '../../../util/loader/utility/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
-type Headers =
-    | LanguagesHeaders;
+enum Headers {
+
+    //region -------------------- Languages --------------------
+
+    english, americanEnglish, europeanEnglish,
+    french, canadianFrench, europeanFrench,
+    german,
+    spanish, americanSpanish, europeanSpanish,
+    italian,
+    dutch,
+    portuguese, americanPortuguese, europeanPortuguese,
+    russian,
+    japanese,
+    chinese, traditionalChinese, simplifiedChinese,
+    korean,
+    greek,
+
+    //endregion -------------------- Languages --------------------
+
+}
+
+//region -------------------- Properties --------------------
+
 type PropertiesArray = [
     ...LanguagesPropertyArray,
 ];
+
+//endregion -------------------- Properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
 
@@ -48,7 +71,7 @@ export class SoundEffectCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, SoundEffectCategory, Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, SoundEffectCategory, keyof typeof Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)
@@ -69,36 +92,21 @@ export class SoundEffectCategoryLoader
 
 }
 
-//region -------------------- Template related methods & classes --------------------
+class TemplateBuilder
+    extends AbstractTemplateBuilder<SoundEffectCategoryTemplate, PropertiesArray, typeof Headers> {
 
-/**
- * @singleton
- */
-class TemplateCreator
-    extends AbstractTemplateCreator<SoundEffectCategoryTemplate, PropertiesArray> {
-
-    //region -------------------- Singleton usage --------------------
-
-    static #instance?: TemplateCreator;
-
-    private constructor() {
-        super();
+    public constructor(content: PropertiesArray,) {
+        super(content);
     }
 
-    public static get get() {
-        return this.#instance ??= new this();
+    protected get _headersIndexMap() {
+        return Headers;
     }
 
-    //endregion -------------------- Singleton usage --------------------
-
-    public createTemplate(content: PropertiesArray,): SoundEffectCategoryTemplate {
-        const languages: LanguagesPropertyArray = [content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20],] as LanguagesPropertyArray;
-
+    public build(): SoundEffectCategoryTemplate {
         return {
-            name: this._createNameTemplate(languages),
+            name: this._createNameTemplate(),
         };
     }
 
 }
-
-//endregion -------------------- Template related methods & classes --------------------

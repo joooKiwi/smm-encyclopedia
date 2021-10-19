@@ -1,3 +1,4 @@
+import type {Builder}                                  from '../../../util/Builder';
 import type {Name}                                     from '../../../lang/name/Name';
 import type {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
 import type {PossibleSoundEffectsEnglishName}          from './SoundEffects.types';
@@ -24,8 +25,8 @@ export class SoundEffectBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: SoundEffectTemplate,) {
-        super(template, false,);
+    public constructor(templateBuilder: Builder<SoundEffectTemplate>,) {
+        super(templateBuilder, false,);
     }
 
     //region -------------------- Build helper methods --------------------
@@ -44,6 +45,7 @@ export class SoundEffectBuilder
 
     private __createProperty() {
         const gameTemplate = this.template.properties.isIn.game;
+
         return new SoundEffectPropertyContainer(gameTemplate['1'], gameTemplate['2'],);
     }
 

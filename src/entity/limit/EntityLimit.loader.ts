@@ -2,13 +2,13 @@ import everyThemes from '../../resources/Entity limits.csv';
 
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EmptyLinkTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                   from './EntityLimit';
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray, Headers as LanguagesHeaders}                                      from '../../lang/Loader.types';
+import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                   from '../../lang/Loader.types';
 import type {Loader}                                                                                                                        from '../../util/loader/Loader';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}    from './EntityLimits.types';
 import type {PossibleEntityLimitTypeEnglishName}                                                                                            from './EntityLimitTypes.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                           from '../entityTypes';
 
-import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLimitBuilder}      from './EntityLimit.builder';
 import {EntityLoader}            from '../simple/Entity.loader';
@@ -18,12 +18,36 @@ import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForC
 
 type PossibleLimitNumber = | number | `${number}?` | '?' | null;
 
-type Headers =
-    | 'alternative'
-    | 'type' | 'acronym'
-    | `limit${| '' | '_comment'}`
-    | `link_${| 'group' | 'entity'}`
-    | LanguagesHeaders;
+enum Headers {
+
+    alternative,
+
+    type,
+    acronym,
+
+    limit, limit_comment,
+
+    link_group, link_entity,
+
+    //region -------------------- Languages --------------------
+
+    english, americanEnglish, europeanEnglish,
+    french, canadianFrench, europeanFrench,
+    german,
+    spanish, americanSpanish, europeanSpanish,
+    italian,
+    dutch,
+    portuguese, americanPortuguese, europeanPortuguese,
+    russian,
+    japanese,
+    chinese, traditionalChinese, simplifiedChinese,
+    korean,
+
+    //endregion -------------------- Languages --------------------
+
+}
+
+//region -------------------- Properties --------------------
 
 type ExclusivePropertyArray = [
 
@@ -35,7 +59,7 @@ type ExclusivePropertyArray = [
     limit: PossibleLimitNumber,
     limit_comment: | string | null,
 
-    link_groupName: | PossibleGroupName | null,
+    link_group: | PossibleGroupName | null,
     link_entity: | SingleEntityName | null,
 
 ];
@@ -44,7 +68,15 @@ type PropertiesArray = [
     ...LanguagesPropertyArray,
 ];
 
+//endregion -------------------- Properties --------------------
+
 //endregion -------------------- CSV array related types --------------------
+//region -------------------- Private types --------------------
+
+type PossibleNullableAlternativeAcronymEntityLimits = | PossibleAlternativeAcronymEntityLimits | null;
+type PossibleNullableAcronymEntityLimits = | PossibleAcronymEntityLimits | null;
+
+//endregion -------------------- Private types --------------------
 
 /**
  * @singleton
@@ -81,7 +113,7 @@ export class EntityLimitLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityLimit, Headers>(everyThemes, convertedContent => new EntityLimitBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityLimit, keyof typeof Headers>(everyThemes, convertedContent => new EntityLimitBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
@@ -109,27 +141,8 @@ export class EntityLimitLoader
 
 }
 
-//region -------------------- Template related methods & classes --------------------
-
-/**
- * @singleton
- */
-class TemplateCreator
-    extends AbstractTemplateCreator<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray> {
-
-    //region -------------------- Singleton usage --------------------
-
-    static #instance?: TemplateCreator;
-
-    private constructor() {
-        super();
-    }
-
-    public static get get() {
-        return this.#instance ??= new this();
-    }
-
-    //endregion -------------------- Singleton usage --------------------
+class TemplateBuilder
+    extends AbstractTemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray, typeof Headers> {
 
     static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {
         amount: null,
@@ -145,86 +158,99 @@ class TemplateCreator
         alternative: null,
     };
 
-    public createTemplate(content: PropertiesArray,): | EntityLimitTemplate | AlternativeLimitTemplate {
-        const type = content[1];
-        const acronym = content[2];
-        const groupNameAndEntitiesName = [content[5], content[6],] as const;
-        const languages: LanguagesPropertyArray = [content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24], content[25], content[26], content[27],] as LanguagesPropertyArray;
-
-        return type == null
-            ? this.__createAlternativeLimitTemplate(acronym, groupNameAndEntitiesName, languages,)
-            : this.__createLimitTemplate(content, type, acronym, groupNameAndEntitiesName, languages,);
+    public constructor(content: PropertiesArray,) {
+        super(content);
     }
 
-    private __createLimitTemplate(content: PropertiesArray, type: PossibleEntityLimitTypeEnglishName, acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagesPropertyArray,): EntityLimitTemplate {
+    protected get _headersIndexMap() {
+        return Headers;
+    }
+
+    public build(): | EntityLimitTemplate | AlternativeLimitTemplate {
+        const type = this._getContent(this._headersIndexMap.type);
+        const acronym = this._getContent(this._headersIndexMap.acronym);
+
+        return type == null
+            ? this.__createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronymEntityLimits,)
+            : this.__createLimitTemplate(type, acronym as PossibleNullableAcronymEntityLimits,);
+    }
+
+    private __createLimitTemplate(type: PossibleEntityLimitTypeEnglishName, acronym: PossibleNullableAcronymEntityLimits,): EntityLimitTemplate {
         return {
 
             references: {
-                regular: languages[0] as PossibleEntityLimits,
-                alternative: content[0],
+                regular: this._getContent(this._headersIndexMap.english) as PossibleEntityLimits,
+                alternative: this._getContent(this._headersIndexMap.alternative),
             },
 
             type: type,
 
-            acronym: acronym as PossibleAcronymEntityLimits,
+            acronym: acronym,
 
-            limit: TemplateCreator.__convertToLimitTemplate(content[3], content[4],),
+            limit: this.__createLimitAmountTemplate(),
 
-            link: TemplateCreator.__convertToLinkTemplate(...groupNameAndEntitiesName,),
+            link: this.__createLinkTemplate(),
 
-            name: this._createNameTemplate(languages,),
+            name: this._createNameTemplate(),
 
         };
     }
 
-    private __createAlternativeLimitTemplate(acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, groupNameAndEntitiesName: | readonly [| PossibleGroupName | null, | SingleEntityName | null,], languages: LanguagesPropertyArray,): AlternativeLimitTemplate {
+    private __createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronymEntityLimits,): AlternativeLimitTemplate {
         return {
 
-            references: TemplateCreator.#EMPTY_REFERENCES,
+            references: TemplateBuilder.#EMPTY_REFERENCES,
 
             type: null,
-            acronym: acronym as PossibleAlternativeAcronymEntityLimits,
+            acronym: acronym,
 
-            limit: TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
+            limit: TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
 
-            link: TemplateCreator.__convertToLinkTemplate(...groupNameAndEntitiesName,),
+            link: this.__createLinkTemplate(),
 
-            name: this._createNameTemplate(languages,),
+            name: this._createNameTemplate(),
 
         };
     }
 
 
-    private static __convertToLimitTemplate(limit: PossibleLimitNumber, limitComment: | string | null,): LimitAmountTemplate {
+    private __createLimitAmountTemplate(): LimitAmountTemplate {
+        const limit = this._getContent(this._headersIndexMap.limit);
+        const comment = this._getContent(this._headersIndexMap.limit_comment);
+
         switch (typeof limit) {
             case 'number':
                 return {
                     amount: limit,
                     isUnknown: false,
-                    comment: limitComment,
+                    comment: comment,
                 };
             case 'string':
                 if (limit === '?')
                     return {
                         amount: null,
                         isUnknown: true,
-                        comment: limitComment,
+                        comment: comment,
                     };
                 return {
                     amount: Number(limit.substring(0, limit.length - 1)),
                     isUnknown: true,
-                    comment: limitComment,
+                    comment: comment,
                 };
+            default:
+                return TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE;
         }
-        return this.#EMPTY_LIMIT_AMOUNT_TEMPLATE;
     }
 
-    private static __convertToLinkTemplate(groupName: | PossibleGroupName | null, entity: | SingleEntityName | null,): LinkTemplate {
-        if (entity == null && groupName == null)
-            return this.#EMPTY_LINK_TEMPLATE;
+    private __createLinkTemplate(): LinkTemplate {
+        const entity = this._getContent(this._headersIndexMap.link_entity);
+        const group = this._getContent(this._headersIndexMap.link_group);
+
+        if (entity == null && group == null)
+            return TemplateBuilder.#EMPTY_LINK_TEMPLATE;
         if (entity == null)
             return {
-                groupName: groupName,
+                groupName: group,
                 entityName: null,
             };
         return {
@@ -234,5 +260,3 @@ class TemplateCreator
     }
 
 }
-
-//endregion -------------------- Template related methods & classes --------------------

@@ -18,8 +18,10 @@ import {EntityLimits}                    from './EntityLimits';
 import {EntityLimitAmountContainer}      from './properties/EntityLimitAmount.container';
 import {EntityLimitLinkContainer}        from './properties/EntityLimitLink.container';
 import {NameBuilder}                     from '../lang/NameBuilder';
+import {TemplateBuilder}                 from '../TemplateBuilder';
 
 export class EntityLimitBuilder
+    extends TemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate,EntityLimit>
     implements Builder<EntityLimit> {
 
     //region -------------------- external object references --------------------
@@ -30,17 +32,11 @@ export class EntityLimitBuilder
 
     //endregion -------------------- external object references --------------------
 
-    readonly #template;
-
-    public constructor(template: | EntityLimitTemplate | AlternativeLimitTemplate,) {
-        this.#template = template;
+    public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
+        super(templateBuilder);
     }
 
     //region -------------------- Build helper methods --------------------
-
-    public get template() {
-        return this.#template;
-    }
 
     //region -------------------- Name methods --------------------
 
@@ -48,16 +44,16 @@ export class EntityLimitBuilder
         return new NameBuilder(this.template.name, false,).build();
     }
 
-    //region -------------------- Name methods --------------------
+    //endregion -------------------- Name methods --------------------
 
     //region -------------------- Limit amount helper methods --------------------
 
     private __createLimitAmount(): EntityLimitAmount {
-        const limit = this.template.limit;
+        const limitTemplate = this.template.limit;
 
-        return limit == null
+        return limitTemplate == null
             ? EmptyEntityLimitAmount.get
-            : new EntityLimitAmountContainer(limit.amount, limit.isUnknown, limit.comment,);
+            : new EntityLimitAmountContainer(limitTemplate.amount, limitTemplate.isUnknown, limitTemplate.comment,);
     }
 
 
@@ -73,9 +69,9 @@ export class EntityLimitBuilder
     }
 
     private __createLink(): EntityLimitLink {
-        const link = this.template.link;
-        const groupName = link.groupName;
-        const entityName = link.entityName;
+        const linkTemplate = this.template.link;
+        const groupName = linkTemplate.groupName;
+        const entityName = linkTemplate.entityName;
 
         return groupName == null && entityName == null
             ? EmptyEntityLimitLink.get
@@ -91,22 +87,23 @@ export class EntityLimitBuilder
     //endregion -------------------- Build helper methods --------------------
 
     public build(): EntityLimit {
-        const type = this.template.type;
+        const template = this.template;
+        const typeTemplate = template.type;
 
-        if (type == null)
+        if (typeTemplate == null)
             return new AlternativeEntityLimitContainer(
                 this.__createName(),
-                this.template.acronym,
-                () => EntityLimits.getValue(this.template.name.english.simple!)!.reference as EntityLimitWithPossibleAlternativeEntityLimit,
+                template.acronym,
+                () => EntityLimits.getValue(template.name.english.simple!)!.reference as EntityLimitWithPossibleAlternativeEntityLimit,
                 this.__createLimitAmount(),
                 this.__createLink(),
             );
-        const alternative = this.template.references.alternative;
+        const alternative = template.references.alternative;
         return new EntityLimitContainer(
             this.__createName(),
-            this.template.acronym,
+            template.acronym,
             () => alternative == null ? EmptyEntityLimit.get : EntityLimitBuilder.references.get(alternative) as AlternativeEntityLimit,
-            () => EntityLimitTypes.getValue(type),
+            () => EntityLimitTypes.getValue(typeTemplate),
             this.__createLimitAmount(),
             this.__createLink(),
         );

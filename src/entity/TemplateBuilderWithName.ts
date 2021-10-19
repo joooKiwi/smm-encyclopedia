@@ -1,3 +1,4 @@
+import type {Builder}                  from '../util/Builder';
 import type {Name}                     from '../lang/name/Name';
 import type {TemplateWithNameTemplate} from './TemplateWithName.template';
 
@@ -14,8 +15,11 @@ export abstract class TemplateBuilderWithName<T extends TemplateWithNameTemplate
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(template: T, isACompleteName: boolean,) {
-        super(template);
+    protected constructor(template: T, isACompleteName: boolean,)
+    protected constructor(templateBuilder: Builder<T>, isACompleteName: boolean,)
+    protected constructor(templateBuilder_or_template: | T | Builder<T>, isACompleteName: boolean,)
+    protected constructor(templateBuilder_or_template: | T | Builder<T>, isACompleteName: boolean,) {
+        super(templateBuilder_or_template);
         this.#isACompleteName = isACompleteName;
     }
 
@@ -25,14 +29,18 @@ export abstract class TemplateBuilderWithName<T extends TemplateWithNameTemplate
     }
 
     public get englishReference() {
-        return (this.template.name.english.simple ?? this.template.name.english.american)!;
+        const template = this.template;
+
+        return (template.name.english.simple ?? template.name.english.american)!;
     }
 
     protected /*static*/ abstract get _templateMap(): Map<string, T>;
 
     protected _createName() {
-        const name = new NameBuilder(this.template.name, this.isACompleteName,).build();
-        NameCreator.addEnglishReference(this.template.name, this._templateMap, this.template,);
+        const template = this.template;
+        const name = new NameBuilder(template.name, this.isACompleteName,).build();
+
+        NameCreator.addEnglishReference(template.name, this._templateMap, template,);
         return name;
     }
 

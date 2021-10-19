@@ -15,7 +15,7 @@ export interface EntityTemplate
     extends TemplateWithNameTemplate<EntityNameTemplate> {
 
     properties: {
-        editorType: PossibleEntityType
+        entityType: PossibleEntityType
 
         //region ---------- Basic properties ----------
 

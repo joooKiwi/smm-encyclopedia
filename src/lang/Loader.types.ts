@@ -1,11 +1,3 @@
-//region -------------------- Headers --------------------
-
-export type Headers = | 'english' | 'spanish' | 'portuguese' | `${'american' | 'european'}${'English' | 'Spanish' | 'Portuguese'}`
-                      | 'french' | `${'canadian' | 'european'}French` | 'german' | 'italian' | 'dutch' | 'russian' | 'japanese'
-                      | 'chinese' | `${'simplified' | 'traditional'}Chinese` | 'korean';
-export type HeadersWithOptionalLanguages = Headers | 'greek';
-
-//endregion -------------------- Headers --------------------
 //region -------------------- Properties --------------------
 
 //region -------------------- Single property --------------------

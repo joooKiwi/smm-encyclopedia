@@ -29,8 +29,8 @@ export class ThemeBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: ThemeTemplate,) {
-        super(template, true,);
+    public constructor(templateBuilder: Builder<ThemeTemplate>,) {
+        super(templateBuilder, true,);
     }
 
     protected /*static*/ get _templateMap() {
@@ -38,9 +38,11 @@ export class ThemeBuilder
     }
 
     private __createCourseTheme(name: Name,): CourseTheme {
+        const gameTemplate = this.template.isIn.game;
+
         return new CourseThemeContainer(
             name,
-            GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),
+            GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
             () => ThemeBuilder.__whereEntityIs(name.english),
         );
     }
@@ -58,8 +60,9 @@ export class ThemeBuilder
 
 
     protected _build(name: Name,): readonly [CourseTheme, WorldTheme,] {
-        const isInCourseTheme = this.template.isIn.theme.course;
-        const isInWorldTheme = this.template.isIn.theme.world;
+        const themeTemplate = this.template.isIn.theme;
+        const isInCourseTheme = themeTemplate.course;
+        const isInWorldTheme = themeTemplate.world;
 
         return isInCourseTheme && isInWorldTheme
             ? [this.__createCourseTheme(name), new WorldThemeContainer(name),]
