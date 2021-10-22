@@ -6,6 +6,7 @@ import type {EntityCategory}                                                    
 import type {EntityLink}                                                                                                    from '../entityTypes';
 import type {EntityTemplate}                                                                                                from './Entity.template';
 import type {PossibleEntityCategoriesName}                                                                                  from '../category/EntityCategories.types';
+import type {PossibleGameReceived}                                                                                          from '../lang/NameBuilder.types';
 
 import {EntityLimits}                  from '../limit/EntityLimits';
 import {EntityReferencesContainer}     from '../properties/EntityReferences.container';
@@ -18,6 +19,7 @@ import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
 import {EntityContainer}               from './Entity.container';
 import {PropertyContainer}             from '../properties/PropertyContainer';
 import {NameBuilder}                   from '../lang/NameBuilder';
+import {Games}                         from '../game/Games';
 
 export class EntityBuilder
     implements Builder<Entity> {
@@ -50,8 +52,8 @@ export class EntityBuilder
 
     //region -------------------- Name helper methods --------------------
 
-    private __createName() {
-        return new NameBuilder(this.template.name, true,).build();
+    private __createName(game: PossibleGameReceived,) {
+        return new NameBuilder(this.template.name, game, true,).build();
     }
 
     //endregion -------------------- Name helper methods --------------------
@@ -180,12 +182,12 @@ export class EntityBuilder
         const isInProperty = this.__createProperty();
 
         return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
-            ? new ExclusiveSMM1EntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            ? new ExclusiveSMM1EntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_1), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
-                    ? new ExclusiveSM3DWEntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                    : new ExclusiveSMM2EntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                : new EntityContainer(this.__createName(), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
+                    ? new ExclusiveSM3DWEntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_2), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new ExclusiveSMM2EntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_2), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                : new EntityContainer(this.__createName('all'), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 
 }

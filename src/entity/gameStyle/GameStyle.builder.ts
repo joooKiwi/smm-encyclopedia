@@ -4,12 +4,12 @@ import type {Entity}                from '../simple/Entity';
 import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
+import type {PossibleGameStyleName} from './GameStyles.types';
 
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
 import {GameStyleContainer}      from './GameStyle.container';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
-import {PossibleGameStyleName}   from './GameStyles.types';
 
 export class GameStyleBuilder
     extends TemplateWithNameBuilder<GameStyleTemplate, GameStyle>
@@ -27,7 +27,7 @@ export class GameStyleBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
-        super(templateBuilder, true,);
+        super(templateBuilder, 'all', true,);
     }
 
 

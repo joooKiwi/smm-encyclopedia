@@ -10,6 +10,7 @@ import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.bui
 import {SoundEffectContainer}         from './SoundEffect.container';
 import {SoundEffectPropertyContainer} from './properties/SoundEffectProperty.container';
 import {EmptySoundEffectCategory}     from '../category/EmptySoundEffectCategory';
+import {Games}                        from '../../game/Games';
 
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
@@ -26,7 +27,7 @@ export class SoundEffectBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<SoundEffectTemplate>,) {
-        super(templateBuilder, false,);
+        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
     //region -------------------- Build helper methods --------------------

@@ -1,8 +1,10 @@
 import type {Builder}                  from '../../util/Builder';
 import type {PossibleSMM2NameTemplate} from './SMM2Name.template';
 import type {Name}                     from '../../lang/name/Name';
+import type {PossibleGameReceived}     from './NameBuilder.types';
 
 import {NameBuilder as OriginalNameBuilder} from '../../lang/name/NameBuilder';
+import {Games}                              from '../game/Games';
 
 export class NameBuilder
     implements Builder<Name> {
@@ -23,18 +25,20 @@ export class NameBuilder
      *
      * As it stands, only the greek is optional.
      *
-     * @see ProjectLanguages.isASupportedLanguageInSMM
+     * @see ProjectLanguages.isInEverySuperMarioMakerGame
      * @private
      */
     static readonly #IS_NULLABLE_FOR_OPTIONAL_LANGUAGES = true;
 
     readonly #template;
+    readonly #game;
     readonly #isACompleteName;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: PossibleSMM2NameTemplate, isACompleteName: boolean,) {
+    public constructor(template: PossibleSMM2NameTemplate, game: PossibleGameReceived, isACompleteName: boolean,) {
         this.#template = template;
+        this.#game = game === 'all' ? Games.values : game;
         this.#isACompleteName = isACompleteName;
     }
 
@@ -42,14 +46,18 @@ export class NameBuilder
         return this.#template;
     }
 
+    public get game() {
+        return this.#game;
+    }
+
     public get isACompleteName() {
         return this.#isACompleteName;
     }
 
-    private static __interpretTranslation(canBeNullable: false, value: | string | null,): |string
-    private static __interpretTranslation(canBeNullable: boolean, value: | string | null,): | string | null
-    private static __interpretTranslation(canBeNullable: false, value1: | string | null, value2: | string | null, value3: | string | null,): | string | [string, string,]
-    private static __interpretTranslation(canBeNullable: boolean, value1: | string | null, value2: | string | null, value3: | string | null,): | string | [string, string,] | null
+    private static __interpretTranslation<S extends string = string, >(canBeNullable: false, value: | S | null,): S
+    private static __interpretTranslation<S extends string = string, >(canBeNullable: boolean, value: | S | null,): | S | null
+    private static __interpretTranslation<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(canBeNullable: false, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,]
+    private static __interpretTranslation<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(canBeNullable: boolean, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,] | null
     private static __interpretTranslation(canBeNullable: boolean, value1: | string | null, value2?: | string | null, value3?: | string | null,): | string | [string, string,] | null {
         if (value2 === undefined) {
             if (!canBeNullable && value1 == null)

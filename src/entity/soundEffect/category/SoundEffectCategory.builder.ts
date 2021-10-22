@@ -4,6 +4,7 @@ import type {PossibleSoundEffectCategoriesEnglishName} from './SoundEffectCatego
 import type {SoundEffectCategory}                      from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate}              from './SoundEffectCategory.template';
 
+import {Games}                        from '../../game/Games';
 import {SoundEffectCategoryContainer} from './SoundEffectCategory.container';
 import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
 
@@ -17,7 +18,7 @@ export class SoundEffectCategoryBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<SoundEffectCategoryTemplate>,) {
-        super(templateBuilder, false,);
+        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
     protected /*static*/ get _templateMap() {

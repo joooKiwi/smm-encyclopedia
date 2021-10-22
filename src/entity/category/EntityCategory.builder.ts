@@ -5,6 +5,7 @@ import type {Name}                         from '../../lang/name/Name';
 import type {PossibleEntityCategoriesName} from './EntityCategories.types';
 
 import {EntityCategoryContainer} from './EntityCategory.container';
+import {Games}                   from '../game/Games';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 
 export class EntityCategoryBuilder
@@ -18,7 +19,7 @@ export class EntityCategoryBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<EntityCategoryTemplate>,) {
-        super(templateBuilder, true,);
+        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, true,);
     }
 
     protected /*static*/ get _templateMap() {

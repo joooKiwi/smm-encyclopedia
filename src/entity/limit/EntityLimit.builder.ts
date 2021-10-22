@@ -17,6 +17,7 @@ import {EntityLimitTypes}                from './EntityLimitTypes';
 import {EntityLimits}                    from './EntityLimits';
 import {EntityLimitAmountContainer}      from './properties/EntityLimitAmount.container';
 import {EntityLimitLinkContainer}        from './properties/EntityLimitLink.container';
+import {Games}                           from '../game/Games';
 import {NameBuilder}                     from '../lang/NameBuilder';
 import {TemplateBuilder}                 from '../_template/Template.builder';
 
@@ -41,7 +42,7 @@ export class EntityLimitBuilder
     //region -------------------- Name methods --------------------
 
     private __createName() {
-        return new NameBuilder(this.template.name, false,).build();
+        return new NameBuilder(this.template.name, Games.SUPER_MARIO_MAKER_2, false,).build();
     }
 
     //endregion -------------------- Name methods --------------------

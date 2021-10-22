@@ -13,6 +13,7 @@ import {CourseThemeContainer}    from './CourseTheme.container';
 import {WorldThemeContainer}     from './WorldTheme.container';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
+import {Games}                   from '../game/Games';
 
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
@@ -30,7 +31,7 @@ export class ThemeBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
-        super(templateBuilder, true,);
+        super(templateBuilder, template => template.isIn.game['1'] ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
     protected /*static*/ get _templateMap() {
