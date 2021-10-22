@@ -8,11 +8,11 @@ import type {Name}                  from '../../lang/name/Name';
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
 import {GameStyleContainer}      from './GameStyle.container';
-import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
+import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {PossibleGameStyleName}   from './GameStyles.types';
 
 export class GameStyleBuilder
-    extends TemplateBuilderWithName<GameStyleTemplate, GameStyle>
+    extends TemplateWithNameBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
     //region -------------------- external object references --------------------

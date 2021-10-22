@@ -11,11 +11,11 @@ import {EmptyWorldTheme}         from './EmptyWorldTheme';
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {CourseThemeContainer}    from './CourseTheme.container';
 import {WorldThemeContainer}     from './WorldTheme.container';
-import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
+import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
 
 export class ThemeBuilder
-    extends TemplateBuilderWithName<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
+    extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
     implements Builder<readonly [CourseTheme, WorldTheme,]> {
 
     //region -------------------- external object references --------------------

@@ -5,10 +5,10 @@ import type {SoundEffectCategory}                      from './SoundEffectCatego
 import type {SoundEffectCategoryTemplate}              from './SoundEffectCategory.template';
 
 import {SoundEffectCategoryContainer} from './SoundEffectCategory.container';
-import {TemplateBuilderWithName}      from '../../TemplateBuilderWithName';
+import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
 
 export class SoundEffectCategoryBuilder
-    extends TemplateBuilderWithName<SoundEffectCategoryTemplate, SoundEffectCategory> {
+    extends TemplateWithNameBuilder<SoundEffectCategoryTemplate, SoundEffectCategory> {
 
     //region -------------------- Attributes --------------------
 

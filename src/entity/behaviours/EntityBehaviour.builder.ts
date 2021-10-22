@@ -5,7 +5,7 @@ import type {EntityBehaviourTemplate} from './EntityBehaviour.template';
 
 import {EntityBehaviourContainer}         from './EntityBehaviour.container';
 import {EntityBehaviourIsInOnlyContainer} from './properties/EntityBehaviourIsInOnly.container';
-import {TemplateBuilder}                  from '../TemplateBuilder';
+import {TemplateBuilder}                  from '../_template/Template.builder';
 import {EntityBehaviourLinkContainer}     from './properties/EntityBehaviourLink.container';
 
 export class EntityBehaviourBuilder

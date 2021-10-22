@@ -5,10 +5,10 @@ import type {Name}                         from '../../lang/name/Name';
 import type {PossibleEntityCategoriesName} from './EntityCategories.types';
 
 import {EntityCategoryContainer} from './EntityCategory.container';
-import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
+import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 
 export class EntityCategoryBuilder
-    extends TemplateBuilderWithName<EntityCategoryTemplate, EntityCategory>
+    extends TemplateWithNameBuilder<EntityCategoryTemplate, EntityCategory>
     implements Builder<EntityCategory> {
 
     //region -------------------- Attributes --------------------

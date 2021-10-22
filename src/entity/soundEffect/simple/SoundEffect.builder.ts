@@ -6,13 +6,13 @@ import type {SoundEffect}                              from './SoundEffect';
 import type {SoundEffectTemplate}                      from './SoundEffect.template';
 import type {SoundEffectCategory}                      from '../category/SoundEffectCategory';
 
-import {TemplateBuilderWithName}      from '../../TemplateBuilderWithName';
+import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
 import {SoundEffectContainer}         from './SoundEffect.container';
 import {SoundEffectPropertyContainer} from './properties/SoundEffectProperty.container';
 import {EmptySoundEffectCategory}     from '../category/EmptySoundEffectCategory';
 
 export class SoundEffectBuilder
-    extends TemplateBuilderWithName<SoundEffectTemplate, SoundEffect> {
+    extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
 
     //region -------------------- external object references --------------------
 

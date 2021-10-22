@@ -18,10 +18,10 @@ import {EntityLimits}                    from './EntityLimits';
 import {EntityLimitAmountContainer}      from './properties/EntityLimitAmount.container';
 import {EntityLimitLinkContainer}        from './properties/EntityLimitLink.container';
 import {NameBuilder}                     from '../lang/NameBuilder';
-import {TemplateBuilder}                 from '../TemplateBuilder';
+import {TemplateBuilder}                 from '../_template/Template.builder';
 
 export class EntityLimitBuilder
-    extends TemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate,EntityLimit>
+    extends TemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, EntityLimit>
     implements Builder<EntityLimit> {
 
     //region -------------------- external object references --------------------

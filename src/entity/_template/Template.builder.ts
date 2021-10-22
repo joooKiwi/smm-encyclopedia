@@ -1,4 +1,4 @@
-import type {Builder} from '../util/Builder';
+import type {Builder} from '../../util/Builder';
 
 export abstract class TemplateBuilder<T, U, >
     implements Builder<U> {

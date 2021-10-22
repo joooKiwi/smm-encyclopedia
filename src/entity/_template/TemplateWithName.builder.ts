@@ -1,12 +1,12 @@
-import type {Builder}                  from '../util/Builder';
-import type {Name}                     from '../lang/name/Name';
+import type {Builder}                  from '../../util/Builder';
+import type {Name}                     from '../../lang/name/Name';
 import type {TemplateWithNameTemplate} from './TemplateWithName.template';
 
-import {NameBuilder}     from './lang/NameBuilder';
-import {NameCreator}     from './lang/NameCreator';
-import {TemplateBuilder} from './TemplateBuilder';
+import {NameBuilder}     from '../lang/NameBuilder';
+import {NameCreator}     from '../lang/NameCreator';
+import {TemplateBuilder} from './Template.builder';
 
-export abstract class TemplateBuilderWithName<T extends TemplateWithNameTemplate, U, >
+export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate, U, >
     extends TemplateBuilder<T, U> {
 
     //region -------------------- Attributes --------------------

@@ -2,7 +2,7 @@ import type {PossibleEntityLimitTypeEnglishName}                                
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                        from '../entityTypes';
 import type {SMM2NameTemplate}                                                                                                           from '../lang/SMM2Name.template';
-import type {TemplateWithNameTemplate}                                                                                                   from '../TemplateWithName.template';
+import type {TemplateWithNameTemplate}                                                                                                   from '../_template/TemplateWithName.template';
 
 //region -------------------- Limit types --------------------
 
