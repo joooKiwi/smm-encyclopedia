@@ -3,15 +3,16 @@ import type {SingleLimitThatCanBeUnknownProperty}            from './SingleLimit
 import type {SingleLimitWithCommentProperty}                 from './SingleLimitWithCommentProperty';
 import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './SingleLimitWithCommentThatCanBeUnknownProperty';
 
-import {DelayedObjectHolderContainer} from '../../../../util/holder/DelayedObjectHolderContainer';
-import {ObjectHolders}                from '../../../../util/holder/objectHolders';
-import {PropertyWithCommentThatCanBeUnknownContainer} from '../../../_properties/PropertyWithCommentThatCanBeUnknownContainer';
+import {DelayedObjectHolderContainer}                 from '../../../../util/holder/DelayedObjectHolderContainer';
+import {ObjectHolders}                                from '../../../../util/holder/objectHolders';
+import {PropertyThatCanBeUnknownWithCommentContainer} from '../../../_properties/PropertyThatCanBeUnknownWithComment.container';
 
 /**
  * @provider
+ * @deprecated Replace with {@link PropertyThatCanBeUnknownWithCommentContainer} or the {@link PropertyProvider} initialisation instead
  */
 export class SingleLimitPropertyContainer<T>
-    extends PropertyWithCommentThatCanBeUnknownContainer<T>
+    extends PropertyThatCanBeUnknownWithCommentContainer<T>
     implements SingleLimitThatCanBeUnknownProperty<T>, SingleLimitWithCommentProperty<T>, SingleLimitWithCommentThatCanBeUnknownProperty<T> {
 
     //region -------------------- Predefined containers --------------------

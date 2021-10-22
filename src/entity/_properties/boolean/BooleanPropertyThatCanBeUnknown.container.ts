@@ -1,8 +1,8 @@
-import type {BooleanPropertyThatCanBeUnknown} from './PropertyThatCanBeUnknown';
-import type {PossibleBoolean}                 from './Property';
-import type {ValueOrCallbackValue}            from '../../util/holder/ObjectHolder';
+import type {BooleanPropertyThatCanBeUnknown} from '../PropertyThatCanBeUnknown';
+import type {PossibleBoolean}                 from '../Property';
+import type {ValueOrCallbackValue}            from '../../../util/holder/ObjectHolder';
 
-import {PropertyThatCanBeUnknownContainer} from './PropertyThatCanBeUnknownContainer';
+import {PropertyThatCanBeUnknownContainer} from '../PropertyThatCanBeUnknown.container';
 
 export class BooleanPropertyThatCanBeUnknownContainer<B extends PossibleBoolean = PossibleBoolean, IS_UNKNOWN extends boolean = boolean, >
     extends PropertyThatCanBeUnknownContainer<B, IS_UNKNOWN>

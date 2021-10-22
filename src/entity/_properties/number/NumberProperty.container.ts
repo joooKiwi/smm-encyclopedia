@@ -1,7 +1,7 @@
-import type {NumberProperty, PossibleNumber} from './Property';
-import type {ValueOrCallbackValue}           from '../../util/holder/ObjectHolder';
+import type {NumberProperty, PossibleNumber} from '../Property';
+import type {ValueOrCallbackValue}           from '../../../util/holder/ObjectHolder';
 
-import {PropertyContainer} from './PropertyContainer';
+import {PropertyContainer} from '../Property.container';
 
 export class NumberPropertyContainer<N extends PossibleNumber = PossibleNumber, >
     extends PropertyContainer<N>
