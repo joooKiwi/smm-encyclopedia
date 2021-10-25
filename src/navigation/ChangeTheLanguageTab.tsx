@@ -5,15 +5,14 @@ import {PureComponent} from 'react';
 import type {ReactComponent} from '../util/react/ReactComponent';
 import type {ReactState}     from '../util/react/ReactState';
 
-import ContentTranslationComponent  from '../lang/components/ContentTranslationComponent';
-import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
-import {ProjectLanguages}           from '../lang/ProjectLanguages';
-import LanguageChangerTab           from './LanguageChangerTab';
+import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
+import {ProjectLanguages}          from '../lang/ProjectLanguages';
+import SingleLanguageTab           from './SingleLanguageTab';
 
 interface ChangeTheLanguageTabStates
     extends ReactState {
 
-    currentLanguage: ProjectLanguages
+    currentLanguage: ProjectLanguages;
 
 }
 
@@ -36,15 +35,7 @@ export default class ChangeTheLanguageTab
     }
 
     private __retrieveEveryLanguages() {
-        return ProjectLanguages.values.map(language => ({
-                language: language,
-                isDisabled: language === ProjectLanguages.currentLanguage,
-                htmlElement: language === ProjectLanguages.currentLanguage
-                    ? <LanguageTranslationComponent>{translation => <span className="nav-link disabled">{translation(language.englishName)}</span>}</LanguageTranslationComponent>
-                    : <LanguageChangerTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>
-            })
-        ).map(({language, isDisabled, htmlElement,}) =>
-            <li key={`languageChanger_${language.projectAcronym}_li`} className={(isDisabled ? ['dropdown-item', 'disabled',] : ['dropdown-item',]).join(' ')}>{htmlElement}</li>);
+        return ProjectLanguages.values.map(language => <SingleLanguageTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>);
     };
 
     public render() {
