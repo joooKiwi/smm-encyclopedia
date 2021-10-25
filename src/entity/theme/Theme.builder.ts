@@ -6,14 +6,14 @@ import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
 import type {WorldTheme}            from './WorldTheme';
 
+import {CourseThemeContainer}    from './CourseTheme.container';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
-import {CourseThemeContainer}    from './CourseTheme.container';
-import {WorldThemeContainer}     from './WorldTheme.container';
+import {Games}                   from '../game/Games';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
-import {Games}                   from '../game/Games';
+import {WorldThemeContainer}     from './WorldTheme.container';
 
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>

@@ -78,7 +78,7 @@ export class GameStylePropertyContainer
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
-    //region -------------------- Provider/Multiton method --------------------
+    //region -------------------- Provider / Multiton method --------------------
 
     public static get(isInSuperMarioBrosStyle: false, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): GameStyleProperty
     public static get(isInSuperMarioBrosStyle: true, isInSuperMarioBros3Style: false, isInSuperMarioWorldStyle: false, isInNewSuperMarioBrosUStyle: false, isInSuperMario3DWorldStyle: null,): ExclusiveSMM1GameStyleProperty
@@ -171,6 +171,6 @@ export class GameStylePropertyContainer
         return this.#IS_IN_NO_GAME_STYLES_PROPERTY;
     }
 
-    //endregion -------------------- Provider/Multiton method --------------------
+    //endregion -------------------- Provider / Multiton method --------------------
 
 }

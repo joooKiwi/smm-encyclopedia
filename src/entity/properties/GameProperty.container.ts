@@ -35,7 +35,7 @@ export class GamePropertyContainer
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
-    //region -------------------- Provider/Multiton method --------------------
+    //region -------------------- Provider / Multiton method --------------------
 
     public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): ExclusiveSMM1GameProperty
     public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): AbstractExclusiveSMM2GameProperty
@@ -68,6 +68,6 @@ export class GamePropertyContainer
         return this.#IS_IN_NO_GAMES_PROPERTY;
     }
 
-    //endregion -------------------- Provider/Multiton method --------------------
+    //endregion -------------------- Provider / Multiton method --------------------
 
 }

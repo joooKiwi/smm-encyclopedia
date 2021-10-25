@@ -193,7 +193,7 @@ export class LimitPropertyContainer
     //endregion -------------------- Custom limit --------------------
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
-    //region -------------------- Provider/Multiton method --------------------
+    //region -------------------- Provider / Multiton method --------------------
 
     public static get(editorLimit: EditorLimitReceived, generalLimit: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, customLimit: CustomLimitReceived,): LimitProperty {
         const [generalLimitOrLimit, globalLimitOrLimitComment,] = generalLimit;
@@ -259,7 +259,7 @@ export class LimitPropertyContainer
         return new LimitPropertyContainer(editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,);
     }
 
-    //endregion -------------------- Provider/Multiton method --------------------
+    //endregion -------------------- Provider / Multiton method --------------------
 
 }
 

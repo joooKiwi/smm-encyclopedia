@@ -101,7 +101,7 @@ export class ThemePropertyContainer
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
-    //region -------------------- Provider/Multiton method --------------------
+    //region -------------------- Provider / Multiton method --------------------
 
     public static get(isInGroundTheme: true, isInUndergroundTheme: true, isInUnderwaterTheme: true, isInDesertTheme: null, isInSnowTheme: null, isInSkyTheme: null, isInForestTheme: null, isInGhostHouseTheme: true, isInAirshipTheme: true, isInCastleTheme: true,): ExclusiveSMM1ThemeProperty
     public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty
@@ -151,6 +151,6 @@ export class ThemePropertyContainer
         throw new EvalError(`No theme can be used with this theme selection (${isInGroundTheme}, ${isInUndergroundTheme}, ${isInUnderwaterTheme}, ${isInDesertTheme}, ${isInSnowTheme}, ${isInSkyTheme}, ${isInForestTheme}, ${isInGhostHouseTheme}, ${isInAirshipTheme}, ${isInCastleTheme}).`);
     }
 
-    //endregion -------------------- Provider/Multiton method --------------------
+    //endregion -------------------- Provider / Multiton method --------------------
 
 }
