@@ -39,7 +39,7 @@ export abstract class Games
     private constructor(englishName: PossibleGameName,) {
         super(Games);
         this.#englishName = englishName;
-        this.#imagePath = `/game/logos/${englishName}.png`;
+        this.#imagePath = `/game/logos/${englishName}.svg`;
     }
 
     //region -------------------- Getter methods --------------------
