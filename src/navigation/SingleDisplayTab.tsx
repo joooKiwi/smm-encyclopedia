@@ -1,4 +1,3 @@
-import type {TFunction}    from 'react-i18next';
 import {Link, useLocation} from 'react-router-dom';
 import {route}             from '../routes/route';
 
@@ -23,20 +22,15 @@ interface SingleDisplayTabProperty
 export default function SingleDisplayTab({routeName, callback,}: SingleDisplayTabProperty,) {
     const {pathname: pathName,} = useLocation();
 
+    const key = `navigation - ${routeName}`;
+    const routeFromTab = route(routeName);
+    const isRouteSameFromPathName = routeFromTab === pathName;
+
     return <GameContentTranslationComponent>{translation =>
-        <li className="dropdown-item">
-            {linkOrReadonlyText(route(routeName), pathName, routeName, callback, translation,)}
-        </li>
+        isRouteSameFromPathName
+            ? <li key={key} className="dropdown-item disabled"><span className="nav-link disabled">{callback(translation)}</span></li>
+            : <li key={key} className="dropdown-item"><Link className="nav-link active" to={routeFromTab}>{callback(translation)}</Link></li>
     }</GameContentTranslationComponent>;
 
 }
 
-function linkOrReadonlyText(route: string, pathName: string, routeName: EveryPossibleRouteNames, callback: GameContentCallback, translation: TFunction<'gameContent'>,) {
-    const content = callback(translation);
-
-    return route === pathName
-        ? <span className="nav-link disabled">{content}</span>
-        : <Link key={`navigation - ${routeName}`} className="nav-link active" to={route}>
-            {content}
-        </Link>;
-}
