@@ -1,14 +1,14 @@
 import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
 import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
+import type {SoundEffectCategoriesEnglishNameArray}                                                                                                                                                                                                                                                                                                           from '../../../entity/soundEffect/category/SoundEffectCategories.types';
+import type {SoundEffectsEnglishNameArray}                                                                                                                                                                                                                                                                                                                    from '../../../entity/soundEffect/simple/SoundEffects.types';
 
-import {EntityBehaviours}                      from '../../../entity/behaviours/EntityBehaviours';
-import {EntityCategoryLoader}                  from '../../../entity/category/EntityCategory.loader';
-import {EntityLimits}                          from '../../../entity/limit/EntityLimits';
-import {EntityLimitTypes}                      from '../../../entity/limit/EntityLimitTypes';
-import {SoundEffectCategories}                 from '../../../entity/soundEffect/category/SoundEffectCategories';
-import {SoundEffectCategoriesEnglishNameArray} from '../../../entity/soundEffect/category/SoundEffectCategories.types';
-import {SoundEffectsEnglishNameArray}          from '../../../entity/soundEffect/simple/SoundEffects.types';
-import {SoundEffects}                          from '../../../entity/soundEffect/simple/SoundEffects';
+import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
+import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
+import {EntityLimits}          from '../../../entity/limit/EntityLimits';
+import {EntityLimitTypes}      from '../../../entity/limit/EntityLimitTypes';
+import {SoundEffectCategories} from '../../../entity/soundEffect/category/SoundEffectCategories';
+import {SoundEffects}          from '../../../entity/soundEffect/simple/SoundEffects';
 
 /**
  * @singleton
@@ -238,5 +238,5 @@ class HeaderTypesForConvertorForProduction
  * </p>
  * @see HeaderTypesForConvertorDefinition
  */
-const HeaderTypesForConvertor = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
+const HeaderTypesForConvertor: HeaderTypesForConvertorDefinition = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
 export {HeaderTypesForConvertor};
