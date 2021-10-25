@@ -29,7 +29,7 @@ export default function LanguageChangerTab({language, callbackToSetLanguage,}: P
     const id = `languageChanger_${language.projectAcronym}`;
 
     return <Tooltip elementId={id} option={({title: languageTranslation(language.englishName), placement: 'left',})}>
-        <Link key={id} id={id} className="dropdown-item" to={route(location, language,)} onClick={() => {
+        <Link key={id} id={id} className="nav-link active" to={route(location, language,)} onClick={() => {
             callbackToSetLanguage(language);
             TooltipInstance.getInstance(id).instance.dispose();
         }}>

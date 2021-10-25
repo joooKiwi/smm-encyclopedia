@@ -36,23 +36,19 @@ export default class ChangeTheLanguageTab
     }
 
     private __retrieveEveryLanguages() {
-        return ProjectLanguages.values.map(language => {
-                return {
-                    language: language,
-                    htmlElement: language === ProjectLanguages.currentLanguage
-                        ? <LanguageTranslationComponent>{translation =>
-                            <span className="dropdown-item disabled">
-                                  {translation(language.englishName)}
-                              </span>
-                        }</LanguageTranslationComponent>
-                        : <LanguageChangerTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>
-                };
-            }
-        ).map(object => <li key={`languageChanger_${object.language.projectAcronym}_li`}>{object.htmlElement}</li>);
+        return ProjectLanguages.values.map(language => ({
+                language: language,
+                isDisabled: language === ProjectLanguages.currentLanguage,
+                htmlElement: language === ProjectLanguages.currentLanguage
+                    ? <LanguageTranslationComponent>{translation => <span className="nav-link disabled">{translation(language.englishName)}</span>}</LanguageTranslationComponent>
+                    : <LanguageChangerTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>
+            })
+        ).map(({language, isDisabled, htmlElement,}) =>
+            <li key={`languageChanger_${language.projectAcronym}_li`} className={(isDisabled ? ['dropdown-item', 'disabled',] : ['dropdown-item',]).join(' ')}>{htmlElement}</li>);
     };
 
     public render() {
-        return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown d-flex">
+        return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown">
             <ContentTranslationComponent>{translation =>
                 <span key={'languageChanger_changeTheLanguage'} id="languageChanger-navigation-button" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                       aria-expanded="false">
