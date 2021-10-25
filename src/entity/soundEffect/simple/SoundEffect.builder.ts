@@ -6,11 +6,11 @@ import type {SoundEffect}                              from './SoundEffect';
 import type {SoundEffectTemplate}                      from './SoundEffect.template';
 import type {SoundEffectCategory}                      from '../category/SoundEffectCategory';
 
-import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
-import {SoundEffectContainer}         from './SoundEffect.container';
-import {SoundEffectPropertyContainer} from './properties/SoundEffectProperty.container';
 import {EmptySoundEffectCategory}     from '../category/EmptySoundEffectCategory';
 import {Games}                        from '../../game/Games';
+import {SoundEffectContainer}         from './SoundEffect.container';
+import {SoundEffectPropertyContainer} from './properties/SoundEffectProperty.container';
+import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
 
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
@@ -45,9 +45,17 @@ export class SoundEffectBuilder
     }
 
     private __createProperty() {
-        const gameTemplate = this.template.properties.isIn.game;
+        const isInPropertiesTemplate = this.template.properties.isIn;
+        const gameTemplate = isInPropertiesTemplate.game;
+        const {movement: playerMovementTriggerTemplate, interaction: playerInteractionTriggerTemplate, environment: playerEnvironmentTriggerTemplate,} = isInPropertiesTemplate.trigger.player;
 
-        return new SoundEffectPropertyContainer(gameTemplate['1'], gameTemplate['2'],);
+        return new SoundEffectPropertyContainer(
+            gameTemplate['1'], gameTemplate['2'],
+
+            playerMovementTriggerTemplate.jumpAfterLanding, playerMovementTriggerTemplate.turnAroundAfterBeingAtFullSpeed, playerMovementTriggerTemplate.crouch, playerMovementTriggerTemplate.after3SecondsRepeatedly,
+            playerInteractionTriggerTemplate.collectPowerUp, playerInteractionTriggerTemplate.getIntoAnEntity,
+            playerEnvironmentTriggerTemplate.spawn, playerEnvironmentTriggerTemplate.damage, playerEnvironmentTriggerTemplate.lostALife,
+        );
     }
 
     //endregion -------------------- Build helper methods --------------------

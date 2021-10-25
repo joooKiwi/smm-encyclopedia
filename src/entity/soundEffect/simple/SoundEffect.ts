@@ -20,6 +20,39 @@ export interface SoundEffect
     get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
 
     //endregion -------------------- Game properties --------------------
+    //region -------------------- Player sound effect trigger properties --------------------
+
+    get playerSoundEffectTriggerContainer(): this['propertyContainer']['playerSoundEffectTriggerContainer']
+
+    //region -------------------- Movement triggers --------------------
+
+    get doesTriggerOnPlayerWhenJumpingAfterLanding(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenJumpingAfterLanding']
+
+    get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed']
+
+    get doesTriggerOnPlayerWhenCrouching(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCrouching']
+
+    get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly']
+
+    //endregion -------------------- Movement triggers --------------------
+    //region -------------------- Interaction triggers --------------------
+
+    get doesTriggerOnPlayerWhenCollectingAPowerUp(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCollectingAPowerUp']
+
+    get doesTriggerOnPlayerWhenGettingIntoAEntity(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenGettingIntoAEntity']
+
+    //endregion -------------------- Interaction triggers --------------------
+    //region -------------------- Environment triggers --------------------
+
+    get doesTriggerOnPlayerAtSpawn(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAtSpawn']
+
+    get doesTriggerOnPlayerWhenTakingDamage(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTakingDamage']
+
+    get doesTriggerOnPlayerWhenLosingALife(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenLosingALife']
+
+    //endregion -------------------- Environment triggers --------------------
+
+    //endregion -------------------- Player sound effect trigger properties --------------------
 
     //endregion -------------------- Properties --------------------
 

@@ -328,6 +328,63 @@ export class SoundEffectContainer
     }
 
     //endregion -------------------- Game properties --------------------
+    //region -------------------- Player sound effect trigger properties --------------------
+
+    public get playerSoundEffectTriggerContainer(): this['propertyContainer']['playerSoundEffectTriggerContainer'] {
+        return this.propertyContainer.playerSoundEffectTriggerContainer;
+    }
+
+    public get translationKey(): this['playerSoundEffectTriggerContainer']['translationKey'] {
+        return this.playerSoundEffectTriggerContainer.translationKey;
+    }
+
+    //region -------------------- Movement triggers --------------------
+
+    public get doesTriggerOnPlayerWhenJumpingAfterLanding(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenJumpingAfterLanding'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenJumpingAfterLanding;
+    }
+
+    public get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed;
+    }
+
+    public get doesTriggerOnPlayerWhenCrouching(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCrouching'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenCrouching;
+    }
+
+    public get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly;
+    }
+
+    //endregion -------------------- Movement triggers --------------------
+    //region -------------------- Interaction triggers --------------------
+
+    public get doesTriggerOnPlayerWhenCollectingAPowerUp(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCollectingAPowerUp'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenCollectingAPowerUp;
+    }
+
+    public get doesTriggerOnPlayerWhenGettingIntoAEntity(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenGettingIntoAEntity'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenGettingIntoAEntity;
+    }
+
+    //endregion -------------------- Interaction triggers --------------------
+    //region -------------------- Environment triggers --------------------
+
+    public get doesTriggerOnPlayerAtSpawn(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAtSpawn'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerAtSpawn;
+    }
+
+    public get doesTriggerOnPlayerWhenTakingDamage(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTakingDamage'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenTakingDamage;
+    }
+
+    public get doesTriggerOnPlayerWhenLosingALife(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenLosingALife'] {
+        return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenLosingALife;
+    }
+
+    //endregion -------------------- Environment triggers --------------------
+
+    //endregion -------------------- Player sound effect trigger properties --------------------
 
     //endregion -------------------- Properties --------------------
 

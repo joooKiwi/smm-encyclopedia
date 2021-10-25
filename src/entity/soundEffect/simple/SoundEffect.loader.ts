@@ -23,6 +23,21 @@ enum Headers {
     isInSuperMarioMaker2,
 
     //endregion -------------------- Games --------------------
+    //region -------------------- Triggers --------------------
+
+    doesTrigger_player_jumpAfterLanding,
+    doesTrigger_player_turnAroundAfterBeingAtFullSpeed,
+    doesTrigger_player_crouch,
+    doesTrigger_player_after3SecondsRepeatedly,
+
+    doesTrigger_player_collectPowerUp,
+    doesTrigger_player_getIntoAnEntity,
+
+    doesTrigger_player_spawn,
+    doesTrigger_player_damage,
+    doesTrigger_player_lostALife,
+
+    //endregion -------------------- Triggers --------------------
     category,
     //region -------------------- Languages --------------------
 
@@ -48,7 +63,24 @@ enum Headers {
 //region -------------------- Exclusive properties --------------------
 
 type ExclusivePropertiesArray = [
+    //region -------------------- Triggers --------------------
+
+    doesTrigger_player_jumpAfterLanding: boolean,
+    doesTrigger_player_turnAroundAfterBeingAtFullSpeed: boolean,
+    doesTrigger_player_crouch: boolean,
+    doesTrigger_player_after3SecondsRepeatedly: boolean,
+
+    doesTrigger_player_collectPowerUp: boolean,
+    doesTrigger_player_getIntoAnEntity: boolean,
+
+    doesTrigger_player_atSpawn: boolean,
+    doesTrigger_player_takeDamage: boolean,
+    doesTrigger_player_lostALife: boolean,
+
+    //endregion -------------------- Triggers --------------------
+
     category: PossibleSoundEffectCategoryType,
+
 ];
 
 //endregion -------------------- Exclusive properties --------------------
@@ -98,7 +130,13 @@ export class SoundEffectLoader
             new CSVLoader<PropertiesArray, SoundEffect, keyof typeof Headers>(everySoundEffects, convertedContent => new SoundEffectBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .convertToBoolean(
+                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+
+                    'doesTrigger_player_jumpAfterLanding', 'doesTrigger_player_turnAroundAfterBeingAtFullSpeed', 'doesTrigger_player_crouch', 'doesTrigger_player_after3SecondsRepeatedly',
+                    'doesTrigger_player_collectPowerUp', 'doesTrigger_player_getIntoAnEntity',
+                    'doesTrigger_player_spawn', 'doesTrigger_player_damage', 'doesTrigger_player_lostALife',
+                )
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'category',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectsNames, 'english',)
 
@@ -134,6 +172,30 @@ class TemplateBuilder
             properties: {
                 isIn: {
                     game: this._createGameTemplate(),
+
+                    trigger: {
+                        player: {
+
+                            movement: {
+                                jumpAfterLanding: this._getContent(this._headersIndexMap.doesTrigger_player_jumpAfterLanding),
+                                turnAroundAfterBeingAtFullSpeed: this._getContent(this._headersIndexMap.doesTrigger_player_turnAroundAfterBeingAtFullSpeed),
+                                crouch: this._getContent(this._headersIndexMap.doesTrigger_player_crouch),
+                                after3SecondsRepeatedly: this._getContent(this._headersIndexMap.doesTrigger_player_after3SecondsRepeatedly),
+                            },
+
+                            interaction: {
+                                collectPowerUp: this._getContent(this._headersIndexMap.doesTrigger_player_collectPowerUp),
+                                getIntoAnEntity: this._getContent(this._headersIndexMap.doesTrigger_player_getIntoAnEntity),
+                            },
+
+                            environment: {
+                                spawn: this._getContent(this._headersIndexMap.doesTrigger_player_spawn),
+                                damage: this._getContent(this._headersIndexMap.doesTrigger_player_damage),
+                                lostALife: this._getContent(this._headersIndexMap.doesTrigger_player_lostALife),
+                            },
+
+                        },
+                    },
                 },
                 category: this._getContent(this._headersIndexMap.category),
             },
