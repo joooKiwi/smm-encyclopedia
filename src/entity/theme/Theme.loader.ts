@@ -3,8 +3,8 @@ import everyThemes from '../../resources/Themes.csv';
 import type {CourseAndWorldTheme, PossibleTheme}        from './Themes.types';
 import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
 import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {PossibleEffectInNightTheme, ThemeTemplate} from './Theme.template';
 import type {Loader}                                    from '../../util/loader/Loader';
-import type {ThemeTemplate}                             from './Theme.template';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -24,6 +24,9 @@ enum Headers {
     isInSuperMarioMaker2,
 
     //endregion -------------------- Games --------------------
+
+    effectInNightTheme,
+
     //region -------------------- Languages --------------------
 
     english, americanEnglish, europeanEnglish,
@@ -45,13 +48,17 @@ enum Headers {
 
 //region -------------------- Properties --------------------
 
-type ExclusivePropertiesArray = [
+type ExclusivePropertiesArray1 = [
     isInCourseTheme: boolean,
     isInWorldTheme: boolean,
 ];
+type ExclusivePropertiesArray2 = [
+    effectInNightTheme: PossibleEffectInNightTheme,
+];
 type PropertiesArray = [
-    ...ExclusivePropertiesArray,
+    ...ExclusivePropertiesArray1,
     ...GamesPropertyArray,
+    ...ExclusivePropertiesArray2,
     ...LanguagesPropertyArray,
 ];
 
@@ -99,6 +106,7 @@ export class ThemeLoader
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
                 )
+                .convertToEmptyableStringAnd(['Special effect on entities', 'Screen upside down', 'Dark', 'Wind', 'Slippery', 'Low gravity', 'Poison liquid', 'Entities in water', 'Characters in water',], 'effectInNightTheme')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleTheme, finalContent.build(),))
                 .load();
@@ -136,6 +144,7 @@ class TemplateBuilder
                     world: this._getContent(this._headersIndexMap.isInWorldTheme),
                 },
             },
+            effect: this._getContent(this._headersIndexMap.effectInNightTheme),
             name: this._createNameTemplate(),
         };
     }

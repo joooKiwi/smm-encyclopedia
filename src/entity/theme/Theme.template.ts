@@ -15,5 +15,10 @@ export interface ThemeTemplate
             world: boolean
         }
     }
+    effect: PossibleEffectInNightTheme
 
 }
+
+export type PossibleEffectInNightTheme = | 'Special effect on entities' | 'Screen upside down' | 'Dark' | 'Wind' | 'Slippery'
+                                         | 'Low gravity' | 'Poison liquid' | `${| 'Entities' | 'Characters'} in water`
+                                         | null;

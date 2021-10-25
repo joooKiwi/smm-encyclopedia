@@ -39,12 +39,15 @@ export class ThemeBuilder
     }
 
     private __createCourseTheme(name: Name,): CourseTheme {
-        const gameTemplate = this.template.isIn.game;
+        const template = this.template;
+        const gameTemplate = template.isIn.game;
+
 
         return new CourseThemeContainer(
             name,
             GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
             () => ThemeBuilder.__whereEntityIs(name.english),
+            template.effect,
         );
     }
 
