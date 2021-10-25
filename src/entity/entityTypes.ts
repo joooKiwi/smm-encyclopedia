@@ -17,21 +17,6 @@ export type EntityLink = | 'this' | SingleEntityName | `${SingleEntityName} / ${
  */
 export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile';
 
-//region -------------------- Basic properties --------------------
-
-/**
- * @temporaryLocation
- */
-export type HasAMushroomVariant = | boolean | null;
-/**
- * @temporaryLocation
- */
-export type CanBeInAParachute = | boolean | '?' | null;
-/**
- * @temporaryLocation
- */
-export type CanHaveWings = | boolean | '?';
-//endregion -------------------- Basic properties --------------------
 //region -------------------- Specific properties --------------------
 
 /**
