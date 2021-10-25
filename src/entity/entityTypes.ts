@@ -81,12 +81,12 @@ export type HasALightSourceEmittedInSMB = | boolean | null;
 /**
  * @temporaryLocation
  */
-export type CanSurviveInTheLavaOrThePoison = | boolean | '?' | 'Explode' | 'Only in the ground' | 'float' | 'melt to Coin';
+export type CanSurviveInTheLavaOrThePoison = | boolean | '?' | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground';
 
 /**
  * @temporaryLocation
  */
-export type CanIgniteABobOmb = | boolean | 'NSMBU' | `Castle${| '' | ' / Night Forest'}` | null;
+export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle' | 'Only when the player press the run button' | null;
 
 /**
  * @temporaryLocation
@@ -96,7 +96,11 @@ export type CanBeAffectedByATwister = | boolean | 'When falling' | 'Parachute' |
 /**
  * @temporaryLocation
  */
-export type CanGoThroughWalls = | boolean | null;
+export type CanGoThroughWalls = | boolean | 'SM3DW on down curve' | null;
+/**
+ * @temporaryLocation
+ */
+export type CanGoThroughWallsInSM3DW = | boolean | 'SM3DW on down curve' | null;
 
 /**
  * @temporaryLocation
@@ -111,7 +115,7 @@ export type IsGlobalGroundOrGlobal = | boolean | 'SM3DW' | null;
 /**
  * @temporaryLocation
  */
-export type CanMakeASoundOutOfAMusicBlock = | boolean | '?' | null;
+export type CanMakeASoundOutOfAMusicBlock = | boolean | '?' | 'Excluding the top 3 notes' | null;
 
 /**
  * @temporaryLocation

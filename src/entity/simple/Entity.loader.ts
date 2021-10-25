@@ -1,7 +1,7 @@
 import everyEntities from '../../resources/Entities.csv';
 
 import type {Builder}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from '../../util/Builder';
-import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeStacked, CanBeThrownByALakitu, CanContainOrSpawnAKey, CanGoThroughWalls, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, EntityLink, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource}                                                                                                                                            from '../entityTypes';
+import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeStacked, CanBeThrownByALakitu, CanContainOrSpawnAKey, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, EntityLink, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource}                                                                                                                  from '../entityTypes';
 import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../behaviours/Loader.types';
 import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity';
@@ -76,7 +76,7 @@ enum Headers {
 
     canBeAffectedByATwister,
 
-    canGoThroughWalls,
+    canGoThroughWalls, canGoThroughWalls_inSM3DW,
 
     canBeStacked,
 
@@ -218,6 +218,7 @@ type ExclusivePropertiesArray2 = [
     canBeAffectedByATwister: CanBeAffectedByATwister,
 
     canGoThroughWalls: CanGoThroughWalls,
+    canGoThroughWalls_inSM3DW: CanGoThroughWallsInSM3DW,
 
     canBeStacked: CanBeStacked,
 
@@ -364,7 +365,7 @@ export class EntityLoader
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeInAParachute', 'canHaveWings',)
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'While playing → LCL',], 'canBeInAParachute', 'canHaveWings',)
 
                 .convertToNullableBoolean('canContainOrSpawnAKey',)
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
@@ -378,12 +379,13 @@ export class EntityLoader
 
                 .convertTo([EntityLoader.UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Full light when falling', 'Full light when collected', 'Full light when shooting', 'Dim light / Full light when falling or collected', 'Project a light in front of them', 'Only when lit',], 'lightSourceEmitted')
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
-                .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Only in the ground', 'float', 'melt to Coin',], 'canSurviveInTheLavaOrThePoison',)
-                .convertToNullableBooleanAnd(['NSMBU', 'Castle', 'Castle / Night Forest',], 'canIgniteABobOmb',)
+                .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Castle', 'Castle / Night Forest', 'Float', 'Melt to Coin', 'Only inside the ground',], 'canSurviveInTheLavaOrThePoison',)
+                .convertToNullableBooleanAnd(['NSMBU', 'Castle', 'Only when the player press the run button',], 'canIgniteABobOmb',)
                 .convertToNullableBooleanAnd(['When falling', 'Parachute',], 'canBeAffectedByATwister',)
-                .convertToNullableBoolean('canGoThroughWalls', 'canBeStacked',)
+                .convertToNullableBooleanAnd('SM3DW on down curve', 'canGoThroughWalls', 'canGoThroughWalls_inSM3DW',)
+                .convertToNullableBoolean('canBeStacked',)
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canMakeASoundOutOfAMusicBlock',)
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
 
                 .convertTo([1, 2, '1?', EntityLoader.UNKNOWN_CHARACTER,], 'limitAmount',)
 
@@ -556,7 +558,10 @@ class TemplateBuilder
 
                 canBeAffectedByATwister: this._getContent(this._headersIndexMap.canBeAffectedByATwister),
 
-                canGoThroughWalls: this._getContent(this._headersIndexMap.canGoThroughWalls),
+                canGoThroughWalls: {
+                    value: this._getContent(this._headersIndexMap.canGoThroughWalls),
+                    inSM3DW: this._getContent(this._headersIndexMap.canGoThroughWalls_inSM3DW),
+                },
 
                 canBeStacked: this._getContent(this._headersIndexMap.canBeStacked),
 
