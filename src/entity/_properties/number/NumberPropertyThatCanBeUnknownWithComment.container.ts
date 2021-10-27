@@ -5,7 +5,7 @@ import type {ValueOrCallbackValue}                      from '../../../util/hold
 
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../PropertyThatCanBeUnknownWithComment.container';
 
-export class NumberPropertyWithCommentThatCanBeUnknownContainer<N extends PossibleNumber = PossibleNumber, IS_UNKNOWN extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >
+export class NumberPropertyThatCanBeUnknownWithCommentContainer<N extends PossibleNumber = PossibleNumber, IS_UNKNOWN extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >
     extends PropertyThatCanBeUnknownWithCommentContainer<N, IS_UNKNOWN, COMMENT>
     implements NumberPropertyThatCanBeUnknownWithComment<N, IS_UNKNOWN, COMMENT> {
 

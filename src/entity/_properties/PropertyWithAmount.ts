@@ -14,3 +14,6 @@ export interface PropertyWithAmount<T, AMOUNT extends PossibleAmount = PossibleA
 export type BooleanPropertyWithAmount<B extends PossibleBoolean = PossibleBoolean, AMOUNT extends PossibleAmount = PossibleAmount, > = PropertyWithAmount<B, AMOUNT>;
 export type NumberPropertyWithAmount<N extends PossibleNumber = PossibleNumber, AMOUNT extends PossibleAmount = PossibleAmount, > = PropertyWithAmount<N, AMOUNT>;
 export type StringPropertyWithAmount<S extends PossibleString = PossibleString, AMOUNT extends PossibleAmount = PossibleAmount, > = PropertyWithAmount<S, AMOUNT>;
+
+export type PossibleAmountOnFalse = null | 0;
+export type PossibleAmountOnTrue = null | 1;

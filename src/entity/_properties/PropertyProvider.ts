@@ -1,18 +1,20 @@
-import type {PossibleComment}                                                                                                                         from './ClassWithComment';
-import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, StringProperty} from './Property';
-import {PossibleInferredBooleanProperty, PossibleNumberValuesByInferredProperty, PossibleStringValuesByInferredProperty}                              from './Property';
-import type {BooleanPropertyWithComment, NumberPropertyWithComment}                                                                                    from './PropertyWithComment';
+import type {PossibleComment}                                                                                                                                                                                                                                          from './ClassWithComment';
+import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredBooleanProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, PossibleNumberValuesByInferredProperty, PossibleStringValuesByInferredProperty, StringProperty} from './Property';
+import type {BooleanPropertyWithAmountAndComment}                                                                                                                                                                                                                      from './PropertyWithAmountAndComment';
+import type {BooleanPropertyWithAmount}                                                                                                                                                                                                                                from './PropertyWithAmount';
+import type {BooleanPropertyWithComment, NumberPropertyWithComment}                                                                                                                                                                                                    from './PropertyWithComment';
 
-import {PropertyContainer}                   from './Property.container';
-import {BooleanPropertyWithCommentContainer} from './boolean/BooleanPropertyWithComment.container';
-import {BooleanPropertyWithAmountContainer} from './boolean/BooleanPropertyWithAmount.container';
-import {NumberPropertyWithCommentContainer} from './number/NumberPropertyWithComment.container';
-import {NumberPropertyContainer}            from './number/NumberProperty.container';
-import {StringPropertyContainer}            from './string/StringProperty.container';
-import {StringPropertyWithCommentContainer} from './string/StringPropertyWithComment.container';
-import {BooleanPropertyWithAmount}          from './PropertyWithAmount';
-import {BooleanPropertyWithAmountAndComment}          from './PropertyWithAmountAndComment';
 import {BooleanPropertyWithAmountAndCommentContainer} from './boolean/BooleanPropertyWithAmountAndComment.container';
+import {BooleanPropertyWithAmountContainer}           from './boolean/BooleanPropertyWithAmount.container';
+import {BooleanPropertyWithCommentContainer}          from './boolean/BooleanPropertyWithComment.container';
+import {BooleanPropertyWithEverythingContainer}       from './boolean/BooleanPropertyWithEverything.container';
+import {NumberPropertyWithCommentContainer}           from './number/NumberPropertyWithComment.container';
+import {NumberPropertyWithEverythingContainer}        from './number/NumberPropertyWithEverything.container';
+import {NumberPropertyContainer}                      from './number/NumberProperty.container';
+import {PropertyContainer}                            from './Property.container';
+import {StringPropertyContainer}                      from './string/StringProperty.container';
+import {StringPropertyWithCommentContainer}           from './string/StringPropertyWithComment.container';
+import {StringPropertyWithEverythingContainer}        from './string/StringPropertyWithEverything.container';
 
 export class PropertyProvider {
 
@@ -33,38 +35,56 @@ export class PropertyProvider {
     public static newNumberContainer<T extends PossibleNumberValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
     public static newNumberContainer<T extends | number | null, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
     public static newNumberContainer(value: PossibleNumberValuesByInferredProperty, canBeNotApplicable: boolean, comment?: PossibleComment,) {
-        return this.__newContainer('number', value, canBeNotApplicable, comment,);
+        return this.__newContainer('number', value, canBeNotApplicable, false, comment,);
     }
 
     public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
     public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
     public static newStringContainer(value: PossibleStringValuesByInferredProperty, canBeNotApplicable: boolean, comment?: PossibleComment,) {
-        return this.__newContainer('string', value, canBeNotApplicable, comment,);
+        return this.__newContainer('string', value, canBeNotApplicable, false, comment,);
     }
 
-    public static newBooleanContainer<T extends PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
-    public static newBooleanContainer<T extends | boolean | number | null, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
-    public static newBooleanContainer(value: PossibleBooleanValuesByInferredProperty, canBeNotApplicable: boolean, comment?: PossibleComment,) {
-        return this.__newContainer('boolean', value, canBeNotApplicable, comment,);
+    public static newBooleanContainer<T extends PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, HAVE_A_COMMENT, null>
+    public static newBooleanContainer<T extends | boolean | number | null, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, true, COMMENT>
+    public static newBooleanContainer(value: PossibleBooleanValuesByInferredProperty, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment?: PossibleComment,) {
+        return this.__newContainer('boolean', value, canBeNotApplicable, doesHaveAnAmount, comment,);
     }
 
-    private static __newContainer(type: | 'string' | 'boolean' | 'number', value: boolean | string | number | null, canBeNotApplicable: boolean, comment: | string | null = null,) {
+    private static __newContainer(type: | 'string' | 'boolean' | 'number', value: boolean | string | number | null, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment: | string | null = null,) {
         if (value == null)
             return canBeNotApplicable ? PropertyContainer.NOT_APPLICABLE_CONTAINER : PropertyContainer.NULL_CONTAINER;
-        if (value === PropertyContainer.UNKNOWN)
-            return PropertyContainer.UNKNOWN_CONTAINER;
+        if (value === PropertyContainer.UNKNOWN) {
+            if (comment == null)
+                return PropertyContainer.UNKNOWN_CONTAINER;
+            switch (type) {
+                case 'string':
+                    return new StringPropertyWithEverythingContainer('', true, null, comment,);
+                case 'boolean':
+                    return new BooleanPropertyWithEverythingContainer(false, true, null, comment,);
+                case 'number':
+                    return new NumberPropertyWithEverythingContainer(NaN, true, null, comment);
+            }
+        }
 
         switch (type) {
             case 'boolean':
                 switch (typeof value) {
                     case 'string':
-                        if (comment != null)
-                            throw new TypeError(`The comment ("${comment}") cannot be a value that is not null for a boolean container that will already have a comment "${value}".`);
-                        return this.__getOrSetMap<string, BooleanPropertyFromString>(value, this.#BOOLEAN_FROM_STRING_MAP, value => new BooleanPropertyWithCommentContainer(true, value,),);
+                        return this.__getOrSetMap<string, BooleanPropertyFromString>(
+                            value,
+                            this.#BOOLEAN_FROM_STRING_MAP,
+                            value => doesHaveAnAmount
+                                ? new BooleanPropertyWithAmountAndCommentContainer(true, 1, value,)
+                                : new BooleanPropertyWithCommentContainer(true, value,),
+                        );
                     case 'boolean':
-                        return value ? PropertyContainer.TRUE_CONTAINER : PropertyContainer.FALSE_CONTAINER;
+                        return doesHaveAnAmount
+                            ? value ? PropertyContainer.TRUE_WITH_AMOUNT_CONTAINER : PropertyContainer.FALSE_WITH_AMOUNT_CONTAINER
+                            : value ? PropertyContainer.TRUE_CONTAINER : PropertyContainer.FALSE_CONTAINER;
                     case 'number':
-                        return this.__getOrSetMap<number, BooleanPropertyFromNumber>(value, this.#BOOLEAN_FROM_NUMBER_MAP, value => comment == null ? new BooleanPropertyWithAmountContainer(true, value,) : new BooleanPropertyWithAmountAndCommentContainer(true, value, comment,),);
+                        return this.__getOrSetMap<number, BooleanPropertyFromNumber>(
+                            value,
+                            this.#BOOLEAN_FROM_NUMBER_MAP, value => comment == null ? new BooleanPropertyWithAmountContainer(true, value,) : new BooleanPropertyWithAmountAndCommentContainer(true, value, comment,),);
                 }
                 throw new ReferenceError(`The boolean container cannot be created with this value "${value}".`);
             case 'string':
@@ -74,8 +94,6 @@ export class PropertyProvider {
             case 'number':
                 switch (typeof value) {
                     case 'string':
-                        if (comment != null)
-                            throw new TypeError(`The comment ("${comment}") cannot be a value that is not null for a number container that will already have a comment "${value}".`);
                         return this.__getOrSetMap<string, NumberPropertyFromString>(value, this.#NUMBER_FROM_STRING_MAP, value => new NumberPropertyWithCommentContainer(null, value,),);
                     case 'number':
                         return this.__getOrSetMap<number, NumberPropertyFromNumber>(value, this.#NUMBER_FROM_NUMBER_MAP, value => comment == null ? new NumberPropertyContainer(value,) : new NumberPropertyWithCommentContainer(value, comment,),);

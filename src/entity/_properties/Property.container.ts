@@ -19,11 +19,17 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOW
     //endregion -------------------- Constants --------------------
     //region -------------------- Predefined properties --------------------
 
-    public static readonly NULL_CONTAINER: NullProperty = new PropertyContainer(null, false, null,);
-    public static readonly UNKNOWN_CONTAINER: UnknownProperty = new PropertyContainer(false, true, null,);
-    public static readonly NOT_APPLICABLE_CONTAINER: NotApplicableProperty = new PropertyContainer('N/A', false, null,);
-    public static readonly TRUE_CONTAINER: TrueProperty = new PropertyContainer(true, false, null,);
-    public static readonly FALSE_CONTAINER: FalseProperty = new PropertyContainer(false, false, null,);
+    public static readonly NULL_CONTAINER: NullProperty = new PropertyContainer(null, false, null, null,);
+
+    public static readonly UNKNOWN_CONTAINER: UnknownProperty = new PropertyContainer(false, true, null, null,);
+
+    public static readonly NOT_APPLICABLE_CONTAINER: NotApplicableProperty = new PropertyContainer('N/A', false, null, null,);
+
+    public static readonly TRUE_CONTAINER: TrueProperty = new PropertyContainer(true, false, null, null,);
+    public static readonly TRUE_WITH_AMOUNT_CONTAINER: TrueProperty<1> = new PropertyContainer(true, false, 1, null,);
+
+    public static readonly FALSE_CONTAINER: FalseProperty = new PropertyContainer(false, false, null, null,);
+    public static readonly FALSE_WITH_AMOUNT_CONTAINER: FalseProperty<0> = new PropertyContainer(false, false, 0, null,);
 
     //endregion -------------------- Predefined properties --------------------
     //region -------------------- Attributes --------------------
@@ -41,6 +47,7 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOW
     protected constructor(value: ValueOrCallbackValue<T>, comment: COMMENT,)
     protected constructor(value: ValueOrCallbackValue<T>, amount: AMOUNT, comment: COMMENT,)
     protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
+    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
     protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
     protected constructor(value: ValueOrCallbackValue<T>, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
         this.#value = new DelayedObjectHolderContainer<T>(value);
