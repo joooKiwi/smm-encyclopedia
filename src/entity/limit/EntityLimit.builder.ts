@@ -8,18 +8,19 @@ import type {EntityLimitLink}                                                   
 import type {PossibleAlternativeEntityLimits, PossibleEntityLimits}                              from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                from '../entityTypes';
 
-import {AlternativeEntityLimitContainer} from './AlternativeEntityLimitContainer';
-import {EmptyEntityLimit}                from './EmptyEntityLimit';
-import {EmptyEntityLimitAmount}          from './properties/EmptyEntityLimitAmount';
-import {EmptyEntityLimitLink}            from './properties/EmptyEntityLimitLink';
-import {EntityLimitContainer}            from './EntityLimit.container';
-import {EntityLimitTypes}                from './EntityLimitTypes';
-import {EntityLimits}                    from './EntityLimits';
-import {EntityLimitAmountContainer}      from './properties/EntityLimitAmount.container';
-import {EntityLimitLinkContainer}        from './properties/EntityLimitLink.container';
-import {Games}                           from '../game/Games';
-import {NameBuilder}                     from '../lang/NameBuilder';
-import {TemplateBuilder}                 from '../_template/Template.builder';
+import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
+import {EmptyEntityLimit}                                   from './EmptyEntityLimit';
+import {EmptyEntityLimitAmount}                             from './properties/EmptyEntityLimitAmount';
+import {EmptyEntityLimitLink}                               from './properties/EmptyEntityLimitLink';
+import {EntityLimitAmountContainer}                         from './properties/EntityLimitAmount.container';
+import {EntityLimitContainer}                               from './EntityLimit.container';
+import {EntityLimitLinkContainer}                           from './properties/EntityLimitLink.container';
+import {EntityLimitTypes}                                   from './EntityLimitTypes';
+import {EntityLimits}                                       from './EntityLimits';
+import {Games}                                              from '../game/Games';
+import {NameBuilder}                                        from '../lang/NameBuilder';
+import {NumberPropertyThatCanBeUnknownWithCommentContainer} from '../_properties/number/NumberPropertyThatCanBeUnknownWithComment.container';
+import {TemplateBuilder}                                    from '../_template/Template.builder';
 
 export class EntityLimitBuilder
     extends TemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, EntityLimit>
@@ -54,7 +55,7 @@ export class EntityLimitBuilder
 
         return limitTemplate == null
             ? EmptyEntityLimitAmount.get
-            : new EntityLimitAmountContainer(limitTemplate.amount, limitTemplate.isUnknown, limitTemplate.comment,);
+            : new EntityLimitAmountContainer(new NumberPropertyThatCanBeUnknownWithCommentContainer(limitTemplate.amount, limitTemplate.isUnknown, limitTemplate.comment,));
     }
 
 
