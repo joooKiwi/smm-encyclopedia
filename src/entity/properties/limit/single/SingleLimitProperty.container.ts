@@ -1,10 +1,8 @@
-import type {ObjectHolder}                                   from '../../../../util/holder/ObjectHolder';
+import type {PossibleComment}                                from '../../../_properties/ClassWithComment';
 import type {SingleLimitThatCanBeUnknownProperty}            from './SingleLimitThatCanBeUnknownProperty';
 import type {SingleLimitWithCommentProperty}                 from './SingleLimitWithCommentProperty';
 import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './SingleLimitWithCommentThatCanBeUnknownProperty';
 
-import {DelayedObjectHolderContainer}                 from '../../../../util/holder/DelayedObjectHolderContainer';
-import {ObjectHolders}                                from '../../../../util/holder/objectHolders';
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../../../_properties/PropertyThatCanBeUnknownWithComment.container';
 
 /**
@@ -28,41 +26,37 @@ export class SingleLimitPropertyContainer<T>
 
     //region -------------------- Provider methods ----------
 
-    public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): [container: null, value: ObjectHolder<null>, isUnknown: ObjectHolder<false>,]
-    public static newLimitThatCanBeUnknown<T>(value: '?', isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T>, value: ObjectHolder<null>, isUnknown: ObjectHolder<true>,]
-    public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown?: boolean,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>,]
-    public static newLimitThatCanBeUnknown<T>(value: T | '?' | null, isUnknown: boolean = false,): [container: SingleLimitThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>,] {
+    public static newLimitThatCanBeUnknown(value: null, isUnknown?: any,): SingleLimitThatCanBeUnknownProperty<null, false>
+    public static newLimitThatCanBeUnknown(value: '?', isUnknown?: any,): SingleLimitThatCanBeUnknownProperty<null, true>
+    public static newLimitThatCanBeUnknown<T>(value: | T | '?' | null, isUnknown?: boolean,): SingleLimitThatCanBeUnknownProperty<| T | null>
+    public static newLimitThatCanBeUnknown<T>(value: | T | '?' | null, isUnknown: boolean = false,): SingleLimitThatCanBeUnknownProperty<| T | null> {
         if (value == null)
-            return [this.NULL_LIMIT, ObjectHolders.NULL, ObjectHolders.FALSE,];
+            return this.NULL_LIMIT;
         if (value === '?')
-            return [this.UNKNOWN_LIMIT, ObjectHolders.NULL, ObjectHolders.TRUE,];
+            return this.UNKNOWN_LIMIT;
 
-        const container = new SingleLimitPropertyContainer(value, isUnknown, null,);
-
-        return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.isUnknown),];
+        return new SingleLimitPropertyContainer(value, isUnknown, null,);
     }
 
-    public static newLimitWithComment(value: null, comment?: null,): [container: null, value: ObjectHolder<null>, comment: ObjectHolder<null>,]
-    public static newLimitWithComment<T>(value: T | null, comment?: | string | null,): [container: SingleLimitWithCommentProperty<T> | null, value: ObjectHolder<| T | null>, comment: ObjectHolder<| string | null>,]
-    public static newLimitWithComment<T>(value: T | null, comment: | string | null = null,): [container: SingleLimitWithCommentProperty<T> | null, value: ObjectHolder<| T | null>, comment: ObjectHolder<| string | null>,] {
+    public static newLimitWithComment(value: null, comment?: any,): SingleLimitWithCommentProperty<null, null>
+    public static newLimitWithComment<T>(value: | T | null, comment?: PossibleComment,): SingleLimitWithCommentProperty<| T | null>
+    public static newLimitWithComment<T>(value: | T | null, comment: PossibleComment = null,): SingleLimitWithCommentProperty<| T | null> {
         if (value == null)
-            return [null, ObjectHolders.NULL, ObjectHolders.NULL,];
+            return this.NULL_LIMIT;
 
-        const container = new SingleLimitPropertyContainer(value, false, comment,);
-        return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.comment),];
+        return new SingleLimitPropertyContainer(value, false, comment,);
     }
 
-    public static newLimitWithCommentThatCanBeUnknown(value: null, comment?: any, isUnknown?: any,): [container: null, value: ObjectHolder<null>, isUnknown: ObjectHolder<false>, comment: ObjectHolder<null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: '?', comment?: any, isUnknown?: any,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T>, value: ObjectHolder<null>, isUnknown: ObjectHolder<true>, comment: ObjectHolder<null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment?: | string | null, isUnknown?: boolean,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>, comment: ObjectHolder<| string | null>,]
-    public static newLimitWithCommentThatCanBeUnknown<T>(value: T | '?' | null, comment: | string | null = null, isUnknown: boolean = false,): [container: SingleLimitWithCommentThatCanBeUnknownProperty<T> | null, value: ObjectHolder<| T | null>, isUnknown: ObjectHolder<boolean>, comment: ObjectHolder<| string | null>,] {
+    public static newLimitWithCommentThatCanBeUnknown(value: null, comment?: any, isUnknown?: any,): SingleLimitWithCommentThatCanBeUnknownProperty<null, false, null>
+    public static newLimitWithCommentThatCanBeUnknown(value: '?', comment?: any, isUnknown?: any,): SingleLimitWithCommentThatCanBeUnknownProperty<null, true, null>
+    public static newLimitWithCommentThatCanBeUnknown<T>(value: | T | '?' | null, comment?: PossibleComment, isUnknown?: boolean,): SingleLimitWithCommentThatCanBeUnknownProperty<| T | null>
+    public static newLimitWithCommentThatCanBeUnknown<T>(value: | T | '?' | null, comment: PossibleComment = null, isUnknown: boolean = false,): SingleLimitWithCommentThatCanBeUnknownProperty<| T | null> {
         if (value == null)
-            return [this.NULL_LIMIT, ObjectHolders.NULL, ObjectHolders.FALSE, ObjectHolders.NULL,];
+            return this.NULL_LIMIT;
         if (value === '?')
-            return [this.UNKNOWN_LIMIT, ObjectHolders.NULL, ObjectHolders.TRUE, ObjectHolders.NULL,];
+            return this.UNKNOWN_LIMIT;
 
-        const container = new SingleLimitPropertyContainer(value, isUnknown, comment,);
-        return [container, new DelayedObjectHolderContainer(() => container.value), new DelayedObjectHolderContainer(() => container.isUnknown), new DelayedObjectHolderContainer(() => container.comment),];
+        return new SingleLimitPropertyContainer(value, isUnknown, comment,);
     }
 
     //endregion -------------------- Provider methods ----------

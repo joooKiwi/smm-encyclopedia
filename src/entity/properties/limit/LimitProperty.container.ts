@@ -1,8 +1,9 @@
-import type {CommentReceived, CustomLimitContainer, CustomLimitReceived, EditorLimitContainer, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitContainer, PowerUpLimitReceived, ProjectileLimitContainer, ProjectileLimitReceived, SingleGeneralGlobalLimitContainer, SingleGeneralGlobalLimitReceived, SingleGeneralLimitContainer} from './LimitProperty.types';
-import type {LimitProperty, PossibleCustomLimitWhilePlaying, PossibleEditorLimit, PossibleGeneralLimitWhilePlaying, PossibleGlobalGeneralLimitWhilePlaying, PossiblePowerUpLimitWhilePlaying, PossibleProjectileLimitWhilePlaying}                                                                                                          from './LimitProperty';
-import type {ObjectHolder}                                                                                                                                                                                                                                                                                                                  from '../../../util/holder/ObjectHolder';
+import type {CustomLimitContainer, CustomLimitReceived, EditorLimitContainer, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitContainer, PowerUpLimitReceived, ProjectileLimitContainer, ProjectileLimitReceived, SingleGeneralGlobalLimitContainer, SingleGeneralGlobalLimitReceived, SingleGeneralLimitContainer} from './LimitProperty.types';
+import type {PossibleComment}                                                                                                                                                                                                                                                                                              from '../../_properties/ClassWithComment';
+import type {LimitProperty}                                                                                                                                                                                                                                                                                                from './LimitProperty';
 
 import {EntityLimits}                 from '../../limit/EntityLimits';
+import {EmptyLimitProperty}           from './EmptyLimitProperty';
 import {SingleLimitPropertyContainer} from './single/SingleLimitProperty.container';
 
 /**
@@ -27,8 +28,6 @@ export class LimitPropertyContainer
     //endregion -------------------- Constants --------------------
     //region -------------------- Predefined containers --------------------
 
-    static readonly #IS_IN_NONE_PROPERTY =                                 new LimitPropertyContainer(null,                                                                                          LimitPropertyContainer.#NULL_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,  LimitPropertyContainer.#NULL_LIMIT,                                           LimitPropertyContainer.#NULL_LIMIT,                  );
-
     static readonly #POWER_UP_LIMIT_ONLY_PROPERTY =                        new LimitPropertyContainer(EntityLimits.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING,                      [LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,], LimitPropertyContainer.#TRUE_LIMIT,  LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
     static readonly #BLOCK_LIMIT_IN_EDITOR_ONLY_PROPERTY =                 new LimitPropertyContainer(EntityLimits.BLOCK_LIMIT,                                              [LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,], LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
     static readonly #OTHER_GROUND_AND_VINE_LIMIT_IN_EDITOR_ONLY_PROPERTY = new LimitPropertyContainer(EntityLimits.PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT, [LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,], LimitPropertyContainer.#FALSE_LIMIT, LimitPropertyContainer.#FALSE_LIMIT,                                          LimitPropertyContainer.#NULL_LIMIT,                  );
@@ -48,48 +47,29 @@ export class LimitPropertyContainer
     //endregion -------------------- Other containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
-    readonly #editorLimitContainer: | EditorLimitContainer | null;
-    readonly #editorLimitHolder: ObjectHolder<| PossibleEditorLimit | null>;
-    readonly #isEditorLimitKnownHolder: ObjectHolder<boolean>;
-
-    readonly #isGeneralLimitContainer: | SingleGeneralLimitContainer | null;
-    readonly #isGeneralLimitHolder: ObjectHolder<| PossibleGeneralLimitWhilePlaying | null>;
-    readonly #isGeneralLimitCommentHolder: ObjectHolder<| string | null>;
-
-    readonly #isGeneralGlobalLimitContainer: | SingleGeneralGlobalLimitContainer | null;
-    readonly #isGlobalGeneralLimitHolder: ObjectHolder<| PossibleGlobalGeneralLimitWhilePlaying | null>;
-    readonly #isGlobalGeneralLimitCommentHolder: ObjectHolder<| string | null>;
-
-    readonly #isPowerUpLimitContainer: | PowerUpLimitContainer | null;
-    readonly #isPowerUpLimitHolder: ObjectHolder<| PossiblePowerUpLimitWhilePlaying | null>;
-    readonly #isPowerUpLimitCommentHolder: ObjectHolder<| string | null>;
-
-    readonly #isProjectileLimitContainer: | ProjectileLimitContainer | null;
-    readonly #isProjectileLimitHolder: ObjectHolder<| PossibleProjectileLimitWhilePlaying | null>;
-    readonly #isProjectileLimitKnownHolder: ObjectHolder<boolean>;
-    readonly #isProjectileLimitCommentHolder: ObjectHolder<| string | null>;
-
-    readonly #isCustomLimitContainer: | CustomLimitContainer | null;
-    readonly #isCustomLimitHolder: ObjectHolder<| PossibleCustomLimitWhilePlaying | null>;
-    readonly #isCustomLimitKnownHolder: ObjectHolder<boolean>;
-    readonly #isCustomLimitCommentHolder: ObjectHolder<| string | null>;
+    readonly #editorLimitContainer: EditorLimitContainer;
+    readonly #isGeneralLimitContainer: SingleGeneralLimitContainer;
+    readonly #isGeneralGlobalLimitContainer: SingleGeneralGlobalLimitContainer;
+    readonly #isPowerUpLimitContainer: PowerUpLimitContainer;
+    readonly #isProjectileLimitContainer: ProjectileLimitContainer;
+    readonly #isCustomLimitContainer: CustomLimitContainer;
 
 
     private constructor(editorLimit: EditorLimitReceived, [generalLimitOrLimit, globalLimitOrComment,]: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, customLimit: CustomLimitReceived,) {
-        [this.#editorLimitContainer, this.#editorLimitHolder, this.#isEditorLimitKnownHolder,] = SingleLimitPropertyContainer.newLimitThatCanBeUnknown(editorLimit);
+        this.#editorLimitContainer = SingleLimitPropertyContainer.newLimitThatCanBeUnknown(editorLimit);
         if (generalLimitOrLimit == null) {
-            [this.#isGeneralLimitContainer, this.#isGeneralLimitHolder, this.#isGeneralLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(null);
-            [this.#isGeneralGlobalLimitContainer, this.#isGlobalGeneralLimitHolder, this.#isGlobalGeneralLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(null);
+            this.#isGeneralLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(null);
+            this.#isGeneralGlobalLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(null);
         } else if (generalLimitOrLimit instanceof Array) {
-            [this.#isGeneralLimitContainer, this.#isGeneralLimitHolder, this.#isGeneralLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(...generalLimitOrLimit);
-            [this.#isGeneralGlobalLimitContainer, this.#isGlobalGeneralLimitHolder, this.#isGlobalGeneralLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(...globalLimitOrComment as SingleGeneralGlobalLimitReceived);
+            this.#isGeneralLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(...generalLimitOrLimit);
+            this.#isGeneralGlobalLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(...globalLimitOrComment as SingleGeneralGlobalLimitReceived);
         } else {
-            [this.#isGeneralLimitContainer, this.#isGeneralLimitHolder, this.#isGeneralLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(generalLimitOrLimit, globalLimitOrComment as CommentReceived,);
-            [this.#isGeneralGlobalLimitContainer, this.#isGlobalGeneralLimitHolder, this.#isGlobalGeneralLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(null);
+            this.#isGeneralLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(generalLimitOrLimit, globalLimitOrComment as PossibleComment,);
+            this.#isGeneralGlobalLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(null);
         }
-        [this.#isPowerUpLimitContainer, this.#isPowerUpLimitHolder, this.#isPowerUpLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithComment(...powerUpLimit);
-        [this.#isProjectileLimitContainer, this.#isProjectileLimitHolder, this.#isProjectileLimitKnownHolder, this.#isProjectileLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithCommentThatCanBeUnknown(...projectileLimit);
-        [this.#isCustomLimitContainer, this.#isCustomLimitHolder, this.#isCustomLimitKnownHolder, this.#isCustomLimitCommentHolder,] = SingleLimitPropertyContainer.newLimitWithCommentThatCanBeUnknown(...customLimit);
+        this.#isPowerUpLimitContainer = SingleLimitPropertyContainer.newLimitWithComment(...powerUpLimit);
+        this.#isProjectileLimitContainer = SingleLimitPropertyContainer.newLimitWithCommentThatCanBeUnknown(...projectileLimit);
+        this.#isCustomLimitContainer = SingleLimitPropertyContainer.newLimitWithCommentThatCanBeUnknown(...customLimit);
     }
 
     //region -------------------- Editor limit --------------------
@@ -99,11 +79,11 @@ export class LimitPropertyContainer
     }
 
     public get editorLimit() {
-        return this.#editorLimitHolder.get;
+        return this.editorLimitContainer.value;
     }
 
     public get isEditorLimitUnknown() {
-        return this.#isEditorLimitKnownHolder.get;
+        return this.editorLimitContainer.isUnknown;
     }
 
     //endregion -------------------- Editor limit --------------------
@@ -114,11 +94,11 @@ export class LimitPropertyContainer
     }
 
     public get isInGeneralLimitWhilePlaying() {
-        return this.#isGeneralLimitHolder.get;
+        return this.isInGeneralLimitWhilePlayingContainer.value;
     }
 
     public get isInGeneralLimitWhilePlayingComment() {
-        return this.#isGeneralLimitCommentHolder.get;
+        return this.isInGeneralLimitWhilePlayingContainer.comment;
     }
 
     //region -------------------- Global general limit --------------------
@@ -128,11 +108,11 @@ export class LimitPropertyContainer
     }
 
     public get isInGlobalGeneralLimitWhilePlaying() {
-        return this.#isGlobalGeneralLimitHolder.get;
+        return this.isInGlobalGeneralLimitWhilePlayingContainer.value;
     }
 
     public get isInGlobalGeneralLimitWhilePlayingComment() {
-        return this.#isGlobalGeneralLimitCommentHolder.get;
+        return this.isInGlobalGeneralLimitWhilePlayingContainer.comment;
     }
 
     //endregion -------------------- Global general limit --------------------
@@ -145,11 +125,11 @@ export class LimitPropertyContainer
     }
 
     public get isInPowerUpLimitWhilePlaying() {
-        return this.#isPowerUpLimitHolder.get;
+        return this.isInPowerUpLimitWhilePlayingContainer.value;
     }
 
     public get isInPowerUpLimitWhilePlayingComment() {
-        return this.#isPowerUpLimitCommentHolder.get;
+        return this.isInPowerUpLimitWhilePlayingContainer.comment;
     }
 
     //endregion -------------------- Power-up limit --------------------
@@ -160,15 +140,15 @@ export class LimitPropertyContainer
     }
 
     public get isInProjectileLimitWhilePlaying() {
-        return this.#isProjectileLimitHolder.get;
+        return this.isInProjectileLimitWhilePlayingContainer.value;
     }
 
     public get isInProjectileLimitWhilePlayingUnknown() {
-        return this.#isProjectileLimitKnownHolder.get;
+        return this.isInProjectileLimitWhilePlayingContainer.isUnknown;
     }
 
     public get isInProjectileLimitWhilePlayingComment() {
-        return this.#isProjectileLimitCommentHolder.get;
+        return this.isInProjectileLimitWhilePlayingContainer.comment;
     }
 
     //endregion -------------------- Projectile limit --------------------
@@ -179,15 +159,15 @@ export class LimitPropertyContainer
     }
 
     public get customLimitWhilePlaying() {
-        return this.#isCustomLimitHolder.get;
+        return this.customLimitWhilePlayingContainer.value;
     }
 
     public get isCustomLimitWhilePlayingUnknown() {
-        return this.#isCustomLimitKnownHolder.get;
+        return this.customLimitWhilePlayingContainer.isUnknown;
     }
 
     public get customLimitWhilePlayingComment() {
-        return this.#isCustomLimitCommentHolder.get;
+        return this.customLimitWhilePlayingContainer.comment;
     }
 
     //endregion -------------------- Custom limit --------------------
@@ -202,7 +182,7 @@ export class LimitPropertyContainer
         const [_customLimit, customLimitComment,] = customLimit;
 
         if (editorLimit == null && generalLimitOrLimit == null && _powerUpLimit == null && _projectileLimit == null && _customLimit == null)
-            return this.#IS_IN_NONE_PROPERTY;
+            return EmptyLimitProperty.get;
         if (editorLimit == null && generalLimitOrLimit instanceof Array && globalLimitOrLimitComment instanceof Array) {
             if (generalLimitOrLimit[0] === true) {
                 if (generalLimitOrLimit[1] == null && globalLimitOrLimitComment[0] === false && globalLimitOrLimitComment[1] == null

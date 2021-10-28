@@ -1,4 +1,5 @@
 import type {EntityLimits}                                   from '../../limit/EntityLimits';
+import type {PossibleComment}                                from '../../_properties/ClassWithComment';
 import type {SingleLimitThatCanBeUnknownProperty}            from './single/SingleLimitThatCanBeUnknownProperty';
 import type {SingleLimitWithCommentProperty}                 from './single/SingleLimitWithCommentProperty';
 import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './single/SingleLimitWithCommentThatCanBeUnknownProperty';
@@ -19,7 +20,7 @@ export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | P
 
     //region -------------------- Editor limit --------------------
 
-    get editorLimitContainer(): | SingleLimitThatCanBeUnknownProperty<Exclude<EDITOR, null>> | null
+    get editorLimitContainer(): SingleLimitThatCanBeUnknownProperty<EDITOR>
 
     get editorLimit(): EDITOR
 
@@ -28,52 +29,52 @@ export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | P
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
 
-    get isInGeneralLimitWhilePlayingContainer(): | SingleLimitWithCommentProperty<Exclude<GENERAL, null>> | null
+    get isInGeneralLimitWhilePlayingContainer(): SingleLimitWithCommentProperty<GENERAL>
 
     get isInGeneralLimitWhilePlaying(): GENERAL
 
-    get isInGeneralLimitWhilePlayingComment(): | string | null
+    get isInGeneralLimitWhilePlayingComment(): PossibleComment
 
     //region -------------------- Global general limit --------------------
 
-    get isInGlobalGeneralLimitWhilePlayingContainer(): | SingleLimitWithCommentProperty<Exclude<GENERAL_GLOBAL, null>> | null
+    get isInGlobalGeneralLimitWhilePlayingContainer(): SingleLimitWithCommentProperty<GENERAL_GLOBAL>
 
     get isInGlobalGeneralLimitWhilePlaying(): GENERAL_GLOBAL
 
-    get isInGlobalGeneralLimitWhilePlayingComment(): | string | null
+    get isInGlobalGeneralLimitWhilePlayingComment(): PossibleComment
 
     //endregion -------------------- Global general limit --------------------
 
     //endregion -------------------- General limit --------------------
     //region -------------------- Power-up limit --------------------
 
-    get isInPowerUpLimitWhilePlayingContainer(): | SingleLimitWithCommentProperty<Exclude<POWER_UP, null>> | null
+    get isInPowerUpLimitWhilePlayingContainer(): SingleLimitWithCommentProperty<POWER_UP>
 
     get isInPowerUpLimitWhilePlaying(): POWER_UP
 
-    get isInPowerUpLimitWhilePlayingComment(): | string | null
+    get isInPowerUpLimitWhilePlayingComment(): PossibleComment
 
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
-    get isInProjectileLimitWhilePlayingContainer(): | SingleLimitWithCommentThatCanBeUnknownProperty<Exclude<PROJECTILE, null>> | null
+    get isInProjectileLimitWhilePlayingContainer(): SingleLimitWithCommentThatCanBeUnknownProperty<PROJECTILE>
 
     get isInProjectileLimitWhilePlaying(): PROJECTILE
 
     get isInProjectileLimitWhilePlayingUnknown(): boolean
 
-    get isInProjectileLimitWhilePlayingComment(): | string | null
+    get isInProjectileLimitWhilePlayingComment(): PossibleComment
 
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Custom limit --------------------
 
-    get customLimitWhilePlayingContainer(): | SingleLimitWithCommentThatCanBeUnknownProperty<Exclude<CUSTOM, null>> | null
+    get customLimitWhilePlayingContainer(): SingleLimitWithCommentThatCanBeUnknownProperty<CUSTOM>
 
     get customLimitWhilePlaying(): CUSTOM
 
     get isCustomLimitWhilePlayingUnknown(): boolean
 
-    get customLimitWhilePlayingComment(): | string | null
+    get customLimitWhilePlayingComment(): PossibleComment
 
     //endregion -------------------- Custom limit --------------------
 

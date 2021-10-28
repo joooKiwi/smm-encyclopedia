@@ -23,6 +23,7 @@ export type EmptyEntityCategoryName = 'Empty entity category';
 //endregion -------------------- Entity category types --------------------
 //region -------------------- Entity limit types --------------------
 
+export type EmptyLimitName = 'Empty limit';
 export type EmptyEntityLimitName = 'Empty entity limit';
 
 export type EmptyEntityLimitAmountName = 'Empty entity limit (amount)';
@@ -62,7 +63,7 @@ export type EveryPossibleEmptyName =
 
     | EmptyEntityCategoryName
 
-    | EmptyEntityLimitName | EmptyEntityLimitAmountName | EmptyEntityLimitLinkName
+    | EmptyLimitName | EmptyEntityLimitName | EmptyEntityLimitAmountName | EmptyEntityLimitLinkName
 
     | EmptyGameStyleName
 
