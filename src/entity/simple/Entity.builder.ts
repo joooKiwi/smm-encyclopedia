@@ -83,13 +83,19 @@ export class EntityBuilder
     }
 
     private __createLimitPropertyAttributes(): [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
-        const limits = this.template.properties.limits;
+        const limitsTemplate = this.template.properties.limits;
+        const _GELTemplate = limitsTemplate.whilePlaying.isInGEL;
+        const GELTemplate = _GELTemplate.value;
+        const superGlobalGELTemplate = _GELTemplate.isSuperGlobal;
+        const PELTemplate = limitsTemplate.whilePlaying.isInPEL;
+        const PJLTemplate = limitsTemplate.whilePlaying.isInPJL;
+        const customLimitTemplate = limitsTemplate.whilePlaying.customLimit;
 
-        const editorLimit: EditorLimitReceived = EntityLimits.getValue(limits.editor) ?? limits.editor as | '?' | null;
-        const generalLimit: GeneralLimitReceived = limits.whilePlaying.isInGEL.isSuperGlobal.value == null ? [limits.whilePlaying.isInGEL.value.value, limits.whilePlaying.isInGEL.value.comment,] : [[limits.whilePlaying.isInGEL.value.value, limits.whilePlaying.isInGEL.value.comment,], [limits.whilePlaying.isInGEL.isSuperGlobal.value, limits.whilePlaying.isInGEL.isSuperGlobal.comment,],];
-        const powerUpLimit: PowerUpLimitReceived = [limits.whilePlaying.isInPEL.value, limits.whilePlaying.isInPEL.comment,];
-        const projectileLimit: ProjectileLimitReceived = [limits.whilePlaying.isInPJL.value, limits.whilePlaying.isInPJL.comment,];
-        const customLimit: CustomLimitReceived = [EntityLimits.getValue(limits.whilePlaying.customLimit.value) ?? limits.whilePlaying.customLimit.value as '?' | null, limits.whilePlaying.customLimit.comment,];
+        const editorLimit: EditorLimitReceived = EntityLimits.getValue(limitsTemplate.editor) ?? limitsTemplate.editor as | '?' | null;
+        const generalLimit: GeneralLimitReceived = superGlobalGELTemplate.value == null ? [GELTemplate.value, GELTemplate.comment,] : [[GELTemplate.value, GELTemplate.comment,], [superGlobalGELTemplate.value, superGlobalGELTemplate.comment,],];
+        const powerUpLimit: PowerUpLimitReceived = [PELTemplate.value, PELTemplate.comment,];
+        const projectileLimit: ProjectileLimitReceived = [PJLTemplate.value, PJLTemplate.comment,];
+        const customLimit: CustomLimitReceived = [EntityLimits.getValue(customLimitTemplate.value) ?? customLimitTemplate.value as '?' | null, customLimitTemplate.comment,];
 
         return [editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,];
     }
