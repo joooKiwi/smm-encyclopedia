@@ -1,24 +1,28 @@
-import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                                             from './Loader.types';
-import type {InferredBooleanPropertyWithAmountAndComment, InferredBooleanPropertyWithComment, InferredBooleanPropertyWithEverything, InferredStringPropertyThatCanBeNotApplicable, InferredStringPropertyThatCanBeNotApplicableWithComment} from '../../_properties/Property';
-import type {PossibleCustomLimitWhilePlaying, PossibleEditorLimit, PossibleGeneralLimitWhilePlaying, PossibleGlobalGeneralLimitWhilePlaying, PossiblePowerUpLimitWhilePlaying, PossibleProjectileLimitWhilePlaying}                         from './LimitProperty';
-import type {SingleLimitThatCanBeUnknownProperty}                                                                                                                                                                                           from './single/SingleLimitThatCanBeUnknownProperty';
-import type {SingleLimitWithCommentProperty}                                                                                                                                                                                                from './single/SingleLimitWithCommentProperty';
-import type {SingleLimitWithCommentThatCanBeUnknownProperty}                                                                                                                                                                                from './single/SingleLimitWithCommentThatCanBeUnknownProperty';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                      from './Loader.types';
+import type {EntityLimits}                                                                                                                                                                                           from '../../limit/EntityLimits';
+import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment, InferredBooleanPropertyWithEverything, InferredStringPropertyThatCanBeNotApplicable, InferredStringPropertyThatCanBeNotApplicableWithComment} from '../../_properties/Property';
+import type {PropertyThatCanBeUnknown}                                                                                                                                                                               from '../../_properties/PropertyThatCanBeUnknown';
+import type {PropertyThatCanBeUnknownWithComment}                                                                                                                                                                    from '../../_properties/PropertyThatCanBeUnknownWithComment';
+import type {PossibleEntityLimits}                                                                                                                                                                                   from '../../limit/EntityLimits.types';
 
-export type EditorLimitReceived = InferredStringPropertyThatCanBeNotApplicable<EditorLimitType>;
-/** @deprecated */export type EditorLimitContainer = SingleLimitThatCanBeUnknownProperty<| PossibleEditorLimit | null>;
+export type CallbackToGetEntityLimit = (entityLimit: PossibleEntityLimits,) => EntityLimits;
 
-export type GeneralLimitReceived = | SingleGeneralLimitReceived | [regular: SingleGeneralLimitReceived, global: SingleGeneralGlobalLimitReceived,];
-export type SingleGeneralLimitReceived = InferredBooleanPropertyWithAmountAndComment<GeneralEntityLimitType, null>;
-/** @deprecated */export type SingleGeneralLimitContainer = SingleLimitWithCommentProperty<| PossibleGeneralLimitWhilePlaying | null>;
-export type SingleGeneralGlobalLimitReceived = InferredBooleanPropertyWithComment<GeneralGlobalEntityLimitType, null>;
-/** @deprecated */export type SingleGeneralGlobalLimitContainer = SingleLimitWithCommentProperty<| PossibleGlobalGeneralLimitWhilePlaying | null>;
+export type EditorLimitReceived = [value: EditorLimitType, callback: CallbackToGetEntityLimit,];
+export type EditorLimitContainer<T extends EditorLimitType = EditorLimitType, >
+    = T extends PossibleEntityLimits ? PropertyThatCanBeUnknown<EntityLimits> : InferredStringPropertyThatCanBeNotApplicable<T>;
 
-export type PowerUpLimitReceived = InferredBooleanPropertyWithComment<PowerUpEntityLimitType, null>;
-/** @deprecated */export type PowerUpLimitContainer = | SingleLimitWithCommentProperty<| PossiblePowerUpLimitWhilePlaying | null>;
+export type GeneralLimitReceived = | SingleGeneralLimitReceived | readonly [regular: SingleGeneralLimitReceived, global: SingleGeneralGlobalLimitReceived,];
+export type SingleGeneralLimitReceived = GeneralEntityLimitType;
+export type SingleGeneralLimitContainer<T extends GeneralEntityLimitType = GeneralEntityLimitType, > = InferredBooleanPropertyWithEverything<T, null>;
+export type SingleGeneralGlobalLimitReceived = GeneralGlobalEntityLimitType;
+export type SingleGeneralGlobalLimitContainer<T extends GeneralGlobalEntityLimitType = GeneralGlobalEntityLimitType, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T, null>;
 
-export type ProjectileLimitReceived = InferredBooleanPropertyWithEverything<ProjectileEntityLimitType, null>;
-/** @deprecated */export type ProjectileLimitContainer = | SingleLimitWithCommentThatCanBeUnknownProperty<| PossibleProjectileLimitWhilePlaying | null>;
+export type PowerUpLimitReceived = PowerUpEntityLimitType;
+export type PowerUpLimitContainer<T extends PowerUpEntityLimitType = PowerUpEntityLimitType, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T, null>;
 
-export type CustomLimitReceived = InferredStringPropertyThatCanBeNotApplicableWithComment<CustomLimitType, CustomLimitCommentType>;
-/** @deprecated */export type CustomLimitContainer = | SingleLimitWithCommentThatCanBeUnknownProperty<| PossibleCustomLimitWhilePlaying | null>;
+export type ProjectileLimitReceived = ProjectileEntityLimitType
+export type ProjectileLimitContainer<T extends ProjectileEntityLimitType = ProjectileEntityLimitType, > = InferredBooleanPropertyWithEverything<T, null>;
+
+export type CustomLimitReceived = [value: CustomLimitType, comment: CustomLimitCommentType, callback: CallbackToGetEntityLimit,];
+export type CustomLimitContainer<T extends CustomLimitType = CustomLimitType, C extends CustomLimitCommentType = CustomLimitCommentType, >
+    = T extends PossibleEntityLimits ? PropertyThatCanBeUnknownWithComment<EntityLimits, false, C> : InferredStringPropertyThatCanBeNotApplicableWithComment<T, C>;

@@ -1,98 +1,89 @@
-import type {EntityLimits}                                   from '../../limit/EntityLimits';
-import type {PossibleComment}                                from '../../_properties/ClassWithComment';
-import type {SingleLimitThatCanBeUnknownProperty}            from './single/SingleLimitThatCanBeUnknownProperty';
-import type {SingleLimitWithCommentProperty}                 from './single/SingleLimitWithCommentProperty';
-import type {SingleLimitWithCommentThatCanBeUnknownProperty} from './single/SingleLimitWithCommentThatCanBeUnknownProperty';
+import type {EntityLimits}                                                                                                                                                      from '../../limit/EntityLimits';
+import type {CustomLimitContainer, EditorLimitContainer, PowerUpLimitContainer, ProjectileLimitContainer, SingleGeneralGlobalLimitContainer, SingleGeneralLimitContainer}       from './LimitProperty.types';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
 
-export type PossibleEditorLimit = EntityLimits;
-export type PossibleGeneralLimitWhilePlaying = | boolean | 2 | 'Only when collected';
-export type PossibleGlobalGeneralLimitWhilePlaying = | boolean | 'Not on track';
-export type PossiblePowerUpLimitWhilePlaying = boolean;
-export type PossibleProjectileLimitWhilePlaying = | boolean | 'Temporary as it comes out' | 'Each one separated';
-export type PossibleCustomLimitWhilePlaying = EntityLimits;
-
-export interface LimitProperty<EDITOR extends | PossibleEditorLimit | null = | PossibleEditorLimit | null,
-    GENERAL extends | PossibleGeneralLimitWhilePlaying | null = | PossibleGeneralLimitWhilePlaying | null,
-    GENERAL_GLOBAL extends | PossibleGlobalGeneralLimitWhilePlaying | null = | PossibleGlobalGeneralLimitWhilePlaying | null,
-    POWER_UP extends | PossiblePowerUpLimitWhilePlaying | null = | PossiblePowerUpLimitWhilePlaying | null,
-    PROJECTILE extends | PossibleProjectileLimitWhilePlaying | null = | PossibleProjectileLimitWhilePlaying | null,
-    CUSTOM extends | PossibleCustomLimitWhilePlaying | null = | PossibleCustomLimitWhilePlaying | null, > {
+export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
+    GENERAL extends GeneralEntityLimitType = GeneralEntityLimitType,
+    GENERAL_GLOBAL extends GeneralGlobalEntityLimitType = GeneralGlobalEntityLimitType,
+    POWER_UP extends PowerUpEntityLimitType = PowerUpEntityLimitType,
+    PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType,
+    CUSTOM extends CustomLimitType = CustomLimitType, CUSTOM_COMMENT extends CustomLimitCommentType = CustomLimitCommentType, > {
 
     //region -------------------- Editor limit --------------------
 
-    get editorLimitContainer(): SingleLimitThatCanBeUnknownProperty<EDITOR>
+    get editorLimitContainer(): EditorLimitContainer<EDITOR>
 
-    get editorLimit(): EDITOR
+    get editorLimit(): this['editorLimitContainer']['value']
 
-    get isEditorLimitUnknown(): boolean
+    get isEditorLimitUnknown(): this['editorLimitContainer']['isUnknown']
 
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
 
-    get isInGeneralLimitWhilePlayingContainer(): SingleLimitWithCommentProperty<GENERAL>
+    get isInGeneralLimitWhilePlayingContainer(): SingleGeneralLimitContainer<GENERAL>
 
-    get isInGeneralLimitWhilePlaying(): GENERAL
+    get isInGeneralLimitWhilePlaying(): this['isInGeneralLimitWhilePlayingContainer']['value']
 
-    get isInGeneralLimitWhilePlayingComment(): PossibleComment
+    get isInGeneralLimitWhilePlayingComment(): this['isInGeneralLimitWhilePlayingContainer']['comment']
 
     //region -------------------- Global general limit --------------------
 
-    get isInGlobalGeneralLimitWhilePlayingContainer(): SingleLimitWithCommentProperty<GENERAL_GLOBAL>
+    get isInGlobalGeneralLimitWhilePlayingContainer(): SingleGeneralGlobalLimitContainer<GENERAL_GLOBAL>
 
-    get isInGlobalGeneralLimitWhilePlaying(): GENERAL_GLOBAL
+    get isInGlobalGeneralLimitWhilePlaying(): this['isInGlobalGeneralLimitWhilePlayingContainer']['value']
 
-    get isInGlobalGeneralLimitWhilePlayingComment(): PossibleComment
+    get isInGlobalGeneralLimitWhilePlayingComment():  this['isInGlobalGeneralLimitWhilePlayingContainer']['comment']
 
     //endregion -------------------- Global general limit --------------------
 
     //endregion -------------------- General limit --------------------
     //region -------------------- Power-up limit --------------------
 
-    get isInPowerUpLimitWhilePlayingContainer(): SingleLimitWithCommentProperty<POWER_UP>
+    get isInPowerUpLimitWhilePlayingContainer(): PowerUpLimitContainer<POWER_UP>
 
-    get isInPowerUpLimitWhilePlaying(): POWER_UP
+    get isInPowerUpLimitWhilePlaying(): this['isInPowerUpLimitWhilePlayingContainer']['value']
 
-    get isInPowerUpLimitWhilePlayingComment(): PossibleComment
+    get isInPowerUpLimitWhilePlayingComment(): this['isInPowerUpLimitWhilePlayingContainer']['comment']
 
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
-    get isInProjectileLimitWhilePlayingContainer(): SingleLimitWithCommentThatCanBeUnknownProperty<PROJECTILE>
+    get isInProjectileLimitWhilePlayingContainer(): ProjectileLimitContainer<PROJECTILE>
 
-    get isInProjectileLimitWhilePlaying(): PROJECTILE
+    get isInProjectileLimitWhilePlaying(): this['isInProjectileLimitWhilePlayingContainer']['value']
 
-    get isInProjectileLimitWhilePlayingUnknown(): boolean
+    get isInProjectileLimitWhilePlayingUnknown(): this['isInProjectileLimitWhilePlayingContainer']['isUnknown']
 
-    get isInProjectileLimitWhilePlayingComment(): PossibleComment
+    get isInProjectileLimitWhilePlayingComment(): this['isInProjectileLimitWhilePlayingContainer']['comment']
 
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Custom limit --------------------
 
-    get customLimitWhilePlayingContainer(): SingleLimitWithCommentThatCanBeUnknownProperty<CUSTOM>
+    get customLimitWhilePlayingContainer(): CustomLimitContainer<CUSTOM>
 
-    get customLimitWhilePlaying(): CUSTOM
+    get customLimitWhilePlaying(): this['customLimitWhilePlayingContainer']['value']
 
-    get isCustomLimitWhilePlayingUnknown(): boolean
+    get isCustomLimitWhilePlayingUnknown(): this['customLimitWhilePlayingContainer']['isUnknown']
 
-    get customLimitWhilePlayingComment(): PossibleComment
+    get customLimitWhilePlayingComment(): this['customLimitWhilePlayingContainer']['comment']
 
     //endregion -------------------- Custom limit --------------------
 
     /**
      * Return a {@link Map} based on the enum {@link EntityLimits}
      * with every values stored inside {@link LimitProperty this instance}
-     * as a boolean or the constant {@link LimitPropertyContainer.VARIABLE_STRING}.
+     * as a boolean.
      */
     // toLimitMap(): ReadonlyMap<EntityLimits, | boolean | 'Variable'>
     //
-    // toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, | boolean | 'Variable'>
+    // toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, | boolean>
     //
-    // toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, | boolean | 'Variable'>
+    // toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, | boolean>
 
 }
 
 export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null>;
-export type AbstractExclusiveSMM2LimitProperty<EDITOR extends | PossibleEditorLimit | null = | PossibleEditorLimit | null, GENERAL extends | boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends | PossibleProjectileLimitWhilePlaying = | PossibleProjectileLimitWhilePlaying, CUSTOM extends | PossibleCustomLimitWhilePlaying | null = | PossibleCustomLimitWhilePlaying | null, >
-    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM>;
-export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<| PossibleEditorLimit | null, boolean, boolean, boolean, boolean>;
+export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, CUSTOM extends CustomLimitType = CustomLimitType, >
+    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM, null>;
+export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<EditorLimitType, boolean, boolean, boolean, boolean>;
 export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;

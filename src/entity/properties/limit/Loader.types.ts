@@ -27,7 +27,8 @@ export type PowerUpEntityLimitType = | boolean | null;
 export type PossibleProjectileEntityLimitComment = | 'Temporary as it comes out' | 'Each one separated' | 'Always reserve 1 projectile' | 'By player, can overfill limit' | 'Can only spawn (available) based → limits';
 export type ProjectileEntityLimitType = | boolean | '?' | PossibleProjectileEntityLimitComment | null;
 
-export type CustomLimitType = | Exclude<PossibleEntityLimits, `${`${'General' | 'Power-up'} Entity` | 'Projectile'} Limit`> | '?' | null;
+export type PossibleCustomLimit = Exclude<PossibleEntityLimits, `${`${'General' | 'Power-up'} Entity` | 'Projectile'} Limit`>;
+export type CustomLimitType = | PossibleCustomLimit | '?' | null;
 export type PossibleCustomLimitComment = 'Only falling coin';
 export type CustomLimitCommentType = | PossibleCustomLimitComment | null;
 

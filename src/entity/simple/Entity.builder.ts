@@ -1,12 +1,12 @@
-import type {Builder}                                                                                                       from '../../util/Builder';
-import type {CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from '../properties/limit/LimitProperty.types';
-import type {DebugEntityReferences}                                                                                         from './Entity.loader';
-import type {Entity}                                                                                                        from './Entity';
-import type {EntityCategory}                                                                                                from '../category/EntityCategory';
-import type {EntityLink}                                                                                                    from '../entityTypes';
-import type {EntityTemplate}                                                                                                from './Entity.template';
-import type {PossibleEntityCategoriesName}                                                                                  from '../category/EntityCategories.types';
-import type {PossibleGameReceived}                                                                                          from '../lang/NameBuilder.types';
+import type {Builder}                                                                                                                                 from '../../util/Builder';
+import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from '../properties/limit/LimitProperty.types';
+import type {DebugEntityReferences}                                                                                                                   from './Entity.loader';
+import type {Entity}                                                                                                                                  from './Entity';
+import type {EntityCategory}                                                                                                                          from '../category/EntityCategory';
+import type {EntityLink}                                                                                                                              from '../entityTypes';
+import type {EntityTemplate}                                                                                                                          from './Entity.template';
+import type {PossibleEntityCategoriesName}                                                                                                            from '../category/EntityCategories.types';
+import type {PossibleGameReceived}                                                                                                                    from '../lang/NameBuilder.types';
 
 import {EntityLimits}                  from '../limit/EntityLimits';
 import {EntityReferencesContainer}     from '../properties/EntityReferences.container';
@@ -32,8 +32,9 @@ export class EntityBuilder
     //endregion -------------------- external object references --------------------
     //region -------------------- Attributes --------------------
 
-    public static readonly EMPTY_ENTITY_CALLBACK = () => EmptyEntity.get;
-    public static readonly EMPTY_ARRAY_CALLBACK = () => EMPTY_ARRAY;
+    static readonly #EMPTY_ENTITY_CALLBACK: () => Entity = () => EmptyEntity.get;
+    static readonly #EMPTY_ARRAY_CALLBACK: () => typeof EMPTY_ARRAY = () => EMPTY_ARRAY;
+    static readonly #GET_ENTITY_LIMIT_CALLBACK: CallbackToGetEntityLimit = entityLimit => EntityLimits.getValue(entityLimit);
 
     readonly #template;
     readonly #selfCallback = () => this.build();
@@ -84,18 +85,16 @@ export class EntityBuilder
 
     private __createLimitPropertyAttributes(): [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
         const limitsTemplate = this.template.properties.limits;
-        const _GELTemplate = limitsTemplate.whilePlaying.isInGEL;
-        const GELTemplate = _GELTemplate.value;
-        const superGlobalGELTemplate = _GELTemplate.isSuperGlobal;
+        const {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,} = limitsTemplate.whilePlaying.isInGEL;
         const PELTemplate = limitsTemplate.whilePlaying.isInPEL;
         const PJLTemplate = limitsTemplate.whilePlaying.isInPJL;
         const customLimitTemplate = limitsTemplate.whilePlaying.customLimit;
 
-        const editorLimit: EditorLimitReceived = EntityLimits.getValue(limitsTemplate.editor) ?? limitsTemplate.editor as | '?' | null;
-        const generalLimit: GeneralLimitReceived = superGlobalGELTemplate.value == null ? [GELTemplate.value, GELTemplate.comment,] : [[GELTemplate.value, GELTemplate.comment,], [superGlobalGELTemplate.value, superGlobalGELTemplate.comment,],];
-        const powerUpLimit: PowerUpLimitReceived = [PELTemplate.value, PELTemplate.comment,];
-        const projectileLimit: ProjectileLimitReceived = [PJLTemplate.value, PJLTemplate.comment,];
-        const customLimit: CustomLimitReceived = [EntityLimits.getValue(customLimitTemplate.value) ?? customLimitTemplate.value as '?' | null, customLimitTemplate.comment,];
+        const editorLimit: EditorLimitReceived = [limitsTemplate.editor, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,];
+        const generalLimit: GeneralLimitReceived = superGlobalGELTemplate == null ? GELTemplate : [GELTemplate, superGlobalGELTemplate,];
+        const powerUpLimit: PowerUpLimitReceived = PELTemplate;
+        const projectileLimit: ProjectileLimitReceived = PJLTemplate;
+        const customLimit: CustomLimitReceived = [customLimitTemplate.value, customLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,];
 
         return [editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,];
     }
@@ -164,7 +163,7 @@ export class EntityBuilder
 
     private __createReferenceArrayCallback(set: Set<EntityTemplate> | null,): () => readonly Entity[] {
         return set == null
-            ? EntityBuilder.EMPTY_ARRAY_CALLBACK
+            ? EntityBuilder.#EMPTY_ARRAY_CALLBACK
             : () => Array.from(set).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
     }
 
@@ -176,7 +175,7 @@ export class EntityBuilder
 
     private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => Entity {
         return link === null
-            ? EntityBuilder.EMPTY_ENTITY_CALLBACK
+            ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
             : this.__createEntityCallbackFor(link);
     }
 

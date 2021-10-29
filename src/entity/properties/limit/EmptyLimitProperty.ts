@@ -22,28 +22,28 @@ export class EmptyLimitProperty
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly editorLimitContainer = PropertyContainer.NULL_CONTAINER;
+    public readonly editorLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly editorLimit = this.editorLimitContainer.value;
     public readonly isEditorLimitUnknown = this.editorLimitContainer.isUnknown;
 
-    public readonly isInGeneralLimitWhilePlayingContainer = PropertyContainer.NULL_CONTAINER;
+    public readonly isInGeneralLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInGeneralLimitWhilePlaying = this.isInGeneralLimitWhilePlayingContainer.value;
     public readonly isInGeneralLimitWhilePlayingComment = this.isInGeneralLimitWhilePlayingContainer.comment;
 
-    public readonly isInGlobalGeneralLimitWhilePlayingContainer = PropertyContainer.NULL_CONTAINER;
+    public readonly isInGlobalGeneralLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInGlobalGeneralLimitWhilePlaying = this.isInGlobalGeneralLimitWhilePlayingContainer.value;
     public readonly isInGlobalGeneralLimitWhilePlayingComment = this.isInGlobalGeneralLimitWhilePlayingContainer.comment;
 
-    public readonly isInPowerUpLimitWhilePlayingContainer = PropertyContainer.NULL_CONTAINER;
+    public readonly isInPowerUpLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInPowerUpLimitWhilePlaying = this.isInPowerUpLimitWhilePlayingContainer.value;
     public readonly isInPowerUpLimitWhilePlayingComment = this.isInPowerUpLimitWhilePlayingContainer.comment;
 
-    public readonly isInProjectileLimitWhilePlayingContainer = PropertyContainer.NULL_CONTAINER;
+    public readonly isInProjectileLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInProjectileLimitWhilePlaying = this.isInProjectileLimitWhilePlayingContainer.value;
     public readonly isInProjectileLimitWhilePlayingUnknown = this.isInProjectileLimitWhilePlayingContainer.isUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.isInProjectileLimitWhilePlayingContainer.comment;
 
-    public readonly customLimitWhilePlayingContainer = PropertyContainer.NULL_CONTAINER;
+    public readonly customLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly customLimitWhilePlaying = this.customLimitWhilePlayingContainer.value;
     public readonly isCustomLimitWhilePlayingUnknown = this.customLimitWhilePlayingContainer.isUnknown;
     public readonly customLimitWhilePlayingComment = this.customLimitWhilePlayingContainer.comment;

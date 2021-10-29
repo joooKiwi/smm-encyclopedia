@@ -1,15 +1,16 @@
 import type {LimitProperty} from '../properties/limit/LimitProperty';
 import type {ReactProperty} from '../../util/react/ReactProperty';
 
-import PossiblyKnownTextContainer from '../../app/tools/text/PossiblyKnownTextContainer';
-import SMM2NameComponent          from '../lang/SMM2Name.component';
+import PossiblyKnownTextContainer  from '../../app/tools/text/PossiblyKnownTextContainer';
+import SMM2NameComponent           from '../lang/SMM2Name.component';
+import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
 
 interface EditorLimitProperties
     extends ReactProperty {
 
-    index: number
+    index: number;
 
-    limit: LimitProperty
+    limit: LimitProperty;
 
 }
 
@@ -23,7 +24,7 @@ export default function EditorLimitComponent({index, limit,}: EditorLimitPropert
 
     return limit.isEditorLimitUnknown
         ? <PossiblyKnownTextContainer isKnown={false} content=""/> :
-        editorLimit == null
-            ? <></>
-            : <SMM2NameComponent id={`entityLimit_name_${index}`} name={editorLimit.reference}/>;
+        editorLimit == null ? <></>
+            : editorLimit === 'N/A' ? <ContentTranslationComponent translationKey="N/A"/>
+                : <SMM2NameComponent id={`entityLimit_name_${index}`} name={editorLimit.reference}/>;
 }
