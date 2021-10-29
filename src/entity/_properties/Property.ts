@@ -1,12 +1,12 @@
-import type {BooleanPropertyWithAmount}                                                                        from './PropertyWithAmount';
-import type {BooleanPropertyWithAmountAndComment}                                                              from './PropertyWithAmountAndComment';
-import type {BooleanPropertyWithComment, NumberPropertyWithComment, StringPropertyWithComment}                 from './PropertyWithComment';
-import type {BooleanPropertyWithEverything, NotApplicableProperty, NullProperty, NumberPropertyWithEverything} from './PropertyWithEverything';
-import type {PossibleComment}                                                                                  from './ClassWithComment';
-import type {PropertyWithNoValues}                                                                       from './PropertyWithNoValues';
-import {BooleanPropertyThatCanBeUnknown, NumberPropertyThatCanBeUnknown, StringPropertyThatCanBeUnknown}                                  from './PropertyThatCanBeUnknown';
-import {BooleanPropertyThatCanBeUnknownWithComment, NumberPropertyThatCanBeUnknownWithComment, StringPropertyThatCanBeUnknownWithComment} from './PropertyThatCanBeUnknownWithComment';
-import {BooleanPropertyThatCanBeUnknownWithAmount}                                                                                        from './PropertyThatCanBeUnknownWithAmount';
+import type {BooleanPropertyThatCanBeUnknown, NumberPropertyThatCanBeUnknown, StringPropertyThatCanBeUnknown}                                  from './PropertyThatCanBeUnknown';
+import type {BooleanPropertyThatCanBeUnknownWithAmount}                                                                                        from './PropertyThatCanBeUnknownWithAmount';
+import type {BooleanPropertyThatCanBeUnknownWithComment, NumberPropertyThatCanBeUnknownWithComment, StringPropertyThatCanBeUnknownWithComment} from './PropertyThatCanBeUnknownWithComment';
+import type {BooleanPropertyWithAmount}                                                                                                        from './PropertyWithAmount';
+import type {BooleanPropertyWithAmountAndComment}                                                                                              from './PropertyWithAmountAndComment';
+import type {BooleanPropertyWithComment, NumberPropertyWithComment, StringPropertyWithComment}                                                 from './PropertyWithComment';
+import type {BooleanPropertyWithEverything, NotApplicableProperty, NullProperty, NumberPropertyWithEverything}                                 from './PropertyWithEverything';
+import type {PossibleComment}                                                                                                                  from './ClassWithComment';
+import type {PropertyWithNoValues}                                                                                                             from './PropertyWithNoValues';
 
 /**
  * A generic property with a value contained in it.
