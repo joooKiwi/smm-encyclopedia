@@ -13,26 +13,26 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
 
     get editorLimitContainer(): EditorLimitContainer<EDITOR>
 
-    get editorLimit(): this['editorLimitContainer']['value']
+    get editorLimit(): EditorLimitContainer<EDITOR>['value']
 
-    get isEditorLimitUnknown(): this['editorLimitContainer']['isUnknown']
+    get isEditorLimitUnknown(): EditorLimitContainer<EDITOR>['isUnknown']
 
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
 
     get isInGeneralLimitWhilePlayingContainer(): SingleGeneralLimitContainer<GENERAL>
 
-    get isInGeneralLimitWhilePlaying(): this['isInGeneralLimitWhilePlayingContainer']['value']
+    get isInGeneralLimitWhilePlaying(): SingleGeneralLimitContainer<GENERAL>['value']
 
-    get isInGeneralLimitWhilePlayingComment(): this['isInGeneralLimitWhilePlayingContainer']['comment']
+    get isInGeneralLimitWhilePlayingComment(): SingleGeneralLimitContainer<GENERAL>['comment']
 
     //region -------------------- Global general limit --------------------
 
     get isInGlobalGeneralLimitWhilePlayingContainer(): SingleGeneralGlobalLimitContainer<GENERAL_GLOBAL>
 
-    get isInGlobalGeneralLimitWhilePlaying(): this['isInGlobalGeneralLimitWhilePlayingContainer']['value']
+    get isInGlobalGeneralLimitWhilePlaying(): SingleGeneralGlobalLimitContainer<GENERAL_GLOBAL>['value']
 
-    get isInGlobalGeneralLimitWhilePlayingComment():  this['isInGlobalGeneralLimitWhilePlayingContainer']['comment']
+    get isInGlobalGeneralLimitWhilePlayingComment():  SingleGeneralGlobalLimitContainer<GENERAL_GLOBAL>['comment']
 
     //endregion -------------------- Global general limit --------------------
 
@@ -41,31 +41,31 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
 
     get isInPowerUpLimitWhilePlayingContainer(): PowerUpLimitContainer<POWER_UP>
 
-    get isInPowerUpLimitWhilePlaying(): this['isInPowerUpLimitWhilePlayingContainer']['value']
+    get isInPowerUpLimitWhilePlaying(): PowerUpLimitContainer<POWER_UP>['value']
 
-    get isInPowerUpLimitWhilePlayingComment(): this['isInPowerUpLimitWhilePlayingContainer']['comment']
+    get isInPowerUpLimitWhilePlayingComment(): PowerUpLimitContainer<POWER_UP>['comment']
 
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
     get isInProjectileLimitWhilePlayingContainer(): ProjectileLimitContainer<PROJECTILE>
 
-    get isInProjectileLimitWhilePlaying(): this['isInProjectileLimitWhilePlayingContainer']['value']
+    get isInProjectileLimitWhilePlaying(): ProjectileLimitContainer<PROJECTILE>['value']
 
-    get isInProjectileLimitWhilePlayingUnknown(): this['isInProjectileLimitWhilePlayingContainer']['isUnknown']
+    get isInProjectileLimitWhilePlayingUnknown(): ProjectileLimitContainer<PROJECTILE>['isUnknown']
 
-    get isInProjectileLimitWhilePlayingComment(): this['isInProjectileLimitWhilePlayingContainer']['comment']
+    get isInProjectileLimitWhilePlayingComment(): ProjectileLimitContainer<PROJECTILE>['comment']
 
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Custom limit --------------------
 
     get customLimitWhilePlayingContainer(): CustomLimitContainer<CUSTOM>
 
-    get customLimitWhilePlaying(): this['customLimitWhilePlayingContainer']['value']
+    get customLimitWhilePlaying(): CustomLimitContainer<CUSTOM>['value']
 
-    get isCustomLimitWhilePlayingUnknown(): this['customLimitWhilePlayingContainer']['isUnknown']
+    get isCustomLimitWhilePlayingUnknown(): CustomLimitContainer<CUSTOM>['isUnknown']
 
-    get customLimitWhilePlayingComment(): this['customLimitWhilePlayingContainer']['comment']
+    get customLimitWhilePlayingComment(): CustomLimitContainer<CUSTOM>['comment']
 
     //endregion -------------------- Custom limit --------------------
 
@@ -82,8 +82,8 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
 
 }
 
-export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null>;
-export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, CUSTOM extends CustomLimitType = CustomLimitType, >
-    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM, null>;
-export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<EditorLimitType, boolean, boolean, boolean, boolean>;
+export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null, null>;
+export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, CUSTOM extends CustomLimitType = CustomLimitType, CUSTOM_COMMENT extends null = null, >
+    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM, CUSTOM_COMMENT>;
+export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<EditorLimitType, boolean, boolean, boolean, boolean, null>;
 export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;

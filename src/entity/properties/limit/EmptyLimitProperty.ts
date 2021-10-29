@@ -7,7 +7,7 @@ import {PropertyContainer} from '../../_properties/Property.container';
  * @singleton
  */
 export class EmptyLimitProperty
-    implements LimitProperty<null, null, null, null, null, null>, ClassWithNullObjectPattern<EmptyLimitName> {
+    implements LimitProperty<null, null, null, null, null, null, null>, ClassWithNullObjectPattern<EmptyLimitName> {
 
     //region -------------------- Singleton usage --------------------
 

@@ -45,6 +45,7 @@ export class PropertyProvider {
     }
 
     public static newBooleanContainer<T extends PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, HAVE_A_COMMENT, null>
+    // @ts-ignore
     public static newBooleanContainer<T extends | boolean | number | null, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, true, COMMENT>
     public static newBooleanContainer(value: PossibleBooleanValuesByInferredProperty, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment?: PossibleComment,) {
         return this.__newContainer('boolean', value, canBeNotApplicable, doesHaveAnAmount, comment,);
