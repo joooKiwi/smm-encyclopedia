@@ -24,7 +24,7 @@ export type StringProperty<S extends PossibleString = PossibleString, > = Proper
 //region -------------------- Inferred boolean property by a value --------------------
 
 export type PossibleBooleanValuesByInferredProperty = | boolean | string | number | null;
-export type InferredAmountByBoolean<T extends boolean = boolean, > = T extends true ? 1 : 0;
+export type InferredAmountByBoolean<T extends boolean = boolean, > = T extends true ? 1 : T extends false ? 0 : (| 1 | 0);
 export type InferredAmountByStringOnBoolean<T extends string = string, > = T extends '' ? 0 : 1;
 
 type _UnknownBooleanProperty<COMMENT extends PossibleComment, > = BooleanPropertyWithEverything<null, true, null, COMMENT>;
@@ -41,36 +41,34 @@ type _InferredBooleanProperty<CONTAINER_WHEN_NULL, T extends PossibleBooleanValu
 type _InferredBooleanPropertyWithAmount<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, > =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<null>
-    : T extends boolean ? T extends true
-        ? BooleanPropertyWithAmount<true, InferredAmountByBoolean<true>>
-        : BooleanPropertyWithAmount<false, InferredAmountByBoolean<false>>
+    : T extends boolean ? T extends boolean
+        ? (| BooleanPropertyWithAmount<true, InferredAmountByBoolean<true>> | BooleanPropertyWithAmount<false, InferredAmountByBoolean<false>>)
+        : BooleanPropertyWithAmount<T, InferredAmountByBoolean<T>>
     : T extends string  ? BooleanPropertyWithAmountAndComment<true, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithAmount<true, T>
     : never;
 type _InferredBooleanPropertyWithComment<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
-    : T extends boolean ? T extends true
-        ? BooleanPropertyWithComment<true, COMMENT>
-        : BooleanPropertyWithComment<false, COMMENT>
+    : T extends boolean ? BooleanPropertyWithComment<T, COMMENT>
     : T extends string  ? BooleanPropertyWithComment<true, T>
     : T extends number  ? BooleanPropertyWithAmountAndComment<true, T, COMMENT>
     : never;
 type _InferredBooleanPropertyWithAmountAndComment<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment,> =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
-    : T extends boolean ? T extends true
-        ? BooleanPropertyWithAmountAndComment<true, InferredAmountByBoolean<true>, COMMENT>
-        : BooleanPropertyWithAmountAndComment<false, InferredAmountByBoolean<false>, COMMENT>
+    : T extends boolean ? T extends boolean
+        ? (| BooleanPropertyWithAmountAndComment<true, InferredAmountByBoolean<true>, COMMENT> | BooleanPropertyWithAmountAndComment<false, InferredAmountByBoolean<false>, COMMENT>)
+        : BooleanPropertyWithAmountAndComment<T, InferredAmountByBoolean<T>, COMMENT>
     : T extends string  ? BooleanPropertyWithAmountAndComment<true, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithAmountAndComment<true, T, COMMENT>
     : never;
 type _InferredBooleanPropertyWithEverything<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment,> =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
-    : T extends boolean ? T extends true
-        ? BooleanPropertyWithEverything<true, false, InferredAmountByBoolean<true>, COMMENT>
-        : BooleanPropertyWithEverything<false, false, InferredAmountByBoolean<false>, COMMENT>
+    : T extends boolean ? T extends boolean
+        ? (| BooleanPropertyWithEverything<true, false, InferredAmountByBoolean<true>, COMMENT> | BooleanPropertyWithEverything<false, false, InferredAmountByBoolean<false>, COMMENT>)
+        : BooleanPropertyWithEverything<T, false, InferredAmountByBoolean<T>, COMMENT>
     : T extends string  ? BooleanPropertyWithEverything<true, false, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithEverything<true, false, T, COMMENT>
     : never;
