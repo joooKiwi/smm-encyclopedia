@@ -32,35 +32,45 @@ type _UnknownBooleanProperty<COMMENT extends PossibleComment, > = BooleanPropert
 type _InferredBooleanProperty<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, > =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<null>
-    : T extends boolean ? BooleanProperty<T>
+    : T extends boolean ? T extends true
+        ? BooleanProperty<true>
+        : BooleanProperty<false>
     : T extends string  ? BooleanPropertyWithComment<true, T>
     : T extends number  ? BooleanPropertyWithAmount<true, T>
     : never;
 type _InferredBooleanPropertyWithAmount<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, > =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<null>
-    : T extends boolean ? BooleanPropertyWithAmount<T, InferredAmountByBoolean<T>>
+    : T extends boolean ? T extends true
+        ? BooleanPropertyWithAmount<true, InferredAmountByBoolean<true>>
+        : BooleanPropertyWithAmount<false, InferredAmountByBoolean<false>>
     : T extends string  ? BooleanPropertyWithAmountAndComment<true, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithAmount<true, T>
     : never;
 type _InferredBooleanPropertyWithComment<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
-    : T extends boolean ? BooleanPropertyWithComment<T, COMMENT>
+    : T extends boolean ? T extends true
+        ? BooleanPropertyWithComment<true, COMMENT>
+        : BooleanPropertyWithComment<false, COMMENT>
     : T extends string  ? BooleanPropertyWithComment<true, T>
     : T extends number  ? BooleanPropertyWithAmountAndComment<true, T, COMMENT>
     : never;
 type _InferredBooleanPropertyWithAmountAndComment<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment,> =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
-    : T extends boolean ? BooleanPropertyWithAmountAndComment<T, InferredAmountByBoolean<T>, COMMENT>
+    : T extends boolean ? T extends true
+        ? BooleanPropertyWithAmountAndComment<true, InferredAmountByBoolean<true>, COMMENT>
+        : BooleanPropertyWithAmountAndComment<false, InferredAmountByBoolean<false>, COMMENT>
     : T extends string  ? BooleanPropertyWithAmountAndComment<true, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithAmountAndComment<true, T, COMMENT>
     : never;
 type _InferredBooleanPropertyWithEverything<CONTAINER_WHEN_NULL, T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment,> =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
-    : T extends boolean ? BooleanPropertyWithEverything<T, false, InferredAmountByBoolean<T>, COMMENT>
+    : T extends boolean ? T extends true
+        ? BooleanPropertyWithEverything<true, false, InferredAmountByBoolean<true>, COMMENT>
+        : BooleanPropertyWithEverything<false, false, InferredAmountByBoolean<false>, COMMENT>
     : T extends string  ? BooleanPropertyWithEverything<true, false, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithEverything<true, false, T, COMMENT>
     : never;
@@ -121,7 +131,7 @@ type _UnknownStringProperty<COMMENT extends PossibleComment, > = NumberPropertyW
 type _InferredStringProperty<CONTAINER_WHEN_NULL, T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, > =
       T extends null    ? CONTAINER_WHEN_NULL
     : T extends Unknown ? _UnknownStringProperty<null>
-    : T extends string  ? StringPropertyWithComment<null, T>
+    : T extends string  ? StringProperty<T>
     : never;
 type _InferredStringPropertyWithComment<CONTAINER_WHEN_NULL, T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
       T extends null    ? CONTAINER_WHEN_NULL
