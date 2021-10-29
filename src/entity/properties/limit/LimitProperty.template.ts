@@ -1,25 +1,19 @@
-import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from './Loader.types';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
 
 /**
  * @template
  */
 export interface LimitPropertyTemplate {
 
-    amount: {
-        value: LimitAmountType
-        comment: LimitAmountCommentType
-    }
+    amount: LimitAmountType
 
     editor: EditorLimitType
 
     whilePlaying: {
-        isInGEL: {
-            value: LimitWithCommentTemplate<GeneralEntityLimitType, GeneralEntityLimitCommentType>
-            isSuperGlobal: LimitWithCommentTemplate<GeneralGlobalEntityLimitType, GeneralGlobalEntityLimitCommentType>
-        }
-        isInPEL: LimitWithCommentTemplate<PowerUpEntityLimitType, PowerUpEntityLimitCommentType>
-        isInPJL: LimitWithCommentTemplate<ProjectileEntityLimitType, ProjectileEntityLimitCommentType>
-        customLimit: LimitWithCommentTemplate<CustomLimitType, CustomLimitCommentType>
+        isInGEL: GeneralEntityLimitTemplate
+        isInPEL: PowerUpEntityLimitType
+        isInPJL: ProjectileEntityLimitType
+        customLimit: CustomLimitTemplate
     }
 
 }
@@ -27,11 +21,21 @@ export interface LimitPropertyTemplate {
 /**
  * @template
  */
-export interface LimitWithCommentTemplate<TYPE extends | EditorLimitType | GeneralEntityLimitType | GeneralGlobalEntityLimitType | PowerUpEntityLimitType | ProjectileEntityLimitType | CustomLimitType,
-    COMMENT extends | GeneralEntityLimitCommentType | GeneralGlobalEntityLimitCommentType | PowerUpEntityLimitCommentType | ProjectileEntityLimitCommentType | CustomLimitCommentType> {
+export interface GeneralEntityLimitTemplate {
 
-    value: TYPE
+    value: GeneralEntityLimitType
 
-    comment: | string | null
+    isSuperGlobal: GeneralGlobalEntityLimitType
+
+}
+
+/**
+ * @template
+ */
+export interface CustomLimitTemplate {
+
+    value: CustomLimitType
+
+    comment: CustomLimitCommentType
 
 }

@@ -1,18 +1,18 @@
 import everyEntities from '../../resources/Entities.csv';
 
-import type {Builder}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from '../../util/Builder';
-import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeStacked, CanBeThrownByALakitu, CanContainOrSpawnAKey, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, EntityLink, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource}                                                                                                                  from '../entityTypes';
-import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../behaviours/Loader.types';
-import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitCommentType, GeneralEntityLimitType, GeneralGlobalEntityLimitCommentType, GeneralGlobalEntityLimitType, LimitAmountCommentType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitCommentType, PowerUpEntityLimitType, ProjectileEntityLimitCommentType, ProjectileEntityLimitType} from '../properties/limit/Loader.types';
-import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity';
-import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './Entity.template';
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../../lang/Loader.types';
-import type {PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../game/Loader.types';
-import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/loader/Loader';
-import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../properties/basic/BasicProperty';
-import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../category/EntityCategories.types';
-import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../limit/EntityLimits.types';
-import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../lang/SMM2Name.template';
+import type {Builder}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../../util/Builder';
+import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeStacked, CanBeThrownByALakitu, CanContainOrSpawnAKey, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, EntityLink, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource} from '../entityTypes';
+import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                           from '../behaviours/Loader.types';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                             from '../properties/limit/Loader.types';
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './Entity';
+import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './Entity.template';
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../../lang/Loader.types';
+import type {PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../game/Loader.types';
+import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from '../../util/loader/Loader';
+import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../properties/basic/BasicProperty';
+import type {PossibleEntityCategoriesName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../category/EntityCategories.types';
+import type {PossibleEntityLimits}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../limit/EntityLimits.types';
+import type {SMM2NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../lang/SMM2Name.template';
 
 import {AbstractTemplateBuilder}      from '../_template/AbstractTemplate.builder';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
@@ -87,16 +87,16 @@ enum Headers {
     //endregion -------------------- Specific properties --------------------
     //region -------------------- Entity limit properties --------------------
 
-    limitAmount, limitAmount_comment,
+    limitAmount,
 
     editorLimit,
 
-    whilePlaying_isInGEL, whilePlaying_isInGel_comment,
-    whilePlaying_isInGEL_isSuperGlobal, whilePlaying_isInGEL_isSuperGlobal_comment,
+    whilePlaying_isInGEL,
+    whilePlaying_isInGEL_isSuperGlobal,
 
-    whilePlaying_isInPEL, whilePlaying_isInPEL_comment,
+    whilePlaying_isInPEL,
 
-    whilePlaying_isInPJL, whilePlaying_isInPJL_comment,
+    whilePlaying_isInPJL,
 
     whilePlaying_customLimit, whilePlaying_customLimit_comment,
 
@@ -230,20 +230,15 @@ type ExclusivePropertiesArray2 = [
     //region -------------------- Entity limit properties --------------------
 
     limitAmount: LimitAmountType,
-    limitAmount_comment: LimitAmountCommentType,
 
     editorLimit: EditorLimitType,
 
     whilePlaying_isInGEL: GeneralEntityLimitType,
-    whilePlaying_isInGel_comment: GeneralEntityLimitCommentType,
     whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType,
-    whilePlaying_isInGEL_isSuperGlobal_comment: GeneralGlobalEntityLimitCommentType,
 
     whilePlaying_isInPEL: PowerUpEntityLimitType,
-    whilePlaying_isInPEL_comment: PowerUpEntityLimitCommentType,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
-    whilePlaying_isInPJL_comment: ProjectileEntityLimitCommentType,
 
     whilePlaying_customLimit: CustomLimitType,
     whilePlaying_customLimit_comment: CustomLimitCommentType,
@@ -571,30 +566,15 @@ class TemplateBuilder
 
                 //endregion ---------- Specific properties ----------
                 limits: {
-                    amount: {
-                        value: this._getContent(this._headersIndexMap.limitAmount),
-                        comment: this._getContent(this._headersIndexMap.limitAmount_comment),
-                    },
+                    amount: this._getContent(this._headersIndexMap.limitAmount),
                     editor: this._getContent(this._headersIndexMap.editorLimit),
                     whilePlaying: {
                         isInGEL: {
-                            value: {
-                                value: this._getContent(this._headersIndexMap.whilePlaying_isInGEL),
-                                comment: this._getContent(this._headersIndexMap.whilePlaying_isInGel_comment),
-                            },
-                            isSuperGlobal: {
-                                value: this._getContent(this._headersIndexMap.whilePlaying_isInGEL_isSuperGlobal),
-                                comment: this._getContent(this._headersIndexMap.whilePlaying_isInGEL_isSuperGlobal_comment),
-                            },
+                            value: this._getContent(this._headersIndexMap.whilePlaying_isInGEL),
+                            isSuperGlobal: this._getContent(this._headersIndexMap.whilePlaying_isInGEL_isSuperGlobal),
                         },
-                        isInPEL: {
-                            value: this._getContent(this._headersIndexMap.whilePlaying_isInPEL),
-                            comment: this._getContent(this._headersIndexMap.whilePlaying_isInPEL_comment),
-                        },
-                        isInPJL: {
-                            value: this._getContent(this._headersIndexMap.whilePlaying_isInPJL),
-                            comment: this._getContent(this._headersIndexMap.whilePlaying_isInPJL_comment),
-                        },
+                        isInPEL: this._getContent(this._headersIndexMap.whilePlaying_isInPEL),
+                        isInPJL: this._getContent(this._headersIndexMap.whilePlaying_isInPJL),
                         customLimit: {
                             value: this._getContent(this._headersIndexMap.whilePlaying_customLimit),
                             comment: this._getContent(this._headersIndexMap.whilePlaying_customLimit_comment),
