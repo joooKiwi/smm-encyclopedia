@@ -11,7 +11,7 @@ export type GamesOrdinals = | 0 | 1;
 export type GamesNames = | 'SUPER_MARIO_MAKER_1' | 'SUPER_MARIO_MAKER_2';
 
 export type PossibleGameName = `Super Mario Maker${| '' | ' 2'}`;
-export type PossibleImagePath = `/game/logos/${PossibleGameName}.png`;
+export type PossibleImagePath = `/game/logos/${PossibleGameName}.svg`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

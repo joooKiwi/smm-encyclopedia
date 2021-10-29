@@ -6,7 +6,7 @@ import type {Loader}                                                            
 import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
 import type {PossibleGroupName, SingleEntityName}                                     from '../entityTypes';
 
-import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {EntityLoader}            from '../simple/Entity.loader';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
@@ -14,11 +14,21 @@ import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForC
 
 //region -------------------- CSV array related types --------------------
 
-type Headers =
-    | 'acronym'
-    | 'translationKey'
-    | `is${| 'Online' | 'Multiplayer'}Only`
-    | `link_${| 'group' | 'entity'}`;
+enum Headers {
+
+    acronym,
+    translationKey,
+
+    isOnlineOnly,
+    isMultiplayerOnly,
+
+    link_group,
+    link_entity,
+
+}
+
+//region -------------------- Properties --------------------
+
 type PropertiesArray = [
     acronym: PossibleAcronymEntityBehaviours,
     translationKey: PossibleTranslationKeyEntityBehaviours,
@@ -29,6 +39,8 @@ type PropertiesArray = [
     link_group: | PossibleGroupName | null,
     link_entity: | SingleEntityName | null,
 ];
+
+//endregion -------------------- Properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
 
@@ -66,7 +78,7 @@ export class EntityBehaviourLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityBehaviour, Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(TemplateCreator.get.createTemplate(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('boolean')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleBehavioursAcronyms, 'acronym',)
@@ -91,43 +103,30 @@ export class EntityBehaviourLoader
 
 }
 
-//region -------------------- Template related methods & classes --------------------
+class TemplateBuilder
+    extends AbstractTemplateBuilder<EntityBehaviourTemplate, PropertiesArray, typeof Headers> {
 
-/**
- * @singleton
- */
-class TemplateCreator
-    extends AbstractTemplateCreator<EntityBehaviourTemplate, PropertiesArray> {
-
-    //region -------------------- Singleton usage --------------------
-
-    static #instance?: TemplateCreator;
-
-    private constructor() {
-        super();
+    public constructor(content: PropertiesArray,) {
+        super(content);
     }
 
-    public static get get() {
-        return this.#instance ??= new this();
+    protected get _headersIndexMap() {
+        return Headers;
     }
 
-    //endregion -------------------- Singleton usage --------------------
-
-    public createTemplate(content: PropertiesArray,): EntityBehaviourTemplate {
+    public build(): EntityBehaviourTemplate {
         return {
-            acronym: content[0],
-            translationKey: content[1],
+            acronym: this._getContent(this._headersIndexMap.acronym),
+            translationKey: this._getContent(this._headersIndexMap.translationKey),
             isOnly: {
-                online: content[2],
-                multiplayer: content[3],
+                online: this._getContent(this._headersIndexMap.isOnlineOnly),
+                multiplayer: this._getContent(this._headersIndexMap.isMultiplayerOnly),
             },
             links: {
-                group: content[4],
-                entity: content[5],
+                group: this._getContent(this._headersIndexMap.link_group),
+                entity: this._getContent(this._headersIndexMap.link_entity),
             },
         };
     }
 
 }
-
-//endregion -------------------- Template related methods & classes --------------------

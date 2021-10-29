@@ -1,13 +1,15 @@
+import type {Builder}                                  from '../../../util/Builder';
 import type {Name}                                     from '../../../lang/name/Name';
 import type {PossibleSoundEffectCategoriesEnglishName} from './SoundEffectCategories.types';
 import type {SoundEffectCategory}                      from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate}              from './SoundEffectCategory.template';
 
+import {Games}                        from '../../game/Games';
 import {SoundEffectCategoryContainer} from './SoundEffectCategory.container';
-import {TemplateBuilderWithName}      from '../../TemplateBuilderWithName';
+import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
 
 export class SoundEffectCategoryBuilder
-    extends TemplateBuilderWithName<SoundEffectCategoryTemplate, SoundEffectCategory> {
+    extends TemplateWithNameBuilder<SoundEffectCategoryTemplate, SoundEffectCategory> {
 
     //region -------------------- Attributes --------------------
 
@@ -15,8 +17,8 @@ export class SoundEffectCategoryBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: SoundEffectCategoryTemplate,) {
-        super(template, false,);
+    public constructor(templateBuilder: Builder<SoundEffectCategoryTemplate>,) {
+        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
     protected /*static*/ get _templateMap() {

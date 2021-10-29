@@ -5,7 +5,7 @@ import type {EntityBehaviourTemplate} from './EntityBehaviour.template';
 
 import {EntityBehaviourContainer}         from './EntityBehaviour.container';
 import {EntityBehaviourIsInOnlyContainer} from './properties/EntityBehaviourIsInOnly.container';
-import {TemplateBuilder}                  from '../TemplateBuilder';
+import {TemplateBuilder}                  from '../_template/Template.builder';
 import {EntityBehaviourLinkContainer}     from './properties/EntityBehaviourLink.container';
 
 export class EntityBehaviourBuilder
@@ -18,16 +18,17 @@ export class EntityBehaviourBuilder
 
     //endregion -------------------- external object references --------------------
 
-    public constructor(template: EntityBehaviourTemplate,) {
-        super(template);
+    public constructor(templateBuilder: Builder<EntityBehaviourTemplate>,) {
+        super(templateBuilder);
     }
 
     public build(): EntityBehaviour {
-        const {isOnly: isOnlyTemplate, links: linkTemplate,} = this.template;
+        const template = this.template;
+        const {isOnly: isOnlyTemplate, links: linkTemplate,} = template;
 
         return new EntityBehaviourContainer(
-            this.template.acronym,
-            this.template.translationKey,
+            template.acronym,
+            template.translationKey,
             EntityBehaviourIsInOnlyContainer.get(isOnlyTemplate.online, isOnlyTemplate.multiplayer,),
             EntityBehaviourLinkContainer.get(linkTemplate.group, linkTemplate.entity,),
         );

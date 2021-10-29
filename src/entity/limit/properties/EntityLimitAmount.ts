@@ -1,12 +1,11 @@
-import type {ClassThatCanBeUnknown} from '../../_properties/ClassThatCanBeUnknown';
-import type {PossibleComment}       from '../../_properties/ClassWithComment';
-import type {PropertyWithComment}   from '../../_properties/PropertyWithComment';
+import type {PossibleAmount}                      from '../../_properties/ClassWithAmount';
+import type {PossibleComment}                     from '../../_properties/ClassWithComment';
+import type {PropertyThatCanBeUnknownWithComment} from '../../_properties/PropertyThatCanBeUnknownWithComment';
 
 export interface EntityLimitAmount<AMOUNT extends PossibleAmount = PossibleAmount,
     IS_UNKNOWN extends boolean = boolean,
     COMMENT extends PossibleComment = PossibleComment, >
-    extends PropertyWithComment<AMOUNT, COMMENT>, ClassThatCanBeUnknown<IS_UNKNOWN> {
+    extends PropertyThatCanBeUnknownWithComment<AMOUNT, IS_UNKNOWN, COMMENT> {
 
 }
 
-export type PossibleAmount = | number | null;

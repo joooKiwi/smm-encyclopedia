@@ -1,7 +1,4 @@
 {
-  "Super Mario Land":    "Super Mario Land",
-  "Super Mario Bros. 2": "Super Mario Bros. 2",
-
   "Limit in the editor": "Limit dans l'éditeur",
   "Limit while playing": "Limit quand est en train de jouer",
 
@@ -50,5 +47,7 @@
   "Category": "Catégorie",
 
   "While playing": "En jouant",
-  "In the editor": "Dans l'éditeur"
+  "In the editor": "Dans l'éditeur",
+
+  "Effect (night)": "Effet (nuit)"
 }

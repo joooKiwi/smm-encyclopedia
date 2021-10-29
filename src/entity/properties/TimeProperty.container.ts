@@ -44,7 +44,7 @@ export class TimePropertyContainer
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
-    //region -------------------- Provider/Multiton method --------------------
+    //region -------------------- Provider / Multiton method --------------------
 
     public static get(isInDayTheme: true, isInNightTheme: null,): TimeProperty
     public static get(isInDayTheme: false, isInNightTheme: true,): AbstractExclusiveSMM2TimeProperty
@@ -85,6 +85,6 @@ export class TimePropertyContainer
         return this.#IS_IN_NO_TIMES_PROPERTY;
     }
 
-    //endregion -------------------- Provider/Multiton method --------------------
+    //endregion -------------------- Provider / Multiton method --------------------
 
 }

@@ -75,7 +75,7 @@ export class NameContainer
      * The greek is used there too even though it is rare to have it.
      * But other languages may be added in the future when more translation are found.
      *
-     * @see ProjectLanguages.isASupportedLanguageInSMM
+     * @see ProjectLanguages.isInEverySuperMarioMakerGame
      */
     public static get optionalLanguages(): readonly [EveryLanguages,] {
         return this._optionalLanguages;

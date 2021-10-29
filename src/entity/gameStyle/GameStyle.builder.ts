@@ -4,15 +4,15 @@ import type {Entity}                from '../simple/Entity';
 import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
+import type {PossibleGameStyleName} from './GameStyles.types';
 
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
 import {GameStyleContainer}      from './GameStyle.container';
-import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
-import {PossibleGameStyleName}   from './GameStyles.types';
+import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 
 export class GameStyleBuilder
-    extends TemplateBuilderWithName<GameStyleTemplate, GameStyle>
+    extends TemplateWithNameBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
     //region -------------------- external object references --------------------
@@ -26,8 +26,8 @@ export class GameStyleBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: GameStyleTemplate,) {
-        super(template, true,);
+    public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
+        super(templateBuilder, 'all', true,);
     }
 
 
@@ -47,9 +47,11 @@ export class GameStyleBuilder
     }
 
     protected _build(name: Name,): GameStyle {
+        const gameTemplate = this.template.isIn.game;
+
         return new GameStyleContainer(
             name,
-            GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),
+            GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
             () => GameStyleBuilder.__whereEntityIs(name.english),
         );
     }

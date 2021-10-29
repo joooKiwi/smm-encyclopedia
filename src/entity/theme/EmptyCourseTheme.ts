@@ -83,6 +83,7 @@ export class EmptyCourseTheme
     //endregion -------------------- Game properties --------------------
 
     public readonly entities = EMPTY_ARRAY;
+    public readonly effect = null;
 
     public toNameMap() {
         return EMPTY_MAP;

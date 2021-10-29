@@ -1,13 +1,13 @@
-isInCourseTheme,isInWorldTheme,isInSuperMarioMaker1,isInSuperMarioMaker2,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
-TRUE,TRUE,TRUE,TRUE,Ground,,,Grand air,,,Oberwelt,Al aire libre,,,Aria aperta,Bovengronds,???,,,На земле,地上,地上,,,지상
-TRUE,TRUE,TRUE,TRUE,Underground,,,Souterrain,,,Unterwelt,Bojo tierra,,,Sotteraneo,Ondergronds,???,,,Под землей,地下,地下,,,지하
-TRUE,FALSE,TRUE,TRUE,Underwater,,,Sous l'eau,,,Under Wasser,Bajo el agua,,,Sott'acqua,Onder water,???,,,Под водой,水中,水中,,,물속
-TRUE,TRUE,FALSE,TRUE,Desert,,,Désert,,,Wüste,Desierto,,,Deserto,Woestijn,???,,,Пустыня,さばく,沙漠,,,사막
-TRUE,TRUE,FALSE,TRUE,Snow,,,Neige,,,Schnee,Nieve,,,Neve,Sneeuw,???,,,Снег,雪原,冰原,,,설원
-TRUE,TRUE,FALSE,TRUE,Sky,,,Ciel,,,Himmel,Cielo,,,Cielo,Lucht,???,,,Небо,空,天空,,,하늘
-TRUE,TRUE,FALSE,TRUE,Forest,,,Forêt,,,Wald,Bosque,,,Foresta,Bos,???,,,Лес,森,森林,,,숲
-TRUE,FALSE,TRUE,TRUE,Ghost House,,,Manoir hanté,,,Spukhaus,Casa encantada,,,Casa stregata,Spookhuis,???,,,Дом призраков,お化けやしき,鬼屋,,,유령의 집
-TRUE,FALSE,TRUE,TRUE,Airship,,,Bateau volant,,,Luftgaleere,Aeronave,,,Veliero volante,Luchtschip,???,,,Петучий корабль,飛行船,,飛行船,飞行船,비행선
-TRUE,FALSE,TRUE,TRUE,Castle,,,Château,,,Festung,Castillo,,,Castello,Kasteel,???,,,Замок,城,城堡,,,성
-FALSE,TRUE,FALSE,TRUE,Volcano,,,Volcan,,,Vulkan,Volcán,,,Volcano,Vulkaan,???,,,Вулкан,火山,火山,,,화산
-FALSE,TRUE,FALSE,TRUE,Space,,,Nuit,,,Weltraum,Espacio,,,Spazio,Ruimte,???,,,Ночъ,夜,黑夜,,,밤
+isInCourseTheme,isInWorldTheme,isInSuperMarioMaker1,isInSuperMarioMaker2,effectInNightTheme,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
+TRUE,TRUE,TRUE,TRUE,Special effect on entities,Ground,,,,Grand air,Plein air,Oberwelt,Al aire libre,,,Aria aperta,Bovengronds,Ar Livre,,,На земле,地上,地上,,,지상
+TRUE,TRUE,TRUE,TRUE,Screen upside down,Underground,,,Souterrain,,,Unterwelt,Bojo tierra,,,Sotteraneo,Ondergronds,Subsolo,,,Под землей,地下,地下,,,지하
+TRUE,FALSE,TRUE,TRUE,Dark,Underwater,,,,Sous l'eau,Aquatique,Under Wasser,Bajo el agua,,,Sott'acqua,Onder water,Subaquático,,,Под водой,水中,水中,,,물속
+TRUE,TRUE,FALSE,TRUE,Wind,Desert,,,Désert,,,Wüste,Desierto,,,Deserto,Woestijn,N/A,,,Пустыня,さばく,沙漠,,,사막
+TRUE,TRUE,FALSE,TRUE,Slippery,Snow,,,Neige,,,Schnee,Nieve,,,Neve,Sneeuw,N/A,,,Снег,雪原,冰原,,,설원
+TRUE,TRUE,FALSE,TRUE,Low gravity,Sky,,,Ciel,,,Himmel,Cielo,,,Cielo,Lucht,N/A,,,Небо,空,天空,,,하늘
+TRUE,TRUE,FALSE,TRUE,Poison liquid,Forest,,,Forêt,,,Wald,Bosque,,,Foresta,Bos,N/A,,,Лес,森,森林,,,숲
+TRUE,FALSE,TRUE,TRUE,Dark,Ghost House,,,Manoir hanté,,,Spukhaus,Casa encantada,,,Casa stregata,Spookhuis,Casa Assombrada,,,Дом призраков,お化けやしき,鬼屋,,,유령의 집
+TRUE,FALSE,TRUE,TRUE,Entities in water,Airship,,,,Bateau volant,Forteresse volante,Luftgaleere,,Aeronave,Fortaleza aérea,Veliero volante,Luchtschip,Aeronave,,,Петучий корабль,飛行船,,飛行船,飞行船,비행선
+TRUE,FALSE,TRUE,TRUE,Characters in water,Castle,,,Château,,,Festung,Castillo,,,Castello,Kasteel,Castelo,,,Замок,城,城堡,,,성
+FALSE,TRUE,FALSE,TRUE,,Volcano,,,Volcan,,,Vulkan,Volcán,,,Volcano,Vulkaan,N/A,,,Вулкан,火山,火山,,,화산
+FALSE,TRUE,FALSE,TRUE,,Space,,,Nuit,,,Weltraum,Espacio,,,Spazio,Ruimte,N/A,,,Ночъ,夜,黑夜,,,밤

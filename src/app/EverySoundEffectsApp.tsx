@@ -39,6 +39,10 @@ export default class EverySoundEffectsApp
         return !isInGame ? <></> : <img src={path} alt={alt}/>;
     }
 
+    private static __getTranslationKey(soundEffect: SoundEffect,) {
+        return <>{soundEffect.translationKey}</>;
+    }
+
     protected get content() {
         const content = [] as SingleTableContent[];
 
@@ -50,6 +54,7 @@ export default class EverySoundEffectsApp
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
                 <SMM2NameComponent id="soundEffect_name" name={soundEffect} popoverOrientation="right"/>,
                 soundEffect.categoryName === EmptyName.get ? <></> : <SMM2NameComponent id={`${index}_soundEffectCategory_name`} name={soundEffect.category} popoverOrientation="right"/>,
+                EverySoundEffectsApp.__getTranslationKey(soundEffect),
             ]);
             index++;
         }
@@ -70,6 +75,8 @@ export default class EverySoundEffectsApp
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                 {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
+                // @ts-ignore
+                {key: 'player behaviour', element: <GameContentTranslationComponent translationKey="Player behaviour"/>,},
             ]}
             content={this.content}
         />;

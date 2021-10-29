@@ -1,4 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                from './name/containers/Language';
+import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                          from '../entity/ClassInAnySuperMarioMakerGame';
 import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                               from './ClassWithEveryLanguages';
 import type {LanguageEnumerable}                                                                                                                                                                                     from './LanguageEnumerable';
 import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                     from './ProjectLanguages.types';
@@ -42,7 +43,8 @@ import {EveryLanguages} from './EveryLanguages';
  */
 export class ProjectLanguages
     extends Enum<ProjectLanguagesOrdinals, ProjectLanguagesNames>
-    implements LanguageEnumerable<PossibleProjectLanguagesAcronym, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName> {
+    implements LanguageEnumerable<PossibleProjectLanguagesAcronym, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName>,
+        ClassInAnySuperMarioMakerGame {
 
     //region -------------------- Enum instances --------------------
 
@@ -59,9 +61,9 @@ export class ProjectLanguages
     public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE, true,  false,);
     public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,             true,  true, );
     public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,            true,  true, );
-    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE, true,  true, );
-    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  true,  true, );
-    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              true,  true, );
+    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE, false, true, );
+    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  false, true, );
+    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              false, true, );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -72,9 +74,9 @@ export class ProjectLanguages
     //region -------------------- Attributes --------------------
 
     readonly #language: EveryLanguages;
-    readonly #isASupportedLanguageInSMM1: boolean;
-    readonly #isASupportedLanguageInSMM2: boolean;
-    #isSupportedLanguageInSMM?: boolean;
+    readonly #isInSuperMarioMaker1: boolean;
+    readonly #isInSuperMarioMaker2: boolean;
+    #isInEverySuperMarioMakerGame?: boolean;
 
     //endregion -------------------- Attributes --------------------
 
@@ -85,12 +87,12 @@ export class ProjectLanguages
         super(ProjectLanguages);
         if (language instanceof ProjectLanguages) {
             this.#language = language.language;
-            this.#isASupportedLanguageInSMM1 = language.isASupportedLanguageInSMM1;
-            this.#isASupportedLanguageInSMM2 = language.isASupportedLanguageInSMM2;
+            this.#isInSuperMarioMaker1 = language.isInSuperMarioMaker1;
+            this.#isInSuperMarioMaker2 = language.isInSuperMarioMaker2;
         } else {
             this.#language = language;
-            this.#isASupportedLanguageInSMM1 = isASupportedLanguageInSMM1 as boolean;
-            this.#isASupportedLanguageInSMM2 = isASupportedLanguageInSMM2 as boolean;
+            this.#isInSuperMarioMaker1 = isASupportedLanguageInSMM1 as boolean;
+            this.#isInSuperMarioMaker2 = isASupportedLanguageInSMM2 as boolean;
         }
     }
 
@@ -132,16 +134,16 @@ export class ProjectLanguages
         return this.language.isDefaultLanguage;
     }
 
-    public get isASupportedLanguageInSMM1(): boolean {
-        return this.#isASupportedLanguageInSMM1;
+    public get isInSuperMarioMaker1(): boolean {
+        return this.#isInSuperMarioMaker1;
     }
 
-    public get isASupportedLanguageInSMM2(): boolean {
-        return this.#isASupportedLanguageInSMM2;
+    public get isInSuperMarioMaker2(): boolean {
+        return this.#isInSuperMarioMaker2;
     }
 
-    public get isASupportedLanguageInSMM(): boolean {
-        return this.#isSupportedLanguageInSMM ??= this.isASupportedLanguageInSMM1 && this.isASupportedLanguageInSMM2;
+    public get isInEverySuperMarioMakerGame(): boolean {
+        return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMaker2;
     }
 
     //endregion -------------------- Getter methods --------------------

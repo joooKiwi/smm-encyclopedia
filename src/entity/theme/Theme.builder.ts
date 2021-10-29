@@ -6,16 +6,17 @@ import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
 import type {WorldTheme}            from './WorldTheme';
 
+import {CourseThemeContainer}    from './CourseTheme.container';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
-import {CourseThemeContainer}    from './CourseTheme.container';
-import {WorldThemeContainer}     from './WorldTheme.container';
-import {TemplateBuilderWithName} from '../TemplateBuilderWithName';
+import {Games}                   from '../game/Games';
+import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
+import {WorldThemeContainer}     from './WorldTheme.container';
 
 export class ThemeBuilder
-    extends TemplateBuilderWithName<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
+    extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
     implements Builder<readonly [CourseTheme, WorldTheme,]> {
 
     //region -------------------- external object references --------------------
@@ -29,8 +30,8 @@ export class ThemeBuilder
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(template: ThemeTemplate,) {
-        super(template, true,);
+    public constructor(templateBuilder: Builder<ThemeTemplate>,) {
+        super(templateBuilder, template => template.isIn.game['1'] ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
     protected /*static*/ get _templateMap() {
@@ -38,10 +39,15 @@ export class ThemeBuilder
     }
 
     private __createCourseTheme(name: Name,): CourseTheme {
+        const template = this.template;
+        const gameTemplate = template.isIn.game;
+
+
         return new CourseThemeContainer(
             name,
-            GamePropertyContainer.get(this.template.isIn.game['1'], this.template.isIn.game['2'],),
+            GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
             () => ThemeBuilder.__whereEntityIs(name.english),
+            template.effect,
         );
     }
 
@@ -58,8 +64,9 @@ export class ThemeBuilder
 
 
     protected _build(name: Name,): readonly [CourseTheme, WorldTheme,] {
-        const isInCourseTheme = this.template.isIn.theme.course;
-        const isInWorldTheme = this.template.isIn.theme.world;
+        const themeTemplate = this.template.isIn.theme;
+        const isInCourseTheme = themeTemplate.course;
+        const isInWorldTheme = themeTemplate.world;
 
         return isInCourseTheme && isInWorldTheme
             ? [this.__createCourseTheme(name), new WorldThemeContainer(name),]

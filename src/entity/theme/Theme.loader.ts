@@ -1,31 +1,68 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseAndWorldTheme, PossibleTheme}                                     from './Themes.types';
-import type {Headers as GamesHeaders, PropertiesArray as GamesPropertyArray}         from '../game/Loader.types';
-import type {Headers as LanguagesHeaders, PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Loader}                                                                 from '../../util/loader/Loader';
-import type {ThemeTemplate}                                                          from './Theme.template';
+import type {CourseAndWorldTheme, PossibleTheme}        from './Themes.types';
+import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {PossibleEffectInNightTheme, ThemeTemplate} from './Theme.template';
+import type {Loader}                                    from '../../util/loader/Loader';
 
-import {AbstractTemplateCreator} from '../AbstractTemplateCreator';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLoader}            from '../simple/Entity.loader';
 import {ThemeBuilder}            from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
 
-type Headers =
-    `isIn${| 'Course' | 'World'}Theme`
-    | GamesHeaders
-    | LanguagesHeaders;
-type ExclusivePropertiesArray = [
+enum Headers {
+
+    isInCourseTheme,
+    isInWorldTheme,
+
+    //region -------------------- Games --------------------
+
+    isInSuperMarioMaker1,
+    isInSuperMarioMaker2,
+
+    //endregion -------------------- Games --------------------
+
+    effectInNightTheme,
+
+    //region -------------------- Languages --------------------
+
+    english, americanEnglish, europeanEnglish,
+    french, canadianFrench, europeanFrench,
+    german,
+    spanish, americanSpanish, europeanSpanish,
+    italian,
+    dutch,
+    portuguese, americanPortuguese, europeanPortuguese,
+    russian,
+    japanese,
+    chinese, traditionalChinese, simplifiedChinese,
+    korean,
+    greek,
+
+    //endregion -------------------- Languages --------------------
+
+}
+
+//region -------------------- Properties --------------------
+
+type ExclusivePropertiesArray1 = [
     isInCourseTheme: boolean,
     isInWorldTheme: boolean,
 ];
+type ExclusivePropertiesArray2 = [
+    effectInNightTheme: PossibleEffectInNightTheme,
+];
 type PropertiesArray = [
-    ...ExclusivePropertiesArray,
+    ...ExclusivePropertiesArray1,
     ...GamesPropertyArray,
+    ...ExclusivePropertiesArray2,
     ...LanguagesPropertyArray,
 ];
+
+//endregion -------------------- Properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
 
@@ -62,13 +99,14 @@ export class ThemeLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, ThemeBuilder, Headers>(everyThemes, convertedContent => new ThemeBuilder(TemplateCreator.get.createTemplate(convertedContent)))
+            new CSVLoader<PropertiesArray, ThemeBuilder, keyof typeof Headers>(everyThemes, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)))
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean(
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
                 )
+                .convertToEmptyableStringAnd(['Special effect on entities', 'Screen upside down', 'Dark', 'Wind', 'Slippery', 'Low gravity', 'Poison liquid', 'Entities in water', 'Characters in water',], 'effectInNightTheme')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleTheme, finalContent.build(),))
                 .load();
@@ -86,46 +124,29 @@ export class ThemeLoader
 
 }
 
-//region -------------------- Template related methods & classes --------------------
+class TemplateBuilder
+    extends AbstractTemplateBuilder<ThemeTemplate, PropertiesArray, typeof Headers> {
 
-/**
- * @singleton
- */
-class TemplateCreator
-    extends AbstractTemplateCreator<ThemeTemplate, PropertiesArray> {
-
-    //region -------------------- Singleton usage --------------------
-
-    static #instance?: TemplateCreator;
-
-    private constructor() {
-        super();
+    public constructor(content: PropertiesArray,) {
+        super(content);
     }
 
-    public static get get() {
-        return this.#instance ??= new this();
+    protected get _headersIndexMap() {
+        return Headers;
     }
 
-    //endregion -------------------- Singleton usage --------------------
-
-    public createTemplate(content: PropertiesArray,): ThemeTemplate {
-        const languages: LanguagesPropertyArray = [content[4], content[5], content[6], content[7], content[8], content[9], content[10], content[11], content[12], content[13], content[14], content[15], content[16], content[17], content[18], content[19], content[20], content[21], content[22], content[23], content[24],] as LanguagesPropertyArray;
-
+    public build(): ThemeTemplate {
         return {
             isIn: {
-                game: {
-                    1: content[2],
-                    2: content[3],
-                },
+                game: this._createGameTemplate(),
                 theme: {
-                    course: content[0],
-                    world: content[1],
+                    course: this._getContent(this._headersIndexMap.isInCourseTheme),
+                    world: this._getContent(this._headersIndexMap.isInWorldTheme),
                 },
             },
-            name: this._createNameTemplate(languages),
+            effect: this._getContent(this._headersIndexMap.effectInNightTheme),
+            name: this._createNameTemplate(),
         };
     }
 
 }
-
-//endregion -------------------- Template related methods & classes --------------------

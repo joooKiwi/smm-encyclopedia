@@ -1,6 +1,6 @@
 import type {SimpleGameTemplate}       from '../game/SimpleGame.template';
 import type {SMM2NameTemplate}         from '../lang/SMM2Name.template';
-import type {TemplateWithNameTemplate} from '../TemplateWithName.template';
+import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
 
 /**
  * @template
@@ -15,5 +15,10 @@ export interface ThemeTemplate
             world: boolean
         }
     }
+    effect: PossibleEffectInNightTheme
 
 }
+
+export type PossibleEffectInNightTheme = | 'Special effect on entities' | 'Screen upside down' | 'Dark' | 'Wind' | 'Slippery'
+                                         | 'Low gravity' | 'Poison liquid' | `${| 'Entities' | 'Characters'} in water`
+                                         | null;

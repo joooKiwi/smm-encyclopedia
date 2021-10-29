@@ -62,13 +62,13 @@ export type PossibleSoundEffectsInSMM2EnglishName =
     | PossibleSoundEffectsEnglishNameGames;
 export type PossibleSoundEffectsEnglishName = | PossibleSoundEffectsInSMM1EnglishName | PossibleSoundEffectsInSMM2EnglishName;
 
-export type MiddleSoundEffectImage = `${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}${| '' | ' (alt)'}`;
-export type PossibleSMM1SoundEffectImagePath = `/game/sound effects/SMM1/${MiddleSoundEffectImage} - ${PossibleSoundEffectsInSMM1EnglishName}.png`;
+export type MiddleSoundEffectImage = `${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}-${|1|2}`;
+export type PossibleSMM1SoundEffectImagePath = `/sound effects/SMM1/${MiddleSoundEffectImage} - ${PossibleSoundEffectsInSMM1EnglishName}.png`;
 
 type EveryPossibleSoundEffectStarting = `${| 1 | 2 | 3 | 4 | 5}.${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11}`;
 type ExcludedPossibleSoundEffectStarting = | '1.11' | `3.${| 7 | 8 | 9 | 10 | 11}` | `4.${| 10 | 11}`;
 export type StartingSoundEffectImage = Exclude<EveryPossibleSoundEffectStarting, ExcludedPossibleSoundEffectStarting>;
-export type PossibleSMM2SoundEffectImagePath = `/game/sound effects/SMM2/${StartingSoundEffectImage} - ${PossibleSoundEffectsInSMM2EnglishName}.png`;
+export type PossibleSMM2SoundEffectImagePath = `/sound effects/SMM2/${StartingSoundEffectImage} - ${PossibleSoundEffectsInSMM2EnglishName}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
