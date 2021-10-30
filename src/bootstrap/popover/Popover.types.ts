@@ -1,16 +1,10 @@
 import type {Popover as BootstrapPopover} from 'bootstrap';
 
-import type {PopoverInstance} from './PopoverInstance';
+import type {PopoverInstance}                     from './PopoverInstance';
+import type {BootstrapConfiguration, PossibleIds} from '../Bootstrap.types';
 
-export interface PopoverConfiguration {
-
-    elementId: string
-
-    option: Partial<BootstrapPopover.Options>
-
-    on?: Partial<PopoverEvents>
-
-}
+export type PopoverConfiguration<ID extends PossibleIds = PossibleIds, > = BootstrapConfiguration<BootstrapPopover.Options, PopoverEvents, ID>;
+export type SpanPopoverConfiguration = PopoverConfiguration<string>;
 
 export interface PopoverEvents {
 

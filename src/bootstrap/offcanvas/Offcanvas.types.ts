@@ -1,12 +1,7 @@
-import {OffcanvasInstance} from './OffcanvasInstance';
+import type {BootstrapConfigurationWithNoOption} from '../Bootstrap.types';
+import type {OffcanvasInstance}                  from './OffcanvasInstance';
 
-export interface OffcanvasConfiguration {
-
-    elementId: string
-
-    on?: Partial<OffcanvasEvents>
-
-}
+export type OffcanvasConfiguration = BootstrapConfigurationWithNoOption<OffcanvasEvents>;
 
 export interface OffcanvasEvents {
 
