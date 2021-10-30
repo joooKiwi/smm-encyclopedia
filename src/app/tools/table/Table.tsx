@@ -74,7 +74,9 @@ export default class Table
     }
 
     private static __getSingleHeaderContent(headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
-        return <th key={`${this.__getHeaderKey(header)} (${headOrFootKey})`} colSpan={this.__getWidth(header)} rowSpan={this.__getHeight(header)}>{this.__getHeaderContent(header)}</th>;
+        const key = this.__getHeaderKey(header);
+
+        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getWidth(header)} rowSpan={this.__getHeight(header)}>{this.__getHeaderContent(header)}</th>;
     }
 
     private __getHeaders(isHead: boolean,) {
