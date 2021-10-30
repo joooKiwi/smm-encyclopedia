@@ -6,11 +6,11 @@ import type {SingleTableContent}    from './tools/table/Table.types';
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent            from '../entity/theme/CourseTheme.component';
-import EditorLimitComponent            from '../entity/limit/EditorLimit.component';
 import {EntityLoader}                  from '../entity/simple/Entity.loader';
 import GameComponent                   from '../entity/game/Game.component';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import GameStyleComponent              from '../entity/gameStyle/GameStyle.component';
+import LimitComponent                  from '../entity/limit/Limit.component';
 import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import Table                           from './tools/table/Table';
 import TimeComponent                   from '../entity/time/Time.component';
@@ -46,7 +46,8 @@ export default class EveryEntitiesApp
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
                 <SMM2NameComponent id={`entityCategory_name_${index}`} name={entity.category} popoverOrientation="left"/>,
-                <EditorLimitComponent index={index} limit={entity}/>,
+                <LimitComponent id={`editor_${index}`} limits={entity.toLimitInTheEditorMap()}/>,
+                <LimitComponent id={`whilePlaying_${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
             ]);
             index++;
         }
@@ -69,7 +70,8 @@ export default class EveryEntitiesApp
                 {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course Theme.spoken"/>,},
                 {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,},
                 {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
-                {key: 'editorLimit', element: <GameContentTranslationComponent translationKey="Limit in the editor"/>,}
+                {key: 'limit_editor', element: <GameContentTranslationComponent translationKey="Limit in the editor"/>,},
+                {key: 'limit_whilePlaying', element: <GameContentTranslationComponent translationKey="Limit while playing"/>,},
             ]}
             content={this.content}
         />;
