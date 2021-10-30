@@ -685,11 +685,11 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     }
 
     public toLimitInTheEditorMap() {
-        return this.limitContainer.toLimitMap();
+        return this.limitContainer.toLimitInTheEditorMap();
     }
 
     public toLimitWhilePlayingMap() {
-        return this.limitContainer.toLimitMap();
+        return this.limitContainer.toLimitWhilePlayingMap();
     }
 
     public toNameMap() {

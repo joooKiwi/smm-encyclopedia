@@ -264,11 +264,11 @@ export class PropertyContainer
     }
 
     public toLimitInTheEditorMap() {
-        return this.limitContainer.toLimitMap();
+        return this.limitContainer.toLimitInTheEditorMap();
     }
 
     public toLimitWhilePlayingMap() {
-        return this.limitContainer.toLimitMap();
+        return this.limitContainer.toLimitWhilePlayingMap();
     }
 
 }
