@@ -48,7 +48,7 @@ export default class Table
     }
 
     protected get headersColor() {
-        return this.props['headers-color'] ?? Table.DEFAULT_TABLE_COLOR;
+        return this.props['headers-color'] ?? Table.DEFAULT_HEADERS_COLOR;
     }
 
     //endregion -------------------- Getter methods --------------------
