@@ -1,4 +1,5 @@
-import type {ReactProperty} from '../../../../util/react/ReactProperty';
+import type {BootstrapColor} from '../../../../bootstrap/Bootstrap.types';
+import type {ReactProperty}  from '../../../../util/react/ReactProperty';
 
 export interface GroupButtonProperty<T>
     extends ReactProperty {
@@ -16,9 +17,3 @@ export interface GroupButtonProperty<T>
     groupName: string
 
 }
-
-export type BootstrapColor = | 'primary' | 'secondary'
-                             | 'light' | 'dark'
-                             | 'success' | 'info' | 'warning' | 'danger'
-                             | 'white' | 'gray' | 'gray-dark'
-                             | 'blue' | 'indigo' | 'purple' | 'pink' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'cyan';
