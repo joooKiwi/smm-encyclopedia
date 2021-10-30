@@ -1,9 +1,10 @@
 import type {ReactNode} from 'react';
 import {PureComponent}  from 'react';
 
-import type {BootstrapColor}                                                                   from '../../../bootstrap/Bootstrap.types';
-import type {HeadersContent, SimpleTableProperties, SingleHeaderContent, SingleHeadersContent} from './Table.types';
-import type {ReactComponent}                                                                   from '../../../util/react/ReactComponent';
+import type {BootstrapColor}                                            from '../../../bootstrap/Bootstrap.types';
+import type {HeadersContent, SingleHeaderContent, SingleHeadersContent} from './SimpleHeader';
+import type {SimpleTableProperties}                                     from './Table.types';
+import type {ReactComponent}                                            from '../../../util/react/ReactComponent';
 
 /**
  * @reactComponent
