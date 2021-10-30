@@ -1,6 +1,7 @@
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../util/ClassWithNullObjectPattern';
 import type {Property}                                          from './Property';
 import {EmptyLimitProperty}                                     from './limit/EmptyLimitProperty';
+import {EMPTY_MAP}                                              from '../../util/emptyVariables';
 
 /**
  * @singleton
@@ -103,6 +104,19 @@ export class EmptyIsInProperty
     public toTimeMap(): never {
         throw new ReferenceError(`An ${this} cannot have a time map.`);
     }
+
+    public toLimitMap() {
+        return EMPTY_MAP;
+    }
+
+    public toLimitInTheEditorMap() {
+        return EMPTY_MAP;
+    }
+
+    public toLimitWhilePlayingMap() {
+        return EMPTY_MAP;
+    }
+
 
     public toString(): EmptyIsInPropertyName {
         return 'Empty "is in property"';

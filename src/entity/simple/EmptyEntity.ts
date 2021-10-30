@@ -5,6 +5,7 @@ import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
 import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
 import {EmptyName}            from '../../lang/name/EmptyName';
+import {EMPTY_MAP}            from '../../util/emptyVariables';
 
 /**
  * An empty entity with the default values of nothing
@@ -307,9 +308,22 @@ export class EmptyEntity
         throw new ReferenceError(`An ${this} cannot have a time map.`);
     }
 
+    public toLimitMap() {
+        return EMPTY_MAP;
+    }
+
+    public toLimitInTheEditorMap() {
+        return EMPTY_MAP;
+    }
+
+    public toLimitWhilePlayingMap() {
+        return EMPTY_MAP;
+    }
+
     public toNameMap() {
         return this.nameContainer.toNameMap();
     }
+
 
     public toString(): EmptyEntityName {
         return 'Empty entity';

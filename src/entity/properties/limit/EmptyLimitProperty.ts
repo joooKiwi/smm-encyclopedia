@@ -2,6 +2,7 @@ import type {LimitProperty}                              from './LimitProperty';
 import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../util/ClassWithNullObjectPattern';
 
 import {PropertyContainer} from '../../_properties/Property.container';
+import {EMPTY_MAP}         from '../../../util/emptyVariables';
 
 /**
  * @singleton
@@ -47,6 +48,18 @@ export class EmptyLimitProperty
     public readonly customLimitWhilePlaying = this.customLimitWhilePlayingContainer.value;
     public readonly isCustomLimitWhilePlayingUnknown = this.customLimitWhilePlayingContainer.isUnknown;
     public readonly customLimitWhilePlayingComment = this.customLimitWhilePlayingContainer.comment;
+
+    public toLimitMap() {
+        return EMPTY_MAP;
+    }
+
+    public toLimitInTheEditorMap() {
+        return EMPTY_MAP;
+    }
+
+    public toLimitWhilePlayingMap() {
+        return EMPTY_MAP;
+    }
 
 
     public toString(): EmptyLimitName {

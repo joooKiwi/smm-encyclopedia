@@ -74,11 +74,11 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
      * with every values stored inside {@link LimitProperty this instance}
      * as a boolean.
      */
-    // toLimitMap(): ReadonlyMap<EntityLimits, | boolean | 'Variable'>
-    //
-    // toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, | boolean>
-    //
-    // toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, | boolean>
+    toLimitMap(): ReadonlyMap<EntityLimits, boolean>
+
+    toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean>
+
+    toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean>
 
 }
 

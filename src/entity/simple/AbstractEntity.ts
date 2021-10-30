@@ -680,6 +680,18 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.timeContainer.toTimeMap();
     }
 
+    public toLimitMap() {
+        return this.limitContainer.toLimitMap();
+    }
+
+    public toLimitInTheEditorMap() {
+        return this.limitContainer.toLimitMap();
+    }
+
+    public toLimitWhilePlayingMap() {
+        return this.limitContainer.toLimitMap();
+    }
+
     public toNameMap() {
         return this.nameContainer.toNameMap();
     }
