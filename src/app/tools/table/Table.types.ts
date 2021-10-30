@@ -1,4 +1,5 @@
-import type {ReactProperty} from '../../../util/react/ReactProperty';
+import type {BootstrapColor} from '../../../bootstrap/Bootstrap.types';
+import type {ReactProperty}  from '../../../util/react/ReactProperty';
 
 export type SingleCaptionContent = | string | JSX.Element;
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader;
@@ -46,5 +47,9 @@ export interface SimpleTableProperties
     headers: PossibleHeaderContent
 
     content: readonly SingleTableContent[]
+
+    'table-color'?: BootstrapColor
+
+    'headers-color'?: BootstrapColor
 
 }

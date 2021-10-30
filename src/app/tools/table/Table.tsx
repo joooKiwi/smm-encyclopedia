@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import {PureComponent}  from 'react';
 
+import type {BootstrapColor}                                                                   from '../../../bootstrap/Bootstrap.types';
 import type {HeadersContent, SimpleTableProperties, SingleHeaderContent, SingleHeadersContent} from './Table.types';
 import type {ReactComponent}                                                                   from '../../../util/react/ReactComponent';
 
@@ -11,7 +12,15 @@ export default class Table
     extends PureComponent<SimpleTableProperties>
     implements ReactComponent<ReactNode> {
 
+    //region -------------------- Attributes --------------------
+
+    public static readonly DEFAULT_TABLE_COLOR: BootstrapColor = 'primary';
+    public static readonly DEFAULT_HEADERS_COLOR: BootstrapColor = 'info';
+
     #headers?: HeadersContent;
+
+    //endregion -------------------- Attributes --------------------
+    //region -------------------- Getter methods --------------------
 
     protected get id() {
         return this.props.id;
@@ -33,6 +42,15 @@ export default class Table
         return this.props.content;
     }
 
+    protected get tableColor() {
+        return this.props['table-color'] ?? Table.DEFAULT_TABLE_COLOR;
+    }
+
+    protected get headersColor() {
+        return this.props['headers-color'] ?? Table.DEFAULT_TABLE_COLOR;
+    }
+
+    //endregion -------------------- Getter methods --------------------
 
     private static __getHeaderKey(header: SingleHeaderContent,): string {
         return typeof header === 'string' ? header : header.key;
@@ -108,11 +126,11 @@ export default class Table
     }
 
     public render() {
-        return <table key={this.id} id={this.id} className="table table-bordered table-striped">
+        return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
             <caption>{this.caption}</caption>
-            <thead>{this.__getHeaders(true)}</thead>
+            <thead className={`table-${this.headersColor} table-borderless`}>{this.__getHeaders(true)}</thead>
             <tbody>{this.__getContent()}</tbody>
-            <tfoot>{this.__getHeaders(false)}</tfoot>
+            <tfoot className={`table-${this.headersColor} table-borderless`}>{this.__getHeaders(false)}</tfoot>
         </table>;
     }
 
