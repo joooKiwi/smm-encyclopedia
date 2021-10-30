@@ -73,26 +73,26 @@ export default class Table
                 : <img key={header.key} alt={header.alt} src={header.path}/>;
     }
 
-    private static __getSingleHeaderContent(headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
+    private static __createSingleHeaderContent(headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
         const key = this.__getHeaderKey(header);
 
         return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>{this.__getHeaderContent(header)}</th>;
     }
 
-    private __getHeaders(isHead: boolean,) {
+    private __createHeaders(isHead: boolean,) {
         const headers = this.headers;
 
         //region -------------------- If "isHead", return normal headers --------------------
 
         if (isHead)
-            return headers.map((headerAsTr, index,) => <tr key={`head-${index}`}>{headerAsTr.map(headerAsTh => Table.__getSingleHeaderContent('head', headerAsTh,))}</tr>);
+            return headers.map((headerAsTr, index,) => <tr key={`head-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent('head', headerAsTh,))}</tr>);
 
         //endregion -------------------- If "isHead", return normal headers --------------------
         //region -------------------- If headers has only 1 column, return normal headers --------------------
 
         const headersLength = headers.length;
         if (headersLength === 1)
-            return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__getSingleHeaderContent('foot', headerAsTh,))}</tr>);
+            return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent('foot', headerAsTh,))}</tr>);
 
         //endregion -------------------- If headers has only 1 column, return normal headers --------------------
         //region -------------------- Reverse the headers while remaining the order similar to the thead --------------------
@@ -106,7 +106,7 @@ export default class Table
                 const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
                 const indexToAddHeader = height === 1 ? i : (i + height - 1);
 
-                reversedHeaders[indexToAddHeader].push(Table.__getSingleHeaderContent('foot', headerAsTh,));
+                reversedHeaders[indexToAddHeader].push(Table.__createSingleHeaderContent('foot', headerAsTh,));
             }
         }
 
@@ -115,7 +115,7 @@ export default class Table
         //endregion -------------------- Reverse the headers while remaining the order similar to the thead --------------------
     }
 
-    private __getContent(): JSX.Element[] {
+    private __createContent(): JSX.Element[] {
         return this.content.map(content => {
             const key = content[0];
             return <tr key={key + '_header'}>
@@ -131,9 +131,9 @@ export default class Table
     public render() {
         return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
             <caption>{this.caption}</caption>
-            <thead className={`table-${this.headersColor} table-borderless`}>{this.__getHeaders(true)}</thead>
-            <tbody>{this.__getContent()}</tbody>
-            <tfoot className={`table-${this.headersColor} table-borderless`}>{this.__getHeaders(false)}</tfoot>
+            <thead className={`table-${this.headersColor} table-borderless`}>{this.__createHeaders(true)}</thead>
+            <tbody>{this.__createContent()}</tbody>
+            <tfoot className={`table-${this.headersColor} table-borderless`}>{this.__createHeaders(false)}</tfoot>
         </table>;
     }
 
