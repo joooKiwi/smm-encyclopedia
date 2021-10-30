@@ -21,6 +21,11 @@ table[id$="_table"] {
     //endregion -------------------- 1 - # --------------------
   }
 
+  thead {
+    position: sticky;
+    top: 0;
+  }
+
   th img {
     max-height: .75cm;
   }
