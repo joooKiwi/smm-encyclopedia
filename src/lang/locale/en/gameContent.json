@@ -1,7 +1,4 @@
 {
-  "Limit in the editor": "Limit in the editor",
-  "Limit while playing": "Limit while playing",
-
   "Every entities":                "Every entities",
   "Every entity categories":       "Every entity categories",
   "Every game styles":             "Every game styles",
@@ -46,8 +43,11 @@
 
   "Category": "Category",
 
-  "While playing": "While playing",
-  "In the editor": "In the editor",
+  "Limit":               "Limit",
+  "In the editor":       "In the editor",
+  "While playing":       "While playing",
+  "Limit in the editor": "Limit in the editor",
+  "Limit while playing": "Limit while playing",
 
   "Effect (night)": "Effect (night)"
 }
