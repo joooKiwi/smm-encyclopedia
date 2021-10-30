@@ -6,6 +6,7 @@ import {PropertyContainer}                            from '../../_properties/Pr
 import {PropertyProvider}                             from '../../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {PropertyWithCommentContainer}                 from '../../_properties/PropertyWithComment.container';
+import {EntityLimits}                                 from '../../limit/EntityLimits';
 
 /**
  * @provider
@@ -142,6 +143,33 @@ export class LimitPropertyContainer
     }
 
     //endregion -------------------- Custom limit --------------------
+
+    private __newMap(...values: readonly (EntityLimits | null)[]): Map<EntityLimits, boolean> {
+        const newValues = values.filter(limit => limit != null) as EntityLimits[];
+        return new Map(EntityLimits.values.map(limit => [limit, newValues.includes(limit),]));
+    }
+
+    public toLimitMap() {
+        return new Map([...this.toLimitInTheEditorMap(), ...this.toLimitWhilePlayingMap(),]);
+    }
+
+    public toLimitInTheEditorMap() {
+        const editorLimit = this.editorLimit;
+
+        return this.__newMap(editorLimit instanceof EntityLimits ? editorLimit : null,);
+    }
+
+    public toLimitWhilePlayingMap() {
+        const customLimitWhilePlaying = this.customLimitWhilePlaying;
+
+        return this.__newMap(
+            this.isInGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
+            this.isInGlobalGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
+            this.isInPowerUpLimitWhilePlaying === true ? EntityLimits.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING : null,
+            this.isInProjectileLimitWhilePlaying === true ? EntityLimits.PROJECTILE_LIMIT : null,
+            customLimitWhilePlaying instanceof EntityLimits ? customLimitWhilePlaying : null,
+        );
+    }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------

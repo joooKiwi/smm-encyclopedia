@@ -50,11 +50,11 @@ export class ExclusiveSMM1EntityContainer
         if (!(property.isInDayTheme && property.isInNightTheme == null))
             throw new TypeError('A SMM1 entity is never in the night theme, but always in the day theme.');
 
-        if (property.editorLimit != null
-            && property.isInGeneralLimitWhilePlaying != null && property.isInGlobalGeneralLimitWhilePlaying != null
-            && property.isInPowerUpLimitWhilePlaying != null
-            && property.isInProjectileLimitWhilePlaying != null
-            && property.customLimitWhilePlaying != null)
+        if (property.editorLimit !== ExclusiveSMM1EntityContainer.NOT_APPLICABLE
+            && property.isInGeneralLimitWhilePlaying !== ExclusiveSMM1EntityContainer.NOT_APPLICABLE && property.isInGlobalGeneralLimitWhilePlaying !== ExclusiveSMM1EntityContainer.NOT_APPLICABLE
+            && property.isInPowerUpLimitWhilePlaying !== ExclusiveSMM1EntityContainer.NOT_APPLICABLE
+            && property.isInProjectileLimitWhilePlaying !== ExclusiveSMM1EntityContainer.NOT_APPLICABLE
+            && property.customLimitWhilePlaying !== ExclusiveSMM1EntityContainer.NOT_APPLICABLE)
             throw new TypeError('A SMM1 entity doesn\'t have any limit since it is only applicable to a SMM2 entity.');
 
 

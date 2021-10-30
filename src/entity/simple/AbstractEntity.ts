@@ -17,6 +17,8 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //region -------------------- Attributes --------------------
 
+    protected static readonly NOT_APPLICABLE = 'N/A';
+
     readonly #nameContainer;
     readonly #category;
     readonly #propertyContainer;
@@ -676,6 +678,18 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     public toTimeMap() {
         return this.timeContainer.toTimeMap();
+    }
+
+    public toLimitMap() {
+        return this.limitContainer.toLimitMap();
+    }
+
+    public toLimitInTheEditorMap() {
+        return this.limitContainer.toLimitInTheEditorMap();
+    }
+
+    public toLimitWhilePlayingMap() {
+        return this.limitContainer.toLimitWhilePlayingMap();
     }
 
     public toNameMap() {

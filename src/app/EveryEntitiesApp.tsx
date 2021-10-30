@@ -6,14 +6,16 @@ import type {SingleTableContent}    from './tools/table/Table.types';
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent            from '../entity/theme/CourseTheme.component';
-import EditorLimitComponent            from '../entity/limit/EditorLimit.component';
+import {EntityLimitTypes}              from '../entity/limit/EntityLimitTypes';
 import {EntityLoader}                  from '../entity/simple/Entity.loader';
 import GameComponent                   from '../entity/game/Game.component';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import GameStyleComponent              from '../entity/gameStyle/GameStyle.component';
+import LimitComponent                  from '../entity/limit/Limit.component';
 import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import Table                           from './tools/table/Table';
 import TimeComponent                   from '../entity/time/Time.component';
+import Tooltip                         from '../bootstrap/tooltip/Tooltip';
 
 /**
  * @reactComponent
@@ -46,11 +48,29 @@ export default class EveryEntitiesApp
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
                 <SMM2NameComponent id={`entityCategory_name_${index}`} name={entity.category} popoverOrientation="left"/>,
-                <EditorLimitComponent index={index} limit={entity}/>,
+                <LimitComponent id={`editor_${index}`} limits={entity.toLimitInTheEditorMap()}/>,
+                <LimitComponent id={`whilePlaying_${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
             ]);
             index++;
         }
         return content;
+    }
+
+    private static get __editorLimitElement() {
+        return <GameContentTranslationComponent>{translation => <>
+            <Tooltip elementId={'limit_editor_head'} option={({title: translation('Limit in the editor'), placement: 'bottom',})}/>
+            <Tooltip elementId={'limit_editor_foot'} option={({title: translation('Limit in the editor'), placement: 'top',})}/>
+            <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>
+        </>
+        }</GameContentTranslationComponent>;
+    }
+
+    private static get __whilePlayingLimitElement() {
+        return <GameContentTranslationComponent>{translation => <>
+            <Tooltip elementId={'limit_whilePlaying_head'} option={({title: translation('Limit while playing'), placement: 'bottom',})}/>
+            <Tooltip elementId={'limit_whilePlaying_foot'} option={({title: translation('Limit while playing'), placement: 'top',})}/>
+            <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>
+        </>}</GameContentTranslationComponent>;
     }
 
     //endregion -------------------- Methods --------------------
@@ -62,14 +82,20 @@ export default class EveryEntitiesApp
             id="entity_table"
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
-                '#',
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
-                {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game Style"/>,},
-                {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course Theme.spoken"/>,},
-                {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,},
-                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
-                {key: 'editorLimit', element: <GameContentTranslationComponent translationKey="Limit in the editor"/>,}
+                [
+                    {key: 'originalOrder', height: 2, element: <>#</>,},
+                    {key: 'name', height: 2, element: <ContentTranslationComponent translationKey="Name"/>,},
+                    {key: 'game', height: 2, element: <GameContentTranslationComponent translationKey="Game"/>,},
+                    {key: 'gameStyle', height: 2, element: <GameContentTranslationComponent translationKey="Game Style"/>,},
+                    {key: 'courseTheme', height: 2, element: <GameContentTranslationComponent translationKey="Course Theme.spoken"/>,},
+                    {key: 'time', height: 2, element: <GameContentTranslationComponent translationKey="Time"/>,},
+                    {key: 'category', height: 2, element: <GameContentTranslationComponent translationKey="Category"/>,},
+                    {key: 'limit', width: 2, element: <GameContentTranslationComponent translationKey="Limit"/>,},
+                ],
+                [
+                    {key: 'limit_editor', element: EveryEntitiesApp.__editorLimitElement,},
+                    {key: 'limit_whilePlaying', element: EveryEntitiesApp.__whilePlayingLimitElement,},
+                ],
             ]}
             content={this.content}
         />;

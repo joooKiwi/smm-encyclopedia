@@ -17,7 +17,7 @@ import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
 import {EntityContainer}               from './Entity.container';
-import {PropertyContainer}             from '../properties/PropertyContainer';
+import {PropertyContainer}             from '../properties/Property.container';
 import {NameBuilder}                   from '../lang/NameBuilder';
 import {Games}                         from '../game/Games';
 
