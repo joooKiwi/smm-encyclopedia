@@ -31,16 +31,20 @@ export default class Table
         return typeof header === 'string' ? header : header.key;
     }
 
+    private static __getWidth(header: SingleHeaderContent,): number | undefined {
+        return typeof header === 'string' || header.width == null ? undefined : header.width;
+    }
+
     private static __getHeaderContent(header: SingleHeaderContent,): JSX.Element {
         return typeof header === 'string'
-            ? <span>{header}</span>
+            ? <>{header}</>
             : 'element' in header
                 ? header.element
                 : <img key={header.key} alt={header.alt} src={header.path}/>;
     }
 
     private __getHeaders(isHead: boolean,): JSX.Element[] {
-        return this.headers.map(header => <th key={`${isHead ? 'head' : 'foot'}_${Table.__getHeaderKey(header)}`}>{Table.__getHeaderContent(header)}</th>);
+        return this.headers.map(header => <th key={`${Table.__getHeaderKey(header)} (${isHead ? 'head' : 'foot'})`} colSpan={Table.__getWidth(header)}>{Table.__getHeaderContent(header)}</th>);
     }
 
     private __getContent(): JSX.Element[] {
