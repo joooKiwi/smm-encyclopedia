@@ -17,6 +17,8 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //region -------------------- Attributes --------------------
 
+    protected static readonly NOT_APPLICABLE = 'N/A';
+
     readonly #nameContainer;
     readonly #category;
     readonly #propertyContainer;

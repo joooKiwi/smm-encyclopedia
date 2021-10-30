@@ -382,14 +382,19 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
 
-                .convertTo([1, 2, '1?', EntityLoader.UNKNOWN_CHARACTER,], 'limitAmount',)
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 1, 2, '1?', 'For each entity', 'For each clone (2-4)',
+                    'For each projectile', 'For each projectile (1)',
+                    'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)', 'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)', 'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
 
                 .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
+                .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
+                    'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
                 .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
-                .convertToNullableBooleanAnd('Only when collected', 'whilePlaying_isInGEL',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
-                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',], 'whilePlaying_isInPJL',)
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
+                    'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)
                 .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'whilePlaying_customLimit',)
+                .convertToEmptyableStringAnd('Only falling coin', 'whilePlaying_customLimit_comment',)
 
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine',], 'canRespawn',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)
