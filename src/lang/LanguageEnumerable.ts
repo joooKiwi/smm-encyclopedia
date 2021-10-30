@@ -1,24 +1,29 @@
-import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                             from './ClassWithEveryLanguages';
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                          from './name/containers/Language';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName} from './EveryLanguages.types';
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                       from './ClassWithEveryLanguages';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                    from './name/containers/Language';
+import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName} from './EveryLanguages.types';
 
-export interface LanguageEnumerable {
+export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleEveryLanguagesAcronym | PossibleProjectLanguagesAcronym,
+    INTERNATIONAL_ACRONYM extends | PossibleEveryLanguagesInternationalAcronym | PossibleProjectLanguagesInternationalAcronym,
+    ENGLISH_NAME extends | PossibleEveryLanguagesEnglishName | PossibleProjectLanguagesEnglishName,
+    ORIGINAL_NAME extends | PossibleEveryLanguagesOriginalName | PossibleProjectLanguagesOriginalName> {
 
     //region -------------------- Getter methods --------------------
 
     get isACompleteLanguage(): boolean
 
-    get projectAcronym(): PossibleEveryLanguagesAcronym
+    get projectAcronym(): PROJECT_ACRONYM
 
-    get internationalAcronym(): PossibleEveryLanguagesInternationalAcronym
+    get internationalAcronym(): INTERNATIONAL_ACRONYM
 
-    get englishName(): PossibleEveryLanguagesEnglishName
+    get englishName(): ENGLISH_NAME
 
-    get originalName(): PossibleEveryLanguagesOriginalName
+    get originalName(): ORIGINAL_NAME
 
     get isCurrentLanguage(): boolean
 
     get isCurrentLanguageOrAssociatedWithIt(): boolean
+
+    get isDefaultLanguage(): boolean
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------

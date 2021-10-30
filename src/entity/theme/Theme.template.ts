@@ -1,43 +1,24 @@
-import type {BooleanGameTemplate} from '../game/Game.template';
-import type {SMM2NameTemplate}    from '../lang/SMM2Name.template';
+import type {SimpleGameTemplate}       from '../game/SimpleGame.template';
+import type {SMM2NameTemplate}         from '../lang/SMM2Name.template';
+import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
 
 /**
  * @template
  */
-export interface ThemeTemplate {
+export interface ThemeTemplate
+    extends TemplateWithNameTemplate<SMM2NameTemplate> {
 
     isIn: {
-        game: BooleanGameTemplate
+        game: SimpleGameTemplate
         theme: {
             course: boolean
             world: boolean
         }
     }
-
-    name: SMM2NameTemplate
-
-}
-
-export interface BooleanThemeTemplate {
-
-    ground: boolean
-
-    underground: boolean
-
-    underwater: boolean
-
-    desert: | boolean | null
-
-    snow: | boolean | null
-
-    sky: | boolean | null
-
-    forest: | boolean | null
-
-    ghostHouse: boolean
-
-    airship: boolean
-
-    castle: boolean
+    effect: PossibleEffectInNightTheme
 
 }
+
+export type PossibleEffectInNightTheme = | 'Special effect on entities' | 'Screen upside down' | 'Dark' | 'Wind' | 'Slippery'
+                                         | 'Low gravity' | 'Poison liquid' | `${| 'Entities' | 'Characters'} in water`
+                                         | null;

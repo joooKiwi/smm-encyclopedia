@@ -1,0 +1,26 @@
+#soundEffect_table {
+
+  tbody {
+    //td {
+    //  min-height: 2cm;
+    //}
+
+    tr > {
+      //region -------------------- 2 & 3 - SMM1 & SMM2 --------------------
+
+      :nth-child(2), :nth-child(3) {
+        width: 1.5cm;
+        text-align: center;
+      }
+
+      //endregion -------------------- 2 & 3 - SMM1 & SMM2 --------------------
+      //region -------------------- 4 - name --------------------
+      //endregion -------------------- 4 - name --------------------
+      //region -------------------- 5 - game style --------------------
+      //endregion -------------------- 5 - category --------------------
+
+    }
+
+  }
+
+}

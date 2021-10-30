@@ -1,23 +1,26 @@
-import type {Name} from './Name';
+import type {ClassWithNullObjectPattern, EmptyNameName} from '../../util/ClassWithNullObjectPattern';
+import type {Name}                                      from './Name';
 
 import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyName
-    implements Name {
+    implements Name, ClassWithNullObjectPattern<EmptyNameName> {
 
-    static readonly #instance = new EmptyName();
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: EmptyName;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 
@@ -64,7 +67,6 @@ export class EmptyName
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
-    public readonly isPortugueseUsed = false;
     public readonly originalPortuguese = EMPTY_STRING;
     public readonly portuguese = EMPTY_STRING;
     public readonly americanPortuguese = EMPTY_STRING;
@@ -94,6 +96,12 @@ export class EmptyName
     public readonly korean = EMPTY_STRING;
 
     //endregion -------------------- Korean properties --------------------
+    //region -------------------- Greek properties --------------------
+
+    public readonly isGreekUsed = false;
+    public readonly greek = EMPTY_STRING;
+
+    //endregion -------------------- Greek properties --------------------
 
     public readonly originalLanguages = EMPTY_ARRAY;
 
@@ -103,7 +111,7 @@ export class EmptyName
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty name' {
+    public toString(): EmptyNameName {
         return 'Empty name';
     }
 

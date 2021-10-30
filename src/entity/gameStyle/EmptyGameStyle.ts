@@ -1,25 +1,28 @@
-import type {GameStyle} from './GameStyle';
+import type {ClassWithNullObjectPattern, EmptyGameStyleName} from '../../util/ClassWithNullObjectPattern';
+import type {GameStyle}                                      from './GameStyle';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyName}              from '../../lang/name/EmptyName';
 import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyGameStyle
-    implements GameStyle {
+    implements GameStyle, ClassWithNullObjectPattern<EmptyGameStyleName> {
 
-    static readonly #instance = new EmptyGameStyle();
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: EmptyGameStyle;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 
@@ -48,7 +51,6 @@ export class EmptyGameStyle
 
     public readonly dutch = this.nameContainer.dutch;
 
-    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed;
     public readonly originalPortuguese = this.nameContainer.originalPortuguese;
     public readonly portuguese = this.nameContainer.portuguese;
     public readonly americanPortuguese = this.nameContainer.americanPortuguese;
@@ -64,6 +66,9 @@ export class EmptyGameStyle
     public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
 
     public readonly korean = this.nameContainer.korean;
+
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
 
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
@@ -83,7 +88,7 @@ export class EmptyGameStyle
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty game style' {
+    public toString(): EmptyGameStyleName {
         return 'Empty game style';
     }
 

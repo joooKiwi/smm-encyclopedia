@@ -5,7 +5,7 @@ import type {EntityBehavioursNames, EntityBehavioursOrdinals, EntityMultiplayerA
 import {Enum}                  from '../../util/enum/Enum';
 import {EntityBehaviour}       from './EntityBehaviour';
 import {ClassWithReference}    from '../ClassWithReference';
-import {EntityBehaviourLoader} from './EntityBehaviourLoader';
+import {EntityBehaviourLoader} from './EntityBehaviour.loader';
 
 /**
  * @recursiveReference<{@link EntityBehaviourLoader}>

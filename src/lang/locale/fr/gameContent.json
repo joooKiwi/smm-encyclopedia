@@ -2,12 +2,14 @@
   "Limit in the editor": "Limit dans l'éditeur",
   "Limit while playing": "Limit quand est en train de jouer",
 
-  "Every themes":            "Tous les décors",
-  "Every times":             "Tous les temps",
-  "Every entities":          "Toutes les entités",
-  "Every entity categories": "Toutes les catégories d'entité",
-  "Every game styles":       "Tous les styles de jeu",
-  "Every entity limits":     "Toutes les limites d'entité",
+  "Every entities":                "Toutes les entités",
+  "Every entity categories":       "Toutes les catégories d'entité",
+  "Every game styles":             "Tous les styles de jeu",
+  "Every entity limits":           "Toutes les limites d'entité",
+  "Every themes":                  "Tous les décors",
+  "Every times":                   "Tous les temps",
+  "Every sound effects":           "Tous les effets sonores",
+  "Every sound effect categories": "Toutes les catégories d'effet sonore",
 
   "Is in the course theme": "Est dans le décor de niveau",
   "Is in the world theme":  "Est dans le décor de monde",
@@ -20,12 +22,14 @@
   "Empty world theme":        "Thème de monde vide",
   "Empty \"is in property\"": "«Est dans propriété» vide",
 
-  "Display every entities":          "Afficher toutes les entités",
-  "Display every entity categories": "Afficher toutes les catégories d'entité",
-  "Display every game styles":       "Afficher tous les styles de jeu",
-  "Display every entity groups":     "Afficher tous les groupes d'entité",
-  "Display every limits":            "Afficher toutes les limites",
-  "Display every themes":            "Afficher tous les décors",
+  "Display every entities":                "Afficher toutes les entités",
+  "Display every entity categories":       "Afficher toutes les catégories d'entité",
+  "Display every game styles":             "Afficher tous les styles de jeu",
+  "Display every entity groups":           "Afficher tous les groupes d'entité",
+  "Display every limits":                  "Afficher toutes les limites",
+  "Display every themes":                  "Afficher tous les décors",
+  "Display every sound effects":           "Afficher tous les effets sonores",
+  "Display every sound effect categories": "Afficher tous les catégories d'effet sonore",
 
   "Game":              "Jeu",
   "Game Style":        "Style de jeu",
@@ -43,5 +47,7 @@
   "Category": "Catégorie",
 
   "While playing": "En jouant",
-  "In the editor": "Dans l'éditeur"
+  "In the editor": "Dans l'éditeur",
+
+  "Effect (night)": "Effet (nuit)"
 }

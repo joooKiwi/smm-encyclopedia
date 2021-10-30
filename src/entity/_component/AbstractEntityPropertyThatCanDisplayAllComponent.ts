@@ -1,6 +1,8 @@
-import type {ReactProperty} from '../../util/ReactProperty';
-import type {Name}          from '../../lang/name/Name';
-import {PureComponent}      from 'react';
+import type {Name}           from '../../lang/name/Name';
+import type {ReactComponent} from '../../util/react/ReactComponent';
+import type {ReactProperty}  from '../../util/react/ReactProperty';
+
+import {PureComponent} from 'react';
 
 export interface EntityPropertyProperties<R>
     extends ReactProperty {
@@ -11,8 +13,12 @@ export interface EntityPropertyProperties<R>
 
 }
 
+/**
+ * @reactComponent
+ */
 export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
-    extends PureComponent<EntityPropertyProperties<R>> {
+    extends PureComponent<EntityPropertyProperties<R>>
+    implements ReactComponent {
 
     protected get reference() {
         return this.props.reference;

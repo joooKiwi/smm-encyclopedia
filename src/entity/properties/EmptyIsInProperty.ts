@@ -1,20 +1,25 @@
-import type {Property} from './Property';
+import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../util/ClassWithNullObjectPattern';
+import type {Property}                                          from './Property';
+import {EmptyLimitProperty}                                     from './limit/EmptyLimitProperty';
 
 /**
- * @nullObjectPattern
+ * @singleton
  */
 export class EmptyIsInProperty
-    implements Property {
+    implements Property, ClassWithNullObjectPattern<EmptyIsInPropertyName> {
 
-    public static instance = new EmptyIsInProperty();
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: EmptyIsInProperty;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.instance;
+        return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -57,33 +62,33 @@ export class EmptyIsInProperty
     //endregion -------------------- Time properties --------------------
     //region -------------------- Limit properties --------------------
 
-    public readonly limitContainer = this;
+    public readonly limitContainer = EmptyLimitProperty.get;
 
-    public readonly editorLimitContainer = null;
-    public readonly editorLimit = null;
-    public readonly isEditorLimitUnknown = true;
+    public readonly editorLimitContainer = this.limitContainer.editorLimitContainer;
+    public readonly editorLimit = this.limitContainer.editorLimit;
+    public readonly isEditorLimitUnknown = this.limitContainer.isEditorLimitUnknown;
 
-    public readonly isInGeneralLimitWhilePlayingContainer = null;
-    public readonly isInGeneralLimitWhilePlaying = null;
-    public readonly isInGeneralLimitWhilePlayingComment = null;
+    public readonly isInGeneralLimitWhilePlayingContainer = this.limitContainer.isInGeneralLimitWhilePlayingContainer;
+    public readonly isInGeneralLimitWhilePlaying = this.limitContainer.isInGeneralLimitWhilePlaying;
+    public readonly isInGeneralLimitWhilePlayingComment = this.limitContainer.isInGeneralLimitWhilePlayingComment;
 
-    public readonly isInGlobalGeneralLimitWhilePlayingContainer = null;
-    public readonly isInGlobalGeneralLimitWhilePlaying = null;
-    public readonly isInGlobalGeneralLimitWhilePlayingComment = null;
+    public readonly isInGlobalGeneralLimitWhilePlayingContainer = this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    public readonly isInGlobalGeneralLimitWhilePlaying = this.limitContainer.isInGlobalGeneralLimitWhilePlaying;
+    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment;
 
-    public readonly isInPowerUpLimitWhilePlayingContainer = null;
-    public readonly isInPowerUpLimitWhilePlaying = null;
-    public readonly isInPowerUpLimitWhilePlayingComment = null;
+    public readonly isInPowerUpLimitWhilePlayingContainer = this.limitContainer.isInPowerUpLimitWhilePlayingContainer;
+    public readonly isInPowerUpLimitWhilePlaying = this.limitContainer.isInPowerUpLimitWhilePlaying;
+    public readonly isInPowerUpLimitWhilePlayingComment = this.limitContainer.isInPowerUpLimitWhilePlayingComment;
 
-    public readonly isInProjectileLimitWhilePlayingContainer = null;
-    public readonly isInProjectileLimitWhilePlaying = null;
-    public readonly isInProjectileLimitWhilePlayingUnknown = true;
-    public readonly isInProjectileLimitWhilePlayingComment = null;
+    public readonly isInProjectileLimitWhilePlayingContainer = this.limitContainer.isInProjectileLimitWhilePlayingContainer;
+    public readonly isInProjectileLimitWhilePlaying = this.limitContainer.isInProjectileLimitWhilePlaying;
+    public readonly isInProjectileLimitWhilePlayingUnknown = this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
+    public readonly isInProjectileLimitWhilePlayingComment = this.limitContainer.isInProjectileLimitWhilePlayingComment;
 
-    public readonly customLimitWhilePlayingContainer = null;
-    public readonly customLimitWhilePlaying = null;
-    public readonly isCustomLimitWhilePlayingUnknown = true;
-    public readonly customLimitWhilePlayingComment = null;
+    public readonly customLimitWhilePlayingContainer = this.limitContainer.customLimitWhilePlayingContainer;
+    public readonly customLimitWhilePlaying = this.limitContainer.customLimitWhilePlaying;
+    public readonly isCustomLimitWhilePlayingUnknown = this.limitContainer.isCustomLimitWhilePlayingUnknown;
+    public readonly customLimitWhilePlayingComment = this.limitContainer.customLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
 
@@ -99,7 +104,7 @@ export class EmptyIsInProperty
         throw new ReferenceError(`An ${this} cannot have a time map.`);
     }
 
-    public toString(): 'Empty "is in property"' {
+    public toString(): EmptyIsInPropertyName {
         return 'Empty "is in property"';
     }
 

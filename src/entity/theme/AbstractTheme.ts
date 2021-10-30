@@ -95,10 +95,6 @@ export class AbstractTheme
     }
 
 
-    public get isPortugueseUsed() {
-        return this.nameContainer.isPortugueseUsed;
-    }
-
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }
@@ -146,6 +142,16 @@ export class AbstractTheme
     public get korean() {
         return this.nameContainer.korean;
     }
+
+
+    public get isGreekUsed() {
+        return this.nameContainer.isGreekUsed;
+    }
+
+    public get greek() {
+        return this.nameContainer.greek;
+    }
+
 
     public get originalLanguages() {
         return this.nameContainer.originalLanguages;

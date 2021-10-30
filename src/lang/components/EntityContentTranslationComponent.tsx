@@ -1,7 +1,12 @@
-import type {SimpleTranslationProperty, TranslationProperty} from './TranslationProperty';
+import type {PossibleTranslationPropertyReceived} from './TranslationProperty';
 
 import AnyTranslationComponent from './AnyTranslationComponent';
 
-export default function EntityTranslationComponent(props: | TranslationProperty<'entityContent'> | SimpleTranslationProperty<'entityContent'>,) {
-    return <AnyTranslationComponent namespace="entityContent"  {...props}/>;
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
+export default function EntityTranslationComponent(properties: PossibleTranslationPropertyReceived<'entityContent'>,) {
+    return <AnyTranslationComponent namespace="entityContent"  {...properties}/>;
 }

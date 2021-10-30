@@ -1,5 +1,8 @@
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
 
+/**
+ * @reactComponent
+ */
 export abstract class AbstractEntityPropertyComponent<R, E>
     extends AbstractEntityPropertyThatCanDisplayAllComponent<R> {
 
@@ -8,7 +11,7 @@ export abstract class AbstractEntityPropertyComponent<R, E>
 
     protected abstract _renderSingleComponent(enumInstance: E,): JSX.Element;
 
-    public render(): JSX.Element {
+    public render() {
         if (this._isInAll)
             return this._renderComponentForAll();
 

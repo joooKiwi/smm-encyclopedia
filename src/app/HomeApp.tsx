@@ -1,13 +1,14 @@
 import './HomeApp.scss';
 
-import React from 'react';
-
 import AbstractApp from './AbstractApp';
 
+/**
+ * @reactComponent
+ */
 export default class HomeApp
     extends AbstractApp {
 
-    protected _mainContent(): JSX.Element {
+    protected _mainContent() {
         return <></>;
     }
 

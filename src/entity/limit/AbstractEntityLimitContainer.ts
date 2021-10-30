@@ -4,21 +4,23 @@ import type {EntityLimitLink}                                                   
 import type {EntityLimitTypes}                                                    from './EntityLimitTypes';
 import type {EveryLanguages}                                                      from '../../lang/EveryLanguages';
 import type {Name}                                                                from '../../lang/name/Name';
+import type {ObjectHolder}                                                        from '../../util/holder/ObjectHolder';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits} from './EntityLimits.types';
 
-import {CallbackCaller} from '../../util/CallbackCaller';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
-    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT> {
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
+    LINK extends EntityLimitLink = EntityLimitLink, >
+    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT, LINK> {
 
     //region -------------------- Attributes --------------------
 
     readonly #nameContainer: Name;
     readonly #acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null;
-    readonly #alternativeCaller: CallbackCaller<AlternativeEntityLimit>;
-    readonly #typeCaller: CallbackCaller<EntityLimitTypes>;
+    readonly #alternativeCaller: ObjectHolder<AlternativeEntityLimit>;
+    readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
     readonly #limitContainer: EntityLimitAmount;
     readonly #linkContainer: EntityLimitLink;
 
@@ -27,8 +29,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     protected constructor(name: Name, acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
         this.#nameContainer = name;
         this.#acronym = acronym;
-        this.#alternativeCaller = new CallbackCaller(alternative);
-        this.#typeCaller = new CallbackCaller(type);
+        this.#alternativeCaller = new DelayedObjectHolderContainer(alternative);
+        this.#typeCaller = new DelayedObjectHolderContainer(type);
         this.#limitContainer = limitAmount;
         this.#linkContainer = link;
     }
@@ -125,10 +127,6 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get isPortugueseUsed() {
-        return this.nameContainer.isPortugueseUsed;
-    }
-
     public get originalPortuguese() {
         return this.nameContainer.originalPortuguese;
     }
@@ -175,6 +173,15 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
 
     public get korean() {
         return this.nameContainer.korean;
+    }
+
+
+    public get isGreekUsed() {
+        return this.nameContainer.isGreekUsed;
+    }
+
+    public get greek() {
+        return this.nameContainer.greek;
     }
 
 
@@ -271,10 +278,6 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeIsPortugueseUsed() {
-        return this.alternativeNameContainer.isPortugueseUsed;
-    }
-
     public get alternativeOriginalPortuguese() {
         return this.alternativeNameContainer.originalPortuguese;
     }
@@ -324,6 +327,15 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
+    public get alternativeIsGreekUsed() {
+        return this.alternativeNameContainer.isGreekUsed;
+    }
+
+    public get alternativeGreek() {
+        return this.alternativeNameContainer.greek;
+    }
+
+
     public get alternativeOriginalLanguages() {
         return this.alternativeNameContainer.originalLanguages;
     }
@@ -336,16 +348,16 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeAmount(): this['alternativeLimitContainer']['amount'] {
-        return this.alternativeLimitContainer.amount;
+    public get alternativeAmount(): this['alternativeLimitContainer']['value'] {
+        return this.alternativeLimitContainer.value;
     }
 
-    public get alternativeIsAmountUnknown(): this['alternativeLimitContainer']['isAmountUnknown'] {
-        return this.alternativeLimitContainer.isAmountUnknown;
+    public get alternativeIsAmountUnknown(): this['alternativeLimitContainer']['isUnknown'] {
+        return this.alternativeLimitContainer.isUnknown;
     }
 
-    public get alternativeAmountComment(): this['alternativeLimitContainer']['amountComment'] {
-        return this.alternativeLimitContainer.amountComment;
+    public get alternativeAmountComment(): this['alternativeLimitContainer']['comment'] {
+        return this.alternativeLimitContainer.comment;
     }
 
     //endregion -------------------- Limit amount --------------------
@@ -356,13 +368,13 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get alternativeGroupName(): this['alternativeLinkContainer']['groupName'] {
-        return this.alternativeLinkContainer.groupName;
+    public get alternativeGroupLink(): this['alternativeLinkContainer']['group'] {
+        return this.alternativeLinkContainer.group;
     }
 
 
-    public get alternativeEntityName(): this['alternativeLinkContainer']['entityName'] {
-        return this.alternativeLinkContainer.entityName;
+    public get alternativeEntityLink(): this['alternativeLinkContainer']['entity'] {
+        return this.alternativeLinkContainer.entity;
     }
 
     //endregion -------------------- Link --------------------
@@ -375,33 +387,33 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
 
-    public get amount(): this['limitContainer']['amount'] {
-        return this.limitContainer.amount;
+    public get amount(): this['limitContainer']['value'] {
+        return this.limitContainer.value;
     }
 
-    public get isAmountUnknown(): this['limitContainer']['isAmountUnknown'] {
-        return this.limitContainer.isAmountUnknown;
+    public get isAmountUnknown(): this['limitContainer']['isUnknown'] {
+        return this.limitContainer.isUnknown;
     }
 
-    public get amountComment(): this['limitContainer']['amountComment'] {
-        return this.limitContainer.amountComment;
+    public get amountComment(): this['limitContainer']['comment'] {
+        return this.limitContainer.comment;
     }
 
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Link --------------------
 
-    public get linkContainer(): EntityLimitLink {
-        return this.#linkContainer;
+    public get linkContainer(): LINK {
+        return this.#linkContainer as LINK;
     }
 
 
-    public get groupName(): this['linkContainer']['groupName'] {
-        return this.linkContainer.groupName;
+    public get groupLink(): this['linkContainer']['group'] {
+        return this.linkContainer.group;
     }
 
 
-    public get entityName(): this['linkContainer']['entityName'] {
-        return this.linkContainer.entityName;
+    public get entityLink(): this['linkContainer']['entity'] {
+        return this.linkContainer.entity;
     }
 
     //endregion -------------------- Link --------------------

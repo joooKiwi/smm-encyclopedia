@@ -1,7 +1,7 @@
 /**
  * @template
  */
-export interface SMM2NameTemplate<PORTUGUESE extends string | null = null, > {
+export interface SMM2NameTemplate<GREEK extends string | null = null, > {
 
     english: {
         simple: | string | null
@@ -28,9 +28,9 @@ export interface SMM2NameTemplate<PORTUGUESE extends string | null = null, > {
     dutch: | string | null
 
     portuguese: {
-        simple: PORTUGUESE
-        american: PORTUGUESE
-        european: PORTUGUESE
+        simple: | string | null
+        american: | string | null
+        european: | string | null
     }
 
     russian: | string | null
@@ -45,12 +45,16 @@ export interface SMM2NameTemplate<PORTUGUESE extends string | null = null, > {
 
     korean: | string | null
 
+    greek: GREEK
+
 }
 
 /**
  * @template
  */
-export interface SMM2NameTemplateWithPortuguese
-    extends SMM2NameTemplate<string | null> {
+export interface SMM2NameTemplateWithOptionalLanguages
+    extends SMM2NameTemplate<| string | null> {
 
 }
+
+export type PossibleSMM2NameTemplate = | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages;

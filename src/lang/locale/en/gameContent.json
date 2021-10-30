@@ -2,12 +2,14 @@
   "Limit in the editor": "Limit in the editor",
   "Limit while playing": "Limit while playing",
 
-  "Every themes":            "Every themes",
-  "Every times":             "Every times",
-  "Every entities":          "Every entities",
-  "Every entity categories": "Every entity categories",
-  "Every game styles":       "Every game styles",
-  "Every entity limits":     "Every entity limits",
+  "Every entities":                "Every entities",
+  "Every entity categories":       "Every entity categories",
+  "Every game styles":             "Every game styles",
+  "Every entity limits":           "Every entity limits",
+  "Every themes":                  "Every themes",
+  "Every times":                   "Every times",
+  "Every sound effects":           "Every sound effects",
+  "Every sound effect categories": "Every sound effect categories",
 
   "Is in the course theme": "Is in the course theme",
   "Is in the world theme":  "Is in the world theme",
@@ -20,12 +22,14 @@
   "Empty world theme":        "Empty world theme",
   "Empty \"is in property\"": "Empty \"is in property\"",
 
-  "Display every entities":          "Display every entities",
-  "Display every entity categories": "Display every entity categories",
-  "Display every game styles":       "Display every game styles",
-  "Display every entity groups":     "Display every entity groups",
-  "Display every limits":            "Display every limits",
-  "Display every themes":            "Display every themes",
+  "Display every entities":                "Display every entities",
+  "Display every entity categories":       "Display every entity categories",
+  "Display every game styles":             "Display every game styles",
+  "Display every entity groups":           "Display every entity groups",
+  "Display every limits":                  "Display every limits",
+  "Display every themes":                  "Display every themes",
+  "Display every sound effects":           "Display every sound effects",
+  "Display every sound effect categories": "Display every sound effect categories",
 
   "Game":              "Game",
   "Game Style":        "Game Style",
@@ -43,5 +47,7 @@
   "Category": "Category",
 
   "While playing": "While playing",
-  "In the editor": "In the editor"
+  "In the editor": "In the editor",
+
+  "Effect (night)": "Effect (night)"
 }

@@ -1,7 +1,7 @@
 import Popover from './Popover';
 
 import type {SpanPopoverConfiguration}                        from './Popover.types';
-import type {ReactElementOrString, ReactPropertyWithChildren} from '../../util/ReactProperty';
+import type {ReactElementOrString, ReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 /**
  *

@@ -1,17 +1,19 @@
-import React from 'react';
+import type {ActivatableTextProperty} from './properties/ActivatableTextProperty';
+import type {GroupButtonProperty}     from './properties/GroupButtonProperty';
 
-import AbstractGroupButton      from './AbstractGroupButton';
-import {ActivatableTextElement} from './elements/ActivatableTextElement';
-import {GroupButtonComponents}  from './properties/GroupButtonProperty';
+import AbstractGroupButton from './AbstractGroupButton';
 
+/**
+ * @reactComponent
+ */
 export default class GroupTextButton
-    extends AbstractGroupButton<ActivatableTextElement> {
+    extends AbstractGroupButton<ActivatableTextProperty> {
 
-    public constructor(props: GroupButtonComponents<ActivatableTextElement>,) {
+    public constructor(props: GroupButtonProperty<ActivatableTextProperty>,) {
         super(props);
     }
 
-    protected _getContent(text: ActivatableTextElement,): JSX.Element {
+    protected _getContent(text: ActivatableTextProperty,) {
         return <span>{text.text}</span>;
     }
 

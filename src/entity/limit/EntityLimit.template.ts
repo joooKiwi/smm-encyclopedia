@@ -1,7 +1,8 @@
 import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                                                        from '../entityTypes';
-import type {SMM2NameTemplateWithPortuguese}                                                                                             from '../lang/SMM2Name.template';
+import type {SMM2NameTemplate}                                                                                                           from '../lang/SMM2Name.template';
+import type {TemplateWithNameTemplate}                                                                                                   from '../_template/TemplateWithName.template';
 
 //region -------------------- Limit types --------------------
 
@@ -55,7 +56,8 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
     TYPE extends | PossibleEntityLimitTypeEnglishName | null = | PossibleEntityLimitTypeEnglishName | null,
     ACRONYM extends | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits = | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits,
     LIMIT_AMOUNT extends LimitAmountTemplate = LimitAmountTemplate,
-    REGULAR_REFERENCE extends | PossibleEntityLimits | null = | PossibleEntityLimits | null, > {
+    REGULAR_REFERENCE extends | PossibleEntityLimits | null = | PossibleEntityLimits | null, >
+    extends TemplateWithNameTemplate<SMM2NameTemplate> {
 
     references: {
         regular: PossibleEntityLimits | null
@@ -69,7 +71,7 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
 
     link: LinkTemplate
 
-    name: SMM2NameTemplateWithPortuguese
+    name: SMM2NameTemplate
 
 }
 

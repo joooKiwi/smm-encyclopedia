@@ -1,6 +1,6 @@
 import type {Namespace, TFuncKey, TFunction} from 'react-i18next';
 
-import type {SimpleReactPropertyWithChildren} from '../../util/ReactProperty';
+import type {SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 export type TranslationReturnType = | string | JSX.Element;
 export type ContentCallback = (translation: TFunction<'content'>,) => TranslationReturnType;
@@ -40,3 +40,7 @@ export interface SimpleAnyTranslationProperty<N extends Namespace, K extends Sin
     extends SimpleTranslationProperty<N, K>, _AnyTranslationProperty<N> {
 
 }
+
+
+export type PossibleAnyTranslationPropertyReceived<N extends Namespace, > = | AnyTranslationProperty<N> | SimpleAnyTranslationProperty<N>;
+export type PossibleTranslationPropertyReceived<N extends Namespace, > = | TranslationProperty<N> | SimpleTranslationProperty<N>;

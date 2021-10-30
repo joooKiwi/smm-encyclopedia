@@ -1,11 +1,14 @@
 import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
 import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
+import type {SoundEffectCategoriesEnglishNameArray}                                                                                                                                                                                                                                                                                                           from '../../../entity/soundEffect/category/SoundEffectCategories.types';
+import type {SoundEffectsEnglishNameArray}                                                                                                                                                                                                                                                                                                                    from '../../../entity/soundEffect/simple/SoundEffects.types';
 
-import {EntityBehaviours}     from '../../../entity/behaviours/EntityBehaviours';
-import {EntityCategoryLoader} from '../../../entity/category/EntityCategoryLoader';
-import {EntityLimits}         from '../../../entity/limit/EntityLimits';
-import {EntityLimitTypes}     from '../../../entity/limit/EntityLimitTypes';
-
+import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
+import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
+import {EntityLimits}          from '../../../entity/limit/EntityLimits';
+import {EntityLimitTypes}      from '../../../entity/limit/EntityLimitTypes';
+import {SoundEffectCategories} from '../../../entity/soundEffect/category/SoundEffectCategories';
+import {SoundEffects}          from '../../../entity/soundEffect/simple/SoundEffects';
 
 /**
  * @singleton
@@ -13,7 +16,18 @@ import {EntityLimitTypes}     from '../../../entity/limit/EntityLimitTypes';
 class HeaderTypesForConvertorForTestAndDevelopment
     implements HeaderTypesForConvertorDefinition {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: HeaderTypesForConvertorForTestAndDevelopment;
+
+    private constructor() {
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Attributes --------------------
 
@@ -35,14 +49,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleLimitTypesNames?: EntityLimitTypeEnglishNameArray;
 
+    #everyPossibleSoundEffectsNames?: SoundEffectsEnglishNameArray;
+    #everyPossibleSoundEffectCategoriesNames?: SoundEffectCategoriesEnglishNameArray;
+
     //endregion -------------------- Attributes --------------------
-
-    private constructor() {
-    }
-
-    public static get get() {
-        return this.#instance ??= new this();
-    }
 
     //region -------------------- Entity getter methods --------------------
 
@@ -105,6 +115,17 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleSoundEffectsNames() {
+        return this.#everyPossibleSoundEffectsNames ??= SoundEffects.everyEnglishNames;
+    }
+
+    public get everyPossibleSoundEffectCategoriesNames() {
+        return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
+    }
+
+    //endregion -------------------- Entity limit type getter methods --------------------
 
 }
 
@@ -114,13 +135,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
 class HeaderTypesForConvertorForProduction
     implements HeaderTypesForConvertorDefinition {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: HeaderTypesForConvertorForProduction;
-
-    //region -------------------- Attributes --------------------
-
-    static readonly #STRING_VALUE: StringConstant = 'string';
-
-    //endregion -------------------- Attributes --------------------
 
     private constructor() {
     }
@@ -128,6 +145,14 @@ class HeaderTypesForConvertorForProduction
     public static get get() {
         return this.#instance ??= new this();
     }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    //region -------------------- Attributes --------------------
+
+    static readonly #STRING_VALUE: StringConstant = 'string';
+
+    //endregion -------------------- Attributes --------------------
 
     //region -------------------- Entity getter methods --------------------
 
@@ -187,6 +212,17 @@ class HeaderTypesForConvertorForProduction
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Entity limit type getter methods --------------------
+
+    public get everyPossibleSoundEffectsNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    public get everyPossibleSoundEffectCategoriesNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Entity limit type getter methods --------------------
 
 }
 
@@ -202,5 +238,5 @@ class HeaderTypesForConvertorForProduction
  * </p>
  * @see HeaderTypesForConvertorDefinition
  */
-const HeaderTypesForConvertor = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
+const HeaderTypesForConvertor: HeaderTypesForConvertorDefinition = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
 export {HeaderTypesForConvertor};

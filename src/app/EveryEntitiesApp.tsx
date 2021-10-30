@@ -1,31 +1,36 @@
 import './EveryEntitiesApp.scss';
 
-import React from 'react';
-
-import type {DebugEntityReferences} from '../entity/simple/EntityLoader';
+import type {DebugEntityReferences} from '../entity/simple/Entity.loader';
 import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import CourseThemeComponent            from '../entity/theme/CourseThemeComponent';
-import EditorLimitComponent            from '../entity/limit/EditorLimitComponent';
-import {EntityLoader}                  from '../entity/simple/EntityLoader';
-import GameComponent                   from '../entity/game/GameComponent';
+import CourseThemeComponent            from '../entity/theme/CourseTheme.component';
+import EditorLimitComponent            from '../entity/limit/EditorLimit.component';
+import {EntityLoader}                  from '../entity/simple/Entity.loader';
+import GameComponent                   from '../entity/game/Game.component';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import GameStyleComponent              from '../entity/gameStyle/GameStyleComponent';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
+import GameStyleComponent              from '../entity/gameStyle/GameStyle.component';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
 import Table                           from './tools/table/Table';
-import TimeComponent                   from '../entity/time/TimeComponent';
+import TimeComponent                   from '../entity/time/Time.component';
 
+/**
+ * @reactComponent
+ */
 export default class EveryEntitiesApp
     extends AbstractApp {
 
-    #entities?: Map<string, DebugEntityReferences>;
+    //region -------------------- Attributes & getter methods --------------------
+
+    #map?: ReadonlyMap<string, DebugEntityReferences>;
 
     protected get map() {
-        return this.#entities ??= EntityLoader.get.load();
+        return this.#map ??= EntityLoader.get.load();
     }
 
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -48,7 +53,9 @@ export default class EveryEntitiesApp
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    //endregion -------------------- Methods --------------------
+
+    protected _mainContent() {
         console.log(this.map);
 
         return <Table
@@ -56,7 +63,7 @@ export default class EveryEntitiesApp
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
                 '#',
-                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                 {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
                 {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game Style"/>,},
                 {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course Theme.spoken"/>,},

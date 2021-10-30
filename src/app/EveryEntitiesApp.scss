@@ -1,7 +1,64 @@
 #entity_table {
 
-  img {
-    max-height: 1cm;
+  tbody {
+    //td {
+    //  min-height: 2cm;
+    //}
+
+    tr > {
+      //region -------------------- 2 - name --------------------
+
+      :nth-child(2) {
+        min-width: 5cm;
+      }
+
+      //endregion -------------------- 2 - name --------------------
+      //region -------------------- 3 - game --------------------
+
+      :nth-child(3) {
+        min-width: 2.5cm;
+      }
+
+      //endregion -------------------- 3 - game --------------------
+      //region -------------------- 4 - game style --------------------
+
+      :nth-child(4) {
+        max-width: 4cm;
+      }
+
+      //endregion -------------------- 4 - game style --------------------
+      //region -------------------- 5 - course theme --------------------
+
+      :nth-child(5) {
+        min-width: 4cm;
+        max-width: 6cm;
+      }
+
+      //endregion -------------------- 5 - course theme --------------------
+      //region -------------------- 6 - time --------------------
+
+      :nth-child(6) {
+        min-width: 1.5cm;
+      }
+
+      //endregion -------------------- 6 - time --------------------
+      //region -------------------- 7 - entity category --------------------
+
+      :nth-child(7) {
+        min-width: 3cm;
+      }
+
+      //endregion -------------------- 7 - entity category --------------------
+      //region -------------------- 8 - limit (editor) --------------------
+
+      :nth-child(8) {
+        min-width: 5cm;
+        max-width: 7.5cm;
+      }
+
+      //endregion -------------------- 8 - limit (editor) --------------------
+    }
+
   }
 
 }

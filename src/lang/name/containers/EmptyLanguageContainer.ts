@@ -6,6 +6,8 @@ import {EmptyLanguage} from './EmptyLanguage';
 export class EmptyLanguageContainer
     implements EmptyLanguage {
 
+    //region -------------------- Singleton usage --------------------
+
     static #instance?: EmptyLanguageContainer;
 
     private constructor() {
@@ -15,6 +17,7 @@ export class EmptyLanguageContainer
         return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     public get isUsed(): false {
         return false;

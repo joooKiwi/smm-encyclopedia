@@ -4,38 +4,40 @@ import type {EntityCategory}                                                    
 import type {EntityReferences}                                                    from '../properties/EntityReferences';
 import type {Name}                                                                from '../../lang/name/Name';
 
-import {GenericEntity} from './GenericEntity';
+import {EntityContainer} from './Entity.container';
 
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}.
  */
-export abstract class AbstractExclusiveSMM2Entity<T extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
-    extends GenericEntity<T>
-    implements AbstractExclusiveSMM2EntityInterface {
+export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, >
+    extends EntityContainer<CATEGORY, PROPERTY>
+    implements AbstractExclusiveSMM2EntityInterface<CATEGORY> {
 
-    protected constructor(name: Name, category: EntityCategory, property: T, references: EntityReferences,) {
-        super(name, category, validateProperty(property), references,);
+    protected constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
+        super(name, category, property, references,);
     }
 
-}
+    protected _testProperty(property: Property,): Property {
+        property = super._testProperty(property);
 
-function validateProperty<T extends AbstractExclusiveSMM2Property, >(property: Property): T {
-    if (property.isInSuperMarioMaker1)
-        throw new TypeError('The property isInSMM1 should always be set to false for a SMM2 exclusive property.');
-    if (!property.isInSuperMarioMaker2)
-        throw new TypeError('The property isInSMM2 should always be set to true for a SMM2 exclusive property.');
+        if (property.isInSuperMarioMaker1)
+            throw new TypeError('The property isInSMM1 should always be set to false for a SMM2 exclusive property.');
+        if (!property.isInSuperMarioMaker2)
+            throw new TypeError('The property isInSMM2 should always be set to true for a SMM2 exclusive property.');
 
-    if (property.isInSuperMario3DWorldStyle == null)
-        throw new TypeError('The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.');
+        if (property.isInSuperMario3DWorldStyle == null)
+            throw new TypeError('The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.');
 
-    if (property.isInGeneralLimitWhilePlaying == null)
-        throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
-    if (property.isInGlobalGeneralLimitWhilePlaying == null)
-        throw new TypeError('The property isInGlobalGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
-    if (property.isInPowerUpLimitWhilePlaying == null)
-        throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
-    if (property.isInProjectileLimitWhilePlaying == null && !property.isInProjectileLimitWhilePlayingUnknown)
-        throw new TypeError('The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.');
+        if (property.isInGeneralLimitWhilePlaying == null)
+            throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
+        if (property.isInGlobalGeneralLimitWhilePlaying == null)
+            throw new TypeError('The property isInGlobalGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
+        if (property.isInPowerUpLimitWhilePlaying == null)
+            throw new TypeError('The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.');
+        if (property.isInProjectileLimitWhilePlaying == null && !property.isInProjectileLimitWhilePlayingUnknown)
+            throw new TypeError('The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.');
 
-    return property as T;
+        return property;
+    }
+
 }

@@ -1,9 +1,15 @@
-import {PureComponent, ReactNode} from 'react';
+import type {ReactNode} from 'react';
+import {PureComponent}  from 'react';
 
+import type {ReactComponent}                             from '../../../util/react/ReactComponent';
 import type {SimpleTableProperties, SingleHeaderContent} from './Table.types';
 
+/**
+ * @reactComponent
+ */
 export default class Table
-    extends PureComponent<SimpleTableProperties> {
+    extends PureComponent<SimpleTableProperties>
+    implements ReactComponent<ReactNode> {
 
     protected get id() {
         return this.props.id;
@@ -50,7 +56,7 @@ export default class Table
         });
     }
 
-    public render(): ReactNode {
+    public render() {
         return <table key={this.id} id={this.id} className="table table-bordered table-striped">
             <caption>{this.caption}</caption>
             <thead>

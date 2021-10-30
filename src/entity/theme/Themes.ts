@@ -9,7 +9,7 @@ import type {ThemeReferences}                                                   
 import type {WorldTheme}                                                                                                                                         from './WorldTheme';
 
 import {Enum}        from '../../util/enum/Enum';
-import {ThemeLoader} from './ThemeLoader';
+import {ThemeLoader} from './Theme.loader';
 import {EmptyEntity} from '../simple/EmptyEntity';
 
 /**

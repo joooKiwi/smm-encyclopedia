@@ -1,8 +1,7 @@
-export interface GameProperty<SMM1 extends boolean = boolean, SMM2 extends boolean = boolean, > {
+import type {ClassInAnySuperMarioMakerGame} from '../ClassInAnySuperMarioMakerGame';
 
-    get isInSuperMarioMaker1(): SMM1
-
-    get isInSuperMarioMaker2(): SMM2
+export interface GameProperty<SMM1 extends boolean = boolean, SMM2 extends boolean = boolean, >
+    extends ClassInAnySuperMarioMakerGame<SMM1, SMM2> {
 
 }
 

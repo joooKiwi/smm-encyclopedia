@@ -1,12 +1,12 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                    from './name/containers/Language';
-import type {ClassWithEveryLanguages}                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages';
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                         from './LanguageEnumerable';
-import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                                                                                                                         from './ProjectLanguages.types';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                from './name/containers/Language';
+import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                          from '../entity/ClassInAnySuperMarioMakerGame';
+import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                               from './ClassWithEveryLanguages';
+import type {LanguageEnumerable}                                                                                                                                                                                     from './LanguageEnumerable';
+import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                     from './ProjectLanguages.types';
+import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
 
-import {Enum}                            from '../util/enum/Enum';
-import {EveryLanguages}                  from './EveryLanguages';
-import {CompleteClassWithEveryLanguages} from './ClassWithEveryLanguages';
+import {Enum}           from '../util/enum/Enum';
+import {EveryLanguages} from './EveryLanguages';
 
 /**
  * <p>
@@ -43,26 +43,27 @@ import {CompleteClassWithEveryLanguages} from './ClassWithEveryLanguages';
  */
 export class ProjectLanguages
     extends Enum<ProjectLanguagesOrdinals, ProjectLanguagesNames>
-    implements LanguageEnumerable {
+    implements LanguageEnumerable<PossibleProjectLanguagesAcronym, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName>,
+        ClassInAnySuperMarioMakerGame {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,   true, );
-    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,   true, );
-    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,    true, );
-    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,    true, );
-    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,             true, );
-    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,   true, );
-    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,   true, );
-    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,            true, );
-    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,              true, );
-    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE,false,);
-    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE,false,);
-    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,            true, );
-    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,           true, );
-    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE,true, );
-    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE, true, );
-    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,             true, );
+    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,    true,  true, );
+    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,    true,  true, );
+    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,     true,  true, );
+    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,     true,  true, );
+    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,              true,  true, );
+    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,    true,  true, );
+    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,    true,  true, );
+    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,             true,  true, );
+    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,               true,  true, );
+    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE, false, false,);
+    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE, true,  false,);
+    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,             true,  true, );
+    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,            true,  true, );
+    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE, false, true, );
+    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  false, true, );
+    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              false, true, );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -73,21 +74,25 @@ export class ProjectLanguages
     //region -------------------- Attributes --------------------
 
     readonly #language: EveryLanguages;
-    readonly #isASupportedLanguageInSMM: boolean;
+    readonly #isInSuperMarioMaker1: boolean;
+    readonly #isInSuperMarioMaker2: boolean;
+    #isInEverySuperMarioMakerGame?: boolean;
 
     //endregion -------------------- Attributes --------------------
 
     protected constructor(language: ProjectLanguages,)
     // @ts-ignore
-    private constructor(language: EveryLanguages, isASupportedLanguageInSMM: boolean,)
-    protected constructor(language: EveryLanguages | ProjectLanguages, isASupportedLanguageInSMM?: boolean,) {
+    private constructor(language: EveryLanguages, isASupportedLanguageInSMM1: boolean, isASupportedLanguageInSMM2: boolean,)
+    protected constructor(language: EveryLanguages | ProjectLanguages, isASupportedLanguageInSMM1?: boolean, isASupportedLanguageInSMM2?: boolean,) {
         super(ProjectLanguages);
         if (language instanceof ProjectLanguages) {
             this.#language = language.language;
-            this.#isASupportedLanguageInSMM = language.isASupportedLanguageInSMM;
+            this.#isInSuperMarioMaker1 = language.isInSuperMarioMaker1;
+            this.#isInSuperMarioMaker2 = language.isInSuperMarioMaker2;
         } else {
             this.#language = language;
-            this.#isASupportedLanguageInSMM = isASupportedLanguageInSMM as boolean;
+            this.#isInSuperMarioMaker1 = isASupportedLanguageInSMM1 as boolean;
+            this.#isInSuperMarioMaker2 = isASupportedLanguageInSMM2 as boolean;
         }
     }
 
@@ -101,20 +106,20 @@ export class ProjectLanguages
         return this.language.isACompleteLanguage;
     }
 
-    public get projectAcronym(): PossibleEveryLanguagesAcronym {
-        return this.language.projectAcronym;
+    public get projectAcronym(): PossibleProjectLanguagesAcronym {
+        return this.language.projectAcronym as PossibleProjectLanguagesAcronym;
     }
 
-    public get internationalAcronym(): PossibleEveryLanguagesInternationalAcronym {
-        return this.language.internationalAcronym;
+    public get internationalAcronym(): PossibleProjectLanguagesInternationalAcronym {
+        return this.language.internationalAcronym as PossibleProjectLanguagesInternationalAcronym;
     }
 
-    public get englishName(): PossibleEveryLanguagesEnglishName {
-        return this.language.englishName;
+    public get englishName(): PossibleProjectLanguagesEnglishName {
+        return this.language.englishName as PossibleProjectLanguagesEnglishName;
     }
 
-    public get originalName(): PossibleEveryLanguagesOriginalName {
-        return this.language.originalName;
+    public get originalName(): PossibleProjectLanguagesOriginalName {
+        return this.language.originalName as PossibleProjectLanguagesOriginalName;
     }
 
     public get isCurrentLanguage(): boolean {
@@ -125,8 +130,20 @@ export class ProjectLanguages
         return this.language.isCurrentLanguageOrAssociatedWithIt;
     }
 
-    public get isASupportedLanguageInSMM(): boolean {
-        return this.#isASupportedLanguageInSMM;
+    public get isDefaultLanguage(): boolean {
+        return this.language.isDefaultLanguage;
+    }
+
+    public get isInSuperMarioMaker1(): boolean {
+        return this.#isInSuperMarioMaker1;
+    }
+
+    public get isInSuperMarioMaker2(): boolean {
+        return this.#isInSuperMarioMaker2;
+    }
+
+    public get isInEverySuperMarioMakerGame(): boolean {
+        return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMaker2;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -195,8 +212,8 @@ export class ProjectLanguages
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.getValue(EveryLanguages.getValue(value))
-                    ?? null
+                ?? this.getValue(EveryLanguages.getValue(value))
+                ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
                     : value instanceof EveryLanguages

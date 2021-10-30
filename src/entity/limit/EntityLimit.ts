@@ -2,15 +2,15 @@ import type {EntityLimitAmount}                                                 
 import type {EntityLimitLink}                                                     from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                                                    from './EntityLimitTypes';
 import type {EveryLanguages}                                                      from '../../lang/EveryLanguages';
-import type {NameWithAName}                                                       from '../../lang/name/NameWithAName';
+import type {NameTrait}                                                           from '../../lang/name/NameTrait';
+import type {NameTraitFromAnAlternativeContainer}                                 from '../../lang/name/NameTraitFromAnAlternativeContainer';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits} from './EntityLimits.types';
 
 export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
-    extends NameWithAName,
-        EntityLimitAmount<LIMIT_AMOUNT['amount'], LIMIT_AMOUNT['isAmountUnknown'], LIMIT_AMOUNT['amountComment']>,
-        EntityLimitLink/*,
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
+    LINK extends EntityLimitLink = EntityLimitLink, >
+    extends NameTrait, NameTraitFromAnAlternativeContainer<AlternativeEntityLimit>/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
         ClassWithEnglishName<PossibleEntityLimits>*/ {
 
@@ -20,117 +20,56 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
 
     //region -------------------- Alternative entity limit --------------------
 
-    get alternativeContainer(): AlternativeEntityLimit
+    get alternativeAcronym(): this['alternativeContainer']['acronym']
 
-    get alternativeAcronym(): AlternativeEntityLimit['acronym']
-
-    //region -------------------- Name --------------------
-
-    get alternativeNameContainer(): AlternativeEntityLimit['nameContainer']
-
-
-    get alternativeLanguageValue(): AlternativeEntityLimit['languageValue']
-
-
-    get alternativeOriginalEnglish(): AlternativeEntityLimit['originalEnglish']
-
-    get alternativeEnglish(): AlternativeEntityLimit['english']
-
-    get alternativeAmericanEnglish(): AlternativeEntityLimit['americanEnglish']
-
-    get alternativeEuropeanEnglish(): AlternativeEntityLimit['europeanEnglish']
-
-
-    get alternativeOriginalFrench(): AlternativeEntityLimit['originalFrench']
-
-    get alternativeFrench(): AlternativeEntityLimit['french']
-
-    get alternativeCanadianFrench(): AlternativeEntityLimit['canadianFrench']
-
-    get alternativeEuropeanFrench(): AlternativeEntityLimit['europeanFrench']
-
-
-    get alternativeGerman(): AlternativeEntityLimit['german']
-
-
-    get alternativeOriginalSpanish(): AlternativeEntityLimit['originalSpanish']
-
-    get alternativeSpanish(): AlternativeEntityLimit['spanish']
-
-    get alternativeAmericanSpanish(): AlternativeEntityLimit['americanSpanish']
-
-    get alternativeEuropeanSpanish(): AlternativeEntityLimit['europeanSpanish']
-
-
-    get alternativeItalian(): AlternativeEntityLimit['italian']
-
-
-    get alternativeDutch(): AlternativeEntityLimit['dutch']
-
-
-    get alternativeIsPortugueseUsed(): AlternativeEntityLimit['isPortugueseUsed']
-
-    get alternativeOriginalPortuguese(): AlternativeEntityLimit['originalPortuguese']
-
-    get alternativePortuguese(): AlternativeEntityLimit['portuguese']
-
-    get alternativeAmericanPortuguese(): AlternativeEntityLimit['americanPortuguese']
-
-    get alternativeEuropeanPortuguese(): AlternativeEntityLimit['europeanPortuguese']
-
-
-    get alternativeRussian(): AlternativeEntityLimit['russian']
-
-
-    get alternativeJapanese(): AlternativeEntityLimit['japanese']
-
-
-    get alternativeOriginalChinese(): AlternativeEntityLimit['originalChinese']
-
-    get alternativeChinese(): AlternativeEntityLimit['chinese']
-
-    get alternativeTraditionalChinese(): AlternativeEntityLimit['traditionalChinese']
-
-    get alternativeSimplifiedChinese(): AlternativeEntityLimit['simplifiedChinese']
-
-
-    get alternativeKorean(): AlternativeEntityLimit['korean']
-
-
-    get alternativeOriginalLanguages(): AlternativeEntityLimit['originalLanguages']
-
-
-    //endregion -------------------- Name --------------------
     //region -------------------- Limit amount --------------------
 
-    get alternativeAmount(): AlternativeEntityLimit['amount']
+    get alternativeAmount(): this['alternativeContainer']['amount']
 
-    get alternativeIsAmountUnknown(): AlternativeEntityLimit['isAmountUnknown']
+    get alternativeIsAmountUnknown(): this['alternativeContainer']['isAmountUnknown']
 
-    get alternativeAmountComment(): AlternativeEntityLimit['amountComment']
+    get alternativeAmountComment(): this['alternativeContainer']['amountComment']
 
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Link --------------------
 
-    get alternativeLinkContainer(): AlternativeEntityLimit['linkContainer']
+    get alternativeLinkContainer(): this['alternativeContainer']['linkContainer']
 
 
-    get alternativeGroupName(): AlternativeEntityLimit['groupName']
+    get alternativeGroupLink(): this['alternativeLinkContainer']['group']
 
 
-    get alternativeEntityName(): AlternativeEntityLimit['entityName']
+    get alternativeEntityLink(): this['alternativeLinkContainer']['entity']
 
     //endregion -------------------- Link --------------------
 
     toAlternativeNameMap(): ReadonlyMap<EveryLanguages, string>
 
     //endregion -------------------- Alternative entity limit --------------------
+    //region -------------------- Limit amount --------------------
 
     get limitContainer(): LIMIT_AMOUNT
 
-    get linkContainer(): EntityLimitLink
+    get amount(): this['limitContainer']['value']
+
+    get isAmountUnknown(): this['limitContainer']['isUnknown']
+
+    get amountComment(): this['limitContainer']['comment']
+
+    //endregion -------------------- Limit amount --------------------
+    //region -------------------- Link --------------------
+
+    get linkContainer(): LINK
+
+
+    get groupLink(): this['linkContainer']['group']
+
+
+    get entityLink(): this['linkContainer']['entity']
+
+    //endregion -------------------- Link --------------------
 
 }
 
 export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronymEntityLimits | null>;
-export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronymEntityLimits | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer']>;
+export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronymEntityLimits | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer'], EntityLimitWithPossibleAlternativeEntityLimit['linkContainer']>;

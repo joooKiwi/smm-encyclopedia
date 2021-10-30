@@ -1,16 +1,15 @@
 import type {CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './limit/LimitProperty.types';
 import type {GameProperty}                                                                                                  from './GameProperty';
 import type {GameStyleProperty}                                                                                             from './GameStyleProperty';
-import type {Property}                                                                                                      from './Property';
-import type {LimitProperty}                                                                                                 from './limit/LimitProperty';
+import type {PossibleLimitProperty, Property}                                                                               from './Property';
 import type {ThemeProperty}                                                                                                 from './ThemeProperty';
 import type {TimeProperty}                                                                                                  from './TimeProperty';
 
-import {GamePropertyContainer}      from './GamePropertyContainer';
-import {GameStylePropertyContainer} from './GameStylePropertyContainer';
-import {ThemePropertyContainer}     from './ThemePropertyContainer';
-import {TimePropertyContainer}      from './TimePropertyContainer';
-import {LimitPropertyContainer}     from './limit/LimitPropertyContainer';
+import {GamePropertyContainer}      from './GameProperty.container';
+import {GameStylePropertyContainer} from './GameStyleProperty.container';
+import {ThemePropertyContainer}     from './ThemeProperty.container';
+import {TimePropertyContainer}      from './TimeProperty.container';
+import {LimitPropertyContainer}     from './limit/LimitProperty.container';
 
 export class PropertyContainer
     implements Property {
@@ -21,7 +20,7 @@ export class PropertyContainer
     readonly #gameStyleContainer: GameStyleProperty;
     readonly #themeContainer: ThemeProperty;
     readonly #timeContainer: TimeProperty;
-    readonly #limitContainer: LimitProperty;
+    readonly #limitContainer: PossibleLimitProperty;
 
     //endregion -------------------- Attributes --------------------
 
@@ -34,7 +33,7 @@ export class PropertyContainer
         this.#gameStyleContainer = GameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
         this.#themeContainer = ThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
         this.#timeContainer = TimePropertyContainer.get(isInDayTheme, isInNightTheme,);
-        this.#limitContainer = LimitPropertyContainer.get(editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,);
+        this.#limitContainer = LimitPropertyContainer.get(editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,) as PossibleLimitProperty;
     }
 
     //region -------------------- Game properties --------------------

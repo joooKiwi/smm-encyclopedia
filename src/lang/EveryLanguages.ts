@@ -1,4 +1,5 @@
-import i18n from 'i18next';
+import type {Dispatch, SetStateAction} from 'react';
+import i18n                            from 'i18next';
 
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                      from './ClassWithEveryLanguages';
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                   from './name/containers/Language';
@@ -9,7 +10,7 @@ import {Enum} from '../util/enum/Enum';
 
 export abstract class EveryLanguages
     extends Enum<EveryLanguagesOrdinals, EveryLanguagesNames>
-    implements LanguageEnumerable {
+    implements LanguageEnumerable<PossibleEveryLanguagesAcronym, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesOriginalName>  {
 
     //region -------------------- Enum instances --------------------
 
@@ -17,6 +18,10 @@ export abstract class EveryLanguages
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
+        }
+
+        public get isDefaultLanguage(): boolean {
+            return EveryLanguages.AMERICAN_ENGLISH.isDefaultLanguage || EveryLanguages.EUROPEAN_ENGLISH.isDefaultLanguage;
         }
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['english'] {
@@ -66,6 +71,10 @@ export abstract class EveryLanguages
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
+        }
+
+        public get isDefaultLanguage(): boolean {
+            return EveryLanguages.CANADIAN_FRENCH.isDefaultLanguage || EveryLanguages.EUROPEAN_FRENCH.isDefaultLanguage;
         }
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T): T['french'] {
@@ -124,6 +133,10 @@ export abstract class EveryLanguages
             return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage;
         }
 
+        public get isDefaultLanguage(): boolean {
+            return EveryLanguages.AMERICAN_SPANISH.isDefaultLanguage || EveryLanguages.EUROPEAN_SPANISH.isDefaultLanguage;
+        }
+
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['spanish'] {
             return classWithEveryLanguages.spanish;
         }
@@ -173,6 +186,10 @@ export abstract class EveryLanguages
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
+        }
+
+        public get isDefaultLanguage(): boolean {
+            return EveryLanguages.AMERICAN_PORTUGUESE.isDefaultLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isDefaultLanguage;
         }
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['portuguese'] {
@@ -226,6 +243,10 @@ export abstract class EveryLanguages
             return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
         }
 
+        public get isDefaultLanguage(): boolean {
+            return EveryLanguages.TRADITIONAL_CHINESE.isDefaultLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isDefaultLanguage;
+        }
+
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['chinese'] {
             return classWithEveryLanguages.chinese;
         }
@@ -265,6 +286,14 @@ export abstract class EveryLanguages
 
     }            (false, 'ko',    'ko',    'Korean',               '한국어',                                         );
 
+    public static readonly GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
+
+        protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['greek'] {
+            return classWithEveryLanguages.greek;
+        }
+
+    }             (false, 'el',    'el',    'Greek',                'ελληνικά',                                      );
+
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
@@ -276,6 +305,7 @@ export abstract class EveryLanguages
 
     static #CURRENT_LANGUAGE: EveryLanguages;
     public static readonly UNKNOWN_STRING = '???';
+    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleProjectLanguagesInternationalAcronym>> | null = null;
 
     readonly #isACompleteLanguage: boolean;
     readonly #projectAcronym: PossibleEveryLanguagesAcronym;
@@ -333,6 +363,10 @@ export abstract class EveryLanguages
         return this.isCurrentLanguage;
     }
 
+    public get isDefaultLanguage():boolean{
+        return this === EveryLanguages.default;
+    }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
@@ -372,8 +406,12 @@ export abstract class EveryLanguages
 
     public static setCurrentLanguage(value: | EveryLanguages | string | number,): typeof EveryLanguages {
         let selectedLanguage = this.getValue(value);
-        if (selectedLanguage !== null)
-            i18n.changeLanguage((this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML()).projectAcronym);
+        if (selectedLanguage == null || selectedLanguage.isCurrentLanguage)
+            return this;
+
+        const currentLanguage = (this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML());
+        i18n.changeLanguage(currentLanguage.projectAcronym);
+        this.INTERNATIONALISATION_SET_CURRENT_LANGUAGE?.(currentLanguage.internationalAcronym as PossibleProjectLanguagesInternationalAcronym);
         return this;
     }
 
@@ -390,8 +428,10 @@ export abstract class EveryLanguages
 
     public static setDefault(value: | EveryLanguages | string | number,): typeof EveryLanguages {
         const selectedValue = this.getValue(value);
-        if(selectedValue != null)
-            this.#DEFAULT = selectedValue;
+        if (selectedValue == null || selectedValue.isDefaultLanguage)
+            return this;
+
+        this.#DEFAULT = selectedValue;
         return this;
     }
 
@@ -409,8 +449,8 @@ export abstract class EveryLanguages
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
-                    ?? null
+                ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
+                ?? null
                 : typeof value == 'number'
                     ? this.values[value] ?? null
                     : value ?? null;
@@ -429,6 +469,7 @@ export abstract class EveryLanguages
             this.JAPANESE,
             this.CHINESE, this.TRADITIONAL_CHINESE, this.SIMPLIFIED_CHINESE,
             this.KOREAN,
+            this.GREEK,
         ];
     }
 

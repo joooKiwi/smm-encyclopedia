@@ -1,10 +1,18 @@
-import React, {Component} from 'react';
+import './AbstractApp.scss';
+
+import {Component} from 'react';
+
+import type {ReactComponent} from '../util/react/ReactComponent';
 
 import Navigation from '../navigation/Navigation';
 import Footer     from '../navigation/Footer';
 
+/**
+ * @reactComponent
+ */
 export default abstract class AbstractApp<T = {}>
-    extends Component<T> {
+    extends Component<T>
+    implements ReactComponent {
 
 
     protected abstract _mainContent(): JSX.Element;

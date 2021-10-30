@@ -1,28 +1,15 @@
-import type {BooleanGameTemplate} from '../game/Game.template';
-import type {SMM2NameTemplate}    from '../lang/SMM2Name.template';
+import type {SimpleGameTemplate}       from '../game/SimpleGame.template';
+import type {SMM2NameTemplate}         from '../lang/SMM2Name.template';
+import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
 
 /**
  * @template
  */
-export interface GameStyleTemplate {
+export interface GameStyleTemplate
+    extends TemplateWithNameTemplate<SMM2NameTemplate> {
 
     isIn: {
-        game: BooleanGameTemplate
+        game: SimpleGameTemplate
     }
-    name: SMM2NameTemplate
-
-}
-
-export interface BooleanGameStyleTemplate {
-
-    superMarioBros: boolean
-
-    superMarioBros3: boolean
-
-    superMarioWorld: boolean
-
-    newSuperMarioBrosU: boolean
-
-    superMario3DWorld: | boolean | null
 
 }

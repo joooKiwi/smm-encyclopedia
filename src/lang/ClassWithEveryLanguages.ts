@@ -20,8 +20,9 @@ export interface ClassWithEveryLanguages<GERMAN extends | string | null = | stri
     RUSSIAN extends | string | null = | string | null,
     JAPANESE extends | string | null = | string | null,
     ORIGINAL_CHINESE extends | ChineseOriginal | null = | ChineseOriginal | null, CHINESE extends | string | null = | string | null, TRADITIONAL_CHINESE extends | string | null = | string | null, SIMPLIFIED_CHINESE extends | string | null = | string | null,
-    KOREAN extends | string | null = | string | null, >
-    extends ClassWithOnlyProjectLanguages<GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN> {
+    KOREAN extends | string | null = | string | null,
+    GREEK extends | string | null = | string | null,>
+    extends ClassWithOnlyProjectLanguages<GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, GREEK> {
 
     //region -------------------- English properties --------------------
 
@@ -78,6 +79,7 @@ export type CompleteClassWithEveryLanguages = ClassWithEveryLanguages<string,
     string,
     string,
     ChineseOriginal, string, string, string,
-    string>;
+    string,
+    | string | null>;
 
 export type AnyClassWithEveryLanguages = | ClassWithEveryLanguages | CompleteClassWithEveryLanguages;

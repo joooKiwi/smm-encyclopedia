@@ -1,4 +1,6 @@
-import type {Entity}          from './Entity';
+import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/ClassWithNullObjectPattern';
+import type {Entity}                                      from './Entity';
+
 import {EmptyEntityReference} from '../properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
 import {EmptyIsInProperty}    from '../properties/EmptyIsInProperty';
@@ -8,21 +10,23 @@ import {EmptyName}            from '../../lang/name/EmptyName';
  * An empty entity with the default values of nothing
  *
  * @note A value that is equivalent to nothing can be false, null and itself
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyEntity
-    implements Entity {
+    implements Entity, ClassWithNullObjectPattern<EmptyEntityName> {
 
-    static readonly #instance = new EmptyEntity();
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: EmptyEntity;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 
@@ -51,7 +55,6 @@ export class EmptyEntity
 
     public readonly dutch = this.nameContainer.dutch;
 
-    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed;
     public readonly originalPortuguese = this.nameContainer.originalPortuguese;
     public readonly portuguese = this.nameContainer.portuguese;
     public readonly americanPortuguese = this.nameContainer.americanPortuguese;
@@ -67,6 +70,9 @@ export class EmptyEntity
     public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
 
     public readonly korean = this.nameContainer.korean;
+
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
 
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
@@ -101,11 +107,12 @@ export class EmptyEntity
 
     public readonly categoryDutch = this.categoryName.dutch;
 
-    public readonly categoryIsPortugueseUsed = this.categoryName.isPortugueseUsed;
     public readonly categoryOriginalPortuguese = this.categoryName.originalPortuguese;
     public readonly categoryPortuguese = this.categoryName.portuguese;
     public readonly categoryAmericanPortuguese = this.categoryName.americanPortuguese;
     public readonly categoryEuropeanPortuguese = this.categoryName.europeanPortuguese;
+
+    public readonly categoryRussian = this.categoryName.russian;
 
     public readonly categoryJapanese = this.categoryName.japanese;
 
@@ -116,7 +123,10 @@ export class EmptyEntity
 
     public readonly categoryKorean = this.categoryName.korean;
 
-    public readonly categoryRussian = this.categoryName.russian;
+    public readonly categoryIsGreekUsed = this.categoryName.isGreekUsed;
+    public readonly categoryGreek = this.categoryName.greek;
+
+    public readonly categoryOriginalLanguages = this.categoryName.originalLanguages;
 
     //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
@@ -301,7 +311,7 @@ export class EmptyEntity
         return this.nameContainer.toNameMap();
     }
 
-    public toString(): 'Empty entity' {
+    public toString(): EmptyEntityName {
         return 'Empty entity';
     }
 

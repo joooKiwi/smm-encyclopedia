@@ -1,9 +1,9 @@
-import type {Entity}        from '../simple/Entity';
-import type {GameProperty}  from '../properties/GameProperty';
-import type {NameWithAName} from '../../lang/name/NameWithAName';
+import type {Entity}       from '../simple/Entity';
+import type {GameProperty} from '../properties/GameProperty';
+import type {NameTrait}    from '../../lang/name/NameTrait';
 
 export interface GameStyle
-    extends NameWithAName, GameProperty/*,
+    extends NameTrait, GameProperty/*,
         ClassWithAcronym<PossibleGameStyleAcronym>,
         ClassWithEnglishName<PossibleGameStyleName>,*/ {
 

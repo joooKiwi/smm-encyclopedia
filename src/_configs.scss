@@ -1,0 +1,13 @@
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+
+:root {
+
+  --bs-spacer-xs: #{map-get($spacers, 0)};
+  --bs-spacer-sm: #{map-get($spacers, 1)};
+  --bs-spacer-md: #{map-get($spacers, 2)};
+  --bs-spacer-lg: #{map-get($spacers, 3)};
+  --bs-spacer-xl: #{map-get($spacers, 4)};
+  --bs-spacer-xxl: #{map-get($spacers, 5)};
+
+}

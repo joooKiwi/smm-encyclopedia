@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 
 import type {OffcanvasConfiguration}                          from './Offcanvas.types';
-import type {ReactElement, ReactPropertyWithOptionalChildren} from '../../util/ReactProperty';
+import type {ReactElement, ReactPropertyWithOptionalChildren} from '../../util/react/ReactProperty';
 
 import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables';
 import {OffcanvasInstance}   from './OffcanvasInstance';

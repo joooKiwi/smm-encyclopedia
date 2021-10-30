@@ -1,11 +1,14 @@
-import type {SMM2NameTemplate, SMM2NameTemplateWithPortuguese} from './SMM2Name.template';
+import type {PossibleSMM2NameTemplate} from './SMM2Name.template';
 
 /**
- * A class made to help the {@link SMM2NameTemplateWithPortuguese}.
+ * A class made to help the {@link PossibleSMM2NameTemplate names templates}.
  */
 export class NameCreator {
 
-    private static __testName(name: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese,): void {
+    private static __testName<N extends PossibleSMM2NameTemplate, >(name: N,): N {
+        if (window.IS_IN_PRODUCTION)
+            return name;
+
         //README since some references are still not complete, they are in comment
         if (name.english.simple == null && (name.english.american == null || name.english.european == null))
             throw new ReferenceError(`The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`);
@@ -17,6 +20,19 @@ export class NameCreator {
         //     throw new ReferenceError(`The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`);
         // if (name.chinese.simple == null && (name.chinese.traditional == null || name.chinese.simplified == null))
         //     throw new ReferenceError(`The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "traditional"("${name.chinese.traditional}") and "simplified"("${name.chinese.simplified}") name separated.`);
+        return name;
+    }
+
+    private static __getEnglishName<N extends PossibleSMM2NameTemplate, T, >(name: N, templateMap: Map<string, T>,): string {
+        const englishReferenceName = name.english.simple ?? name.english.american;
+        if (window.IS_IN_PRODUCTION)
+            return englishReferenceName!;
+
+        if (englishReferenceName == null)
+            throw new ReferenceError('No english name can be null since they are used as a key for the references.');
+        if (templateMap.has(englishReferenceName))
+            throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
+        return englishReferenceName;
     }
 
     /**
@@ -35,14 +51,8 @@ export class NameCreator {
      * @param templateMap the template map reference
      * @param template the template to add to the map
      */
-    public static addEnglishReference<T>(name: | SMM2NameTemplate | SMM2NameTemplateWithPortuguese, templateMap: Map<string, T>, template: T,): void {
-        this.__testName(name);
-        const englishReferenceName = name.english.simple ?? name.english.american;
-        if (englishReferenceName == null)
-            throw new ReferenceError('No english name can be null since they are used as a key for the references.');
-        if (templateMap.get(englishReferenceName) !== undefined)
-            throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
-        templateMap.set(englishReferenceName, template,);
+    public static addEnglishReference<N extends PossibleSMM2NameTemplate, T>(name: N, templateMap: Map<string, T>, template: T,): void {
+        templateMap.set(this.__getEnglishName(this.__testName(name), templateMap,), template,);
     }
 
 }

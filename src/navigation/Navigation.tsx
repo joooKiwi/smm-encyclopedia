@@ -1,16 +1,19 @@
 import {Link} from 'react-router-dom';
-import React  from 'react';
 
 import ChangeTheLanguageTab        from './ChangeTheLanguageTab';
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import DisplayTab                  from './DisplayTab';
-import {ProjectLanguages}          from '../lang/ProjectLanguages';
+import {route}                     from '../routes/route';
 
+/**
+ *
+ * @reactComponent
+ */
 export default function Navigation() {
     return <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container-fluid">
             <ContentTranslationComponent>{translation =>
-                <Link key="navigationHome" className="navbar-brand" aria-current="page" to={`/${ProjectLanguages.currentLanguage.projectAcronym}/home`}>
+                <Link key="navigationHome" className="navbar-brand" aria-current="page" to={route('home')}>
                     {translation('Home')}
                 </Link>
             }</ContentTranslationComponent>

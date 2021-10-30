@@ -1,32 +1,37 @@
-import './EveryGameStylesApp.scss';
-
-import React from 'react';
-
-import type {SingleTableContent} from './tools/table/Table.types';
+import type {PossibleGameStyleName} from '../entity/gameStyle/GameStyles.types';
+import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {GameStyle}                     from '../entity/gameStyle/GameStyle';
-import {GameStyleLoader}               from '../entity/gameStyle/GameStyleLoader';
+import {GameStyleLoader}               from '../entity/gameStyle/GameStyle.loader';
 import {GameStyles}                    from '../entity/gameStyle/GameStyles';
 import {Games}                         from '../entity/game/Games';
 import Table                           from './tools/table/Table';
-import SMM2NameComponent               from '../entity/lang/SMM2NameComponent';
-import YesOrNoResultContainer          from './tools/text/YesOrNoResultContainer';
+import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
+import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
+/**
+ * @reactComponent
+ */
 export default class EveryGameStylesApp
     extends AbstractApp {
 
-    #themes?: Map<string, GameStyle>;
+    //region -------------------- Attributes & getter methods --------------------
+
+    #map?: ReadonlyMap<PossibleGameStyleName, GameStyle>;
 
     protected get map() {
-        return this.#themes ??= GameStyleLoader.get.load();
+        return this.#map ??= GameStyleLoader.get.load();
     }
 
     protected get enum() {
         return GameStyles.values;
     }
+
+    //endregion -------------------- Attributes & getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -36,15 +41,17 @@ export default class EveryGameStylesApp
                 <>{index}</>,
                 <img src={this.enum[index - 1].largeImagePath} alt={englishName}/>,
                 <SMM2NameComponent id="theme_name" name={gameStyle} popoverOrientation="left"/>,
-                <YesOrNoResultContainer boolean={gameStyle.isInSuperMarioMaker1}/>,
-                <YesOrNoResultContainer boolean={gameStyle.isInSuperMarioMaker2}/>,
+                <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
+                <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
             ]);
             index++;
         }
         return content;
     }
 
-    protected _mainContent(): JSX.Element {
+    //endregion -------------------- Methods --------------------
+
+    protected _mainContent() {
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table
@@ -53,7 +60,7 @@ export default class EveryGameStylesApp
             headers={[
                 '#',
                 {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
-                {key: 'language', element: <ContentTranslationComponent translationKey="Language"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                 {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                 {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
             ]}

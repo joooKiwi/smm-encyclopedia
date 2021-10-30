@@ -1,25 +1,28 @@
-import type {CourseTheme} from './CourseTheme';
+import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/ClassWithNullObjectPattern';
+import type {CourseTheme}                                      from './CourseTheme';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
 import {EmptyName}              from '../../lang/name/EmptyName';
 
 /**
- * @nullObjectPattern
  * @singleton
  */
 export class EmptyCourseTheme
-    implements CourseTheme {
+    implements CourseTheme, ClassWithNullObjectPattern<EmptyCourseThemeName> {
 
-    static readonly #instance = new EmptyCourseTheme();
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: EmptyCourseTheme;
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance;
+        return this.#instance ??= new this();
     }
 
+    //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Name properties --------------------
 
@@ -48,7 +51,6 @@ export class EmptyCourseTheme
 
     public readonly dutch = this.nameContainer.dutch;
 
-    public readonly isPortugueseUsed = this.nameContainer.isPortugueseUsed;
     public readonly originalPortuguese = this.nameContainer.originalPortuguese;
     public readonly portuguese = this.nameContainer.portuguese;
     public readonly americanPortuguese = this.nameContainer.americanPortuguese;
@@ -65,6 +67,9 @@ export class EmptyCourseTheme
 
     public readonly korean = this.nameContainer.korean;
 
+    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
+    public readonly greek = this.nameContainer.greek;
+
     public readonly originalLanguages = this.nameContainer.originalLanguages;
 
     //endregion -------------------- Name properties --------------------
@@ -78,12 +83,13 @@ export class EmptyCourseTheme
     //endregion -------------------- Game properties --------------------
 
     public readonly entities = EMPTY_ARRAY;
+    public readonly effect = null;
 
     public toNameMap() {
         return EMPTY_MAP;
     }
 
-    public toString(): 'Empty course theme' {
+    public toString(): EmptyCourseThemeName {
         return 'Empty course theme';
     }
 
