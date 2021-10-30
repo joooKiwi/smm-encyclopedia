@@ -89,7 +89,7 @@ export default class Table
         //region -------------------- If headers has only 1 column, return normal headers --------------------
 
         const headersLength = headers.length;
-        if (headersLength == 1)
+        if (headersLength === 1)
             return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__getSingleHeaderContent('foot', headerAsTh,))}</tr>);
 
         //endregion -------------------- If headers has only 1 column, return normal headers --------------------
