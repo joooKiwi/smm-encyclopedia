@@ -1,15 +1,9 @@
 import type {Tooltip as BootstrapTooltip} from 'bootstrap';
-import type {TooltipInstance}             from './TooltipInstance';
 
-export interface TooltipConfiguration {
+import type {TooltipInstance}        from './TooltipInstance';
+import type {BootstrapConfiguration} from '../Bootstrap.types';
 
-    elementId: string
-
-    option: Partial<BootstrapTooltip.Options>
-
-    on?: Partial<TooltipEvents>
-
-}
+export type TooltipConfiguration = BootstrapConfiguration<BootstrapTooltip.Options, TooltipEvents>;
 
 export interface TooltipEvents {
 
