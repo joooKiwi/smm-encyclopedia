@@ -57,11 +57,11 @@ export default class Table
         return typeof header === 'string' ? header : header.key;
     }
 
-    private static __getWidth(header: SingleHeaderContent,): | number | undefined {
+    private static __getHeaderWidth(header: SingleHeaderContent,): | number | undefined {
         return typeof header === 'string' || header.width == null ? undefined : header.width;
     }
 
-    private static __getHeight(header: SingleHeaderContent,): | number | undefined {
+    private static __getHeaderHeight(header: SingleHeaderContent,): | number | undefined {
         return typeof header === 'string' || header.height == null ? undefined : header.height;
     }
 
@@ -76,7 +76,7 @@ export default class Table
     private static __getSingleHeaderContent(headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
         const key = this.__getHeaderKey(header);
 
-        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getWidth(header)} rowSpan={this.__getHeight(header)}>{this.__getHeaderContent(header)}</th>;
+        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>{this.__getHeaderContent(header)}</th>;
     }
 
     private __getHeaders(isHead: boolean,) {
@@ -103,7 +103,7 @@ export default class Table
             const headerAsTr = headers[i];
             for (let j = 0; j < headerAsTr.length; j++) {
                 const headerAsTh = headerAsTr[j];
-                const height = Table.__getHeight(headerAsTh) ?? 1;
+                const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
                 const indexToAddHeader = height === 1 ? i : (i + height - 1);
 
                 reversedHeaders[indexToAddHeader].push(Table.__getSingleHeaderContent('foot', headerAsTh,));
