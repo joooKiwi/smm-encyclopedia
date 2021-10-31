@@ -8,11 +8,8 @@ export type GameContentCallback = (translation: TFunction<'gameContent'>,) => Tr
 export type EntityContentCallback = (translation: TFunction<'entityContent'>,) => TranslationReturnType;
 export type LanguageCallback = (translation: TFunction<'language'>,) => TranslationReturnType;
 
-export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends infer A ? A : never;
-/**
- * @fixme
- */
-export type SingleTranslationKeyThatReturnOnlyStringOnTranslationCallback<N extends Namespace, K extends SingleTranslationKey<N> = SingleTranslationKey<N>, > = K extends string ? K : never;
+
+export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends infer S ? S : never;
 
 interface _AnyTranslationProperty<N extends Namespace, > {
 
@@ -32,7 +29,7 @@ export interface AnyTranslationProperty<N extends Namespace, >
 
 export interface SimpleTranslationProperty<N extends Namespace, K extends SingleTranslationKey<N> = SingleTranslationKey<N>, > {
 
-    translationKey: SingleTranslationKeyThatReturnOnlyStringOnTranslationCallback<N, K>
+    translationKey: SingleTranslationKey<N>
 
 }
 
