@@ -85,9 +85,6 @@ export default class Table
             return EMPTY_REACT_ELEMENT;
 
         const placement = isHead ? 'bottom' : 'top';
-        if (typeof tooltip == 'string') {
-            return <Tooltip option={({title: tooltip, placement: placement,})} elementId={`${this.__getHeaderKey(header)}_${headOrFootKey}`}/>;
-        }
 
         return <AnyTranslationComponent namespace={tooltip.namespace}>{translation =>
             <Tooltip option={({title: translation(tooltip.translationKey) as string, placement: placement,})} elementId={`${this.__getHeaderKey(header)}_${headOrFootKey}`}/>}
@@ -97,8 +94,7 @@ export default class Table
     private static __createSingleHeaderContent(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
         const key = this.__getHeaderKey(header);
 
-        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`}
-                   colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>
+        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>
             {this.__createTooltip(isHead, headOrFootKey, header)}
             {this.__getHeaderContent(header)}
         </th>;
