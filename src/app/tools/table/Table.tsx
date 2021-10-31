@@ -1,17 +1,20 @@
-import type {ReactNode} from 'react';
-import {PureComponent}  from 'react';
+import {PureComponent} from 'react';
 
 import type {BootstrapColor}                                            from '../../../bootstrap/Bootstrap.types';
 import type {HeadersContent, SingleHeaderContent, SingleHeadersContent} from './SimpleHeader';
 import type {SimpleTableProperties}                                     from './Table.types';
 import type {ReactComponent}                                            from '../../../util/react/ReactComponent';
 
+import AnyTranslationComponent from '../../../lang/components/AnyTranslationComponent';
+import {EMPTY_REACT_ELEMENT}   from '../../../util/emptyReactVariables';
+import Tooltip                 from '../../../bootstrap/tooltip/Tooltip';
+
 /**
  * @reactComponent
  */
 export default class Table
     extends PureComponent<SimpleTableProperties>
-    implements ReactComponent<ReactNode> {
+    implements ReactComponent {
 
     //region -------------------- Attributes --------------------
 
@@ -57,11 +60,11 @@ export default class Table
         return typeof header === 'string' ? header : header.key;
     }
 
-    private static __getWidth(header: SingleHeaderContent,): | number | undefined {
+    private static __getHeaderWidth(header: SingleHeaderContent,): | number | undefined {
         return typeof header === 'string' || header.width == null ? undefined : header.width;
     }
 
-    private static __getHeight(header: SingleHeaderContent,): | number | undefined {
+    private static __getHeaderHeight(header: SingleHeaderContent,): | number | undefined {
         return typeof header === 'string' || header.height == null ? undefined : header.height;
     }
 
@@ -73,26 +76,44 @@ export default class Table
                 : <img key={header.key} alt={header.alt} src={header.path}/>;
     }
 
-    private static __getSingleHeaderContent(headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
-        const key = this.__getHeaderKey(header);
+    private static __createTooltip(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
+        if (typeof header == 'string')
+            return EMPTY_REACT_ELEMENT;
 
-        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getWidth(header)} rowSpan={this.__getHeight(header)}>{this.__getHeaderContent(header)}</th>;
+        const tooltip = header.tooltip;
+        if (tooltip == null)
+            return EMPTY_REACT_ELEMENT;
+
+        const placement = isHead ? 'bottom' : 'top';
+
+        return <AnyTranslationComponent namespace={tooltip.namespace}>{translation =>
+            <Tooltip option={({title: translation(tooltip.translationKey) as string, placement: placement,})} elementId={`${this.__getHeaderKey(header)}_${headOrFootKey}`}/>}
+        </AnyTranslationComponent>;
     }
 
-    private __getHeaders(isHead: boolean,) {
+    private static __createSingleHeaderContent(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
+        const key = this.__getHeaderKey(header);
+
+        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>
+            {this.__createTooltip(isHead, headOrFootKey, header)}
+            {this.__getHeaderContent(header)}
+        </th>;
+    }
+
+    private __createHeaders(isHead: boolean,) {
         const headers = this.headers;
 
         //region -------------------- If "isHead", return normal headers --------------------
 
         if (isHead)
-            return headers.map((headerAsTr, index,) => <tr key={`head-${index}`}>{headerAsTr.map(headerAsTh => Table.__getSingleHeaderContent('head', headerAsTh,))}</tr>);
+            return headers.map((headerAsTr, index,) => <tr key={`head-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent(isHead, 'head', headerAsTh,))}</tr>);
 
         //endregion -------------------- If "isHead", return normal headers --------------------
         //region -------------------- If headers has only 1 column, return normal headers --------------------
 
         const headersLength = headers.length;
         if (headersLength === 1)
-            return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__getSingleHeaderContent('foot', headerAsTh,))}</tr>);
+            return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent(isHead, 'foot', headerAsTh,))}</tr>);
 
         //endregion -------------------- If headers has only 1 column, return normal headers --------------------
         //region -------------------- Reverse the headers while remaining the order similar to the thead --------------------
@@ -103,10 +124,10 @@ export default class Table
             const headerAsTr = headers[i];
             for (let j = 0; j < headerAsTr.length; j++) {
                 const headerAsTh = headerAsTr[j];
-                const height = Table.__getHeight(headerAsTh) ?? 1;
+                const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
                 const indexToAddHeader = height === 1 ? i : (i + height - 1);
 
-                reversedHeaders[indexToAddHeader].push(Table.__getSingleHeaderContent('foot', headerAsTh,));
+                reversedHeaders[indexToAddHeader].push(Table.__createSingleHeaderContent(isHead, 'foot', headerAsTh,));
             }
         }
 
@@ -115,7 +136,7 @@ export default class Table
         //endregion -------------------- Reverse the headers while remaining the order similar to the thead --------------------
     }
 
-    private __getContent(): JSX.Element[] {
+    private __createContent(): JSX.Element[] {
         return this.content.map(content => {
             const key = content[0];
             return <tr key={key + '_header'}>
@@ -131,9 +152,9 @@ export default class Table
     public render() {
         return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
             <caption>{this.caption}</caption>
-            <thead className={`table-${this.headersColor} table-borderless`}>{this.__getHeaders(true)}</thead>
-            <tbody>{this.__getContent()}</tbody>
-            <tfoot className={`table-${this.headersColor} table-borderless`}>{this.__getHeaders(false)}</tfoot>
+            <thead className={`table-${this.headersColor} table-borderless`}>{this.__createHeaders(true)}</thead>
+            <tbody>{this.__createContent()}</tbody>
+            <tfoot className={`table-${this.headersColor} table-borderless`}>{this.__createHeaders(false)}</tfoot>
         </table>;
     }
 

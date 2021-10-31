@@ -1,3 +1,4 @@
+import type {Namespace, SimpleAnyTranslationProperty} from '../../../lang/components/TranslationProperty';
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader;
 export type SingleHeadersContent = readonly SingleHeaderContent[];
@@ -11,6 +12,8 @@ export interface SimpleHeader {
     width?: number
 
     height?: number
+
+    tooltip?: SimpleAnyTranslationProperty<Namespace>
 
 }
 
