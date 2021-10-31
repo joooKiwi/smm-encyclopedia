@@ -27,14 +27,14 @@ export interface AnyTranslationProperty<N extends Namespace, >
 }
 
 
-export interface SimpleTranslationProperty<N extends Namespace, K extends SingleTranslationKey<N> = SingleTranslationKey<N>, > {
+export interface SimpleTranslationProperty<N extends Namespace, > {
 
     translationKey: SingleTranslationKey<N>
 
 }
 
-export interface SimpleAnyTranslationProperty<N extends Namespace, K extends SingleTranslationKey<N> = SingleTranslationKey<N>, >
-    extends SimpleTranslationProperty<N, K>, _AnyTranslationProperty<N> {
+export interface SimpleAnyTranslationProperty<N extends Namespace, >
+    extends SimpleTranslationProperty<N>, _AnyTranslationProperty<N> {
 
 }
 
