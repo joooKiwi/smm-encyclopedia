@@ -1,6 +1,4 @@
-import type {Namespace} from 'react-i18next';
-
-import type {SimpleAnyTranslationProperty} from '../../../lang/components/TranslationProperty';
+import type {Namespace, SimpleAnyTranslationProperty} from '../../../lang/components/TranslationProperty';
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader;
 export type SingleHeadersContent = readonly SingleHeaderContent[];
