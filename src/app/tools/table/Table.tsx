@@ -1,17 +1,20 @@
-import type {ReactNode} from 'react';
-import {PureComponent}  from 'react';
+import {PureComponent} from 'react';
 
 import type {BootstrapColor}                                            from '../../../bootstrap/Bootstrap.types';
 import type {HeadersContent, SingleHeaderContent, SingleHeadersContent} from './SimpleHeader';
 import type {SimpleTableProperties}                                     from './Table.types';
 import type {ReactComponent}                                            from '../../../util/react/ReactComponent';
 
+import AnyTranslationComponent from '../../../lang/components/AnyTranslationComponent';
+import {EMPTY_REACT_ELEMENT}   from '../../../util/emptyReactVariables';
+import Tooltip                 from '../../../bootstrap/tooltip/Tooltip';
+
 /**
  * @reactComponent
  */
 export default class Table
     extends PureComponent<SimpleTableProperties>
-    implements ReactComponent<ReactNode> {
+    implements ReactComponent {
 
     //region -------------------- Attributes --------------------
 
@@ -73,10 +76,32 @@ export default class Table
                 : <img key={header.key} alt={header.alt} src={header.path}/>;
     }
 
-    private static __createSingleHeaderContent(headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
+    private static __createTooltip(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
+        if (typeof header == 'string')
+            return EMPTY_REACT_ELEMENT;
+
+        const tooltip = header.tooltip;
+        if (tooltip == null)
+            return EMPTY_REACT_ELEMENT;
+
+        const placement = isHead ? 'bottom' : 'top';
+        if (typeof tooltip == 'string') {
+            return <Tooltip option={({title: tooltip, placement: placement,})} elementId={`${this.__getHeaderKey(header)}_${headOrFootKey}`}/>;
+        }
+
+        return <AnyTranslationComponent namespace={tooltip.namespace}>{translation =>
+            <Tooltip option={({title: translation(tooltip.translationKey) as string, placement: placement,})} elementId={`${this.__getHeaderKey(header)}_${headOrFootKey}`}/>}
+        </AnyTranslationComponent>;
+    }
+
+    private static __createSingleHeaderContent(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
         const key = this.__getHeaderKey(header);
 
-        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>{this.__getHeaderContent(header)}</th>;
+        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`}
+                   colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>
+            {this.__createTooltip(isHead, headOrFootKey, header)}
+            {this.__getHeaderContent(header)}
+        </th>;
     }
 
     private __createHeaders(isHead: boolean,) {
@@ -85,14 +110,14 @@ export default class Table
         //region -------------------- If "isHead", return normal headers --------------------
 
         if (isHead)
-            return headers.map((headerAsTr, index,) => <tr key={`head-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent('head', headerAsTh,))}</tr>);
+            return headers.map((headerAsTr, index,) => <tr key={`head-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent(isHead, 'head', headerAsTh,))}</tr>);
 
         //endregion -------------------- If "isHead", return normal headers --------------------
         //region -------------------- If headers has only 1 column, return normal headers --------------------
 
         const headersLength = headers.length;
         if (headersLength === 1)
-            return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent('foot', headerAsTh,))}</tr>);
+            return headers.map((headerAsTr, index,) => <tr key={`foot-${index}`}>{headerAsTr.map(headerAsTh => Table.__createSingleHeaderContent(isHead, 'foot', headerAsTh,))}</tr>);
 
         //endregion -------------------- If headers has only 1 column, return normal headers --------------------
         //region -------------------- Reverse the headers while remaining the order similar to the thead --------------------
@@ -106,7 +131,7 @@ export default class Table
                 const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
                 const indexToAddHeader = height === 1 ? i : (i + height - 1);
 
-                reversedHeaders[indexToAddHeader].push(Table.__createSingleHeaderContent('foot', headerAsTh,));
+                reversedHeaders[indexToAddHeader].push(Table.__createSingleHeaderContent(isHead, 'foot', headerAsTh,));
             }
         }
 

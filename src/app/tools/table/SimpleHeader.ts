@@ -1,8 +1,12 @@
+import type {Namespace} from 'react-i18next';
+
+import type {TooltipOnHeader} from './TooltipOnHeader';
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader;
 export type SingleHeadersContent = readonly SingleHeaderContent[];
 export type HeadersContent = readonly SingleHeadersContent[];
 export type PossibleHeaderContent = | SingleHeadersContent | HeadersContent;
+export type PossibleTooltipHeaderContent = | string | TooltipOnHeader<Namespace>;
 
 export interface SimpleHeader {
 
@@ -11,6 +15,8 @@ export interface SimpleHeader {
     width?: number
 
     height?: number
+
+    tooltip?: PossibleTooltipHeaderContent
 
 }
 
