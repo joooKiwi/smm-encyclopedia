@@ -1,7 +1,6 @@
-import type {Namespace} from 'react-i18next';
 import {useTranslation} from 'react-i18next';
 
-import type {PossibleAnyTranslationPropertyReceived} from './TranslationProperty';
+import type {Namespace, PossibleAnyTranslationPropertyReceived} from './TranslationProperty';
 
 /**
  *

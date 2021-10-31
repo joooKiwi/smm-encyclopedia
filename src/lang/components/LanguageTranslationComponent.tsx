@@ -1,4 +1,4 @@
-import type {PossibleTranslationPropertyReceived} from './TranslationProperty';
+import type {LanguageNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty';
 
 import AnyTranslationComponent from './AnyTranslationComponent';
 
@@ -7,6 +7,6 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  * @param properties
  * @reactComponent
  */
-export default function LanguageTranslationComponent(properties: PossibleTranslationPropertyReceived<'language'>,) {
+export default function LanguageTranslationComponent(properties: PossibleTranslationPropertyReceived<LanguageNamespace>,) {
     return <AnyTranslationComponent namespace="language" {...properties}/>;
 }

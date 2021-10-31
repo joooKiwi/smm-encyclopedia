@@ -239,7 +239,7 @@ i18n
             zh_T: ['zh'],
             default: ['en'],
         },
-        ns: ['content', 'language'],
+        ns: ['language', 'content', 'gameContent', 'entityContent',],
         resources,
         debug: true,
 

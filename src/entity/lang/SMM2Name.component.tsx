@@ -2,8 +2,9 @@ import type {TFunction} from 'react-i18next';
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import type {Name}          from '../../lang/name/Name';
-import type {ReactProperty} from '../../util/react/ReactProperty';
+import type {Name}                                from '../../lang/name/Name';
+import type {ReactProperty}                       from '../../util/react/ReactProperty';
+import type {ContentNamespace, LanguageNamespace} from '../../lang/components/TranslationProperty';
 
 import {EveryLanguages} from '../../lang/EveryLanguages';
 import SpanPopover      from '../../bootstrap/popover/SpanPopover';
@@ -41,7 +42,7 @@ export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2N
     </SpanPopover>;
 }
 
-function createContent(elementId: string, name: Name, languageTranslation: TFunction<'language'>,): string {
+function createContent(elementId: string, name: Name, languageTranslation: TFunction<LanguageNamespace>,): string {
     const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
 
 
@@ -56,7 +57,7 @@ function createContent(elementId: string, name: Name, languageTranslation: TFunc
     return content;
 }
 
-function createOption(content: string, popoverOrientation: | PopoverOrientation | undefined, contentTranslation: TFunction<'content'>,): Partial<Popover.Options> {
+function createOption(content: string, popoverOrientation: | PopoverOrientation | undefined, contentTranslation: TFunction<ContentNamespace>,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: contentTranslation('In other languages'),
         content: content,
