@@ -11,6 +11,7 @@ import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextConta
 import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';
 import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 
 /**
  * @reactComponent
@@ -69,12 +70,17 @@ export default class EveryLimitsApp
             id="entityLimit_table"
             caption={<GameContentTranslationComponent translationKey="Every entity limits"/>}
             headers={[
-                '#',
-                {key: 'acronym', element: <ContentTranslationComponent translationKey="Acronym(s)"/>,},
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {key: 'alternativeName', element: <ContentTranslationComponent translationKey="Alternative name"/>,},
-                {key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>,},
-                {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,},
+                [
+                    {key: 'originalOrder', height: 2, element: <>#</>,},
+                    {key: 'acronym', height: 2, element: <ContentTranslationComponent translationKey="Acronym(s)"/>,},
+                    {key: 'names', width: 2, element: <ContentTranslationComponent translationKey="Name"/>,},
+                    {key: 'limit', height: 2, element: <ContentTranslationComponent translationKey="Limit"/>,},
+                    {key: 'type', height: 2, element: <ContentTranslationComponent translationKey="Type"/>,},
+                ],
+                [
+                    {key: 'name', element: EMPTY_REACT_ELEMENT,},
+                    {key: 'alternativeName', element: <ContentTranslationComponent translationKey="Alternative name"/>,},
+                ]
             ]}
             content={this.content}/>;
     }
