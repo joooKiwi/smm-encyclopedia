@@ -118,20 +118,59 @@ export default class Table
         //endregion -------------------- If headers has only 1 column, return normal headers --------------------
         //region -------------------- Reverse the headers while remaining the order similar to the thead --------------------
 
-        const reversedHeaders: JSX.Element[][] = headers.map(() => []);
+        const elementsMap: Map<string, JSX.Element> = new Map(headers.map(headerAsTr => headerAsTr.map(headerAsTh => [Table.__getHeaderKey(headerAsTh), Table.__createSingleHeaderContent(isHead, 'foot', headerAsTh,),] as const)).flat(1));
+
+        const alreadyAddedKeysOnLayout: string[] = [];
+        const layout: string[][] = headers.map(() => []);
 
         for (let i = 0; i < headersLength; i++) {
             const headerAsTr = headers[i];
-            for (let j = 0; j < headerAsTr.length; j++) {
+            const headerAsTrLength = headerAsTr.length;
+
+            for (let j = 0; j < headerAsTrLength; j++) {
                 const headerAsTh = headerAsTr[j];
                 const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
-                const indexToAddHeader = height === 1 ? i : (i + height - 1);
+                const width = Table.__getHeaderWidth(headerAsTh) ?? 1;
+                const key = Table.__getHeaderKey(headerAsTh);
+                const alreadyAddedThKeys: Set<string> = new Set();
+                let indexToAdd = 0;
 
-                reversedHeaders[indexToAddHeader].push(Table.__createSingleHeaderContent(isHead, 'foot', headerAsTh,));
+                if (alreadyAddedKeysOnLayout.includes(key))
+                    continue;
+
+                for (; indexToAdd < height; indexToAdd++) {
+                    layout[i + indexToAdd].push(key);
+                    alreadyAddedThKeys.add(key);
+                }
+                for (let k = 1; k < width; k++) {
+                    layout[i + indexToAdd - k].push(key);
+                    alreadyAddedThKeys.add(key);
+                    for (let l = 0; l < indexToAdd; l++) {
+                        const forwardKeyOnWidthAndHeight = Table.__getHeaderKey(headers[indexToAdd][k]);
+                        layout[i + indexToAdd].push(forwardKeyOnWidthAndHeight);
+                        alreadyAddedThKeys.add(forwardKeyOnWidthAndHeight);
+                    }
+                }
+                for (let k = 0; indexToAdd < headersLength; indexToAdd++, k++) {
+                    const forwardKeyOnHeight = Table.__getHeaderKey(headers[indexToAdd][k]);
+                    const forwardArray = layout[i + indexToAdd];
+
+                    forwardArray.splice(forwardArray.length - (alreadyAddedThKeys.size - 1), 0, forwardKeyOnHeight,);
+                    alreadyAddedThKeys.add(forwardKeyOnHeight);
+                }
+
+                alreadyAddedKeysOnLayout.push(...alreadyAddedThKeys);
+
             }
         }
 
-        return reversedHeaders.reverse().map((reversedHeaderAsTr, index,) => <tr key={`foot-${index}`}>{reversedHeaderAsTr.map(reversedHeaderAsTh => reversedHeaderAsTh)}</tr>);
+        const alreadyRenderedKeys: Set<string> = new Set();
+        return layout.reverse().map((headerAsTrLayout, index,) => <tr key={`foot-${index}`}>{headerAsTrLayout.map(headerAsThKey => {
+            if (alreadyRenderedKeys.has(headerAsThKey))
+                return EMPTY_REACT_ELEMENT;
+            alreadyRenderedKeys.add(headerAsThKey);
+            return elementsMap.get(headerAsThKey)!;
+        })}</tr>);
 
         //endregion -------------------- Reverse the headers while remaining the order similar to the thead --------------------
     }
