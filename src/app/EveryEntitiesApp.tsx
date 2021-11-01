@@ -70,7 +70,7 @@ export default class EveryEntitiesApp
                     {key: 'name', height: 2, element: <ContentTranslationComponent translationKey="Name"/>,},
                     {key: 'game', height: 2, element: <GameContentTranslationComponent translationKey="Game"/>,},
                     {key: 'gameStyle', height: 2, element: <GameContentTranslationComponent translationKey="Game Style"/>,},
-                    {key: 'courseTheme', height: 2, element: <GameContentTranslationComponent translationKey="Course Theme.spoken"/>,},
+                    {key: 'courseTheme', height: 2, element: <GameContentTranslationComponent translationKey="Course Theme.in game"/>, tooltip: new GameContentTranslationContainer('Course Theme.spoken'),},
                     {key: 'time', height: 2, element: <GameContentTranslationComponent translationKey="Time"/>,},
                     {key: 'category', height: 2, element: <GameContentTranslationComponent translationKey="Category"/>,},
                     {key: 'limit', width: 2, element: <GameContentTranslationComponent translationKey="Limit"/>,},
