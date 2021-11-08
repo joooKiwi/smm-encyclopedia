@@ -1,0 +1,17 @@
+.not-applicable, .is-unknown {
+  color: var(--bs-red);
+}
+
+.not-applicable:after {
+  content: var(--not-applicable);
+}
+
+.is-unknown:after {
+  content: var(--is-unknown);
+}
+
+
+:root {
+  --not-applicable: 'N/A';
+  --is-unknown: '?';
+}
