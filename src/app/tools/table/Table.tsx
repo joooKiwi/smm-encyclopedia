@@ -129,14 +129,13 @@ export default class Table
 
             for (let j = 0; j < headerAsTrLength; j++) {
                 const headerAsTh = headerAsTr[j];
-                const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
-                const width = Table.__getHeaderWidth(headerAsTh) ?? 1;
                 const key = Table.__getHeaderKey(headerAsTh);
-                const alreadyAddedThKeys: Set<string> = new Set();
-                let indexToAdd = 0;
-
                 if (alreadyAddedKeysOnLayout.includes(key))
                     continue;
+                let indexToAdd = 0;
+                const height = Table.__getHeaderHeight(headerAsTh) ?? 1;
+                const width = Table.__getHeaderWidth(headerAsTh) ?? 1;
+                const alreadyAddedThKeys: Set<string> = new Set();
 
                 //region -------------------- Addition based on height --------------------
 
