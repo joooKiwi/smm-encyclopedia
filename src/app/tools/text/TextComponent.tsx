@@ -1,23 +1,23 @@
-import type {ReactProperty} from '../../../util/react/ReactProperty';
+import './TextComponent.scss';
 
-export type PossibleTextContent = | string | number | boolean;
+import type {PossibleTextContent, TextProperties} from './properties/TextProperties';
 
-export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
-    extends ReactProperty {
-
-    content: | null | undefined | T
-
-    classes?: | null | string[]
-
-}
+const DEFAULT_IS_UNKNOWN = false;
+const NOT_APPLICABLE = 'N/A';
 
 /**
  *
  * @param properties
  * @reactComponent
  */
-export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, classes,}: TextProperties<T>,) {
+export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown = DEFAULT_IS_UNKNOWN, classes, ...otherProperties}: TextProperties<T>,) {
+    if (content === NOT_APPLICABLE)
+        return <span className="not-applicable" {...otherProperties}/>;
+
+    if (isUnknown)
+        (classes ??= []).push('is-unknown');
+
     if (classes == null)
-        return <span>{content}</span>;
-    return <span className={classes.join(' ')}>{content}</span>;
+        return <span {...otherProperties}>{content}</span>;
+    return <span className={classes.join(' ')} {...otherProperties}>{content}</span>;
 }

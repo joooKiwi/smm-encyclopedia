@@ -7,7 +7,6 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import {EntityLimitLoader}             from '../entity/limit/EntityLimit.loader';
 import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import PossiblyKnownTextContainer      from './tools/text/PossiblyKnownTextContainer';
 import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';
 import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
@@ -52,7 +51,7 @@ export default class EveryLimitsApp
                     <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
                     <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                     <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
-                    <PossiblyKnownTextContainer content={entityLimit.amount} isKnown={!entityLimit.isAmountUnknown}/>,
+                    <TextComponent content={entityLimit.amount} isUnknown={entityLimit.isAmountUnknown}/>,
                     <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
                 ]);
                 index++;
