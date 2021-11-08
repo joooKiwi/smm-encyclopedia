@@ -138,12 +138,18 @@ export default class Table
                 if (alreadyAddedKeysOnLayout.includes(key))
                     continue;
 
+                //region -------------------- Addition based on height --------------------
+
                 for (; indexToAdd < height; indexToAdd++) {
                     layout[i + indexToAdd].push(key);
                     alreadyAddedThKeys.add(key);
                 }
+
+                //endregion -------------------- Addition based on height --------------------
+                //region -------------------- Addition based on width --------------------
+
                 for (let k = 1; k < width; k++) {
-                    layout[i + indexToAdd - k].push(key);
+                    layout[i + indexToAdd - 1].push(key);
                     alreadyAddedThKeys.add(key);
                     for (let l = 0; l < indexToAdd; l++) {
                         const forwardKeyOnWidthAndHeight = Table.__getHeaderKey(headers[indexToAdd][k]);
@@ -151,6 +157,9 @@ export default class Table
                         alreadyAddedThKeys.add(forwardKeyOnWidthAndHeight);
                     }
                 }
+
+                //endregion -------------------- Addition based on width --------------------
+
                 for (let k = 0; indexToAdd < headersLength; indexToAdd++, k++) {
                     const forwardKeyOnHeight = Table.__getHeaderKey(headers[indexToAdd][k]);
                     const forwardArray = layout[i + indexToAdd];
