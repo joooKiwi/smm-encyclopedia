@@ -53,5 +53,16 @@
                                                            | 'Only when lit' | null;
 
 //endregion -------------------- Specific properties --------------------
+//region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+
+/** @temporaryLocation */export type CanBeThrownByBowserInClownCar = | boolean | 'Bob-omb clear condition';
+/** @temporaryLocation */export type CanBeThrownByBowserJr = | boolean | '3rd phase';
+/** @temporaryLocation */export type CanBeThrownByBowserJrInClownCar = | boolean | 'Koopa Troopa clear condition';
+
+/** @temporaryLocation */export type CanBeTransformedByMagikoopa = | boolean | '?';
+/** @temporaryLocation */export type CanBeSpawnedByMagikoopa = boolean;
+/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = | false | `${| '' | 'green '}winged` | '?';
+
+//region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 
 /** @temporaryBehaviour */export type HasAReferenceInMarioMaker = | boolean | 'French only' | 'Only spoken (in english) in Editor' | null;
