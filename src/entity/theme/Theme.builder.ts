@@ -24,18 +24,13 @@ export class ThemeBuilder
     public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
     //endregion -------------------- External object references --------------------
-    //region -------------------- Attributes --------------------
-
-    static readonly #templateMap: Map<string, ThemeTemplate> = new Map();
-
-    //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
         super(templateBuilder, template => template.isIn.game['1'] ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
-    protected /*static*/ get _templateMap() {
-        return ThemeBuilder.#templateMap;
+    protected get _static() {
+        return ThemeBuilder;
     }
 
     private __createCourseTheme(name: Name,): CourseTheme {

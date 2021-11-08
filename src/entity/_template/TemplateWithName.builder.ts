@@ -41,14 +41,18 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
         return (englishNameTemplate.simple ?? englishNameTemplate.american)!;
     }
 
-    protected /*static*/ abstract get _templateMap(): Map<string, T>;
+    protected abstract get _static(): object;
+
+    protected /*static*/ _uniqueName(template: T,): | string | null {
+        return null;
+    }
 
     protected _createName() {
         const template = this.template;
         const nameTemplate = template.name;
         const name = new NameBuilder(nameTemplate, this.__game, this.isACompleteName,).build();
 
-        NameCreator.addEnglishReference(nameTemplate, this._templateMap, template,);
+        NameCreator.addEnglishReference(nameTemplate, this._static, this._uniqueName(template),);
         return name;
     }
 

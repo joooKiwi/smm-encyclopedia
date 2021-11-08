@@ -4,7 +4,6 @@ import type {Entity}                from '../simple/Entity';
 import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
-import type {PossibleGameStyleName} from './GameStyles.types';
 
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
@@ -20,19 +19,14 @@ export class GameStyleBuilder
     public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
     //endregion -------------------- External object references --------------------
-    //region -------------------- Attributes --------------------
-
-    static readonly #templateMap: Map<PossibleGameStyleName, GameStyleTemplate> = new Map();
-
-    //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
         super(templateBuilder, 'all', true,);
     }
 
 
-    protected /*static*/ get _templateMap() {
-        return GameStyleBuilder.#templateMap;
+    protected get _static() {
+        return GameStyleBuilder;
     }
 
     private static __whereEntityIs(englishName: string,): Entity[] {
