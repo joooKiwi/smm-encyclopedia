@@ -33,6 +33,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Attributes --------------------
 
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
+    static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
     #everyPossibleEntityNames?: EveryPossibleEntityNames;
 
