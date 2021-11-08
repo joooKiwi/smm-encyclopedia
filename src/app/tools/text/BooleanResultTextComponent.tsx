@@ -1,4 +1,5 @@
-import BooleanTextComponent, {BooleanTextProperties} from './BooleanTextComponent';
+import BooleanTextComponent    from './BooleanTextComponent';
+import {BooleanTextProperties} from './properties/BooleanTextProperties';
 
 /**
  * Create a coloration based on the boolean value.
@@ -7,11 +8,6 @@ import BooleanTextComponent, {BooleanTextProperties} from './BooleanTextComponen
  * with the classes "text-success" or "text-danger".
  * @reactComponent
  */
-export default function BooleanResultTextComponent({boolean, trueValue, falseValue, classes,}: BooleanTextProperties,) {
-    return <BooleanTextComponent
-        classes={[...(classes ?? []), ...[boolean ? 'text-success' : 'text-danger']]}
-        boolean={boolean}
-        trueValue={trueValue}
-        falseValue={falseValue}
-    />;
+export default function BooleanResultTextComponent({boolean, classes, ...otherProperties}: BooleanTextProperties,) {
+    return <BooleanTextComponent classes={[...(classes ?? []), (boolean ? 'text-success' : 'text-danger')]} boolean={boolean} {...otherProperties}/>;
 }
