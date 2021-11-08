@@ -15,11 +15,11 @@ import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.bui
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
 
-    //region -------------------- external object references --------------------
+    //region -------------------- External object references --------------------
 
     public static categoriesMap: ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
 
-    //endregion -------------------- external object references --------------------
+    //endregion -------------------- External object references --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #templateMap: Map<PossibleSoundEffectsEnglishName, SoundEffectTemplate> = new Map();

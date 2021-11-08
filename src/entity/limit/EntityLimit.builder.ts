@@ -26,13 +26,13 @@ export class EntityLimitBuilder
     extends TemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, EntityLimit>
     implements Builder<EntityLimit> {
 
-    //region -------------------- external object references --------------------
+    //region -------------------- External object references --------------------
 
     public static references: Map<PossibleEntityLimits | PossibleAlternativeEntityLimits, EntityLimit>;
 
     public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
-    //endregion -------------------- external object references --------------------
+    //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
         super(templateBuilder);

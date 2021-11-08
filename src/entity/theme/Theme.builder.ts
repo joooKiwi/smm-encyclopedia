@@ -19,11 +19,11 @@ export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
     implements Builder<readonly [CourseTheme, WorldTheme,]> {
 
-    //region -------------------- external object references --------------------
+    //region -------------------- External object references --------------------
 
     public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
-    //endregion -------------------- external object references --------------------
+    //endregion -------------------- External object references --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #templateMap: Map<string, ThemeTemplate> = new Map();
