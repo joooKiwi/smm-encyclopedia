@@ -2,7 +2,11 @@
   color: var(--bs-red);
 
   &:after {
-    content: '?';
+    content: var(--is-unknown);
   }
 
+}
+
+:root {
+  --is-unknown: '?'
 }
