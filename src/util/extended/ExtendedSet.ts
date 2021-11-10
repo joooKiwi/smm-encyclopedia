@@ -1,6 +1,9 @@
-import {isArrayEquals}    from '../utilitiesMethods';
+import type {DefaultIndexIfNotFound, DefaultValueIfNotFound, ExtendedList, VariableReturnValue} from './ExtendedList';
 
-export class ExtendedSet<T, LENGTH extends number = number, > {
+import {isArrayEquals} from '../utilitiesMethods';
+
+export class ExtendedSet<T, LENGTH extends number = number, >
+    implements ExtendedList<T, LENGTH> {
 
     //region -------------------- Attributes --------------------
 
@@ -72,14 +75,7 @@ export class ExtendedSet<T, LENGTH extends number = number, > {
         return this.__add(...values);
     }
 
-    /**
-     *
-     * @param values
-     * @see Set.add
-     */
-    public push(...values: readonly T[]): this {
-        return this.add(...values,);
-    }
+    public push = this.add;
 
     //region -------------------- & Get --------------------
 
@@ -91,12 +87,7 @@ export class ExtendedSet<T, LENGTH extends number = number, > {
         return values.length === 1 ? values[0] : values;
     }
 
-    public pushAndGet<V extends T = T, >(value: V,): V
-    public pushAndGet<V extends T[], >(...values: V): V
-    public pushAndGet<V extends readonly T[] = readonly T[], >(...values: V): V
-    public pushAndGet(...values: T[]) {
-        return this.addAndGet(...values);
-    }
+    public pushAndGet = this.addAndGet;
 
     //endregion -------------------- & Get --------------------
 
@@ -127,23 +118,9 @@ export class ExtendedSet<T, LENGTH extends number = number, > {
         return this.__delete(...values);
     }
 
-    /**
-     *
-     * @param values
-     * @see Set.delete
-     */
-    public drop(...values: T[]): boolean {
-        return this.delete(...values,);
-    }
+    public drop = this.delete;
 
-    /**
-     *
-     * @param values
-     * @see Set.delete
-     */
-    public remove(...values: T[]): boolean {
-        return this.delete(...values,);
-    }
+    public remove = this.delete;
 
 
     /**
@@ -371,7 +348,3 @@ export class ExtendedSet<T, LENGTH extends number = number, > {
     //endregion -------------------- Javascript only methods --------------------
 
 }
-
-export type DefaultValueIfNotFound = null;
-export type DefaultIndexIfNotFound = -1;
-export type VariableReturnValue<B extends boolean, V1, V2, > = B extends true ? V1 : B extends false ? V2 : | V1 | V2;
