@@ -19,6 +19,9 @@ export interface ExtendedList<T, LENGTH extends number = number, >
     join(separator?: string,): string
 
 
+    range(startingIndex?: number, endingIndex?: number,): | this | ExtendedList<T>
+
+
     forEach(callback: (value: T, index: LENGTH, list: this,) => void,): void
 
     map<V>(callback: (value: T, index: LENGTH, list: this,) => V,): ExtendedList<V>

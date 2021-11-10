@@ -134,35 +134,35 @@ export class ExtendedSet<T, LENGTH extends number = number, >
     //endregion -------------------- Removal methods --------------------
     //region -------------------- Loop methods --------------------
 
-    /**
-     *
-     * @param value
-     * @param startingIndex
-     * @param endingIndex
-     * @see Set.has
-     * @see Array.includes
-     */
-    public has(value: T, startingIndex?: number, endingIndex?: number,): boolean {
+    public range(startingIndex?: number, endingIndex?: number,): | this | ExtendedSet<T> {
         const defaultStartingValue = this.defaultStartingIndex;
         const defaultLength = this.length;
         startingIndex ??= defaultStartingValue;
         endingIndex ??= defaultLength;
 
-        const searchableItems = startingIndex === defaultStartingValue && endingIndex === defaultLength
+        return startingIndex === defaultStartingValue && endingIndex === defaultLength
             ? this
-            : this.map((value, index,) => {
-                if (index > startingIndex! && index < endingIndex!)
-                    return value;
-            });
+            : new ExtendedSet(this.__array.filter((value, index,) => index > startingIndex! && index < endingIndex!));
+    }
 
+
+    /**
+     *
+     * @param value
+     * @see Set.has
+     * @see Array.includes
+     */
+    public has(value: T,): boolean {
         if (value instanceof Array) {
-            for (const internalValue of searchableItems)
+            for (const internalValue of this)
                 if (internalValue instanceof Array && isArrayEquals(internalValue, value,))
                     return true;
             return false;
         }
-        return searchableItems.has(value);
+        return this.has(value);
     }
+
+    public includes = this.has;
 
     public get(value: T,): LENGTH
     public get(value: any,): | LENGTH | DefaultIndexIfNotFound
