@@ -1,6 +1,7 @@
 import type {DefaultIndexIfNotFound, DefaultValueIfNotFound, ExtendedList, VariableReturnValue} from './ExtendedList';
 
-import {isArrayEquals} from '../utilitiesMethods';
+import {ConditionalIntermediate} from './tools/ConditionalIntermediate';
+import {isArrayEquals}           from '../utilitiesMethods';
 
 export class ExtendedSet<T, LENGTH extends number = number, >
     implements ExtendedList<T, LENGTH> {
@@ -133,6 +134,10 @@ export class ExtendedSet<T, LENGTH extends number = number, >
 
     //endregion -------------------- Removal methods --------------------
     //region -------------------- Loop methods --------------------
+
+    public if(callback: (set: this,) => boolean,): ConditionalIntermediate<this> {
+        return new ConditionalIntermediate(this, () => callback(this,));
+    }
 
     public range(startingIndex?: number, endingIndex?: number,): | this | ExtendedSet<T> {
         const defaultStartingValue = this.defaultStartingIndex;

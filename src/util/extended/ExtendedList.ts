@@ -4,6 +4,7 @@ import type {ClassThatCanGetItems}      from './ClassThatCanGetItems';
 import type {ClassThatCanRemoveItems}   from './ClassThatCanRemoveItems';
 import type {ClassThatCanSearchItems}   from './ClassThatCanSearchItems';
 import type {ClassWithLength}           from './ClassWithLength';
+import type {ConditionalIntermediate}   from './tools/ConditionalIntermediate';
 import type {ExtendedIterable}          from './ExtendedIterable';
 
 export interface ExtendedList<T, LENGTH extends number = number, >
@@ -18,6 +19,8 @@ export interface ExtendedList<T, LENGTH extends number = number, >
 
     join(separator?: string,): string
 
+
+    if(callback: (list: this,) => boolean,): ConditionalIntermediate<this>
 
     range(startingIndex?: number, endingIndex?: number,): | this | ExtendedList<T>
 
