@@ -40,6 +40,7 @@ export class ConditionalIntermediate<T, >
 
     public throwAnException<U>(callback: (exception: Error,) => U,): | T | U {
         try {
+            // eslint-disable-next-line
             this._conditionCallbackResult;
         } catch (exception) {
             if (exception instanceof Error)
