@@ -97,7 +97,7 @@ export class ExtendedSet<T, LENGTH extends number = number, >
 
     private __delete(...values: readonly T[]): boolean {
         const oldLength = this.length;
-        let everyValuesHasBeenDeleted = true;
+        let everyValuesHasBeenDeleted = this.has(...values);
 
         values.forEach(value => everyValuesHasBeenDeleted = this._set.delete(value));
         this.#indexMapReference = this.__array.filter(value => !values.includes(value));
