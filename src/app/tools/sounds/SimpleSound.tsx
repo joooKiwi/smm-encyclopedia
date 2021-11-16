@@ -16,6 +16,9 @@ export default class SimpleSound
     static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
 
     public static readonly POSSIBLE_STATES = ['standby', 'playing', 'paused',] as const;
+    static #IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED = false;
+
+    static readonly #EVERY_AUDIO_ELEMENTS: HTMLAudioElement[] = [];
 
     #audio?: HTMLAudioElement;
     #playElement?: ReactElement;
@@ -31,12 +34,21 @@ export default class SimpleSound
 
     //region -------------------- Getter & setter methods --------------------
 
+    protected static get everyAudioElements() {
+        return this.#EVERY_AUDIO_ELEMENTS;
+    }
+
+    public static set isEveryAudioLoopsAfterCompleted(value: boolean,) {
+        this.#IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED = value;
+        this.everyAudioElements.forEach(audioElement => audioElement.loop = value);
+    }
 
     protected get audio(): HTMLAudioElement {
         if (this.#audio == null) {
             const audio = new Audio(this.source);
             audio.onended = () => this.setState({state: 'standby',});
-            this.#audio = audio;
+            audio.loop = SimpleSound.#IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED;
+            SimpleSound.everyAudioElements.push(this.#audio = audio);
         }
         return this.#audio;
     }
