@@ -1,6 +1,9 @@
+import type {TOptions}  from 'i18next';
 import {useTranslation} from 'react-i18next';
 
 import type {Namespace, PossibleAnyTranslationPropertyReceived} from './TranslationProperty';
+
+import {TranslationUtility} from './TranslationUtility';
 
 /**
  *
@@ -11,13 +14,22 @@ export default function AnyTranslationComponent<N extends Namespace, >(propertie
     const {namespace} = properties;
     const {t: translation,} = useTranslation(namespace);
 
-    if ('children' in properties)
-        return <>{properties.children(translation)}</>;
+    const isReplaceNotNull = properties.replace != null;
 
+    if ('children' in properties) {
+        if (isReplaceNotNull)
+            console.warn(`The replace attributes (${Object.getOwnPropertyNames(properties.replace).join(', ')}) will be ignore for a translation using a children.`);
+        return <>{properties.children(translation)}</>;
+    }
+
+    const options: TOptions<object> = {returnObjects: true,};
+    if (isReplaceNotNull)
+        options.interpolation = {skipOnVariables: true,};
     const {translationKey} = properties;
 
-    const translationReturnValue = translation(translationKey, {returnObjects: true,});
-    if (typeof translationReturnValue == 'string')
-        return <>{translationReturnValue}</>;
-    throw new EvalError(`The translation key (${translationKey})cannot receive a translation key that contains a sub value.`);
+    const translationReturnValue = TranslationUtility.testTranslation(translation(translationKey, options,));
+
+    return !isReplaceNotNull
+        ? <>{translationReturnValue}</>
+        : <>{TranslationUtility.replaceInTranslation(translationReturnValue, properties.replace!,)}</>;
 }
