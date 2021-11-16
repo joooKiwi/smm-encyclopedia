@@ -151,20 +151,27 @@ export class ExtendedSet<T, LENGTH extends number = number, >
     }
 
 
-    /**
-     *
-     * @param value
-     * @see Set.has
-     * @see Array.includes
-     */
-    public has(value: T,): boolean {
+    private __has(value: T,): boolean {
         if (value instanceof Array) {
             for (const internalValue of this)
                 if (internalValue instanceof Array && isArrayEquals(internalValue, value,))
                     return true;
             return false;
         }
-        return this.has(value);
+        return this._set.has(value);
+    }
+
+    /**
+     *
+     * @param values
+     * @see Set.has
+     * @see Array.includes
+     */
+    public has(...values: readonly T[]): boolean {
+        for (const value of values)
+            if (!this.__has(value))
+                return false;
+        return true;
     }
 
     public includes = this.has;

@@ -4,9 +4,9 @@ import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ExtendedLis
 export interface ClassThatCanGetItems<T, LENGTH extends number = number, >
     extends ClassWithLength<LENGTH> {
 
-    has(value: T,): boolean
+    has(...values: readonly T[]): boolean
 
-    includes(value: T,): boolean
+    includes(...values: readonly T[]): boolean
 
 
     get(value: T,): LENGTH
