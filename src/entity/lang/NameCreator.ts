@@ -5,7 +5,9 @@ import type {PossibleSMM2NameTemplate} from './SMM2Name.template';
  */
 export class NameCreator {
 
-    private static __testName<N extends PossibleSMM2NameTemplate, >(name: N,): N {
+    static readonly #INSTANCE_MAP = new Map<object, Set<string>>();
+
+    private static __testName(name: PossibleSMM2NameTemplate,): PossibleSMM2NameTemplate {
         if (window.IS_IN_PRODUCTION)
             return name;
 
@@ -23,14 +25,14 @@ export class NameCreator {
         return name;
     }
 
-    private static __getEnglishName<N extends PossibleSMM2NameTemplate, T, >(name: N, templateMap: Map<string, T>,): string {
-        const englishReferenceName = name.english.simple ?? name.english.american;
+    private static __getEnglishName(set: Set<string>, name: PossibleSMM2NameTemplate, uniqueName: | string | null,): string {
+        const englishReferenceName = uniqueName ?? name.english.simple ?? name.english.american;
         if (window.IS_IN_PRODUCTION)
             return englishReferenceName!;
 
         if (englishReferenceName == null)
             throw new ReferenceError('No english name can be null since they are used as a key for the references.');
-        if (templateMap.has(englishReferenceName))
+        if (set.has(englishReferenceName))
             throw new ReferenceError(`The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`);
         return englishReferenceName;
     }
@@ -47,12 +49,16 @@ export class NameCreator {
      *  or when the reference is already existing in the <b>templateMap</b>.
      * </p>
      *
-     * @param name the template name to retrieve the english name (simple or american)
-     * @param templateMap the template map reference
-     * @param template the template to add to the map
+     * @param name the template name to retrieve the english name (simple or american) or a simple unique name
+     * @param instance instance to verify the name
+     * @param uniqueName the unique name to set the name
      */
-    public static addEnglishReference<N extends PossibleSMM2NameTemplate, T>(name: N, templateMap: Map<string, T>, template: T,): void {
-        templateMap.set(this.__getEnglishName(this.__testName(name), templateMap,), template,);
+    public static addEnglishReference(name: PossibleSMM2NameTemplate, instance: object, uniqueName: | string | null = null,): void {
+        const map = this.#INSTANCE_MAP;
+        if (!map.has(instance))
+            map.set(instance, new Set());
+        const set = map.get(instance)!;
+        this.__getEnglishName(set, this.__testName(name), uniqueName,);
     }
 
 }

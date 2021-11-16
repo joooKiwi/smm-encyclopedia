@@ -1,4 +1,5 @@
 import type {EntityLimitTypeEnglishNameArray}                                                                                            from '../../../entity/limit/EntityLimitTypes.types';
+import type {EnglishNameOnFile as MysteryMushroomIndividualEnglishName}                                                                  from '../../../entity/mysteryMushrooms/MysteryMushrooms.types';
 import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours}                                                    from '../../../entity/behaviours/EntityBehaviours.types';
 import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from '../../../entity/limit/EntityLimits.types';
 import type {SoundEffectCategoriesEnglishNameArray}                                                                                      from '../../../entity/soundEffect/category/SoundEffectCategories.types';
@@ -9,6 +10,7 @@ import type {SoundEffectsEnglishNameArray}                                      
 export type StringConstant = 'string';
 
 export type UnknownCharacter = '?';
+export type UnknownReference = '???';
 
 export type EveryPossibleEntityNames = readonly string[];
 
@@ -23,6 +25,8 @@ export type EveryPossibleLimitsAcronyms = readonly (| PossibleAcronymEntityLimit
 export type EveryAlternativeLimitsAcronyms = readonly PossibleAcronymEntityLimits[];
 export type EveryPossibleLimitsNames = readonly (| PossibleEntityLimits | PossibleAlternativeEntityLimits)[];
 export type EveryLimitsNamesOrUnknown = readonly (| PossibleEntityLimits | UnknownCharacter)[];
+
+export type EveryPossibleMysteryMushroomsIndividualNames = readonly MysteryMushroomIndividualEnglishName[];
 
 //endregion -------------------- External types --------------------
 
@@ -73,5 +77,10 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleSoundEffectCategoriesNames(): | SoundEffectCategoriesEnglishNameArray | StringConstant
 
     //endregion -------------------- Sound effect getter methods --------------------
+    //region -------------------- Mystery Mushroom getter methods --------------------
+
+    get everyPossibleMysteryMushroomIndividualEnglishNames(): | EveryPossibleMysteryMushroomsIndividualNames | StringConstant
+
+    //endregion -------------------- Mystery Mushroom getter methods --------------------
 
 }

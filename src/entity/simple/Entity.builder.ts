@@ -24,12 +24,12 @@ import {Games}                         from '../game/Games';
 export class EntityBuilder
     implements Builder<Entity> {
 
-    //region -------------------- external object references --------------------
+    //region -------------------- External object references --------------------
 
     public static references: Map<string, DebugEntityReferences>;
     public static categoriesMap: ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>;
 
-    //endregion -------------------- external object references --------------------
+    //endregion -------------------- External object references --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #EMPTY_ENTITY_CALLBACK: () => Entity = () => EmptyEntity.get;
@@ -68,22 +68,18 @@ export class EntityBuilder
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
-    private __createIsInPropertyAttributes(): [boolean, boolean,
-        boolean, boolean, boolean, boolean, | boolean | null,
-        boolean, boolean, boolean, | boolean | null, | boolean | null, | boolean | null, | boolean | null, boolean, boolean, boolean,
-        boolean, | boolean | null,] {
-        const isIn = this.template.properties.isIn;
+    private __createIsInPropertyAttributes() {
+        const {game, style, theme, time,} = this.template.properties.isIn;
 
         return [
-            isIn.game['1'], isIn.game['2'],
-            isIn.style.superMarioBros, isIn.style.superMarioBros3, isIn.style.superMarioWorld, isIn.style.newSuperMarioBrosU, isIn.style.superMario3DWorld,
-            isIn.theme.ground, isIn.theme.underground, isIn.theme.underwater, isIn.theme.desert, isIn.theme.snow, isIn.theme.sky, isIn.theme.forest, isIn.theme.ghostHouse, isIn.theme.airship, isIn.theme.castle,
-            isIn.time.day, isIn.time.night,
-        ];
-
+            game['1'], game['2'],
+            style.superMarioBros, style.superMarioBros3, style.superMarioWorld, style.newSuperMarioBrosU, style.superMario3DWorld,
+            theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,
+            time.day, time.night,
+        ] as const;
     }
 
-    private __createLimitPropertyAttributes(): [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
+    private __createLimitPropertyAttributes() {
         const limitsTemplate = this.template.properties.limits;
         const {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,} = limitsTemplate.whilePlaying.isInGEL;
         const PELTemplate = limitsTemplate.whilePlaying.isInPEL;
@@ -96,7 +92,7 @@ export class EntityBuilder
         const projectileLimit: ProjectileLimitReceived = PJLTemplate;
         const customLimit: CustomLimitReceived = [customLimitTemplate.value, customLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,];
 
-        return [editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,];
+        return [editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,] as const;
     }
 
     private __createProperty() {

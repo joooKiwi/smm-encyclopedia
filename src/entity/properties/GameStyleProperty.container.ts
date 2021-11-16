@@ -9,7 +9,7 @@ import {GameStyles} from '../gameStyle/GameStyles';
 export class GameStylePropertyContainer
     implements GameStyleProperty {
 
-    //region -------------------- predefined containers --------------------
+    //region -------------------- Predefined containers --------------------
 
     static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, null, ) as ExclusiveSMM1GameStyleProperty;
     static readonly #IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY =         new GameStylePropertyContainer(true,  false, false, false, false,) as AbstractExclusiveSMM2GameStyleProperty;
@@ -33,7 +33,7 @@ export class GameStylePropertyContainer
     static readonly #IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_NO_GAME_STYLES_PROPERTY =                   new GameStylePropertyContainer(false, false, false, false, null, );
 
-    //endregion -------------------- predefined containers --------------------
+    //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #isInSuperMarioBrosStyle;

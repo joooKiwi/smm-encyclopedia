@@ -7,6 +7,7 @@
   "Every times":                   "Every times",
   "Every sound effects":           "Every sound effects",
   "Every sound effect categories": "Every sound effect categories",
+  "Every Mystery Mushrooms":       "Every {{pluralName}}",
 
   "Is in the course theme": "Is in the course theme",
   "Is in the world theme":  "Is in the world theme",
@@ -27,6 +28,7 @@
   "Display every themes":                  "Display every themes",
   "Display every sound effects":           "Display every sound effects",
   "Display every sound effect categories": "Display every sound effect categories",
+  "Display every Mystery Mushrooms":       "Display every {{pluralName}}",
 
   "Game":              "Game",
   "Game Style":        "Game Style",

@@ -9,7 +9,7 @@ import {Times} from '../time/Times';
 export class TimePropertyContainer
     implements TimeProperty {
 
-    //region -------------------- predefined containers --------------------
+    //region -------------------- Predefined containers --------------------
 
     static readonly #IS_IN_ONLY_SMM1_OR_SM3DW_PROPERTY = new TimePropertyContainer(true,  null, );
 
@@ -19,7 +19,7 @@ export class TimePropertyContainer
     static readonly #IS_IN_BOTH_TIMES_PROPERTY =         new TimePropertyContainer(true,  true, ) as AbstractExclusiveSMM2TimeProperty;
     static readonly #IS_IN_NO_TIMES_PROPERTY =           new TimePropertyContainer(false, false,);
 
-    //endregion -------------------- predefined containers --------------------
+    //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #isInDayTheme;

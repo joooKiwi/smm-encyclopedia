@@ -1,12 +1,13 @@
-import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
-import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter} from './HeaderTypesForConvertorDefinition';
-import type {SoundEffectCategoriesEnglishNameArray}                                                                                                                                                                                                                                                                                                           from '../../../entity/soundEffect/category/SoundEffectCategories.types';
-import type {SoundEffectsEnglishNameArray}                                                                                                                                                                                                                                                                                                                    from '../../../entity/soundEffect/simple/SoundEffects.types';
+import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
+import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, EveryPossibleMysteryMushroomsIndividualNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {SoundEffectCategoriesEnglishNameArray}                                                                                                                                                                                                                                                                                                                                                                           from '../../../entity/soundEffect/category/SoundEffectCategories.types';
+import type {SoundEffectsEnglishNameArray}                                                                                                                                                                                                                                                                                                                                                                                    from '../../../entity/soundEffect/simple/SoundEffects.types';
 
 import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
 import {EntityLimits}          from '../../../entity/limit/EntityLimits';
 import {EntityLimitTypes}      from '../../../entity/limit/EntityLimitTypes';
+import {MysteryMushrooms}      from '../../../entity/mysteryMushrooms/MysteryMushrooms';
 import {SoundEffectCategories} from '../../../entity/soundEffect/category/SoundEffectCategories';
 import {SoundEffects}          from '../../../entity/soundEffect/simple/SoundEffects';
 
@@ -32,6 +33,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Attributes --------------------
 
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
+    static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
     #everyPossibleEntityNames?: EveryPossibleEntityNames;
 
@@ -51,6 +53,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleSoundEffectsNames?: SoundEffectsEnglishNameArray;
     #everyPossibleSoundEffectCategoriesNames?: SoundEffectCategoriesEnglishNameArray;
+
+    #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleMysteryMushroomsIndividualNames;
 
     //endregion -------------------- Attributes --------------------
 
@@ -126,6 +130,13 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Mystery Mushroom getter methods --------------------
+
+    public get everyPossibleMysteryMushroomIndividualEnglishNames() {
+        return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
+    }
+
+    //endregion -------------------- Mystery Mushroom getter methods --------------------
 
 }
 
@@ -223,6 +234,13 @@ class HeaderTypesForConvertorForProduction
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
+    //region -------------------- Mystery Mushroom getter methods --------------------
+
+    public get everyPossibleMysteryMushroomIndividualEnglishNames(): StringConstant {
+        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    }
+
+    //endregion -------------------- Mystery Mushroom getter methods --------------------
 
 }
 

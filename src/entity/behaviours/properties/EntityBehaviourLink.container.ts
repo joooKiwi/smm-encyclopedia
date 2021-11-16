@@ -13,7 +13,7 @@ import {EntityLoader}                 from '../../simple/Entity.loader';
 export class EntityBehaviourLinkContainer
     implements EntityBehaviourLink {
 
-    //region -------------------- predefined containers --------------------
+    //region -------------------- Predefined containers --------------------
 
     static readonly #IS_IN_NONE =               new EntityBehaviourLinkContainer(null,        null,             );
 
@@ -26,7 +26,7 @@ export class EntityBehaviourLinkContainer
     static readonly #POWER_UPS_LINK =           new EntityBehaviourLinkContainer('Power-ups', null,             );
 
 
-    //endregion -------------------- predefined containers --------------------
+    //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #groupLinkHolder: ObjectHolder<| object | null>;
