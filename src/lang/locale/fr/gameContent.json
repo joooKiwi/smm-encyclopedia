@@ -7,6 +7,7 @@
   "Every times":                   "Tous les temps",
   "Every sound effects":           "Tous les effets sonores",
   "Every sound effect categories": "Toutes les catégories d'effet sonore",
+  "Every Mystery Mushrooms":       "Tous les {{pluralName}}",
 
   "Is in the course theme": "Est dans le décor de niveau",
   "Is in the world theme":  "Est dans le décor de monde",
@@ -27,6 +28,7 @@
   "Display every themes":                  "Afficher tous les décors",
   "Display every sound effects":           "Afficher tous les effets sonores",
   "Display every sound effect categories": "Afficher tous les catégories d'effet sonore",
+  "Display every Mystery Mushrooms":       "Afficher tous les {{pluralName}}",
 
   "Game":              "Jeu",
   "Game Style":        "Style de jeu",
