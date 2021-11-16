@@ -1,12 +1,13 @@
-import type {Namespace as OriginalNamespace, TFuncKey, TFunction} from 'react-i18next';
+import type {DefaultResources, Namespace as OriginalNamespace, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
 
-import type {SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
+import type {ReactElement, SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 export type TranslationReturnType = | string | JSX.Element;
-export type ContentCallback = (translation: TFunction<ContentNamespace>,) => TranslationReturnType;
-export type GameContentCallback = (translation: TFunction<GameContentNamespace>,) => TranslationReturnType;
-export type EntityContentCallback = (translation: TFunction<EntityContentNamespace>,) => TranslationReturnType;
-export type LanguageCallback = (translation: TFunction<LanguageNamespace>,) => TranslationReturnType;
+export type ContentCallback = AnyTranslationCallback<ContentNamespace>;
+export type GameContentCallback = AnyTranslationCallback<GameContentNamespace>;
+export type EntityContentCallback = AnyTranslationCallback<EntityContentNamespace>;
+export type LanguageCallback = AnyTranslationCallback<LanguageNamespace>;
+export type AnyTranslationCallback<N extends Namespace, > = (translation: TranslationMethod<N>,) => TranslationReturnType;
 
 export type ContentNamespace = 'content';
 export type GameContentNamespace = 'gameContent';
@@ -14,16 +15,23 @@ export type EntityContentNamespace = 'entityContent';
 export type LanguageNamespace = 'language';
 export type Namespace = OriginalNamespace;
 
+export type TranslationMethod<N extends Namespace, > = TFunction<N>;
+
+export type TranslationReturnMethod<N extends Namespace, KEY, DEFAULT_RESULT, RESOURCE = DefaultResources, > = TFuncReturn<N, KEY, DEFAULT_RESULT, RESOURCE>;
+
 export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends infer S ? S : never;
+export type TranslationReplaceKeysMap = { [key: string]: ReactElement };
 
 interface _AnyTranslationProperty<N extends Namespace, > {
 
     namespace: N
 
+    replace?: TranslationReplaceKeysMap
+
 }
 
 export interface TranslationProperty<N extends Namespace, >
-    extends SimpleReactPropertyWithChildren<(translation: TFunction<N>,) => TranslationReturnType> {
+    extends SimpleReactPropertyWithChildren<AnyTranslationCallback<N>> {
 
 }
 
