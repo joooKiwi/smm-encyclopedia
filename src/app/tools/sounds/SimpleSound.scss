@@ -1,0 +1,13 @@
+.audio-state {
+  --color:var(--bs-primary);
+  color: var(--color);
+  padding: 0;
+  border: 0;
+  height: 1cm;
+  width: 1cm;
+
+}
+
+.audio-state-playing {
+  --color: var(--bs-red);
+}
