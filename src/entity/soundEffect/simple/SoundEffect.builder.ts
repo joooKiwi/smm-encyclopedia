@@ -1,7 +1,6 @@
 import type {Builder}                                  from '../../../util/Builder';
 import type {Name}                                     from '../../../lang/name/Name';
 import type {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
-import type {PossibleSoundEffectsEnglishName}          from './SoundEffects.types';
 import type {SoundEffect}                              from './SoundEffect';
 import type {SoundEffectTemplate}                      from './SoundEffect.template';
 import type {SoundEffectCategory}                      from '../category/SoundEffectCategory';
@@ -15,16 +14,11 @@ import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.bui
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
 
-    //region -------------------- external object references --------------------
+    //region -------------------- External object references --------------------
 
     public static categoriesMap: ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
 
-    //endregion -------------------- external object references --------------------
-    //region -------------------- Attributes --------------------
-
-    static readonly #templateMap: Map<PossibleSoundEffectsEnglishName, SoundEffectTemplate> = new Map();
-
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<SoundEffectTemplate>,) {
         super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
@@ -32,8 +26,8 @@ export class SoundEffectBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected /*static*/ get _templateMap() {
-        return SoundEffectBuilder.#templateMap;
+    protected get _static() {
+        return SoundEffectBuilder;
     }
 
     private __createCategory() {

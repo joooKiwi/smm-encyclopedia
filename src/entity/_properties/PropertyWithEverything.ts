@@ -1,12 +1,12 @@
-import type {PossibleAmount}                                                  from './ClassWithAmount';
-import type {PossibleAmountOnFalse, PossibleAmountOnTrue, PropertyWithAmount} from './PropertyWithAmount';
-import type {PossibleComment}                                                 from './ClassWithComment';
-import type {NotApplicable, PossibleBoolean, PossibleNumber, PossibleString, Property}        from './Property';
-import type {PropertyThatCanBeUnknown}                                                        from './PropertyThatCanBeUnknown';
-import type {PropertyThatCanBeUnknownWithAmount}                                              from './PropertyThatCanBeUnknownWithAmount';
-import type {PropertyThatCanBeUnknownWithComment}                                             from './PropertyThatCanBeUnknownWithComment';
-import type {PropertyWithAmountAndComment}                                                    from './PropertyWithAmountAndComment';
-import type {PropertyWithComment}                                                             from './PropertyWithComment';
+import type {PossibleAmount}                                                           from './ClassWithAmount';
+import type {PossibleAmountOnFalse, PossibleAmountOnTrue, PropertyWithAmount}          from './PropertyWithAmount';
+import type {PossibleComment}                                                          from './ClassWithComment';
+import type {NotApplicable, PossibleBoolean, PossibleNumber, PossibleString, Property} from './Property';
+import type {PropertyThatCanBeUnknown}                                                 from './PropertyThatCanBeUnknown';
+import type {PropertyThatCanBeUnknownWithAmount}                                       from './PropertyThatCanBeUnknownWithAmount';
+import type {PropertyThatCanBeUnknownWithComment}                                      from './PropertyThatCanBeUnknownWithComment';
+import type {PropertyWithAmountAndComment}                                             from './PropertyWithAmountAndComment';
+import type {PropertyWithComment}                                                      from './PropertyWithComment';
 
 export interface PropertyWithEverything<T, CAN_BE_UNKNOWN extends boolean = boolean, AMOUNT extends PossibleAmount = PossibleAmount, COMMENT extends PossibleComment = PossibleComment, >
     extends Property<T>,

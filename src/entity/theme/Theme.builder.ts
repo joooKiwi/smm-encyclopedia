@@ -19,23 +19,18 @@ export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
     implements Builder<readonly [CourseTheme, WorldTheme,]> {
 
-    //region -------------------- external object references --------------------
+    //region -------------------- External object references --------------------
 
     public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 
-    //endregion -------------------- external object references --------------------
-    //region -------------------- Attributes --------------------
-
-    static readonly #templateMap: Map<string, ThemeTemplate> = new Map();
-
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
         super(templateBuilder, template => template.isIn.game['1'] ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
-    protected /*static*/ get _templateMap() {
-        return ThemeBuilder.#templateMap;
+    protected get _static() {
+        return ThemeBuilder;
     }
 
     private __createCourseTheme(name: Name,): CourseTheme {

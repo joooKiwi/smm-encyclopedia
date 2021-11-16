@@ -7,14 +7,14 @@ import {EntityBehaviourIsInOnly} from './EntityBehaviourIsInOnly';
 export class EntityBehaviourIsInOnlyContainer
     implements EntityBehaviourIsInOnly {
 
-    //region -------------------- predefined containers --------------------
+    //region -------------------- Predefined containers --------------------
 
     static readonly #IS_IN_NONE =          new EntityBehaviourIsInOnlyContainer(false, false, );
 
     static readonly #IS_ONLINE_ONLY =      new EntityBehaviourIsInOnlyContainer(true,  false,);
     static readonly #IS_MULTIPLAYER_ONLY = new EntityBehaviourIsInOnlyContainer(false, true, );
 
-    //endregion -------------------- predefined containers --------------------
+    //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
     readonly #isInOnlineOnly;
