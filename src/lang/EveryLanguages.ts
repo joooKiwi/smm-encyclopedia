@@ -401,7 +401,7 @@ export abstract class EveryLanguages
         return this.isCurrentLanguage;
     }
 
-    public get isDefaultLanguage():boolean{
+    public get isDefaultLanguage(): boolean {
         return this === EveryLanguages.default;
     }
 
@@ -514,7 +514,7 @@ export abstract class EveryLanguages
 
     protected abstract _get<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string;
     protected abstract _get<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | null;
-    protected abstract _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | null;
+    protected abstract _get(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | null;
 
     public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
         return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages);
@@ -522,7 +522,7 @@ export abstract class EveryLanguages
 
     public original<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
     public original<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
-    public original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
+    public original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
         return this.parent?.original(classWithEveryLanguages) ?? this.get(classWithEveryLanguages);
     }
 
@@ -603,8 +603,8 @@ export abstract class EveryLanguages
     public static getValue<I extends EveryLanguages, >(instance: I,): I
     public static getValue(nameOrAcronym: | PossibleEveryLanguagesAcronym | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName | EveryLanguagesNames,): EveryLanguages
     public static getValue(nameOrAcronym: string,): | EveryLanguages | null
-    public static getValue(value: | null | undefined | EveryLanguages | string | number,): | EveryLanguages | null
-    public static getValue(value: | null | undefined | EveryLanguages | string | number,): | EveryLanguages | null {
+    public static getValue(value: | EveryLanguages | string | number | null | undefined,): | EveryLanguages | null
+    public static getValue(value: | EveryLanguages | string | number | null | undefined,): | EveryLanguages | null {
         return value == null
             ? null
             : typeof value === 'string'
