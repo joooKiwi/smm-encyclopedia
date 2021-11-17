@@ -1,9 +1,10 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                from './name/containers/Language';
-import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                          from '../entity/ClassInAnySuperMarioMakerGame';
-import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                               from './ClassWithEveryLanguages';
-import type {LanguageEnumerable}                                                                                                                                                                                     from './LanguageEnumerable';
-import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                     from './ProjectLanguages.types';
-import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from './EveryLanguages.types';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './name/containers/Language';
+import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../entity/ClassInAnySuperMarioMakerGame';
+import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './ClassWithEveryLanguages';
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './LanguageEnumerable';
+import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
+import type {PossibleNonNullableValue, ProjectLanguagesOrdinals}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ProjectLanguages.types';
+import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from './EveryLanguages.types';
 
 import {Enum}           from '../util/enum/Enum';
 import {EveryLanguages} from './EveryLanguages';
@@ -106,6 +107,18 @@ export class ProjectLanguages
         return this.language.isACompleteLanguage;
     }
 
+    public get isASpaceEvenLanguage(): boolean {
+        return this.language.isASpaceEvenLanguage;
+    }
+
+    public get isASpaceEvenLanguageForThePointsAndSpace(): boolean {
+        return this.language.isASpaceEvenLanguageForThePointsAndSpace;
+    }
+
+    public get isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace(): boolean {
+        return this.language.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace;
+    }
+
     public get projectAcronym(): PossibleProjectLanguagesAcronym {
         return this.language.projectAcronym as PossibleProjectLanguagesAcronym;
     }
@@ -146,6 +159,110 @@ export class ProjectLanguages
         return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMaker2;
     }
 
+    //region -------------------- Characters getter methods --------------------
+
+    public get points(): PossiblePoints_Array {
+        return this.language.points;
+    }
+
+    public get point(): PossiblePoint {
+        return this.language.point;
+    }
+
+    public get interrogationPoint(): PossibleInterrogationPoint {
+        return this.language.interrogationPoint;
+    }
+
+    public get exclamationPoint(): PossibleExclamationPoint {
+        return this.language.exclamationPoint;
+    }
+
+    public get comma(): PossibleComma {
+        return this.language.comma;
+    }
+
+    public get unionTrait(): PossibleUnionTrait {
+        return this.language.unionTrait;
+    }
+
+
+    public get commercialAnd(): PossibleCommercialAnd {
+        return this.language.commercialAnd;
+    }
+
+
+    public get parentheses(): PossibleParentheses_Array {
+        return this.language.parentheses;
+    }
+
+    public get startingParenthesis(): PossibleStartingParentheses {
+        return this.language.startingParenthesis;
+    }
+
+    public get endingParenthesis(): PossibleEndingParentheses {
+        return this.language.endingParenthesis;
+    }
+
+    public get brackets(): PossibleBrackets_Array {
+        return this.language.brackets;
+    }
+
+    public get startingBrackets(): PossibleStartingBracket {
+        return this.language.startingBrackets;
+    }
+
+    public get endingBrackets(): PossibleEndingBracket {
+        return this.language.endingBrackets;
+    }
+
+    public get braces(): PossibleBraces_Array {
+        return this.language.braces;
+    }
+
+    public get startingBraces(): PossibleStartingBrace {
+        return this.language.startingBraces;
+    }
+
+    public get endingBraces(): PossibleEndingBrace {
+        return this.language.endingBraces;
+    }
+
+
+    public get slashes(): PossibleSlashes_Array {
+        return this.language.slashes;
+    }
+
+    public get slash(): PossibleSlash {
+        return this.language.slash;
+    }
+
+    public get verticalSlash(): PossibleVerticalSlash {
+        return this.language.verticalSlash;
+    }
+
+
+    public get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Array {
+        return this.language.romainLowercaseAlphabet;
+    }
+
+    public get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Array {
+        return this.language.romainUppercaseAlphabet;
+    }
+
+
+    public get numbers(): PossibleNumbers_Array {
+        return this.language.numbers;
+    }
+
+
+    public character<C extends PossibleSingleCharacter, >(character: C,): VariableCharacterByCharacter<this['isASpaceEvenLanguage'], C>
+    public character<C extends string, >(character: C,): VariableCharacterByString<this['isASpaceEvenLanguage'], C>
+    public character(character: string,) {
+        return this.language.character(character);
+    }
+
+    //endregion -------------------- Characters getter methods --------------------
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
@@ -161,6 +278,24 @@ export class ProjectLanguages
         return this.language.original(classWithEveryLanguages);
     }
 
+    //region -------------------- Transformation methods --------------------
+
+    public textInParentheses<S extends string, >(text: S,): TextInParentheses<this['isASpaceEvenLanguage'], S>
+    public textInParentheses(text: string,) {
+        return this.language.textInParentheses(text,);
+    }
+
+    public textInBrackets<S extends string, >(text: S,): TextInBrackets<this['isASpaceEvenLanguage'], S>
+    public textInBrackets(text: string,) {
+        return this.language.textInBrackets(text,);
+    }
+
+    public textInBraces<S extends string, >(text: S,): TextInBraces<this['isASpaceEvenLanguage'], S>
+    public textInBraces(text: string,) {
+        return this.language.textInBraces(text,);
+    }
+
+    //endregion -------------------- Transformation methods --------------------
 
     public static get currentLanguage(): ProjectLanguages {
         return this.getValue(EveryLanguages.currentLanguage)!;

@@ -1,15 +1,25 @@
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                       from './ClassWithEveryLanguages';
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                    from './name/containers/Language';
+import type {CharactersTrait}                                                                                                                                                                                                                                                                                            from './CharactersTrait';
 import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName} from './EveryLanguages.types';
 
 export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleEveryLanguagesAcronym | PossibleProjectLanguagesAcronym,
     INTERNATIONAL_ACRONYM extends | PossibleEveryLanguagesInternationalAcronym | PossibleProjectLanguagesInternationalAcronym,
     ENGLISH_NAME extends | PossibleEveryLanguagesEnglishName | PossibleProjectLanguagesEnglishName,
-    ORIGINAL_NAME extends | PossibleEveryLanguagesOriginalName | PossibleProjectLanguagesOriginalName> {
+    ORIGINAL_NAME extends | PossibleEveryLanguagesOriginalName | PossibleProjectLanguagesOriginalName>
+    extends CharactersTrait {
 
     //region -------------------- Getter methods --------------------
 
     get isACompleteLanguage(): boolean
+
+
+    get isASpaceEvenLanguage(): boolean
+
+    get isASpaceEvenLanguageForThePointsAndSpace(): boolean
+
+    get isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace(): boolean
+
 
     get projectAcronym(): PROJECT_ACRONYM
 
