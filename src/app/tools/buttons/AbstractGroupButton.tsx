@@ -8,7 +8,7 @@ import type {ReactComponent}        from '../../../util/react/ReactComponent';
 /**
  * @reactComponent
  */
-export default abstract class AbstractGroupButton<T extends ActivatableProperties>
+export default abstract class AbstractGroupButton<T extends ActivatableProperties, >
     extends Component<GroupButtonProperties<T>>
     implements ReactComponent<ReactNode> {
 
