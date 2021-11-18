@@ -1,6 +1,6 @@
-import type {CourseAndWorldTheme, PossibleTheme} from '../entity/theme/Themes.types';
-import type {PossibleEffectInNightTheme}         from '../entity/theme/Theme.template';
-import type {SingleTableContent}                 from './tools/table/Table.types';
+import type {CourseAndWorldTheme, PossibleEnglishName} from '../entity/theme/Themes.types';
+import type {PossibleEffectInNightTheme}               from '../entity/theme/Theme.template';
+import type {SingleTableContent}                       from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -22,7 +22,7 @@ export default class EveryThemesApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleTheme, CourseAndWorldTheme>;
+    #map?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>;
 
     protected get map() {
         return this.#map ??= ThemeLoader.get.load();

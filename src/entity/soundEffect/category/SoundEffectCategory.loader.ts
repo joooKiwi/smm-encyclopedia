@@ -2,7 +2,7 @@ import everySoundEffectCategories from '../../../resources/Sound effect categori
 
 import type {PropertiesArray as LanguagesPropertyArray} from '../../../lang/Loader.types';
 import type {Loader}                                    from '../../../util/loader/Loader';
-import type {PossibleSoundEffectCategoriesEnglishName}  from './SoundEffectCategories.types';
+import type {PossibleEnglishName}                       from './SoundEffectCategories.types';
 import type {SoundEffectCategory}                       from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate}               from './SoundEffectCategory.template';
 
@@ -48,7 +48,7 @@ type PropertiesArray = [
  * @singleton
  */
 export class SoundEffectCategoryLoader
-    implements Loader<ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, SoundEffectCategory>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -63,11 +63,11 @@ export class SoundEffectCategoryLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
+    #map?: Map<PossibleEnglishName, SoundEffectCategory>;
 
-    public load(): ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory> {
+    public load(): ReadonlyMap<PossibleEnglishName, SoundEffectCategory> {
         if (this.#map == null) {
-            const references = new Map<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>();
+            const references = new Map<PossibleEnglishName, SoundEffectCategory>();
 
             //region -------------------- CSV Loader --------------------
 
@@ -76,7 +76,7 @@ export class SoundEffectCategoryLoader
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleSoundEffectCategoriesEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

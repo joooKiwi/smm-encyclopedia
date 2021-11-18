@@ -3,10 +3,10 @@ import everyThemes from '../../resources/Entity limits.csv';
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EmptyLinkTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                   from './EntityLimit';
 import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                   from '../../lang/Loader.types';
-import type {Loader}                                                                                                                        from '../../util/loader/Loader';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits}    from './EntityLimits.types';
-import type {PossibleEntityLimitTypeEnglishName}                                                                                            from './EntityLimitTypes.types';
-import type {PossibleGroupName, SingleEntityName}                                                                                           from '../entityTypes';
+import type {Loader}                                                                                                                   from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName , PossibleEnglishName} from './EntityLimits.types';
+import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                         from './EntityLimitTypes.types';
+import type {PossibleGroupName, SingleEntityName}                                                               from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -51,10 +51,10 @@ enum Headers {
 
 type ExclusivePropertyArray = [
 
-    alternative: | PossibleAlternativeEntityLimits | null,
+    alternative: | PossibleAlternativeEnglishName | null,
 
     type: | PossibleEntityLimitTypeEnglishName | null,
-    acronym: | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
+    acronym: | PossibleAcronym | PossibleAlternativeAcronym | null,
 
     limit: PossibleLimitNumber,
     limit_comment: | string | null,
@@ -73,8 +73,8 @@ type PropertiesArray = [
 //endregion -------------------- CSV array related types --------------------
 //region -------------------- Private types --------------------
 
-type PossibleNullableAlternativeAcronymEntityLimits = | PossibleAlternativeAcronymEntityLimits | null;
-type PossibleNullableAcronymEntityLimits = | PossibleAcronymEntityLimits | null;
+type PossibleNullableAlternativeAcronym = | PossibleAlternativeAcronym | null;
+type PossibleNullableAcronym = | PossibleAcronym | null;
 
 //endregion -------------------- Private types --------------------
 
@@ -84,7 +84,7 @@ type PossibleNullableAcronymEntityLimits = | PossibleAcronymEntityLimits | null;
  * @recursiveReference<{@link EntityLimits}>
  */
 export class EntityLimitLoader
-    implements Loader<ReadonlyMap<PossibleEntityLimits, EntityLimit>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, EntityLimit>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -99,11 +99,11 @@ export class EntityLimitLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEntityLimits, EntityLimit>;
+    #map?: Map<PossibleEnglishName, EntityLimit>;
 
-    public load(): ReadonlyMap<PossibleEntityLimits, EntityLimit> {
+    public load(): ReadonlyMap<PossibleEnglishName, EntityLimit> {
         if (this.#map == null) {
-            const references = new Map<PossibleEntityLimits, EntityLimit>();
+            const references = new Map<PossibleEnglishName, EntityLimit>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -125,7 +125,7 @@ export class EntityLimitLoader
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEntityLimits, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
@@ -171,15 +171,15 @@ class TemplateBuilder
         const acronym = this._getContent(this._headersIndexMap.acronym);
 
         return type == null
-            ? this.__createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronymEntityLimits,)
-            : this.__createLimitTemplate(type, acronym as PossibleNullableAcronymEntityLimits,);
+            ? this.__createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronym,)
+            : this.__createLimitTemplate(type, acronym as PossibleNullableAcronym,);
     }
 
-    private __createLimitTemplate(type: PossibleEntityLimitTypeEnglishName, acronym: PossibleNullableAcronymEntityLimits,): EntityLimitTemplate {
+    private __createLimitTemplate(type: PossibleEntityLimitTypeEnglishName, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
         return {
 
             references: {
-                regular: this._getContent(this._headersIndexMap.english) as PossibleEntityLimits,
+                regular: this._getContent(this._headersIndexMap.english) as PossibleEnglishName,
                 alternative: this._getContent(this._headersIndexMap.alternative),
             },
 
@@ -196,7 +196,7 @@ class TemplateBuilder
         };
     }
 
-    private __createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronymEntityLimits,): AlternativeLimitTemplate {
+    private __createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronym,): AlternativeLimitTemplate {
         return {
 
             references: TemplateBuilder.#EMPTY_REFERENCES,

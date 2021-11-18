@@ -1,6 +1,6 @@
-import type {Converter}                                                                                                                        from './Converter';
-import type {BasicPredefinedConversion, PredefinedConversion, PredefinedConverterArray, PredefinedConverterNames, PredefinedConverterOrdinals} from './PredefinedConverter.types';
-import type {ConversionCallbackToAny, ValidationCallback}                                                                                      from '../CSVLoader.types';
+import type {BasicPredefinedConversion, EnumArray, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PredefinedConversion} from './PredefinedConverter.types';
+import type {Converter}                                                                                                                                 from './Converter';
+import type {ConversionCallbackToAny, ValidationCallback}                                                                                               from '../CSVLoader.types';
 
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';
@@ -17,7 +17,7 @@ import {StringToSingleStringConverter}    from './StringToSingleStringConverter'
 import {StringToSingleBooleanConverter}   from './StringToSingleBooleanConverter';
 
 export abstract class PredefinedConverter
-    extends Enum<PredefinedConverterOrdinals, PredefinedConverterNames> {
+    extends Enum<Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
@@ -213,7 +213,7 @@ export abstract class PredefinedConverter
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: PredefinedConverterArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -279,24 +279,26 @@ export abstract class PredefinedConverter
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends PredefinedConverterOrdinals = PredefinedConverterOrdinals, >(ordinal: O,): PredefinedConverterArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): NonNullable<PredefinedConverterArray[O]> | null
-    public static getValue(name: | PredefinedConversion | PredefinedConverterNames,): PredefinedConverter
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof PredefinedConverter[N]
+    public static getValue(name: PossibleStringValue,): PredefinedConverter
     public static getValue(name: string,): | PredefinedConverter | null
-    public static getValue(value: | PredefinedConverter | string | number | null | undefined,): PredefinedConverter | null
-    public static getValue(value: | PredefinedConverter | string | number | null | undefined,): PredefinedConverter | null {
+    public static getValue(value: PossibleNonNullableValue,): PredefinedConverter
+    public static getValue(value: PossibleValue,): | PredefinedConverter | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                ?? this.values.find(predefinedConverter => predefinedConverter.name === value.toLowerCase())
-                ?? null
+                    ?? this.values.find(predefinedConverter => predefinedConverter.name === value.toLowerCase())
+                    ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
                     : null;
     }
 
-    public static get values(): PredefinedConverterArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.NUMBER, this.NULLABLE_NUMBER,
             this.BOOLEAN, this.NULLABLE_BOOLEAN,

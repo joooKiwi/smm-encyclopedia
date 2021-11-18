@@ -1,6 +1,6 @@
 import type {SoundEffectCategory}                      from '../entity/soundEffect/category/SoundEffectCategory';
-import type {SingleTableContent}                       from './tools/table/Table.types';
-import type {PossibleSoundEffectCategoriesEnglishName} from '../entity/soundEffect/category/SoundEffectCategories.types';
+import type {SingleTableContent}  from './tools/table/Table.types';
+import type {PossibleEnglishName} from '../entity/soundEffect/category/SoundEffectCategories.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -18,7 +18,7 @@ export default class EverySoundEffectCategoriesApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
+    #map?: ReadonlyMap<PossibleEnglishName, SoundEffectCategory>;
 
     protected get map() {
         return this.#map ??= SoundEffectCategoryLoader.get.load();

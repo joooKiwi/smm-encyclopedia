@@ -1,6 +1,6 @@
-import type {EntityLimit}          from '../entity/limit/EntityLimit';
-import type {PossibleEntityLimits} from '../entity/limit/EntityLimits.types';
-import type {SingleTableContent}   from './tools/table/Table.types';
+import type {EntityLimit}         from '../entity/limit/EntityLimit';
+import type {PossibleEnglishName} from '../entity/limit/EntityLimits.types';
+import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -20,7 +20,7 @@ export default class EveryLimitsApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleEntityLimits, EntityLimit>;
+    #map?: ReadonlyMap<PossibleEnglishName, EntityLimit>;
 
     protected get map() {
         return this.#map ??= EntityLimitLoader.get.load();

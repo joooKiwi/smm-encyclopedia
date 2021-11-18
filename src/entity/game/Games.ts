@@ -1,13 +1,13 @@
-import type {ClassWithEnglishName}                                                       from '../ClassWithEnglishName';
-import type {GameProperty}                                                               from '../properties/GameProperty';
-import type {GamesArray, GamesNames, GamesOrdinals, PossibleGameName, PossibleImagePath} from './Games.types';
-import type {PropertyGetter}                                                             from '../PropertyGetter';
+import type {ClassWithEnglishName}                                                                                                             from '../ClassWithEnglishName';
+import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
+import type {GameProperty}                                                                                                                     from '../properties/GameProperty';
+import type {PropertyGetter}                                                     from '../PropertyGetter';
 
 import {Enum} from '../../util/enum/Enum';
 
 export abstract class Games
-    extends Enum<GamesOrdinals, GamesNames>
-    implements ClassWithEnglishName<PossibleGameName>,
+    extends Enum<Ordinals, Names>
+    implements ClassWithEnglishName<PossibleEnglishName>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -26,17 +26,17 @@ export abstract class Games
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: GamesArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #englishName: PossibleGameName;
+    readonly #englishName: PossibleEnglishName;
     readonly #imagePath: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleGameName,) {
+    private constructor(englishName: PossibleEnglishName,) {
         super(Games);
         this.#englishName = englishName;
         this.#imagePath = `/game/logos/${englishName}.svg`;
@@ -44,7 +44,7 @@ export abstract class Games
 
     //region -------------------- Getter methods --------------------
 
-    public get englishName(): PossibleGameName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
@@ -61,13 +61,15 @@ export abstract class Games
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends GamesOrdinals = GamesOrdinals, >(ordinal: O,): GamesArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<GamesArray[O]> | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof Games[N]
+    public static getValue(name: PossibleStringValue,): Games
     public static getValue(name: string,): | Games | null
-    public static getValue(name: PossibleGameName,): Games
     public static getValue<I extends Games = Games, >(instance: I,): I
-    public static getValue(value: | Games | string | number,): | Games | null
-    public static getValue(value: | Games | string | number | null | undefined,): | Games | null {
+    public static getValue(value: PossibleNonNullableValue,): Games
+    public static getValue(value: PossibleValue,): | Games | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -79,7 +81,7 @@ export abstract class Games
                     : value;
     }
 
-    public static get values(): GamesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.SUPER_MARIO_MAKER_1,
             this.SUPER_MARIO_MAKER_2,

@@ -1,7 +1,4 @@
-import type {EntityLimitTypeEnglishNameArray}                                                                                                                                                                                                                                                                                                                                                                                 from '../../../entity/limit/EntityLimitTypes.types';
-import type {EveryAlternativeLimitsAcronyms, EveryLimitsNamesOrUnknown, EveryPossibleBehavioursAcronyms, EveryPossibleBehavioursTranslationKeys, EveryPossibleCategoriesNames, EveryPossibleEntityNames, EveryPossibleGroupNames, EveryPossibleLimitsAcronyms, EveryPossibleLimitsNames, EveryPossibleMysteryMushroomsIndividualNames, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
-import type {SoundEffectCategoriesEnglishNameArray}                                                                                                                                                                                                                                                                                                                                                                           from '../../../entity/soundEffect/category/SoundEffectCategories.types';
-import type {SoundEffectsEnglishNameArray}                                                                                                                                                                                                                                                                                                                                                                                    from '../../../entity/soundEffect/simple/SoundEffects.types';
+import type {EveryAlternativeAcronym_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleTranslationKey_EntityBehaviour, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
@@ -35,26 +32,26 @@ class HeaderTypesForConvertorForTestAndDevelopment
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
     static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
-    #everyPossibleEntityNames?: EveryPossibleEntityNames;
+    #everyPossibleEntityNames?: EveryPossibleName_Entity;
 
-    #everyPossibleBehavioursAcronyms?: EveryPossibleBehavioursAcronyms;
-    #everyPossibleBehavioursTranslationKeys?: EveryPossibleBehavioursTranslationKeys;
+    #everyPossibleBehavioursAcronyms?: EveryPossibleAcronym_EntityBehaviour;
+    #everyPossibleBehavioursTranslationKeys?: EveryPossibleTranslationKey_EntityBehaviour;
 
-    #everyPossibleGroupNames?: EveryPossibleGroupNames;
+    #everyPossibleGroupNames?: EveryPossibleName_EntityGroup;
 
-    #everyPossibleEntityCategoriesNames?: EveryPossibleCategoriesNames;
+    #everyPossibleEntityCategoriesNames?: EveryPossibleName_EntityCategory;
 
-    #everyPossibleLimitsAcronyms?: EveryPossibleLimitsAcronyms;
-    #everyAlternativeLimitAcronyms?: EveryAlternativeLimitsAcronyms;
-    #everyPossibleLimitsNames?: EveryPossibleLimitsNames;
-    #everyLimitsNamesOrUnknown?: EveryLimitsNamesOrUnknown;
+    #everyPossibleLimitsAcronyms?: EveryPossibleAcronym_EntityLimit;
+    #everyAlternativeLimitAcronyms?: EveryAlternativeAcronym_EntityLimit;
+    #everyPossibleLimitsNames?: EveryPossibleName_EntityLimit;
+    #everyLimitsNamesOrUnknown?: EveryEnglishNameOrUnknown_EntityLimit;
 
-    #everyPossibleLimitTypesNames?: EntityLimitTypeEnglishNameArray;
+    #everyPossibleLimitTypesNames?: EveryPossibleEnglishName_EntityLimitType;
 
-    #everyPossibleSoundEffectsNames?: SoundEffectsEnglishNameArray;
-    #everyPossibleSoundEffectCategoriesNames?: SoundEffectCategoriesEnglishNameArray;
+    #everyPossibleSoundEffectsNames?: EveryPossibleEnglishName_SoundEffect;
+    #everyPossibleSoundEffectCategoriesNames?: EveryPossibleEnglishName_SoundEffectCategory;
 
-    #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleMysteryMushroomsIndividualNames;
+    #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
 
     //endregion -------------------- Attributes --------------------
 
@@ -100,7 +97,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     public get everyAlternativeLimitAcronyms() {
-        return this.#everyAlternativeLimitAcronyms ??= EntityLimits.everyAcronyms;
+        return this.#everyAlternativeLimitAcronyms ??= EntityLimits.everyAlternativeAcronyms;
     }
 
     public get everyPossibleLimitsNames() {

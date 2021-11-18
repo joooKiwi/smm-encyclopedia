@@ -2,8 +2,9 @@ import type {Dispatch, SetStateAction} from 'react';
 import i18n                            from 'i18next';
 
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './ClassWithEveryLanguages';
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './name/containers/Language';
-import type {BasicAcronym, BasicEnglishName, BasicOriginalName, EveryLanguagesArray, EveryLanguagesNames, EveryLanguagesOrdinals, PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleNonNullableValue, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName}                                                                                                                                                                                                                             from './EveryLanguages.types';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                 from './name/containers/Language';
+import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue} from './EveryLanguages.types';
+import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                              from './ProjectLanguages.types';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './LanguageEnumerable';
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
 
@@ -11,8 +12,8 @@ import {Characters} from './Characters';
 import {Enum}       from '../util/enum/Enum';
 
 export abstract class EveryLanguages
-    extends Enum<EveryLanguagesOrdinals, EveryLanguagesNames>
-    implements LanguageEnumerable<PossibleEveryLanguagesAcronym, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesOriginalName> {
+    extends Enum<Ordinals, Names>
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -299,7 +300,7 @@ export abstract class EveryLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES?: EveryLanguagesArray;
+    static #VALUES?: EnumArray;
     static #DEFAULT?: EveryLanguages;
 
     //endregion -------------------- Enum attributes --------------------
@@ -307,7 +308,7 @@ export abstract class EveryLanguages
 
     static #CURRENT_LANGUAGE: EveryLanguages;
     public static readonly UNKNOWN_STRING = '???';
-    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleProjectLanguagesInternationalAcronym>> | null = null;
+    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleInternationalAcronym_Project>> | null = null;
 
     readonly #isACompleteLanguage: boolean;
 
@@ -315,10 +316,10 @@ export abstract class EveryLanguages
     readonly #isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace: boolean;
     readonly #isASpaceEvenLanguageForThePointsAndSpace: boolean;
 
-    readonly #projectAcronym: PossibleEveryLanguagesAcronym;
-    readonly #internationalAcronym: PossibleEveryLanguagesInternationalAcronym;
-    readonly #englishName: PossibleEveryLanguagesEnglishName;
-    readonly #originalName: PossibleEveryLanguagesOriginalName;
+    readonly #projectAcronym: PossibleAcronym;
+    readonly #internationalAcronym: PossibleInternationalAcronym;
+    readonly #englishName: PossibleEnglishName;
+    readonly #originalName: PossibleOriginalName;
     readonly #parent: | EveryLanguages | null;
 
     #points?: PossiblePoints_Array;
@@ -336,9 +337,10 @@ export abstract class EveryLanguages
     //endregion -------------------- Attributes --------------------
 
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleProjectLanguagesAcronym, internationalAcronym: PossibleProjectLanguagesInternationalAcronym, englishName: PossibleProjectLanguagesEnglishName, originalName: PossibleProjectLanguagesOriginalName, parent: EveryLanguages,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleEveryLanguagesAcronym, internationalAcronym: PossibleEveryLanguagesInternationalAcronym, englishName: PossibleEveryLanguagesEnglishName, originalName: PossibleEveryLanguagesOriginalName, parent: | EveryLanguages | null = null,) {
+    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
+    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
+    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, parent: EveryLanguages,)
+    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, parent: | EveryLanguages | null = null,) {
         super(EveryLanguages);
         this.#isACompleteLanguage = isACompleteLanguage;
         if (typeof isASpaceEvenLanguage == 'boolean')
@@ -373,19 +375,19 @@ export abstract class EveryLanguages
         return this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace;
     }
 
-    public get projectAcronym(): PossibleEveryLanguagesAcronym {
+    public get projectAcronym(): PossibleAcronym {
         return this.#projectAcronym;
     }
 
-    public get internationalAcronym(): PossibleEveryLanguagesInternationalAcronym {
+    public get internationalAcronym(): PossibleInternationalAcronym {
         return this.#internationalAcronym;
     }
 
-    public get englishName(): PossibleEveryLanguagesEnglishName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
-    public get originalName(): PossibleEveryLanguagesOriginalName {
+    public get originalName(): PossibleOriginalName {
         return this.#originalName;
     }
 
@@ -571,7 +573,7 @@ export abstract class EveryLanguages
 
         const currentLanguage = (this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML());
         i18n.changeLanguage(currentLanguage.projectAcronym);
-        this.INTERNATIONALISATION_SET_CURRENT_LANGUAGE?.(currentLanguage.internationalAcronym as PossibleProjectLanguagesInternationalAcronym);
+        this.INTERNATIONALISATION_SET_CURRENT_LANGUAGE?.(currentLanguage.internationalAcronym as PossibleInternationalAcronym_Project);
         return this;
     }
 
@@ -597,26 +599,27 @@ export abstract class EveryLanguages
 
 
     public static getValue(value: | null | undefined,): null
-    public static getValue(value: PossibleNonNullableValue,): EveryLanguages
-    public static getValue<O extends EveryLanguagesOrdinals, >(ordinal: O,): EveryLanguagesArray[O]
-    public static getValue<O extends number, >(ordinal: O,): | NonNullable<EveryLanguagesArray[O]> | null
-    public static getValue<I extends EveryLanguages, >(instance: I,): I
-    public static getValue(nameOrAcronym: | PossibleEveryLanguagesAcronym | PossibleEveryLanguagesEnglishName | PossibleEveryLanguagesOriginalName | EveryLanguagesNames,): EveryLanguages
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names>(name: N,): typeof EveryLanguages[N]
+    public static getValue(nameOrAcronym: PossibleStringValue,): EveryLanguages
     public static getValue(nameOrAcronym: string,): | EveryLanguages | null
-    public static getValue(value: | EveryLanguages | string | number | null | undefined,): | EveryLanguages | null
-    public static getValue(value: | EveryLanguages | string | number | null | undefined,): | EveryLanguages | null {
+    public static getValue<I extends EveryLanguages = EveryLanguages, >(instance: I,): I
+    public static getValue(value: PossibleNonNullableValue,): EveryLanguages
+    public static getValue(value: PossibleValue,): | EveryLanguages | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
-                ?? null
+                    ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
+                    ?? null
                 : typeof value == 'number'
                     ? this.values[value] ?? null
                     : value ?? null;
     }
 
-    public static get values(): EveryLanguagesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.ENGLISH, this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.FRENCH, this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,

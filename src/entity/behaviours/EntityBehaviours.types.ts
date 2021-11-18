@@ -1,25 +1,39 @@
-import type {EntityBehaviours} from './EntityBehaviours';
-import type {SimpleEnum}       from '../../util/enum/Enum.types';
+import type {EntityBehaviours}                 from './EntityBehaviours';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+
+export type PossibleNonNullableValue = | EntityBehaviours | Ordinals | PossibleStringValue;
+export type PossibleStringValue = Names | PossibleTranslationKey | PossibleAcronym;
+export type PossibleValue = | EntityBehaviours | number | string | null | undefined;
+
+enum Enum {
+
+    RESPAWN_WITH_VINE,
+    RESPAWN_AS_QUESTION_MARK_BLOCK,
+    ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN,
+    NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN,
+    ONLY_1ST_SOUND_OF_PINK_COIN,
+
+    SPAWN_ONLY_1_POWER_UP,
+    SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS,
+    EXPELLED_POWER_UP_FROM_BLOCK,
+    ALWAYS_FINAL_POWER_UP,
+
+    RESPAWN_AFTER_10_SEC,
+    CAN_RESPAWN_AT_CP,
+    RESPAWN_IN_BLOCK_IF_PLAYER_DIE,
+
+}
 
 //region -------------------- Number types --------------------
 
-export type EntityBehavioursOrdinals =
-    | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-    | 11;
+export type Ordinals = typeof Enum[Names];
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type EntityBehavioursNames =
-    | 'RESPAWN_WITH_VINE' | 'RESPAWN_AS_QUESTION_MARK_BLOCK'
-    | `${'ALWAYS' | 'NEVER'}_KNOW_VISUALLY_AMOUNT_OF_COIN` | 'ONLY_1ST_SOUND_OF_PINK_COIN'
+export type Names = keyof typeof Enum;
 
-    | `SPAWN_${'ONLY_1_POWER_UP' | '1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS'}`
-    | 'EXPELLED_POWER_UP_FROM_BLOCK' | 'ALWAYS_FINAL_POWER_UP'
-
-    | 'RESPAWN_AFTER_10_SEC' | 'CAN_RESPAWN_AT_CP' | 'RESPAWN_IN_BLOCK_IF_PLAYER_DIE';
-
-export type PossibleTranslationKeyEntityBehaviours =
+export type PossibleTranslationKey =
     | `Respawn ${'with Vine' | 'as ? Block'}`
     | `${'Always' | 'Never'} know visually # of Coin` | 'Only 1st sound of Pink Coin'
 
@@ -28,7 +42,7 @@ export type PossibleTranslationKeyEntityBehaviours =
 
     | 'Respawn after 10 sec.' | 'Can respawn at CP' | 'Respawn in Block (if player die)';
 
-export type PossibleAcronymEntityBehaviours =
+export type PossibleAcronym =
     | `R${'V' | 'B'}`
     | `${'A' | 'N'}C` | 'O1S'
 
@@ -40,26 +54,26 @@ export type PossibleAcronymEntityBehaviours =
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEntityBehaviours<T = EntityBehaviours, > = SimpleEnum<EntityBehavioursNames, T>;
+export type SimpleEnum<T extends EntityBehaviours = EntityBehaviours, > = OriginalSimpleEnum<Names, T>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EntityMultiplayerArray<T = EntityBehaviours, > = readonly [
-    SimpleEntityBehaviours['RESPAWN_WITH_VINE'],
-    SimpleEntityBehaviours['RESPAWN_AS_QUESTION_MARK_BLOCK'],
-    SimpleEntityBehaviours['ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN'],
-    SimpleEntityBehaviours['NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN'],
-    SimpleEntityBehaviours['ONLY_1ST_SOUND_OF_PINK_COIN'],
+export type EnumArray<T extends EntityBehaviours = EntityBehaviours, > = readonly [
+    SimpleEnum<T>['RESPAWN_WITH_VINE'],
+    SimpleEnum<T>['RESPAWN_AS_QUESTION_MARK_BLOCK'],
+    SimpleEnum<T>['ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN'],
+    SimpleEnum<T>['NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN'],
+    SimpleEnum<T>['ONLY_1ST_SOUND_OF_PINK_COIN'],
 
-    SimpleEntityBehaviours['SPAWN_ONLY_1_POWER_UP'],
-    SimpleEntityBehaviours['SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS'],
-    SimpleEntityBehaviours['EXPELLED_POWER_UP_FROM_BLOCK'],
-    SimpleEntityBehaviours['ALWAYS_FINAL_POWER_UP'],
+    SimpleEnum<T>['SPAWN_ONLY_1_POWER_UP'],
+    SimpleEnum<T>['SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS'],
+    SimpleEnum<T>['EXPELLED_POWER_UP_FROM_BLOCK'],
+    SimpleEnum<T>['ALWAYS_FINAL_POWER_UP'],
 
-    SimpleEntityBehaviours['RESPAWN_AFTER_10_SEC'],
-    SimpleEntityBehaviours['CAN_RESPAWN_AT_CP'],
-    SimpleEntityBehaviours['RESPAWN_IN_BLOCK_IF_PLAYER_DIE'],
+    SimpleEnum<T>['RESPAWN_AFTER_10_SEC'],
+    SimpleEnum<T>['CAN_RESPAWN_AT_CP'],
+    SimpleEnum<T>['RESPAWN_IN_BLOCK_IF_PLAYER_DIE'],
 ];
 
 //endregion -------------------- Array types --------------------

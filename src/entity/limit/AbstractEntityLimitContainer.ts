@@ -1,15 +1,15 @@
-import type {AlternativeEntityLimit, EntityLimit}                                 from './EntityLimit';
-import type {EntityLimitAmount}                                                   from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                                                     from './properties/EntityLimitLink';
-import type {EntityLimitTypes}                                                    from './EntityLimitTypes';
-import type {EveryLanguages}                                                      from '../../lang/EveryLanguages';
-import type {Name}                                                                from '../../lang/name/Name';
-import type {ObjectHolder}                                                        from '../../util/holder/ObjectHolder';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits} from './EntityLimits.types';
+import type {AlternativeEntityLimit, EntityLimit}         from './EntityLimit';
+import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
+import type {EntityLimitLink}                             from './properties/EntityLimitLink';
+import type {EntityLimitTypes}                            from './EntityLimitTypes';
+import type {EveryLanguages}                              from '../../lang/EveryLanguages';
+import type {Name}                                        from '../../lang/name/Name';
+import type {ObjectHolder}                                from '../../util/holder/ObjectHolder';
+import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
-export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
+export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
     LINK extends EntityLimitLink = EntityLimitLink, >
@@ -18,7 +18,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     //region -------------------- Attributes --------------------
 
     readonly #nameContainer: Name;
-    readonly #acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null;
+    readonly #acronym: PossibleAcronym | PossibleAlternativeAcronym | null;
     readonly #alternativeCaller: ObjectHolder<AlternativeEntityLimit>;
     readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
     readonly #limitContainer: EntityLimitAmount;
@@ -26,7 +26,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    protected constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
         this.#nameContainer = name;
         this.#acronym = acronym;
         this.#alternativeCaller = new DelayedObjectHolderContainer(alternative);

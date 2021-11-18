@@ -1,11 +1,11 @@
-import type {PossibleAcronymEntityBehaviours} from './EntityBehaviours.types';
+import type {PossibleAcronym} from './EntityBehaviours.types';
 
 export type CanRespawnType = | boolean | '?' | 'With Vine';
 export type CanRespawnOnlineType = | boolean | '?';
 export type CanRespawnOnlineOutOfABlockType = | boolean | '?';
 
-export type EveryPossibleLinkedBehaviourAcronymArray = readonly [] | readonly [PossibleAcronymEntityBehaviours,] | readonly [PossibleAcronymEntityBehaviours, PossibleAcronymEntityBehaviours,] | readonly [PossibleAcronymEntityBehaviours, PossibleAcronymEntityBehaviours, PossibleAcronymEntityBehaviours,];
-export type PossibleSoloBehaviourType = | PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${| PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${PossibleAcronymEntityBehaviours}`}` | '?' | null;
-export type PossibleLocalCoopBehaviourType = | PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${| PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${PossibleAcronymEntityBehaviours}`}` | '?' | null;
-export type PossibleOnlineCoopBehaviourType = | PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${| PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${PossibleAcronymEntityBehaviours}`}` | '?' | null;
-export type PossibleOnlineVersusBehaviourType = | PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${| PossibleAcronymEntityBehaviours | `${PossibleAcronymEntityBehaviours} / ${PossibleAcronymEntityBehaviours}`}` | '?' | null;
+export type EveryPossibleLinkedBehaviourAcronymArray = readonly [] | readonly [PossibleAcronym,] | readonly [PossibleAcronym, PossibleAcronym,] | readonly [PossibleAcronym, PossibleAcronym, PossibleAcronym,];
+export type PossibleSoloBehaviourType = | PossibleAcronym | `${PossibleAcronym} / ${| PossibleAcronym | `${PossibleAcronym} / ${PossibleAcronym}`}` | '?' | null;
+export type PossibleLocalCoopBehaviourType = | PossibleAcronym | `${PossibleAcronym} / ${| PossibleAcronym | `${PossibleAcronym} / ${PossibleAcronym}`}` | '?' | null;
+export type PossibleOnlineCoopBehaviourType = | PossibleAcronym | `${PossibleAcronym} / ${| PossibleAcronym | `${PossibleAcronym} / ${PossibleAcronym}`}` | '?' | null;
+export type PossibleOnlineVersusBehaviourType = | PossibleAcronym | `${PossibleAcronym} / ${| PossibleAcronym | `${PossibleAcronym} / ${PossibleAcronym}`}` | '?' | null;

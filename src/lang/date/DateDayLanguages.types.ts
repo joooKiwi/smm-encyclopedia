@@ -1,4 +1,5 @@
-import type {PossibleNonNullableValue as ProjectPossibleNonNullableValue} from '../ProjectLanguages.types';
-import type {DateDayLanguages}                                            from './DateDayLanguages';
+import type {DateDayLanguages}                                                                                     from './DateDayLanguages';
+import type {PossibleNonNullableValue as OriginalPossibleNonNullableValue, PossibleValue as OriginalPossibleValue} from '../ProjectLanguages.types';
 
-export type PossibleNonNullableValue = | DateDayLanguages | ProjectPossibleNonNullableValue;
+export type PossibleNonNullableValue = | DateDayLanguages | OriginalPossibleNonNullableValue;
+export type PossibleValue = | DateDayLanguages | OriginalPossibleValue;

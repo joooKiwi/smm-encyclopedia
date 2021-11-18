@@ -5,7 +5,7 @@ import type {DebugEntityReferences}                                             
 import type {Entity}                                                                             from '../simple/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
-import type {PossibleAlternativeEntityLimits, PossibleEntityLimits}                              from './EntityLimits.types';
+import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                from './EntityLimits.types';
 import type {PossibleGroupName, SingleEntityName}                                                from '../entityTypes';
 
 import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
@@ -28,7 +28,7 @@ export class EntityLimitBuilder
 
     //region -------------------- External object references --------------------
 
-    public static references: Map<PossibleEntityLimits | PossibleAlternativeEntityLimits, EntityLimit>;
+    public static references: Map<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>;
 
     public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
 

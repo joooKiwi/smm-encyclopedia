@@ -1,43 +1,65 @@
-import type {GameReferences}                       from './GameReferences';
-import type {PossibleGameName}                     from '../entity/game/Games.types';
-import type {PossibleGameStyleName}                from '../entity/gameStyle/GameStyles.types';
-import type {SimpleEnum}                           from '../util/enum/Enum.types';
-import type {PossibleSoundEffectsEnglishNameGames} from '../entity/soundEffect/simple/SoundEffects.types';
+import type {GameReferences}                                                    from './GameReferences';
+import type {PossibleEnglishName as PossibleGameEnglishName}                    from '../entity/game/Games.types';
+import type {PossibleEnglishName as PossibleGameStyleEnglishName}               from '../entity/gameStyle/GameStyles.types';
+import type {PossibleEnglishName_Games as PossibleSoundEffectsEnglishNameGames} from '../entity/soundEffect/simple/SoundEffects.types';
+import type {SimpleEnum as OriginalSimpleEnum}                                  from '../util/enum/Enum.types';
+
+export type PossibleNonNullableValue = | GameReferences | Ordinals | PossibleStringValue;
+export type PossibleStringValue = | Names | PossibleEnglishName;
+export type PossibleValue = | GameReferences | number | string | null | undefined;
+
+enum Enum {
+
+    SUPER_MARIO_BROS, SUPER_MARIO_BROS_2, SUPER_MARIO_BROS_3,
+
+    SUPER_MARIO_KART,
+
+    SUPER_MARIO_LAND,
+
+    SUPER_MARIO_64,
+
+    SUPER_MARIO_SUNSHINE,
+
+    SUPER_MARIO_GALAXY,
+
+    NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD,
+
+
+    SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_2,
+
+}
 
 //region -------------------- Number types --------------------
 
-export type GameReferencesOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-                                     | 11 | 12;
+export type Ordinals = typeof Enum[Names];
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type GameReferencesNames =
-    | `SUPER_MARIO_${| `BROS${| '' | `_${| 2 | 3}`}` | 'LAND' | 'KART' | 64 | 'SUNSHINE' | 'GALAXY' | '3D_WORLD' | `MAKER_${| 1 | 2}`}` | 'NEW_SUPER_MARIO_BROS_U';
+export type Names = keyof typeof Enum;
 
-export type PossibleExclusiveGameReferencesEnglishName = `Super Mario ${| 'Land' | 'Bros. 2'}`;
-export type PossibleExternalGameReferencesEnglishName = | PossibleGameStyleName | PossibleGameName | PossibleSoundEffectsEnglishNameGames;
-export type PossibleGameReferencesEnglishName = | PossibleExclusiveGameReferencesEnglishName | PossibleExternalGameReferencesEnglishName;
-
+export type PossibleExclusiveEnglishName = `Super Mario ${| 'Land' | 'Bros. 2'}`;
+export type PossibleExternalEnglishName = | PossibleGameStyleEnglishName | PossibleGameEnglishName | PossibleSoundEffectsEnglishNameGames;
+export type PossibleEnglishName = | PossibleExclusiveEnglishName | PossibleExternalEnglishName;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleGameReferences<T = GameReferences, > = SimpleEnum<GameReferencesNames, T>;
+export type SimpleEnum<T extends GameReferences = GameReferences, > = OriginalSimpleEnum<Names, T>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type GameReferencesArray<T = GameReferences, > = readonly [
-    SimpleGameReferences<T>['SUPER_MARIO_BROS'], SimpleGameReferences<T>['SUPER_MARIO_BROS_2'], SimpleGameReferences<T>['SUPER_MARIO_BROS_3'],
-    SimpleGameReferences<T>['SUPER_MARIO_KART'],
-    SimpleGameReferences<T>['SUPER_MARIO_LAND'],
-    SimpleGameReferences<T>['SUPER_MARIO_64'],
-    SimpleGameReferences<T>['SUPER_MARIO_SUNSHINE'],
-    SimpleGameReferences<T>['SUPER_MARIO_GALAXY'],
-    SimpleGameReferences<T>['NEW_SUPER_MARIO_BROS_U'], SimpleGameReferences<T>['SUPER_MARIO_3D_WORLD'],
+export type EnumArray<T extends GameReferences = GameReferences, > = readonly [
+    SimpleEnum<T>['SUPER_MARIO_BROS'], SimpleEnum<T>['SUPER_MARIO_BROS_2'], SimpleEnum<T>['SUPER_MARIO_BROS_3'],
+    SimpleEnum<T>['SUPER_MARIO_KART'],
+    SimpleEnum<T>['SUPER_MARIO_LAND'],
+    SimpleEnum<T>['SUPER_MARIO_64'],
+    SimpleEnum<T>['SUPER_MARIO_SUNSHINE'],
+    SimpleEnum<T>['SUPER_MARIO_GALAXY'],
+    SimpleEnum<T>['NEW_SUPER_MARIO_BROS_U'], SimpleEnum<T>['SUPER_MARIO_3D_WORLD'],
 
-    SimpleGameReferences<T>['SUPER_MARIO_MAKER_1'], SimpleGameReferences<T>['SUPER_MARIO_MAKER_2'],
+    SimpleEnum<T>['SUPER_MARIO_MAKER_1'], SimpleEnum<T>['SUPER_MARIO_MAKER_2'],
 ];
 
 //endregion -------------------- Array types --------------------

@@ -1,7 +1,7 @@
-import type {PossibleSoundEffectsEnglishNameGames}                                                                                                                                                       from '../entity/soundEffect/simple/SoundEffects.types';
-import type {ClassWithEnglishName}                                                                                                                                                                       from '../entity/ClassWithEnglishName';
-import type {GameReferencesArray, GameReferencesNames, GameReferencesOrdinals, PossibleExclusiveGameReferencesEnglishName, PossibleExternalGameReferencesEnglishName, PossibleGameReferencesEnglishName} from './GameReferences.types';
-import type {ObjectHolder}                                                                                                                                                                               from '../util/holder/ObjectHolder';
+import type {PossibleEnglishName_Games}                                                                                                                                                from '../entity/soundEffect/simple/SoundEffects.types';
+import type {ClassWithEnglishName}                                                                                                                                                     from '../entity/ClassWithEnglishName';
+import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleExclusiveEnglishName, PossibleExternalEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types';
+import type {ObjectHolder}                                                                                                                                                             from '../util/holder/ObjectHolder';
 
 import {DelayedObjectHolderContainer} from '../util/holder/DelayedObjectHolderContainer';
 import {Enum}                         from '../util/enum/Enum';
@@ -10,25 +10,24 @@ import {GameStyles}                   from '../entity/gameStyle/GameStyles';
 import {SoundEffects}                 from '../entity/soundEffect/simple/SoundEffects';
 
 export class GameReferences
-    extends Enum<GameReferencesOrdinals, GameReferencesNames>
-    implements ClassWithEnglishName<PossibleGameReferencesEnglishName> {
+    extends Enum<Ordinals, Names>
+    implements ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
-
 
     public static readonly SUPER_MARIO_BROS =       new GameReferences(GameStyles.SUPER_MARIO_BROS,                                                                    );
     public static readonly SUPER_MARIO_BROS_2 =     new GameReferences('Super Mario Bros. 2',                                                               );
     public static readonly SUPER_MARIO_BROS_3 =     new GameReferences(GameStyles.SUPER_MARIO_BROS_3,                                                                  );
 
-    public static readonly SUPER_MARIO_KART =       new GameReferences(SoundEffects.SUPER_MARIO_KART as ClassWithEnglishName<PossibleSoundEffectsEnglishNameGames>,    );
+    public static readonly SUPER_MARIO_KART =       new GameReferences(SoundEffects.SUPER_MARIO_KART as ClassWithEnglishName<PossibleEnglishName_Games>,    );
 
     public static readonly SUPER_MARIO_LAND =       new GameReferences('Super Mario Land',                                                                  );
 
-    public static readonly SUPER_MARIO_64 =         new GameReferences(SoundEffects.SUPER_MARIO_64 as ClassWithEnglishName<PossibleSoundEffectsEnglishNameGames>,      );
+    public static readonly SUPER_MARIO_64 =         new GameReferences(SoundEffects.SUPER_MARIO_64 as ClassWithEnglishName<PossibleEnglishName_Games>,      );
 
-    public static readonly SUPER_MARIO_SUNSHINE =   new GameReferences(SoundEffects.SUPER_MARIO_SUNSHINE as ClassWithEnglishName<PossibleSoundEffectsEnglishNameGames>,);
+    public static readonly SUPER_MARIO_SUNSHINE =   new GameReferences(SoundEffects.SUPER_MARIO_SUNSHINE as ClassWithEnglishName<PossibleEnglishName_Games>,);
 
-    public static readonly SUPER_MARIO_GALAXY =     new GameReferences(SoundEffects.SUPER_MARIO_GALAXY as ClassWithEnglishName<PossibleSoundEffectsEnglishNameGames>,  );
+    public static readonly SUPER_MARIO_GALAXY =     new GameReferences(SoundEffects.SUPER_MARIO_GALAXY as ClassWithEnglishName<PossibleEnglishName_Games>,  );
 
     public static readonly NEW_SUPER_MARIO_BROS_U = new GameReferences(GameStyles.NEW_SUPER_MARIO_BROS_U,                                                              );
 
@@ -40,37 +39,39 @@ export class GameReferences
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES?: GameReferencesArray;
+    static #VALUES?: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #englishNameHolder: ObjectHolder<PossibleGameReferencesEnglishName>;
+    readonly #englishNameHolder: ObjectHolder<PossibleEnglishName>;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(reference: ClassWithEnglishName<PossibleExternalGameReferencesEnglishName>,)
-    private constructor(englishName: PossibleExclusiveGameReferencesEnglishName,)
-    private constructor(englishNameOrReferenceCallback: PossibleExclusiveGameReferencesEnglishName | ClassWithEnglishName<PossibleExternalGameReferencesEnglishName>,) {
+    private constructor(reference: ClassWithEnglishName<PossibleExternalEnglishName>,)
+    private constructor(englishName: PossibleExclusiveEnglishName,)
+    private constructor(englishNameOrReferenceCallback: PossibleExclusiveEnglishName | ClassWithEnglishName<PossibleExternalEnglishName>,) {
         super(GameReferences);
         this.#englishNameHolder = new DelayedObjectHolderContainer(() => typeof englishNameOrReferenceCallback == 'string' ? englishNameOrReferenceCallback : englishNameOrReferenceCallback.englishName);
     }
 
 
-    public get englishName(): PossibleGameReferencesEnglishName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishNameHolder.get;
     }
 
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends GameReferencesOrdinals = GameReferencesOrdinals, >(ordinal: O,): GameReferencesArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<GameReferencesArray[O]> | null
-    public static getValue(name: GameReferencesNames,): GameReferences
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof GameReferences[N]
+    public static getValue(name: PossibleStringValue,): GameReferences
     public static getValue(name: string,): | GameReferences | null
     public static getValue<I extends GameReferences = GameReferences, >(instance: I,): I
-    public static getValue(value: | GameReferences | string | number | null | undefined,): | GameReferences | null
-    public static getValue(value: | GameReferences | string | number | null | undefined,): | GameReferences | null {
+    public static getValue(value: PossibleNonNullableValue,): GameReferences
+    public static getValue(value: PossibleValue,): | GameReferences | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -82,7 +83,7 @@ export class GameReferences
                     : value;
     }
 
-    public static get values(): GameReferencesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_2, this.SUPER_MARIO_BROS_3,
             this.SUPER_MARIO_KART,

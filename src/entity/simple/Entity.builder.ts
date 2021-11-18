@@ -5,7 +5,7 @@ import type {Entity}                                                            
 import type {EntityCategory}                                                                                                                          from '../category/EntityCategory';
 import type {EntityLink}                                                                                                                              from '../entityTypes';
 import type {EntityTemplate}                                                                                                                          from './Entity.template';
-import type {PossibleEntityCategoriesName}                                                                                                            from '../category/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../category/EntityCategories.types';
 import type {PossibleGameReceived}                                                                                                                    from '../lang/NameBuilder.types';
 
 import {EntityLimits}                  from '../limit/EntityLimits';
@@ -27,7 +27,7 @@ export class EntityBuilder
     //region -------------------- External object references --------------------
 
     public static references: Map<string, DebugEntityReferences>;
-    public static categoriesMap: ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>;
+    public static categoriesMap: ReadonlyMap<PossibleEntityCategoryEnglishName, EntityCategory>;
 
     //endregion -------------------- External object references --------------------
     //region -------------------- Attributes --------------------

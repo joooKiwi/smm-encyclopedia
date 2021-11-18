@@ -1,32 +1,44 @@
-import type {SimpleEnum}            from '../../../util/enum/Enum.types';
-import type {SoundEffectCategories} from './SoundEffectCategories';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import type {SoundEffectCategories}            from './SoundEffectCategories';
+
+export type PossibleNonNullableValue = | SoundEffectCategories | Ordinals | PossibleStringValue;
+export type PossibleStringValue = | Names | PossibleEnglishName;
+export type PossibleValue = | SoundEffectCategories | number | string | null | undefined;
+
+enum Enum {
+    FEELINGS,
+    STINGERS,
+    REACTIONS,
+    ANIMATIONS,
+    MUSIC,
+}
 
 //region -------------------- Number types --------------------
 
-export type SoundEffectCategoriesOrdinals = | 0 | 1 | 2 | 3 | 4;
+export type Ordinals = typeof Enum[Names];
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type SoundEffectCategoriesNames = 'FEELINGS' | 'STINGERS' | 'REACTIONS' | 'ANIMATIONS' | 'MUSIC';
+export type Names = keyof typeof Enum;
 
-export type PossibleSoundEffectCategoriesEnglishName = | 'Feelings' | 'Stingers' | 'Reactions' | 'Animations' | 'Music';
+export type PossibleEnglishName = | 'Feelings' | 'Stingers' | 'Reactions' | 'Animations' | 'Music';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleSoundEffectCategories<T = SoundEffectCategories, > = SimpleEnum<SoundEffectCategoriesNames, T>;
+export type SimpleEnum<T extends SoundEffectCategories = SoundEffectCategories, > = OriginalSimpleEnum<Names, T>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type SoundEffectCategoriesArray<T = SoundEffectCategories, > = readonly [
-    SimpleSoundEffectCategories<T>['FEELINGS'],
-    SimpleSoundEffectCategories<T>['STINGERS'],
-    SimpleSoundEffectCategories<T>['REACTIONS'],
-    SimpleSoundEffectCategories<T>['ANIMATIONS'],
-    SimpleSoundEffectCategories<T>['MUSIC'],
+export type EnumArray<T extends SoundEffectCategories = SoundEffectCategories, > = readonly [
+    SimpleEnum<T>['FEELINGS'],
+    SimpleEnum<T>['STINGERS'],
+    SimpleEnum<T>['REACTIONS'],
+    SimpleEnum<T>['ANIMATIONS'],
+    SimpleEnum<T>['MUSIC'],
 ];
-export type SoundEffectCategoriesEnglishNameArray = readonly ['Feelings', 'Stingers', 'Reactions', 'Animations', 'Music',];
+export type EnumArray_EnglishName = readonly ['Feelings', 'Stingers', 'Reactions', 'Animations', 'Music',];
 
 //endregion -------------------- Array types --------------------

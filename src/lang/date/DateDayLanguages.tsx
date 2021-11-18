@@ -1,8 +1,7 @@
-import type {DayNumber}                                                                                                                                                from './types';
-import type {ProjectLanguagesOrdinals}                                                                                                                                 from '../ProjectLanguages.types';
-import type {EveryLanguages}                                                                                                                                           from '../EveryLanguages';
-import type {PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesOriginalName, ProjectLanguagesArray, ProjectLanguagesNames} from '../EveryLanguages.types';
-import type {PossibleNonNullableValue}                                                                                                                                 from './DateDayLanguages.types';
+import type {DayNumber}                                       from './types';
+import type {EnumArray, Names, Ordinals, PossibleStringValue} from '../ProjectLanguages.types';
+import type {EveryLanguages}                                  from '../EveryLanguages';
+import type {PossibleNonNullableValue, PossibleValue}         from './DateDayLanguages.types';
 
 import {ProjectLanguages} from '../ProjectLanguages';
 
@@ -135,7 +134,7 @@ export abstract class DateDayLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES?: ProjectLanguagesArray<DateDayLanguages>;
+    static #VALUES?: EnumArray<DateDayLanguages>;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -174,15 +173,16 @@ export abstract class DateDayLanguages
 
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue(value: PossibleNonNullableValue,): DateDayLanguages
-    public static getValue<O extends ProjectLanguagesOrdinals, >(ordinal: O,): ProjectLanguagesArray<DateDayLanguages>[O]
-    public static getValue<O extends number, >(ordinal: O,): | NonNullable<ProjectLanguagesArray<DateDayLanguages>[O]> | null
-    public static getValue(nameOrAcronym: | PossibleProjectLanguagesAcronym | PossibleProjectLanguagesEnglishName | PossibleProjectLanguagesOriginalName | ProjectLanguagesNames,): DateDayLanguages
+    public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray<DateDayLanguages>[O]
+    public static getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray<DateDayLanguages>[O]> | null
+    public static getValue<N extends Names, >(name: N,): typeof DateDayLanguages[N]
+    public static getValue(nameOrAcronym: PossibleStringValue,): DateDayLanguages
     public static getValue(nameOrAcronym: string,): | DateDayLanguages | null
     public static getValue<I extends DateDayLanguages, >(instance: I,): I
     public static getValue(instance: | EveryLanguages | ProjectLanguages,): | DateDayLanguages | null
-    public static getValue(value: | null | undefined | ProjectLanguages | EveryLanguages | DateDayLanguages | string | number,): | DateDayLanguages | null
-    public static getValue(value: | null | undefined | ProjectLanguages | EveryLanguages | DateDayLanguages | string | number,): | DateDayLanguages | null {
+    public static getValue(value: PossibleNonNullableValue,): DateDayLanguages
+    public static getValue(value: PossibleValue,): | DateDayLanguages | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -195,7 +195,7 @@ export abstract class DateDayLanguages
                         : this.values.find(language => language.reference === value) ?? null;
     }
 
-    public static get values(): ProjectLanguagesArray<DateDayLanguages> {
+    public static get values(): EnumArray<DateDayLanguages> {
         return this.#VALUES ??= [
             this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
             this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,

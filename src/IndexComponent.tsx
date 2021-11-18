@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IntlProvider}    from 'react-intl';
 
-import type {PossibleProjectLanguagesInternationalAcronym} from './lang/EveryLanguages.types';
+import type {PossibleInternationalAcronym} from './lang/ProjectLanguages.types';
 
 import {EveryLanguages}   from './lang/EveryLanguages';
 import {ProjectLanguages} from './lang/ProjectLanguages';
@@ -22,7 +22,7 @@ function FunctionIndexComponent() {
     </IntlProvider>;
 }
 
-function setAndGetCurrentLanguage(): PossibleProjectLanguagesInternationalAcronym {
+function setAndGetCurrentLanguage(): PossibleInternationalAcronym {
     ProjectLanguages.currentLanguage ??= 'en_AM';
     return ProjectLanguages.currentLanguage.internationalAcronym;
 }

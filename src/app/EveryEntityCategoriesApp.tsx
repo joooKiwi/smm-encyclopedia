@@ -1,5 +1,5 @@
-import type {PossibleEntityCategoriesName} from '../entity/category/EntityCategories.types';
-import type {SingleTableContent}           from './tools/table/Table.types';
+import type {PossibleEnglishName} from '../entity/category/EntityCategories.types';
+import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -18,7 +18,7 @@ export default class EveryEntityCategoriesApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>;
+    #map?: ReadonlyMap<PossibleEnglishName, EntityCategory>;
 
     protected get map() {
         return this.#map ??= EntityCategoryLoader.get.load();

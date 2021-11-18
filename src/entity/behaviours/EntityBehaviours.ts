@@ -1,6 +1,6 @@
-import type {ClassWithAcronym}                                                                                                                                 from '../ClassWithAcronym';
-import type {ClassWithTranslationKey}                                                                                                                          from '../../lang/ClassWithTranslationKey';
-import type {EntityBehavioursNames, EntityBehavioursOrdinals, EntityMultiplayerArray, PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
+import type {ClassWithAcronym}                                                    from '../ClassWithAcronym';
+import type {ClassWithTranslationKey}                                                                                                           from '../../lang/ClassWithTranslationKey';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKey, PossibleValue} from './EntityBehaviours.types';
 
 import {Enum}                  from '../../util/enum/Enum';
 import {EntityBehaviour}       from './EntityBehaviour';
@@ -11,10 +11,10 @@ import {EntityBehaviourLoader} from './EntityBehaviour.loader';
  * @recursiveReference<{@link EntityBehaviourLoader}>
  */
 export class EntityBehaviours
-    extends Enum<EntityBehavioursOrdinals, EntityBehavioursNames>
+    extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityBehaviour>,
-        ClassWithTranslationKey<PossibleTranslationKeyEntityBehaviours>,
-        ClassWithAcronym<PossibleAcronymEntityBehaviours> {
+        ClassWithTranslationKey<PossibleTranslationKey>,
+        ClassWithAcronym<PossibleAcronym> {
 
     //region -------------------- Enum instances --------------------
 
@@ -36,7 +36,7 @@ export class EntityBehaviours
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: EntityMultiplayerArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -47,7 +47,7 @@ export class EntityBehaviours
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym: PossibleAcronymEntityBehaviours, translationKey: PossibleTranslationKeyEntityBehaviours,) {
+    private constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKey,) {
         super(EntityBehaviours);
         this.#acronym = acronym;
         this.#translationKey = translationKey;
@@ -60,22 +60,22 @@ export class EntityBehaviours
     }
 
 
-    public get translationKey(): PossibleTranslationKeyEntityBehaviours {
+    public get translationKey(): PossibleTranslationKey {
         return this.#translationKey;
     }
 
-    public get acronym(): PossibleAcronymEntityBehaviours {
+    public get acronym(): PossibleAcronym {
         return this.#acronym;
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyAcronyms(): readonly PossibleAcronymEntityBehaviours[] {
+    public static get everyAcronyms(): readonly PossibleAcronym[] {
         return this.values.map(limit => limit.acronym);
     }
 
-    public static get everyTranslationKeys(): readonly PossibleTranslationKeyEntityBehaviours[] {
+    public static get everyTranslationKeys(): readonly PossibleTranslationKey[] {
         return this.values.map(limit => limit.translationKey);
     }
 
@@ -83,13 +83,15 @@ export class EntityBehaviours
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends EntityBehavioursOrdinals = EntityBehavioursOrdinals, >(ordinal: O,): EntityMultiplayerArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EntityMultiplayerArray[O]> | null
-    public static getValue(name: | EntityBehavioursNames | PossibleTranslationKeyEntityBehaviours | PossibleAcronymEntityBehaviours,): EntityBehaviours
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof EntityBehaviours[N]
+    public static getValue(name: PossibleStringValue,): EntityBehaviours
     public static getValue(name: string,): | EntityBehaviours | null
     public static getValue<I extends EntityBehaviours = EntityBehaviours, >(instance: I,): I
-    public static getValue(value: | EntityBehaviours | string | number | null | undefined,): | EntityBehaviours | null
-    public static getValue(value: | EntityBehaviours | string | number | null | undefined,): | EntityBehaviours | null {
+    public static getValue(value: PossibleNonNullableValue,): EntityBehaviours
+    public static getValue(value: PossibleValue,): | EntityBehaviours | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -102,7 +104,7 @@ export class EntityBehaviours
                     : value;
     }
 
-    public static get values(): EntityMultiplayerArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.RESPAWN_WITH_VINE,
             this.RESPAWN_AS_QUESTION_MARK_BLOCK,

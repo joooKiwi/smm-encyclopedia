@@ -1,9 +1,9 @@
-import type {Builder}                                  from '../../../util/Builder';
-import type {Name}                                     from '../../../lang/name/Name';
-import type {PossibleSoundEffectCategoriesEnglishName} from '../category/SoundEffectCategories.types';
-import type {SoundEffect}                              from './SoundEffect';
-import type {SoundEffectTemplate}                      from './SoundEffect.template';
-import type {SoundEffectCategory}                      from '../category/SoundEffectCategory';
+import type {Builder}                                                       from '../../../util/Builder';
+import type {Name}                                                          from '../../../lang/name/Name';
+import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../category/SoundEffectCategories.types';
+import type {SoundEffect}                                                   from './SoundEffect';
+import type {SoundEffectTemplate}                                           from './SoundEffect.template';
+import type {SoundEffectCategory}                                           from '../category/SoundEffectCategory';
 
 import {EmptySoundEffectCategory}     from '../category/EmptySoundEffectCategory';
 import {Games}                        from '../../game/Games';
@@ -16,7 +16,7 @@ export class SoundEffectBuilder
 
     //region -------------------- External object references --------------------
 
-    public static categoriesMap: ReadonlyMap<PossibleSoundEffectCategoriesEnglishName, SoundEffectCategory>;
+    public static categoriesMap: ReadonlyMap<PossibleSoundEffectCategoryEnglishName, SoundEffectCategory>;
 
     //endregion -------------------- External object references --------------------
 

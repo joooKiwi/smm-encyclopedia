@@ -1,7 +1,7 @@
 import './EverySoundEffectsApp.scss';
 
-import type {PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath, PossibleSoundEffectsEnglishName} from '../entity/soundEffect/simple/SoundEffects.types';
-import type {SoundEffect}                                                                                         from '../entity/soundEffect/simple/SoundEffect';
+import type {PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleEnglishName} from '../entity/soundEffect/simple/SoundEffects.types';
+import type {SoundEffect}                                                         from '../entity/soundEffect/simple/SoundEffect';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -22,7 +22,7 @@ export default class EverySoundEffectsApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect>;
+    #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
 
     protected get map() {
         return this.#map ??= SoundEffectLoader.get.load();
@@ -35,7 +35,7 @@ export default class EverySoundEffectsApp
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private static __getImageBasedBaseOnGame(isInGame: boolean, path: | PossibleSMM1SoundEffectImagePath | PossibleSMM2SoundEffectImagePath, alt: PossibleAlt,) {
+    private static __getImageBasedBaseOnGame(isInGame: boolean, path: | PossibleImagePath_SMM1 | PossibleImagePath_SMM2, alt: PossibleAlt,) {
         return !isInGame ? <></> : <img src={path} alt={alt}/>;
     }
 
@@ -84,4 +84,4 @@ export default class EverySoundEffectsApp
 
 }
 
-type PossibleAlt = `SMM${| 1 | 2} - ${PossibleSoundEffectsEnglishName}`;
+type PossibleAlt = `SMM${| 1 | 2} - ${PossibleEnglishName}`;

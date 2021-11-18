@@ -1,7 +1,7 @@
-import {EntityBehaviour}                                                         from './EntityBehaviour';
-import {EntityBehaviourLink}                                                     from './properties/EntityBehaviourLink';
-import {EntityBehaviourIsInOnly}                                                 from './properties/EntityBehaviourIsInOnly';
-import {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
+import {EntityBehaviour}                         from './EntityBehaviour';
+import {EntityBehaviourLink}                     from './properties/EntityBehaviourLink';
+import {EntityBehaviourIsInOnly}                 from './properties/EntityBehaviourIsInOnly';
+import {PossibleAcronym, PossibleTranslationKey} from './EntityBehaviours.types';
 
 export class EntityBehaviourContainer
     implements EntityBehaviour {
@@ -15,7 +15,7 @@ export class EntityBehaviourContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(acronym: PossibleAcronymEntityBehaviours, translationKey: PossibleTranslationKeyEntityBehaviours, isInOnly: EntityBehaviourIsInOnly, link: EntityBehaviourLink,) {
+    public constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKey, isInOnly: EntityBehaviourIsInOnly, link: EntityBehaviourLink,) {
         this.#acronym = acronym;
         this.#translationKey = translationKey;
         this.#isInOnlyContainer = isInOnly;
@@ -23,11 +23,11 @@ export class EntityBehaviourContainer
     }
 
 
-    public get acronym(): PossibleAcronymEntityBehaviours {
+    public get acronym(): PossibleAcronym {
         return this.#acronym;
     }
 
-    public get translationKey(): PossibleTranslationKeyEntityBehaviours {
+    public get translationKey(): PossibleTranslationKey {
         return this.#translationKey;
     }
 

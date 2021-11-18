@@ -1,11 +1,11 @@
-import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
-import type {PossibleGroupName, SingleEntityName}                                     from '../entityTypes';
+import type {PossibleAcronym, PossibleTranslationKey} from './EntityBehaviours.types';
+import type {PossibleGroupName, SingleEntityName}     from '../entityTypes';
 
 export interface EntityBehaviourTemplate {
 
-    acronym: PossibleAcronymEntityBehaviours
+    acronym: PossibleAcronym
 
-    translationKey: PossibleTranslationKeyEntityBehaviours
+    translationKey: PossibleTranslationKey
 
     isOnly: {
         online: boolean

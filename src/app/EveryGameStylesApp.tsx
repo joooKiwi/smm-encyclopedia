@@ -1,5 +1,5 @@
-import type {PossibleGameStyleName} from '../entity/gameStyle/GameStyles.types';
-import type {SingleTableContent}    from './tools/table/Table.types';
+import type {PossibleEnglishName} from '../entity/gameStyle/GameStyles.types';
+import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -20,7 +20,7 @@ export default class EveryGameStylesApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleGameStyleName, GameStyle>;
+    #map?: ReadonlyMap<PossibleEnglishName, GameStyle>;
 
     protected get map() {
         return this.#map ??= GameStyleLoader.get.load();

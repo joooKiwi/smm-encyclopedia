@@ -1,12 +1,12 @@
-import type {EntityLimitAmount}                                                   from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                                                     from './properties/EntityLimitLink';
-import type {EntityLimitTypes}                                                    from './EntityLimitTypes';
-import type {EveryLanguages}                                                      from '../../lang/EveryLanguages';
-import type {NameTrait}                                                           from '../../lang/name/NameTrait';
-import type {NameTraitFromAnAlternativeContainer}                                 from '../../lang/name/NameTraitFromAnAlternativeContainer';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits} from './EntityLimits.types';
+import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
+import type {EntityLimitLink}                             from './properties/EntityLimitLink';
+import type {EntityLimitTypes}                            from './EntityLimitTypes';
+import type {EveryLanguages}                              from '../../lang/EveryLanguages';
+import type {NameTrait}                                   from '../../lang/name/NameTrait';
+import type {NameTraitFromAnAlternativeContainer}         from '../../lang/name/NameTraitFromAnAlternativeContainer';
+import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
 
-export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null = PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null,
+export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
     LINK extends EntityLimitLink = EntityLimitLink, >
@@ -71,5 +71,5 @@ export interface EntityLimit<ACRONYM extends PossibleAcronymEntityLimits | Possi
 
 }
 
-export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronymEntityLimits | null>;
-export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronymEntityLimits | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer'], EntityLimitWithPossibleAlternativeEntityLimit['linkContainer']>;
+export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronym | null>;
+export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronym | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer'], EntityLimitWithPossibleAlternativeEntityLimit['linkContainer']>;

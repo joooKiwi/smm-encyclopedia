@@ -1,12 +1,12 @@
-import type {ClassWithAcronym}                                                                                                                                                          from '../ClassWithAcronym';
-import type {ClassWithEnglishName}                                                                                                                                                      from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                                        from '../ClassWithReference';
-import type {Entity}                                                                                                                                                                    from '../simple/Entity';
-import type {GameStyle}                                                                                                                                                                 from './GameStyle';
-import type {GameStyleProperty}                                                                                                                                                         from '../properties/GameStyleProperty';
-import type {GameStylesArray, GameStylesNames, GameStylesOrdinals, LargeImagePath, MediumImagePath, PossibleGameStyleAcronym, PossibleGameStyleName, SmallImagePath, StartingImagePath} from './GameStyles.types';
-import type {GameStyleReferences}                                                                                                                                                       from '../properties/GameStyleReferences';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                   from '../PropertyGetter';
+import type {ClassWithAcronym}                                                                                                                                                                                   from '../ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                                                                                               from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                 from '../ClassWithReference';
+import type {Entity}                                                                                                                                                                                             from '../simple/Entity';
+import type {EnumArray, LargeImagePath, MediumImagePath, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SmallImagePath, StartingImagePath} from './GameStyles.types';
+import type {GameStyle}                                                                                                                                                                                          from './GameStyle';
+import type {GameStyleProperty}                                                                                                                                                                                  from '../properties/GameStyleProperty';
+import type {GameStyleReferences}                                                                                                                                                                                from '../properties/GameStyleReferences';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                            from '../PropertyGetter';
 
 import {Enum}            from '../../util/enum/Enum';
 import {GameStyleLoader} from './GameStyle.loader';
@@ -16,10 +16,10 @@ import {GameStyleLoader} from './GameStyle.loader';
  * @recursiveReference<{@link GameStyleLoader}>
  */
 export abstract class GameStyles
-    extends Enum<GameStylesOrdinals, GameStylesNames>
+    extends Enum<Ordinals, Names>
     implements ClassWithReference<GameStyle>,
-        ClassWithAcronym<PossibleGameStyleAcronym>,
-        ClassWithEnglishName<PossibleGameStyleName>,
+        ClassWithAcronym<PossibleAcronym>,
+        ClassWithEnglishName<PossibleEnglishName>,
         PropertyReferenceGetter<GameStyleReferences>,
         PropertyGetter<GameStyleProperty> {
 
@@ -84,7 +84,7 @@ export abstract class GameStyles
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: GameStylesArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -96,7 +96,7 @@ export abstract class GameStyles
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym: PossibleGameStyleAcronym, englishName: PossibleGameStyleName,) {
+    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super(GameStyles);
         this.#acronym = acronym;
         this.#englishName = englishName;
@@ -110,11 +110,11 @@ export abstract class GameStyles
     }
 
 
-    public get acronym(): PossibleGameStyleAcronym {
+    public get acronym(): PossibleAcronym {
         return this.#acronym;
     }
 
-    public get englishName(): PossibleGameStyleName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
@@ -145,13 +145,15 @@ export abstract class GameStyles
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: null | undefined,): null
-    public static getValue<O extends GameStylesOrdinals = GameStylesOrdinals, >(ordinal: O,): GameStylesArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<GameStylesArray[O]> | null
-    public static getValue(name: PossibleGameStyleName,): GameStyles
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof GameStyles[N]
+    public static getValue(name: PossibleStringValue,): GameStyles
     public static getValue(name: string,): | GameStyles | null
     public static getValue<I extends GameStyles = GameStyles, >(instance: I,): I
-    public static getValue(value: | GameStyles | string | number | null | undefined,): | GameStyles | null
-    public static getValue(value: | GameStyles | string | number | null | undefined,): | GameStyles | null {
+    public static getValue(value: PossibleNonNullableValue,): GameStyles
+    public static getValue(value: PossibleValue,): | GameStyles | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -163,7 +165,7 @@ export abstract class GameStyles
                     : value;
     }
 
-    public static get values(): GameStylesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.SUPER_MARIO_BROS,
             this.SUPER_MARIO_BROS_3,

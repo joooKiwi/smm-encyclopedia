@@ -1,7 +1,11 @@
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {MysteryMushrooms}                 from './MysteryMushrooms';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
-enum Types {
+export type PossibleNonNullableValue = | MysteryMushrooms | Ordinals | PossibleStringValue;
+export type PossibleStringValue = | Names | EnglishNameOnFile | UniqueEnglishName;
+export type PossibleValue = | MysteryMushrooms | number | string | null | undefined;
+
+enum Enum {
     MYSTERY_MUSHROOM,
 
     YAMAMURA, MARY_O, UNDODOG,
@@ -150,12 +154,12 @@ enum Types {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Types[Names];
+export type Ordinals = typeof Enum[Names];
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Types;
+export type Names = keyof typeof Enum;
 
 export type EnglishNameOnFile = | Exclude<EnglishName, | 'Mary O.' | 'Bowser Jr.' | 'Donkey Kong Jr.' | '? Block' | 'R.O.B.'>
                                 | 'Mary O' | 'Bowser Jr' | 'Donkey Kong Jr' | 'Question Mark Block' | 'Mario (MB)' | 'R.O.B';
@@ -542,7 +546,7 @@ export type JumpImage<PATH extends PossiblePath = PossiblePath, > = `${PATH}/${S
 export type JumpImages<PATH extends PossiblePath = PossiblePath, > = readonly [`${PATH}/${SingleJumpImage<0>}`, `${PATH}/${SingleJumpImage<1>}`, `${PATH}/${SingleJumpImage<2>}`,];
 export type JumpSoundNumber = | '' | 2;
 export type SingleJumpSound<N extends JumpSoundNumber = JumpSoundNumber, > = `jump${N}.wav`;
-export type JumpSound<N extends JumpSoundNumber = JumpSoundNumber, > = `${BasicPath}/${SingleJumpSound}`;
+export type JumpSound<N extends JumpSoundNumber = JumpSoundNumber, > = `${BasicPath}/${SingleJumpSound<N>}`;
 export type JumpSounds = readonly [JumpSound<''>, JumpSound<2>,];
 
 export type SingleFallingAfterJumpImage = 'jump_fall.0.png';

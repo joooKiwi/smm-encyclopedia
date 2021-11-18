@@ -1,12 +1,13 @@
-import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                       from './ClassWithEveryLanguages';
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                    from './name/containers/Language';
-import type {CharactersTrait}                                                                                                                                                                                                                                                                                            from './CharactersTrait';
-import type {PossibleEveryLanguagesAcronym, PossibleEveryLanguagesEnglishName, PossibleEveryLanguagesInternationalAcronym, PossibleEveryLanguagesOriginalName, PossibleProjectLanguagesAcronym, PossibleProjectLanguagesEnglishName, PossibleProjectLanguagesInternationalAcronym, PossibleProjectLanguagesOriginalName} from './EveryLanguages.types';
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                       from './ClassWithEveryLanguages';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                    from './name/containers/Language';
+import type {CharactersTrait}                                                                                                                                                                                                            from './CharactersTrait';
+import type {PossibleAcronym as PossibleAcronym_All, PossibleEnglishName as PossibleEnglishName_All, PossibleInternationalAcronym as PossibleInternationalAcronym_All, PossibleOriginalName as PossibleOriginalName_All}                 from './EveryLanguages.types';
+import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from './ProjectLanguages.types';
 
-export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleEveryLanguagesAcronym | PossibleProjectLanguagesAcronym,
-    INTERNATIONAL_ACRONYM extends | PossibleEveryLanguagesInternationalAcronym | PossibleProjectLanguagesInternationalAcronym,
-    ENGLISH_NAME extends | PossibleEveryLanguagesEnglishName | PossibleProjectLanguagesEnglishName,
-    ORIGINAL_NAME extends | PossibleEveryLanguagesOriginalName | PossibleProjectLanguagesOriginalName>
+export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_All | PossibleAcronym_Project,
+    INTERNATIONAL_ACRONYM extends | PossibleInternationalAcronym_All | PossibleInternationalAcronym_Project,
+    ENGLISH_NAME extends | PossibleEnglishName_All | PossibleEnglishName_Project,
+    ORIGINAL_NAME extends | PossibleOriginalName_All | PossibleOriginalName_Project>
     extends CharactersTrait {
 
     //region -------------------- Getter methods --------------------

@@ -4,7 +4,7 @@ import type {PropertiesArray as LanguagesPropertyArray}            from '../../.
 import type {Loader}                                               from '../../../util/loader/Loader';
 import type {PropertiesArray as GamesPropertyArray}                from '../../game/Loader.types';
 import type {PossibleSoundEffectCategoryType, SoundEffectTemplate} from './SoundEffect.template';
-import type {PossibleSoundEffectsEnglishName}                      from './SoundEffects.types';
+import type {PossibleEnglishName}                                  from './SoundEffects.types';
 import type {SoundEffect}                                          from './SoundEffect';
 
 import {AbstractTemplateBuilder}   from '../../_template/AbstractTemplate.builder';
@@ -99,7 +99,7 @@ type PropertiesArray = [
  * @singleton
  */
 export class SoundEffectLoader
-    implements Loader<ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, SoundEffect>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -114,11 +114,11 @@ export class SoundEffectLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleSoundEffectsEnglishName, SoundEffect>;
+    #map?: Map<PossibleEnglishName, SoundEffect>;
 
-    public load(): ReadonlyMap<PossibleSoundEffectsEnglishName, SoundEffect> {
+    public load(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
         if (this.#map == null) {
-            const references = new Map<PossibleSoundEffectsEnglishName, SoundEffect>();
+            const references = new Map<PossibleEnglishName, SoundEffect>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -140,7 +140,7 @@ export class SoundEffectLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'category',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectsNames, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleSoundEffectsEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
