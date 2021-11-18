@@ -1,22 +1,22 @@
 import type {ReactNode} from 'react';
 import {Component}      from 'react';
 
-import type {ActivatableProperty} from './properties/ActivatableProperty';
-import type {GroupButtonProperty} from './properties/GroupButtonProperty';
-import type {ReactComponent}      from '../../../util/react/ReactComponent';
+import type {ActivatableProperties} from './properties/ActivatableProperties';
+import type {GroupButtonProperties} from './properties/GroupButtonProperties';
+import type {ReactComponent}        from '../../../util/react/ReactComponent';
 
 /**
  * @reactComponent
  */
-export default abstract class AbstractGroupButton<T extends ActivatableProperty>
-    extends Component<GroupButtonProperty<T>, any>
+export default abstract class AbstractGroupButton<T extends ActivatableProperties>
+    extends Component<GroupButtonProperties<T>>
     implements ReactComponent<ReactNode> {
 
     public static DEFAULT_IS_OUTLINE = true;
     public static DEFAULT_IS_VERTICAL = true;
     public static MAXIMUM_HORIZONTAL_LENGTH = 5;
 
-    protected constructor(props: GroupButtonProperty<T>,) {
+    protected constructor(props: GroupButtonProperties<T>,) {
         super(props);
     }
 
