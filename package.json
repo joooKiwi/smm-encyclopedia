@@ -13,8 +13,10 @@
     "url": "git+https://github.com/joooKiwi/every-SMM2-properties.git"
   },
   "keywords": [
-    "SuperMarioMaker",
-    "Nintendo",
+    "MarioMaker", "MarioMaker1", "MarioMaker2", "SuperMarioMaker", "SuperMarioMaker1", "SuperMarioMaker2",
+    "Mario", "Luigi", "Toad", "Toadette", "Yoshi", "Bowser", "Koopaling",
+    "entity", "entityLimit", "power-up", "powerUp", "MysteryMushrooms", "MiiCostumes",
+    "Nintendo", "WiiU", "3DS", "Switch",
     "videoGame",
     "wiki"
   ],
