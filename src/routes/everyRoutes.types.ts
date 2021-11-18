@@ -1,7 +1,7 @@
-import type {everySimpleRoutes}               from './everyRoutes';
-import type {PossibleProjectLanguagesAcronym} from '../lang/EveryLanguages.types';
+import type {everySimpleRoutes} from './everyRoutes';
+import type {PossibleAcronym}   from '../lang/ProjectLanguages.types';
 
-export type EveryPossibleRoutes = `/${PossibleProjectLanguagesAcronym}${EveryPossibleRoutePartialPaths}`;
+export type EveryPossibleRoutes = `/${PossibleAcronym}${EveryPossibleRoutePartialPaths}`;
 
 export type EveryPossibleRoutePartialPaths = typeof everySimpleRoutes[number]['path'];
 export type EveryPossibleRouteNames = typeof everySimpleRoutes[number]['name'];

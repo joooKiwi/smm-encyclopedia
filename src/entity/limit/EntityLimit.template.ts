@@ -1,8 +1,8 @@
-import type {PossibleEntityLimitTypeEnglishName}                                                                                         from './EntityLimitTypes.types';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits} from './EntityLimits.types';
-import type {PossibleGroupName, SingleEntityName}                                                                                        from '../entityTypes';
-import type {SMM2NameTemplate}                                                                                                           from '../lang/SMM2Name.template';
-import type {TemplateWithNameTemplate}                                                                                                   from '../_template/TemplateWithName.template';
+import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                        from './EntityLimitTypes.types';
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from './EntityLimits.types';
+import type {PossibleGroupName, SingleEntityName}                                                              from '../entityTypes';
+import type {SMM2NameTemplate}                                                                                 from '../lang/SMM2Name.template';
+import type {TemplateWithNameTemplate}                                                                         from '../_template/TemplateWithName.template';
 
 //region -------------------- Limit types --------------------
 
@@ -52,20 +52,20 @@ export type LinkTemplate = AbstractLinkTemplate<PossibleGroupName, null> | Abstr
 
 //endregion -------------------- Limit types --------------------
 
-interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeEntityLimits | null = | PossibleAlternativeEntityLimits | null,
+interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends | PossibleEnglishName | null = | PossibleEnglishName | null,
+    ALTERNATIVE_REFERENCE extends | PossibleAlternativeEnglishName | null = | PossibleAlternativeEnglishName | null,
     TYPE extends | PossibleEntityLimitTypeEnglishName | null = | PossibleEntityLimitTypeEnglishName | null,
-    ACRONYM extends | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits = | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits,
-    LIMIT_AMOUNT extends LimitAmountTemplate = LimitAmountTemplate,
-    REGULAR_REFERENCE extends | PossibleEntityLimits | null = | PossibleEntityLimits | null, >
+    ACRONYM extends | PossibleAcronym | PossibleAlternativeAcronym | null = | PossibleAcronym | PossibleAlternativeAcronym | null,
+    LIMIT_AMOUNT extends LimitAmountTemplate = LimitAmountTemplate,>
     extends TemplateWithNameTemplate<SMM2NameTemplate> {
 
     references: {
-        regular: PossibleEntityLimits | null
-        alternative: ALTERNATIVE
+        regular: REGULAR_REFERENCE
+        alternative: ALTERNATIVE_REFERENCE
     }
 
     type: TYPE
-    acronym: | ACRONYM | null
+    acronym: ACRONYM
 
     limit: LIMIT_AMOUNT
 
@@ -78,8 +78,8 @@ interface AbstractEntityLimitTemplate<ALTERNATIVE extends | PossibleAlternativeE
 /**
  * @template
  */
-export type EntityLimitTemplate = AbstractEntityLimitTemplate<| PossibleAlternativeEntityLimits | null, PossibleEntityLimitTypeEnglishName, PossibleAcronymEntityLimits, LimitAmountTemplate, null>;
+export type EntityLimitTemplate = AbstractEntityLimitTemplate<PossibleEnglishName, | PossibleAlternativeEnglishName | null, PossibleEntityLimitTypeEnglishName, | PossibleAcronym | null>;
 /**
  * @template
  */
-export type AlternativeLimitTemplate = AbstractEntityLimitTemplate<null, null, PossibleAlternativeAcronymEntityLimits, EmptyLimitAmountTemplate, PossibleEntityLimits>;
+export type AlternativeLimitTemplate = AbstractEntityLimitTemplate<null, null, null, | PossibleAlternativeAcronym | null, EmptyLimitAmountTemplate>;

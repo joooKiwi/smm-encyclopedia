@@ -1,10 +1,10 @@
 import everyBehaviours from '../../resources/Entity behaviours.csv';
 
-import type {EntityBehaviour}                                                         from './EntityBehaviour';
-import type {EntityBehaviourTemplate}                                                 from './EntityBehaviour.template';
-import type {Loader}                                                                  from '../../util/loader/Loader';
-import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
-import type {PossibleGroupName, SingleEntityName}                                     from '../entityTypes';
+import type {EntityBehaviour}                         from './EntityBehaviour';
+import type {EntityBehaviourTemplate}                 from './EntityBehaviour.template';
+import type {Loader}                                  from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleTranslationKey} from './EntityBehaviours.types';
+import type {PossibleGroupName, SingleEntityName}     from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {EntityLoader}            from '../simple/Entity.loader';
@@ -30,8 +30,8 @@ enum Headers {
 //region -------------------- Properties --------------------
 
 type PropertiesArray = [
-    acronym: PossibleAcronymEntityBehaviours,
-    translationKey: PossibleTranslationKeyEntityBehaviours,
+    acronym: PossibleAcronym,
+    translationKey: PossibleTranslationKey,
 
     isOnlineOnly: boolean,
     isMultiplayerOnly: boolean,
@@ -49,7 +49,7 @@ type PropertiesArray = [
  * @recursiveReference<{@link EntityBehaviours}>
  */
 export class EntityBehaviourLoader
-    implements Loader<ReadonlyMap<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>> {
+    implements Loader<ReadonlyMap<PossibleTranslationKey, EntityBehaviour>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -64,11 +64,11 @@ export class EntityBehaviourLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>;
+    #map?: Map<PossibleTranslationKey, EntityBehaviour>;
 
-    public load(): ReadonlyMap<PossibleTranslationKeyEntityBehaviours, EntityBehaviour> {
+    public load(): ReadonlyMap<PossibleTranslationKey, EntityBehaviour> {
         if (this.#map == null) {
-            const references = new Map<PossibleTranslationKeyEntityBehaviours, EntityBehaviour>();
+            const references = new Map<PossibleTranslationKey, EntityBehaviour>();
 
             //region -------------------- Builder initialisation --------------------
 

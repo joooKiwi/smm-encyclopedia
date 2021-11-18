@@ -1,16 +1,16 @@
-import type {ClassWithAcronym}                                                        from '../ClassWithAcronym';
-import type {ClassWithTranslationKey}                                                 from '../../lang/ClassWithTranslationKey';
-import type {EntityBehaviourIsInOnly}                                                 from './properties/EntityBehaviourIsInOnly';
-import type {EntityBehaviourLink}                                                     from './properties/EntityBehaviourLink';
-import type {PossibleAcronymEntityBehaviours, PossibleTranslationKeyEntityBehaviours} from './EntityBehaviours.types';
+import type {ClassWithAcronym}                        from '../ClassWithAcronym';
+import type {ClassWithTranslationKey}                 from '../../lang/ClassWithTranslationKey';
+import type {EntityBehaviourIsInOnly}                 from './properties/EntityBehaviourIsInOnly';
+import type {EntityBehaviourLink}                     from './properties/EntityBehaviourLink';
+import type {PossibleAcronym, PossibleTranslationKey} from './EntityBehaviours.types';
 
 export interface EntityBehaviour
     extends EntityBehaviourIsInOnly, EntityBehaviourLink,
-        ClassWithTranslationKey<PossibleTranslationKeyEntityBehaviours>, ClassWithAcronym<PossibleAcronymEntityBehaviours> {
+        ClassWithTranslationKey<PossibleTranslationKey>, ClassWithAcronym<PossibleAcronym> {
 
-    get acronym(): PossibleAcronymEntityBehaviours
+    get acronym(): PossibleAcronym
 
-    get translationKey(): PossibleTranslationKeyEntityBehaviours
+    get translationKey(): PossibleTranslationKey
 
     //region -------------------- Is in only --------------------
 

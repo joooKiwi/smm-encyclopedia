@@ -1,11 +1,11 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                      from '../../ClassWithEnglishName';
-import type {MiddleSoundEffectImage, PossibleSMM1SoundEffectImagePath, PossibleSMM2SoundEffectImagePath, PossibleSoundEffectsEnglishName, PossibleSoundEffectsEnglishNameInBothGames, PossibleSoundEffectsInSMM1EnglishName, PossibleSoundEffectsInSMM2EnglishName, SoundEffectsArray, SoundEffectsEnglishNameArray, SoundEffectsNames, SoundEffectsOrdinals, StartingSoundEffectImage} from './SoundEffects.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                        from '../../ClassWithEnglishName';
+import type {EnumArray, EnumArray_EnglishName, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
 
 import {Enum} from '../../../util/enum/Enum';
 
 export class SoundEffects
-    extends Enum
-    implements ClassWithEnglishName<PossibleSoundEffectsEnglishName> {
+    extends Enum<Ordinals, Names>
+    implements ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -71,59 +71,61 @@ export class SoundEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES?: SoundEffectsArray;
+    static #VALUES?: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
-    readonly #SMM1ImagePath: | PossibleSMM1SoundEffectImagePath | null;
-    readonly #SMM2ImagePath: | PossibleSMM2SoundEffectImagePath | null;
+    readonly #SMM1ImagePath: | PossibleImagePath_SMM1 | null;
+    readonly #SMM2ImagePath: | PossibleImagePath_SMM2 | null;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleSoundEffectsEnglishNameInBothGames, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: StartingSoundEffectImage,)
-    private constructor(englishName: Exclude<PossibleSoundEffectsInSMM1EnglishName, PossibleSoundEffectsEnglishNameInBothGames>, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: null,)
-    private constructor(englishName: Exclude<PossibleSoundEffectsInSMM2EnglishName, PossibleSoundEffectsEnglishNameInBothGames>, SMM1PartialImage: null, SMM2PartialImage: StartingSoundEffectImage,)
-    private constructor(englishName: PossibleSoundEffectsEnglishName, SMM1PartialImage: | MiddleSoundEffectImage | null, SMM2PartialImage: StartingSoundEffectImage | null,) {
+    private constructor(englishName: PossibleEnglishName_SMM1AndSMM2, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: StartingSoundEffectImage,)
+    private constructor(englishName: Exclude<PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2>, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: null,)
+    private constructor(englishName: Exclude<PossibleEnglishName_SMM2, PossibleEnglishName_SMM1AndSMM2>, SMM1PartialImage: null, SMM2PartialImage: StartingSoundEffectImage,)
+    private constructor(englishName: PossibleEnglishName, SMM1PartialImage: | MiddleSoundEffectImage | null, SMM2PartialImage: StartingSoundEffectImage | null,) {
         super(SoundEffects);
         this.#englishName = englishName;
-        this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/sound effects/SMM1/${SMM1PartialImage} - ${englishName as PossibleSoundEffectsInSMM1EnglishName}.png`;
-        this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/sound effects/SMM2/${SMM2PartialImage} - ${englishName as PossibleSoundEffectsInSMM2EnglishName}.png`;
+        this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/sound effects/SMM1/${SMM1PartialImage} - ${englishName as PossibleEnglishName_SMM1}.png`;
+        this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/sound effects/SMM2/${SMM2PartialImage} - ${englishName as PossibleEnglishName_SMM2}.png`;
     }
 
     //region -------------------- Getter methods --------------------
 
-    public get englishName(): PossibleSoundEffectsEnglishName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
-    public get SMM1ImagePath(): | PossibleSMM1SoundEffectImagePath | null {
+    public get SMM1ImagePath(): | PossibleImagePath_SMM1 | null {
         return this.#SMM1ImagePath;
     }
 
-    public get SMM2ImagePath(): | PossibleSMM2SoundEffectImagePath | null {
+    public get SMM2ImagePath(): | PossibleImagePath_SMM2 | null {
         return this.#SMM2ImagePath;
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyEnglishNames(): SoundEffectsEnglishNameArray {
-        return this.values.map(soundEffect => soundEffect.englishName) as unknown as SoundEffectsEnglishNameArray;
+    public static get everyEnglishNames(): EnumArray_EnglishName {
+        return this.values.map(soundEffect => soundEffect.englishName) as unknown as EnumArray_EnglishName;
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends SoundEffectsOrdinals = SoundEffectsOrdinals, >(ordinal: O,): SoundEffectsArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<SoundEffectsArray[O]> | null
-    public static getValue(name: | SoundEffectsNames | PossibleSoundEffectsEnglishName,): SoundEffects
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof SoundEffects[N]
+    public static getValue(name: PossibleStringValue,): SoundEffects
     public static getValue(name: string,): | SoundEffects | null
     public static getValue<I extends SoundEffects = SoundEffects, >(instance: I,): I
-    public static getValue(value: | SoundEffects | string | number | null | undefined,): | SoundEffects | null
-    public static getValue(value: | SoundEffects | string | number | null | undefined,): | SoundEffects | null {
+    public static getValue(value: PossibleNonNullableValue,): SoundEffects
+    public static getValue(value: PossibleValue,): | SoundEffects | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -135,7 +137,7 @@ export class SoundEffects
                     : value;
     }
 
-    public static get values(): SoundEffectsArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.SHOCK, this.SCREAM, this.LAUGHTER, this.GUFFAW, this.BOOO,
             this.CHEER, this.BABY, this.PARTY_POPPER, this.APPLAUSE, this.NEAR_MISS,

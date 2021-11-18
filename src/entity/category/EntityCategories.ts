@@ -1,16 +1,15 @@
-import type {ClassWithEnglishName}                                                                                 from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                   from '../ClassWithReference';
-import type {EntityCategory}                                                                                       from './EntityCategory';
-import type {EveryLanguagesNames, EveryLanguagesOrdinals}                                                          from '../../lang/EveryLanguages.types';
-import type {EntityCategoriesArray, EntityCategoriesNames, EntityCategoriesOrdinals, PossibleEntityCategoriesName} from './EntityCategories.types';
+import type {ClassWithEnglishName}                                                                                   from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                     from '../ClassWithReference';
+import type {EntityCategory}                                                                                                from './EntityCategory';
+import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
 
 import {EntityCategoryLoader} from './EntityCategory.loader';
 import {Enum}                 from '../../util/enum/Enum';
 
 export class EntityCategories
-    extends Enum<EveryLanguagesOrdinals, EveryLanguagesNames>
+    extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityCategory>,
-        ClassWithEnglishName<PossibleEntityCategoriesName> {
+        ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -22,7 +21,7 @@ export class EntityCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: EntityCategoriesArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -35,7 +34,7 @@ export class EntityCategories
 
     // private constructor(englishNameAndImagePath: PossibleEntityCategories)
     // private constructor(englishName: PossibleEntityCategories, basicImagePath: string)
-    private constructor(englishName: PossibleEntityCategoriesName/*, basicImagePath: string = englishName*/) {
+    private constructor(englishName: PossibleEnglishName/*, basicImagePath: string = englishName*/) {
         super(EntityCategories);
         this.#englishName = englishName;
         // this.#imagePath = '/game/themes/' + basicImagePath;
@@ -48,7 +47,7 @@ export class EntityCategories
     }
 
 
-    public get englishName(): PossibleEntityCategoriesName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
@@ -62,13 +61,15 @@ export class EntityCategories
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends EntityCategoriesOrdinals = EntityCategoriesOrdinals, >(ordinal: O,): EntityCategoriesArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EntityCategoriesArray[O]> | null
-    public static getValue(name: | PossibleEntityCategoriesName | EntityCategoriesNames,): EntityCategories
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof EntityCategories[N]
+    public static getValue(name: PossibleStringValue,): EntityCategories
     public static getValue(name: string,): | EntityCategories | null
     public static getValue<I extends EntityCategories = EntityCategories, >(instance: I,): I
-    public static getValue(value: | EntityCategories | string | number | null | undefined,): | EntityCategories | null
-    public static getValue(value: | EntityCategories | string | number | null | undefined,): | EntityCategories | null {
+    public static getValue(value: PossibleNonNullableValue,): EntityCategories
+    public static getValue(value: PossibleValue,): | EntityCategories | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -80,7 +81,7 @@ export class EntityCategories
                     : value;
     }
 
-    public static get values(): EntityCategoriesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.TERRAIN,
             this.ITEM,

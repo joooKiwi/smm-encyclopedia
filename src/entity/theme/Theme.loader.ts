@@ -1,6 +1,6 @@
 import everyThemes from '../../resources/Themes.csv';
 
-import type {CourseAndWorldTheme, PossibleTheme}        from './Themes.types';
+import type {CourseAndWorldTheme, PossibleEnglishName}  from './Themes.types';
 import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
 import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {PossibleEffectInNightTheme, ThemeTemplate} from './Theme.template';
@@ -71,7 +71,7 @@ type PropertiesArray = [
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link Themes}>
  */
 export class ThemeLoader
-    implements Loader<ReadonlyMap<PossibleTheme, CourseAndWorldTheme>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -86,11 +86,11 @@ export class ThemeLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleTheme, CourseAndWorldTheme>;
+    #map?: Map<PossibleEnglishName, CourseAndWorldTheme>;
 
-    public load(): ReadonlyMap<PossibleTheme, CourseAndWorldTheme> {
+    public load(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
         if (this.#map == null) {
-            const references = new Map<PossibleTheme, CourseAndWorldTheme>();
+            const references = new Map<PossibleEnglishName, CourseAndWorldTheme>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -108,7 +108,7 @@ export class ThemeLoader
                 )
                 .convertToEmptyableStringAnd(['Special effect on entities', 'Screen upside down', 'Dark', 'Wind', 'Slippery', 'Low gravity', 'Poison liquid', 'Entities in water', 'Characters in water',], 'effectInNightTheme')
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleTheme, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleEnglishName, finalContent.build(),))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

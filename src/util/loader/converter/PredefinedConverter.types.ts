@@ -1,17 +1,26 @@
-import type {PredefinedConverter} from './PredefinedConverter';
-import type {SimpleEnum}          from '../../enum/Enum.types';
+import type {PredefinedConverter}              from './PredefinedConverter';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../enum/Enum.types';
+
+export type PossibleNonNullableValue = | PredefinedConverter | Ordinals | PossibleStringValue;
+export type PossibleStringValue = | Names | PredefinedConversion;
+export type PossibleValue = PredefinedConverter | number | string | null | undefined;
+
+enum Enum {
+    NUMBER, NULLABLE_NUMBER,
+    BOOLEAN, NULLABLE_BOOLEAN,
+    STRING, EMPTYABLE_STRING, NULLABLE_STRING,
+    SINGLE_NUMBER, SINGLE_BOOLEAN, SINGLE_STRING,
+    //HEADER, NULLABLE_HEADER,
+}
 
 //region -------------------- Number types --------------------
 
-export type PredefinedConverterOrdinals = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;// | 8 | 9;
+export type Ordinals = typeof Enum[Names];
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type PredefinedConverterNames =
-    | `${| 'NULLABLE_' | ''}${| 'NUMBER' | 'BOOLEAN' | 'STRING'/* | 'HEADER'*/}`
-    | 'EMPTYABLE_STRING'
-    | `SINGLE_${| 'NUMBER' | 'BOOLEAN' | 'STRING'}`;
+export type Names = keyof typeof Enum;
 
 //region -------------------- Predefined converter texts --------------------
 
@@ -28,16 +37,16 @@ export type PredefinedConversion = | NullablePredefinedConversion | BasicPredefi
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimplePredefinedConverter<T = PredefinedConverter, > = SimpleEnum<PredefinedConverterNames, T>;
+export type SimpleEnum<T extends PredefinedConverter = PredefinedConverter, > = OriginalSimpleEnum<Names, T>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type PredefinedConverterArray<T = PredefinedConverter, > = readonly [
-    SimplePredefinedConverter<T>['NUMBER'], SimplePredefinedConverter<T>['NULLABLE_NUMBER'],
-    SimplePredefinedConverter<T>['BOOLEAN'], SimplePredefinedConverter<T>['NULLABLE_BOOLEAN'],
-    SimplePredefinedConverter<T>['STRING'], SimplePredefinedConverter<T>['EMPTYABLE_STRING'], SimplePredefinedConverter<T>['NULLABLE_STRING'],
-    SimplePredefinedConverter<T>['SINGLE_NUMBER'], SimplePredefinedConverter<T>['SINGLE_BOOLEAN'], SimplePredefinedConverter<T>['SINGLE_STRING'],
+export type EnumArray<T extends PredefinedConverter = PredefinedConverter, > = readonly [
+    SimpleEnum<T>['NUMBER'], SimpleEnum<T>['NULLABLE_NUMBER'],
+    SimpleEnum<T>['BOOLEAN'], SimpleEnum<T>['NULLABLE_BOOLEAN'],
+    SimpleEnum<T>['STRING'], SimpleEnum<T>['EMPTYABLE_STRING'], SimpleEnum<T>['NULLABLE_STRING'],
+    SimpleEnum<T>['SINGLE_NUMBER'], SimpleEnum<T>['SINGLE_BOOLEAN'], SimpleEnum<T>['SINGLE_STRING'],
     // SimplePredefinedConverter<T>['HEADER'], SimplePredefinedConverter<T>['NULLABLE_HEADER'],
 ];
 

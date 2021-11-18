@@ -5,7 +5,7 @@ import type {GameStyle}                                 from './GameStyle';
 import type {GameStyleTemplate}                         from './GameStyle.template';
 import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
 import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {PossibleGameStyleName}                     from './GameStyles.types';
+import type {PossibleEnglishName}                       from './GameStyles.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -57,7 +57,7 @@ type PropertiesArray = [
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyles}>
  */
 export class GameStyleLoader
-    implements Loader<ReadonlyMap<PossibleGameStyleName, GameStyle>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, GameStyle>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -72,11 +72,11 @@ export class GameStyleLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleGameStyleName, GameStyle>;
+    #map?: Map<PossibleEnglishName, GameStyle>;
 
-    public load(): ReadonlyMap<PossibleGameStyleName, GameStyle> {
+    public load(): ReadonlyMap<PossibleEnglishName, GameStyle> {
         if (this.#map == null) {
-            const references = new Map<PossibleGameStyleName, GameStyle>();
+            const references = new Map<PossibleEnglishName, GameStyle>();
 
             //region -------------------- Builder initialisation --------------------
 
@@ -90,7 +90,7 @@ export class GameStyleLoader
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleGameStyleName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

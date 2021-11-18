@@ -1,8 +1,8 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                              from '../ClassWithEnglishName';
-import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                                                                                          from '../ClassWithAcronym';
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                from '../ClassWithReference';
-import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                     from './EntityLimit';
-import type {EntityLimitsArray, EntityLimitsNames, EntityLimitsOrdinals, PossibleAcronymEntityLimits, PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying, PossibleAlternativeAcronymEntityLimits, PossibleAlternativeEntityLimits, PossibleEntityLimits, PossibleStartingEntityLimits, PossibleStartingEntityLimitsInBothEditorAndWhilePlaying, PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying} from './EntityLimits.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                   from '../ClassWithEnglishName';
+import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                                                                               from '../ClassWithAcronym';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                     from '../ClassWithReference';
+import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                          from './EntityLimit';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleNonNullableValue, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying, PossibleStringValue, PossibleValue} from './EntityLimits.types';
 
 import {EntityLimitLoader} from './EntityLimit.loader';
 import {EntityLimitTypes}  from './EntityLimitTypes';
@@ -13,10 +13,10 @@ import {Enum}              from '../../util/enum/Enum';
  * @recursiveReference<{@link EntityLimitLoader}>
  */
 export class EntityLimits
-    extends Enum<EntityLimitsOrdinals, EntityLimitsNames>
+    extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityLimitWithPossibleAlternativeEntityLimit>,
-        ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
-        ClassWithEnglishName<PossibleEntityLimits> {
+        ClassWithNullableAcronym<PossibleAcronym>,
+        ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -73,7 +73,7 @@ export class EntityLimits
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: EntityLimitsArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -83,10 +83,10 @@ export class EntityLimits
     static readonly #LIMIT_IN_EDITOR_LENGTH = ` Limit (${EntityLimitTypes.EDITOR.englishName})`.length;
 
     #reference?: EntityLimitWithPossibleAlternativeEntityLimit;
-    readonly #acronym: PossibleAcronymEntityLimits | null;
-    readonly #englishName: PossibleEntityLimits;
-    readonly #alternativeAcronym: PossibleAlternativeAcronymEntityLimits | null;
-    readonly #alternativeEnglishName: PossibleAlternativeEntityLimits | null;
+    readonly #acronym: PossibleAcronym | null;
+    readonly #englishName: PossibleEnglishName;
+    readonly #alternativeAcronym: PossibleAlternativeAcronym | null;
+    readonly #alternativeEnglishName: PossibleAlternativeEnglishName | null;
 
     //endregion -------------------- Attributes --------------------
 
@@ -94,13 +94,13 @@ export class EntityLimits
         super(EntityLimits);
         if (typeof englishName == 'string') {
             this.#acronym = null;
-            this.#englishName = `${englishName as PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying} Limit`;
+            this.#englishName = `${englishName as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`;
         } else {
             this.#acronym = englishName[0];
             const isWhilePlaying = englishName[2];
             this.#englishName = isWhilePlaying == null
-                ? `${englishName[1] as PossibleStartingEntityLimitsNotInBothEditorAndWhilePlaying} Limit`
-                : `${englishName[1] as PossibleStartingEntityLimitsInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? EntityLimitTypes.WHILE_PLAYING.englishName : EntityLimitTypes.EDITOR.englishName})`;
+                ? `${englishName[1] as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`
+                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? EntityLimitTypes.WHILE_PLAYING.englishName : EntityLimitTypes.EDITOR.englishName})`;
         }
         if (alternativeEnglishName instanceof Array) {
             this.#alternativeAcronym = alternativeEnglishName[0];
@@ -118,52 +118,54 @@ export class EntityLimits
     }
 
 
-    public get acronym(): PossibleAcronymEntityLimits | null {
+    public get acronym(): | PossibleAcronym | null {
         return this.#acronym;
     }
 
-    public get englishName(): PossibleEntityLimits {
+    public get englishName(): | PossibleEnglishName {
         return this.#englishName;
     }
 
-    public get alternativeAcronym(): PossibleAlternativeAcronymEntityLimits | null {
+    public get alternativeAcronym(): | PossibleAlternativeAcronym | null {
         return this.#alternativeAcronym;
     }
 
-    public get alternativeEnglishName(): PossibleAlternativeEntityLimits | null {
+    public get alternativeEnglishName(): | PossibleAlternativeEnglishName | null {
         return this.#alternativeEnglishName;
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyAcronyms(): readonly PossibleAcronymEntityLimits[] {
-        return this.values.map(limit => limit.acronym).filter(acronym => acronym != null) as PossibleAcronymEntityLimits[];
+    public static get everyAcronyms(): readonly PossibleAcronym[] {
+        return this.values.map(limit => limit.acronym).filter(acronym => acronym != null) as PossibleAcronym[];
     }
 
-    public static get everyEnglishNames(): readonly PossibleEntityLimits[] {
+    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
         return this.values.map(limit => limit.englishName);
     }
 
-    public static get everyAlternativeAcronyms(): readonly PossibleAlternativeAcronymEntityLimits[] {
-        return this.values.map(limit => limit.alternativeAcronym).filter(alternativeAcronym => alternativeAcronym != null) as PossibleAlternativeAcronymEntityLimits[];
+    public static get everyAlternativeAcronyms(): readonly PossibleAlternativeAcronym[] {
+        return this.values.map(limit => limit.alternativeAcronym).filter(alternativeAcronym => alternativeAcronym != null) as PossibleAlternativeAcronym[];
     }
 
-    public static get everyAlternativeEnglishNames(): readonly PossibleAlternativeEntityLimits[] {
-        return this.values.map(limit => limit.alternativeEnglishName).filter(alternativeEnglishName => alternativeEnglishName != null) as PossibleAlternativeEntityLimits[];
+    public static get everyAlternativeEnglishNames(): readonly PossibleAlternativeEnglishName[] {
+        return this.values.map(limit => limit.alternativeEnglishName).filter(alternativeEnglishName => alternativeEnglishName != null) as PossibleAlternativeEnglishName[];
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends EntityLimitsOrdinals = EntityLimitsOrdinals, >(ordinal: O,): EntityLimitsArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EntityLimitsArray[O]> | null
-    public static getValue(name: | EntityLimitsNames | PossibleStartingEntityLimits | PossibleEntityLimits | PossibleAlternativeEntityLimits | PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits,): EntityLimits
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof EntityLimits[N]
+    public static getValue(name: PossibleStringValue,): EntityLimits
     public static getValue(name: string,): | EntityLimits | null
     public static getValue<I extends EntityLimits = EntityLimits, >(instance: I,): I
-    public static getValue(value: | EntityLimits | string | number | null | undefined,): | EntityLimits | null
-    public static getValue(value: | EntityLimits | string | number | null | undefined,): | EntityLimits | null {
+    public static getValue(value: PossibleNonNullableValue,): EntityLimits
+    public static getValue(value: PossibleValue,): | EntityLimits | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -181,7 +183,7 @@ export class EntityLimits
                     : value;
     }
 
-    public static get values(): EntityLimitsArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.GENERAL_ENTITY_LIMIT_WHILE_PLAYING, this.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING,
 
@@ -218,5 +220,5 @@ export class EntityLimits
 
 }
 
-type EnglishNameReceived = | PossibleStartingEntityLimits | [englishName: PossibleAcronymEntityLimits, englishAcronym: PossibleStartingEntityLimits,] | [englishName: PossibleAcronymEntityLimitsInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEntityLimitsInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
-type AlternativeEnglishNameReceived = | PossibleAlternativeEntityLimits | [alternativeEnglishName: PossibleAlternativeAcronymEntityLimits, alternativeEnglishAcronym: PossibleAlternativeEntityLimits,];
+type EnglishNameReceived = | PossibleStartingEnglishName | [englishName: PossibleAcronym, englishAcronym: PossibleStartingEnglishName,] | [englishName: PossibleAcronymInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEnglishNameInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
+type AlternativeEnglishNameReceived = | PossibleAlternativeEnglishName | [alternativeEnglishName: PossibleAlternativeAcronym, alternativeEnglishAcronym: PossibleAlternativeEnglishName,];

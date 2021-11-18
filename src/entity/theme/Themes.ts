@@ -1,12 +1,12 @@
-import type {ClassWithEnglishName}                                                                                                                               from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                 from '../ClassWithReference';
-import type {CourseAndWorldTheme, PossibleTheme, ThemePath, ThemesArray, ThemesArrayAsOnlyCourseTheme, ThemesArrayAsOnlyWorldTheme, ThemesNames, ThemesOrdinals} from './Themes.types';
-import type {CourseTheme}                                                                                                                                        from './CourseTheme';
-import type {Entity}                                                                                                                                             from '../simple/Entity';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                            from '../PropertyGetter';
-import type {ThemeProperty}                                                                                                                                      from '../properties/ThemeProperty';
-import type {ThemeReferences}                                                                                                                                    from '../properties/ThemeReferences';
-import type {WorldTheme}                                                                                                                                         from './WorldTheme';
+import type {ClassWithEnglishName}                                                                                                                                                                               from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                 from '../ClassWithReference';
+import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue, ThemePath} from './Themes.types';
+import type {CourseTheme}                                                                                                                                                                                        from './CourseTheme';
+import type {Entity}                                                                                                                                                                                             from '../simple/Entity';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                            from '../PropertyGetter';
+import type {ThemeProperty}                                                                                                                                                                                      from '../properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                                                                                                    from '../properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                                                                                         from './WorldTheme';
 
 import {Enum}        from '../../util/enum/Enum';
 import {ThemeLoader} from './Theme.loader';
@@ -17,9 +17,9 @@ import {EmptyEntity} from '../simple/EmptyEntity';
  * @recursiveReference<{@link ThemeLoader}>
  */
 export class Themes
-    extends Enum<ThemesOrdinals, ThemesNames>
+    extends Enum<Ordinals, Names>
     implements ClassWithReference<readonly [CourseTheme, WorldTheme,]>,
-        ClassWithEnglishName<PossibleTheme>,
+        ClassWithEnglishName<PossibleEnglishName>,
         PropertyReferenceGetter<ThemeReferences>,
         PropertyGetter<ThemeProperty> {
 
@@ -142,13 +142,13 @@ export class Themes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: ThemesArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #COURSES: ThemesArrayAsOnlyCourseTheme;
-    static #WORLDS: ThemesArrayAsOnlyWorldTheme;
+    static #COURSES: EnumArray_OnlyCourseTheme;
+    static #WORLDS: EnumArray_OnlyWorldTheme;
 
     #reference?: CourseAndWorldTheme;
     #courseTheme?: CourseTheme;
@@ -158,9 +158,9 @@ export class Themes
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishNameAndImagePath: PossibleTheme,)
-    private constructor(englishName: PossibleTheme, basicImagePath: string,)
-    private constructor(englishName: PossibleTheme, basicImagePath: string = englishName,) {
+    private constructor(englishNameAndImagePath: PossibleEnglishName,)
+    private constructor(englishName: PossibleEnglishName, basicImagePath: string,)
+    private constructor(englishName: PossibleEnglishName, basicImagePath: string = englishName,) {
         super(Themes);
         this.#englishName = englishName;
         this.#imagePath = `/game/themes/${basicImagePath}`;
@@ -213,7 +213,7 @@ export class Themes
     }
 
 
-    public static get courseThemes(): ThemesArrayAsOnlyCourseTheme {
+    public static get courseThemes(): EnumArray_OnlyCourseTheme {
         return this.#COURSES ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -228,7 +228,7 @@ export class Themes
         ];
     }
 
-    public static get worldThemes(): ThemesArrayAsOnlyWorldTheme {
+    public static get worldThemes(): EnumArray_OnlyWorldTheme {
         return this.#WORLDS ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -245,13 +245,15 @@ export class Themes
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends ThemesOrdinals = ThemesOrdinals, >(ordinal: O,): ThemesArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<ThemesArray[O]> | null
-    public static getValue(name: PossibleTheme,): Themes
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof Themes[N]
+    public static getValue(name: PossibleStringValue,): Themes
     public static getValue(name: string,): | Themes | null
     public static getValue<I extends Themes = Themes, >(instance: I,): I
-    public static getValue(value: | Themes | string | number | null | undefined,): | Themes | null
-    public static getValue(value: | Themes | string | number | null | undefined,): | Themes | null {
+    public static getValue(value: PossibleNonNullableValue,): Themes
+    public static getValue(value: PossibleValue,): | Themes | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -263,7 +265,7 @@ export class Themes
                     : value;
     }
 
-    public static get values(): ThemesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.GROUND,
             this.UNDERGROUND,

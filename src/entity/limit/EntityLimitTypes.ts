@@ -1,9 +1,9 @@
-import type {EntityLimitTypeEnglishNameArray, EntityLimitTypesArray, EntityLimitTypesNames, EntityLimitTypesOrdinals, PossibleEntityLimitTypeEnglishCommonText, PossibleEntityLimitTypeEnglishName} from './EntityLimitTypes.types';
+import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityLimitTypes.types';
 
 import {Enum} from '../../util/enum/Enum';
 
 export class EntityLimitTypes
-    extends Enum<EntityLimitTypesOrdinals, EntityLimitTypesNames> {
+    extends Enum<Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
@@ -13,7 +13,7 @@ export class EntityLimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
-    static #VALUES: EntityLimitTypesArray;
+    static #VALUES: EnumArray;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -23,7 +23,7 @@ export class EntityLimitTypes
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleEntityLimitTypeEnglishName, englishCommonText: PossibleEntityLimitTypeEnglishCommonText,) {
+    private constructor(englishName: PossibleEnglishName, englishCommonText: PossibleEnglishCommonText,) {
         super(EntityLimitTypes);
         this.#englishName = englishName;
         this.#englishCommonText = englishCommonText;
@@ -31,32 +31,34 @@ export class EntityLimitTypes
 
     //region -------------------- Getter methods --------------------
 
-    public get englishName(): PossibleEntityLimitTypeEnglishName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
-    public get englishCommonText(): PossibleEntityLimitTypeEnglishCommonText {
+    public get englishCommonText(): PossibleEnglishCommonText {
         return this.#englishCommonText;
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyEnglishNames(): EntityLimitTypeEnglishNameArray {
-        return this.values.map(type => type.englishName) as unknown as EntityLimitTypeEnglishNameArray;
+    public static get everyEnglishNames(): EnumArray_EnglishName {
+        return this.values.map(type => type.englishName) as unknown as EnumArray_EnglishName;
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends EntityLimitTypesOrdinals = EntityLimitTypesOrdinals, >(ordinal: O,): EntityLimitTypesArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EntityLimitTypesArray[O]> | null
-    public static getValue(name: | PossibleEntityLimitTypeEnglishName | EntityLimitTypesNames | PossibleEntityLimitTypeEnglishCommonText,): EntityLimitTypes
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
+    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
+    public static getValue<N extends Names = Names, >(name: N,): typeof EntityLimitTypes[N]
+    public static getValue(name: PossibleStringValue,): EntityLimitTypes
     public static getValue(name: string,): | EntityLimitTypes | null
     public static getValue<I extends EntityLimitTypes = EntityLimitTypes, >(instance: I,): I
-    public static getValue(value: | EntityLimitTypes | string | number | null | undefined,): | EntityLimitTypes | null
-    public static getValue(value: | EntityLimitTypes | string | number | null | undefined,): | EntityLimitTypes | null {
+    public static getValue(value: PossibleNonNullableValue,): EntityLimitTypes
+    public static getValue(value: PossibleValue,): | EntityLimitTypes | null
+    public static getValue(value: PossibleValue,) {
         return value == null
             ? null
             : typeof value === 'string'
@@ -69,7 +71,7 @@ export class EntityLimitTypes
                     : value;
     }
 
-    public static get values(): EntityLimitTypesArray {
+    public static get values(): EnumArray {
         return this.#VALUES ??= [
             this.WHILE_PLAYING,
             this.EDITOR,

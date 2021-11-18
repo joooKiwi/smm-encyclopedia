@@ -3,15 +3,15 @@ import type {EntityLimitAmount}                                                 
 import type {EntityLimitLink}                                                       from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                                                      from './EntityLimitTypes';
 import type {Name}                                                                  from '../../lang/name/Name';
-import type {PossibleAcronymEntityLimits, PossibleAlternativeAcronymEntityLimits}   from './EntityLimits.types';
+import type {PossibleAcronym, PossibleAlternativeAcronym}                           from './EntityLimits.types';
 
 import {AbstractEntityLimitContainer} from './AbstractEntityLimitContainer';
 
 export class EntityLimitContainer
-    extends AbstractEntityLimitContainer<| PossibleAcronymEntityLimits | null>
+    extends AbstractEntityLimitContainer<| PossibleAcronym | null>
     implements EntityLimitWithPossibleAlternativeEntityLimit {
 
-    public constructor(name: Name, acronym: PossibleAcronymEntityLimits | PossibleAlternativeAcronymEntityLimits | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    public constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
         super(name, acronym, alternative, type, limitAmount, link,);
     }
 

@@ -4,7 +4,7 @@ import type {EntityCategory}                            from './EntityCategory';
 import type {EntityCategoryTemplate}                    from './EntityCategory.template';
 import type {Loader}                                    from '../../util/loader/Loader';
 import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {PossibleEntityCategoriesName}              from './EntityCategories.types';
+import type {PossibleEnglishName}                       from './EntityCategories.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -49,7 +49,7 @@ type PropertiesArray = [
  * @singleton
  */
 export class EntityCategoryLoader
-    implements Loader<ReadonlyMap<PossibleEntityCategoriesName, EntityCategory>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, EntityCategory>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -64,18 +64,18 @@ export class EntityCategoryLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEntityCategoriesName, EntityCategory>;
+    #map?: Map<PossibleEnglishName, EntityCategory>;
 
-    public load(): ReadonlyMap<PossibleEntityCategoriesName, EntityCategory> {
+    public load(): ReadonlyMap<PossibleEnglishName, EntityCategory> {
         if (this.#map == null) {
-            const references = new Map<PossibleEntityCategoriesName, EntityCategory>();
+            const references = new Map<PossibleEnglishName, EntityCategory>();
 
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, EntityCategory, keyof typeof Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEntityCategoriesName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
