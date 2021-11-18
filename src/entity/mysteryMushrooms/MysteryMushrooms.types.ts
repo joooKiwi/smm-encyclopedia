@@ -546,7 +546,7 @@ export type JumpImage<PATH extends PossiblePath = PossiblePath, > = `${PATH}/${S
 export type JumpImages<PATH extends PossiblePath = PossiblePath, > = readonly [`${PATH}/${SingleJumpImage<0>}`, `${PATH}/${SingleJumpImage<1>}`, `${PATH}/${SingleJumpImage<2>}`,];
 export type JumpSoundNumber = | '' | 2;
 export type SingleJumpSound<N extends JumpSoundNumber = JumpSoundNumber, > = `jump${N}.wav`;
-export type JumpSound<N extends JumpSoundNumber = JumpSoundNumber, > = `${BasicPath}/${SingleJumpSound}`;
+export type JumpSound<N extends JumpSoundNumber = JumpSoundNumber, > = `${BasicPath}/${SingleJumpSound<N>}`;
 export type JumpSounds = readonly [JumpSound<''>, JumpSound<2>,];
 
 export type SingleFallingAfterJumpImage = 'jump_fall.0.png';
