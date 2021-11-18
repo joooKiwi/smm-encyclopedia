@@ -78,8 +78,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
     }
 
     public render() {
-        return <div key={`groupButton_${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group"
-                    aria-label={`Basic ${this.isChoiceGroup ? 'radio' : 'checkbox'} toggle button group`}>
+        return <div key={`groupButton_${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group">
             {this.__getButtons()}
         </div>;
     }
