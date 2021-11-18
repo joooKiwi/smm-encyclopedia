@@ -13,8 +13,8 @@ import BooleanResultTextComponent from './BooleanResultTextComponent';
 export default function YesOrNoResultTextComponent(properties: YesOrNoTextProperties,): JSX.Element {
     const {t: translation,} = useTranslation('content');
     return <BooleanResultTextComponent
-        trueValue={translation('Yes')}
-        falseValue={translation('No')}
+        true={translation('Yes')}
+        false={translation('No')}
         {...properties}
     />;
 }
