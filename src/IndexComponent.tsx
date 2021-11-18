@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {IntlProvider}    from 'react-intl';
 
 import type {PossibleInternationalAcronym} from './lang/ProjectLanguages.types';
+import type {ReactState}                   from './util/react/ReactState';
 
 import {EveryLanguages}   from './lang/EveryLanguages';
 import {ProjectLanguages} from './lang/ProjectLanguages';
@@ -27,8 +28,15 @@ function setAndGetCurrentLanguage(): PossibleInternationalAcronym {
     return ProjectLanguages.currentLanguage.internationalAcronym;
 }
 
+interface IndexState
+    extends ReactState {
+
+    hasError: boolean
+
+}
+
 export default class IndexComponent
-    extends React.PureComponent<{}, { hasError: boolean, }> {
+    extends React.PureComponent<{}, IndexState> {
 
     public constructor(props: {},) {
         super(props);
