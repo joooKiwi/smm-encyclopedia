@@ -10,4 +10,6 @@
   --bs-spacer-xl: #{map-get($spacers, 4)};
   --bs-spacer-xxl: #{map-get($spacers, 5)};
 
+  --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
 }
