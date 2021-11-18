@@ -12,7 +12,7 @@ import SingleLanguageTab           from './SingleLanguageTab';
 interface ChangeTheLanguageTabStates
     extends ReactState {
 
-    currentLanguage: ProjectLanguages;
+    currentLanguage: ProjectLanguages
 
 }
 
@@ -30,13 +30,15 @@ export default class ChangeTheLanguageTab
         };
     }
 
-    protected setCurrentLanguage(language: ProjectLanguages,): void {
+    protected setCurrentLanguage(language: ProjectLanguages,): this {
         this.setState({currentLanguage: ProjectLanguages.currentLanguage = language,});
+        return this;
     }
 
     private __retrieveEveryLanguages() {
-        return ProjectLanguages.values.map(language => <SingleLanguageTab language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>);
-    };
+        return ProjectLanguages.values.map(language =>
+            <SingleLanguageTab key={`single tab - ${language.englishName}`} language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>);
+    }
 
     public render() {
         return <li key={'languageChanger'} id="languageChanger-dropdown" className="nav-item dropdown">
