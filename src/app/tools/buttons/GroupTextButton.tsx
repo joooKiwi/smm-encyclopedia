@@ -2,6 +2,7 @@ import type {ActivatableTextProperties} from './properties/ActivatableTextProper
 import type {GroupButtonProperties}     from './properties/GroupButtonProperties';
 
 import AbstractGroupButton from './AbstractGroupButton';
+import TextComponent       from '../text/TextComponent';
 
 /**
  * @reactComponent
@@ -13,8 +14,8 @@ export default class GroupTextButton
         super(props);
     }
 
-    protected _getContent(text: ActivatableTextProperties,) {
-        return <span>{text.text}</span>;
+    protected _getContent({text}: ActivatableTextProperties,) {
+        return <TextComponent content={text}/>;
     }
 
 }

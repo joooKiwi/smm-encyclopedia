@@ -4,6 +4,7 @@ import type {ActivatableImageProperties} from './properties/ActivatableImageProp
 import type {GroupButtonProperties}      from './properties/GroupButtonProperties';
 
 import AbstractGroupButton from './AbstractGroupButton';
+import Image               from '../images/Image';
 
 /**
  * @reactComponent
@@ -15,8 +16,8 @@ export default class GroupImageButton
         super(props);
     }
 
-    protected _getContent(image: ActivatableImageProperties,) {
-        return <img className="btn-image" src={image.source} alt={image.name}/>;
+    protected _getContent({source, name,}: ActivatableImageProperties,) {
+        return <Image className="btn-image" source={source} fallbackName={name}/>;
     }
 
 }
