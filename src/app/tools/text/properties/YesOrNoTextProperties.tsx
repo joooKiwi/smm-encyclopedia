@@ -1,10 +1,10 @@
-import type {BooleanTextProperties} from './BooleanTextProperties';
-import type {ReactProperty}         from '../../../../util/react/ReactProperty';
+import type {BooleanResultTextProperties} from './BooleanResultTextProperties';
+import type {ReactProperty}               from '../../../../util/react/ReactProperty';
 
 /**
  * A simple boolean value property
  */
 export interface YesOrNoTextProperties
-    extends ReactProperty, Omit<BooleanTextProperties, `${boolean}Value`> {
+    extends ReactProperty, Omit<BooleanResultTextProperties, `${boolean}`> {
 
 }
