@@ -10,6 +10,6 @@ export interface BooleanTextProperties
 
     false: string
 
-    classes?: | null | string[]
+    classes?: | string[] | null
 
 }
