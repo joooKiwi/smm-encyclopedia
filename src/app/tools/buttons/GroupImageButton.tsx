@@ -16,7 +16,7 @@ export default class GroupImageButton
         super(props);
     }
 
-    protected _getContent({source, name,}: ActivatableImageProperties,) {
+    protected _createContent({source, name,}: ActivatableImageProperties,) {
         return <Image className="btn-image" source={source} fallbackName={name}/>;
     }
 
