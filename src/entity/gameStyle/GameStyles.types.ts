@@ -28,10 +28,7 @@ export type PossibleAcronym = | 'SMB' | 'SMB3' | 'SMW' | 'NSMBU' | 'SM3DW';
 export type PossibleEnglishName = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U';
 
 export type StartingImagePath = `/game/styles/${PossibleEnglishName}`;
-export type SmallImagePath = `${StartingImagePath} - small.png`;
-export type MediumImagePath = `${StartingImagePath} - medium.png`;
-export type LargeImagePath = `${StartingImagePath} - large.png`;
-export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | 'large'}.png`;
+export type ImagePath = `${StartingImagePath}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

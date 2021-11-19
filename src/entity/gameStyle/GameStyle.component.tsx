@@ -24,7 +24,7 @@ export default class GameStyleComponent
     }
 
     protected _renderSingleComponent(gameStyle: GameStyles,) {
-        return <img key={`${this.name.english} - ${gameStyle.englishName}`} src={gameStyle.smallImagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
+        return <img key={`${this.name.english} - ${gameStyle.englishName}`} src={gameStyle.imagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
     }
 
     protected _renderComponentForAll() {

@@ -39,7 +39,7 @@ export default class EveryGameStylesApp
         for (const [englishName, gameStyle,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <img src={this.enum[index - 1].largeImagePath} alt={englishName}/>,
+                <img src={this.enum[index - 1].imagePath} alt={englishName}/>,
                 <SMM2NameComponent id="theme_name" name={gameStyle} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
