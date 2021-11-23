@@ -83,7 +83,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- "Entity" --------------------
-    //region -------------------- Entity behaviour methods --------------------
+    //region -------------------- "Entity behaviour" --------------------
 
     public get everyPossibleBehavioursAcronyms() {
         return this.#everyPossibleBehavioursAcronyms ??= EntityBehaviours.everyAcronyms;
@@ -93,24 +93,24 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleBehavioursTranslationKeys ??= EntityBehaviours.everyTranslationKeys;
     }
 
-    //endregion -------------------- Entity behaviour methods --------------------
-    //region -------------------- Entity group getter methods --------------------
+    //endregion -------------------- "Entity behaviour" --------------------
+    //region -------------------- "Entity group" --------------------
 
     public get everyPossibleGroupNames() {
         //TODO implements this methods
         return this.#everyPossibleGroupNames ??= [];
     }
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity category getter methods --------------------
+    //endregion -------------------- "Entity group" --------------------
+    //region -------------------- "Entity category" --------------------
 
     public get everyPossibleEntityCategoriesNames() {
         //TODO change to enum usage instead (when it will be created)
         return this.#everyPossibleEntityCategoriesNames ??= [...EntityCategoryLoader.get.load().keys()];
     }
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity limits getter methods --------------------
+    //endregion -------------------- "Entity group" --------------------
+    //region -------------------- "Entity limit" --------------------
 
     public get everyPossibleLimitsAcronyms() {
         return this.#everyPossibleLimitsAcronyms ??= [...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,];
@@ -128,15 +128,15 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,];
     }
 
-    //endregion -------------------- Entity limits getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- "Entity limit" --------------------
+    //region -------------------- "Entity limit type" --------------------
 
     public get everyPossibleLimitTypesNames() {
         return this.#everyPossibleLimitTypesNames ??= EntityLimitTypes.everyEnglishNames;
     }
 
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- "Entity limit type" --------------------
+    //region -------------------- "Sound effect" --------------------
 
     public get everyPossibleSoundEffectsNames() {
         return this.#everyPossibleSoundEffectsNames ??= SoundEffects.everyEnglishNames;
@@ -146,14 +146,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
     }
 
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Mystery Mushroom getter methods --------------------
+    //endregion -------------------- "Sound effect"ds --------------------
+    //region -------------------- "Mystery Mushroom" --------------------
 
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
         return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
     }
 
-    //endregion -------------------- Mystery Mushroom getter methods --------------------
+    //endregion -------------------- "Mystery Mushroom" --------------------
 
 }
 
@@ -194,75 +194,46 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleEntityNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- "Entity" --------------------
-    //region -------------------- Entity behaviour methods --------------------
+    //region -------------------- "Entity behaviour" --------------------
 
-    public get everyPossibleBehavioursAcronyms() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleBehavioursAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleBehavioursTranslationKeys = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleBehavioursTranslationKeys() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- "Entity behaviour" --------------------
+    //region -------------------- "Entity group" --------------------
 
-    //endregion -------------------- Entity behaviour methods --------------------
-    //region -------------------- Entity group getter methods --------------------
+    public readonly everyPossibleGroupNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleGroupNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- "Entity group" --------------------
+    //region -------------------- "Entity category" --------------------
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity category getter methods --------------------
+    public readonly everyPossibleEntityCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleEntityCategoriesNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- "Entity category" --------------------
+    //region -------------------- "Entity limit" --------------------
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity limits getter methods --------------------
+    public readonly everyPossibleLimitsAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyAlternativeLimitAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleLimitsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyLimitsNamesOrUnknown = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleLimitsAcronyms() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- "Entity limit" --------------------
+    //region -------------------- "Entity limit type" --------------------
 
-    public get everyAlternativeLimitAcronyms() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleLimitTypesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleLimitsNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- "Entity limit type" --------------------
+    //region -------------------- "Sound effect" --------------------
 
-    public get everyLimitsNamesOrUnknown() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleSoundEffectsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleSoundEffectCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- Entity limits getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- "Sound effect" --------------------
+    //region -------------------- "Mystery Mushroom" --------------------
 
-    public get everyPossibleLimitTypesNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
-
-    public get everyPossibleSoundEffectsNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
-
-    public get everyPossibleSoundEffectCategoriesNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
-
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Mystery Mushroom getter methods --------------------
-
-    public get everyPossibleMysteryMushroomIndividualEnglishNames() {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
-
-    //endregion -------------------- Mystery Mushroom getter methods --------------------
+    //endregion -------------------- "Mystery Mushroom" --------------------
 
 }
 
