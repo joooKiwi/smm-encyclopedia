@@ -1,11 +1,14 @@
 import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}                                                                                                                                                                                             from '../../../entity/limit/EntityLimitTypes.types';
-import type {EnglishNameOnFile as EnglishNameOnFile_MysteryMushroom}                                                                                                                                                                                                     from '../../../entity/mysteryMushrooms/MysteryMushrooms.types';
-import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKey as PossibleTranslationKey_EntityBehaviour}                                                                                                                                       from '../../../entity/behaviours/EntityBehaviours.types';
-import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../../entity/limit/EntityLimits.types';
-import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../../game/GameReferences.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../../entity/soundEffect/category/SoundEffectCategories.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../../entity/soundEffect/simple/SoundEffects.types';
+import type {EnglishNameOnFile as EnglishNameOnFile_MysteryMushroom}                                                                                                                                                                                                     from '../../../entity/mysteryMushrooms/MysteryMushrooms.types';
 import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../../entity/mysteryMushrooms/MysteryMushroom.template';
+import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../../entity/behaviours/EntityBehaviours.types';
+import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../../entity/limit/EntityLimits.types';
+import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../../game/GameReferences.types';
+import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                from '../../../entity/mysteryMushrooms/properties/UnlockProperty';
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../../entity/mysteryMushrooms/properties/sound/SoundEffectOnGoalPole';
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoDeath_MysteryMushroom}                                                                                                                                                                     from '../../../entity/mysteryMushrooms/properties/sound/SoundEffectOnDeath';
 
 export interface HeaderTypesForConvertorDefinition {
 
@@ -67,6 +70,12 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleMysteryMushroomIndividualEnglishNames(): | EveryPossibleEnglishNameOnFile_MysteryMushroom | StringConstant
 
+    get everyPossibleConditionToUnlockIt_mysteryMushroom(): | EveryConditionToUnlockIt_MysteryMushroom | StringConstant
+
+    get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom(): | EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom | StringConstant
+
+    get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): | EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom | StringConstant
+
     //endregion -------------------- Mystery Mushroom --------------------
 
 }
@@ -101,5 +110,8 @@ export type EveryPossibleEnglishName_SoundEffect = EnumArray_EnglishName_SoundEf
 export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName_SoundEffectCategory;
 
 export type EveryPossibleEnglishNameOnFile_MysteryMushroom = readonly EnglishNameOnFile_MysteryMushroom[];
+export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt[];
+export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, null | '???'> | UnknownReference)[]
+export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoDeath_MysteryMushroom, null | '???'> | UnknownReference)[]
 
 //endregion -------------------- External types --------------------

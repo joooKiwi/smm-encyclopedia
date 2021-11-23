@@ -1,4 +1,5 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import {EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './HeaderTypesForConvertorDefinition';
 
 import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
@@ -57,6 +58,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleSoundEffectCategoriesNames?: EveryPossibleEnglishName_SoundEffectCategory;
 
     #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
+    #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
+    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
+    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
 
     //endregion -------------------- Attributes --------------------
 
@@ -149,8 +153,45 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //endregion -------------------- Sound effectds --------------------
     //region -------------------- Mystery Mushroom --------------------
 
+    public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
+        return this.#everyPossibleConditionToUnlockIt_mysteryMushroom ??= [
+            'Unlock Mystery Mushroom',
+            '100 Mario (easy)', '100 Mario (normal)', '100 Mario (expert)', '100 Mario (super expert)',
+            'Gnat Attack (normal)', 'Gnat Attack (hard)',
+            'Complete Event', 'Complete 3 Events (by Arino)',
+        ];
+    }
+
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
         return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
+    }
+
+    public get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom() {
+        return this.#everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom ??= [
+            HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,
+            'Introduction', 'Startup', 'Game over',
+            'Level finished', 'Level finished?', 'Race finished',
+            'Airship completed', 'Timed event completed', 'Course completed',
+            'Perfect score obtained', 'Upgrade obtained', 'Important item obtained',
+            'Star collected', 'Triforce collected',
+            'Boss key obtained', 'Boss defeated',
+            'New technique acquired', 'Gym Leader victory', 'Rank up', 'Secret area discovered', 'Declaring the Splatfest\'s winning team',
+            'Bowser\'s arrival', 'Link meets Zelda for the 1st time', 'Ganon encounter',
+            '3DS preview jingle',
+        ];
+    }
+
+    public get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom() {
+        return this.#everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom ??= [
+            HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,
+            'Game over', 'Defeated', 'Error sound',
+            'Boss defeated', 'Dog laughing',
+            'Lost a life', 'Lost an Arwing', 'Falling offscreen',
+            'Eliminated from the race', 'Eliminated from the course', 'Player has fainted',
+            'Minigame lost', 'Round lost',
+            'Timed event failed', 'Ran out of energy', 'Practice Catcher result jingle',
+            'Bowser\'s death', 'Mario saying "Mama mia"', 'Zelda\'s Lullaby', 'Link caught by Moblins', 'K.K. howling', 'Pikmin death',
+        ];
     }
 
     //endregion -------------------- Mystery Mushroom --------------------
@@ -232,6 +273,9 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Mystery Mushroom --------------------
 
     public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleConditionToUnlockIt_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Mystery Mushroom --------------------
 
