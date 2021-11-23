@@ -223,7 +223,6 @@ class TemplateBuilder
                     condition: this._getContent(this._headersIndexMap.conditionToUnlockIt),
                     amiibo: this._getContent(this._headersIndexMap.canBeUnlockedByAnAmiibo),
                 },
-                reference: this._getContent(this._headersIndexMap.reference),
                 differentSprite: {
                     japanese: this._getContent(this._headersIndexMap.haveADifferentJapaneseSprite),
                     left: this._getContent(this._headersIndexMap.haveADifferentLeftSprite),
@@ -231,6 +230,7 @@ class TemplateBuilder
                 sound: this.__createSoundTemplate(),
             },
             uniqueName: this._getContent(this._headersIndexMap.uniqueName),
+            gameReference: this._getContent(this._headersIndexMap.reference),
             name: this._createNameTemplate(),
         };
     }

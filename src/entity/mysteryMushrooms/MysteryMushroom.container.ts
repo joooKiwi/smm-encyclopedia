@@ -1,6 +1,6 @@
-import {MysteryMushroom}         from './MysteryMushroom';
-import {MysteryMushroomProperty} from './properties/MysteryMushroomProperty';
-import {Name}                    from '../../lang/name/Name';
+import {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom';
+import {MysteryMushroomProperty}               from './properties/MysteryMushroomProperty';
+import {Name}                                  from '../../lang/name/Name';
 
 export class MysteryMushroomContainer
     implements MysteryMushroom {
@@ -8,12 +8,14 @@ export class MysteryMushroomContainer
     //region -------------------- Attributes --------------------
 
     readonly #nameContainer;
+    readonly #games;
     readonly #propertyContainer;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, property: MysteryMushroomProperty,) {
+    public constructor(name: Name, games: MysteryMushroomGames, property: MysteryMushroomProperty,) {
         this.#nameContainer = name;
+        this.#games = games;
         this.#propertyContainer = property;
     }
 
@@ -158,6 +160,11 @@ export class MysteryMushroomContainer
     }
 
     //endregion -------------------- Name properties --------------------
+
+    public get games() {
+        return this.#games;
+    }
+
     //region -------------------- Properties --------------------
 
     public get propertyContainer() {

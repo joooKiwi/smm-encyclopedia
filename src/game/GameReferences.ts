@@ -1,12 +1,19 @@
 import type {ClassWithAcronym}                                                                                                               from '../entity/ClassWithAcronym';
 import type {ClassWithEnglishName}                                                                                                           from '../entity/ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                             from '../entity/ClassWithReference';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types';
+import type {GameReference}                                                                                                                  from './GameReference';
 
-import {Enum} from '../util/enum/Enum';
+import {Enum}                from '../util/enum/Enum';
+import {GameReferenceLoader} from './GameReference.loader';
 
+/**
+ * @recursiveReference<{@link GameReferenceLoader}>
+ */
 export class GameReferences
     extends Enum<Ordinals, Names>
-    implements ClassWithAcronym<PossibleAcronym>,
+    implements ClassWithReference<GameReference>,
+        ClassWithAcronym<PossibleAcronym>,
         ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
@@ -170,6 +177,7 @@ export class GameReferences
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    #reference?:GameReference;
     readonly #acronym;
     readonly #englishName;
 
@@ -182,6 +190,13 @@ export class GameReferences
     }
 
     //region -------------------- Getter methods --------------------
+
+    public get reference(): GameReference {
+        const map = GameReferenceLoader.get.load();
+        if(map.get(this.englishName) == null)
+            console.log({map,name:this.englishName});
+        return this.#reference ??= GameReferenceLoader.get.load().get(this.englishName)!;
+    }
 
     public get acronym(): PossibleAcronym {
         return this.#acronym;

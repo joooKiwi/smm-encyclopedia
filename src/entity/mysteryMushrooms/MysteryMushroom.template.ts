@@ -9,14 +9,14 @@ export interface MysteryMushroomTemplate
 
     uniqueName: UniqueEnglishName
 
+    gameReference: | PossibleGameReference | PokemonGeneration
+
     properties: {
 
         unlock: {
             condition: PossibleConditionToUnlockIt
             amiibo: boolean
         }
-
-        reference: | PossibleGameReference | PokemonGeneration
 
         differentSprite: {
             japanese: boolean
@@ -29,4 +29,4 @@ export interface MysteryMushroomTemplate
 
 }
 
-export type PokemonGeneration = `Pokémon gen ${|1|4|6}`;
+export type PokemonGeneration = `Pokémon gen ${| 1 | 4 | 6}`;

@@ -1,9 +1,12 @@
 import type {MysteryMushroomProperty} from './properties/MysteryMushroomProperty';
 import type {NameTrait}               from '../../lang/name/NameTrait';
+import type {GameReferences}          from '../../game/GameReferences';
 
 export interface MysteryMushroom
     extends NameTrait,
         MysteryMushroomProperty {
+
+    get games(): MysteryMushroomGames
 
     //region -------------------- Properties --------------------
 
@@ -132,3 +135,7 @@ export interface MysteryMushroom
     //endregion -------------------- Properties --------------------
 
 }
+
+export type MysteryMushroomGames = readonly [GameReferences,]
+                                   | readonly [GameReferences, GameReferences,]
+                                   | readonly [GameReferences, GameReferences, GameReferences, GameReferences,];

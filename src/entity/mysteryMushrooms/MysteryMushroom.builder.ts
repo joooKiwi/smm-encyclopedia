@@ -1,10 +1,10 @@
-import type {Builder}                 from '../../util/Builder';
-import type {GameReferences}          from '../../game/GameReferences';
-import type {MysteryMushroomTemplate} from './MysteryMushroom.template';
-import type {MysteryMushroom}         from './MysteryMushroom';
-import type {Name}                    from '../../lang/name/Name';
+import type {Builder}                               from '../../util/Builder';
+import type {MysteryMushroomTemplate}               from './MysteryMushroom.template';
+import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom';
+import type {Name}                                  from '../../lang/name/Name';
 
 import {DifferentSpritePropertyContainer} from './properties/DifferentSpriteProperty.container';
+import {GameReferences}                   from '../../game/GameReferences';
 import {Games}                            from '../game/Games';
 import {MysteryMushroomContainer}         from './MysteryMushroom.container';
 import {MysteryMushroomPropertyContainer} from './properties/MysteryMushroomProperty.container';
@@ -31,7 +31,7 @@ export class MysteryMushroomBuilder
         return MysteryMushroomBuilder;
     }
 
-    protected _uniqueName(template:MysteryMushroomTemplate,): string | null {
+    protected _uniqueName(template: MysteryMushroomTemplate,): string | null {
         return template.uniqueName;
     }
 
@@ -72,9 +72,24 @@ export class MysteryMushroomBuilder
 
     //endregion -------------------- Property helper methods --------------------
 
+    protected _getGames(): MysteryMushroomGames {
+        const reference = this.template.gameReference;
+
+        switch (reference) {
+            case 'Pokémon gen 1':
+                return [GameReferences.POKEMON_RED,GameReferences.POKEMON_GREEN,GameReferences.POKEMON_BLUE,GameReferences.POKEMON_YELLOW,];
+            case 'Pokémon gen 4':
+                return [GameReferences.POKEMON_DIAMOND,GameReferences.POKEMON_PEARL,];
+            case 'Pokémon gen 6':
+                return [GameReferences.POKEMON_X,GameReferences.POKEMON_Y,];
+            default:
+                return [GameReferences.getValue(reference)];
+        }
+    }
+
     //region -------------------- Build helper methods --------------------
 
     protected _build(name: Name,): MysteryMushroom {
-        return new MysteryMushroomContainer(name, this.__createProperty());
+        return new MysteryMushroomContainer(name, this._getGames(), this.__createProperty());
     }
 }

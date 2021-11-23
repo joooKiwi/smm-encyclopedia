@@ -44,6 +44,10 @@ type PropertiesArray = [
 
 //endregion -------------------- CSV array related types --------------------
 
+/**
+ * @singleton
+ * @recursiveReference<{@link GameReferences}>
+ */
 export class GameReferenceLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameReference>> {
 
@@ -68,13 +72,13 @@ export class GameReferenceLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, GameReference, keyof typeof Headers>(source, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, GameReferenceBuilder, keyof typeof Headers>(source, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)))
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'acronym',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceEnglishName, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleEnglishName, finalContent.build(),))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
