@@ -9,6 +9,7 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                from '../../../entity/mysteryMushrooms/properties/UnlockProperty';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../../entity/mysteryMushrooms/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoDeath_MysteryMushroom}                                                                                                                                                                     from '../../../entity/mysteryMushrooms/properties/sound/SoundEffectOnDeath';
+import type {PossibleValuesReceived as PossibleValues_SoundEffectOnJump_MysteryMushroom}                                                                                                                                                                                 from '../../../entity/mysteryMushrooms/properties/sound/SoundEffectOnJump';
 
 export interface HeaderTypesForConvertorDefinition {
 
@@ -72,6 +73,8 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleConditionToUnlockIt_mysteryMushroom(): | EveryConditionToUnlockIt_MysteryMushroom | StringConstant
 
+    get everyPossibleValues_soundEffectOnJump_mysteryMushroom(): | EveryValues_SoundEffectOnJump_MysteryMushroom | StringAndNumber
+
     get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom(): | EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom | StringConstant
 
     get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): | EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom | StringConstant
@@ -79,9 +82,12 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Mystery Mushroom --------------------
 
 }
+
 //region -------------------- External types --------------------
 
 export type StringConstant = 'string';
+export type NumberConstant = 'number';
+export type StringAndNumber = readonly [StringConstant, NumberConstant,];
 
 export type UnknownCharacter = '?';
 export type UnknownReference = '???';
@@ -111,6 +117,7 @@ export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName
 
 export type EveryPossibleEnglishNameOnFile_MysteryMushroom = readonly EnglishNameOnFile_MysteryMushroom[];
 export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt[];
+export type EveryValues_SoundEffectOnJump_MysteryMushroom = readonly (Exclude<PossibleValues_SoundEffectOnJump_MysteryMushroom, | boolean | null>)[];
 export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, null | '???'> | UnknownReference)[]
 export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoDeath_MysteryMushroom, null | '???'> | UnknownReference)[]
 

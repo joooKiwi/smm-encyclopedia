@@ -11,7 +11,7 @@ export interface SoundEffectOnJump
 }
 
 export type PossibleGamesReceived = | string | null;
-export type PossibleValuesReceived = | boolean | '3 images' | 2 | null;
+export type PossibleValuesReceived = | boolean | 2 | '3 images' | null;
 
 export type PossibleGames = | GameReferences | null;
 export type PossibleValues = | boolean | NotApplicable;

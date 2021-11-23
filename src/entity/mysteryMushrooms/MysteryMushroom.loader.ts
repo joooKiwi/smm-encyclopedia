@@ -167,7 +167,7 @@ export class MysteryMushroomLoader
                 .convertToNullableBoolean('haveASoundEffectOnTaunt',)
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnJump_game',)
-                .convertToNullableBooleanAnd([2, '3 images',], 'haveASoundEffectOnJump',)
+                .convertToNullableBooleanAnd(HeaderTypesForConvertor.everyPossibleValues_soundEffectOnJump_mysteryMushroom, 'haveASoundEffectOnJump',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnGroundAfterJump_game',)
                 .convertToNullableBoolean('haveASoundEffectOnGroundAfterJump',)
 
@@ -180,7 +180,7 @@ export class MysteryMushroomLoader
 
                 .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectWhenOnGoalPole_type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenOnGoalPole_game',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom,'haveASoundEffectWhenOnGoalPole_smallDefinition',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom, 'haveASoundEffectWhenOnGoalPole_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',], 'haveASoundEffectWhenOnGoalPole',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Rock',], 'haveASoundEffectOnDeath_type',)

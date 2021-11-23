@@ -1,5 +1,5 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
-import {EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EveryValues_SoundEffectOnJump_MysteryMushroom, HeaderTypesForConvertorDefinition, NumberConstant, StringAndNumber, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import {EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './HeaderTypesForConvertorDefinition';
 
 import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
@@ -59,6 +59,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
+    #everyPossibleValues_soundEffectOnJump_mysteryMushroom?: EveryValues_SoundEffectOnJump_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
 
@@ -153,6 +154,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //endregion -------------------- Sound effectds --------------------
     //region -------------------- Mystery Mushroom --------------------
 
+    public get everyPossibleMysteryMushroomIndividualEnglishNames() {
+        return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
+    }
+
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
         return this.#everyPossibleConditionToUnlockIt_mysteryMushroom ??= [
             'Unlock Mystery Mushroom',
@@ -162,8 +167,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
         ];
     }
 
-    public get everyPossibleMysteryMushroomIndividualEnglishNames() {
-        return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
+    public get everyPossibleValues_soundEffectOnJump_mysteryMushroom() {
+        return this.#everyPossibleValues_soundEffectOnJump_mysteryMushroom ??= [2, '3 images',];
     }
 
     public get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom() {
@@ -220,6 +225,8 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Attributes --------------------
 
     static readonly #STRING_VALUE: StringConstant = 'string';
+    static readonly #NUMBER_VALUE: NumberConstant = 'number';
+    static readonly #STRING_AND_NUMBER: StringAndNumber = [this.#STRING_VALUE, this.#NUMBER_VALUE,];
 
     //endregion -------------------- Attributes --------------------
 
@@ -274,6 +281,7 @@ class HeaderTypesForConvertorForProduction
 
     public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleConditionToUnlockIt_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleValues_soundEffectOnJump_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_AND_NUMBER;
     public readonly everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
