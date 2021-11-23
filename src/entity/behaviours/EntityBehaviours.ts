@@ -1,6 +1,6 @@
 import type {ClassWithAcronym}                                                    from '../ClassWithAcronym';
-import type {ClassWithTranslationKey}                                                                                                           from '../../lang/ClassWithTranslationKey';
-import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKey, PossibleValue} from './EntityBehaviours.types';
+import type {ClassWithTranslationKey}                                                                                                            from '../../lang/ClassWithTranslationKey';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
 
 import {Enum}                  from '../../util/enum/Enum';
 import {EntityBehaviour}       from './EntityBehaviour';
@@ -13,7 +13,7 @@ import {EntityBehaviourLoader} from './EntityBehaviour.loader';
 export class EntityBehaviours
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityBehaviour>,
-        ClassWithTranslationKey<PossibleTranslationKey>,
+        ClassWithTranslationKey<PossibleTranslationKeys>,
         ClassWithAcronym<PossibleAcronym> {
 
     //region -------------------- Enum instances --------------------
@@ -47,7 +47,7 @@ export class EntityBehaviours
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKey,) {
+    private constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKeys,) {
         super(EntityBehaviours);
         this.#acronym = acronym;
         this.#translationKey = translationKey;
@@ -60,7 +60,7 @@ export class EntityBehaviours
     }
 
 
-    public get translationKey(): PossibleTranslationKey {
+    public get translationKey(): PossibleTranslationKeys {
         return this.#translationKey;
     }
 
@@ -75,7 +75,7 @@ export class EntityBehaviours
         return this.values.map(limit => limit.acronym);
     }
 
-    public static get everyTranslationKeys(): readonly PossibleTranslationKey[] {
+    public static get everyTranslationKeys(): readonly PossibleTranslationKeys[] {
         return this.values.map(limit => limit.translationKey);
     }
 
