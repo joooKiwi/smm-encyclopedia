@@ -3,8 +3,9 @@ import everyMysteryMushrooms from '../../resources/Mystery Mushrooms.csv';
 import {UniqueEnglishName}                                                                                                                                                                                                       from './MysteryMushrooms.types';
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
-import type {MysteryMushroomTemplate}                                                                                                                                                                                            from './MysteryMushroom.template';
+import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from './MysteryMushroom.template';
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                        from './properties/UnlockProperty';
+import type {PossibleEnglishName as PossibleGameReference}                                                                                                                                                                       from '../../game/GameReferences.types';
 import type {PossibleGamesReceived as GameInStarMode, PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                                                                                  from './properties/sound/SpecialMusicInStarMode';
 import type {PossibleGamesReceived as GameOnSoundEffectOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath}       from './properties/sound/SoundEffectOnDeath';
 import type {PossibleGamesReceived as GameOnSoundEffectOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypesReceived as TypeOfMusicOnGoalPole, PossibleValuesReceived as PossibleSoundEffectOnGoalPole} from './properties/sound/SoundEffectOnGoalPole';
@@ -70,7 +71,7 @@ type ExclusivePropertiesArray = [
     conditionToUnlockIt: PossibleConditionToUnlockIt,
     canBeUnlockedByAnAmiibo: boolean,
 
-    reference: string,
+    reference: | PossibleGameReference | PokemonGeneration,
 
     uniqueName: UniqueEnglishName,
 
@@ -154,32 +155,36 @@ export class MysteryMushroomLoader
 
                 .convertTo(['Unlock Mystery Mushroom', '100 Mario (easy)', '100 Mario (normal)', '100 Mario (expert)', '100 Mario (super expert)', 'Gnat Attack (normal)', 'Gnat Attack (hard)', 'Complete Event', 'Complete 3 Events (by Arino)',], 'conditionToUnlockIt',)
                 .convertToBoolean('canBeUnlockedByAnAmiibo',)
-                //TODO add game reference
+                .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronymWithPokemonGeneration, 'reference',)
 
                 .convertToBoolean('haveADifferentJapaneseSprite', 'haveADifferentLeftSprite',)
 
 
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenCollected_game',)
                 .convertToNullableBoolean('haveASoundEffectWhenCollected',)
 
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnTaunt_game',)
                 .convertToNullableBoolean('haveASoundEffectOnTaunt',)
 
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnJump_game',)
                 .convertToNullableBooleanAnd([2, '3 images',], 'haveASoundEffectOnJump',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnGroundAfterJump_game',)
                 .convertToNullableBoolean('haveASoundEffectOnGroundAfterJump',)
 
                 .convertToNullableBooleanAnd(['Twinkle', 'Engine sound',], 'soundEffectOnMovement',)
 
                 .convertToNullableBoolean('haveASoundEffectOnTurnAfterRun',)
 
-                .convertToEmptyableStringAnd(['SM64', 'SMK',], 'haveASpecialMusicInStarMode_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASpecialMusicInStarMode_game',)
                 .convertToNullableBooleanAnd(['Flying Mario', 'Metal Mario', 'Super Star',], 'haveASpecialMusicInStarMode',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Rock',], 'haveASoundEffectOnDeath_type',)
-                .convertToEmptyableStringAnd([/*TODO add values*//*'SML', 'SMB2', 'SMB3', 'SM64', 'NSMBU', 'SM3DW',*/], 'haveASoundEffectOnDeath_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnDeath_game',)
                 .convertToEmptyableStringAnd([/*TODO add values*/], 'haveASoundEffectOnDeath_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ "Oh no!"', '+ "Nooo!"', '+ "Nooo"', '+ "Woah!"', '+ "Yaha!"',], 'haveASoundEffectOnDeath',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectWhenOnGoalPole_type',)
-                .convertToEmptyableStringAnd([/*TODO add values*//*'SML', 'SMB2', 'SMB3', 'SM64', 'NSMBU', 'SM3DW', 'SMM',*/], 'haveASoundEffectWhenOnGoalPole_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenOnGoalPole_game',)
                 .convertToEmptyableStringAnd([], 'haveASoundEffectWhenOnGoalPole_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',], 'haveASoundEffectWhenOnGoalPole',)
 

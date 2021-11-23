@@ -1,7 +1,8 @@
-import type {PossibleConditionToUnlockIt} from './properties/UnlockProperty';
-import type {SoundPropertyTemplate}       from './properties/sound/SoundProperty.template';
-import type {TemplateWithNameTemplate}    from '../_template/TemplateWithName.template';
-import {UniqueEnglishName}                from './MysteryMushrooms.types';
+import type {PossibleConditionToUnlockIt}                  from './properties/UnlockProperty';
+import type {PossibleEnglishName as PossibleGameReference} from '../../game/GameReferences.types';
+import type {SoundPropertyTemplate}                        from './properties/sound/SoundProperty.template';
+import type {TemplateWithNameTemplate}                     from '../_template/TemplateWithName.template';
+import type {UniqueEnglishName}                            from './MysteryMushrooms.types';
 
 export interface MysteryMushroomTemplate
     extends TemplateWithNameTemplate {
@@ -15,7 +16,7 @@ export interface MysteryMushroomTemplate
             amiibo: boolean
         }
 
-        reference: string
+        reference: | PossibleGameReference | PokemonGeneration
 
         differentSprite: {
             japanese: boolean
@@ -27,3 +28,5 @@ export interface MysteryMushroomTemplate
     }
 
 }
+
+export type PokemonGeneration = `Pokémon gen ${|1|4|6}`;

@@ -5,6 +5,7 @@ import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternative
 import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../../game/GameReferences.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../../entity/soundEffect/category/SoundEffectCategories.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../../entity/soundEffect/simple/SoundEffects.types';
+import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../../entity/mysteryMushrooms/MysteryMushroom.template';
 
 //region -------------------- External types --------------------
 
@@ -14,6 +15,7 @@ export type UnknownCharacter = '?';
 export type UnknownReference = '???';
 
 export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[];
+export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (|PossibleAcronym_GameReference|PokemonGeneration)[];
 export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[];
 
 export type EveryPossibleName_Entity = readonly string[];
@@ -44,6 +46,8 @@ export interface HeaderTypesForConvertorDefinition {
     //region -------------------- "Game reference" --------------------
 
     get everyPossibleGameReferenceAcronym(): | EveryPossibleAcronym_GameReference | StringConstant
+
+    get everyPossibleGameReferenceAcronymWithPokemonGeneration(): | EveryPossibleAcronymWithPokemonGeneration_GameReference | StringConstant
 
     get everyPossibleGameReferenceEnglishName(): | EveryPossibleName_GameReference | StringConstant
 
