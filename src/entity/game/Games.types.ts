@@ -3,7 +3,7 @@ import type {PossibleAcronym_Game, PossibleEnglishName_Game} from '../../game/Ga
 import type {SimpleEnum as OriginalSimpleEnum}               from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | Games | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName;
+export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym;
 export type PossibleValue = | Games | number | string | null | undefined;
 
 enum Enum {
