@@ -94,8 +94,8 @@ type ExclusivePropertiesArray = [
 
     haveASoundEffectOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun,
 
-    specialMusicInStarMario_game: GameInStarMode,
-    specialMusicInStarMario: PossibleSpecialMusicInStarMode,
+    haveASpecialMusicInStarMode_game: GameInStarMode,
+    haveASpecialMusicInStarMode: PossibleSpecialMusicInStarMode,
 
     haveASoundEffectWhenOnGoalPole_type: TypeOfMusicOnGoalPole,
     haveASoundEffectWhenOnGoalPole_game: GameOnSoundEffectOnGoalPole,
@@ -167,7 +167,7 @@ export class MysteryMushroomLoader
                 .convertToNullableBoolean('haveASoundEffectOnTaunt',)
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnJump_game',)
-                .convertToNullableBooleanAnd(HeaderTypesForConvertor.everyPossibleValues_soundEffectOnJump_mysteryMushroom, 'haveASoundEffectOnJump',)
+                .convertToNullableBooleanAnd([2, '3 images',], 'haveASoundEffectOnJump',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnGroundAfterJump_game',)
                 .convertToNullableBoolean('haveASoundEffectOnGroundAfterJump',)
 
@@ -178,12 +178,12 @@ export class MysteryMushroomLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASpecialMusicInStarMode_game',)
                 .convertToNullableBooleanAnd(['Flying Mario', 'Metal Mario', 'Super Star',], 'haveASpecialMusicInStarMode',)
 
-                .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectWhenOnGoalPole_type',)
+                .convertToEmptyableStringAnd(['Marimba', 'Rock',], 'haveASoundEffectWhenOnGoalPole_type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenOnGoalPole_game',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom, 'haveASoundEffectWhenOnGoalPole_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',], 'haveASoundEffectWhenOnGoalPole',)
 
-                .convertToEmptyableStringAnd(['Marimba', 'Rock',], 'haveASoundEffectOnDeath_type',)
+                .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectOnDeath_type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnDeath_game',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom, 'haveASoundEffectOnDeath_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ "Oh no!"', '+ "Nooo!"', '+ "Nooo"', '+ "Woah!"', '+ "Yaha!"',], 'haveASoundEffectOnDeath',)
