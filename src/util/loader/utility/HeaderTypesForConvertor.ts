@@ -60,7 +60,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     //endregion -------------------- Attributes --------------------
 
-    //region -------------------- "Game reference" --------------------
+    //region -------------------- Game reference --------------------
 
     public get everyPossibleGameReferenceAcronym() {
         return this.#everyPossibleGameReferenceAcronym ??= GameReferences.everyAcronyms;
@@ -74,16 +74,16 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleGameReferenceEnglishName ??= GameReferences.everyEnglishNames;
     }
 
-    //endregion -------------------- "Game reference" --------------------
-    //region -------------------- "Entity" --------------------
+    //endregion -------------------- Game reference --------------------
+    //region -------------------- Entity --------------------
 
     public get everyPossibleEntityNames() {
         //TODO implements this methods
         return this.#everyPossibleEntityNames ??= [];
     }
 
-    //endregion -------------------- "Entity" --------------------
-    //region -------------------- "Entity behaviour" --------------------
+    //endregion -------------------- Entity --------------------
+    //region -------------------- Entity behaviour --------------------
 
     public get everyPossibleBehavioursAcronyms() {
         return this.#everyPossibleBehavioursAcronyms ??= EntityBehaviours.everyAcronyms;
@@ -93,24 +93,24 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleBehavioursTranslationKeys ??= EntityBehaviours.everyTranslationKeys;
     }
 
-    //endregion -------------------- "Entity behaviour" --------------------
-    //region -------------------- "Entity group" --------------------
+    //endregion -------------------- Entity behaviour --------------------
+    //region -------------------- Entity group --------------------
 
     public get everyPossibleGroupNames() {
         //TODO implements this methods
         return this.#everyPossibleGroupNames ??= [];
     }
 
-    //endregion -------------------- "Entity group" --------------------
-    //region -------------------- "Entity category" --------------------
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity category --------------------
 
     public get everyPossibleEntityCategoriesNames() {
         //TODO change to enum usage instead (when it will be created)
         return this.#everyPossibleEntityCategoriesNames ??= [...EntityCategoryLoader.get.load().keys()];
     }
 
-    //endregion -------------------- "Entity group" --------------------
-    //region -------------------- "Entity limit" --------------------
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity limit --------------------
 
     public get everyPossibleLimitsAcronyms() {
         return this.#everyPossibleLimitsAcronyms ??= [...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,];
@@ -128,15 +128,15 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,];
     }
 
-    //endregion -------------------- "Entity limit" --------------------
-    //region -------------------- "Entity limit type" --------------------
+    //endregion -------------------- Entity limit --------------------
+    //region -------------------- Entity limit type --------------------
 
     public get everyPossibleLimitTypesNames() {
         return this.#everyPossibleLimitTypesNames ??= EntityLimitTypes.everyEnglishNames;
     }
 
-    //endregion -------------------- "Entity limit type" --------------------
-    //region -------------------- "Sound effect" --------------------
+    //endregion -------------------- Entity limit type --------------------
+    //region -------------------- Sound effect --------------------
 
     public get everyPossibleSoundEffectsNames() {
         return this.#everyPossibleSoundEffectsNames ??= SoundEffects.everyEnglishNames;
@@ -146,14 +146,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
     }
 
-    //endregion -------------------- "Sound effect"ds --------------------
-    //region -------------------- "Mystery Mushroom" --------------------
+    //endregion -------------------- Sound effectds --------------------
+    //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
         return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
     }
 
-    //endregion -------------------- "Mystery Mushroom" --------------------
+    //endregion -------------------- Mystery Mushroom --------------------
 
 }
 
@@ -182,58 +182,58 @@ class HeaderTypesForConvertorForProduction
 
     //endregion -------------------- Attributes --------------------
 
-    //region -------------------- "Game reference" --------------------
+    //region -------------------- Game reference --------------------
 
     public readonly everyPossibleGameReferenceAcronym = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleGameReferenceAcronymWithPokemonGeneration = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleGameReferenceEnglishName = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Game reference" --------------------
-    //region -------------------- "Entity" --------------------
+    //endregion -------------------- Game reference --------------------
+    //region -------------------- Entity --------------------
 
     public readonly everyPossibleEntityNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Entity" --------------------
-    //region -------------------- "Entity behaviour" --------------------
+    //endregion -------------------- Entity --------------------
+    //region -------------------- Entity behaviour --------------------
 
     public readonly everyPossibleBehavioursAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleBehavioursTranslationKeys = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Entity behaviour" --------------------
-    //region -------------------- "Entity group" --------------------
+    //endregion -------------------- Entity behaviour --------------------
+    //region -------------------- Entity group --------------------
 
     public readonly everyPossibleGroupNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Entity group" --------------------
-    //region -------------------- "Entity category" --------------------
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity category --------------------
 
     public readonly everyPossibleEntityCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Entity category" --------------------
-    //region -------------------- "Entity limit" --------------------
+    //endregion -------------------- Entity category --------------------
+    //region -------------------- Entity limit --------------------
 
     public readonly everyPossibleLimitsAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyAlternativeLimitAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleLimitsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyLimitsNamesOrUnknown = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Entity limit" --------------------
-    //region -------------------- "Entity limit type" --------------------
+    //endregion -------------------- Entity limit --------------------
+    //region -------------------- Entity limit type --------------------
 
     public readonly everyPossibleLimitTypesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Entity limit type" --------------------
-    //region -------------------- "Sound effect" --------------------
+    //endregion -------------------- Entity limit type --------------------
+    //region -------------------- Sound effect --------------------
 
     public readonly everyPossibleSoundEffectsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleSoundEffectCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Sound effect" --------------------
-    //region -------------------- "Mystery Mushroom" --------------------
+    //endregion -------------------- Sound effect --------------------
+    //region -------------------- Mystery Mushroom --------------------
 
     public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- "Mystery Mushroom" --------------------
+    //endregion -------------------- Mystery Mushroom --------------------
 
 }
 

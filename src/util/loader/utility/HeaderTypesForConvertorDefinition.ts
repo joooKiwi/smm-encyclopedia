@@ -9,7 +9,7 @@ import type {PokemonGeneration}                                                 
 
 export interface HeaderTypesForConvertorDefinition {
 
-    //region -------------------- "Game reference" --------------------
+    //region -------------------- Game reference --------------------
 
     get everyPossibleGameReferenceAcronym(): | EveryPossibleAcronym_GameReference | StringConstant
 
@@ -17,30 +17,30 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleGameReferenceEnglishName(): | EveryPossibleName_GameReference | StringConstant
 
-    //endregion -------------------- "Game reference" --------------------
-    //region -------------------- Entity" --------------------
+    //endregion -------------------- Game reference --------------------
+    //region -------------------- Entity --------------------
 
     get everyPossibleEntityNames(): | EveryPossibleName_Entity | StringConstant
 
-    //endregion -------------------- Entity" --------------------
-    //region -------------------- "Entity behaviour" --------------------
+    //endregion -------------------- Entity --------------------
+    //region -------------------- Entity behaviour --------------------
 
     get everyPossibleBehavioursAcronyms(): | EveryPossibleAcronym_EntityBehaviour | StringConstant
 
     get everyPossibleBehavioursTranslationKeys(): | EveryPossibleTranslationKey_EntityBehaviour | StringConstant
 
-    //endregion -------------------- "Entity behaviour" --------------------
-    //region -------------------- "Entity group" --------------------
+    //endregion -------------------- Entity behaviour --------------------
+    //region -------------------- Entity group --------------------
 
     get everyPossibleGroupNames(): | EveryPossibleName_EntityGroup | StringConstant
 
-    //endregion -------------------- "Entity group" --------------------
-    //region -------------------- "Entity category" --------------------
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity category --------------------
 
     get everyPossibleEntityCategoriesNames(): | EveryPossibleName_EntityCategory | StringConstant
 
-    //endregion -------------------- "Entity category" --------------------
-    //region -------------------- "Entity limit" --------------------
+    //endregion -------------------- Entity category --------------------
+    //region -------------------- Entity limit --------------------
 
     get everyPossibleLimitsAcronyms(): | EveryPossibleAcronym_EntityLimit | StringConstant
 
@@ -50,24 +50,24 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyLimitsNamesOrUnknown(): | EveryEnglishNameOrUnknown_EntityLimit | StringConstant
 
-    //endregion -------------------- "Entity limit" --------------------
-    //region -------------------- Entity limit type" --------------------
+    //endregion -------------------- Entity limit --------------------
+    //region -------------------- Entity limit type --------------------
 
     get everyPossibleLimitTypesNames(): | EveryPossibleEnglishName_EntityLimitType | StringConstant
 
-    //endregion -------------------- Entity limit type" --------------------
-    //region -------------------- "Sound effect" --------------------
+    //endregion -------------------- Entity limit type --------------------
+    //region -------------------- Sound effect --------------------
 
     get everyPossibleSoundEffectsNames(): | EveryPossibleEnglishName_SoundEffect | StringConstant
 
     get everyPossibleSoundEffectCategoriesNames(): | EveryPossibleEnglishName_SoundEffectCategory | StringConstant
 
-    //endregion -------------------- "Sound effect" --------------------
-    //region -------------------- "Mystery Mushroom" --------------------
+    //endregion -------------------- Sound effect --------------------
+    //region -------------------- Mystery Mushroom --------------------
 
     get everyPossibleMysteryMushroomIndividualEnglishNames(): | EveryPossibleEnglishNameOnFile_MysteryMushroom | StringConstant
 
-    //endregion -------------------- "Mystery Mushroom" --------------------
+    //endregion -------------------- Mystery Mushroom --------------------
 
 }
 //region -------------------- External types --------------------
