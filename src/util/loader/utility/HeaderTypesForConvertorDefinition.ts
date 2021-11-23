@@ -2,6 +2,7 @@ import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}    
 import type {EnglishNameOnFile as EnglishNameOnFile_MysteryMushroom}                                                                                                                                                                                                     from '../../../entity/mysteryMushrooms/MysteryMushrooms.types';
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKey as PossibleTranslationKey_EntityBehaviour}                                                                                                                                       from '../../../entity/behaviours/EntityBehaviours.types';
 import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../../entity/limit/EntityLimits.types';
+import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../../game/GameReferences.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../../entity/soundEffect/category/SoundEffectCategories.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../../entity/soundEffect/simple/SoundEffects.types';
 
@@ -11,6 +12,9 @@ export type StringConstant = 'string';
 
 export type UnknownCharacter = '?';
 export type UnknownReference = '???';
+
+export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[];
+export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[];
 
 export type EveryPossibleName_Entity = readonly string[];
 
@@ -37,6 +41,13 @@ export type EveryPossibleEnglishNameOnFile_MysteryMushroom = readonly EnglishNam
 
 export interface HeaderTypesForConvertorDefinition {
 
+    //region -------------------- "Game reference" --------------------
+
+    get everyPossibleGameReferenceAcronym(): | EveryPossibleAcronym_GameReference | StringConstant
+
+    get everyPossibleGameReferenceEnglishName(): | EveryPossibleName_GameReference | StringConstant
+
+    //endregion -------------------- "Game reference" --------------------
     //region -------------------- Entity getter methods --------------------
 
     get everyPossibleEntityNames(): | EveryPossibleName_Entity | StringConstant

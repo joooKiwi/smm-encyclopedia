@@ -1,40 +1,166 @@
-import type {PossibleEnglishName_Games}                                                                                                                                                from '../entity/soundEffect/simple/SoundEffects.types';
-import type {ClassWithEnglishName}                                                                                                                                                     from '../entity/ClassWithEnglishName';
-import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleExclusiveEnglishName, PossibleExternalEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types';
-import type {ObjectHolder}                                                                                                                                                             from '../util/holder/ObjectHolder';
+import type {ClassWithAcronym}                                                                                                               from '../entity/ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                           from '../entity/ClassWithEnglishName';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types';
 
-import {DelayedObjectHolderContainer} from '../util/holder/DelayedObjectHolderContainer';
-import {Enum}                         from '../util/enum/Enum';
-import {Games}                        from '../entity/game/Games';
-import {GameStyles}                   from '../entity/gameStyle/GameStyles';
-import {SoundEffects}                 from '../entity/soundEffect/simple/SoundEffects';
+import {Enum} from '../util/enum/Enum';
 
 export class GameReferences
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName> {
+    implements ClassWithAcronym<PossibleAcronym>,
+        ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_BROS =       new GameReferences(GameStyles.SUPER_MARIO_BROS,                                                                    );
-    public static readonly SUPER_MARIO_BROS_2 =     new GameReferences('Super Mario Bros. 2',                                                               );
-    public static readonly SUPER_MARIO_BROS_3 =     new GameReferences(GameStyles.SUPER_MARIO_BROS_3,                                                                  );
+    public static readonly SUPER_MARIO_MAKER_1 =                         new GameReferences('SMM',      'Super Mario Maker',);
+    public static readonly SUPER_MARIO_MAKER_2 =                         new GameReferences('SMM2',     'Super Mario Maker 2',);
 
-    public static readonly SUPER_MARIO_KART =       new GameReferences(SoundEffects.SUPER_MARIO_KART as ClassWithEnglishName<PossibleEnglishName_Games>,    );
+    public static readonly SUPER_MARIO_BROS =                            new GameReferences('SMB',      'Super Mario Bros.',);
+    public static readonly SUPER_MARIO_BROS_3 =                          new GameReferences('SMB3',     'Super Mario Bros. 3',);
+    public static readonly SUPER_MARIO_WORLD =                           new GameReferences('SMW',      'Super Mario World',);
+    public static readonly NEW_SUPER_MARIO_BROS_U =                      new GameReferences('NSMBU',    'New Super Mario Bros. U',);
+    public static readonly SUPER_MARIO_3D_WORLD =                        new GameReferences('SM3DW',    'Super Mario 3D World',);
 
-    public static readonly SUPER_MARIO_LAND =       new GameReferences('Super Mario Land',                                                                  );
+    public static readonly SUPER_MARIO_KART =                            new GameReferences('SMK',      'Super Mario Kart',);
+    public static readonly SUPER_MARIO_64 =                              new GameReferences('SM64',     'Super Mario 64');
+    public static readonly SUPER_MARIO_SUNSHINE =                        new GameReferences('SMS',      'Super Mario Sunshine',);
+    public static readonly SUPER_MARIO_GALAXY =                          new GameReferences('SMG',      'Super Mario Galaxy',);
 
-    public static readonly SUPER_MARIO_64 =         new GameReferences(SoundEffects.SUPER_MARIO_64 as ClassWithEnglishName<PossibleEnglishName_Games>,      );
 
-    public static readonly SUPER_MARIO_SUNSHINE =   new GameReferences(SoundEffects.SUPER_MARIO_SUNSHINE as ClassWithEnglishName<PossibleEnglishName_Games>,);
+    public static readonly MARIO_BROS =                                  new GameReferences('MB',       'Mario Bros.',);
+    public static readonly SUPER_MARIO_BROS_2 =                          new GameReferences('SMB2',     'Super Mario Bros. 2',);
+    public static readonly SUPER_MARIO_WORLD_2_YOSHI_ISLAND =            new GameReferences('SMW2:YI',  'Super Mario World 2: Yoshi\'s Island',);
+    public static readonly SUPER_MARIO_LAND =                            new GameReferences('SML',      'Super Mario Land',);
+    public static readonly WARIO_LAND_SUPER_MARIO_LAND_3 =               new GameReferences('WL:SML3',  'Wario Land: Super Mario Land 3',);
+    public static readonly MARIO_TENNIS =                                new GameReferences('MT',       'Mario Tennis',);
+    public static readonly DR_MARIO =                                    new GameReferences('DM',       'Dr. Mario',);
+    public static readonly DR_MARIO_64 =                                 new GameReferences('DM64',     'Dr. Mario 64',);
+    public static readonly LUIGI_MANSION =                               new GameReferences('LM',       'Luigi\'s Mansion',);
+    public static readonly YOSHI_WOOLLY_WORLD =                          new GameReferences('YWW',      'Yoshi\'s Woolly World',);
+    public static readonly CAPTAIN_TOAD_TREASURE_TRACKER =               new GameReferences('CT:TT',    'Captain Toad: Treasure Tracker',);
+    public static readonly WARIOWARE_TOUCHED =                           new GameReferences('WW:T',     'WarioWare: Touched!',);
+    public static readonly MARIO_AND_LUIGI_PAPER_JAM =                   new GameReferences('M&L:PJ',   'Mario & Luigi: Paper Jam',);
 
-    public static readonly SUPER_MARIO_GALAXY =     new GameReferences(SoundEffects.SUPER_MARIO_GALAXY as ClassWithEnglishName<PossibleEnglishName_Games>,  );
+    public static readonly DONKEY_KONG =                                 new GameReferences('DK',       'Donkey Kong',);
+    public static readonly DONKEY_KONG_JR =                              new GameReferences('DKJ',      'Donkey Kong Jr.',);
+    public static readonly DONKEY_KONG_COUNTRY =                         new GameReferences('DKC',      'Donkey Kong Country',);
 
-    public static readonly NEW_SUPER_MARIO_BROS_U = new GameReferences(GameStyles.NEW_SUPER_MARIO_BROS_U,                                                              );
+    public static readonly KIRBY_DREAM_LAND =                            new GameReferences('KDL',      'Kirby\'s Dream Land',);
+    public static readonly KIRBY_ADVENTURE =                             new GameReferences('KA',       'Kirby\'s Adventure',);
 
-    public static readonly SUPER_MARIO_3D_WORLD =   new GameReferences(GameStyles.SUPER_MARIO_3D_WORLD,                                                                );
+    public static readonly KID_ICARIUS =                                 new GameReferences('KI',       'Kid Icarius',);
+    public static readonly KID_ICARIUS_UPRISING =                        new GameReferences('KI:U',     'Kid Icarius: Uprising',);
 
-    public static readonly SUPER_MARIO_MAKER_1 =    new GameReferences(Games.SUPER_MARIO_MAKER_1,                                                                      );
-    public static readonly SUPER_MARIO_MAKER_2 =    new GameReferences(Games.SUPER_MARIO_MAKER_2,                                                                      );
+    public static readonly MEGA_MAN =                                    new GameReferences('MeM',      'Mega Man',);
+
+    public static readonly METROID =                                     new GameReferences('M',        'Metroid',);
+    public static readonly METROID_ZERO_MISSION =                        new GameReferences('M:ZM',     'Metroid: Zero Mission',);
+
+    public static readonly NINTENDO_ENTERTAINMENT_SYSTEM_ROB =           new GameReferences('NES ROB',  'Nintendo Entertainment System R.O.B.',);
+
+    public static readonly FIRE_EMBLEM_SHADOW_DRAGON =                   new GameReferences('FE:SD',    'Fire Emblem: Shadow Dragon',);
+    public static readonly FIRE_EMBLEM_RADIANT_DAWN =                    new GameReferences('FE:RD',    'Fire Emblem: Radiant Dawn',);
+    public static readonly FIRE_EMBLEM_AWAKENING =                       new GameReferences('FEA',      'Fire Emblem Awakening',);
+
+    public static readonly POKEMON_RED =                                 new GameReferences('PR',       'Pokémon Red Version',);
+    public static readonly POKEMON_GREEN =                               new GameReferences('PG',       '(Pokémon Green Version)',);
+    public static readonly POKEMON_BLUE =                                new GameReferences('PB',       'Pokémon Blue Version',);
+    public static readonly POKEMON_YELLOW =                              new GameReferences('PYe',      'Pokémon Yellow Version',);
+    public static readonly POKEMON_DIAMOND =                             new GameReferences('PD',       'Pokémon Diamond',);
+    public static readonly POKEMON_PEARL =                               new GameReferences('PP',       'Pokémon Pearl',);
+    public static readonly POKEMON_X =                                   new GameReferences('PX',       'Pokémon X',);
+    public static readonly POKEMON_Y =                                   new GameReferences('PY',       'Pokémon Y',);
+
+    public static readonly PIKMIN =                                      new GameReferences('Pi',        'Pikmin',);
+    public static readonly PIKMIN_3 =                                    new GameReferences('Pi3',       'Pikmin 3',);
+
+    public static readonly THE_LEGEND_OF_ZELDA =                         new GameReferences('TLZ',      'The Legend of Zelda',);
+    public static readonly THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST =      new GameReferences('TLZ:ALP',  'The Legend of Zelda: A Link to the Past',);
+    public static readonly THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME =         new GameReferences('TLZ:OT',   'The Legend of Zelda: Ocarina of Time',);
+    public static readonly THE_LEGEND_OF_ZELDA_MAJORA_MASK =             new GameReferences('TLZ:MM',   'The Legend of Zelda: Majora\'s Mask',);
+    public static readonly THE_LEGEND_OF_ZELDA_THE_WIND_WAKER =          new GameReferences('TLZ:TWW',  'The Legend of Zelda: The Wind Waker',);
+    public static readonly THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS =       new GameReferences('TLZ:TP',   'The Legend of Zelda: Twilight Princess',);
+    public static readonly THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES =        new GameReferences('TLZ:TFH',  'The Legend of Zelda: Tri Force Heroes',);
+
+    public static readonly XENOBLADE_CHRONICLES =                        new GameReferences('XC',       'Xenoblade Chronicles',);
+
+    public static readonly EARTHBOUND =                                  new GameReferences('EB',       'EarthBound',);
+    public static readonly MOTHER3 =                                     new GameReferences('M3',       'MOTHER3',);
+
+    public static readonly SPLATOON =                                    new GameReferences('Sp',       'Splatoon',);
+
+    public static readonly WII_FIT =                                     new GameReferences('WF',       'Wii Fit',);
+
+    public static readonly CHIBI_ROBO =                                  new GameReferences('CR',       'Chibi-Robo!',);
+
+    public static readonly ANIMAL_CROSSING =                             new GameReferences('AC',       'Animal Crossing',);
+    public static readonly ANIMAL_CROSSING_WILD_WORLD =                  new GameReferences('AC:WW',    'Animal Crossing: Wild World',);
+    public static readonly ANIMAL_CROSSING_CITY_FOLK =                   new GameReferences('AC:CF',    'Animal Crossing: City Folk',);
+    public static readonly ANIMAL_CROSSING_NEW_LEAF =                    new GameReferences('AC:NL',    'Animal Crossing: New Leaf',);
+    public static readonly ANIMAL_CROSSING_HAPPY_HOME_DESIGNER =         new GameReferences('AC:HHD',   'Animal Crossing: Happy Home Designer',);
+
+    public static readonly F_ZERO =                                      new GameReferences('F-Z',      'F-Zero',);
+
+    public static readonly GAME_AND_WATCH =                              new GameReferences('G&W',      'Game & Watch',);
+
+    public static readonly SONIC_THE_HEDGEHOG =                          new GameReferences('STH',      'Sonic The Hedgehog',);
+
+    public static readonly DUCK_HUNT =                                   new GameReferences('DH',       'Duck Hunt',);
+
+    public static readonly PAC_MAN =                                     new GameReferences('PM',       'PAC-MAN',);
+
+    public static readonly WRECKING_CREW =                               new GameReferences('WC',       'Wrecking Crew',);
+
+    public static readonly PUNCH_OUT =                                   new GameReferences('PO',       'Punch-out!!',);
+
+    public static readonly STAR_FOX =                                    new GameReferences('SF',       'Star Fox',);
+    public static readonly STAR_FOX_ZERO =                               new GameReferences('SFZ',      'Star Fox Zero',);
+
+    public static readonly YAKUMAN_HO_O =                                new GameReferences('YH-O',     'Yakuman Ho-o',);
+
+    public static readonly BIG_BRAIN_ACADEMY =                           new GameReferences('BBA',      'Big Brain Academy',);
+
+    public static readonly SWAPNOTE =                                    new GameReferences('Sn',       'Swapnote',);
+    public static readonly NINTENDO_BADGE_ARCADE =                       new GameReferences('NBA',      'Nintendo Badge Arcade',);
+    public static readonly MONSTER_MANOR =                               new GameReferences('MoM',      'Monster Manor',);
+
+    public static readonly GAMECENTER_CX =                               new GameReferences('GCCX',     'GAMECENTER CX',);
+    public static readonly CORO_COR0_COMIC =                             new GameReferences('CCC',      'CORO CORO COMIC',);
+    public static readonly FAMITSU =                                     new GameReferences('F',        'Famitsu',);
+    public static readonly MERCENDES_BENZ =                              new GameReferences('M-B',      'Mercendes-Benz',);
+    public static readonly FAMICOM_DISK_SYSTEM =                         new GameReferences('FDS',      'Famicom Disk System',);
+    public static readonly BABYMETAL =                                   new GameReferences('BM',       'BABYMETAL',);
+
+    public static readonly MONSTER_HUNTER =                              new GameReferences('MH',       'Monster Hunter',);
+
+    public static readonly EXCITEBIKE =                                  new GameReferences('E',        'Excitebike',);
+
+    public static readonly NISEKOI =                                     new GameReferences('N',        'Nisekoi',);
+
+    public static readonly JAM_WITH_THE_BAND =                           new GameReferences('JB',       'Jam with the Band',);
+
+    public static readonly DAIGASSO_BAND_BROS_P =                        new GameReferences('DBBP',     'Daigasso! Band Bros. P',);
+
+    public static readonly THE_LEGENDARY_STARFY =                        new GameReferences('TLS',      'The Legendary Starfy',);
+
+    public static readonly BALLOON_FIGHT =                               new GameReferences('BF',       'Balloon Fight',);
+
+    public static readonly SHIN_ONIGASHIMA =                             new GameReferences('SO',       'Shin Onigashima',);
+
+    public static readonly FAMICOM_DETECTIVE_CLUB_PART_II =              new GameReferences('FDCP2',    'Famicom Detective Club Part II',);
+
+    public static readonly PUSHMO =                                      new GameReferences('Pu',       'Pushmo',);
+
+    public static readonly CLU_CLU_LAND =                                new GameReferences('CCL',      'Clu Clu Land',);
+
+    public static readonly VOLLEYBALL =                                  new GameReferences('V',        'Volleyball',);
+
+    public static readonly ICE_CLIMBER =                                 new GameReferences('IC',       'Ice Climber',);
+
+    public static readonly HELLO_KITTY =                                 new GameReferences('HK',       'Hello Kitty',);
+    public static readonly MY_MELODY =                                   new GameReferences('MyM',      'My Melody',);
+    public static readonly SHAUN_THE_SHEEP =                             new GameReferences('SS',       'Shaun the Sheep',);
+
+    public static readonly BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY = new GameReferences('BA:TYBMD', 'Brain Age: Train Your Brain in Minutes a Day!',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -44,22 +170,39 @@ export class GameReferences
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #englishNameHolder: ObjectHolder<PossibleEnglishName>;
+    readonly #acronym;
+    readonly #englishName;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(reference: ClassWithEnglishName<PossibleExternalEnglishName>,)
-    private constructor(englishName: PossibleExclusiveEnglishName,)
-    private constructor(englishNameOrReferenceCallback: PossibleExclusiveEnglishName | ClassWithEnglishName<PossibleExternalEnglishName>,) {
+    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super(GameReferences);
-        this.#englishNameHolder = new DelayedObjectHolderContainer(() => typeof englishNameOrReferenceCallback == 'string' ? englishNameOrReferenceCallback : englishNameOrReferenceCallback.englishName);
+        this.#acronym = acronym;
+        this.#englishName = englishName;
     }
 
+    //region -------------------- Getter methods --------------------
+
+    public get acronym(): PossibleAcronym {
+        return this.#acronym;
+    }
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishNameHolder.get;
+        return this.#englishName;
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
+    public static get everyAcronyms(): readonly PossibleAcronym[] {
+        return this.values.map(limit => limit.acronym);
+    }
+
+    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
+        return this.values.map(limit => limit.englishName);
+    }
+
+    //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
@@ -76,7 +219,7 @@ export class GameReferences
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(gameReference => gameReference.englishName === value)
+                    ?? this.values.find(gameReference => gameReference.englishName === value || gameReference.acronym === value)
                     ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
@@ -85,14 +228,110 @@ export class GameReferences
 
     public static get values(): EnumArray {
         return this.#VALUES ??= [
-            this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_2, this.SUPER_MARIO_BROS_3,
-            this.SUPER_MARIO_KART,
-            this.SUPER_MARIO_LAND,
-            this.SUPER_MARIO_64,
-            this.SUPER_MARIO_SUNSHINE,
-            this.SUPER_MARIO_GALAXY,
-            this.NEW_SUPER_MARIO_BROS_U, this.SUPER_MARIO_3D_WORLD,
             this.SUPER_MARIO_MAKER_1, this.SUPER_MARIO_MAKER_2,
+
+            this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U, this.SUPER_MARIO_3D_WORLD,
+
+            this.SUPER_MARIO_KART, this.SUPER_MARIO_64, this.SUPER_MARIO_SUNSHINE, this.SUPER_MARIO_GALAXY,
+
+            this.MARIO_BROS, this.SUPER_MARIO_BROS_2, this.SUPER_MARIO_WORLD_2_YOSHI_ISLAND, this.SUPER_MARIO_LAND,
+            this.WARIO_LAND_SUPER_MARIO_LAND_3, this.MARIO_TENNIS, this.DR_MARIO, this.DR_MARIO_64,
+            this.LUIGI_MANSION, this.YOSHI_WOOLLY_WORLD, this.CAPTAIN_TOAD_TREASURE_TRACKER, this.WARIOWARE_TOUCHED,
+            this.MARIO_AND_LUIGI_PAPER_JAM,
+
+            this.DONKEY_KONG, this.DONKEY_KONG_JR, this.DONKEY_KONG_COUNTRY,
+
+            this.KIRBY_DREAM_LAND, this.KIRBY_ADVENTURE,
+
+            this.KID_ICARIUS, this.KID_ICARIUS_UPRISING,
+
+            this.MEGA_MAN,
+
+            this.METROID, this.METROID_ZERO_MISSION,
+
+            this.NINTENDO_ENTERTAINMENT_SYSTEM_ROB,
+
+            this.FIRE_EMBLEM_SHADOW_DRAGON, this.FIRE_EMBLEM_RADIANT_DAWN, this.FIRE_EMBLEM_AWAKENING,
+
+            this.POKEMON_RED, this.POKEMON_GREEN, this.POKEMON_BLUE, this.POKEMON_YELLOW,
+            this.POKEMON_DIAMOND, this.POKEMON_PEARL,
+            this.POKEMON_X, this.POKEMON_Y,
+
+            this.PIKMIN, this.PIKMIN_3,
+
+            this.THE_LEGEND_OF_ZELDA, this.THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST, this.THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME,
+            this.THE_LEGEND_OF_ZELDA_MAJORA_MASK, this.THE_LEGEND_OF_ZELDA_THE_WIND_WAKER, this.THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS,
+            this.THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES,
+
+            this.XENOBLADE_CHRONICLES,
+
+            this.EARTHBOUND, this.MOTHER3,
+
+            this.SPLATOON,
+
+            this.WII_FIT,
+
+            this.CHIBI_ROBO,
+
+            this.ANIMAL_CROSSING, this.ANIMAL_CROSSING_WILD_WORLD, this.ANIMAL_CROSSING_CITY_FOLK,
+            this.ANIMAL_CROSSING_NEW_LEAF, this.ANIMAL_CROSSING_HAPPY_HOME_DESIGNER,
+
+            this.F_ZERO,
+
+            this.GAME_AND_WATCH,
+
+            this.SONIC_THE_HEDGEHOG,
+
+            this.DUCK_HUNT,
+
+            this.PAC_MAN,
+
+            this.WRECKING_CREW,
+
+            this.PUNCH_OUT,
+
+            this.STAR_FOX, this.STAR_FOX_ZERO,
+
+            this.YAKUMAN_HO_O,
+
+            this.BIG_BRAIN_ACADEMY,
+
+            this.SWAPNOTE, this.NINTENDO_BADGE_ARCADE, this.MONSTER_MANOR,
+
+            this.GAMECENTER_CX, this.CORO_COR0_COMIC, this.FAMITSU,
+            this.MERCENDES_BENZ,
+            this.FAMICOM_DISK_SYSTEM, this.BABYMETAL,
+
+            this.MONSTER_HUNTER,
+
+            this.EXCITEBIKE,
+
+            this.NISEKOI,
+
+            this.JAM_WITH_THE_BAND,
+
+            this.DAIGASSO_BAND_BROS_P,
+
+            this.THE_LEGENDARY_STARFY,
+
+            this.BALLOON_FIGHT,
+
+            this.SHIN_ONIGASHIMA,
+
+            this.FAMICOM_DETECTIVE_CLUB_PART_II,
+
+            this.PUSHMO,
+
+            this.CLU_CLU_LAND,
+
+            this.VOLLEYBALL,
+
+            this.ICE_CLIMBER,
+
+            this.HELLO_KITTY, this.MY_MELODY,
+            this.SHAUN_THE_SHEEP,
+
+            this.BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY,
         ];
     }
 

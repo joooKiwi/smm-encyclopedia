@@ -1,5 +1,6 @@
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {Games}                            from './Games';
+import type {Games}                                          from './Games';
+import type {PossibleAcronym_Game, PossibleEnglishName_Game} from '../../game/GameReferences.types';
+import type {SimpleEnum as OriginalSimpleEnum}               from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | Games | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName;
@@ -19,9 +20,10 @@ export type Ordinals = typeof Enum[Names];
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = | 'SUPER_MARIO_MAKER_1' | 'SUPER_MARIO_MAKER_2';
+export type Names = keyof typeof Enum;
 
-export type PossibleEnglishName = `Super Mario Maker${| '' | ' 2'}`;
+export type PossibleAcronym = PossibleAcronym_Game;
+export type PossibleEnglishName = PossibleEnglishName_Game;
 export type PossibleImagePath = `/game/logos/${PossibleEnglishName}.svg`;
 
 //endregion -------------------- String types --------------------

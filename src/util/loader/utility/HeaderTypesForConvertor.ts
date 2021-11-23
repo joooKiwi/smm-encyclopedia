@@ -1,4 +1,4 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleTranslationKey_EntityBehaviour, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
@@ -7,6 +7,7 @@ import {EntityLimitTypes}      from '../../../entity/limit/EntityLimitTypes';
 import {MysteryMushrooms}      from '../../../entity/mysteryMushrooms/MysteryMushrooms';
 import {SoundEffectCategories} from '../../../entity/soundEffect/category/SoundEffectCategories';
 import {SoundEffects}          from '../../../entity/soundEffect/simple/SoundEffects';
+import {GameReferences}        from '../../../game/GameReferences';
 
 /**
  * @singleton
@@ -32,6 +33,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
     static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
+    #everyPossibleGameReferenceAcronym?: EveryPossibleAcronym_GameReference;
+    #everyPossibleGameReferenceEnglishName?: EveryPossibleName_GameReference;
+
     #everyPossibleEntityNames?: EveryPossibleName_Entity;
 
     #everyPossibleBehavioursAcronyms?: EveryPossibleAcronym_EntityBehaviour;
@@ -55,14 +59,25 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     //endregion -------------------- Attributes --------------------
 
-    //region -------------------- Entity getter methods --------------------
+    //region -------------------- "Game reference" --------------------
+
+    public get everyPossibleGameReferenceAcronym() {
+        return this.#everyPossibleGameReferenceAcronym ??= GameReferences.everyAcronyms;
+    }
+
+    public get everyPossibleGameReferenceEnglishName() {
+        return this.#everyPossibleGameReferenceEnglishName ??= GameReferences.everyEnglishNames;
+    }
+
+    //endregion -------------------- "Game reference" --------------------
+    //region -------------------- "Entity" --------------------
 
     public get everyPossibleEntityNames() {
         //TODO implements this methods
         return this.#everyPossibleEntityNames ??= [];
     }
 
-    //endregion -------------------- Entity getter methods --------------------
+    //endregion -------------------- "Entity" --------------------
     //region -------------------- Entity behaviour methods --------------------
 
     public get everyPossibleBehavioursAcronyms() {
@@ -162,78 +177,83 @@ class HeaderTypesForConvertorForProduction
 
     //endregion -------------------- Attributes --------------------
 
-    //region -------------------- Entity getter methods --------------------
+    //region -------------------- "Game reference" --------------------
 
-    public get everyPossibleEntityNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleGameReferenceAcronym = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- Entity getter methods --------------------
+    public readonly everyPossibleGameReferenceEnglishName = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- "Game reference" --------------------
+    //region -------------------- "Entity" --------------------
+
+    public readonly everyPossibleEntityNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- "Entity" --------------------
     //region -------------------- Entity behaviour methods --------------------
 
-    public get everyPossibleBehavioursAcronyms(): StringConstant {
+    public get everyPossibleBehavioursAcronyms() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
-    public get everyPossibleBehavioursTranslationKeys(): StringConstant {
+    public get everyPossibleBehavioursTranslationKeys() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
     //endregion -------------------- Entity behaviour methods --------------------
     //region -------------------- Entity group getter methods --------------------
 
-    public get everyPossibleGroupNames(): StringConstant {
+    public get everyPossibleGroupNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
     //endregion -------------------- Entity group getter methods --------------------
     //region -------------------- Entity category getter methods --------------------
 
-    public get everyPossibleEntityCategoriesNames(): StringConstant {
+    public get everyPossibleEntityCategoriesNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
     //endregion -------------------- Entity group getter methods --------------------
     //region -------------------- Entity limits getter methods --------------------
 
-    public get everyPossibleLimitsAcronyms(): StringConstant {
+    public get everyPossibleLimitsAcronyms() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
-    public get everyAlternativeLimitAcronyms(): StringConstant {
+    public get everyAlternativeLimitAcronyms() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
-    public get everyPossibleLimitsNames(): StringConstant {
+    public get everyPossibleLimitsNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
-    public get everyLimitsNamesOrUnknown(): StringConstant {
+    public get everyLimitsNamesOrUnknown() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
     //endregion -------------------- Entity limits getter methods --------------------
     //region -------------------- Entity limit type getter methods --------------------
 
-    public get everyPossibleLimitTypesNames(): StringConstant {
+    public get everyPossibleLimitTypesNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
     //region -------------------- Entity limit type getter methods --------------------
 
-    public get everyPossibleSoundEffectsNames(): StringConstant {
+    public get everyPossibleSoundEffectsNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
-    public get everyPossibleSoundEffectCategoriesNames(): StringConstant {
+    public get everyPossibleSoundEffectCategoriesNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
     //endregion -------------------- Entity limit type getter methods --------------------
     //region -------------------- Mystery Mushroom getter methods --------------------
 
-    public get everyPossibleMysteryMushroomIndividualEnglishNames(): StringConstant {
+    public get everyPossibleMysteryMushroomIndividualEnglishNames() {
         return HeaderTypesForConvertorForProduction.#STRING_VALUE;
     }
 
