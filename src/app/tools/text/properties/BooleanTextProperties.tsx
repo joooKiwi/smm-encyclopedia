@@ -6,10 +6,10 @@ export interface BooleanTextProperties
 
     boolean: boolean
 
-    trueValue: string
+    true: string
 
-    falseValue: string
+    false: string
 
-    classes?: | null | string[]
+    classes?: | string[] | null
 
 }

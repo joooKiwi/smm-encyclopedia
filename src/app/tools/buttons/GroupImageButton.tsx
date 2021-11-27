@@ -1,22 +1,23 @@
 import './GroupImageButton.scss';
 
-import type {ActivatableImageProperty} from './properties/ActivatableImageProperty';
-import type {GroupButtonProperty}      from './properties/GroupButtonProperty';
+import type {ActivatableImageProperties} from './properties/ActivatableImageProperties';
+import type {GroupButtonProperties}      from './properties/GroupButtonProperties';
 
 import AbstractGroupButton from './AbstractGroupButton';
+import Image               from '../images/Image';
 
 /**
  * @reactComponent
  */
 export default class GroupImageButton
-    extends AbstractGroupButton<ActivatableImageProperty> {
+    extends AbstractGroupButton<ActivatableImageProperties> {
 
-    public constructor(props: GroupButtonProperty<ActivatableImageProperty>,) {
+    public constructor(props: GroupButtonProperties<ActivatableImageProperties>,) {
         super(props);
     }
 
-    protected _getContent(image: ActivatableImageProperty,) {
-        return <img className="btn-image" src={image.source} alt={image.name}/>;
+    protected _createContent({source, name,}: ActivatableImageProperties,) {
+        return <Image className="btn-image" source={source} fallbackName={name}/>;
     }
 
 }
