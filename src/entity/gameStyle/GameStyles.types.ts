@@ -1,5 +1,6 @@
-import type {GameStyles}                       from './GameStyles';
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {GameStyles}                                               from './GameStyles';
+import type {PossibleAcronym_GameStyle, PossibleEnglishName_GameStyle} from '../../game/GameReferences.types';
+import type {SimpleEnum as OriginalSimpleEnum}                         from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | GameStyles | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleAcronym | PossibleEnglishName;
@@ -24,14 +25,11 @@ export type Ordinals = typeof Enum[Names]
 
 export type Names = keyof typeof Enum;
 
-export type PossibleAcronym = | 'SMB' | 'SMB3' | 'SMW' | 'NSMBU' | 'SM3DW';
-export type PossibleEnglishName = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U';
+export type PossibleAcronym = PossibleAcronym_GameStyle;
+export type PossibleEnglishName = PossibleEnglishName_GameStyle;
 
 export type StartingImagePath = `/game/styles/${PossibleEnglishName}`;
-export type SmallImagePath = `${StartingImagePath} - small.png`;
-export type MediumImagePath = `${StartingImagePath} - medium.png`;
-export type LargeImagePath = `${StartingImagePath} - large.png`;
-export type PossibleImagePath = `${StartingImagePath} - ${'small' | 'medium' | 'large'}.png`;
+export type ImagePath = `${StartingImagePath}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

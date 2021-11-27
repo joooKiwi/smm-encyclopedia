@@ -2,7 +2,7 @@ import type {EntityBehaviours}                 from './EntityBehaviours';
 import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | EntityBehaviours | Ordinals | PossibleStringValue;
-export type PossibleStringValue = Names | PossibleTranslationKey | PossibleAcronym;
+export type PossibleStringValue = Names | PossibleTranslationKeys | PossibleAcronym;
 export type PossibleValue = | EntityBehaviours | number | string | null | undefined;
 
 enum Enum {
@@ -33,7 +33,7 @@ export type Ordinals = typeof Enum[Names];
 
 export type Names = keyof typeof Enum;
 
-export type PossibleTranslationKey =
+export type PossibleTranslationKeys =
     | `Respawn ${'with Vine' | 'as ? Block'}`
     | `${'Always' | 'Never'} know visually # of Coin` | 'Only 1st sound of Pink Coin'
 

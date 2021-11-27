@@ -1,12 +1,12 @@
-import type {ClassWithEnglishName}                                                                                                                                                                               from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                                                                 from '../ClassWithReference';
-import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue, ThemePath} from './Themes.types';
-import type {CourseTheme}                                                                                                                                                                                        from './CourseTheme';
-import type {Entity}                                                                                                                                                                                             from '../simple/Entity';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                            from '../PropertyGetter';
-import type {ThemeProperty}                                                                                                                                                                                      from '../properties/ThemeProperty';
-import type {ThemeReferences}                                                                                                                                                                                    from '../properties/ThemeReferences';
-import type {WorldTheme}                                                                                                                                                                                         from './WorldTheme';
+import type {ClassWithEnglishName}                                                                                                                                                                                                from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                  from '../ClassWithReference';
+import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SingleThemePath, ThemePath} from './Themes.types';
+import type {CourseTheme}                                                                                                                                                                                                         from './CourseTheme';
+import type {Entity}                                                                                                                                                                                                              from '../simple/Entity';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                             from '../PropertyGetter';
+import type {ThemeProperty}                                                                                                                                                                                                       from '../properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                                                                                                                     from '../properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                                                                                                          from './WorldTheme';
 
 import {Enum}        from '../../util/enum/Enum';
 import {ThemeLoader} from './Theme.loader';
@@ -137,7 +137,14 @@ export class Themes
     }     ('Castle', 'Castle - Volcano',);
 
     public static readonly VOLCANO =     new Themes                                       ('Volcano', 'Castle - Volcano',);
-    public static readonly SPACE =       new Themes                                       ('Space',);
+    public static readonly SPACE =       new class Theme_Space extends Themes {
+
+        public get longImagePath() {
+            //FIXME a temporary fix to still get the image until the png image can be retrieved.
+            return `${this.imagePath} (large).jpg`;
+        }
+
+    }       ('Space',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -154,16 +161,16 @@ export class Themes
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName;
-    readonly #imagePath: ThemePath;
+    readonly #imagePath;
 
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishNameAndImagePath: PossibleEnglishName,)
-    private constructor(englishName: PossibleEnglishName, basicImagePath: string,)
-    private constructor(englishName: PossibleEnglishName, basicImagePath: string = englishName,) {
+    private constructor(englishName: PossibleEnglishName, basicImagePath: SingleThemePath,)
+    private constructor(englishName: PossibleEnglishName, basicImagePath: | SingleThemePath | PossibleEnglishName = englishName,) {
         super(Themes);
         this.#englishName = englishName;
-        this.#imagePath = `/game/themes/${basicImagePath}`;
+        this.#imagePath = `/game/themes/${basicImagePath}` as ThemePath;
     }
 
     //region -------------------- Getter methods --------------------
@@ -173,28 +180,28 @@ export class Themes
     }
 
 
-    public get englishName() {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName;
     }
 
-    public get courseTheme() {
+    public get courseTheme(): CourseTheme {
         return this.#courseTheme ??= this.reference[0];
     }
 
-    public get worldTheme() {
+    public get worldTheme(): WorldTheme {
         return this.#worldTheme ??= this.reference[1];
     }
 
-    public get imagePath() {
+    public get imagePath(): ThemePath {
         return this.#imagePath;
     }
 
     public get smallImagePath() {
-        return this.imagePath + ' (small).png';
+        return `${this.imagePath} (small).png`;
     }
 
     public get longImagePath() {
-        return this.imagePath + ' (large).jpg';
+        return `${this.imagePath} (large).png`;
     }
 
     //endregion -------------------- Getter methods --------------------
