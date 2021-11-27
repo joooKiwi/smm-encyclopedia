@@ -1,14 +1,14 @@
 import type {ThemeProperty} from '../properties/ThemeProperty';
 import type {Themes}        from './Themes';
 
-import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
-import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
+import {ThemeComponent}                from './Theme.component';
 
 /**
  * @reactComponent
  */
 export default class CourseThemeComponent
-    extends AbstractEntityPropertyComponent<ThemeProperty, Themes> {
+    extends ThemeComponent<ThemeProperty> {
 
 
     protected get map() {
@@ -29,7 +29,7 @@ export default class CourseThemeComponent
     }
 
     protected _renderSingleComponent(theme: Themes,) {
-        return <img key={`${this.name.english} - ${theme.englishName}`} src={theme.smallImagePath} alt={theme.englishName} className="theme_image"/>;
+        return CourseThemeComponent.renderSingleComponent(theme, true, this.name.english,);
     }
 
     protected _renderComponentForAll() {

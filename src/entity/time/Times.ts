@@ -7,6 +7,7 @@ import type {TimeReferences}                                                    
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../StringContainer';
+import TimeComponent     from './Time.component';
 
 export abstract class Times
     extends Enum<Ordinals, Names>
@@ -72,6 +73,10 @@ export abstract class Times
     public abstract get(property: TimeProperty,): boolean;
 
     public abstract getReference(referenceProperty: TimeReferences,): Entity;
+
+    public get renderSingleComponent() {
+        return TimeComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

@@ -6,6 +6,7 @@ import type {PropertyGetter}                                                    
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../StringContainer';
+import GameComponent     from './Game.component';
 
 export abstract class Games
     extends Enum<Ordinals, Names>
@@ -69,6 +70,10 @@ export abstract class Games
     //region -------------------- Methods --------------------
 
     public abstract get(property: GameProperty,): boolean;
+
+    public get renderSingleComponent() {
+        return GameComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

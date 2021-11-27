@@ -12,6 +12,7 @@ import {Enum}            from '../../util/enum/Enum';
 import {ThemeLoader}     from './Theme.loader';
 import {EmptyEntity}     from '../simple/EmptyEntity';
 import {StringContainer} from '../StringContainer';
+import {ThemeComponent}  from './Theme.component';
 
 /**
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link ThemeLoader}>
@@ -222,6 +223,10 @@ export class Themes
 
     public getReference(referenceProperty: ThemeReferences,): Entity {
         return EmptyEntity.get;
+    }
+
+    public renderSingleComponent(isSmallPath: boolean,) {
+        return ThemeComponent.renderSingleComponent(this, isSmallPath,);
     }
 
 

@@ -8,9 +8,10 @@ import type {GameStyleProperty}                                                 
 import type {GameStyleReferences}                                                                                                                                          from '../properties/GameStyleReferences';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                      from '../PropertyGetter';
 
-import {Enum}            from '../../util/enum/Enum';
-import {GameStyleLoader} from './GameStyle.loader';
-import {StringContainer} from '../StringContainer';
+import {Enum}             from '../../util/enum/Enum';
+import {GameStyleLoader}  from './GameStyle.loader';
+import {StringContainer}  from '../StringContainer';
+import GameStyleComponent from './GameStyle.component';
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
@@ -137,6 +138,10 @@ export abstract class GameStyles
     public abstract get(property: GameStyleProperty,): boolean;
 
     public abstract getReference(referenceProperty: GameStyleReferences,): Entity;
+
+    public get renderSingleComponent() {
+        return GameStyleComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
