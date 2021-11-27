@@ -52,8 +52,8 @@ export default class EveryThemesApp
 
             content.push([englishName,
                 <>{index}</>,
-                <img src={this.enum[index - 1].longImagePath} alt={englishName}/>,
-                <SMM2NameComponent id="theme_name" name={name} popoverOrientation="left"/>,
+                this.enum[index - 1].renderSingleComponent(false),
+                <SMM2NameComponent id="name" name={name} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={isInCourseTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInWorldTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInSMM1}/>,
@@ -68,10 +68,8 @@ export default class EveryThemesApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
-            id="theme_table"
+            id="theme-table"
             caption={<GameContentTranslationComponent translationKey="Every themes"/>}
             headers={[
                 [

@@ -1,7 +1,8 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                        from '../../ClassWithEnglishName';
 import type {EnumArray, EnumArray_EnglishName, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
 
-import {Enum} from '../../../util/enum/Enum';
+import {Enum}            from '../../../util/enum/Enum';
+import {StringContainer} from '../../StringContainer';
 
 export class SoundEffects
     extends Enum<Ordinals, Names>
@@ -87,7 +88,7 @@ export class SoundEffects
     private constructor(englishName: Exclude<PossibleEnglishName_SMM2, PossibleEnglishName_SMM1AndSMM2>, SMM1PartialImage: null, SMM2PartialImage: StartingSoundEffectImage,)
     private constructor(englishName: PossibleEnglishName, SMM1PartialImage: | MiddleSoundEffectImage | null, SMM2PartialImage: StartingSoundEffectImage | null,) {
         super(SoundEffects);
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
         this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/sound effects/SMM1/${SMM1PartialImage} - ${englishName as PossibleEnglishName_SMM1}.png`;
         this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/sound effects/SMM2/${SMM2PartialImage} - ${englishName as PossibleEnglishName_SMM2}.png`;
     }
@@ -95,7 +96,11 @@ export class SoundEffects
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     public get SMM1ImagePath(): | PossibleImagePath_SMM1 | null {

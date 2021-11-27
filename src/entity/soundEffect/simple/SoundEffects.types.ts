@@ -1,3 +1,4 @@
+import type {PossibleEnglishName_SoundEffect}  from '../../../game/GameReferences.types';
 import type {SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
 import type {SoundEffects}                     from './SoundEffects';
 
@@ -55,7 +56,7 @@ export type Names =
     | 'BOSS_MUSIC' | 'FINAL_BOSS'
     | `SUPER_MARIO_${| 'KART' | '64' | 'SUNSHINE' | 'GALAXY'}`;
 
-export type PossibleEnglishName_Games = `Super Mario ${| 'Kart' | '64' | 'Sunshine' | 'Galaxy'}`;
+export type PossibleEnglishName_Games = PossibleEnglishName_SoundEffect;
 export type PossibleEnglishName_SMM1AndSMM2 =
     | 'Shock' | 'Scream' | 'Laughter' | 'Cheer' | 'Baby'
     | 'Applause'

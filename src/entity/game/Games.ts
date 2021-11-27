@@ -1,13 +1,17 @@
-import type {ClassWithEnglishName}                                                                                                             from '../ClassWithEnglishName';
-import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
-import type {GameProperty}                                                                                                                     from '../properties/GameProperty';
-import type {PropertyGetter}                                                     from '../PropertyGetter';
+import type {ClassWithAcronym}                                                                                                                                  from '../ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                                              from '../ClassWithEnglishName';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
+import type {GameProperty}                                                                                                                                      from '../properties/GameProperty';
+import type {PropertyGetter}                                                                                                                                    from '../PropertyGetter';
 
-import {Enum} from '../../util/enum/Enum';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../StringContainer';
+import GameComponent     from './Game.component';
 
 export abstract class Games
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithAcronym<PossibleAcronym>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -16,12 +20,12 @@ export abstract class Games
         public get(property: GameProperty,): boolean {
             return property.isInSuperMarioMaker1;
         }
-    }('Super Mario Maker',);
+    }('SMM',  'Super Mario Maker',);
     public static readonly SUPER_MARIO_MAKER_2 = new class Games_SuperMarioMaker2 extends Games {
         public get(property: GameProperty,): boolean {
             return property.isInSuperMarioMaker2;
         }
-    }('Super Mario Maker 2',);
+    }('SMM2', 'Super Mario Maker 2',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -31,21 +35,31 @@ export abstract class Games
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #englishName: PossibleEnglishName;
+    readonly #acronym;
+    readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imagePath: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleEnglishName,) {
+    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super(Games);
-        this.#englishName = englishName;
+        this.#acronym = acronym;
+        this.#englishName = new StringContainer(englishName);
         this.#imagePath = `/game/logos/${englishName}.svg`;
     }
 
     //region -------------------- Getter methods --------------------
 
+    public get acronym(): PossibleAcronym {
+        return this.#acronym;
+    }
+
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     public get imagePath(): PossibleImagePath {
@@ -56,6 +70,10 @@ export abstract class Games
     //region -------------------- Methods --------------------
 
     public abstract get(property: GameProperty,): boolean;
+
+    public get renderSingleComponent() {
+        return GameComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
@@ -74,7 +92,7 @@ export abstract class Games
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(theme => theme.englishName === value)
+                    ?? this.values.find(theme => theme.englishName === value || theme.acronym === value)
                     ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null

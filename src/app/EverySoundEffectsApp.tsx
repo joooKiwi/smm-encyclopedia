@@ -48,8 +48,8 @@ export default class EverySoundEffectsApp
                 <>{index}</>,
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
-                <SMM2NameComponent id="soundEffect_name" name={soundEffect} popoverOrientation="right"/>,
-                soundEffect.categoryName === EmptyName.get ? <></> : <SMM2NameComponent id={`${index}_soundEffectCategory_name`} name={soundEffect.category} popoverOrientation="right"/>,
+                <SMM2NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
+                soundEffect.categoryName === EmptyName.get ? <></> : <SMM2NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
                 <>--{soundEffect.translationKey}--</>,
             ]);
             index++;
@@ -60,10 +60,8 @@ export default class EverySoundEffectsApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
-            id="soundEffect_table"
+            id="soundEffect-table"
             caption={<GameContentTranslationComponent translationKey="Every sound effects"/>}
             headers={[
                 [

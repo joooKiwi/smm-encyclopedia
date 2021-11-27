@@ -3,6 +3,8 @@ import type {GameStyles}        from './GameStyles';
 
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
+import Image                             from '../../app/tools/images/Image';
+import {StringContainer}                 from '../StringContainer';
 
 /**
  * @reactComponent
@@ -24,7 +26,15 @@ export default class GameStyleComponent
     }
 
     protected _renderSingleComponent(gameStyle: GameStyles,) {
-        return <img key={`${this.name.english} - ${gameStyle.englishName}`} src={gameStyle.smallImagePath} alt={gameStyle.englishName} className="gameStyle_image"/>;
+        return GameStyleComponent.renderSingleComponent(gameStyle, this.name.english,);
+    }
+
+    public static renderSingleComponent(gameStyle: GameStyles, identifier?: string,) {
+        const gameStyleEnglishNameInHtml = gameStyle.englishNameInHtml;
+        const key = identifier == null ? gameStyle.englishName : `${identifier} - ${gameStyle.englishName}`;
+        const id = identifier == null ? `${gameStyleEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${gameStyleEnglishNameInHtml}-gameStyle-image`;
+
+        return <Image key={key} id={id} source={gameStyle.imagePath} fallbackName={gameStyle.englishName} className={`gameStyle-image ${gameStyleEnglishNameInHtml}-image`}/>;
     }
 
     protected _renderComponentForAll() {

@@ -30,7 +30,8 @@ export type PossibleEnglishName_CourseTheme = | PossibleEnglishName_InBothCourse
 export type PossibleEnglishName_WorldTheme = | PossibleEnglishName_InBothCourseAndWorldTheme | 'Volcano' | 'Space';
 export type PossibleEnglishName = | PossibleEnglishName_CourseTheme | PossibleEnglishName_WorldTheme;
 
-export type ThemePath = `/game/themes/${PossibleEnglishName | string}`;
+export type SingleThemePath = | Exclude<PossibleEnglishName, | 'Castle' | 'Volcano'> | 'Castle - Volcano';
+export type ThemePath = `/game/themes/${SingleThemePath}`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

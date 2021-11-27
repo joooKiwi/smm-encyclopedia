@@ -1,4 +1,5 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleTranslationKey_EntityBehaviour, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import {EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './HeaderTypesForConvertorDefinition';
 
 import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
@@ -7,6 +8,7 @@ import {EntityLimitTypes}      from '../../../entity/limit/EntityLimitTypes';
 import {MysteryMushrooms}      from '../../../entity/mysteryMushrooms/MysteryMushrooms';
 import {SoundEffectCategories} from '../../../entity/soundEffect/category/SoundEffectCategories';
 import {SoundEffects}          from '../../../entity/soundEffect/simple/SoundEffects';
+import {GameReferences}        from '../../../game/GameReferences';
 
 /**
  * @singleton
@@ -32,6 +34,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
     static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
+    #everyPossibleGameReferenceAcronym?: EveryPossibleAcronym_GameReference;
+    #everyPossibleGameReferenceAcronymWithPokemonGeneration?: EveryPossibleAcronymWithPokemonGeneration_GameReference;
+    #everyPossibleGameReferenceEnglishName?: EveryPossibleName_GameReference;
+
     #everyPossibleEntityNames?: EveryPossibleName_Entity;
 
     #everyPossibleBehavioursAcronyms?: EveryPossibleAcronym_EntityBehaviour;
@@ -52,18 +58,36 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleSoundEffectCategoriesNames?: EveryPossibleEnglishName_SoundEffectCategory;
 
     #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
+    #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
+    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
+    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
 
     //endregion -------------------- Attributes --------------------
 
-    //region -------------------- Entity getter methods --------------------
+    //region -------------------- Game reference --------------------
+
+    public get everyPossibleGameReferenceAcronym() {
+        return this.#everyPossibleGameReferenceAcronym ??= GameReferences.everyAcronyms;
+    }
+
+    public get everyPossibleGameReferenceAcronymWithPokemonGeneration() {
+        return this.#everyPossibleGameReferenceAcronymWithPokemonGeneration ??= [...GameReferences.everyAcronyms, 'Pokémon gen 1', 'Pokémon gen 4', 'Pokémon gen 6',];
+    }
+
+    public get everyPossibleGameReferenceEnglishName() {
+        return this.#everyPossibleGameReferenceEnglishName ??= GameReferences.everyEnglishNames;
+    }
+
+    //endregion -------------------- Game reference --------------------
+    //region -------------------- Entity --------------------
 
     public get everyPossibleEntityNames() {
         //TODO implements this methods
         return this.#everyPossibleEntityNames ??= [];
     }
 
-    //endregion -------------------- Entity getter methods --------------------
-    //region -------------------- Entity behaviour methods --------------------
+    //endregion -------------------- Entity --------------------
+    //region -------------------- Entity behaviour --------------------
 
     public get everyPossibleBehavioursAcronyms() {
         return this.#everyPossibleBehavioursAcronyms ??= EntityBehaviours.everyAcronyms;
@@ -73,24 +97,24 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleBehavioursTranslationKeys ??= EntityBehaviours.everyTranslationKeys;
     }
 
-    //endregion -------------------- Entity behaviour methods --------------------
-    //region -------------------- Entity group getter methods --------------------
+    //endregion -------------------- Entity behaviour --------------------
+    //region -------------------- Entity group --------------------
 
     public get everyPossibleGroupNames() {
         //TODO implements this methods
         return this.#everyPossibleGroupNames ??= [];
     }
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity category getter methods --------------------
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity category --------------------
 
     public get everyPossibleEntityCategoriesNames() {
         //TODO change to enum usage instead (when it will be created)
         return this.#everyPossibleEntityCategoriesNames ??= [...EntityCategoryLoader.get.load().keys()];
     }
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity limits getter methods --------------------
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity limit --------------------
 
     public get everyPossibleLimitsAcronyms() {
         return this.#everyPossibleLimitsAcronyms ??= [...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,];
@@ -108,15 +132,15 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,];
     }
 
-    //endregion -------------------- Entity limits getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- Entity limit --------------------
+    //region -------------------- Entity limit type --------------------
 
     public get everyPossibleLimitTypesNames() {
         return this.#everyPossibleLimitTypesNames ??= EntityLimitTypes.everyEnglishNames;
     }
 
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- Entity limit type --------------------
+    //region -------------------- Sound effect --------------------
 
     public get everyPossibleSoundEffectsNames() {
         return this.#everyPossibleSoundEffectsNames ??= SoundEffects.everyEnglishNames;
@@ -126,14 +150,51 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
     }
 
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Mystery Mushroom getter methods --------------------
+    //endregion -------------------- Sound effectds --------------------
+    //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
         return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
     }
 
-    //endregion -------------------- Mystery Mushroom getter methods --------------------
+    public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
+        return this.#everyPossibleConditionToUnlockIt_mysteryMushroom ??= [
+            'Unlock Mystery Mushroom',
+            '100 Mario (easy)', '100 Mario (normal)', '100 Mario (expert)', '100 Mario (super expert)',
+            'Gnat Attack (normal)', 'Gnat Attack (hard)',
+            'Complete Event', 'Complete 3 Events (by Arino)',
+        ];
+    }
+
+    public get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom() {
+        return this.#everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom ??= [
+            HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,
+            'Introduction', 'Startup', 'Game over',
+            'Level finished', 'Level finished?', 'Race finished',
+            'Airship completed', 'Timed event completed', 'Course completed',
+            'Perfect score obtained', 'Upgrade obtained', 'Important item obtained',
+            'Star collected', 'Triforce collected',
+            'Boss key obtained', 'Boss defeated',
+            'New technique acquired', 'Gym Leader victory', 'Rank up', 'Secret area discovered', 'Declaring the Splatfest\'s winning team',
+            'Bowser\'s arrival', 'Link meets Zelda for the 1st time', 'Ganon encounter',
+            '3DS preview jingle',
+        ];
+    }
+
+    public get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom() {
+        return this.#everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom ??= [
+            HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,
+            'Game over', 'Defeated', 'Error sound',
+            'Boss defeated', 'Dog laughing',
+            'Lost a life', 'Lost an Arwing', 'Falling offscreen',
+            'Eliminated from the race', 'Eliminated from the course', 'Player has fainted',
+            'Minigame lost', 'Round lost',
+            'Timed event failed', 'Ran out of energy', 'Practice Catcher result jingle',
+            'Bowser\'s death', 'Mario saying "Mama mia"', 'Zelda\'s Lullaby', 'Link caught by Moblins', 'K.K. howling', 'Pikmin death',
+        ];
+    }
+
+    //endregion -------------------- Mystery Mushroom --------------------
 
 }
 
@@ -159,85 +220,67 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Attributes --------------------
 
     static readonly #STRING_VALUE: StringConstant = 'string';
+    // static readonly #NUMBER_VALUE: NumberConstant = 'number';
+    // static readonly #STRING_AND_NUMBER: StringAndNumber = [this.#STRING_VALUE, this.#NUMBER_VALUE,];
+    // static readonly #EMPTY_ARRAY: EmptyArray = [];
 
     //endregion -------------------- Attributes --------------------
 
-    //region -------------------- Entity getter methods --------------------
+    //region -------------------- Game reference --------------------
 
-    public get everyPossibleEntityNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleGameReferenceAcronym = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleGameReferenceAcronymWithPokemonGeneration = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleGameReferenceEnglishName = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- Entity getter methods --------------------
-    //region -------------------- Entity behaviour methods --------------------
+    //endregion -------------------- Game reference --------------------
+    //region -------------------- Entity --------------------
 
-    public get everyPossibleBehavioursAcronyms(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleEntityNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleBehavioursTranslationKeys(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- Entity --------------------
+    //region -------------------- Entity behaviour --------------------
 
-    //endregion -------------------- Entity behaviour methods --------------------
-    //region -------------------- Entity group getter methods --------------------
+    public readonly everyPossibleBehavioursAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleBehavioursTranslationKeys = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleGroupNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- Entity behaviour --------------------
+    //region -------------------- Entity group --------------------
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity category getter methods --------------------
+    public readonly everyPossibleGroupNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleEntityCategoriesNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- Entity group --------------------
+    //region -------------------- Entity category --------------------
 
-    //endregion -------------------- Entity group getter methods --------------------
-    //region -------------------- Entity limits getter methods --------------------
+    public readonly everyPossibleEntityCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleLimitsAcronyms(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- Entity category --------------------
+    //region -------------------- Entity limit --------------------
 
-    public get everyAlternativeLimitAcronyms(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleLimitsAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyAlternativeLimitAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleLimitsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyLimitsNamesOrUnknown = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleLimitsNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    //endregion -------------------- Entity limit --------------------
+    //region -------------------- Entity limit type --------------------
 
-    public get everyLimitsNamesOrUnknown(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleLimitTypesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- Entity limits getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- Entity limit type --------------------
+    //region -------------------- Sound effect --------------------
 
-    public get everyPossibleLimitTypesNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleSoundEffectsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleSoundEffectCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Entity limit type getter methods --------------------
+    //endregion -------------------- Sound effect --------------------
+    //region -------------------- Mystery Mushroom --------------------
 
-    public get everyPossibleSoundEffectsNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
+    public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleConditionToUnlockIt_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
-    public get everyPossibleSoundEffectCategoriesNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
-
-    //endregion -------------------- Entity limit type getter methods --------------------
-    //region -------------------- Mystery Mushroom getter methods --------------------
-
-    public get everyPossibleMysteryMushroomIndividualEnglishNames(): StringConstant {
-        return HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    }
-
-    //endregion -------------------- Mystery Mushroom getter methods --------------------
+    //endregion -------------------- Mystery Mushroom --------------------
 
 }
 

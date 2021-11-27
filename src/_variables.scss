@@ -1,5 +1,7 @@
 //region -------------------- Variables to customize Bootstrap --------------------
 
+$enable-important-utilities: false;
+
 $enable-negative-margins: true;
 
 //endregion -------------------- Variables to customize Bootstrap --------------------
@@ -17,3 +19,17 @@ $grid-breakpoint-xl: #{map-get($grid-breakpoints, xl)};
 $grid-breakpoint-xxl: #{map-get($grid-breakpoints, xxl)};
 
 //endregion -------------------- Custom variables --------------------
+
+//region -------------------- Override variables --------------------
+
+$spacers-original: $spacers;
+$spacers: (
+        0: var(--bs-spacer-xs),
+        1: var(--bs-spacer-sm),
+        2: var(--bs-spacer-md),
+        3: var(--bs-spacer-lg),
+        4: var(--bs-spacer-xl),
+        5: var(--bs-spacer-xxl),
+);
+
+//endregion -------------------- Override variables --------------------

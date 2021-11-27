@@ -7,6 +7,7 @@ import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleAcronymInBothE
 import {EntityLimitLoader} from './EntityLimit.loader';
 import {EntityLimitTypes}  from './EntityLimitTypes';
 import {Enum}              from '../../util/enum/Enum';
+import {StringContainer}   from '../StringContainer';
 
 /**
  * @recursiveReferenceVia<{@link EntityLimitBuilder}, {@link EntityLimitLoader}>
@@ -84,9 +85,9 @@ export class EntityLimits
 
     #reference?: EntityLimitWithPossibleAlternativeEntityLimit;
     readonly #acronym: PossibleAcronym | null;
-    readonly #englishName: PossibleEnglishName;
+    readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #alternativeAcronym: PossibleAlternativeAcronym | null;
-    readonly #alternativeEnglishName: PossibleAlternativeEnglishName | null;
+    readonly #alternativeEnglishName: StringContainer<PossibleAlternativeEnglishName> | null;
 
     //endregion -------------------- Attributes --------------------
 
@@ -94,20 +95,21 @@ export class EntityLimits
         super(EntityLimits);
         if (typeof englishName == 'string') {
             this.#acronym = null;
-            this.#englishName = `${englishName as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`;
+            this.#englishName = new StringContainer(`${englishName as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`);
         } else {
             this.#acronym = englishName[0];
             const isWhilePlaying = englishName[2];
-            this.#englishName = isWhilePlaying == null
+            this.#englishName = new StringContainer(isWhilePlaying == null
                 ? `${englishName[1] as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`
-                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? EntityLimitTypes.WHILE_PLAYING.englishName : EntityLimitTypes.EDITOR.englishName})`;
+                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? EntityLimitTypes.WHILE_PLAYING.englishName : EntityLimitTypes.EDITOR.englishName})`
+            );
         }
         if (alternativeEnglishName instanceof Array) {
             this.#alternativeAcronym = alternativeEnglishName[0];
-            this.#alternativeEnglishName = alternativeEnglishName[1];
+            this.#alternativeEnglishName = new StringContainer(alternativeEnglishName[1]);
         } else {
             this.#alternativeAcronym = null;
-            this.#alternativeEnglishName = alternativeEnglishName;
+            this.#alternativeEnglishName = alternativeEnglishName == null ? null : new StringContainer(alternativeEnglishName);
         }
     }
 
@@ -122,8 +124,12 @@ export class EntityLimits
         return this.#acronym;
     }
 
-    public get englishName(): | PossibleEnglishName {
-        return this.#englishName;
+    public get englishName(): PossibleEnglishName {
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     public get alternativeAcronym(): | PossibleAlternativeAcronym | null {
@@ -131,7 +137,11 @@ export class EntityLimits
     }
 
     public get alternativeEnglishName(): | PossibleAlternativeEnglishName | null {
-        return this.#alternativeEnglishName;
+        return this.#alternativeEnglishName?.get ?? null;
+    }
+
+    public get alternativeEnglishNameInHtml(): string {
+        return this.#alternativeEnglishName?.getInHtml ?? '';
     }
 
     //endregion -------------------- Getter methods --------------------

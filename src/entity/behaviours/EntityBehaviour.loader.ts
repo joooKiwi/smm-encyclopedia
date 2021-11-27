@@ -2,9 +2,9 @@ import everyBehaviours from '../../resources/Entity behaviours.csv';
 
 import type {EntityBehaviour}                         from './EntityBehaviour';
 import type {EntityBehaviourTemplate}                 from './EntityBehaviour.template';
-import type {Loader}                                  from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleTranslationKey} from './EntityBehaviours.types';
-import type {PossibleGroupName, SingleEntityName}     from '../entityTypes';
+import type {Loader}                                   from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
+import type {PossibleGroupName, SingleEntityName}      from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {EntityLoader}            from '../simple/Entity.loader';
@@ -31,7 +31,7 @@ enum Headers {
 
 type PropertiesArray = [
     acronym: PossibleAcronym,
-    translationKey: PossibleTranslationKey,
+    translationKey: PossibleTranslationKeys,
 
     isOnlineOnly: boolean,
     isMultiplayerOnly: boolean,
@@ -49,7 +49,7 @@ type PropertiesArray = [
  * @recursiveReference<{@link EntityBehaviours}>
  */
 export class EntityBehaviourLoader
-    implements Loader<ReadonlyMap<PossibleTranslationKey, EntityBehaviour>> {
+    implements Loader<ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -64,11 +64,11 @@ export class EntityBehaviourLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleTranslationKey, EntityBehaviour>;
+    #map?: Map<PossibleTranslationKeys, EntityBehaviour>;
 
-    public load(): ReadonlyMap<PossibleTranslationKey, EntityBehaviour> {
+    public load(): ReadonlyMap<PossibleTranslationKeys, EntityBehaviour> {
         if (this.#map == null) {
-            const references = new Map<PossibleTranslationKey, EntityBehaviour>();
+            const references = new Map<PossibleTranslationKeys, EntityBehaviour>();
 
             //region -------------------- Builder initialisation --------------------
 

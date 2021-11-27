@@ -1,8 +1,9 @@
-import type {TimeProperty}   from '../properties/TimeProperty';
+import type {TimeProperty} from '../properties/TimeProperty';
 
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
 import {Times}                               from './Times';
+import {StringContainer}                     from '../StringContainer';
 
 /**
  * @reactComponent
@@ -20,7 +21,15 @@ export default class TimeComponent
     }
 
     protected _renderSingleComponent(time: Times,) {
-        return <i key={`${this.name.english} - ${time.englishName}`} className={`time_image ${time === Times.DAY ? 'bi-sun-fill' : 'bi-moon-fill'}`}/>;
+        return TimeComponent.renderSingleComponent(time, this.name.english,);
+    }
+
+    public static renderSingleComponent(time: Times, identifier?: string,) {
+        const timeEnglishNameInHtml = time.englishNameInHtml;
+        const key = identifier == null ? time.englishName : `${identifier} - ${time.englishName}`;
+        const id = identifier == null ? `${timeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${timeEnglishNameInHtml}-time-image`;
+
+        return <i key={key} id={id} className={`time-image ${timeEnglishNameInHtml}-image ${time === Times.DAY ? 'bi-sun-fill' : 'bi-moon-fill'}`}/>;
     }
 
     protected _renderFirstComponent() {
@@ -32,7 +41,7 @@ export default class TimeComponent
     }
 
     protected _renderComponentForAll() {
-        return <GameContentTranslationComponent children={translation => <span>{translation('Every times')}</span>}/>;
+        return <GameContentTranslationComponent>{translation => <span>{translation('Every times')}</span>}</GameContentTranslationComponent>;
     }
 
 }
