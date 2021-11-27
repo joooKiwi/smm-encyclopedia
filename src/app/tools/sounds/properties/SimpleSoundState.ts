@@ -1,11 +1,10 @@
 import type {ReactState} from '../../../../util/react/ReactState';
-import type SimpleSound  from '../SimpleSound';
+import type {SoundStates}     from '../SoundStates';
 
 export interface SimpleSoundState
     extends ReactState {
 
-    state: PossibleStates
+    state: SoundStates
 
 }
 
-type PossibleStates = typeof SimpleSound['POSSIBLE_STATES'][number];
