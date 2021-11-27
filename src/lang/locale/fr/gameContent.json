@@ -1,4 +1,5 @@
 {
+   "Every game references":         "Toutes les références de jeu",
   "Every entities":                "Toutes les entités",
   "Every entity categories":       "Toutes les catégories d'entité",
   "Every game styles":             "Tous les styles de jeu",
@@ -20,6 +21,7 @@
   "Empty world theme":        "Thème de monde vide",
   "Empty \"is in property\"": "«Est dans propriété» vide",
 
+  "Display every game references":         "Afficher toutes les références de jeu",
   "Display every entities":                "Afficher toutes les entités",
   "Display every entity categories":       "Afficher toutes les catégories d'entité",
   "Display every game styles":             "Afficher tous les styles de jeu",
@@ -30,10 +32,13 @@
   "Display every sound effect categories": "Afficher tous les catégories d'effet sonore",
   "Display every Mystery Mushrooms":       "Afficher tous les {{pluralName}}",
 
-  "Game":        "Jeu",
-  "Games":       "Jeux",
-  "Game style":  "Style de jeu",
-  "Game styles": "Styles de jeu",
+  "Game":                  "Jeu",
+  "Games":                 "Jeux",
+  "Game style":            "Style de jeu",
+  "Game styles":           "Styles de jeu",
+  "Game reference":        "Référence de jeu",
+  "Game references":       "Références de jeu",
+  "Other game references": "Autres références de jeu",
 
   "Every games":         "Tous les jeux",
   "Super Mario Maker":   "Super Mario Maker",

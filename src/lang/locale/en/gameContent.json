@@ -1,4 +1,5 @@
 {
+  "Every game references":         "Every game references",
   "Every entities":                "Every entities",
   "Every entity categories":       "Every entity categories",
   "Every game styles":             "Every game styles",
@@ -20,6 +21,7 @@
   "Empty world theme":        "Empty world theme",
   "Empty \"is in property\"": "Empty \"is in property\"",
 
+  "Display every game references":         "Display every game references",
   "Display every entities":                "Display every entities",
   "Display every entity categories":       "Display every entity categories",
   "Display every game styles":             "Display every game styles",
@@ -30,10 +32,13 @@
   "Display every sound effect categories": "Display every sound effect categories",
   "Display every Mystery Mushrooms":       "Display every {{pluralName}}",
 
-  "Game":        "Game",
-  "Games":       "Games",
-  "Game style":  "Game style",
-  "Game styles": "Game styles",
+  "Game":                  "Game",
+  "Games":                 "Games",
+  "Game style":            "Game style",
+  "Game styles":           "Game styles",
+  "Game reference":        "Game reference",
+  "Game references":       "Game references",
+  "Other game references": "Other game references",
 
   "Every games":         "Every games",
   "Super Mario Maker":   "Super Mario Maker",
