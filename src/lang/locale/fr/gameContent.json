@@ -30,20 +30,24 @@
   "Display every sound effect categories": "Afficher tous les catégories d'effet sonore",
   "Display every Mystery Mushrooms":       "Afficher tous les {{pluralName}}",
 
-  "Game":              "Jeu",
-  "Game Style":        "Style de jeu",
-  "Extra Game Styles": "Style de jeu supplémentaire",
+  "Game":        "Jeu",
+  "Games":       "Jeux",
+  "Game style":  "Style de jeu",
+  "Game styles": "Styles de jeu",
 
   "Every games":         "Tous les jeux",
   "Super Mario Maker":   "Super Mario Maker",
   "Super Mario Maker 2": "Super Mario Maker 2",
 
-  "Course Theme": { "in game": "Décor", "spoken": "Décor de niveau" },
-  "World Theme":  { "in game": "Décor",  "spoken": "Décor de monde" },
+  "Course theme": "Décor de niveau",
+  "World theme":  "Décor de monde" ,
 
   "Time": "Temps",
 
   "Category": "Catégorie",
+
+  "Sound effect":  "Effet sonnore",
+  "Sound effects": "Effets sonnores",
 
   "Limit":               "Limite",
   "In the editor":       "Dans l'éditeur",

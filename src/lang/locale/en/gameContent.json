@@ -30,20 +30,24 @@
   "Display every sound effect categories": "Display every sound effect categories",
   "Display every Mystery Mushrooms":       "Display every {{pluralName}}",
 
-  "Game":              "Game",
-  "Game Style":        "Game Style",
-  "Extra Game Styles": "Extra Game Styles",
+  "Game":        "Game",
+  "Games":       "Games",
+  "Game style":  "Game style",
+  "Game styles": "Game styles",
 
   "Every games":         "Every games",
   "Super Mario Maker":   "Super Mario Maker",
   "Super Mario Maker 2": "Super Mario Maker 2",
 
-  "Course Theme": { "in game": "Course Theme", "spoken": "Course theme" },
-  "World Theme":  { "in game": "World Theme",  "spoken": "World theme" },
+  "Course theme": "Course theme",
+  "World theme":  "World theme",
 
   "Time": "Time",
 
   "Category": "Category",
+
+  "Sound effect":  "Sound effect",
+  "Sound effects": "Sound effects",
 
   "Limit":               "Limit",
   "In the editor":       "In the editor",
