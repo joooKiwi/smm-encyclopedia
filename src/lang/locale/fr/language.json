@@ -31,5 +31,13 @@
   "Portuguese (America)": "Portugais (Amérique)",
   "Portuguese (Europe)":  "Portugais (Europe)",
 
-  "Greek": "Grec"
+  "Greek": "Grec",
+
+
+  "America": "Amérique",
+  "Europe":  "Europe",
+  "Canada":  "Canada",
+
+  "Simplified":  "Simplifié",
+  "Traditional": "Tradionnel"
 }

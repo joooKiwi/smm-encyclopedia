@@ -10,7 +10,7 @@ import {GameReferences}                from '../game/GameReferences';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
 import {GameStyles}                    from '../entity/gameStyle/GameStyles';
-import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
+import Name                            from '../lang/name/component/Name';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
 import {SingleTranslationKey}          from '../lang/components/TranslationProperty';
 import {Fragment}                      from 'react';
@@ -104,7 +104,7 @@ export default class EveryGameReferencesApp
                 <Fragment key={`single name container - ${game.englishName}`}>
                     <div id={`${game.englishNameInHtml}-name-container`} className={`${enumReferences.length > 5 ? 'col-3' : 'col'} single-name-container`}>
                         <div className="single-name-sub-container">
-                            <SMM2NameComponent id={`${groupId}-name`} name={game.reference}/>
+                            <Name id={`${groupId}-name`} name={game.reference}/>
                         </div>
                     </div>
                     {returnOfLine?.includes(game) ? <div className="col-12 name-container return-of-line-name-container"/> : EMPTY_REACT_ELEMENT}

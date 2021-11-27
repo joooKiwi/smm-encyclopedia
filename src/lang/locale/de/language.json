@@ -22,8 +22,8 @@
   "Japanese": "Japanisch",
 
   "Chinese":             "Chinesisch",
-  "Simplified chinese":  "Traditioneel chinesisch",
-  "Traditional chinese": "Vereenvoudigd Chinesisch",
+  "Simplified chinese":  "Vereinfachtes chinesisch",
+  "Traditional chinese": "Traditionelles Chinesisch",
 
   "Korean":  "Koreanisch",
 
@@ -31,5 +31,13 @@
   "Portuguese (America)": "Portugiesisch (Amerika)",
   "Portuguese (Europe)":  "Portugiesisch (Europa)",
 
-  "Greek": "Griechisch"
+  "Greek": "Griechisch",
+
+
+  "America": "Amerika",
+  "Europe":  "Europa",
+  "Canada":  "Kanada",
+
+  "Simplified":  "Vereinfachtes",
+  "Traditional": "Traditionelles"
 }

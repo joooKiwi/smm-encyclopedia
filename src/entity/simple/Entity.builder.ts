@@ -6,7 +6,7 @@ import type {EntityCategory}                                                    
 import type {EntityLink}                                                                                                                              from '../entityTypes';
 import type {EntityTemplate}                                                                                                                          from './Entity.template';
 import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../category/EntityCategories.types';
-import type {PossibleGameReceived}                                                                                                                    from '../lang/NameBuilder.types';
+import type {PossibleGameReceived}                                                                                                                    from '../../lang/name/Name.builder.types';
 
 import {EntityLimits}                  from '../limit/EntityLimits';
 import {EntityReferencesContainer}     from '../properties/EntityReferences.container';
@@ -17,9 +17,9 @@ import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
 import {EntityContainer}               from './Entity.container';
-import {PropertyContainer}             from '../properties/Property.container';
-import {NameBuilder}                   from '../lang/NameBuilder';
 import {Games}                         from '../game/Games';
+import {NameBuilder}                   from '../../lang/name/Name.builder';
+import {PropertyContainer}             from '../properties/Property.container';
 
 export class EntityBuilder
     implements Builder<Entity> {

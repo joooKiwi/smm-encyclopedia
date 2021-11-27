@@ -8,7 +8,7 @@ import {EmptyCourseTheme}              from '../entity/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}               from '../entity/theme/EmptyWorldTheme';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
-import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
+import Name                            from '../lang/name/component/Name';
 import Table                           from './tools/table/Table';
 import {ThemeLoader}                   from '../entity/theme/Theme.loader';
 import {Themes}                        from '../entity/theme/Themes';
@@ -53,7 +53,7 @@ export default class EveryThemesApp
             content.push([englishName,
                 <>{index}</>,
                 this.enum[index - 1].renderSingleComponent(false),
-                <SMM2NameComponent id="name" name={name} popoverOrientation="left"/>,
+                <Name id="name" name={name} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={isInCourseTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInWorldTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInSMM1}/>,

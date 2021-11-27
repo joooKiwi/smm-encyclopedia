@@ -1,17 +1,15 @@
 {
-   "Every game references":         "Toutes les références de jeu",
   "Every entities":                "Toutes les entités",
   "Every entity categories":       "Toutes les catégories d'entité",
-  "Every game styles":             "Tous les styles de jeu",
   "Every entity limits":           "Toutes les limites d'entité",
   "Every themes":                  "Tous les décors",
   "Every times":                   "Tous les temps",
   "Every sound effects":           "Tous les effets sonores",
   "Every sound effect categories": "Toutes les catégories d'effet sonore",
   "Every Mystery Mushrooms":       "Tous les {{pluralName}}",
-
-  "Is in the course theme": "Est dans le décor de niveau",
-  "Is in the world theme":  "Est dans le décor de monde",
+  "Every game references":         "Toutes les références de jeu",
+  "Every games":                   "Tous les jeux",
+  "Every game styles":             "Tous les styles de jeu",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
@@ -21,16 +19,36 @@
   "Empty world theme":        "Thème de monde vide",
   "Empty \"is in property\"": "«Est dans propriété» vide",
 
-  "Display every game references":         "Afficher toutes les références de jeu",
   "Display every entities":                "Afficher toutes les entités",
   "Display every entity categories":       "Afficher toutes les catégories d'entité",
-  "Display every game styles":             "Afficher tous les styles de jeu",
   "Display every entity groups":           "Afficher tous les groupes d'entité",
   "Display every limits":                  "Afficher toutes les limites",
   "Display every themes":                  "Afficher tous les décors",
   "Display every sound effects":           "Afficher tous les effets sonores",
   "Display every sound effect categories": "Afficher tous les catégories d'effet sonore",
   "Display every Mystery Mushrooms":       "Afficher tous les {{pluralName}}",
+  "Display every game references":         "Afficher toutes les références de jeu",
+  "Display every games":                   "Afficher tous les jeux",
+  "Display every game styles":             "Afficher tous les styles de jeu",
+
+
+  "Category": "Catégorie",
+
+  "Limit":               "Limite",
+  "In the editor":       "Dans l'éditeur",
+  "While playing":       "En jouant",
+  "Limit in the editor": "Limite dans l'éditeur",
+  "Limit while playing": "Limite quand est en train de jouer",
+
+  "Course theme":           "Décor de niveau",
+  "World theme":            "Décor de monde" ,
+  "Is in the course theme": "Est dans le décor de niveau",
+  "Is in the world theme":  "Est dans le décor de monde",
+
+  "Time": "Temps",
+
+  "Sound effect":  "Effet sonnore",
+  "Sound effects": "Effets sonnores",
 
   "Game":                  "Jeu",
   "Games":                 "Jeux",
@@ -40,25 +58,6 @@
   "Game references":       "Références de jeu",
   "Other game references": "Autres références de jeu",
 
-  "Every games":         "Tous les jeux",
-  "Super Mario Maker":   "Super Mario Maker",
-  "Super Mario Maker 2": "Super Mario Maker 2",
-
-  "Course theme": "Décor de niveau",
-  "World theme":  "Décor de monde" ,
-
-  "Time": "Temps",
-
-  "Category": "Catégorie",
-
-  "Sound effect":  "Effet sonnore",
-  "Sound effects": "Effets sonnores",
-
-  "Limit":               "Limite",
-  "In the editor":       "Dans l'éditeur",
-  "While playing":       "En jouant",
-  "Limit in the editor": "Limite dans l'éditeur",
-  "Limit while playing": "Limite quand est en train de jouer",
 
   "Effect (night)": "Effet (nuit)"
 }

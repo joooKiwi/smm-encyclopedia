@@ -1,7 +1,7 @@
 /**
  * @template
  */
-export interface SMM2NameTemplate<GREEK extends string | null = null, > {
+export interface NameTemplate<GREEK extends string | null = null, > {
 
     english: {
         simple: | string | null
@@ -52,9 +52,9 @@ export interface SMM2NameTemplate<GREEK extends string | null = null, > {
 /**
  * @template
  */
-export interface SMM2NameTemplateWithOptionalLanguages
-    extends SMM2NameTemplate<| string | null> {
+export interface NameTemplateWithOptionalLanguages
+    extends NameTemplate<| string | null> {
 
 }
 
-export type PossibleSMM2NameTemplate = | SMM2NameTemplate | SMM2NameTemplateWithOptionalLanguages;
+export type PossibleNameTemplate = | NameTemplate | NameTemplateWithOptionalLanguages;

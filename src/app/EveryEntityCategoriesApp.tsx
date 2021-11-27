@@ -7,7 +7,7 @@ import {EntityCategories}              from '../entity/category/EntityCategories
 import {EntityCategory}                from '../entity/category/EntityCategory';
 import {EntityCategoryLoader}          from '../entity/category/EntityCategory.loader';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
+import Name                            from '../lang/name/component/Name';
 import Table                           from './tools/table/Table';
 
 /**
@@ -37,7 +37,7 @@ export default class EveryEntityCategoriesApp
         for (const [englishName, category,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <SMM2NameComponent id="name" name={category} popoverOrientation="left"/>,
+                <Name id="name" name={category} popoverOrientation="left"/>,
             ]);
             index++;
         }

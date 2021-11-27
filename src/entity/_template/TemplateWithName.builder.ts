@@ -1,13 +1,13 @@
 import type {Builder}                                              from '../../util/Builder';
 import type {Name}                                                 from '../../lang/name/Name';
 import type {ObjectHolder}                                         from '../../util/holder/ObjectHolder';
-import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../lang/NameBuilder.types';
+import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../lang/name/Name.builder.types';
 import type {PossibleGameReceived}                                 from './TemplateWithName.builder.types';
 import type {TemplateWithNameTemplate}                             from './TemplateWithName.template';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
-import {NameBuilder}                  from '../lang/NameBuilder';
-import {NameCreator}                  from '../lang/NameCreator';
+import {NameBuilder}                  from '../../lang/name/Name.builder';
+import {NameCreator}                  from '../../lang/name/Name.creator';
 import {TemplateBuilder}              from './Template.builder';
 
 export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate, U, >
