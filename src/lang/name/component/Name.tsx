@@ -5,8 +5,9 @@ import type {ContentNamespace, LanguageNamespace, TranslationMethod} from '../..
 import type {Name}                                                   from '../Name';
 import type {NameProperties, PopoverOrientation}                     from './Name.properties';
 
-import {EveryLanguages} from '../../EveryLanguages';
-import SpanPopover      from '../../../bootstrap/popover/SpanPopover';
+import {EveryLanguages}  from '../../EveryLanguages';
+import SpanPopover       from '../../../bootstrap/popover/SpanPopover';
+import {StringContainer} from '../../../entity/StringContainer';
 
 /**
  * A name component used to render the current language in text format
@@ -21,7 +22,7 @@ export default function Name({popoverOrientation, id, name, ...otherProperties}:
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 
-    const elementId = id + '_' + name.english.toLowerCase().replace(' ', '_');
+    const elementId = `${id}-${StringContainer.getInHtml(name.english)}`;
 
     return <SpanPopover elementId={elementId} option={createOption(createContent(elementId, name, languageTranslation,), popoverOrientation, contentTranslation,)} {...otherProperties}>
         {EveryLanguages.currentLanguage.get(name)}
@@ -32,7 +33,7 @@ function createContent(elementId: string, name: Name, languageTranslation: Trans
     const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
 
 
-    let content = `<table id="${elementId}_table" class="table table-striped"><tbody>`;
+    let content = `<table id="${elementId}-table" class="table table-striped"><tbody>`;
     name.toNameMap().forEach((value, language,) => {
         if (languagesToDisplay.includes(language)) {
             content += `<tr><th>${languageTranslation(language.englishName)}</th><td>${value}</td></tr>`;
