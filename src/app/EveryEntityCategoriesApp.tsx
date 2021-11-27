@@ -37,7 +37,7 @@ export default class EveryEntityCategoriesApp
         for (const [englishName, category,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <SMM2NameComponent id="theme_name" name={category} popoverOrientation="left"/>,
+                <SMM2NameComponent id="name" name={category} popoverOrientation="left"/>,
             ]);
             index++;
         }
@@ -47,10 +47,8 @@ export default class EveryEntityCategoriesApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
-            id="entityCategory_table"
+            id="entityCategory-table"
             caption={<GameContentTranslationComponent translationKey="Every entity categories"/>}
             headers={[
                 '#',

@@ -42,14 +42,14 @@ export default class EveryEntitiesApp
                 throw new ReferenceError(`The entity #${index} was not initialised`);
             content.push([englishName,
                 <>{index}</>,
-                <SMM2NameComponent id="entity_name" name={entity} popoverOrientation="right"/>,
+                <SMM2NameComponent id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity}/>,
                 <GameStyleComponent reference={entity} name={entity}/>,
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
-                <SMM2NameComponent id={`entityCategory_name_${index}`} name={entity.category} popoverOrientation="left"/>,
-                <LimitComponent id={`editor_${index}`} limits={entity.toLimitInTheEditorMap()}/>,
-                <LimitComponent id={`whilePlaying_${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
+                <SMM2NameComponent id={`category-name-${index}`} name={entity.category} popoverOrientation="left"/>,
+                <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()}/>,
+                <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
             ]);
             index++;
         }
@@ -59,10 +59,8 @@ export default class EveryEntitiesApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.map);
-
         return <Table
-            id="entity_table"
+            id="entity-table"
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
                 [
@@ -76,8 +74,8 @@ export default class EveryEntitiesApp
                     {key: 'limit', width: 2, element: <GameContentTranslationComponent translationKey="Limit"/>,},
                 ],
                 [
-                    {key: 'limit_editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>, tooltip: new GameContentTranslationContainer('Limit in the editor'),},
-                    {key: 'limit_whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>, tooltip: new GameContentTranslationContainer('Limit while playing'),},
+                    {key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>, tooltip: new GameContentTranslationContainer('Limit in the editor'),},
+                    {key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>, tooltip: new GameContentTranslationContainer('Limit while playing'),},
                 ],
             ]}
             content={this.content}

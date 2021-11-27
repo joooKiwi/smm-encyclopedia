@@ -38,7 +38,7 @@ export default class EverySoundEffectCategoriesApp
         for (const [englishName, soundEffectCategory,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <SMM2NameComponent id="soundEffectCategory_name" name={soundEffectCategory} popoverOrientation="left"/>
+                <SMM2NameComponent id="name" name={soundEffectCategory} popoverOrientation="left"/>
             ]);
             index++;
         }
@@ -49,10 +49,8 @@ export default class EverySoundEffectCategoriesApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
-            id="soundEffectCategory_table"
+            id="soundEffectCategory-table"
             caption={<GameContentTranslationComponent translationKey="Every sound effect categories"/>}
             headers={[
                 '#',
