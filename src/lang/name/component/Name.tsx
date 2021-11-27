@@ -1,19 +1,22 @@
-import type {TFunction} from 'react-i18next';
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import type {ContentNamespace, LanguageNamespace} from '../../components/TranslationProperty';
-import type {Name}                                from '../Name';
-import type {NameProperties, PopoverOrientation}  from './Name.properties';
+import type {ContentNamespace, LanguageNamespace, TranslationMethod} from '../../components/TranslationProperty';
+import type {Name}                                                   from '../Name';
+import type {NameProperties, PopoverOrientation}                     from './Name.properties';
 
 import {EveryLanguages} from '../../EveryLanguages';
 import SpanPopover      from '../../../bootstrap/popover/SpanPopover';
 
 /**
+ * A name component used to render the current language in text format
+ * and the other languages (excluding the current one) in a simple table format.
  *
  * @param properties
  * @reactComponent
- */
+ * @see Name.toNameMap
+ * @see EveryLanguages.currentLanguage
+ */// eslint-disable-next-line @typescript-eslint/no-redeclare
 export default function Name({popoverOrientation, id, name, ...otherProperties}: NameProperties,) {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
@@ -25,7 +28,7 @@ export default function Name({popoverOrientation, id, name, ...otherProperties}:
     </SpanPopover>;
 }
 
-function createContent(elementId: string, name: Name, languageTranslation: TFunction<LanguageNamespace>,): string {
+function createContent(elementId: string, name: Name, languageTranslation: TranslationMethod<LanguageNamespace>,): string {
     const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
 
 
@@ -40,7 +43,7 @@ function createContent(elementId: string, name: Name, languageTranslation: TFunc
     return content;
 }
 
-function createOption(content: string, popoverOrientation: | PopoverOrientation | undefined, contentTranslation: TFunction<ContentNamespace>,): Partial<Popover.Options> {
+function createOption(content: string, popoverOrientation: | PopoverOrientation | undefined, contentTranslation: TranslationMethod<ContentNamespace>,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: contentTranslation('In other languages'),
         content: content,
