@@ -87,14 +87,14 @@ export default class Table
         const placement = isHead ? 'bottom' : 'top';
 
         return <AnyTranslationComponent namespace={tooltip.namespace}>{translation =>
-            <Tooltip option={({title: translation(tooltip.translationKey) as string, placement: placement,})} elementId={`${this.__getHeaderKey(header)}_${headOrFootKey}`}/>}
+            <Tooltip option={({title: translation(tooltip.translationKey) as string, placement: placement,})} elementId={`${this.__getHeaderKey(header)}-${headOrFootKey}`}/>}
         </AnyTranslationComponent>;
     }
 
     private static __createSingleHeaderContent(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {
         const key = this.__getHeaderKey(header);
 
-        return <th key={`${key} (${headOrFootKey})`} id={`${key}_${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>
+        return <th key={`${key} (${headOrFootKey})`} id={`${key}-${headOrFootKey}`} colSpan={this.__getHeaderWidth(header)} rowSpan={this.__getHeaderHeight(header)}>
             {this.__createTooltip(isHead, headOrFootKey, header)}
             {this.__getHeaderContent(header)}
         </th>;
