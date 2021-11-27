@@ -10,7 +10,7 @@ import {route}                     from '../routes/route';
  * @reactComponent
  */
 export default function Navigation() {
-    return <nav id="navigation-container" className="navbar navbar-expand-md navbar-light bg-light">
+    return <nav id="navigation-container" className="navbar navbar-expand-md navbar-light bg-light bg-gradient">
         <div className="container-fluid">
             <ContentTranslationComponent>{translation =>
                 <Link key="navigationHome" className="navbar-brand" aria-current="page" to={route('home')}>
