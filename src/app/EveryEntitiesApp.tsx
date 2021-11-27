@@ -13,7 +13,7 @@ import {GameContentTranslationContainer} from '../lang/containers/GameContentTra
 import GameContentTranslationComponent   from '../lang/components/GameContentTranslationComponent';
 import GameStyleComponent                from '../entity/gameStyle/GameStyle.component';
 import LimitComponent                    from '../entity/limit/Limit.component';
-import NameComponent                     from '../lang/name/Name.component';
+import Name                              from '../lang/name/component/Name';
 import Table                             from './tools/table/Table';
 import TimeComponent                     from '../entity/time/Time.component';
 
@@ -42,12 +42,12 @@ export default class EveryEntitiesApp
                 throw new ReferenceError(`The entity #${index} was not initialised`);
             content.push([englishName,
                 <>{index}</>,
-                <NameComponent id="name" name={entity} popoverOrientation="right"/>,
+                <Name id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity}/>,
                 <GameStyleComponent reference={entity} name={entity}/>,
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
-                <NameComponent id={`category-name-${index}`} name={entity.category} popoverOrientation="left"/>,
+                <Name id={`category-name-${index}`} name={entity.category} popoverOrientation="left"/>,
                 <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()}/>,
                 <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
             ]);

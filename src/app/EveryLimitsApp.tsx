@@ -8,7 +8,7 @@ import {EntityLimitLoader}             from '../entity/limit/EntityLimit.loader'
 import {EntityLimits}                  from '../entity/limit/EntityLimits';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import NameComponent                   from '../lang/name/Name.component';
+import Name                            from '../lang/name/component/Name';
 import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';
 
@@ -49,8 +49,8 @@ export default class EveryLimitsApp
                 content.push([englishName,
                     <>{index}</>,
                     <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
-                    <NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
-                    <NameComponent id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
+                    <Name id="name" name={entityLimit} popoverOrientation="bottom"/>,
+                    <Name id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                     <TextComponent content={entityLimit.amount} isUnknown={entityLimit.isAmountUnknown}/>,
                     <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
                 ]);

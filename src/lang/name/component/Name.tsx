@@ -2,42 +2,25 @@ import type {TFunction} from 'react-i18next';
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import type {Name}                                from './Name';
-import type {ReactProperty}                       from '../../util/react/ReactProperty';
-import type {ContentNamespace, LanguageNamespace} from '../components/TranslationProperty';
+import type {ContentNamespace, LanguageNamespace} from '../../components/TranslationProperty';
+import type {Name}                                from '../Name';
+import type {NameProperties, PopoverOrientation}  from './Name.properties';
 
-import {EveryLanguages} from '../EveryLanguages';
-import SpanPopover      from '../../bootstrap/popover/SpanPopover';
-
-//region -------------------- SMM2 name component types --------------------
-
-type PopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right';
-
-interface SMM2NameProperties
-    extends ReactProperty {
-
-    popoverOrientation?: PopoverOrientation
-
-    id: string
-
-    name: Name
-
-}
-
-//endregion -------------------- SMM2 name component types --------------------
+import {EveryLanguages} from '../../EveryLanguages';
+import SpanPopover      from '../../../bootstrap/popover/SpanPopover';
 
 /**
  *
  * @param properties
  * @reactComponent
  */
-export default function NameComponent({popoverOrientation, id, name,}: SMM2NameProperties,) {
+export default function Name({popoverOrientation, id, name, ...otherProperties}: NameProperties,) {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 
     const elementId = id + '_' + name.english.toLowerCase().replace(' ', '_');
 
-    return <SpanPopover elementId={elementId} option={createOption(createContent(elementId, name, languageTranslation,), popoverOrientation, contentTranslation,)}>
+    return <SpanPopover elementId={elementId} option={createOption(createContent(elementId, name, languageTranslation,), popoverOrientation, contentTranslation,)} {...otherProperties}>
         {EveryLanguages.currentLanguage.get(name)}
     </SpanPopover>;
 }
