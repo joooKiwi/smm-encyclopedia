@@ -6,6 +6,8 @@ import type {ReactElement}          from '../../../util/react/ReactProperty';
 import type {SimpleSoundProperties} from './properties/SimpleSoundProperties';
 import type {SimpleSoundState}      from './properties/SimpleSoundState';
 
+import {SoundStates} from './SoundStates';
+
 export default class SimpleSound
     extends Component<SimpleSoundProperties, SimpleSoundState> {
 
@@ -15,10 +17,9 @@ export default class SimpleSound
     static readonly #STOP_CLASSES = 'btn btn-lg bi-stop-btn-fill audio-state audio-state-stop';
     static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
 
-    public static readonly POSSIBLE_STATES = ['standby', 'playing', 'paused',] as const;
     static #IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED = false;
 
-    static readonly #EVERY_AUDIO_ELEMENTS: HTMLAudioElement[] = [];
+    static readonly #EVERY_AUDIO_ELEMENTS = new Map<string, HTMLAudioElement>();
 
     #audio?: HTMLAudioElement;
     #playElement?: ReactElement;
@@ -29,88 +30,103 @@ export default class SimpleSound
 
     public constructor(properties: SimpleSoundProperties,) {
         super(properties);
-        this.state = {state: 'standby',};
+        this.state = {state: SoundStates.STANDBY,};
     }
 
     //region -------------------- Getter & setter methods --------------------
 
-    protected static get everyAudioElements() {
+    /**
+     * A {@link Map} of every audio elements.<br/>
+     * The key is the source of the audio element created.
+     *
+     * @see _audio
+     */
+    protected static get _everyAudioElements() {
         return this.#EVERY_AUDIO_ELEMENTS;
+    }
+
+    public static get isEveryAudioLoopsAfterCompleted(): boolean {
+        return this.#IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED;
     }
 
     public static set isEveryAudioLoopsAfterCompleted(value: boolean,) {
         this.#IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED = value;
-        this.everyAudioElements.forEach(audioElement => audioElement.loop = value);
+        this._everyAudioElements.forEach(audioElement => audioElement.loop = value);
     }
 
-    protected get audio(): HTMLAudioElement {
+    /**
+     * A {@link HTMLAudioElement Audio} element created from the source
+     * and with the global property {@link isEveryAudioLoopsAfterCompleted}.
+     *
+     * @note The element is created only if any buttons (play, pause or stop) is handled. Otherwise, it will not be created.
+     */
+    protected get _audio(): HTMLAudioElement {
         if (this.#audio == null) {
-            const audio = new Audio(this.source);
-            audio.onended = () => this.setState({state: 'standby',});
-            audio.loop = SimpleSound.#IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED;
-            SimpleSound.everyAudioElements.push(this.#audio = audio);
+            let audio: HTMLAudioElement;
+            if (SimpleSound._everyAudioElements.has(this._source))
+                audio = SimpleSound._everyAudioElements.get(this._source)!;
+            else
+                SimpleSound._everyAudioElements.set(this._source, audio = new Audio(this._source));
+            this.#audio = audio;
+            audio.onended = () => this.setState({state: SoundStates.STANDBY,});
+            audio.loop = SimpleSound.isEveryAudioLoopsAfterCompleted;
         }
         return this.#audio;
     }
 
     private get __playElement() {
-        return this.#playElement ??= <div key={`${this.title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.__play()}/>;
+        return this.#playElement ??= <div key={`${this._title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.__play()}/>;
     }
 
     private get __pauseElement() {
-        return this.#pauseElement ??= <div key={`${this.title} - pause`} className={SimpleSound.#PAUSE_CLASSES} onClick={() => this.__pause()}/>;
+        return this.#pauseElement ??= <div key={`${this._title} - pause`} className={SimpleSound.#PAUSE_CLASSES} onClick={() => this.__pause()}/>;
     }
 
     private get __stopElement() {
-        return this.#stopElement ??= <div key={`${this.title} - stop`} className={SimpleSound.#STOP_CLASSES} onClick={() => this.__stop()}/>;
+        return this.#stopElement ??= <div key={`${this._title} - stop`} className={SimpleSound.#STOP_CLASSES} onClick={() => this.__stop()}/>;
     }
 
-    protected get source() {
+    protected get _source() {
         return this.props.source;
     }
 
-    protected get title() {
+    protected get _title() {
         return this.props.title;
     }
 
+    //endregion -------------------- Getter & setter methods --------------------
+    //region -------------------- Methods --------------------
+
     private __play(): void {
-        this.audio.play();
-        this.setState({state: 'playing',});
+        this._audio.play();
+        this.setState({state: SoundStates.PLAYING,});
     }
 
     private __pause(): void {
-        this.audio.pause();
-        this.setState({state: 'paused',});
+        this._audio.pause();
+        this.setState({state: SoundStates.PAUSED,});
     }
 
     private __stop(): void {
-        const audio = this.audio;
+        const audio = this._audio;
         audio.pause();
         audio.currentTime = 0;
-        this.setState({state: 'standby',});
+        this.setState({state: SoundStates.STANDBY,});
     }
 
-    //endregion -------------------- Getter & setter methods --------------------
+    //endregion -------------------- Methods --------------------
     //region -------------------- React methods --------------------
 
-    public componentWillUnmount(): void {
-        this.audio.onended = null;
+    public componentWillUnmount() {
+        const audio = this.#audio;
+        if (audio != null)
+            audio.onended = null;
     }
 
     public render() {
-        let elements: ReactElement[];
-        switch (this.state.state) {
-            case 'standby':
-                elements = [this.__playElement,];
-                break;
-            case 'playing':
-                elements = [this.__pauseElement, this.__stopElement,];
-                break;
-            case 'paused':
-                elements = [this.__playElement, this.__stopElement,];
-                break;
-        }
-        return <div key={this.title} className="audio-state-container container">{elements}</div>;
+        return <div key={this._title} className="audio-state-container container">{
+            this.state.state.getElements(() => this.__playElement, () => this.__pauseElement, () => this.__stopElement,)
+        }</div>;
     }
 
     //endregion -------------------- React methods --------------------
