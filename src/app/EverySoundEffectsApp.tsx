@@ -1,6 +1,6 @@
 import './EverySoundEffectsApp.scss';
 
-import type {PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleEnglishName} from '../entity/soundEffect/simple/SoundEffects.types';
+import type {PossibleEnglishName, PossibleImagePath_SMM1, PossibleImagePath_SMM2} from '../entity/soundEffect/simple/SoundEffects.types';
 import type {SoundEffect}                                                         from '../entity/soundEffect/simple/SoundEffect';
 
 import AbstractApp                     from './AbstractApp';
@@ -8,7 +8,7 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
 import {EmptyName}                     from '../lang/name/EmptyName';
-import SMM2NameComponent               from '../entity/lang/SMM2Name.component';
+import NameComponent                   from '../lang/name/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
@@ -48,8 +48,8 @@ export default class EverySoundEffectsApp
                 <>{index}</>,
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
-                <SMM2NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
-                soundEffect.categoryName === EmptyName.get ? <></> : <SMM2NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
+                <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
+                soundEffect.categoryName === EmptyName.get ? <></> : <NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
                 <>--{soundEffect.translationKey}--</>,
             ]);
             index++;

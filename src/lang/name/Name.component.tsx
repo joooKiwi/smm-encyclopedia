@@ -2,11 +2,11 @@ import type {TFunction} from 'react-i18next';
 import {Popover}        from 'bootstrap';
 import {useTranslation} from 'react-i18next';
 
-import type {Name}                                from '../../lang/name/Name';
+import type {Name}                                from './Name';
 import type {ReactProperty}                       from '../../util/react/ReactProperty';
-import type {ContentNamespace, LanguageNamespace} from '../../lang/components/TranslationProperty';
+import type {ContentNamespace, LanguageNamespace} from '../components/TranslationProperty';
 
-import {EveryLanguages} from '../../lang/EveryLanguages';
+import {EveryLanguages} from '../EveryLanguages';
 import SpanPopover      from '../../bootstrap/popover/SpanPopover';
 
 //region -------------------- SMM2 name component types --------------------
@@ -31,7 +31,7 @@ interface SMM2NameProperties
  * @param properties
  * @reactComponent
  */
-export default function SMM2NameComponent({popoverOrientation, id, name,}: SMM2NameProperties,) {
+export default function NameComponent({popoverOrientation, id, name,}: SMM2NameProperties,) {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 

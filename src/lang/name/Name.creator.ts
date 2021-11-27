@@ -1,13 +1,13 @@
-import type {PossibleSMM2NameTemplate} from './SMM2Name.template';
+import type {PossibleNameTemplate} from './Name.template';
 
 /**
- * A class made to help the {@link PossibleSMM2NameTemplate names templates}.
+ * A class made to help the {@link PossibleNameTemplate names templates}.
  */
 export class NameCreator {
 
     static readonly #INSTANCE_MAP = new Map<object, Set<string>>();
 
-    private static __testName(name: PossibleSMM2NameTemplate,): PossibleSMM2NameTemplate {
+    private static __testName(name: PossibleNameTemplate,): PossibleNameTemplate {
         if (window.IS_IN_PRODUCTION)
             return name;
 
@@ -25,7 +25,7 @@ export class NameCreator {
         return name;
     }
 
-    private static __getEnglishName(set: Set<string>, name: PossibleSMM2NameTemplate, uniqueName: | string | null,): string {
+    private static __getEnglishName(set: Set<string>, name: PossibleNameTemplate, uniqueName: | string | null,): string {
         const englishReferenceName = uniqueName ?? name.english.simple ?? name.english.american;
         if (window.IS_IN_PRODUCTION)
             return englishReferenceName!;
@@ -53,7 +53,7 @@ export class NameCreator {
      * @param instance instance to verify the name
      * @param uniqueName the unique name to set the name
      */
-    public static addEnglishReference(name: PossibleSMM2NameTemplate, instance: object, uniqueName: | string | null = null,): void {
+    public static addEnglishReference(name: PossibleNameTemplate, instance: object, uniqueName: | string | null = null,): void {
         const map = this.#INSTANCE_MAP;
         if (!map.has(instance))
             map.set(instance, new Set());

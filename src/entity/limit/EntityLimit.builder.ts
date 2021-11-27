@@ -18,7 +18,7 @@ import {EntityLimitLinkContainer}                           from './properties/E
 import {EntityLimitTypes}                                   from './EntityLimitTypes';
 import {EntityLimits}                                       from './EntityLimits';
 import {Games}                                              from '../game/Games';
-import {NameBuilder}                                        from '../lang/NameBuilder';
+import {NameBuilder}                                        from '../../lang/name/Name.builder';
 import {NumberPropertyThatCanBeUnknownWithCommentContainer} from '../_properties/number/NumberPropertyThatCanBeUnknownWithComment.container';
 import {TemplateBuilder}                                    from '../_template/Template.builder';
 

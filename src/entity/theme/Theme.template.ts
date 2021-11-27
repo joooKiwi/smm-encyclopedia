@@ -1,12 +1,12 @@
+import type {NameTemplate}             from '../../lang/name/Name.template';
 import type {SimpleGameTemplate}       from '../game/SimpleGame.template';
-import type {SMM2NameTemplate}         from '../lang/SMM2Name.template';
 import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
 
 /**
  * @template
  */
 export interface ThemeTemplate
-    extends TemplateWithNameTemplate<SMM2NameTemplate> {
+    extends TemplateWithNameTemplate<NameTemplate> {
 
     isIn: {
         game: SimpleGameTemplate

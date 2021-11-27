@@ -1,11 +1,11 @@
-import type {Builder}                                                                           from '../../util/Builder';
-import type {EntityNameTemplate}                                                                from '../simple/Entity.template';
-import type {HasAReferenceInMarioMaker}                                                         from '../entityTypes';
-import type {PartialGameEnum}                                                                   from './PartialGameEnum';
-import type {PossibleLanguagesDefinition}                                                       from './PartialLanguageEnum';
-import type {PossibleSMM2NameTemplate, SMM2NameTemplate, SMM2NameTemplateWithOptionalLanguages} from '../lang/SMM2Name.template';
-import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                             from '../../lang/Loader.types';
-import type {SimpleGameTemplate}                                                                from '../game/SimpleGame.template';
+import type {Builder}                                                               from '../../util/Builder';
+import type {EntityNameTemplate}                                                    from '../simple/Entity.template';
+import type {HasAReferenceInMarioMaker}                                             from '../entityTypes';
+import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template';
+import type {PartialGameEnum}                                                       from './PartialGameEnum';
+import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum';
+import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types';
+import type {SimpleGameTemplate}                                                    from '../game/SimpleGame.template';
 
 /**
  * An abstract template builder with a lot of utilities methods
@@ -61,13 +61,13 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
     //endregion -------------------- Headers methods --------------------
     //region -------------------- Name template methods --------------------
 
-    protected _createNameTemplate(): SMM2NameTemplate
-    protected _createNameTemplate(): SMM2NameTemplateWithOptionalLanguages
-    protected _createNameTemplate(): PossibleSMM2NameTemplate {
+    protected _createNameTemplate(): NameTemplate
+    protected _createNameTemplate(): NameTemplateWithOptionalLanguages
+    protected _createNameTemplate(): PossibleNameTemplate {
         return AbstractTemplateBuilder.__createNameTemplateFromClass(this._headersIndexMap as unknown as PossibleLanguagesDefinition, this._content,);
     }
 
-    private static __createNameTemplateFromClass<ARRAY extends any[], >(headers: PossibleLanguagesDefinition, content: ARRAY,): PossibleSMM2NameTemplate {
+    private static __createNameTemplateFromClass<ARRAY extends any[], >(headers: PossibleLanguagesDefinition, content: ARRAY,): PossibleNameTemplate {
         const greek = 'greek' in headers ? content[headers.greek] : this.#EMPTY_GREEK;
 
         const languages: PropertiesArrayWithOptionalLanguages = [
@@ -88,7 +88,7 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
         return this.__createNameTemplateFromArray(languages);
     }
 
-    private static __createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleSMM2NameTemplate {
+    private static __createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
         return {
             english: {
                 simple: english,
