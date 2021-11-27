@@ -4,7 +4,7 @@ import type {ReactProperty} from '../../util/react/ReactProperty';
 import SMM2NameComponent from '../lang/SMM2Name.component';
 import {Fragment}        from 'react';
 
-type Id = `${| 'editor' | 'whilePlaying'}_${number}`;
+type Id = `${| 'editor' | 'whilePlaying'}-${number}`;
 
 interface EditorLimitProperties
     extends ReactProperty {
@@ -31,5 +31,5 @@ function createReturnOfLine(limits: ReadonlyMap<EntityLimits, boolean>, index: n
 }
 
 function createSingleComponent(id: Id, entityLimit: EntityLimits,) {
-    return <SMM2NameComponent id={`entityLimit_name_${id}`} name={entityLimit.reference}/>;
+    return <SMM2NameComponent id={`entityLimit-name-${id}`} name={entityLimit.reference}/>;
 }

@@ -5,7 +5,9 @@ import type {PropertyGetter, PropertyReferenceGetter}                           
 import type {TimeProperty}                                                                                                  from '../properties/TimeProperty';
 import type {TimeReferences}                                                                                                from '../properties/TimeReferences';
 
-import {Enum} from '../../util/enum/Enum';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../StringContainer';
+import TimeComponent     from './Time.component';
 
 export abstract class Times
     extends Enum<Ordinals, Names>
@@ -52,13 +54,17 @@ export abstract class Times
 
     private constructor(englishName: PossibleEnglishName,) {
         super(Times);
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
     }
 
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -67,6 +73,10 @@ export abstract class Times
     public abstract get(property: TimeProperty,): boolean;
 
     public abstract getReference(referenceProperty: TimeReferences,): Entity;
+
+    public get renderSingleComponent() {
+        return TimeComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

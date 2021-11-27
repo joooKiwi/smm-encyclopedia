@@ -39,8 +39,8 @@ export default class EveryGameStylesApp
         for (const [englishName, gameStyle,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <img src={this.enum[index - 1].imagePath} alt={englishName}/>,
-                <SMM2NameComponent id="theme_name" name={gameStyle} popoverOrientation="left"/>,
+                this.enum[index - 1].renderSingleComponent,
+                <SMM2NameComponent id="name" name={gameStyle} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
             ]);
@@ -52,10 +52,8 @@ export default class EveryGameStylesApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
-            id="gameStyle_table"
+            id="gameStyle-table"
             caption={<GameContentTranslationComponent translationKey="Every game styles"/>}
             headers={[
                 [

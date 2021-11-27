@@ -3,6 +3,8 @@ import type {GameProperty} from '../properties/GameProperty';
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
 import {Games}                               from './Games';
+import Image                                 from '../../app/tools/images/Image';
+import {StringContainer}                     from '../StringContainer';
 
 /**
  * @reactComponent
@@ -19,7 +21,15 @@ export default class GameComponent
     }
 
     protected _renderSingleComponent(game: Games,) {
-        return <img key={`${this.name.english} - ${game.englishName}`} src={game.imagePath} alt={game.englishName} className="game_image"/>;
+        return GameComponent.renderSingleComponent(game, this.name.english,);
+    }
+
+    public static renderSingleComponent(game: Games, identifier?: string,) {
+        const gameEnglishNameInHtml = game.englishNameInHtml;
+        const key = identifier == null ? game.englishName : `${identifier} - ${game.englishName}`;
+        const id = identifier == null ? `${gameEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${gameEnglishNameInHtml}-game-image`;
+
+        return <Image key={key} id={id} source={game.imagePath} fallbackName={game.englishName} className={`game-image ${gameEnglishNameInHtml}-image`}/>;
     }
 
     protected _renderFirstComponent() {

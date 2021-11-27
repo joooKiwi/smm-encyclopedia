@@ -8,9 +8,11 @@ import type {ThemeProperty}                                                     
 import type {ThemeReferences}                                                                                                                                                                                                     from '../properties/ThemeReferences';
 import type {WorldTheme}                                                                                                                                                                                                          from './WorldTheme';
 
-import {Enum}        from '../../util/enum/Enum';
-import {ThemeLoader} from './Theme.loader';
-import {EmptyEntity} from '../simple/EmptyEntity';
+import {Enum}            from '../../util/enum/Enum';
+import {ThemeLoader}     from './Theme.loader';
+import {EmptyEntity}     from '../simple/EmptyEntity';
+import {StringContainer} from '../StringContainer';
+import {ThemeComponent}  from './Theme.component';
 
 /**
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link ThemeLoader}>
@@ -169,7 +171,7 @@ export class Themes
     private constructor(englishName: PossibleEnglishName, basicImagePath: SingleThemePath,)
     private constructor(englishName: PossibleEnglishName, basicImagePath: | SingleThemePath | PossibleEnglishName = englishName,) {
         super(Themes);
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
         this.#imagePath = `/game/themes/${basicImagePath}` as ThemePath;
     }
 
@@ -181,7 +183,11 @@ export class Themes
 
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     public get courseTheme(): CourseTheme {
@@ -217,6 +223,10 @@ export class Themes
 
     public getReference(referenceProperty: ThemeReferences,): Entity {
         return EmptyEntity.get;
+    }
+
+    public renderSingleComponent(isSmallPath: boolean,) {
+        return ThemeComponent.renderSingleComponent(this, isSmallPath,);
     }
 
 

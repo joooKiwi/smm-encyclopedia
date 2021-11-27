@@ -1,7 +1,8 @@
 import type {BasicJapanesePath, BasicLeftVariationPath, BasicPath, ClimbingImages, DownImage, EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, FallingAfterJumpImage, GoalPoleImages, GoalPoleSound, ImagePath, JumpImage, JumpImages, JumpSounds, LostALifeSound, Names, OnGroundAfterJumpSound, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PowerUpCollectedSound, RunningImages, SingleClimbingImage, SingleDownImage, SingleFallingAfterJumpImage, SingleGoalPoleImage, SingleGoalPoleSound, SingleJumpImage, SingleJumpSound, SingleLostALifeSound, SingleOnGroundAfterJumpSound, SinglePowerUpCollectedSound, SingleRunningImage, SingleSwimmingImage, SingleTauntImage, SingleTauntSound, SingleTurningImage, SingleTurningSound, SingleWaitingImage, SingleWalkImage, SwimmingImages, TauntImage, TauntSound, TurningImage, TurningSound, UniqueEnglishName, WaitingImage, WalkImages} from './MysteryMushrooms.types';
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../ClassWithEnglishName';
 
-import {Enum} from '../../util/enum/Enum';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../StringContainer';
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
@@ -363,10 +364,10 @@ export class MysteryMushrooms
     public constructor(englishNameOnFile: | EnglishNameOnFile | UniqueEnglishName, englishName?: UniqueEnglishName,) {
         super(MysteryMushrooms);
         if (englishName == null) {
-            this.#englishName = englishNameOnFile as UniqueEnglishName;
+            this.#englishName = new StringContainer(englishNameOnFile as UniqueEnglishName);
             this.#englishNameOnFile = englishNameOnFile as EnglishNameOnFile;
         } else {
-            this.#englishName = englishName;
+            this.#englishName = new StringContainer(englishName);
             this.#englishNameOnFile = englishNameOnFile as EnglishNameOnFile;
         }
     }
@@ -374,7 +375,11 @@ export class MysteryMushrooms
     //region -------------------- Getter methods --------------------
 
     public get englishName(): UniqueEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     //region -------------------- Files (images / sounds) getter methods --------------------

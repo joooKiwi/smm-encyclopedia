@@ -1,10 +1,11 @@
-import type {ClassWithEnglishName}                                                                                   from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                     from '../ClassWithReference';
+import type {ClassWithEnglishName}                                                                                          from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                            from '../ClassWithReference';
 import type {EntityCategory}                                                                                                from './EntityCategory';
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
 
 import {EntityCategoryLoader} from './EntityCategory.loader';
 import {Enum}                 from '../../util/enum/Enum';
+import {StringContainer}      from '../StringContainer';
 
 export class EntityCategories
     extends Enum<Ordinals, Names>
@@ -36,7 +37,7 @@ export class EntityCategories
     // private constructor(englishName: PossibleEntityCategories, basicImagePath: string)
     private constructor(englishName: PossibleEnglishName/*, basicImagePath: string = englishName*/) {
         super(EntityCategories);
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer<PossibleEnglishName, Lowercase<PossibleEnglishName>>(englishName);
         // this.#imagePath = '/game/themes/' + basicImagePath;
     }
 
@@ -48,7 +49,11 @@ export class EntityCategories
 
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): Lowercase<PossibleEnglishName> {
+        return this.#englishName.getInHtml;
     }
 
     // public get imagePath() {

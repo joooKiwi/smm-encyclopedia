@@ -4,7 +4,9 @@ import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, P
 import type {GameProperty}                                                                                                                                      from '../properties/GameProperty';
 import type {PropertyGetter}                                                                                                                                    from '../PropertyGetter';
 
-import {Enum} from '../../util/enum/Enum';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../StringContainer';
+import GameComponent     from './Game.component';
 
 export abstract class Games
     extends Enum<Ordinals, Names>
@@ -34,15 +36,15 @@ export abstract class Games
     //region -------------------- Attributes --------------------
 
     readonly #acronym;
-    readonly #englishName;
+    readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imagePath: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym:PossibleAcronym,englishName: PossibleEnglishName,) {
+    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super(Games);
         this.#acronym = acronym;
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
         this.#imagePath = `/game/logos/${englishName}.svg`;
     }
 
@@ -51,8 +53,13 @@ export abstract class Games
     public get acronym(): PossibleAcronym {
         return this.#acronym;
     }
+
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     public get imagePath(): PossibleImagePath {
@@ -63,6 +70,10 @@ export abstract class Games
     //region -------------------- Methods --------------------
 
     public abstract get(property: GameProperty,): boolean;
+
+    public get renderSingleComponent() {
+        return GameComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

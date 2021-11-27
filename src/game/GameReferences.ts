@@ -6,6 +6,7 @@ import type {GameReference}                                                     
 
 import {Enum}                from '../util/enum/Enum';
 import {GameReferenceLoader} from './GameReference.loader';
+import {StringContainer}     from '../entity/StringContainer';
 
 /**
  * @recursiveReference<{@link GameReferenceLoader}>
@@ -177,7 +178,7 @@ export class GameReferences
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    #reference?:GameReference;
+    #reference?: GameReference;
     readonly #acronym;
     readonly #englishName;
 
@@ -186,15 +187,15 @@ export class GameReferences
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super(GameReferences);
         this.#acronym = acronym;
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
     }
 
     //region -------------------- Getter methods --------------------
 
     public get reference(): GameReference {
         const map = GameReferenceLoader.get.load();
-        if(map.get(this.englishName) == null)
-            console.log({map,name:this.englishName});
+        if (map.get(this.englishName) == null)
+            console.log({map, name: this.englishName});
         return this.#reference ??= GameReferenceLoader.get.load().get(this.englishName)!;
     }
 
@@ -203,7 +204,11 @@ export class GameReferences
     }
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     //endregion -------------------- Getter methods --------------------

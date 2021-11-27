@@ -8,8 +8,10 @@ import type {GameStyleProperty}                                                 
 import type {GameStyleReferences}                                                                                                                                          from '../properties/GameStyleReferences';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                      from '../PropertyGetter';
 
-import {Enum}            from '../../util/enum/Enum';
-import {GameStyleLoader} from './GameStyle.loader';
+import {Enum}             from '../../util/enum/Enum';
+import {GameStyleLoader}  from './GameStyle.loader';
+import {StringContainer}  from '../StringContainer';
+import GameStyleComponent from './GameStyle.component';
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
@@ -99,7 +101,7 @@ export abstract class GameStyles
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super(GameStyles);
         this.#acronym = acronym;
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
         this.#startingImagePath = `/game/styles/${englishName}`;
     }
 
@@ -115,7 +117,11 @@ export abstract class GameStyles
     }
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     public get startingImagePath(): StartingImagePath {
@@ -132,6 +138,10 @@ export abstract class GameStyles
     public abstract get(property: GameStyleProperty,): boolean;
 
     public abstract getReference(referenceProperty: GameStyleReferences,): Entity;
+
+    public get renderSingleComponent() {
+        return GameStyleComponent.renderSingleComponent(this);
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

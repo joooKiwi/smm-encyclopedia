@@ -50,7 +50,7 @@ export default class EveryLimitsApp
                     <>{index}</>,
                     <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
                     <SMM2NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
-                    <SMM2NameComponent id="name" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
+                    <SMM2NameComponent id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                     <TextComponent content={entityLimit.amount} isUnknown={entityLimit.isAmountUnknown}/>,
                     <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
                 ]);
@@ -63,10 +63,8 @@ export default class EveryLimitsApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
-            id="entityLimit_table"
+            id="entityLimit-table"
             caption={<GameContentTranslationComponent translationKey="Every entity limits"/>}
             headers={[
                 [
