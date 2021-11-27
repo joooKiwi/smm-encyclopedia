@@ -1,17 +1,15 @@
 {
-  "Every game references":         "Every game references",
   "Every entities":                "Every entities",
   "Every entity categories":       "Every entity categories",
-  "Every game styles":             "Every game styles",
   "Every entity limits":           "Every entity limits",
   "Every themes":                  "Every themes",
   "Every times":                   "Every times",
   "Every sound effects":           "Every sound effects",
   "Every sound effect categories": "Every sound effect categories",
   "Every Mystery Mushrooms":       "Every {{pluralName}}",
-
-  "Is in the course theme": "Is in the course theme",
-  "Is in the world theme":  "Is in the world theme",
+  "Every game references":         "Every game references",
+  "Every games":                   "Every games",
+  "Every game styles":             "Every game styles",
 
   "Empty entity":             "Empty entity",
   "Empty entity category":    "Empty entity category",
@@ -21,16 +19,36 @@
   "Empty world theme":        "Empty world theme",
   "Empty \"is in property\"": "Empty \"is in property\"",
 
-  "Display every game references":         "Display every game references",
   "Display every entities":                "Display every entities",
   "Display every entity categories":       "Display every entity categories",
-  "Display every game styles":             "Display every game styles",
   "Display every entity groups":           "Display every entity groups",
   "Display every limits":                  "Display every limits",
   "Display every themes":                  "Display every themes",
   "Display every sound effects":           "Display every sound effects",
   "Display every sound effect categories": "Display every sound effect categories",
   "Display every Mystery Mushrooms":       "Display every {{pluralName}}",
+  "Display every game references":         "Display every game references",
+  "Display every games":                   "Display every games",
+  "Display every game styles":             "Display every game styles",
+
+
+  "Category": "Category",
+
+  "Limit":               "Limit",
+  "In the editor":       "In the editor",
+  "While playing":       "While playing",
+  "Limit in the editor": "Limit in the editor",
+  "Limit while playing": "Limit while playing",
+
+  "Course theme":           "Course theme",
+  "World theme":            "World theme",
+  "Is in the course theme": "Is in the course theme",
+  "Is in the world theme":  "Is in the world theme",
+
+  "Time": "Time",
+
+  "Sound effect":  "Sound effect",
+  "Sound effects": "Sound effects",
 
   "Game":                  "Game",
   "Games":                 "Games",
@@ -40,25 +58,6 @@
   "Game references":       "Game references",
   "Other game references": "Other game references",
 
-  "Every games":         "Every games",
-  "Super Mario Maker":   "Super Mario Maker",
-  "Super Mario Maker 2": "Super Mario Maker 2",
-
-  "Course theme": "Course theme",
-  "World theme":  "World theme",
-
-  "Time": "Time",
-
-  "Category": "Category",
-
-  "Sound effect":  "Sound effect",
-  "Sound effects": "Sound effects",
-
-  "Limit":               "Limit",
-  "In the editor":       "In the editor",
-  "While playing":       "While playing",
-  "Limit in the editor": "Limit in the editor",
-  "Limit while playing": "Limit while playing",
 
   "Effect (night)": "Effect (night)"
 }
