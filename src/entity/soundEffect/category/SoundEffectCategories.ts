@@ -1,7 +1,8 @@
 import type {ClassWithEnglishName}                                                                                                                 from '../../ClassWithEnglishName';
 import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
 
-import {Enum} from '../../../util/enum/Enum';
+import {Enum}            from '../../../util/enum/Enum';
+import {StringContainer} from '../../StringContainer';
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
@@ -29,13 +30,17 @@ export class SoundEffectCategories
 
     public constructor(englishName: PossibleEnglishName,) {
         super(SoundEffectCategories);
-        this.#englishName = englishName;
+        this.#englishName = new StringContainer(englishName);
     }
 
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName;
+        return this.#englishName.get;
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml;
     }
 
     //endregion -------------------- Getter methods --------------------
