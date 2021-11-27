@@ -8,7 +8,7 @@ import {GameStyle}                     from '../entity/gameStyle/GameStyle';
 import {GameStyleLoader}               from '../entity/gameStyle/GameStyle.loader';
 import {GameStyles}                    from '../entity/gameStyle/GameStyles';
 import {Games}                         from '../entity/game/Games';
-import Name                            from '../lang/name/component/Name';
+import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
@@ -40,7 +40,7 @@ export default class EveryGameStylesApp
             content.push([englishName,
                 <>{index}</>,
                 this.enum[index - 1].renderSingleComponent,
-                <Name id="name" name={gameStyle} popoverOrientation="left"/>,
+                <NameComponent id="name" name={gameStyle} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
             ]);

@@ -1,8 +1,8 @@
 import type {EntityLimits}  from './EntityLimits';
 import type {ReactProperty} from '../../util/react/ReactProperty';
 
-import Name       from '../../lang/name/component/Name';
-import {Fragment} from 'react';
+import NameComponent from '../../lang/name/component/Name.component';
+import {Fragment}    from 'react';
 
 type Id = `${| 'editor' | 'whilePlaying'}-${number}`;
 
@@ -31,5 +31,5 @@ function createReturnOfLine(limits: ReadonlyMap<EntityLimits, boolean>, index: n
 }
 
 function createSingleComponent(id: Id, entityLimit: EntityLimits,) {
-    return <Name id={`entityLimit-name-${id}`} name={entityLimit.reference}/>;
+    return <NameComponent id={`entityLimit-name-${id}`} name={entityLimit.reference}/>;
 }

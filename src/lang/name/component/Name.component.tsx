@@ -17,8 +17,8 @@ import {StringContainer} from '../../../entity/StringContainer';
  * @reactComponent
  * @see Name.toNameMap
  * @see EveryLanguages.currentLanguage
- */// eslint-disable-next-line @typescript-eslint/no-redeclare
-export default function Name({popoverOrientation, id, name, ...otherProperties}: NameProperties,) {
+ */
+export default function NameComponent({popoverOrientation, id, name, ...otherProperties}: NameProperties,) {
     const {t: languageTranslation,} = useTranslation('language');
     const {t: contentTranslation,} = useTranslation('content');
 

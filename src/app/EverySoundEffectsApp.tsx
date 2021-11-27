@@ -8,7 +8,7 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
 import {EmptyName}                     from '../lang/name/EmptyName';
-import Name                            from '../lang/name/component/Name';
+import NameComponent                   from '../lang/name/component/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
@@ -48,8 +48,8 @@ export default class EverySoundEffectsApp
                 <>{index}</>,
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
-                <Name id="name" name={soundEffect} popoverOrientation="right"/>,
-                soundEffect.categoryName === EmptyName.get ? <></> : <Name id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
+                <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
+                soundEffect.categoryName === EmptyName.get ? <></> : <NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
                 <>--{soundEffect.translationKey}--</>,
             ]);
             index++;
