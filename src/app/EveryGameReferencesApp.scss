@@ -8,7 +8,7 @@
 .names-container {
   border-style: solid;
   border-color: var(--bs-secondary);
-  border-radius: .25rem;
+  border-radius: var(--bs-border-radius);
 
   padding: var(--bs-spacer-md);
   margin-bottom: var(--bs-spacer-sm);
@@ -26,12 +26,12 @@
   flex-wrap: wrap;
 }
 
-.return-of-line-name-container{
+.return-of-line-name-container {
   padding-bottom: var(--bs-spacer-sm);
 
   border-bottom-style: dotted;
   border-color: var(--bs-secondary);
-  border-width: 1px;
+  border-width: var(--bs-border-width-1);
 }
 
 .single-name-container {
@@ -41,7 +41,9 @@
 
 .single-name-sub-container {
   background-color: rgba(var(--bs-secondary-rgb), 0.5,);
-  border-radius: .25rem;
+
+  border-radius: var(--bs-border-radius);
+
   height: 100%;
   width: 100%;
   text-align: center;

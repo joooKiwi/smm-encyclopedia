@@ -1,6 +1,6 @@
 import BaseComponent, {ComponentOptions} from 'bootstrap/js/dist/base-component';
 
-export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapInstance, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > {
+export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > {
 
     static #referencesMaps: Map<StaticBootstrapInstance, Template> = new Map();
 
@@ -58,6 +58,7 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
             throw new ReferenceError(`No reference can be used with this element "${typeof element === 'string' ? element : element.id}".`);
         return instanceReturned;
     }
+
 }
 
 interface Template<INSTANCE extends GenericBootstrapInstance = GenericBootstrapInstance, > {
@@ -68,5 +69,10 @@ interface Template<INSTANCE extends GenericBootstrapInstance = GenericBootstrapI
 
 }
 
-type StaticBootstrapInstance = object;
-type GenericBootstrapInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapInstance<StaticBootstrapInstance, BaseComponent, ComponentOptions, ELEMENT, ID>;
+interface StaticBootstrapInstance<OPTION extends ComponentOptions = ComponentOptions,> {
+
+    get DEFAULT_OPTIONS(): Partial<OPTION>
+
+}
+
+type GenericBootstrapInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapInstance<StaticBootstrapInstance<ComponentOptions>, BaseComponent, ComponentOptions, ELEMENT, ID>;

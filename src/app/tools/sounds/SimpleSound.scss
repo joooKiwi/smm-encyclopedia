@@ -10,7 +10,7 @@
   display: flex;
   width: calc(var(--audio-state-width) * 2);
   height: calc(var(--audio-state-height));
-  border-radius: var(--bs-spacer-sm);
+  border-radius: var(--bs-border-radius);
 }
 
 .audio-state {
@@ -18,7 +18,7 @@
   padding: var(--bs-spacer-xs);
   width: var(--audio-state-width);
   height: var(--audio-state-height);
-  border-radius: var(--bs-spacer-xs);
+  border-radius: var(--bs-border-radius);
 }
 
 .audio-state-play {

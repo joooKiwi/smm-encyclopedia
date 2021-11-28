@@ -10,6 +10,22 @@
   --bs-spacer-xl: #{map-get($spacers-original, 4)};
   --bs-spacer-xxl: #{map-get($spacers-original, 5)};
 
+  --bs-border-width-1: #{$border-width-1};
+  --bs-border-width-2: #{$border-width-2};
+  --bs-border-width-3: #{$border-width-3};
+  --bs-border-width-4: #{$border-width-4};
+  --bs-border-width-5: #{$border-width-5};
+
+  --bs-border-radius: #{$border-radius-original};
+  --bs-border-sm-radius: #{$border-radius-sm-original};
+  --bs-border-lg-radius: #{$border-radius-lg-original};
+  --bs-border-pill-radius: #{$border-radius-pill-original};
+  --bs-border-circle-radius: #{$border-radius-circle-original};
+
   --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
+}
+
+.rounded-circle {
+  border-radius: var(--bs-border-circle-radius);
 }
