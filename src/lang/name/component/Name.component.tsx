@@ -1,7 +1,10 @@
 import './Name.component.scss';
 
-import {Popover}                                 from 'bootstrap';
-import {useEffect, useState}                     from 'react';
+import type {Dispatch, SetStateAction} from 'react';
+import {Popover}                       from 'bootstrap';
+import {useEffect, useState}           from 'react';
+
+import type {Name}                               from '../Name';
 import type {NameProperties, PopoverOrientation} from './Name.properties';
 
 import ContentTranslationComponent  from '../../components/ContentTranslationComponent';
@@ -30,30 +33,25 @@ export default function NameComponent({popoverOrientation, id, name, ...otherPro
 
     const elementId = `${id}-${StringContainer.getInHtml(name.english)}`;
     const listId = `${elementId}-list`;
-    const listElement = document.getElementById(listId)!;
-    const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
-    const currentLanguageTextContent = EveryLanguages.currentLanguage.get(name);
 
     return <div key={`${elementId} - container`} id={`${elementId}-container`}>
-        {doesDisplaySpan
-            ? <ContentTranslationComponent>{translation =>
-                <SpanPopover key={`${elementId} - span popover`} elementId={elementId} option={createOption(listElement, popoverOrientation, translation('In other languages'),)}
-                             {...otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
-                    {currentLanguageTextContent}
-                </SpanPopover>
-            }</ContentTranslationComponent>
-            : <span key={`${elementId} - temporary`}>{currentLanguageTextContent}</span>}
-        <ul key={`${elementId} - list`} id={listId} className={`language-list ${doesDisplayPopover ? '' : 'visually-hidden'}`}>{
-            [...name.toNameMap().entries()].filter(([language,],) => languagesToDisplay.includes(language))
-                .map(([language, value,],) => {
-                    const languageKey = `${EveryLanguages.currentLanguage.englishName} - ${language.englishName}`;
-
-                    return <LanguageTranslationComponent key={`${elementId} - language translation component (${languageKey})`}>{translation =>
-                        <li key={`${elementId} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}>{value}</li>
-                    }</LanguageTranslationComponent>;
-                })
-        }</ul>
+        {createTextComponent(name, elementId, listId, doesDisplaySpan, setDoesDisplaySpan, setDoesDisplayPopover, popoverOrientation, otherProperties,)}
+        {createListComponent(name, elementId, listId, doesDisplayPopover,)}
     </div>;
+}
+
+function createTextComponent(name: Name, elementId: string, listId: string, doesDisplaySpan: boolean, setDoesDisplaySpan: Dispatch<SetStateAction<boolean>>, setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>, popoverOrientation: | PopoverOrientation | undefined, otherProperties: Omit<NameProperties, 'popoverOrientation' | 'id' | 'name'>) {
+    const listElement = document.getElementById(listId)!;
+    const currentLanguageTextContent = EveryLanguages.currentLanguage.get(name);
+
+    return doesDisplaySpan
+        ? <ContentTranslationComponent>{translation =>
+            <SpanPopover key={`${elementId} - span popover`} elementId={elementId} option={createOption(listElement, popoverOrientation, translation('In other languages'),)}
+                         {...otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
+                {currentLanguageTextContent}
+            </SpanPopover>
+        }</ContentTranslationComponent>
+        : <span key={`${elementId} - temporary`}>{currentLanguageTextContent}</span>;
 }
 
 function createOption(element: HTMLElement, popoverOrientation: | PopoverOrientation | undefined, title: string,): Partial<Popover.Options> {
@@ -67,4 +65,20 @@ function createOption(element: HTMLElement, popoverOrientation: | PopoverOrienta
         option.placement = popoverOrientation;
 
     return option;
+}
+
+
+function createListComponent(name: Name, elementId: string, listId: string, doesDisplayPopover: boolean,) {
+    const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
+
+    return <ul key={`${elementId} - list`} id={listId} className={`language-list ${doesDisplayPopover ? '' : 'visually-hidden'}`}>{
+        [...name.toNameMap().entries()].filter(([language,],) => languagesToDisplay.includes(language))
+            .map(([language, value,],) => {
+                const languageKey = `${EveryLanguages.currentLanguage.englishName} - ${language.englishName}`;
+
+                return <LanguageTranslationComponent key={`${elementId} - language translation component (${languageKey})`}>{translation =>
+                    <li key={`${elementId} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}>{value}</li>
+                }</LanguageTranslationComponent>;
+            })
+    }</ul>;
 }
