@@ -58,7 +58,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
     }
 
 
-    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: ID | ELEMENT,): OffcanvasInstance {
+    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: | ELEMENT | ID,): OffcanvasInstance<ELEMENT, ID> {
         return BootstrapInstance._getInstance(OffcanvasInstance, element);
     }
 

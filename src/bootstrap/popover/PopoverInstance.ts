@@ -63,7 +63,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     }
 
 
-    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: ID | ELEMENT,): PopoverInstance {
+    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: | ELEMENT | ID,): PopoverInstance<ELEMENT, ID> {
         return BootstrapInstance._getInstance(PopoverInstance, element);
     }
 

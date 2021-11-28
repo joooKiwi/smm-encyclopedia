@@ -63,7 +63,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     }
 
 
-    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: ID | ELEMENT,): TooltipInstance {
+    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: | ELEMENT | ID,): TooltipInstance<ELEMENT, ID> {
         return BootstrapInstance._getInstance(TooltipInstance, element);
     }
 
