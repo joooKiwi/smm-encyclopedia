@@ -3,12 +3,23 @@
 
 :root {
 
+  //region -------------------- Spacer variables --------------------
+
   --bs-spacer-xs: #{map-get($spacers-original, 0)};
   --bs-spacer-sm: #{map-get($spacers-original, 1)};
   --bs-spacer-md: #{map-get($spacers-original, 2)};
   --bs-spacer-lg: #{map-get($spacers-original, 3)};
   --bs-spacer-xl: #{map-get($spacers-original, 4)};
   --bs-spacer-xxl: #{map-get($spacers-original, 5)};
+  --bs-negative-spacer-xs: #{map-get($negative-spacers, 0)};
+  --bs-negative-spacer-sm: #{map-get($negative-spacers, 1)};
+  --bs-negative-spacer-md: #{map-get($negative-spacers, 2)};
+  --bs-negative-spacer-lg: #{map-get($negative-spacers, 3)};
+  --bs-negative-spacer-xl: #{map-get($negative-spacers, 4)};
+  --bs-negative-spacer-xxl: #{map-get($negative-spacers, 5)};
+
+  //endregion -------------------- Spacer variables --------------------
+  //region -------------------- Border variables --------------------
 
   --bs-border-width-1: #{$border-width-1};
   --bs-border-width-2: #{$border-width-2};
@@ -21,6 +32,8 @@
   --bs-border-lg-radius: #{$border-radius-lg-original};
   --bs-border-pill-radius: #{$border-radius-pill-original};
   --bs-border-circle-radius: #{$border-radius-circle-original};
+
+  //endregion -------------------- Border variables --------------------
 
   --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
