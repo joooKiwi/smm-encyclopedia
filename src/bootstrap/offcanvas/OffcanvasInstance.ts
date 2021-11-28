@@ -1,6 +1,6 @@
-import type {ComponentOptions} from 'bootstrap/js/dist/base-component';
-import {Offcanvas}             from 'bootstrap';
+import {Offcanvas} from 'bootstrap';
 
+import type {ComponentOptions}                                        from 'bootstrap/js/dist/base-component';
 import type {OffcanvasEventCallbackReceived, OffcanvasEventsReceived} from './Offcanvas.types';
 
 import {BootstrapInstance} from '../BootstapInstance';
@@ -9,6 +9,22 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
     extends BootstrapInstance<typeof OffcanvasInstance, Offcanvas, ComponentOptions, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<ComponentOptions> = {};
+    /**
+     * @see Offcanvas.Events.show
+     */
+    public static readonly SHOW_EVENT = 'show.bs.offcanvas' as Offcanvas.Events.show;
+    /**
+     * @see Offcanvas.Events.shown
+     */
+    public static readonly SHOWN_EVENT = 'shown.bs.offcanvas' as Offcanvas.Events.shown;
+    /**
+     * @see Offcanvas.Events.hide
+     */
+    public static readonly HIDE_EVENT = 'hide.bs.offcanvas' as Offcanvas.Events.hide;
+    /**
+     * @see Offcanvas.Events.hidden
+     */
+    public static readonly HIDDEN_EVENT = 'hidden.bs.offcanvas' as Offcanvas.Events.hidden;
 
     public constructor(element: | ID | ELEMENT, callbacks: OffcanvasEventsReceived = null,) {
         super(OffcanvasInstance, element, OffcanvasInstance.DEFAULT_OPTIONS,);
@@ -26,6 +42,10 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
         return this;
     }
 
+    /**
+     * @param callbacks
+     * @see https://getbootstrap.com/docs/5.1/components/offcanvas/#events
+     */
     public on(callbacks: OffcanvasEventsReceived,): this {
         if (callbacks == null)
             return this;
@@ -41,20 +61,36 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
         return this;
     }
 
+    /**
+     * @param callback
+     * @see Offcanvas.Events.show
+     */
     public onShow(callback: OffcanvasEventCallbackReceived,): this {
-        return this.__addEventListener(Offcanvas.Events.show, callback,);
+        return this.__addEventListener(OffcanvasInstance.SHOW_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Offcanvas.Events.shown
+     */
     public onShown(callback: OffcanvasEventCallbackReceived,): this {
-        return this.__addEventListener(Offcanvas.Events.shown, callback,);
+        return this.__addEventListener(OffcanvasInstance.SHOWN_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Offcanvas.Events.hide
+     */
     public onHide(callback: OffcanvasEventCallbackReceived,): this {
-        return this.__addEventListener(Offcanvas.Events.hide, callback,);
+        return this.__addEventListener(OffcanvasInstance.HIDE_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Offcanvas.Events.hidden
+     */
     public onHidden(callback: OffcanvasEventCallbackReceived,): this {
-        return this.__addEventListener(Offcanvas.Events.hidden, callback,);
+        return this.__addEventListener(OffcanvasInstance.HIDDEN_EVENT, callback,);
     }
 
 

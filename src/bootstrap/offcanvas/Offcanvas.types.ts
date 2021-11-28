@@ -3,14 +3,29 @@ import type {OffcanvasInstance}                  from './OffcanvasInstance';
 
 export type OffcanvasConfiguration = BootstrapConfigurationWithNoOption<OffcanvasEvents>;
 
+/**
+ * @see https://getbootstrap.com/docs/5.1/components/offcanvas/#events
+ */
 export interface OffcanvasEvents {
 
+    /**
+     * @see Offcanvas.Events.show
+     */
     show: OffcanvasEventCallback
 
+    /**
+     * @see Offcanvas.Events.shown
+     */
     shown: OffcanvasEventCallback
 
+    /**
+     * @see Offcanvas.Events.hide
+     */
     hide: OffcanvasEventCallback
 
+    /**
+     * @see Offcanvas.Events.hidden
+     */
     hidden: OffcanvasEventCallback
 
 }

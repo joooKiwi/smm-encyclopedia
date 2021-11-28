@@ -8,6 +8,26 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     extends BootstrapInstance<typeof PopoverInstance, Popover, Popover.Options, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<Popover.Options> = {};
+    /**
+     * @see Popover.Events.show
+     */
+    public static readonly SHOW_EVENT = Popover.Event.SHOW as Popover.Events.show;
+    /**
+     * @see Popover.Events.shown
+     */
+    public static readonly SHOWN_EVENT = Popover.Event.SHOWN as Popover.Events.shown;
+    /**
+     * @see Popover.Events.hide
+     */
+    public static readonly HIDE_EVENT = Popover.Event.HIDE as Popover.Events.hide;
+    /**
+     * @see Popover.Events.hidden
+     */
+    public static readonly HIDDEN_EVENT = Popover.Event.HIDDEN as Popover.Events.hidden;
+    /**
+     * @see Popover.Events.inserted
+     */
+    public static readonly INSERTED_EVENT = Popover.Event.INSERTED as Popover.Events.inserted;
 
     public constructor(element: | ID | ELEMENT, options: Partial<Popover.Options> = PopoverInstance.DEFAULT_OPTIONS, callbacks: PopoverEventsReceived = null,) {
         super(PopoverInstance, element, options,);
@@ -25,6 +45,10 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
         return this;
     }
 
+    /**
+     * @param callbacks
+     * @see https://getbootstrap.com/docs/5.1/components/popovers/#events
+     */
     public on(callbacks: PopoverEventsReceived,): this {
         if (callbacks == null)
             return this;
@@ -42,24 +66,44 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
         return this;
     }
 
+    /**
+     * @param callback
+     * @see Popover.Events.show
+     */
     public onShow(callback: PopoverEventCallbackReceived,): this {
-        return this.__addEventListener(Popover.Events.show, callback,);
+        return this.__addEventListener(PopoverInstance.SHOW_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Popover.Events.shown
+     */
     public onShown(callback: PopoverEventCallbackReceived,): this {
-        return this.__addEventListener(Popover.Events.shown, callback,);
+        return this.__addEventListener(PopoverInstance.SHOWN_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Popover.Events.hide
+     */
     public onHide(callback: PopoverEventCallbackReceived,): this {
-        return this.__addEventListener(Popover.Events.hide, callback,);
+        return this.__addEventListener(PopoverInstance.HIDE_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Popover.Events.hidden
+     */
     public onHidden(callback: PopoverEventCallbackReceived,): this {
-        return this.__addEventListener(Popover.Events.hidden, callback,);
+        return this.__addEventListener(PopoverInstance.HIDDEN_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Popover.Events.inserted
+     */
     public onInserted(callback: PopoverEventCallbackReceived,): this {
-        return this.__addEventListener(Popover.Events.inserted, callback,);
+        return this.__addEventListener(PopoverInstance.INSERTED_EVENT, callback,);
     }
 
 

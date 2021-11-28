@@ -5,9 +5,29 @@ import type {TooltipEventCallbackReceived, TooltipEventsReceived} from './Toolti
 import {BootstrapInstance} from '../BootstapInstance';
 
 export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
-    extends BootstrapInstance<typeof TooltipInstance,Tooltip, Tooltip.Options, ELEMENT, ID> {
+    extends BootstrapInstance<typeof TooltipInstance, Tooltip, Tooltip.Options, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<Tooltip.Options> = {};
+    /**
+     * @see Popover.Events.show
+     */
+    public static readonly SHOW_EVENT = Tooltip.Event.SHOW as Tooltip.Events.show;
+    /**
+     * @see Popover.Events.shown
+     */
+    public static readonly SHOWN_EVENT = Tooltip.Event.SHOWN as Tooltip.Events.shown;
+    /**
+     * @see Popover.Events.hide
+     */
+    public static readonly HIDE_EVENT = Tooltip.Event.HIDE as Tooltip.Events.hide;
+    /**
+     * @see Popover.Events.hidden
+     */
+    public static readonly HIDDEN_EVENT = Tooltip.Event.HIDDEN as Tooltip.Events.hidden;
+    /**
+     * @see Popover.Events.inserted
+     */
+    public static readonly INSERTED_EVENT = Tooltip.Event.INSERTED as Tooltip.Events.inserted;
 
     public constructor(element: | ID | ELEMENT, options: Partial<Tooltip.Options> = TooltipInstance.DEFAULT_OPTIONS, callbacks: TooltipEventsReceived = null,) {
         super(TooltipInstance, element, options,);
@@ -25,6 +45,10 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
         return this;
     }
 
+    /**
+     * @param callbacks
+     * @see https://getbootstrap.com/docs/5.1/components/tooltips/#events
+     */
     public on(callbacks: TooltipEventsReceived,): this {
         if (callbacks == null)
             return this;
@@ -42,24 +66,44 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
         return this;
     }
 
+    /**
+     * @param callback
+     * @see Tooltip.Events.show
+     */
     public onShow(callback: TooltipEventCallbackReceived,): this {
-        return this.__addEventListener(Tooltip.Events.show, callback,);
+        return this.__addEventListener(TooltipInstance.SHOW_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Tooltip.Events.shown
+     */
     public onShown(callback: TooltipEventCallbackReceived,): this {
-        return this.__addEventListener(Tooltip.Events.shown, callback,);
+        return this.__addEventListener(TooltipInstance.SHOWN_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Tooltip.Events.hide
+     */
     public onHide(callback: TooltipEventCallbackReceived,): this {
-        return this.__addEventListener(Tooltip.Events.hide, callback,);
+        return this.__addEventListener(TooltipInstance.HIDE_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Tooltip.Events.hidden
+     */
     public onHidden(callback: TooltipEventCallbackReceived,): this {
-        return this.__addEventListener(Tooltip.Events.hidden, callback,);
+        return this.__addEventListener(TooltipInstance.HIDDEN_EVENT, callback,);
     }
 
+    /**
+     * @param callback
+     * @see Tooltip.Events.inserted
+     */
     public onInserted(callback: TooltipEventCallbackReceived,): this {
-        return this.__addEventListener(Tooltip.Events.inserted, callback,);
+        return this.__addEventListener(TooltipInstance.INSERTED_EVENT, callback,);
     }
 
 
