@@ -1,7 +1,9 @@
 import './EverySoundEffectsApp.scss';
 
 import type {PossibleEnglishName, PossibleImagePath_SMM1, PossibleImagePath_SMM2} from '../entity/soundEffect/simple/SoundEffects.types';
-import type {SoundEffect}                                                         from '../entity/soundEffect/simple/SoundEffect';
+import type {PossibleEnglishName as PossibleEnglishName_Category}                 from '../entity/soundEffect/category/SoundEffectCategories.types';
+import type {SoundEffect}          from '../entity/soundEffect/simple/SoundEffect';
+import type {SoundEffectAppStates} from './AppStates.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -13,16 +15,24 @@ import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
 import Table                           from './tools/table/Table';
+import Image                           from './tools/images/Image';
+import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
 
 /**
  * @reactComponent
  */
 export default class EverySoundEffectsApp
-    extends AbstractApp {
+    extends AbstractApp<{}, SoundEffectAppStates> {
 
     //region -------------------- Attributes & getter methods --------------------
 
     #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
+
+
+    public constructor(props: {}, context: any) {
+        super(props, context);
+        this.state = {displayCategoryAsText: false,};
+    }
 
     protected get map() {
         return this.#map ??= SoundEffectLoader.get.load();
@@ -32,11 +42,26 @@ export default class EverySoundEffectsApp
         return SoundEffects.values;
     }
 
+    protected get _displayCategoryAsText(): boolean {
+        return this.state.displayCategoryAsText;
+    }
+
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
     private static __getImageBasedBaseOnGame(isInGame: boolean, path: | PossibleImagePath_SMM1 | PossibleImagePath_SMM2, alt: PossibleAlt,) {
         return !isInGame ? <></> : <img src={path} alt={alt}/>;
+    }
+
+    private __getCategory(index: number, soundEffect: SoundEffect,) {
+        if (soundEffect.categoryName === EmptyName.get)
+            return <></>;
+
+        if (this._displayCategoryAsText)
+            return <NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>;
+
+        const soundEffectCategoryName = soundEffect.category.english as PossibleEnglishName_Category;
+        return <Image source={SoundEffectCategories.getValue(soundEffectCategoryName)!.imagePath} fallbackName={`${soundEffectCategoryName} - image`}/>;
     }
 
     protected get content() {
@@ -49,7 +74,7 @@ export default class EverySoundEffectsApp
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
                 EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
                 <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
-                soundEffect.categoryName === EmptyName.get ? <></> : <NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
+                this.__getCategory(index, soundEffect,),
                 <>--{soundEffect.translationKey}--</>,
             ]);
             index++;

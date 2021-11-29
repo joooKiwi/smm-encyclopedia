@@ -4,3 +4,10 @@ export interface AppStates
     extends ReactState {
 
 }
+
+export interface SoundEffectAppStates
+    extends ReactState {
+
+    displayCategoryAsText: boolean
+
+}
