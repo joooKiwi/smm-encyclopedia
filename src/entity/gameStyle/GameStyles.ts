@@ -7,11 +7,12 @@ import type {GameStyle}                                                         
 import type {GameStyleProperty}                                                                                                                                            from '../properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                          from '../properties/GameStyleReferences';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                      from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                              from '../../util/enum/Enum.types';
 
 import {Enum}             from '../../util/enum/Enum';
 import {GameStyleLoader}  from './GameStyle.loader';
-import {StringContainer}  from '../StringContainer';
 import GameStyleComponent from './GameStyle.component';
+import {StringContainer}  from '../StringContainer';
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
@@ -84,11 +85,6 @@ export abstract class GameStyles
     } ('SM3DW', 'Super Mario 3D World',   );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     #reference?: GameStyle;
@@ -99,7 +95,7 @@ export abstract class GameStyles
     //endregion -------------------- Attributes --------------------
 
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
-        super(GameStyles);
+        super();
         this.#acronym = acronym;
         this.#englishName = new StringContainer(englishName);
         this.#startingImagePath = `/game/styles/${englishName}`;
@@ -146,6 +142,10 @@ export abstract class GameStyles
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<GameStyles> {
+        return GameStyles;
+    }
+
     public static getValue(nullValue: null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -168,13 +168,7 @@ export abstract class GameStyles
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.SUPER_MARIO_BROS,
-            this.SUPER_MARIO_BROS_3,
-            this.SUPER_MARIO_WORLD,
-            this.NEW_SUPER_MARIO_BROS_U,
-            this.SUPER_MARIO_3D_WORLD,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

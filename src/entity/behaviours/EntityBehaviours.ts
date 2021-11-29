@@ -1,6 +1,7 @@
-import type {ClassWithAcronym}                                                    from '../ClassWithAcronym';
+import type {ClassWithAcronym}                                                                                                                   from '../ClassWithAcronym';
 import type {ClassWithTranslationKey}                                                                                                            from '../../lang/ClassWithTranslationKey';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
+import type {StaticReference}                                                                                                                    from '../../util/enum/Enum.types';
 
 import {Enum}                  from '../../util/enum/Enum';
 import {EntityBehaviour}       from './EntityBehaviour';
@@ -34,11 +35,6 @@ export class EntityBehaviours
     public static readonly RESPAWN_IN_BLOCK_IF_PLAYER_DIE =                new EntityBehaviours('RBD',   'Respawn in Block (if player die)',         );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     #reference?: EntityBehaviour;
@@ -48,7 +44,7 @@ export class EntityBehaviours
     //endregion -------------------- Attributes --------------------
 
     private constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKeys,) {
-        super(EntityBehaviours);
+        super();
         this.#acronym = acronym;
         this.#translationKey = translationKey;
     }
@@ -82,6 +78,10 @@ export class EntityBehaviours
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<EntityBehaviours> {
+        return EntityBehaviours;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -105,22 +105,7 @@ export class EntityBehaviours
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.RESPAWN_WITH_VINE,
-            this.RESPAWN_AS_QUESTION_MARK_BLOCK,
-            this.ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN,
-            this.NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN,
-            this.ONLY_1ST_SOUND_OF_PINK_COIN,
-
-            this.SPAWN_ONLY_1_POWER_UP,
-            this.SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS,
-            this.EXPELLED_POWER_UP_FROM_BLOCK,
-            this.ALWAYS_FINAL_POWER_UP,
-
-            this.RESPAWN_AFTER_10_SEC,
-            this.CAN_RESPAWN_AT_CP,
-            this.RESPAWN_IN_BLOCK_IF_PLAYER_DIE,
-        ];
+        return Enum.getValuesOn(this);
     }
 
     public static [Symbol.iterator]() {

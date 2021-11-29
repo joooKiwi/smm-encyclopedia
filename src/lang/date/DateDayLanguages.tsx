@@ -2,7 +2,9 @@ import type {DayNumber}                                       from './types';
 import type {EnumArray, Names, Ordinals, PossibleStringValue} from '../ProjectLanguages.types';
 import type {EveryLanguages}                                  from '../EveryLanguages';
 import type {PossibleNonNullableValue, PossibleValue}         from './DateDayLanguages.types';
+import type {StaticReference}                                 from '../../util/enum/Enum.types';
 
+import {Enum}             from '../../util/enum/Enum';
 import {ProjectLanguages} from '../ProjectLanguages';
 
 export abstract class DateDayLanguages
@@ -131,12 +133,9 @@ export abstract class DateDayLanguages
 
     }            (ProjectLanguages.KOREAN,             );
 
+    protected static readonly _DEFAULT = this.getValue(ProjectLanguages._DEFAULT);
+
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES?: EnumArray<DateDayLanguages>;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #reference;
@@ -167,6 +166,10 @@ export abstract class DateDayLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<DateDayLanguages> {
+        return DateDayLanguages;
+    }
+
     public static get default(): DateDayLanguages {
         return this.getValue(ProjectLanguages.default)!;
     }
@@ -179,6 +182,7 @@ export abstract class DateDayLanguages
     public static getValue(nameOrAcronym: PossibleStringValue,): DateDayLanguages
     public static getValue(nameOrAcronym: string,): | DateDayLanguages | null
     public static getValue<I extends DateDayLanguages, >(instance: I,): I
+    public static getValue(instance: ProjectLanguages,): DateDayLanguages
     public static getValue(instance: | EveryLanguages | ProjectLanguages,): | DateDayLanguages | null
     public static getValue(value: PossibleNonNullableValue,): DateDayLanguages
     public static getValue(value: PossibleValue,): | DateDayLanguages | null
@@ -196,19 +200,7 @@ export abstract class DateDayLanguages
     }
 
     public static get values(): EnumArray<DateDayLanguages> {
-        return this.#VALUES ??= [
-            this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
-            this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
-            this.GERMAN,
-            this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
-            this.ITALIAN,
-            this.DUTCH,
-            this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
-            this.RUSSIAN,
-            this.JAPANESE,
-            this.TRADITIONAL_CHINESE, this.SIMPLIFIED_CHINESE,
-            this.KOREAN,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

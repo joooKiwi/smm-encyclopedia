@@ -2,6 +2,7 @@ import type {ClassWithEnglishName}                                              
 import type {Entity}                                                                                                        from '../simple/Entity';
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Times.types';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                       from '../PropertyGetter';
+import type {StaticReference}                                                                                               from '../../util/enum/Enum.types';
 import type {TimeProperty}                                                                                                  from '../properties/TimeProperty';
 import type {TimeReferences}                                                                                                from '../properties/TimeReferences';
 
@@ -41,11 +42,6 @@ export abstract class Times
     }('Night',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -53,7 +49,7 @@ export abstract class Times
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
-        super(Times);
+        super();
         this.#englishName = new StringContainer(englishName);
     }
 
@@ -81,6 +77,10 @@ export abstract class Times
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<Times> {
+        return Times;
+    }
+
     public static getValue(nullValue: null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -103,10 +103,7 @@ export abstract class Times
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.DAY,
-            this.NIGHT,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

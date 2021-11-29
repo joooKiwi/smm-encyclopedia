@@ -532,60 +532,60 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Boolean conversion methods --------------------
 
     public convertToBoolean(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.BOOLEAN.name, ...headers,);
+        return this.convertTo(PredefinedConverter.BOOLEAN.simpleName, ...headers,);
     }
 
     public convertToNullableBoolean(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.NULLABLE_BOOLEAN.name, ...headers,);
+        return this.convertTo(PredefinedConverter.NULLABLE_BOOLEAN.simpleName, ...headers,);
     }
 
 
     public convertToBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | 'nullable boolean' | boolean>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.BOOLEAN.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.BOOLEAN.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     public convertToNullableBooleanAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'boolean' | boolean | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_BOOLEAN.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_BOOLEAN.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     //endregion -------------------- Boolean conversion methods --------------------
     //region -------------------- Number conversion methods --------------------
 
     public convertToNumber(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.NUMBER.name, ...headers,);
+        return this.convertTo(PredefinedConverter.NUMBER.simpleName, ...headers,);
     }
 
     public convertToNullableNumber(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.NULLABLE_NUMBER.name, ...headers,);
+        return this.convertTo(PredefinedConverter.NULLABLE_NUMBER.simpleName, ...headers,);
     }
 
 
     public convertToNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | 'nullable number' | number>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NUMBER.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NUMBER.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     public convertToNullableNumberAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'number' | number | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_NUMBER.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_NUMBER.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     //endregion -------------------- Number conversion methods --------------------
     //region -------------------- String conversion methods --------------------
 
     public convertToString(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.STRING.name, ...headers,);
+        return this.convertTo(PredefinedConverter.STRING.simpleName, ...headers,);
     }
 
     public convertToEmptyableString(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.EMPTYABLE_STRING.name, ...headers,);
+        return this.convertTo(PredefinedConverter.EMPTYABLE_STRING.simpleName, ...headers,);
     }
 
     public convertToNullableString(...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(PredefinedConverter.NULLABLE_STRING.name, ...headers,);
+        return this.convertTo(PredefinedConverter.NULLABLE_STRING.simpleName, ...headers,);
     }
 
 
     public convertToStringAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | 'nullable string' | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.STRING.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.STRING.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     /**
@@ -608,7 +608,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * @see this.convertTo
      */
     public convertToEmptyableStringAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.EMPTYABLE_STRING.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.EMPTYABLE_STRING.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     /**
@@ -631,7 +631,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * @see this.convertTo
      */
     public convertToNullableStringAnd(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<| 'string' | NullablePredefinedConversion | EmptyableString>, ...headers: ArrayOfHeadersReceived<H>): this {
-        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_STRING.name, headerTypeOrConvertor,), ...headers,);
+        return this.convertTo(this._addTypeToHeaderTypeOrConvertor(PredefinedConverter.NULLABLE_STRING.simpleName, headerTypeOrConvertor,), ...headers,);
     }
 
     //endregion -------------------- String conversion methods --------------------
@@ -730,7 +730,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     protected _createContainValidations(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ArrayOfValidationsArrayOfValidations {
         return [
-            Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.name.includes(CSVLoader.NULLABLE_STRING)) != null,
+            Array.from(headerContainer.predefinedConvertors).find(predefinedConvertor => predefinedConvertor.simpleName.includes(CSVLoader.NULLABLE_STRING)) != null,
             headerContainer.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING) != null,
         ];
     }
@@ -746,7 +746,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         return (containNullable ? CSVLoader.NULLABLE_STRING : '')
             + ' ('
             + (containEmptyableString ? '"", ' : '')
-            + (headerContainer.predefinedConvertors.size === 0 ? '' : `predefined convertor: (${Array.from(headerContainer.predefinedConvertors).map(predefinedConvertor => predefinedConvertor.nameAsNonNullable).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
+            + (headerContainer.predefinedConvertors.size === 0 ? '' : `predefined convertor: (${Array.from(headerContainer.predefinedConvertors).map(predefinedConvertor => predefinedConvertor.simpleNameAsNonNullable).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
             + (headerContainer.followingHeaders.size === 0 ? '' : `headers: (${Array.from(headerContainer.followingHeaders).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
             + (headerContainer.singleValuesToValidate.size === 0 ? '' : `values: (${Array.from(headerContainer.singleValuesToValidate).map(singleValue => `"${singleValue}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`)
             + (headerContainer.convertorCallbacks.size === 0 ? '' : `${CSVLoader.CUSTOM_CALLBACK_NAME} x${headerContainer.convertorCallbacks.size}`)

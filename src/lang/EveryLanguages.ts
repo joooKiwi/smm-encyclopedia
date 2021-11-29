@@ -2,11 +2,12 @@ import type {Dispatch, SetStateAction} from 'react';
 import i18n                            from 'i18next';
 
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './ClassWithEveryLanguages';
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                 from './name/containers/Language';
-import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue} from './EveryLanguages.types';
-import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                              from './ProjectLanguages.types';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './name/containers/Language';
+import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                               from './EveryLanguages.types';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './LanguageEnumerable';
+import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './ProjectLanguages.types';
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../util/enum/Enum.types';
 
 import {Characters} from './Characters';
 import {Enum}       from '../util/enum/Enum';
@@ -297,13 +298,9 @@ export abstract class EveryLanguages
 
     }             (false, false,           'el',    'el',    'Greek',                'ελληνικά',);
 
+    protected static readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH;
+
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES?: EnumArray;
-    static #DEFAULT?: EveryLanguages;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #CURRENT_LANGUAGE: EveryLanguages;
@@ -341,7 +338,7 @@ export abstract class EveryLanguages
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, parent: EveryLanguages,)
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, parent: | EveryLanguages | null = null,) {
-        super(EveryLanguages);
+        super();
         this.#isACompleteLanguage = isACompleteLanguage;
         if (typeof isASpaceEvenLanguage == 'boolean')
             this.#isASpaceEvenLanguage = this.#isASpaceEvenLanguageForThePointsAndSpace = this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace = isASpaceEvenLanguage;
@@ -580,8 +577,12 @@ export abstract class EveryLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<EveryLanguages> {
+        return EveryLanguages;
+    }
+
     public static get default(): EveryLanguages {
-        return this.#DEFAULT!;
+        return Enum.getNonNullDefaultOn(EveryLanguages);
     }
 
     public static set default(value: EveryLanguages | string | number,) {
@@ -589,12 +590,7 @@ export abstract class EveryLanguages
     }
 
     public static setDefault(value: | EveryLanguages | string | number,): typeof EveryLanguages {
-        const selectedValue = this.getValue(value);
-        if (selectedValue == null || selectedValue.isDefaultLanguage)
-            return this;
-
-        this.#DEFAULT = selectedValue;
-        return this;
+        return Enum.setNonNullDefaultOn(EveryLanguages, value,);
     }
 
 
@@ -620,20 +616,7 @@ export abstract class EveryLanguages
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.ENGLISH, this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
-            this.FRENCH, this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
-            this.GERMAN,
-            this.SPANISH, this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
-            this.ITALIAN,
-            this.DUTCH,
-            this.PORTUGUESE, this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
-            this.RUSSIAN,
-            this.JAPANESE,
-            this.CHINESE, this.TRADITIONAL_CHINESE, this.SIMPLIFIED_CHINESE,
-            this.KOREAN,
-            this.GREEK,
-        ];
+        return Enum.getValuesOn(EveryLanguages);
     }
 
     public static [Symbol.iterator]() {
@@ -644,4 +627,4 @@ export abstract class EveryLanguages
 
 }
 
-type IsASpaceEvenLanguageReceived = | boolean | [excludingPointsAndSpace: boolean, pointsAndSpace:boolean,];
+type IsASpaceEvenLanguageReceived = | boolean | [excludingPointsAndSpace: boolean, pointsAndSpace: boolean,];
