@@ -1,4 +1,5 @@
-import type {Enumerable} from './Enumerable';
+import type {Enumerable}       from './Enumerable';
+import type {EnumerableStatic} from './EnumerableStatic';
 
 //region -------------------- String types --------------------
 
@@ -16,6 +17,6 @@ export type EnumByName<N extends string, E extends Enumerable = Enumerable, > = 
 export type EnumByPossibleString<PS extends | string | N, N extends string, E extends Enumerable = Enumerable, > = PS extends N ? EnumByName<N, E> : E
 export type EnumByString<S extends | PS | string, PS extends | N | string, N extends string, E extends Enumerable = Enumerable, > = S extends PS ? EnumByPossibleString<PS, N, E> : | E | null;
 
-// export type EnumByAnyValues<V extends ,E extends Enumerable=Enumerable,>
+export type StaticReference<E extends Enumerable, > = EnumerableStatic<E['ordinal'], E['name']>;
 
 //endregion -------------------- Instance types --------------------

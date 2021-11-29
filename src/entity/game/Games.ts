@@ -3,6 +3,7 @@ import type {ClassWithEnglishName}                                              
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
 import type {GameProperty}                                                                                                                                      from '../properties/GameProperty';
 import type {PropertyGetter}                                                                                                                                    from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                   from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../StringContainer';
@@ -28,11 +29,6 @@ export abstract class Games
     }('SMM2', 'Super Mario Maker 2',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #acronym;
@@ -42,7 +38,7 @@ export abstract class Games
     //endregion -------------------- Attributes --------------------
 
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
-        super(Games);
+        super();
         this.#acronym = acronym;
         this.#englishName = new StringContainer(englishName);
         this.#imagePath = `/game/logos/${englishName}.svg`;
@@ -78,6 +74,10 @@ export abstract class Games
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<Games> {
+        return Games;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -100,10 +100,7 @@ export abstract class Games
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.SUPER_MARIO_MAKER_1,
-            this.SUPER_MARIO_MAKER_2,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

@@ -1,5 +1,6 @@
 import type {ClassWithEnglishName}                                                                                                                 from '../../ClassWithEnglishName';
 import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
+import type {StaticReference}                                                                                                                      from '../../../util/enum/Enum.types';
 
 import {Enum}            from '../../../util/enum/Enum';
 import {StringContainer} from '../../StringContainer';
@@ -17,11 +18,6 @@ export class SoundEffectCategories
     public static readonly MUSIC =      new SoundEffectCategories('Music',     );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -29,7 +25,7 @@ export class SoundEffectCategories
     //endregion -------------------- Attributes --------------------
 
     public constructor(englishName: PossibleEnglishName,) {
-        super(SoundEffectCategories);
+        super();
         this.#englishName = new StringContainer(englishName);
     }
 
@@ -53,6 +49,10 @@ export class SoundEffectCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<SoundEffectCategories> {
+        return SoundEffectCategories;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -75,13 +75,7 @@ export class SoundEffectCategories
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.FEELINGS,
-            this.STINGERS,
-            this.REACTIONS,
-            this.ANIMATIONS,
-            this.MUSIC,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

@@ -1,6 +1,7 @@
 import type {BasicPredefinedConversion, EnumArray, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PredefinedConversion} from './PredefinedConverter.types';
 import type {Converter}                                                                                                                                 from './Converter';
 import type {ConversionCallbackToAny, ValidationCallback}                                                                                               from '../CSVLoader.types';
+import type {StaticReference}                                                                                                                           from '../../enum/Enum.types';
 
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';
@@ -211,15 +212,10 @@ export abstract class PredefinedConverter
     //TODO add string to array of nullable number converter
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #name;
-    readonly #nameAsNonNullable;
+    readonly #simpleName;
+    readonly #simpleNameAsNonNullable;
     #parent?: PredefinedConverter;
     readonly #parentCallback: () => PredefinedConverter;
     readonly #callbackToCreateNewValidationAsNonNullable: (validatingValue: | any | any[],) => ValidationCallback;
@@ -227,18 +223,18 @@ export abstract class PredefinedConverter
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(name: BasicPredefinedConversion,)
-    private constructor(name: PredefinedConversion, nameAsNonNullable: BasicPredefinedConversion,)
-    private constructor(name: PredefinedConversion, nameAsNonNullable?: BasicPredefinedConversion,) {
-        super(PredefinedConverter);
-        this.#name = name;
-        this.#nameAsNonNullable = (nameAsNonNullable ?? name) as BasicPredefinedConversion;
-        if (nameAsNonNullable === undefined) {
+    private constructor(simpleName: BasicPredefinedConversion,)
+    private constructor(simpleName: PredefinedConversion, simpleNameAsNonNullable: BasicPredefinedConversion,)
+    private constructor(simpleName: PredefinedConversion, simpleNameAsNonNullable?: BasicPredefinedConversion,) {
+        super();
+        this.#simpleName = simpleName;
+        this.#simpleNameAsNonNullable = (simpleNameAsNonNullable ?? simpleName) as BasicPredefinedConversion;
+        if (simpleNameAsNonNullable === undefined) {
             this.#parentCallback = () => this;
             this.#callbackToCreateNewValidationAsNonNullable = validatingValue => this.newValidation(validatingValue);
             this.#callbackToCreateNewConversionAsNonNullable = () => value => this.newConversion(value);
         } else {
-            this.#parentCallback = () => PredefinedConverter.getValue(this.name);
+            this.#parentCallback = () => PredefinedConverter.getValue(this.simpleName);
             this.#callbackToCreateNewValidationAsNonNullable = validatingValue => this.parent.newValidation(validatingValue);
             this.#callbackToCreateNewConversionAsNonNullable = () => value => this.parent.newConversion(value);
         }
@@ -246,12 +242,12 @@ export abstract class PredefinedConverter
 
     //region -------------------- Getter methods --------------------
 
-    public get name(): PredefinedConversion {
-        return this.#name;
+    public get simpleName(): PredefinedConversion {
+        return this.#simpleName;
     }
 
-    public get nameAsNonNullable(): BasicPredefinedConversion {
-        return this.#nameAsNonNullable;
+    public get simpleNameAsNonNullable(): BasicPredefinedConversion {
+        return this.#simpleNameAsNonNullable;
     }
 
     public get parent(): | PredefinedConverter | this {
@@ -278,6 +274,10 @@ export abstract class PredefinedConverter
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<PredefinedConverter> {
+        return PredefinedConverter;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): NonNullable<EnumArray[O]> | null
@@ -291,7 +291,7 @@ export abstract class PredefinedConverter
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(predefinedConverter => predefinedConverter.name === value.toLowerCase())
+                    ?? this.values.find(predefinedConverter => predefinedConverter.simpleName === value.toLowerCase())
                     ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
@@ -299,12 +299,7 @@ export abstract class PredefinedConverter
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.NUMBER, this.NULLABLE_NUMBER,
-            this.BOOLEAN, this.NULLABLE_BOOLEAN,
-            this.STRING, this.EMPTYABLE_STRING, this.NULLABLE_STRING,
-            this.SINGLE_NUMBER, this.SINGLE_BOOLEAN, this.SINGLE_STRING,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

@@ -3,6 +3,7 @@ import type {ClassWithNullableAcronym}                                          
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                     from '../ClassWithReference';
 import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                          from './EntityLimit';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleNonNullableValue, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying, PossibleStringValue, PossibleValue} from './EntityLimits.types';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                        from '../../util/enum/Enum.types';
 
 import {EntityLimitLoader} from './EntityLimit.loader';
 import {EntityLimitTypes}  from './EntityLimitTypes';
@@ -72,11 +73,6 @@ export class EntityLimits
     public static readonly WARP_BOX_LIMIT =                                           new EntityLimits('Warp Box',                                                                          );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #LIMIT_LENGTH = ' Limit'.length;
@@ -92,7 +88,7 @@ export class EntityLimits
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: EnglishNameReceived, alternativeEnglishName: | AlternativeEnglishNameReceived | null = null,) {
-        super(EntityLimits);
+        super();
         if (typeof englishName == 'string') {
             this.#acronym = null;
             this.#englishName = new StringContainer(`${englishName as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`);
@@ -166,6 +162,10 @@ export class EntityLimits
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<EntityLimits> {
+        return EntityLimits;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -180,7 +180,7 @@ export class EntityLimits
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(theme => theme.englishName === value)
+                ?? this.values.find(theme => theme.englishName === value)
                     ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_LENGTH) === value)
                     ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_IN_EDITOR_LENGTH) === value)
                     ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_WHILE_PLAYING_LENGTH) === value)
@@ -194,31 +194,7 @@ export class EntityLimits
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.GENERAL_ENTITY_LIMIT_WHILE_PLAYING, this.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING,
-
-            this.LOOSE_COIN_LIMIT, this.SOUND_EFFECT_LIMIT, this.CORPSE_LIMIT, this.PROJECTILE_LIMIT, this.LIGHT_SOURCE_LIMIT,
-
-            this.GROUND_LIMIT, this.BLOCK_LIMIT, this.PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT, this.CLEAR_PIPE_LIMIT,
-
-            this.GROWN_VINE_LIMIT, this.CHECKPOINT_FLAG_LIMIT, this.TRACK_LIMIT,
-            this.SNAKE_BLOCK_LIMIT, this.EXCLAMATION_BLOCK_LIMIT, this.TRACK_BLOCK_LIMIT,
-            this.ICICLE_LIMIT, this.ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT, this.ENTITY_HELD_BY_A_TWISTER_LIMIT,
-
-            this._10_OR_30_OR_50_COIN_LIMIT, this.PINK_COIN_LIMIT, this.KEY_COLLECTED_LIMIT,
-
-            this.POWER_UP_ENTITY_LIMIT_EDITOR,
-            this.FIREBALL_THROWN_BY_A_PLAYER_LIMIT, this.SUPERBALL_THROWN_BY_A_PLAYER_LIMIT,
-            this.BOMB_THROWN_BY_A_LINK_LIMIT, this.BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT, this.BOOMERANG_THROWN_BY_A_PLAYER_LIMIT, this.CANNONBALL_THROWN_BY_A_PLAYER_LIMIT,
-            this.HATCHED_YOSHI_LIMIT,
-
-            this.GENERAL_ENTITY_LIMIT_EDITOR,
-            this.CHARVAARGH_LIMIT, this.PIRANHA_CREEPER_LIMIT,
-            this.BOWSER_AND_BOWSER_JR_LIMIT, this.BOOM_BOOM_AND_POM_POM_LIMIT, this.KOOPALING_LIMIT,
-            this.ANGRY_SUN_MOON_LIMIT, this.PHANTO_LIMIT, this.KOOPA_TROOPA_CAR_LIMIT,
-
-            this.WARP_DOOR_LIMIT, this.WARP_BOX_LIMIT,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

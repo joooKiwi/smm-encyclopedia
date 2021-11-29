@@ -3,6 +3,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithReference}                                                                                                             from '../entity/ClassWithReference';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types';
 import type {GameReference}                                                                                                                  from './GameReference';
+import type {StaticReference}                                                                                                                from '../util/enum/Enum.types';
 
 import {Enum}                from '../util/enum/Enum';
 import {GameReferenceLoader} from './GameReference.loader';
@@ -171,11 +172,6 @@ export class GameReferences
     public static readonly BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY = new GameReferences('BA:TYBMD', 'Brain Age: Train Your Brain in Minutes a Day!',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES?: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     #reference?: GameReference;
@@ -185,7 +181,7 @@ export class GameReferences
     //endregion -------------------- Attributes --------------------
 
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
-        super(GameReferences);
+        super();
         this.#acronym = acronym;
         this.#englishName = new StringContainer(englishName);
     }
@@ -225,6 +221,10 @@ export class GameReferences
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<GameReferences> {
+        return GameReferences;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -247,112 +247,7 @@ export class GameReferences
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.SUPER_MARIO_MAKER_1, this.SUPER_MARIO_MAKER_2,
-
-            this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U, this.SUPER_MARIO_3D_WORLD,
-
-            this.SUPER_MARIO_KART, this.SUPER_MARIO_64, this.SUPER_MARIO_SUNSHINE, this.SUPER_MARIO_GALAXY,
-
-            this.MARIO_BROS, this.SUPER_MARIO_BROS_2, this.SUPER_MARIO_WORLD_2_YOSHI_ISLAND, this.SUPER_MARIO_LAND,
-            this.WARIO_LAND_SUPER_MARIO_LAND_3, this.MARIO_TENNIS, this.DR_MARIO, this.DR_MARIO_64,
-            this.LUIGI_MANSION, this.YOSHI_WOOLLY_WORLD, this.CAPTAIN_TOAD_TREASURE_TRACKER, this.WARIOWARE_TOUCHED,
-            this.MARIO_AND_LUIGI_PAPER_JAM,
-
-            this.DONKEY_KONG, this.DONKEY_KONG_JR, this.DONKEY_KONG_COUNTRY,
-
-            this.KIRBY_DREAM_LAND, this.KIRBY_ADVENTURE,
-
-            this.KID_ICARIUS, this.KID_ICARIUS_UPRISING,
-
-            this.MEGA_MAN,
-
-            this.METROID, this.METROID_ZERO_MISSION,
-
-            this.NINTENDO_ENTERTAINMENT_SYSTEM_ROB,
-
-            this.FIRE_EMBLEM_SHADOW_DRAGON, this.FIRE_EMBLEM_RADIANT_DAWN, this.FIRE_EMBLEM_AWAKENING,
-
-            this.POKEMON_RED, this.POKEMON_GREEN, this.POKEMON_BLUE, this.POKEMON_YELLOW,
-            this.POKEMON_DIAMOND, this.POKEMON_PEARL,
-            this.POKEMON_X, this.POKEMON_Y,
-
-            this.PIKMIN, this.PIKMIN_3,
-
-            this.THE_LEGEND_OF_ZELDA, this.THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST, this.THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME,
-            this.THE_LEGEND_OF_ZELDA_MAJORA_MASK, this.THE_LEGEND_OF_ZELDA_THE_WIND_WAKER, this.THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS,
-            this.THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES,
-
-            this.XENOBLADE_CHRONICLES,
-
-            this.EARTHBOUND, this.MOTHER3,
-
-            this.SPLATOON,
-
-            this.WII_FIT,
-
-            this.CHIBI_ROBO,
-
-            this.ANIMAL_CROSSING, this.ANIMAL_CROSSING_WILD_WORLD, this.ANIMAL_CROSSING_CITY_FOLK,
-            this.ANIMAL_CROSSING_NEW_LEAF, this.ANIMAL_CROSSING_HAPPY_HOME_DESIGNER,
-
-            this.F_ZERO,
-
-            this.GAME_AND_WATCH,
-
-            this.SONIC_THE_HEDGEHOG,
-
-            this.DUCK_HUNT,
-
-            this.PAC_MAN,
-
-            this.WRECKING_CREW,
-
-            this.PUNCH_OUT,
-
-            this.STAR_FOX, this.STAR_FOX_ZERO,
-
-            this.YAKUMAN_HO_O,
-
-            this.BIG_BRAIN_ACADEMY,
-
-            this.SWAPNOTE, this.NINTENDO_BADGE_ARCADE, this.MONSTER_MANOR,
-
-            this.GAMECENTER_CX, this.CORO_COR0_COMIC, this.FAMITSU,
-            this.MERCENDES_BENZ,
-            this.FAMICOM_DISK_SYSTEM, this.BABYMETAL,
-
-            this.MONSTER_HUNTER,
-
-            this.EXCITEBIKE,
-
-            this.NISEKOI,
-
-            this.JAM_WITH_THE_BAND,
-
-            this.DAIGASSO_BAND_BROS_P,
-
-            this.THE_LEGENDARY_STARFY,
-
-            this.BALLOON_FIGHT,
-
-            this.SHIN_ONIGASHIMA,
-
-            this.FAMICOM_DETECTIVE_CLUB_PART_II,
-
-            this.PUSHMO,
-
-            this.CLU_CLU_LAND,
-
-            this.VOLLEYBALL,
-
-            this.ICE_CLIMBER,
-
-            this.HELLO_KITTY, this.MY_MELODY,
-            this.SHAUN_THE_SHEEP,
-
-            this.BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

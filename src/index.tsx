@@ -1,14 +1,10 @@
+import 'bootstrap/dist/js/bootstrap.esm';
 import './index.scss';
 import './lang/i18n';
-import 'bootstrap/dist/js/bootstrap.esm';
 
 import ReactDOM        from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-
-import {EveryLanguages} from './lang/EveryLanguages';
-import IndexComponent   from './IndexComponent';
-
-EveryLanguages.default ??= 'en_AM';
+import IndexComponent  from './IndexComponent';
 
 ReactDOM.render(
     <IndexComponent/>,

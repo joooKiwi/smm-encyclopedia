@@ -2,6 +2,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithReference}                                                                                            from '../ClassWithReference';
 import type {EntityCategory}                                                                                                from './EntityCategory';
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
+import type {StaticReference}                                                                                               from '../../util/enum/Enum.types';
 
 import {EntityCategoryLoader} from './EntityCategory.loader';
 import {Enum}                 from '../../util/enum/Enum';
@@ -20,11 +21,6 @@ export class EntityCategories
     public static readonly GIZMO =   new EntityCategories('Gizmo',  );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     #reference?: EntityCategory;
@@ -36,7 +32,7 @@ export class EntityCategories
     // private constructor(englishNameAndImagePath: PossibleEntityCategories)
     // private constructor(englishName: PossibleEntityCategories, basicImagePath: string)
     private constructor(englishName: PossibleEnglishName/*, basicImagePath: string = englishName*/) {
-        super(EntityCategories);
+        super();
         this.#englishName = new StringContainer<PossibleEnglishName, Lowercase<PossibleEnglishName>>(englishName);
         // this.#imagePath = '/game/themes/' + basicImagePath;
     }
@@ -65,6 +61,11 @@ export class EntityCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<EntityCategories> {
+        return EntityCategories;
+    }
+
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -87,12 +88,7 @@ export class EntityCategories
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.TERRAIN,
-            this.ITEM,
-            this.ENEMY,
-            this.GIZMO,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

@@ -4,6 +4,7 @@ import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArra
 import type {CourseTheme}                                                                                                                                                                                                         from './CourseTheme';
 import type {Entity}                                                                                                                                                                                                              from '../simple/Entity';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                             from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                     from '../../util/enum/Enum.types';
 import type {ThemeProperty}                                                                                                                                                                                                       from '../properties/ThemeProperty';
 import type {ThemeReferences}                                                                                                                                                                                                     from '../properties/ThemeReferences';
 import type {WorldTheme}                                                                                                                                                                                                          from './WorldTheme';
@@ -139,7 +140,7 @@ export class Themes
     }     ('Castle', 'Castle - Volcano',);
 
     public static readonly VOLCANO =     new Themes                                       ('Volcano', 'Castle - Volcano',);
-    public static readonly SPACE =       new class Theme_Space extends Themes {
+    public static readonly SPACE =       new class Themes_Space extends Themes {
 
         public get longImagePath() {
             //FIXME a temporary fix to still get the image until the png image can be retrieved.
@@ -149,11 +150,6 @@ export class Themes
     }       ('Space',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #COURSES: EnumArray_OnlyCourseTheme;
@@ -170,7 +166,7 @@ export class Themes
     private constructor(englishNameAndImagePath: PossibleEnglishName,)
     private constructor(englishName: PossibleEnglishName, basicImagePath: SingleThemePath,)
     private constructor(englishName: PossibleEnglishName, basicImagePath: | SingleThemePath | PossibleEnglishName = englishName,) {
-        super(Themes);
+        super();
         this.#englishName = new StringContainer(englishName);
         this.#imagePath = `/game/themes/${basicImagePath}` as ThemePath;
     }
@@ -261,6 +257,10 @@ export class Themes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<Themes> {
+        return Themes;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -283,21 +283,7 @@ export class Themes
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.GROUND,
-            this.UNDERGROUND,
-            this.UNDERWATER,
-            this.DESERT,
-            this.SNOW,
-            this.SKY,
-            this.FOREST,
-            this.GHOST_HOUSE,
-            this.AIRSHIP,
-            this.CASTLE,
-
-            this.VOLCANO,
-            this.SPACE,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

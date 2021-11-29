@@ -1,8 +1,9 @@
-import {Enum}                                                                                                                                                                               from '../../../util/enum/Enum';
-import {Characters}                                                                                                                                                                         from '../../../lang/Characters';
-import {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundStates.types';
-import {ClassWithEnglishName}                                                                                                                                                               from '../../../entity/ClassWithEnglishName';
-import {ReactElement}                                                                                                                                                                       from '../../../util/react/ReactProperty';
+import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundStates.types';
+import type {ClassWithEnglishName}                                                                                                                                                               from '../../../entity/ClassWithEnglishName';
+import type {StaticReference}                                                                                                                                                                    from '../../../util/enum/Enum.types';
+import type {ReactElement}                                                                                                                                                                       from '../../../util/react/ReactProperty';
+
+import {Enum} from '../../../util/enum/Enum';
 
 export abstract class SoundStates
     extends Enum<Ordinals, Names>
@@ -10,21 +11,21 @@ export abstract class SoundStates
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly STANDBY = new class SoundState_Standby extends SoundStates {
+    public static readonly STANDBY = new class SoundStates_Standby extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
             return [playElement(),];
         }
 
     }('standby',);
-    public static readonly PAUSED =  new class SoundState_Paused extends SoundStates {
+    public static readonly PAUSED =  new class SoundStates_Paused extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
             return [pauseElement(), stopElement(),];
         }
 
     } ('paused',);
-    public static readonly PLAYING = new class SoundState_Playing extends SoundStates {
+    public static readonly PLAYING = new class SoundStates_Playing extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
             return [playElement(), stopElement(),];
@@ -33,11 +34,6 @@ export abstract class SoundStates
     }('playing',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES?: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -45,7 +41,7 @@ export abstract class SoundStates
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: EnglishName,) {
-        super(SoundStates);
+        super();
         this.#englishName = englishName;
     }
 
@@ -67,15 +63,19 @@ export abstract class SoundStates
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<SoundStates> {
+        return SoundStates;
+    }
+
     public static getValue(value: | null | undefined,): null
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
     public static getValue<PS extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: PS,): EnumByPossibleString<PS>
     public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends Characters, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Characters
-    public static getValue(value: PossibleValue,): | Characters | null
+    public static getValue<I extends SoundStates, >(instance: I,): I
+    public static getValue(value: PossibleNonNullableValue,): SoundStates
+    public static getValue(value: PossibleValue,): | SoundStates | null
     public static getValue(value: PossibleValue,) {
         return value == null
             ? null
@@ -89,11 +89,7 @@ export abstract class SoundStates
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.STANDBY,
-            this.PAUSED,
-            this.PLAYING,
-        ];
+        return Enum.getValuesOn(this);
     }
 
     public static [Symbol.iterator]() {

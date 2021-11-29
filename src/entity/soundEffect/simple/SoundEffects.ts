@@ -1,5 +1,6 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                        from '../../ClassWithEnglishName';
 import type {EnumArray, EnumArray_EnglishName, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                             from '../../../util/enum/Enum.types';
 
 import {Enum}            from '../../../util/enum/Enum';
 import {StringContainer} from '../../StringContainer';
@@ -70,11 +71,6 @@ export class SoundEffects
     public static readonly SUPER_MARIO_GALAXY =     new SoundEffects('Super Mario Galaxy',        null,    '5.11', );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES?: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -87,7 +83,7 @@ export class SoundEffects
     private constructor(englishName: Exclude<PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2>, SMM1PartialImage: MiddleSoundEffectImage, SMM2PartialImage: null,)
     private constructor(englishName: Exclude<PossibleEnglishName_SMM2, PossibleEnglishName_SMM1AndSMM2>, SMM1PartialImage: null, SMM2PartialImage: StartingSoundEffectImage,)
     private constructor(englishName: PossibleEnglishName, SMM1PartialImage: | MiddleSoundEffectImage | null, SMM2PartialImage: StartingSoundEffectImage | null,) {
-        super(SoundEffects);
+        super();
         this.#englishName = new StringContainer(englishName);
         this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/sound effects/SMM1/${SMM1PartialImage} - ${englishName as PossibleEnglishName_SMM1}.png`;
         this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/sound effects/SMM2/${SMM2PartialImage} - ${englishName as PossibleEnglishName_SMM2}.png`;
@@ -121,6 +117,10 @@ export class SoundEffects
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<SoundEffects> {
+        return SoundEffects;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -143,26 +143,7 @@ export class SoundEffects
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.SHOCK, this.SCREAM, this.LAUGHTER, this.GUFFAW, this.BOOO,
-            this.CHEER, this.BABY, this.PARTY_POPPER, this.APPLAUSE, this.NEAR_MISS,
-
-            this.CLATTER, this.DRAMA, this.KICK, this.JUMP, this.HONK_HONK,
-            this.PUNCH, this.OINK, this.KUH_THUNK, this.BEEP, this.NINJA_ATTACK,
-            this.ZAP,
-
-            this.DING_DONG, this.BZZZT, this.GLORY, this.DOOM, this.YEAH,
-            this.AWW,
-
-            this.FIREWORKS, this.AUDIENCE, this.SCATTING, this.BIRD_CHIRPING, this.SPARK,
-            this.TRADITIONAL, this.ELECTRIC_GUITAR, this.DISTORTION, this.TWISTY_TURNY, this.WOOZY,
-            this.TELEPHONE, this.FLASH,
-
-            this.PEACEFUL, this.HORROR, this.BONUS_MUSIC, this.FESTIVE_MUSIC, this.RAVE_MUSIC,
-            this.HEARTBEAT, this.SILENCE, this.BIRD_TWEETING_NOISE, this.CHICKEN_CLUCKING_NOISE,
-            this.BOSS_MUSIC, this.FINAL_BOSS,
-            this.SUPER_MARIO_KART, this.SUPER_MARIO_64, this.SUPER_MARIO_SUNSHINE, this.SUPER_MARIO_GALAXY,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

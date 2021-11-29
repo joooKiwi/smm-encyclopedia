@@ -1,5 +1,6 @@
 import type {BasicJapanesePath, BasicLeftVariationPath, BasicPath, ClimbingImages, DownImage, EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, FallingAfterJumpImage, GoalPoleImages, GoalPoleSound, ImagePath, JumpImage, JumpImages, JumpSounds, LostALifeSound, Names, OnGroundAfterJumpSound, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PowerUpCollectedSound, RunningImages, SingleClimbingImage, SingleDownImage, SingleFallingAfterJumpImage, SingleGoalPoleImage, SingleGoalPoleSound, SingleJumpImage, SingleJumpSound, SingleLostALifeSound, SingleOnGroundAfterJumpSound, SinglePowerUpCollectedSound, SingleRunningImage, SingleSwimmingImage, SingleTauntImage, SingleTauntSound, SingleTurningImage, SingleTurningSound, SingleWaitingImage, SingleWalkImage, SwimmingImages, TauntImage, TauntSound, TurningImage, TurningSound, UniqueEnglishName, WaitingImage, WalkImages} from './MysteryMushrooms.types';
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../ClassWithEnglishName';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../StringContainer';
@@ -210,11 +211,6 @@ export class MysteryMushrooms
     public static readonly BABYMETAL =              new MysteryMushrooms('BABYMETAL',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
@@ -248,7 +244,7 @@ export class MysteryMushrooms
     #tauntImage?: TauntImage<BasicPath>;
     #japaneseTauntImage?: TauntImage<BasicJapanesePath>;
     #leftVariationTauntImage?: TauntImage<BasicLeftVariationPath>;
-    static readonly #TAUNT_SOUND:SingleTauntSound ='appeal.wav';
+    static readonly #TAUNT_SOUND: SingleTauntSound = 'appeal.wav';
     #tauntSound?: TauntSound;
 
     //endregion -------------------- Taunt --------------------
@@ -362,7 +358,7 @@ export class MysteryMushrooms
     public constructor(englishName_and_englishNameOnFile: UniqueEnglishName,)
     public constructor(englishNameOnFile: EnglishNameOnFile, englishName: UniqueEnglishName,)
     public constructor(englishNameOnFile: | EnglishNameOnFile | UniqueEnglishName, englishName?: UniqueEnglishName,) {
-        super(MysteryMushrooms);
+        super();
         if (englishName == null) {
             this.#englishName = new StringContainer(englishNameOnFile as UniqueEnglishName);
             this.#englishNameOnFile = englishNameOnFile as EnglishNameOnFile;
@@ -626,6 +622,10 @@ export class MysteryMushrooms
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<MysteryMushrooms> {
+        return MysteryMushrooms;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -649,152 +649,7 @@ export class MysteryMushrooms
     }
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.MYSTERY_MUSHROOM,
-
-            this.YAMAMURA, this.MARY_O, this.UNDODOG,
-
-            this.MR_GAME_AND_WATCH,
-
-            this.PAC_MAN,
-
-            this.MARIO,
-            this.LUIGI, this.PROFESSOR_E_GADD,
-            this.PEACH, this.DAISY, this.ROSALINA,
-            this.TOAD, this.CAPTAIN_TOAD, this.TOADETTE,
-            this.YOSHI, this.BIRDO,
-            this.WARIO, this.ASHLEY, this.WALUIGI,
-            this.BOWSER, this.BOWSER_JR, this.GOOMBA, this.SHY_GUY, this.NABBIT,
-            this.MARIO_SILVER, this.MARIO_GOLD, this.BUILDER_MARIO,
-            this.DR_MARIO,
-            this.FROG_MARIO, this.STATUE_MARIO, this.MARIO_TRIO,
-            this.KART_MARIO,
-            this.CAT_MARIO, this.CAT_PEACH,
-            this.SKY_POP,
-            this.BABY_MARIO,
-            this.QUESTION_MARK_BLOCK, this.TRAMPOLINE,
-            this.MARIO_MB, this.SIDESTEPPER, this.SHELLCREEPER, this.FIGHTER_FLY,
-
-            this.GREEN_YARN_YOSHI, this.PINK_YARN_YOSHI, this.LIGHT_BLUE_YARN_YOSHI, this.MEGA_YARN_YOSHI,
-
-            this.DONKEY_KONG, this.DONKEY_KONG_JR, this.DIDDY_KONG,
-
-            this.LITTLE_MAC,
-
-            this.DUCK_HUNT,
-
-            this.BUBBLES,
-
-            this.BIKE,
-
-            this.BALLOON_FIGHTER,
-
-            this.POPO_AND_NANA,
-
-            this.FOREMAN_SPIKE,
-
-            this.LINK, this.ZELDA, this.SHEIK,
-            this.TOON_LINK, this.TETRA,
-            this.TINGLE,
-            this.GANONDORF,
-            this.WOLF_LINK, this.TOTEM_LINK,
-
-            this.SAMUS, this.ZERO_SUIT_SAMUS,
-
-            this.VOLLEYBALL_PLAYER,
-
-            this.PIT, this.PALUTENA, this.DARK_PIT,
-
-            this.DONBE, this.HIKARI,
-
-            this.MEGA_MAN,
-
-            this.AYUMI_TACHIBANA,
-
-            this.MARTH, this.IKE, this.LUCINA, this.ROBIN,
-
-            this.CAPTAIN_FALCON,
-
-            this.SONIC,
-
-            this.KIRBY, this.KING_DEDEDE, this.META_KNIGHT,
-
-            this.FOX_MCCLOUD, this.FALCO_LOMBARDI, this.SLIPPY_TOAD, this.PEPPY_HARE,
-            this.ARWING,
-
-            this.NESS, this.LUCAS,
-            this.MASTER_BELCH, this.MR_SATURN,
-
-            this.BULBASAUR,
-            this.CHARMANDER, this.CHARIZARD,
-            this.SQUIRTLE,
-            this.PIKACHU,
-            this.JIGGLYPUFF,
-            this.MEWTWO,
-            this.LUCARIO,
-            this.GRENINJA,
-
-            this.VILLAGER,
-            this.TOM_NOOK,
-            this.K_K_SLIDER,
-            this.RESETTI,
-            this.ROVER,
-            this.TIMMY_AND_TOMMY,
-            this.BLATHERS,
-            this.MABEL,
-            this.KAPP_N,
-            this.CELESTE,
-            this.KICKS,
-            this.ISABELLE_SUMMER_OUTFIT, this.ISABELLE_WINTER_OUTFIT,
-            this.DIGBY,
-            this.CYRUS,
-            this.REESE,
-            this.LOTTIE,
-
-            this.CAPTAIN_OLIMAR, this.PIKMIN,
-
-            this.CHIBI_ROBO,
-
-            this.WII_BALANCE_BOARD, this.WII_FIT_TRAINER,
-
-            this.SHULK,
-
-            this.FELYNE,
-
-            this.YU_AYASAKI,
-
-            this.DR_KAWASHIMA,
-
-            this.DR_LOBE,
-
-            this.BARBARA_THE_BAT,
-
-            this.STARFY,
-
-            this.MALLO,
-
-            this.NIKKI,
-            this.IRIS_ARCHWELL,
-            this.ARCADE_BUNNY,
-
-            this.CHITOGE_KIRISAKI,
-
-            this.INKLING_SQUID, this.INKLING_BOY, this.INKLING_GIRL,
-            this.CALLIE, this.MARIE,
-
-            this.ROB,
-            this.DISKUN,
-            this.MAHJONG_TILE,
-
-            this.KITTY_WHITE, this.MELODY,
-            this.SHAUN_THE_SHEEP,
-
-            this.ARINO_KACHO,
-            this.SUPER_MARIO_KUN,
-            this.NECKY,
-            this.GLA,
-            this.BABYMETAL,
-        ];
+        return Enum.getValuesOn(this);
     }
 
     public static [Symbol.iterator]() {
