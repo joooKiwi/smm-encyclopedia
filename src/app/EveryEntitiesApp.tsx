@@ -1,17 +1,23 @@
 import './EveryEntitiesApp.scss';
 
-import type {DebugEntityReferences} from '../entity/simple/Entity.loader';
-import type {SingleTableContent}    from './tools/table/Table.types';
+import type {DebugEntityReferences}                               from '../entity/simple/Entity.loader';
+import type {Entity}                                              from '../entity/simple/Entity';
+import type {EntityAppStates}                                     from './AppStates.types';
+import type {PossibleEnglishName as PossibleEnglishName_Category} from '../entity/category/EntityCategories.types';
+import type {SingleTableContent}                                  from './tools/table/Table.types';
 
 import AbstractApp                       from './AbstractApp';
 import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent              from '../entity/theme/CourseTheme.component';
+import {EntityCategories}                from '../entity/category/EntityCategories';
 import {EntityLimitTypes}                from '../entity/limit/EntityLimitTypes';
 import {EntityLoader}                    from '../entity/simple/Entity.loader';
+import {EmptyName}                       from '../lang/name/EmptyName';
 import GameComponent                     from '../entity/game/Game.component';
 import {GameContentTranslationContainer} from '../lang/containers/GameContentTranslation.container';
 import GameContentTranslationComponent   from '../lang/components/GameContentTranslationComponent';
 import GameStyleComponent                from '../entity/gameStyle/GameStyle.component';
+import Image                             from './tools/images/Image';
 import LimitComponent                    from '../entity/limit/Limit.component';
 import NameComponent                     from '../lang/name/component/Name.component';
 import Table                             from './tools/table/Table';
@@ -21,18 +27,39 @@ import TimeComponent                     from '../entity/time/Time.component';
  * @reactComponent
  */
 export default class EveryEntitiesApp
-    extends AbstractApp {
+    extends AbstractApp<{}, EntityAppStates> {
 
     //region -------------------- Attributes & getter methods --------------------
 
     #map?: ReadonlyMap<string, DebugEntityReferences>;
 
+    public constructor(props: {}, context: any,) {
+        super(props, context);
+        this.state = {displayCategoryAsText: false,};
+    }
+
     protected get map() {
         return this.#map ??= EntityLoader.get.load();
     }
 
+    protected get _displayCategoryAsText(): boolean {
+        return this.state.displayCategoryAsText;
+    }
+
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
+
+    private __createCategoryComponent(index: number, entity: Entity,) {
+        const categoryName = entity.categoryName;
+        if (categoryName === EmptyName.get)
+            return <></>;
+
+        if (this._displayCategoryAsText)
+            return <NameComponent id={`category-name-${index}`} name={categoryName} popoverOrientation="left"/>;
+
+        const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
+        return <Image source={EntityCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
+    }
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -47,7 +74,7 @@ export default class EveryEntitiesApp
                 <GameStyleComponent reference={entity} name={entity}/>,
                 <CourseThemeComponent reference={entity} name={entity}/>,
                 <TimeComponent reference={entity} name={entity}/>,
-                <NameComponent id={`category-name-${index}`} name={entity.category} popoverOrientation="left"/>,
+                this.__createCategoryComponent(index, entity,),
                 <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()}/>,
                 <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
             ]);

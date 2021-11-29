@@ -5,9 +5,17 @@ export interface AppStates
 
 }
 
-export interface SoundEffectAppStates
-    extends ReactState {
+interface AppStateThatHaveACategory {
 
     displayCategoryAsText: boolean
+}
+
+export interface EntityAppStates
+    extends AppStates, AppStateThatHaveACategory {
+
+}
+
+export interface SoundEffectAppStates
+    extends AppStates, AppStateThatHaveACategory {
 
 }
