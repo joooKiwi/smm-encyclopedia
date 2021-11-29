@@ -1,18 +1,20 @@
 import type {ClassWithAcronym}                                                                                                                                  from '../ClassWithAcronym';
 import type {ClassWithEnglishName}                                                                                                                              from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                from '../ClassWithImagePath';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
 import type {GameProperty}                                                                                                                                      from '../properties/GameProperty';
 import type {PropertyGetter}                                                                                                                                    from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                   from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
-import {StringContainer} from '../StringContainer';
 import GameComponent     from './Game.component';
+import {StringContainer} from '../StringContainer';
 
 export abstract class Games
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithAcronym<PossibleAcronym>,
+        ClassWithImagePath<PossibleImagePath>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------

@@ -1,13 +1,14 @@
-import type {ClassWithAcronym}                                                                                                                                             from '../ClassWithAcronym';
-import type {ClassWithEnglishName}                                                                                                                                         from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                           from '../ClassWithReference';
-import type {Entity}                                                                                                                                                       from '../simple/Entity';
-import type {EnumArray, ImagePath, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingImagePath} from './GameStyles.types';
-import type {GameStyle}                                                                                                                                                    from './GameStyle';
-import type {GameStyleProperty}                                                                                                                                            from '../properties/GameStyleProperty';
-import type {GameStyleReferences}                                                                                                                                          from '../properties/GameStyleReferences';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                      from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                              from '../../util/enum/Enum.types';
+import type {ClassWithAcronym}                                                                                                                                                     from '../ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                                                                 from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                   from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                                   from '../ClassWithReference';
+import type {Entity}                                                                                                                                                               from '../simple/Entity';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingImagePath} from './GameStyles.types';
+import type {GameStyle}                                                                                                                                                            from './GameStyle';
+import type {GameStyleProperty}                                                                                                                                                    from '../properties/GameStyleProperty';
+import type {GameStyleReferences}                                                                                                                                                  from '../properties/GameStyleReferences';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                              from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                      from '../../util/enum/Enum.types';
 
 import {Enum}             from '../../util/enum/Enum';
 import {GameStyleLoader}  from './GameStyle.loader';
@@ -23,6 +24,7 @@ export abstract class GameStyles
     implements ClassWithReference<GameStyle>,
         ClassWithAcronym<PossibleAcronym>,
         ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithImagePath<PossibleImagePath>,
         PropertyReferenceGetter<GameStyleReferences>,
         PropertyGetter<GameStyleProperty> {
 
@@ -124,7 +126,7 @@ export abstract class GameStyles
         return this.#startingImagePath;
     }
 
-    public get imagePath(): ImagePath {
+    public get imagePath(): PossibleImagePath {
         return `${this.startingImagePath}.png`;
     }
 

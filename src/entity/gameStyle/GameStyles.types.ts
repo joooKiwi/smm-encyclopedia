@@ -29,7 +29,7 @@ export type PossibleAcronym = PossibleAcronym_GameStyle;
 export type PossibleEnglishName = PossibleEnglishName_GameStyle;
 
 export type StartingImagePath = `/game/styles/${PossibleEnglishName}`;
-export type ImagePath = `${StartingImagePath}.png`;
+export type PossibleImagePath = `${StartingImagePath}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

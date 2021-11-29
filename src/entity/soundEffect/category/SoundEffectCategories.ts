@@ -1,13 +1,15 @@
-import type {ClassWithEnglishName}                                                                                                                 from '../../ClassWithEnglishName';
-import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
-import type {StaticReference}                                                                                                                      from '../../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                    from '../../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                      from '../../ClassWithImagePath';
+import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
+import type {StaticReference}                                                                                                                                         from '../../../util/enum/Enum.types';
 
 import {Enum}            from '../../../util/enum/Enum';
 import {StringContainer} from '../../StringContainer';
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName> {
+    implements ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithImagePath<PossibleImagePath> {
 
     //region -------------------- Enum instances --------------------
 
@@ -21,6 +23,7 @@ export class SoundEffectCategories
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
+    #imagePath?: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
@@ -37,6 +40,10 @@ export class SoundEffectCategories
 
     public get englishNameInHtml(): string {
         return this.#englishName.getInHtml;
+    }
+
+    public get imagePath(): PossibleImagePath {
+        return this.#imagePath ??= `/category/sound effect/${this.ordinal + 1} - ${this.englishName}.png` as PossibleImagePath;
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -24,6 +24,9 @@ export type Names = keyof typeof Enum;
 
 export type PossibleEnglishName = | 'Feelings' | 'Stingers' | 'Reactions' | 'Animations' | 'Music';
 
+type PossibleBasicImagePath = | '1 - Feelings' | '2 - Stingers' | '3 - Reactions' | '4 - Animations' | '5 - Music';
+export type PossibleImagePath = `/category/sound effect/${PossibleBasicImagePath}.png`;
+
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 

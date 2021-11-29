@@ -5,6 +5,7 @@ import type {PossibleEnglishName} from '../entity/soundEffect/category/SoundEffe
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
 import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
 import {SoundEffectCategoryLoader}     from '../entity/soundEffect/category/SoundEffectCategory.loader';
@@ -38,7 +39,8 @@ export default class EverySoundEffectCategoriesApp
         for (const [englishName, soundEffectCategory,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                <NameComponent id="name" name={soundEffectCategory} popoverOrientation="left"/>
+                <Image source={this.enum[index - 1].imagePath} fallbackName={`${englishName} - image`}/>,
+                <NameComponent id="name" name={soundEffectCategory} popoverOrientation="left"/>,
             ]);
             index++;
         }
@@ -54,6 +56,7 @@ export default class EverySoundEffectCategoriesApp
             caption={<GameContentTranslationComponent translationKey="Every sound effect categories"/>}
             headers={[
                 '#',
+                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
             ]}
             content={this.content}

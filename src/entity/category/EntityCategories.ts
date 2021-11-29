@@ -1,8 +1,9 @@
-import type {ClassWithEnglishName}                                                                                          from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                            from '../ClassWithReference';
-import type {EntityCategory}                                                                                                from './EntityCategory';
-import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
-import type {StaticReference}                                                                                               from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                             from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                               from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                               from '../ClassWithReference';
+import type {EntityCategory}                                                                                                                   from './EntityCategory';
+import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
+import type {StaticReference}                                                                                                                  from '../../util/enum/Enum.types';
 
 import {EntityCategoryLoader} from './EntityCategory.loader';
 import {Enum}                 from '../../util/enum/Enum';
@@ -11,7 +12,8 @@ import {StringContainer}      from '../StringContainer';
 export class EntityCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityCategory>,
-        ClassWithEnglishName<PossibleEnglishName> {
+        ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithImagePath<PossibleImagePath> {
 
     //region -------------------- Enum instances --------------------
 
@@ -25,16 +27,15 @@ export class EntityCategories
 
     #reference?: EntityCategory;
     readonly #englishName;
-    // readonly #imagePath;
+    #imagePath?: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
     // private constructor(englishNameAndImagePath: PossibleEntityCategories)
     // private constructor(englishName: PossibleEntityCategories, basicImagePath: string)
-    private constructor(englishName: PossibleEnglishName/*, basicImagePath: string = englishName*/) {
+    private constructor(englishName: PossibleEnglishName,) {
         super();
         this.#englishName = new StringContainer<PossibleEnglishName, Lowercase<PossibleEnglishName>>(englishName);
-        // this.#imagePath = '/game/themes/' + basicImagePath;
     }
 
     //region -------------------- Getter methods --------------------
@@ -52,9 +53,9 @@ export class EntityCategories
         return this.#englishName.getInHtml;
     }
 
-    // public get imagePath() {
-    //     return this.#imagePath;
-    // }
+    public get imagePath(): PossibleImagePath {
+        return this.#imagePath ??= `/category/entity/${this.ordinal + 1} - ${this.englishName}.png` as PossibleImagePath;
+    }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------

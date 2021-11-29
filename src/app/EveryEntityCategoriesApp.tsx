@@ -7,6 +7,7 @@ import {EntityCategories}              from '../entity/category/EntityCategories
 import {EntityCategory}                from '../entity/category/EntityCategory';
 import {EntityCategoryLoader}          from '../entity/category/EntityCategory.loader';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
 
@@ -37,6 +38,7 @@ export default class EveryEntityCategoriesApp
         for (const [englishName, category,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
+                <Image source={this.enum[index - 1].imagePath} fallbackName={`${englishName} - image`}/>,
                 <NameComponent id="name" name={category} popoverOrientation="left"/>,
             ]);
             index++;
@@ -52,6 +54,7 @@ export default class EveryEntityCategoriesApp
             caption={<GameContentTranslationComponent translationKey="Every entity categories"/>}
             headers={[
                 '#',
+                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
             ]}
             content={this.content}
