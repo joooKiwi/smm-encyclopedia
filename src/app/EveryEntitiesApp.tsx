@@ -35,7 +35,13 @@ export default class EveryEntitiesApp
 
     public constructor(props: {}, context: any,) {
         super(props, context);
-        this.state = {displayCategoryAsText: false,};
+        this.state = {
+            displayCategoryAsText: false,
+            displayGameAsTextWhenAll: false,
+            displayGameStyleAsTextWhenAll: true,
+            displayCourseThemeAsTextWhenAll: true,
+            displayTimeAsTextWhenAll: false,
+        };
     }
 
     protected get map() {
@@ -44,6 +50,22 @@ export default class EveryEntitiesApp
 
     protected get _displayCategoryAsText(): boolean {
         return this.state.displayCategoryAsText;
+    }
+
+    protected get _displayGameAsTextWhenAll(): boolean {
+        return this.state.displayGameAsTextWhenAll;
+    }
+
+    protected get _displayGameStyleAsTextWhenAll(): boolean {
+        return this.state.displayGameStyleAsTextWhenAll;
+    }
+
+    protected get _displayCourseThemeAsTextWhenAll(): boolean {
+        return this.state.displayCourseThemeAsTextWhenAll;
+    }
+
+    protected get _displayTimeAsTextWhenAll(): boolean {
+        return this.state.displayTimeAsTextWhenAll;
     }
 
     //endregion -------------------- Attributes & getter methods --------------------
@@ -70,10 +92,10 @@ export default class EveryEntitiesApp
             content.push([englishName,
                 <>{index}</>,
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,
-                <GameComponent reference={entity} name={entity}/>,
-                <GameStyleComponent reference={entity} name={entity}/>,
-                <CourseThemeComponent reference={entity} name={entity}/>,
-                <TimeComponent reference={entity} name={entity}/>,
+                <GameComponent reference={entity} name={entity} displayAllAsText={this._displayGameAsTextWhenAll}/>,
+                <GameStyleComponent reference={entity} name={entity} displayAllAsText={this._displayGameStyleAsTextWhenAll}/>,
+                <CourseThemeComponent reference={entity} name={entity} displayAllAsText={this._displayCourseThemeAsTextWhenAll}/>,
+                <TimeComponent reference={entity} name={entity} displayAllAsText={this._displayTimeAsTextWhenAll}/>,
                 this.__createCategoryComponent(index, entity,),
                 <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()}/>,
                 <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()}/>,

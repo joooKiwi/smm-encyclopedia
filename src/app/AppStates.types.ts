@@ -8,10 +8,19 @@ export interface AppStates
 interface AppStateThatHaveACategory {
 
     displayCategoryAsText: boolean
+
 }
 
 export interface EntityAppStates
     extends AppStates, AppStateThatHaveACategory {
+
+    displayGameAsTextWhenAll: boolean
+
+    displayGameStyleAsTextWhenAll: boolean
+
+    displayCourseThemeAsTextWhenAll: boolean
+
+    displayTimeAsTextWhenAll: boolean
 
 }
 

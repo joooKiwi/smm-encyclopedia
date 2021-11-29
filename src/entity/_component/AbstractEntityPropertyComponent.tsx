@@ -11,10 +11,7 @@ export abstract class AbstractEntityPropertyComponent<R, E>
 
     protected abstract _renderSingleComponent(enumInstance: E,): JSX.Element;
 
-    public render() {
-        if (this._isInAll)
-            return this._renderComponentForAll();
-
+    public _render() {
         const enumInstances = [] as E[];
         this.map.forEach((isInEnumInstance, enumInstance) => {
             if (isInEnumInstance)

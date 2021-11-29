@@ -40,8 +40,11 @@ export default class GameComponent
         return this._renderSingleComponent(Games.SUPER_MARIO_MAKER_2);
     }
 
-    protected _renderComponentForAll() {
+    protected _renderComponentForAllAsText() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every games')}</span>}/>;
     }
 
+    protected _renderComponentForAllAsImages() {
+        return <div key={`${this.name.english} (every games)`}>{Games.values.map(game=>this._renderSingleComponent(game))}</div>;
+    }
 }

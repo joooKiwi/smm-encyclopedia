@@ -1,8 +1,8 @@
 import type {GameStyleProperty} from '../properties/GameStyleProperty';
-import type {GameStyles}        from './GameStyles';
 
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
+import {GameStyles}                      from './GameStyles';
 import Image                             from '../../app/tools/images/Image';
 import {StringContainer}                 from '../StringContainer';
 
@@ -37,9 +37,12 @@ export default class GameStyleComponent
         return <Image key={key} id={id} source={gameStyle.imagePath} fallbackName={gameStyle.englishName} className={`gameStyle-image ${gameStyleEnglishNameInHtml}-image`}/>;
     }
 
-    protected _renderComponentForAll() {
+    protected _renderComponentForAllAsText() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every game styles')}</span>}/>;
     }
 
+    protected _renderComponentForAllAsImages() {
+        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.values.map(gameStyle => this._renderSingleComponent(gameStyle))}</div>;
+    }
 
 }

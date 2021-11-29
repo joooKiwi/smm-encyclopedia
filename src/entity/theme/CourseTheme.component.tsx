@@ -1,8 +1,8 @@
 import type {ThemeProperty} from '../properties/ThemeProperty';
-import type {Themes}        from './Themes';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {ThemeComponent}                from './Theme.component';
+import {Themes}                        from './Themes';
 
 /**
  * @reactComponent
@@ -32,8 +32,12 @@ export default class CourseThemeComponent
         return CourseThemeComponent.renderSingleComponent(theme, true, this.name.english,);
     }
 
-    protected _renderComponentForAll() {
+    protected _renderComponentForAllAsText() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every themes')}</span>}/>;
+    }
+
+    protected _renderComponentForAllAsImages() {
+        return <div key={`${this.name.english} (every course themes)`}>{Themes.courseThemes.map(courseTheme => this._renderSingleComponent(courseTheme))}</div>;
     }
 
 }

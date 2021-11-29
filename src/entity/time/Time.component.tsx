@@ -2,6 +2,7 @@ import type {TimeProperty} from '../properties/TimeProperty';
 
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
+import Image                                 from '../../app/tools/images/Image';
 import {Times}                               from './Times';
 import {StringContainer}                     from '../StringContainer';
 
@@ -40,8 +41,12 @@ export default class TimeComponent
         return this._renderSingleComponent(Times.NIGHT);
     }
 
-    protected _renderComponentForAll() {
+    protected _renderComponentForAllAsText() {
         return <GameContentTranslationComponent>{translation => <span>{translation('Every times')}</span>}</GameContentTranslationComponent>;
+    }
+
+    protected _renderComponentForAllAsImages() {
+        return <div key={`Every times images (${this.name.english})`}>{Times.values.map(time => this._renderSingleComponent(time))}</div>;
     }
 
 }
