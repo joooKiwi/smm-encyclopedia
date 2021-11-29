@@ -29,7 +29,7 @@ export default class TimeComponent
         const key = identifier == null ? time.englishName : `${identifier} - ${time.englishName}`;
         const id = identifier == null ? `${timeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${timeEnglishNameInHtml}-time-image`;
 
-        return <i key={key} id={id} className={`time-image ${timeEnglishNameInHtml}-image ${time === Times.DAY ? 'bi-sun-fill' : 'bi-moon-fill'}`}/>;
+        return <Image key={key} id={id} source={time.imagePath} fallbackName={`${time.englishName} - image`} className={`time-image ${timeEnglishNameInHtml}-image`}/>;
     }
 
     protected _renderFirstComponent() {

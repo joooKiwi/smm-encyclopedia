@@ -1,10 +1,11 @@
-import type {ClassWithEnglishName}                                                                                          from '../ClassWithEnglishName';
-import type {Entity}                                                                                                        from '../simple/Entity';
-import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Times.types';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                       from '../PropertyGetter';
-import type {StaticReference}                                                                                               from '../../util/enum/Enum.types';
-import type {TimeProperty}                                                                                                  from '../properties/TimeProperty';
-import type {TimeReferences}                                                                                                from '../properties/TimeReferences';
+import type {ClassWithEnglishName}                                                                                                                                      from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                        from '../ClassWithImagePath';
+import type {Entity}                                                                                                                                                    from '../simple/Entity';
+import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                   from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                           from '../../util/enum/Enum.types';
+import type {TimeProperty}                                                                                                                                              from '../properties/TimeProperty';
+import type {TimeReferences}                                                                                                                                            from '../properties/TimeReferences';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../StringContainer';
@@ -13,6 +14,7 @@ import TimeComponent     from './Time.component';
 export abstract class Times
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithImagePath<PossibleImagePath>,
         PropertyReferenceGetter<TimeReferences>,
         PropertyGetter<TimeProperty> {
 
@@ -28,7 +30,7 @@ export abstract class Times
             return referenceProperty.referenceInDayTheme;
         }
 
-    }  ('Day',);
+    }  ('Day',  'Sun',);
     public static readonly NIGHT = new class Times_Night extends Times {
 
         public get(property: TimeProperty,): boolean {
@@ -39,18 +41,21 @@ export abstract class Times
             return referenceProperty.referenceInNightTheme;
         }
 
-    }('Night',);
+    }('Night','Moon',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
+    readonly #simpleImagePath: PossibleSimpleImagePath;
+    #imagePath?: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleEnglishName,) {
+    private constructor(englishName: PossibleEnglishName, imagePath: PossibleSimpleImagePath,) {
         super();
         this.#englishName = new StringContainer(englishName);
+        this.#simpleImagePath = imagePath;
     }
 
     //region -------------------- Getter methods --------------------
@@ -61,6 +66,10 @@ export abstract class Times
 
     public get englishNameInHtml(): string {
         return this.#englishName.getInHtml;
+    }
+
+    public get imagePath(): PossibleImagePath {
+        return this.#imagePath ??= `/game/times/${this.#simpleImagePath}.png`;
     }
 
     //endregion -------------------- Getter methods --------------------
