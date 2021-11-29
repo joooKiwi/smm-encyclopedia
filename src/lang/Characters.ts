@@ -171,15 +171,15 @@ export class Characters
     }
 
     public static get points(): Points_Array {
-        return this.#POINTS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.points_enum,0,)
+        return this.#POINTS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.points_enum, 0,);
     }
 
     public static get points_spaceEven(): Points_SpaceEven_Array {
-        return this.#POINTS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.points_enum,0,);
+        return this.#POINTS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.points_enum, 0,);
     }
 
     public static get points_spaceUneven(): Points_SpaceUneven_Array {
-        return this.#POINTS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.points_enum,0,);
+        return this.#POINTS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.points_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (points) --------------------
@@ -190,15 +190,15 @@ export class Characters
     }
 
     public static get parentheses(): Parentheses_Array {
-        return this.#PARENTHESES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.parentheses_enum,0,);
+        return this.#PARENTHESES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.parentheses_enum, 0,);
     }
 
     public static get parentheses_spaceEven(): Parentheses_SpaceEven_Array {
-        return this.#PARENTHESES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.parentheses_enum,0,);
+        return this.#PARENTHESES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.parentheses_enum, 0,);
     }
 
     public static get parentheses_spaceUneven(): Parentheses_SpaceUneven_Array {
-        return this.#PARENTHESES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.parentheses_enum,0,);
+        return this.#PARENTHESES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.parentheses_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (parentheses) --------------------
@@ -209,15 +209,15 @@ export class Characters
     }
 
     public static get brackets(): Brackets_Array {
-        return this.#BRACKETS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.brackets_enum,0,);
+        return this.#BRACKETS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.brackets_enum, 0,);
     }
 
     public static get brackets_spaceEven(): Brackets_SpaceEven_Array {
-        return this.#BRACKETS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.brackets_enum,0,);
+        return this.#BRACKETS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.brackets_enum, 0,);
     }
 
     public static get brackets_spaceUneven(): Brackets_SpaceUneven_Array {
-        return this.#BRACKETS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.brackets_enum,0,);
+        return this.#BRACKETS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.brackets_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (brackets) --------------------
@@ -228,15 +228,15 @@ export class Characters
     }
 
     public static get braces(): Braces_Array {
-        return this.#BRACES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.braces_enum,0,);
+        return this.#BRACES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.braces_enum, 0,);
     }
 
     public static get braces_spaceEven(): Braces_SpaceEven_Array {
-        return this.#BRACES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.braces_enum,0,);
+        return this.#BRACES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.braces_enum, 0,);
     }
 
     public static get braces_spaceUneven(): Braces_SpaceUneven_Array {
-        return this.#BRACES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.braces_enum,0,);
+        return this.#BRACES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.braces_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (braces) --------------------
@@ -247,15 +247,15 @@ export class Characters
     }
 
     public static get slashes(): Slashes_Array {
-        return this.#SLASHES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.slashes_enum,0,);
+        return this.#SLASHES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.slashes_enum, 0,);
     }
 
     public static get slashes_spaceEven(): Slashes_SpaceEven_Array {
-        return this.#SLASHES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.slashes_enum,0,);
+        return this.#SLASHES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.slashes_enum, 0,);
     }
 
     public static get slashes_spaceUneven(): Slashes_SpaceUneven_Array {
-        return this.#SLASHES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.slashes_enum,0,);
+        return this.#SLASHES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.slashes_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (slashes) --------------------
@@ -278,27 +278,27 @@ export class Characters
     }
 
     public static get lowercaseLetters(): LowercaseLetters_Array {
-        return this.#LOWERCASE_LETTERS ??= this.__getBothEvenAndUnevenCharacters(this.letters_enum,1,);
+        return this.#LOWERCASE_LETTERS ??= this.__getBothEvenAndUnevenCharacters(this.letters_enum, 1,);
     }
 
     public static get uppercaseLetters(): UppercaseLetters_Array {
-        return this.#UPPERCASE_LETTERS ??= this.__getBothEvenAndUnevenCharacters(this.letters_enum,0,);
+        return this.#UPPERCASE_LETTERS ??= this.__getBothEvenAndUnevenCharacters(this.letters_enum, 0,);
     }
 
     public static get lowercaseLetters_spaceEven(): LowercaseRomainAlphabet_SpaceEven_Array {
-        return this.#LOWERCASE_LETTERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.letters_enum,1,);
+        return this.#LOWERCASE_LETTERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.letters_enum, 1,);
     }
 
     public static get uppercaseLetters_spaceEven(): UppercaseRomainAlphabet_SpaceEven_Array {
-        return this.#UPPERCASE_LETTERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.letters_enum,0,);
+        return this.#UPPERCASE_LETTERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.letters_enum, 0,);
     }
 
     public static get lowercaseLetters_spaceUneven(): LowercaseRomainAlphabet_SpaceUneven_Array {
-        return this.#LOWERCASE_LETTERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.letters_enum,1,);
+        return this.#LOWERCASE_LETTERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.letters_enum, 1,);
     }
 
     public static get uppercaseLetters_spaceUneven(): UppercaseRomainAlphabet_SpaceUneven_Array {
-        return this.#UPPERCASE_LETTERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.letters_enum,0,);
+        return this.#UPPERCASE_LETTERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.letters_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (letters) --------------------
@@ -309,15 +309,15 @@ export class Characters
     }
 
     public static get numbers(): Numbers_Array {
-        return this.#NUMBERS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.numbers_enum,0,);
+        return this.#NUMBERS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.numbers_enum, 0,);
     }
 
     public static get numbers_spaceEven(): Numbers_SpaceEven_Array {
-        return this.#NUMBERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.numbers_enum,0,);
+        return this.#NUMBERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.numbers_enum, 0,);
     }
 
     public static get numbers_spaceUneven(): Numbers_SpaceUneven_Array {
-        return this.#NUMBERS_SPACE_UNEVEN ??=this.__getOnlyUnevenCharacter(this.numbers_enum,0,);
+        return this.#NUMBERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.numbers_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (numbers) --------------------
@@ -402,8 +402,8 @@ export class Characters
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<PS extends PossibleStringValue = PossibleStringValue,>(nameOrCharacter: PS,): EnumByPossibleString<PS>
-    public static getValue<S extends string,>(nameOrCharacter: S,): EnumByString<S>
+    public static getValue<PS extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: PS,): EnumByPossibleString<PS>
+    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
     public static getValue<I extends Characters, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): Characters
     public static getValue(value: PossibleValue,): | Characters | null
