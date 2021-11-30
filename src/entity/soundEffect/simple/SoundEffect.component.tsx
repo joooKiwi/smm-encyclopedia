@@ -1,6 +1,7 @@
 import {PureComponent} from 'react';
 
-import type {Name} from '../../../lang/name/Name';
+import type {Name}         from '../../../lang/name/Name';
+import type {ReactElement} from '../../../util/react/ReactProperty';
 
 import {SoundEffects}     from './SoundEffects';
 import {StringContainer}  from '../../StringContainer';
@@ -40,10 +41,15 @@ export default class SoundEffectComponent
         return SoundEffectComponent.render(this.reference, this.game, ProjectLanguages.getEnglish(this.name),);
     }
 
-    public static render(soundEffect: SoundEffects, game: Games, identifier?: string,) {
+    public static render(soundEffect: SoundEffects,): ReactElement
+    public static render(soundEffect: SoundEffects, game: Games, identifier: string,): ReactElement
+    public static render(soundEffect: SoundEffects, game?: Games, identifier?: string,) {
+        const isGameNull = game == null;
+        const isIdentifierNull = identifier == null;
+
         const themeEnglishNameInHtml = soundEffect.englishNameInHtml;
-        const key = identifier == null ? soundEffect.englishName : `${identifier} - ${soundEffect.englishName} (${game.acronym})`;
-        const id = identifier == null ? `${themeEnglishNameInHtml}-${game.acronym}-image` : `${StringContainer.getInHtml(identifier)}-${themeEnglishNameInHtml}-soundEffect-${game.acronym}-image`;
+        const key = isIdentifierNull ? soundEffect.englishName : `${identifier} - ${soundEffect.englishName}${isGameNull ? '' : ` (${game.acronym})`}`;
+        const id = isIdentifierNull ? `${themeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${themeEnglishNameInHtml}-soundEffect${isGameNull ? '' : `-${game.acronym}`}-image`;
 
         return <Image key={key} id={id} source={(game === Games.SUPER_MARIO_MAKER_1 ? soundEffect.SMM1ImagePath : soundEffect.SMM2ImagePath)!}
                       fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>;

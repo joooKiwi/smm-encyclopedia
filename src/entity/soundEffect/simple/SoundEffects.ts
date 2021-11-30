@@ -2,8 +2,9 @@ import type {ClassWithEnglishName}                                              
 import type {EnumArray, EnumArray_EnglishName, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                             from '../../../util/enum/Enum.types';
 
-import {Enum}            from '../../../util/enum/Enum';
-import {StringContainer} from '../../StringContainer';
+import {Enum}               from '../../../util/enum/Enum';
+import SoundEffectComponent from './SoundEffect.component';
+import {StringContainer}    from '../../StringContainer';
 
 export class SoundEffects
     extends Enum<Ordinals, Names>
@@ -109,6 +110,10 @@ export class SoundEffects
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    public get renderSingleComponent() {
+        return SoundEffectComponent.render(this);
+    }
 
     public static get everyEnglishNames(): EnumArray_EnglishName {
         return this.values.map(soundEffect => soundEffect.englishName) as unknown as EnumArray_EnglishName;
