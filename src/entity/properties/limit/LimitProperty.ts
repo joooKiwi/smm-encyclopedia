@@ -1,13 +1,13 @@
-import type {EntityLimits}                                                                                                                                                      from '../../limit/EntityLimits';
-import type {CustomLimitContainer, EditorLimitContainer, PowerUpLimitContainer, ProjectileLimitContainer, SingleGeneralGlobalLimitContainer, SingleGeneralLimitContainer}       from './LimitProperty.types';
-import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
+import type {EntityLimits}                                                                                                                                                from '../../limit/EntityLimits';
+import type {CustomLimitContainer, EditorLimitContainer, PowerUpLimitContainer, ProjectileLimitContainer, SingleGeneralGlobalLimitContainer, SingleGeneralLimitContainer} from './LimitProperty.types';
+import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                   from './Loader.types';
 
 export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
     GENERAL extends GeneralEntityLimitType = GeneralEntityLimitType,
     GENERAL_GLOBAL extends GeneralGlobalEntityLimitType = GeneralGlobalEntityLimitType,
     POWER_UP extends PowerUpEntityLimitType = PowerUpEntityLimitType,
     PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType,
-    CUSTOM extends CustomLimitType = CustomLimitType, CUSTOM_COMMENT extends CustomLimitCommentType = CustomLimitCommentType, > {
+    CUSTOM extends CustomLimitType = CustomLimitType, > {
 
     //region -------------------- Editor limit --------------------
 
@@ -73,17 +73,31 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
      * Return a {@link Map} based on the enum {@link EntityLimits}
      * with every values stored inside {@link LimitProperty this instance}
      * as a boolean.
+     *
+     * @note It contain every values of the {@link EntityLimits}
      */
     toLimitMap(): ReadonlyMap<EntityLimits, boolean>
 
+    /**
+     * Return a {@link Map} based on the enum {@link EntityLimits},
+     * but with only the <u>limit in the editor</u> as possible true value.
+     *
+     * @see toLimitMap
+     */
     toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean>
 
+    /**
+     * Return a {@link Map} based on the enum {@link EntityLimits},
+     * but with only the <u>limit while playing</u> as possible true value.
+     *
+     * @see toLimitMap
+     */
     toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean>
 
 }
 
-export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null, null>;
-export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, CUSTOM extends CustomLimitType = CustomLimitType, CUSTOM_COMMENT extends null = null, >
-    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM, CUSTOM_COMMENT>;
+export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null>;
+export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, CUSTOM extends CustomLimitType = CustomLimitType,>
+    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM>;
 export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<EditorLimitType, boolean, boolean, boolean, boolean, null>;
 export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;

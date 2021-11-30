@@ -1,8 +1,11 @@
+import {Fragment} from 'react';
+
 import type {EntityLimits}  from './EntityLimits';
 import type {ReactProperty} from '../../util/react/ReactProperty';
 
-import NameComponent from '../../lang/name/component/Name.component';
-import {Fragment}    from 'react';
+import NameComponent      from '../../lang/name/component/Name.component';
+import {ProjectLanguages} from '../../lang/ProjectLanguages';
+import TextComponent      from '../../app/tools/text/TextComponent';
 
 type Id = `${| 'editor' | 'whilePlaying'}-${number}`;
 
@@ -13,6 +16,8 @@ interface EditorLimitProperties
 
     limits: ReadonlyMap<EntityLimits, boolean>
 
+    displayAcronymIfApplicable: boolean
+
 }
 
 /**
@@ -20,16 +25,29 @@ interface EditorLimitProperties
  * @param properties
  * @reactComponent
  */
-export default function LimitComponent({id, limits,}: EditorLimitProperties,) {
-    return limits.size === 0
+export default function LimitComponent({id, limits, displayAcronymIfApplicable,}: EditorLimitProperties,) {
+    const selectedLimits = [...limits].filter(([, hasLimit]) => hasLimit).map(([limit,]) => limit);
+    return selectedLimits.length === 0
         ? <></>
-        : <>{[...limits].map(([limit, hasLimit,], index,) => hasLimit ? <Fragment key={`${id}-${index}`}>{createSingleComponent(id, limit,)}{createReturnOfLine(limits, index,)}</Fragment> : <Fragment key={`${id}-${index}`}/>)}</>;
+        : <>{selectedLimits.map((limit, index,) =>
+            <Fragment key={`${limit.englishName} #${index + 1} → ${id}`}>{createSingleComponent(id, limit, displayAcronymIfApplicable,)}{createReturnOfLine(selectedLimits, index,)}</Fragment>
+        )}</>;
 }
 
-function createReturnOfLine(limits: ReadonlyMap<EntityLimits, boolean>, index: number,) {
-    return index !== limits.size - 1 ? <br/> : <></>;
+function createReturnOfLine(selectedLimits: readonly EntityLimits[], index: number,) {
+    return index === selectedLimits.length - 1 ? <></> : <>{ProjectLanguages.currentLanguage.comma}<br/></>;
 }
 
-function createSingleComponent(id: Id, entityLimit: EntityLimits,) {
-    return <NameComponent id={`entityLimit-name-${id}`} name={entityLimit.reference}/>;
+function createSingleComponent(id: Id, entityLimit: EntityLimits, displayAcronymIfApplicable: boolean,) {
+    if (displayAcronymIfApplicable) {
+        const acronym = entityLimit.acronym;
+        if (acronym == null)
+            return createSingleNameComponent(id, entityLimit,);
+        return <TextComponent key={`${entityLimit.englishName} (acronym) → ${id}`} id={`entityLimit-acronym-${id}`} content={acronym}/>;
+    }
+    return createSingleNameComponent(id, entityLimit,);
+}
+
+function createSingleNameComponent(id: Id, entityLimit: EntityLimits,) {
+    return <NameComponent key={`${entityLimit.englishName} (name) → ${id}`} id={`entityLimit-name-${id}`} name={entityLimit.reference}/>;
 }

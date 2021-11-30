@@ -41,6 +41,7 @@ export default class EveryEntitiesApp
             displayGameStyleAsTextWhenAll: true,
             displayCourseThemeAsTextWhenAll: true,
             displayTimeAsTextWhenAll: false,
+            displayAcronymOnLimitsIfApplicable: true,
         };
     }
 
@@ -66,6 +67,10 @@ export default class EveryEntitiesApp
 
     protected get _displayTimeAsTextWhenAll(): boolean {
         return this.state.displayTimeAsTextWhenAll;
+    }
+
+    protected get _displayAcronymOnLimitsIfApplicable(): boolean {
+        return this.state.displayAcronymOnLimitsIfApplicable;
     }
 
     //endregion -------------------- Attributes & getter methods --------------------
@@ -97,8 +102,8 @@ export default class EveryEntitiesApp
                 <CourseThemeComponent reference={entity} name={entity} displayAllAsText={this._displayCourseThemeAsTextWhenAll}/>,
                 <TimeComponent reference={entity} name={entity} displayAllAsText={this._displayTimeAsTextWhenAll}/>,
                 this.__createCategoryComponent(index, entity,),
-                <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()}/>,
-                <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
+                <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()} displayAcronymIfApplicable={this._displayAcronymOnLimitsIfApplicable}/>,
+                <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()} displayAcronymIfApplicable={this._displayAcronymOnLimitsIfApplicable}/>,
             ]);
             index++;
         }

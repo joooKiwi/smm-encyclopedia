@@ -8,7 +8,7 @@ import {EMPTY_MAP}         from '../../../util/emptyVariables';
  * @singleton
  */
 export class EmptyLimitProperty
-    implements LimitProperty<null, null, null, null, null, null, null>, ClassWithNullObjectPattern<EmptyLimitName> {
+    implements LimitProperty<null, null, null, null, null, null>, ClassWithNullObjectPattern<EmptyLimitName> {
 
     //region -------------------- Singleton usage --------------------
 

@@ -22,6 +22,8 @@ export interface EntityAppStates
 
     displayTimeAsTextWhenAll: boolean
 
+    displayAcronymOnLimitsIfApplicable: boolean
+
 }
 
 export interface SoundEffectAppStates
