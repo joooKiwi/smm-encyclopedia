@@ -1,18 +1,18 @@
 import './Name.component.scss';
 
 import type {Dispatch, SetStateAction} from 'react';
-import {Popover}                       from 'bootstrap';
 import {useEffect, useState}           from 'react';
+import {Popover}                       from 'bootstrap';
 
 import type {Name}                               from '../Name';
 import type {NameProperties, PopoverOrientation} from './Name.properties';
 
 import ContentTranslationComponent  from '../../components/ContentTranslationComponent';
-import {EveryLanguages}             from '../../EveryLanguages';
 import LanguageTranslationComponent from '../../components/LanguageTranslationComponent';
+import {ProjectLanguages}           from '../../ProjectLanguages';
 import {StringContainer}            from '../../../entity/StringContainer';
-import TextPopover                  from '../../../bootstrap/popover/TextPopover';
 import TextComponent                from '../../../app/tools/text/TextComponent';
+import TextPopover                  from '../../../bootstrap/popover/TextPopover';
 
 /**
  * A name component used to render the current language in text format
@@ -21,7 +21,7 @@ import TextComponent                from '../../../app/tools/text/TextComponent'
  * @param properties
  * @reactComponent
  * @see Name.toNameMap
- * @see EveryLanguages.currentLanguage
+ * @see ProjectLanguages.currentLanguage
  */
 export default function NameComponent({popoverOrientation, id, name, ...otherProperties}: NameProperties,) {
     const [doesDisplaySpan, setDoesDisplaySpan,] = useState(false);
@@ -32,7 +32,7 @@ export default function NameComponent({popoverOrientation, id, name, ...otherPro
         return () => clearTimeout(timeoutId);
     });
 
-    const elementId = `${id}-${StringContainer.getInHtml(name.english)}`;
+    const elementId = `${id}-${StringContainer.getInHtml(ProjectLanguages.getEnglish(name))}`;
     const listId = `${elementId}-list`;
 
     return <div key={`${elementId} - container`} id={`${elementId}-container`}>
@@ -43,7 +43,7 @@ export default function NameComponent({popoverOrientation, id, name, ...otherPro
 
 function createTextComponent(name: Name, elementId: string, listId: string, doesDisplaySpan: boolean, setDoesDisplaySpan: Dispatch<SetStateAction<boolean>>, setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>, popoverOrientation: | PopoverOrientation | undefined, otherProperties: Omit<NameProperties, 'popoverOrientation' | 'id' | 'name'>) {
     const listElement = document.getElementById(listId)!;
-    const currentLanguageTextContent = EveryLanguages.currentLanguage.get(name);
+    const currentLanguageTextContent = ProjectLanguages.currentLanguage.get(name);
 
     return doesDisplaySpan
         ? <ContentTranslationComponent>{translation =>
@@ -75,10 +75,12 @@ function createListComponent(name: Name, elementId: string, listId: string, does
     return <ul key={`${elementId} - list`} id={listId} className={`language-list ${doesDisplayPopover ? '' : 'visually-hidden'}`}>{
         [...name.toNameMap().entries()].filter(([language,],) => languagesToDisplay.includes(language))
             .map(([language, value,],) => {
-                const languageKey = `${EveryLanguages.currentLanguage.englishName} - ${language.englishName}`;
+                const languageKey = `${ProjectLanguages.currentLanguage.englishName} - ${language.englishName}`;
 
                 return <LanguageTranslationComponent key={`${elementId} - language translation component (${languageKey})`}>{translation =>
-                    <li key={`${elementId} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}><TextComponent content={value}/></li>
+                    <li key={`${elementId} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}>
+                        <TextComponent content={value}/>
+                    </li>
                 }</LanguageTranslationComponent>;
             })
     }</ul>;

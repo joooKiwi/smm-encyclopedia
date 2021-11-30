@@ -269,6 +269,14 @@ export class ProjectLanguages
         return this.language.get(classWithEveryLanguages);
     }
 
+    /**
+     * @param classWithEveryLanguages
+     * @see EveryLanguages.getEnglish
+     */
+    public static getEnglish(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        return this.AMERICAN_ENGLISH.get(classWithEveryLanguages);
+    }
+
     public original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
     public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
     public original(classWithEveryLanguages: | ClassWithEveryLanguages | CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
