@@ -1,4 +1,4 @@
-.not-applicable, .is-unknown {
+.not-applicable, .is-unknown, .unknown-reference {
   color: var(--bs-red);
 }
 
@@ -10,8 +10,13 @@
   content: var(--is-unknown);
 }
 
+.unknown-reference:after {
+  content: var(--unknown-reference);
+}
+
 
 :root {
   --not-applicable: 'N/A';
   --is-unknown: '?';
+  --unknown-reference: '???';
 }

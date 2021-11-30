@@ -4,6 +4,7 @@ import type {PossibleTextContent, TextProperties} from './properties/TextPropert
 
 const DEFAULT_IS_UNKNOWN = false;
 const NOT_APPLICABLE = 'N/A';
+const UNKNOWN_REFERENCE = '???';
 
 /**
  *
@@ -13,6 +14,8 @@ const NOT_APPLICABLE = 'N/A';
 export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown = DEFAULT_IS_UNKNOWN, classes, ...otherProperties}: TextProperties<T>,) {
     if (content === NOT_APPLICABLE)
         return <span className="not-applicable" {...otherProperties}/>;
+    if (content === UNKNOWN_REFERENCE)
+        return <span className="unknown-reference" {...otherProperties}/>;
 
     if (isUnknown)
         (classes ??= []).push('is-unknown');

@@ -10,8 +10,9 @@ import type {NameProperties, PopoverOrientation} from './Name.properties';
 import ContentTranslationComponent  from '../../components/ContentTranslationComponent';
 import {EveryLanguages}             from '../../EveryLanguages';
 import LanguageTranslationComponent from '../../components/LanguageTranslationComponent';
-import SpanPopover                  from '../../../bootstrap/popover/SpanPopover';
 import {StringContainer}            from '../../../entity/StringContainer';
+import TextPopover                  from '../../../bootstrap/popover/TextPopover';
+import TextComponent                from '../../../app/tools/text/TextComponent';
 
 /**
  * A name component used to render the current language in text format
@@ -46,12 +47,12 @@ function createTextComponent(name: Name, elementId: string, listId: string, does
 
     return doesDisplaySpan
         ? <ContentTranslationComponent>{translation =>
-            <SpanPopover key={`${elementId} - span popover`} elementId={elementId} option={createOption(listElement, popoverOrientation, translation('In other languages'),)}
+            <TextPopover key={`${elementId} - span popover`} elementId={elementId} option={createOption(listElement, popoverOrientation, translation('In other languages'),)}
                          {...otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
                 {currentLanguageTextContent}
-            </SpanPopover>
+            </TextPopover>
         }</ContentTranslationComponent>
-        : <span key={`${elementId} - temporary`}>{currentLanguageTextContent}</span>;
+        : <TextComponent key={`${elementId} - temporary`} content={currentLanguageTextContent}/>;
 }
 
 function createOption(element: HTMLElement, popoverOrientation: | PopoverOrientation | undefined, title: string,): Partial<Popover.Options> {
