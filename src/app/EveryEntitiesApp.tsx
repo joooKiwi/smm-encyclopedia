@@ -22,6 +22,7 @@ import LimitComponent                    from '../entity/limit/Limit.component';
 import NameComponent                     from '../lang/name/component/Name.component';
 import Table                             from './tools/table/Table';
 import TimeComponent                     from '../entity/time/Time.component';
+import {ProjectLanguages}                from '../lang/ProjectLanguages';
 
 /**
  * @reactComponent
@@ -84,7 +85,7 @@ export default class EveryEntitiesApp
         if (this._displayCategoryAsText)
             return <NameComponent id={`category-name-${index}`} name={categoryName} popoverOrientation="left"/>;
 
-        const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
+        const categoryEnglishName = ProjectLanguages.getEnglish(categoryName) as PossibleEnglishName_Category;
         return <Image source={EntityCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
     }
 

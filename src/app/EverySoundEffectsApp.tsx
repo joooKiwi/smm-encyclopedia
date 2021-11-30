@@ -15,6 +15,7 @@ import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
 import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
 import Table                           from './tools/table/Table';
+import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Image                           from './tools/images/Image';
 import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
 
@@ -60,7 +61,7 @@ export default class EverySoundEffectsApp
         if (this._displayCategoryAsText)
             return <NameComponent id={`${index}_soundEffectCategory-name`} name={categoryName} popoverOrientation="right"/>;
 
-        const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
+        const categoryEnglishName = ProjectLanguages.getEnglish(categoryName) as PossibleEnglishName_Category;
         return <Image source={SoundEffectCategories.getValue(categoryEnglishName)!.imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
     }
 
@@ -71,8 +72,8 @@ export default class EverySoundEffectsApp
         for (const [englishName, soundEffect,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
-                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
-                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
+                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, this.enum[index - 1].SMM1ImagePath!, `SMM1 - ${englishName}`,),
+                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, this.enum[index - 1].SMM2ImagePath!, `SMM2 - ${englishName}`,),
                 <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
                 this.__createCategoryComponent(index, soundEffect,),
                 <>--{soundEffect.translationKey}--</>,

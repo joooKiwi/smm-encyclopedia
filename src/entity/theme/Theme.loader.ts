@@ -9,6 +9,8 @@ import type {Loader}                                    from '../../util/loader/
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLoader}            from '../simple/Entity.loader';
+import {EmptyCourseTheme}        from './EmptyCourseTheme';
+import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {ThemeBuilder}            from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
@@ -99,7 +101,7 @@ export class ThemeLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, ThemeBuilder, keyof typeof Headers>(everyThemes, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)))
+            new CSVLoader<PropertiesArray, CourseAndWorldTheme, keyof typeof Headers>(everyThemes, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean(
@@ -108,7 +110,7 @@ export class ThemeLoader
                 )
                 .convertToEmptyableStringAnd(['Special effect on entities', 'Screen upside down', 'Dark', 'Wind', 'Slippery', 'Low gravity', 'Poison liquid', 'Entities in water', 'Characters in water',], 'effectInNightTheme')
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleEnglishName, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => references.set(ProjectLanguages.getEnglish(finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]) as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

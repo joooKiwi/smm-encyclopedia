@@ -35,12 +35,6 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
         return this.#game.get;
     }
 
-    public get englishReference() {
-        const englishNameTemplate = this.template.name.english;
-
-        return (englishNameTemplate.simple ?? englishNameTemplate.american)!;
-    }
-
     protected abstract get _static(): object;
 
     protected /*static*/ _uniqueName(template: T,): | string | null {

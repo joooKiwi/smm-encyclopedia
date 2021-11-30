@@ -1,4 +1,5 @@
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
+import {ProjectLanguages}                                 from '../../lang/ProjectLanguages';
 
 /**
  * @reactComponent
@@ -19,7 +20,7 @@ export abstract class AbstractEntityPropertyComponent<R, E>
         });
         if (enumInstances.length === 1)
             return this._renderSingleComponent(enumInstances[0]);
-        return <div key={`${this.name.english} - group`}>{enumInstances.map(enumInstance => this._renderSingleComponent(enumInstance))}</div>;
+        return <div key={`${ProjectLanguages.getEnglish(this.name)} - group`}>{enumInstances.map(enumInstance => this._renderSingleComponent(enumInstance))}</div>;
     }
 
 }

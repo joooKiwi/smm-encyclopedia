@@ -3,6 +3,7 @@ import type {TimeProperty} from '../properties/TimeProperty';
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
 import Image                                 from '../../app/tools/images/Image';
+import {ProjectLanguages}                    from '../../lang/ProjectLanguages';
 import {Times}                               from './Times';
 import {StringContainer}                     from '../StringContainer';
 
@@ -22,7 +23,7 @@ export default class TimeComponent
     }
 
     protected _renderSingleComponent(time: Times,) {
-        return TimeComponent.renderSingleComponent(time, this.name.english,);
+        return TimeComponent.renderSingleComponent(time, ProjectLanguages.getEnglish(this.name),);
     }
 
     public static renderSingleComponent(time: Times, identifier?: string,) {
@@ -46,7 +47,7 @@ export default class TimeComponent
     }
 
     protected _renderComponentForAllAsImages() {
-        return <div key={`Every times images (${this.name.english})`}>{Times.values.map(time => this._renderSingleComponent(time))}</div>;
+        return <div key={`Every times images (${ProjectLanguages.getEnglish(this.name)})`}>{Times.values.map(time => this._renderSingleComponent(time))}</div>;
     }
 
 }

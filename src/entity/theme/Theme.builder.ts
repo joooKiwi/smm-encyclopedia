@@ -11,6 +11,7 @@ import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
 import {GamePropertyContainer}   from '../properties/GameProperty.container';
 import {Games}                   from '../game/Games';
+import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
 import {WorldThemeContainer}     from './WorldTheme.container';
@@ -41,7 +42,7 @@ export class ThemeBuilder
         return new CourseThemeContainer(
             name,
             GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
-            () => ThemeBuilder.__whereEntityIs(name.english),
+            () => ThemeBuilder.__whereEntityIs(ProjectLanguages.getEnglish(name)),
             template.effect,
         );
     }

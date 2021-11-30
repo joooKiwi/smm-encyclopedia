@@ -10,6 +10,7 @@ import {CSVLoader}               from '../util/loader/CSVLoader';
 import {HeaderTypesForConvertor} from '../util/loader/utility/HeaderTypesForConvertor';
 import {GameReference}           from './GameReference';
 import {GameReferenceBuilder}    from './GameReference.builder';
+import {ProjectLanguages}        from '../lang/ProjectLanguages';
 
 //region -------------------- CSV array related types --------------------
 
@@ -72,13 +73,13 @@ export class GameReferenceLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, GameReferenceBuilder, keyof typeof Headers>(source, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)))
+            new CSVLoader<PropertiesArray, GameReference, keyof typeof Headers>(source, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'acronym',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceEnglishName, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.englishReference as PossibleEnglishName, finalContent.build(),))
+                .onAfterFinalObjectCreated(finalContent => references.set(ProjectLanguages.getEnglish(finalContent) as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------
