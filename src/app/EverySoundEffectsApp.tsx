@@ -9,6 +9,7 @@ import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../entity/game/Games';
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {EmptyName}                     from '../lang/name/EmptyName';
 import NameComponent                   from '../lang/name/component/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
@@ -18,7 +19,6 @@ import Table                           from './tools/table/Table';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Image                           from './tools/images/Image';
 import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import SoundEffectComponent            from '../entity/soundEffect/simple/SoundEffect.component';
 
 /**
@@ -54,7 +54,7 @@ export default class EverySoundEffectsApp
     private __createCategoryComponent(index: number, soundEffect: SoundEffect,) {
         const categoryName = soundEffect.categoryName;
         if (categoryName === EmptyName.get)
-            return <></>;
+            return EMPTY_REACT_ELEMENT;
 
         if (this._displayCategoryAsText)
             return <NameComponent id={`${index}_soundEffectCategory-name`} name={categoryName} popoverOrientation="right"/>;

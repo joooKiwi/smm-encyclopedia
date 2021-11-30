@@ -12,6 +12,7 @@ import CourseThemeComponent              from '../entity/theme/CourseTheme.compo
 import {EntityCategories}                from '../entity/category/EntityCategories';
 import {EntityLimitTypes}                from '../entity/limit/EntityLimitTypes';
 import {EntityLoader}                    from '../entity/simple/Entity.loader';
+import {EMPTY_REACT_ELEMENT}             from '../util/emptyReactVariables';
 import {EmptyName}                       from '../lang/name/EmptyName';
 import GameComponent                     from '../entity/game/Game.component';
 import {GameContentTranslationContainer} from '../lang/containers/GameContentTranslation.container';
@@ -80,7 +81,7 @@ export default class EveryEntitiesApp
     private __createCategoryComponent(index: number, entity: Entity,) {
         const categoryName = entity.categoryName;
         if (categoryName === EmptyName.get)
-            return <></>;
+            return EMPTY_REACT_ELEMENT;
 
         if (this._displayCategoryAsText)
             return <NameComponent id={`category-name-${index}`} name={categoryName} popoverOrientation="left"/>;

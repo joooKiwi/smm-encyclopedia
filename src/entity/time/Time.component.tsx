@@ -5,6 +5,7 @@ import GameContentTranslationComponent       from '../../lang/components/GameCon
 import Image                                 from '../../app/tools/images/Image';
 import {ProjectLanguages}                    from '../../lang/ProjectLanguages';
 import {Times}                               from './Times';
+import TextComponent                         from '../../app/tools/text/TextComponent';
 import {StringContainer}                     from '../StringContainer';
 
 /**
@@ -43,7 +44,7 @@ export default class TimeComponent
     }
 
     protected _renderComponentForAllAsText() {
-        return <GameContentTranslationComponent>{translation => <span>{translation('Every times')}</span>}</GameContentTranslationComponent>;
+        return <GameContentTranslationComponent>{translation => <TextComponent content={translation('Every times')}/>}</GameContentTranslationComponent>;
     }
 
     protected _renderComponentForAllAsImages() {

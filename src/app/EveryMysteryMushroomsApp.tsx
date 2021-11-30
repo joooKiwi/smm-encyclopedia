@@ -12,15 +12,15 @@ import AnimatedImages                  from './tools/images/AnimatedImages';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Image                           from './tools/images/Image';
 import {MysteryMushroomLoader}         from '../entity/mysteryMushrooms/MysteryMushroom.loader';
 import {MysteryMushrooms}              from '../entity/mysteryMushrooms/MysteryMushrooms';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Table                           from './tools/table/Table';
-import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
-import TextComponent from './tools/text/TextComponent';
-import NameComponent from '../lang/name/component/Name.component';
-import Image         from './tools/images/Image';
+import TextComponent                   from './tools/text/TextComponent';
+import NameComponent                   from '../lang/name/component/Name.component';
 import SimpleSound                     from './tools/sounds/SimpleSound';
+import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
 /**
  * @reactComponent
@@ -94,7 +94,7 @@ export default class EveryMysteryMushroomsApp
                 <div key={`games - ${englishName}`} id={`games_${englishNameAsId}`}>{
                     mysteryMushroom.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${englishName}`}>
                         <NameComponent id={`game_${index + 1}_${englishNameAsId}`} name={game.reference} popoverOrientation="right"/>
-                        {index === games.length - 1 ? <></> : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
+                        {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
                     </Fragment>)}</div>,
                 <NameComponent id={`name_${englishNameAsId}`} name={mysteryMushroom} popoverOrientation="right"/>,
                 isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - power-up collected`}>{

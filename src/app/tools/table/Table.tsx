@@ -7,6 +7,7 @@ import type {ReactComponent}                                            from '..
 
 import AnyTranslationComponent from '../../../lang/components/AnyTranslationComponent';
 import {EMPTY_REACT_ELEMENT}   from '../../../util/emptyReactVariables';
+import Image                   from '../images/Image';
 import Tooltip                 from '../../../bootstrap/tooltip/Tooltip';
 
 /**
@@ -73,7 +74,7 @@ export default class Table
             ? <>{header}</>
             : 'element' in header
                 ? header.element
-                : <img key={header.key} alt={header.alt} src={header.path}/>;
+                : <Image key={header.key} source={header.path} fallbackName={header.alt}/>;
     }
 
     private static __createTooltip(isHead: boolean, headOrFootKey: HeaderOrFootKey, header: SingleHeaderContent,) {

@@ -52,7 +52,7 @@ export default class EveryLimitsApp
                     <NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                     <NameComponent id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                     <TextComponent content={entityLimit.amount} isUnknown={entityLimit.isAmountUnknown}/>,
-                    <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
+                    <GameContentTranslationComponent>{translation => <TextComponent content={translation(entityLimit.type.englishCommonText)}/>}</GameContentTranslationComponent>,
                 ]);
                 index++;
             }
