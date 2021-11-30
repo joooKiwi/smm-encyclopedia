@@ -83,6 +83,7 @@ export class GameReferences
     public static readonly PIKMIN_3 =                                    new GameReferences('Pi3',       'Pikmin 3',);
 
     public static readonly THE_LEGEND_OF_ZELDA =                         new GameReferences('TLZ',      'The Legend of Zelda',);
+    public static readonly ZELDA_II_THE_ADVENTURE_OF_LINK =              new GameReferences('Z2:TAL',   'Zelda II: The Adventure of Link',);
     public static readonly THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST =      new GameReferences('TLZ:ALP',  'The Legend of Zelda: A Link to the Past',);
     public static readonly THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME =         new GameReferences('TLZ:OT',   'The Legend of Zelda: Ocarina of Time',);
     public static readonly THE_LEGEND_OF_ZELDA_MAJORA_MASK =             new GameReferences('TLZ:MM',   'The Legend of Zelda: Majora\'s Mask',);

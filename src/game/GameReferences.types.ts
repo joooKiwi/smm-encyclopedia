@@ -41,9 +41,9 @@ enum Enum {
 
     PIKMIN, PIKMIN_3,
 
-    THE_LEGEND_OF_ZELDA, THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST, THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME,
-    THE_LEGEND_OF_ZELDA_MAJORA_MASK, THE_LEGEND_OF_ZELDA_THE_WIND_WAKER, THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS,
-    THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES,
+    THE_LEGEND_OF_ZELDA, THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST, ZELDA_II_THE_ADVENTURE_OF_LINK,
+    THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME, THE_LEGEND_OF_ZELDA_MAJORA_MASK, THE_LEGEND_OF_ZELDA_THE_WIND_WAKER,
+    THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS, THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES,
 
     XENOBLADE_CHRONICLES,
 
@@ -158,6 +158,7 @@ export type PossibleEnglishName_Exclusive =
     | `Pikmin${| '' | ' 3'}`
 
     | `The Legend of Zelda${| '' | `: ${| 'A Link to the Past' | 'Ocarina of Time' | 'Majora\'s Mask' | 'The Wind Waker' | 'Twilight Princess' | 'Tri Force Heroes'}`}`
+    | 'Zelda II: The Adventure of Link'
 
     | 'Xenoblade Chronicles'
 
@@ -237,7 +238,7 @@ export type PossibleAcronym_Exclusive =
     | `FE${| `:${| 'SD' | 'RD'}` | 'A'}`
     | `P${| 'R' | 'G' | 'B' | 'Ye' | 'D' | 'P' | 'X' | 'Y'}`
     | `Pi${| '' | 3}`
-    | `TLZ${| '' | `:${| 'ALP' | 'OT' | 'MM' | 'TWW' | 'TP' | 'TFH'}`}`
+    | `TLZ${| '' | `:${| 'ALP' | 'OT' | 'MM' | 'TWW' | 'TP' | 'TFH'}`}` | 'Z2:TAL'
     | 'XC'
     | 'EB' | 'M3'
     | 'Sp'
@@ -319,9 +320,9 @@ export type EnumArray<T extends GameReferences = GameReferences, > = readonly [
 
     SimpleEnum<T>['PIKMIN'], SimpleEnum<T>['PIKMIN_3'],
 
-    SimpleEnum<T>['THE_LEGEND_OF_ZELDA'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME'],
-    SimpleEnum<T>['THE_LEGEND_OF_ZELDA_MAJORA_MASK'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_THE_WIND_WAKER'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS'],
-    SimpleEnum<T>['THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES'],
+    SimpleEnum<T>['THE_LEGEND_OF_ZELDA'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST'], SimpleEnum<T>['ZELDA_II_THE_ADVENTURE_OF_LINK'],
+    SimpleEnum<T>['THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_MAJORA_MASK'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_THE_WIND_WAKER'],
+    SimpleEnum<T>['THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES'],
 
     SimpleEnum<T>['XENOBLADE_CHRONICLES'],
 
