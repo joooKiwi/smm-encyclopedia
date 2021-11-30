@@ -34,9 +34,10 @@ export default class EveryGameReferencesApp
         GameReferences.DUCK_HUNT, GameReferences.PAC_MAN, GameReferences.WRECKING_CREW,
         GameReferences.PUNCH_OUT, GameReferences.STAR_FOX_ZERO, GameReferences.YAKUMAN_HO_O,
         GameReferences.BIG_BRAIN_ACADEMY, GameReferences.MONSTER_MANOR, GameReferences.BABYMETAL,
-        GameReferences.EXCITEBIKE, GameReferences.NISEKOI, GameReferences.JAM_WITH_THE_BAND, GameReferences.DAIGASSO_BAND_BROS_P,
-        GameReferences.THE_LEGENDARY_STARFY, GameReferences.BALLOON_FIGHT, GameReferences.SHIN_ONIGASHIMA,
-        GameReferences.FAMICOM_DETECTIVE_CLUB_PART_II, GameReferences.PUSHMO, GameReferences.CLU_CLU_LAND, GameReferences.VOLLEYBALL,
+        GameReferences.MONSTER_HUNTER, GameReferences.EXCITEBIKE, GameReferences.NISEKOI,
+        GameReferences.JAM_WITH_THE_BAND, GameReferences.DAIGASSO_BAND_BROS_P, GameReferences.THE_LEGENDARY_STARFY,
+        GameReferences.BALLOON_FIGHT, GameReferences.SHIN_ONIGASHIMA, GameReferences.FAMICOM_DETECTIVE_CLUB_PART_II,
+        GameReferences.PUSHMO, GameReferences.CLU_CLU_LAND, GameReferences.VOLLEYBALL,
         GameReferences.ICE_CLIMBER, GameReferences.SHAUN_THE_SHEEP,
     ] as const;
 
