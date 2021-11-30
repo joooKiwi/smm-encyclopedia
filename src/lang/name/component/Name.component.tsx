@@ -78,7 +78,7 @@ function createListComponent(name: Name, elementId: string, listId: string, does
                 const languageKey = `${EveryLanguages.currentLanguage.englishName} - ${language.englishName}`;
 
                 return <LanguageTranslationComponent key={`${elementId} - language translation component (${languageKey})`}>{translation =>
-                    <li key={`${elementId} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}>{value}</li>
+                    <li key={`${elementId} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}><TextComponent content={value}/></li>
                 }</LanguageTranslationComponent>;
             })
     }</ul>;
