@@ -1,5 +1,5 @@
 import type {Builder}                                                               from '../../util/Builder';
-import type {EntityNameTemplate}                                                    from '../simple/Entity.template';
+import type {EntityNameTemplate}                                                    from '../entity/Entity.template';
 import type {HasAReferenceInMarioMaker}                                             from '../entityTypes';
 import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template';
 import type {PartialGameEnum}                                                       from './PartialGameEnum';
