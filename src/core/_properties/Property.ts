@@ -142,7 +142,7 @@ export type InferredNumberProperty<T extends PossibleNumberValuesByInferredPrope
     : T extends number  ? NumberProperty<T>
     : T extends string  ? NumberPropertyWithComment<null, T>
     : never;
-export type InferredNumberPropertyThatCanBeNotApplicable<CONTAINER_WHEN_NULL, T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, > =
+export type InferredNumberPropertyThatCanBeNotApplicable<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, > =
       T extends null    ? NotApplicableProperty
     : T extends Unknown ? _UnknownNumberProperty<null>
     : T extends number  ? NumberPropertyThatCanBeUnknown<T, false>
