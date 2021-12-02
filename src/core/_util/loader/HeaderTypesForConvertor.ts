@@ -7,7 +7,7 @@ import {EntityLimitTypes}      from '../../limit/EntityLimitTypes';
 import {MysteryMushrooms}      from '../../mysteryMushrooms/MysteryMushrooms';
 import {SoundEffectCategories} from '../../soundEffect/category/SoundEffectCategories';
 import {SoundEffects}          from '../../soundEffect/simple/SoundEffects';
-import {GameReferences}        from '../../../game/GameReferences';
+import {GameReferences}        from '../../gameReference/GameReferences';
 
 /**
  * @singleton

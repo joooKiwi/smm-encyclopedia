@@ -1,5 +1,5 @@
 import type {GameStyles}                                               from './GameStyles';
-import type {PossibleAcronym_GameStyle, PossibleEnglishName_GameStyle} from '../../game/GameReferences.types';
+import type {PossibleAcronym_GameStyle, PossibleEnglishName_GameStyle} from '../gameReference/GameReferences.types';
 import type {SimpleEnum as OriginalSimpleEnum}                         from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | GameStyles | Ordinals | PossibleStringValue;

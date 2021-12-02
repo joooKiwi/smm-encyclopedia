@@ -4,7 +4,7 @@ import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom';
 import type {Name}                                  from '../../lang/name/Name';
 
 import {DifferentSpritePropertyContainer} from './properties/DifferentSpriteProperty.container';
-import {GameReferences}                   from '../../game/GameReferences';
+import {GameReferences}                   from '../gameReference/GameReferences';
 import {Games}                            from '../game/Games';
 import {MysteryMushroomContainer}         from './MysteryMushroom.container';
 import {MysteryMushroomPropertyContainer} from './properties/MysteryMushroomProperty.container';

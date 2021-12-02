@@ -1,6 +1,6 @@
-import type {ClassWithGameReference}  from '../../../../game/ClassWithGameReference';
+import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference';
 import type {NotApplicable, Property} from '../../../_properties/Property';
-import type {GameReferences}          from '../../../../game/GameReferences';
+import type {GameReferences}          from '../../../gameReference/GameReferences';
 
 export interface SoundEffectWhenCollected
     extends Property<PossibleValues>, ClassWithGameReference<PossibleGames> {

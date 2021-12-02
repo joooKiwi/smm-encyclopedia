@@ -1,4 +1,4 @@
-import type {TemplateWithNameTemplate} from '../core/_template/TemplateWithName.template';
+import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
 import type {PossibleAcronym}          from './GameReferences.types';
 
 export interface GameReferenceTemplate

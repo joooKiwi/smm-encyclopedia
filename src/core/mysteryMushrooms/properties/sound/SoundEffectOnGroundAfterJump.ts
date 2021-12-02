@@ -1,5 +1,5 @@
-import type {ClassWithGameReference}  from '../../../../game/ClassWithGameReference';
-import type {GameReferences}          from '../../../../game/GameReferences';
+import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference';
+import type {GameReferences}          from '../../../gameReference/GameReferences';
 import type {NotApplicable, Property} from '../../../_properties/Property';
 
 export interface SoundEffectOnGroundAfterJump

@@ -1,13 +1,13 @@
-import type {ClassWithAcronym}                                                                                                               from '../core/ClassWithAcronym';
-import type {ClassWithEnglishName}                                                                                                           from '../core/ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                             from '../core/ClassWithReference';
+import type {ClassWithAcronym}                                                                                                               from '../ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                           from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                             from '../ClassWithReference';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types';
 import type {GameReference}                                                                                                                  from './GameReference';
-import type {StaticReference}                                                                                                                from '../util/enum/Enum.types';
+import type {StaticReference}                                                                                                                from '../../util/enum/Enum.types';
 
-import {Enum}                from '../util/enum/Enum';
+import {Enum}                from '../../util/enum/Enum';
 import {GameReferenceLoader} from './GameReference.loader';
-import {StringContainer}     from '../util/StringContainer';
+import {StringContainer}     from '../../util/StringContainer';
 
 /**
  * @recursiveReference<{@link GameReferenceLoader}>

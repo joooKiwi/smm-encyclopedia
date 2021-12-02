@@ -2,16 +2,16 @@ import './EveryGameReferencesApp.scss';
 
 import {Fragment} from 'react';
 
-import type {GameReference}                     from '../game/GameReference';
+import type {GameReference}                     from '../core/gameReference/GameReference';
 import type {EnumArray as EnumArray_Games}      from '../core/game/Games.types';
 import type {EnumArray as EnumArray_GameStyles} from '../core/gameStyle/GameStyles.types';
-import type {PossibleEnglishName}               from '../game/GameReferences.types';
+import type {PossibleEnglishName}               from '../core/gameReference/GameReferences.types';
 import type {PossibleEnglishName_Games}         from '../core/soundEffect/simple/SoundEffects.types';
 import type {ReactElement}                      from '../util/react/ReactProperty';
 
 import AbstractApp                     from './AbstractApp';
-import {GameReferenceLoader}           from '../game/GameReference.loader';
-import {GameReferences}                from '../game/GameReferences';
+import {GameReferenceLoader}           from '../core/gameReference/GameReference.loader';
+import {GameReferences}                from '../core/gameReference/GameReferences';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../core/game/Games';
 import {GameStyles}                    from '../core/gameStyle/GameStyles';

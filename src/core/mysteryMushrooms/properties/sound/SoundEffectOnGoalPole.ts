@@ -1,6 +1,6 @@
-import type {ClassWithGameReference}  from '../../../../game/ClassWithGameReference';
+import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference';
 import type {ClassWithTranslationKey} from '../../../../lang/ClassWithTranslationKey';
-import type {GameReferences}          from '../../../../game/GameReferences';
+import type {GameReferences}          from '../../../gameReference/GameReferences';
 import type {NotApplicable, Property} from '../../../_properties/Property';
 
 export interface SoundEffectOnGoalPole

@@ -2,7 +2,7 @@ import type {ExtendedList}                                                      
 import type {PossibleAmount, PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnJump} from './SoundEffectOnJump';
 
 import {PropertyProvider} from '../../../_properties/PropertyProvider';
-import {GameReferences}   from '../../../../game/GameReferences';
+import {GameReferences}   from '../../../gameReference/GameReferences';
 import {isArrayEquals}    from '../../../../util/utilitiesMethods';
 import {ExtendedSet}      from '../../../../util/extended/ExtendedSet';
 

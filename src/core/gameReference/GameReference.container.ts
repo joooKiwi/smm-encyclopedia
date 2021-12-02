@@ -1,6 +1,6 @@
-import type {EveryLanguages}  from '../lang/EveryLanguages';
+import type {EveryLanguages}  from '../../lang/EveryLanguages';
 import type {GameReference}   from './GameReference';
-import type {Name}            from '../lang/name/Name';
+import type {Name}            from '../../lang/name/Name';
 import type {PossibleAcronym} from './GameReferences.types';
 
 export class GameReferenceContainer

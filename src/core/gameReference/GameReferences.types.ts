@@ -1,5 +1,5 @@
 import type {GameReferences}                   from './GameReferences';
-import type {SimpleEnum as OriginalSimpleEnum} from '../util/enum/Enum.types';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | GameReferences | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym;

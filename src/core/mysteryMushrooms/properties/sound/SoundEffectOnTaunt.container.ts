@@ -1,7 +1,7 @@
 import type {PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnTaunt} from './SoundEffectOnTaunt';
 
 import {PropertyProvider} from '../../../_properties/PropertyProvider';
-import {GameReferences}   from '../../../../game/GameReferences';
+import {GameReferences}   from '../../../gameReference/GameReferences';
 import {isArrayEquals}    from '../../../../util/utilitiesMethods';
 import {ExtendedSet}      from '../../../../util/extended/ExtendedSet';
 

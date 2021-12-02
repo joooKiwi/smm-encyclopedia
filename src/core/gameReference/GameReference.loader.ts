@@ -1,16 +1,16 @@
-import source from '../resources/Game references.csv';
+import source from '../../resources/Game references.csv';
 
 import type {GameReferenceTemplate}                     from './GameReference.template';
-import type {Loader}                                    from '../util/loader/Loader';
+import type {Loader}                                    from '../../util/loader/Loader';
 import type {PossibleAcronym, PossibleEnglishName}      from './GameReferences.types';
-import type {PropertiesArray as LanguagesPropertyArray} from '../lang/Loader.types';
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 
-import {AbstractTemplateBuilder} from '../core/_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../core/_util/loader/HeaderTypesForConvertor';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
+import {CSVLoader}               from '../../util/loader/CSVLoader';
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 import {GameReference}           from './GameReference';
 import {GameReferenceBuilder}    from './GameReference.builder';
-import {ProjectLanguages}        from '../lang/ProjectLanguages';
+import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 
 //region -------------------- CSV array related types --------------------
 
