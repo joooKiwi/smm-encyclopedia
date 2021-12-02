@@ -1,10 +1,10 @@
 import type {Builder}               from '../../util/Builder';
 import type {CourseTheme}           from './CourseTheme';
+import type {CourseAndWorldTheme}   from './Themes.types';
 import type {DebugEntityReferences} from '../entity/Entity.loader';
 import type {Entity}                from '../entity/Entity';
 import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
-import type {WorldTheme}            from './WorldTheme';
 
 import {CourseThemeContainer}    from './CourseTheme.container';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
@@ -17,8 +17,8 @@ import {Themes}                  from './Themes';
 import {WorldThemeContainer}     from './WorldTheme.container';
 
 export class ThemeBuilder
-    extends TemplateWithNameBuilder<ThemeTemplate, readonly [CourseTheme, WorldTheme,]>
-    implements Builder<readonly [CourseTheme, WorldTheme,]> {
+    extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
+    implements Builder<CourseAndWorldTheme> {
 
     //region -------------------- External object references --------------------
 
@@ -59,7 +59,7 @@ export class ThemeBuilder
     }
 
 
-    protected _build(name: Name,): readonly [CourseTheme, WorldTheme,] {
+    protected _build(name: Name,): CourseAndWorldTheme {
         const themeTemplate = this.template.isIn.theme;
         const isInCourseTheme = themeTemplate.course;
         const isInWorldTheme = themeTemplate.world;

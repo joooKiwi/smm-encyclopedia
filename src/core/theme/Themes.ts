@@ -22,7 +22,7 @@ import {ThemeComponent}  from './Theme.component';
  */
 export class Themes
     extends Enum<Ordinals, Names>
-    implements ClassWithReference<readonly [CourseTheme, WorldTheme,]>,
+    implements ClassWithReference<CourseAndWorldTheme>,
         ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImagePath<PossibleImagePath>,
         PropertyReferenceGetter<ThemeReferences>,
@@ -175,7 +175,7 @@ export class Themes
 
     //region -------------------- Getter methods --------------------
 
-    public get reference(): readonly [CourseTheme, WorldTheme,] {
+    public get reference(): CourseAndWorldTheme {
         return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
     }
 

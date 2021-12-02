@@ -30,7 +30,7 @@ export abstract class Times
             return referenceProperty.referenceInDayTheme;
         }
 
-    }  ('Day',  'Sun',);
+    }  ('Day',   'Sun',);
     public static readonly NIGHT = new class Times_Night extends Times {
 
         public get(property: TimeProperty,): boolean {
@@ -41,7 +41,7 @@ export abstract class Times
             return referenceProperty.referenceInNightTheme;
         }
 
-    }('Night','Moon',);
+    }('Night', 'Moon',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
