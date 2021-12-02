@@ -77,11 +77,11 @@ export class MysteryMushroomBuilder
 
         switch (reference) {
             case 'Pokémon gen 1':
-                return [GameReferences.POKEMON_RED,GameReferences.POKEMON_GREEN,GameReferences.POKEMON_BLUE,GameReferences.POKEMON_YELLOW,];
+                return [GameReferences.POKEMON_RED, GameReferences.POKEMON_GREEN, GameReferences.POKEMON_BLUE, GameReferences.POKEMON_YELLOW,];
             case 'Pokémon gen 4':
-                return [GameReferences.POKEMON_DIAMOND,GameReferences.POKEMON_PEARL,];
+                return [GameReferences.POKEMON_DIAMOND, GameReferences.POKEMON_PEARL,];
             case 'Pokémon gen 6':
-                return [GameReferences.POKEMON_X,GameReferences.POKEMON_Y,];
+                return [GameReferences.POKEMON_X, GameReferences.POKEMON_Y,];
             default:
                 return [GameReferences.getValue(reference)];
         }
