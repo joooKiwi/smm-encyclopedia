@@ -26,7 +26,7 @@ export abstract class Times
             return property.isInDayTheme;
         }
 
-        public getReference(referenceProperty: TimeReferences,): Entity{
+        public getReference(referenceProperty: TimeReferences,): Entity {
             return referenceProperty.referenceInDayTheme;
         }
 
@@ -37,7 +37,7 @@ export abstract class Times
             return property.isInNightTheme === true;
         }
 
-        public getReference(referenceProperty: TimeReferences,): Entity{
+        public getReference(referenceProperty: TimeReferences,): Entity {
             return referenceProperty.referenceInNightTheme;
         }
 

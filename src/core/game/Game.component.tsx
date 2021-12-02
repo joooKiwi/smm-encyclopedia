@@ -46,6 +46,6 @@ export default class GameComponent
     }
 
     protected _renderComponentForAllAsImages() {
-        return <div key={`${ProjectLanguages.getEnglish(this.name)} (every games)`}>{Games.values.map(game=>this._renderSingleComponent(game))}</div>;
+        return <div key={`${ProjectLanguages.getEnglish(this.name)} (every games)`}>{Games.values.map(game => this._renderSingleComponent(game))}</div>;
     }
 }
