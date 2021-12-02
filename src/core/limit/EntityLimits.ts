@@ -8,7 +8,7 @@ import type {StaticReference}                                                   
 import {EntityLimitLoader} from './EntityLimit.loader';
 import {EntityLimitTypes}  from './EntityLimitTypes';
 import {Enum}              from '../../util/enum/Enum';
-import {StringContainer}   from '../StringContainer';
+import {StringContainer}   from '../../util/StringContainer';
 
 /**
  * @recursiveReferenceVia<{@link EntityLimitBuilder}, {@link EntityLimitLoader}>

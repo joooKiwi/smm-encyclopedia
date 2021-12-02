@@ -6,7 +6,7 @@ import Image                                 from '../../app/tools/images/Image'
 import {ProjectLanguages}                    from '../../lang/ProjectLanguages';
 import {Times}                               from './Times';
 import TextComponent                         from '../../app/tools/text/TextComponent';
-import {StringContainer}                     from '../StringContainer';
+import {StringContainer}                     from '../../util/StringContainer';
 
 /**
  * @reactComponent

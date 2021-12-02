@@ -13,7 +13,7 @@ import type {StaticReference}                                                   
 import {Enum}             from '../../util/enum/Enum';
 import {GameStyleLoader}  from './GameStyle.loader';
 import GameStyleComponent from './GameStyle.component';
-import {StringContainer}  from '../StringContainer';
+import {StringContainer}  from '../../util/StringContainer';
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>

@@ -4,7 +4,7 @@ import type {StaticReference}                                                   
 
 import {Enum}               from '../../../util/enum/Enum';
 import SoundEffectComponent from './SoundEffect.component';
-import {StringContainer}    from '../../StringContainer';
+import {StringContainer}    from '../../../util/StringContainer';
 
 export class SoundEffects
     extends Enum<Ordinals, Names>

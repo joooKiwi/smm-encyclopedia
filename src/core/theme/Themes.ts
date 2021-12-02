@@ -13,7 +13,7 @@ import type {WorldTheme}                                                        
 import {Enum}            from '../../util/enum/Enum';
 import {ThemeLoader}     from './Theme.loader';
 import {EmptyEntity}     from '../simple/EmptyEntity';
-import {StringContainer} from '../StringContainer';
+import {StringContainer} from '../../util/StringContainer';
 import {ThemeComponent}  from './Theme.component';
 
 /**

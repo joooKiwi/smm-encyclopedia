@@ -1,7 +1,7 @@
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
 import {Themes}                          from './Themes';
 import Image                             from '../../app/tools/images/Image';
-import {StringContainer}                 from '../StringContainer';
+import {StringContainer}                 from '../../util/StringContainer';
 
 export abstract class ThemeComponent<R>
     extends AbstractEntityPropertyComponent<R, Themes> {

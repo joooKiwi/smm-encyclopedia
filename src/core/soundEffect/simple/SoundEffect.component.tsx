@@ -4,7 +4,7 @@ import type {Name}         from '../../../lang/name/Name';
 import type {ReactElement} from '../../../util/react/ReactProperty';
 
 import {SoundEffects}     from './SoundEffects';
-import {StringContainer}  from '../../StringContainer';
+import {StringContainer}  from '../../../util/StringContainer';
 import Image              from '../../../app/tools/images/Image';
 import {Games}            from '../../game/Games';
 import {ProjectLanguages} from '../../../lang/ProjectLanguages';

@@ -8,7 +8,7 @@ import type {StaticReference}                                                   
 
 import {Enum}            from '../../util/enum/Enum';
 import GameComponent     from './Game.component';
-import {StringContainer} from '../StringContainer';
+import {StringContainer} from '../../util/StringContainer';
 
 export abstract class Games
     extends Enum<Ordinals, Names>

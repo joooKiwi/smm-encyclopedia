@@ -7,7 +7,7 @@ import type {StaticReference}                                                   
 
 import {Enum}                from '../util/enum/Enum';
 import {GameReferenceLoader} from './GameReference.loader';
-import {StringContainer}     from '../core/StringContainer';
+import {StringContainer}     from '../util/StringContainer';
 
 /**
  * @recursiveReference<{@link GameReferenceLoader}>

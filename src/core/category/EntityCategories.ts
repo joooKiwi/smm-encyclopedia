@@ -7,7 +7,7 @@ import type {StaticReference}                                                   
 
 import {EntityCategoryLoader} from './EntityCategory.loader';
 import {Enum}                 from '../../util/enum/Enum';
-import {StringContainer}      from '../StringContainer';
+import {StringContainer}      from '../../util/StringContainer';
 
 export class EntityCategories
     extends Enum<Ordinals, Names>

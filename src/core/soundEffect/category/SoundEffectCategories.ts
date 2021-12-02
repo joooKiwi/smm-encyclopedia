@@ -4,7 +4,7 @@ import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishN
 import type {StaticReference}                                                                                                                                         from '../../../util/enum/Enum.types';
 
 import {Enum}            from '../../../util/enum/Enum';
-import {StringContainer} from '../../StringContainer';
+import {StringContainer} from '../../../util/StringContainer';
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>

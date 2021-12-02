@@ -3,7 +3,7 @@ import type {ClassWithEnglishName}                                              
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
-import {StringContainer} from '../StringContainer';
+import {StringContainer} from '../../util/StringContainer';
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>

@@ -5,7 +5,7 @@ import GameContentTranslationComponent   from '../../lang/components/GameContent
 import {GameStyles}                      from './GameStyles';
 import Image                             from '../../app/tools/images/Image';
 import {ProjectLanguages}                from '../../lang/ProjectLanguages';
-import {StringContainer}                 from '../StringContainer';
+import {StringContainer}                 from '../../util/StringContainer';
 
 /**
  * @reactComponent

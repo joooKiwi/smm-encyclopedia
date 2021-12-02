@@ -8,7 +8,7 @@ import type {TimeProperty}                                                      
 import type {TimeReferences}                                                                                                                                            from '../properties/TimeReferences';
 
 import {Enum}            from '../../util/enum/Enum';
-import {StringContainer} from '../StringContainer';
+import {StringContainer} from '../../util/StringContainer';
 import TimeComponent     from './Time.component';
 
 export abstract class Times
