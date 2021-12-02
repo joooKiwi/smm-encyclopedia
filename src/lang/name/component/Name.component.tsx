@@ -10,7 +10,7 @@ import type {NameProperties, PopoverOrientation} from './Name.properties';
 import ContentTranslationComponent  from '../../components/ContentTranslationComponent';
 import LanguageTranslationComponent from '../../components/LanguageTranslationComponent';
 import {ProjectLanguages}           from '../../ProjectLanguages';
-import {StringContainer}            from '../../../entity/StringContainer';
+import {StringContainer}            from '../../../core/StringContainer';
 import TextComponent                from '../../../app/tools/text/TextComponent';
 import TextPopover                  from '../../../bootstrap/popover/TextPopover';
 

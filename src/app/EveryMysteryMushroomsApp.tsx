@@ -3,8 +3,8 @@ import './EveryMysteryMushroomsApp.scss';
 import {Fragment} from 'react';
 
 import type {ImageProperties}    from './tools/images/properties/ImageProperties';
-import type {MysteryMushroom}    from '../entity/mysteryMushrooms/MysteryMushroom';
-import type {UniqueEnglishName}  from '../entity/mysteryMushrooms/MysteryMushrooms.types';
+import type {MysteryMushroom}    from '../core/mysteryMushrooms/MysteryMushroom';
+import type {UniqueEnglishName}  from '../core/mysteryMushrooms/MysteryMushrooms.types';
 import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
@@ -13,8 +13,8 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
-import {MysteryMushroomLoader}         from '../entity/mysteryMushrooms/MysteryMushroom.loader';
-import {MysteryMushrooms}              from '../entity/mysteryMushrooms/MysteryMushrooms';
+import {MysteryMushroomLoader}         from '../core/mysteryMushrooms/MysteryMushroom.loader';
+import {MysteryMushrooms}              from '../core/mysteryMushrooms/MysteryMushrooms';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';

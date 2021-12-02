@@ -1,28 +1,28 @@
 import './EveryEntitiesApp.scss';
 
-import type {DebugEntityReferences}                               from '../entity/simple/Entity.loader';
-import type {Entity}                                              from '../entity/simple/Entity';
+import type {DebugEntityReferences}                               from '../core/simple/Entity.loader';
+import type {Entity}                                              from '../core/simple/Entity';
 import type {EntityAppStates}                                     from './AppStates.types';
-import type {PossibleEnglishName as PossibleEnglishName_Category} from '../entity/category/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/category/EntityCategories.types';
 import type {SingleTableContent}                                  from './tools/table/Table.types';
 
 import AbstractApp                       from './AbstractApp';
 import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
-import CourseThemeComponent              from '../entity/theme/CourseTheme.component';
-import {EntityCategories}                from '../entity/category/EntityCategories';
-import {EntityLimitTypes}                from '../entity/limit/EntityLimitTypes';
-import {EntityLoader}                    from '../entity/simple/Entity.loader';
+import CourseThemeComponent              from '../core/theme/CourseTheme.component';
+import {EntityCategories}                from '../core/category/EntityCategories';
+import {EntityLimitTypes}                from '../core/limit/EntityLimitTypes';
+import {EntityLoader}                    from '../core/simple/Entity.loader';
 import {EMPTY_REACT_ELEMENT}             from '../util/emptyReactVariables';
 import {EmptyName}                       from '../lang/name/EmptyName';
-import GameComponent                     from '../entity/game/Game.component';
+import GameComponent                     from '../core/game/Game.component';
 import {GameContentTranslationContainer} from '../lang/containers/GameContentTranslation.container';
 import GameContentTranslationComponent   from '../lang/components/GameContentTranslationComponent';
-import GameStyleComponent                from '../entity/gameStyle/GameStyle.component';
+import GameStyleComponent                from '../core/gameStyle/GameStyle.component';
 import Image                             from './tools/images/Image';
-import LimitComponent                    from '../entity/limit/Limit.component';
+import LimitComponent                    from '../core/limit/Limit.component';
 import NameComponent                     from '../lang/name/component/Name.component';
 import Table                             from './tools/table/Table';
-import TimeComponent                     from '../entity/time/Time.component';
+import TimeComponent                     from '../core/time/Time.component';
 import {ProjectLanguages}                from '../lang/ProjectLanguages';
 
 /**

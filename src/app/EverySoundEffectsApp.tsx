@@ -1,25 +1,25 @@
 import './EverySoundEffectsApp.scss';
 
-import type {PossibleEnglishName}                                 from '../entity/soundEffect/simple/SoundEffects.types';
-import type {PossibleEnglishName as PossibleEnglishName_Category} from '../entity/soundEffect/category/SoundEffectCategories.types';
-import type {SoundEffect}                                         from '../entity/soundEffect/simple/SoundEffect';
+import type {PossibleEnglishName}                                 from '../core/soundEffect/simple/SoundEffects.types';
+import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/soundEffect/category/SoundEffectCategories.types';
+import type {SoundEffect}                                         from '../core/soundEffect/simple/SoundEffect';
 import type {SoundEffectAppStates}                                from './AppStates.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../entity/game/Games';
+import {Games}                         from '../core/game/Games';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {EmptyName}                     from '../lang/name/EmptyName';
 import NameComponent                   from '../lang/name/component/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
-import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
-import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
+import {SoundEffectLoader}             from '../core/soundEffect/simple/SoundEffect.loader';
+import {SoundEffects}                  from '../core/soundEffect/simple/SoundEffects';
 import Table                           from './tools/table/Table';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Image                           from './tools/images/Image';
-import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
-import SoundEffectComponent            from '../entity/soundEffect/simple/SoundEffect.component';
+import {SoundEffectCategories}         from '../core/soundEffect/category/SoundEffectCategories';
+import SoundEffectComponent            from '../core/soundEffect/simple/SoundEffect.component';
 
 /**
  * @reactComponent

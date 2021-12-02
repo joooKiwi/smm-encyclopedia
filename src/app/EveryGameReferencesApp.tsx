@@ -3,20 +3,20 @@ import './EveryGameReferencesApp.scss';
 import {Fragment} from 'react';
 
 import type {GameReference}                     from '../game/GameReference';
-import type {EnumArray as EnumArray_Games}      from '../entity/game/Games.types';
-import type {EnumArray as EnumArray_GameStyles} from '../entity/gameStyle/GameStyles.types';
+import type {EnumArray as EnumArray_Games}      from '../core/game/Games.types';
+import type {EnumArray as EnumArray_GameStyles} from '../core/gameStyle/GameStyles.types';
 import type {PossibleEnglishName}               from '../game/GameReferences.types';
-import type {PossibleEnglishName_Games}         from '../entity/soundEffect/simple/SoundEffects.types';
+import type {PossibleEnglishName_Games}         from '../core/soundEffect/simple/SoundEffects.types';
 import type {ReactElement}                      from '../util/react/ReactProperty';
 
 import AbstractApp                     from './AbstractApp';
 import {GameReferenceLoader}           from '../game/GameReference.loader';
 import {GameReferences}                from '../game/GameReferences';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../entity/game/Games';
-import {GameStyles}                    from '../entity/gameStyle/GameStyles';
+import {Games}                         from '../core/game/Games';
+import {GameStyles}                    from '../core/gameStyle/GameStyles';
 import NameComponent                   from '../lang/name/component/Name.component';
-import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
+import {SoundEffects}                  from '../core/soundEffect/simple/SoundEffects';
 import {SingleTranslationKey}          from '../lang/components/TranslationProperty';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 

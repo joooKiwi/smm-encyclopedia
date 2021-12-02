@@ -3,8 +3,8 @@ import type {GameReference}         from './GameReference';
 import type {GameReferenceTemplate} from './GameReference.template';
 import type {Name}                  from '../lang/name/Name';
 
-import {TemplateWithNameBuilder} from '../entity/_template/TemplateWithName.builder';
-import {Games}                   from '../entity/game/Games';
+import {TemplateWithNameBuilder} from '../core/_template/TemplateWithName.builder';
+import {Games}                   from '../core/game/Games';
 import {GameReferenceContainer}  from './GameReference.container';
 
 export class GameReferenceBuilder

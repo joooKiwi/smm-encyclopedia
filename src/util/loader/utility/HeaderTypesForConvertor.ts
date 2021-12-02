@@ -1,13 +1,12 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
-import {EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
-import {EntityBehaviours}      from '../../../entity/behaviours/EntityBehaviours';
-import {EntityCategoryLoader}  from '../../../entity/category/EntityCategory.loader';
-import {EntityLimits}          from '../../../entity/limit/EntityLimits';
-import {EntityLimitTypes}      from '../../../entity/limit/EntityLimitTypes';
-import {MysteryMushrooms}      from '../../../entity/mysteryMushrooms/MysteryMushrooms';
-import {SoundEffectCategories} from '../../../entity/soundEffect/category/SoundEffectCategories';
-import {SoundEffects}          from '../../../entity/soundEffect/simple/SoundEffects';
+import {EntityBehaviours}      from '../../../core/behaviours/EntityBehaviours';
+import {EntityCategoryLoader}  from '../../../core/category/EntityCategory.loader';
+import {EntityLimits}          from '../../../core/limit/EntityLimits';
+import {EntityLimitTypes}      from '../../../core/limit/EntityLimitTypes';
+import {MysteryMushrooms}      from '../../../core/mysteryMushrooms/MysteryMushrooms';
+import {SoundEffectCategories} from '../../../core/soundEffect/category/SoundEffectCategories';
+import {SoundEffects}          from '../../../core/soundEffect/simple/SoundEffects';
 import {GameReferences}        from '../../../game/GameReferences';
 
 /**

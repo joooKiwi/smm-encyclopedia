@@ -5,7 +5,7 @@ import type {Loader}                                    from '../util/loader/Loa
 import type {PossibleAcronym, PossibleEnglishName}      from './GameReferences.types';
 import type {PropertiesArray as LanguagesPropertyArray} from '../lang/Loader.types';
 
-import {AbstractTemplateBuilder} from '../entity/_template/AbstractTemplate.builder';
+import {AbstractTemplateBuilder} from '../core/_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../util/loader/CSVLoader';
 import {HeaderTypesForConvertor} from '../util/loader/utility/HeaderTypesForConvertor';
 import {GameReference}           from './GameReference';

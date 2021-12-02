@@ -5,7 +5,7 @@ import type {PossibleNameTemplate} from './Name.template';
 import type {PossibleGameReceived} from './Name.builder.types';
 
 import {NameContainer} from './Name.container';
-import {Games}         from '../../entity/game/Games';
+import {Games}         from '../../core/game/Games';
 
 export class NameBuilder<T extends PossibleNameTemplate, >
     implements Builder<Name> {

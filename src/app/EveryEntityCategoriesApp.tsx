@@ -1,11 +1,11 @@
-import type {PossibleEnglishName} from '../entity/category/EntityCategories.types';
+import type {PossibleEnglishName} from '../core/category/EntityCategories.types';
 import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EntityCategories}              from '../entity/category/EntityCategories';
-import {EntityCategory}                from '../entity/category/EntityCategory';
-import {EntityCategoryLoader}          from '../entity/category/EntityCategory.loader';
+import {EntityCategories}              from '../core/category/EntityCategories';
+import {EntityCategory}                from '../core/category/EntityCategory';
+import {EntityCategoryLoader}          from '../core/category/EntityCategory.loader';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
