@@ -19,7 +19,7 @@ export class MysteryMushroomBuilder
 
     public static gameReferencesMap: ReadonlyMap<string, GameReferences>;
 
-    //region -------------------- External object references --------------------
+    //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<MysteryMushroomTemplate>,) {
         super(templateBuilder, Games.SUPER_MARIO_MAKER_1, false,);//TODO change the false to true since it is a complete SMM1 name
@@ -87,7 +87,7 @@ export class MysteryMushroomBuilder
         }
     }
 
-    //region -------------------- Build helper methods --------------------
+    //endregion -------------------- Build helper methods --------------------
 
     protected _build(name: Name,): MysteryMushroom {
         return new MysteryMushroomContainer(name, this._getGames(), this.__createProperty());
