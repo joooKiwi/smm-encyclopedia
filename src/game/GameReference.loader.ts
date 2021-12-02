@@ -7,7 +7,7 @@ import type {PropertiesArray as LanguagesPropertyArray} from '../lang/Loader.typ
 
 import {AbstractTemplateBuilder} from '../core/_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../util/loader/utility/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor} from '../core/_util/loader/HeaderTypesForConvertor';
 import {GameReference}           from './GameReference';
 import {GameReferenceBuilder}    from './GameReference.builder';
 import {ProjectLanguages}        from '../lang/ProjectLanguages';

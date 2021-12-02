@@ -20,7 +20,7 @@ import type {SoundPropertyTemplate}                                             
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 import {MysteryMushroomBuilder}  from './MysteryMushroom.builder';
 
 //region -------------------- CSV array related types --------------------

@@ -20,7 +20,7 @@ import {EMPTY_ARRAY}                  from '../../util/emptyVariables';
 import {EntityCategoryLoader}         from '../category/EntityCategory.loader';
 import {EntityBuilder}                from './Entity.builder';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
-import {HeaderTypesForConvertor}      from '../../util/loader/utility/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor}      from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 

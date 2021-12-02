@@ -10,7 +10,7 @@ import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {EntityLoader}            from '../simple/Entity.loader';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
-import {HeaderTypesForConvertor} from '../../util/loader/utility/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
