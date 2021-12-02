@@ -1,4 +1,4 @@
-import type {EntityLimits}                                                                                                                                                from '../../limit/EntityLimits';
+import type {EntityLimits}                                                                                                                                                from '../../../limit/EntityLimits';
 import type {CustomLimitContainer, EditorLimitContainer, PowerUpLimitContainer, ProjectileLimitContainer, SingleGeneralGlobalLimitContainer, SingleGeneralLimitContainer} from './LimitProperty.types';
 import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                   from './Loader.types';
 

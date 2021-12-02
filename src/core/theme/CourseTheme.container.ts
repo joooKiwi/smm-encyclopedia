@@ -1,6 +1,6 @@
 import type {CourseTheme}                from './CourseTheme';
 import type {Entity}                     from '../entity/Entity';
-import type {GameProperty}               from '../properties/GameProperty';
+import type {GameProperty}               from '../entity/properties/GameProperty';
 import type {Name}                       from '../../lang/name/Name';
 import type {ObjectHolder}               from '../../util/holder/ObjectHolder';
 import type {PossibleEffectInNightTheme} from './Theme.template';

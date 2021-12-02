@@ -5,8 +5,8 @@ import type {ClassWithReference}                                                
 import type {Entity}                                                                                                                                                               from '../entity/Entity';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingImagePath} from './GameStyles.types';
 import type {GameStyle}                                                                                                                                                            from './GameStyle';
-import type {GameStyleProperty}                                                                                                                                                    from '../properties/GameStyleProperty';
-import type {GameStyleReferences}                                                                                                                                                  from '../properties/GameStyleReferences';
+import type {GameStyleProperty}                                                                                                                                                    from '../entity/properties/GameStyleProperty';
+import type {GameStyleReferences}                                                                                                                                                  from '../entity/properties/GameStyleReferences';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                              from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                      from '../../util/enum/Enum.types';
 

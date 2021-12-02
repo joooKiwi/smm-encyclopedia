@@ -3,7 +3,7 @@ import type {GameStyle}                                      from './GameStyle';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyName}              from '../../lang/name/EmptyName';
-import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
+import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
 
 /**
  * @singleton

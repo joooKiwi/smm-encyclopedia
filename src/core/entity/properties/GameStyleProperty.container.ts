@@ -1,6 +1,6 @@
 import type {AbstractExclusiveSMM2GameStyleProperty, ExclusiveSMM1GameStyleProperty, GameStyleProperty} from './GameStyleProperty';
 
-import {GameStyles} from '../gameStyle/GameStyles';
+import {GameStyles} from '../../gameStyle/GameStyles';
 
 /**
  * @multiton

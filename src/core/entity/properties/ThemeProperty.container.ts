@@ -1,6 +1,6 @@
 import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ThemeProperty} from './ThemeProperty';
 
-import {Themes} from '../theme/Themes';
+import {Themes} from '../../theme/Themes';
 
 /**
  * @multiton

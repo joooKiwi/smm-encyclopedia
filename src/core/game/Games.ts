@@ -2,7 +2,7 @@ import type {ClassWithAcronym}                                                  
 import type {ClassWithEnglishName}                                                                                                                              from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                from '../ClassWithImagePath';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
-import type {GameProperty}                                                                                                                                      from '../properties/GameProperty';
+import type {GameProperty}                                                                                                                                      from '../entity/properties/GameProperty';
 import type {PropertyGetter}                                                                                                                                    from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                   from '../../util/enum/Enum.types';
 

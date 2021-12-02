@@ -1,4 +1,4 @@
-import type {ThemeProperty} from '../properties/ThemeProperty';
+import type {ThemeProperty} from '../entity/properties/ThemeProperty';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';

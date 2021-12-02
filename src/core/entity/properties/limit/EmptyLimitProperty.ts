@@ -1,8 +1,8 @@
 import type {LimitProperty}                              from './LimitProperty';
-import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../util/ClassWithNullObjectPattern';
+import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../../util/ClassWithNullObjectPattern';
 
-import {PropertyContainer} from '../../_properties/Property.container';
-import {EMPTY_MAP}         from '../../../util/emptyVariables';
+import {PropertyContainer} from '../../../_properties/Property.container';
+import {EMPTY_MAP}         from '../../../../util/emptyVariables';
 
 /**
  * @singleton

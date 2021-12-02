@@ -1,16 +1,16 @@
 import type {CustomLimitContainer, CustomLimitReceived, EditorLimitContainer, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitContainer, PowerUpLimitReceived, ProjectileLimitContainer, ProjectileLimitReceived, SingleGeneralGlobalLimitContainer, SingleGeneralGlobalLimitReceived, SingleGeneralLimitContainer, SingleGeneralLimitReceived} from './LimitProperty.types';
 import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                                                                                                                                                        from './Loader.types';
-import type {ExtendedList}                                                                                                                                                                                                                                                                                                                             from '../../../util/extended/ExtendedList';
+import type {ExtendedList}                                                                                                                                                                                                                                                                                                                             from '../../../../util/extended/ExtendedList';
 import type {LimitProperty}                                                                                                                                                                                                                                                                                                                            from './LimitProperty';
 
 import {EmptyLimitProperty}                           from './EmptyLimitProperty';
-import {PropertyContainer}                            from '../../_properties/Property.container';
-import {PropertyProvider}                             from '../../_properties/PropertyProvider';
-import {PropertyThatCanBeUnknownWithCommentContainer} from '../../_properties/PropertyThatCanBeUnknownWithComment.container';
-import {PropertyWithCommentContainer}                 from '../../_properties/PropertyWithComment.container';
-import {EntityLimits}                                 from '../../limit/EntityLimits';
-import {ExtendedSet}                                  from '../../../util/extended/ExtendedSet';
-import {isArrayEquals}                                from '../../../util/utilitiesMethods';
+import {PropertyContainer}                            from '../../../_properties/Property.container';
+import {PropertyProvider}                             from '../../../_properties/PropertyProvider';
+import {PropertyThatCanBeUnknownWithCommentContainer} from '../../../_properties/PropertyThatCanBeUnknownWithComment.container';
+import {PropertyWithCommentContainer}                 from '../../../_properties/PropertyWithComment.container';
+import {EntityLimits}                                 from '../../../limit/EntityLimits';
+import {ExtendedSet}                                  from '../../../../util/extended/ExtendedSet';
+import {isArrayEquals}                                from '../../../../util/utilitiesMethods';
 
 /**
  * @provider

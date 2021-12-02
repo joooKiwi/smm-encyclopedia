@@ -1,9 +1,9 @@
 import type {Entity}           from './Entity';
 import type {EntityCategory}   from '../category/EntityCategory';
-import type {EntityReferences} from '../properties/EntityReferences';
+import type {EntityReferences} from './properties/EntityReferences';
 import type {GameStyles}       from '../gameStyle/GameStyles';
 import type {Name}             from '../../lang/name/Name';
-import type {Property}         from '../properties/Property';
+import type {Property}         from './properties/Property';
 import type {Themes}           from '../theme/Themes';
 import type {Times}            from '../time/Times';
 

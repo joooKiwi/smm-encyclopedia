@@ -1,4 +1,4 @@
-import type {Times} from '../time/Times';
+import type {Times} from '../../time/Times';
 
 export interface TimeProperty<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, > {
 

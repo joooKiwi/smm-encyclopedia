@@ -1,9 +1,9 @@
-import type {AbstractExclusiveSMM2GameProperty} from '../properties/GameProperty';
+import type {AbstractExclusiveSMM2GameProperty} from '../entity/properties/GameProperty';
 import type {Name}                              from '../../lang/name/Name';
 import type {WorldTheme}                        from './WorldTheme';
 
 import {AbstractTheme}         from './AbstractTheme';
-import {GamePropertyContainer} from '../properties/GameProperty.container';
+import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
 
 export class WorldThemeContainer
     extends AbstractTheme

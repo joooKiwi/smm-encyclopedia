@@ -4,8 +4,8 @@ import type {Entity}                                                            
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                   from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                           from '../../util/enum/Enum.types';
-import type {TimeProperty}                                                                                                                                              from '../properties/TimeProperty';
-import type {TimeReferences}                                                                                                                                            from '../properties/TimeReferences';
+import type {TimeProperty}                                                                                                                                              from '../entity/properties/TimeProperty';
+import type {TimeReferences}                                                                                                                                            from '../entity/properties/TimeReferences';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';

@@ -5,7 +5,7 @@ import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
 
-import {GamePropertyContainer}   from '../properties/GameProperty.container';
+import {GamePropertyContainer}   from '../entity/properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
 import {GameStyleContainer}      from './GameStyle.container';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';

@@ -2,7 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/
 import type {CourseTheme}                                      from './CourseTheme';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
-import {EmptyIsInProperty}      from '../properties/EmptyIsInProperty';
+import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
 import {EmptyName}              from '../../lang/name/EmptyName';
 
 /**

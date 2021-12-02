@@ -1,7 +1,7 @@
 import type {AbstractExclusiveSMM2Entity as AbstractExclusiveSMM2EntityInterface} from './Entity';
-import type {AbstractExclusiveSMM2Property, Property}                             from '../properties/Property';
+import type {AbstractExclusiveSMM2Property, Property}                             from './properties/Property';
 import type {EntityCategory}                                                      from '../category/EntityCategory';
-import type {EntityReferences}                                                    from '../properties/EntityReferences';
+import type {EntityReferences}                                                    from './properties/EntityReferences';
 import type {Name}                                                                from '../../lang/name/Name';
 
 import {EntityContainer} from './Entity.container';

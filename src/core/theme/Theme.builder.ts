@@ -9,7 +9,7 @@ import type {ThemeTemplate}         from './Theme.template';
 import {CourseThemeContainer}    from './CourseTheme.container';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
-import {GamePropertyContainer}   from '../properties/GameProperty.container';
+import {GamePropertyContainer}   from '../entity/properties/GameProperty.container';
 import {Games}                   from '../game/Games';
 import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';

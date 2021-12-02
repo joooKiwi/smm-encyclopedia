@@ -1,11 +1,11 @@
-import type {Entity}           from '../entity/Entity';
+import type {Entity}           from '../Entity';
 import type {EntityReferences} from './EntityReferences';
-import type {GameStyles}       from '../gameStyle/GameStyles';
-import type {ObjectHolder}     from '../../util/holder/ObjectHolder';
-import type {Themes}           from '../theme/Themes';
-import type {Times}            from '../time/Times';
+import type {GameStyles}       from '../../gameStyle/GameStyles';
+import type {ObjectHolder}     from '../../../util/holder/ObjectHolder';
+import type {Themes}           from '../../theme/Themes';
+import type {Times}            from '../../time/Times';
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
 
 export class EntityReferencesContainer
     implements EntityReferences {

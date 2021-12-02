@@ -1,5 +1,5 @@
-import type {Entity} from '../entity/Entity';
-import type {Themes} from '../theme/Themes';
+import type {Entity} from '../Entity';
+import type {Themes} from '../../theme/Themes';
 
 export interface ThemeReferences {
 

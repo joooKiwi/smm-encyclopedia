@@ -1,5 +1,5 @@
 import type {Builder}                                                                                                                                 from '../../util/Builder';
-import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from '../properties/limit/LimitProperty.types';
+import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
 import type {DebugEntityReferences}                                                                                                                   from './Entity.loader';
 import type {Entity}                                                                                                                                  from './Entity';
 import type {EntityCategory}                                                                                                                          from '../category/EntityCategory';
@@ -9,7 +9,7 @@ import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}          
 import type {PossibleGameReceived}                                                                                                                    from '../../lang/name/Name.builder.types';
 
 import {EntityLimits}                  from '../limit/EntityLimits';
-import {EntityReferencesContainer}     from '../properties/EntityReferences.container';
+import {EntityReferencesContainer}     from './properties/EntityReferences.container';
 import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EmptyEntity}                   from './EmptyEntity';
 import {EmptyEntityCategory}           from '../category/EmptyEntityCategory';
@@ -19,7 +19,7 @@ import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
 import {EntityContainer}               from './Entity.container';
 import {Games}                         from '../game/Games';
 import {NameBuilder}                   from '../../lang/name/Name.builder';
-import {PropertyContainer}             from '../properties/Property.container';
+import {PropertyContainer}             from './properties/Property.container';
 
 export class EntityBuilder
     implements Builder<Entity> {

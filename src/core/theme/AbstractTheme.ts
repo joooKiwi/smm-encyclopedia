@@ -1,4 +1,4 @@
-import type {GameProperty} from '../properties/GameProperty';
+import type {GameProperty} from '../entity/properties/GameProperty';
 import type {Name}         from '../../lang/name/Name';
 import type {Theme}        from './Theme';
 

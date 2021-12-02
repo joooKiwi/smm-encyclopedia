@@ -1,6 +1,6 @@
 import type {BasicProperty, CanBeInAParachute, CanHaveWings, HasAMushroomVariant, LCL_whilePlaying, PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant} from './BasicProperty';
 
-import {PropertyProvider} from '../../_properties/PropertyProvider';
+import {PropertyProvider} from '../../../_properties/PropertyProvider';
 
 export class BasicPropertyContainer<HAS_A_MUSHROOM_VARIANT extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant,
     CAN_BE_IN_A_PARACHUTE extends PossibleCanBeInAParachute = PossibleCanBeInAParachute,
