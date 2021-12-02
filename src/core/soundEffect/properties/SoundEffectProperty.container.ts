@@ -1,7 +1,7 @@
 import type {PlayerSoundEffectTriggerProperty} from './PlayerSoundEffectTriggerProperty';
 import type {SoundEffectProperty}              from './SoundEffectProperty';
 
-import {GamePropertyContainer}                     from '../../../entity/properties/GameProperty.container';
+import {GamePropertyContainer}                     from '../../entity/properties/GameProperty.container';
 import {PlayerSoundEffectTriggerPropertyContainer} from './PlayerSoundEffectTriggerProperty.container';
 
 export class SoundEffectPropertyContainer

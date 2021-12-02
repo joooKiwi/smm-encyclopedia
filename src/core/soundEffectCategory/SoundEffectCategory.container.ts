@@ -1,6 +1,6 @@
 import {SoundEffectCategory} from './SoundEffectCategory';
-import {Name}                from '../../../lang/name/Name';
-import {EveryLanguages}      from '../../../lang/EveryLanguages';
+import {Name}                from '../../lang/name/Name';
+import {EveryLanguages}      from '../../lang/EveryLanguages';
 
 export class SoundEffectCategoryContainer
     implements SoundEffectCategory {

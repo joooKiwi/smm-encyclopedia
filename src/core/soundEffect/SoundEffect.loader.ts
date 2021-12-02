@@ -1,17 +1,17 @@
-import everySoundEffects from '../../../resources/Sound effects.csv';
+import everySoundEffects from '../../resources/Sound effects.csv';
 
-import type {PropertiesArray as LanguagesPropertyArray}            from '../../../lang/Loader.types';
-import type {Loader}                                               from '../../../util/loader/Loader';
-import type {PropertiesArray as GamesPropertyArray}                from '../../game/Loader.types';
+import type {PropertiesArray as LanguagesPropertyArray}            from '../../lang/Loader.types';
+import type {Loader}                                               from '../../util/loader/Loader';
+import type {PropertiesArray as GamesPropertyArray}                from '../game/Loader.types';
 import type {PossibleSoundEffectCategoryType, SoundEffectTemplate} from './SoundEffect.template';
 import type {PossibleEnglishName}                                  from './SoundEffects.types';
 import type {SoundEffect}                                          from './SoundEffect';
 
-import {AbstractTemplateBuilder}   from '../../_template/AbstractTemplate.builder';
-import {CSVLoader}                 from '../../../util/loader/CSVLoader';
+import {AbstractTemplateBuilder}   from '../_template/AbstractTemplate.builder';
+import {CSVLoader}                 from '../../util/loader/CSVLoader';
 import {SoundEffectBuilder}        from './SoundEffect.builder';
-import {SoundEffectCategoryLoader} from '../category/SoundEffectCategory.loader';
-import {HeaderTypesForConvertor}   from '../../_util/loader/HeaderTypesForConvertor';
+import {SoundEffectCategoryLoader} from '../soundEffectCategory/SoundEffectCategory.loader';
+import {HeaderTypesForConvertor}   from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 

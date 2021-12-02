@@ -1,9 +1,9 @@
 import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                      from './Loader.types';
-import type {EntityLimits}                                                                                                                                                                                           from '../../../limit/EntityLimits';
+import type {EntityLimits}                                                                                                                                                                                           from '../../../entityLimit/EntityLimits';
 import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment, InferredBooleanPropertyWithEverything, InferredStringPropertyThatCanBeNotApplicable, InferredStringPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property';
 import type {PropertyThatCanBeUnknown}                                                                                                                                                                               from '../../../_properties/PropertyThatCanBeUnknown';
 import type {PropertyThatCanBeUnknownWithComment}                                                                                                                                                                    from '../../../_properties/PropertyThatCanBeUnknownWithComment';
-import type {PossibleEnglishName}                                                                                                                                                                                    from '../../../limit/EntityLimits.types';
+import type {PossibleEnglishName}                                                                                                                                                                                    from '../../../entityLimit/EntityLimits.types';
 
 export type CallbackToGetEntityLimit = (entityLimit: PossibleEnglishName,) => EntityLimits;
 

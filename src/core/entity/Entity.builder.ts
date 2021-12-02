@@ -2,17 +2,17 @@ import type {Builder}                                                           
 import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
 import type {DebugEntityReferences}                                                                                                                   from './Entity.loader';
 import type {Entity}                                                                                                                                  from './Entity';
-import type {EntityCategory}                                                                                                                          from '../category/EntityCategory';
+import type {EntityCategory}                                                                                                                          from '../entityCategory/EntityCategory';
 import type {EntityLink}                                                                                                                              from '../entityTypes';
 import type {EntityTemplate}                                                                                                                          from './Entity.template';
-import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../category/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../entityCategory/EntityCategories.types';
 import type {PossibleGameReceived}                                                                                                                    from '../../lang/name/Name.builder.types';
 
-import {EntityLimits}                  from '../limit/EntityLimits';
+import {EntityLimits}                  from '../entityLimit/EntityLimits';
 import {EntityReferencesContainer}     from './properties/EntityReferences.container';
 import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EmptyEntity}                   from './EmptyEntity';
-import {EmptyEntityCategory}           from '../category/EmptyEntityCategory';
+import {EmptyEntityCategory}           from '../entityCategory/EmptyEntityCategory';
 import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';

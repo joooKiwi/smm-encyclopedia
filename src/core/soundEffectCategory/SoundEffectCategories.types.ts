@@ -1,4 +1,4 @@
-import type {SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {SoundEffectCategories}            from './SoundEffectCategories';
 
 export type PossibleNonNullableValue = | SoundEffectCategories | Ordinals | PossibleStringValue;

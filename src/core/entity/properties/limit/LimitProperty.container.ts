@@ -8,7 +8,7 @@ import {PropertyContainer}                            from '../../../_properties
 import {PropertyProvider}                             from '../../../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../../../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {PropertyWithCommentContainer}                 from '../../../_properties/PropertyWithComment.container';
-import {EntityLimits}                                 from '../../../limit/EntityLimits';
+import {EntityLimits}                                 from '../../../entityLimit/EntityLimits';
 import {ExtendedSet}                                  from '../../../../util/extended/ExtendedSet';
 import {isArrayEquals}                                from '../../../../util/utilitiesMethods';
 

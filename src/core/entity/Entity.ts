@@ -1,7 +1,7 @@
 import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from './properties/Property';
 import type {EntityReferences}                                                                                                    from './properties/EntityReferences';
-import type {EntityCategory}                                                                                                      from '../category/EntityCategory';
-import type {EmptyEntityCategory}                                                                                                 from '../category/EmptyEntityCategory';
+import type {EntityCategory}                                                                                                      from '../entityCategory/EntityCategory';
+import type {EmptyEntityCategory}                                                                                                 from '../entityCategory/EmptyEntityCategory';
 import type {GameProperty}                                                                                                        from './properties/GameProperty';
 import type {GameStyleProperty}                                                                                                   from './properties/GameStyleProperty';
 import type {NameTrait}                                                                                                           from '../../lang/name/NameTrait';

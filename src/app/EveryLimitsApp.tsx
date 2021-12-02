@@ -1,11 +1,11 @@
-import type {EntityLimit}         from '../core/limit/EntityLimit';
-import type {PossibleEnglishName} from '../core/limit/EntityLimits.types';
+import type {EntityLimit}         from '../core/entityLimit/EntityLimit';
+import type {PossibleEnglishName} from '../core/entityLimit/EntityLimits.types';
 import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EntityLimitLoader}             from '../core/limit/EntityLimit.loader';
-import {EntityLimits}                  from '../core/limit/EntityLimits';
+import {EntityLimitLoader}             from '../core/entityLimit/EntityLimit.loader';
+import {EntityLimits}                  from '../core/entityLimit/EntityLimits';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import NameComponent                   from '../lang/name/component/Name.component';

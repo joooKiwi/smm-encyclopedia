@@ -1,6 +1,6 @@
-import type {NameTrait}              from '../../../lang/name/NameTrait';
-import type {NameTraitFromACategory} from '../../../lang/name/NameTraitFromACategory';
-import type {SoundEffectCategory}    from '../category/SoundEffectCategory';
+import type {NameTrait}              from '../../lang/name/NameTrait';
+import type {NameTraitFromACategory} from '../../lang/name/NameTraitFromACategory';
+import type {SoundEffectCategory}    from '../soundEffectCategory/SoundEffectCategory';
 import type {SoundEffectProperty}    from './properties/SoundEffectProperty';
 
 export interface SoundEffect

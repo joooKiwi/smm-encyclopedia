@@ -1,13 +1,13 @@
 import {PureComponent} from 'react';
 
-import type {Name}         from '../../../lang/name/Name';
-import type {ReactElement} from '../../../util/react/ReactProperty';
+import type {Name}         from '../../lang/name/Name';
+import type {ReactElement} from '../../util/react/ReactProperty';
 
 import {SoundEffects}     from './SoundEffects';
-import {StringContainer}  from '../../../util/StringContainer';
-import Image              from '../../../app/tools/images/Image';
-import {Games}            from '../../game/Games';
-import {ProjectLanguages} from '../../../lang/ProjectLanguages';
+import {StringContainer}  from '../../util/StringContainer';
+import Image              from '../../app/tools/images/Image';
+import {Games}            from '../game/Games';
+import {ProjectLanguages} from '../../lang/ProjectLanguages';
 
 interface SoundEffectProperties {
 

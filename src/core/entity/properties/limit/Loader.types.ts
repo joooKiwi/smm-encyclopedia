@@ -1,4 +1,4 @@
-import type {PossibleEnglishName} from '../../../limit/EntityLimits.types';
+import type {PossibleEnglishName} from '../../../entityLimit/EntityLimits.types';
 
 //region -------------------- Limit amount --------------------
 

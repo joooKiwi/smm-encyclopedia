@@ -1,15 +1,15 @@
-import everySoundEffectCategories from '../../../resources/Sound effect categories.csv';
+import everySoundEffectCategories from '../../resources/Sound effect categories.csv';
 
-import type {PropertiesArray as LanguagesPropertyArray} from '../../../lang/Loader.types';
-import type {Loader}                                    from '../../../util/loader/Loader';
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                    from '../../util/loader/Loader';
 import type {PossibleEnglishName}                       from './SoundEffectCategories.types';
 import type {SoundEffectCategory}                       from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate}               from './SoundEffectCategory.template';
 
-import {AbstractTemplateBuilder}    from '../../_template/AbstractTemplate.builder';
-import {CSVLoader}                  from '../../../util/loader/CSVLoader';
+import {AbstractTemplateBuilder}    from '../_template/AbstractTemplate.builder';
+import {CSVLoader}                  from '../../util/loader/CSVLoader';
 import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder';
-import {HeaderTypesForConvertor}    from '../../_util/loader/HeaderTypesForConvertor';
+import {HeaderTypesForConvertor}    from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 

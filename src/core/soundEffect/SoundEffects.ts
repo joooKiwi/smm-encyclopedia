@@ -1,10 +1,10 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                        from '../../ClassWithEnglishName';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                        from '../ClassWithEnglishName';
 import type {EnumArray, EnumArray_EnglishName, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                             from '../../../util/enum/Enum.types';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                             from '../../util/enum/Enum.types';
 
-import {Enum}               from '../../../util/enum/Enum';
+import {Enum}               from '../../util/enum/Enum';
 import SoundEffectComponent from './SoundEffect.component';
-import {StringContainer}    from '../../../util/StringContainer';
+import {StringContainer}    from '../../util/StringContainer';
 
 export class SoundEffects
     extends Enum<Ordinals, Names>

@@ -1,15 +1,15 @@
-import type {Builder}                                                       from '../../../util/Builder';
-import type {Name}                                                          from '../../../lang/name/Name';
-import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../category/SoundEffectCategories.types';
+import type {Builder}                                                       from '../../util/Builder';
+import type {Name}                                                          from '../../lang/name/Name';
+import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types';
 import type {SoundEffect}                                                   from './SoundEffect';
 import type {SoundEffectTemplate}                                           from './SoundEffect.template';
-import type {SoundEffectCategory}                                           from '../category/SoundEffectCategory';
+import type {SoundEffectCategory}                                           from '../soundEffectCategory/SoundEffectCategory';
 
-import {EmptySoundEffectCategory}     from '../category/EmptySoundEffectCategory';
-import {Games}                        from '../../game/Games';
+import {EmptySoundEffectCategory}     from '../soundEffectCategory/EmptySoundEffectCategory';
+import {Games}                        from '../game/Games';
 import {SoundEffectContainer}         from './SoundEffect.container';
 import {SoundEffectPropertyContainer} from './properties/SoundEffectProperty.container';
-import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
+import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder';
 
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {

@@ -2,7 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/Class
 import type {Entity}                                      from './Entity';
 
 import {EmptyEntityReference} from './properties/EmptyEntityReference';
-import {EmptyEntityCategory}  from '../category/EmptyEntityCategory';
+import {EmptyEntityCategory}  from '../entityCategory/EmptyEntityCategory';
 import {EmptyIsInProperty}    from './properties/EmptyIsInProperty';
 import {EmptyName}            from '../../lang/name/EmptyName';
 import {EMPTY_MAP}            from '../../util/emptyVariables';

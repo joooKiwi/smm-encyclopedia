@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from '../../../util/ClassWithNullObjectPattern';
+import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from '../../util/ClassWithNullObjectPattern';
 import type {SoundEffectCategory}                                      from './SoundEffectCategory';
 
-import {EmptyName} from '../../../lang/name/EmptyName';
+import {EmptyName} from '../../lang/name/EmptyName';
 
 /**
  * @singleton

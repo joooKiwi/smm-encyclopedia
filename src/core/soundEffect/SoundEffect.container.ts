@@ -1,8 +1,8 @@
-import type {SoundEffect}    from './SoundEffect';
-import {SoundEffectCategory} from '../category/SoundEffectCategory';
-import {Name}                from '../../../lang/name/Name';
-import {EveryLanguages}      from '../../../lang/EveryLanguages';
-import {SoundEffectProperty} from './properties/SoundEffectProperty';
+import type {Name}                from '../../lang/name/Name';
+import type {EveryLanguages}      from '../../lang/EveryLanguages';
+import type {SoundEffect}         from './SoundEffect';
+import type {SoundEffectCategory} from '../soundEffectCategory/SoundEffectCategory';
+import type {SoundEffectProperty} from './properties/SoundEffectProperty';
 
 export class SoundEffectContainer
     implements SoundEffect {

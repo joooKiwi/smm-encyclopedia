@@ -1,10 +1,10 @@
-import type {EntityCategory}                  from '../category/EntityCategory';
+import type {EntityCategory}                  from '../entityCategory/EntityCategory';
 import type {EntityReferences}                from './properties/EntityReferences';
 import type {ExclusiveSMM1Entity}             from './Entity';
 import type {ExclusiveSMM1Property, Property} from './properties/Property';
 import type {Name}                            from '../../lang/name/Name';
 
-import {EmptyEntityCategory} from '../category/EmptyEntityCategory';
+import {EmptyEntityCategory} from '../entityCategory/EmptyEntityCategory';
 import {EntityContainer}     from './Entity.container';
 
 /**

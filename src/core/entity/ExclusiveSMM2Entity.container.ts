@@ -1,4 +1,4 @@
-import type {EntityCategory}                  from '../category/EntityCategory';
+import type {EntityCategory}                  from '../entityCategory/EntityCategory';
 import type {EntityReferences}                from './properties/EntityReferences';
 import type {ExclusiveSMM2Entity}             from './Entity';
 import type {ExclusiveSMM2Property, Property} from './properties/Property';

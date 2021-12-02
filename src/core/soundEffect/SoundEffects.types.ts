@@ -1,5 +1,5 @@
-import type {PossibleEnglishName_SoundEffect}  from '../../gameReference/GameReferences.types';
-import type {SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import type {PossibleEnglishName_SoundEffect}  from '../gameReference/GameReferences.types';
+import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {SoundEffects}                     from './SoundEffects';
 
 export type PossibleNonNullableValue = | SoundEffects | Ordinals | PossibleStringValue;

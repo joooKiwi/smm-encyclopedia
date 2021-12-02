@@ -1,11 +1,11 @@
-import type {Builder}                     from '../../../util/Builder';
-import type {Name}                        from '../../../lang/name/Name';
+import type {Builder}                     from '../../util/Builder';
+import type {Name}                        from '../../lang/name/Name';
 import type {SoundEffectCategory}         from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate} from './SoundEffectCategory.template';
 
-import {Games}                        from '../../game/Games';
+import {Games}                        from '../game/Games';
 import {SoundEffectCategoryContainer} from './SoundEffectCategory.container';
-import {TemplateWithNameBuilder}      from '../../_template/TemplateWithName.builder';
+import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder';
 
 export class SoundEffectCategoryBuilder
     extends TemplateWithNameBuilder<SoundEffectCategoryTemplate, SoundEffectCategory> {

@@ -1,10 +1,10 @@
-import type {ClassWithEnglishName}                                                                                                                                    from '../../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                      from '../../ClassWithImagePath';
+import type {ClassWithEnglishName}                                                                                                                                    from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                      from '../ClassWithImagePath';
 import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
-import type {StaticReference}                                                                                                                                         from '../../../util/enum/Enum.types';
+import type {StaticReference}                                                                                                                                         from '../../util/enum/Enum.types';
 
-import {Enum}            from '../../../util/enum/Enum';
-import {StringContainer} from '../../../util/StringContainer';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../../util/StringContainer';
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>

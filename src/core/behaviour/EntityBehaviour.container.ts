@@ -1,5 +1,5 @@
-import {EntityBehaviour}                         from './EntityBehaviour';
-import {EntityBehaviourLink}                     from './properties/EntityBehaviourLink';
+import {EntityBehaviour}                          from './EntityBehaviour';
+import {EntityBehaviourLink}                      from './properties/EntityBehaviourLink';
 import {EntityBehaviourIsInOnly}                  from './properties/EntityBehaviourIsInOnly';
 import {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
 

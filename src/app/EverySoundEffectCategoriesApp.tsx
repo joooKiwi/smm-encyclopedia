@@ -1,14 +1,14 @@
-import type {SoundEffectCategory} from '../core/soundEffect/category/SoundEffectCategory';
+import type {SoundEffectCategory} from '../core/soundEffectCategory/SoundEffectCategory';
 import type {SingleTableContent}  from './tools/table/Table.types';
-import type {PossibleEnglishName} from '../core/soundEffect/category/SoundEffectCategories.types';
+import type {PossibleEnglishName} from '../core/soundEffectCategory/SoundEffectCategories.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
-import {SoundEffectCategories}         from '../core/soundEffect/category/SoundEffectCategories';
-import {SoundEffectCategoryLoader}     from '../core/soundEffect/category/SoundEffectCategory.loader';
+import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
+import {SoundEffectCategoryLoader}     from '../core/soundEffectCategory/SoundEffectCategory.loader';
 import Table                           from './tools/table/Table';
 
 /**
