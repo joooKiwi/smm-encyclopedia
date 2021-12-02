@@ -10,7 +10,7 @@ export class GameReferenceBuilder
     extends TemplateWithNameBuilder<GameReferenceTemplate, GameReference> {
 
     public constructor(templateBuilder: Builder<GameReferenceTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_1, false,);
+        super(templateBuilder, 'all', false,);
     }
 
     //region -------------------- Build helper methods --------------------
