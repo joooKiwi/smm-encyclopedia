@@ -1,6 +1,6 @@
-import type {Builder}               from '../../util/Builder';
-import type {DebugEntityReferences} from '../simple/Entity.loader';
-import type {EntityBehaviour}       from './EntityBehaviour';
+import type {Builder}                 from '../../util/Builder';
+import type {DebugEntityReferences}   from '../entity/Entity.loader';
+import type {EntityBehaviour}         from './EntityBehaviour';
 import type {EntityBehaviourTemplate} from './EntityBehaviour.template';
 
 import {EntityBehaviourContainer}         from './EntityBehaviour.container';

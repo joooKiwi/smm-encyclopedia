@@ -8,7 +8,7 @@ import type {Loader}                                    from '../../util/loader/
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityLoader}            from '../simple/Entity.loader';
+import {EntityLoader}            from '../entity/Entity.loader';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {ThemeBuilder}            from './Theme.builder';

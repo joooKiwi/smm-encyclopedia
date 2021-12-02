@@ -1,7 +1,7 @@
 import type {Builder}               from '../../util/Builder';
 import type {CourseTheme}           from './CourseTheme';
-import type {DebugEntityReferences} from '../simple/Entity.loader';
-import type {Entity}                from '../simple/Entity';
+import type {DebugEntityReferences} from '../entity/Entity.loader';
+import type {Entity}                from '../entity/Entity';
 import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
 import type {WorldTheme}            from './WorldTheme';

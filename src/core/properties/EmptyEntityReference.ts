@@ -2,7 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from '../../u
 import type {EntityReferences}                                     from './EntityReferences';
 
 import {EMPTY_ARRAY} from '../../util/emptyVariables';
-import {EmptyEntity} from '../simple/EmptyEntity';
+import {EmptyEntity} from '../entity/EmptyEntity';
 
 /**
  * @singleton

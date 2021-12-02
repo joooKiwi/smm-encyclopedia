@@ -1,4 +1,4 @@
-import type {Entity}           from '../simple/Entity';
+import type {Entity}           from '../entity/Entity';
 import type {EntityReferences} from './EntityReferences';
 import type {GameStyles}       from '../gameStyle/GameStyles';
 import type {ObjectHolder}     from '../../util/holder/ObjectHolder';

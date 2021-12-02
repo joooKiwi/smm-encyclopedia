@@ -1,4 +1,4 @@
-import type {EntityTemplate} from '../simple/Entity.template';
+import type {EntityTemplate} from '../entity/Entity.template';
 import type {NameTemplate}   from '../../lang/name/Name.template';
 
 /**

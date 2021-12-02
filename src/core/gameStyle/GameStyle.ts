@@ -1,4 +1,4 @@
-import type {Entity}       from '../simple/Entity';
+import type {Entity}       from '../entity/Entity';
 import type {GameProperty} from '../properties/GameProperty';
 import type {NameTrait}    from '../../lang/name/NameTrait';
 

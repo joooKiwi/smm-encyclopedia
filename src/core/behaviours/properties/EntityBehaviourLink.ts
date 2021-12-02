@@ -1,4 +1,4 @@
-import {Entity} from '../../simple/Entity';
+import type {Entity} from '../../entity/Entity';
 
 export interface EntityBehaviourLink {
 

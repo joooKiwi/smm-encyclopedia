@@ -3,15 +3,15 @@ import everyThemes from '../../resources/Entity limits.csv';
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EmptyLinkTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                   from './EntityLimit';
 import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                   from '../../lang/Loader.types';
-import type {Loader}                                                                                                                   from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName , PossibleEnglishName} from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                         from './EntityLimitTypes.types';
-import type {PossibleGroupName, SingleEntityName}                                                               from '../entityTypes';
+import type {Loader}                                                                                                                        from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                              from './EntityLimits.types';
+import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                                                     from './EntityLimitTypes.types';
+import type {PossibleGroupName, SingleEntityName}                                                                                           from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLimitBuilder}      from './EntityLimit.builder';
-import {EntityLoader}            from '../simple/Entity.loader';
+import {EntityLoader}            from '../entity/Entity.loader';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------

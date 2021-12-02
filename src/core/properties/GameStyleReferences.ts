@@ -1,4 +1,4 @@
-import type {Entity}     from '../simple/Entity';
+import type {Entity}     from '../entity/Entity';
 import type {GameStyles} from '../gameStyle/GameStyles';
 
 export interface GameStyleReferences {

@@ -1,6 +1,6 @@
 import type {ClassWithEnglishName}                                                                                                                                      from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                        from '../ClassWithImagePath';
-import type {Entity}                                                                                                                                                    from '../simple/Entity';
+import type {Entity}                                                                                                                                                    from '../entity/Entity';
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                   from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                           from '../../util/enum/Enum.types';

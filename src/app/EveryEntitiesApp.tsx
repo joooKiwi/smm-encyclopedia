@@ -1,7 +1,7 @@
 import './EveryEntitiesApp.scss';
 
-import type {DebugEntityReferences}                               from '../core/simple/Entity.loader';
-import type {Entity}                                              from '../core/simple/Entity';
+import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
+import type {Entity}                                              from '../core/entity/Entity';
 import type {EntityAppStates}                                     from './AppStates.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/category/EntityCategories.types';
 import type {SingleTableContent}                                  from './tools/table/Table.types';
@@ -11,7 +11,7 @@ import ContentTranslationComponent       from '../lang/components/ContentTransla
 import CourseThemeComponent              from '../core/theme/CourseTheme.component';
 import {EntityCategories}                from '../core/category/EntityCategories';
 import {EntityLimitTypes}                from '../core/limit/EntityLimitTypes';
-import {EntityLoader}                    from '../core/simple/Entity.loader';
+import {EntityLoader}                    from '../core/entity/Entity.loader';
 import {EMPTY_REACT_ELEMENT}             from '../util/emptyReactVariables';
 import {EmptyName}                       from '../lang/name/EmptyName';
 import GameComponent                     from '../core/game/Game.component';

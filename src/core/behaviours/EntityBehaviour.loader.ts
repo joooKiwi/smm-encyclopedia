@@ -1,13 +1,13 @@
 import everyBehaviours from '../../resources/Entity behaviours.csv';
 
-import type {EntityBehaviour}                         from './EntityBehaviour';
-import type {EntityBehaviourTemplate}                 from './EntityBehaviour.template';
+import type {EntityBehaviour}                          from './EntityBehaviour';
+import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template';
 import type {Loader}                                   from '../../util/loader/Loader';
 import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
 import type {PossibleGroupName, SingleEntityName}      from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {EntityLoader}            from '../simple/Entity.loader';
+import {EntityLoader}            from '../entity/Entity.loader';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';

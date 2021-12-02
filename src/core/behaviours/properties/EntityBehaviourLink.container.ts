@@ -1,10 +1,10 @@
-import type {Entity}                              from '../../simple/Entity';
+import type {Entity}                              from '../../entity/Entity';
 import type {EntityBehaviourLink}                 from './EntityBehaviourLink';
 import type {ObjectHolder}                        from '../../../util/holder/ObjectHolder';
 import type {PossibleGroupName, SingleEntityName} from '../../entityTypes';
 
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
-import {EntityLoader}                 from '../../simple/Entity.loader';
+import {EntityLoader}                 from '../../entity/Entity.loader';
 
 /**
  * @multiton

@@ -9,7 +9,7 @@ import type {PossibleEnglishName}                       from './GameStyles.types
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityLoader}            from '../simple/Entity.loader';
+import {EntityLoader}            from '../entity/Entity.loader';
 import {GameStyleBuilder}        from './GameStyle.builder';
 
 //region -------------------- CSV array related types --------------------

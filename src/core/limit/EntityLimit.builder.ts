@@ -1,8 +1,8 @@
 import type {AlternativeEntityLimit, EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
 import type {AlternativeLimitTemplate, EntityLimitTemplate}                                      from './EntityLimit.template';
 import type {Builder}                                                                            from '../../util/Builder';
-import type {DebugEntityReferences}                                                              from '../simple/Entity.loader';
-import type {Entity}                                                                             from '../simple/Entity';
+import type {DebugEntityReferences}                                                              from '../entity/Entity.loader';
+import type {Entity}                                                                             from '../entity/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
 import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                from './EntityLimits.types';

@@ -1,4 +1,4 @@
-import type {Entity} from '../simple/Entity';
+import type {Entity} from '../entity/Entity';
 import type {Themes} from '../theme/Themes';
 
 export interface ThemeReferences {

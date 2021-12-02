@@ -3,7 +3,7 @@ import type {ClassWithImagePath}                                                
 import type {ClassWithReference}                                                                                                                                                                                                          from '../ClassWithReference';
 import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SimpleImagePath} from './Themes.types';
 import type {CourseTheme}                                                                                                                                                                                                                 from './CourseTheme';
-import type {Entity}                                                                                                                                                                                                                      from '../simple/Entity';
+import type {Entity}                                                                                                                                                                                                                      from '../entity/Entity';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                     from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                             from '../../util/enum/Enum.types';
 import type {ThemeProperty}                                                                                                                                                                                                               from '../properties/ThemeProperty';
@@ -12,7 +12,7 @@ import type {WorldTheme}                                                        
 
 import {Enum}            from '../../util/enum/Enum';
 import {ThemeLoader}     from './Theme.loader';
-import {EmptyEntity}     from '../simple/EmptyEntity';
+import {EmptyEntity}     from '../entity/EmptyEntity';
 import {StringContainer} from '../../util/StringContainer';
 import {ThemeComponent}  from './Theme.component';
 
