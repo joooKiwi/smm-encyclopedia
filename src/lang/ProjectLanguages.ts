@@ -1,9 +1,10 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './name/containers/Language';
 import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../entity/ClassInAnySuperMarioMakerGame';
 import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './ClassWithEveryLanguages';
+import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from './ProjectLanguages.types';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './LanguageEnumerable';
-import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ProjectLanguages.types';
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../util/enum/Enum.types';
 
 import {Enum}           from '../util/enum/Enum';
 import {EveryLanguages} from './EveryLanguages';
@@ -43,7 +44,7 @@ import {EveryLanguages} from './EveryLanguages';
  */
 export class ProjectLanguages
     extends Enum<Ordinals, Names>
-    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName>,
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, PossibleDifferentWord>,
         ClassInAnySuperMarioMakerGame {
 
     //region -------------------- Enum instances --------------------
@@ -65,12 +66,9 @@ export class ProjectLanguages
     public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  false, true, );
     public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              false, true, );
 
+    protected static readonly _DEFAULT = this.getValue(EveryLanguages.default)!;
+
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
-
-    static #VALUES?: EnumArray;
-
-    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #language: EveryLanguages;
@@ -84,7 +82,7 @@ export class ProjectLanguages
     // @ts-ignore
     private constructor(language: EveryLanguages, isASupportedLanguageInSMM1: boolean, isASupportedLanguageInSMM2: boolean,)
     protected constructor(language: EveryLanguages | ProjectLanguages, isASupportedLanguageInSMM1?: boolean, isASupportedLanguageInSMM2?: boolean,) {
-        super(ProjectLanguages);
+        super();
         if (language instanceof ProjectLanguages) {
             this.#language = language.language;
             this.#isInSuperMarioMaker1 = language.isInSuperMarioMaker1;
@@ -132,6 +130,10 @@ export class ProjectLanguages
 
     public get originalName(): PossibleOriginalName {
         return this.language.originalName as PossibleOriginalName;
+    }
+
+    public get differentWords(): PossibleDifferentWord {
+        return this.language.differentWords!;
     }
 
     public get isCurrentLanguage(): boolean {
@@ -315,6 +317,10 @@ export class ProjectLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
+    protected get _static(): StaticReference<ProjectLanguages> {
+        return ProjectLanguages;
+    }
+
     public static get default(): ProjectLanguages {
         return this.getValue(EveryLanguages.default)!;
     }
@@ -335,7 +341,7 @@ export class ProjectLanguages
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names=Names,>(name: N,): typeof ProjectLanguages[N]
+    public static getValue<N extends Names = Names, >(name: N,): typeof ProjectLanguages[N]
     public static getValue(nameOrAcronym: PossibleStringValue,): ProjectLanguages
     public static getValue(nameOrAcronym: string,): | ProjectLanguages | null
     public static getValue<I extends ProjectLanguages, >(instance: I,): I
@@ -358,19 +364,7 @@ export class ProjectLanguages
 
 
     public static get values(): EnumArray {
-        return this.#VALUES ??= [
-            this.AMERICAN_ENGLISH, this.EUROPEAN_ENGLISH,
-            this.CANADIAN_FRENCH, this.EUROPEAN_FRENCH,
-            this.GERMAN,
-            this.AMERICAN_SPANISH, this.EUROPEAN_SPANISH,
-            this.ITALIAN,
-            this.DUTCH,
-            this.AMERICAN_PORTUGUESE, this.EUROPEAN_PORTUGUESE,
-            this.RUSSIAN,
-            this.JAPANESE,
-            this.TRADITIONAL_CHINESE, this.SIMPLIFIED_CHINESE,
-            this.KOREAN,
-        ];
+        return Enum.getValuesOn(this);
     }
 
 

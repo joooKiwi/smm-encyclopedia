@@ -84,6 +84,10 @@ export type PossibleOriginalName =
 
 //endregion -------------------- Names --------------------
 
+export type PossibleRegion = | 'Canada' | 'America' | 'Europe';
+export type PossibleChinese = | 'Traditional' | 'Simplified';
+export type PossibleDifferentWord = | PossibleRegion | PossibleChinese;
+
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
