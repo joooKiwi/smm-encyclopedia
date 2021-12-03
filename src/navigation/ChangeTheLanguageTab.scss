@@ -9,3 +9,24 @@
   }
 
 }
+
+//region -------------------- Language tabs --------------------
+
+.double-languageChanger-tab, .single-languageChanger-tab, {
+  pre {
+    margin: 0;
+    font-size: 1rem;
+    font-family: var(--bs-body-font-family);
+  }
+
+  > .text-container > .nav-link {
+    padding: 0 !important;
+  }
+}
+
+.double-languageChanger-tab .text-container,
+.single-languageChanger-tab .nav-link, {
+  padding: var(--bs-spacer-md);
+}
+
+//endregion -------------------- Language tabs --------------------

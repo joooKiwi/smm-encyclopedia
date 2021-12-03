@@ -6,13 +6,16 @@ import type {ReactComponent} from '../util/react/ReactComponent';
 import type {ReactState}     from '../util/react/ReactState';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
+import DoubleLanguageTab           from './DoubleLanguageTab';
+import {EMPTY_REACT_ELEMENT}       from '../util/emptyReactVariables';
+import {EveryLanguages}            from '../lang/EveryLanguages';
 import {ProjectLanguages}          from '../lang/ProjectLanguages';
 import SingleLanguageTab           from './SingleLanguageTab';
 
 interface ChangeTheLanguageTabStates
     extends ReactState {
 
-    currentLanguage: ProjectLanguages
+    currentLanguage: ProjectLanguages;
 
 }
 
@@ -36,8 +39,20 @@ export default class ChangeTheLanguageTab
     }
 
     private __retrieveEveryLanguages() {
-        return ProjectLanguages.values.map(language =>
-            <SingleLanguageTab key={`single tab - ${language.englishName}`} language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>);
+        const everyLanguagesIncluded: EveryLanguages[] = [];
+
+        return ProjectLanguages.values.map(language => {
+            const languageFromEveryLanguage = language.language;
+            if (everyLanguagesIncluded.includes(languageFromEveryLanguage.parent!))
+                return EMPTY_REACT_ELEMENT;
+            const childrenLanguages = languageFromEveryLanguage.children;
+
+            everyLanguagesIncluded.push(languageFromEveryLanguage.parent ?? language.language);
+            if (childrenLanguages.length === 0)
+                return <SingleLanguageTab key={`single tab - ${language.englishName}`} language={language} callbackToSetLanguage={language => this.setCurrentLanguage(language)}/>;
+            return <DoubleLanguageTab key={`double tab - ${languageFromEveryLanguage.englishName}`} callbackToSetLanguage={language => this.setCurrentLanguage(language)}
+                                      languages={[languageFromEveryLanguage.parent!, ...childrenLanguages.map(language => ProjectLanguages.getValue(language)!) as [ProjectLanguages, ProjectLanguages,]]}/>;
+        });
     }
 
     public render() {

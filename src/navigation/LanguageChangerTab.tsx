@@ -13,6 +13,8 @@ interface Properties
 
     language: ProjectLanguages
 
+    value: string
+
     callbackToSetLanguage: (language: ProjectLanguages,) => void
 
 }
@@ -22,18 +24,18 @@ interface Properties
  * @param properties
  * @reactComponent
  */
-export default function LanguageChangerTab({language, callbackToSetLanguage,}: Properties,) {
+export default function LanguageChangerTab({language, value, callbackToSetLanguage,}: Properties,) {
     const {t: languageTranslation,} = useTranslation('language');
     const location = useLocation();
 
-    const id = `languageChanger_${language.projectAcronym}`;
+    const id = `languageChanger-${language.projectAcronym}`;
 
     return <Tooltip elementId={id} option={({title: languageTranslation(language.englishName), placement: 'left',})}>
         <Link key={id} id={id} className="nav-link active" to={route(location, language,)} onClick={() => {
             callbackToSetLanguage(language);
             TooltipInstance.getInstance(id).instance.dispose();
         }}>
-            {language.originalName}
+            {value}
         </Link>
     </Tooltip>;
 }
