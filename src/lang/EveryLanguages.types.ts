@@ -55,6 +55,8 @@ export type PossibleOriginalName = | BasicOriginalName | PossibleOriginalName_Pr
 
 //endregion -------------------- Names --------------------
 
+export type PossibleSpaceCharacter = | ' ' | '';
+
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 

@@ -11,6 +11,8 @@ export class Characters
     public static readonly POINT =                new Characters('.',  '．',);
     public static readonly INTERROGATION_POINT =  new Characters('?',  '？',);
     public static readonly EXCLAMATION_POINT =    new Characters('!',  '！',);
+    public static readonly COLON =                new Characters(':',  '：',);
+    public static readonly SEMICOLON =            new Characters(';',  '；',);
     public static readonly COMMA =                new Characters(',',  '，',);
     public static readonly UNION_TRAIT =          new Characters('-',  '－',);
 
@@ -67,7 +69,7 @@ export class Characters
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
-    static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT,];
+    static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,];
     static #POINTS_STRING?: Points_Array;
     static #POINTS_SPACE_EVEN?: Points_SpaceEven_Array;
     static #POINTS_SPACE_UNEVEN?: Points_SpaceUneven_Array;

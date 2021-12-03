@@ -10,6 +10,7 @@ export type PossibleValue = | PossibleNonNullableValue | string | number | null 
 
 enum Enum {
     POINT, INTERROGATION_POINT, EXCLAMATION_POINT,
+    COLON,SEMICOLON,
     COMMA,
     UNION_TRAIT,
 
@@ -57,7 +58,9 @@ export type Names = keyof typeof Enum;
 export type SpaceEvenCharacter_Point = '．';
 export type SpaceEvenCharacter_InterrogationPoint = '？';
 export type SpaceEvenCharacter_ExclamationPoint = '！';
-export type SpaceEvenCharacter_Points = | SpaceEvenCharacter_Point | SpaceEvenCharacter_InterrogationPoint | SpaceEvenCharacter_ExclamationPoint;
+export type SpaceEvenCharacter_Colon = '：';
+export type SpaceEvenCharacter_Semicolon = '；';
+export type SpaceEvenCharacter_Points = | SpaceEvenCharacter_Point | SpaceEvenCharacter_InterrogationPoint | SpaceEvenCharacter_ExclamationPoint | SpaceEvenCharacter_Colon | SpaceEvenCharacter_Semicolon;
 export type SpaceEvenCharacter_Comma = '，';
 export type SpaceEvenCharacter_UnionTrait = '－';
 export type SpaceEvenCharacter_Punctuation = | SpaceEvenCharacter_Points | SpaceEvenCharacter_Comma | SpaceEvenCharacter_UnionTrait;
@@ -84,7 +87,9 @@ export type SpaceEvenCharacter = | SpaceEvenCharacter_Punctuation | SpaceEvenCha
 export type SpaceUnevenCharacter_Point = '.';
 export type SpaceUnevenCharacter_InterrogationPoint = '?';
 export type SpaceUnevenCharacter_ExclamationPoint = '!';
-export type SpaceUnevenCharacter_Points = | SpaceUnevenCharacter_Point | SpaceUnevenCharacter_InterrogationPoint | SpaceUnevenCharacter_ExclamationPoint;
+export type SpaceUnevenCharacter_Colon = ':';
+export type SpaceUnevenCharacter_Semicolon = ';';
+export type SpaceUnevenCharacter_Points = | SpaceUnevenCharacter_Point | SpaceUnevenCharacter_InterrogationPoint | SpaceUnevenCharacter_ExclamationPoint | SpaceUnevenCharacter_Colon | SpaceUnevenCharacter_Semicolon;
 export type SpaceUnevenCharacter_Comma = ',';
 export type SpaceUnevenCharacter_UnionTrait = '-';
 export type SpaceUnevenCharacter_Punctuation = | SpaceUnevenCharacter_Points | SpaceUnevenCharacter_Comma | SpaceUnevenCharacter_UnionTrait;
@@ -112,6 +117,8 @@ export type SpaceUnevenCharacter = | SpaceUnevenCharacter_Punctuation | SpaceUne
 export type PossiblePoint = | SpaceEvenCharacter_Point | SpaceUnevenCharacter_Point;
 export type PossibleInterrogationPoint = | SpaceEvenCharacter_InterrogationPoint | SpaceUnevenCharacter_InterrogationPoint;
 export type PossibleExclamationPoint = | SpaceEvenCharacter_ExclamationPoint | SpaceUnevenCharacter_ExclamationPoint;
+export type PossibleColon = | SpaceEvenCharacter_Colon | SpaceUnevenCharacter_Colon;
+export type PossibleSemicolon = | SpaceEvenCharacter_Semicolon | SpaceUnevenCharacter_Semicolon;
 export type PossiblePoints = | SpaceEvenCharacter_Points | SpaceUnevenCharacter_Points;
 export type PossibleComma = | SpaceEvenCharacter_Comma | SpaceUnevenCharacter_Comma;
 export type PossibleUnionTrait = | SpaceEvenCharacter_UnionTrait | SpaceUnevenCharacter_UnionTrait;
@@ -157,17 +164,19 @@ export type EnumByString<S extends string, E extends Characters = Characters, > 
 //region -------------------- Array types (points) --------------------
 
 export type EnumArray_Points<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['POINT'], SimpleEnum<T>['INTERROGATION_POINT'], SimpleEnum<T>['EXCLAMATION_POINT'],
+    SimpleEnum<T>['POINT'], SimpleEnum<T>['INTERROGATION_POINT'], SimpleEnum<T>['EXCLAMATION_POINT'], SimpleEnum<T>['COLON'], SimpleEnum<T>['SEMICOLON'],
 ];
 
-type _SinglePointsArray = readonly [point: string, interrogationPoint: string, exclamationPoint: string,];
+type _SinglePointsArray = readonly [point: string, interrogationPoint: string, exclamationPoint: string, doublePoints: string, pointComma: string,];
 type _MergedPointsArray<A1 extends _SinglePointsArray, A2 extends _SinglePointsArray, > = [
     A1[0], A2[0],
     A1[1], A2[1],
     A1[2], A2[2],
+    A1[3], A2[3],
+    A1[4], A2[4],
 ];
-export type Points_SpaceUneven_Array = readonly [SpaceUnevenCharacter_Point, SpaceUnevenCharacter_InterrogationPoint, SpaceUnevenCharacter_ExclamationPoint,];
-export type Points_SpaceEven_Array = readonly [SpaceEvenCharacter_Point, SpaceEvenCharacter_InterrogationPoint, SpaceEvenCharacter_ExclamationPoint,];
+export type Points_SpaceUneven_Array = readonly [SpaceUnevenCharacter_Point, SpaceUnevenCharacter_InterrogationPoint, SpaceUnevenCharacter_ExclamationPoint, SpaceUnevenCharacter_Colon, SpaceUnevenCharacter_Semicolon,];
+export type Points_SpaceEven_Array = readonly [SpaceEvenCharacter_Point, SpaceEvenCharacter_InterrogationPoint, SpaceEvenCharacter_ExclamationPoint, SpaceEvenCharacter_Colon, SpaceUnevenCharacter_Semicolon,];
 export type Points_Array = _MergedPointsArray<Points_SpaceUneven_Array, Points_SpaceEven_Array>;
 export type PossiblePoints_Array = | Points_SpaceUneven_Array | Points_SpaceEven_Array;
 
@@ -384,6 +393,8 @@ export interface CharactersEquivalencesMap {
     '.': '．'
     '?': '？'
     '!': '！'
+    ':': '：'
+    ';': '；'
     ',': '，'
     '-': '－'
 
@@ -470,6 +481,8 @@ export interface CharactersEquivalencesMap {
     '．': '.'
     '？': '?'
     '！': '!'
+    '：': ':'
+    '；': ';'
     '，': ','
     '－': '-'
 
