@@ -144,35 +144,34 @@ export default class EveryMysteryMushroomsApp
             id="mysteryMushroom_table"
             caption={<GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: 'Mystery Mushrooms'})}</GameContentTranslationComponent>}
             headers={[
-                [
-                    {key: 'originalOrder', height: 2, element: <>#</>,},
-                    {key: 'conditionToUnlockIt', height: 2, element: <>--Condition to unlock it--</>,},
-                    {
-                        key: 'canBeUnlockedByAnAmiibo', height: 2,
-                        // @ts-ignore
-                        element: <Image source="/others/Amiibo (short).svg" fallbackName="Amiibo icon"/>, tooltip: {translationKey: '--Can be unlocked by an Amiibo--', namespace: 'gameContent',},
-                    },
-                    {key: 'game', height: 2, element: <GameContentTranslationComponent translationKey="Game"/>,},
-                    {key: 'name', height: 2, element: <ContentTranslationComponent translationKey="Name"/>,},
-                    {key: 'imagesAndSounds', width: 14, element: <>--Images & sounds--</>,},
-                ],
-                [
-
-                    {key: 'powerUpCollectedSound', element: <>--Power-up collected (sound)--</>,},
-                    {key: 'waitingImage', element: <>--Waiting (image)--</>,},
-                    {key: 'tauntImageAndSound', element: <>--Taunt (image & sound)--</>,},
-                    {key: 'pressingDownImage', element: <>--Pressing ↓ (image)--</>,},
-                    {key: 'walkImages', element: <>--Walk (image)--</>,},
-                    {key: 'runningImages', element: <>--Running (images)--</>,},
-                    {key: 'swimmingImages', element: <>--Swimming (images)--</>,},
-                    {key: 'jumpingImagesAndSounds', element: <>--Jumping (images & sounds)--</>,},
-                    {key: 'fallingAfterJumpImage', element: <>--Falling after jump (images)--</>,},
-                    {key: 'groundAfterJumpImage', element: <>--Ground after jump (sound)--</>,},
-                    {key: 'turningImageAndSound', element: <>-Turning (image & sound)--</>,},
-                    {key: 'climbingImages', element: <>-Climbing (images)--</>,},
-                    {key: 'goalPoleImagesAndSound', element: <>-Goal pole (images & sound)--</>,},
-                    {key: 'lostALifeSound', element: <>-Lost a life (sound)--</>,},
-                ],
+                {key: 'originalOrder', element: <>#</>,},
+                {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,},
+                {
+                    key: 'canBeUnlockedByAnAmiibo',
+                    // @ts-ignore
+                    element: <Image source="/others/Amiibo (short).svg" fallbackName="Amiibo icon"/>, tooltip: {translationKey: '--Can be unlocked by an Amiibo--', namespace: 'gameContent',},
+                },
+                {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
+                {
+                    key: 'imagesAndSounds', element: <>--Images & sounds--</>,
+                    subHeaders: [
+                        {key: 'powerUpCollectedSound', element: <>--Power-up collected (sound)--</>,},
+                        {key: 'waitingImage', element: <>--Waiting (image)--</>,},
+                        {key: 'tauntImageAndSound', element: <>--Taunt (image & sound)--</>,},
+                        {key: 'pressingDownImage', element: <>--Pressing ↓ (image)--</>,},
+                        {key: 'walkImages', element: <>--Walk (image)--</>,},
+                        {key: 'runningImages', element: <>--Running (images)--</>,},
+                        {key: 'swimmingImages', element: <>--Swimming (images)--</>,},
+                        {key: 'jumpingImagesAndSounds', element: <>--Jumping (images & sounds)--</>,},
+                        {key: 'fallingAfterJumpImage', element: <>--Falling after jump (images)--</>,},
+                        {key: 'groundAfterJumpImage', element: <>--Ground after jump (sound)--</>,},
+                        {key: 'turningImageAndSound', element: <>-Turning (image & sound)--</>,},
+                        {key: 'climbingImages', element: <>-Climbing (images)--</>,},
+                        {key: 'goalPoleImagesAndSound', element: <>-Goal pole (images & sound)--</>,},
+                        {key: 'lostALifeSound', element: <>-Lost a life (sound)--</>,},
+                    ],
+                },
             ]}
             content={this.content}
         />;
