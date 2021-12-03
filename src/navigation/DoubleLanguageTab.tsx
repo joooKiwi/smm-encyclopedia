@@ -17,17 +17,16 @@ interface DoubleLanguageTabProperty
 
 export default function DoubleLanguageTab({languages: [parentLanguage, firstLanguage, secondLanguage,], callbackToSetLanguage,}: DoubleLanguageTabProperty,) {
     const key = `languageChanger (li) - ${parentLanguage.englishName}`;
-    //FIXME change space to the current language space.
 
     return <li key={key} className="double-languageChanger-tab dropdown-item">
         <LanguageTranslationComponent>{translation => <div className="text-container d-flex flex-row">
-            <pre>{translation(parentLanguage.englishName)} {ProjectLanguages.currentLanguage.startingParenthesis}</pre>
+            <pre>{translation(parentLanguage.englishName)}{ProjectLanguages.currentLanguage.space}{ProjectLanguages.currentLanguage.startingParenthesis}</pre>
             {firstLanguage === ProjectLanguages.currentLanguage ? <SingleTextLanguageTab language={firstLanguage} isEnglishName={false}/> :
                 <LanguageChangerTab language={firstLanguage} value={translation(firstLanguage.differentWords)} callbackToSetLanguage={callbackToSetLanguage}/>}
-            <pre> {ProjectLanguages.currentLanguage.slash} </pre>
+            <pre>{ProjectLanguages.currentLanguage.space}{ProjectLanguages.currentLanguage.slash}{ProjectLanguages.currentLanguage.space}</pre>
             {secondLanguage === ProjectLanguages.currentLanguage ? <SingleTextLanguageTab language={secondLanguage} isEnglishName={false}/>
                 : <LanguageChangerTab language={secondLanguage} value={translation(secondLanguage.differentWords)} callbackToSetLanguage={callbackToSetLanguage}/>}
             <pre>{ProjectLanguages.currentLanguage.endingParenthesis}</pre>
-            </div>}</LanguageTranslationComponent>
+        </div>}</LanguageTranslationComponent>
     </li>;
 }
