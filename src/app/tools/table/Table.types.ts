@@ -1,6 +1,6 @@
-import type {BootstrapColor}        from '../../../bootstrap/Bootstrap.types';
-import type {PossibleHeaderContent} from './SimpleHeader';
-import type {ReactProperty}         from '../../../util/react/ReactProperty';
+import type {BootstrapColor}       from '../../../bootstrap/Bootstrap.types';
+import type {SingleHeadersContent} from './SimpleHeader';
+import type {ReactProperty}        from '../../../util/react/ReactProperty';
 
 export type SingleCaptionContent = | string | JSX.Element;
 export type SingleTableContent = [key: string, ...content: JSX.Element[]];
@@ -12,7 +12,7 @@ export interface SimpleTableProperties
 
     caption: SingleCaptionContent
 
-    headers: PossibleHeaderContent
+    headers: SingleHeadersContent
 
     content: readonly SingleTableContent[]
 
