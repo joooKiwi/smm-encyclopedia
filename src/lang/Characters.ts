@@ -11,6 +11,8 @@ export class Characters
     public static readonly POINT =                new Characters('.',  '．',);
     public static readonly INTERROGATION_POINT =  new Characters('?',  '？',);
     public static readonly EXCLAMATION_POINT =    new Characters('!',  '！',);
+    public static readonly COLON =                new Characters(':',  '：',);
+    public static readonly SEMICOLON =            new Characters(';',  '；',);
     public static readonly COMMA =                new Characters(',',  '，',);
     public static readonly UNION_TRAIT =          new Characters('-',  '－',);
 
@@ -67,7 +69,7 @@ export class Characters
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
-    static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT,];
+    static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,];
     static #POINTS_STRING?: Points_Array;
     static #POINTS_SPACE_EVEN?: Points_SpaceEven_Array;
     static #POINTS_SPACE_UNEVEN?: Points_SpaceUneven_Array;
@@ -93,9 +95,9 @@ export class Characters
     static #SLASHES_SPACE_UNEVEN?: Slashes_SpaceUneven_Array;
 
     static readonly #LETTERS: EnumArray_RomainAlphabet = [
-        this.LETTER_A, this.LETTER_B, this.LETTER_C, this.LETTER_C, this.LETTER_D,
-        this.LETTER_E, this.LETTER_F, this.LETTER_G, this.LETTER_H, this.LETTER_I,
-        this.LETTER_J, this.LETTER_K, this.LETTER_L, this.LETTER_M, this.LETTER_O,
+        this.LETTER_A, this.LETTER_B, this.LETTER_C, this.LETTER_D, this.LETTER_E,
+        this.LETTER_F, this.LETTER_G, this.LETTER_H, this.LETTER_I, this.LETTER_J,
+        this.LETTER_K, this.LETTER_L, this.LETTER_M, this.LETTER_N, this.LETTER_O,
         this.LETTER_P, this.LETTER_Q, this.LETTER_R, this.LETTER_S, this.LETTER_T,
         this.LETTER_U, this.LETTER_V, this.LETTER_W, this.LETTER_X, this.LETTER_Y,
         this.LETTER_Z,

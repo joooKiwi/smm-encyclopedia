@@ -1,4 +1,5 @@
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
+import {PossibleColon, PossibleSemicolon}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './Characters.types';
 
 export interface CharactersTrait<B extends boolean = boolean, > {
 
@@ -11,6 +12,10 @@ export interface CharactersTrait<B extends boolean = boolean, > {
     get interrogationPoint(): PossibleInterrogationPoint
 
     get exclamationPoint(): PossibleExclamationPoint
+
+    get colon(): PossibleColon
+
+    get semicolon(): PossibleSemicolon
 
     get comma(): PossibleComma
 
