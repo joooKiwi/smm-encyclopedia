@@ -56,16 +56,16 @@ export default class EveryGameStylesApp
             id="gameStyle-table"
             caption={<GameContentTranslationComponent translationKey="Every game styles"/>}
             headers={[
-                [
-                    {key: 'originalOrder', height: 2, element: <>#</>,},
-                    {key: 'image', height: 2, element: <ContentTranslationComponent translationKey="Image"/>,},
-                    {key: 'name', height: 2, element: <ContentTranslationComponent translationKey="Name"/>,},
-                    {key: 'game', width: 2, element: <GameContentTranslationComponent translationKey="Game"/>,},
-                ],
-                [
-                    {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                    {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                ],
+                {key: 'originalOrder', element: <>#</>,},
+                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
+                {
+                    key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
+                    subHeaders: [
+                        {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                        {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                    ],
+                },
             ]}
             content={this.content}
         />;

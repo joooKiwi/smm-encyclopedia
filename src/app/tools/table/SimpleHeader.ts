@@ -2,16 +2,12 @@ import type {Namespace, SimpleAnyTranslationProperty} from '../../../lang/compon
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader;
 export type SingleHeadersContent = readonly SingleHeaderContent[];
-export type HeadersContent = readonly SingleHeadersContent[];
-export type PossibleHeaderContent = | SingleHeadersContent | HeadersContent;
 
 export interface SimpleHeader {
 
     key: string
 
-    width?: number
-
-    height?: number
+    subHeaders?: SingleHeadersContent
 
     tooltip?: SimpleAnyTranslationProperty<Namespace>
 

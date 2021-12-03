@@ -5,7 +5,7 @@ import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassW
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './name/containers/Language';
 import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                               from './EveryLanguages.types';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './LanguageEnumerable';
-import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './ProjectLanguages.types';
+import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project, PossibleDifferentWord}                                                                                                                                                                                                                                                                                                                                                                                                                                     from './ProjectLanguages.types';
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../util/enum/Enum.types';
 
@@ -14,7 +14,7 @@ import {Enum}       from '../util/enum/Enum';
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
-    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName> {
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, | PossibleDifferentWord | null> {
 
     //region -------------------- Enum instances --------------------
 
@@ -55,7 +55,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.americanEnglish;
         }
 
-    }   (true,  false,           'en_AM', 'en-US', 'English (America)',    'English (America)',   EveryLanguages.ENGLISH,);
+    }   (true,  false,           'en_AM', 'en-US', 'English (America)',    'English (America)',   'America',      EveryLanguages.ENGLISH,);
     public static readonly EUROPEAN_ENGLISH =    new class EveryLanguages_EuropeanEnglish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -70,7 +70,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanEnglish;
         }
 
-    }   (true,  false,           'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    EveryLanguages.ENGLISH,);
+    }   (true,  false,           'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    'Europe',       EveryLanguages.ENGLISH,);
     public static readonly FRENCH =              new class EveryLanguages_French extends EveryLanguages {
 
         public get isCurrentLanguage(): boolean {
@@ -108,7 +108,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.canadianFrench;
         }
 
-    }    (true,  false,           'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   EveryLanguages.FRENCH,);
+    }    (true,  false,           'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   'Canada',       EveryLanguages.FRENCH,);
     public static readonly EUROPEAN_FRENCH =     new class EveryLanguages_EuropeanFrench extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -123,7 +123,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanFrench;
         }
 
-    }    (true,  false,           'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   EveryLanguages.FRENCH,);
+    }    (true,  false,           'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   'Europe',       EveryLanguages.FRENCH,);
     public static readonly GERMAN =              new class EveryLanguages_German extends EveryLanguages {
 
         protected _get<T extends | ClassWithEveryLanguages | CompleteClassWithEveryLanguages>(classWithEveryLanguages: T,): T['german'] {
@@ -160,7 +160,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.americanSpanish;
         }
 
-    }   (false, false,           'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   EveryLanguages.SPANISH,);
+    }   (false, false,           'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   'America',      EveryLanguages.SPANISH,);
     public static readonly EUROPEAN_SPANISH =    new class EveryLanguages_EuropeanSpanish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -171,7 +171,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanSpanish;
         }
 
-    }   (false, false,           'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    EveryLanguages.SPANISH,);
+    }   (false, false,           'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    'Europe',       EveryLanguages.SPANISH,);
     public static readonly ITALIAN =             new class EveryLanguages_Italian extends EveryLanguages {
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['italian'] {
@@ -215,7 +215,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.americanPortuguese;
         }
 
-    }(false, false,           'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', EveryLanguages.PORTUGUESE,);
+    }(false, false,           'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', 'America',      EveryLanguages.PORTUGUESE,);
     public static readonly EUROPEAN_PORTUGUESE = new class EveryLanguages_EuropeanPortuguese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -226,7 +226,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanPortuguese;
         }
 
-    }(false, false,           'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  EveryLanguages.PORTUGUESE,);
+    }(false, false,           'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  'Europe',       EveryLanguages.PORTUGUESE,);
     public static readonly RUSSIAN =             new class EveryLanguages_Russian extends EveryLanguages {
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['russian'] {
@@ -270,7 +270,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.traditionalChinese;
         }
 
-    }(false, true,            'zh_T',  'zh',    'Traditional chinese',  '繁體中文',              EveryLanguages.CHINESE,);
+    }(false, true,            'zh_T',  'zh',    'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
     public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -281,7 +281,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.simplifiedChinese;
         }
 
-    } (false, true,            'zh_S',  'zh',    'Simplified chinese',   '简体中文',              EveryLanguages.CHINESE,);
+    } (false, true,            'zh_S',  'zh',    'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['korean'] {
@@ -317,7 +317,9 @@ export abstract class EveryLanguages
     readonly #internationalAcronym: PossibleInternationalAcronym;
     readonly #englishName: PossibleEnglishName;
     readonly #originalName: PossibleOriginalName;
+    readonly #differentWords: | PossibleDifferentWord | null;
     readonly #parent: | EveryLanguages | null;
+    #children?: PossibleChildrenLanguages;
 
     #points?: PossiblePoints_Array;
     #comma?: PossibleComma;
@@ -336,8 +338,8 @@ export abstract class EveryLanguages
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
     private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, parent: EveryLanguages,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, parent: | EveryLanguages | null = null,) {
+    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, differenceWords: PossibleDifferentWord, parent: EveryLanguages,)
+    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: | PossibleDifferentWord | null = null, parent: | EveryLanguages | null = null,) {
         super();
         this.#isACompleteLanguage = isACompleteLanguage;
         if (typeof isASpaceEvenLanguage == 'boolean')
@@ -351,6 +353,7 @@ export abstract class EveryLanguages
         this.#internationalAcronym = internationalAcronym;
         this.#englishName = englishName;
         this.#originalName = originalName;
+        this.#differentWords = differenceWords;
         this.#parent = parent;
     }
 
@@ -388,8 +391,16 @@ export abstract class EveryLanguages
         return this.#originalName;
     }
 
+    public get differentWords(): | PossibleDifferentWord | null {
+        return this.#differentWords;
+    }
+
     public get parent(): | EveryLanguages | null {
         return this.#parent;
+    }
+
+    public get children(): PossibleChildrenLanguages {
+        return this.#children ??= EveryLanguages.values.filter(language => language.parent != null).filter(language => language.parent === this.parent) as unknown as PossibleChildrenLanguages;
     }
 
     public get isCurrentLanguage(): boolean {
@@ -637,3 +648,4 @@ export abstract class EveryLanguages
 }
 
 type IsASpaceEvenLanguageReceived = | boolean | [excludingPointsAndSpace: boolean, pointsAndSpace: boolean,];
+type PossibleChildrenLanguages = readonly [EveryLanguages, EveryLanguages,] | readonly [];

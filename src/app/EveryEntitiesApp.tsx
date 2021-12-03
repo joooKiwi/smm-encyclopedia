@@ -119,28 +119,26 @@ export default class EveryEntitiesApp
             id="entity-table"
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
-                [
-                    {key: 'originalOrder', height: 2, element: <>#</>,},
-                    {key: 'name', height: 2, element: <ContentTranslationComponent translationKey="Name"/>,},
-                    {key: 'game', height: 2, element: <GameContentTranslationComponent translationKey="Game"/>,},
-                    {key: 'gameStyle', height: 2, element: <GameContentTranslationComponent translationKey="Game style"/>,},
-                    {key: 'courseTheme', height: 2, element: <GameContentTranslationComponent translationKey="Course theme"/>,},
-                    {key: 'time', height: 2, element: <GameContentTranslationComponent translationKey="Time"/>,},
-                    {key: 'category', height: 2, element: <GameContentTranslationComponent translationKey="Category"/>,},
-                    {key: 'limit', width: 2, element: <GameContentTranslationComponent translationKey="Limit"/>,},
-                ],
-                [
-                    {
-                        key: 'limit-editor',
-                        element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
-                        tooltip: new GameContentTranslationContainer('Limit in the editor'),
-                    },
-                    {
-                        key: 'limit-whilePlaying',
-                        element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
-                        tooltip: new GameContentTranslationContainer('Limit while playing'),
-                    },
-                ],
+                {key: 'originalOrder', element: <>#</>,},
+                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
+                {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
+                {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,},
+                {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,},
+                {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,},
+                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
+                {
+                    key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
+                    subHeaders: [
+                        {
+                            key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
+                            tooltip: new GameContentTranslationContainer('Limit in the editor'),
+                        },
+                        {
+                            key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
+                            tooltip: new GameContentTranslationContainer('Limit while playing'),
+                        },
+                    ],
+                },
             ]}
             content={this.content}
         />;
