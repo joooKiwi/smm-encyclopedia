@@ -1,7 +1,7 @@
-import type {CourseTheme}                      from './CourseTheme';
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {Themes}                           from './Themes';
-import type {WorldTheme}                       from './WorldTheme';
+import type {CourseTheme}                                                                                                                                                                                                                                  from './CourseTheme';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {Themes}                                                                                                                                                                                                                                       from './Themes';
+import type {WorldTheme}                                                                                                                                                                                                                                   from './WorldTheme';
 
 export type PossibleNonNullableValue = | Themes | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName;
@@ -37,6 +37,13 @@ export type PossibleImagePath = `/game/themes/${SimpleImagePath}`;
 //region -------------------- Instance types --------------------
 
 export type SimpleEnum<T extends Themes = Themes, > = OriginalSimpleEnum<Names, T>;
+
+export type EnumByOrdinal<O extends Ordinals, E extends Themes = Themes, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends Themes = Themes, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends Themes = Themes, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends Themes = Themes, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends Themes = Themes, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------

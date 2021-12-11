@@ -1,14 +1,14 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                        from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                                                                                          from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                                                                                                                          from '../ClassWithReference';
-import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SimpleImagePath} from './Themes.types';
-import type {CourseTheme}                                                                                                                                                                                                                 from './CourseTheme';
-import type {Entity}                                                                                                                                                                                                                      from '../entity/Entity';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                     from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                                                                                             from '../../util/enum/Enum.types';
-import type {ThemeProperty}                                                                                                                                                                                                               from '../entity/properties/ThemeProperty';
-import type {ThemeReferences}                                                                                                                                                                                                             from '../entity/properties/ThemeReferences';
-import type {WorldTheme}                                                                                                                                                                                                                  from './WorldTheme';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                     from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                                                                                                                                                       from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                       from '../ClassWithReference';
+import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SimpleImagePath} from './Themes.types';
+import type {CourseTheme}                                                                                                                                                                                                                                                                                              from './CourseTheme';
+import type {Entity}                                                                                                                                                                                                                                                                                                   from '../entity/Entity';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                  from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                                                                                                          from '../../util/enum/Enum.types';
+import type {ThemeProperty}                                                                                                                                                                                                                                                                                            from '../entity/properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                                                                                                                                                                                                          from '../entity/properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                                                                                                                                                                                               from './WorldTheme';
 
 import {Enum}            from '../../util/enum/Enum';
 import {ThemeLoader}     from './Theme.loader';
@@ -264,11 +264,11 @@ export class Themes
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof Themes[N]
-    public static getValue(name: PossibleStringValue,): Themes
-    public static getValue(name: string,): | Themes | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends Themes = Themes, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): Themes
     public static getValue(value: PossibleValue,): | Themes | null

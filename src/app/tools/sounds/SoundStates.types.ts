@@ -1,5 +1,5 @@
-import {SoundStates}                      from './SoundStates';
-import {SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import {SoundStates}                                                                                                                                                                                                                                  from './SoundStates';
+import {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | SoundStates | Ordinals | PossibleStringValue;
 
@@ -27,12 +27,12 @@ export type EnglishName = | 'playing' | 'paused' | 'standby';
 
 export type SimpleEnum<E extends SoundStates = SoundStates, > = OriginalSimpleEnum<Names, E>;
 
-export type EnumByOrdinal<O extends Ordinals, E extends SoundStates = SoundStates, > = EnumArray<E>[O];
-export type EnumByNumber<O extends number, E extends SoundStates = SoundStates, > = | NonNullable<EnumArray<E>[O]> | null;
+export type EnumByOrdinal<O extends Ordinals, E extends SoundStates = SoundStates, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends SoundStates = SoundStates, > = OriginalEnumByNumber<EnumArray<E>, O>;
 
-export type EnumByName<N extends Names, E extends SoundStates = SoundStates, > = SimpleEnum<E>[N];
-export type EnumByPossibleString<PS extends PossibleStringValue, E extends SoundStates = SoundStates, > = PS extends Names ? EnumByName<PS, E> : E;
-export type EnumByString<S extends string, E extends SoundStates = SoundStates, > = S extends PossibleStringValue ? EnumByPossibleString<S, E> : | E | null;
+export type EnumByName<N extends Names, E extends SoundStates = SoundStates, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends SoundStates = SoundStates, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends SoundStates = SoundStates, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------

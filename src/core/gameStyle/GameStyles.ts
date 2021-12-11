@@ -1,14 +1,14 @@
-import type {ClassWithAcronym}                                                                                                                                                     from '../ClassWithAcronym';
-import type {ClassWithEnglishName}                                                                                                                                                 from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                                   from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                                                                   from '../ClassWithReference';
-import type {Entity}                                                                                                                                                               from '../entity/Entity';
-import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingImagePath} from './GameStyles.types';
-import type {GameStyle}                                                                                                                                                            from './GameStyle';
-import type {GameStyleProperty}                                                                                                                                                    from '../entity/properties/GameStyleProperty';
-import type {GameStyleReferences}                                                                                                                                                  from '../entity/properties/GameStyleReferences';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                              from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                                      from '../../util/enum/Enum.types';
+import type {ClassWithAcronym}                                                                                                                                                                                                                                  from '../ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                              from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                                                                                                from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                                                                                                                from '../ClassWithReference';
+import type {Entity}                                                                                                                                                                                                                                            from '../entity/Entity';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingImagePath} from './GameStyles.types';
+import type {GameStyle}                                                                                                                                                                                                                                         from './GameStyle';
+import type {GameStyleProperty}                                                                                                                                                                                                                                 from '../entity/properties/GameStyleProperty';
+import type {GameStyleReferences}                                                                                                                                                                                                                               from '../entity/properties/GameStyleReferences';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                           from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                                                   from '../../util/enum/Enum.types';
 
 import {Enum}             from '../../util/enum/Enum';
 import {GameStyleLoader}  from './GameStyle.loader';
@@ -148,12 +148,12 @@ export abstract class GameStyles
         return GameStyles;
     }
 
-    public static getValue(nullValue: null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof GameStyles[N]
-    public static getValue(name: PossibleStringValue,): GameStyles
-    public static getValue(name: string,): | GameStyles | null
+    public static getValue(nullValue: | null | undefined,): null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends GameStyles = GameStyles, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): GameStyles
     public static getValue(value: PossibleValue,): | GameStyles | null

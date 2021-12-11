@@ -71,7 +71,7 @@ export abstract class SoundStates
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<PS extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: PS,): EnumByPossibleString<PS>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
     public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
     public static getValue<I extends SoundStates, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): SoundStates
