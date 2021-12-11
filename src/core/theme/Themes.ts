@@ -32,7 +32,7 @@ export class Themes
 
     public static readonly GROUND =      new class Themes_Ground extends Themes {
 
-        public _get(property: ThemeProperty,): boolean {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInGroundTheme;
         }
 
@@ -43,7 +43,7 @@ export class Themes
     }     ('Ground',);
     public static readonly UNDERGROUND = new class Themes_Underground extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInUndergroundTheme;
         }
 
@@ -54,7 +54,7 @@ export class Themes
     }('Underground',);
     public static readonly UNDERWATER =  new class Themes_Underwater extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInUnderwaterTheme;
         }
 
@@ -65,7 +65,7 @@ export class Themes
     } ('Underwater',);
     public static readonly DESERT =      new class Themes_Desert extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInDesertTheme;
         }
 
@@ -76,7 +76,7 @@ export class Themes
     }     ('Desert',);
     public static readonly SNOW =        new class Themes_Snow extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInSnowTheme;
         }
 
@@ -87,7 +87,7 @@ export class Themes
     }       ('Snow',);
     public static readonly SKY =         new class Themes_Sky extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInSkyTheme;
         }
 
@@ -98,7 +98,7 @@ export class Themes
     }        ('Sky',);
     public static readonly FOREST =      new class Themes_Forest extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInForestTheme;
         }
 
@@ -109,7 +109,7 @@ export class Themes
     }     ('Forest',);
     public static readonly GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInGhostHouseTheme;
         }
 
@@ -120,7 +120,7 @@ export class Themes
     } ('Ghost House',);
     public static readonly AIRSHIP =     new class Themes_Airship extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInAirshipTheme;
         }
 
@@ -131,7 +131,7 @@ export class Themes
     }    ('Airship',);
     public static readonly CASTLE =      new class Themes_Castle extends Themes {
 
-        public _get(property: ThemeProperty,): | boolean | null {
+        protected _get(property: ThemeProperty,): | boolean | null {
             return property.isInCastleTheme;
         }
 
@@ -211,7 +211,7 @@ export class Themes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _get(property: ThemeProperty,): boolean | null {
+    protected _get(property: ThemeProperty,): | boolean | null {
         return false;
     }
 

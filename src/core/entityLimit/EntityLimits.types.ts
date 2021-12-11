@@ -82,7 +82,7 @@ export type SimpleEnum<T extends EntityLimits = EntityLimits, > = OriginalSimple
 //region -------------------- Array types --------------------
 
 export type EnumArray<T extends EntityLimits = EntityLimits, > = readonly [
-    SimpleEnum<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEnum<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'],
+    SimpleEnum<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEnum<T>['POWER_UP_ENTITY_LIMIT_WHILE_PLAYING'],
 
     SimpleEnum<T>['LOOSE_COIN_LIMIT'], SimpleEnum<T>['SOUND_EFFECT_LIMIT'], SimpleEnum<T>['CORPSE_LIMIT'], SimpleEnum<T>['PROJECTILE_LIMIT'], SimpleEnum<T>['LIGHT_SOURCE_LIMIT'],
 

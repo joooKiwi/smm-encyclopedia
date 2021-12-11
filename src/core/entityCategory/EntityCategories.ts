@@ -92,7 +92,6 @@ export class EntityCategories
         return Enum.getValuesOn(this);
     }
 
-
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
