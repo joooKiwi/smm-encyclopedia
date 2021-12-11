@@ -18,7 +18,7 @@ export type EditorLimitType = | PossibleEnglishName | '?' | null;
 export type PossibleGeneralEntityLimitComment = | 'Only when collected (30 frames)' | 'As a group' | `Can ${| 'overflow' | 'overfill'} limit` | 'Continue firing → GEL is max';
 export type GeneralEntityLimitType = | boolean | PossibleGeneralEntityLimitComment | null;
 
-export type PossibleGeneralGlobalEntityLimitComment = 'Not on track';
+export type PossibleGeneralGlobalEntityLimitComment = | 'Not on track' | 'While holding an entity';
 export type GeneralGlobalEntityLimitType = | boolean | PossibleGeneralGlobalEntityLimitComment | null;
 
 export type PowerUpEntityLimitType = | boolean | null;

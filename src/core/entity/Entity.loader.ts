@@ -375,7 +375,7 @@ export class EntityLoader
             new CSVLoader<PropertiesArray, Builder<EntityTemplate>, keyof typeof Headers>(everyEntities, convertedContent => new TemplateBuilder(convertedContent))
                 .setDefaultConversion('emptyable string')
 
-                .convertTo(['(Entity)', 'Entity', 'Projectile',], 'entityType',)
+                .convertTo(['(Entity)', 'Entity', 'Projectile', 'Object',], 'entityType',)
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
@@ -399,7 +399,7 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('SM3DW on down curve', 'canGoThroughWalls', 'canGoThroughWalls_inSM3DW',)
                 .convertToNullableBoolean('canBeStacked',)
                 .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
-                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
+                .convertToNullableBooleanAnd(['Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
 
                 .convertToBooleanAnd('Bob-omb clear condition', 'canBeThrownByBowserInClownCar',)
                 .convertToBooleanAnd('3rd phase', 'canBeThrownByBowserJr',)
@@ -414,7 +414,7 @@ export class EntityLoader
                 .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
                 .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
                     'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
-                .convertToNullableBooleanAnd('Not on track', 'whilePlaying_isInGEL_isSuperGlobal',)
+                .convertToNullableBooleanAnd(['Not on track','While holding an entity',], 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
                     'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)

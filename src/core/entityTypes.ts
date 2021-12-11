@@ -3,7 +3,7 @@
 /** @temporaryVariable */export type SingleEntityName = string;
 /** @temporaryLocation */export type EntityLink = | 'this' | SingleEntityName | `${SingleEntityName} / ${SingleEntityName}` | `${SingleEntityName} / this` | `this / ${SingleEntityName}`;
 
-/** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile';
+/** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Object';
 
 //region -------------------- Specific properties --------------------
 
@@ -43,7 +43,7 @@
 
 /** @temporaryLocation */export type IsGlobalGroundOrGlobal = | boolean | 'SM3DW' | null;
 
-/** @temporaryLocation */export type CanMakeASoundOutOfAMusicBlock = | boolean | '?' | 'Excluding the top 3 notes' | null;
+/** @temporaryLocation */export type CanMakeASoundOutOfAMusicBlock = | boolean | 'Excluding the top 3 notes' | null;
 
 /** @temporaryLocation */export type PossibleLightSource = | '?'
                                                            | `${'Dim' | 'Full'} light`
