@@ -33,7 +33,7 @@ export default class EverySoundEffectsApp
 
     public constructor(props: {}, context: any,) {
         super(props, context);
-        this.state = {displayCategoryAsText: false,};
+        this.state = {display: {asText: {category: false,},},};
     }
 
     protected get map() {
@@ -45,7 +45,7 @@ export default class EverySoundEffectsApp
     }
 
     protected get _displayCategoryAsText(): boolean {
-        return this.state.displayCategoryAsText;
+        return this.state.display.asText.category;
     }
 
     //endregion -------------------- Attributes & getter methods --------------------

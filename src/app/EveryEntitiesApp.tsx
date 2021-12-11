@@ -38,12 +38,20 @@ export default class EveryEntitiesApp
     public constructor(props: {}, context: any,) {
         super(props, context);
         this.state = {
-            displayCategoryAsText: false,
-            displayGameAsTextWhenAll: false,
-            displayGameStyleAsTextWhenAll: true,
-            displayCourseThemeAsTextWhenAll: true,
-            displayTimeAsTextWhenAll: false,
-            displayAcronymOnLimitsIfApplicable: true,
+            display: {
+                asText: {
+                    category: false,
+                    whenAll:{
+                        game: false,
+                        gameStyle: false,
+                        courseTheme: false,
+                        time: false,
+                    },
+                    ifApplicable:{
+                        acronymOnLimits:true,
+                    },
+                },
+            },
         };
     }
 
@@ -52,27 +60,27 @@ export default class EveryEntitiesApp
     }
 
     protected get _displayCategoryAsText(): boolean {
-        return this.state.displayCategoryAsText;
+        return this.state.display.asText.category;
     }
 
     protected get _displayGameAsTextWhenAll(): boolean {
-        return this.state.displayGameAsTextWhenAll;
+        return this.state.display.asText.whenAll.game;
     }
 
     protected get _displayGameStyleAsTextWhenAll(): boolean {
-        return this.state.displayGameStyleAsTextWhenAll;
+        return this.state.display.asText.whenAll.gameStyle;
     }
 
     protected get _displayCourseThemeAsTextWhenAll(): boolean {
-        return this.state.displayCourseThemeAsTextWhenAll;
+        return this.state.display.asText.whenAll.courseTheme;
     }
 
     protected get _displayTimeAsTextWhenAll(): boolean {
-        return this.state.displayTimeAsTextWhenAll;
+        return this.state.display.asText.whenAll.time;
     }
 
     protected get _displayAcronymOnLimitsIfApplicable(): boolean {
-        return this.state.displayAcronymOnLimitsIfApplicable;
+        return this.state.display.asText.ifApplicable.acronymOnLimits;
     }
 
     //endregion -------------------- Attributes & getter methods --------------------

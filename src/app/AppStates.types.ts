@@ -7,22 +7,31 @@ export interface AppStates
 
 interface AppStateThatHaveACategory {
 
-    displayCategoryAsText: boolean
+    display: {
+        asText: {
+            category: boolean
+        }
+    }
 
 }
 
 export interface EntityAppStates
     extends AppStates, AppStateThatHaveACategory {
 
-    displayGameAsTextWhenAll: boolean
-
-    displayGameStyleAsTextWhenAll: boolean
-
-    displayCourseThemeAsTextWhenAll: boolean
-
-    displayTimeAsTextWhenAll: boolean
-
-    displayAcronymOnLimitsIfApplicable: boolean
+    display: {
+        asText: {
+            category: boolean
+            whenAll: {
+                game: boolean
+                gameStyle: boolean
+                courseTheme: boolean
+                time: boolean
+            }
+            ifApplicable: {
+                acronymOnLimits: boolean
+            }
+        }
+    }
 
 }
 
