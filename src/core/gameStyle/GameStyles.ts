@@ -91,16 +91,25 @@ export abstract class GameStyles
 
     #reference?: GameStyle;
     readonly #acronym;
-    readonly #englishName;
+    readonly #englishNameContainer: StringContainer<PossibleEnglishName>;
     readonly #startingImagePath: StartingImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
+    // @ts-ignore
+    protected constructor(enumeration: GameStyles,)
+    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,)
+    private constructor(acronym_or_enumeration: | PossibleAcronym | GameStyles, englishName?: PossibleEnglishName,) {
         super();
-        this.#acronym = acronym;
-        this.#englishName = new StringContainer(englishName);
-        this.#startingImagePath = `/game/styles/${englishName}`;
+        if (acronym_or_enumeration instanceof GameStyles) {
+            this.#acronym = acronym_or_enumeration.acronym;
+            this.#englishNameContainer = acronym_or_enumeration.#englishNameContainer;
+            this.#startingImagePath = this.startingImagePath;
+        } else {
+            this.#acronym = acronym_or_enumeration;
+            this.#englishNameContainer = new StringContainer(englishName!);
+            this.#startingImagePath = `/game/styles/${englishName!}`;
+        }
     }
 
     //region -------------------- Getter methods --------------------
@@ -115,11 +124,11 @@ export abstract class GameStyles
     }
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName.get;
+        return this.#englishNameContainer.get;
     }
 
     public get englishNameInHtml(): string {
-        return this.#englishName.getInHtml;
+        return this.#englishNameContainer.getInHtml;
     }
 
     public get startingImagePath(): StartingImagePath {

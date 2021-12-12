@@ -5,6 +5,7 @@ import type {Entity}                                              from '../core/
 import type {EntityAppStates}                                     from './AppStates.types';
 import type {PossibleEnglishName}                                 from '../core/entity/Entities.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/entityCategory/EntityCategories.types';
+import type {SingleHeaderContent}                                 from './tools/table/SimpleHeader';
 import type {SingleTableContent}                                  from './tools/table/Table.types';
 
 import AbstractApp                       from './AbstractApp';
@@ -26,6 +27,9 @@ import NameComponent                     from '../lang/name/component/Name.compo
 import Table                             from './tools/table/Table';
 import TimeComponent                     from '../core/time/Time.component';
 import {ProjectLanguages}                from '../lang/ProjectLanguages';
+import {GameStyles}                      from '../core/gameStyle/GameStyles';
+import {Times}                           from '../core/time/Times';
+import {Themes}                          from '../core/theme/Themes';
 
 /**
  * @reactComponent
@@ -36,6 +40,7 @@ export default class EveryEntitiesApp
     //region -------------------- Attributes & getter methods --------------------
 
     #map?: ReadonlyMap<PossibleEnglishName, DebugEntityReferences>;
+    #gameStyles?: readonly GameStyles[];
 
     public constructor(props: {}, context: any,) {
         super(props, context);
@@ -43,14 +48,14 @@ export default class EveryEntitiesApp
             display: {
                 asText: {
                     category: false,
-                    whenAll:{
+                    whenAll: {
                         game: false,
                         gameStyle: false,
                         courseTheme: false,
                         time: false,
                     },
-                    ifApplicable:{
-                        acronymOnLimits:true,
+                    ifApplicable: {
+                        acronymOnLimits: true,
                     },
                 },
             },
@@ -64,6 +69,10 @@ export default class EveryEntitiesApp
 
     protected get map() {
         return this.#map ??= EntityLoader.get.load();
+    }
+
+    protected get _gameStyles() {
+        return this.#gameStyles ??= GameStyles.values;
     }
 
     protected get _displayCategoryAsText(): boolean {
@@ -93,6 +102,19 @@ export default class EveryEntitiesApp
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
+    private __createImageComponent(index: number, gameStyle: GameStyles,) {
+        const editorImage = this.enum[index - 1].editorImageName;
+        const times = Times.values;
+        const themes = Themes.courseThemes;
+
+        return <>{
+            [...new Set(
+                themes.map(theme =>
+                    times.map(time => editorImage.get(time, gameStyle, theme,))).flat(2))]
+                .map(image => <img src={image} alt={image}/>)
+        }</>;
+    }
+
     private __createCategoryComponent(index: number, entity: Entity,) {
         const categoryName = entity.categoryName;
         if (categoryName === EmptyName.get)
@@ -113,6 +135,7 @@ export default class EveryEntitiesApp
                 throw new ReferenceError(`The entity #${index} was not initialised`);
             content.push([englishName,
                 <>{index}</>,
+                ...this._gameStyles.map(gameStyle => this.__createImageComponent(index, gameStyle)),
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity} displayAllAsText={this._displayGameAsTextWhenAll}/>,
                 <GameStyleComponent reference={entity} name={entity} displayAllAsText={this._displayGameStyleAsTextWhenAll}/>,
@@ -135,6 +158,10 @@ export default class EveryEntitiesApp
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
                 {key: 'originalOrder', element: <>#</>,},
+                {
+                    key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                    subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: gameStyle.acronym, element: gameStyle.renderSingleComponent,})),
+                },
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                 {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
                 {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,},

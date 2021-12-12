@@ -160,17 +160,24 @@ export class Themes
     #reference?: CourseAndWorldTheme;
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
-    readonly #englishName;
-    readonly #imagePath;
+    readonly #englishName: StringContainer<PossibleEnglishName>;
+    readonly #imagePath: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
+    // @ts-ignore
+    protected constructor(enumeration: Themes,)
     private constructor(englishNameAndImagePath: PossibleEnglishName,)
     private constructor(englishName: PossibleEnglishName, basicImagePath: SimpleImagePath,)
-    private constructor(englishName: PossibleEnglishName, basicImagePath: | SimpleImagePath | PossibleEnglishName = englishName,) {
+    private constructor(englishName_or_enumeration: | PossibleEnglishName | Themes, basicImagePath: | SimpleImagePath | PossibleEnglishName = englishName_or_enumeration as PossibleEnglishName,) {
         super();
-        this.#englishName = new StringContainer(englishName);
-        this.#imagePath = `/game/themes/${basicImagePath}` as PossibleImagePath;
+        if (englishName_or_enumeration instanceof Themes) {
+            this.#englishName = englishName_or_enumeration.#englishName;
+            this.#imagePath = englishName_or_enumeration.#imagePath;
+        } else {
+            this.#englishName = new StringContainer(englishName_or_enumeration);
+            this.#imagePath = `/game/themes/${basicImagePath}` as PossibleImagePath;
+        }
     }
 
     //region -------------------- Getter methods --------------------
