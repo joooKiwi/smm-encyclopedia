@@ -1,9 +1,9 @@
-import type {Entity}           from '../Entity';
-import type {EntityReferences} from './EntityReferences';
-import type {GameStyles}       from '../../gameStyle/GameStyles';
-import type {ObjectHolder}     from '../../../util/holder/ObjectHolder';
-import type {Themes}           from '../../theme/Themes';
-import type {Times}            from '../../time/Times';
+import type {Entity, PossibleOtherEntities} from '../Entity';
+import type {EntityReferences}              from './EntityReferences';
+import type {GameStyles}                    from '../../gameStyle/GameStyles';
+import type {ObjectHolder}                  from '../../../util/holder/ObjectHolder';
+import type {Themes}                        from '../../theme/Themes';
+import type {Times}                         from '../../time/Times';
 
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
 
@@ -12,25 +12,25 @@ export class EntityReferencesContainer
 
     //region -------------------- Attributes --------------------
 
-    readonly #referenceInSuperMarioBrosStyle: ObjectHolder<Entity>;
-    readonly #referenceInSuperMarioBros3Style: ObjectHolder<Entity>;
-    readonly #referenceInSuperMarioWorldStyle: ObjectHolder<Entity>;
-    readonly #referenceInNewSuperMarioBrosUStyle: ObjectHolder<Entity>;
-    readonly #referenceInSuperMario3DWorldStyle: ObjectHolder<Entity>;
+    readonly #referenceInSuperMarioBrosStyle: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInSuperMarioBros3Style: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInSuperMarioWorldStyle: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInNewSuperMarioBrosUStyle: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInSuperMario3DWorldStyle: ObjectHolder<PossibleOtherEntities>;
 
-    readonly #referenceInGroundTheme: ObjectHolder<Entity>;
-    readonly #referenceInUndergroundTheme: ObjectHolder<Entity>;
-    readonly #referenceInUnderwaterTheme: ObjectHolder<Entity>;
-    readonly #referenceInDesertTheme: ObjectHolder<Entity>;
-    readonly #referenceInSnowTheme: ObjectHolder<Entity>;
-    readonly #referenceInSkyTheme: ObjectHolder<Entity>;
-    readonly #referenceInForestTheme: ObjectHolder<Entity>;
-    readonly #referenceInGhostHouseTheme: ObjectHolder<Entity>;
-    readonly #referenceInAirshipTheme: ObjectHolder<Entity>;
-    readonly #referenceInCastleTheme: ObjectHolder<Entity>;
+    readonly #referenceInGroundTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInUndergroundTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInUnderwaterTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInDesertTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInSnowTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInSkyTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInForestTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInGhostHouseTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInAirshipTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInCastleTheme: ObjectHolder<PossibleOtherEntities>;
 
-    readonly #referenceInDayTheme: ObjectHolder<Entity>;
-    readonly #referenceInNightTheme: ObjectHolder<Entity>;
+    readonly #referenceInDayTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInNightTheme: ObjectHolder<PossibleOtherEntities>;
 
     readonly #everyGameStyleReferences: ObjectHolder<readonly Entity[]>;
     readonly #everyThemeReferences: ObjectHolder<readonly Entity[]>;
@@ -39,9 +39,9 @@ export class EntityReferencesContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(referenceInSuperMarioBrosStyle: () => Entity, referenceInSuperMarioBros3Style: () => Entity, referenceInSuperMarioWorldStyle: () => Entity, referenceInNewSuperMarioBrosUStyle: () => Entity, referenceInSuperMario3DWorldStyle: () => Entity,
-                       referenceInGroundTheme: () => Entity, referenceInUndergroundTheme: () => Entity, referenceInUnderwaterTheme: () => Entity, referenceInDesertTheme: () => Entity, referenceInSnowTheme: () => Entity, referenceInSkyTheme: () => Entity, referenceInForestTheme: () => Entity, referenceInGhostHouseTheme: () => Entity, referenceInAirshipTheme: () => Entity, referenceInCastleTheme: () => Entity,
-                       referenceInDayTheme: () => Entity, referenceInNightTheme: () => Entity,
+    public constructor(referenceInSuperMarioBrosStyle: CallbackReceivedOnOtherEntities, referenceInSuperMarioBros3Style: CallbackReceivedOnOtherEntities, referenceInSuperMarioWorldStyle: CallbackReceivedOnOtherEntities, referenceInNewSuperMarioBrosUStyle: CallbackReceivedOnOtherEntities, referenceInSuperMario3DWorldStyle: CallbackReceivedOnOtherEntities,
+                       referenceInGroundTheme: CallbackReceivedOnOtherEntities, referenceInUndergroundTheme: CallbackReceivedOnOtherEntities, referenceInUnderwaterTheme: CallbackReceivedOnOtherEntities, referenceInDesertTheme: CallbackReceivedOnOtherEntities, referenceInSnowTheme: CallbackReceivedOnOtherEntities, referenceInSkyTheme: CallbackReceivedOnOtherEntities, referenceInForestTheme: CallbackReceivedOnOtherEntities, referenceInGhostHouseTheme: CallbackReceivedOnOtherEntities, referenceInAirshipTheme: CallbackReceivedOnOtherEntities, referenceInCastleTheme: CallbackReceivedOnOtherEntities,
+                       referenceInDayTheme: CallbackReceivedOnOtherEntities, referenceInNightTheme: CallbackReceivedOnOtherEntities,
                        everyGameStyleReferences: () => readonly Entity[], everyThemeReferences: () => readonly Entity[], everyTimeReferences: () => readonly Entity[], everyReferences: () => readonly Entity[],) {
         this.#referenceInSuperMarioBrosStyle = new DelayedObjectHolderContainer(referenceInSuperMarioBrosStyle);
         this.#referenceInSuperMarioBros3Style = new DelayedObjectHolderContainer(referenceInSuperMarioBros3Style);
@@ -150,10 +150,10 @@ export class EntityReferencesContainer
 
     //endregion -------------------- Time references --------------------
 
-    public getReferenceFrom(theme: Themes,): Entity
-    public getReferenceFrom(time: Times,): Entity
-    public getReferenceFrom(gameStyle: GameStyles,): Entity
-    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): Entity
+    public getReferenceFrom(theme: Themes,): PossibleOtherEntities
+    public getReferenceFrom(time: Times,): PossibleOtherEntities
+    public getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
     public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
         return gameStyleOrThemeOrTime.getReference(this);
     }
@@ -177,3 +177,5 @@ export class EntityReferencesContainer
     //endregion -------------------- References methods --------------------
 
 }
+
+type CallbackReceivedOnOtherEntities = () => PossibleOtherEntities;

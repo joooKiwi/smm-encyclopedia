@@ -1,20 +1,20 @@
-import type {Entity}     from '../Entity';
-import type {GameStyles} from '../../gameStyle/GameStyles';
+import type {Entity, PossibleOtherEntities} from '../Entity';
+import type {GameStyles}                    from '../../gameStyle/GameStyles';
 
 export interface GameStyleReferences {
 
-    get referenceInSuperMarioBrosStyle(): Entity
+    get referenceInSuperMarioBrosStyle(): PossibleOtherEntities
 
-    get referenceInSuperMarioBros3Style(): Entity
+    get referenceInSuperMarioBros3Style(): PossibleOtherEntities
 
-    get referenceInSuperMarioWorldStyle(): Entity
+    get referenceInSuperMarioWorldStyle(): PossibleOtherEntities
 
-    get referenceInNewSuperMarioBrosUStyle(): Entity
+    get referenceInNewSuperMarioBrosUStyle(): PossibleOtherEntities
 
-    get referenceInSuperMario3DWorldStyle(): Entity
+    get referenceInSuperMario3DWorldStyle(): PossibleOtherEntities
 
 
-    getReferenceFrom(gameStyle: GameStyles,): Entity
+    getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
 
     get everyGameStyleReferences(): readonly Entity[]
 

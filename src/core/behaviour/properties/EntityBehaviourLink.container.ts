@@ -1,7 +1,8 @@
-import type {Entity}                              from '../../entity/Entity';
-import type {EntityBehaviourLink}                 from './EntityBehaviourLink';
-import type {ObjectHolder}                        from '../../../util/holder/ObjectHolder';
-import type {PossibleGroupName, SingleEntityName} from '../../entityTypes';
+import type {Entity}                            from '../../entity/Entity';
+import type {EntityBehaviourLink}               from './EntityBehaviourLink';
+import type {ObjectHolder}                      from '../../../util/holder/ObjectHolder';
+import type {PossibleEnglishName as EntityName} from '../../entity/Entities.types';
+import type {PossibleGroupName}                 from '../../entityTypes';
 
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
 import {EntityLoader}                 from '../../entity/Entity.loader';
@@ -32,7 +33,7 @@ export class EntityBehaviourLinkContainer
     readonly #groupLinkHolder: ObjectHolder<| object | null>;
     readonly #entityLinkHolder: ObjectHolder<| Entity | null>;
 
-    private constructor(groupLink: | PossibleGroupName | null, entityLink: | SingleEntityName | null,) {
+    private constructor(groupLink: | PossibleGroupName | null, entityLink: | EntityName | null,) {
         this.#groupLinkHolder = new DelayedObjectHolderContainer(() => groupLink == null ? null : EntityBehaviourLinkContainer.__getEntityGroupByName(groupLink));
         this.#entityLinkHolder = new DelayedObjectHolderContainer(() => entityLink == null ? null : EntityBehaviourLinkContainer.__getEntityByName(entityLink));
     }
@@ -51,13 +52,13 @@ export class EntityBehaviourLinkContainer
         return {};//TODO implement this methods when the group name is added.
     }
 
-    private static __getEntityByName(name: SingleEntityName,): Entity {
+    private static __getEntityByName(name: EntityName,): Entity {
         return EntityLoader.get.load().get(name)!.entity!;
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
 
-    public static get(groupLink: | PossibleGroupName | null, entityLink: | SingleEntityName | null,): EntityBehaviourLink {
+    public static get(groupLink: | PossibleGroupName | null, entityLink: | EntityName | null,): EntityBehaviourLink {
         if (groupLink == null && entityLink == null)
             return this.#IS_IN_NONE;
 

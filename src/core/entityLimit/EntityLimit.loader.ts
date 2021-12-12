@@ -5,8 +5,9 @@ import type {EntityLimit}                                                       
 import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                   from '../../lang/Loader.types';
 import type {Loader}                                                                                                                        from '../../util/loader/Loader';
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                              from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                                                     from './EntityLimitTypes.types';
-import type {PossibleGroupName, SingleEntityName}                                                                                           from '../entityTypes';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                             from '../entity/Entities.types';
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                          from './EntityLimitTypes.types';
+import type {PossibleGroupName}                                                                                                             from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -53,14 +54,14 @@ type ExclusivePropertyArray = [
 
     alternative: | PossibleAlternativeEnglishName | null,
 
-    type: | PossibleEntityLimitTypeEnglishName | null,
+    type: | PossibleEnglishName_LimitType | null,
     acronym: | PossibleAcronym | PossibleAlternativeAcronym | null,
 
     limit: PossibleLimitNumber,
     limit_comment: | string | null,
 
     link_group: | PossibleGroupName | null,
-    link_entity: | SingleEntityName | null,
+    link_entity: | PossibleEnglishName_Entity | null,
 
 ];
 type PropertiesArray = [
@@ -175,7 +176,7 @@ class TemplateBuilder
             : this.__createLimitTemplate(type, acronym as PossibleNullableAcronym,);
     }
 
-    private __createLimitTemplate(type: PossibleEntityLimitTypeEnglishName, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
+    private __createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
         return {
 
             references: {

@@ -1,10 +1,11 @@
 import type {Builder}                                                                                                                                 from '../../util/Builder';
 import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
 import type {DebugEntityReferences}                                                                                                                   from './Entity.loader';
-import type {Entity}                                                                                                                                  from './Entity';
+import type {Entity, PossibleOtherEntities}                                                                                                           from './Entity';
 import type {EntityCategory}                                                                                                                          from '../entityCategory/EntityCategory';
-import type {EntityLink}                                                                                                                              from '../entityTypes';
+import type {EntityLink}                                                                                                                              from './loader.types';
 import type {EntityTemplate}                                                                                                                          from './Entity.template';
+import type {PossibleEnglishName}                                                                                                                     from './Entities.types';
 import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../entityCategory/EntityCategories.types';
 import type {PossibleGameReceived}                                                                                                                    from '../../lang/name/Name.builder.types';
 
@@ -26,18 +27,18 @@ export class EntityBuilder
 
     //region -------------------- External object references --------------------
 
-    public static references: Map<string, DebugEntityReferences>;
+    public static references: Map<PossibleEnglishName, DebugEntityReferences>;
     public static categoriesMap: ReadonlyMap<PossibleEntityCategoryEnglishName, EntityCategory>;
 
     //endregion -------------------- External object references --------------------
     //region -------------------- Attributes --------------------
 
-    static readonly #EMPTY_ENTITY_CALLBACK: () => Entity = () => EmptyEntity.get;
+    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
     static readonly #EMPTY_ARRAY_CALLBACK: () => typeof EMPTY_ARRAY = () => EMPTY_ARRAY;
     static readonly #GET_ENTITY_LIMIT_CALLBACK: CallbackToGetEntityLimit = entityLimit => EntityLimits.getValue(entityLimit);
 
     readonly #template;
-    readonly #selfCallback = () => this.build();
+    readonly #selfCallback = () => [this.build()] as const;
 
     //endregion -------------------- Attributes --------------------
 
@@ -160,16 +161,16 @@ export class EntityBuilder
     private __createReferenceArrayCallback(set: Set<EntityTemplate> | null,): () => readonly Entity[] {
         return set == null
             ? EntityBuilder.#EMPTY_ARRAY_CALLBACK
-            : () => Array.from(set).map(reference => EntityBuilder.references.get(reference.name.english.simple || reference.name.english.american!)!.entity!);
+            : () => Array.from(set).map(reference => EntityBuilder.references.get((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName)!.entity!);
     }
 
-    private __createEntityCallbackFor(link: EntityLink,): () => Entity {
+    private __createEntityCallbackFor(link: EntityLink,): () => PossibleOtherEntities {
         return link === 'this'
             ? this.#selfCallback
-            : () => EntityBuilder.references.get(link)!.entity!;
+            : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => EntityBuilder.references.get(splitLink)!.entity!) as unknown as PossibleOtherEntities;
     }
 
-    private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => Entity {
+    private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => PossibleOtherEntities {
         return link === null
             ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
             : this.__createEntityCallbackFor(link);

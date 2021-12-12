@@ -4,7 +4,8 @@ import type {EntityBehaviour}                          from './EntityBehaviour';
 import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template';
 import type {Loader}                                   from '../../util/loader/Loader';
 import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
-import type {PossibleGroupName, SingleEntityName}      from '../entityTypes';
+import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types';
+import type {PossibleGroupName}                        from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {EntityLoader}            from '../entity/Entity.loader';
@@ -37,7 +38,7 @@ type PropertiesArray = [
     isMultiplayerOnly: boolean,
 
     link_group: | PossibleGroupName | null,
-    link_entity: | SingleEntityName | null,
+    link_entity: | EntityName | null,
 ];
 
 //endregion -------------------- Properties --------------------

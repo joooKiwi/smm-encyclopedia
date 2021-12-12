@@ -6,7 +6,8 @@ import type {Entity}                                                            
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
 import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                from './EntityLimits.types';
-import type {PossibleGroupName, SingleEntityName}                                                from '../entityTypes';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                  from '../entity/Entities.types';
+import type {PossibleGroupName}                                                                  from '../entityTypes';
 
 import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
 import {EmptyEntityLimit}                                   from './EmptyEntityLimit';
@@ -66,7 +67,7 @@ export class EntityLimitBuilder
         return {name: groupLink,};
     }
 
-    private static __getEntity(entity: SingleEntityName,): Entity {
+    private static __getEntity(entity: PossibleEnglishName_Entity,): Entity {
         return this.entitiesMap.get(entity)!.entity!;
     }
 

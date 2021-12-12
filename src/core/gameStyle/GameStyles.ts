@@ -2,11 +2,11 @@ import type {ClassWithAcronym}                                                  
 import type {ClassWithEnglishName}                                                                                                                                                                                                                              from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                                                                                                                from '../ClassWithImagePath';
 import type {ClassWithReference}                                                                                                                                                                                                                                from '../ClassWithReference';
-import type {Entity}                                                                                                                                                                                                                                            from '../entity/Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingImagePath} from './GameStyles.types';
 import type {GameStyle}                                                                                                                                                                                                                                         from './GameStyle';
 import type {GameStyleProperty}                                                                                                                                                                                                                                 from '../entity/properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                                                                                                               from '../entity/properties/GameStyleReferences';
+import type {PossibleOtherEntities}                                                                                                                                                                                                                             from '../entity/Entity';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                           from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                                   from '../../util/enum/Enum.types';
 
@@ -25,7 +25,7 @@ export abstract class GameStyles
         ClassWithAcronym<PossibleAcronym>,
         ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImagePath<PossibleImagePath>,
-        PropertyReferenceGetter<GameStyleReferences>,
+        PropertyReferenceGetter<GameStyleReferences, PossibleOtherEntities>,
         PropertyGetter<GameStyleProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -36,7 +36,7 @@ export abstract class GameStyles
             return property.isInSuperMarioBrosStyle;
         }
 
-        public getReference(referenceProperty: GameStyleReferences,): Entity {
+        public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBrosStyle'] {
             return referenceProperty.referenceInSuperMarioBrosStyle;
         }
 
@@ -47,7 +47,7 @@ export abstract class GameStyles
             return property.isInSuperMarioBros3Style;
         }
 
-        public getReference(referenceProperty: GameStyleReferences,): Entity {
+        public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBros3Style'] {
             return referenceProperty.referenceInSuperMarioBros3Style;
         }
 
@@ -58,7 +58,7 @@ export abstract class GameStyles
             return property.isInSuperMarioWorldStyle;
         }
 
-        public getReference(referenceProperty: GameStyleReferences,): Entity {
+        public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioWorldStyle'] {
             return referenceProperty.referenceInSuperMarioWorldStyle;
         }
 
@@ -69,7 +69,7 @@ export abstract class GameStyles
             return property.isInNewSuperMarioBrosUStyle;
         }
 
-        public getReference(referenceProperty: GameStyleReferences,): Entity {
+        public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInNewSuperMarioBrosUStyle'] {
             return referenceProperty.referenceInNewSuperMarioBrosUStyle;
         }
 
@@ -80,7 +80,7 @@ export abstract class GameStyles
             return property.isInSuperMario3DWorldStyle === true;
         }
 
-        public getReference(referenceProperty: GameStyleReferences,): Entity {
+        public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMario3DWorldStyle'] {
             return referenceProperty.referenceInSuperMario3DWorldStyle;
         }
 
@@ -135,7 +135,7 @@ export abstract class GameStyles
 
     public abstract get(property: GameStyleProperty,): boolean;
 
-    public abstract getReference(referenceProperty: GameStyleReferences,): Entity;
+    public abstract getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities;
 
     public get renderSingleComponent() {
         return GameStyleComponent.renderSingleComponent(this);

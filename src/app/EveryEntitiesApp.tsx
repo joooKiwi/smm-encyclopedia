@@ -55,6 +55,11 @@ export default class EveryEntitiesApp
         };
     }
 
+
+    protected get enum() {
+        return Entities.values;
+    }
+
     protected get map() {
         return this.#map ??= EntityLoader.get.load();
     }

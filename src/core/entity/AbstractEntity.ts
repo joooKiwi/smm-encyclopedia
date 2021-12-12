@@ -1,11 +1,11 @@
-import type {Entity}           from './Entity';
-import type {EntityCategory}   from '../entityCategory/EntityCategory';
-import type {EntityReferences} from './properties/EntityReferences';
-import type {GameStyles}       from '../gameStyle/GameStyles';
-import type {Name}             from '../../lang/name/Name';
-import type {Property}         from './properties/Property';
-import type {Themes}           from '../theme/Themes';
-import type {Times}            from '../time/Times';
+import type {Entity, PossibleOtherEntities} from './Entity';
+import type {EntityCategory}                from '../entityCategory/EntityCategory';
+import type {EntityReferences}              from './properties/EntityReferences';
+import type {GameStyles}                    from '../gameStyle/GameStyles';
+import type {Name}                          from '../../lang/name/Name';
+import type {Property}                      from './properties/Property';
+import type {Themes}                        from '../theme/Themes';
+import type {Times}                         from '../time/Times';
 
 /**
  * A simple entity implementation, but without any specification.
@@ -642,10 +642,10 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //endregion -------------------- Time references --------------------
 
-    public getReferenceFrom(theme: Themes,): Entity
-    public getReferenceFrom(time: Times,): Entity
-    public getReferenceFrom(gameStyle: GameStyles,): Entity
-    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): Entity
+    public getReferenceFrom(theme: Themes,): PossibleOtherEntities
+    public getReferenceFrom(time: Times,): PossibleOtherEntities
+    public getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
     public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
         return this.referencesContainer.getReferenceFrom(gameStyleOrThemeOrTime);
     }

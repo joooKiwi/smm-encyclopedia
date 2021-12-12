@@ -1,7 +1,5 @@
-/** @temporaryVariable */export type PossibleGroupName = string;
-
-/** @temporaryVariable */export type SingleEntityName = string;
-/** @temporaryLocation */export type EntityLink = | 'this' | SingleEntityName | `${SingleEntityName} / ${SingleEntityName}` | `${SingleEntityName} / this` | `this / ${SingleEntityName}`;
+/** @temporaryVariable */
+export type PossibleGroupName = string;
 
 /** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Object';
 

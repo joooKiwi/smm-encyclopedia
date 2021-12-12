@@ -1,4 +1,4 @@
-import type {EntityLink}     from '../../entityTypes';
+import type {EntityLink}     from '../loader.types';
 import type {EntityTemplate} from '../Entity.template';
 
 /**

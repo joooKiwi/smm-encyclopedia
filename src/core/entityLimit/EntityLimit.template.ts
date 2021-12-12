@@ -1,7 +1,8 @@
 import type {NameTemplate}                                                                                     from '../../lang/name/Name.template';
 import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                        from './EntityLimitTypes.types';
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from './EntityLimits.types';
-import type {PossibleGroupName, SingleEntityName}                                                              from '../entityTypes';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                from '../entity/Entities.types';
+import type {PossibleGroupName}                                                                                from '../entityTypes';
 import type {TemplateWithNameTemplate}                                                                         from '../_template/TemplateWithName.template';
 
 //region -------------------- Limit types --------------------
@@ -31,7 +32,7 @@ export type EmptyLimitAmountTemplate = AbstractLimitAmountTemplate<null, false, 
 //endregion -------------------- Limit amount types --------------------
 //region -------------------- Link types --------------------
 
-interface AbstractLinkTemplate<GROUP extends PossibleGroupName | null, ENTITY extends SingleEntityName | null, > {
+interface AbstractLinkTemplate<GROUP extends PossibleGroupName | null, ENTITY extends PossibleEnglishName_Entity | null, > {
 
     groupName: GROUP
 
@@ -46,7 +47,7 @@ export type EmptyLinkTemplate = AbstractLinkTemplate<null, null>;
 /**
  * @template
  */
-export type LinkTemplate = AbstractLinkTemplate<PossibleGroupName, null> | AbstractLinkTemplate<null, SingleEntityName> | EmptyLinkTemplate;
+export type LinkTemplate = AbstractLinkTemplate<PossibleGroupName, null> | AbstractLinkTemplate<null, PossibleEnglishName_Entity> | EmptyLinkTemplate;
 
 //endregion -------------------- Link types --------------------
 

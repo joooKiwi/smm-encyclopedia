@@ -1,30 +1,30 @@
-import type {Entity} from '../Entity';
-import type {Themes} from '../../theme/Themes';
+import type {Entity, PossibleOtherEntities} from '../Entity';
+import type {Themes}                        from '../../theme/Themes';
 
 export interface ThemeReferences {
 
-    get referenceInGroundTheme(): Entity
+    get referenceInGroundTheme(): PossibleOtherEntities
 
-    get referenceInUndergroundTheme(): Entity
+    get referenceInUndergroundTheme(): PossibleOtherEntities
 
-    get referenceInUnderwaterTheme(): Entity
+    get referenceInUnderwaterTheme(): PossibleOtherEntities
 
-    get referenceInDesertTheme(): Entity
+    get referenceInDesertTheme(): PossibleOtherEntities
 
-    get referenceInSnowTheme(): Entity
+    get referenceInSnowTheme(): PossibleOtherEntities
 
-    get referenceInSkyTheme(): Entity
+    get referenceInSkyTheme(): PossibleOtherEntities
 
-    get referenceInForestTheme(): Entity
+    get referenceInForestTheme(): PossibleOtherEntities
 
-    get referenceInGhostHouseTheme(): Entity
+    get referenceInGhostHouseTheme(): PossibleOtherEntities
 
-    get referenceInAirshipTheme(): Entity
+    get referenceInAirshipTheme(): PossibleOtherEntities
 
-    get referenceInCastleTheme(): Entity
+    get referenceInCastleTheme(): PossibleOtherEntities
 
 
-    getReferenceFrom(theme: Themes,): Entity
+    getReferenceFrom(theme: Themes,): PossibleOtherEntities
 
     get everyThemeReferences(): readonly Entity[]
 

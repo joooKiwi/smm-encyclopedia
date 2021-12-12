@@ -1,6 +1,6 @@
 import type {ClassWithEnglishName}                                                                                                                                      from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                        from '../ClassWithImagePath';
-import type {Entity}                                                                                                                                                    from '../entity/Entity';
+import type {PossibleOtherEntities}                                                                                                                                     from '../entity/Entity';
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                   from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                           from '../../util/enum/Enum.types';
@@ -15,7 +15,7 @@ export abstract class Times
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImagePath<PossibleImagePath>,
-        PropertyReferenceGetter<TimeReferences>,
+        PropertyReferenceGetter<TimeReferences, PossibleOtherEntities>,
         PropertyGetter<TimeProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -26,7 +26,7 @@ export abstract class Times
             return property.isInDayTheme;
         }
 
-        public getReference(referenceProperty: TimeReferences,): Entity {
+        public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
             return referenceProperty.referenceInDayTheme;
         }
 
@@ -37,7 +37,7 @@ export abstract class Times
             return property.isInNightTheme === true;
         }
 
-        public getReference(referenceProperty: TimeReferences,): Entity {
+        public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
             return referenceProperty.referenceInNightTheme;
         }
 
@@ -77,7 +77,7 @@ export abstract class Times
 
     public abstract get(property: TimeProperty,): boolean;
 
-    public abstract getReference(referenceProperty: TimeReferences,): Entity;
+    public abstract getReference(referenceProperty: TimeReferences,): PossibleOtherEntities;
 
     public get renderSingleComponent() {
         return TimeComponent.renderSingleComponent(this);

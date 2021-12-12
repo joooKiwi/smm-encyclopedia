@@ -8,6 +8,7 @@ import {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
 import {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
 import {SoundEffects}          from '../../soundEffect/SoundEffects';
 import {GameReferences}        from '../../gameReference/GameReferences';
+import {Entities}              from '../../entity/Entities';
 
 /**
  * @singleton
@@ -81,8 +82,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Entity --------------------
 
     public get everyPossibleEntityNames() {
-        //TODO implements this methods
-        return this.#everyPossibleEntityNames ??= [];
+        return this.#everyPossibleEntityNames ??= Entities.everyEnglishNames;
     }
 
     //endregion -------------------- Entity --------------------

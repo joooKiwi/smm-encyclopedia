@@ -26,78 +26,78 @@ export class EmptyEntityReference
     //region -------------------- References methods --------------------
 
     public get referenceInSuperMarioBrosStyle() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInSuperMarioBros3Style() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInSuperMarioWorldStyle() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInNewSuperMarioBrosUStyle() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInSuperMario3DWorldStyle() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
 
     public get referenceInGroundTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInUndergroundTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInUnderwaterTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInDesertTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInSnowTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInSkyTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInForestTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInGhostHouseTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInAirshipTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInCastleTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
 
     public get referenceInDayTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public get referenceInNightTheme() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
 
     public getReferenceFrom() {
-        return EmptyEntity.get;
+        return [EmptyEntity.get] as const;
     }
 
     public readonly everyGameStyleReferences = EMPTY_ARRAY;

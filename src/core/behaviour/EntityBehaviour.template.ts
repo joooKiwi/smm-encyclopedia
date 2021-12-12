@@ -1,5 +1,6 @@
 import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
-import type {PossibleGroupName, SingleEntityName}      from '../entityTypes';
+import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types';
+import type {PossibleGroupName}                        from '../entityTypes';
 
 export interface EntityBehaviourTemplate {
 
@@ -14,7 +15,7 @@ export interface EntityBehaviourTemplate {
 
     links: {
         group: | PossibleGroupName | null
-        entity: | SingleEntityName | null
+        entity: | EntityName | null
     }
 
 }

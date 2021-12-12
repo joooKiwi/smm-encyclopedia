@@ -9,6 +9,7 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from '../../entity/Entities.types';
 
 export interface HeaderTypesForConvertorDefinition {
 
@@ -94,7 +95,7 @@ export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameRe
 export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration)[];
 export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[];
 
-export type EveryPossibleName_Entity = readonly string[];
+export type EveryPossibleName_Entity = readonly PossibleEnglishName_Entity[];
 
 export type EveryPossibleAcronym_EntityBehaviour = readonly PossibleAcronym_EntityBehaviour[];
 export type EveryPossibleTranslationKey_EntityBehaviour = readonly PossibleTranslationKey_EntityBehaviour[];

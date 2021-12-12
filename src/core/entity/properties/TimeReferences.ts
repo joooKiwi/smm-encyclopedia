@@ -1,14 +1,14 @@
-import type {Entity} from '../Entity';
-import type {Times}  from '../../time/Times';
+import type {Entity, PossibleOtherEntities} from '../Entity';
+import type {Times}                         from '../../time/Times';
 
 export interface TimeReferences {
 
-    get referenceInDayTheme(): Entity
+    get referenceInDayTheme(): PossibleOtherEntities
 
-    get referenceInNightTheme(): Entity
+    get referenceInNightTheme(): PossibleOtherEntities
 
 
-    getReferenceFrom(time: Times,): Entity
+    getReferenceFrom(time: Times,): PossibleOtherEntities
 
     get everyTimeReferences(): readonly Entity[]
 

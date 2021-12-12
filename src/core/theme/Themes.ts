@@ -3,7 +3,7 @@ import type {ClassWithImagePath}                                                
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                       from '../ClassWithReference';
 import type {CourseAndWorldTheme, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SimpleImagePath} from './Themes.types';
 import type {CourseTheme}                                                                                                                                                                                                                                                                                              from './CourseTheme';
-import type {Entity}                                                                                                                                                                                                                                                                                                   from '../entity/Entity';
+import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                                    from '../entity/Entity';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                  from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                                                                                          from '../../util/enum/Enum.types';
 import type {ThemeProperty}                                                                                                                                                                                                                                                                                            from '../entity/properties/ThemeProperty';
@@ -25,7 +25,7 @@ export class Themes
     implements ClassWithReference<CourseAndWorldTheme>,
         ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImagePath<PossibleImagePath>,
-        PropertyReferenceGetter<ThemeReferences>,
+        PropertyReferenceGetter<ThemeReferences, PossibleOtherEntities>,
         PropertyGetter<ThemeProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -36,7 +36,7 @@ export class Themes
             return property.isInGroundTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGroundTheme'] {
             return referenceProperty.referenceInGroundTheme;
         }
 
@@ -47,7 +47,7 @@ export class Themes
             return property.isInUndergroundTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUndergroundTheme'] {
             return referenceProperty.referenceInUndergroundTheme;
         }
 
@@ -58,7 +58,7 @@ export class Themes
             return property.isInUnderwaterTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUnderwaterTheme'] {
             return referenceProperty.referenceInUnderwaterTheme;
         }
 
@@ -69,7 +69,7 @@ export class Themes
             return property.isInDesertTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInDesertTheme'] {
             return referenceProperty.referenceInDesertTheme;
         }
 
@@ -80,7 +80,7 @@ export class Themes
             return property.isInSnowTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSnowTheme'] {
             return referenceProperty.referenceInSnowTheme;
         }
 
@@ -91,7 +91,7 @@ export class Themes
             return property.isInSkyTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSkyTheme'] {
             return referenceProperty.referenceInSkyTheme;
         }
 
@@ -102,7 +102,7 @@ export class Themes
             return property.isInForestTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInForestTheme'] {
             return referenceProperty.referenceInForestTheme;
         }
 
@@ -113,7 +113,7 @@ export class Themes
             return property.isInGhostHouseTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGhostHouseTheme'] {
             return referenceProperty.referenceInGhostHouseTheme;
         }
 
@@ -124,7 +124,7 @@ export class Themes
             return property.isInAirshipTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInAirshipTheme'] {
             return referenceProperty.referenceInAirshipTheme;
         }
 
@@ -135,7 +135,7 @@ export class Themes
             return property.isInCastleTheme;
         }
 
-        public getReference(referenceProperty: ThemeReferences,): Entity {
+        public getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInCastleTheme'] {
             return referenceProperty.referenceInCastleTheme;
         }
 
@@ -219,8 +219,8 @@ export class Themes
         return this._get(property) ?? false;
     }
 
-    public getReference(referenceProperty: ThemeReferences,): Entity {
-        return EmptyEntity.get;
+    public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
+        return [EmptyEntity.get];
     }
 
     public renderSingleComponent(isSmallPath: boolean,) {
