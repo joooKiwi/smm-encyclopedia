@@ -7,46 +7,46 @@
 
     tr > {
       $index: 1;
-      ////region -------------------- image (editor) - SMB --------------------
-      //$index: $index+1;
-      //
-      //:nth-child(#{$index}) {
-      //  max-width: 2cm;
-      //}
-      //
-      ////endregion -------------------- image (editor) - SMB --------------------
-      ////region -------------------- image (editor) - SMB3 --------------------
-      //$index: $index+1;
-      //
-      //:nth-child(#{$index}) {
-      //  max-width: 2cm;
-      //}
-      //
-      ////endregion -------------------- image (editor) - SMB3 --------------------
-      ////region -------------------- image (editor) - SMW --------------------
-      //$index: $index+1;
-      //
-      //:nth-child(#{$index}) {
-      //  max-width: 2cm;
-      //}
-      //
-      ////endregion -------------------- image (editor) - SMW --------------------
-      ////region -------------------- image (editor) - NSMBU --------------------
-      //$index: $index+1;
-      //
-      //:nth-child(#{$index}) {
-      //  max-width: 2cm;
-      //}
-      //
-      ////endregion -------------------- image (editor) - NSMBU --------------------
-      ////region -------------------- image (editor) - SM3DW --------------------
-      //$index: $index+1;
-      //
-      //:nth-child(#{$index}) {
-      //  max-width: 2cm;
-      //}
-      //
-      ////endregion -------------------- image (editor) - SM3DW --------------------
+      //region -------------------- image (editor) - SMB --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image (editor) - SMB --------------------
+      //region -------------------- image (editor) - SMB3 --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image (editor) - SMB3 --------------------
+      //region -------------------- image (editor) - SMW --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image (editor) - SMW --------------------
+      //region -------------------- image (editor) - NSMBU --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image (editor) - NSMBU --------------------
+      //region -------------------- image (editor) - SM3DW --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image (editor) - SM3DW --------------------
       //region -------------------- name --------------------
       $index: $index+1;
 
