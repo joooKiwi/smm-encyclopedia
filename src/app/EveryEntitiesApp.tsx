@@ -3,6 +3,7 @@ import './EveryEntitiesApp.scss';
 import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
 import type {Entity}                                              from '../core/entity/Entity';
 import type {EntityAppStates}                                     from './AppStates.types';
+import type {PossibleEnglishName}                                 from '../core/entity/Entities.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/entityCategory/EntityCategories.types';
 import type {SingleTableContent}                                  from './tools/table/Table.types';
 
@@ -12,6 +13,7 @@ import CourseThemeComponent              from '../core/theme/CourseTheme.compone
 import {EntityCategories}                from '../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}                from '../core/entityLimit/EntityLimitTypes';
 import {EntityLoader}                    from '../core/entity/Entity.loader';
+import {Entities}                        from '../core/entity/Entities';
 import {EMPTY_REACT_ELEMENT}             from '../util/emptyReactVariables';
 import {EmptyName}                       from '../lang/name/EmptyName';
 import GameComponent                     from '../core/game/Game.component';
@@ -33,7 +35,7 @@ export default class EveryEntitiesApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<string, DebugEntityReferences>;
+    #map?: ReadonlyMap<PossibleEnglishName, DebugEntityReferences>;
 
     public constructor(props: {}, context: any,) {
         super(props, context);
