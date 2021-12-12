@@ -10,10 +10,9 @@ import type {PossibleOtherEntities}                                             
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                           from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                                   from '../../util/enum/Enum.types';
 
-import {Enum}             from '../../util/enum/Enum';
-import {GameStyleLoader}  from './GameStyle.loader';
-import GameStyleComponent from './GameStyle.component';
-import {StringContainer}  from '../../util/StringContainer';
+import {Enum}                 from '../../util/enum/Enum';
+import GameStyleComponent     from './GameStyle.component';
+import {StringContainer}      from '../../util/StringContainer';
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
@@ -89,6 +88,8 @@ export abstract class GameStyles
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, GameStyle>;
+
     #reference?: GameStyle;
     readonly #acronym;
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>;
@@ -114,8 +115,16 @@ export abstract class GameStyles
 
     //region -------------------- Getter methods --------------------
 
+    private static get __map() {
+        return this.#map ??= require('./GameStyle.loader').GameStyleLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
     public get reference(): GameStyle {
-        return this.#reference ??= GameStyleLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= GameStyles.__map.get(this.englishName)!;
     }
 
 

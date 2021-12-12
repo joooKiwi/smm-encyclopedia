@@ -11,7 +11,6 @@ import type {ThemeReferences}                                                   
 import type {WorldTheme}                                                                                                                                                                                                                                                                                               from './WorldTheme';
 
 import {Enum}            from '../../util/enum/Enum';
-import {ThemeLoader}     from './Theme.loader';
 import {EmptyEntity}     from '../entity/EmptyEntity';
 import {StringContainer} from '../../util/StringContainer';
 import {ThemeComponent}  from './Theme.component';
@@ -154,6 +153,7 @@ export class Themes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>;
     static #COURSES: EnumArray_OnlyCourseTheme;
     static #WORLDS: EnumArray_OnlyWorldTheme;
 
@@ -182,8 +182,17 @@ export class Themes
 
     //region -------------------- Getter methods --------------------
 
+
+    private static get __map() {
+        return this.#map ??= require('./Theme.loader').ThemeLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
     public get reference(): CourseAndWorldTheme {
-        return this.#reference ??= ThemeLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= Themes.__map.get(this.englishName)!;
     }
 
 

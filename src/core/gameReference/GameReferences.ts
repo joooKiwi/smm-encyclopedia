@@ -5,9 +5,8 @@ import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, P
 import type {GameReference}                                                                                                                  from './GameReference';
 import type {StaticReference}                                                                                                                from '../../util/enum/Enum.types';
 
-import {Enum}                from '../../util/enum/Enum';
-import {GameReferenceLoader} from './GameReference.loader';
-import {StringContainer}     from '../../util/StringContainer';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../../util/StringContainer';
 
 /**
  * @recursiveReference<{@link GameReferenceLoader}>
@@ -175,6 +174,8 @@ export class GameReferences
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, GameReference>;
+
     #reference?: GameReference;
     readonly #acronym;
     readonly #englishName;
@@ -189,11 +190,16 @@ export class GameReferences
 
     //region -------------------- Getter methods --------------------
 
+    private static get __map() {
+        return this.#map ??= require('./GameReference.loader').GameReferenceLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
     public get reference(): GameReference {
-        const map = GameReferenceLoader.get.load();
-        if (map.get(this.englishName) == null)
-            console.log({map, name: this.englishName});
-        return this.#reference ??= GameReferenceLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= GameReferences.__map.get(this.englishName)!;
     }
 
     public get acronym(): PossibleAcronym {

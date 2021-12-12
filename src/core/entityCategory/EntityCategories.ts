@@ -5,9 +5,8 @@ import type {EntityCategory}                                                    
 import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
 import type {StaticReference}                                                                                                                  from '../../util/enum/Enum.types';
 
-import {EntityCategoryLoader} from './EntityCategory.loader';
-import {Enum}                 from '../../util/enum/Enum';
-import {StringContainer}      from '../../util/StringContainer';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../../util/StringContainer';
 
 export class EntityCategories
     extends Enum<Ordinals, Names>
@@ -25,6 +24,8 @@ export class EntityCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, EntityCategory>;
+
     #reference?: EntityCategory;
     readonly #englishName;
     #imagePath?: PossibleImagePath;
@@ -40,8 +41,16 @@ export class EntityCategories
 
     //region -------------------- Getter methods --------------------
 
+    private static get __map() {
+        return this.#map ??= require('./EntityCategory.loader').EntityCategoryLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
     public get reference(): EntityCategory {
-        return this.#reference ??= EntityCategoryLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= EntityCategories.__map.get(this.englishName)!;
     }
 
 

@@ -3,10 +3,9 @@ import type {ClassWithTranslationKey}                                           
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
 import type {StaticReference}                                                                                                                    from '../../util/enum/Enum.types';
 
-import {Enum}                  from '../../util/enum/Enum';
-import {EntityBehaviour}       from './EntityBehaviour';
-import {ClassWithReference}    from '../ClassWithReference';
-import {EntityBehaviourLoader} from './EntityBehaviour.loader';
+import {Enum}               from '../../util/enum/Enum';
+import {EntityBehaviour}    from './EntityBehaviour';
+import {ClassWithReference} from '../ClassWithReference';
 
 /**
  * @recursiveReference<{@link EntityBehaviourLoader}>
@@ -37,6 +36,8 @@ export class EntityBehaviours
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>;
+
     #reference?: EntityBehaviour;
     readonly #acronym;
     readonly #translationKey;
@@ -51,8 +52,16 @@ export class EntityBehaviours
 
     //region -------------------- Getter methods --------------------
 
+    private static get __map() {
+        return this.#map ??= require('./EntityBehaviour.loader').EntityBehaviourLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
     public get reference(): EntityBehaviour {
-        return this.#reference ??= EntityBehaviourLoader.get.load().get(this.translationKey)!;
+        return this.#reference ??= EntityBehaviours.__map.get(this.translationKey)!;
     }
 
 
