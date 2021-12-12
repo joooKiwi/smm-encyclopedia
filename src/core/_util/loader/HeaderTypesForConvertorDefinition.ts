@@ -1,3 +1,4 @@
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from '../../entity/Entities.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}                                                                                                                                                                                             from '../../entityLimit/EntityLimitTypes.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../soundEffectCategory/SoundEffectCategories.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../soundEffect/SoundEffects.types';
@@ -9,73 +10,72 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from '../../entity/Entities.types';
 
 export interface HeaderTypesForConvertorDefinition {
 
     //region -------------------- Game reference --------------------
 
-    get everyPossibleGameReferenceAcronym(): | EveryPossibleAcronym_GameReference | StringConstant
+    get everyPossibleGameReferenceAcronym(): ValueOrStringConstant<EveryPossibleAcronym_GameReference>
 
-    get everyPossibleGameReferenceAcronymWithPokemonGeneration(): | EveryPossibleAcronymWithPokemonGeneration_GameReference | StringConstant
+    get everyPossibleGameReferenceAcronymWithPokemonGeneration(): ValueOrStringConstant<EveryPossibleAcronymWithPokemonGeneration_GameReference>
 
-    get everyPossibleGameReferenceEnglishName(): | EveryPossibleName_GameReference | StringConstant
+    get everyPossibleGameReferenceEnglishName(): ValueOrStringConstant<EveryPossibleName_GameReference>
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Entity --------------------
 
-    get everyPossibleEntityNames(): | EveryPossibleName_Entity | StringConstant
+    get everyPossibleEntityNames(): ValueOrStringConstant<EveryPossibleName_Entity>
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
 
-    get everyPossibleBehavioursAcronyms(): | EveryPossibleAcronym_EntityBehaviour | StringConstant
+    get everyPossibleBehavioursAcronyms(): ValueOrStringConstant<EveryPossibleAcronym_EntityBehaviour>
 
-    get everyPossibleBehavioursTranslationKeys(): | EveryPossibleTranslationKey_EntityBehaviour | StringConstant
+    get everyPossibleBehavioursTranslationKeys(): ValueOrStringConstant<EveryPossibleTranslationKey_EntityBehaviour>
 
     //endregion -------------------- Entity behaviour --------------------
     //region -------------------- Entity group --------------------
 
-    get everyPossibleGroupNames(): | EveryPossibleName_EntityGroup | StringConstant
+    get everyPossibleGroupNames(): ValueOrStringConstant<EveryPossibleName_EntityGroup>
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Entity category --------------------
 
-    get everyPossibleEntityCategoriesNames(): | EveryPossibleName_EntityCategory | StringConstant
+    get everyPossibleEntityCategoriesNames(): ValueOrStringConstant<EveryPossibleName_EntityCategory>
 
     //endregion -------------------- Entity category --------------------
     //region -------------------- Entity limit --------------------
 
-    get everyPossibleLimitsAcronyms(): | EveryPossibleAcronym_EntityLimit | StringConstant
+    get everyPossibleLimitsAcronyms(): ValueOrStringConstant<EveryPossibleAcronym_EntityLimit>
 
-    get everyAlternativeLimitAcronyms(): | EveryAlternativeAcronym_EntityLimit | StringConstant
+    get everyAlternativeLimitAcronyms(): ValueOrStringConstant<EveryAlternativeAcronym_EntityLimit>
 
-    get everyPossibleLimitsNames(): | EveryPossibleName_EntityLimit | StringConstant
+    get everyPossibleLimitsNames(): ValueOrStringConstant<EveryPossibleName_EntityLimit>
 
-    get everyLimitsNamesOrUnknown(): | EveryEnglishNameOrUnknown_EntityLimit | StringConstant
+    get everyLimitsNamesOrUnknown(): ValueOrStringConstant<EveryEnglishNameOrUnknown_EntityLimit>
 
     //endregion -------------------- Entity limit --------------------
     //region -------------------- Entity limit type --------------------
 
-    get everyPossibleLimitTypesNames(): | EveryPossibleEnglishName_EntityLimitType | StringConstant
+    get everyPossibleLimitTypesNames(): ValueOrStringConstant<EveryPossibleEnglishName_EntityLimitType>
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
-    get everyPossibleSoundEffectsNames(): | EveryPossibleEnglishName_SoundEffect | StringConstant
+    get everyPossibleSoundEffectsNames(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffect>
 
-    get everyPossibleSoundEffectCategoriesNames(): | EveryPossibleEnglishName_SoundEffectCategory | StringConstant
+    get everyPossibleSoundEffectCategoriesNames(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffectCategory>
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Mystery Mushroom --------------------
 
-    get everyPossibleMysteryMushroomIndividualEnglishNames(): | EveryPossibleEnglishNameOnFile_MysteryMushroom | StringConstant
+    get everyPossibleMysteryMushroomIndividualEnglishNames(): ValueOrStringConstant<EveryPossibleEnglishNameOnFile_MysteryMushroom>
 
-    get everyPossibleConditionToUnlockIt_mysteryMushroom(): | EveryConditionToUnlockIt_MysteryMushroom | StringConstant
+    get everyPossibleConditionToUnlockIt_mysteryMushroom(): ValueOrStringConstant<EveryConditionToUnlockIt_MysteryMushroom>
 
-    get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom(): | EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom | StringConstant
+    get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom(): ValueOrStringConstant<EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom>
 
-    get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): | EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom | StringConstant
+    get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): ValueOrStringConstant<EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom>
 
     //endregion -------------------- Mystery Mushroom --------------------
 
@@ -83,6 +83,10 @@ export interface HeaderTypesForConvertorDefinition {
 
 //region -------------------- External types --------------------
 
+/**
+ * The value received in parameter or simply the {@link StringConstant String constant}.
+ */
+type ValueOrStringConstant<T, > = T | StringConstant;
 export type StringConstant = 'string';
 // export type NumberConstant = 'number';
 // export type StringAndNumberConstants = readonly [StringConstant, NumberConstant,];

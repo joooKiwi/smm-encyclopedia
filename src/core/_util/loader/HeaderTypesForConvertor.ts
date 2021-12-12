@@ -4,11 +4,11 @@ import {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
 import {EntityCategoryLoader}  from '../../entityCategory/EntityCategory.loader';
 import {EntityLimits}          from '../../entityLimit/EntityLimits';
 import {EntityLimitTypes}      from '../../entityLimit/EntityLimitTypes';
+import {Entities}              from '../../entity/Entities';
+import {GameReferences}        from '../../gameReference/GameReferences';
 import {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
 import {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
 import {SoundEffects}          from '../../soundEffect/SoundEffects';
-import {GameReferences}        from '../../gameReference/GameReferences';
-import {Entities}              from '../../entity/Entities';
 
 /**
  * @singleton
