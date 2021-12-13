@@ -365,7 +365,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
         map.set(Times.DAY, new Map(themes.map(([gameStyle, themes,]) => [gameStyle.parent, new Map(this._getImagePathOn(gameStyle, themes, false,)),] as const)));
         map.set(Times.NIGHT, new Map(nightThemes.map(([gameStyle, themes,]) => [gameStyle.parent, new Map(this._getImagePathOn(gameStyle, themes, true,)),] as const)));
-        return new EditorImageContainer(this._getDefaultImagePaths(), map,);
+        return new EditorImageContainer(map, this._getDefaultImagePaths(),);
     }
 
 }

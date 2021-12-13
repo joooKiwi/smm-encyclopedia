@@ -110,7 +110,7 @@ export default class EveryEntitiesApp
         return <>{
             [...new Set(
                 themes.map(theme =>
-                    times.map(time => editorImage.get(time, gameStyle, theme,))).flat(2))]
+                    times.map(time => editorImage.get( gameStyle, theme,time,))).flat(2))]
                 .map(image => <img src={image} alt={image}/>)
         }</>;
     }
