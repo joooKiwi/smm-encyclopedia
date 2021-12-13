@@ -58,10 +58,14 @@ export class Themes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
+    public getName(name: null, isNightTheme: any,): ''
     public getName<N extends string = string, >(name: | N | null, isNightTheme: false,): | '' | `${N}_${NonNullable<this['text']>}`
+    public getName<N extends string = string, >(name: N, isNightTheme: false,): | '' | `${N}_${NonNullable<this['text']>}`
     public getName<N extends string = string, >(name: | N | null, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['text']>>}`
+    public getName<N extends string = string, >(name: N, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['text']>>}`
     public getName<N extends string = string, >(name: | N | null, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['text']>}` | `${N}_${Night<NonNullable<this['text']>>}`
-    public getName(name: |string|null, isNightTheme: boolean,): string {
+    public getName<N extends string = string, >(name: N, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['text']>}` | `${N}_${Night<NonNullable<this['text']>>}`
+    public getName(name: | string | null, isNightTheme: boolean,) {
         if (name == null)
             return '';
         const text = this.text;

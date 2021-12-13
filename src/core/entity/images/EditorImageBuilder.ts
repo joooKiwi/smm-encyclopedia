@@ -85,10 +85,10 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     /**
      * Set the amount of images at the ending of the image name.
      *
-     * @param amount the total amount (excluding the game styles) of possible images
+     * @param value the total amount (excluding the game styles) of possible images
      */
-    public setAmount(amount: AmountOfImages,): this {
-        this.#amount = amount;
+    public setAmount(value: AmountOfImages,): this {
+        this.#amount = value;
         return this;
     }
 
