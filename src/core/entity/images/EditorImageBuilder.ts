@@ -2,8 +2,8 @@ import type {Builder}                                                           
 import type {EditorImage}                                                              from './EditorImage';
 import type {AmountOfImages, ImageNumber, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
 
-import {EMPTY_ARRAY}                      from '../../../util/emptyVariables';
 import {EditorImageContainer}             from './EditorImageContainer';
+import {EMPTY_ARRAY}                      from '../../../util/emptyVariables';
 import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
 import {GameStyles}                       from './GameStyles';
 import {Themes as OriginalThemes}         from '../../theme/Themes';
@@ -15,12 +15,14 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     //region -------------------- Attributes --------------------
 
+    static readonly #EMPTY_GAME_STYLE_MAP = new Map(OriginalGameStyles.values.map(gameStyle => [gameStyle, EMPTY_ARRAY,]));
     static readonly #POWER_UP_ENDING: `${VariantEditorImage_PowerUp}_00` = 'Uni_00';
 
     readonly #simpleImageName;
     readonly #imageNumber: IMAGE_NUMBER;
     #amount: AmountOfImages;
     #isPowerUp: boolean;
+    #hasADefaultImage: boolean;
     #nightThemes?: Map<OriginalGameStyles, readonly OriginalThemes[]>;
     #themes?: Map<OriginalGameStyles, readonly OriginalThemes[]>;
     #gameStyles?: readonly OriginalGameStyles[];
@@ -60,6 +62,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         this.#imageNumber = imageNumber;
         this.#amount = 1;
         this.#isPowerUp = false;
+        this.#hasADefaultImage = true;
     }
 
     //region -------------------- Getter & setter methods --------------------
@@ -90,6 +93,19 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
     //endregion -------------------- Amount --------------------
+    //region -------------------- Has a default image --------------------
+
+    protected get _hasADefaultImage(): boolean {
+        return this.#hasADefaultImage;
+    }
+
+    public hasDefaultImage(value: boolean,): this {
+        this.#hasADefaultImage = value;
+        return this;
+    }
+
+    //endregion -------------------- Has a default image --------------------
+    //region -------------------- Theme (Day / Night) --------------------
 
     private get __themes(): Map<OriginalGameStyles, readonly OriginalThemes[]> {
         return this.#themes ??= new Map();
@@ -118,6 +134,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this;
     }
 
+    //endregion -------------------- Theme (Day / Night) --------------------
+    //region -------------------- Game Style --------------------
 
     protected get _gameStyles(): readonly OriginalGameStyles[] {
         if (this.#gameStyles == null) {
@@ -136,6 +154,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         this.__gameStyles = gameStyles.filter(gameStyle => !notGameStyles.includes(gameStyle));
         return this;
     }
+
+    //endregion -------------------- Game Style --------------------
 
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Utility methods --------------------
@@ -315,6 +335,9 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
     protected _getDefaultImagePaths(): ReadonlyMap<OriginalGameStyles, readonly string[]> {
+        if (!this.#hasADefaultImage)
+            return EditorImageBuilder.#EMPTY_GAME_STYLE_MAP;
+
         const gameStyles = this._gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
         if (this.#isPowerUp)
             return new Map(gameStyles.map(gameStyle => [gameStyle.parent, [this._getImagePath(gameStyle, '_00',), this._getImagePath(gameStyle, EditorImageBuilder.#POWER_UP_ENDING),],] as const));
@@ -323,7 +346,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         if (imageNumber != null)
             return new Map(gameStyles.map(gameStyle => [
                 gameStyle.parent,
-                [this._getImagePath(gameStyle, `_0${imageNumber! - 1}`)],
+                [this._getImagePath(gameStyle, `_0${imageNumber! - 1}`),],
             ]));
 
         const templateArrayBasedOnAmount = [...new Array(this._amount),];
@@ -343,7 +366,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         if (imageNumber != null)
             return themes.map(theme => [
                 theme.parent,
-                [this._getImagePath(gameStyle, `${theme.getName('', isNightTheme,)}_0${imageNumber! - 1}`,)],
+                [this._getImagePath(gameStyle, `${theme.getName('', isNightTheme,)}_0${imageNumber! - 1}`,),],
             ]);
 
         const templateArrayBasedOnAmount = [...new Array(this._amount),];

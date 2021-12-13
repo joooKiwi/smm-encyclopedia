@@ -32,8 +32,8 @@ export class Entities
     public static readonly CLEAR_PIPE =                                    new Entities('Clear Pipe',                                   new EditorImageBuilder('ToumeiDokan').setOnlySM3DW(),);
 
     public static readonly SPIKE_TRAP =                                    new Entities('Spike Trap',                                   new EditorImageBuilder('Toge').setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,).setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,).setNotSM3DW(),);
-    public static readonly JELECTRO =                                      new Entities('Jelectro',                                     new EditorImageBuilder('Toge').setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),);
-    public static readonly SEA_URCHIN =                                    new Entities('Sea Urchin',                                   new EditorImageBuilder('Toge').setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),);
+    public static readonly JELECTRO =                                      new Entities('Jelectro',                                     new EditorImageBuilder('Toge').hasDefaultImage(false).setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),);
+    public static readonly SEA_URCHIN =                                    new Entities('Sea Urchin',                                   new EditorImageBuilder('Toge').hasDefaultImage(false).setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),);
     public static readonly SPIKE_BLOCK =                                   new Entities('Spike Block',                                  new EditorImageBuilder('TogeBlock').setAmount(3).setOnlySM3DW(),);
 
     public static readonly MUSHROOM_PLATFORM =                             new Entities('Mushroom Platform',                            new EditorImageBuilder('GroundMushroom').setAsMushroomPlatform(),);
