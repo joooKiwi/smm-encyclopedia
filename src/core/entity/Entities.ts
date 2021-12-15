@@ -44,7 +44,7 @@ export class Entities
     //region -------------------- Block / Coin --------------------
 
     public static readonly BRICK_BLOCK =                                   new Entities('Brick Block',                                  new EditorImageBuilder('RengaBlock').setAsBrickBlock().setNotGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly CRISTAL_BLOCK =                                 new Entities('Cristal Block',                                new EditorImageBuilder('RengaBlock').setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.FOREST,),);
+    public static readonly CRISTAL_BLOCK =                                 new Entities('Cristal Block',                                new EditorImageBuilder('RengaBlock').hasNoDefaultImage().setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.FOREST,),);
     public static readonly ROTATING_BLOCK =                                new Entities('Rotating Block',                               new EditorImageBuilder('RengaBlock').setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
 
     public static readonly HARD_BLOCK =                                    new Entities('Hard Block',                                   new EditorImageBuilder('HardBlock').setAsHardBlock().setNotSM3DW(),);
@@ -70,14 +70,14 @@ export class Entities
 
     public static readonly BLINKING_BLOCK =                                new Entities('Blinking Block',                               new EditorImageBuilder('Chikachika').setAmount(2).setOnlySM3DW(),);
 
-    public static readonly ICE_BLOCK =                                     new Entities('Ice Block',                                    new EditorImageBuilder('IceBlock').setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
+    public static readonly ICE_BLOCK =                                     new Entities('Ice Block',                                    new EditorImageBuilder('IceBlock').setAllGameStyles().setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
     public static readonly ICICLE =                                        new Entities('Icicle',                                       new EditorImageBuilder('Icicle').setAmount(2),);
 
-    public static readonly COIN =                                          new Entities('Coin',                                         new EditorImageBuilder('Coin', 1,));
+    public static readonly COIN =                                          new Entities('Coin',                                         new EditorImageBuilder('Coin', 1,).setAllGameStyles(),);
     public static readonly FROZEN_COIN =                                   new Entities('Frozen Coin',                                  null,);
-    public static readonly TEN_COIN =                                      new Entities('10-Coin',                                      new EditorImageBuilder('10Coin', 1,),);
-    public static readonly THIRTY_COIN =                                   new Entities('30-Coin',                                      new EditorImageBuilder('10Coin', 2,),);
-    public static readonly FIFTY_COIN =                                    new Entities('50-Coin',                                      new EditorImageBuilder('10Coin', 3,),);
+    public static readonly TEN_COIN =                                      new Entities('10-Coin',                                      new EditorImageBuilder('10Coin', 1,).setAllGameStyles(),);
+    public static readonly THIRTY_COIN =                                   new Entities('30-Coin',                                      new EditorImageBuilder('10Coin', 2,).setAllGameStyles(),);
+    public static readonly FIFTY_COIN =                                    new Entities('50-Coin',                                      new EditorImageBuilder('10Coin', 3,).setAllGameStyles(),);
     public static readonly PINK_COIN =                                     new Entities('Pink Coin',                                    'PinkCoin',);
 
     //endregion -------------------- Block / Coin --------------------
@@ -85,10 +85,10 @@ export class Entities
 
     public static readonly SUPER_MUSHROOM =                                new Entities('Super Mushroom',                               'SuperKinoko',);
 
-    public static readonly FIRE_FLOWER =                                   new Entities('Fire Flower',                                  new EditorImageBuilder('FireFlower', 1,).setAsPowerUp(),);
+    public static readonly FIRE_FLOWER =                                   new Entities('Fire Flower',                                  new EditorImageBuilder('FireFlower', 1,).setAsPowerUp().setAllGameStyles(),);
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new Entities('Fireball thrown by a player',                  );
 
-    public static readonly SUPERBALL_FLOWER =                              new Entities('Superball Flower',                             new EditorImageBuilder('FireFlower', 2,).setAsPowerUp(),);
+    public static readonly SUPERBALL_FLOWER =                              new Entities('Superball Flower',                             new EditorImageBuilder('FireFlower', 2,).setAsPowerUp().setGameStyle(GameStyles.SUPER_MARIO_BROS),);
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',                 );
 
     public static readonly MYSTERY_MUSHROOM =                              new Entities('Mystery Mushroom',);
@@ -210,7 +210,7 @@ export class Entities
 
     public static readonly PIRANHA_PLANT =                                 new Entities('Piranha Plant',                                new EditorImageBuilder('Pakkun', 1,).setNotGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
     public static readonly JUMPING_PIRANHA_PLANT =                         new Entities('Jumping Piranha Plant',                        new EditorImageBuilder('Pakkun', 1,).setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly FIRE_PIRANHA_PLANT =                            new Entities('Fire Piranha Plant',                           new EditorImageBuilder('Pakkun', 2,),);
+    public static readonly FIRE_PIRANHA_PLANT =                            new Entities('Fire Piranha Plant',                           new EditorImageBuilder('Pakkun', 2,).setAllGameStyles(),);
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new Entities('Fireball thrown by a Fire Piranha Plant',      );
     public static readonly MUNCHER =                                       new Entities('Muncher',                                      new EditorImageBuilder('BlackPakkun').setAsDifferentInSMBAndSMB3().setNotSM3DW(),);
     public static readonly PIRANHA_CREEPER =                               new Entities('Piranha Creeper',                              new EditorImageBuilder('PackunPipe').setAmount(2).setOnlySM3DW(),);
@@ -231,8 +231,8 @@ export class Entities
     public static readonly BOO_BUDDIES =                                   new Entities('Boo Buddies',                                  new EditorImageBuilder('Teresa', 2,).setNotSM3DW(),);
     public static readonly PEEPA =                                         new Entities('Peepa',                                        new EditorImageBuilder('Teresa', 2,).setOnlySM3DW(),);
 
-    public static readonly BOB_OMB =                                       new Entities('Bob-omb',                                      new EditorImageBuilder('Bombhei',1,),);
-    public static readonly LIT_BOB_OMB =                                   new Entities('Lit Bob-omb',                                  new EditorImageBuilder('Bombhei',2,),);
+    public static readonly BOB_OMB =                                       new Entities('Bob-omb',                                      new EditorImageBuilder('Bombhei',1,).setAllGameStyles(),);
+    public static readonly LIT_BOB_OMB =                                   new Entities('Lit Bob-omb',                                  new EditorImageBuilder('Bombhei',2,).setAllGameStyles(),);
 
     public static readonly POKEY =                                         new Entities('Pokey',                                        null,);
     public static readonly SNOW_POKEY =                                    new Entities('Snow Pokey',                                   null,);
@@ -246,8 +246,8 @@ export class Entities
     public static readonly MAGIKOOPA =                                     new Entities('Magikoopa',                                    'Kameck');
     public static readonly MAGIKOOPA_PROJECTILE =                          new Entities('(Magikoopa\'s projectile)',                    );
 
-    public static readonly HAMMER_BRO =                                    new Entities('Hammer Bro',                                   new EditorImageBuilder('Bros', 1,),);
-    public static readonly SLEDGE_BRO =                                    new Entities('Sledge Bro',                                   new EditorImageBuilder('MegaBros', 1,),);
+    public static readonly HAMMER_BRO =                                    new Entities('Hammer Bro',                                   new EditorImageBuilder('Bros', 1,).setAllGameStyles(),);
+    public static readonly SLEDGE_BRO =                                    new Entities('Sledge Bro',                                   new EditorImageBuilder('MegaBros', 1,).setAllGameStyles(),);
     public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new Entities('Hammer thrown by a Hammer / Sledge Bro',       );
     public static readonly FIRE_BRO =                                      new Entities('Fire Bro',                                     new EditorImageBuilder('Bros', 2,).setOnlySM3DW(),);
     public static readonly HEAVY_FIRE_BRO =                                new Entities('Heavy Fire Bro',                               new EditorImageBuilder('MegaBros', 2,).setOnlySM3DW(),);
@@ -268,13 +268,13 @@ export class Entities
     //endregion -------------------- General enemies --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
-    public static readonly BILL_BLASTER =                                  new Entities('Bill Blaster',                                 new EditorImageBuilder('KillerHoudai', 1,).setAsDifferentInSMBAndSMB3(),);
+    public static readonly BILL_BLASTER =                                  new Entities('Bill Blaster',                                 new EditorImageBuilder('KillerHoudai', 1,).setAllGameStyles().setAsDifferentInSMBAndSMB3(),);
     public static readonly BULLET_BILL =                                   new Entities('Bullet Bill',                                  );
-    public static readonly BULL_EYE_BLASTER =                              new Entities('Bull\'s-Eye Blaster',                          new EditorImageBuilder('KillerHoudai', 2,));
+    public static readonly BULL_EYE_BLASTER =                              new Entities('Bull\'s-Eye Blaster',                          new EditorImageBuilder('KillerHoudai', 2,).setAllGameStyles(),);
     public static readonly BULL_EYE_BILL =                                 new Entities('Bull\'s-Eye Bill',                             );
     public static readonly CAT_BULLET_BILL =                               new Entities('Cat Bullet Bill',                              );
 
-    public static readonly BANZAI_BILL =                                   new Entities('Banzai Bill',                                  new EditorImageBuilder('MagnumKiller', 1,).setAsDifferentInSMBAndSMB3(),);
+    public static readonly BANZAI_BILL =                                   new Entities('Banzai Bill',                                  new EditorImageBuilder('MagnumKiller', 1,).setAllGameStyles().setAsDifferentInSMBAndSMB3(),);
     public static readonly BULL_EYE_BANZAI =                               new Entities('Bull\'s-Eye Banzai',                           new EditorImageBuilder('MagnumKiller', 2,).setNotSM3DW(),);
     public static readonly CAT_BANZAI_BILL =                               new Entities('Cat Banzai Bill',                              new EditorImageBuilder('MagnumKiller', 2,).setOnlySM3DW(),);
 
@@ -314,7 +314,7 @@ export class Entities
     public static readonly BOWSER_JR =                                     new Entities('Bowser Jr.',                                   new EditorImageBuilder('KoopaJr').setNotSM3DW(),);
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new Entities('Fire thrown by a Bowser Jr.',                  );
 
-    public static readonly BOOM_BOOM =                                     new Entities('Boom Boom',                                    new EditorImageBuilder('Bunbun', 1,),);
+    public static readonly BOOM_BOOM =                                     new Entities('Boom Boom',                                    new EditorImageBuilder('Bunbun', 1,).setAllGameStyles(),);
     public static readonly POM_POM =                                       new Entities('Pom Pom',                                      new EditorImageBuilder('Bunbun', 2,).setOnlySM3DW(),);
     public static readonly POM_POM_CLONE =                                 new Entities('Pom Pom\'s clone',);
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new Entities('Shuriken thrown by a Pom Pom',                 );
@@ -371,11 +371,11 @@ export class Entities
 
     public static readonly DASH_BLOCK =                                    new Entities('Dash Block',                                   null,);
 
-    public static readonly SNAKE_BLOCK =                                   new Entities('Snake Block',                                  new EditorImageBuilder('SnakeBlock', 1,),);
-    public static readonly FAST_SNAKE_BLOCK =                              new Entities('Fast Snake Block',                             new EditorImageBuilder('SnakeBlock', 2,),);
+    public static readonly SNAKE_BLOCK =                                   new Entities('Snake Block',                                  new EditorImageBuilder('SnakeBlock', 1,).setAllGameStyles(),);
+    public static readonly FAST_SNAKE_BLOCK =                              new Entities('Fast Snake Block',                             new EditorImageBuilder('SnakeBlock', 2,).setAllGameStyles(),);
 
-    public static readonly CONVEYOR_BELT =                                 new Entities('Conveyor Belt',                                new EditorImageBuilder('BeltConveyor', 1,),);
-    public static readonly FAST_CONVEYOR_BELT =                            new Entities('Fast Conveyor Belt',                           new EditorImageBuilder('BeltConveyor', 2,),);
+    public static readonly CONVEYOR_BELT =                                 new Entities('Conveyor Belt',                                new EditorImageBuilder('BeltConveyor', 1,).setAllGameStyles(),);
+    public static readonly FAST_CONVEYOR_BELT =                            new Entities('Fast Conveyor Belt',                           new EditorImageBuilder('BeltConveyor', 2,).setAllGameStyles(),);
 
     public static readonly MUSHROOM_TRAMPOLINE =                           new Entities('Mushroom Trampoline',                          new EditorImageBuilder('Trampoline').setAmount(2).setOnlySM3DW(),);
     public static readonly ON_OFF_TRAMPOLINE =                             new Entities('ON/OFF Trampoline',                            null,);
@@ -391,23 +391,23 @@ export class Entities
 
     public static readonly CRATE =                                         new Entities('Crate',                                        new EditorImageBuilder('WoodBox').setOnlySM3DW(),);
 
-    public static readonly KEY =                                           new Entities('Key',                                          new EditorImageBuilder('Key', 1,),);
+    public static readonly KEY =                                           new Entities('Key',                                          new EditorImageBuilder('Key', 1,).setAllGameStyles(),);
     public static readonly CURSED_KEY =                                    new Entities('Cursed Key',                                   null,);
     public static readonly PHANTO =                                        new Entities('Phanto',                                       );
 
-    public static readonly TRAMPOLINE =                                    new Entities('Trampoline',                                   new EditorImageBuilder('JumpStep').setAmount(2),);
+    public static readonly TRAMPOLINE =                                    new Entities('Trampoline',                                   new EditorImageBuilder('JumpStep').setAmount(2).setAllGameStyles(),);
     public static readonly HOP_CHOPS =                                     new Entities('Hop-Chops',                                    new EditorImageBuilder('Hopper').setOnlySM3DW(),);
 
-    public static readonly POW_BLOCK =                                     new Entities('POW Block',                                    new EditorImageBuilder('PowBlock', 1,),);
+    public static readonly POW_BLOCK =                                     new Entities('POW Block',                                    new EditorImageBuilder('PowBlock', 1,).setAllGameStyles(),);
     public static readonly RED_POW_BLOCK =                                 new Entities('Red POW Block',                                new EditorImageBuilder('PowBlock', 2,).setOnlySM3DW(),);
 
     public static readonly P_SWITCH =                                      new Entities('P Switch',                                     'PSwitch',);
 
     public static readonly STONE =                                         new Entities('Stone',                                        );
 
-    public static readonly WARP_DOOR =                                     new Entities('Warp Door',                                    new EditorImageBuilder('Door', 1,),);
-    public static readonly P_WARP_DOOR =                                   new Entities('P Warp Door',                                  new EditorImageBuilder('Door', 2,),);
-    public static readonly KEY_DOOR =                                      new Entities('Key Door',                                     new EditorImageBuilder('Door', 3,),);
+    public static readonly WARP_DOOR =                                     new Entities('Warp Door',                                    new EditorImageBuilder('Door', 1,).setAllGameStyles(),);
+    public static readonly P_WARP_DOOR =                                   new Entities('P Warp Door',                                  new EditorImageBuilder('Door', 2,).setAllGameStyles(),);
+    public static readonly KEY_DOOR =                                      new Entities('Key Door',                                     new EditorImageBuilder('Door', 3,).setAllGameStyles(),);
 
     public static readonly WARP_BOX =                                      new Entities('Warp Box',                                     new EditorImageBuilder('WarpBox', 1,).setOnlySM3DW(),);
     public static readonly WARP_BOX_WITH_KEY =                             new Entities('Warp Box (With Key)',                          new EditorImageBuilder('WarpBox', 2,).setOnlySM3DW(),);
@@ -435,7 +435,7 @@ export class Entities
             this.#editorImageBuilder = null;
             this.#editorImageName = new ObjectHolderContainer(EmptyEditorImage.get);
         } else {
-            this.#editorImageBuilder = new GenericSingleInstanceBuilder(typeof image == 'string' ? new EditorImageBuilder(image) : image);
+            this.#editorImageBuilder = new GenericSingleInstanceBuilder(typeof image == 'string' ? new EditorImageBuilder(image).setAllGameStyles() : image);
             this.#editorImageName = new DelayedObjectHolderContainer(() => this._editorImageBuilder!.build());
         }
     }
