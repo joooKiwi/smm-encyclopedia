@@ -56,8 +56,8 @@ export class Entities
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new Entities('! Block',                                      new EditorImageBuilder('BikkuriBlock').setOnlySM3DW(),);
 
-    public static readonly NOTE_BLOCK =                                    new Entities('Note Block',                                   new EditorImageBuilder('OnpuBlock', 1,).setNotSM3DW(),);
-    public static readonly MUSIC_BLOCK =                                   new Entities('Music Block',                                  new EditorImageBuilder('OnpuBlock', 2,).setNotSM3DW(),);
+    public static readonly NOTE_BLOCK =                                    new Entities('Note Block',                                   new EditorImageBuilder('OnpuBlock', 1,).setNotSM3DW().setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,).setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
+    public static readonly MUSIC_BLOCK =                                   new Entities('Music Block',                                  new EditorImageBuilder('OnpuBlock', 2,).setNotSM3DW().setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,).setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
 
     public static readonly DONUT_BLOCK =                                   new Entities('Donut Block',                                  new EditorImageBuilder('ChikuwaBlock').setAsDonutBlock(),);
 
