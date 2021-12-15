@@ -1,6 +1,7 @@
 import type {ArrayHeaderTypeOrConvertor, ArrayOfHeadersReceived, ArrayOfMixedConvertorInstance, ArrayOfValidationsArrayOfValidations, ArrayOrSimpleHeaderTypeConvertorExcluding, ArrayOrSimpleHeaderTypeOrConvertor, CallbackOnAfterFinalObjectCreated, CallbackOnAfterSingleContentConverted, CallbackOnBeforeFinalObjectCreated, CallbackOnBeforeSingleContentConverted, CallbackOnInitialisationEnd, CallbackOnInitialisationStart, CallbackOnLoader, CallbackToCreateObject, ConversionCallbackToConverter, CustomConversionCallbackToAnyCallback, CustomConversionCallbackToAnyCallbackWithError, CustomValidationCallback, HeadersConverterHolder, PossiblePredefinedConversionWithoutValues, SimpleHeader, SimpleHeaderReceived} from './CSVLoader.types';
 import type {EmptyableString, NullablePredefinedConversion, PredefinedConversion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from './converter/PredefinedConverter.types';
 
+import {assert}                              from '../utilitiesMethods';
 import {GenericStringToAnyConverter}         from './converter/GenericStringToAnyConverter';
 import {GenericStringToAnyNullableConverter} from './converter/GenericStringToAnyNullableConverter';
 import {HeaderContainer}                     from './HeaderContainer';
@@ -61,8 +62,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         value === '' ? null : CSVLoader.CUSTOM_CONVERSION_CALLBACK(value, conversionCallbacksToConverter,);
     public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS: CustomConversionCallbackToAnyCallbackWithError = (value, mixedTypeOnConverter, conversionCallbacksToConverter,) => {
         const returnValue = CSVLoader.#CONVERSION_CALLBACK_LOOP(value, conversionCallbacksToConverter,);
-        if (returnValue === undefined)
-            throw new TypeError(`The value could not be converted to the possible values: ${mixedTypeOnConverter}.`);
+        assert(returnValue != null, `The value could not be converted to the possible values: ${mixedTypeOnConverter}.`,);
         return returnValue;
     };
     public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING_WITH_ERRORS: CustomConversionCallbackToAnyCallbackWithError = (value, mixedTypeOnConverter, conversionCallbacksToConverter,) =>
@@ -102,8 +102,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
-        if (this.doesThrowError && this.originalHeaders.length !== this.headers.size)
-            throw new RangeError(`There is one or more duplicate header in the csv file. (${this.headers.size}/${this.originalHeaders.length})\n[${this.originalHeaders.join(CSVLoader.COMMA_AND_SPACE_STRING)}]`);
+        this.__assert(this.originalHeaders.length === this.headers.size, `There is one or more duplicate header in the csv file. (${this.headers.size}/${this.originalHeaders.length})\n[${this.originalHeaders.join(CSVLoader.COMMA_AND_SPACE_STRING)}]`,);
         this.#originalContent = originalContent;
         this.#callbackToCreateObject = callbackToCreateObject;
 
@@ -119,6 +118,14 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         this.#callbackOnInitialisationEnd = null;
     }
 
+    //region -------------------- Assertion methods --------------------
+
+    private __assert(condition: boolean, message: string,): asserts condition {
+        if (this.doesThrowError)
+            assert(condition, message,);
+    }
+
+    //endregion -------------------- Assertion methods --------------------
     //region -------------------- Getter and setter methods --------------------
 
     //region -------------------- Has original content as reference methods --------------------
@@ -638,8 +645,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Header conversion methods --------------------
 
     protected _validateHeaderNotIncludedInArrayOfHeadersReceived(header: SimpleHeader<H>, headers: ArrayOfHeadersReceived<H>,): void | never {
-        if (this.doesThrowError && headers.includes(header))
-            throw new EvalError(`Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`);
+        this.__assert(!headers.includes(header), `Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`,);
     }
 
     public convertToHeader(header: SimpleHeaderReceived<H>, ...headers: ArrayOfHeadersReceived<H>): this | never {

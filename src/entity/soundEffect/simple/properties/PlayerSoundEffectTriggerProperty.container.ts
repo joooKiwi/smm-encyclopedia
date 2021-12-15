@@ -1,5 +1,7 @@
 import type {PlayerSoundEffectTriggerProperty, PossibleTranslation} from './PlayerSoundEffectTriggerProperty';
 
+import {assert} from '../../../../util/utilitiesMethods';
+
 /**
  * @multiton
  * @provider
@@ -156,9 +158,9 @@ export class PlayerSoundEffectTriggerPropertyContainer
         if (whenLosingALife)
             return this.#LOST_A_LIFE;
 
-        throw new Error('There is no player sound effect trigger usable with no possible property.');
+        assert(false, 'There is no player sound effect trigger usable with no possible property.',);
     }
-    
+
     //endregion -------------------- Provider / Multiton method --------------------
 
 }

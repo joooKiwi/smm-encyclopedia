@@ -1,3 +1,4 @@
+import {assert}                  from '../../../util/utilitiesMethods';
 import {EntityBehaviourIsInOnly} from './EntityBehaviourIsInOnly';
 
 /**
@@ -44,8 +45,7 @@ export class EntityBehaviourIsInOnlyContainer
             return this.#IS_ONLINE_ONLY;
         if (!isInOnlineOnly && isInMultiplayerOnly)
             return this.#IS_MULTIPLAYER_ONLY;
-
-        throw new ReferenceError(`No predefined behaviour (is in only) container is compatible with (${isInOnlineOnly} & ${isInMultiplayerOnly}).`);
+        assert(false, `No predefined behaviour (is in only) container is compatible with (${isInOnlineOnly} & ${isInMultiplayerOnly}).`,);
     }
 
 }

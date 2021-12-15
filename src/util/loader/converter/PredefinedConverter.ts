@@ -3,6 +3,7 @@ import type {Converter}                                                         
 import type {ConversionCallbackToAny, ValidationCallback}                                                                                               from '../CSVLoader.types';
 import type {StaticReference}                                                                                                                           from '../../enum/Enum.types';
 
+import {assert}                           from '../../utilitiesMethods';
 import {ConverterPatterns}                from './ConverterPatterns';
 import {ConverterUtil}                    from './ConverterUtil';
 import {Enum}                             from '../../enum/Enum';
@@ -133,8 +134,7 @@ export abstract class PredefinedConverter
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, number> | never
         public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, number> | never {
-            if (typeof validatingValue !== 'number')
-                throw new TypeError('The validating value cannot be a different value than a number');
+            assert(typeof validatingValue == 'number', 'The validating value cannot be a different value than a number',);
             return new StringToSingleNumberConverter(value, validatingValue,);
         }
 
@@ -142,8 +142,7 @@ export abstract class PredefinedConverter
         public newValidation(validatingValue: any[],): never
         public newValidation(validatingValue: any,): | ValidationCallback | never
         public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
-            if (typeof validatingValue !== 'number')
-                throw new TypeError('The validating value cannot be a different value than a number');
+            assert(typeof validatingValue == 'number', 'The validating value cannot be a different value than a number',);
             return value => Number(value) === validatingValue;
         }
 
@@ -158,8 +157,7 @@ export abstract class PredefinedConverter
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, boolean> | never
         public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, boolean> | never {
-            if (typeof validatingValue !== 'boolean')
-                throw new TypeError('The validating value cannot be a different value than a boolean');
+            assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',);
             return new StringToSingleBooleanConverter(value, validatingValue,);
         }
 
@@ -167,8 +165,7 @@ export abstract class PredefinedConverter
         public newValidation(validatingValue: any[],): never
         public newValidation(validatingValue: any,): | ValidationCallback | never
         public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
-            if (typeof validatingValue !== 'boolean')
-                throw new TypeError('The validating value cannot be a different value than a boolean');
+            assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',);
             return value => Boolean(value) === validatingValue;
         }
 
@@ -183,8 +180,7 @@ export abstract class PredefinedConverter
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, string> | never
         public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, string> | never {
-            if (typeof validatingValue !== 'string')
-                throw new TypeError('The validating value cannot be a different value than a string');
+            assert(typeof validatingValue == 'string', 'The validating value cannot be a different value than a string',);
             return new StringToSingleStringConverter(value, validatingValue,);
         }
 
@@ -192,8 +188,7 @@ export abstract class PredefinedConverter
         public newValidation(validatingValue: any[],): never
         public newValidation(validatingValue: any,): | ValidationCallback | never
         public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
-            if (typeof validatingValue !== 'string')
-                throw new TypeError('The validating value cannot be a different value than a string');
+            assert(typeof validatingValue == 'string', 'The validating value cannot be a different value than a string',);
             return value => value === validatingValue;
         }
 

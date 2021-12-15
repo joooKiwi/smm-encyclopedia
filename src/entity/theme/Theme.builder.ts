@@ -6,6 +6,7 @@ import type {Name}                  from '../../lang/name/Name';
 import type {ThemeTemplate}         from './Theme.template';
 import type {WorldTheme}            from './WorldTheme';
 
+import {assert}                  from '../../util/utilitiesMethods';
 import {CourseThemeContainer}    from './CourseTheme.container';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
@@ -48,8 +49,7 @@ export class ThemeBuilder
 
     private static __whereEntityIs(englishName: string,): Entity[] {
         const theme = Themes.getValue(englishName);
-        if (theme === null)
-            throw new ReferenceError(`The english name "${englishName}" has no reference on the Themes class.`);
+        assert(theme != null, `The english name "${englishName}" has no reference on the Themes class.`,);
         const everyEntities = [] as Entity[];
         for (const [, {entity}] of this.entitiesMap.entries())
             if (entity !== undefined && theme.get(entity))

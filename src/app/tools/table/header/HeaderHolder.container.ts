@@ -1,7 +1,9 @@
 import type {HeaderHolder}        from './HeaderHolder';
 import type {SingleHeaderContent} from '../SimpleHeader';
 import type {ReactElement}        from '../../../../util/react/ReactProperty';
-import {EMPTY_REACT_ELEMENT}      from '../../../../util/emptyReactVariables';
+
+import {assert}              from '../../../../util/utilitiesMethods';
+import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables';
 
 export class HeaderHolderContainer
     implements HeaderHolder {
@@ -80,8 +82,7 @@ export class HeaderHolderContainer
     // @ts-ignore
     private setParent(value: | HeaderHolder | null,): | this | never
     public setParent(value: | HeaderHolder | null,): | this | never {
-        if (value == null)
-            throw new TypeError('The value to set the parent cannot be null.');
+        assert(value != null, 'The value to set the parent cannot be null.',);
         this.#parent = value;
         return this;
     }

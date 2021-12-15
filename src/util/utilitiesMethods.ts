@@ -14,7 +14,7 @@ export function isArrayEquals<A1 extends readonly any[], A2 extends readonly any
 }
 
 export function assert(condition: boolean, message: string,): asserts condition {
-    if (window.IS_IN_PRODUCTION)
+    if (process.env.NODE_ENV === 'production')
         return;
     if (!condition)
         throw new AssertionError({message: message,});

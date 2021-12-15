@@ -1,5 +1,6 @@
 import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ThemeProperty} from './ThemeProperty';
 
+import {assert} from '../../util/utilitiesMethods';
 import {Themes} from '../theme/Themes';
 
 /**
@@ -148,7 +149,7 @@ export class ThemePropertyContainer
 
         //endregion ----- Exclusive 2 themes -----
 
-        throw new EvalError(`No theme can be used with this theme selection (${isInGroundTheme}, ${isInUndergroundTheme}, ${isInUnderwaterTheme}, ${isInDesertTheme}, ${isInSnowTheme}, ${isInSkyTheme}, ${isInForestTheme}, ${isInGhostHouseTheme}, ${isInAirshipTheme}, ${isInCastleTheme}).`);
+        assert(false, `No theme can be used with this theme selection (${isInGroundTheme}, ${isInUndergroundTheme}, ${isInUnderwaterTheme}, ${isInDesertTheme}, ${isInSnowTheme}, ${isInSkyTheme}, ${isInForestTheme}, ${isInGhostHouseTheme}, ${isInAirshipTheme}, ${isInCastleTheme}).`,);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------

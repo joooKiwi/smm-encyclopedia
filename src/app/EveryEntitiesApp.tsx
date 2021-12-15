@@ -4,6 +4,7 @@ import type {DebugEntityReferences} from '../entity/simple/Entity.loader';
 import type {SingleTableContent}    from './tools/table/Table.types';
 
 import AbstractApp                       from './AbstractApp';
+import {assert}                          from '../util/utilitiesMethods';
 import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent              from '../entity/theme/CourseTheme.component';
 import {EntityLimitTypes}                from '../entity/limit/EntityLimitTypes';
@@ -38,8 +39,7 @@ export default class EveryEntitiesApp
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const [englishName, {entity},] of this.map.entries()) {
-            if (entity === undefined)
-                throw new ReferenceError(`The entity #${index} was not initialised`);
+            assert(entity != null, `The entity #${index} (${englishName}) was not initialised!`);
             content.push([englishName,
                 <>{index}</>,
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,

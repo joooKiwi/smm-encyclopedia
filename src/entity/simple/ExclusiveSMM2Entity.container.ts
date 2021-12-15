@@ -5,6 +5,7 @@ import type {ExclusiveSMM2Property, Property} from '../properties/Property';
 import type {Name}                            from '../../lang/name/Name';
 
 import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
+import {assert}                      from '../../util/utilitiesMethods';
 
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}
@@ -21,8 +22,7 @@ export class ExclusiveSMM2EntityContainer<CATEGORY extends EntityCategory = Enti
     protected _testProperty(property: Property,): Property {
         property = super._testProperty(property);
 
-        if (property.isInNightTheme == null)
-            throw new TypeError('The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property when it is included in at least one of those styles (SMB, SMB3, SMW or NSMBU).');
+        assert(property.isInNightTheme != null, 'The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property when it is included in at least one of those styles (SMB, SMB3, SMW or NSMBU).',);
 
         return property;
     }
