@@ -116,6 +116,10 @@ export default class EveryEntitiesApp
         }</>;
     }
 
+    private __createClearConditionImageComponent(index: number, gameStyle: GameStyles,) {
+        return <></>;
+    }
+
     private __createCategoryComponent(index: number, entity: Entity,) {
         const categoryName = entity.categoryName;
         if (categoryName === EmptyName.get)
@@ -136,7 +140,8 @@ export default class EveryEntitiesApp
                 throw new ReferenceError(`The entity #${index} was not initialised`);
             content.push([englishName,
                 <>{index}</>,
-                ...this._gameStyles.map(gameStyle => this.__createImageComponent(index, gameStyle)),
+                ...this._gameStyles.map(gameStyle => this.__createEditorImageComponent(index, gameStyle,)),
+                ...this._gameStyles.map(gameStyle => this.__createClearConditionImageComponent(index, gameStyle,)),
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity} displayAllAsText={this._displayGameAsTextWhenAll}/>,
                 <GameStyleComponent reference={entity} name={entity} displayAllAsText={this._displayGameStyleAsTextWhenAll}/>,
@@ -161,7 +166,16 @@ export default class EveryEntitiesApp
                 {key: 'originalOrder', element: <>#</>,},
                 {
                     key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
-                    subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: gameStyle.acronym, element: gameStyle.renderSingleComponent,})),
+                    subHeaders: [
+                        {
+                            key: 'image-editor', element: <>--Image (editor)--</>,
+                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-editor-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                        },
+                        {
+                            key: 'image-clearCondition', element: <>--Image (clear condition)--</>,
+                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-clearCondition-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                        },
+                    ],
                 },
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                 {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
