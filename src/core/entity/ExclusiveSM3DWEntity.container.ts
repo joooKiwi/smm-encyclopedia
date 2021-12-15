@@ -5,6 +5,7 @@ import type {ExclusiveSMM2PropertyInSM3DW, Property} from './properties/Property
 import type {Name}                                   from '../../lang/name/Name';
 
 import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity';
+import {assert}                      from '../../util/utilitiesMethods';
 
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}
@@ -21,11 +22,8 @@ export class ExclusiveSM3DWEntityContainer<CATEGORY extends EntityCategory = Ent
     protected _testProperty(property: Property,): Property {
         property = super._testProperty(property);
 
-        if (property.isInNightTheme != null)
-            throw new TypeError('The property isInNightTheme should always be set to a null for a SM3DW exclusive property.');
-
-        if (typeof property.isInProjectileLimitWhilePlaying !== 'boolean')
-            throw new TypeError('The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.');
+        assert(property.isInNightTheme == null, 'The property isInNightTheme should always be set to a null for a SM3DW exclusive property.',);
+        assert(typeof property.isInProjectileLimitWhilePlaying == 'boolean', 'The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.',);
 
         return property;
     }

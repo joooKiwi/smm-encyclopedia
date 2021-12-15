@@ -1,11 +1,12 @@
 import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/ClassWithNullObjectPattern';
 import type {Entity}                                      from './Entity';
 
+import {assert}               from '../../util/utilitiesMethods';
+import {EMPTY_MAP}            from '../../util/emptyVariables';
 import {EmptyEntityReference} from './properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../entityCategory/EmptyEntityCategory';
 import {EmptyIsInProperty}    from './properties/EmptyIsInProperty';
 import {EmptyName}            from '../../lang/name/EmptyName';
-import {EMPTY_MAP}            from '../../util/emptyVariables';
 
 /**
  * An empty entity with the default values of nothing
@@ -297,15 +298,15 @@ export class EmptyEntity
     //endregion -------------------- References --------------------
 
     public toGameStyleMap(): never {
-        throw new ReferenceError(`An ${this} cannot have a game style map.`);
+        assert(false,`An ${this} cannot have a game style map.`,);
     }
 
     public toCourseThemeMap(): never {
-        throw new ReferenceError(`An ${this} cannot have a course theme map.`);
+        assert(false,`An ${this} cannot have a course theme map.`,);
     }
 
     public toTimeMap(): never {
-        throw new ReferenceError(`An ${this} cannot have a time map.`);
+        assert(false,`An ${this} cannot have a time map.`,);
     }
 
     public toLimitMap() {

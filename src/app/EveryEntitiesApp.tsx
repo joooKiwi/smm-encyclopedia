@@ -9,6 +9,7 @@ import type {SingleHeaderContent}                                 from './tools/
 import type {SingleTableContent}                                  from './tools/table/Table.types';
 
 import AbstractApp                       from './AbstractApp';
+import {assert}                          from '../util/utilitiesMethods';
 import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent              from '../core/theme/CourseTheme.component';
 import {EntityCategories}                from '../core/entityCategory/EntityCategories';
@@ -136,8 +137,7 @@ export default class EveryEntitiesApp
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const [englishName, {entity},] of this.map.entries()) {
-            if (entity === undefined)
-                throw new ReferenceError(`The entity #${index} was not initialised`);
+            assert(entity != null, `The entity #${index} (${englishName}) was not initialised!`);
             content.push([englishName,
                 <>{index}</>,
                 ...this._gameStyles.map(gameStyle => this.__createEditorImageComponent(index, gameStyle,)),

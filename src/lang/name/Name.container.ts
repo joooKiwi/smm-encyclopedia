@@ -4,6 +4,7 @@ import type {EmptyableLanguage}                                                 
 import type {Name}                                                                                                                                              from './Name';
 import type {OptionalLanguage}                                                                                                                                  from './containers/OptionalLanguage';
 
+import {assert}                    from '../../util/utilitiesMethods';
 import {EveryLanguages}            from '../EveryLanguages';
 import {ProjectLanguages}          from '../ProjectLanguages';
 import {LanguageContainer}         from './containers/LanguageContainer';
@@ -265,8 +266,7 @@ export class NameContainer
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<S, A>
     private static __newLanguageContainer(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | string | readonly string[] | null,) {
         if (value == null) {
-            if (language.isACompleteLanguage)
-                throw new ReferenceError(`The language "${language.englishName}" cannot be null if it is a complete language.`);
+            assert(!language.isACompleteLanguage, `The language "${language.englishName}" cannot be null if it is a complete language.`,);
             return EmptyLanguageContainer.get;
         }
 

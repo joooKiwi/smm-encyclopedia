@@ -4,6 +4,7 @@ import type {ObjectHolder}                      from '../../../util/holder/Objec
 import type {PossibleEnglishName as EntityName} from '../../entity/Entities.types';
 import type {PossibleGroupName}                 from '../../entityTypes';
 
+import {assert}                       from '../../../util/utilitiesMethods';
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
 import {EntityLoader}                 from '../../entity/Entity.loader';
 
@@ -81,7 +82,7 @@ export class EntityBehaviourLinkContainer
                     return this.#CHECKPOINT_FLAG_LINK;
             }
 
-        throw new ReferenceError(`No predefined behaviour (link) container is compatible with ("${groupLink}" & "${entityLink}").`);
+        assert(false, `No predefined behaviour (link) container is compatible with ("${groupLink}" & "${entityLink}").`,);
     }
 
 }

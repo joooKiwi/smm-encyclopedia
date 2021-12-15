@@ -2,14 +2,14 @@ import './AnimatedImages.scss';
 
 import type {AnimatedImagesProperties} from './properties/AnimatedImagesProperties';
 
-import Image from './Image';
+import {assert} from '../../../util/utilitiesMethods';
+import Image    from './Image';
 
 const MINIMUM_AMOUNT_OF_IMAGES = 2;
 const MAXIMUM_AMOUNT_OF_IMAGES = 10;
 
 export default function AnimatedImages({partialId, className = '', images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
-    if (!window.IS_IN_PRODUCTION && (images.length < MINIMUM_AMOUNT_OF_IMAGES || images.length > MAXIMUM_AMOUNT_OF_IMAGES))
-        throw new ReferenceError(`The array received is required to have between than ${MINIMUM_AMOUNT_OF_IMAGES} & ${MAXIMUM_AMOUNT_OF_IMAGES} items. The length received is ${images.length}.`);
+    assert(images.length >= MINIMUM_AMOUNT_OF_IMAGES && images.length <= MAXIMUM_AMOUNT_OF_IMAGES, `The array received is required to have between than ${MINIMUM_AMOUNT_OF_IMAGES} & ${MAXIMUM_AMOUNT_OF_IMAGES} items. The length received is ${images.length}.`,);
 
     if (!displayEveryImages)
         return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...images[0]}/></div>;

@@ -1,11 +1,12 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language';
 import type {Builder}                                                                 from '../../util/Builder';
-import type {Name}                 from './Name';
-import type {PossibleNameTemplate} from './Name.template';
-import type {PossibleGameReceived} from './Name.builder.types';
+import type {Name}                                                                    from './Name';
+import type {PossibleNameTemplate}                                                    from './Name.template';
+import type {PossibleGameReceived}                                                    from './Name.builder.types';
 
-import {NameContainer} from './Name.container';
+import {assert}        from '../../util/utilitiesMethods';
 import {Games}         from '../../core/game/Games';
+import {NameContainer} from './Name.container';
 
 export class NameBuilder<T extends PossibleNameTemplate, >
     implements Builder<Name> {
@@ -64,12 +65,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#english;
     }
 
-    protected get _english() {
-        if (this.english === undefined)
-            throw new ReferenceError('The english reference has not been initialised.');
-        return this.english;
-    }
-
     public setEnglish(value: AmericanOrEuropeanOriginal,): this {
         this.#english = value;
         return this;
@@ -80,12 +75,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     public get french() {
         return this.#french;
-    }
-
-    protected get _french() {
-        if (this.french === undefined)
-            throw new ReferenceError('The french reference has not been initialised.');
-        return this.french;
     }
 
     public setFrench(value: CanadianOrEuropeanOriginal,): this {
@@ -100,12 +89,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#german;
     }
 
-    protected get _german() {
-        if (this.german === undefined)
-            throw new ReferenceError('The german reference has not been initialised.');
-        return this.german;
-    }
-
     public setGerman(value: | string | null,): this {
         this.#german = value;
         return this;
@@ -116,12 +99,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     public get spanish() {
         return this.#spanish;
-    }
-
-    protected get _spanish() {
-        if (this.spanish === undefined)
-            throw new ReferenceError('The spanish reference has not been initialised.');
-        return this.spanish;
     }
 
     public setSpanish(value: | AmericanOrEuropeanOriginal | null,): this {
@@ -136,12 +113,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#italian;
     }
 
-    protected get _italian() {
-        if (this.italian === undefined)
-            throw new ReferenceError('The italian reference has not been initialised.');
-        return this.italian;
-    }
-
     public setItalian(value: | string | null,): this {
         this.#italian = value;
         return this;
@@ -152,12 +123,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     public get dutch() {
         return this.#dutch;
-    }
-
-    protected get _dutch() {
-        if (this.dutch === undefined)
-            throw new ReferenceError('The dutch reference has not been initialised.');
-        return this.dutch;
     }
 
     public setDutch(value: | string | null,): this {
@@ -172,12 +137,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#portuguese;
     }
 
-    protected get _portuguese() {
-        if (this.portuguese === undefined)
-            throw new ReferenceError('The portuguese reference has not been initialised.');
-        return this.portuguese;
-    }
-
     public setPortuguese(value: | AmericanOrEuropeanOriginal | null,): this {
         this.#portuguese = value;
         return this;
@@ -188,12 +147,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     public get russian() {
         return this.#russian;
-    }
-
-    protected get _russian() {
-        if (this.russian === undefined)
-            throw new ReferenceError('The russian reference has not been initialised.');
-        return this.russian;
     }
 
     public setRussian(value: | string | null,): this {
@@ -208,12 +161,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#japanese;
     }
 
-    protected get _japanese() {
-        if (this.japanese === undefined)
-            throw new ReferenceError('The japanese reference has not been initialised.');
-        return this.japanese;
-    }
-
     public setJapanese(value: | string | null,): this {
         this.#japanese = value;
         return this;
@@ -224,12 +171,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     public get chinese() {
         return this.#chinese;
-    }
-
-    protected get _chinese() {
-        if (this.chinese === undefined)
-            throw new ReferenceError('The chinese reference has not been initialised.');
-        return this.chinese;
     }
 
     public setChinese(value: | ChineseOriginal | null,): this {
@@ -244,12 +185,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#korean;
     }
 
-    protected get _korean() {
-        if (this.korean === undefined)
-            throw new ReferenceError('The korean reference has not been initialised.');
-        return this.korean;
-    }
-
     public setKorean(value: | string | null,): this {
         this.#korean = value;
         return this;
@@ -260,12 +195,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     public get greek() {
         return this.#greek;
-    }
-
-    protected get _greek() {
-        if (this.greek === undefined)
-            throw new ReferenceError('The greek reference has not been initialised.');
-        return this.greek;
     }
 
     public setGreek(value: | string | null,): this {
@@ -296,14 +225,12 @@ export class NameBuilder<T extends PossibleNameTemplate, >
     private static __interpretTranslation<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(canBeNullable: boolean, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,] | null
     private static __interpretTranslation(canBeNullable: boolean, value1: | string | null, value2?: | string | null, value3?: | string | null,): | string | [string, string,] | null {
         if (value2 === undefined) {
-            if (!canBeNullable && value1 == null)
-                throw new ReferenceError('The value cannot be null');
+            assert(canBeNullable && value1 != null, 'The value cannot be null',);
             return value1;
         }
 
         const all3ValuesAreNull = value1 == null && value2 == null && value3 == null;
-        if (!canBeNullable && all3ValuesAreNull)
-            throw new ReferenceError('The values received cannot be null.');
+        assert(canBeNullable && !all3ValuesAreNull, 'The values received cannot be null.',);
         return all3ValuesAreNull ? null : value1 ?? [value2!, value3!,];
     }
 
@@ -328,19 +255,33 @@ export class NameBuilder<T extends PossibleNameTemplate, >
             .setKorean(NameBuilder.__interpretTranslation(isANonCompleteGame, korean,))
             .setGreek(NameBuilder.__interpretTranslation(NameBuilder.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES, greek,));
 
+        assert(this.english !== undefined, 'The english reference has not been initialised.',);
+        assert(this.french !== undefined, 'The french reference has not been initialised.',);
+        assert(this.german !== undefined, 'The german reference has not been initialised.',);
+        assert(this.spanish !== undefined, 'The spanish reference has not been initialised.',);
+        assert(this.italian !== undefined, 'The italian reference has not been initialised.',);
+        assert(this.dutch !== undefined, 'The dutch reference has not been initialised.',);
+        assert(this.portuguese !== undefined, 'The portuguese reference has not been initialised.',);
+        assert(this.russian !== undefined, 'The russian reference has not been initialised.',);
+        assert(this.japanese !== undefined, 'The japanese reference has not been initialised.',);
+        assert(this.chinese !== undefined, 'The chinese reference has not been initialised.',);
+        assert(this.korean !== undefined, 'The korean reference has not been initialised.',);
+        assert(this.greek !== undefined, 'The greek reference has not been initialised.',);
+
+
         return new NameContainer(
-            this._english,
-            this._french,
-            this._german,
-            this._spanish,
-            this._italian,
-            this._dutch,
-            this._portuguese,
-            this._russian,
-            this._japanese,
-            this._chinese,
-            this._korean,
-            this._greek,
+            this.english,
+            this.french,
+            this.german,
+            this.spanish,
+            this.italian,
+            this.dutch,
+            this.portuguese,
+            this.russian,
+            this.japanese,
+            this.chinese,
+            this.korean,
+            this.greek,
         );
     }
 

@@ -5,6 +5,7 @@ import type {GameStyle}             from './GameStyle';
 import type {GameStyleTemplate}     from './GameStyle.template';
 import type {Name}                  from '../../lang/name/Name';
 
+import {assert}                  from '../../util/utilitiesMethods';
 import {GamePropertyContainer}   from '../entity/properties/GameProperty.container';
 import {GameStyles}              from './GameStyles';
 import {GameStyleContainer}      from './GameStyle.container';
@@ -31,8 +32,7 @@ export class GameStyleBuilder
 
     private static __whereEntityIs(englishName: string,): Entity[] {
         const gameStyle = GameStyles.getValue(englishName);
-        if (gameStyle === null)
-            throw new ReferenceError(`The english name "${englishName}" has no reference on the Game Style class.`);
+        assert(gameStyle != null, `The english name "${englishName}" has no reference on the Game Style class.`,);
         const everyEntities = [] as Entity[];
         for (const [, {entity}] of this.entitiesMap.entries())
             if (entity !== undefined && gameStyle.get(entity))

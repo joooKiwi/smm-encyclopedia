@@ -1,6 +1,8 @@
 import type {ReactElement}                                                                                           from '../../util/react/ReactProperty';
 import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnMethod} from './TranslationProperty';
 
+import {assert} from '../../util/utilitiesMethods';
+
 export class TranslationUtility {
 
     public static readonly STARTING_CHARACTER = '{';
@@ -18,8 +20,7 @@ export class TranslationUtility {
     }
 
     public static testTranslation<N extends Namespace, T extends TranslationReturnMethod<N, SingleTranslationKey<N>, string> = TranslationReturnMethod<N, SingleTranslationKey<N>, string>, >(value: T,): T & string {
-        if (typeof value != 'string')
-            throw new EvalError(`The translation key ${value} cannot receive a translation that contain a sub value.`);
+        assert(typeof value == 'string', `The translation key ${value} cannot receive a translation that contain a sub value.`,);
         return value;
     }
 

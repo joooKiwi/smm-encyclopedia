@@ -1,6 +1,7 @@
 import type {EveryPossibleRouteNames, EveryPossibleRoutePartialPaths, EveryPossibleRoutes} from './everyRoutes.types';
 import type {Location}                                                                     from 'history';
 
+import {assert}            from '../util/utilitiesMethods';
 import {everySimpleRoutes} from './everyRoutes';
 import {ProjectLanguages}  from '../lang/ProjectLanguages';
 
@@ -25,8 +26,7 @@ export function route(partialPath_or_name_or_location: PossibleParameterReceived
     if (typeof partialPath_or_name_or_location === 'string') {
         const simpleRoute = everySimpleRoutes.find(simpleRoute => simpleRoute.path === partialPath_or_name_or_location || simpleRoute.name === partialPath_or_name_or_location);
 
-        if (simpleRoute == null)
-            throw new EvalError(`The route could not be found with the value "${partialPath_or_name_or_location}".`);
+        assert(simpleRoute != null, `The route could not be found with the value "${partialPath_or_name_or_location}".`,);
         return `/${language.projectAcronym}${simpleRoute.path}`;
     }
 

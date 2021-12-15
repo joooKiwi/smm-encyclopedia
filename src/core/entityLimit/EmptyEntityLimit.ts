@@ -1,8 +1,10 @@
 import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from '../../util/ClassWithNullObjectPattern';
 import type {EntityLimit}                                      from './EntityLimit';
-import {EmptyName}                                             from '../../lang/name/EmptyName';
-import {EmptyEntityLimitAmount}                                from './properties/EmptyEntityLimitAmount';
-import {EmptyEntityLimitLink}                                  from './properties/EmptyEntityLimitLink';
+
+import {assert}                 from '../../util/utilitiesMethods';
+import {EmptyName}              from '../../lang/name/EmptyName';
+import {EmptyEntityLimitAmount} from './properties/EmptyEntityLimitAmount';
+import {EmptyEntityLimitLink}   from './properties/EmptyEntityLimitLink';
 
 /**
  * @singleton
@@ -26,7 +28,7 @@ export class EmptyEntityLimit
     //region -------------------- Type --------------------
 
     public get type(): never {
-        throw new EvalError(`No types is compatible with an ${this}.`);
+        throw assert(false, `No types is compatible with an ${this}.`,);
     }
 
     //endregion -------------------- Type --------------------
