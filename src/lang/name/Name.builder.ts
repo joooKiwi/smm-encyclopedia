@@ -225,12 +225,12 @@ export class NameBuilder<T extends PossibleNameTemplate, >
     private static __interpretTranslation<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(canBeNullable: boolean, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,] | null
     private static __interpretTranslation(canBeNullable: boolean, value1: | string | null, value2?: | string | null, value3?: | string | null,): | string | [string, string,] | null {
         if (value2 === undefined) {
-            assert(canBeNullable && value1 != null, 'The value cannot be null',);
+            assert(canBeNullable || value1 != null, 'The value cannot be null',);
             return value1;
         }
 
         const all3ValuesAreNull = value1 == null && value2 == null && value3 == null;
-        assert(canBeNullable && !all3ValuesAreNull, 'The values received cannot be null.',);
+        assert(canBeNullable || !all3ValuesAreNull, 'The values received cannot be null.',);
         return all3ValuesAreNull ? null : value1 ?? [value2!, value3!,];
     }
 
