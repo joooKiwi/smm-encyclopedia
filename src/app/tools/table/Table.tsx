@@ -22,6 +22,7 @@ export default class Table
 
     //region -------------------- Attributes --------------------
 
+    static readonly #EMPTY_ARRAY = [];
     public static readonly DEFAULT_TABLE_COLOR: BootstrapColor = 'primary';
     public static readonly DEFAULT_HEADERS_COLOR: BootstrapColor = 'info';
 
@@ -64,20 +65,16 @@ export default class Table
         if (this.#everyHeaderHoldersMap == null) {
             const everyHeaderHolders = new Map<string, HeaderHolder>([...this.__everyHeaders]
                 .map<[string, HeaderHolder,]>(([key, header,]) => [key,
-                    new HeaderHolderContainer(header,
+                    new HeaderHolderContainer(this.id, header,
                         headerHolder => Table.__createSingleHeaderContent(HeaderTypes.HEAD, headerHolder.header, headerHolder.height, headerHolder.width,),
                         headerHolder => Table.__createSingleHeaderContent(HeaderTypes.FOOT, headerHolder.header, headerHolder.height, headerHolder.width,),
                     ),]));
 
-            [...everyHeaderHolders.values()].map(headerContainer => [headerContainer, Table.__getSubHeaders(headerContainer.header)] as const)
-                .filter(([, subHeaders,]) => subHeaders.length !== 0)
-                .forEach(([headerContainer, subHeaders,]) => {
-                    headerContainer.width += subHeaders.length - 1;
-                    subHeaders.forEach(subHeader => everyHeaderHolders.get(Table.__getHeaderKey(subHeader))!.addSubLevel());
-                });
-            const maximumSubLevel = [...everyHeaderHolders.values()].reduce((headerContainerThatHasMaximumSubLevel, headerContainer) => headerContainerThatHasMaximumSubLevel.subLevel < headerContainer.subLevel ? headerContainer : headerContainerThatHasMaximumSubLevel).subLevel;
-            [...everyHeaderHolders.values()].filter(headerContainer => headerContainer.height === 1 && headerContainer.width === 1)
-                .forEach(headerContainer => headerContainer.height += maximumSubLevel - headerContainer.subLevel);
+            //Set the sub headers (for the header) & set the parent (for the sub headers)
+            everyHeaderHolders.forEach((header,) =>
+                header.setSubHeaders(Table.__getSubHeaders(header.header).map(subHeader =>
+                    everyHeaderHolders.get(Table.__getHeaderKey(subHeader))!).map(subHeader => subHeader.setParent(header))));
+
             this.#everyHeaderHoldersMap = everyHeaderHolders;
         }
         return this.#everyHeaderHoldersMap;
@@ -89,13 +86,13 @@ export default class Table
             const layout: string[][] = [];
 
             everyHeaderHolders.forEach((headerContainer, key,) => {
-                let wasAddedToTheLayout = false;
-                for (let i = headerContainer.subLevel; i < headerContainer.height; i++) {
-                    (layout[i] ??= []).push(key);
-                    wasAddedToTheLayout = true;
-                }
-                if (!wasAddedToTheLayout)
-                    (layout[headerContainer.subLevel] ??= []).push(key);
+                const subLevel = headerContainer.subLevel;
+                const height = headerContainer.height;
+                const width = headerContainer.width;
+
+                for (let j = 0; j < height; j++)
+                    for (let i = 0; i < width; i++)
+                        (layout[j + subLevel] ??= []).push(key);
             });
             this.#layout = layout;
         }
@@ -117,15 +114,15 @@ export default class Table
     //endregion -------------------- Getter methods --------------------
 
     private static __getHeaderKey(header: SingleHeaderContent,): string {
-        return typeof header === 'string' ? header : header.key;
+        return typeof header == 'string' ? header : header.key;
     }
 
     private static __getSubHeaders(header: SingleHeaderContent,): readonly SingleHeaderContent[] {
-        return typeof header == 'string' ? [] : header.subHeaders ?? [];
+        return typeof header == 'string' ? this.#EMPTY_ARRAY : header.subHeaders ?? this.#EMPTY_ARRAY;
     }
 
     private static __getHeaderContent(header: SingleHeaderContent,) {
-        return typeof header === 'string'
+        return typeof header == 'string'
             ? <>{header}</>
             : 'element' in header
                 ? header.element
@@ -180,9 +177,9 @@ export default class Table
     private __createContent(): JSX.Element[] {
         return this.content.map(content => {
             const key = content[0];
-            return <tr key={key + '_header'}>
+            return <tr key={`${key} (header)`}>
                 {content.map((innerContent, index) =>
-                    typeof innerContent !== 'string'
+                    typeof innerContent != 'string'
                         ? <td key={`${key}-${index}`}>{innerContent}</td>
                         : null)
                     .filter(content => content !== null)}
