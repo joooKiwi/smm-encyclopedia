@@ -21,15 +21,15 @@ import GameComponent                     from '../core/game/Game.component';
 import {GameContentTranslationContainer} from '../lang/containers/GameContentTranslation.container';
 import GameContentTranslationComponent   from '../lang/components/GameContentTranslationComponent';
 import GameStyleComponent                from '../core/gameStyle/GameStyle.component';
+import {GameStyles}                      from '../core/gameStyle/GameStyles';
 import Image                             from './tools/images/Image';
 import LimitComponent                    from '../core/entityLimit/Limit.component';
 import NameComponent                     from '../lang/name/component/Name.component';
-import Table                             from './tools/table/Table';
-import TimeComponent                     from '../core/time/Time.component';
 import {ProjectLanguages}                from '../lang/ProjectLanguages';
-import {GameStyles}                      from '../core/gameStyle/GameStyles';
-import {Times}                           from '../core/time/Times';
+import Table                             from './tools/table/Table';
 import {Themes}                          from '../core/theme/Themes';
+import TimeComponent                     from '../core/time/Time.component';
+import {Times}                           from '../core/time/Times';
 
 /**
  * @reactComponent
@@ -102,16 +102,17 @@ export default class EveryEntitiesApp
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private __createImageComponent(index: number, gameStyle: GameStyles,) {
+    private __createEditorImageComponent(index: number, gameStyle: GameStyles,) {
         const editorImage = this.enum[index - 1].editorImageName;
         const times = Times.values;
         const themes = Themes.courseThemes;
 
         return <>{
-            [...new Set(
-                themes.map(theme =>
-                    times.map(time => editorImage.get( gameStyle, theme,time,))).flat(2))]
-                .map(image => <img src={image} alt={image}/>)
+            [...new Set(themes.map(theme =>
+                times.map(time => editorImage.get(true, gameStyle, theme, time,)
+                    .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
+                .map(([theme, time, image, index,]) =>
+                    <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
         }</>;
     }
 

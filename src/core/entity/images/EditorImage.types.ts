@@ -433,5 +433,8 @@ export type EditorImageName = | readonly []
                               | readonly [ImageName, ImageName, ImageName, ImageName,]
                               | readonly [ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName,];
 
-export type ImageNumber = | 1 | 2 | 3 | 4;
-export type AmountOfImages = | 1 | 2 | 3 | 4;
+/**
+ * Describe the maximum amount of images possible in any possible Editor image in an {@link Entities}.
+ */
+export type PossibleAmountOfImages = | 1 | 2 | 3 | 4;
+export type ImageNumber = | 0 | 1 | 2 | 3;
