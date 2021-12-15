@@ -1,6 +1,6 @@
 import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ThemeProperty} from './ThemeProperty';
 
-import {assert} from '../../util/utilitiesMethods';
+import {assert} from '../../../util/utilitiesMethods';
 import {Themes} from '../../theme/Themes';
 
 /**

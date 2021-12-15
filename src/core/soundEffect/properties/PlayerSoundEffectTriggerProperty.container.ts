@@ -1,6 +1,6 @@
 import type {PlayerSoundEffectTriggerProperty, PossibleTranslation} from './PlayerSoundEffectTriggerProperty';
 
-import {assert} from '../../../../util/utilitiesMethods';
+import {assert} from '../../../util/utilitiesMethods';
 
 /**
  * @multiton

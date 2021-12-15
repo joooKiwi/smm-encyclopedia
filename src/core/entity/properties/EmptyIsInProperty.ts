@@ -1,7 +1,7 @@
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../../util/ClassWithNullObjectPattern';
 import type {Property}                                          from './Property';
 
-import {assert}             from '../../util/utilitiesMethods';
+import {assert}             from '../../../util/utilitiesMethods';
 import {EMPTY_MAP}          from '../../../util/emptyVariables';
 import {EmptyLimitProperty} from './limit/EmptyLimitProperty';
 
