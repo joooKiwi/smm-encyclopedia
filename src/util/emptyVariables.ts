@@ -5,14 +5,16 @@ export const EMPTY_STRING = '';
 
 /**
  * An empty array with no values that is not modifiable.
- * It use no types since is is only as an empty array.
+ *
+ * @note It is an empty array to ensure any possible values is possible.
  */
-export const EMPTY_ARRAY = [] as const;
+export const EMPTY_ARRAY: readonly [] = [];
 
 /**
  * An empty {@link Map} with any values that should always return undefined as a value.
- * But it use never to be possible to use it in other types of {@link Map}.
+ *
+ * @note It use "any" as a type to enable every values
  */
-export const EMPTY_MAP = new Map() as Map<any, never> as ReadonlyMap<any, never>;
+export const EMPTY_MAP: ReadonlyMap<any, never> = new Map<any, never>();
 
-export const EMPTY_OBJECT = {};
+export const EMPTY_OBJECT: Readonly<{}> = {};

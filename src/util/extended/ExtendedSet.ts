@@ -61,9 +61,17 @@ export class ExtendedSet<T, LENGTH extends number = number, >
      * @private
      */
     private __add(...values: readonly T[]): this {
+        const oldLength = this.length;
+
         values.forEach(value => this._set.add(value));
-        this.__array.push(...values);
-        this.forEach((value, index,) => this[index] = value);
+        this.#indexMapReference = [...new Set([...this.__array, ...values,])];
+
+        this.forEach((value, index,) => {
+            if (index > oldLength)
+                Reflect.deleteProperty(this, index,);
+            else
+                this[index] = value;
+        });
         return this;
     }
 
@@ -102,10 +110,11 @@ export class ExtendedSet<T, LENGTH extends number = number, >
         values.forEach(value => everyValuesHasBeenDeleted = this._set.delete(value));
         this.#indexMapReference = this.__array.filter(value => !values.includes(value));
 
-        this.forEach((value, index,) => {
+        values.forEach((value, index,) => {
             if (index > oldLength)
                 Reflect.deleteProperty(this, index,);
-            this[index] = value;
+            else
+                this[index] = value;
         });
         return everyValuesHasBeenDeleted;
     }
