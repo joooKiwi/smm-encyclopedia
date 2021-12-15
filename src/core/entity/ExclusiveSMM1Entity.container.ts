@@ -31,7 +31,7 @@ export class ExclusiveSMM1EntityContainer
         property = super._testProperty(property);
 
         assert(property.isInSuperMarioMaker1, 'The property isInSMM1 should always be set to true for a SMM1 exclusive property.',);
-        assert(!property.isInSuperMarioMaker1, 'The property isInSMM2 should always be set to false for a SMM2 exclusive property.',);
+        assert(!property.isInSuperMarioMaker2, 'The property isInSMM2 should always be set to false for a SMM1 exclusive property.',);
 
         assert(property.isInSuperMarioBrosStyle && !property.isInSuperMarioBros3Style && !property.isInSuperMarioWorldStyle
             && !property.isInNewSuperMarioBrosUStyle && property.isInSuperMario3DWorldStyle !== true, 'The possible SMM1 entity can only be in the SMB style',);

@@ -29,7 +29,7 @@ export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategor
         assert(property.isInGeneralLimitWhilePlaying != null, 'The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.',);
         assert(property.isInGlobalGeneralLimitWhilePlaying != null, 'The property isInGlobalGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.',);
         assert(property.isInPowerUpLimitWhilePlaying != null, 'The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.',);
-        assert(property.isInProjectileLimitWhilePlaying != null && property.isInProjectileLimitWhilePlayingUnknown, 'The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.',);
+        assert(property.isInProjectileLimitWhilePlayingUnknown || property.isInProjectileLimitWhilePlaying != null, 'The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.',);
 
         return property;
     }
