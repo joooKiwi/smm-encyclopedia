@@ -1,6 +1,6 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../theme/Themes.types';
-import type {Night, VariantEditorImage_RegularGameStyle}                                                                                                                            from './EditorImage.types';
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
+import type {EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../theme/Themes.types';
+import type {Night, VariantEditorImage_RegularGameStyle}                                                                                                                                                                                 from './EditorImage.types';
+import type {StaticReference}                                                                                                                                                                                                            from '../../../util/enum/Enum.types';
 
 import {Enum}                     from '../../../util/enum/Enum';
 import {Themes as OriginalThemes} from '../../theme/Themes';
@@ -26,6 +26,9 @@ export class Themes
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
+
+    static #COURSES?: EnumArray_OnlyCourseTheme<Themes>;
+    static #WORLDS?: EnumArray_OnlyWorldTheme<Themes>;
 
     readonly #parent;
     readonly #text: | VariantEditorImage_RegularGameStyle | null;
@@ -72,6 +75,14 @@ export class Themes
         if (text == null)
             return '';
         return isNightTheme ? `${name}_${text}_night` : `${name}_${text}`;
+    }
+
+    public static get courseThemes(): EnumArray_OnlyCourseTheme<Themes> {
+        return this.#COURSES ??= OriginalThemes.courseThemes.map(theme => this.getValue(theme)) as unknown as EnumArray_OnlyCourseTheme<Themes>;
+    }
+
+    public static get worldThemes(): EnumArray_OnlyWorldTheme<Themes> {
+        return this.#WORLDS ??= OriginalThemes.worldThemes.map(theme => this.getValue(theme)) as unknown as EnumArray_OnlyWorldTheme<Themes>;
     }
 
     //endregion -------------------- Methods --------------------
