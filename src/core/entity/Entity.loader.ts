@@ -15,6 +15,7 @@ import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushro
 import type {PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './Entities.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../entityCategory/EntityCategories.types';
 import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../entityLimit/EntityLimits.types';
+import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../instrument/loader.types';
 
 import {AbstractTemplateBuilder}      from '../_template/AbstractTemplate.builder';
 import {assert}                       from '../../util/utilitiesMethods';
@@ -85,6 +86,7 @@ enum Headers {
 
     isGlobalGroundOrGlobal,
 
+    instrument,
     canMakeASoundOutOfAMusicBlock,
 
     //endregion -------------------- Specific properties --------------------
@@ -234,6 +236,7 @@ type ExclusivePropertiesArray2 = [
 
     isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal,
 
+    instrument: PossibleInstrument,
     canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,
 
     //endregion -------------------- Specific properties --------------------
@@ -596,7 +599,10 @@ class TemplateBuilder
 
                 isGlobalGroundOrGlobal: this._getContent(this._headersIndexMap.isGlobalGroundOrGlobal),
 
-                canMakeASoundOutOfAMusicBlock: this._getContent(this._headersIndexMap.canMakeASoundOutOfAMusicBlock),
+                sound: {
+                    instrument: this._getContent(this._headersIndexMap.instrument),
+                    canMakeASoundOutOfAMusicBlock: this._getContent(this._headersIndexMap.canMakeASoundOutOfAMusicBlock),
+                },
 
                 //endregion ---------- Specific properties ----------
                 //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------

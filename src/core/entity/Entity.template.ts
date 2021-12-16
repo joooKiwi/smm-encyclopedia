@@ -8,6 +8,7 @@ import type {OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawn
 import type {NameTemplateWithOptionalLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../../lang/name/Name.template';
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../entityCategory/EntityCategories.types';
 import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../entityLimit/EntityLimits.types';
+import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../instrument/loader.types';
 import type {TemplateWithNameTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../_template/TemplateWithName.template';
 
 /**
@@ -74,7 +75,10 @@ export interface EntityTemplate
 
         isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal
 
-        canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock
+        sound: {
+            instrument: PossibleInstrument
+            canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock
+        }
 
         //endregion ---------- Specific properties ----------
         //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
@@ -133,9 +137,9 @@ export interface EntityTemplate
         }
 
         reference: EntityReferencesTemplate
-    }
+    };
 
-    categoryInTheEditor: | PossibleEnglishName_Category | null
+    categoryInTheEditor: | PossibleEnglishName_Category | null;
 
 }
 
