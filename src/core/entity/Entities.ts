@@ -5,12 +5,12 @@ import type {Image}                                                             
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {ObjectHolder}                                                                                                                                                                               from '../../util/holder/ObjectHolder';
-import type {SimpleImageName}                                                                                                                                                                            from './images/EditorImage.types';
+import type {SimpleImageName}                                                                                                                                                                            from './images/editor/EditorImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
-import {EditorImageBuilder}           from './images/EditorImageBuilder';
-import {EmptyEditorImage}             from './images/EmptyEditorImage';
+import {EditorImageBuilder}           from './images/editor/EditorImageBuilder';
+import {EmptyEditorImage}             from './images/editor/EmptyEditorImage';
 import {Enum}                         from '../../util/enum/Enum';
 import {GameStyles}                   from '../gameStyle/GameStyles';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';

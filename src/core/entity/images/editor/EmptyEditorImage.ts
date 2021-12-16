@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptyEditorImageName} from '../../../util/ClassWithNullObjectPattern';
-import type {Image}                                            from './Image';
+import type {ClassWithNullObjectPattern, EmptyEditorImageName} from '../../../../util/ClassWithNullObjectPattern';
+import type {Image}                                            from '../Image';
 
-import {EMPTY_ARRAY} from '../../../util/emptyVariables';
+import {EMPTY_ARRAY} from '../../../../util/emptyVariables';
 
 /**
  * @singleton

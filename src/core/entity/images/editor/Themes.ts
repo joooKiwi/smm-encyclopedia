@@ -1,9 +1,9 @@
-import type {EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../theme/Themes.types';
+import type {EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../../theme/Themes.types';
 import type {Night, VariantEditorImage_RegularGameStyle}                                                                                                                                                                                 from './EditorImage.types';
-import type {StaticReference}                                                                                                                                                                                                            from '../../../util/enum/Enum.types';
+import type {StaticReference}                                                                                                                                                                                                            from '../../../../util/enum/Enum.types';
 
-import {Enum}                     from '../../../util/enum/Enum';
-import {Themes as OriginalThemes} from '../../theme/Themes';
+import {Enum}                     from '../../../../util/enum/Enum';
+import {Themes as OriginalThemes} from '../../../theme/Themes';
 
 export class Themes
     extends OriginalThemes {

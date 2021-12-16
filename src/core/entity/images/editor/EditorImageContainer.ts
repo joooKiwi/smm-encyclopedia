@@ -1,8 +1,8 @@
-import type {Image} from './Image';
+import type {Image} from '../Image';
 
-import {GameStyles} from '../../gameStyle/GameStyles';
-import {Themes}     from '../../theme/Themes';
-import {Times}      from '../../time/Times';
+import {GameStyles} from '../../../gameStyle/GameStyles';
+import {Themes}     from '../../../theme/Themes';
+import {Times}      from '../../../time/Times';
 
 export class EditorImageContainer
     implements Image {

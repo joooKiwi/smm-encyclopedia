@@ -1,16 +1,16 @@
-import type {Builder}                                                                          from '../../../util/Builder';
-import type {Image}                                                                            from './Image';
-import type {ExtendedList}                                                                     from '../../../util/extended/ExtendedList';
+import type {Builder}                                                                          from '../../../../util/Builder';
+import type {Image}                                                                            from '../Image';
+import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList';
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
 
 import {EditorImageContainer}             from './EditorImageContainer';
-import {EMPTY_MAP}                        from '../../../util/emptyVariables';
-import {ExtendedSet}                      from '../../../util/extended/ExtendedSet';
-import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
+import {EMPTY_MAP}                        from '../../../../util/emptyVariables';
+import {ExtendedSet}                      from '../../../../util/extended/ExtendedSet';
+import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
 import {GameStyles}                       from './GameStyles';
-import {Themes as OriginalThemes}         from '../../theme/Themes';
+import {Themes as OriginalThemes}         from '../../../theme/Themes';
 import {Themes}                           from './Themes';
-import {Times}                            from '../../time/Times';
+import {Times}                            from '../../../time/Times';
 
 export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
     implements Builder<Image> {

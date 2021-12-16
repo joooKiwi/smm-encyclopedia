@@ -1,4 +1,4 @@
-import {PossibleEnglishName} from '../Entities.types';
+import type {PossibleEnglishName} from '../../Entities.types';
 
 interface ImageNameMap {
 
