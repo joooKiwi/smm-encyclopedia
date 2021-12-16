@@ -1,7 +1,7 @@
 import type {Builder}                                                                                                                                                                                    from '../../util/Builder';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
-import type {Image}                                                                                                                                                                                      from './images/Image';
+import type {EditorImage}                                                                                                                                                                                from './images/editor/EditorImage';
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {ObjectHolder}                                                                                                                                                                               from '../../util/holder/ObjectHolder';
@@ -427,8 +427,8 @@ export class Entities
 
     #reference?: Entity;
     readonly #englishNameContainer;
-    readonly #editorImageBuilder: | Builder<Image> | null;
-    readonly #editorImageName: ObjectHolder<Image>;
+    readonly #editorImageBuilder: | Builder<EditorImage> | null;
+    readonly #editorImage: ObjectHolder<EditorImage>;
 
     //endregion -------------------- Attributes --------------------
 
@@ -436,16 +436,16 @@ export class Entities
     private constructor(englishName: PossibleEnglishName, imageThatWillEventuallyBeUsed: null,)
     private constructor(englishName: PossibleEnglishName, image: SimpleImageName,)
     private constructor(englishName: PossibleEnglishName, editorImageBuilder: EditorImageBuilder,)
-    private constructor(englishName: PossibleEnglishName, editorImageBuilder: | Builder<Image> | null,)
-    private constructor(englishName: PossibleEnglishName, image: | Builder<Image> | SimpleImageName | null = null,) {
+    private constructor(englishName: PossibleEnglishName, editorImageBuilder: | Builder<EditorImage> | null,)
+    private constructor(englishName: PossibleEnglishName, image: | Builder<EditorImage> | SimpleImageName | null = null,) {
         super();
         this.#englishNameContainer = new StringContainer(englishName);
         if (image == null) {
             this.#editorImageBuilder = null;
-            this.#editorImageName = new ObjectHolderContainer(EmptyEditorImage.get);
+            this.#editorImage = new ObjectHolderContainer(EmptyEditorImage.get);
         } else {
             this.#editorImageBuilder = new GenericSingleInstanceBuilder(typeof image == 'string' ? new EditorImageBuilder(image).setAllGameStyles() : image);
-            this.#editorImageName = new DelayedObjectHolderContainer(() => this._editorImageBuilder!.build());
+            this.#editorImage = new DelayedObjectHolderContainer(() => this._editorImageBuilder!.build());
         }
     }
 
@@ -472,12 +472,12 @@ export class Entities
         return this.#englishNameContainer.getInHtml;
     }
 
-    protected get _editorImageBuilder(): | Builder<Image> | null {
+    protected get _editorImageBuilder(): | Builder<EditorImage> | null {
         return this.#editorImageBuilder;
     }
 
-    public get editorImageName(): Image {
-        return this.#editorImageName.get;
+    public get editorImage(): EditorImage {
+        return this.#editorImage.get;
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -1,10 +1,11 @@
-import type {Builder}                     from '../../../util/Builder';
-import type {Image}                       from './Image';
-import {ExtendedList}                     from '../../../util/extended/ExtendedList';
-import {GameStyles}                       from './GameStyles';
-import {ExtendedSet}                      from '../../../util/extended/ExtendedSet';
-import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
-import {PossibleGameStyle}                from './GameStyles.types';
+import type {Builder}                          from '../../../util/Builder';
+import type {ExtendedList}                     from '../../../util/extended/ExtendedList';
+import type {Image}                            from './Image';
+import type {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
+import type {PossibleGameStyle}                from './GameStyles.types';
+
+import {ExtendedSet} from '../../../util/extended/ExtendedSet';
+import {GameStyles}  from './GameStyles';
 
 export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT extends number = number, >
     implements Builder<Image> {
@@ -12,7 +13,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     //region -------------------- Attributes --------------------
 
     static readonly #EMPTY_SET: ExtendedList<never> = new ExtendedSet();
-    static readonly #GAME_STYLE_ARRAY = OriginalGameStyles.values;
+    static readonly #GAME_STYLE_ARRAY = GameStyles.values;
 
     readonly #simpleImageName;
     readonly #imageNumber;
@@ -70,8 +71,12 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[] = [],): this {
         if (!(gameStyles instanceof Array))
             return this._setGameStyle([gameStyles], notGameStyles,);
+
+        const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
+        const _notGameStyles = notGameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
+
         return this._clearGameStyle()
-            ._addGameStyle(gameStyles.filter(gameStyle => !notGameStyles.includes(gameStyle)),);
+            ._addGameStyle(_gameStyles.filter(gameStyle => !_notGameStyles.includes(gameStyle)),);
     }
 
 
@@ -93,11 +98,11 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     }
 
     public setOnlySM3DW(): this {
-        return this.setGameStyle(OriginalGameStyles.SUPER_MARIO_3D_WORLD,);
+        return this.setGameStyle(GameStyles.SUPER_MARIO_3D_WORLD,);
     }
 
     public setNotSM3DW(): this {
-        return this.setNotGameStyle(OriginalGameStyles.SUPER_MARIO_3D_WORLD,);
+        return this.setNotGameStyle(GameStyles.SUPER_MARIO_3D_WORLD,);
     }
 
     //endregion -------------------- Game Style --------------------

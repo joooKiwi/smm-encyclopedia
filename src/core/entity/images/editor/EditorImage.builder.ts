@@ -1,18 +1,18 @@
 import type {Builder}                                                                          from '../../../../util/Builder';
 import type {EditorImage}                                                                      from './EditorImage';
 import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList';
+import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles';
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
 import type {PossibleGameStyle}                                                                from '../GameStyles.types';
+import type {Themes as OriginalThemes}                                                         from '../../../theme/Themes';
 
-import {EditorImageContainer}             from './EditorImage.container';
-import {EMPTY_MAP}                        from '../../../../util/emptyVariables';
-import {ExtendedSet}                      from '../../../../util/extended/ExtendedSet';
-import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
-import {GameStyles}                       from '../GameStyles';
-import {Themes as OriginalThemes}         from '../../../theme/Themes';
-import {Themes}                           from './Themes';
-import {Times}                            from '../../../time/Times';
-import {AbstractImageBuilder}             from '../AbstractImage.builder';
+import {AbstractImageBuilder} from '../AbstractImage.builder';
+import {EditorImageContainer} from './EditorImage.container';
+import {EMPTY_MAP}            from '../../../../util/emptyVariables';
+import {ExtendedSet}          from '../../../../util/extended/ExtendedSet';
+import {GameStyles}           from '../GameStyles';
+import {Themes}               from './Themes';
+import {Times}                from '../../../time/Times';
 
 export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
     extends AbstractImageBuilder<NAME, PossibleAmountOfImages>
@@ -176,8 +176,12 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[] = [],): this {
         if (!(gameStyles instanceof Array))
             return this._setGameStyle([gameStyles], notGameStyles,);
+
+        const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
+        const _notGameStyles = notGameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
+
         return this._clearGameStyle()
-            ._add(Times.values, gameStyles.filter(gameStyle => notGameStyles.includes(gameStyle)), [],);
+            ._add(Times.values, _gameStyles.filter(gameStyle => !_notGameStyles.includes(gameStyle)), [],);
     }
 
     //endregion -------------------- Game Style --------------------
@@ -217,7 +221,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     public setNotTheme(gameStyle: OriginalGameStyles,): never
     public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this
     public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this {
-        return this.__setThemes(Times.DAY, gameStyle, OriginalThemes.courseThemes, themes,);
+        return this.__setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
     }
 
 
@@ -230,7 +234,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     public setNotNightTheme(gameStyle: OriginalGameStyles,): never
     public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this
     public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this {
-        return this.__setThemes(Times.NIGHT, gameStyle, OriginalThemes.courseThemes, themes,);
+        return this.__setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
     }
 
     //endregion -------------------- Theme --------------------
@@ -275,7 +279,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
             return this.__setOverrideImages(theme_or_number, gameStyle,);
 
         if (number == null)
-            throw new TypeError(`The 3rd argument in ${this.setNumbers.name} cannot be null when the 2nd argument is a ${OriginalThemes.name}!`);
+            throw new TypeError(`The 3rd argument in ${this.setNumbers.name} cannot be null when the 2nd argument is a theme!`);
         return this.__setOverrideImages(number, gameStyle, theme_or_number,);
     }
 
@@ -286,120 +290,120 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     public setAsGround(): this {
         return this
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.AIRSHIP,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.UNDERWATER, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.SNOW, OriginalThemes.AIRSHIP,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_3D_WORLD, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.AIRSHIP,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW, Themes.AIRSHIP, Themes.CASTLE,)
+            .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER, Themes.SNOW,)
+            .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW, Themes.AIRSHIP,)
+            .setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,);
     }
 
     public setAsPipe(): this {
         return this.setAmount(4)
             .setAllGameStyles()
-            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,);
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
     }
 
     public setAsSemisolidPlatform(): this {
         return this
             .setAmount(3)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW, OriginalThemes.AIRSHIP,)
-            .setNumbers(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.AIRSHIP, 2,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.UNDERGROUND, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_3D_WORLD, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNumbers(OriginalGameStyles.SUPER_MARIO_3D_WORLD, 1,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW, Themes.AIRSHIP,)
+            .setNumbers(GameStyles.SUPER_MARIO_BROS, Themes.AIRSHIP, 2,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.SNOW,)
+            .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNumbers(GameStyles.SUPER_MARIO_3D_WORLD, 1,);
     }
 
     public setAsMushroomPlatform(): this {
         return this
             .setAmount(3)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.AIRSHIP,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.AIRSHIP,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.AIRSHIP,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.AIRSHIP,)
-            .setNightTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.SNOW,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
+            .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.SNOW,)
+            .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
+            .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW,);
     }
 
     public setAsBridge(): this {
         return this
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.GROUND, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.FOREST, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.SNOW,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.GROUND, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST,)
+            .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.SNOW,)
+            .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.SNOW, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW,);
     }
 
     public setAsBrickBlock(): this {
         return this
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERGROUND, OriginalThemes.SNOW, OriginalThemes.GHOST_HOUSE, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.SNOW, Themes.GHOST_HOUSE, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
     }
 
     public setAsHardBlock(): this {
         return this
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERGROUND, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.GHOST_HOUSE, OriginalThemes.AIRSHIP,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.AIRSHIP,)
-            .setTheme(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, OriginalThemes.UNDERGROUND, OriginalThemes.UNDERWATER, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.CASTLE,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.SNOW, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE, Themes.AIRSHIP,)
+            .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.AIRSHIP,)
+            .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.CASTLE,);
     }
 
     public setAsQuestionMarkBlock(): this {
         return this
             .setAllGameStyles()
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,);
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
     }
 
     public setAsDonutBlock(): this {
         return this
             .setAllGameStyles()
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,);
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
     }
 
     public setAsCloudBlock(): this {
         return this
             .setAllGameStyles()
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERWATER,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.UNDERWATER,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.SNOW,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_WORLD, OriginalThemes.UNDERWATER,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+            .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,);
     }
 
     public setAsRegularCheepCheep(): this {
         return this
             .setAmount(2)
             .setAllGameStyles()
-            .setNumbers(OriginalGameStyles.SUPER_MARIO_WORLD, 2,)
-            .setNumbers(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U, 2,);
+            .setNumbers(GameStyles.SUPER_MARIO_WORLD, 2,)
+            .setNumbers(GameStyles.NEW_SUPER_MARIO_BROS_U, 2,);
     }
 
     public setAsDifferentInSMBAndSMB3(): this {
         return this
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.UNDERGROUND, OriginalThemes.CASTLE,)
-            .setTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.UNDERGROUND, OriginalThemes.CASTLE,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS, OriginalThemes.GROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.AIRSHIP,)
-            .setNightTheme(OriginalGameStyles.SUPER_MARIO_BROS_3, OriginalThemes.GROUND, OriginalThemes.UNDERWATER, OriginalThemes.DESERT, OriginalThemes.SNOW, OriginalThemes.SKY, OriginalThemes.FOREST, OriginalThemes.AIRSHIP,);
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.CASTLE,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.CASTLE,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.AIRSHIP,)
+            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.GROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.AIRSHIP,);
 
     }
 
@@ -420,7 +424,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param amountOfImages the amount of images
      * @protected
      */
-    protected _getAmountBasedOnValue(time: Times, gameStyle: GameStyles, theme: Themes, amountOfImages: PossibleAmountOfImages): readonly ImageNumber[]
+    protected _getAmountBasedOnValue(time: Times, gameStyle: GameStyles, theme: Themes, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[]
     /**
      * Return an array based on the amount of images received.
      * But it can be overridden by {@link _overrideImages} if there is one.
@@ -432,7 +436,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @protected
      */
     protected _getAmountBasedOnValue(time: null, gameStyle: GameStyles, theme: null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[]
-    protected _getAmountBasedOnValue(time: | Times | null, gameStyle: GameStyles, theme: | Themes | null, amountOfImages: PossibleAmountOfImages): readonly ImageNumber[] {
+    protected _getAmountBasedOnValue(time: | Times | null, gameStyle: GameStyles, theme: | Themes | null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {
         if (time == null || theme == null) {
             const timeIterator = Times.values.values();
             let nextTime = timeIterator.next();
@@ -490,7 +494,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[]): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<OriginalThemes, readonly string[]>>> {
         const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<OriginalThemes, readonly string[]>>>();
 
-        console.log(`-------------------- new map on "${this.simpleImageName}" (start) --------------------`);
         this._selectedMap.forEach((timeMap, time,) => {
             const isNightTheme = time === Times.NIGHT;
 
@@ -519,7 +522,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                 }
             );
         });
-        console.log(`-------------------- new map on "${this.simpleImageName}" (end) --------------------`);
 
         return returnedMap;
     }
