@@ -1,36 +1,34 @@
 import type {Builder}                                                                          from '../../../../util/Builder';
-import type {Image}                                                                            from '../Image';
+import type {EditorImage}                                                                      from './EditorImage';
 import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList';
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
+import type {PossibleGameStyle}                                                                from '../GameStyles.types';
 
-import {EditorImageContainer}             from './EditorImageContainer';
+import {EditorImageContainer}             from './EditorImage.container';
 import {EMPTY_MAP}                        from '../../../../util/emptyVariables';
 import {ExtendedSet}                      from '../../../../util/extended/ExtendedSet';
 import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
-import {GameStyles}                       from './GameStyles';
+import {GameStyles}                       from '../GameStyles';
 import {Themes as OriginalThemes}         from '../../../theme/Themes';
 import {Themes}                           from './Themes';
 import {Times}                            from '../../../time/Times';
+import {AbstractImageBuilder}             from '../AbstractImage.builder';
 
 export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
-    implements Builder<Image> {
+    extends AbstractImageBuilder<NAME, PossibleAmountOfImages>
+    implements Builder<EditorImage> {
 
     //region -------------------- Attributes --------------------
 
     static readonly #SIMPLE_POWER_UP_ENDING: VariantEditorImage_PowerUp = 'Uni';
     static readonly #POWER_UP_ENDING: `${VariantEditorImage_PowerUp}_00` = `${this.#SIMPLE_POWER_UP_ENDING}_00`;
-    static readonly #GAME_STYLE_ARRAY = OriginalGameStyles.values;
     static readonly #EMPTY_SET: ExtendedList<never> = new ExtendedSet();
-
-    readonly #simpleImageName;
-    readonly #imageNumber;
 
     #type: PossibleType;
     #defaultType: PossibleDefaultType;
 
     #times?: ExtendedList<Times>;
     #themes?: ExtendedList<Themes>;
-    #gameStyles?: ExtendedList<GameStyles>;
 
     readonly #selectedMap: Map<Times, Map<GameStyles, Map<Themes, boolean>>>;
     #overrideMap?: Map<Times, Map<GameStyles, Map<Themes, PossibleAmountOfImages>>>;
@@ -63,9 +61,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param imageNumber the image number (from 1 to 4)
      */
     public constructor(simpleImageName: NAME, imageNumber: PossibleAmountOfImages,)
-    public constructor(simpleImageName: NAME, imageNumber: | PossibleAmountOfImages | null = null,) {
-        this.#simpleImageName = simpleImageName;
-        this.#imageNumber = imageNumber;
+    public constructor(simpleImageName: NAME, imageNumber?: PossibleAmountOfImages,) {
+        super(simpleImageName, imageNumber,);
 
         if (imageNumber == null) {
             this.#type = 1;
@@ -84,14 +81,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
     //region -------------------- Getter & setter methods --------------------
-
-    public get simpleImageName(): NAME {
-        return this.#simpleImageName!;
-    }
-
-    public get imageNumber(): | PossibleAmountOfImages | null {
-        return this.#imageNumber;
-    }
 
     //region -------------------- Selected map --------------------
 
@@ -115,7 +104,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                     map.get(time)!.get(gameStyle)!.set(theme, true,))
             )
         );
-        return this.__addTimes(_times).__addGameStyle(_gameStyles).__addThemes(_themes);
+        return this.__addTimes(_times)._addGameStyle(_gameStyles).__addThemes(_themes);
     }
 
     //endregion -------------------- Selected map --------------------
@@ -180,58 +169,15 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //endregion -------------------- Time --------------------
     //region -------------------- Game Style --------------------
 
-    private get __gameStyles(): ExtendedList<GameStyles> {
-        return this.#gameStyles ??= new ExtendedSet();
-    }
-
-    protected get _gameStyles(): ExtendedList<GameStyles> {
-        return this.#gameStyles ?? EditorImageBuilder.#EMPTY_SET;
-    }
-
-    private __addGameStyle(gameStyle: PossibleGameStyle,): this
-    private __addGameStyle(gameStyles: readonly PossibleGameStyle[],): this
-    private __addGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[],): this {
+    protected _setGameStyle(gameStyle: PossibleGameStyle,): this
+    protected _setGameStyle(gameStyles: readonly PossibleGameStyle[],): this
+    protected _setGameStyle(gameStyles: readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[],): this
+    protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles?: readonly PossibleGameStyle[],): this
+    protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[] = [],): this {
         if (!(gameStyles instanceof Array))
-            return this.__addGameStyle([gameStyles]);
-        this.__gameStyles.add(...gameStyles.map(gameStyle => GameStyles.getValue(gameStyle)));
-
-        return this;
-    }
-
-    private __setGameStyle(gameStyle: PossibleGameStyle,): this
-    private __setGameStyle(gameStyles: readonly PossibleGameStyle[],): this
-    private __setGameStyle(gameStyles: readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[],): this
-    private __setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[] = [],): this {
-        if (!(gameStyles instanceof Array))
-            return this.__setGameStyle([gameStyles], notGameStyles,);
-        this.__gameStyles.clear();
-        return this._add(Times.values, gameStyles.filter(gameStyle => !notGameStyles.includes(gameStyle)), [],);
-    }
-
-
-    public setGameStyle(): never
-    public setGameStyle(...gameStyles: readonly OriginalGameStyles[]): this
-    public setGameStyle(...gameStyles: readonly OriginalGameStyles[]): this {
-        return this.__setGameStyle(gameStyles,);
-    }
-
-    public setNotGameStyle(): never
-    public setNotGameStyle(...gameStyles: readonly OriginalGameStyles[]): this
-    public setNotGameStyle(...gameStyles: readonly OriginalGameStyles[]): this {
-        return this.__setGameStyle(EditorImageBuilder.#GAME_STYLE_ARRAY, gameStyles,);
-    }
-
-
-    public setAllGameStyles(): this {
-        return this.__setGameStyle(EditorImageBuilder.#GAME_STYLE_ARRAY);
-    }
-
-    public setOnlySM3DW(): this {
-        return this.setGameStyle(OriginalGameStyles.SUPER_MARIO_3D_WORLD,);
-    }
-
-    public setNotSM3DW(): this {
-        return this.setNotGameStyle(OriginalGameStyles.SUPER_MARIO_3D_WORLD,);
+            return this._setGameStyle([gameStyles], notGameStyles,);
+        return this._clearGameStyle()
+            ._add(Times.values, gameStyles.filter(gameStyle => notGameStyles.includes(gameStyle)), [],);
     }
 
     //endregion -------------------- Game Style --------------------
@@ -595,11 +541,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): Image {
-        return new EditorImageContainer(
-            this._createImages(),
-            this._createDefaultImages(),
-        );
+    public build(): EditorImage {
+        return new EditorImageContainer(this._createImages(), this._createDefaultImages(),);
     }
 
 }
@@ -610,7 +553,6 @@ type PossibleType = | PossibleAmountOfImages | null;
 type PossibleDefaultType = | 'ground' | 'power-up' | PossibleAmountOfImages | null;
 
 type PossibleTime = Times;
-type PossibleGameStyle = | GameStyles | OriginalGameStyles;
 type PossibleTheme = | Themes | OriginalThemes;
 
 //endregion -------------------- Types --------------------
