@@ -1,6 +1,8 @@
 import type {Builder}                                                                                                                                                                                    from '../../util/Builder';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
 import type {EditorImage}                                                                                                                                                                                from './images/EditorImage';
+import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {ObjectHolder}                                                                                                                                                                               from '../../util/holder/ObjectHolder';
 import type {SimpleImageName}                                                                                                                                                                            from './images/EditorImage.types';
@@ -16,11 +18,15 @@ import {ObjectHolderContainer}        from '../../util/holder/ObjectHolderContai
 import {StringContainer}              from '../../util/StringContainer';
 import {Themes}                       from '../theme/Themes';
 
+/**
+ * @recursiveReference<{@link EntityLoader}>
+ */
 export class Entities
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName> {
+    implements ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithReference<Entity> {
 
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum instances --------------------
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
@@ -414,9 +420,12 @@ export class Entities
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    //endregion -------------------- Enum attributes --------------------
+    //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, Entity>;
+
+    #reference?: Entity;
     readonly #englishNameContainer;
     readonly #editorImageBuilder: | Builder<EditorImage> | null;
     readonly #editorImageName: ObjectHolder<EditorImage>;
@@ -424,7 +433,7 @@ export class Entities
     //endregion -------------------- Attributes --------------------
 
     private constructor(englishName: PossibleEnglishName,)
-    private constructor(englishName: PossibleEnglishName, imageThatWillEventuallyBeUsed:  null,)
+    private constructor(englishName: PossibleEnglishName, imageThatWillEventuallyBeUsed: null,)
     private constructor(englishName: PossibleEnglishName, image: SimpleImageName,)
     private constructor(englishName: PossibleEnglishName, editorImageBuilder: EditorImageBuilder,)
     private constructor(englishName: PossibleEnglishName, editorImageBuilder: | Builder<EditorImage> | null,)
@@ -441,6 +450,19 @@ export class Entities
     }
 
     //region -------------------- Getter methods --------------------
+
+    private static get __map() {
+        return this.#map ??= require('./Entity.loader').EntityLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
+    public get reference(): Entity {
+        return this.#reference ??= Entities.__map.get(this.englishName).entity;
+    }
+
 
     public get englishName(): PossibleEnglishName {
         return this.#englishNameContainer.get;
