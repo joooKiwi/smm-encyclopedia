@@ -1,11 +1,11 @@
-import type {EditorImage} from './EditorImage';
+import type {Image} from './Image';
 
 import {GameStyles} from '../../gameStyle/GameStyles';
 import {Themes}     from '../../theme/Themes';
 import {Times}      from '../../time/Times';
 
 export class EditorImageContainer
-    implements EditorImage {
+    implements Image {
 
     //region -------------------- Attributes --------------------
 

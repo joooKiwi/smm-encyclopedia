@@ -1,8 +1,7 @@
-import type {Builder}                                                             from '../../../util/Builder';
-import type {EditorImage}                                                         from './EditorImage';
-import type {ExtendedList}                                                        from '../../../util/extended/ExtendedList';
-import type {PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
-import {ImageNumber}                                                              from './EditorImage.types';
+import type {Builder}                                                                          from '../../../util/Builder';
+import type {Image}                                                                            from './Image';
+import type {ExtendedList}                                                                     from '../../../util/extended/ExtendedList';
+import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
 
 import {EditorImageContainer}             from './EditorImageContainer';
 import {EMPTY_MAP}                        from '../../../util/emptyVariables';
@@ -14,7 +13,7 @@ import {Themes}                           from './Themes';
 import {Times}                            from '../../time/Times';
 
 export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
-    implements Builder<EditorImage> {
+    implements Builder<Image> {
 
     //region -------------------- Attributes --------------------
 
@@ -40,7 +39,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     /**
      * <p>
-     *  Create a new {@link EditorImage} with every possible images
+     *  Create a new {@link Image} with every possible images
      *  associated to every {@link OriginalGameStyles Game style}.
      * </p>
      * <p>
@@ -58,7 +57,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      */
     public constructor(simpleImageName: NAME,)
     /**
-     * Create a new {@link EditorImage} with only 1 image per {@link OriginalGameStyles Game style}.
+     * Create a new {@link Image} with only 1 image per {@link OriginalGameStyles Game style}.
      *
      * @param simpleImageName the basic name
      * @param imageNumber the image number (from 1 to 4)
@@ -596,7 +595,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): EditorImage {
+    public build(): Image {
         return new EditorImageContainer(
             this._createImages(),
             this._createDefaultImages(),

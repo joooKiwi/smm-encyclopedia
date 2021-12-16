@@ -2,8 +2,7 @@ import type {GameStyles} from '../../gameStyle/GameStyles';
 import type {Themes}     from '../../theme/Themes';
 import type {Times}      from '../../time/Times';
 
-export interface EditorImage {
-
+export interface Image {
 
     get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
 
@@ -18,6 +17,5 @@ export interface EditorImage {
 
 
     get(expectEmpty: boolean, time: Times,): readonly string[]
-
 
 }

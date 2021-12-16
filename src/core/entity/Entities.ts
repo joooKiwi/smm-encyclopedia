@@ -1,7 +1,7 @@
 import type {Builder}                                                                                                                                                                                    from '../../util/Builder';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
-import type {EditorImage}                                                                                                                                                                                from './images/EditorImage';
+import type {Image}                                                                                                                                                                                      from './images/Image';
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {ObjectHolder}                                                                                                                                                                               from '../../util/holder/ObjectHolder';
@@ -427,8 +427,8 @@ export class Entities
 
     #reference?: Entity;
     readonly #englishNameContainer;
-    readonly #editorImageBuilder: | Builder<EditorImage> | null;
-    readonly #editorImageName: ObjectHolder<EditorImage>;
+    readonly #editorImageBuilder: | Builder<Image> | null;
+    readonly #editorImageName: ObjectHolder<Image>;
 
     //endregion -------------------- Attributes --------------------
 
@@ -436,8 +436,8 @@ export class Entities
     private constructor(englishName: PossibleEnglishName, imageThatWillEventuallyBeUsed: null,)
     private constructor(englishName: PossibleEnglishName, image: SimpleImageName,)
     private constructor(englishName: PossibleEnglishName, editorImageBuilder: EditorImageBuilder,)
-    private constructor(englishName: PossibleEnglishName, editorImageBuilder: | Builder<EditorImage> | null,)
-    private constructor(englishName: PossibleEnglishName, image: | Builder<EditorImage> | SimpleImageName | null = null,) {
+    private constructor(englishName: PossibleEnglishName, editorImageBuilder: | Builder<Image> | null,)
+    private constructor(englishName: PossibleEnglishName, image: | Builder<Image> | SimpleImageName | null = null,) {
         super();
         this.#englishNameContainer = new StringContainer(englishName);
         if (image == null) {
@@ -472,11 +472,11 @@ export class Entities
         return this.#englishNameContainer.getInHtml;
     }
 
-    protected get _editorImageBuilder(): | Builder<EditorImage> | null {
+    protected get _editorImageBuilder(): | Builder<Image> | null {
         return this.#editorImageBuilder;
     }
 
-    public get editorImageName(): EditorImage {
+    public get editorImageName(): Image {
         return this.#editorImageName.get;
     }
 
