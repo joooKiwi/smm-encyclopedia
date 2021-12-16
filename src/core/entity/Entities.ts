@@ -18,6 +18,9 @@ import {ObjectHolderContainer}        from '../../util/holder/ObjectHolderContai
 import {StringContainer}              from '../../util/StringContainer';
 import {Themes}                       from '../theme/Themes';
 
+const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
+const {UNDERGROUND, UNDERWATER, SNOW, DESERT, FOREST}                                                                                       = Themes;
+
 /**
  * @recursiveReference<{@link EntityLoader}>
  */
@@ -37,9 +40,9 @@ export class Entities
     public static readonly PIPE =                                          new Entities('Pipe',                                         new EditorImageBuilder('Dokan').setAsPipe(),);
     public static readonly CLEAR_PIPE =                                    new Entities('Clear Pipe',                                   new EditorImageBuilder('ToumeiDokan').setOnlySM3DW(),);
 
-    public static readonly SPIKE_TRAP =                                    new Entities('Spike Trap',                                   new EditorImageBuilder('Toge').setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,).setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,).setNotSM3DW(),);
-    public static readonly JELECTRO =                                      new Entities('Jelectro',                                     new EditorImageBuilder('Toge').hasNoDefaultImage().setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),);
-    public static readonly SEA_URCHIN =                                    new Entities('Sea Urchin',                                   new EditorImageBuilder('Toge').hasNoDefaultImage().setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),);
+    public static readonly SPIKE_TRAP =                                    new Entities('Spike Trap',                                   new EditorImageBuilder('Toge').setNightTheme(SMB, SNOW,).setNightTheme(SMB3, SNOW,).setNotSM3DW(),);
+    public static readonly JELECTRO =                                      new Entities('Jelectro',                                     new EditorImageBuilder('Toge').hasNoDefaultImage().setTheme(SMB3, UNDERWATER,),);
+    public static readonly SEA_URCHIN =                                    new Entities('Sea Urchin',                                   new EditorImageBuilder('Toge').hasNoDefaultImage().setTheme(SMW, UNDERWATER,),);
     public static readonly SPIKE_BLOCK =                                   new Entities('Spike Block',                                  new EditorImageBuilder('TogeBlock').setAmount(3).setOnlySM3DW(),);
 
     public static readonly MUSHROOM_PLATFORM =                             new Entities('Mushroom Platform',                            new EditorImageBuilder('GroundMushroom').setAsMushroomPlatform(),);
@@ -49,9 +52,9 @@ export class Entities
     //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
     //region -------------------- Block / Coin --------------------
 
-    public static readonly BRICK_BLOCK =                                   new Entities('Brick Block',                                  new EditorImageBuilder('RengaBlock').setAsBrickBlock().setNotGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly CRISTAL_BLOCK =                                 new Entities('Cristal Block',                                new EditorImageBuilder('RengaBlock').hasNoDefaultImage().setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.FOREST,),);
-    public static readonly ROTATING_BLOCK =                                new Entities('Rotating Block',                               new EditorImageBuilder('RengaBlock').setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
+    public static readonly BRICK_BLOCK =                                   new Entities('Brick Block',                                  new EditorImageBuilder('RengaBlock').setAsBrickBlock().setNotGameStyle(SMW,),);
+    public static readonly CRISTAL_BLOCK =                                 new Entities('Cristal Block',                                new EditorImageBuilder('RengaBlock').hasNoDefaultImage().setTheme(SM3DW, UNDERGROUND, FOREST,),);
+    public static readonly ROTATING_BLOCK =                                new Entities('Rotating Block',                               new EditorImageBuilder('RengaBlock').setGameStyle(SMW,),);
 
     public static readonly HARD_BLOCK =                                    new Entities('Hard Block',                                   new EditorImageBuilder('HardBlock').setAsHardBlock().setNotSM3DW(),);
     public static readonly ROCK_BLOCK =                                    new Entities('Rock Block',                                   new EditorImageBuilder('HardBlock').setOnlySM3DW(),);
@@ -62,8 +65,8 @@ export class Entities
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new Entities('! Block',                                      new EditorImageBuilder('BikkuriBlock').setOnlySM3DW(),);
 
-    public static readonly NOTE_BLOCK =                                    new Entities('Note Block',                                   new EditorImageBuilder('OnpuBlock', 1,).setNotSM3DW().setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,).setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
-    public static readonly MUSIC_BLOCK =                                   new Entities('Music Block',                                  new EditorImageBuilder('OnpuBlock', 2,).setNotSM3DW().setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,).setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
+    public static readonly NOTE_BLOCK =                                    new Entities('Note Block',                                   new EditorImageBuilder('OnpuBlock', 1,).setNotSM3DW().setNightTheme(SMB, SNOW,).setNightTheme(SMB3, SNOW,),);
+    public static readonly MUSIC_BLOCK =                                   new Entities('Music Block',                                  new EditorImageBuilder('OnpuBlock', 2,).setNotSM3DW().setNightTheme(SMB, SNOW,).setNightTheme(SMB3, SNOW,),);
 
     public static readonly DONUT_BLOCK =                                   new Entities('Donut Block',                                  new EditorImageBuilder('ChikuwaBlock').setAsDonutBlock(),);
 
@@ -76,7 +79,7 @@ export class Entities
 
     public static readonly BLINKING_BLOCK =                                new Entities('Blinking Block',                               new EditorImageBuilder('Chikachika').setAmount(2).setOnlySM3DW(),);
 
-    public static readonly ICE_BLOCK =                                     new Entities('Ice Block',                                    new EditorImageBuilder('IceBlock').setAllGameStyles().setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,),);
+    public static readonly ICE_BLOCK =                                     new Entities('Ice Block',                                    new EditorImageBuilder('IceBlock').setAllGameStyles().setNightTheme(SMB3, SNOW,),);
     public static readonly ICICLE =                                        new Entities('Icicle',                                       new EditorImageBuilder('Icicle').setAmount(2),);
 
     public static readonly COIN =                                          new Entities('Coin',                                         new EditorImageBuilder('Coin', 1,).setAllGameStyles(),);
@@ -94,7 +97,7 @@ export class Entities
     public static readonly FIRE_FLOWER =                                   new Entities('Fire Flower',                                  new EditorImageBuilder('FireFlower', 1,).setAsPowerUp().setAllGameStyles(),);
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new Entities('Fireball thrown by a player',                  );
 
-    public static readonly SUPERBALL_FLOWER =                              new Entities('Superball Flower',                             new EditorImageBuilder('FireFlower', 2,).setAsPowerUp().setGameStyle(GameStyles.SUPER_MARIO_BROS),);
+    public static readonly SUPERBALL_FLOWER =                              new Entities('Superball Flower',                             new EditorImageBuilder('FireFlower', 2,).setAsPowerUp().setGameStyle(SMB),);
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',                 );
 
     public static readonly MYSTERY_MUSHROOM =                              new Entities('Mystery Mushroom',);
@@ -104,21 +107,21 @@ export class Entities
     public static readonly BOMB_THROWN_BY_A_LINK =                         new Entities('Bomb thrown by a Link',                        );
     public static readonly ARROW_THROWN_BY_A_LINK =                        new Entities('Arrow thrown by a Link',                       );
 
-    public static readonly BIG_MUSHROOM =                                  new Entities('Big Mushroom',                                 new EditorImageBuilder('DekaKinoko').setAsPowerUp().setGameStyle(GameStyles.SUPER_MARIO_BROS,),);
+    public static readonly BIG_MUSHROOM =                                  new Entities('Big Mushroom',                                 new EditorImageBuilder('DekaKinoko').setAsPowerUp().setGameStyle(SMB,),);
     public static readonly BIG_MUSHROOM_CLASSIC =                          new Entities('Big Mushroom (classic)',);
     public static readonly BIG_MUSHROOM_MODERN =                           new Entities('Big Mushroom (modern)',);
 
     public static readonly SMB2_MUSHROOM =                                 new Entities('SMB2 Mushroom',                                null,);
 
-    public static readonly SUPER_LEAF =                                    new Entities('Super Leaf',                                   new EditorImageBuilder('SuperKonoha').setAsPowerUp().setGameStyle(GameStyles.SUPER_MARIO_BROS_3,),);
+    public static readonly SUPER_LEAF =                                    new Entities('Super Leaf',                                   new EditorImageBuilder('SuperKonoha').setAsPowerUp().setGameStyle(SMB3,),);
 
     public static readonly FROG_SUIT =                                     new Entities('Frog Suit',                                    null,);
 
-    public static readonly CAPE_FEATHER =                                  new Entities('Cape Feather',                                 new EditorImageBuilder('MantleWing').setAsPowerUp().setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
+    public static readonly CAPE_FEATHER =                                  new Entities('Cape Feather',                                 new EditorImageBuilder('MantleWing').setAsPowerUp().setGameStyle(SMW,),);
 
     public static readonly POWER_BALLOON =                                 new Entities('Power Balloon',                                null,);
 
-    public static readonly PROPELLER_MUSHROOM =                            new Entities('Propeller Mushroom',                           new EditorImageBuilder('PropellerKinoko').setAsPowerUp().setGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),);
+    public static readonly PROPELLER_MUSHROOM =                            new Entities('Propeller Mushroom',                           new EditorImageBuilder('PropellerKinoko').setAsPowerUp().setGameStyle(NSMBU,),);
 
     public static readonly SUPER_ACORN =                                   new Entities('Super Acorn',                                  null,);
 
@@ -146,27 +149,27 @@ export class Entities
     public static readonly ONE_UP_MUSHROOM =                               new Entities('1-Up Mushroom',                                '1upKinoko',);
     public static readonly ROTTEN_MUSHROOM =                               new Entities('Rotten Mushroom',                              new EditorImageBuilder('DokuKinoko').setNotSM3DW(),);
 
-    public static readonly SHOE_GOOMBA =                                   new Entities('Shoe Goomba',                                  new EditorImageBuilder('KutsuKuribo', 1,).setGameStyle(GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,),);
+    public static readonly SHOE_GOOMBA =                                   new Entities('Shoe Goomba',                                  new EditorImageBuilder('KutsuKuribo', 1,).setGameStyle(SMB, SMB3,),);
     public static readonly SHOE =                                          new Entities('Shoe',                                         );
-    public static readonly STILETTO_GOOMBA =                               new Entities('Stiletto Goomba',                              new EditorImageBuilder('KutsuKuribo', 2,).setGameStyle(GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,),);
+    public static readonly STILETTO_GOOMBA =                               new Entities('Stiletto Goomba',                              new EditorImageBuilder('KutsuKuribo', 2,).setGameStyle(SMB, SMB3,),);
     public static readonly STILETTO =                                      new Entities('Stiletto',                                     );
-    public static readonly YOSHI_EGG =                                     new Entities('Yoshi\'s Egg',                                 new EditorImageBuilder('YosshiEgg').setGameStyle(GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,),);
+    public static readonly YOSHI_EGG =                                     new Entities('Yoshi\'s Egg',                                 new EditorImageBuilder('YosshiEgg').setGameStyle(SMW, NSMBU,),);
     public static readonly YOSHI =                                         new Entities('Yoshi',                                        );
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',                       );
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',                     );
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',                       );
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',                     );
-    public static readonly RED_YOSHI_EGG =                                 new Entities('Red Yoshi\'s Egg',                             new EditorImageBuilder('YosshiEggRed').setGameStyle(GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,),);
+    public static readonly RED_YOSHI_EGG =                                 new Entities('Red Yoshi\'s Egg',                             new EditorImageBuilder('YosshiEggRed').setGameStyle(SMW, NSMBU,),);
     public static readonly RED_YOSHI =                                     new Entities('Red Yoshi',                                    );
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new Entities('Fire thrown by a Red Yoshi',                   );
 
     //endregion -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
     //region -------------------- General enemies --------------------
 
-    public static readonly GOOMBA =                                        new Entities('Goomba',                                       new EditorImageBuilder('Kuribo', 1,).setNotGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly GALOOMBA =                                      new Entities('Galoomba',                                     new EditorImageBuilder('Kuribo', 1,).setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly GOOMBRAT =                                      new Entities('Goombrat',                                     new EditorImageBuilder('Kuribo', 2,).setNotGameStyle(GameStyles.SUPER_MARIO_WORLD, GameStyles.SUPER_MARIO_3D_WORLD,),);
-    public static readonly GOOMBUD =                                       new Entities('Goombud',                                      new EditorImageBuilder('Kuribo', 2,).setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
+    public static readonly GOOMBA =                                        new Entities('Goomba',                                       new EditorImageBuilder('Kuribo', 1,).setNotGameStyle(SMW,),);
+    public static readonly GALOOMBA =                                      new Entities('Galoomba',                                     new EditorImageBuilder('Kuribo', 1,).setGameStyle(SMW,),);
+    public static readonly GOOMBRAT =                                      new Entities('Goombrat',                                     new EditorImageBuilder('Kuribo', 2,).setNotGameStyle(SMW, SM3DW,),);
+    public static readonly GOOMBUD =                                       new Entities('Goombud',                                      new EditorImageBuilder('Kuribo', 2,).setGameStyle(SMW,),);
 
     public static readonly KOOPA_TROOPA =                                  new Entities('Koopa Troopa',                                 new EditorImageBuilder('Nokonoko').setAmount(2).setAllGameStyles(),);
     public static readonly BEACH_KOOPA =                                   new Entities('Beach Koopa',);
@@ -201,8 +204,8 @@ export class Entities
     public static readonly STINGBY =                                       new Entities('Stingby',                                      new EditorImageBuilder('Hacchin', ).setOnlySM3DW(),);
 
     public static readonly CHEEP_CHEEP =                                   new Entities('Cheep Cheep',                                  new EditorImageBuilder('Pukupuku').setAsRegularCheepCheep(),);
-    public static readonly BLURPS =                                        new Entities('Blurps',                                       new EditorImageBuilder('Pukupuku',1,).setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly DEEP_CHEEP =                                    new Entities('Deep Cheep',                                   new EditorImageBuilder('Pukupuku',1,).setGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),);
+    public static readonly BLURPS =                                        new Entities('Blurps',                                       new EditorImageBuilder('Pukupuku',1,).setGameStyle(SMW,),);
+    public static readonly DEEP_CHEEP =                                    new Entities('Deep Cheep',                                   new EditorImageBuilder('Pukupuku',1,).setGameStyle(NSMBU,),);
     public static readonly FISH_BONE =                                     new Entities('Fish Bone',                                    'FishBone',);
 
     public static readonly BLOOPER =                                       new Entities('Blooper',                                      new EditorImageBuilder('Gesso',1,).setAllGameStyles(),);
@@ -214,8 +217,8 @@ export class Entities
     public static readonly WIGGLER =                                       new Entities('Wiggler',                                      new EditorImageBuilder('Hanachan', 1,).setNotSM3DW(),);
     public static readonly ANGRY_WIGGLER =                                 new Entities('Angry Wiggler',                                new EditorImageBuilder('Hanachan', 2,).setNotSM3DW(),);
 
-    public static readonly PIRANHA_PLANT =                                 new Entities('Piranha Plant',                                new EditorImageBuilder('Pakkun', 1,).setNotGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
-    public static readonly JUMPING_PIRANHA_PLANT =                         new Entities('Jumping Piranha Plant',                        new EditorImageBuilder('Pakkun', 1,).setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
+    public static readonly PIRANHA_PLANT =                                 new Entities('Piranha Plant',                                new EditorImageBuilder('Pakkun', 1,).setNotGameStyle(SMW,),);
+    public static readonly JUMPING_PIRANHA_PLANT =                         new Entities('Jumping Piranha Plant',                        new EditorImageBuilder('Pakkun', 1,).setGameStyle(SMW,),);
     public static readonly FIRE_PIRANHA_PLANT =                            new Entities('Fire Piranha Plant',                           new EditorImageBuilder('Pakkun', 2,).setAllGameStyles(),);
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new Entities('Fireball thrown by a Fire Piranha Plant',      );
     public static readonly MUNCHER =                                       new Entities('Muncher',                                      new EditorImageBuilder('BlackPakkun').setAsDifferentInSMBAndSMB3().setNotSM3DW(),);
@@ -295,10 +298,10 @@ export class Entities
 
     public static readonly SKEWER =                                        new Entities('Skewer',                                       new EditorImageBuilder('TogeKonbo').setAsDifferentInSMBAndSMB3().setNotSM3DW(),);
 
-    public static readonly KOOPA_CLOWN_CAR =                               new Entities('Koopa Clown Car',                              new EditorImageBuilder('KoopaClown', 1).setNotGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,),);
-    public static readonly JUNIOR_CLOWN_CAR =                              new Entities('Junior Clown Car',                             new EditorImageBuilder('KoopaClown', 1).setGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),);
-    public static readonly FIRE_KOOPA_CLOWN_CAR =                          new Entities('Fire Koopa Clown Car',                         new EditorImageBuilder('KoopaClown', 2).setNotGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,),);
-    public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new Entities('Fire Junior Clown Car',                        new EditorImageBuilder('KoopaClown', 2).setGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),);
+    public static readonly KOOPA_CLOWN_CAR =                               new Entities('Koopa Clown Car',                              new EditorImageBuilder('KoopaClown', 1).setNotGameStyle(NSMBU, SM3DW,),);
+    public static readonly JUNIOR_CLOWN_CAR =                              new Entities('Junior Clown Car',                             new EditorImageBuilder('KoopaClown', 1).setGameStyle(NSMBU,),);
+    public static readonly FIRE_KOOPA_CLOWN_CAR =                          new Entities('Fire Koopa Clown Car',                         new EditorImageBuilder('KoopaClown', 2).setNotGameStyle(NSMBU, SM3DW,),);
+    public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new Entities('Fire Junior Clown Car',                        new EditorImageBuilder('KoopaClown', 2).setGameStyle(NSMBU,),);
     public static readonly FIRE_THROWN_BY_A_FIRE_KOOPA_JUNIOR_CLOWN_CAR =  new Entities('Fire thrown by a Fire Koopa / Junior Clown Car',);
 
     public static readonly KOOPA_TROOPA_CAR =                              new Entities('Koopa Troopa Car',                             new EditorImageBuilder('KoopaCar').setOnlySM3DW(),);
@@ -369,7 +372,7 @@ export class Entities
     public static readonly TRACK_BLOCK =                                   new Entities('Track Block',                                  new EditorImageBuilder('OrbitBlock').setAmount(2).setOnlySM3DW(),);
 
     public static readonly VINE =                                          new Entities('Vine',                                         new EditorImageBuilder('TsutaBlock').setNotSM3DW(),);
-    public static readonly TREE =                                          new Entities('Tree',                                         new EditorImageBuilder('BellTree').setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.FOREST,),);
+    public static readonly TREE =                                          new Entities('Tree',                                         new EditorImageBuilder('BellTree').setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, FOREST,),);
 
     public static readonly ARROW_SIGN =                                    new Entities('Arrow Sign',                                   'Yajirushi',);
 
