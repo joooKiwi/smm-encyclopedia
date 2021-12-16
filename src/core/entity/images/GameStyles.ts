@@ -1,12 +1,12 @@
 import type {BasicGamePath, GameAcronym, GamePath}                                                                                                                                  from './GameStyles.types';
-import type {GameStyleProperty}                                                                                                                                                     from '../../properties/GameStyleProperty';
-import type {GameStyleReferences}                                                                                                                                                   from '../../properties/GameStyleReferences';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../../gameStyle/GameStyles.types';
-import type {StaticReference}                                                                                                                                                       from '../../../../util/enum/Enum.types';
-import type {PossibleOtherEntities}                                                                                                                                                 from '../../Entity';
+import type {GameStyleProperty}                                                                                                                                                     from '../properties/GameStyleProperty';
+import type {GameStyleReferences}                                                                                                                                                   from '../properties/GameStyleReferences';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../gameStyle/GameStyles.types';
+import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
+import type {PossibleOtherEntities}                                                                                                                                                 from '../Entity';
 
-import {Enum}                             from '../../../../util/enum/Enum';
-import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
+import {Enum}                             from '../../../util/enum/Enum';
+import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
 
 export class GameStyles
     extends OriginalGameStyles {

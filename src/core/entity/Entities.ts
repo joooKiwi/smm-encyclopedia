@@ -9,7 +9,7 @@ import type {SimpleImageName}                                                   
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
-import {EditorImageBuilder}           from './images/editor/EditorImageBuilder';
+import {EditorImageBuilder}           from './images/editor/EditorImage.builder';
 import {EmptyEditorImage}             from './images/editor/EmptyEditorImage';
 import {Enum}                         from '../../util/enum/Enum';
 import {GameStyles}                   from '../gameStyle/GameStyles';

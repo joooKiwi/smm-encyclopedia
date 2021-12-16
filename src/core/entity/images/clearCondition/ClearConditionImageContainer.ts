@@ -1,14 +1,23 @@
-import type {Times}      from '../../../time/Times';
 import type {GameStyles} from '../../../gameStyle/GameStyles';
-import type {Themes}     from '../../../theme/Themes';
 
-import {AbstractImageContainer} from '../AbstractImageContainer';
+import {ClearConditionImage} from './ClearConditionImage';
 
 export class ClearConditionImageContainer
-    extends AbstractImageContainer {
+    implements ClearConditionImage {
 
-    public constructor(map: ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly string[]>>>, defaultImages: ReadonlyMap<GameStyles, readonly string[]>,) {
-        super(map, defaultImages,);
+    //region -------------------- Attributes --------------------
+
+    static readonly #EMPTY_ARRAY = [];
+
+    readonly #map;
+
+    //endregion -------------------- Attributes --------------------
+
+    public constructor(map: ReadonlyMap<GameStyles, readonly string[]>,) {
+        this.#map = map;
     }
 
+    public get(gameStyle: GameStyles,): readonly string[] {
+        return this.#map.get(gameStyle) ?? ClearConditionImageContainer.#EMPTY_ARRAY;
+    }
 }
