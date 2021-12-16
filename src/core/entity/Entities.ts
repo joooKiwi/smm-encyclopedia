@@ -168,11 +168,11 @@ export class Entities
     public static readonly GOOMBRAT =                                      new Entities('Goombrat',                                     new EditorImageBuilder('Kuribo', 2,).setNotGameStyle(GameStyles.SUPER_MARIO_WORLD, GameStyles.SUPER_MARIO_3D_WORLD,),);
     public static readonly GOOMBUD =                                       new Entities('Goombud',                                      new EditorImageBuilder('Kuribo', 2,).setGameStyle(GameStyles.SUPER_MARIO_WORLD,),);
 
-    public static readonly KOOPA_TROOPA =                                  new Entities('Koopa Troopa',                                 new EditorImageBuilder('Nokonoko').setAmount(2),);
+    public static readonly KOOPA_TROOPA =                                  new Entities('Koopa Troopa',                                 new EditorImageBuilder('Nokonoko').setAmount(2).setAllGameStyles(),);
     public static readonly BEACH_KOOPA =                                   new Entities('Beach Koopa',);
     public static readonly KOOPA_SHELL =                                   new Entities('Koopa Shell',                                  );
 
-    public static readonly DRY_BONES =                                     new Entities('Dry Bones',                                    new EditorImageBuilder('Karon', 1,),);
+    public static readonly DRY_BONES =                                     new Entities('Dry Bones',                                    new EditorImageBuilder('Karon', 1,).setAllGameStyles(),);
     public static readonly PARABONES =                                     new Entities('Parabones',);
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new Entities('Bone thrown by a Dry Bones',                   );
     public static readonly DRY_BONES_SHELL =                               new Entities('Dry Bones Shell',                              new EditorImageBuilder('Karon', 2,).setNotSM3DW(),);
@@ -181,7 +181,7 @@ export class Entities
     public static readonly PARA_BEETLE =                                   new Entities('Para-Beetle',);
     public static readonly BUZZY_SHELL =                                   new Entities('Buzzy Shell',                                  new EditorImageBuilder('Met', 2,).setAsDifferentInSMBAndSMB3().setNotSM3DW(),);
 
-    public static readonly SPINY =                                         new Entities('Spiny',                                        new EditorImageBuilder('Togezo', 1),);
+    public static readonly SPINY =                                         new Entities('Spiny',                                        new EditorImageBuilder('Togezo', 1).setAllGameStyles(),);
     public static readonly WINGED_SPINY =                                  new Entities('Winged Spiny',);
     public static readonly WINGED_SPINY_PROJECTILE =                       new Entities('(Winged Spiny\'s projectile)',                 );
     public static readonly SPINY_EGG =                                     new Entities('Spiny Egg',);
@@ -205,7 +205,7 @@ export class Entities
     public static readonly DEEP_CHEEP =                                    new Entities('Deep Cheep',                                   new EditorImageBuilder('Pukupuku',1,).setGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),);
     public static readonly FISH_BONE =                                     new Entities('Fish Bone',                                    'FishBone',);
 
-    public static readonly BLOOPER =                                       new Entities('Blooper',                                      new EditorImageBuilder('Gesso',1,),);
+    public static readonly BLOOPER =                                       new Entities('Blooper',                                      new EditorImageBuilder('Gesso',1,).setAllGameStyles(),);
     public static readonly BLOOPER_NANNY =                                 new Entities('Blooper Nanny',                                new EditorImageBuilder('Gesso',2,).setNotSM3DW(),);
     public static readonly BABY_BLOOPER =                                  new Entities('Baby Blooper',);
 
@@ -232,7 +232,7 @@ export class Entities
     public static readonly LAKITU =                                        new Entities('Lakitu',                                       new EditorImageBuilder('Jugem', 1,).setNotSM3DW(),);
     public static readonly LAKITU_CLOUD =                                  new Entities('Lakitu\'s Cloud',                              new EditorImageBuilder('Jugem', 2,).setNotSM3DW(),);
 
-    public static readonly BOO =                                           new Entities('Boo',                                          new EditorImageBuilder('Teresa', 1,),);
+    public static readonly BOO =                                           new Entities('Boo',                                          new EditorImageBuilder('Teresa', 1,).setAllGameStyles(),);
     public static readonly STRETCH =                                       new Entities('Stretch',);
     public static readonly BOO_BUDDIES =                                   new Entities('Boo Buddies',                                  new EditorImageBuilder('Teresa', 2,).setNotSM3DW(),);
     public static readonly PEEPA =                                         new Entities('Peepa',                                        new EditorImageBuilder('Teresa', 2,).setOnlySM3DW(),);
