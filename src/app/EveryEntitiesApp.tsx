@@ -104,7 +104,7 @@ export default class EveryEntitiesApp
     //region -------------------- Methods --------------------
 
     private __createEditorImageComponent(index: number, gameStyle: GameStyles,) {
-        const editorImage = this.enum[index - 1].editorImageName;
+        const editorImage = this.enum[index - 1].editorImage;
         const times = Times.values;
         const themes = Themes.courseThemes;
 
