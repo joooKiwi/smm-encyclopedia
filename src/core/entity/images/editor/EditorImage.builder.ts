@@ -408,7 +408,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
                         if (!isSelected)
                             return;
-                        const images = callbackThatReturnNumbers(time, gameStyle, theme,).map(number => this._getImagePath(gameStyle, `${theme.getName('', isNightTheme,)}_0${number}`));
+                        const images = callbackThatReturnNumbers(time, gameStyle, theme,).map(number => this._getImagePath(gameStyle, `${theme.getGameName('', isNightTheme,)}_0${number}`));
                         if (images.length === 0)
                             return;
 

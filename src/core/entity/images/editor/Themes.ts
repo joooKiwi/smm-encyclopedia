@@ -51,14 +51,14 @@ export class Themes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getName(name: null, isNightTheme: any,): ''
-    public getName<N extends string = string, >(name: | N | null, isNightTheme: false,): | '' | `${N}_${NonNullable<this['gameName']>}`
-    public getName<N extends string = string, >(name: N, isNightTheme: false,): | '' | `${N}_${NonNullable<this['gameName']>}`
-    public getName<N extends string = string, >(name: | N | null, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['gameName']>>}`
-    public getName<N extends string = string, >(name: N, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['gameName']>>}`
-    public getName<N extends string = string, >(name: | N | null, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['gameName']>}` | `${N}_${Night<NonNullable<this['gameName']>>}`
-    public getName<N extends string = string, >(name: N, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['gameName']>}` | `${N}_${Night<NonNullable<this['gameName']>>}`
-    public getName(name: | string | null, isNightTheme: boolean,) {
+    public getGameName(name: null, isNightTheme: any,): ''
+    public getGameName<N extends string = string, >(name: | N | null, isNightTheme: false,): | '' | `${N}_${NonNullable<this['gameName']>}`
+    public getGameName<N extends string = string, >(name: N, isNightTheme: false,): | '' | `${N}_${NonNullable<this['gameName']>}`
+    public getGameName<N extends string = string, >(name: | N | null, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getGameName<N extends string = string, >(name: N, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getGameName<N extends string = string, >(name: | N | null, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['gameName']>}` | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getGameName<N extends string = string, >(name: N, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['gameName']>}` | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getGameName(name: | string | null, isNightTheme: boolean,) {
         if (name == null)
             return '';
         const text = this.gameName;
