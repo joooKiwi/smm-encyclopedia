@@ -43,7 +43,7 @@ export class GameStyles
     }
 
     public get gamePath_editor(): GamePath_Editor {
-        return this.#gamePath_editor ??= `/entities/${this.shortImagePath}/`;
+        return this.#gamePath_editor ??= `/entities/${this.shortImagePath}/Editor`;
     }
 
     public get gamePath_clearCondition(): GamePath_ClearCondition {
