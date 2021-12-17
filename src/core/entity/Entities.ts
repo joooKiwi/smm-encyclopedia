@@ -20,7 +20,7 @@ import {StringContainer}              from '../../util/StringContainer';
 import {Themes}                       from '../theme/Themes';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
-const {UNDERGROUND, UNDERWATER, SNOW, DESERT, FOREST} = Themes;
+const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
 
 /**
  * @recursiveReference<{@link EntityLoader}>
@@ -65,7 +65,7 @@ export class Entities
             return new EditorImageBuilder('Dokan',)
                 .setAmount(4)
                 .setAllGameStyles()
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
+                .setNightTheme(SMB3, SNOW,);
         }
 
     }('Pipe',);
@@ -121,14 +121,14 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('GroundMushroom',)
                 .setAmount(3)
-                .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
-                .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.SNOW,)
-                .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER, Themes.SNOW, Themes.AIRSHIP,)
-                .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW,);
+                .setTheme(SMB, UNDERWATER, SNOW, AIRSHIP,)
+                .setNightTheme(SMB, SNOW,)
+                .setTheme(SMB3, UNDERWATER, SNOW, AIRSHIP,)
+                .setNightTheme(SMB3, SNOW,)
+                .setTheme(SMW, UNDERWATER, SNOW, AIRSHIP,)
+                .setNightTheme(SMW, SNOW,)
+                .setTheme(NSMBU, UNDERWATER, SNOW, AIRSHIP,)
+                .setNightTheme(NSMBU, SNOW,);
         }
 
     }('Mushroom Platform',);
@@ -137,17 +137,17 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('GroundBox',)
                 .setAmount(3)
-                .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW, Themes.AIRSHIP,)
-                .setNumbers(GameStyles.SUPER_MARIO_BROS, Themes.AIRSHIP, 2,)
-                .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.SNOW,)
-                .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNumbers(GameStyles.SUPER_MARIO_3D_WORLD, 1,);
+                .setTheme(SMB, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(SMB, SNOW, AIRSHIP,)
+                .setNumbers(SMB, AIRSHIP, 2,)
+                .setTheme(SMB3, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(SMB3, SNOW,)
+                .setTheme(SMW, UNDERGROUND, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(SMW, SNOW,)
+                .setTheme(NSMBU, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(NSMBU, SNOW,)
+                .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNumbers(SM3DW, 1,);
         }
 
     }('Semisolid Platform',);
@@ -155,14 +155,14 @@ export class Entities
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Bridge',)
-                .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.GROUND, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST,)
-                .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.SNOW,)
-                .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.SNOW, Themes.FOREST, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SNOW,);
+                .setTheme(SMB, SNOW, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(SMB, SNOW,)
+                .setTheme(SMB3, SNOW,)
+                .setNightTheme(SMB3, SNOW,)
+                .setTheme(SMW, GROUND, DESERT, SNOW, SKY, FOREST,)
+                .setNightTheme(SMW, SNOW,)
+                .setTheme(NSMBU, UNDERGROUND, UNDERWATER, SNOW, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(NSMBU, SNOW,);
         }
 
     }('Bridge',);
@@ -174,9 +174,9 @@ export class Entities
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('RengaBlock',)
-                .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.SNOW, Themes.GHOST_HOUSE, Themes.CASTLE,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
+                .setTheme(SMB, UNDERGROUND, SNOW, GHOST_HOUSE, CASTLE,)
+                .setNightTheme(SMB, SNOW,)
+                .setNightTheme(SMB3, SNOW,)
                 .setNotGameStyle(SMW,);
         }
 
@@ -203,13 +203,13 @@ export class Entities
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('HardBlock',)
-                .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.SNOW, Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE, Themes.AIRSHIP,)
-                .setNightTheme(GameStyles.SUPER_MARIO_WORLD, Themes.AIRSHIP,)
-                .setTheme(GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND, Themes.UNDERWATER, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.CASTLE,)
+                .setTheme(SMB, UNDERGROUND, UNDERWATER, SNOW, GHOST_HOUSE, AIRSHIP, CASTLE,)
+                .setNightTheme(SMB, UNDERGROUND, SNOW,)
+                .setTheme(SMB3, SNOW,)
+                .setNightTheme(SMB3, SNOW,)
+                .setTheme(SMW, GHOST_HOUSE, AIRSHIP,)
+                .setNightTheme(SMW, AIRSHIP,)
+                .setTheme(NSMBU, UNDERGROUND, UNDERWATER, SNOW, SKY, FOREST, CASTLE,)
                 .setNotSM3DW();
         }
 
@@ -228,8 +228,8 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('HatenaBlock',)
                 .setAllGameStyles()
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
+                .setNightTheme(SMB, SNOW,)
+                .setNightTheme(SMB3, SNOW,);
         }
 
     }('? Block',);
@@ -277,8 +277,8 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('ChikuwaBlock',)
                 .setAllGameStyles()
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,);
+                .setNightTheme(SMB, SNOW,)
+                .setNightTheme(SMB3, SNOW,);
         }
 
     }('Donut Block',);
@@ -288,11 +288,11 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KumoBlock',)
                 .setAllGameStyles()
-                .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,)
-                .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.SNOW,)
-                .setTheme(GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,);
+                .setTheme(SMB, UNDERWATER,)
+                .setNightTheme(SMB, SNOW,)
+                .setTheme(SMB3, UNDERWATER,)
+                .setNightTheme(SMB3, SNOW,)
+                .setTheme(SMW, UNDERWATER,);
         }
 
     }('Cloud Block',);
@@ -1032,8 +1032,8 @@ export class Entities
             return new EditorImageBuilder('Pukupuku',)
                 .setAmount(2)
                 .setAllGameStyles()
-                .setNumbers(GameStyles.SUPER_MARIO_WORLD, 2,)
-                .setNumbers(GameStyles.NEW_SUPER_MARIO_BROS_U, 2,);
+                .setNumbers(SMW, 2,)
+                .setNumbers(NSMBU, 2,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
