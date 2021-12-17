@@ -4,14 +4,13 @@ import type {ExtendedList}                                                      
 import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles';
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
 import type {PossibleGameStyle}                                                                from '../GameStyles.types';
-import type {Themes as OriginalThemes}                                                         from '../../../theme/Themes';
 
 import {AbstractImageBuilder} from '../AbstractImage.builder';
 import {EditorImageContainer} from './EditorImage.container';
 import {EMPTY_MAP}            from '../../../../util/emptyVariables';
 import {ExtendedSet}          from '../../../../util/extended/ExtendedSet';
 import {GameStyles}           from '../GameStyles';
-import {Themes}               from './Themes';
+import {Themes}               from '../../../theme/Themes';
 import {Times}                from '../../../time/Times';
 
 export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
@@ -213,27 +212,27 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
 
     public setTheme(gameStyle: OriginalGameStyles,): never
-    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this
-    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this {
+    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
+    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.DAY, gameStyle, themes,);
     }
 
     public setNotTheme(gameStyle: OriginalGameStyles,): never
-    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this
-    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this {
+    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
+    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
     }
 
 
     public setNightTheme(gameStyle: OriginalGameStyles,): never
-    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this
-    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this {
+    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
+    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.NIGHT, gameStyle, themes,);
     }
 
     public setNotNightTheme(gameStyle: OriginalGameStyles,): never
-    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this
-    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly OriginalThemes[]): this {
+    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
+    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
     }
 
@@ -251,8 +250,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     private __setOverrideImages(number: PossibleAmountOfImages, gameStyle: PossibleGameStyle, theme?: PossibleTheme,): this {
         if (!(gameStyle instanceof GameStyles))
             return this.__setOverrideImages(number, GameStyles.getValue(gameStyle), theme,);
-        if (theme != null && !(theme instanceof Themes))
-            return this.__setOverrideImages(number, gameStyle, Themes.getValue(theme),);
 
         const themes = theme == null ? Themes.values : [theme] as const;
 
@@ -273,8 +270,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
 
     public setNumbers(gameStyle: OriginalGameStyles, number: PossibleAmountOfImages,): this
-    public setNumbers(gameStyle: OriginalGameStyles, theme: OriginalThemes, number: PossibleAmountOfImages,): this
-    public setNumbers(gameStyle: OriginalGameStyles, theme_or_number: | OriginalThemes | PossibleAmountOfImages, number?: PossibleAmountOfImages,): this {
+    public setNumbers(gameStyle: OriginalGameStyles, theme: PossibleTheme, number: PossibleAmountOfImages,): this
+    public setNumbers(gameStyle: OriginalGameStyles, theme_or_number: | PossibleTheme | PossibleAmountOfImages, number?: PossibleAmountOfImages,): this {
         if (typeof theme_or_number == 'number')
             return this.__setOverrideImages(theme_or_number, gameStyle,);
 
@@ -394,8 +391,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
 
-    protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[]): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<OriginalThemes, readonly string[]>>> {
-        const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<OriginalThemes, readonly string[]>>>();
+    protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[]): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<PossibleTheme, readonly string[]>>> {
+        const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<PossibleTheme, readonly string[]>>>();
 
         this._selectedMap.forEach((timeMap, time,) => {
             const isNightTheme = time === Times.NIGHT;
@@ -404,8 +401,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                     const originalGameStyle = gameStyle.parent;
 
                     gameStyleMap.forEach((isSelected, theme,) => {
-                        const originalTheme = theme.parent;
-
                         if (!isSelected)
                             return;
                         const images = callbackThatReturnNumbers(time, gameStyle, theme,).map(number => this._getImagePath(gameStyle, `${theme.getGameName('', isNightTheme,)}_0${number}`));
@@ -420,7 +415,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                             timeMap.set(originalGameStyle, new Map());
                         const gameStyleMap = timeMap.get(originalGameStyle)!;
 
-                        gameStyleMap.set(originalTheme, images);
+                        gameStyleMap.set(theme, images);
                     });
                 }
             );
@@ -429,7 +424,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return returnedMap;
     }
 
-    protected _createImages(): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<OriginalThemes, readonly string[]>>> {
+    protected _createImages(): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<PossibleTheme, readonly string[]>>> {
         const imageNumber = this.imageNumber;
 
         if (imageNumber != null)
@@ -458,6 +453,6 @@ type PossibleType = | PossibleAmountOfImages | null;
 type PossibleDefaultType = | 'ground' | 'power-up' | PossibleAmountOfImages | null;
 
 type PossibleTime = Times;
-type PossibleTheme = | Themes | OriginalThemes;
+type PossibleTheme = Themes;
 
 //endregion -------------------- Types --------------------

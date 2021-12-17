@@ -36,6 +36,12 @@ export type SmallImagePath = `${PossibleImagePath} (small).png`;
 export type LargeImagePath = | `${PossibleImagePath} (large).png` | '/game/Themes/Space (large).jpg';
 
 export type PossibleGameName = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle';
+export type DayGameName<V extends string = string, > = `${V}_${PossibleGameName}`;
+export type NightGameName<V extends string = string, > = `${V}_${PossibleGameName}_night`;
+export type DayOrNightGameName<B extends boolean = boolean, V extends string = string, >
+    = B extends true ? DayGameName<V> :
+    B extends false ? NightGameName<V>
+        : | DayGameName<V> | NightGameName<V>
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
