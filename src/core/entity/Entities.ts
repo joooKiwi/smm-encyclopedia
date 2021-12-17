@@ -30,21 +30,21 @@ export class Entities
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
-    public static readonly GROUND =                                                   new class Entities_Ground extends Entities {
+    public static readonly GROUND =                                        new class Entities_Ground extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Ground').setAsGround();
         }
 
     }('Ground',);
-    public static readonly STEEP_SLOPE =                                  new class Entities_SteepSlope extends Entities {
+    public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('slope_l30').setAsGround();
         }
 
     }('Steep Slope',);
-    public static readonly GENTLE_SLOPE =                                        new class Entities_GentleSlope extends Entities {
+    public static readonly GENTLE_SLOPE =                                  new class Entities_GentleSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('slope_l45').setAsGround();
@@ -52,7 +52,7 @@ export class Entities
 
     }('Gentle Slope',);
 
-    public static readonly PIPE =                                                new class Entities_Pipe extends Entities {
+    public static readonly PIPE =                                          new class Entities_Pipe extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Dokan')
@@ -62,7 +62,7 @@ export class Entities
         }
 
     }('Pipe',);
-    public static readonly CLEAR_PIPE =                                                       new class Entities_ClearPipe extends Entities {
+    public static readonly CLEAR_PIPE =                                    new class Entities_ClearPipe extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('ToumeiDokan')
@@ -71,7 +71,7 @@ export class Entities
 
     }('Clear Pipe',);
 
-    public static readonly SPIKE_TRAP =                                   new class Entities_SpikeTrap extends Entities {
+    public static readonly SPIKE_TRAP =                                    new class Entities_SpikeTrap extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Toge')
@@ -81,7 +81,7 @@ export class Entities
         }
 
     }('Spike Trap',);
-    public static readonly JELECTRO =                                        new class Entities_Jelectro extends Entities {
+    public static readonly JELECTRO =                                      new class Entities_Jelectro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Toge')
@@ -90,7 +90,7 @@ export class Entities
         }
 
     }('Jelectro',);
-    public static readonly SEA_URCHIN =                                              new class Entities_SeaUrchin extends Entities {
+    public static readonly SEA_URCHIN =                                    new class Entities_SeaUrchin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Toge')
@@ -99,7 +99,7 @@ export class Entities
         }
 
     }('Sea Urchin',);
-    public static readonly SPIKE_BLOCK =                                             new class Entities_SpikeBlock extends Entities {
+    public static readonly SPIKE_BLOCK =                                   new class Entities_SpikeBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('TogeBlock')
@@ -109,7 +109,7 @@ export class Entities
 
     }('Spike Block',);
 
-    public static readonly MUSHROOM_PLATFORM =                                              new class Entities_MushroomPlatform extends Entities {
+    public static readonly MUSHROOM_PLATFORM =                             new class Entities_MushroomPlatform extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('GroundMushroom')
@@ -125,7 +125,7 @@ export class Entities
         }
 
     }('Mushroom Platform',);
-    public static readonly SEMISOLID_PLATFORM =                                     new class Entities_SemisolidPlatform extends Entities {
+    public static readonly SEMISOLID_PLATFORM =                            new class Entities_SemisolidPlatform extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('GroundBox')
@@ -144,7 +144,7 @@ export class Entities
         }
 
     }('Semisolid Platform',);
-    public static readonly BRIDGE =                                                 new class Entities_Bridge extends Entities {
+    public static readonly BRIDGE =                                        new class Entities_Bridge extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Bridge')
@@ -163,7 +163,7 @@ export class Entities
     //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
     //region -------------------- Block / Coin --------------------
 
-    public static readonly BRICK_BLOCK =                                   new class extends Entities {
+    public static readonly BRICK_BLOCK =                                   new class Entities_BrickBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('RengaBlock')
@@ -174,7 +174,7 @@ export class Entities
         }
 
     }('Brick Block',);
-    public static readonly CRISTAL_BLOCK =                                 new class extends Entities {
+    public static readonly CRISTAL_BLOCK =                                 new class Entities_CritalBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('RengaBlock')
@@ -183,7 +183,7 @@ export class Entities
         }
 
     }('Cristal Block',);
-    public static readonly ROTATING_BLOCK =                                new class extends Entities {
+    public static readonly ROTATING_BLOCK =                                new class Entities_RotatingBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('RengaBlock')
@@ -192,7 +192,7 @@ export class Entities
 
     }('Rotating Block',);
 
-    public static readonly HARD_BLOCK =                                    new class extends Entities {
+    public static readonly HARD_BLOCK =                                    new class Entities_HardBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('HardBlock')
@@ -207,7 +207,7 @@ export class Entities
         }
 
     }('Hard Block',);
-    public static readonly ROCK_BLOCK =                                    new class extends Entities {
+    public static readonly ROCK_BLOCK =                                    new class Entities_RockBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('HardBlock')
@@ -216,7 +216,7 @@ export class Entities
 
     }('Rock Block',);
 
-    public static readonly QUESTION_MARK_BLOCK =                           new class extends Entities {
+    public static readonly QUESTION_MARK_BLOCK =                           new class Entities_QuestionMarkBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('HatenaBlock')
@@ -226,7 +226,7 @@ export class Entities
         }
 
     }('? Block',);
-    public static readonly HIDDEN_BLOCK =                                  new class extends Entities {
+    public static readonly HIDDEN_BLOCK =                                  new class Entities_HiddenBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'ClearBlock';
@@ -235,7 +235,7 @@ export class Entities
     }('Hidden Block',);
     public static readonly EMPTY_BLOCK =                                   new Entities('Empty Block',);
 
-    public static readonly EXCLAMATION_MARK_BLOCK =                        new class extends Entities {
+    public static readonly EXCLAMATION_MARK_BLOCK =                        new class Entities_ExclamationMarkBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('BikkuriBlock')
@@ -244,7 +244,7 @@ export class Entities
 
     }('! Block',);
 
-    public static readonly NOTE_BLOCK =                                    new class extends Entities {
+    public static readonly NOTE_BLOCK =                                    new class Entities_NoteBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('OnpuBlock', 1,)
@@ -254,7 +254,7 @@ export class Entities
         }
 
     }('Note Block',);
-    public static readonly MUSIC_BLOCK =                                   new class extends Entities {
+    public static readonly MUSIC_BLOCK =                                   new class Entities_MusicBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('OnpuBlock', 2,)
@@ -265,7 +265,7 @@ export class Entities
 
     }('Music Block',);
 
-    public static readonly DONUT_BLOCK =                                   new class extends Entities {
+    public static readonly DONUT_BLOCK =                                   new class Entities_DonutBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('ChikuwaBlock')
@@ -276,7 +276,7 @@ export class Entities
 
     }('Donut Block',);
 
-    public static readonly CLOUD_BLOCK =                                   new class extends Entities {
+    public static readonly CLOUD_BLOCK =                                   new class Entities_CloudBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KumoBlock')
@@ -290,14 +290,14 @@ export class Entities
 
     }('Cloud Block',);
 
-    public static readonly ON_OFF_SWITCH =                                 new class extends Entities {
+    public static readonly ON_OFF_SWITCH =                                 new class Entities_OnOffBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'OnOffSwitch';
         }
 
     }('ON/OFF Switch',);
-    public static readonly DOTTED_LINE_BLOCK =                             new class extends Entities {
+    public static readonly DOTTED_LINE_BLOCK =                             new class Entities_DottedLineBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('OnOffBlock')
@@ -306,7 +306,7 @@ export class Entities
 
     }('Dotted-Line Block',);
 
-    public static readonly P_BLOCK =                                       new class extends Entities {
+    public static readonly P_BLOCK =                                       new class Entities_PBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -314,7 +314,7 @@ export class Entities
 
     }('P Block',);
 
-    public static readonly BLINKING_BLOCK =                                new class extends Entities {
+    public static readonly BLINKING_BLOCK =                                new class Entities_BlinkingBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Chikachika')
@@ -324,7 +324,7 @@ export class Entities
 
     }('Blinking Block',);
 
-    public static readonly ICE_BLOCK =                                     new class extends Entities {
+    public static readonly ICE_BLOCK =                                     new class Entities_IceBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('IceBlock')
@@ -333,7 +333,7 @@ export class Entities
         }
 
     }('Ice Block',);
-    public static readonly ICICLE =                                        new class extends Entities {
+    public static readonly ICICLE =                                        new class Entities_Icicle extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Icicle')
@@ -342,7 +342,7 @@ export class Entities
 
     }('Icicle',);
 
-    public static readonly COIN =                                          new class extends Entities {
+    public static readonly COIN =                                          new class Entities_Coin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Coin', 1,)
@@ -350,14 +350,14 @@ export class Entities
         }
 
     }('Coin',);
-    public static readonly FROZEN_COIN =                                   new class extends Entities {
+    public static readonly FROZEN_COIN =                                   new class Entities_FrozenCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
         }
 
     }('Frozen Coin',);
-    public static readonly TEN_COIN =                                      new class extends Entities {
+    public static readonly TEN_COIN =                                      new class Entities_TenCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('10Coin', 1,)
@@ -365,7 +365,7 @@ export class Entities
         }
 
     }('10-Coin',);
-    public static readonly THIRTY_COIN =                                   new class extends Entities {
+    public static readonly THIRTY_COIN =                                   new class Entities_ThirtyCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('10Coin', 2,)
@@ -373,7 +373,7 @@ export class Entities
         }
 
     }('30-Coin',);
-    public static readonly FIFTY_COIN =                                    new class extends Entities {
+    public static readonly FIFTY_COIN =                                    new class Entities_FiftyCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('10Coin', 3,)
@@ -381,7 +381,7 @@ export class Entities
         }
 
     }('50-Coin',);
-    public static readonly PINK_COIN =                                     new class extends Entities {
+    public static readonly PINK_COIN =                                     new class Entities_PinkCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'PinkCoin';
@@ -392,7 +392,7 @@ export class Entities
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
 
-    public static readonly SUPER_MUSHROOM =                                new class extends Entities {
+    public static readonly SUPER_MUSHROOM =                                new class Entities_SuperMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'SuperKinoko';
@@ -400,7 +400,7 @@ export class Entities
 
     }('Super Mushroom',);
 
-    public static readonly FIRE_FLOWER =                                   new class extends Entities {
+    public static readonly FIRE_FLOWER =                                   new class Entities_FireFlower extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('FireFlower', 1,)
@@ -411,7 +411,7 @@ export class Entities
     }('Fire Flower',);
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new Entities('Fireball thrown by a player',);
 
-    public static readonly SUPERBALL_FLOWER =                              new class extends Entities {
+    public static readonly SUPERBALL_FLOWER =                              new class Entities_SuperballFlower extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('FireFlower', 2,)
@@ -422,7 +422,7 @@ export class Entities
     }('Superball Flower',);
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',);
 
-    public static readonly MYSTERY_MUSHROOM =                              new class extends Entities {
+    public static readonly MYSTERY_MUSHROOM =                              new class Entities_MysteryMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -431,7 +431,7 @@ export class Entities
     }('Mystery Mushroom',);
     public static readonly WEIRD_MUSHROOM =                                new Entities('Weird Mushroom',);
 
-    public static readonly MASTER_SWORD =                                  new class extends Entities {
+    public static readonly MASTER_SWORD =                                  new class Entities_MasterSword extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -441,7 +441,7 @@ export class Entities
     public static readonly BOMB_THROWN_BY_A_LINK =                         new Entities('Bomb thrown by a Link',);
     public static readonly ARROW_THROWN_BY_A_LINK =                        new Entities('Arrow thrown by a Link',);
 
-    public static readonly BIG_MUSHROOM =                                  new class extends Entities {
+    public static readonly BIG_MUSHROOM =                                  new class Entities_BigMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('DekaKinoko')
@@ -453,7 +453,7 @@ export class Entities
     public static readonly BIG_MUSHROOM_CLASSIC =                          new Entities('Big Mushroom (classic)',);
     public static readonly BIG_MUSHROOM_MODERN =                           new Entities('Big Mushroom (modern)',);
 
-    public static readonly SMB2_MUSHROOM =                                 new class extends Entities {
+    public static readonly SMB2_MUSHROOM =                                 new class Entities_SMB2Mushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -461,7 +461,7 @@ export class Entities
 
     }('SMB2 Mushroom',);
 
-    public static readonly SUPER_LEAF =                                    new class extends Entities {
+    public static readonly SUPER_LEAF =                                    new class Entities_SuperLeaf extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('SuperKonoha')
@@ -471,7 +471,7 @@ export class Entities
 
     }('Super Leaf',);
 
-    public static readonly FROG_SUIT =                                     new class extends Entities {
+    public static readonly FROG_SUIT =                                     new class Entities_FrogSuit extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -479,7 +479,7 @@ export class Entities
 
     }('Frog Suit',);
 
-    public static readonly CAPE_FEATHER =                                  new class extends Entities {
+    public static readonly CAPE_FEATHER =                                  new class Entities_CapeFeather extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('MantleWing')
@@ -489,7 +489,7 @@ export class Entities
 
     }('Cape Feather',);
 
-    public static readonly POWER_BALLOON =                                 new class extends Entities {
+    public static readonly POWER_BALLOON =                                 new class Entities_PowerBaloon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -497,7 +497,7 @@ export class Entities
 
     }('Power Balloon',);
 
-    public static readonly PROPELLER_MUSHROOM =                            new class extends Entities {
+    public static readonly PROPELLER_MUSHROOM =                            new class Entities_PropellerMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('PropellerKinoko')
@@ -507,7 +507,7 @@ export class Entities
 
     }('Propeller Mushroom',);
 
-    public static readonly SUPER_ACORN =                                   new class extends Entities {
+    public static readonly SUPER_ACORN =                                   new class Entities_SuperAcorn extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -515,7 +515,7 @@ export class Entities
 
     }('Super Acorn',);
 
-    public static readonly SUPER_BELL =                                    new class extends Entities {
+    public static readonly SUPER_BELL =                                    new class Entities_SuperBell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('SuperBell')
@@ -525,7 +525,7 @@ export class Entities
 
     }('Super Bell',);
 
-    public static readonly SUPER_HAMMER =                                  new class extends Entities {
+    public static readonly SUPER_HAMMER =                                  new class Entities_SuperHammer extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('SuperHammer')
@@ -536,7 +536,7 @@ export class Entities
     }('Super Hammer',);
     public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER =                new Entities('Builder Box thrown by a player',);
 
-    public static readonly BOOMERANG_FLOWER =                              new class extends Entities {
+    public static readonly BOOMERANG_FLOWER =                              new class Entities_BoomerangFlower extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -545,7 +545,7 @@ export class Entities
     }('Boomerang Flower',);
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER =                  new Entities('Boomerang thrown by a player',);
 
-    public static readonly CANNON_BOX =                                    new class extends Entities {
+    public static readonly CANNON_BOX =                                    new class Entities_CannonBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -554,7 +554,7 @@ export class Entities
     }('Cannon Box',);
     public static readonly CANNONBALL_THROWN_BY_A_PLAYER =                 new Entities('Cannonball thrown by a player',);
 
-    public static readonly PROPELLER_BOX =                                 new class extends Entities {
+    public static readonly PROPELLER_BOX =                                 new class Entities_PropellerBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -562,7 +562,7 @@ export class Entities
 
     }('Propeller Box',);
 
-    public static readonly GOOMBA_MASK =                                   new class extends Entities {
+    public static readonly GOOMBA_MASK =                                   new class Entities_GoombaMask extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -570,7 +570,7 @@ export class Entities
 
     }('Goomba Mask',);
 
-    public static readonly BULLET_BILL_MASK =                              new class extends Entities {
+    public static readonly BULLET_BILL_MASK =                              new class Entities_BulletBillMask extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -578,7 +578,7 @@ export class Entities
 
     }('Bullet Bill Mask',);
 
-    public static readonly RED_POW_BOX =                                   new class extends Entities {
+    public static readonly RED_POW_BOX =                                   new class Entities_RedPowBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return null;
@@ -586,7 +586,7 @@ export class Entities
 
     }('Red POW Box',);
 
-    public static readonly SUPER_STAR =                                    new class extends Entities {
+    public static readonly SUPER_STAR =                                    new class Entities_SuperStar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'SuperStar';
@@ -594,14 +594,14 @@ export class Entities
 
     }('Super Star',);
 
-    public static readonly ONE_UP_MUSHROOM =                               new class extends Entities {
+    public static readonly ONE_UP_MUSHROOM =                               new class Entities_OneUpMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return '1upKinoko';
         }
 
     }('1-Up Mushroom',);
-    public static readonly ROTTEN_MUSHROOM =                               new class extends Entities {
+    public static readonly ROTTEN_MUSHROOM =                               new class Entities_RottenMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('DokuKinoko')
@@ -610,7 +610,7 @@ export class Entities
 
     }('Rotten Mushroom',);
 
-    public static readonly SHOE_GOOMBA =                                   new class extends Entities {
+    public static readonly SHOE_GOOMBA =                                   new class Entities_ShoeGoomba extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KutsuKuribo', 1,)
@@ -621,7 +621,7 @@ export class Entities
     public static readonly SHOE =                                          new class EntitiesShoe extends Entities {
 
     }('Shoe',);
-    public static readonly STILETTO_GOOMBA =                               new class extends Entities {
+    public static readonly STILETTO_GOOMBA =                               new class Entities_StilettoGoomba extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KutsuKuribo', 2,)
@@ -630,7 +630,7 @@ export class Entities
 
     }('Stiletto Goomba',);
     public static readonly STILETTO =                                      new Entities('Stiletto',);
-    public static readonly YOSHI_EGG =                                     new class extends Entities {
+    public static readonly YOSHI_EGG =                                     new class Entities_YoshiEgg extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('YosshiEgg')
@@ -643,7 +643,7 @@ export class Entities
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',);
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',);
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',);
-    public static readonly RED_YOSHI_EGG =                                 new class extends Entities {
+    public static readonly RED_YOSHI_EGG =                                 new class Entities_RedYoshiEgg extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('YosshiEggRed')
