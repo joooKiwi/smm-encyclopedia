@@ -1,5 +1,5 @@
 import type {ClassWithNullObjectPattern, EmptyEditorImageName} from '../../../../util/ClassWithNullObjectPattern';
-import type {Image}                                            from '../Image';
+import type {EditorImage}                                      from './EditorImage';
 
 import {EMPTY_ARRAY} from '../../../../util/emptyVariables';
 
@@ -7,7 +7,7 @@ import {EMPTY_ARRAY} from '../../../../util/emptyVariables';
  * @singleton
  */
 export class EmptyEditorImage
-    implements Image, ClassWithNullObjectPattern<EmptyEditorImageName> {
+    implements EditorImage, ClassWithNullObjectPattern<EmptyEditorImageName> {
 
     //region -------------------- Singleton usage --------------------
 

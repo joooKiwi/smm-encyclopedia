@@ -1,5 +1,5 @@
-import type {BasicGamePath, GameAcronym, GamePath}                                                                                                                                  from './GameStyles.types';
-import type {GameStyleProperty}                                                                                                                                                     from '../properties/GameStyleProperty';
+import type {BasicGamePath, GameAcronym, GamePath_ClearCondition, GamePath_Editor} from './GameStyles.types';
+import type {GameStyleProperty}                                                    from '../properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                                   from '../properties/GameStyleReferences';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../gameStyle/GameStyles.types';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
@@ -25,7 +25,8 @@ export class GameStyles
     readonly #parent;
     readonly #gameAcronym: GameAcronym;
     readonly #basicGamePath: BasicGamePath;
-    #gamePath?: GamePath;
+    #gamePath_editor?: GamePath_Editor;
+    #gamePath_clearCondition?: GamePath_ClearCondition;
 
     //endregion -------------------- Attributes --------------------
 
@@ -54,8 +55,11 @@ export class GameStyles
         return this.#gameAcronym;
     }
 
-    public get gamePath(): GamePath {
-        return this.#gamePath ??= `/entities/${this.#basicGamePath}/`;
+    public get gamePath_editor(): GamePath_Editor {
+        return this.#gamePath_editor ??= `/entities/${this.#basicGamePath}/`;
+    }
+    public get gamePath_clearCondition(): GamePath_ClearCondition {
+        return this.#gamePath_clearCondition ??= `/entities/${this.#basicGamePath}/Clear Condition/`;
     }
 
     //endregion -------------------- Getter methods --------------------

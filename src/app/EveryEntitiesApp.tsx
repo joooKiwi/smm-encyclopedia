@@ -1,5 +1,7 @@
 import './EveryEntitiesApp.scss';
 
+import {Fragment} from 'react';
+
 import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
 import type {Entity}                                              from '../core/entity/Entity';
 import type {EntityAppStates}                                     from './AppStates.types';
@@ -104,21 +106,27 @@ export default class EveryEntitiesApp
     //region -------------------- Methods --------------------
 
     private __createEditorImageComponent(index: number, gameStyle: GameStyles,) {
-        const editorImage = this.enum[index - 1].editorImage;
+        const enumeration = this.enum[index - 1];
+        const editorImage = enumeration.editorImage;
         const times = Times.values;
         const themes = Themes.courseThemes;
 
-        return <>{
+        return <Fragment key={`editor image (${enumeration.englishName})`}>{
             [...new Set(themes.map(theme =>
                 times.map(time => editorImage.get(true, gameStyle, theme, time,)
                     .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
                 .map(([theme, time, image, index,]) =>
                     <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
-        }</>;
+        }</Fragment>;
     }
 
     private __createClearConditionImageComponent(index: number, gameStyle: GameStyles,) {
-        return <></>;
+        const enumeration = this.enum[index - 1];
+        const clearConditionImage = enumeration.clearConditionImage;
+
+        return <Fragment key={`clear condition image (${enumeration.englishName})`}>{
+            clearConditionImage.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
+        }</Fragment>;
     }
 
     private __createCategoryComponent(index: number, entity: Entity,) {
