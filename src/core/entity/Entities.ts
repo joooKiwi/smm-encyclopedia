@@ -1309,6 +1309,11 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createClearConditionImage(): PossibleClearConditionImage {
+            return new ClearConditionImageBuilder('Teresa', 2,)
+                .setOnlySM3DW();
+        }
+
     }('Peepa',);
 
     public static readonly BOB_OMB =                                       new class Entities_BobOmb extends Entities {
