@@ -174,7 +174,7 @@ export class Entities
         }
 
     }('Brick Block',);
-    public static readonly CRISTAL_BLOCK =                                 new class Entities_CritalBlock extends Entities {
+    public static readonly CRISTAL_BLOCK =                                 new class Entities_CristalBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('RengaBlock')
@@ -1136,7 +1136,7 @@ export class Entities
     }('Heavy Fire Bro',);
     public static readonly FIREBALL_THROWN_BY_A_HEAVY_FIRE_BRO =           new Entities('Fireball thrown by a (Heavy) Fire Bro',);
 
-    public static readonly LAVA_BUBBLE =                                   new class extends Entities {
+    public static readonly LAVA_BUBBLE =                                   new class Entities_LavaBubble extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'Bubble';
