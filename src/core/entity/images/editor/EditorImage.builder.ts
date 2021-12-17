@@ -211,28 +211,28 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
 
-    public setTheme(gameStyle: OriginalGameStyles,): never
-    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
-    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
+    public setTheme(gameStyle: PossibleGameStyle,): never
+    public setTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this
+    public setTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.DAY, gameStyle, themes,);
     }
 
-    public setNotTheme(gameStyle: OriginalGameStyles,): never
-    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
-    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
+    public setNotTheme(gameStyle: PossibleGameStyle,): never
+    public setNotTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this
+    public setNotTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
     }
 
 
-    public setNightTheme(gameStyle: OriginalGameStyles,): never
-    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
-    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
+    public setNightTheme(gameStyle: PossibleGameStyle,): never
+    public setNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this
+    public setNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.NIGHT, gameStyle, themes,);
     }
 
-    public setNotNightTheme(gameStyle: OriginalGameStyles,): never
-    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this
-    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly PossibleTheme[]): this {
+    public setNotNightTheme(gameStyle: PossibleGameStyle,): never
+    public setNotNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this
+    public setNotNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly PossibleTheme[]): this {
         return this.__setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
     }
 
@@ -269,9 +269,9 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
 
-    public setNumbers(gameStyle: OriginalGameStyles, number: PossibleAmountOfImages,): this
-    public setNumbers(gameStyle: OriginalGameStyles, theme: PossibleTheme, number: PossibleAmountOfImages,): this
-    public setNumbers(gameStyle: OriginalGameStyles, theme_or_number: | PossibleTheme | PossibleAmountOfImages, number?: PossibleAmountOfImages,): this {
+    public setNumbers(gameStyle: PossibleGameStyle, number: PossibleAmountOfImages,): this
+    public setNumbers(gameStyle: PossibleGameStyle, theme: PossibleTheme, number: PossibleAmountOfImages,): this
+    public setNumbers(gameStyle: PossibleGameStyle, theme_or_number: | PossibleTheme | PossibleAmountOfImages, number?: PossibleAmountOfImages,): this {
         if (typeof theme_or_number == 'number')
             return this.__setOverrideImages(theme_or_number, gameStyle,);
 
@@ -391,8 +391,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
 
-    protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[]): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<PossibleTheme, readonly string[]>>> {
-        const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<PossibleTheme, readonly string[]>>>();
+    protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[]): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly string[]>>> {
+        const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<Themes, readonly string[]>>>();
 
         this._selectedMap.forEach((timeMap, time,) => {
             const isNightTheme = time === Times.NIGHT;
@@ -424,7 +424,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return returnedMap;
     }
 
-    protected _createImages(): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<PossibleTheme, readonly string[]>>> {
+    protected _createImages(): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly string[]>>> {
         const imageNumber = this.imageNumber;
 
         if (imageNumber != null)
