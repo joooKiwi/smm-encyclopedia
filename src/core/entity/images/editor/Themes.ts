@@ -1,5 +1,5 @@
 import type {EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../../theme/Themes.types';
-import type {Night, VariantEditorImage_RegularGameStyle}                                                                                                                                                                                 from './EditorImage.types';
+import type {Night}                                                                                                                                                                                                    from './EditorImage.types';
 import type {StaticReference}                                                                                                                                                                                                            from '../../../../util/enum/Enum.types';
 
 import {Enum}                     from '../../../../util/enum/Enum';
@@ -10,16 +10,16 @@ export class Themes
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly GROUND =      new Themes(OriginalThemes.GROUND,      'plain',)        as Themes & typeof OriginalThemes['GROUND'];
-    public static readonly UNDERGROUND = new Themes(OriginalThemes.UNDERGROUND, 'underground',)  as Themes & typeof OriginalThemes['UNDERGROUND'];
-    public static readonly UNDERWATER =  new Themes(OriginalThemes.UNDERWATER,  'water',)        as Themes & typeof OriginalThemes['UNDERWATER'];
-    public static readonly DESERT =      new Themes(OriginalThemes.DESERT,      'desert',)       as Themes & typeof OriginalThemes['DESERT'];
-    public static readonly SNOW =        new Themes(OriginalThemes.SNOW,        'snow', )        as Themes & typeof OriginalThemes['SNOW'];
-    public static readonly SKY =         new Themes(OriginalThemes.SKY,         'athletic',)     as Themes & typeof OriginalThemes['SKY'];
-    public static readonly FOREST =      new Themes(OriginalThemes.FOREST,      'woods',)        as Themes & typeof OriginalThemes['FOREST'];
-    public static readonly GHOST_HOUSE = new Themes(OriginalThemes.GHOST_HOUSE, 'hauntedhouse',) as Themes & typeof OriginalThemes['GHOST_HOUSE'];
-    public static readonly AIRSHIP =     new Themes(OriginalThemes.AIRSHIP,     'airship',)      as Themes & typeof OriginalThemes['AIRSHIP'];
-    public static readonly CASTLE =      new Themes(OriginalThemes.CASTLE,      'castle',)       as Themes & typeof OriginalThemes['CASTLE'];
+    public static readonly GROUND =      new Themes(OriginalThemes.GROUND,     ) as Themes & typeof OriginalThemes['GROUND'];
+    public static readonly UNDERGROUND = new Themes(OriginalThemes.UNDERGROUND,) as Themes & typeof OriginalThemes['UNDERGROUND'];
+    public static readonly UNDERWATER =  new Themes(OriginalThemes.UNDERWATER, ) as Themes & typeof OriginalThemes['UNDERWATER'];
+    public static readonly DESERT =      new Themes(OriginalThemes.DESERT,     ) as Themes & typeof OriginalThemes['DESERT'];
+    public static readonly SNOW =        new Themes(OriginalThemes.SNOW,       ) as Themes & typeof OriginalThemes['SNOW'];
+    public static readonly SKY =         new Themes(OriginalThemes.SKY,        ) as Themes & typeof OriginalThemes['SKY'];
+    public static readonly FOREST =      new Themes(OriginalThemes.FOREST,     ) as Themes & typeof OriginalThemes['FOREST'];
+    public static readonly GHOST_HOUSE = new Themes(OriginalThemes.GHOST_HOUSE,) as Themes & typeof OriginalThemes['GHOST_HOUSE'];
+    public static readonly AIRSHIP =     new Themes(OriginalThemes.AIRSHIP,    ) as Themes & typeof OriginalThemes['AIRSHIP'];
+    public static readonly CASTLE =      new Themes(OriginalThemes.CASTLE,     ) as Themes & typeof OriginalThemes['CASTLE'];
 
     public static readonly VOLCANO =     new Themes(OriginalThemes.VOLCANO) as Themes & typeof OriginalThemes['VOLCANO'];
     public static readonly SPACE =       new Themes(OriginalThemes.SPACE)   as Themes & typeof OriginalThemes['SPACE'];
@@ -31,21 +31,15 @@ export class Themes
     static #WORLDS?: EnumArray_OnlyWorldTheme<Themes>;
 
     readonly #parent;
-    readonly #text: | VariantEditorImage_RegularGameStyle | null;
 
     //endregion -------------------- Attributes --------------------
 
     // @ts-ignore
     protected constructor(enumeration: Themes,)
-    private constructor(enumeration: typeof OriginalThemes['VOLCANO'] | typeof OriginalThemes['SPACE'],)
-    private constructor(enumeration: OriginalThemes, text: VariantEditorImage_RegularGameStyle,)
-    private constructor(enumeration: OriginalThemes, text: | VariantEditorImage_RegularGameStyle | null = null,) {
+    private constructor(enumeration: OriginalThemes,)
+    private constructor(enumeration: OriginalThemes,) {
         super(enumeration);
         this.#parent = enumeration;
-        if (enumeration instanceof Themes)
-            this.#text = enumeration.#text;
-        else
-            this.#text = text;
     }
 
     //region -------------------- Getter methods --------------------
@@ -54,24 +48,20 @@ export class Themes
         return this.#parent;
     }
 
-    public get text(): | VariantEditorImage_RegularGameStyle | null {
-        return this.#text;
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public getName(name: null, isNightTheme: any,): ''
-    public getName<N extends string = string, >(name: | N | null, isNightTheme: false,): | '' | `${N}_${NonNullable<this['text']>}`
-    public getName<N extends string = string, >(name: N, isNightTheme: false,): | '' | `${N}_${NonNullable<this['text']>}`
-    public getName<N extends string = string, >(name: | N | null, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['text']>>}`
-    public getName<N extends string = string, >(name: N, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['text']>>}`
-    public getName<N extends string = string, >(name: | N | null, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['text']>}` | `${N}_${Night<NonNullable<this['text']>>}`
-    public getName<N extends string = string, >(name: N, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['text']>}` | `${N}_${Night<NonNullable<this['text']>>}`
+    public getName<N extends string = string, >(name: | N | null, isNightTheme: false,): | '' | `${N}_${NonNullable<this['gameName']>}`
+    public getName<N extends string = string, >(name: N, isNightTheme: false,): | '' | `${N}_${NonNullable<this['gameName']>}`
+    public getName<N extends string = string, >(name: | N | null, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getName<N extends string = string, >(name: N, isNightTheme: true,): | '' | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getName<N extends string = string, >(name: | N | null, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['gameName']>}` | `${N}_${Night<NonNullable<this['gameName']>>}`
+    public getName<N extends string = string, >(name: N, isNightTheme: boolean,): | '' | `${N}_${NonNullable<this['gameName']>}` | `${N}_${Night<NonNullable<this['gameName']>>}`
     public getName(name: | string | null, isNightTheme: boolean,) {
         if (name == null)
             return '';
-        const text = this.text;
+        const text = this.gameName;
         if (text == null)
             return '';
         return isNightTheme ? `${name}_${text}_night` : `${name}_${text}`;

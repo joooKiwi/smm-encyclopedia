@@ -32,6 +32,10 @@ export type PossibleEnglishName = | PossibleEnglishName_CourseTheme | PossibleEn
 
 export type SimpleImagePath = | Exclude<PossibleEnglishName, | 'Castle' | 'Volcano'> | 'Castle - Volcano';
 export type PossibleImagePath = `/game/themes/${SimpleImagePath}`;
+export type SmallImagePath = `${PossibleImagePath} (small).png`;
+export type LargeImagePath = | `${PossibleImagePath} (large).png` | '/game/Themes/Space (large).jpg';
+
+export type PossibleGameName = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

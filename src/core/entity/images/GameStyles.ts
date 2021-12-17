@@ -1,5 +1,5 @@
-import type {BasicGamePath, GameAcronym, GamePath_ClearCondition, GamePath_Editor} from './GameStyles.types';
-import type {GameStyleProperty}                                                    from '../properties/GameStyleProperty';
+import type {GamePath_ClearCondition, GamePath_Editor}                                                                                                                              from './GameStyles.types';
+import type {GameStyleProperty}                                                                                                                                                     from '../properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                                   from '../properties/GameStyleReferences';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../gameStyle/GameStyles.types';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
@@ -13,18 +13,16 @@ export class GameStyles
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_BROS =       new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS,      'M1', '1 - SMB',);
-    public static readonly SUPER_MARIO_BROS_3 =     new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS_3,    'M3', '2 - SMB3',);
-    public static readonly SUPER_MARIO_WORLD =      new GameStyles(OriginalGameStyles.SUPER_MARIO_WORLD,     'MW', '3 - SMW',);
-    public static readonly NEW_SUPER_MARIO_BROS_U = new GameStyles(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U,'WU', '4 - NSMBU',);
-    public static readonly SUPER_MARIO_3D_WORLD =   new GameStyles(OriginalGameStyles.SUPER_MARIO_3D_WORLD,  '3W', '5 - SM3DW',);
+    public static readonly SUPER_MARIO_BROS =       new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS,      );
+    public static readonly SUPER_MARIO_BROS_3 =     new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS_3,    );
+    public static readonly SUPER_MARIO_WORLD =      new GameStyles(OriginalGameStyles.SUPER_MARIO_WORLD,     );
+    public static readonly NEW_SUPER_MARIO_BROS_U = new GameStyles(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U,);
+    public static readonly SUPER_MARIO_3D_WORLD =   new GameStyles(OriginalGameStyles.SUPER_MARIO_3D_WORLD,  );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
     readonly #parent;
-    readonly #gameAcronym: GameAcronym;
-    readonly #basicGamePath: BasicGamePath;
     #gamePath_editor?: GamePath_Editor;
     #gamePath_clearCondition?: GamePath_ClearCondition;
 
@@ -32,17 +30,10 @@ export class GameStyles
 
     // @ts-ignore
     protected constructor(enumeration: GameStyles,)
-    private constructor(enumeration: OriginalGameStyles, gameAcronym: GameAcronym, basicGamePath: BasicGamePath,)
-    private constructor(enumeration: OriginalGameStyles, gameAcronym?: GameAcronym, basicGamePath?: BasicGamePath,) {
+    private constructor(enumeration: OriginalGameStyles,)
+    private constructor(enumeration: OriginalGameStyles,) {
         super(enumeration);
         this.#parent = enumeration;
-        if (enumeration instanceof GameStyles) {
-            this.#gameAcronym = enumeration.#gameAcronym;
-            this.#basicGamePath = enumeration.#basicGamePath;
-        } else {
-            this.#gameAcronym = gameAcronym!;
-            this.#basicGamePath = basicGamePath!;
-        }
     }
 
     //region -------------------- Getter methods --------------------
@@ -51,26 +42,23 @@ export class GameStyles
         return this.#parent;
     }
 
-    public get gameAcronym(): GameAcronym {
-        return this.#gameAcronym;
+    public get gamePath_editor(): GamePath_Editor {
+        return this.#gamePath_editor ??= `/entities/${this.shortImagePath}/`;
     }
 
-    public get gamePath_editor(): GamePath_Editor {
-        return this.#gamePath_editor ??= `/entities/${this.#basicGamePath}/`;
-    }
     public get gamePath_clearCondition(): GamePath_ClearCondition {
-        return this.#gamePath_clearCondition ??= `/entities/${this.#basicGamePath}/Clear Condition/`;
+        return this.#gamePath_clearCondition ??= `/entities/${this.shortImagePath}/Clear Condition/`;
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public get(property: GameStyleProperty,): boolean {
-        return this.#parent.get(property);
+        return this.parent.get(property);
     }
 
     public getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities {
-        return this.#parent.getReference(referenceProperty);
+        return this.parent.getReference(referenceProperty);
     }
 
     //endregion -------------------- Methods --------------------

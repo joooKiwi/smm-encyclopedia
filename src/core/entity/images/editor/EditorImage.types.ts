@@ -1,4 +1,5 @@
 import type {PossibleEnglishName} from '../../Entities.types';
+import type {PossibleGameName}    from '../../../theme/Themes.types';
 
 interface ImageNameMap {
 
@@ -417,9 +418,8 @@ export type SimpleImageName = ImageNameMap[PossibleEnglishName][0];
 
 export type ImageName = ImageNameMap[PossibleEnglishName][1];
 
-export type VariantEditorImage_RegularGameStyle = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle';
-export type Night<STYLE extends VariantEditorImage_RegularGameStyle, > = `${STYLE}_night`;
-type VariantEditorImage_GameStyle = VariantEditorImage_RegularGameStyle | Night<VariantEditorImage_RegularGameStyle>;
+export type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`;
+type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>;
 type VariantEditorImage_Number = | 0 | 1 | 2 | 3;
 export type VariantEditorImage_PowerUp = 'Uni';
 export type VariantEditorImage =
