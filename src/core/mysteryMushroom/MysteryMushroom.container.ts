@@ -186,21 +186,6 @@ export class MysteryMushroomContainer
     }
 
     //endregion -------------------- Unlock properties --------------------
-    //region -------------------- Different sprite properties --------------------
-
-    public get differentSpritePropertyContainer() {
-        return this.propertyContainer.differentSpritePropertyContainer;
-    }
-
-    public get haveADifferentJapaneseSprite() {
-        return this.differentSpritePropertyContainer.haveADifferentJapaneseSprite;
-    }
-
-    public get haveADifferentLeftSprite() {
-        return this.differentSpritePropertyContainer.haveADifferentLeftSprite;
-    }
-
-    //endregion -------------------- Different sprite properties --------------------
     //region -------------------- Sound properties --------------------
 
     public get soundPropertyContainer() {

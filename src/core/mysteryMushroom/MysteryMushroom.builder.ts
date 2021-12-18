@@ -3,7 +3,6 @@ import type {MysteryMushroomTemplate}               from './MysteryMushroom.temp
 import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom';
 import type {Name}                                  from '../../lang/name/Name';
 
-import {DifferentSpritePropertyContainer} from './properties/DifferentSpriteProperty.container';
 import {GameReferences}                   from '../gameReference/GameReferences';
 import {Games}                            from '../game/Games';
 import {MysteryMushroomContainer}         from './MysteryMushroom.container';
@@ -61,11 +60,9 @@ export class MysteryMushroomBuilder
     private __createProperty() {
         const propertyTemplate = this.template.properties;
         const unlockTemplate = propertyTemplate.unlock;
-        const differentSpriteTemplate = propertyTemplate.differentSprite;
 
         return new MysteryMushroomPropertyContainer(
             UnlockPropertyContainer.get(unlockTemplate.condition, unlockTemplate.amiibo,),
-            DifferentSpritePropertyContainer.get(differentSpriteTemplate.japanese, differentSpriteTemplate.left,),
             new SoundPropertyContainer(...this.__createSoundPropertyAttributes(),),
         );
     }

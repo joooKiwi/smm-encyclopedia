@@ -1,4 +1,3 @@
-import type {DifferentSpriteProperty} from './DifferentSpriteProperty';
 import type {MysteryMushroomProperty} from './MysteryMushroomProperty';
 import type {SoundProperty}           from './sound/SoundProperty';
 import type {UnlockProperty}          from './UnlockProperty';
@@ -9,14 +8,12 @@ export class MysteryMushroomPropertyContainer
     //region -------------------- Attributes --------------------
 
     readonly #unlockPropertyContainer;
-    readonly #differentSpritePropertyContainer;
     readonly #soundPropertyContainer;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(unlock: UnlockProperty, differentSprite: DifferentSpriteProperty, sound: SoundProperty,) {
+    public constructor(unlock: UnlockProperty, sound: SoundProperty,) {
         this.#unlockPropertyContainer = unlock;
-        this.#differentSpritePropertyContainer = differentSprite;
         this.#soundPropertyContainer = sound;
     }
 
@@ -35,21 +32,6 @@ export class MysteryMushroomPropertyContainer
     }
 
     //endregion -------------------- Unlock properties --------------------
-    //region -------------------- Different sprite properties --------------------
-
-    public get differentSpritePropertyContainer() {
-        return this.#differentSpritePropertyContainer;
-    }
-
-    public get haveADifferentJapaneseSprite() {
-        return this.differentSpritePropertyContainer.haveADifferentJapaneseSprite;
-    }
-
-    public get haveADifferentLeftSprite() {
-        return this.differentSpritePropertyContainer.haveADifferentLeftSprite;
-    }
-
-    //endregion -------------------- Different sprite properties --------------------
     //region -------------------- Sound properties --------------------
 
     public get soundPropertyContainer() {

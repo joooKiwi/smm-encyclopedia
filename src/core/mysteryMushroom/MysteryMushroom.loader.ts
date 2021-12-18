@@ -33,8 +33,6 @@ enum Headers {
 
     uniqueName,
 
-    haveADifferentJapaneseSprite, haveADifferentLeftSprite,
-
     haveASoundEffectWhenCollected_game, haveASoundEffectWhenCollected,
     haveASoundEffectOnTaunt_game, haveASoundEffectOnTaunt,
     haveASoundEffectOnJump_game, haveASoundEffectOnJump,
@@ -74,9 +72,6 @@ type ExclusivePropertiesArray = [
     reference: | PossibleGameReference | PokemonGeneration,
 
     uniqueName: UniqueEnglishName,
-
-    haveADifferentJapaneseSprite: boolean,
-    haveADifferentLeftSprite: boolean,
 
 
     haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected,
@@ -157,8 +152,6 @@ export class MysteryMushroomLoader
                 .convertToBoolean('canBeUnlockedByAnAmiibo',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronymWithPokemonGeneration, 'reference',)
 
-                .convertToBoolean('haveADifferentJapaneseSprite', 'haveADifferentLeftSprite',)
-
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenCollected_game',)
                 .convertToNullableBoolean('haveASoundEffectWhenCollected',)
@@ -222,10 +215,6 @@ class TemplateBuilder
                 unlock: {
                     condition: this._getContent(this._headersIndexMap.conditionToUnlockIt),
                     amiibo: this._getContent(this._headersIndexMap.canBeUnlockedByAnAmiibo),
-                },
-                differentSprite: {
-                    japanese: this._getContent(this._headersIndexMap.haveADifferentJapaneseSprite),
-                    left: this._getContent(this._headersIndexMap.haveADifferentLeftSprite),
                 },
                 sound: this.__createSoundTemplate(),
             },

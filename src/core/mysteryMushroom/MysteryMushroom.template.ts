@@ -18,11 +18,6 @@ export interface MysteryMushroomTemplate
             amiibo: boolean
         }
 
-        differentSprite: {
-            japanese: boolean
-            left: boolean
-        }
-
         sound: SoundPropertyTemplate
 
     }

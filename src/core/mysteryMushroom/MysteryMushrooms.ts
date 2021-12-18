@@ -1,17 +1,42 @@
-import type {BasicJapanesePath, BasicLeftVariationPath, BasicPath, ClimbingImages, DownImage, EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, FallingAfterJumpImage, GoalPoleImages, GoalPoleSound, ImagePath, JumpImage, JumpImages, JumpSounds, LostALifeSound, Names, OnGroundAfterJumpSound, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PowerUpCollectedSound, RunningImages, SingleClimbingImage, SingleDownImage, SingleFallingAfterJumpImage, SingleGoalPoleImage, SingleGoalPoleSound, SingleJumpImage, SingleJumpSound, SingleLostALifeSound, SingleOnGroundAfterJumpSound, SinglePowerUpCollectedSound, SingleRunningImage, SingleSwimmingImage, SingleTauntImage, SingleTauntSound, SingleTurningImage, SingleTurningSound, SingleWaitingImage, SingleWalkImage, SwimmingImages, TauntImage, TauntSound, TurningImage, TurningSound, UniqueEnglishName, WaitingImage, WalkImages} from './MysteryMushrooms.types';
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../ClassWithEnglishName';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                        from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                          from '../ClassWithReference';
+import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages} from './image/Image';
+import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, UniqueEnglishName}     from './MysteryMushrooms.types';
+import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}                                             from './sound/Sound';
+import type {MysteryMushroom}                                                                                                                                                             from './MysteryMushroom';
+import type {PossiblePath}                                                                                                                                                                from './path/ClassWithPath';
+import type {StaticReference}                                                                                                                                                             from '../../util/enum/Enum.types';
 
-import {Enum}            from '../../util/enum/Enum';
-import {StringContainer} from '../../util/StringContainer';
+import {Enum}                                  from '../../util/enum/Enum';
+import {BasicImageContainer}                   from './image/BasicImage.container';
+import {ImageWithLeftVariationContainer}       from './image/ImageWithLeftVariation.container';
+import {ImageWithJapaneseContainer}            from './image/ImageWithJapanese.container';
+import {ImageWithUnderwaterVariationContainer} from './image/ImageWithUnderwaterVariation.container';
+import {NoImage}                               from './image/NoImage';
+import {NoSound}                               from './sound/NoSound';
+import {SoundContainer}                        from './sound/Sound.container';
+import {StringContainer}                       from '../../util/StringContainer';
+import {SoundProperty}                         from './properties/sound/SoundProperty';
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<UniqueEnglishName> {
+    implements ClassWithEnglishName<UniqueEnglishName>,
+        ClassWithReference<MysteryMushroom>,
+        Image, Sound {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly MYSTERY_MUSHROOM =       new MysteryMushrooms('Mystery Mushroom',);
+    public static readonly MYSTERY_MUSHROOM =       new class MysteryMushrooms_MysteryMushroom extends MysteryMushrooms {
+
+        protected _createImageContainer(): Image {
+            return NoImage.get;
+        }
+
+        protected _createSoundContainer(): Sound {
+            return NoSound.get;
+        }
+
+    }('Mystery Mushroom',);
 
     public static readonly YAMAMURA =               new MysteryMushrooms('Yamamura',);
     public static readonly MARY_O =                 new MysteryMushrooms('Mary O', 'Mary O.',);
@@ -52,7 +77,13 @@ export class MysteryMushrooms
     public static readonly CAT_PEACH =              new MysteryMushrooms('Cat Peach',);
     public static readonly SKY_POP =                new MysteryMushrooms('Sky Pop',);
     public static readonly BABY_MARIO =             new MysteryMushrooms('Baby Mario',);
-    public static readonly QUESTION_MARK_BLOCK =    new MysteryMushrooms('Question Mark Block', '? Block',);
+    public static readonly QUESTION_MARK_BLOCK =    new class MysteryMushrooms_QuestionMarkBlock extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithLeftVariationContainer(imagePath);
+        }
+
+    }('Question Mark Block', '? Block',);
     public static readonly TRAMPOLINE =             new MysteryMushrooms('Trampoline',);
     public static readonly MARIO_MB =               new MysteryMushrooms('Mario (MB)', 'Mario',);
     public static readonly SIDESTEPPER =            new MysteryMushrooms('Sidestepper',);
@@ -115,7 +146,13 @@ export class MysteryMushrooms
 
     public static readonly CAPTAIN_FALCON =         new MysteryMushrooms('Captain Falcon',);
 
-    public static readonly SONIC =                  new MysteryMushrooms('Sonic',);
+    public static readonly SONIC =                  new class MysteryMushrooms_Sonic extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new BasicImageContainer(imagePath, 3,);
+        }
+
+    }('Sonic',);
 
     public static readonly KIRBY =                  new MysteryMushrooms('Kirby',);
     public static readonly KING_DEDEDE =            new MysteryMushrooms('King Dedede',);
@@ -191,16 +228,52 @@ export class MysteryMushrooms
     public static readonly CHITOGE_KIRISAKI =       new MysteryMushrooms('Chitoge Kirisaki',);
 
     public static readonly INKLING_SQUID =          new MysteryMushrooms('Inkling Squid',);
-    public static readonly INKLING_BOY =            new MysteryMushrooms('Inkling Boy',);
-    public static readonly INKLING_GIRL =           new MysteryMushrooms('Inkling Girl',);
-    public static readonly CALLIE =                 new MysteryMushrooms('Callie',);
-    public static readonly MARIE =                  new MysteryMushrooms('Marie',);
+    public static readonly INKLING_BOY =            new class MysteryMushrooms_InklingBoy extends MysteryMushrooms {
 
-    public static readonly ROB =                    new MysteryMushrooms('R.O.B', 'R.O.B.',);
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithUnderwaterVariationContainer(imagePath);
+        }
+
+    }('Inkling Boy',);
+    public static readonly INKLING_GIRL =           new class MysteryMushrooms_InklingGirl extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithUnderwaterVariationContainer(imagePath);
+        }
+
+    }('Inkling Girl',);
+    public static readonly CALLIE =                 new class MysteryMushrooms_Callie extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithUnderwaterVariationContainer(imagePath);
+        }
+
+    }('Callie',);
+    public static readonly MARIE =                  new class MysteryMushrooms_Marie extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithUnderwaterVariationContainer(imagePath);
+        }
+
+    }('Marie',);
+
+    public static readonly ROB =                    new class MysteryMushrooms_ROB extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithJapaneseContainer(imagePath);
+        }
+
+    }('R.O.B', 'R.O.B.',);
     public static readonly DISKUN =                 new MysteryMushrooms('Diskun',);
     public static readonly MAHJONG_TILE =           new MysteryMushrooms('Mahjong Tile',);
 
-    public static readonly KITTY_WHITE =            new MysteryMushrooms('Kitty White',);
+    public static readonly KITTY_WHITE =            new class MysteryMushrooms_KittyWhite extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithLeftVariationContainer(imagePath);
+        }
+
+    }('Kitty White',);
     public static readonly MELODY =                 new MysteryMushrooms('Melody',);
     public static readonly SHAUN_THE_SHEEP =        new MysteryMushrooms('Shaun the Sheep',);
 
@@ -213,145 +286,17 @@ export class MysteryMushrooms
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<UniqueEnglishName, MysteryMushroom>;
+
+    #reference?: MysteryMushroom;
+
     readonly #englishName;
 
-    //region -------------------- Files (images / sounds) attributes --------------------
-
     readonly #englishNameOnFile;
+    #path?: PossiblePath;
+    #imageContainer?: Image;
+    #soundContainer?: Sound;
 
-    #imagePath?: ImagePath;
-    #basicPath?: BasicPath;
-    #basicJapanesePath?: BasicJapanesePath;
-    #basicLeftVariationPath?: BasicLeftVariationPath;
-
-    //region -------------------- Power-up collected --------------------
-
-    static readonly #POWER_UP_SOUND: SinglePowerUpCollectedSound = 'powerup.wav';
-    #powerUpGotSound?: PowerUpCollectedSound;
-
-    //endregion -------------------- Power-up collected --------------------
-    //region -------------------- Waiting --------------------
-
-    static readonly #WAITING_IMAGE: SingleWaitingImage = 'wait.0.png';
-    #waitingImage?: WaitingImage<BasicPath>;
-    #japaneseWaitingImage?: WaitingImage<BasicJapanesePath>;
-    #leftVariationWaitingImage?: WaitingImage<BasicLeftVariationPath>;
-
-    //endregion -------------------- Waiting --------------------
-    //region -------------------- Taunt --------------------
-
-    static readonly #TAUNT_IMAGE: SingleTauntImage = 'appeal.0.png';
-    #tauntImage?: TauntImage<BasicPath>;
-    #japaneseTauntImage?: TauntImage<BasicJapanesePath>;
-    #leftVariationTauntImage?: TauntImage<BasicLeftVariationPath>;
-    static readonly #TAUNT_SOUND: SingleTauntSound = 'appeal.wav';
-    #tauntSound?: TauntSound;
-
-    //endregion -------------------- Taunt --------------------
-    //region -------------------- Pressing ↓ --------------------
-
-    static readonly #DOWN_IMAGE: SingleDownImage = 'stoop.0.png';
-    #downImage?: DownImage<BasicPath>;
-    #japaneseDownImage?: DownImage<BasicJapanesePath>;
-    #leftVariationDownImage?: DownImage<BasicLeftVariationPath>;
-
-    //endregion -------------------- Pressing ↓ --------------------
-    //region -------------------- Walk --------------------
-
-    static readonly #WALK_IMAGE_1: SingleWalkImage<0> = 'walk.0.png';
-    static readonly #WALK_IMAGE_2: SingleWalkImage<1> = 'walk.1.png';
-    static readonly #WALK_IMAGE_3: SingleWalkImage<2> = 'walk.2.png';
-    #walkImages?: WalkImages<BasicPath>;
-    #japaneseWalkImages?: WalkImages<BasicJapanesePath>;
-    #leftVariationWalkImages?: WalkImages<BasicLeftVariationPath>;
-
-    //endregion -------------------- Walk --------------------
-    //region -------------------- Running --------------------
-
-    static readonly #RUNNING_IMAGE_1: SingleRunningImage<0> = '/b_dash.0.png';
-    static readonly #RUNNING_IMAGE_2: SingleRunningImage<1> = '/b_dash.1.png';
-    static readonly #RUNNING_IMAGE_3: SingleRunningImage<2> = '/b_dash.2.png';
-    #runningImages?: RunningImages<BasicPath>;
-    #japaneseRunningImages?: RunningImages<BasicJapanesePath>;
-    #leftVariationRunningImages?: RunningImages<BasicLeftVariationPath>;
-
-    //endregion -------------------- Running --------------------
-    //region -------------------- Swimming --------------------
-
-    static readonly #SWIMMING_IMAGE_1: SingleSwimmingImage<0> = 'swim.0.png';
-    static readonly #SWIMMING_IMAGE_2: SingleSwimmingImage<1> = 'swim.1.png';
-    static readonly #SWIMMING_IMAGE_3: SingleSwimmingImage<2> = 'swim.2.png';
-    static readonly #SWIMMING_IMAGE_4: SingleSwimmingImage<3> = 'swim.3.png';
-    static readonly #SWIMMING_IMAGE_5: SingleSwimmingImage<4> = 'swim.4.png';
-    static readonly #SWIMMING_IMAGE_6: SingleSwimmingImage<5> = 'swim.5.png';
-    #swimmingImages?: SwimmingImages<BasicPath>;
-    #japaneseSwimmingImages?: SwimmingImages<BasicJapanesePath>;
-    #leftVariationSwimmingImages?: SwimmingImages<BasicLeftVariationPath>;
-
-    //endregion -------------------- Swimming --------------------
-    //region -------------------- Jumping --------------------
-
-    static readonly #JUMP_IMAGE_1: SingleJumpImage<0> = 'jump.0.png';
-    static readonly #JUMP_IMAGE_2: SingleJumpImage<1> = 'jump.1.png';
-    static readonly #JUMP_IMAGE_3: SingleJumpImage<2> = 'jump.2.png';
-    #jumpImage?: JumpImage<BasicPath>;
-    #japaneseJumpImage?: JumpImage<BasicJapanesePath>;
-    #leftVariationJumpImage?: JumpImage<BasicLeftVariationPath>;
-    #jumpImages?: JumpImages<BasicPath>;
-    #japaneseJumpImages?: JumpImages<BasicJapanesePath>;
-    #leftVariationJumpImages?: JumpImages<BasicLeftVariationPath>;
-    static readonly #JUMP_SOUND_1: SingleJumpSound<''> = 'jump.wav';
-    static readonly #JUMP_SOUND_2: SingleJumpSound<2> = 'jump2.wav';
-    #jumpSounds?: JumpSounds;
-
-    static readonly #FALLING_AFTER_JUMP_IMAGE: SingleFallingAfterJumpImage = 'jump_fall.0.png';
-    #fallingAfterJumpImage?: FallingAfterJumpImage<BasicPath>;
-    #japaneseFallingAfterJumpImage?: FallingAfterJumpImage<BasicJapanesePath>;
-    #leftVariationFallingAfterJumpImage?: FallingAfterJumpImage<BasicLeftVariationPath>;
-
-    static readonly ON_GROUND_AFTER_JUMP_SOUND: SingleOnGroundAfterJumpSound = 'ground.wav';
-    #onGroundAfterJumpSound?: OnGroundAfterJumpSound;
-
-    //endregion -------------------- Jumping --------------------
-    //region -------------------- Turning --------------------
-
-    static readonly #TURNING_IMAGE: SingleTurningImage = 'turn.0.png';
-    #turningImage?: TurningImage<BasicPath>;
-    #japaneseTurningImage?: TurningImage<BasicJapanesePath>;
-    #leftVariationTurningImage?: TurningImage<BasicLeftVariationPath>;
-    static readonly #TURNING_SOUND: SingleTurningSound = 'slip.wav';
-    #turningSound?: TurningSound;
-
-    //endregion -------------------- Turning --------------------
-    //region -------------------- Climbing --------------------
-
-    static readonly #CLIMBING_IMAGE_1: SingleClimbingImage<0> = 'climb.0.png';
-    static readonly #CLIMBING_IMAGE_2: SingleClimbingImage<1> = 'climb.1.png';
-    #climbingImages?: ClimbingImages<BasicPath>;
-    #japaneseClimbingImages?: ClimbingImages<BasicJapanesePath>;
-    #leftVariationClimbingImages?: ClimbingImages<BasicLeftVariationPath>;
-
-    //endregion -------------------- Climbing --------------------
-    //region -------------------- Goal pole --------------------
-
-    static readonly #GOAL_POLE_IMAGE_1: SingleGoalPoleImage<0> = 'pole.0.png';
-    static readonly #GOAL_POLE_IMAGE_2: SingleGoalPoleImage<1> = 'pole.1.png';
-    #goalPoleImages?: GoalPoleImages<BasicPath>;
-    #japaneseGoalPoleImages?: GoalPoleImages<BasicJapanesePath>;
-    #leftVariationGoalPoleImages?: GoalPoleImages<BasicLeftVariationPath>;
-    static readonly #GOAL_POLE_SOUND: SingleGoalPoleSound = 'goal.wav';
-    #goalPoleSound?: GoalPoleSound;
-
-    //endregion -------------------- Goal pole --------------------
-    //region -------------------- Lost a life --------------------
-
-    static readonly #LOST_A_LIFE_SOUND: SingleLostALifeSound = 'down.wav';
-    #lostALifeSound?: LostALifeSound;
-
-    //endregion -------------------- Lost a life --------------------
-
-
-    //endregion -------------------- Files (images / sounds) attributes --------------------
 
     //endregion -------------------- Attributes --------------------
 
@@ -370,6 +315,19 @@ export class MysteryMushrooms
 
     //region -------------------- Getter methods --------------------
 
+    private static get __map() {
+        return this.#map ??= require('./MysteryMushroom.loader').MysteryMushroomLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
+    public get reference(): MysteryMushroom {
+        return this.#reference ??= MysteryMushrooms.__map.get(this.englishName)!;
+    }
+
+
     public get englishName(): UniqueEnglishName {
         return this.#englishName.get;
     }
@@ -385,227 +343,137 @@ export class MysteryMushrooms
     }
 
 
-    private get __imagePath(): ImagePath {
-        return this.#imagePath ??= `${this.ordinal} - ${this.englishNameOnFile}` as ImagePath;
+    /**
+     * Get the path depending on the mystery mushroom
+     *
+     * @note that the method will never be called when using {@link MYSTERY_MUSHROOM MysteryMushrooms.MYSTERY_MUSHROOM}.
+     * @private
+     */
+    private get __path(): PossiblePath {
+        return this.#path ??= `${this.ordinal} - ${this.englishNameOnFile}` as PossiblePath;
     }
 
-    private get __basicPath(): BasicPath {
-        return this.#basicPath ??= `/mystery mushrooms/${this.__imagePath}`;
+    protected _createImageContainer(imagePath: PossiblePath,): Image {
+        return new BasicImageContainer(imagePath);
     }
 
-    private get __japaneseBasicPath(): BasicJapanesePath {
-        return this.#basicJapanesePath ??= `${this.__basicPath}/Japanese`;
+    private get __imageContainer(): Image {
+        return this.#imageContainer ??= this._createImageContainer(this.__path);
     }
 
-    private get __leftVariationBasicPath(): BasicLeftVariationPath {
-        return this.#basicLeftVariationPath ??= `${this.__basicPath}/Left variation`;
+    protected _createSoundContainer(path: PossiblePath, property: SoundProperty,): Sound {
+        return new SoundContainer(path, property,);
+    }
+
+    private get __soundContainer(): Sound {
+        return this.#soundContainer ??= this._createSoundContainer(this.__path, this.reference,);
     }
 
     //region -------------------- Power-up collected --------------------
 
-    public get powerUpCollectedSound(): PowerUpCollectedSound {
-        return this.#powerUpGotSound ??= `${this.__basicPath}/${MysteryMushrooms.#POWER_UP_SOUND}`;
+    public get powerUpCollectedSounds(): PowerUpCollectedSounds {
+        return this.__soundContainer.powerUpCollectedSounds;
     }
 
     //endregion -------------------- Power-up collected --------------------
     //region -------------------- Waiting --------------------
 
-    public get waitingImage(): WaitingImage<BasicPath> {
-        return this.#waitingImage ??= `${this.__basicPath}/${MysteryMushrooms.#WAITING_IMAGE}`;
-    }
-
-    public get japaneseWaitingImage(): WaitingImage<BasicJapanesePath> {
-        return this.#japaneseWaitingImage ??= `${this.__japaneseBasicPath}/${MysteryMushrooms.#WAITING_IMAGE}`;
-    }
-
-    public get leftVariationWaitingImage(): WaitingImage<BasicLeftVariationPath> {
-        return this.#leftVariationWaitingImage ??= `${this.__leftVariationBasicPath}/${MysteryMushrooms.#WAITING_IMAGE}`;
+    public get waitingImages(): WaitingImages {
+        return this.__imageContainer.waitingImages;
     }
 
     //endregion -------------------- Waiting --------------------
     //region -------------------- Taunt --------------------
 
-    public get tauntImage(): TauntImage<BasicPath> {
-        return this.#tauntImage ??= `${this.__basicPath}/${MysteryMushrooms.#TAUNT_IMAGE}`;
+    public get tauntImages(): TauntImages {
+        return this.__imageContainer.tauntImages;
     }
 
-    public get japaneseTauntImage(): TauntImage<BasicJapanesePath> {
-        return this.#japaneseTauntImage ??= `${this.__japaneseBasicPath}/${MysteryMushrooms.#TAUNT_IMAGE}`;
-    }
-
-    public get leftVariationTauntImage(): TauntImage<BasicLeftVariationPath> {
-        return this.#leftVariationTauntImage ??= `${this.__leftVariationBasicPath}/${MysteryMushrooms.#TAUNT_IMAGE}`;
-    }
-
-    public get tauntSound(): TauntSound {
-        return this.#tauntSound ??= `${this.__basicPath}/${MysteryMushrooms.#TAUNT_SOUND}`;
+    public get tauntSounds(): TauntSounds {
+        return this.__soundContainer.tauntSounds;
     }
 
     //endregion -------------------- Taunt --------------------
     //region -------------------- Pressing ↓ --------------------
 
-    public get downImage(): DownImage<BasicPath> {
-        return this.#downImage ??= `${this.__basicPath}/${MysteryMushrooms.#DOWN_IMAGE}`;
-    }
-
-    public get japaneseDownImage(): DownImage<BasicJapanesePath> {
-        return this.#japaneseDownImage ??= `${this.__japaneseBasicPath}/${MysteryMushrooms.#DOWN_IMAGE}`;
-    }
-
-    public get leftVariationDownImage(): DownImage<BasicLeftVariationPath> {
-        return this.#leftVariationDownImage ??= `${this.__leftVariationBasicPath}/${MysteryMushrooms.#DOWN_IMAGE}`;
+    public get downImages(): DownImages {
+        return this.__imageContainer.downImages;
     }
 
     //endregion -------------------- Pressing ↓ --------------------
     //region -------------------- Walk --------------------
 
-    public get walkImages(): WalkImages<BasicPath> {
-        return this.#walkImages ??= [`${this.__basicPath}/${MysteryMushrooms.#WALK_IMAGE_1}`, `${this.__basicPath}/${MysteryMushrooms.#WALK_IMAGE_2}`, `${this.__basicPath}/${MysteryMushrooms.#WALK_IMAGE_3}`,];
-    }
-
-    public get japaneseWalkImages(): WalkImages<BasicJapanesePath> {
-        return this.#japaneseWalkImages ??= [`${this.__japaneseBasicPath}/${MysteryMushrooms.#WALK_IMAGE_1}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#WALK_IMAGE_2}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#WALK_IMAGE_3}`,];
-    }
-
-    public get leftVariationWalkImages(): WalkImages<BasicLeftVariationPath> {
-        return this.#leftVariationWalkImages ??= [`${this.__leftVariationBasicPath}/${MysteryMushrooms.#WALK_IMAGE_1}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#WALK_IMAGE_2}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#WALK_IMAGE_3}`,];
+    public get walkImages(): WalkImages {
+        return this.__imageContainer.walkImages;
     }
 
     //endregion -------------------- Walk --------------------
     //region -------------------- Running --------------------
 
-    public get runningImage(): RunningImages<BasicPath> {
-        return this.#runningImages ??= [`${this.__basicPath}/${MysteryMushrooms.#RUNNING_IMAGE_1}`, `${this.__basicPath}/${MysteryMushrooms.#RUNNING_IMAGE_2}`, `${this.__basicPath}/${MysteryMushrooms.#RUNNING_IMAGE_3}`,];
-    }
-
-    public get japaneseRunningImages(): RunningImages<BasicJapanesePath> {
-        return this.#japaneseRunningImages ??= [`${this.__japaneseBasicPath}/${MysteryMushrooms.#RUNNING_IMAGE_1}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#RUNNING_IMAGE_2}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#RUNNING_IMAGE_3}`,];
-    }
-
-    public get leftVariationRunningImages(): RunningImages<BasicLeftVariationPath> {
-        return this.#leftVariationRunningImages ??= [`${this.__leftVariationBasicPath}/${MysteryMushrooms.#RUNNING_IMAGE_1}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#RUNNING_IMAGE_2}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#RUNNING_IMAGE_3}`,];
+    public get runningImages(): RunningImages {
+        return this.__imageContainer.runningImages;
     }
 
     //endregion -------------------- Running --------------------
     //region -------------------- Swimming --------------------
 
-    public get swimmingImages(): SwimmingImages<BasicPath> {
-        return this.#swimmingImages ??= [`${this.__basicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_1}`, `${this.__basicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_2}`, `${this.__basicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_3}`, `${this.__basicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_4}`, `${this.__basicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_5}`, `${this.__basicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_6}`,];
-    }
-
-    public get japaneseSwimmingImages(): SwimmingImages<BasicJapanesePath> {
-        return this.#japaneseSwimmingImages ??= [`${this.__japaneseBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_1}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_2}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_3}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_4}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_5}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_6}`,];
-    }
-
-    public get leftVariationSwimmingImages(): SwimmingImages<BasicLeftVariationPath> {
-        return this.#leftVariationSwimmingImages ??= [`${this.__leftVariationBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_1}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_2}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_3}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_4}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_5}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#SWIMMING_IMAGE_6}`,];
+    public get swimmingImages(): SwimmingImages {
+        return this.__imageContainer.swimmingImages;
     }
 
     //endregion -------------------- Swimming --------------------
     //region -------------------- Jumping --------------------
 
-    public get jumpImage(): JumpImage<BasicPath> {
-        return this.#jumpImage ??= `${this.__basicPath}/${MysteryMushrooms.#JUMP_IMAGE_1}`;
-    }
-
-    public get japaneseJumpImage(): JumpImage<BasicJapanesePath> {
-        return this.#japaneseJumpImage ??= `${this.__japaneseBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_1}`;
-    }
-
-    public get leftVariationJumpImage(): JumpImage<BasicLeftVariationPath> {
-        return this.#leftVariationJumpImage ??= `${this.__leftVariationBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_1}`;
-    }
-
-    public get jumpImages(): JumpImages<BasicPath> {
-        return this.#jumpImages ??= [`${this.__basicPath}/${MysteryMushrooms.#JUMP_IMAGE_1}`, `${this.__basicPath}/${MysteryMushrooms.#JUMP_IMAGE_2}`, `${this.__basicPath}/${MysteryMushrooms.#JUMP_IMAGE_3}`,];
-    }
-
-    public get japaneseJumpImages(): JumpImages<BasicJapanesePath> {
-        return this.#japaneseJumpImages ??= [`${this.__japaneseBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_1}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_2}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_3}`,];
-    }
-
-    public get leftVariationJumpImages(): JumpImages<BasicLeftVariationPath> {
-        return this.#leftVariationJumpImages ??= [`${this.__leftVariationBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_1}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_2}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#JUMP_IMAGE_3}`,];
+    public get jumpImages(): JumpImages {
+        return this.__imageContainer.jumpImages;
     }
 
     public get jumpSounds(): JumpSounds {
-        return this.#jumpSounds ??= [`${this.__basicPath}/${MysteryMushrooms.#JUMP_SOUND_1}`, `${this.__basicPath}/${MysteryMushrooms.#JUMP_SOUND_2}`,];
+        return this.__soundContainer.jumpSounds;
     }
 
-    public get fallingAfterJumpImage(): FallingAfterJumpImage<BasicPath> {
-        return this.#fallingAfterJumpImage ??= `${this.__basicPath}/${MysteryMushrooms.#FALLING_AFTER_JUMP_IMAGE}`;
+    public get fallingAfterJumpImages(): FallingAfterJumpImages {
+        return this.__imageContainer.fallingAfterJumpImages;
     }
 
-    public get japaneseFallingAfterJumpImage(): FallingAfterJumpImage<BasicJapanesePath> {
-        return this.#japaneseFallingAfterJumpImage ??= `${this.__japaneseBasicPath}/${MysteryMushrooms.#FALLING_AFTER_JUMP_IMAGE}`;
-    }
-
-    public get leftVariationFallingAfterJumpImage(): FallingAfterJumpImage<BasicLeftVariationPath> {
-        return this.#leftVariationFallingAfterJumpImage ??= `${this.__leftVariationBasicPath}/${MysteryMushrooms.#FALLING_AFTER_JUMP_IMAGE}`;
-    }
-
-    public get onGroundAfterJumpSound(): OnGroundAfterJumpSound {
-        return this.#onGroundAfterJumpSound ??= `${this.__basicPath}/${MysteryMushrooms.ON_GROUND_AFTER_JUMP_SOUND}`;
+    public get onGroundAfterJumpSounds(): OnGroundAfterJumpSounds {
+        return this.__soundContainer.onGroundAfterJumpSounds;
     }
 
     //endregion -------------------- Jumping --------------------
     //region -------------------- Turning --------------------
 
-    public get turningImage(): TurningImage<BasicPath> {
-        return this.#turningImage ??= `${this.__basicPath}/${MysteryMushrooms.#TURNING_IMAGE}`;
+    public get turningImages(): TurningImages {
+        return this.__imageContainer.turningImages;
     }
 
-    public get japaneseTurningImage(): TurningImage<BasicJapanesePath> {
-        return this.#japaneseTurningImage ??= `${this.__japaneseBasicPath}/${MysteryMushrooms.#TURNING_IMAGE}`;
-    }
-
-    public get leftVariationTurningImage(): TurningImage<BasicLeftVariationPath> {
-        return this.#leftVariationTurningImage ??= `${this.__leftVariationBasicPath}/${MysteryMushrooms.#TURNING_IMAGE}`;
-    }
-
-    public get turningSound(): TurningSound {
-        return this.#turningSound ??= `${this.__basicPath}/${MysteryMushrooms.#TURNING_SOUND}`;
+    public get turningSounds(): TurningSounds {
+        return this.__soundContainer.turningSounds;
     }
 
     //endregion -------------------- Turning --------------------
     //region -------------------- Climbing --------------------
 
-    public get climbingImages(): ClimbingImages<BasicPath> {
-        return this.#climbingImages ??= [`${this.__basicPath}/${MysteryMushrooms.#CLIMBING_IMAGE_1}`, `${this.__basicPath}/${MysteryMushrooms.#CLIMBING_IMAGE_2}`,];
-    }
-
-    public get japaneseClimbingImages(): ClimbingImages<BasicJapanesePath> {
-        return this.#japaneseClimbingImages ??= [`${this.__japaneseBasicPath}/${MysteryMushrooms.#CLIMBING_IMAGE_1}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#CLIMBING_IMAGE_2}`,];
-    }
-
-    public get leftVariationClimbingImages(): ClimbingImages<BasicLeftVariationPath> {
-        return this.#leftVariationClimbingImages ??= [`${this.__leftVariationBasicPath}/${MysteryMushrooms.#CLIMBING_IMAGE_1}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#CLIMBING_IMAGE_2}`,];
+    public get climbingImages(): ClimbingImages {
+        return this.__imageContainer.climbingImages;
     }
 
     //endregion -------------------- Climbing --------------------
     //region -------------------- Goal pole --------------------
 
-    public get goalPoleImages(): GoalPoleImages<BasicPath> {
-        return this.#goalPoleImages ??= [`${this.__basicPath}/${MysteryMushrooms.#GOAL_POLE_IMAGE_1}`, `${this.__basicPath}/${MysteryMushrooms.#GOAL_POLE_IMAGE_2}`,];
+    public get goalPoleImages(): GoalPoleImages {
+        return this.__imageContainer.goalPoleImages;
     }
 
-    public get japaneseGoalPoleImages(): GoalPoleImages<BasicJapanesePath> {
-        return this.#japaneseGoalPoleImages ??= [`${this.__japaneseBasicPath}/${MysteryMushrooms.#GOAL_POLE_IMAGE_1}`, `${this.__japaneseBasicPath}/${MysteryMushrooms.#GOAL_POLE_IMAGE_2}`,];
-    }
-
-    public get leftVariationGoalPoleImages(): GoalPoleImages<BasicLeftVariationPath> {
-        return this.#leftVariationGoalPoleImages ??= [`${this.__leftVariationBasicPath}/${MysteryMushrooms.#GOAL_POLE_IMAGE_1}`, `${this.__leftVariationBasicPath}/${MysteryMushrooms.#GOAL_POLE_IMAGE_2}`,];
-    }
-
-    public get goalPoleSound(): GoalPoleSound {
-        return this.#goalPoleSound ??= `${this.__basicPath}/${MysteryMushrooms.#GOAL_POLE_SOUND}`;
+    public get goalPoleSounds(): GoalPoleSounds {
+        return this.__soundContainer.goalPoleSounds;
     }
 
     //endregion -------------------- Goal pole --------------------
     //region -------------------- Lost a life --------------------
 
-    public get lostALifeSound(): LostALifeSound {
-        return this.#lostALifeSound ??= `${this.__basicPath}/${MysteryMushrooms.#LOST_A_LIFE_SOUND}`;
+    public get lostALifeSounds(): LostALifeSounds {
+        return this.__soundContainer.lostALifeSounds;
     }
 
     //endregion -------------------- Lost a life --------------------

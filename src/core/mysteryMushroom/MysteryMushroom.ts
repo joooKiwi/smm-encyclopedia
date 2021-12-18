@@ -21,15 +21,6 @@ export interface MysteryMushroom
     get canBeUnlockedByAnAmiibo(): this['unlockPropertyContainer']['canBeUnlockedByAnAmiibo']
 
     //endregion -------------------- Unlock properties --------------------
-    //region -------------------- Different sprite properties --------------------
-
-    get differentSpritePropertyContainer(): this['propertyContainer']['differentSpritePropertyContainer']
-
-    get haveADifferentJapaneseSprite(): this['differentSpritePropertyContainer']['haveADifferentJapaneseSprite']
-
-    get haveADifferentLeftSprite(): this['differentSpritePropertyContainer']['haveADifferentLeftSprite']
-
-    //endregion -------------------- Different sprite properties --------------------
     //region -------------------- Sound properties --------------------
 
     get soundPropertyContainer(): this['propertyContainer']['soundPropertyContainer']

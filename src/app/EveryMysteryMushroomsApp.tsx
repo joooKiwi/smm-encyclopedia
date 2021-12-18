@@ -2,7 +2,6 @@ import './EveryMysteryMushroomsApp.scss';
 
 import {Fragment} from 'react';
 
-import type {ImageProperties}    from './tools/images/properties/ImageProperties';
 import type {MysteryMushroom}    from '../core/mysteryMushroom/MysteryMushroom';
 import type {UniqueEnglishName}  from '../core/mysteryMushroom/MysteryMushrooms.types';
 import type {SingleTableContent} from './tools/table/Table.types';
@@ -20,7 +19,9 @@ import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';
 import NameComponent                   from '../lang/name/component/Name.component';
 import SimpleSound                     from './tools/sounds/SimpleSound';
+import {StringContainer}               from '../util/StringContainer';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
+import {ImageProperties}               from './tools/images/properties/ImageProperties';
 
 /**
  * @reactComponent
@@ -44,34 +45,59 @@ export default class EveryMysteryMushroomsApp
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private static __createImages<T extends SingleImage, >([hasJPSprite, hasLeftSprite,]: readonly [hasJPSprite: boolean, hasLeftSprite: boolean,], [regularImage, japaneseImage, leftVariationImage,]: PossibleImages<T>, englishName: string, type: string,) {
-        const alternativeName = `${englishName} (${type})`;
-        const japaneseAlternativeName = `JP ${englishName} (${type})`;
-        const leftAlternativeName = `← ${englishName} (${type})`;
-        const id = englishName.replace(' ', '_').toLowerCase();
+    /**
+     * <p>
+     *  Create a single image of an animated image.
+     *  It can depend on the images are just an empty arrays
+     *  or just an array of strings.
+     * </p>
+     *
+     * <p>
+     *  If the images are only as <b>[string][]</b> or as <b>string[]</b>,
+     *  then only a single image is returned.
+     * </p>
+     * <p>
+     *  Otherwise, it will return an animated image is returned,
+     *  and it's expected to be as <b>string[][]</b>
+     * </p>
+     *
+     * @param images the images
+     * @param englishName the english name of the {@link MysteryMushroom}
+     * @param type the possible type of the {@link MysteryMushroom} as a property in the {@link SoundProperty}
+     * @private
+     */
+    private static __createImages(images: PossibleGroupImages, englishName: string, type: string,) {
+        if (images.length === 0 || images[0].length === 0)
+            return this.#NOT_APPLICABLE_COMPONENT;
 
+        const fallbackName = `${englishName} (${type})`;
 
-        if (typeof regularImage == 'string')
-            return <>
-                <Image source={regularImage} fallbackName={alternativeName}/>
-                {hasJPSprite ? <Image source={japaneseImage as string} fallbackName={japaneseAlternativeName}/> : EMPTY_REACT_ELEMENT}
-                {hasLeftSprite ? <Image source={leftVariationImage as string} fallbackName={leftAlternativeName}/> : EMPTY_REACT_ELEMENT}
-            </>;
+        if (typeof images[0] == 'string')
+            return (images as PossibleGroupImages<string>).map((image, index,) =>
+                <Image key={`${fallbackName} - ${index + 1}`} source={image} fallbackName={`${fallbackName} - ${index + 1}`}/>);
 
-        return <>
-            <AnimatedImages partialId={id} images={regularImage.map<ImageProperties>(regularImage => ({source: regularImage, fallbackName: alternativeName,}))}/>
-            {hasJPSprite
-                ? <AnimatedImages partialId={`${id}_japanese`} images={(japaneseImage as unknown as string[]).map<ImageProperties>(regularImage =>
-                    ({source: regularImage, fallbackName: japaneseAlternativeName,}))}/>
-                : EMPTY_REACT_ELEMENT}
-            {hasLeftSprite
-                ? <AnimatedImages partialId={`${id}_left`} images={(leftVariationImage as unknown as string[]).map<ImageProperties>(regularImage =>
-                    ({source: regularImage, fallbackName: leftAlternativeName,}))}/>
-                : EMPTY_REACT_ELEMENT}
-        </>;
+        const imagesFormattedAsGroup = [...images as PossibleGroupImages<PossibleImages_Array>]
+            .reduce((newArray, subImages,) => {
+                subImages.forEach((value, index) => newArray[index].push(value));
+                return newArray;
+            }, images.map(() => [] as string[]),)
+            .filter(images => images.length !== 0);
+
+        if (imagesFormattedAsGroup[0].length === 1)
+            return imagesFormattedAsGroup.map(([image,], index) =>
+                <Image key={`${fallbackName} - ${index + 1}`} source={image} fallbackName={fallbackName}/>);
+
+        const id = StringContainer.getInHtml(englishName);
+        return imagesFormattedAsGroup.map((images, index,) =>
+            <AnimatedImages key={`${fallbackName} - ${index + 1}`} partialId={`${id}-${index + 1}`}
+                            images={images.map<ImageProperties>((image, index,) => ({source: image, fallbackName: `${fallbackName}-${index + 1}`,}))}/>);
     }
 
-    private static __createSounds([sound1, sound2,]: readonly [string, string?,], englishName: string, type: string,) {
+    private static __createSounds(sounds: PossibleSounds, englishName: string, type: string,) {
+        if (sounds.length === 0)
+            return EMPTY_REACT_ELEMENT;
+
+        const [sound1, sound2,] = sounds;
         return <>
             <SimpleSound source={sound1} title={`${englishName} - ${type}`}/>
             {sound2 == null ? EMPTY_REACT_ELEMENT : <SimpleSound source={sound2} title={`${englishName} 2 - ${type}`}/>}
@@ -85,7 +111,6 @@ export default class EveryMysteryMushroomsApp
             const englishNameAsId = englishName.toLowerCase().replace(' ', '_');
             const mysteryMushroomEnum = MysteryMushrooms.getValue(englishName);
             const isMysteryMushroom = MysteryMushrooms.MYSTERY_MUSHROOM === mysteryMushroomEnum;
-            const haveOtherSprites = [mysteryMushroom.haveADifferentJapaneseSprite, mysteryMushroom.haveADifferentLeftSprite,] as const;
 
             content.push([englishName,
                 <>{index}</>,
@@ -97,38 +122,37 @@ export default class EveryMysteryMushroomsApp
                         {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
                     </Fragment>)}</div>,
                 <NameComponent id={`name_${englishNameAsId}`} name={mysteryMushroom} popoverOrientation="right"/>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - power-up collected`}>{
-                    mysteryMushroom.haveASoundEffectWhenCollected === true ? EveryMysteryMushroomsApp.__createSounds([mysteryMushroomEnum.powerUpCollectedSound], englishName, 'power-up collected',) : EMPTY_REACT_ELEMENT}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - waiting`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs1>(haveOtherSprites, [mysteryMushroomEnum.waitingImage, mysteryMushroomEnum.japaneseWaitingImage, mysteryMushroomEnum.leftVariationWaitingImage,], englishName, 'waiting',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - taunt`}>
-                    {EveryMysteryMushroomsApp.__createImages<SingleImageAs1>(haveOtherSprites, [mysteryMushroomEnum.tauntImage, mysteryMushroomEnum.japaneseTauntImage, mysteryMushroomEnum.leftVariationTauntImage,], englishName, 'taunt',)}
-                    {mysteryMushroom.haveASoundEffectOnTaunt === true ? EveryMysteryMushroomsApp.__createSounds([mysteryMushroomEnum.tauntSound], englishName, 'taunt',) : EMPTY_REACT_ELEMENT}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - lost a life`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs1>(haveOtherSprites, [mysteryMushroomEnum.downImage, mysteryMushroomEnum.japaneseDownImage, mysteryMushroomEnum.leftVariationDownImage,], englishName, 'pressing ↓',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - walking`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs3>(haveOtherSprites, [mysteryMushroomEnum.walkImages, mysteryMushroomEnum.japaneseWalkImages, mysteryMushroomEnum.leftVariationWalkImages,], englishName, 'walk',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - running`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs3>(haveOtherSprites, [mysteryMushroomEnum.runningImage, mysteryMushroomEnum.japaneseRunningImages, mysteryMushroomEnum.leftVariationRunningImages,], englishName, 'running',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - swimming`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs6>(haveOtherSprites, [mysteryMushroomEnum.swimmingImages, mysteryMushroomEnum.japaneseSwimmingImages, mysteryMushroomEnum.leftVariationSwimmingImages,], englishName, 'swimming',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - jumping`}>
-                    {EveryMysteryMushroomsApp.__createImages<| SingleImageAs1 | SingleImageAs3>(haveOtherSprites, mysteryMushroom.haveMultipleImagesOnJump ? [mysteryMushroomEnum.jumpImages, mysteryMushroomEnum.japaneseJumpImages, mysteryMushroomEnum.leftVariationJumpImages,] : [mysteryMushroomEnum.jumpImage, mysteryMushroomEnum.japaneseTauntImage, mysteryMushroomEnum.leftVariationTauntImage,], englishName, 'jump',)}
-                    {mysteryMushroom.haveASoundEffectOnJump === true ? EveryMysteryMushroomsApp.__createSounds(mysteryMushroom.amountOnSoundEffectOnJump === 2 ? mysteryMushroomEnum.jumpSounds : [mysteryMushroomEnum.jumpSounds[0]], englishName, 'jump',) : EMPTY_REACT_ELEMENT}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - falling after jump`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs1>(haveOtherSprites, [mysteryMushroomEnum.fallingAfterJumpImage, mysteryMushroomEnum.japaneseFallingAfterJumpImage, mysteryMushroomEnum.leftVariationFallingAfterJumpImage,], englishName, 'falling after jump',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - ground after jump`}>{
-                    mysteryMushroom.haveASoundEffectOnGroundAfterJump === true ? EveryMysteryMushroomsApp.__createSounds([mysteryMushroomEnum.onGroundAfterJumpSound], englishName, 'ground after jump',) : EMPTY_REACT_ELEMENT}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - turning`}>
-                    {EveryMysteryMushroomsApp.__createImages<SingleImageAs1>(haveOtherSprites, [mysteryMushroomEnum.turningImage, mysteryMushroomEnum.japaneseTurningImage, mysteryMushroomEnum.leftVariationTurningImage,], englishName, 'turning',)}
-                    {mysteryMushroom.haveASoundEffectOnTurnAfterRun === true ? EveryMysteryMushroomsApp.__createSounds([mysteryMushroomEnum.turningSound,], englishName, 'turning',) : EMPTY_REACT_ELEMENT}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - climbing`}>{
-                    EveryMysteryMushroomsApp.__createImages<SingleImageAs2>(haveOtherSprites, [mysteryMushroomEnum.climbingImages, mysteryMushroomEnum.japaneseClimbingImages, mysteryMushroomEnum.leftVariationClimbingImages,], englishName, 'climbing',)}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - goal pole`}>
-                    {EveryMysteryMushroomsApp.__createImages<SingleImageAs2>(haveOtherSprites, [mysteryMushroomEnum.goalPoleImages, mysteryMushroomEnum.japaneseGoalPoleImages, mysteryMushroomEnum.leftVariationGoalPoleImages,], englishName, 'goal pole',)}
-                    {mysteryMushroom.haveASoundEffectOnGoalPole === true ? EveryMysteryMushroomsApp.__createSounds([mysteryMushroomEnum.goalPoleSound], englishName, 'goal pole',) : EMPTY_REACT_ELEMENT}</div>,
-                isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT : <div key={`${englishName} - death`}>{
-                    mysteryMushroom.haveASoundEffectOnDeath === true ? EveryMysteryMushroomsApp.__createSounds([mysteryMushroomEnum.lostALifeSound,], englishName, 'lost a life',) : EMPTY_REACT_ELEMENT}</div>,
+                <div key={`${englishName} - power-up collected`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
+                    : EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.powerUpCollectedSounds, englishName, 'power-up collected',)
+                }</div>,
+                <div key={`${englishName} - waiting`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.waitingImages, englishName, 'waiting',)}</div>,
+                <div key={`${englishName} - taunt`}>
+                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.tauntImages, englishName, 'taunt',)}
+                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.tauntSounds, englishName, 'taunt',)}
+                </div>,
+                <div key={`${englishName} - lost a life`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.downImages, englishName, 'pressing ↓',)}</div>,
+                <div key={`${englishName} - walking`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.walkImages, englishName, 'walk',)}</div>,
+                <div key={`${englishName} - running`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.runningImages, englishName, 'running',)}</div>,
+                <div key={`${englishName} - swimming`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.swimmingImages, englishName, 'swimming',)}</div>,
+                <div key={`${englishName} - jumping`}>
+                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.jumpImages, englishName, 'jump',)}
+                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.jumpSounds, englishName, 'jump',)}
+                </div>,
+                <div key={`${englishName} - falling after jump`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.fallingAfterJumpImages, englishName, 'falling after jump',)}</div>,
+                <div key={`${englishName} - ground after jump`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
+                    : EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.onGroundAfterJumpSounds, englishName, 'ground after jump',)
+                }</div>,
+                <div key={`${englishName} - turning`}>
+                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.turningImages, englishName, 'turning',)}
+                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.turningSounds, englishName, 'turning',)}</div>,
+                <div key={`${englishName} - climbing`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.climbingImages, englishName, 'climbing',)}</div>,
+                <div key={`${englishName} - goal pole`}>
+                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.goalPoleImages, englishName, 'goal pole',)}
+                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.goalPoleSounds, englishName, 'goal pole',)}
+                </div>,
+                <div key={`${englishName} - death`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
+                    : EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.lostALifeSounds, englishName, 'lost a life',)
+                }</div>,
             ]);
             index++;
         }
@@ -141,7 +165,7 @@ export default class EveryMysteryMushroomsApp
         console.log(this.enum);//README this log is there only to help debugging.
 
         return <Table
-            id="mysteryMushroom_table"
+            id="mysteryMushroom-table"
             caption={<GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: 'Mystery Mushrooms'})}</GameContentTranslationComponent>}
             headers={[
                 {key: 'originalOrder', element: <>#</>,},
@@ -179,9 +203,17 @@ export default class EveryMysteryMushroomsApp
 
 }
 
-type SingleImageAs1 = string;
-type SingleImageAs2 = readonly [string, string,];
-type SingleImageAs3 = readonly [string, string, string,];
-type SingleImageAs6 = readonly [string, string, string, string, string, string,];
-type SingleImage = | SingleImageAs1 | SingleImageAs2 | SingleImageAs3 | SingleImageAs6;
-type PossibleImages<T extends SingleImage, > = readonly [T, T, T,];
+type PossibleGroupImages<T extends | PossibleImages_Array | string = | PossibleImages_Array | string> =
+    | readonly []
+    | readonly [T,]
+    | readonly [T, T,]
+    | readonly [T, T, T,]
+    | readonly [T, T, T, T, T, T,];
+type PossibleImages_Array = | readonly []
+                            | PossibleImages_NotEmptyArray;
+type PossibleImages_NotEmptyArray = | readonly [string,]
+                                    | readonly [string, string,];
+
+type PossibleSounds = | readonly []
+                      | readonly [string,]
+                      | readonly [string, string,];
