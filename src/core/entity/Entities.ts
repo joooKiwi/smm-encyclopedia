@@ -8,6 +8,7 @@ import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleS
 import type {SimpleImageName as SimpleImageName_ClearCondition}                                                                                                                                          from './images/clearCondition/ClearConditionImage.types';
 import type {SimpleImageName as SimpleImageName_Editor}                                                                                                                                                  from './images/editor/EditorImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
+import type {WhilePlayingImage}                                                                                                                                                                          from './images/whilePlaying/WhilePlayingImage';
 
 import {ClearConditionImageBuilder}   from './images/clearCondition/ClearConditionImage.builder';
 import {EditorImageBuilder}           from './images/editor/EditorImage.builder';
@@ -15,9 +16,10 @@ import {EmptyClearConditionImage}     from './images/clearCondition/EmptyClearCo
 import {EmptyEditorImage}             from './images/editor/EmptyEditorImage';
 import {Enum}                         from '../../util/enum/Enum';
 import {GameStyles}                   from '../gameStyle/GameStyles';
-import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
+import {SMM1WhilePlayingImageBuilder} from './images/whilePlaying/SMM1WhilePlayingImage.builder';
 import {StringContainer}              from '../../util/StringContainer';
 import {Themes}                       from '../theme/Themes';
+import {EmptyWhilePlayingImage}       from './images/whilePlaying/EmptyWhilePlayingImage';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
@@ -458,8 +460,20 @@ export class Entities
     }('Superball Flower',);
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',);
 
-    public static readonly MYSTERY_MUSHROOM =                              new Entities('Mystery Mushroom',);
-    public static readonly WEIRD_MUSHROOM =                                new Entities('Weird Mushroom',);
+    public static readonly MYSTERY_MUSHROOM =                             new class Entities_MysteryMushroom extends Entities {
+
+        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
+            return new SMM1WhilePlayingImageBuilder('Kinoko2');
+        }
+
+    }('Mystery Mushroom',);
+    public static readonly WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
+
+        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
+            return new SMM1WhilePlayingImageBuilder('KinokoFunny');
+        }
+
+    }('Weird Mushroom',);
 
     public static readonly MASTER_SWORD =                                  new class Entities_MasterSword extends Entities {
 
@@ -489,8 +503,20 @@ export class Entities
         }
 
     }('Big Mushroom',);
-    public static readonly BIG_MUSHROOM_CLASSIC =                          new Entities('Big Mushroom (classic)',);
-    public static readonly BIG_MUSHROOM_MODERN =                           new Entities('Big Mushroom (modern)',);
+    public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
+
+        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
+            return new SMM1WhilePlayingImageBuilder('MegaKinoko');
+        }
+
+    }('Big Mushroom (classic)',);
+    public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
+
+        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
+            return new SMM1WhilePlayingImageBuilder('MegaKinoko2');
+        }
+
+    }('Big Mushroom (modern)',);
 
     public static readonly SMB2_MUSHROOM =                                 new class Entities_SMB2Mushroom extends Entities {
 
@@ -2272,6 +2298,7 @@ export class Entities
     readonly #englishNameContainer;
     #editorImage?: EditorImage;
     #clearConditionImage?: ClearConditionImage;
+    #whilePlayingImage?: WhilePlayingImage;
 
     //endregion -------------------- Attributes --------------------
 
@@ -2316,8 +2343,8 @@ export class Entities
         if (builder_or_image == null)
             return null;
         if (typeof builder_or_image == 'string')
-            return new GenericSingleInstanceBuilder(new EditorImageBuilder(builder_or_image).setAllGameStyles());
-        return new GenericSingleInstanceBuilder(builder_or_image);
+            return new EditorImageBuilder(builder_or_image).setAllGameStyles();
+        return builder_or_image;
     }
 
     /**
@@ -2342,7 +2369,7 @@ export class Entities
     //region -------------------- clear condition image --------------------
 
     /**
-     * Initialise the editor depending on the {@link _createEditorImage} return value.
+     * Initialise the editor depending on the {@link _createClearConditionImage} return value.
      *
      * @note It will only be called once.
      * @private
@@ -2352,8 +2379,8 @@ export class Entities
         if (builder_or_image == null)
             return null;
         if (typeof builder_or_image == 'string')
-            return new GenericSingleInstanceBuilder(new ClearConditionImageBuilder(builder_or_image).setAllGameStyles());
-        return new GenericSingleInstanceBuilder(builder_or_image);
+            return new ClearConditionImageBuilder(builder_or_image).setAllGameStyles();
+        return builder_or_image;
     }
 
     /**
@@ -2375,6 +2402,40 @@ export class Entities
     }
 
     //endregion -------------------- clear condition image --------------------
+    //region -------------------- while playing image --------------------
+
+    /**
+     * Initialise the editor depending on the {@link _createEditorImage} return value.
+     *
+     * @note It will only be called once.
+     * @private
+     */
+    private get __initialiseWhilePlayingImageBuilder(): Builder<WhilePlayingImage> | null {
+        const builder_or_image = this._createWhilePlayingImage;
+        if (builder_or_image == null)
+            return null;
+        return builder_or_image;
+    }
+
+    /**
+     * Get the "while playing" image in a string form or in a builder form.
+     *
+     * @note It will only be called once.
+     * @protected
+     */
+    protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
+        return null;
+    }
+
+    public get whilePlayingImage(): WhilePlayingImage {
+        if (this.#whilePlayingImage == null) {
+            const builder = this.__initialiseWhilePlayingImageBuilder;
+            this.#whilePlayingImage = builder == null ? EmptyWhilePlayingImage.get : builder.build();
+        }
+        return this.#whilePlayingImage;
+    }
+
+    //endregion -------------------- while playing image --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -2426,3 +2487,4 @@ export class Entities
 
 type PossibleEditorImage = | Builder<EditorImage> | SimpleImageName_Editor | null;
 type PossibleClearConditionImage = | Builder<ClearConditionImage> | SimpleImageName_ClearCondition | null;
+type PossibleWhilePlayingImage = | Builder<WhilePlayingImage> | null;

@@ -3,6 +3,7 @@ import './EveryEntitiesApp.scss';
 import {Fragment} from 'react';
 
 import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
+import {EntityLoader}                                             from '../core/entity/Entity.loader';
 import type {Entity}                                              from '../core/entity/Entity';
 import type {EntityAppStates}                                     from './AppStates.types';
 import type {PossibleEnglishName}                                 from '../core/entity/Entities.types';
@@ -16,7 +17,6 @@ import ContentTranslationComponent       from '../lang/components/ContentTransla
 import CourseThemeComponent              from '../core/theme/CourseTheme.component';
 import {EntityCategories}                from '../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}                from '../core/entityLimit/EntityLimitTypes';
-import {EntityLoader}                    from '../core/entity/Entity.loader';
 import {Entities}                        from '../core/entity/Entities';
 import {EMPTY_REACT_ELEMENT}             from '../util/emptyReactVariables';
 import {EmptyName}                       from '../lang/name/EmptyName';
@@ -107,13 +107,13 @@ export default class EveryEntitiesApp
 
     private __createEditorImageComponent(index: number, gameStyle: GameStyles,) {
         const enumeration = this.enum[index - 1];
-        const editorImage = enumeration.editorImage;
+        const image = enumeration.editorImage;
         const times = Times.values;
         const themes = Themes.courseThemes;
 
         return <Fragment key={`editor image (${enumeration.englishName})`}>{
             [...new Set(themes.map(theme =>
-                times.map(time => editorImage.get(true, gameStyle, theme, time,)
+                times.map(time => image.get(true, gameStyle, theme, time,)
                     .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
                 .map(([theme, time, image, index,]) =>
                     <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
@@ -122,10 +122,19 @@ export default class EveryEntitiesApp
 
     private __createClearConditionImageComponent(index: number, gameStyle: GameStyles,) {
         const enumeration = this.enum[index - 1];
-        const clearConditionImage = enumeration.clearConditionImage;
+        const image = enumeration.clearConditionImage;
 
         return <Fragment key={`clear condition image (${enumeration.englishName})`}>{
-            clearConditionImage.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
+            image.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
+        }</Fragment>;
+    }
+
+    private __createWhilePlayingImageComponent(index: number, gameStyle: GameStyles,) {
+        const enumeration = this.enum[index - 1];
+        const image = enumeration.whilePlayingImage;
+
+        return <Fragment key={`while playing image (${enumeration.englishName})`}>{
+            image.get(true, gameStyle,).map((image, index1,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
         }</Fragment>;
     }
 
@@ -148,8 +157,12 @@ export default class EveryEntitiesApp
             assert(entity != null, `The entity #${index} (${englishName}) was not initialised!`);
             content.push([englishName,
                 <>{index}</>,
+                // eslint-disable-next-line no-loop-func
                 ...this._gameStyles.map(gameStyle => this.__createEditorImageComponent(index, gameStyle,)),
+                // eslint-disable-next-line no-loop-func
                 ...this._gameStyles.map(gameStyle => this.__createClearConditionImageComponent(index, gameStyle,)),
+                // eslint-disable-next-line no-loop-func
+                ...this._gameStyles.map(gameStyle => this.__createWhilePlayingImageComponent(index, gameStyle,)),
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity} displayAllAsText={this._displayGameAsTextWhenAll}/>,
                 <GameStyleComponent reference={entity} name={entity} displayAllAsText={this._displayGameStyleAsTextWhenAll}/>,
@@ -182,6 +195,10 @@ export default class EveryEntitiesApp
                         {
                             key: 'image-clearCondition', element: <>--Image (clear condition)--</>,
                             subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-clearCondition-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                        },
+                        {
+                            key: 'image-whilePlaying', element: <>--Image (while playing)--</>,
+                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-whilePlaying-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
                         },
                     ],
                 },

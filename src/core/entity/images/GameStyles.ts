@@ -1,9 +1,9 @@
-import type {GamePath_ClearCondition, GamePath_Editor}                                                                                                                              from './GameStyles.types';
-import type {GameStyleProperty}                                                                                                                                                     from '../properties/GameStyleProperty';
-import type {GameStyleReferences}                                                                                                                                                   from '../properties/GameStyleReferences';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../gameStyle/GameStyles.types';
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
-import type {PossibleOtherEntities}                                                                                                                                                 from '../Entity';
+import type {GamePath_ClearCondition, GamePath_Editor, GamePath_SMM1PowerUp}                                                                                                                        from './GameStyles.types';
+import type {GameStyleProperty}                                                                                                                                                                     from '../properties/GameStyleProperty';
+import type {GameStyleReferences}                                                                                                                                                                   from '../properties/GameStyleReferences';
+import type {EnumArray, EnumArray_SMM1, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../gameStyle/GameStyles.types';
+import type {StaticReference}                                                                                                                                                                       from '../../../util/enum/Enum.types';
+import type {PossibleOtherEntities}                                                                                                                                                                 from '../Entity';
 
 import {Enum}                             from '../../../util/enum/Enum';
 import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
@@ -21,6 +21,9 @@ export class GameStyles
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
+
+    static #GAME_STYLES_SMM1?: EnumArray_SMM1<GameStyles>;
+    static readonly #gamePath_smm1PowerUp: GamePath_SMM1PowerUp = '/entities/1 - SMB/In game/SMM1/';
 
     readonly #parent;
     #gamePath_editor?: GamePath_Editor;
@@ -50,6 +53,10 @@ export class GameStyles
         return this.#gamePath_clearCondition ??= `/entities/${this.shortImagePath}/Clear Condition/`;
     }
 
+    public static get gamePath_smm1PowerUp(): GamePath_SMM1PowerUp {
+        return this.#gamePath_smm1PowerUp;
+    }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
@@ -59,6 +66,11 @@ export class GameStyles
 
     public getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities {
         return this.parent.getReference(referenceProperty);
+    }
+
+
+    public static get gameStyles_smm1(): EnumArray_SMM1<GameStyles> {
+        return this.#GAME_STYLES_SMM1 ??= OriginalGameStyles.gameStyles_smm1.map(gameStyle => this.getValue(gameStyle)) as unknown as EnumArray_SMM1<GameStyles>;
     }
 
     //endregion -------------------- Methods --------------------

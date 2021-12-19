@@ -56,5 +56,11 @@ export type EnumArray<T extends GameStyles = GameStyles, > = readonly [
     SimpleEnum<T>['NEW_SUPER_MARIO_BROS_U'],
     SimpleEnum<T>['SUPER_MARIO_3D_WORLD'],
 ];
+export type EnumArray_SMM1<T extends GameStyles = GameStyles, > = readonly [
+    SimpleEnum<T>['SUPER_MARIO_BROS'],
+    SimpleEnum<T>['SUPER_MARIO_BROS_3'],
+    SimpleEnum<T>['SUPER_MARIO_WORLD'],
+    SimpleEnum<T>['NEW_SUPER_MARIO_BROS_U'],
+];
 
 //endregion -------------------- Array types --------------------
