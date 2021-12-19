@@ -182,10 +182,13 @@ export class EntityBuilder
 
     public build() {
         const isInProperty = this.__createProperty();
+        const isInSMM1 = isInProperty.isInSuperMarioMaker1;
+        const isInSMM2 = isInProperty.isInSuperMarioMaker1;
 
-        return isInProperty.isInSuperMarioMaker1 && !isInProperty.isInSuperMarioMaker2
+
+        return isInSMM1 && !isInSMM2
             ? new ExclusiveSMM1EntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_1), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-            : !isInProperty.isInSuperMarioMaker1 && isInProperty.isInSuperMarioMaker2
+            : !isInSMM1 && isInSMM2
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
                     ? new ExclusiveSM3DWEntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_2), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
                     : new ExclusiveSMM2EntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_2), this.__getEntityCategory(), isInProperty, this.__createReferences(),)

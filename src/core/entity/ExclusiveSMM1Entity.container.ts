@@ -33,8 +33,7 @@ export class ExclusiveSMM1EntityContainer
         assert(property.isInSuperMarioMaker1, 'The property isInSMM1 should always be set to true for a SMM1 exclusive property.',);
         assert(!property.isInSuperMarioMaker2, 'The property isInSMM2 should always be set to false for a SMM1 exclusive property.',);
 
-        assert(property.isInSuperMarioBrosStyle && !property.isInSuperMarioBros3Style && !property.isInSuperMarioWorldStyle
-            && !property.isInNewSuperMarioBrosUStyle && property.isInSuperMario3DWorldStyle !== true, 'The possible SMM1 entity can only be in the SMB style',);
+        assert(property.isInSuperMario3DWorldStyle == null, 'The possible SMM1 entity cannot be in the SM3DW style',);
 
         assert(property.isInGroundTheme && property.isInUndergroundTheme && property.isInUnderwaterTheme && property.isInDesertTheme == null
             && property.isInSnowTheme == null && property.isInSkyTheme == null && property.isInForestTheme == null && property.isInGhostHouseTheme

@@ -525,7 +525,7 @@ class TemplateBuilder
                         superMarioBros3: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioBros3Link),
                         superMarioWorld: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioWorldLink),
                         newSuperMarioBrosU: TemplateBuilder.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
-                        superMario3DWorld: !isInSuperMarioMaker1 && isInSuperMarioMaker2 ? TemplateBuilder.__convertLinkToOnlyBoolean(superMario3DWorldLink) : TemplateBuilder.__convertLinkToNullableBoolean(superMario3DWorldLink),
+                        superMario3DWorld: isInSuperMarioMaker1 && !isInSuperMarioMaker2 ? TemplateBuilder.__convertLinkToNullableBoolean(superMario3DWorldLink) : TemplateBuilder.__convertLinkToOnlyBoolean(superMario3DWorldLink),
                     },
                     theme: {
                         ground: TemplateBuilder.__convertLinkToBoolean(groundLink),
@@ -624,7 +624,7 @@ class TemplateBuilder
                     },
                 },
 
-                //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+                //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
                 limits: {
                     amount: this._getContent(this._headersIndexMap.limitAmount),
                     editor: this._getContent(this._headersIndexMap.editorLimit),
