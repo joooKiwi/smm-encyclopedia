@@ -290,7 +290,6 @@ export class Themes
             this.GROUND,
             this.UNDERGROUND,
             this.UNDERWATER,
-            this.SKY,
             this.GHOST_HOUSE,
             this.AIRSHIP,
             this.CASTLE,

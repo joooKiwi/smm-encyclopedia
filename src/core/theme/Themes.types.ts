@@ -71,7 +71,7 @@ export type EnumArray_OnlyCourseTheme<T extends Themes = Themes, > = readonly [
 ];
 export type EnumArray_OnlyCourseTheme_SMM1<T extends Themes = Themes, > = readonly [
     SimpleEnum<T>['GROUND'], SimpleEnum<T>['UNDERGROUND'], SimpleEnum<T>['UNDERWATER'],
-    SimpleEnum<T>['SKY'],SimpleEnum<T>['GHOST_HOUSE'], SimpleEnum<T>['AIRSHIP'], SimpleEnum<T>['CASTLE'],
+    SimpleEnum<T>['GHOST_HOUSE'], SimpleEnum<T>['AIRSHIP'], SimpleEnum<T>['CASTLE'],
 ];
 export type EnumArray_OnlyWorldTheme<T extends Themes = Themes, > = readonly [
     SimpleEnum<T>['GROUND'], SimpleEnum<T>['UNDERGROUND'], SimpleEnum<T>['DESERT'], SimpleEnum<T>['SNOW'],
