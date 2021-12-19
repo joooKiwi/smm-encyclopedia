@@ -17,7 +17,7 @@ export type EmptyEntityName = 'Empty entity';
 
 export type EmptyEditorImageName = 'Empty editor image';
 export type EmptyClearConditionImageName = 'Empty clear condition image';
-export type EmptyWhilePlayingImageName = 'Empty while playing image';
+export type EmptyInGameImageName = 'Empty "in game" image';
 
 //endregion -------------------- Entity types --------------------
 //region -------------------- Entity category types --------------------
@@ -64,7 +64,7 @@ export type EmptySoundEffectCategoryName = 'Empty sound effect category';
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
-    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyWhilePlayingImageName
+    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName
 
     | EmptyEntityCategoryName
 
