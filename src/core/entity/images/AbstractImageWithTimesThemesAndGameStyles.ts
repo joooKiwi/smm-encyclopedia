@@ -34,18 +34,27 @@ export abstract class AbstractImageWithTimesThemesAndGameStyles
     }
 
 
+    /**
+     * Get every possible {@link GameStyles game style} in the instance.
+     */
     protected abstract get _createEveryGameStyles(): readonly GameStyles[];
 
     protected get _everyGameStyles(): readonly GameStyles[] {
         return this.#everyGameStyles ??= this._createEveryGameStyles;
     }
 
+    /**
+     * Get every possible {@link Themes theme} in the instance.
+     */
     protected abstract get _createEveryThemes(): readonly Themes[]
 
     protected get _everyThemes(): readonly Themes[] {
         return this.#everyThemes ??= this._createEveryThemes;
     }
 
+    /**
+     * Get every possible {@link Times time} in the instance.
+     */
     protected abstract get _createEveryTimes(): readonly Times[]
 
     protected get _everyTimes(): readonly Times[] {
