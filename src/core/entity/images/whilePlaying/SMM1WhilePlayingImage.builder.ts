@@ -1,43 +1,49 @@
-import type {Builder}        from '../../../../util/Builder';
-import type {ImageName_SMM1} from './WhilePlayingImage.types';
-import type {Themes}         from '../../../theme/Themes';
+import type {Builder}           from '../../../../util/Builder';
+import type {ImageName_SMM1}    from './WhilePlayingImage.types';
+import type {Themes}            from '../../../theme/Themes';
+import type {WhilePlayingImage} from './WhilePlayingImage';
 
+import {AbstractImageBuilder}             from '../AbstractImage.builder';
 import {EMPTY_MAP}                        from '../../../../util/emptyVariables';
 import {GameStyles}                       from '../GameStyles';
 import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
 import {SMM1WhilePlayingImageContainer}   from './SMM1WhilePlayingImage.container';
-import {WhilePlayingImage}                from './WhilePlayingImage';
 
 export class SMM1WhilePlayingImageBuilder
+    extends AbstractImageBuilder<ImageName_SMM1>
     implements Builder<WhilePlayingImage> {
 
     //region -------------------- Attributes --------------------
 
-    readonly #name;
+    static readonly #GAME_STYLE_ARRAY = GameStyles.gameStyles_smm1;
+    // static readonly #THEMES_ARRAY = Themes.courseThemes_smm1;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(name: ImageName_SMM1,) {
-        this.#name = name;
+        super(name);
     }
 
-    //region -------------------- Getter methods --------------------
+    //region -------------------- Getter & setter methods --------------------
 
+    //region -------------------- Game Style --------------------
 
-    protected get _name(): ImageName_SMM1 {
-        return this.#name;
+    public setAllGameStyles(): this {
+        return this._setGameStyle(SMM1WhilePlayingImageBuilder.#GAME_STYLE_ARRAY);
     }
 
-    //endregion -------------------- Getter methods --------------------
+    //endregion -------------------- Game Style --------------------
+
+    //endregion -------------------- Getter & setter methods --------------------
+
     //region -------------------- Build utility methods --------------------
 
-    protected _getImagePath() {
-        return `${GameStyles.gamePath_smm1PowerUp}Item - ${this._name}/wait.0.png`;
+    protected _getImagePath(gameStyle: GameStyles,) {
+        return `${gameStyle.gamePath_inGameSmm1}Item - ${this.simpleImageName}/wait.0.png`;
     }
 
-
     protected _createDefaultImages(): ReadonlyMap<OriginalGameStyles, readonly [string]> {
-        return new Map([[OriginalGameStyles.SUPER_MARIO_BROS, [this._getImagePath(),],]]);
+        return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, [this._getImagePath(gameStyle),],]));
     }
 
     protected _createNewMap(): ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly [string]>> {

@@ -4,6 +4,6 @@ import type {PossibleShortImagePath}           from '../../gameStyle/GameStyles.
 
 export type GamePath_Editor = `/entities/${PossibleShortImagePath}/Editor/`;
 export type GamePath_ClearCondition = `/entities/${PossibleShortImagePath}/Clear Condition/`;
-export type GamePath_SMM1PowerUp = '/entities/1 - SMB/In game/SMM1/';
+export type GamePath_InGameSMM1 = `/entities/${PossibleShortImagePath}/In game/SMM1/`;
 
 export type PossibleGameStyle = | GameStyles | OriginalGameStyles;

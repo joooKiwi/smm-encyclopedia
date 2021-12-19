@@ -506,14 +506,16 @@ export class Entities
     public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
 
         protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
-            return new SMM1WhilePlayingImageBuilder('MegaKinoko');
+            return new SMM1WhilePlayingImageBuilder('MegaKinoko')
+                .setAllGameStyles();
         }
 
     }('Big Mushroom (classic)',);
     public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
 
         protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
-            return new SMM1WhilePlayingImageBuilder('MegaKinoko2');
+            return new SMM1WhilePlayingImageBuilder('MegaKinoko2')
+                .setAllGameStyles();
         }
 
     }('Big Mushroom (modern)',);

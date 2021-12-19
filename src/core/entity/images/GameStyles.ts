@@ -1,4 +1,4 @@
-import type {GamePath_ClearCondition, GamePath_Editor, GamePath_SMM1PowerUp}                                                                                                                        from './GameStyles.types';
+import type {GamePath_ClearCondition, GamePath_Editor, GamePath_InGameSMM1}                                                                                                                         from './GameStyles.types';
 import type {GameStyleProperty}                                                                                                                                                                     from '../properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                                                   from '../properties/GameStyleReferences';
 import type {EnumArray, EnumArray_SMM1, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from '../../gameStyle/GameStyles.types';
@@ -23,11 +23,11 @@ export class GameStyles
     //region -------------------- Attributes --------------------
 
     static #GAME_STYLES_SMM1?: EnumArray_SMM1<GameStyles>;
-    static readonly #gamePath_smm1PowerUp: GamePath_SMM1PowerUp = '/entities/1 - SMB/In game/SMM1/';
 
     readonly #parent;
     #gamePath_editor?: GamePath_Editor;
     #gamePath_clearCondition?: GamePath_ClearCondition;
+    #gamePath_smm1?: GamePath_InGameSMM1;
 
     //endregion -------------------- Attributes --------------------
 
@@ -53,8 +53,8 @@ export class GameStyles
         return this.#gamePath_clearCondition ??= `/entities/${this.shortImagePath}/Clear Condition/`;
     }
 
-    public static get gamePath_smm1PowerUp(): GamePath_SMM1PowerUp {
-        return this.#gamePath_smm1PowerUp;
+    public get gamePath_inGameSmm1(): GamePath_InGameSMM1 {
+        return this.#gamePath_smm1 ??= `/entities/${this.shortImagePath}/In game/SMM1/`;
     }
 
     //endregion -------------------- Getter methods --------------------
