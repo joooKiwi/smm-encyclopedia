@@ -1,17 +1,17 @@
-import type {Builder}           from '../../../../util/Builder';
-import type {ImageName_SMM1}    from './WhilePlayingImage.types';
-import type {Themes}            from '../../../theme/Themes';
-import type {WhilePlayingImage} from './WhilePlayingImage';
+import type {Builder}        from '../../../../util/Builder';
+import type {ImageName_SMM1} from './InGameImage.types';
+import type {Themes}         from '../../../theme/Themes';
+import type {InGameImage}    from './InGameImage';
 
 import {AbstractImageBuilder}             from '../AbstractImage.builder';
 import {EMPTY_MAP}                        from '../../../../util/emptyVariables';
 import {GameStyles}                       from '../GameStyles';
 import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
-import {SMM1WhilePlayingImageContainer}   from './SMM1WhilePlayingImage.container';
+import {SMM1InGameImageContainer}         from './SMM1InGameImage.container';
 
-export class SMM1WhilePlayingImageBuilder
+export class SMM1InGameImageBuilder
     extends AbstractImageBuilder<ImageName_SMM1>
-    implements Builder<WhilePlayingImage> {
+    implements Builder<InGameImage> {
 
     //region -------------------- Attributes --------------------
 
@@ -29,7 +29,7 @@ export class SMM1WhilePlayingImageBuilder
     //region -------------------- Game Style --------------------
 
     public setAllGameStyles(): this {
-        return this._setGameStyle(SMM1WhilePlayingImageBuilder.#GAME_STYLE_ARRAY);
+        return this._setGameStyle(SMM1InGameImageBuilder.#GAME_STYLE_ARRAY);
     }
 
     //endregion -------------------- Game Style --------------------
@@ -52,8 +52,8 @@ export class SMM1WhilePlayingImageBuilder
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): WhilePlayingImage {
-        return new SMM1WhilePlayingImageContainer(this._createNewMap(), this._createDefaultImages(),);
+    public build(): InGameImage {
+        return new SMM1InGameImageContainer(this._createNewMap(), this._createDefaultImages(),);
     }
 
 }

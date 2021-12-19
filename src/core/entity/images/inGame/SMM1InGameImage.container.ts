@@ -4,7 +4,7 @@ import {Themes}                                    from '../../../theme/Themes';
 import {Times}                                     from '../../../time/Times';
 import {GameStyles}                                from '../../../gameStyle/GameStyles';
 
-export class SMM1WhilePlayingImageContainer
+export class SMM1InGameImageContainer
     extends AbstractImageWithTimesThemesAndGameStyles {
 
     public constructor(map: ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly string[]>>, defaultImages: ReadonlyMap<GameStyles, readonly string[]>,) {

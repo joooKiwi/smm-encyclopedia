@@ -5,21 +5,21 @@ import type {ClearConditionImage}                                               
 import type {EditorImage}                                                                                                                                                                                from './images/editor/EditorImage';
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
+import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage';
 import type {SimpleImageName as SimpleImageName_ClearCondition}                                                                                                                                          from './images/clearCondition/ClearConditionImage.types';
 import type {SimpleImageName as SimpleImageName_Editor}                                                                                                                                                  from './images/editor/EditorImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
-import type {WhilePlayingImage}                                                                                                                                                                          from './images/whilePlaying/WhilePlayingImage';
 
-import {ClearConditionImageBuilder}   from './images/clearCondition/ClearConditionImage.builder';
-import {EditorImageBuilder}           from './images/editor/EditorImage.builder';
-import {EmptyClearConditionImage}     from './images/clearCondition/EmptyClearConditionImage';
-import {EmptyEditorImage}             from './images/editor/EmptyEditorImage';
-import {Enum}                         from '../../util/enum/Enum';
-import {GameStyles}                   from '../gameStyle/GameStyles';
-import {SMM1WhilePlayingImageBuilder} from './images/whilePlaying/SMM1WhilePlayingImage.builder';
-import {StringContainer}              from '../../util/StringContainer';
-import {Themes}                       from '../theme/Themes';
-import {EmptyWhilePlayingImage}       from './images/whilePlaying/EmptyWhilePlayingImage';
+import {ClearConditionImageBuilder} from './images/clearCondition/ClearConditionImage.builder';
+import {EditorImageBuilder}         from './images/editor/EditorImage.builder';
+import {EmptyClearConditionImage}   from './images/clearCondition/EmptyClearConditionImage';
+import {EmptyEditorImage}           from './images/editor/EmptyEditorImage';
+import {EmptyInGameImage}           from './images/inGame/EmptyInGameImage';
+import {Enum}                       from '../../util/enum/Enum';
+import {GameStyles}                 from '../gameStyle/GameStyles';
+import {SMM1InGameImageBuilder}     from './images/inGame/SMM1InGameImage.builder';
+import {StringContainer}            from '../../util/StringContainer';
+import {Themes}                     from '../theme/Themes';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
@@ -462,15 +462,15 @@ export class Entities
 
     public static readonly MYSTERY_MUSHROOM =                             new class Entities_MysteryMushroom extends Entities {
 
-        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
-            return new SMM1WhilePlayingImageBuilder('Kinoko2');
+        protected get _createInGameImage(): PossibleInGameImage {
+            return new SMM1InGameImageBuilder('Kinoko2');
         }
 
     }('Mystery Mushroom',);
     public static readonly WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
 
-        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
-            return new SMM1WhilePlayingImageBuilder('KinokoFunny');
+        protected get _createInGameImage(): PossibleInGameImage {
+            return new SMM1InGameImageBuilder('KinokoFunny');
         }
 
     }('Weird Mushroom',);
@@ -505,16 +505,16 @@ export class Entities
     }('Big Mushroom',);
     public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
 
-        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
-            return new SMM1WhilePlayingImageBuilder('MegaKinoko')
+        protected get _createInGameImage(): PossibleInGameImage {
+            return new SMM1InGameImageBuilder('MegaKinoko')
                 .setAllGameStyles();
         }
 
     }('Big Mushroom (classic)',);
     public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
 
-        protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
-            return new SMM1WhilePlayingImageBuilder('MegaKinoko2')
+        protected get _createInGameImage(): PossibleInGameImage {
+            return new SMM1InGameImageBuilder('MegaKinoko2')
                 .setAllGameStyles();
         }
 
@@ -2300,7 +2300,7 @@ export class Entities
     readonly #englishNameContainer;
     #editorImage?: EditorImage;
     #clearConditionImage?: ClearConditionImage;
-    #whilePlayingImage?: WhilePlayingImage;
+    #whilePlayingImage?: InGameImage;
 
     //endregion -------------------- Attributes --------------------
 
@@ -2407,32 +2407,32 @@ export class Entities
     //region -------------------- while playing image --------------------
 
     /**
-     * Initialise the editor depending on the {@link _createEditorImage} return value.
+     * Initialise the editor depending on the {@link _createInGameImage} return value.
      *
      * @note It will only be called once.
      * @private
      */
-    private get __initialiseWhilePlayingImageBuilder(): Builder<WhilePlayingImage> | null {
-        const builder_or_image = this._createWhilePlayingImage;
+    private get __initialiseInGameImageBuilder(): | Builder<InGameImage> | null {
+        const builder_or_image = this._createInGameImage;
         if (builder_or_image == null)
             return null;
         return builder_or_image;
     }
 
     /**
-     * Get the "while playing" image in a string form or in a builder form.
+     * Get the "in game" image in a string form or in a builder form.
      *
      * @note It will only be called once.
      * @protected
      */
-    protected get _createWhilePlayingImage(): PossibleWhilePlayingImage {
+    protected get _createInGameImage(): PossibleInGameImage {
         return null;
     }
 
-    public get whilePlayingImage(): WhilePlayingImage {
+    public get inGameImage(): InGameImage {
         if (this.#whilePlayingImage == null) {
-            const builder = this.__initialiseWhilePlayingImageBuilder;
-            this.#whilePlayingImage = builder == null ? EmptyWhilePlayingImage.get : builder.build();
+            const builder = this.__initialiseInGameImageBuilder;
+            this.#whilePlayingImage = builder == null ? EmptyInGameImage.get : builder.build();
         }
         return this.#whilePlayingImage;
     }
@@ -2489,4 +2489,4 @@ export class Entities
 
 type PossibleEditorImage = | Builder<EditorImage> | SimpleImageName_Editor | null;
 type PossibleClearConditionImage = | Builder<ClearConditionImage> | SimpleImageName_ClearCondition | null;
-type PossibleWhilePlayingImage = | Builder<WhilePlayingImage> | null;
+type PossibleInGameImage = | Builder<InGameImage> | null;

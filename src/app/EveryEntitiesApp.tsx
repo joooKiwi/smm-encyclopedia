@@ -131,10 +131,10 @@ export default class EveryEntitiesApp
 
     private __createWhilePlayingImageComponent(index: number, gameStyle: GameStyles,) {
         const enumeration = this.enum[index - 1];
-        const image = enumeration.whilePlayingImage;
+        const image = enumeration.inGameImage;
 
-        return <Fragment key={`while playing image (${enumeration.englishName})`}>{
-            image.get(true, gameStyle,).map((image, index1,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
+        return <Fragment key={`Image (in game - ${enumeration.englishName})`}>{
+            image.get(true, gameStyle,).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
         }</Fragment>;
     }
 
