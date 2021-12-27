@@ -40,24 +40,21 @@ export class Entities
     public static readonly GROUND =                                        new class Entities_Ground extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Ground',)
-                .setAsGround();
+            return Entities.__createGroundEditorImage('Ground',);
         }
 
     }('Ground',);
     public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('slope_l30',)
-                .setAsGround();
+            return Entities.__createGroundEditorImage('slope_l30',);
         }
 
     }('Steep Slope',);
     public static readonly GENTLE_SLOPE =                                  new class Entities_GentleSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('slope_l45',)
-                .setAsGround();
+            return Entities.__createGroundEditorImage('slope_l45',);
         }
 
     }('Gentle Slope',);
@@ -2442,6 +2439,19 @@ export class Entities
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    private static __createGroundEditorImage(simpleImageName: Extract<SimpleImageName_Editor, 'Ground' | `slope_l${45 | 30}`>,): EditorImageBuilder {
+        return new EditorImageBuilder(simpleImageName,)
+            .setTheme(SMB, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+            .setNightTheme(SMB, AIRSHIP,)
+            .setTheme(SMB3, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+            .setNightTheme(SMB3, SNOW, AIRSHIP, CASTLE,)
+            .setTheme(SMW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+            .setNightTheme(SMW, UNDERWATER, SNOW,)
+            .setTheme(NSMBU, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
+            .setNightTheme(SM3DW, SNOW, AIRSHIP,)
+            .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,);
+    }
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
         return this.values.map(limit => limit.englishName);
