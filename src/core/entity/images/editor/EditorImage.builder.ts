@@ -30,6 +30,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     #themes?: ExtendedList<Themes>;
 
     readonly #selectedMap: Map<Times, Map<GameStyles, Map<Themes, boolean>>>;
+    #overrideDefaultAmount?: Map<GameStyles, PossibleAmountOfImages>;
     #overrideMap?: Map<Times, Map<GameStyles, Map<Themes, PossibleAmountOfImages>>>;
 
     //endregion -------------------- Attributes --------------------
@@ -245,14 +246,16 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#overrideMap ?? EMPTY_MAP;
     }
 
-    private __setOverrideImages(number: PossibleAmountOfImages, gameStyle: PossibleGameStyle, theme?: Themes,): this {
+    private __setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: PossibleGameStyle, theme: | Themes | null,): this {
         if (!(gameStyle instanceof GameStyles))
-            return this.__setOverrideImages(number, GameStyles.getValue(gameStyle), theme,);
+            return this.__setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,);
 
-        const themes = theme == null ? Themes.values : [theme] as const;
+        const times = time == null ? Times.values : [time] as const;
+        const themes = theme == null ? Themes.courseThemes : [theme] as const;
 
         const overrideMap = this.__overrideImages;
-        Times.values.forEach(time => {
+
+        times.forEach(time => {
             if (!overrideMap.has(time))
                 overrideMap.set(time, new Map());
             const timeMap = overrideMap.get(time)!;
@@ -261,21 +264,52 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                 timeMap.set(gameStyle, new Map());
             const gameStyleMap = timeMap.get(gameStyle)!;
 
-            themes.forEach(theme => gameStyleMap.set(theme, number,));
+            themes.forEach(theme => gameStyleMap.set(theme, imageNumber,));
         });
+
         return this;
     }
 
 
-    public setNumbers(gameStyle: PossibleGameStyle, number: PossibleAmountOfImages,): this
-    public setNumbers(gameStyle: PossibleGameStyle, theme: Themes, number: PossibleAmountOfImages,): this
-    public setNumbers(gameStyle: PossibleGameStyle, theme_or_number: | Themes | PossibleAmountOfImages, number?: PossibleAmountOfImages,): this {
-        if (typeof theme_or_number == 'number')
-            return this.__setOverrideImages(theme_or_number, gameStyle,);
+    private get __overrideDefaultAmounts(): Map<GameStyles, PossibleAmountOfImages> {
+        return this.#overrideDefaultAmount ??= new Map();
+    }
 
-        if (number == null)
-            throw new TypeError(`The 3rd argument in ${this.setNumbers.name} cannot be null when the 2nd argument is a theme!`);
-        return this.__setOverrideImages(number, gameStyle, theme_or_number,);
+    protected get _overrideDefaultAmounts(): ReadonlyMap<GameStyles, PossibleAmountOfImages> {
+        return this.#overrideDefaultAmount ?? EMPTY_MAP;
+    }
+
+    protected __setOverrideDefaultAmounts(number: PossibleAmountOfImages, gameStyle: PossibleGameStyle,): this {
+        if (!(gameStyle instanceof GameStyles))
+            return this.__setOverrideDefaultAmounts(number, GameStyles.getValue(gameStyle),);
+
+        this.__overrideDefaultAmounts.set(gameStyle, number,);
+        return this;
+    }
+
+
+    /**
+     * Set the image number for the specific {@link OriginalGameStyles game style}, {@link Themes theme} & {@link Times time}.
+     *
+     * @param gameStyle the game style
+     * @param theme the theme or every theme if <b>null</b> is received
+     * @param time the time or every time if <b>null</b> is received
+     * @param imageNumber the image number
+     */
+    public setImage(gameStyle: PossibleGameStyle, theme: | Themes | null, time: | Times | null, imageNumber: PossibleAmountOfImages,): this {
+        return this.__setOverrideImages(imageNumber, time, gameStyle, theme,);
+    }
+
+    /**
+     * Set the default amount for the selected {@link OriginalGameStyles game style}.
+     *
+     * @note This will do nothing if there is only 1 image.
+     *
+     * @param gameStyle the game style
+     * @param number the default amount
+     */
+    public setDefaultAmount(gameStyle: PossibleGameStyle, number: PossibleAmountOfImages,): this {
+        return this.__setOverrideDefaultAmounts(number, gameStyle,);
     }
 
     //endregion -------------------- Override images --------------------
@@ -349,7 +383,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
             if (amount != null)
                 return [amount - 1 as ImageNumber];
         }
-        return [...new Array(amountOfImages)].map((_value, index,) => index as ImageNumber,);
+        return [...new Array(this._overrideDefaultAmounts.get(gameStyle) ?? amountOfImages)].map((_value, index,) => index as ImageNumber,);
     }
 
 
@@ -389,7 +423,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     }
 
 
-    protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[]): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly string[]>>> {
+    protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[],): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly string[]>>> {
         const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<Themes, readonly string[]>>>();
 
         this._selectedMap.forEach((timeMap, time,) => {

@@ -20,6 +20,7 @@ import {GameStyles}                 from '../gameStyle/GameStyles';
 import {SMM1InGameImageBuilder}     from './images/inGame/SMM1InGameImage.builder';
 import {StringContainer}            from '../../util/StringContainer';
 import {Themes}                     from '../theme/Themes';
+import {Times}                      from '../time/Times';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
@@ -141,7 +142,7 @@ export class Entities
                 .setAmount(3)
                 .setTheme(SMB, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
                 .setNightTheme(SMB, SNOW, AIRSHIP,)
-                .setNumbers(SMB, AIRSHIP, 2,)
+                .setImage(SMB, AIRSHIP, Times.NIGHT, 2,)
                 .setTheme(SMB3, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
                 .setNightTheme(SMB3, SNOW,)
                 .setTheme(SMW, UNDERGROUND, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
@@ -149,7 +150,7 @@ export class Entities
                 .setTheme(NSMBU, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
                 .setNightTheme(NSMBU, SNOW,)
                 .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNumbers(SM3DW, 1,);
+                .setDefaultAmount(SM3DW, 1,);
         }
 
     }('Semisolid Platform',);
@@ -1060,8 +1061,8 @@ export class Entities
             return new EditorImageBuilder('Pukupuku',)
                 .setAmount(2)
                 .setAllGameStyles()
-                .setNumbers(SMW, 2,)
-                .setNumbers(NSMBU, 2,);
+                .setImage(SMW, null, null, 2,)
+                .setImage(NSMBU, null, null, 2,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
