@@ -415,6 +415,7 @@ type Style<NAME extends | SimpleImageName | string, STYLE extends VariantEditorI
 
 
 export type SimpleImageName = ImageNameMap[PossibleEnglishName][0];
+export type SimpleImageName_GroundOrSlope = ImageNameMap['Ground' | 'Gentle Slope' | 'Steep Slope'][0];
 
 export type ImageName = ImageNameMap[PossibleEnglishName][1];
 

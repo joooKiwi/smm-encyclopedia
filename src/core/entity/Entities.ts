@@ -7,7 +7,7 @@ import type {Entity}                                                            
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage';
 import type {SimpleImageName as SimpleImageName_ClearCondition}                                                                                                                                          from './images/clearCondition/ClearConditionImage.types';
-import type {SimpleImageName as SimpleImageName_Editor}                                                                                                                                                  from './images/editor/EditorImage.types';
+import type {SimpleImageName as SimpleImageName_Editor, SimpleImageName_GroundOrSlope}                                                                                                                   from './images/editor/EditorImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 
 import {ClearConditionImageBuilder} from './images/clearCondition/ClearConditionImage.builder';
@@ -2440,7 +2440,7 @@ export class Entities
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private static __createGroundEditorImage(simpleImageName: Extract<SimpleImageName_Editor, 'Ground' | `slope_l${45 | 30}`>,): EditorImageBuilder {
+    private static __createGroundEditorImage(simpleImageName: SimpleImageName_GroundOrSlope,): EditorImageBuilder {
         return new EditorImageBuilder(simpleImageName,)
             .setTheme(SMB, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
             .setNightTheme(SMB, AIRSHIP,)

@@ -2,7 +2,6 @@ import type {Builder}                          from '../../../util/Builder';
 import type {ExtendedList}                     from '../../../util/extended/ExtendedList';
 import type {Image}                            from './Image';
 import type {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
-import type {PossibleGameStyle}                from './GameStyles.types';
 
 import {ExtendedSet} from '../../../util/extended/ExtendedSet';
 import {GameStyles}  from './GameStyles';
@@ -54,9 +53,9 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
         return this;
     }
 
-    protected _addGameStyle(gameStyle: PossibleGameStyle,): this
-    protected _addGameStyle(gameStyles: readonly PossibleGameStyle[],): this
-    protected _addGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[],): this {
+    protected _addGameStyle(gameStyle: OriginalGameStyles,): this
+    protected _addGameStyle(gameStyles: readonly OriginalGameStyles[],): this
+    protected _addGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[],): this {
         if (!(gameStyles instanceof Array))
             return this._addGameStyle([gameStyles]);
         this.__gameStyles.add(...gameStyles.map(gameStyle => GameStyles.getValue(gameStyle)));
@@ -64,11 +63,11 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
         return this;
     }
 
-    protected _setGameStyle(gameStyle: PossibleGameStyle,): this
-    protected _setGameStyle(gameStyles: readonly PossibleGameStyle[],): this
-    protected _setGameStyle(gameStyles: readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[],): this
-    protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles?: readonly PossibleGameStyle[],): this
-    protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[] = [],): this {
+    protected _setGameStyle(gameStyle: OriginalGameStyles,): this
+    protected _setGameStyle(gameStyles: readonly OriginalGameStyles[],): this
+    protected _setGameStyle(gameStyles: readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[],): this
+    protected _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles?: readonly OriginalGameStyles[],): this
+    protected _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[] = [],): this {
         if (!(gameStyles instanceof Array))
             return this._setGameStyle([gameStyles], notGameStyles,);
 

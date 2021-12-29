@@ -3,7 +3,6 @@ import type {EditorImage}                                                       
 import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList';
 import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles';
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
-import type {PossibleGameStyle}                                                                from '../GameStyles.types';
 
 import {AbstractImageBuilder} from '../AbstractImage.builder';
 import {EditorImageContainer} from './EditorImage.container';
@@ -92,7 +91,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#selectedMap;
     }
 
-    protected _add(times: readonly Times[], gameStyles: readonly PossibleGameStyle[], themes: readonly Themes[],): this {
+    protected _add(times: readonly Times[], gameStyles: readonly OriginalGameStyles[], themes: readonly Themes[],): this {
         const map = this._selectedMap;
         const _times = times;
         const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
@@ -169,11 +168,11 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //endregion -------------------- Time --------------------
     //region -------------------- Game Style --------------------
 
-    protected _setGameStyle(gameStyle: PossibleGameStyle,): this
-    protected _setGameStyle(gameStyles: readonly PossibleGameStyle[],): this
-    protected _setGameStyle(gameStyles: readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[],): this
-    protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles?: readonly PossibleGameStyle[],): this
-    protected _setGameStyle(gameStyles: | PossibleGameStyle | readonly PossibleGameStyle[], notGameStyles: readonly PossibleGameStyle[] = [],): this {
+    protected _setGameStyle(gameStyle: OriginalGameStyles,): this
+    protected _setGameStyle(gameStyles: readonly OriginalGameStyles[],): this
+    protected _setGameStyle(gameStyles: readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[],): this
+    protected _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles?: readonly OriginalGameStyles[],): this
+    protected _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[] = [],): this {
         if (!(gameStyles instanceof Array))
             return this._setGameStyle([gameStyles], notGameStyles,);
 
@@ -204,34 +203,34 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this;
     }
 
-    private __setThemes(time: Times, gameStyle: PossibleGameStyle, themes: readonly Themes[], notThemes: readonly Themes[] = [],): this {
+    private __setThemes(time: Times, gameStyle: OriginalGameStyles, themes: readonly Themes[], notThemes: readonly Themes[] = [],): this {
         this.__themes.clear();
         return this._add([time], [gameStyle], themes.filter(theme => !notThemes.includes(theme)),);
     }
 
 
-    public setTheme(gameStyle: PossibleGameStyle,): never
-    public setTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this
-    public setTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this {
+    public setTheme(gameStyle: OriginalGameStyles,): never
+    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
+    public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
         return this.__setThemes(Times.DAY, gameStyle, themes,);
     }
 
-    public setNotTheme(gameStyle: PossibleGameStyle,): never
-    public setNotTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this
-    public setNotTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this {
+    public setNotTheme(gameStyle: OriginalGameStyles,): never
+    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
+    public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
         return this.__setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
     }
 
 
-    public setNightTheme(gameStyle: PossibleGameStyle,): never
-    public setNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this
-    public setNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this {
+    public setNightTheme(gameStyle: OriginalGameStyles,): never
+    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
+    public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
         return this.__setThemes(Times.NIGHT, gameStyle, themes,);
     }
 
-    public setNotNightTheme(gameStyle: PossibleGameStyle,): never
-    public setNotNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this
-    public setNotNightTheme(gameStyle: PossibleGameStyle, ...themes: readonly Themes[]): this {
+    public setNotNightTheme(gameStyle: OriginalGameStyles,): never
+    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
+    public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
         return this.__setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
     }
 
@@ -246,7 +245,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#overrideMap ?? EMPTY_MAP;
     }
 
-    private __setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: PossibleGameStyle, theme: | Themes | null,): this {
+    private __setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: OriginalGameStyles, theme: | Themes | null,): this {
         if (!(gameStyle instanceof GameStyles))
             return this.__setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,);
 
@@ -279,7 +278,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#overrideDefaultAmount ?? EMPTY_MAP;
     }
 
-    protected __setOverrideDefaultAmounts(number: PossibleAmountOfImages, gameStyle: PossibleGameStyle,): this {
+    protected __setOverrideDefaultAmounts(number: PossibleAmountOfImages, gameStyle: OriginalGameStyles,): this {
         if (!(gameStyle instanceof GameStyles))
             return this.__setOverrideDefaultAmounts(number, GameStyles.getValue(gameStyle),);
 
@@ -296,7 +295,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param time the time or every time if <b>null</b> is received
      * @param imageNumber the image number
      */
-    public setImage(gameStyle: PossibleGameStyle, theme: | Themes | null, time: | Times | null, imageNumber: PossibleAmountOfImages,): this {
+    public setImage(gameStyle: OriginalGameStyles, theme: | Themes | null, time: | Times | null, imageNumber: PossibleAmountOfImages,): this {
         return this.__setOverrideImages(imageNumber, time, gameStyle, theme,);
     }
 
@@ -308,7 +307,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param gameStyle the game style
      * @param number the default amount
      */
-    public setDefaultAmount(gameStyle: PossibleGameStyle, number: PossibleAmountOfImages,): this {
+    public setDefaultAmount(gameStyle: OriginalGameStyles, number: PossibleAmountOfImages,): this {
         return this.__setOverrideDefaultAmounts(number, gameStyle,);
     }
 
