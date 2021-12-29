@@ -1,6 +1,6 @@
-import type {Games}                                          from './Games';
-import type {PossibleAcronym_Game, PossibleEnglishName_Game} from '../gameReference/GameReferences.types';
-import type {SimpleEnum as OriginalSimpleEnum}               from '../../util/enum/Enum.types';
+import type {Games}                                                                                                                                                                                                                                        from './Games';
+import type {PossibleAcronym_Game, PossibleEnglishName_Game}                                                                                                                                                                                               from '../gameReference/GameReferences.types';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | Games | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym;
@@ -29,7 +29,14 @@ export type PossibleImagePath = `/game/logos/${PossibleEnglishName}.svg`;
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends Games = Games, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<E extends Games = Games, > = OriginalSimpleEnum<Names, E>;
+
+export type EnumByOrdinal<O extends Ordinals, E extends Games = Games, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends Games = Games, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends Games = Games, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends Games = Games, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends Games = Games, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------

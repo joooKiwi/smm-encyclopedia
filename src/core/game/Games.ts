@@ -1,10 +1,10 @@
-import type {ClassWithAcronym}                                                                                                                                  from '../ClassWithAcronym';
-import type {ClassWithEnglishName}                                                                                                                              from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                from '../ClassWithImagePath';
-import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
-import type {GameProperty}                                                                                                                                      from '../entity/properties/GameProperty';
-import type {PropertyGetter}                                                                                                                                    from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                   from '../../util/enum/Enum.types';
+import type {ClassWithAcronym}                                                                                                                                                                                                               from '../ClassWithAcronym';
+import type {ClassWithEnglishName}                                                                                                                                                                                                           from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                                                                             from '../ClassWithImagePath';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Games.types';
+import type {GameProperty}                                                                                                                                                                                                                   from '../entity/properties/GameProperty';
+import type {PropertyGetter}                                                                                                                                                                                                                 from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                                from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import GameComponent     from './Game.component';
@@ -20,30 +20,43 @@ export abstract class Games
     //region -------------------- Enum instances --------------------
 
     public static readonly SUPER_MARIO_MAKER_1 = new class Games_SuperMarioMaker1 extends Games {
+
         public get(property: GameProperty,): boolean {
             return property.isInSuperMarioMaker1;
         }
+
     }('SMM',  'Super Mario Maker',);
     public static readonly SUPER_MARIO_MAKER_2 = new class Games_SuperMarioMaker2 extends Games {
+
         public get(property: GameProperty,): boolean {
             return property.isInSuperMarioMaker2;
         }
+
     }('SMM2', 'Super Mario Maker 2',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
 
-    readonly #acronym;
+    readonly #acronym: PossibleAcronym;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imagePath: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
+    // @ts-ignore
+    protected constructor(enumeration: Games,)
+    private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,)
+    private constructor(enumeration_or_acronym: | PossibleAcronym | Games, englishName: PossibleEnglishName,) {
         super();
-        this.#acronym = acronym;
-        this.#englishName = new StringContainer(englishName);
-        this.#imagePath = `/game/logos/${englishName}.svg`;
+        if (enumeration_or_acronym instanceof Games) {
+            this.#acronym = enumeration_or_acronym.#acronym;
+            this.#englishName = enumeration_or_acronym.#englishName;
+            this.#imagePath = enumeration_or_acronym.#imagePath;
+        } else {
+            this.#acronym = enumeration_or_acronym;
+            this.#englishName = new StringContainer(englishName);
+            this.#imagePath = `/game/logos/${englishName}.svg`;
+        }
     }
 
     //region -------------------- Getter methods --------------------
@@ -81,11 +94,11 @@ export abstract class Games
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof Games[N]
-    public static getValue(name: PossibleStringValue,): Games
-    public static getValue(name: string,): | Games | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue, >(name: PossibleStringValue,): EnumByPossibleString<S>
+    public static getValue<S extends string, >(name: S,): EnumByString<S>
     public static getValue<I extends Games = Games, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): Games
     public static getValue(value: PossibleValue,): | Games | null
