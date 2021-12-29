@@ -2449,7 +2449,7 @@ export class Entities
             .setTheme(SMW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
             .setNightTheme(SMW, UNDERWATER, SNOW,)
             .setTheme(NSMBU, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-            .setNightTheme(SM3DW, SNOW, AIRSHIP,)
+            .setNightTheme(NSMBU, SNOW, AIRSHIP,)
             .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,);
     }
 
