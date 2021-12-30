@@ -3,20 +3,22 @@ import './EveryEntitiesApp.scss';
 import {Fragment} from 'react';
 
 import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
-import {EntityLoader}                                             from '../core/entity/Entity.loader';
 import type {Entity}                                              from '../core/entity/Entity';
 import type {EntityAppStates}                                     from './AppStates.types';
+import type {ImageProperties}                                     from './tools/images/properties/ImageProperties';
 import type {PossibleEnglishName}                                 from '../core/entity/Entities.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/entityCategory/EntityCategories.types';
 import type {SingleHeaderContent}                                 from './tools/table/SimpleHeader';
 import type {SingleTableContent}                                  from './tools/table/Table.types';
 
 import AbstractApp                       from './AbstractApp';
+import AnimatedImages                    from './tools/images/AnimatedImages';
 import {assert}                          from '../util/utilitiesMethods';
 import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent              from '../core/theme/CourseTheme.component';
 import {EntityCategories}                from '../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}                from '../core/entityLimit/EntityLimitTypes';
+import {EntityLoader}                    from '../core/entity/Entity.loader';
 import {Entities}                        from '../core/entity/Entities';
 import {EMPTY_REACT_ELEMENT}             from '../util/emptyReactVariables';
 import {EmptyName}                       from '../lang/name/EmptyName';
@@ -44,9 +46,10 @@ export default class EveryEntitiesApp
 
     #map?: ReadonlyMap<PossibleEnglishName, DebugEntityReferences>;
     #gameStyles?: readonly GameStyles[];
+    #gameStyles_unusedImages?: readonly [GameStyles, GameStyles];
 
-    public constructor(props: {}, context: any,) {
-        super(props, context);
+    public constructor(props: {},) {
+        super(props,);
         this.state = {
             display: {
                 asText: {
@@ -76,6 +79,10 @@ export default class EveryEntitiesApp
 
     protected get _gameStyles() {
         return this.#gameStyles ??= GameStyles.values;
+    }
+
+    protected get _gameStyles_unusedImages() {
+        return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS, GameStyles.NEW_SUPER_MARIO_BROS_U,];
     }
 
     protected get _displayCategoryAsText(): boolean {
@@ -138,6 +145,26 @@ export default class EveryEntitiesApp
         }</Fragment>;
     }
 
+    private __createUnusedImageComponent(index: number, gameStyle: GameStyles,) {
+        if (gameStyle !== GameStyles.SUPER_MARIO_BROS)
+            return EMPTY_REACT_ELEMENT;
+        const enumeration = this.enum[index - 1];
+        const [image1, image2,] = enumeration.unusedImages;
+
+        const everyImages1 = image1.all;
+        if (everyImages1.length === 0)
+            return <Fragment key={`Image (unused - ${enumeration.englishName})`}/>;
+
+
+        return <Fragment key={`Image (unused - ${enumeration.englishName})`}>{
+            everyImages1.map((groupOfImages1, index,) =>
+                groupOfImages1.length === 1
+                    ? <Image source={groupOfImages1[0]} fallbackName={`Image (unused - ${enumeration.englishName} - ${index})`}/>
+                    : <AnimatedImages partialId={`image-unused-${enumeration.englishNameInHtml}-${index}`} images={groupOfImages1.map<ImageProperties>((image1, subIndex,) =>
+                        ({source: image1, fallbackName: `Image (unused - ${enumeration.englishName} - ${index}-${subIndex})`}))}/>)
+        }</Fragment>;
+    }
+
     private __createCategoryComponent(index: number, entity: Entity,) {
         const categoryName = entity.categoryName;
         if (categoryName === EmptyName.get)
@@ -163,6 +190,8 @@ export default class EveryEntitiesApp
                 ...this._gameStyles.map(gameStyle => this.__createClearConditionImageComponent(index, gameStyle,)),
                 // eslint-disable-next-line no-loop-func
                 ...this._gameStyles.map(gameStyle => this.__createWhilePlayingImageComponent(index, gameStyle,)),
+                // eslint-disable-next-line no-loop-func
+                ...this._gameStyles_unusedImages.map(gameStyle => this.__createUnusedImageComponent(index, gameStyle,)),
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity} displayAllAsText={this._displayGameAsTextWhenAll}/>,
                 <GameStyleComponent reference={entity} name={entity} displayAllAsText={this._displayGameStyleAsTextWhenAll}/>,
@@ -199,6 +228,10 @@ export default class EveryEntitiesApp
                         {
                             key: 'image-whilePlaying', element: <>--Image (while playing)--</>,
                             subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-whilePlaying-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                        },
+                        {
+                            key: 'image-unused', element: <>--Image (unused)--</>,
+                            subHeaders: this._gameStyles_unusedImages.map<SingleHeaderContent>(gameStyle => ({key: `image-unused-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
                         },
                     ],
                 },
