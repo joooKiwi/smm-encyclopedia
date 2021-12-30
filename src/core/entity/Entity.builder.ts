@@ -1,33 +1,33 @@
 import type {Builder}                                                                                                                                 from '../../util/Builder';
 import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
-import type {DebugEntityReferences}                                                                                                                   from './Entity.loader';
 import type {Entity, PossibleOtherEntities}                                                                                                           from './Entity';
 import type {EntityCategory}                                                                                                                          from '../entityCategory/EntityCategory';
 import type {EntityLink}                                                                                                                              from './loader.types';
 import type {EntityTemplate}                                                                                                                          from './Entity.template';
+import type {Name}                                                                                                                                    from '../../lang/name/Name';
 import type {PossibleEnglishName}                                                                                                                     from './Entities.types';
 import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../entityCategory/EntityCategories.types';
-import type {PossibleGameReceived}                                                                                                                    from '../../lang/name/Name.builder.types';
 
+import {EntityContainer}               from './Entity.container';
 import {EntityLimits}                  from '../entityLimit/EntityLimits';
 import {EntityReferencesContainer}     from './properties/EntityReferences.container';
+import {Entities}                      from './Entities';
 import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EmptyEntity}                   from './EmptyEntity';
 import {EmptyEntityCategory}           from '../entityCategory/EmptyEntityCategory';
 import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
-import {EntityContainer}               from './Entity.container';
 import {Games}                         from '../game/Games';
-import {NameBuilder}                   from '../../lang/name/Name.builder';
 import {PropertyContainer}             from './properties/Property.container';
+import {TemplateWithNameBuilder}       from '../_template/TemplateWithName.builder';
 
 export class EntityBuilder
+    extends TemplateWithNameBuilder<EntityTemplate, Entity>
     implements Builder<Entity> {
 
     //region -------------------- External object references --------------------
 
-    public static references: Map<PossibleEnglishName, DebugEntityReferences>;
     public static categoriesMap: ReadonlyMap<PossibleEntityCategoryEnglishName, EntityCategory>;
 
     //endregion -------------------- External object references --------------------
@@ -37,28 +37,26 @@ export class EntityBuilder
     static readonly #EMPTY_ARRAY_CALLBACK: () => typeof EMPTY_ARRAY = () => EMPTY_ARRAY;
     static readonly #GET_ENTITY_LIMIT_CALLBACK: CallbackToGetEntityLimit = entityLimit => EntityLimits.getValue(entityLimit);
 
-    readonly #template;
     readonly #selfCallback = () => [this.build()] as const;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(template: EntityTemplate,) {
-        this.#template = template;
+        super(template, ({properties: {isIn: {game: {1: isInSMM1, 2: isInSMM2,},},},},) => {
+            return isInSMM1 && !isInSMM2
+                ? Games.SUPER_MARIO_MAKER_1
+                : !isInSMM1 && isInSMM2
+                    ? Games.SUPER_MARIO_MAKER_2
+                    : 'all';
+        }, false,);
     }
 
     //region -------------------- Build helper methods --------------------
 
-    public get template() {
-        return this.#template;
+    protected get _static() {
+        return EntityBuilder;
     }
 
-    //region -------------------- Name helper methods --------------------
-
-    private __createName(game: PossibleGameReceived,) {
-        return new NameBuilder(this.template.name, game, true,).build();
-    }
-
-    //endregion -------------------- Name helper methods --------------------
     //region -------------------- Entity category helper methods --------------------
 
     private __getEntityCategory() {
@@ -161,13 +159,13 @@ export class EntityBuilder
     private __createReferenceArrayCallback(set: Set<EntityTemplate> | null,): () => readonly Entity[] {
         return set == null
             ? EntityBuilder.#EMPTY_ARRAY_CALLBACK
-            : () => Array.from(set).map(reference => EntityBuilder.references.get((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName)!.entity!);
+            : () => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference);
     }
 
     private __createEntityCallbackFor(link: EntityLink,): () => PossibleOtherEntities {
         return link === 'this'
             ? this.#selfCallback
-            : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => EntityBuilder.references.get(splitLink)!.entity!) as unknown as PossibleOtherEntities;
+            : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities;
     }
 
     private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => PossibleOtherEntities {
@@ -180,19 +178,19 @@ export class EntityBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public build() {
+    public _build(name: Name,) {
         const isInProperty = this.__createProperty();
         const isInSMM1 = isInProperty.isInSuperMarioMaker1;
-        const isInSMM2 = isInProperty.isInSuperMarioMaker1;
+        const isInSMM2 = isInProperty.isInSuperMarioMaker2;
 
 
         return isInSMM1 && !isInSMM2
-            ? new ExclusiveSMM1EntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_1), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            ? new ExclusiveSMM1EntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),)
             : !isInSMM1 && isInSMM2
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
-                    ? new ExclusiveSM3DWEntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_2), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                    : new ExclusiveSMM2EntityContainer(this.__createName(Games.SUPER_MARIO_MAKER_2), this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                : new EntityContainer(this.__createName('all'), this.__getEntityCategory(), isInProperty, this.__createReferences(),);
+                    ? new ExclusiveSM3DWEntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                    : new ExclusiveSMM2EntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+                : new EntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),);
     }
 
 }

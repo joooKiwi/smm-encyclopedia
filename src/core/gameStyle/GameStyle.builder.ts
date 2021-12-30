@@ -1,9 +1,8 @@
-import type {Builder}               from '../../util/Builder';
-import type {DebugEntityReferences} from '../entity/Entity.loader';
-import type {Entity}                from '../entity/Entity';
-import type {GameStyle}             from './GameStyle';
-import type {GameStyleTemplate}     from './GameStyle.template';
-import type {Name}                  from '../../lang/name/Name';
+import type {Builder}           from '../../util/Builder';
+import type {Entity}            from '../entity/Entity';
+import type {GameStyle}         from './GameStyle';
+import type {GameStyleTemplate} from './GameStyle.template';
+import type {Name}              from '../../lang/name/Name';
 
 import {assert}                  from '../../util/utilitiesMethods';
 import {GamePropertyContainer}   from '../entity/properties/GameProperty.container';
@@ -17,7 +16,7 @@ export class GameStyleBuilder
 
     //region -------------------- External object references --------------------
 
-    public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
+    public static entitiesMap: ReadonlyMap<string, Entity>;
 
     //endregion -------------------- External object references --------------------
 
@@ -34,7 +33,7 @@ export class GameStyleBuilder
         const gameStyle = GameStyles.getValue(englishName);
         assert(gameStyle != null, `The english name "${englishName}" has no reference on the Game Style class.`,);
         const everyEntities = [] as Entity[];
-        for (const [, {entity}] of this.entitiesMap.entries())
+        for (const [, entity,] of this.entitiesMap.entries())
             if (entity !== undefined && gameStyle.get(entity))
                 everyEntities.push(entity);
         return everyEntities;

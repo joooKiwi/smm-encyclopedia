@@ -25,6 +25,7 @@ import {EntityCategoryLoader}         from '../entityCategory/EntityCategory.loa
 import {EntityBuilder}                from './Entity.builder';
 import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
 import {HeaderTypesForConvertor}      from '../_util/loader/HeaderTypesForConvertor';
+import {ReferencesToWatch}            from './ReferencesToWatch';
 
 //region -------------------- CSV array related types --------------------
 
@@ -331,20 +332,11 @@ type PropertiesArray = [
 
 //endregion -------------------- CSV array related types --------------------
 
-export interface DebugEntityReferences {
-
-    originalContent: readonly string[];
-    arrayConverted: PropertiesArray;
-    template: EntityTemplate;
-    entity?: Entity;
-
-}
-
 /**
  * @singleton
  */
 export class EntityLoader
-    implements Loader<ReadonlyMap<PossibleEnglishName, DebugEntityReferences>> {
+    implements Loader<ReadonlyMap<PossibleEnglishName, Entity>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -363,16 +355,16 @@ export class EntityLoader
     public static readonly INFINITE_CHARACTER = '∞';
     public static readonly THIS_REFERENCE = 'this';
 
-    #map?: Map<PossibleEnglishName, DebugEntityReferences>;
+    #map?: Map<PossibleEnglishName, Entity>;
 
-    public load(): ReadonlyMap<PossibleEnglishName, DebugEntityReferences> {
+    public load(): ReadonlyMap<PossibleEnglishName, Entity> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, DebugEntityReferences>();
-            const referencesToWatch = new ReferencesToWatch(references);
+            const references = new Map<PossibleEnglishName, Entity>();
+            const templateReferences = new Map<PossibleEnglishName, EntityTemplate>();
+            const referencesToWatch = new ReferencesToWatch(templateReferences);
 
             //region -------------------- Builder initialisation --------------------
 
-            EntityBuilder.references = references;
             EntityBuilder.categoriesMap = EntityCategoryLoader.get.load();
 
             //endregion -------------------- Builder initialisation --------------------
@@ -457,16 +449,19 @@ export class EntityLoader
                 .convertToNullableBooleanAnd(['French only', 'Only spoken (in english) in Editor',], 'hasANameReferencedInMarioMaker')
                 .convertTo(HeaderTypesForConvertor.everyPossibleEntityNames, 'english', 'americanEnglish',)
 
-                .onAfterFinalObjectCreated((finalContent, convertedContent, originalContent,) => {
-                    const builtContent = finalContent.build();
-                    const name = builtContent.name;
-                    NameCreator.addEnglishReference(name, references, originalContent, convertedContent, builtContent);
-                    referencesToWatch.addReference(builtContent);
+                .onAfterFinalObjectCreated(finalContent => {
+                    const template = finalContent.build();
+                    const englishName = (template.name.english.simple ?? template.name.english.american) as | PossibleEnglishName | null;
+                    assert(englishName != null, `The template english name should never be null since it is a key reference for the whole program.`,);
+                    templateReferences.set(englishName, template,);
+                    referencesToWatch.addSubReference(template);
                 })
                 .onInitialisationEnd(() => {
                     referencesToWatch.testReferences();
                     referencesToWatch.setReferences();
-                    references.forEach(reference => reference.entity = new GenericSingleInstanceBuilder(new EntityBuilder(reference.template)).build());
+                    templateReferences.forEach((template, englishName,) =>
+                        references.set(englishName, new GenericSingleInstanceBuilder(new EntityBuilder(template)).build(),)
+                    );
                 })
                 .load();
 
@@ -731,169 +726,5 @@ class TemplateBuilder
     }
 
 }
-
-/**
- * @temporary
- */
-class NameCreator {
-
-    public static addEnglishReference(name: NameTemplateWithOptionalLanguages, englishNames: Map<string, DebugEntityReferences>, originalContent: readonly string[], convertedContent: PropertiesArray, template: EntityTemplate,): void {
-        //README since some references are still not complete, they are in comment
-        assert(name.english.simple != null || !(name.english.american == null || name.english.european == null), `The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`,);
-        assert(name.french.simple != null || !(name.french.canadian == null || name.french.european == null), `The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`,);
-        // assert(name.spanish.simple != null || !(name.spanish.american == null || name.spanish.european == null), `The spanish name ("${name.spanish.simple}") can either have a single spanish name or both "american"("${name.spanish.american}") and "european"("${name.spanish.european}") name separated.`,);
-        // assert(name.portuguese.simple != null || !(name.portuguese.american == null || name.portuguese.european == null), `The portuguese name ("${name.portuguese.simple}") can either have a single portuguese name or both "american"("${name.portuguese.american}") and "european"("${name.portuguese.european}") name separated.`,);
-        // assert(name.chinese.simple != null || !(name.chinese.traditional == null || name.chinese.simplified == null), `The chinese name ("${name.chinese.simple}") can either have a single chinese name or both "traditional"("${name.chinese.traditional}") and "simplified"("${name.chinese.simplified}") name separated.`,);
-
-        const englishReferenceName = name.english.simple ?? name.english.american;
-        assert(englishReferenceName != null, 'No english name can be null since they are used as a key for the references.',);
-        assert(!englishNames.has(englishReferenceName), `The english name ("${englishReferenceName}") can't be used as a reference since there is already another value.`,);
-        englishNames.set(englishReferenceName, {originalContent: originalContent, arrayConverted: convertedContent, template: template,});
-    }
-
-}
-
-//region -------------------- Reference to watch --------------------
-
-interface ReferenceHolder {
-
-    reference: EntityTemplate;
-    type: ReferenceType;
-    value: PossibleEnglishName;
-    errorIfNeverFound: () => ReferenceError;
-
-}
-
-type ReferenceType = | typeof ReferencesToWatch['TIME'] | typeof ReferencesToWatch['THEME'] | typeof ReferencesToWatch['GAME_STYLE'];
-
-class ReferencesToWatch {
-
-    //region -------------------- Attributes --------------------
-
-    public static readonly TIME = 'time';
-    public static readonly THEME = 'theme';
-    public static readonly GAME_STYLE = 'gameStyle';
-
-    readonly #englishNames;
-    readonly #alreadyAddedName: Set<EntityLink>;
-    readonly #references: ReferenceHolder[];
-
-    //endregion -------------------- Attributes --------------------
-
-    public constructor(englishNames: Map<PossibleEnglishName, DebugEntityReferences>,) {
-        this.#englishNames = englishNames;
-        this.#alreadyAddedName = new Set();
-        this.#references = [];
-    }
-
-    //region -------------------- Getter methods --------------------
-
-    public get englishNames() {
-        return this.#englishNames;
-    }
-
-    public get alreadyAddedName() {
-        return this.#alreadyAddedName;
-    }
-
-    public get references() {
-        return this.#references;
-    }
-
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
-
-    public addReference(reference: EntityTemplate,): void {
-        const otherReference = reference.properties.reference;
-        ([
-            [otherReference.time.day, ReferencesToWatch.TIME,],
-            [otherReference.time.night, ReferencesToWatch.TIME,],
-
-            [otherReference.style.superMarioBros, ReferencesToWatch.GAME_STYLE,],
-            [otherReference.style.superMarioBros3, ReferencesToWatch.GAME_STYLE,],
-            [otherReference.style.superMarioWorld, ReferencesToWatch.GAME_STYLE,],
-            [otherReference.style.newSuperMarioBrosU, ReferencesToWatch.GAME_STYLE,],
-            [otherReference.style.superMario3DWorld, ReferencesToWatch.GAME_STYLE,],
-
-            [otherReference.theme.ground, ReferencesToWatch.THEME,],
-            [otherReference.theme.underground, ReferencesToWatch.THEME,],
-            [otherReference.theme.underwater, ReferencesToWatch.THEME,],
-            [otherReference.theme.desert, ReferencesToWatch.THEME,],
-            [otherReference.theme.snow, ReferencesToWatch.THEME,],
-            [otherReference.theme.sky, ReferencesToWatch.THEME,],
-            [otherReference.theme.forest, ReferencesToWatch.THEME,],
-            [otherReference.theme.ghostHouse, ReferencesToWatch.THEME,],
-            [otherReference.theme.airship, ReferencesToWatch.THEME,],
-            [otherReference.theme.castle, ReferencesToWatch.THEME,],
-        ].filter(([otherReference]) => otherReference !== null) as [EntityLink, ReferenceType][])
-            .filter(([otherReference]) => otherReference !== EntityLoader.THIS_REFERENCE)
-            .forEach(([otherReference, referenceType,]) => this.__addReference(reference, otherReference, referenceType,));
-    }
-
-    private __addReference(template: EntityTemplate, reference: EntityLink, referenceType: ReferenceType,): void {
-        if (reference.includes('/'))
-            ((reference.split(' / ') as (PossibleEnglishName | 'this')[])
-                .filter(splitReference => splitReference !== EntityLoader.THIS_REFERENCE) as PossibleEnglishName[])
-                .forEach((splitReference, index,) => this.__addReferenceToArray(template, splitReference, referenceType, () => new ReferenceError(`The reference[${index}] ("${splitReference}") is not within the english map`),));
-        else
-            this.__addReferenceToArray(template, reference as PossibleEnglishName, referenceType, () => new ReferenceError(`The reference value ("${reference}") is not within the english map.`),);
-        this.alreadyAddedName.add(reference);
-    }
-
-    private __addReferenceToArray(template: EntityTemplate, singleReference: PossibleEnglishName, referenceType: ReferenceType, errorIfNeverFound: () => ReferenceError,): void {
-        this.references.push({
-            reference: template,
-            type: referenceType,
-            value: singleReference,
-            errorIfNeverFound: errorIfNeverFound,
-        });
-    }
-
-    public testReferences(): void {
-        this.references.forEach(englishReferenceToWatch => {
-            if (!this.englishNames.has(englishReferenceToWatch.value))
-                throw englishReferenceToWatch.errorIfNeverFound();
-        });
-    }
-
-    /**
-     * Add every references on both individual {@link references}
-     * and the {@link ReferenceHolder.value reference value} inside {@link ReferenceHolder}.
-     *
-     * It also add each reference into the proper type ({@link ReferenceType}).
-     *
-     * @see EntityReferencesTemplate.group
-     */
-    public setReferences(): void {
-        this.references.forEach(reference => {
-            const referenceWatched = this.englishNames.get(reference.value)!;
-
-            const referenceToWatchTemplate = reference.reference;
-            const referenceWatchedTemplate = referenceWatched.template;
-
-            (referenceWatchedTemplate.properties.reference.group.all ??= new Set()).add(referenceToWatchTemplate);
-            (referenceToWatchTemplate.properties.reference.group.all ??= new Set()).add(referenceWatchedTemplate);
-            switch (reference.type) {
-                case ReferencesToWatch.GAME_STYLE:
-                    (referenceWatchedTemplate.properties.reference.group.gameStyle ??= new Set()).add(referenceToWatchTemplate);
-                    (referenceToWatchTemplate.properties.reference.group.gameStyle ??= new Set()).add(referenceWatchedTemplate);
-                    break;
-                case ReferencesToWatch.THEME:
-                    (referenceWatchedTemplate.properties.reference.group.theme ??= new Set()).add(referenceToWatchTemplate);
-                    (referenceToWatchTemplate.properties.reference.group.theme ??= new Set()).add(referenceWatchedTemplate);
-                    break;
-                case ReferencesToWatch.TIME:
-                    (referenceWatchedTemplate.properties.reference.group.time ??= new Set()).add(referenceToWatchTemplate);
-                    (referenceToWatchTemplate.properties.reference.group.time ??= new Set()).add(referenceWatchedTemplate);
-                    break;
-            }
-        });
-    }
-
-    //endregion -------------------- Methods --------------------
-
-}
-
-//endregion -------------------- Reference to watch --------------------
 
 //endregion -------------------- Template related methods & classes --------------------

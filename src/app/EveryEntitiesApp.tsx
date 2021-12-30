@@ -2,7 +2,6 @@ import './EveryEntitiesApp.scss';
 
 import {Fragment} from 'react';
 
-import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
 import type {Entity}                                              from '../core/entity/Entity';
 import type {EntityAppStates, PossibleImageAnimation}             from './AppStates.types';
 import type {ImageProperties}                                     from './tools/images/properties/ImageProperties';
@@ -13,7 +12,6 @@ import type {SingleTableContent}                                  from './tools/
 
 import AbstractApp                       from './AbstractApp';
 import AnimatedImages                    from './tools/images/AnimatedImages';
-import {assert}                          from '../util/utilitiesMethods';
 import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
 import CourseThemeComponent              from '../core/theme/CourseTheme.component';
 import {EntityCategories}                from '../core/entityCategory/EntityCategories';
@@ -46,7 +44,7 @@ export default class EveryEntitiesApp
 
     //region -------------------- Attributes --------------------
 
-    #map?: ReadonlyMap<PossibleEnglishName, DebugEntityReferences>;
+    #map?: ReadonlyMap<PossibleEnglishName, Entity>;
     #gameStyles?: readonly GameStyles[];
     #gameStyles_unusedImages?: readonly [GameStyles, GameStyles];
 
@@ -215,8 +213,7 @@ export default class EveryEntitiesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, {entity},] of this.map.entries()) {
-            assert(entity != null, `The entity #${index} (${englishName}) was not initialised!`);
+        for (const [englishName, entity,] of this.map.entries()) {
             content.push([englishName,
                 <>{index}</>,
                 // eslint-disable-next-line no-loop-func

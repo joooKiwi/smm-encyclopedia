@@ -1,10 +1,9 @@
-import type {Builder}               from '../../util/Builder';
-import type {CourseTheme}           from './CourseTheme';
-import type {CourseAndWorldTheme}   from './Themes.types';
-import type {DebugEntityReferences} from '../entity/Entity.loader';
-import type {Entity}                from '../entity/Entity';
-import type {Name}                  from '../../lang/name/Name';
-import type {ThemeTemplate}         from './Theme.template';
+import type {Builder}             from '../../util/Builder';
+import type {CourseTheme}         from './CourseTheme';
+import type {CourseAndWorldTheme} from './Themes.types';
+import type {Entity}              from '../entity/Entity';
+import type {Name}                from '../../lang/name/Name';
+import type {ThemeTemplate}       from './Theme.template';
 
 import {assert}                  from '../../util/utilitiesMethods';
 import {CourseThemeContainer}    from './CourseTheme.container';
@@ -23,7 +22,7 @@ export class ThemeBuilder
 
     //region -------------------- External object references --------------------
 
-    public static entitiesMap: ReadonlyMap<string, DebugEntityReferences>;
+    public static entitiesMap: ReadonlyMap<string, Entity>;
 
     //endregion -------------------- External object references --------------------
 
@@ -52,8 +51,8 @@ export class ThemeBuilder
         const theme = Themes.getValue(englishName);
         assert(theme != null, `The english name "${englishName}" has no reference on the Themes class.`,);
         const everyEntities = [] as Entity[];
-        for (const [, {entity}] of this.entitiesMap.entries())
-            if (entity !== undefined && theme.get(entity))
+        for (const [, entity,] of this.entitiesMap.entries())
+            if (theme.get(entity))
                 everyEntities.push(entity);
         return everyEntities;
     }

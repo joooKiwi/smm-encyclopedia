@@ -29,7 +29,8 @@ export class GameStylePropertyContainer
 
     static readonly #IS_IN_EXCLUSIVE_TO_SMB_SMB3_NSMBU_AND_SM3DW =     new GameStylePropertyContainer(true,  true,  true,  false, true, ) as AbstractExclusiveSMM2GameStyleProperty;
 
-    static readonly #IS_IN_ORIGINAL_4_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  false,) as AbstractExclusiveSMM2GameStyleProperty;
+    static readonly #IS_IN_ORIGINAL_4_STYLES_IN_SMM1_PROPERTY =        new GameStylePropertyContainer(true,  true,  true,  true,  null, ) as ExclusiveSMM1GameStyleProperty;
+    static readonly #IS_IN_ORIGINAL_4_STYLES_IN_SMM2_PROPERTY =        new GameStylePropertyContainer(true,  true,  true,  true,  false,) as AbstractExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_EVERY_GAME_STYLES_PROPERTY =                new GameStylePropertyContainer(true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2GameStyleProperty;
     static readonly #IS_IN_NO_GAME_STYLES_PROPERTY =                   new GameStylePropertyContainer(false, false, false, false, null, );
 
@@ -120,12 +121,14 @@ export class GameStylePropertyContainer
         if (isInSuperMarioBrosStyle && isInSuperMarioBros3Style && isInSuperMarioWorldStyle && isInNewSuperMarioBrosUStyle) {
             if (isInSuperMario3DWorldStyle === true)
                 return this.#IS_IN_EVERY_GAME_STYLES_PROPERTY;
-            return this.#IS_IN_ORIGINAL_4_STYLES_PROPERTY;
+            if (isInSuperMario3DWorldStyle == null)
+                return this.#IS_IN_ORIGINAL_4_STYLES_IN_SMM1_PROPERTY;
+            return this.#IS_IN_ORIGINAL_4_STYLES_IN_SMM2_PROPERTY;
         }
         //region ----- Exclusive for 1 game style -----
 
         if (isInSuperMarioBrosStyle && !isInSuperMarioBros3Style && !isInSuperMarioWorldStyle && !isInNewSuperMarioBrosUStyle) {
-            if (isInSuperMario3DWorldStyle === null)
+            if (isInSuperMario3DWorldStyle == null)
                 return this.#IS_IN_EXCLUSIVE_TO_SMB_IN_SMM1_PROPERTY;
             return this.#IS_IN_EXCLUSIVE_TO_SMB_IN_SMM2_PROPERTY;
         }

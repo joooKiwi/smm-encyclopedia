@@ -54,7 +54,7 @@ export class EntityBehaviourLinkContainer
     }
 
     private static __getEntityByName(name: EntityName,): Entity {
-        return EntityLoader.get.load().get(name)!.entity!;
+        return EntityLoader.get.load().get(name)!;
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
