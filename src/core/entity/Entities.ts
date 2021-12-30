@@ -2560,3 +2560,6 @@ type PossibleEditorImage = | Builder<EditorImage> | SimpleImageName_Editor | nul
 type PossibleClearConditionImage = | Builder<ClearConditionImage> | SimpleImageName_ClearCondition | null;
 type PossibleInGameImage = | Builder<InGameImage> | null;
 type PossibleUnusedUnusedImage = | Builder<UnusedImage> | [Builder<UnusedImage>, Builder<UnusedImage>,] | null;
+
+// @ts-ignore
+window.test = Entities;

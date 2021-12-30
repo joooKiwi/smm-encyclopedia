@@ -51,12 +51,16 @@ export interface UnusedBigMushroomImage_Goomba
 export interface UnusedBigMushroomInGameImage_Stretch
     extends UnusedBigMushroomImage {
 
-    get waitImages(): WaitImages_Stretch
+    get waitImages1(): WaitImages1_Stretch
+
+    get waitImages2(): WaitImages2_Stretch
+
+    get waitImages3(): WaitImages3_Stretch
 
     get movingImages(): MovingImages_Stretch
 
 
-    get all(): readonly [this['waitImages'], this['movingImages'],]
+    get all(): readonly [this['waitImages1'],this['waitImages3'],this['waitImages3'], this['movingImages'],]
 
 }
 
@@ -75,6 +79,8 @@ export type WalkingImages_Goomba = readonly [string, string,];
 export type InBootImages_Goomba = readonly [string,];
 export type EveryImages_Goomba = readonly [DamagingImages_Goomba, SwimmingImages_Goomba, WalkingImages_Goomba, InBootImages_Goomba,];
 
-export type WaitImages_Stretch = readonly [string, string, string,];
+export type WaitImages1_Stretch = readonly [string,];
+export type WaitImages2_Stretch = readonly [string,];
+export type WaitImages3_Stretch = readonly [string,];
 export type MovingImages_Stretch = readonly [string,];
-export type EveryImages_Stretch = readonly [WaitImages_Stretch, MovingImages_Stretch,];
+export type EveryImages_Stretch = readonly [WaitImages1_Stretch, WaitImages2_Stretch, WaitImages3_Stretch, MovingImages_Stretch,];

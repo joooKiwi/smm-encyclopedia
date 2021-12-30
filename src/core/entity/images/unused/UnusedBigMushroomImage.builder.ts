@@ -38,7 +38,6 @@ export class UnusedBigMushroomImageBuilder
 
     protected _getImagePath(identifier: ImageIdentifier, ...numbers: [ImageNumber,]): readonly [string,]
     protected _getImagePath(identifier: ImageIdentifier, ...numbers: [ImageNumber, ImageNumber,]): readonly [string, string,]
-    protected _getImagePath(identifier: ImageIdentifier, ...numbers: [ImageNumber, ImageNumber, ImageNumber,]): readonly [string, string, string,]
     protected _getImagePath(identifier: ImageIdentifier, ...numbers: [ImageNumber, ImageNumber, ImageNumber, ImageNumber,]): readonly [string, string, string, string,]
     protected _getImagePath(identifier: ImageIdentifier, ...numbers: ImageNumber[]) {
         return numbers.map(number => `${GameStyles.SUPER_MARIO_BROS.gamePath_inGameSmm1}Big Mushroom/Enemy - ${this.simpleImageName}/${this._pathInEnemy}${identifier}.${number}.png`) as unknown as readonly [string,] | readonly [string, string,] | readonly [string, string, string, string,] | readonly [string, string, string,];
@@ -53,19 +52,19 @@ export class UnusedBigMushroomImageBuilder
                 return new UnusedBigMushroomImageContainer(
                     this._getImagePath('wait', 4, 5, 6, 7,), this._getImagePath('anger', 4, 5, 6, 7,), this._getImagePath('blink', 4, 5, 6, 7,), this._getImagePath('weep', 4, 5, 6, 7,),
                     null, null, null, null,
-                    null, null,
+                    null, null, null, null,
                 ) as UnusedBigMushroomImage_ClownCar;
             case 'Kuribo':
                 return new UnusedBigMushroomImageContainer(
                     null, null, null, null,
                     this._getImagePath('damage', 0,), this._getImagePath('swim', 0, 1,), this._getImagePath('walk', 0, 1,), this._getImagePath('kutsu', 0,),
-                    null, null,
+                    null, null, null, null,
                 ) as UnusedBigMushroomImage_Goomba;
             case 'Necchi':
                 return new UnusedBigMushroomImageContainer(
                     null, null, null, null,
                     null, null, null, null,
-                    this._getImagePath('wait', 0, 1, 2,), this._getImagePath('out', 4,),
+                    this._getImagePath('wait', 0,), this._getImagePath('wait', 1,), this._getImagePath('wait', 2,), this._getImagePath('out', 4,),
                 ) as UnusedBigMushroomInGameImage_Stretch;
         }
     }
