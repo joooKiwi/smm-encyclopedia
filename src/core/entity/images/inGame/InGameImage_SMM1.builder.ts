@@ -1,15 +1,15 @@
-import type {Builder}        from '../../../../util/Builder';
-import type {ImageName_SMM1} from './InGameImage.types';
-import type {Themes}         from '../../../theme/Themes';
-import type {InGameImage}    from './InGameImage';
+import type {Builder}                          from '../../../../util/Builder';
+import type {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
+import type {ImageName_SMM1}                   from './InGameImage.types';
+import type {Themes}                           from '../../../theme/Themes';
+import type {InGameImage}                      from './InGameImage';
 
-import {AbstractImageBuilder}             from '../AbstractImage.builder';
-import {EMPTY_MAP}                        from '../../../../util/emptyVariables';
-import {GameStyles}                       from '../GameStyles';
-import {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
-import {SMM1InGameImageContainer}         from './SMM1InGameImage.container';
+import {AbstractImageBuilder}      from '../AbstractImage.builder';
+import {EMPTY_MAP}                 from '../../../../util/emptyVariables';
+import {GameStyles}                from '../GameStyles';
+import {InGameImage_SMM1Container} from './InGameImage_SMM1.container';
 
-export class SMM1InGameImageBuilder
+export class InGameImage_SMM1Builder
     extends AbstractImageBuilder<ImageName_SMM1>
     implements Builder<InGameImage> {
 
@@ -29,7 +29,7 @@ export class SMM1InGameImageBuilder
     //region -------------------- Game Style --------------------
 
     public setAllGameStyles(): this {
-        return this._setGameStyle(SMM1InGameImageBuilder.#GAME_STYLE_ARRAY);
+        return this._setGameStyle(InGameImage_SMM1Builder.#GAME_STYLE_ARRAY);
     }
 
     //endregion -------------------- Game Style --------------------
@@ -53,7 +53,7 @@ export class SMM1InGameImageBuilder
     //endregion -------------------- Build utility methods --------------------
 
     public build(): InGameImage {
-        return new SMM1InGameImageContainer(this._createNewMap(), this._createDefaultImages(),);
+        return new InGameImage_SMM1Container(this._createNewMap(), this._createDefaultImages(),);
     }
 
 }

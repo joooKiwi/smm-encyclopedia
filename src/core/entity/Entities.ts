@@ -17,7 +17,7 @@ import {EmptyEditorImage}           from './images/editor/EmptyEditorImage';
 import {EmptyInGameImage}           from './images/inGame/EmptyInGameImage';
 import {Enum}                       from '../../util/enum/Enum';
 import {GameStyles}                 from '../gameStyle/GameStyles';
-import {SMM1InGameImageBuilder}     from './images/inGame/SMM1InGameImage.builder';
+import {InGameImage_SMM1Builder}    from './images/inGame/InGameImage_SMM1.builder';
 import {StringContainer}            from '../../util/StringContainer';
 import {Themes}                     from '../theme/Themes';
 import {Times}                      from '../time/Times';
@@ -461,14 +461,14 @@ export class Entities
     public static readonly MYSTERY_MUSHROOM =                             new class Entities_MysteryMushroom extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new SMM1InGameImageBuilder('Kinoko2');
+            return new InGameImage_SMM1Builder('Kinoko2');
         }
 
     }('Mystery Mushroom',);
     public static readonly WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new SMM1InGameImageBuilder('KinokoFunny');
+            return new InGameImage_SMM1Builder('KinokoFunny');
         }
 
     }('Weird Mushroom',);
@@ -504,7 +504,7 @@ export class Entities
     public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new SMM1InGameImageBuilder('MegaKinoko')
+            return new InGameImage_SMM1Builder('MegaKinoko')
                 .setAllGameStyles();
         }
 
@@ -512,7 +512,7 @@ export class Entities
     public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new SMM1InGameImageBuilder('MegaKinoko2')
+            return new InGameImage_SMM1Builder('MegaKinoko2')
                 .setAllGameStyles();
         }
 
