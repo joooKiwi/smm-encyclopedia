@@ -4,7 +4,7 @@ import {Fragment} from 'react';
 
 import type {DebugEntityReferences}                               from '../core/entity/Entity.loader';
 import type {Entity}                                              from '../core/entity/Entity';
-import type {EntityAppStates}                                     from './AppStates.types';
+import type {EntityAppStates, PossibleImageAnimation}             from './AppStates.types';
 import type {ImageProperties}                                     from './tools/images/properties/ImageProperties';
 import type {PossibleEnglishName}                                 from '../core/entity/Entities.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/entityCategory/EntityCategories.types';
@@ -44,14 +44,19 @@ export default class EveryEntitiesApp
 
     //region -------------------- Attributes & getter methods --------------------
 
+    //region -------------------- Attributes --------------------
+
     #map?: ReadonlyMap<PossibleEnglishName, DebugEntityReferences>;
     #gameStyles?: readonly GameStyles[];
     #gameStyles_unusedImages?: readonly [GameStyles, GameStyles];
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(props: {},) {
         super(props,);
         this.state = {
             display: {
+                imageAnimations: true,
                 asText: {
                     category: false,
                     whenAll: {
@@ -64,10 +69,17 @@ export default class EveryEntitiesApp
                         acronymOnLimits: true,
                     },
                 },
+                images: {
+                    editor: true,
+                    clearCondition: true,
+                    whilePlaying: true,
+                    unused: false,
+                },
             },
         };
     }
 
+    //region -------------------- Getter methods --------------------
 
     protected get enum() {
         return Entities.values;
@@ -84,6 +96,7 @@ export default class EveryEntitiesApp
     protected get _gameStyles_unusedImages() {
         return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS, GameStyles.NEW_SUPER_MARIO_BROS_U,];
     }
+
 
     protected get _displayCategoryAsText(): boolean {
         return this.state.display.asText.category;
@@ -108,6 +121,28 @@ export default class EveryEntitiesApp
     protected get _displayAcronymOnLimitsIfApplicable(): boolean {
         return this.state.display.asText.ifApplicable.acronymOnLimits;
     }
+
+    protected get _displayImageAnimations(): PossibleImageAnimation {
+        return this.state.display.imageAnimations;
+    }
+
+    protected get _displayEditorImages(): boolean {
+        return this.state.display.images.editor;
+    }
+
+    protected get _displayClearConditionImages(): boolean {
+        return this.state.display.images.clearCondition;
+    }
+
+    protected get _displayWhilePlayingImages(): boolean {
+        return this.state.display.images.whilePlaying;
+    }
+
+    protected get _displayUnusedImages(): boolean {
+        return this.state.display.images.unused;
+    }
+
+    //endregion -------------------- Getter methods --------------------
 
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------

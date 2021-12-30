@@ -2,9 +2,10 @@ import './EveryMysteryMushroomsApp.scss';
 
 import {Fragment} from 'react';
 
-import type {MysteryMushroom}    from '../core/mysteryMushroom/MysteryMushroom';
-import type {UniqueEnglishName}  from '../core/mysteryMushroom/MysteryMushrooms.types';
-import type {SingleTableContent} from './tools/table/Table.types';
+import type {MysteryMushroom}                                  from '../core/mysteryMushroom/MysteryMushroom';
+import type {UniqueEnglishName}                                from '../core/mysteryMushroom/MysteryMushrooms.types';
+import type {MysteryMushroomAppStates, PossibleImageAnimation} from './AppStates.types';
+import type {SingleTableContent}                               from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import AnimatedImages                  from './tools/images/AnimatedImages';
@@ -27,12 +28,27 @@ import {ImageProperties}               from './tools/images/properties/ImageProp
  * @reactComponent
  */
 export default class EveryMysteryMushroomsApp
-    extends AbstractApp {
+    extends AbstractApp<{}, MysteryMushroomAppStates> {
 
     //region -------------------- Attributes & getter methods --------------------
 
+    //region -------------------- Attributes --------------------
+
     #map?: ReadonlyMap<UniqueEnglishName, MysteryMushroom>;
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>;
+
+    //endregion -------------------- Attributes --------------------
+
+    public constructor(props: {},) {
+        super(props,);
+        this.state = {
+            display: {
+                imageAnimations: true,
+            },
+        };
+    }
+
+    //region -------------------- Getter methods --------------------
 
     protected get map() {
         return this.#map ??= MysteryMushroomLoader.get.load();
@@ -41,6 +57,13 @@ export default class EveryMysteryMushroomsApp
     protected get enum() {
         return MysteryMushrooms.values;
     }
+
+
+    protected get _displayImageAnimations(): PossibleImageAnimation {
+        return this.state.display.imageAnimations;
+    }
+
+    //endregion -------------------- Getter methods --------------------
 
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------

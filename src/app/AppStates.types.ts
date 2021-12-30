@@ -5,6 +5,8 @@ export interface AppStates
 
 }
 
+//region -------------------- Single states group --------------------
+
 interface AppStateThatHaveACategory {
 
     display: {
@@ -15,10 +17,23 @@ interface AppStateThatHaveACategory {
 
 }
 
-export interface EntityAppStates
-    extends AppStates, AppStateThatHaveACategory {
+interface AppStateThatHaveAnimatedImages {
 
     display: {
+        imageAnimations: PossibleImageAnimation
+    }
+
+}
+
+export type PossibleImageAnimation = | boolean | 'separated';
+
+//endregion -------------------- Single states group --------------------
+
+export interface EntityAppStates
+    extends AppStates, AppStateThatHaveAnimatedImages, AppStateThatHaveACategory {
+
+    display: {
+        imageAnimations: PossibleImageAnimation
         asText: {
             category: boolean
             whenAll: {
@@ -31,11 +46,22 @@ export interface EntityAppStates
                 acronymOnLimits: boolean
             }
         }
+        images: {
+            editor: boolean
+            clearCondition: boolean
+            whilePlaying: boolean
+            unused: boolean
+        }
     }
 
 }
 
 export interface SoundEffectAppStates
     extends AppStates, AppStateThatHaveACategory {
+
+}
+
+export interface MysteryMushroomAppStates
+    extends AppStates, AppStateThatHaveAnimatedImages {
 
 }
