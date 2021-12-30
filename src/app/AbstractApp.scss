@@ -34,4 +34,10 @@ table[id$="-table"] {
     max-height: 1cm;
   }
 
+  .animated-image, .non-animated-image {
+    --amount-of-blocks: 0;
+    --single-height: 0;
+    height: calc(var(--amount-of-blocks) * var(--single-height));
+  }
+
 }

@@ -190,4 +190,9 @@
 
   }
 
+  .animated-image, .non-animated-image {
+    --amount-of-blocks: 2;
+    --single-height: 16px;
+  }
+
 }
