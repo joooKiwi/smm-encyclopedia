@@ -33,20 +33,22 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         this.#referencesContainer = references;
     }
 
-    private __testCategory(category: EntityCategory,): CATEGORY {
+    private __testCategory(category: EntityCategory,): CATEGORY
+    private __testCategory(category: EntityCategory,) {
         return window.IS_IN_PRODUCTION
-            ? category as CATEGORY
-            : this._testCategory(category) as CATEGORY;
+            ? category
+            : this._testCategory(category);
     }
 
     protected _testCategory(category: EntityCategory,): EntityCategory {
         return category;
     }
 
-    private __testProperty(property: Property,): PROPERTY {
+    private __testProperty(property: Property,): PROPERTY
+    private __testProperty(property: Property,) {
         return window.IS_IN_PRODUCTION
-            ? property as PROPERTY
-            : this._testProperty(property) as PROPERTY;
+            ? property
+            : this._testProperty(property);
     }
 
     protected _testProperty(property: Property,): Property {

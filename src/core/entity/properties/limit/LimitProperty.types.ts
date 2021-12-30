@@ -7,7 +7,7 @@ import type {PossibleEnglishName}                                               
 
 export type CallbackToGetEntityLimit = (entityLimit: PossibleEnglishName,) => EntityLimits;
 
-export type EditorLimitReceived = [value: EditorLimitType, callback: CallbackToGetEntityLimit,];
+export type EditorLimitReceived = readonly [value: EditorLimitType, callback: CallbackToGetEntityLimit,];
 export type EditorLimitContainer<T extends EditorLimitType = EditorLimitType, > = T extends PossibleEnglishName ? PropertyThatCanBeUnknown<EntityLimits> : InferredStringPropertyThatCanBeNotApplicable<T>;
 
 export type GeneralLimitReceived = | SingleGeneralLimitReceived | readonly [regular: SingleGeneralLimitReceived, global: SingleGeneralGlobalLimitReceived,];
@@ -22,5 +22,5 @@ export type PowerUpLimitContainer<T extends PowerUpEntityLimitType = PowerUpEnti
 export type ProjectileLimitReceived = ProjectileEntityLimitType
 export type ProjectileLimitContainer<T extends ProjectileEntityLimitType = ProjectileEntityLimitType, > = InferredBooleanPropertyWithEverything<T, null>;
 
-export type CustomLimitReceived = [value: CustomLimitType, comment: CustomLimitCommentType, callback: CallbackToGetEntityLimit,];
+export type CustomLimitReceived = readonly [value: CustomLimitType, comment: CustomLimitCommentType, callback: CallbackToGetEntityLimit,];
 export type CustomLimitContainer<T extends CustomLimitType = CustomLimitType, C extends CustomLimitCommentType = CustomLimitCommentType, > = T extends PossibleEnglishName ? PropertyThatCanBeUnknownWithComment<EntityLimits, false, C> : InferredStringPropertyThatCanBeNotApplicableWithComment<T, C>;

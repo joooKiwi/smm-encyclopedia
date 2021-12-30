@@ -20,7 +20,7 @@ export class NameCreator {
         return name;
     }
 
-    private static __getEnglishName(set: Set<string>, name: PossibleNameTemplate, uniqueName: | string | null,): string {
+    private static __testEnglishNameInSet(set: Set<string>, name: PossibleNameTemplate, uniqueName: | string | null,): string {
         const englishReferenceName = uniqueName ?? name.english.simple ?? name.english.american;
 
         assert(englishReferenceName != null, 'No english name can be null since they are used as a key for the references.',);
@@ -49,7 +49,7 @@ export class NameCreator {
         if (!map.has(instance))
             map.set(instance, new Set());
         const set = map.get(instance)!;
-        this.__getEnglishName(set, this.__testName(name), uniqueName,);
+        this.__testEnglishNameInSet(set, this.__testName(name), uniqueName,);
     }
 
 }

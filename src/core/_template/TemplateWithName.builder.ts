@@ -22,7 +22,7 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
 
     protected constructor(templateBuilder_or_template: | T | Builder<T>, game: PossibleGameReceived<T>, isACompleteName: boolean,) {
         super(templateBuilder_or_template);
-        this.#game = new DelayedObjectHolderContainer(() => typeof game === 'function' ? game(this.template) : game);
+        this.#game = new DelayedObjectHolderContainer(() => typeof game == 'function' ? game(this.template) : game);
         this.#isACompleteName = isACompleteName;
     }
 

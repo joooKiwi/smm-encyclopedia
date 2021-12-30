@@ -78,24 +78,20 @@ export class EntityBuilder
         ] as const;
     }
 
-    private __createLimitPropertyAttributes() {
+    private __createLimitPropertyAttributes(): readonly [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
         const limitsTemplate = this.template.properties.limits;
-        const {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,} = limitsTemplate.whilePlaying.isInGEL;
-        const PELTemplate = limitsTemplate.whilePlaying.isInPEL;
-        const PJLTemplate = limitsTemplate.whilePlaying.isInPJL;
-        const customLimitTemplate = limitsTemplate.whilePlaying.customLimit;
+        const {isInGEL: {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,}, isInPEL: PELTemplate, isInPJL: PJLTemplate, customLimit: customLimitTemplate,} = limitsTemplate.whilePlaying;
 
-        const editorLimit: EditorLimitReceived = [limitsTemplate.editor, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,];
-        const generalLimit: GeneralLimitReceived = superGlobalGELTemplate == null ? GELTemplate : [GELTemplate, superGlobalGELTemplate,];
-        const powerUpLimit: PowerUpLimitReceived = PELTemplate;
-        const projectileLimit: ProjectileLimitReceived = PJLTemplate;
-        const customLimit: CustomLimitReceived = [customLimitTemplate.value, customLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,];
-
-        return [editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,] as const;
+        return [
+            [limitsTemplate.editor, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
+            superGlobalGELTemplate == null ? GELTemplate : [GELTemplate, superGlobalGELTemplate,],
+            PELTemplate,
+            PJLTemplate,
+            [customLimitTemplate.value, customLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
+        ];
     }
 
     private __createProperty() {
-
         return new PropertyContainer(
             ...this.__createIsInPropertyAttributes(),
             ...this.__createLimitPropertyAttributes(),
