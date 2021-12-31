@@ -127,22 +127,22 @@
       }
 
       //endregion -------------------- image (while playing) - SM3DW --------------------
-      //region -------------------- image (unused) - SMB --------------------
+      //region -------------------- image (unused) - SMB (regular) --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (unused) - SM3DW --------------------
-      //region -------------------- image (unused) - NSMBU --------------------
+      //endregion -------------------- image (unused) - SMB (regular) --------------------
+      //region -------------------- image (unused) - SMB (big mushroom) --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (unused) - NSMBU --------------------
+      //endregion -------------------- image (unused) - SMB (big mushroom) --------------------
       //region -------------------- name --------------------
       $index: $index+1;
 
@@ -204,6 +204,11 @@
 
     }
 
+  }
+
+  .big-mushroom-image {
+    height: 32px;
+    margin: var(--bs-spacer-sm);
   }
 
   .animated-image, .non-animated-image {

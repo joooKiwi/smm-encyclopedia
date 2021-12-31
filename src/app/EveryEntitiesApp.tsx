@@ -33,6 +33,7 @@ import Table                             from './tools/table/Table';
 import {Themes}                          from '../core/theme/Themes';
 import TimeComponent                     from '../core/time/Time.component';
 import {Times}                           from '../core/time/Times';
+import {ReactElement}                    from '../util/react/ReactProperty';
 
 /**
  * @reactComponent
@@ -46,7 +47,7 @@ export default class EveryEntitiesApp
 
     #map?: ReadonlyMap<PossibleEnglishName, Entity>;
     #gameStyles?: readonly GameStyles[];
-    #gameStyles_unusedImages?: readonly [GameStyles, GameStyles];
+    #gameStyles_unusedImages?: readonly [GameStyles,];
 
     //endregion -------------------- Attributes --------------------
 
@@ -92,7 +93,7 @@ export default class EveryEntitiesApp
     }
 
     protected get _gameStyles_unusedImages() {
-        return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS, GameStyles.NEW_SUPER_MARIO_BROS_U,];
+        return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,];
     }
 
 
@@ -178,23 +179,25 @@ export default class EveryEntitiesApp
         }</Fragment>;
     }
 
-    private __createUnusedImageComponent(index: number, gameStyle: GameStyles,) {
-        if (gameStyle !== GameStyles.SUPER_MARIO_BROS)
-            return EMPTY_REACT_ELEMENT;
+    private __createUnusedImageComponent(index: number,): readonly [ReactElement, ReactElement,]
+    private __createUnusedImageComponent(index: number, imageNumber: | 1 | 2,): ReactElement
+    private __createUnusedImageComponent(index: number, imageNumber?: | 1 | 2,) {
+        if (imageNumber == null)
+            return [this.__createUnusedImageComponent(index, 1,), this.__createUnusedImageComponent(index, 2,),] as const;
         const enumeration = this.enum[index - 1];
-        const [image1, image2,] = enumeration.unusedImages;
+        const image = enumeration.unusedImages[imageNumber - 1];
 
-        const everyImages1 = image1.all;
-        if (everyImages1.length === 0)
-            return <Fragment key={`Image (unused - ${enumeration.englishName})`}/>;
+        const key = `Image (unused - ${enumeration.englishName}[${imageNumber}])`;
+        const everyImages = image.all;
+        if (everyImages.length === 0)
+            return <Fragment key={key}/>;
 
-
-        return <Fragment key={`Image (unused - ${enumeration.englishName})`}>{
-            everyImages1.map((groupOfImages1, index,) =>
+        return <Fragment key={key}>{
+            everyImages.map((groupOfImages1, index,) =>
                 groupOfImages1.length === 1
-                    ? <Image source={groupOfImages1[0]} fallbackName={`Image (unused - ${enumeration.englishName} - ${index})`}/>
-                    : <AnimatedImages partialId={`image-unused-${enumeration.englishNameInHtml}-${index}`} images={groupOfImages1.map<ImageProperties>((image1, subIndex,) =>
-                        ({source: image1, fallbackName: `Image (unused - ${enumeration.englishName} - ${index}-${subIndex})`}))}/>)
+                    ? <Image source={groupOfImages1[0]} fallbackName={`Image (unused - ${enumeration.englishName}[${imageNumber}] - ${index})`}/>
+                    : <AnimatedImages partialId={`image-unused-${enumeration.englishNameInHtml}${imageNumber}-${index}`} images={groupOfImages1.map<ImageProperties>((image1, subIndex,) =>
+                        ({source: image1, fallbackName: `Image (unused - ${enumeration.englishName}[${imageNumber}] - ${index}-${subIndex})`}))}/>)
         }</Fragment>;
     }
 
@@ -223,7 +226,7 @@ export default class EveryEntitiesApp
                 // eslint-disable-next-line no-loop-func
                 ...this._gameStyles.map(gameStyle => this.__createWhilePlayingImageComponent(index, gameStyle,)),
                 // eslint-disable-next-line no-loop-func
-                ...this._gameStyles_unusedImages.map(gameStyle => this.__createUnusedImageComponent(index, gameStyle,)),
+                ...this._gameStyles_unusedImages.map(() => this.__createUnusedImageComponent(index,)).flat(),
                 <NameComponent id="name" name={entity} popoverOrientation="right"/>,
                 <GameComponent reference={entity} name={entity} displayAllAsText={this._displayGameAsTextWhenAll}/>,
                 <GameStyleComponent reference={entity} name={entity} displayAllAsText={this._displayGameStyleAsTextWhenAll}/>,
@@ -251,19 +254,40 @@ export default class EveryEntitiesApp
                     subHeaders: [
                         {
                             key: 'image-editor', element: <>--Image (editor)--</>,
-                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-editor-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({
+                                key: `image-editor-${gameStyle.acronym}`,
+                                element: gameStyle.renderSingleComponent,
+                            })),
                         },
                         {
                             key: 'image-clearCondition', element: <>--Image (clear condition)--</>,
-                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-clearCondition-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({
+                                key: `image-clearCondition-${gameStyle.acronym}`,
+                                element: gameStyle.renderSingleComponent,
+                            })),
                         },
                         {
                             key: 'image-whilePlaying', element: <>--Image (while playing)--</>,
-                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({key: `image-whilePlaying-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                            subHeaders: this._gameStyles.map<SingleHeaderContent>(gameStyle => ({
+                                key: `image-whilePlaying-${gameStyle.acronym}`,
+                                element: gameStyle.renderSingleComponent,
+                            })),
                         },
                         {
                             key: 'image-unused', element: <>--Image (unused)--</>,
-                            subHeaders: this._gameStyles_unusedImages.map<SingleHeaderContent>(gameStyle => ({key: `image-unused-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+                            subHeaders: this._gameStyles_unusedImages.map<SingleHeaderContent>(gameStyle => ({
+                                key: `image-unused-${gameStyle.acronym}`,
+                                element: gameStyle.renderSingleComponent,
+                                subHeaders: [
+                                    {key: `image-unused-${gameStyle.acronym}-regular`, element: <>--Image (unused - regular)--</>,},
+                                    {
+                                        key: `image-unused-${gameStyle.acronym}-big mushroom`, element: <>
+                                            <Image source="/entities/1 - SMB/In game/SMM1/Item - MegaKinoko/wait.0.png" fallbackName="Big Mushroom (classic)" className="big-mushroom-image"/>
+                                            <Image source="/entities/1 - SMB/In game/SMM1/Item - MegaKinoko2/wait.0.png" fallbackName="Big Mushroom (modern)" className="big-mushroom-image"/>
+                                        </>,
+                                    },
+                                ],
+                            })),
                         },
                     ],
                 },
