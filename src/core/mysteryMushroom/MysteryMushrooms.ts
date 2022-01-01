@@ -274,7 +274,13 @@ export class MysteryMushrooms
         }
 
     }('Kitty White',);
-    public static readonly MELODY =                 new MysteryMushrooms('Melody',);
+    public static readonly MELODY =                 new class MysteryMushrooms_Melody extends MysteryMushrooms {
+
+        protected _createImageContainer(imagePath: PossiblePath,): Image {
+            return new ImageWithLeftVariationContainer(imagePath);
+        }
+
+    }('Melody',);
     public static readonly SHAUN_THE_SHEEP =        new MysteryMushrooms('Shaun the Sheep',);
 
     public static readonly ARINO_KACHO =            new MysteryMushrooms('Arino KACHO',);
