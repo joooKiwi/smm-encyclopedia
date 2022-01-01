@@ -1,33 +1,28 @@
-import type {Builder}                                                                                                                              from '../../../../util/Builder';
-import type {ImageName_BigMushroom_Unused_SMM1}                                                                                                    from './UnusedImage';
-import type {PossibleUnusedBigMushroomImage, UnusedBigMushroomImage_ClownCar, UnusedBigMushroomImage_Goomba, UnusedBigMushroomInGameImage_Stretch} from './UnusedBigMushroomImage';
+import type {ImageName_BigMushroom_Unused_SMM1}                                                                                                  from './UnusedImage';
+import type {PossibleUnusedImage_BigMushroom, UnusedImage_BigMushroom_ClownCar, UnusedImage_BigMushroom_Goomba, UnusedImage_BigMushroom_Stretch} from './UnusedImage_BigMushroom';
 
-import {GameStyles}                      from '../GameStyles';
-import {UnusedBigMushroomImageContainer} from './UnusedBigMushroomImage.container';
+import {GameStyles}                       from '../GameStyles';
+import {UnusedImage_BigMushroomContainer} from './UnusedImage_BigMushroom.container';
+import {UnusedImageBuilder}               from './UnusedImage.builder';
 
 /**
  * @predefinedBuilder
  */
-export class UnusedBigMushroomImageBuilder
-    implements Builder<PossibleUnusedBigMushroomImage> {
+export class UnusedImage_BigMushroomBuilder
+    extends UnusedImageBuilder<PossibleUnusedImage_BigMushroom, ImageName_BigMushroom_Unused_SMM1> {
 
     //region -------------------- Attributes --------------------
 
-    readonly #simpleImageName: ImageName_BigMushroom_Unused_SMM1;
     readonly #hasPathInSameAsEnemy;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(name: ImageName_BigMushroom_Unused_SMM1,) {
-        this.#simpleImageName = name;
+        super(name);
         this.#hasPathInSameAsEnemy = this.simpleImageName !== 'Kuribo';
     }
 
     //region -------------------- Getter & setter methods --------------------
-
-    public get simpleImageName(): ImageName_BigMushroom_Unused_SMM1 {
-        return this.#simpleImageName;
-    }
 
     protected get _pathInEnemy() {
         return this.#hasPathInSameAsEnemy ? '' : 'Unused/';
@@ -46,26 +41,26 @@ export class UnusedBigMushroomImageBuilder
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): PossibleUnusedBigMushroomImage {
+    public build(): PossibleUnusedImage_BigMushroom {
         switch (this.simpleImageName) {
             case 'KoopaClown':
-                return new UnusedBigMushroomImageContainer(
+                return new UnusedImage_BigMushroomContainer(
                     this._getImagePath('wait', 4, 5, 6, 7,), this._getImagePath('anger', 4, 5, 6, 7,), this._getImagePath('blink', 4, 5, 6, 7,), this._getImagePath('weep', 4, 5, 6, 7,),
                     null, null, null, null,
                     null, null, null, null,
-                ) as UnusedBigMushroomImage_ClownCar;
+                ) as UnusedImage_BigMushroom_ClownCar;
             case 'Kuribo':
-                return new UnusedBigMushroomImageContainer(
+                return new UnusedImage_BigMushroomContainer(
                     null, null, null, null,
                     this._getImagePath('damage', 0,), this._getImagePath('swim', 0, 1,), this._getImagePath('walk', 0, 1,), this._getImagePath('kutsu', 0,),
                     null, null, null, null,
-                ) as UnusedBigMushroomImage_Goomba;
+                ) as UnusedImage_BigMushroom_Goomba;
             case 'Necchi':
-                return new UnusedBigMushroomImageContainer(
+                return new UnusedImage_BigMushroomContainer(
                     null, null, null, null,
                     null, null, null, null,
-                    this._getImagePath('wait', 0,), this._getImagePath('wait', 1,), this._getImagePath('wait', 2,), this._getImagePath('out', 4,),
-                ) as UnusedBigMushroomInGameImage_Stretch;
+                    this._getImagePath('wait', 1,), this._getImagePath('wait', 2,), this._getImagePath('out', 4,),
+                ) as UnusedImage_BigMushroom_Stretch;
         }
     }
 

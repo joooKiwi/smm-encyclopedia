@@ -1,8 +1,8 @@
-import type {AngryImages_ClownCar, BlinkingImages_ClownCar, DamagingImages_Goomba, EveryImages_ClownCar, EveryImages_Goomba, EveryImages_Stretch, InBootImages_Goomba, MovingImages_Stretch, SwimmingImages_Goomba, UnusedBigMushroomImage, WaitImages1_Stretch, WaitImages2_Stretch, WaitImages3_Stretch, WaitingImages_ClownCar, WalkingImages_Goomba, WeepingImages_ClownCar} from './UnusedBigMushroomImage';
-import {EMPTY_ARRAY}                                                                                                                                                                                                                                                                                                                                                             from '../../../../util/emptyVariables';
+import type {AngryImages_ClownCar, BlinkingImages_ClownCar, DamagingImages_Goomba, EveryImages_ClownCar, EveryImages_Goomba, EveryImages_Stretch, InBootImages_Goomba, MovingImages_Stretch, SwimmingImages_Goomba, UnusedImage_BigMushroom, WaitImages1_Stretch, WaitImages2_Stretch, WaitingImages_ClownCar, WalkingImages_Goomba, WeepingImages_ClownCar} from './UnusedImage_BigMushroom';
+import {EMPTY_ARRAY}                                                                                                                                                                                                                                                                                                                                         from '../../../../util/emptyVariables';
 
-export class UnusedBigMushroomImageContainer
-    implements UnusedBigMushroomImage {
+export class UnusedImage_BigMushroomContainer
+    implements UnusedImage_BigMushroom {
 
     //region -------------------- Attributes --------------------
 
@@ -18,7 +18,6 @@ export class UnusedBigMushroomImageContainer
 
     readonly #waitImages1;
     readonly #waitImages2;
-    readonly #waitImages3;
 
     readonly #movingImages;
 
@@ -30,7 +29,7 @@ export class UnusedBigMushroomImageContainer
     public constructor(...images: GoombaImagesReceived)
     public constructor(...images: StretchImagesReceived)
     public constructor(...images: | ClownCarImagesReceived | GoombaImagesReceived | StretchImagesReceived) {
-        const [waitImages_clownCar, angryImages, blinkingImages, weepingImages, damagingImages, swimmingImages, walkingImages, inBootImages, waitImages1_stretch, waitImages2_stretch, waitImages3_stretch, movingImages,] = images;
+        const [waitImages_clownCar, angryImages, blinkingImages, weepingImages, damagingImages, swimmingImages, walkingImages, inBootImages, waitImages1_stretch, waitImages2_stretch, movingImages,] = images;
         this.#waitImages = waitImages_clownCar ?? EMPTY_ARRAY;
         this.#angryImages = angryImages ?? EMPTY_ARRAY;
         this.#blinkingImages = blinkingImages ?? EMPTY_ARRAY;
@@ -43,7 +42,6 @@ export class UnusedBigMushroomImageContainer
 
         this.#waitImages1 = waitImages1_stretch ?? EMPTY_ARRAY;
         this.#waitImages2 = waitImages2_stretch ?? EMPTY_ARRAY;
-        this.#waitImages3 = waitImages3_stretch ?? EMPTY_ARRAY;
         this.#movingImages = movingImages ?? EMPTY_ARRAY;
 
         this.#all = [...images,].filter(image => image != null) as unknown as | EveryImages_ClownCar | EveryImages_Goomba | EveryImages_Stretch;
@@ -61,10 +59,6 @@ export class UnusedBigMushroomImageContainer
 
     public get waitImages2(): | WaitImages2_Stretch | EmptyArray {
         return this.#waitImages2;
-    }
-
-    public get waitImages3(): | WaitImages3_Stretch | EmptyArray {
-        return this.#waitImages3;
     }
 
     public get angryImages(): | AngryImages_ClownCar | EmptyArray {
@@ -121,6 +115,6 @@ type GoombaImagesReceived = readonly [
 type StretchImagesReceived = readonly [
     waitImages_clownCar: null, angryImages: null, blinkingImages: null, weepingImages: null,
     damagingImages: null, swimmingImages: null, walkingImages: null, inBootImages: null,
-    waitImages1_stretch: WaitImages1_Stretch, waitImages2_stretch: WaitImages2_Stretch, waitImages3_stretch: WaitImages3_Stretch, movingImages: MovingImages_Stretch,
+    waitImages1_stretch: WaitImages1_Stretch, waitImages2_stretch: WaitImages2_Stretch, movingImages: MovingImages_Stretch,
 ];
 type EmptyArray = typeof EMPTY_ARRAY;

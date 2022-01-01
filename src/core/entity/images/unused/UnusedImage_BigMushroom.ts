@@ -9,15 +9,13 @@ import type {UnusedImage} from './UnusedImage';
  * It is also only applicable in the {@link GameStyles.SUPER_MARIO_BROS "Super Mario Bros." game style}
  * as well as only in the {@link Games.SUPER_MARIO_MAKER_1 "Super Mario Maker" game}.
  */
-export interface UnusedBigMushroomImage
+export interface UnusedImage_BigMushroom
     extends UnusedImage {
-
-    get all(): | EveryImages_ClownCar | EveryImages_Goomba | EveryImages_Stretch
 
 }
 
-export interface UnusedBigMushroomImage_ClownCar
-    extends UnusedBigMushroomImage {
+export interface UnusedImage_BigMushroom_ClownCar
+    extends UnusedImage_BigMushroom {
 
     get waitImages(): WaitingImages_ClownCar
 
@@ -32,8 +30,8 @@ export interface UnusedBigMushroomImage_ClownCar
 
 }
 
-export interface UnusedBigMushroomImage_Goomba
-    extends UnusedBigMushroomImage {
+export interface UnusedImage_BigMushroom_Goomba
+    extends UnusedImage_BigMushroom {
 
     get damagingImages(): DamagingImages_Goomba
 
@@ -48,23 +46,21 @@ export interface UnusedBigMushroomImage_Goomba
 
 }
 
-export interface UnusedBigMushroomInGameImage_Stretch
-    extends UnusedBigMushroomImage {
+export interface UnusedImage_BigMushroom_Stretch
+    extends UnusedImage_BigMushroom {
 
     get waitImages1(): WaitImages1_Stretch
 
     get waitImages2(): WaitImages2_Stretch
 
-    get waitImages3(): WaitImages3_Stretch
-
     get movingImages(): MovingImages_Stretch
 
 
-    get all(): readonly [this['waitImages1'],this['waitImages3'],this['waitImages3'], this['movingImages'],]
+    get all(): readonly [this['waitImages1'], this['waitImages2'], this['movingImages'],]
 
 }
 
-export type PossibleUnusedBigMushroomImage = | UnusedBigMushroomImage_ClownCar | UnusedBigMushroomImage_Goomba | UnusedBigMushroomInGameImage_Stretch;
+export type PossibleUnusedImage_BigMushroom = | UnusedImage_BigMushroom_ClownCar | UnusedImage_BigMushroom_Goomba | UnusedImage_BigMushroom_Stretch;
 
 
 export type WaitingImages_ClownCar = readonly [string, string, string, string,];
@@ -81,6 +77,5 @@ export type EveryImages_Goomba = readonly [DamagingImages_Goomba, SwimmingImages
 
 export type WaitImages1_Stretch = readonly [string,];
 export type WaitImages2_Stretch = readonly [string,];
-export type WaitImages3_Stretch = readonly [string,];
 export type MovingImages_Stretch = readonly [string,];
-export type EveryImages_Stretch = readonly [WaitImages1_Stretch, WaitImages2_Stretch, WaitImages3_Stretch, MovingImages_Stretch,];
+export type EveryImages_Stretch = readonly [WaitImages1_Stretch, WaitImages2_Stretch, MovingImages_Stretch,];

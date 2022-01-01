@@ -22,8 +22,9 @@ import {GameStyles}                    from '../gameStyle/GameStyles';
 import {InGameImage_SMM1Builder}       from './images/inGame/InGameImage_SMM1.builder';
 import {StringContainer}               from '../../util/StringContainer';
 import {Themes}                        from '../theme/Themes';
-import {Times}                         from '../time/Times';
-import {UnusedBigMushroomImageBuilder} from './images/unused/UnusedBigMushroomImage.builder';
+import {Times}                          from '../time/Times';
+import {UnusedImage_BigMushroomBuilder} from './images/unused/UnusedImage_BigMushroom.builder';
+import {UnusedImage_RegularBuilder}     from './images/unused/UnusedImage_Regular.builder';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
@@ -821,7 +822,7 @@ export class Entities
         }
 
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
-            return new UnusedBigMushroomImageBuilder('Kuribo',);
+            return [null, new UnusedImage_BigMushroomBuilder('Kuribo',),];
         }
 
     }('Goomba',);
@@ -1329,7 +1330,7 @@ export class Entities
     public static readonly STRETCH =                                       new class Entities_Stretch extends Entities {
 
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
-            return new UnusedBigMushroomImageBuilder('Necchi',);
+            return [new UnusedImage_RegularBuilder('Necchi'), new UnusedImage_BigMushroomBuilder('Necchi',),];
         }
 
     }('Stretch',);
@@ -1693,7 +1694,7 @@ export class Entities
         }
 
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
-            return new UnusedBigMushroomImageBuilder('KoopaClown',);
+            return [null, new UnusedImage_BigMushroomBuilder('KoopaClown',),];
         }
 
     }('Koopa Clown Car',);
@@ -2463,7 +2464,7 @@ export class Entities
      * @private
      * @onlyCalledOnce
      */
-    private get __initialiseUnusedImageBuilder(): | readonly[Builder<UnusedImage>,] | readonly[Builder<UnusedImage>, Builder<UnusedImage>,] | null {
+    private get __initialiseUnusedImageBuilder(): | readonly[Builder<UnusedImage>,] | readonly[Builder<UnusedImage>, Builder<UnusedImage>,] | readonly[null, Builder<UnusedImage>,] | null {
         const builder_or_image = this._createUnusedImage;
         if (builder_or_image == null)
             return null;
@@ -2487,7 +2488,8 @@ export class Entities
             const builder_or_null = this.__initialiseUnusedImageBuilder;
             this.#unusedImages = builder_or_null == null
                 ? Entities.#EMPTY_UNUSED_IMAGE_ARRAY
-                : [builder_or_null[0].build(), builder_or_null[1]?.build() ?? EmptyUnusedImage.get,];
+                : [builder_or_null[0]?.build() ?? EmptyUnusedImage.get,
+                    builder_or_null[1]?.build() ?? EmptyUnusedImage.get,];
         }
         return this.#unusedImages;
     }
@@ -2559,7 +2561,7 @@ export class Entities
 type PossibleEditorImage = | Builder<EditorImage> | SimpleImageName_Editor | null;
 type PossibleClearConditionImage = | Builder<ClearConditionImage> | SimpleImageName_ClearCondition | null;
 type PossibleInGameImage = | Builder<InGameImage> | null;
-type PossibleUnusedUnusedImage = | Builder<UnusedImage> | [Builder<UnusedImage>, Builder<UnusedImage>,] | null;
+type PossibleUnusedUnusedImage = | Builder<UnusedImage> | [Builder<UnusedImage>, Builder<UnusedImage>,] | [null, Builder<UnusedImage>,] | null;
 
 // @ts-ignore
 window.test = Entities;
