@@ -21,14 +21,14 @@ export abstract class SoundStates
     public static readonly PAUSED =  new class SoundStates_Paused extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
-            return [pauseElement(), stopElement(),];
+            return [playElement(), stopElement(),];
         }
 
     } ('paused',);
     public static readonly PLAYING = new class SoundStates_Playing extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
-            return [playElement(), stopElement(),];
+            return [pauseElement(), stopElement(),];
         }
 
     }('playing',);
@@ -71,7 +71,7 @@ export abstract class SoundStates
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<PS extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: PS,): EnumByPossibleString<PS>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
     public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
     public static getValue<I extends SoundStates, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): SoundStates
