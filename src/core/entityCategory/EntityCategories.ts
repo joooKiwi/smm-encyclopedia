@@ -22,6 +22,11 @@ export class EntityCategories
     public static readonly GIZMO =   new EntityCategories('Gizmo',  );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: EntityCategories;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, EntityCategory>;

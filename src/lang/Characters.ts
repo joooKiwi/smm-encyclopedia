@@ -67,6 +67,11 @@ export class Characters
     public static readonly NUMBER_9 =             new Characters('9',  '９',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: Characters;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,];

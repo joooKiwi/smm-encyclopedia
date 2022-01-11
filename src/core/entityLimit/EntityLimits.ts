@@ -72,6 +72,11 @@ export class EntityLimits
     public static readonly WARP_BOX_LIMIT =                                           new EntityLimits('Warp Box',                                                                          );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: EntityLimits;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, EntityLimit>;

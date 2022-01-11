@@ -290,6 +290,11 @@ export class MysteryMushrooms
     public static readonly BABYMETAL =              new MysteryMushrooms('BABYMETAL',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: MysteryMushrooms;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<UniqueEnglishName, MysteryMushroom>;

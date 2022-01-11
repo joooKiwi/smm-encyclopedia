@@ -12,6 +12,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
     public static readonly EXCLUDED_NAMES: string[] = [];
     protected static _DEFAULT_NAME = '_DEFAULT';
 
+    static readonly #LAST_ORDINAL_MAP = new Map<EnumerableStatic, number>();
     static readonly #ORDINAL_MAP = new Map<Enumerable, number>();
     static readonly #NAME_MAP = new Map<Enumerable, string>();
     static readonly #DEFAULT_MAP = new Map<EnumerableStatic, | Enumerable | null>();
@@ -60,10 +61,21 @@ export abstract class Enum<O extends number = number, N extends string = string,
         return this.#ORDINAL_MAP.get(instance);
     }
 
+    private static __getLastOrdinalOn<I extends Enumerable, >(instance: EnumerableStatic<I['ordinal'], I['name'], I>,): I['ordinal']
+    private static __getLastOrdinalOn(instance: EnumerableStatic,) {
+        const map = this.#LAST_ORDINAL_MAP;
+        return map.has(instance)
+            ? map.set(instance, map.get(instance)! + 1).get(instance)
+            : map.set(instance, 0).get(instance);
+    }
+
 
     //endregion -------------------- Enum static methods --------------------
 
     protected constructor() {
+        // @ts-ignore
+        const staticReference = this._static;
+        Reflect.set(staticReference, Enum.__getLastOrdinalOn(staticReference), this,);
     }
 
     //region -------------------- Enum methods --------------------

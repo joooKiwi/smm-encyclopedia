@@ -34,6 +34,11 @@ export class EntityBehaviours
     public static readonly RESPAWN_IN_BLOCK_IF_PLAYER_DIE =                new EntityBehaviours('RBD',   'Respawn in Block (if player die)',         );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: EntityBehaviours;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>;

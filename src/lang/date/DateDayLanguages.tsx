@@ -136,6 +136,11 @@ export abstract class DateDayLanguages
     protected static readonly _DEFAULT = this.getValue(ProjectLanguages._DEFAULT);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: DateDayLanguages;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #reference;

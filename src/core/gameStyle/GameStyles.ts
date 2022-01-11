@@ -86,6 +86,11 @@ export abstract class GameStyles
     } ('SM3DW', '3W', 'Super Mario 3D World',   );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: GameStyles;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, GameStyle>;

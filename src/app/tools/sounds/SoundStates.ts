@@ -21,19 +21,24 @@ export abstract class SoundStates
     public static readonly PAUSED =  new class SoundStates_Paused extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
-            return [pauseElement(), stopElement(),];
+            return [playElement(), stopElement(),];
         }
 
     } ('paused',);
     public static readonly PLAYING = new class SoundStates_Playing extends SoundStates {
 
         public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
-            return [playElement(), stopElement(),];
+            return [pauseElement(), stopElement(),];
         }
 
     }('playing',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: SoundStates;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;

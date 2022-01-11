@@ -12,6 +12,11 @@ export class EntityLimitTypes
     public static readonly EDITOR =        new EntityLimitTypes('Editor',        'In the editor',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: EntityLimitTypes;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;

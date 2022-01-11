@@ -28,10 +28,10 @@ export default function DisplayTab() {
             <SingleDisplayTab routeName="everyMysteryMushrooms" callback={translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mystery Mushrooms',
                 {
                     pluralName: <Fragment key="everyMysteryMushrooms-pluralName">
-                        <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushrooms</span>
-                        <Image key="mysteryMushroom-image" source="/entities/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/>
+                        <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushrooms</span>{/*TODO add Mystery Mushroom but the plural name*/}
+                        <sup><Image key="mysteryMushroom-image" source="/entities/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
                     </Fragment>
-                })}/>{/*TODO add Mystery Mushroom but the plural name*/}
+                })}/>
             <div className="dropdown-divider"/>
             <SingleDisplayTab routeName="everyGameReferences" callback={translation => translation('Display every game references')}/>
             <SingleDisplayTab routeName="everyGameStyles" callback={translation => translation('Display every game styles')}/>

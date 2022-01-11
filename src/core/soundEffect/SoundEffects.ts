@@ -72,6 +72,11 @@ export class SoundEffects
     public static readonly SUPER_MARIO_GALAXY =     new SoundEffects('Super Mario Galaxy',        null,    '5.11', );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: SoundEffects;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;
