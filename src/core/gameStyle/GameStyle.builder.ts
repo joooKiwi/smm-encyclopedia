@@ -2,16 +2,16 @@ import type {Builder}           from '../../util/Builder';
 import type {Entity}            from '../entity/Entity';
 import type {GameStyle}         from './GameStyle';
 import type {GameStyleTemplate} from './GameStyle.template';
-import type {Name}              from '../../lang/name/Name';
 
-import {assert}                  from '../../util/utilitiesMethods';
-import {GamePropertyContainer}   from '../entity/properties/GameProperty.container';
-import {GameStyles}              from './GameStyles';
-import {GameStyleContainer}      from './GameStyle.container';
-import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
+import {assert}                from '../../util/utilitiesMethods';
+import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
+import {GameReferences}        from '../gameReference/GameReferences';
+import {GameStyles}            from './GameStyles';
+import {GameStyleContainer}    from './GameStyle.container';
+import {TemplateBuilder}       from '../_template/Template.builder';
 
 export class GameStyleBuilder
-    extends TemplateWithNameBuilder<GameStyleTemplate, GameStyle>
+    extends TemplateBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
     //region -------------------- External object references --------------------
@@ -21,7 +21,7 @@ export class GameStyleBuilder
     //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
-        super(templateBuilder, 'all', true,);
+        super(templateBuilder,);
     }
 
 
@@ -29,23 +29,24 @@ export class GameStyleBuilder
         return GameStyleBuilder;
     }
 
-    private static __whereEntityIs(englishName: string,): Entity[] {
+    private static __whereEntityIs(englishName: string,): readonly Entity[] {
         const gameStyle = GameStyles.getValue(englishName);
         assert(gameStyle != null, `The english name "${englishName}" has no reference on the Game Style class.`,);
         const everyEntities = [] as Entity[];
-        for (const [, entity,] of this.entitiesMap.entries())
+        for (const [, entity,] of this.entitiesMap)
             if (entity !== undefined && gameStyle.get(entity))
                 everyEntities.push(entity);
         return everyEntities;
     }
 
-    protected _build(name: Name,): GameStyle {
-        const gameTemplate = this.template.isIn.game;
+    public build(): GameStyle {
+        const template = this.template;
+        const gameTemplate = template.isIn.game;
 
         return new GameStyleContainer(
-            name,
+            () => GameReferences.getValue(template.reference).reference.nameContainer,
             GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
-            () => GameStyleBuilder.__whereEntityIs(name.english),
+            () => GameStyleBuilder.__whereEntityIs(template.reference),
         );
     }
 }

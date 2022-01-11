@@ -1,15 +1,15 @@
-import type {SimpleGameTemplate}       from '../game/SimpleGame.template';
-import type {NameTemplate}             from '../../lang/name/Name.template';
-import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
+import type {SimpleGameTemplate} from '../game/SimpleGame.template';
+import type {PossibleAcronym}    from './GameStyles.types';
 
 /**
  * @template
  */
-export interface GameStyleTemplate
-    extends TemplateWithNameTemplate<NameTemplate> {
+export interface GameStyleTemplate {
 
     isIn: {
         game: SimpleGameTemplate
     }
+
+    reference: PossibleAcronym
 
 }

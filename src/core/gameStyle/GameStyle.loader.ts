@@ -1,16 +1,16 @@
 import everyGameStyles from '../../resources/Game styles.csv';
 
-import type {Loader}                                    from '../../util/loader/Loader';
-import type {GameStyle}                                 from './GameStyle';
-import type {GameStyleTemplate}                         from './GameStyle.template';
-import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {PossibleEnglishName}                       from './GameStyles.types';
+import type {Loader}                                from '../../util/loader/Loader';
+import type {GameStyle}                             from './GameStyle';
+import type {GameStyleTemplate}                     from './GameStyle.template';
+import type {PropertiesArray as GamesPropertyArray} from '../game/Loader.types';
+import type {PossibleAcronym, PossibleEnglishName}  from './GameStyles.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLoader}            from '../entity/Entity.loader';
 import {GameStyleBuilder}        from './GameStyle.builder';
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -22,30 +22,20 @@ enum Headers {
     isInSuperMarioMaker2,
 
     //endregion -------------------- Games --------------------
-    //region -------------------- Languages --------------------
 
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-    greek,
-
-    //endregion -------------------- Languages --------------------
+    reference,
 
 }
 
 //region -------------------- Properties --------------------
 
+export type ExclusivePropertiesArray = [
+    reference: PossibleAcronym,
+];
+
 type PropertiesArray = [
     ...GamesPropertyArray,
-    ...LanguagesPropertyArray,
+    ...ExclusivePropertiesArray,
 ];
 
 //endregion -------------------- Properties --------------------
@@ -89,6 +79,7 @@ export class GameStyleLoader
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'reference',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
@@ -122,7 +113,7 @@ class TemplateBuilder
             isIn: {
                 game: this._createGameTemplate(),
             },
-            name: this._createNameTemplate(),
+            reference: this._getContent(this._headersIndexMap.reference),
         };
     }
 

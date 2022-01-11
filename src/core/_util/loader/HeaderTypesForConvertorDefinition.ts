@@ -7,9 +7,10 @@ import type {PokemonGeneration}                                                 
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../behaviour/EntityBehaviours.types';
 import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../entityLimit/EntityLimits.types';
 import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../gameReference/GameReferences.types';
+import type {PossibleAcronym as PossibleAcronym_GameStyle}                                         from '../../gameStyle/GameStyles.types';
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom} from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
 
 export interface HeaderTypesForConvertorDefinition {
 
@@ -22,6 +23,11 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleGameReferenceEnglishName(): ValueOrStringConstant<EveryPossibleName_GameReference>
 
     //endregion -------------------- Game reference --------------------
+    //region -------------------- Game style --------------------
+
+    get everyPossibleGameStyleAcronym(): ValueOrStringConstant<EveryPossibleAcronym_GameStyle>
+
+    //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
     get everyPossibleEntityNames(): ValueOrStringConstant<EveryPossibleName_Entity>
@@ -98,6 +104,8 @@ export type UnknownReference = '???';
 export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[];
 export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration)[];
 export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[];
+
+export type EveryPossibleAcronym_GameStyle = readonly PossibleAcronym_GameStyle[];
 
 export type EveryPossibleName_Entity = readonly PossibleEnglishName_Entity[];
 

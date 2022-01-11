@@ -174,6 +174,10 @@ export abstract class GameStyles
     }
 
 
+    public static get everyAcronyms(): readonly PossibleAcronym[] {
+        return this.values.map(limit => limit.acronym);
+    }
+
     public static get gameStyles_smm1(): EnumArray_SMM1 {
         return this.#GAME_STYLES_SMM1 ??= [this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U,];
     }

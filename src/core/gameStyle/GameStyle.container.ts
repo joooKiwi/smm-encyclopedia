@@ -11,14 +11,14 @@ export class GameStyleContainer
 
     //region -------------------- Attributes --------------------
 
-    readonly #name;
+    readonly #name: ObjectHolder<Name>;
     readonly #isInProperty;
-    readonly #entities: ObjectHolder<Entity[]>;
+    readonly #entities: ObjectHolder<readonly Entity[]>;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, isInProperty: GameProperty, entities: () => Entity[],) {
-        this.#name = name;
+    public constructor(name: () => Name, isInProperty: GameProperty, entities: () => readonly Entity[],) {
+        this.#name = new DelayedObjectHolderContainer(name);
         this.#isInProperty = isInProperty;
         this.#entities = new DelayedObjectHolderContainer(entities);
     }
@@ -26,7 +26,7 @@ export class GameStyleContainer
     //region -------------------- Name properties --------------------
 
     public get nameContainer(): Name {
-        return this.#name;
+        return this.#name.get;
     }
 
 
