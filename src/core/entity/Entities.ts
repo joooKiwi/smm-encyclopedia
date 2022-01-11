@@ -2331,7 +2331,7 @@ export class Entities
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
+    private static get __map(): ReadonlyMap<PossibleEnglishName, Entity> {
         return this.#map ??= require('./Entity.loader').EntityLoader.get.load();
     }
 
@@ -2340,7 +2340,7 @@ export class Entities
      * @semiAsynchronously
      */
     public get reference(): Entity {
-        return this.#reference ??= Entities.__map.get(this.englishName).entity;
+        return this.#reference ??= Entities.__map.get(this.englishName)!;
     }
 
 
