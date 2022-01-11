@@ -9,9 +9,9 @@ import SingleTextLanguageTab        from './SingleTextLanguageTab';
 interface DoubleLanguageTabProperty
     extends ReactProperty {
 
-    languages: [parentLanguage: EveryLanguages, firstLanguage: ProjectLanguages, secondLanguage: ProjectLanguages,];
+    languages: [parentLanguage: EveryLanguages, firstLanguage: ProjectLanguages, secondLanguage: ProjectLanguages,]
 
-    callbackToSetLanguage: (language: ProjectLanguages,) => void;
+    callbackToSetLanguage: (language: ProjectLanguages,) => void
 
 }
 
@@ -23,7 +23,7 @@ export default function DoubleLanguageTab({languages: [parentLanguage, firstLang
             <pre>{translation(parentLanguage.englishName)}{ProjectLanguages.currentLanguage.space}{ProjectLanguages.currentLanguage.startingParenthesis}</pre>
             {firstLanguage === ProjectLanguages.currentLanguage ? <SingleTextLanguageTab language={firstLanguage} isEnglishName={false}/> :
                 <LanguageChangerTab language={firstLanguage} value={translation(firstLanguage.differentWords)} callbackToSetLanguage={callbackToSetLanguage}/>}
-            <pre>{ProjectLanguages.currentLanguage.space}{ProjectLanguages.currentLanguage.slash}{ProjectLanguages.currentLanguage.space}</pre>
+            <pre>{`${ProjectLanguages.currentLanguage.space}${ProjectLanguages.currentLanguage.slash}${ProjectLanguages.currentLanguage.space}`}</pre>
             {secondLanguage === ProjectLanguages.currentLanguage ? <SingleTextLanguageTab language={secondLanguage} isEnglishName={false}/>
                 : <LanguageChangerTab language={secondLanguage} value={translation(secondLanguage.differentWords)} callbackToSetLanguage={callbackToSetLanguage}/>}
             <pre>{ProjectLanguages.currentLanguage.endingParenthesis}</pre>
