@@ -29,6 +29,11 @@ export abstract class Games
     }('SMM2', 'Super Mario Maker 2',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: Games;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #acronym;

@@ -172,6 +172,11 @@ export class GameReferences
     public static readonly BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY = new GameReferences('BA:TYBMD', 'Brain Age: Train Your Brain in Minutes a Day!',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: GameReferences;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     #reference?: GameReference;

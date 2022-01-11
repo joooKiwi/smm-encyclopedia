@@ -17,6 +17,6 @@ export type EnumByName<N extends string, E extends Enumerable = Enumerable, > = 
 export type EnumByPossibleString<PS extends | string | N, N extends string, E extends Enumerable = Enumerable, > = PS extends N ? EnumByName<N, E> : E
 export type EnumByString<S extends | PS | string, PS extends | N | string, N extends string, E extends Enumerable = Enumerable, > = S extends PS ? EnumByPossibleString<PS, N, E> : | E | null;
 
-export type StaticReference<E extends Enumerable, > = EnumerableStatic<E['ordinal'], E['name']>;
+export type StaticReference<E extends Enumerable, > = EnumerableStatic<E['ordinal'], E['name'], E>;
 
 //endregion -------------------- Instance types --------------------

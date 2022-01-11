@@ -24,6 +24,11 @@ export abstract class HeaderTypes
     }('foot', 'bottom',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: HeaderTypes;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #name;
