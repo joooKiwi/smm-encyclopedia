@@ -5,7 +5,7 @@ Entity Limit C,While Playing,PEL (WP),100,,Power-ups,,Power-up Entity Limit (Whi
 ,,ELC,,,,,Entity Limit C,,,Limite d'entité C,,,,,,,,,,,,,,,,,
 ,While Playing,LCL,50,,,Coin,Loose Coin Limit,,,Limite de pièce lousse,,,,,,,,,,,,,,,,,
 ,While Playing,SEL,?,,,,Sound Effect Limit,,,Limite d'effet sonore,,,,,,,,,,,,,,,,,
-,While Playing,CL,?,,,,Corpse Limit,,,Limite de corps,,,,,,,,,,,,,,,,,
+,While Playing,CL,?,Crash online if met,,,Corpse Limit,,,Limite de corps,,,,,,,,,,,,,,,,,
 ,While Playing,PJL,100,,,,Projectile Limit,,,Limite de projectile,,,,,,,,,,,,,,,,,
 ,While Playing,LSL,500,,,,Light Source Limit,,,Limite de source de lumière,,,,,,,,,,,,,,,,,
 Ground Limit 1,Editor,,4000,,,Ground,Ground Limit,,,Limite de sol,,,,,,,,,,,,,,,,,
