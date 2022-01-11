@@ -87,62 +87,6 @@
       }
 
       //endregion -------------------- image (clear condition) - SM3DW --------------------
-      //region -------------------- image (while playing) - SMB --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (while playing) - SMB --------------------
-      //region -------------------- image (while playing) - SMB3 --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (while playing) - SMB3 --------------------
-      //region -------------------- image (while playing) - SMW --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (while playing) - SMW --------------------
-      //region -------------------- image (while playing) - NSMBU --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (while playing) - NSMBU --------------------
-      //region -------------------- image (while playing) - SM3DW --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (while playing) - SM3DW --------------------
-      //region -------------------- image (unused) - SMB (regular) --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (unused) - SMB (regular) --------------------
-      //region -------------------- image (unused) - SMB (big mushroom) --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (unused) - SMB (big mushroom) --------------------
       //region -------------------- name --------------------
       $index: $index+1;
 

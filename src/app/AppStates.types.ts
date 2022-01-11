@@ -33,6 +33,14 @@ export interface EntityAppStates
     extends AppStates, AppStateThatHaveAnimatedImages, AppStateThatHaveACategory {
 
     display: {
+        name: boolean
+        game: boolean
+        gameStyle: boolean
+        courseTheme: boolean
+        time: boolean
+        category: boolean
+        limit: boolean
+
         imageAnimations: PossibleImageAnimation
         asText: {
             category: boolean
