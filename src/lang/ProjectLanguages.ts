@@ -70,6 +70,11 @@ export class ProjectLanguages
     protected static readonly _DEFAULT = this.getValue(EveryLanguages.default)!;
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: ProjectLanguages;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #language: EveryLanguages;

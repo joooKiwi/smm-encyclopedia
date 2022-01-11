@@ -18,6 +18,11 @@ export class SoundEffectCategories
     public static readonly MUSIC =      new SoundEffectCategories('Music',     );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: SoundEffectCategories;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #englishName;

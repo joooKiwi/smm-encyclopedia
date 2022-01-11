@@ -5,7 +5,7 @@ import type {ReactProperty}        from '../../../util/react/ReactProperty';
 export type SingleCaptionContent = | string | JSX.Element;
 export type SingleTableContent = [key: string, ...content: JSX.Element[]];
 
-export interface SimpleTableProperties
+export interface TableProperties
     extends ReactProperty {
 
     id: string

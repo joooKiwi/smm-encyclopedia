@@ -150,6 +150,11 @@ export class Themes
     }       ('Space',);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: Themes;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #COURSES: EnumArray_OnlyCourseTheme;

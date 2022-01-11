@@ -4,6 +4,8 @@ import type {EnumByName, EnumByNumber, EnumByOrdinal, EnumByString, SimpleEnum} 
 interface _EnumerableStatic<O extends number = number, N extends string = string, E extends Enumerable<O, N> = Enumerable<O, N>, >
     extends Function {
 
+    [index: number]: E
+
     getValue(nullValue: | null | undefined,): null
 
     getValue(ordinal: O,): EnumByOrdinal<this['values'], O, E>
@@ -26,5 +28,5 @@ interface _EnumerableStatic<O extends number = number, N extends string = string
 
 }
 
-export type EnumerableStatic<O extends number = number, N extends string = string, E extends Enumerable<O, N>
-    = Enumerable<O, N>, > = _EnumerableStatic<O, N, E> & SimpleEnum<N, E>;
+export type EnumerableStatic<O extends number = number, N extends string = string, E extends Enumerable<O, N> = Enumerable<O, N>, >
+    = _EnumerableStatic<O, N, E> & SimpleEnum<N, E>;

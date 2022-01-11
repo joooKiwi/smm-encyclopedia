@@ -301,6 +301,11 @@ export abstract class EveryLanguages
     protected static readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH;
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: EveryLanguages;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #CURRENT_LANGUAGE: EveryLanguages;

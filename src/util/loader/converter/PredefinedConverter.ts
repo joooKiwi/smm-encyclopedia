@@ -207,6 +207,11 @@ export abstract class PredefinedConverter
     //TODO add string to array of nullable number converter
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: PredefinedConverter;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     readonly #simpleName;
