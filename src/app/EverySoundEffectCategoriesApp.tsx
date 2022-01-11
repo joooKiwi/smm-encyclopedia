@@ -36,7 +36,7 @@ export default class EverySoundEffectCategoriesApp
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const [englishName, soundEffectCategory,] of this.map.entries()) {
+        for (const [englishName, soundEffectCategory,] of this.map) {
             content.push([englishName,
                 <>{index}</>,
                 <Image source={this.enum[index - 1].imagePath} fallbackName={`${englishName} - image`}/>,

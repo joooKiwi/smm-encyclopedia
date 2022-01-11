@@ -67,7 +67,7 @@ export default class EverySoundEffectsApp
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const [englishName, soundEffect,] of this.map.entries()) {
+        for (const [englishName, soundEffect,] of this.map) {
             content.push([englishName,
                 <>{index}</>,
                 soundEffect.isInSuperMarioMaker1 ? <SoundEffectComponent reference={this.enum[index - 1]} name={soundEffect} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT,

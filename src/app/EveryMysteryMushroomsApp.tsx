@@ -130,7 +130,7 @@ export default class EveryMysteryMushroomsApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, mysteryMushroom,] of this.map.entries()) {
+        for (const [englishName, mysteryMushroom,] of this.map) {
             const englishNameAsId = englishName.toLowerCase().replace(' ', '_');
             const mysteryMushroomEnum = MysteryMushrooms.getValue(englishName);
             const isMysteryMushroom = MysteryMushrooms.MYSTERY_MUSHROOM === mysteryMushroomEnum;

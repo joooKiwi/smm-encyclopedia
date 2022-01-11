@@ -44,7 +44,7 @@ export default class EveryLimitsApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, entityLimit,] of this.map.entries()) {
+        for (const [englishName, entityLimit,] of this.map) {
             if (entityLimit !== entityLimit.alternativeContainer) {
                 content.push([englishName,
                     <>{index}</>,

@@ -36,7 +36,7 @@ export default class EveryGameStylesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, gameStyle,] of this.map.entries()) {
+        for (const [englishName, gameStyle,] of this.map) {
             content.push([englishName,
                 <>{index}</>,
                 this.enum[index - 1].renderSingleComponent,

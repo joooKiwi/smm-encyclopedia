@@ -42,7 +42,7 @@ export default class EveryThemesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, [courseTheme, worldTheme,],] of this.map.entries()) {
+        for (const [englishName, [courseTheme, worldTheme,],] of this.map) {
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
             const name = isInCourseTheme ? courseTheme : worldTheme;
