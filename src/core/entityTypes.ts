@@ -34,8 +34,8 @@ export type PossibleGroupName = string;
 
 /** @temporaryLocation */export type CanBeAffectedByATwister = | boolean | 'When falling' | 'Parachute' | null;
 
-/** @temporaryLocation */export type CanGoThroughWalls = | boolean | 'SM3DW on down curve' | null;
-/** @temporaryLocation */export type CanGoThroughWallsInSM3DW = | boolean | 'SM3DW on down curve' | null;
+/** @temporaryLocation */export type CanGoThroughWalls = | boolean | null;
+/** @temporaryLocation */export type CanGoThroughWallsInSM3DW = | boolean | 'on down curve' | null;
 
 /** @temporaryLocation */export type CanBeStacked = | boolean | null;
 

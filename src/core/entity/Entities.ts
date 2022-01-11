@@ -1727,7 +1727,7 @@ export class Entities
         }
 
     }('Fire Junior Clown Car',);
-    public static readonly FIRE_THROWN_BY_A_FIRE_KOOPA_JUNIOR_CLOWN_CAR =  new Entities('Fire thrown by a Fire Koopa / Junior Clown Car',);
+    public static readonly FIRE_THROWN_BY_A_FIRE_KOOPA_JUNIOR_CLOWN_CAR =  new Entities('Fire thrown by a Fire [Koopa / Junior] Clown Car',);
 
     public static readonly KOOPA_TROOPA_CAR =                              new class Entities_KoopaTroopaCar extends Entities {
 
@@ -2262,6 +2262,8 @@ export class Entities
         }
 
     }('Stone',);
+
+    public static readonly BUBBLE =                                        new Entities('Bubble',);
 
     public static readonly WARP_DOOR =                                     new class Entities_WarpDoor extends Entities {
 

@@ -7,7 +7,7 @@ import NameComponent      from '../../lang/name/component/Name.component';
 import {ProjectLanguages} from '../../lang/ProjectLanguages';
 import TextComponent      from '../../app/tools/text/TextComponent';
 
-type Id = `${| 'editor' | 'whilePlaying'}-${number}`;
+type Id = `${| 'editor' | 'whilePlaying'}-${string}`;
 
 interface EditorLimitProperties
     extends ReactProperty {

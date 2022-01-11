@@ -6,7 +6,7 @@ export type PossibleLimitAmountComment =
     | 'For each entity' | 'For each clone (2-4)'
     | `For each projectile${| '' | ' (1)'}`
     | `For each projectiles${| '' | ` (${| 2 | 3 | 4 | 5 | 6 | '10?' | '1-3' | '3-5' | 'NSMU → 2, [SMB,SMB3,SMW] → 3'})`}`;
-export type LimitAmountType = | 1 | 2 | `${| 1 | ''}?` | PossibleLimitAmountComment | null;
+export type LimitAmountType = | 1 | 2 | `${| 1 | ''}?` | '∞' | PossibleLimitAmountComment | null;
 
 //endregion -------------------- Limit amount --------------------
 //region -------------------- Entity limit --------------------

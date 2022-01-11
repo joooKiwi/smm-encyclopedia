@@ -149,6 +149,7 @@ enum Enum {
     POW_BLOCK, RED_POW_BLOCK,
     P_SWITCH,
     STONE,
+    BUBBLE,
     WARP_DOOR, P_WARP_DOOR, KEY_DOOR,
     WARP_BOX, WARP_BOX_WITH_KEY,
 
@@ -241,7 +242,7 @@ export type PossibleEnglishName =
     | 'Burner'
     | 'Fire Bar'
     | 'Skewer'
-    | `${| '' | 'Fire '}${| 'Koopa' | 'Junior'} Clown Car` | 'Fire thrown by a Fire Koopa / Junior Clown Car'
+    | `${| '' | 'Fire '}${| 'Koopa' | 'Junior'} Clown Car` | 'Fire thrown by a Fire [Koopa / Junior] Clown Car'
     | `${| '' | 'Koopa Troopa '}Car`
     | 'Grinder'
     | 'Angry Sun' | 'Moon'
@@ -273,6 +274,7 @@ export type PossibleEnglishName =
     | `${| '' | 'Red '}POW Block`
     | 'P Switch'
     | 'Stone'
+    | 'Bubble'
     | `${| `${| '' | 'P '}Warp` | 'Key'} Door`
     | `Warp Box${| '' | ' (With Key)'}`
     ;
@@ -417,6 +419,7 @@ export type EnumArray<E extends Entities = Entities, > = readonly [
     EnumByName<'POW_BLOCK', E>, EnumByName<'RED_POW_BLOCK', E>,
     EnumByName<'P_SWITCH', E>,
     EnumByName<'STONE', E>,
+    EnumByName<'BUBBLE', E>,
     EnumByName<'WARP_DOOR', E>, EnumByName<'P_WARP_DOOR', E>, EnumByName<'KEY_DOOR', E>,
     EnumByName<'WARP_BOX', E>, EnumByName<'WARP_BOX_WITH_KEY', E>,
 ];

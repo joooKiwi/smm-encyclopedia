@@ -275,7 +275,7 @@ interface ImageNameMap {
     'Junior Clown Car': ImageNameMap['Koopa Clown Car']
     'Fire Koopa Clown Car': ['KoopaClown', Name<'KoopaClown', 1>,]
     'Fire Junior Clown Car': ImageNameMap['Fire Koopa Clown Car']
-    'Fire thrown by a Fire Koopa / Junior Clown Car': NoImages
+    'Fire thrown by a Fire [Koopa / Junior] Clown Car': NoImages
 
     'Koopa Troopa Car': ImageThatHasOnly1Reference<'KoopaCar'>
     'Car': NoImages
@@ -386,6 +386,8 @@ interface ImageNameMap {
     'P Switch': ImageThatHasOnly1Reference<'PSwitch'>
 
     'Stone': [null, null,]
+
+    'Bubble': NoImages
 
     'Warp Door': ['Door', Name<'Door', 0>,]
     'P Warp Door': ['Door', Name<'Door', 1>,]

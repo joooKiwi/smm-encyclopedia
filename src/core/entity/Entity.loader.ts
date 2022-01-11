@@ -393,9 +393,10 @@ export class EntityLoader
                 .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Castle', 'Castle / Night Forest', 'Float', 'Melt to Coin', 'Only inside the ground',], 'canSurviveInTheLavaOrThePoison',)
                 .convertToNullableBooleanAnd(['NSMBU', 'Castle', 'Only when the player press the run button',], 'canIgniteABobOmb',)
                 .convertToNullableBooleanAnd(['When falling', 'Parachute',], 'canBeAffectedByATwister',)
-                .convertToNullableBooleanAnd('SM3DW on down curve', 'canGoThroughWalls', 'canGoThroughWalls_inSM3DW',)
+                .convertToNullableBoolean('canGoThroughWalls',)
+                .convertToNullableBooleanAnd(['on down curve',], 'canGoThroughWalls_inSM3DW',)
                 .convertToNullableBoolean('canBeStacked',)
-                .convertToNullableBooleanAnd('SM3DW', 'isGlobalGroundOrGlobal',)
+                .convertToNullableBooleanAnd(['SM3DW',], 'isGlobalGroundOrGlobal',)
                 .convertToNullableBooleanAnd(['Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
 
                 .convertToBooleanAnd('Bob-omb clear condition', 'canBeThrownByBowserInClownCar',)
@@ -405,9 +406,12 @@ export class EntityLoader
                 .convertToBoolean('canBeSpawnedByMagikoopa',)
                 .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'green winged', 'winged',], 'canBeSpawnedByWingedMagikoopa',)
 
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 1, 2, '1?', 'For each entity', 'For each clone (2-4)',
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 1, 2, '1?', EntityLoader.INFINITE_CHARACTER,
+                    'For each entity', 'For each clone (2-4)',
                     'For each projectile', 'For each projectile (1)',
-                    'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)', 'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)', 'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
+                    'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)',
+                    'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)',
+                    'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
                 .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
                 .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
                     'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
