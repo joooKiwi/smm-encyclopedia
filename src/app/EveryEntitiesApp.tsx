@@ -7,7 +7,6 @@ import type {SingleHeadersContent} from './tools/table/SimpleHeader';
 import type {SingleTableContent}   from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
-import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import {EntityLoader}                  from '../core/entity/Entity.loader';
 import {Entities}                      from '../core/entity/Entities';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -59,10 +58,7 @@ export default class EveryEntitiesApp
             content.push([englishName,
                 ...[
                     <>{index}</>,
-                    EntityAppOption.IMAGES_ON_EDITOR.renderContent,
-                    EntityAppOption.IMAGES_ON_CLEAR_CONDITION.renderContent,
-                    EntityAppOption.IMAGES_ON_WHILE_PLAYING.renderContent,
-                    EntityAppOption.IMAGES_ON_UNUSED.renderContent,
+                    EntityAppOption.IMAGES.renderContent,
                     EntityAppOption.NAME.renderContent,
                     EntityAppOption.GAME.renderContent,
                     EntityAppOption.GAME_STYLE.renderContent,
@@ -85,15 +81,7 @@ export default class EveryEntitiesApp
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
                 {key: 'originalOrder', element: <>#</>,},
-                {
-                    key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
-                    subHeaders: [
-                        EntityAppOption.IMAGES_ON_EDITOR.renderTableHeader,
-                        EntityAppOption.IMAGES_ON_CLEAR_CONDITION.renderTableHeader,
-                        EntityAppOption.IMAGES_ON_WHILE_PLAYING.renderTableHeader,
-                        EntityAppOption.IMAGES_ON_UNUSED.renderTableHeader,
-                    ].filter(header => header != null) as SingleHeadersContent,
-                },
+                EntityAppOption.IMAGES.renderTableHeader,
                 EntityAppOption.NAME.renderTableHeader,
                 EntityAppOption.GAME.renderTableHeader,
                 EntityAppOption.GAME_STYLE.renderTableHeader,

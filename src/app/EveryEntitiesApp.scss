@@ -7,86 +7,46 @@
 
     tr > {
       $index: 1;
-      //region -------------------- image (editor) - SMB --------------------
+      //region -------------------- image - SMB --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (editor) - SMB --------------------
-      //region -------------------- image (editor) - SMB3 --------------------
+      //endregion -------------------- image - SMB --------------------
+      //region -------------------- image - SMB3 --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (editor) - SMB3 --------------------
-      //region -------------------- image (editor) - SMW --------------------
+      //endregion -------------------- image - SMB3 --------------------
+      //region -------------------- image - SMW --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (editor) - SMW --------------------
-      //region -------------------- image (editor) - NSMBU --------------------
+      //endregion -------------------- image - SMW --------------------
+      //region -------------------- image - NSMBU --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (editor) - NSMBU --------------------
-      //region -------------------- image (editor) - SM3DW --------------------
+      //endregion -------------------- image - NSMBU --------------------
+      //region -------------------- image - SM3DW --------------------
       $index: $index+1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
       }
 
-      //endregion -------------------- image (editor) - SM3DW --------------------
-      //region -------------------- image (clear condition) - SMB --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (clear condition) - SMB --------------------
-      //region -------------------- image (clear condition) - SMB3 --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (clear condition) - SMB3 --------------------
-      //region -------------------- image (clear condition) - SMW --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (clear condition) - SMW --------------------
-      //region -------------------- image (clear condition) - NSMBU --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (clear condition) - NSMBU --------------------
-      //region -------------------- image (clear condition) - SM3DW --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image (clear condition) - SM3DW --------------------
+      //endregion -------------------- image - SM3DW --------------------
       //region -------------------- name --------------------
       $index: $index+1;
 

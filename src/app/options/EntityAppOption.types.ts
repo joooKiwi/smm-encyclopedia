@@ -8,32 +8,32 @@ export type PossibleValue = | PossibleNonNullableValue | string | number | null 
 
 enum Enum {
 
-    NAME,
-
-    WHEN_ALL_SELECTED_GAME,
-    GAME,
-
-    WHEN_ALL_SELECTED_GAME_STYLE,
-    GAME_STYLE,
-
-    WHEN_ALL_SELECTED_COURSE_THEME,
-    COURSE_THEME,
-
-    WHEN_ALL_SELECTED_TIME,
-    TIME,
-
-    CATEGORY,
-    CATEGORY_AS_TEXT,
-
-
-    IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT,
-    LIMIT,
-
+    IMAGES,
     IMAGE_ANIMATION,
     IMAGES_ON_EDITOR,
     IMAGES_ON_CLEAR_CONDITION,
     IMAGES_ON_WHILE_PLAYING,
     IMAGES_ON_UNUSED,
+
+    NAME,
+
+    GAME,
+    WHEN_ALL_SELECTED_GAME,
+
+    GAME_STYLE,
+    WHEN_ALL_SELECTED_GAME_STYLE,
+
+    COURSE_THEME,
+    WHEN_ALL_SELECTED_COURSE_THEME,
+
+    TIME,
+    WHEN_ALL_SELECTED_TIME,
+
+    CATEGORY,
+    CATEGORY_AS_TEXT,
+
+    LIMIT,
+    IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT,
 
 }
 
@@ -62,32 +62,33 @@ export type EnumByString<S extends string, E extends EntityAppOption = EntityApp
 //region -------------------- Array types --------------------
 
 export type EnumArray<T extends EntityAppOption = EntityAppOption, > = readonly [
-    SimpleEnum<T>['NAME'],
-
-    SimpleEnum<T>['WHEN_ALL_SELECTED_GAME'],
-    SimpleEnum<T>['GAME'],
-
-    SimpleEnum<T>['WHEN_ALL_SELECTED_GAME_STYLE'],
-    SimpleEnum<T>['GAME_STYLE'],
-
-    SimpleEnum<T>['WHEN_ALL_SELECTED_COURSE_THEME'],
-    SimpleEnum<T>['COURSE_THEME'],
-
-    SimpleEnum<T>['WHEN_ALL_SELECTED_TIME'],
-    SimpleEnum<T>['TIME'],
-
-    SimpleEnum<T>['CATEGORY'],
-    SimpleEnum<T>['CATEGORY_AS_TEXT'],
-
-
-    SimpleEnum<T>['IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT'],
-    SimpleEnum<T>['LIMIT'],
-
+    SimpleEnum<T>['IMAGES'],
     SimpleEnum<T>['IMAGE_ANIMATION'],
     SimpleEnum<T>['IMAGES_ON_EDITOR'],
     SimpleEnum<T>['IMAGES_ON_CLEAR_CONDITION'],
     SimpleEnum<T>['IMAGES_ON_WHILE_PLAYING'],
     SimpleEnum<T>['IMAGES_ON_UNUSED'],
+
+    SimpleEnum<T>['NAME'],
+
+    SimpleEnum<T>['GAME'],
+    SimpleEnum<T>['WHEN_ALL_SELECTED_GAME'],
+
+    SimpleEnum<T>['GAME_STYLE'],
+    SimpleEnum<T>['WHEN_ALL_SELECTED_GAME_STYLE'],
+
+    SimpleEnum<T>['COURSE_THEME'],
+    SimpleEnum<T>['WHEN_ALL_SELECTED_COURSE_THEME'],
+
+    SimpleEnum<T>['TIME'],
+    SimpleEnum<T>['WHEN_ALL_SELECTED_TIME'],
+
+    SimpleEnum<T>['CATEGORY'],
+    SimpleEnum<T>['CATEGORY_AS_TEXT'],
+
+    SimpleEnum<T>['LIMIT'],
+    SimpleEnum<T>['IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT'],
+
 ];
 
 //endregion -------------------- Array types --------------------

@@ -5,7 +5,6 @@ import type {AppOptionWithTable}                                                
 import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
 import type {Entities}                                                                                                                                                              from '../../core/entity/Entities';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
-import type {ImageProperties}                                                                                                                                                       from '../tools/images/properties/ImageProperties';
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                   from '../../core/entityCategory/EntityCategories.types';
 import type {EntityAppStates, PossibleImageAnimation}                                                                                                                               from '../AppStates.types';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
@@ -14,7 +13,6 @@ import type {ReactElement}                                                      
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
 import {AbstractAppOption}               from './AbstractAppOption';
-import AnimatedImages                    from '../tools/images/AnimatedImages';
 import {AppOptionWithContentComponent}   from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}     from './component/AppOptionWithTable.component';
 import ContentTranslationComponent       from '../../lang/components/ContentTranslationComponent';
@@ -25,6 +23,7 @@ import {EntityLimitTypes}                from '../../core/entityLimit/EntityLimi
 import {EMPTY_ARRAY}                     from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}             from '../../util/emptyReactVariables';
 import {EmptyAppOption}                  from './component/EmptyAppOption';
+import {EmptyEditorImage}                from '../../core/entity/images/editor/EmptyEditorImage';
 import {EmptyName}                       from '../../lang/name/EmptyName';
 import {GameContentTranslationContainer} from '../../lang/containers/GameContentTranslation.container';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
@@ -45,14 +44,131 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly NAME =                                   new class extends EntityAppOption<boolean> {
+    /**
+     * Display every images.
+     */
+    public static readonly IMAGES =                                 new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.name;
+            return state.display.section.images;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.name = value;
+            nextState.display.section.images = value;
+        }
+
+        private get __createImageOnEditor(): PossibleRenderReactElement {
+            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+            const image = enumeration.editorImage;
+
+            return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`editor image (${enumeration.englishName})`}>{
+                [...new Set(EntityAppOption.themes.map(theme =>
+                    EntityAppOption.times.map(time => image.get(true, gameStyle, theme, time,)
+                        .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
+                    .map(([theme, time, image, index,]) =>
+                        <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
+            }</Fragment>);
+        }
+
+        private get __createImageOnClearCondition(): PossibleRenderReactElement {
+            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+            const image = enumeration.clearConditionImage;
+
+            return EntityAppOption._gameStyles.map(gameStyle =>
+                <Fragment key={`clear condition image (${enumeration.englishName})`}>{
+                    image.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
+                }</Fragment>);
+        }
+
+        protected get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+
+                return enumeration.editorImage === EmptyEditorImage.get
+                    ? this.__createImageOnClearCondition
+                    : this.__createImageOnEditor;
+            };
+        }
+
+        protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {
+                key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
+                    ({key: `image-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+            };
+        }
+
+    }(true,);
+    /**
+     * Display an animation or not.
+     *
+     * If the value is "separated", then, it will display every image animation separated.
+     * @see AnimatedImages
+     */
+    public static readonly IMAGE_ANIMATION =                        new class extends EntityAppOption<PossibleImageAnimation> {
+
+        protected _get(state: EntityAppStates,): PossibleImageAnimation {
+            return state.display.imageAnimations;
+        }
+
+        protected _set(nextState: EntityAppStates, value: PossibleImageAnimation,) {
+            nextState.display.imageAnimations = value;
+        }
+
+    }(true,);
+    public static readonly IMAGES_ON_EDITOR =                       new class extends EntityAppOption<boolean> {
+
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.images.editor;
+        }
+
+        protected _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.editor = value;
+        }
+
+    }(true,);
+    public static readonly IMAGES_ON_CLEAR_CONDITION =              new class extends EntityAppOption<boolean> {
+
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.images.clearCondition;
+        }
+
+        protected _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.clearCondition = value;
+        }
+
+    }(true,);
+    public static readonly IMAGES_ON_WHILE_PLAYING =                new class extends EntityAppOption<boolean> {
+
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.images.whilePlaying;
+        }
+
+        protected _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.whilePlaying = value;
+        }
+
+    }(false,);
+    public static readonly IMAGES_ON_UNUSED =                       new class extends EntityAppOption<boolean> {
+
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.images.unused;
+        }
+
+        protected _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.unused = value;
+        }
+
+    }(false,);
+
+    public static readonly NAME =                                   new class extends EntityAppOption<boolean> {
+
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.section.name;
+        }
+
+        protected _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.section.name = value;
         }
 
 
@@ -70,25 +186,14 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(true,);
 
-    public static readonly WHEN_ALL_SELECTED_GAME =                 new class extends EntityAppOption<boolean> {
-
-        protected _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.game;
-        }
-
-        protected _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.game = value;
-        }
-
-    }(false,);
     public static readonly GAME =                                   new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.game;
+            return state.display.section.game;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.game = value;
+            nextState.display.section.game = value;
         }
 
         protected get _createContentOption(): PossibleOptionWithContent {
@@ -104,26 +209,26 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
-
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE =           new class extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_GAME =                 new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.gameStyle;
+            return state.display.asText.whenAll.game;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.gameStyle = value;
+            nextState.display.asText.whenAll.game = value;
         }
 
     }(false,);
+
     public static readonly GAME_STYLE =                             new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.gameStyle;
+            return state.display.section.gameStyle;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.gameStyle = value;
+            nextState.display.section.gameStyle = value;
         }
 
         protected get _createContentOption(): PossibleOptionWithContent {
@@ -139,26 +244,26 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
-
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME =         new class extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE =           new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.courseTheme;
+            return state.display.asText.whenAll.gameStyle;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.courseTheme = value;
+            nextState.display.asText.whenAll.gameStyle = value;
         }
 
     }(false,);
+
     public static readonly COURSE_THEME =                           new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.courseTheme;
+            return state.display.section.courseTheme;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.courseTheme = value;
+            nextState.display.section.courseTheme = value;
         }
 
         protected get _createContentOption(): PossibleOptionWithContent {
@@ -174,26 +279,26 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
-
-    public static readonly WHEN_ALL_SELECTED_TIME =                 new class extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME =         new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.time;
+            return state.display.asText.whenAll.courseTheme;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.time = value;
+            nextState.display.asText.whenAll.courseTheme = value;
         }
 
     }(false,);
+
     public static readonly TIME =                                   new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.time;
+            return state.display.section.time;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.time = value;
+            nextState.display.section.time = value;
         }
 
         protected get _createContentOption(): PossibleOptionWithContent {
@@ -210,15 +315,26 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
+    public static readonly WHEN_ALL_SELECTED_TIME =                 new class extends EntityAppOption<boolean> {
+
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.asText.whenAll.time;
+        }
+
+        protected _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.asText.whenAll.time = value;
+        }
+
+    }(false,);
 
     public static readonly CATEGORY =                               new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.category;
+            return state.display.section.category;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.category = value;
+            nextState.display.section.category = value;
         }
 
         protected get _createContentOption(): PossibleOptionWithContent {
@@ -257,25 +373,14 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class extends EntityAppOption<boolean> {
-
-        protected _get(state: EntityAppStates,): boolean {
-            return state.display.asText.ifApplicable.acronymOnLimits;
-        }
-
-        protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.asText.ifApplicable.acronymOnLimits = value;
-        }
-
-    }(true,);
     public static readonly LIMIT =                                  new class extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
-            return state.display.limit;
+            return state.display.section.limit;
         }
 
         protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.limit = value;
+            nextState.display.section.limit = value;
         }
 
         protected get _createContentOption(): PossibleOptionWithContent {
@@ -309,182 +414,17 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class extends EntityAppOption<boolean> {
 
-    /**
-     * Display an animation or not.
-     *
-     * If the value is "separated", then, it will display every image animation separated.
-     * @see AnimatedImages
-     */
-    public static readonly IMAGE_ANIMATION =                        new class extends EntityAppOption<PossibleImageAnimation> {
-
-        protected _get(state: EntityAppStates,): PossibleImageAnimation {
-            return state.display.imageAnimations;
+        protected _get(state: EntityAppStates,): boolean {
+            return state.display.asText.ifApplicable.acronymOnLimits;
         }
 
-        protected _set(nextState: EntityAppStates, value: PossibleImageAnimation,) {
-            nextState.display.imageAnimations = value;
+        protected _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.asText.ifApplicable.acronymOnLimits = value;
         }
 
     }(true,);
-    public static readonly IMAGES_ON_EDITOR =                       new class extends EntityAppOption<boolean> {
-
-        protected _get(state: EntityAppStates,): boolean {
-            return state.display.images.editor;
-        }
-
-        protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.editor = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const image = enumeration.editorImage;
-
-                return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`editor image (${enumeration.englishName})`}>{
-                    [...new Set(EntityAppOption.themes.map(theme =>
-                        EntityAppOption.times.map(time => image.get(true, gameStyle, theme, time,)
-                            .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
-                        .map(([theme, time, image, index,]) =>
-                            <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
-                }</Fragment>);
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'image-editor', element: <>--Image (editor)--</>,
-                subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle => ({
-                    key: `image-editor-${gameStyle.acronym}`,
-                    element: gameStyle.renderSingleComponent,
-                })),
-            };
-        }
-
-    }(true,);
-    public static readonly IMAGES_ON_CLEAR_CONDITION =              new class extends EntityAppOption<boolean> {
-
-        protected _get(state: EntityAppStates,): boolean {
-            return state.display.images.clearCondition;
-        }
-
-        protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.clearCondition = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const image = enumeration.clearConditionImage;
-
-                return EntityAppOption._gameStyles.map(gameStyle =>
-                    <Fragment key={`clear condition image (${enumeration.englishName})`}>{
-                        image.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
-                    }</Fragment>);
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'image-clearCondition', element: <>--Image (clear condition)--</>,
-                subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle => ({
-                    key: `image-clearCondition-${gameStyle.acronym}`,
-                    element: gameStyle.renderSingleComponent,
-                })),
-            };
-        }
-
-    }(true,);
-    public static readonly IMAGES_ON_WHILE_PLAYING =                new class extends EntityAppOption<boolean> {
-
-        protected _get(state: EntityAppStates,): boolean {
-            return state.display.images.whilePlaying;
-        }
-
-        protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.whilePlaying = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const image = enumeration.inGameImage;
-
-                return EntityAppOption._gameStyles.map(gameStyle =>
-                    <Fragment key={`Image (in game - ${EntityAppOption.CALLBACK_TO_GET_ENUMERATION().englishName})`}>{
-                        image.get(true, gameStyle,).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
-                    }</Fragment>);
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'image-whilePlaying', element: <>--Image (while playing)--</>,
-                subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle => ({
-                    key: `image-whilePlaying-${gameStyle.acronym}`,
-                    element: gameStyle.renderSingleComponent,
-                })),
-            };
-        }
-
-    }(false,);
-    public static readonly IMAGES_ON_UNUSED =                       new class extends EntityAppOption<boolean> {
-
-        protected _get(state: EntityAppStates,): boolean {
-            return state.display.images.unused;
-        }
-
-        protected _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.unused = value;
-        }
-
-        private __createContent(): readonly [ReactElement, ReactElement,]
-        private __createContent(imageNumber: | 1 | 2,): ReactElement
-        private __createContent(imageNumber?: | 1 | 2,) {
-            if (imageNumber == null)
-                return [this.__createContent(1,), this.__createContent(2,),] as const;
-            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-            const image = enumeration.unusedImages[imageNumber - 1];
-
-            const key = `Image (unused - ${enumeration.englishName}[${imageNumber}])`;
-            const everyImages = image.all;
-            if (everyImages.length === 0)
-                return <Fragment key={key}/>;
-
-            return <Fragment key={key}>{
-                everyImages.map((groupOfImages1, index,) =>
-                    groupOfImages1.length === 1
-                        ? <Image source={groupOfImages1[0]} fallbackName={`Image (unused - ${enumeration.englishName}[${imageNumber}] - ${index})`}/>
-                        : <AnimatedImages partialId={`image-unused-${enumeration.englishNameInHtml}${imageNumber}-${index}`} images={groupOfImages1.map<ImageProperties>((image1, subIndex,) =>
-                            ({source: image1, fallbackName: `Image (unused - ${enumeration.englishName}[${imageNumber}] - ${index}-${subIndex})`}))}/>)
-            }</Fragment>;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => this.__createContent();
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'image-unused', element: <>--Image (unused)--</>,
-                subHeaders: EntityAppOption._gameStyles_unusedImages.map<SingleHeaderContent>(gameStyle => ({
-                    key: `image-unused-${gameStyle.acronym}`,
-                    element: gameStyle.renderSingleComponent,
-                    subHeaders: [
-                        {key: `image-unused-${gameStyle.acronym}-regular`, element: <></>,},
-                        {
-                            key: `image-unused-${gameStyle.acronym}-big-mushroom`, element: <>
-                                <Image source="/entities/1 - SMB/In game/SMM1/Item - MegaKinoko/wait.0.png" fallbackName="Big Mushroom (classic)" className="big-mushroom-image"/>
-                                <Image source="/entities/1 - SMB/In game/SMM1/Item - MegaKinoko2/wait.0.png" fallbackName="Big Mushroom (modern)" className="big-mushroom-image"/>
-                            </>,
-                        },
-                    ],
-                })),
-            };
-        }
-
-    }(false,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Attributes --------------------
@@ -524,14 +464,16 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
     public static get createDefaultState(): EntityAppStates {
         return {
             display: {
-                name: EntityAppOption.NAME._lastValueRetrieved,
-                game: EntityAppOption.GAME._lastValueRetrieved,
-                gameStyle: EntityAppOption.GAME_STYLE._lastValueRetrieved,
-                courseTheme: EntityAppOption.COURSE_THEME._lastValueRetrieved,
-                time: EntityAppOption.TIME._lastValueRetrieved,
-                category: EntityAppOption.CATEGORY._lastValueRetrieved,
-                limit: EntityAppOption.LIMIT._lastValueRetrieved,
-
+                section: {
+                    images: EntityAppOption.IMAGES._lastValueRetrieved,
+                    name: EntityAppOption.NAME._lastValueRetrieved,
+                    game: EntityAppOption.GAME._lastValueRetrieved,
+                    gameStyle: EntityAppOption.GAME_STYLE._lastValueRetrieved,
+                    courseTheme: EntityAppOption.COURSE_THEME._lastValueRetrieved,
+                    time: EntityAppOption.TIME._lastValueRetrieved,
+                    category: EntityAppOption.CATEGORY._lastValueRetrieved,
+                    limit: EntityAppOption.LIMIT._lastValueRetrieved,
+                },
                 imageAnimations: EntityAppOption.IMAGE_ANIMATION._lastValueRetrieved,
                 asText: {
                     category: EntityAppOption.CATEGORY_AS_TEXT._lastValueRetrieved,
