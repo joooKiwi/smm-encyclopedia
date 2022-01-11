@@ -2310,6 +2310,11 @@ export class Entities
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: Entities;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, Entity>;

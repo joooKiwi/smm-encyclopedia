@@ -20,6 +20,11 @@ export class GameStyles
     public static readonly SUPER_MARIO_3D_WORLD =   new GameStyles(OriginalGameStyles.SUPER_MARIO_3D_WORLD,  );
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: GameStyles;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #GAME_STYLES_SMM1?: EnumArray_SMM1<GameStyles>;

@@ -427,6 +427,11 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
     }(true,);
 
     //endregion -------------------- Enum instances --------------------
+    //region -------------------- Enum attributes --------------------
+
+    static [index: number]: EntityAppOption;
+
+    //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
     static #REFERENCE: ReactComponentWithState<EntityAppStates>;
