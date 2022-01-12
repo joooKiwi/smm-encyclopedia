@@ -63,7 +63,7 @@ interface ImageNameMap {
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
 
-    'Super Mushroom': ['?', '?',]
+    'Super Mushroom': ['SuperKinoko', Name<'SuperKinoko', 0>,]
 
     'Fire Flower': ['FireFlower', Name<'FireFlower', 0>,]
     'Fireball thrown by a player': NoImages
@@ -74,7 +74,7 @@ interface ImageNameMap {
     'Mystery Mushroom': NoImages
     'Weird Mushroom': NoImages
 
-    'Master Sword': [null, null,]
+    'Master Sword': ['SuperKinoko', Name<'SuperKinoko', 1>,]
     'Bomb thrown by a Link': NoImages
     'Arrow thrown by a Link': NoImages
 
@@ -82,38 +82,38 @@ interface ImageNameMap {
     'Big Mushroom (classic)': NoImages
     'Big Mushroom (modern)': NoImages
 
-    'SMB2 Mushroom': [null, null,]
+    'SMB2 Mushroom': ['KinokoUSA', Name_0<'KinokoUSA'>,]
 
     'Super Leaf': ['SuperKonoha', Name_0<'SuperKonoha'>,]
 
-    'Frog Suit': [null, null,]
+    'Frog Suit': ['FrogSuit', Name_0<'FrogSuit'>,]
 
     'Cape Feather': ['MantleWing', Name_0<'MantleWing'>,]
 
-    'Power Balloon': [null, null,]
+    'Power Balloon': ['PowerBalloon', Name_0<'PowerBalloon'>,]
 
     'Propeller Mushroom': ['PropellerKinoko', Name_0<'PropellerKinoko'>,]
 
-    'Super Acorn': [null, null,]
+    'Super Acorn': ['SuperDonguri', Name_0<'SuperDonguri'>,]
 
     'Super Bell': ['SuperBell', Name_0<'SuperBell'>,]
 
     'Super Hammer': ['SuperHammer', Name_0<'SuperHammer'>,]
-    'Builder Box thrown by a player': [null, null,]
+    'Builder Box thrown by a player': NoImages
 
-    'Boomerang Flower': [null, null,]
+    'Boomerang Flower': ['BoomerangFlower', Name_0<'BoomerangFlower'>,]
     'Boomerang thrown by a player': NoImages
 
-    'Cannon Box': [null, null,]
+    'Cannon Box': ['BoxKiller', Name_0<'BoxKiller'>,]
     'Cannonball thrown by a player': NoImages
 
-    'Propeller Box': [null, null,]
+    'Propeller Box': ['BoxPropeller', Name_0<'BoxPropeller'>,]
 
-    'Goomba Mask': [null, null,]
+    'Goomba Mask': ['BoxKuribo', Name_0<'BoxKuribo'>,]
 
-    'Bullet Bill Mask': [null, null,]
+    'Bullet Bill Mask': ['BoxKillerPlayer', Name_0<'BoxKillerPlayer'>,]
 
-    'Red POW Box': [null, null,]
+    'Red POW Box': ['BoxPow', Name_0<'BoxPow'>,]
 
     'Super Star': ['SuperStar', Name_0<'SuperStar'>,]
 
@@ -199,9 +199,9 @@ interface ImageNameMap {
     'Unchained Chomp': ['Wanwan', Name_0<'Wanwan'>,]
     'Chain Chomp\'s Stump': NoImages
 
-    'Spike': [null, null,]
-    'Spike Ball': [null, null,]
-    'Snowball': [null, null,]
+    'Spike': ['Gabon', Name_0<'Gabon'>,]
+    'Spike Ball': NoImages
+    'Snowball': NoImages
 
     'Lakitu': ['Jugem', Name<'Jugem', 0>,]
     'Lakitu\'s Cloud': ['Jugem', Name<'Jugem', 1>,]
@@ -214,8 +214,8 @@ interface ImageNameMap {
     'Bob-omb': ['Bombhei', Name_0<'Bombhei'>,]
     'Lit Bob-omb': NoImages
 
-    'Pokey': [null, null,]
-    'Snow Pokey': [null, null,]
+    'Pokey': ['Sambo', Name_0<'Sambo'>,]
+    'Snow Pokey': NoImages
 
     'Thwomp': ['Dossun', Name_0<'Dossun'>,]
 
@@ -235,10 +235,10 @@ interface ImageNameMap {
 
     'Lava Bubble': ['Bubble', Name_0<'Bubble'>,]
 
-    'Mechakoopa': [null, null,]
-    'Blasta Mechakoopa': [null, null,]
+    'Mechakoopa': ['KoopaMecha', Name_0<'KoopaMecha'>,]
+    'Blasta Mechakoopa': NoImages
     'Homing Missile thrown by a Blasta Mechakoopa': NoImages
-    'Zappa Mechakoopa': [null, null,]
+    'Zappa Mechakoopa': NoImages
     'Electricity Beam thrown by a Zappa Mechakoopa': NoImages
 
     'Charvaargh': ['MagmaFish', Name_0<'MagmaFish'>,]
@@ -299,32 +299,32 @@ interface ImageNameMap {
     'Pom Pom\'s clone': NoImages
     'Shuriken thrown by a Pom Pom': NoImages
 
-    'Larry': [null, null,]
+    'Larry': ['Larry', Name_0<'Larry'>,]
     'Larry\'s Wand': NoImages
     '(Larry\'s projectile)': NoImages
 
-    'Iggy': [null, null,]
+    'Iggy': ['Iggy', Name_0<'Iggy'>,]
     'Iggy\'s Wand': NoImages
     '(Iggy\'s projectile)': NoImages
 
-    'Wendy': [null, null,]
+    'Wendy': ['Wendy', Name_0<'Wendy'>,]
     'Wendy\'s Wand': NoImages
     'Candy Ring thrown by a Wendy': NoImages
 
-    'Lemmy': [null, null,]
+    'Lemmy': ['Lemmy', Name_0<'Lemmy'>,]
     'Lemmy\'s Wand': NoImages
     'Magic Ball thrown by a Lemmy': NoImages
 
-    'Roy': [null, null,]
+    'Roy': ['Roy', Name_0<'Morton'>,]
     'Roy\'s Wand': NoImages
     '(Roy\'s projectile)': NoImages
 
-    'Morton': [null, null,]
+    'Morton': ['Morton', Name_0<'Morton'>,]
     'Morton\'s Wand': NoImages
     '(Morton\'s Thrown projectile)': NoImages
     '(Morton\'s Ground projectile)': NoImages
 
-    'Ludwig': [null, null,]
+    'Ludwig': ['Ludwig', Name_0<'Ludwig'>,]
     'Ludwig\'s Wand': NoImages
     '(Ludwig\'s projectile)': NoImages
 

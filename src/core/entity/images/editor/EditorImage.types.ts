@@ -33,7 +33,7 @@ interface ImageNameMap {
 
     '? Block': ['HatenaBlock', Name_0<Style<'HatenaBlock', Night<'snow'>>>,]
     'Hidden Block': ImageThatHasOnly1Reference<'ClearBlock'>
-    'Empty Block': [null, null,]
+    'Empty Block': NoImages
 
     '! Block': ImageThatHasOnly1Reference<'BikkuriBlock'>
 
@@ -47,7 +47,7 @@ interface ImageNameMap {
     'ON/OFF Switch': ImageThatHasOnly1Reference<'OnOffSwitch'>
     'Dotted-Line Block': ['OnOffBlock', Name_0_1<'OnOffBlock'>,]
 
-    'P Block': [null, null,]
+    'P Block': ['PBlock', Name_0_1<'PBlock'>,]
 
     'Blinking Block': ['Chikachika', Name_0_1<'Chikachika'>,]
 
@@ -55,7 +55,7 @@ interface ImageNameMap {
     'Icicle': ['Icicle', Name_0_1<'Icicle'>,]
 
     'Coin': ['Coin', Name<'Coin', 0>,]
-    'Frozen Coin': ['Coin', Name<'Coin', 1>,]//TODO validate the real reference
+    'Frozen Coin': ['Coin', Name<Style<'Coin', Night<'snow'>>, 1>,]
     '10-Coin': ['10Coin', Name<'10Coin', 0>,]
     '30-Coin': ['10Coin', Name<'10Coin', 1>,]
     '50-Coin': ['10Coin', Name<'10Coin', 2>,]
@@ -64,7 +64,7 @@ interface ImageNameMap {
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
 
-    'Super Mushroom': ImageThatHasOnly1Reference<'SuperKinoko'>
+    'Super Mushroom': ['SuperKinoko', Name<'SuperKinoko', 0>,]
 
     'Fire Flower': ['FireFlower', Name<PowerUp<'FireFlower'>, 0>,]
     'Fireball thrown by a player': NoImages
@@ -75,7 +75,7 @@ interface ImageNameMap {
     'Mystery Mushroom': NoImages
     'Weird Mushroom': NoImages
 
-    'Master Sword': [null, null,]
+    'Master Sword': ['SuperKinoko', Name<'SuperKinoko', 1>,]
     'Bomb thrown by a Link': NoImages
     'Arrow thrown by a Link': NoImages
 
@@ -83,38 +83,38 @@ interface ImageNameMap {
     'Big Mushroom (classic)': NoImages
     'Big Mushroom (modern)': NoImages
 
-    'SMB2 Mushroom': [null, null,]
+    'SMB2 Mushroom': ImageThatHasOnly1Reference<'KinokoUSA'>
 
     'Super Leaf': ImageThatIsPowerUp<'SuperKonoha'>
 
-    'Frog Suit': [null, null,]
+    'Frog Suit': ImageThatIsPowerUp<'FrogSuit'>
 
     'Cape Feather': ImageThatIsPowerUp<'MantleWing'>
 
-    'Power Balloon': [null, null,]
+    'Power Balloon': ImageThatIsPowerUp<'PowerBalloon'>
 
     'Propeller Mushroom': ImageThatIsPowerUp<'PropellerKinoko'>
 
-    'Super Acorn': [null, null,]
+    'Super Acorn': ImageThatIsPowerUp<'SuperDonguri'>
 
     'Super Bell': ImageThatIsPowerUp<'SuperBell'>
 
     'Super Hammer': ImageThatIsPowerUp<'SuperHammer'>
     'Builder Box thrown by a player': NoImages
 
-    'Boomerang Flower': [null, null,]
+    'Boomerang Flower': ImageThatIsPowerUp<'BoomerangFlower'>
     'Boomerang thrown by a player': NoImages
 
-    'Cannon Box': [null, null,]
+    'Cannon Box': ImageThatHasOnly1Reference<'BoxKiller'>
     'Cannonball thrown by a player': NoImages
 
-    'Propeller Box': [null, null,]
+    'Propeller Box': ImageThatHasOnly1Reference<'BoxPropeller'>
 
-    'Goomba Mask': [null, null,]
+    'Goomba Mask': ImageThatHasOnly1Reference<'BoxKuribo'>
 
-    'Bullet Bill Mask': [null, null,]
+    'Bullet Bill Mask': ImageThatHasOnly1Reference<'BoxKillerPlayer'>
 
-    'Red POW Box': [null, null,]
+    'Red POW Box': ImageThatHasOnly1Reference<'BoxPow'>
 
     'Super Star': ImageThatHasOnly1Reference<'SuperStar'>
 
@@ -201,23 +201,23 @@ interface ImageNameMap {
     'Unchained Chomp': ['Wanwan', ImageThatIsDifferentInSMBAndSMB3<'Wanwan', 1>,]
     'Chain Chomp\'s Stump': NoImages
 
-    'Spike': [null, null,]
-    'Spike Ball': [null, null,]
-    'Snowball': [null, null,]
+    'Spike': ['Gabon', Name<'Gabon', 0>,]
+    'Spike Ball': ['Gabon', ImageThatIsDifferentInSMBAndSMB3<'Gabon', 1>,]
+    'Snowball': ['Gabon', Name<Style<'Gabon', 'snow'>, 1>,]
 
     'Lakitu': ['Jugem', Name<'Jugem', 0>,]
     'Lakitu\'s Cloud': ['Jugem', Name<'Jugem', 1>,]
 
     'Boo': ['Teresa', Name<'Teresa', 0>,]
-    'Stretch': [null, null,]
+    'Stretch': NoImages
     'Boo Buddies': ['Teresa', Name<'Teresa', 1>,]
-    'Peepa': ImageNameMap['Boo Buddies']//TODO validate the real reference
+    'Peepa': ImageNameMap['Boo Buddies']
 
     'Bob-omb': ['Bombhei', Name<'Bombhei', 0>,]
     'Lit Bob-omb': ['Bombhei', Name<'Bombhei', 1>,]
 
-    'Pokey': [null, null,]
-    'Snow Pokey': [null, null,]
+    'Pokey': ['Sambo', Name_0<'Sambo'>,]
+    'Snow Pokey': ['Sambo', Name_0<Style<'Sambo', 'snow'>>,]
 
     'Thwomp': ImageThatHasOnly1Reference<'Dossun'>
 
@@ -237,10 +237,10 @@ interface ImageNameMap {
 
     'Lava Bubble': ImageThatHasOnly1Reference<'Bubble'>
 
-    'Mechakoopa': [null, null,]
-    'Blasta Mechakoopa': [null, null,]
+    'Mechakoopa': ['KoopaMecha', Name<'KoopaMecha', 0>,]
+    'Blasta Mechakoopa': ['KoopaMecha', Name<'KoopaMecha', 1>,]
     'Homing Missile thrown by a Blasta Mechakoopa': NoImages
-    'Zappa Mechakoopa': [null, null,]
+    'Zappa Mechakoopa': ['KoopaMecha', Name<'KoopaMecha', 2>,]
     'Electricity Beam thrown by a Zappa Mechakoopa': NoImages
 
     'Charvaargh': ImageThatHasOnly1Reference<'MagmaFish'>
@@ -251,10 +251,10 @@ interface ImageNameMap {
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
     'Bill Blaster': ImageThatIsDifferentInSMBAndSMB3<'KillerHoudai'>
-    'Bullet Bill': [null, null,]
+    'Bullet Bill': NoImages
     'Bull\'s-Eye Blaster': ['KillerHoudai', Name<'KillerHoudai', 1>,]
-    'Bull\'s-Eye Bill': [null, null,]
-    'Cat Bullet Bill': [null, null,]
+    'Bull\'s-Eye Bill': NoImages
+    'Cat Bullet Bill': NoImages
 
     'Banzai Bill': ['MagnumKiller', ImageThatIsDifferentInSMBAndSMB3<'MagnumKiller'>,]
     'Bull\'s-Eye Banzai': ['MagnumKiller', Name<'MagnumKiller', 1>,]
@@ -301,32 +301,32 @@ interface ImageNameMap {
     'Pom Pom\'s clone': NoImages
     'Shuriken thrown by a Pom Pom': NoImages
 
-    'Larry': [null, null,]
+    'Larry': ImageThatHasOnly1Reference<'Larry'>
     'Larry\'s Wand': NoImages
     '(Larry\'s projectile)': NoImages
 
-    'Iggy': [null, null,]
+    'Iggy': ImageThatHasOnly1Reference<'Iggy'>
     'Iggy\'s Wand': NoImages
     '(Iggy\'s projectile)': NoImages
 
-    'Wendy': [null, null,]
+    'Wendy': ImageThatHasOnly1Reference<'Wendy'>
     'Wendy\'s Wand': NoImages
     'Candy Ring thrown by a Wendy': NoImages
 
-    'Lemmy': [null, null,]
+    'Lemmy': ImageThatHasOnly1Reference<'Lemmy'>
     'Lemmy\'s Wand': NoImages
     'Magic Ball thrown by a Lemmy': NoImages
 
-    'Roy': [null, null,]
+    'Roy': ImageThatHasOnly1Reference<'Roy'>
     'Roy\'s Wand': NoImages
     '(Roy\'s projectile)': NoImages
 
-    'Morton': [null, null,]
+    'Morton': ImageThatHasOnly1Reference<'Morton'>
     'Morton\'s Wand': NoImages
     '(Morton\'s Thrown projectile)': NoImages
     '(Morton\'s Ground projectile)': NoImages
 
-    'Ludwig': [null, null,]
+    'Ludwig': ImageThatHasOnly1Reference<'Ludwig'>
     'Ludwig\'s Wand': NoImages
     '(Ludwig\'s projectile)': NoImages
 
@@ -351,7 +351,7 @@ interface ImageNameMap {
 
     'Checkpoint Flag': ImageThatHasOnly1Reference<'MiddleFlag'>
 
-    'Dash Block': [null, null,]
+    'Dash Block': ImageThatHasOnly1Reference<'DashBlock'>
 
     'Snake Block': ['SnakeBlock', Name<'SnakeBlock', 0>,]
     'Fast Snake Block': ['SnakeBlock', Name<'SnakeBlock', 1>,]
@@ -360,7 +360,7 @@ interface ImageNameMap {
     'Fast Conveyor Belt': ['BeltConveyor', Name<'BeltConveyor', 1>,]
 
     'Mushroom Trampoline': ['Trampoline', Name_0_1<'Trampoline'>,]
-    'ON/OFF Trampoline': [null, null,]
+    'ON/OFF Trampoline': ['OnOffTrampoline', Name_0_1<'OnOffTrampoline'>,]
 
     'Lift': ['Lift', Name<'Lift', 0>,]
     'Flimsy Lift': ['Lift', Name<'Lift', 1>,]
@@ -374,18 +374,18 @@ interface ImageNameMap {
     'Crate': ImageThatHasOnly1Reference<'WoodBox'>
 
     'Key': ['Key', Name<'Key', 0>,]
-    'Cursed Key': ['Key', Name<'Key', 1>,]//TODO validate the real reference
+    'Cursed Key': ['Key', Name<'Key', 1>,]
     'Phanto': NoImages
 
     'Trampoline': ['JumpStep', Name_0_1<'JumpStep'>,]
     'Hop-Chops': ImageThatHasOnly1Reference<'Hopper'>
 
     'POW Block': ['PowBlock', Name<'PowBlock', 0>,]
-    'Red POW Block': ['PowBlock', Name<'PowBlock', 1>,]//TODO validate the real reference
+    'Red POW Block': ['PowBlock', Name<'PowBlock', 1>,]
 
     'P Switch': ImageThatHasOnly1Reference<'PSwitch'>
 
-    'Stone': [null, null,]
+    'Stone': NoImages
 
     'Bubble': NoImages
 
@@ -403,7 +403,7 @@ interface ImageNameMap {
 export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}`;
 export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`;
 type ImageThatIsAGround<NAME extends SimpleImageName, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,];
-type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName, NUMBER extends | 0 | 1 = 0, > = [NAME, Name<Style<NAME, | 'underground' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship'>>, NUMBER>,];
+type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName, NUMBER extends | 0 | 1 = 0, > = [NAME, Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>,];
 type ImageThatHasOnly1Reference<NAME extends SimpleImageName, > = [NAME, Name_0<NAME>,];
 type ImageThatIsPowerUp<NAME extends SimpleImageName, > = [NAME, PowerUp<NAME>,];
 type NoImages = readonly [null, null,];

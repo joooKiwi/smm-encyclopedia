@@ -45,6 +45,11 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      *  One with `${NAME}_00.png` and another with `${NAME}Uni_00.png`.
      * </p>
      * <p>
+     *  If the method {@link setAsSnow} is called,
+     *  then only 1 image will be created for each {@link OriginalGameStyles Game style} used.
+     *  One with `${NAME}_snow_00.png`.
+     * </p>
+     * <p>
      *  Otherwise, it will depend on the amount of images (by default 1),
      *  the themes associated to any {@link OriginalGameStyles Game style} used.
      *  And the {@link OriginalGameStyles Game style} themselves (all by default).
@@ -55,6 +60,8 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     public constructor(simpleImageName: NAME,)
     /**
      * Create a new {@link Image} with only 1 image per {@link OriginalGameStyles Game style}.
+     *
+     * The method {@link setAsSnow} can be called to create an image from a specific image number.
      *
      * @param simpleImageName the basic name
      * @param imageNumber the image number (from 1 to 4)
@@ -143,6 +150,10 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     public hasNoDefaultImage(): this {
         return this._setDefaultType(null);
+    }
+
+    public setAsSnow(): this {
+        return this._setDefaultType('snow');
     }
 
     //endregion -------------------- Type / default type --------------------
@@ -318,11 +329,10 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     public setAsDifferentInSMBAndSMB3(): this {
         return this
-            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.CASTLE,)
-            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.CASTLE,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.GHOST_HOUSE, Themes.CASTLE,)
+            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.GHOST_HOUSE, Themes.CASTLE,)
             .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.AIRSHIP,)
             .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.GROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.AIRSHIP,);
-
     }
 
     //endregion -------------------- Predefined utility methods --------------------
@@ -374,19 +384,23 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
 
     protected _createDefaultImages(): ReadonlyMap<OriginalGameStyles, readonly string[]> {
-        const type = this._defaultType;
+        const defaultType = this._defaultType;
 
-        switch (typeof type) {
-            case 'string'://ground / power-up
-                switch (type) {
+        switch (typeof defaultType) {
+            case 'string'://ground / snow / power-up
+                const imageNumber = this.imageNumber;
+                const type = this._type;
+
+                switch (defaultType) {
                     case 'ground':
-                        const type = this._type;
                         if (type == null)
-                            throw new TypeError(`The type cannot be null when the default type is set to the ground images.`);
+                            throw new TypeError(`The type cannot be null for "${this.simpleImageName}" when the default type is set to the ground images.`);
                         return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, this._getAmountBasedOnValue(null, gameStyle, null, type,).map(index => this._getImagePath(gameStyle, `_0${index}`,)),]));
+                    case 'snow':
+                        if (imageNumber == null)
+                            throw new TypeError(`The image number cannot null for "${this.simpleImageName}" when the default type is set to the snow images.`);
+                        return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, [this._getImagePath(gameStyle, `_${Themes.SNOW.gameName}_0${imageNumber - 1}`,),],]));
                     case 'power-up':
-                        const imageNumber = this.imageNumber;
-
                         if (imageNumber != null)
                             return new Map(this._gameStyles.map(gameStyle => [
                                 gameStyle.parent,
@@ -401,7 +415,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
             case'number'://1-4
                 return new Map(this._gameStyles.map(gameStyle => [
                     gameStyle.parent,
-                    [this._getImagePath(gameStyle, `_0${type - 1}`,),],
+                    [this._getImagePath(gameStyle, `_0${defaultType - 1}`,),],
                 ]));
             default://null
                 return EMPTY_MAP;
@@ -468,6 +482,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 //region -------------------- Types --------------------
 
 type PossibleType = | PossibleAmountOfImages | null;
-type PossibleDefaultType = | 'ground' | 'power-up' | PossibleAmountOfImages | null;
+type PossibleDefaultType = | 'ground' | 'power-up' | 'snow' | PossibleAmountOfImages | null;
 
 //endregion -------------------- Types --------------------
