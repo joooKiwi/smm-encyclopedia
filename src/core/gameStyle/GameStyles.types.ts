@@ -28,8 +28,7 @@ export type Names = keyof typeof Enum;
 export type PossibleAcronym = PossibleAcronym_GameStyle;
 export type PossibleEnglishName = PossibleEnglishName_GameStyle;
 
-export type StartingImagePath = `/game/styles/${PossibleEnglishName}`;
-export type PossibleImagePath = `${StartingImagePath}.png`;
+export type PossibleImagePath = `/game/styles/${PossibleGameAcronym}_Lyt_Logo_00.tiff`;
 
 export type PossibleShortImagePath = | '1 - SMB' | '2 - SMB3' | '3 - SMW' | '4 - NSMBU' | '5 - SM3DW';
 export type PossibleGameAcronym = | 'M1' | 'M3' | 'MW' | 'WU' | '3W';
