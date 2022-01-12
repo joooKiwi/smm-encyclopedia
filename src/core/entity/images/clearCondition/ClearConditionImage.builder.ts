@@ -17,7 +17,7 @@ export class ClearConditionImageBuilder<NAME extends Exclude<SimpleImageName, nu
     //region -------------------- Build utility methods --------------------
 
     protected _getImagePath(gameStyle: GameStyles, ending: string = '',) {
-        return `${gameStyle.gamePath_clearCondition}${gameStyle.gameAcronym}_Lyt_M_${this.simpleImageName}${ending}.png`;
+        return `${gameStyle.gamePath_clearCondition}${gameStyle.gameAcronym}_Lyt_M_${this.simpleImageName}${ending}.tiff`;
     }
 
     protected _getAmountBasedOnValue(amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {

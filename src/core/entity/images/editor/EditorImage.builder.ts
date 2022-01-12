@@ -329,7 +329,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //region -------------------- Build utility methods --------------------
 
     protected _getImagePath(gameStyle: GameStyles, ending: string = '',) {
-        return `${gameStyle.gamePath_editor}${gameStyle.gameAcronym}_Lyt_P_${this.simpleImageName}${ending}.png`;
+        return `${gameStyle.gamePath_editor}${gameStyle.gameAcronym}_Lyt_P_${this.simpleImageName}${ending}.tiff`;
     }
 
     /**
