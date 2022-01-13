@@ -1,6 +1,5 @@
 import type {PossibleEnglishName} from './Entities.types';
 
-type SingleEntityLink = | 'this' | PossibleEnglishName;
-export type EntityLink = | SingleEntityLink
-                         | Exclude<`${SingleEntityLink} / ${SingleEntityLink}`, 'this / this'>
+export type EntityLink = | 'this' | PossibleEnglishName
+                         | `this / ${PossibleEnglishName}`
                          | `this / ${PossibleEnglishName} / ${PossibleEnglishName}`;
