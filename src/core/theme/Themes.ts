@@ -215,11 +215,11 @@ export class Themes
     }
 
     public get smallImagePath(): SmallImagePath {
-        return this.#smallImagePath ??= `/game/themes/Lyt_E_SceneSmall_${this.gameName}_00.tiff`;
+        return this.#smallImagePath ??= `/theme/Lyt_E_SceneSmall_${this.gameName}_00.tiff`;
     }
 
     public get longImagePath(): LargeImagePath {
-        return this.#largeImagePath ??= `/game/themes/Lyt_E_Scene_${this.gameName}_00.tiff`;
+        return this.#largeImagePath ??= `/theme/Lyt_E_Scene_${this.gameName}_00.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------

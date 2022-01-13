@@ -30,8 +30,8 @@ export type PossibleEnglishName_CourseTheme = | PossibleEnglishName_InBothCourse
 export type PossibleEnglishName_WorldTheme = | PossibleEnglishName_InBothCourseAndWorldTheme | 'Volcano' | 'Space';
 export type PossibleEnglishName = | PossibleEnglishName_CourseTheme | PossibleEnglishName_WorldTheme;
 
-export type SmallImagePath = `/game/themes/Lyt_E_SceneSmall_${PossibleGameName}_00.tiff`;
-export type LargeImagePath = | `/game/themes/Lyt_E_Scene_${PossibleGameName}_00.tiff` ;
+export type SmallImagePath = `/theme/Lyt_E_SceneSmall_${PossibleGameName}_00.tiff`;
+export type LargeImagePath = | `/theme/Lyt_E_Scene_${PossibleGameName}_00.tiff` ;
 
 export type PossibleGameName = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'
                                | 'magma' | 'night';
