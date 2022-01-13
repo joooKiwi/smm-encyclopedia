@@ -108,7 +108,7 @@ export abstract class GameStyles
     // @ts-ignore
     protected constructor(enumeration: GameStyles,)
     private constructor(acronym: PossibleAcronym, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,)
-    private constructor(acronym_or_enumeration: | PossibleAcronym | GameStyles, gameAcronym?: PossibleGameAcronym, englishName?: PossibleEnglishName,) {
+    private constructor(acronym_or_enumeration: | PossibleAcronym | GameStyles, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,) {
         super();
         if (acronym_or_enumeration instanceof GameStyles) {
             this.#acronym = acronym_or_enumeration.acronym;
@@ -116,8 +116,8 @@ export abstract class GameStyles
             this.#englishNameContainer = acronym_or_enumeration.#englishNameContainer;
         } else {
             this.#acronym = acronym_or_enumeration;
-            this.#gameAcronym = gameAcronym!;
-            this.#englishNameContainer = new StringContainer(englishName!);
+            this.#gameAcronym = gameAcronym;
+            this.#englishNameContainer = new StringContainer(englishName);
         }
     }
 
@@ -153,7 +153,7 @@ export abstract class GameStyles
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/game/styles/${this.gameAcronym}_Lyt_Logo_00.tiff`;
+        return this.#imagePath ??= `/game style/${this.gameAcronym}_Lyt_Logo_00.tiff`;
     }
 
     public get shortImagePath(): PossibleShortImagePath {
