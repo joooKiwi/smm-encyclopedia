@@ -10,6 +10,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
     static readonly #DEFAULT_NULL_DEFAULT_ARRAY = [null, null,] as const;
     static readonly #PROTOTYPE_NAME = 'prototype';
     public static readonly EXCLUDED_NAMES: string[] = [];
+     static readonly #NUMBER_ONLY_REGEX = /^\d+$/;
     protected static _DEFAULT_NAME = '_DEFAULT';
 
     static readonly #LAST_ORDINAL_MAP = new Map<EnumerableStatic, number>();
@@ -30,6 +31,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
             .filter(([, property,]) => property.get == null && property.set == null)
             .filter(([name,]) => name !== this.#PROTOTYPE_NAME)
             .filter(([name,]) => !instance.EXCLUDED_NAMES.includes(name))
+            .filter(([name,]) => !this.#NUMBER_ONLY_REGEX.test(name))
             .filter(([, property,]) => property.value instanceof instance) as [string, TypedPropertyDescriptor<Enumerable>][])
             .map(([name, property,]) => ([name, property.value!,] as const));
 
