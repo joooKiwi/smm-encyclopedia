@@ -1,14 +1,13 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                       from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                                                                                                                                                                                                                                                                                                         from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                                         from '../ClassWithReference';
-import type {CourseAndWorldTheme, DayGameName, DayOrNightGameName, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyCourseTheme_SMM1, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, LargeImagePath, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleGameName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SimpleImagePath, SmallImagePath} from './Themes.types';
-import type {CourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                from './CourseTheme';
-import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                                                      from '../entity/Entity';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                                                                                                                                                    from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                            from '../../util/enum/Enum.types';
-import type {ThemeProperty}                                                                                                                                                                                                                                                                                                                                                                                                                              from '../entity/properties/ThemeProperty';
-import type {ThemeReferences}                                                                                                                                                                                                                                                                                                                                                                                                                            from '../entity/properties/ThemeReferences';
-import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                 from './WorldTheme';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                   from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                     from '../ClassWithReference';
+import type {CourseAndWorldTheme, DayGameName, DayOrNightGameName, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyCourseTheme_SMM1, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, LargeImagePath, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleGameName, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SmallImagePath} from './Themes.types';
+import type {CourseTheme}                                                                                                                                                                                                                                                                                                                                                                                            from './CourseTheme';
+import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                  from '../entity/Entity';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                                                                                                                from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                        from '../../util/enum/Enum.types';
+import type {ThemeProperty}                                                                                                                                                                                                                                                                                                                                                                                          from '../entity/properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                                                                                                                                                                                                                                                                                                        from '../entity/properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                             from './WorldTheme';
 
 import {Enum}            from '../../util/enum/Enum';
 import {EmptyEntity}     from '../entity/EmptyEntity';
@@ -23,7 +22,6 @@ export class Themes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseAndWorldTheme>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImagePath<PossibleImagePath>,
         PropertyReferenceGetter<ThemeReferences, PossibleOtherEntities>,
         PropertyGetter<ThemeProperty> {
 
@@ -138,17 +136,10 @@ export class Themes
             return referenceProperty.referenceInCastleTheme;
         }
 
-    }     ('Castle', 'castle', 'Castle - Volcano',);
+    }     ('Castle', 'castle',);
 
-    public static readonly VOLCANO =     new Themes                                       ('Volcano', null,'Castle - Volcano',);
-    public static readonly SPACE =       new class Themes_Space extends Themes {
-
-        public get longImagePath(): LargeImagePath {
-            //FIXME a temporary fix to still get the image until the png image can be retrieved.
-            return `${this.imagePath} (large).jpg` as LargeImagePath;
-        }
-
-    }       ('Space', null,);
+    public static readonly VOLCANO =     new Themes                                       ('Volcano', 'magma',);
+    public static readonly SPACE =       new Themes                                       ('Space', 'night',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -167,8 +158,7 @@ export class Themes
     #courseTheme?: CourseTheme;
     #worldTheme?: WorldTheme;
     readonly #englishName: StringContainer<PossibleEnglishName>;
-    readonly #gameName: | PossibleGameName | null;
-    readonly #imagePath: PossibleImagePath;
+    readonly #gameName: PossibleGameName;
     #smallImagePath?: SmallImagePath;
     #largeImagePath?: LargeImagePath;
 
@@ -176,18 +166,15 @@ export class Themes
 
     // @ts-ignore
     protected constructor(enumeration: Themes,)
-    private constructor(englishNameAndImagePath: PossibleEnglishName, gameName: | PossibleGameName | null,)
-    private constructor(englishName: PossibleEnglishName, gameName: | PossibleGameName | null, basicImagePath: SimpleImagePath,)
-    private constructor(englishName_or_enumeration: | PossibleEnglishName | Themes, gameName: | PossibleGameName | null, basicImagePath: | SimpleImagePath | PossibleEnglishName = englishName_or_enumeration as PossibleEnglishName,) {
+    private constructor(englishNameAndImagePath: PossibleEnglishName, gameName: PossibleGameName,)
+    private constructor(englishName_or_enumeration: | PossibleEnglishName | Themes, gameName: PossibleGameName,) {
         super();
         if (englishName_or_enumeration instanceof Themes) {
             this.#englishName = englishName_or_enumeration.#englishName;
             this.#gameName = englishName_or_enumeration.gameName;
-            this.#imagePath = englishName_or_enumeration.#imagePath;
         } else {
             this.#englishName = new StringContainer(englishName_or_enumeration);
             this.#gameName = gameName;
-            this.#imagePath = `/game/themes/${basicImagePath}` as PossibleImagePath;
         }
     }
 
@@ -215,7 +202,7 @@ export class Themes
         return this.#englishName.getInHtml;
     }
 
-    public get gameName(): | PossibleGameName | null {
+    public get gameName(): PossibleGameName {
         return this.#gameName;
     }
 
@@ -227,16 +214,12 @@ export class Themes
         return this.#worldTheme ??= this.reference[1];
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath;
-    }
-
     public get smallImagePath(): SmallImagePath {
-        return this.#smallImagePath ??= `${this.imagePath} (small).png`;
+        return this.#smallImagePath ??= `/game/themes/Lyt_E_SceneSmall_${this.gameName}_00.tiff`;
     }
 
     public get longImagePath(): LargeImagePath {
-        return this.#largeImagePath ??= `${this.imagePath} (large).png`;
+        return this.#largeImagePath ??= `/game/themes/Lyt_E_Scene_${this.gameName}_00.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -30,12 +30,11 @@ export type PossibleEnglishName_CourseTheme = | PossibleEnglishName_InBothCourse
 export type PossibleEnglishName_WorldTheme = | PossibleEnglishName_InBothCourseAndWorldTheme | 'Volcano' | 'Space';
 export type PossibleEnglishName = | PossibleEnglishName_CourseTheme | PossibleEnglishName_WorldTheme;
 
-export type SimpleImagePath = | Exclude<PossibleEnglishName, | 'Castle' | 'Volcano'> | 'Castle - Volcano';
-export type PossibleImagePath = `/game/themes/${SimpleImagePath}`;
-export type SmallImagePath = `${PossibleImagePath} (small).png`;
-export type LargeImagePath = | `${PossibleImagePath} (large).png` | '/game/Themes/Space (large).jpg';
+export type SmallImagePath = `/game/themes/Lyt_E_SceneSmall_${PossibleGameName}_00.tiff`;
+export type LargeImagePath = | `/game/themes/Lyt_E_Scene_${PossibleGameName}_00.tiff` ;
 
-export type PossibleGameName = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle';
+export type PossibleGameName = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'
+                               | 'magma' | 'night';
 export type DayGameName<V extends string = string, > = `${V}_${PossibleGameName}`;
 export type NightGameName<V extends string = string, > = `${V}_${PossibleGameName}_night`;
 export type DayOrNightGameName<B extends boolean = boolean, V extends string = string, >
