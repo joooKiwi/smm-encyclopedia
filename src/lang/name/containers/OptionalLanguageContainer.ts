@@ -26,8 +26,8 @@ export namespace OptionalLanguageContainer {
     export function newInstance<U extends boolean, S extends string, >(value: S,): OptionalLanguage<S, never, U>
     export function newInstance<U extends boolean, A extends readonly string[], >(value: A,): OptionalLanguage<never, A, U>
     export function newInstance<U extends boolean, S extends string, A extends readonly string[], >(value: | S | A,): OptionalLanguage<S, A, U>
-    export function newInstance<U extends boolean, S extends string, A extends readonly string[], >(value: | S | A,): OptionalLanguage<S, A, U> {
-        return new OptionalLanguageContainer<S, A, U>(value);
+    export function newInstance(value: | string | readonly string[],): OptionalLanguage<string, readonly string[], boolean> {
+        return new OptionalLanguageContainer(value);
     }
 
 }

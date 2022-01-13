@@ -264,7 +264,7 @@ export class NameContainer
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<S, A>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<S, A>
     private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<S, A>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,) {
+    private static __newLanguageContainer(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | string | readonly string[] | null,) {
         if (value == null) {
             assert(!language.isACompleteLanguage, `The language "${language.englishName}" cannot be null if it is a complete language.`,);
             return EmptyLanguageContainer.get;
@@ -307,7 +307,7 @@ export class NameContainer
                     originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
                 break;
             case EveryLanguages.GREEK:
-                if ((languageContainer as OptionalLanguage<S, A>).isUsed)
+                if ((languageContainer as OptionalLanguage<string, readonly string[]>).isUsed)
                     originalLanguages.push(EveryLanguages.GREEK);
                 break;
             default:

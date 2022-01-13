@@ -548,6 +548,15 @@ export abstract class EveryLanguages
         return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages);
     }
 
+    /**
+     * Return the english reference as either {@link ENGLISH} or {@link AMERICAN_ENGLISH}.
+     *
+     * @param classWithEveryLanguages
+     */
+    public static getEnglish(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+        return this.AMERICAN_ENGLISH.get(classWithEveryLanguages);
+    }
+
     public original<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
     public original<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
     public original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {

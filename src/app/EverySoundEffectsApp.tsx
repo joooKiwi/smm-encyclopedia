@@ -1,28 +1,40 @@
 import './EverySoundEffectsApp.scss';
 
-import type {PossibleEnglishName, PossibleImagePath_SMM1, PossibleImagePath_SMM2} from '../entity/soundEffect/simple/SoundEffects.types';
-import type {SoundEffect}                                                         from '../entity/soundEffect/simple/SoundEffect';
+import type {PossibleEnglishName}                                 from '../core/soundEffect/SoundEffects.types';
+import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/soundEffectCategory/SoundEffectCategories.types';
+import type {SoundEffect}                                         from '../core/soundEffect/SoundEffect';
+import type {SoundEffectAppStates}                                from './AppStates.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../entity/game/Games';
+import {Games}                         from '../core/game/Games';
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {EmptyName}                     from '../lang/name/EmptyName';
 import NameComponent                   from '../lang/name/component/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
-import {SoundEffectLoader}             from '../entity/soundEffect/simple/SoundEffect.loader';
-import {SoundEffects}                  from '../entity/soundEffect/simple/SoundEffects';
+import {SoundEffectLoader}             from '../core/soundEffect/SoundEffect.loader';
+import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 import Table                           from './tools/table/Table';
+import {ProjectLanguages}              from '../lang/ProjectLanguages';
+import Image                           from './tools/images/Image';
+import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
+import SoundEffectComponent            from '../core/soundEffect/SoundEffect.component';
 
 /**
  * @reactComponent
  */
 export default class EverySoundEffectsApp
-    extends AbstractApp {
+    extends AbstractApp<{}, SoundEffectAppStates> {
 
     //region -------------------- Attributes & getter methods --------------------
 
     #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
+
+    public constructor(props: {}, context: any,) {
+        super(props, context);
+        this.state = {display: {asText: {category: false,},},};
+    }
 
     protected get map() {
         return this.#map ??= SoundEffectLoader.get.load();
@@ -32,24 +44,36 @@ export default class EverySoundEffectsApp
         return SoundEffects.values;
     }
 
+    protected get _displayCategoryAsText(): boolean {
+        return this.state.display.asText.category;
+    }
+
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private static __getImageBasedBaseOnGame(isInGame: boolean, path: | PossibleImagePath_SMM1 | PossibleImagePath_SMM2, alt: PossibleAlt,) {
-        return !isInGame ? <></> : <img src={path} alt={alt}/>;
+    private __createCategoryComponent(index: number, soundEffect: SoundEffect,) {
+        const categoryName = soundEffect.categoryName;
+        if (categoryName === EmptyName.get)
+            return EMPTY_REACT_ELEMENT;
+
+        if (this._displayCategoryAsText)
+            return <NameComponent id={`${index}_soundEffectCategory-name`} name={categoryName} popoverOrientation="right"/>;
+
+        const categoryEnglishName = ProjectLanguages.getEnglish(categoryName) as PossibleEnglishName_Category;
+        return <Image source={SoundEffectCategories.getValue(categoryEnglishName)!.imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
     }
 
     protected get content() {
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const [englishName, soundEffect,] of this.map.entries()) {
+        for (const [englishName, soundEffect,] of this.map) {
             content.push([englishName,
                 <>{index}</>,
-                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker1, SoundEffects.getValue(soundEffect.english)!.SMM1ImagePath!, `SMM1 - ${englishName}`,),
-                EverySoundEffectsApp.__getImageBasedBaseOnGame(soundEffect.isInSuperMarioMaker2, SoundEffects.getValue(soundEffect.english)!.SMM2ImagePath!, `SMM2 - ${englishName}`,),
+                soundEffect.isInSuperMarioMaker1 ? <SoundEffectComponent reference={this.enum[index - 1]} name={soundEffect} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT,
+                soundEffect.isInSuperMarioMaker2 ? <SoundEffectComponent reference={this.enum[index - 1]} name={soundEffect} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT,
                 <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
-                soundEffect.categoryName === EmptyName.get ? <></> : <NameComponent id={`${index}_soundEffectCategory-name`} name={soundEffect.category} popoverOrientation="right"/>,
+                this.__createCategoryComponent(index, soundEffect,),
                 <>--{soundEffect.translationKey}--</>,
             ]);
             index++;
@@ -81,5 +105,3 @@ export default class EverySoundEffectsApp
     }
 
 }
-
-type PossibleAlt = `SMM${| 1 | 2} - ${PossibleEnglishName}`;

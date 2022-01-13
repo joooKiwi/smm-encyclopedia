@@ -1,11 +1,11 @@
-import type {EntityLimit}         from '../entity/limit/EntityLimit';
-import type {PossibleEnglishName} from '../entity/limit/EntityLimits.types';
+import type {EntityLimit}         from '../core/entityLimit/EntityLimit';
+import type {PossibleEnglishName} from '../core/entityLimit/EntityLimits.types';
 import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EntityLimitLoader}             from '../entity/limit/EntityLimit.loader';
-import {EntityLimits}                  from '../entity/limit/EntityLimits';
+import {EntityLimitLoader}             from '../core/entityLimit/EntityLimit.loader';
+import {EntityLimits}                  from '../core/entityLimit/EntityLimits';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import NameComponent                   from '../lang/name/component/Name.component';
@@ -44,7 +44,7 @@ export default class EveryLimitsApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, entityLimit,] of this.map.entries()) {
+        for (const [englishName, entityLimit,] of this.map) {
             if (entityLimit !== entityLimit.alternativeContainer) {
                 content.push([englishName,
                     <>{index}</>,
@@ -52,7 +52,7 @@ export default class EveryLimitsApp
                     <NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                     <NameComponent id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                     <TextComponent content={entityLimit.amount} isUnknown={entityLimit.isAmountUnknown}/>,
-                    <GameContentTranslationComponent>{translation => <span>{translation(entityLimit.type.englishCommonText)}</span>}</GameContentTranslationComponent>,
+                    <GameContentTranslationComponent>{translation => <TextComponent content={translation(entityLimit.type.englishCommonText)}/>}</GameContentTranslationComponent>,
                 ]);
                 index++;
             }

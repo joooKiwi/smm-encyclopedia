@@ -1,5 +1,5 @@
-import type {HTMLSpanProperties} from '../../../../util/react/html/HTMLSpanProperties';
-import type {ReactProperty}      from '../../../../util/react/ReactProperty';
+import type {HTMLSpanProperties}          from '../../../../util/react/html/HTMLSpanProperties';
+import type {ReactElement, ReactProperty} from '../../../../util/react/ReactProperty';
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
     extends ReactProperty, Omit<HTMLSpanProperties, | 'content' | 'className'> {
@@ -25,4 +25,4 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
 
 }
 
-export type PossibleTextContent = | string | 'N/A' | number | boolean;
+export type PossibleTextContent = | ReactElement | string | 'N/A'| '???' | number | boolean;

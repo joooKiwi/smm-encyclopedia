@@ -1,3 +1,3 @@
-import type {Games} from '../../entity/game/Games';
+import type {Games} from '../../core/game/Games';
 
 export type PossibleGameReceived = | Games | 'all';

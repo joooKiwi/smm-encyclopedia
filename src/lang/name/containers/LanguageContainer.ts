@@ -54,8 +54,8 @@ export namespace LanguageContainer {
     export function newInstance<S extends string, >(value: S,): Language<S>
     export function newInstance<A extends readonly string[], >(value: A,): Language<never, A>
     export function newInstance<S extends string, A extends readonly string[], >(value: | S | A,): Language<S, A>
-    export function newInstance<S extends string, A extends readonly string[], >(value: | S | A,): Language<S, A> {
-        return new LanguageContainer<S, A>(value);
+    export function newInstance(value: | string | readonly string[],): Language<string, readonly string[]> {
+        return new LanguageContainer(value);
     }
 
 }

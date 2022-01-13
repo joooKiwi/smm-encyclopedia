@@ -1,0 +1,733 @@
+import everyEntities from '../../resources/Entities.csv';
+
+import type {Builder}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../../util/Builder';
+import type {CanBeAffectedByATwister, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeStacked, CanBeThrownByALakitu, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanContainOrSpawnAKey, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleLightSource} from '../entityTypes';
+import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../behaviour/Loader.types';
+import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                                                                                                                                                                                             from './properties/limit/Loader.types';
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './Entity';
+import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './loader.types';
+import type {EntityTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './Entity.template';
+import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from '../../util/loader/Loader';
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../../lang/Loader.types';
+import type {PropertiesArray as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../game/Loader.types';
+import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from './properties/basic/BasicProperty';
+import type {PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './Entities.types';
+import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../entityCategory/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../entityLimit/EntityLimits.types';
+import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../instrument/loader.types';
+
+import {AbstractTemplateBuilder}      from '../_template/AbstractTemplate.builder';
+import {assert}                       from '../../util/utilitiesMethods';
+import {CSVLoader}                    from '../../util/loader/CSVLoader';
+import {EMPTY_ARRAY}                  from '../../util/emptyVariables';
+import {EntityCategoryLoader}         from '../entityCategory/EntityCategory.loader';
+import {EntityBuilder}                from './Entity.builder';
+import {GenericSingleInstanceBuilder} from '../../util/GenericSingleInstanceBuilder';
+import {HeaderTypesForConvertor}      from '../_util/loader/HeaderTypesForConvertor';
+import {ReferencesToWatch}            from './ReferencesToWatch';
+
+//region -------------------- CSV array related types --------------------
+
+enum Headers {
+
+    entityType,
+
+    //region -------------------- Games --------------------
+
+    isInSuperMarioMaker1,
+    isInSuperMarioMaker2,
+
+    //endregion -------------------- Games --------------------
+    //region -------------------- Basic properties --------------------
+
+    categoryInTheEditor,
+
+    hasAMushroomVariant,
+    canBeInAParachute,
+    canHaveWings,
+
+    //endregion -------------------- Basic properties --------------------
+    //region -------------------- Specific properties --------------------
+
+    canContainOrSpawnAKey,
+
+    isAffectedDirectlyByAnOnOrOffState,
+
+    canBePutOnATrack,
+    editorLimit_canBePutOnATrack,
+    whilePlaying_canBePutOnATrack,
+
+    canSpawnOutOfAPipe,
+
+    canBePutInASwingingClaw,
+
+    canBeThrownByALakitu,
+    canBePutInALakituCloud,
+
+    canBePutInAClownCar,
+
+    canBeFiredOutOfABulletLauncher,
+
+    canBePutInABlock,
+
+    canBePutInATree,
+
+    lightSourceEmitted, lightSourceEmitted_isInSMB,
+
+    canSurviveInTheLavaOrThePoison,
+
+    canIgniteABobOmb,
+
+    canBeAffectedByATwister,
+
+    canGoThroughWalls, canGoThroughWalls_inSM3DW,
+
+    canBeStacked,
+
+    isGlobalGroundOrGlobal,
+
+    instrument,
+    canMakeASoundOutOfAMusicBlock,
+
+    //endregion -------------------- Specific properties --------------------
+    //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+
+    canBeThrownByBowserInClownCar,
+    canBeThrownByBowserJr, canBeThrownByBowserJrInClownCar,
+    canBeTransformedByMagikoopa, canBeSpawnedByMagikoopa, canBeSpawnedByWingedMagikoopa,
+
+    //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+    //region -------------------- Entity limit properties --------------------
+
+    limitAmount,
+
+    editorLimit,
+
+    whilePlaying_isInGEL,
+    whilePlaying_isInGEL_isSuperGlobal,
+
+    whilePlaying_isInPEL,
+
+    whilePlaying_isInPJL,
+
+    whilePlaying_customLimit, whilePlaying_customLimit_comment,
+
+    //endregion -------------------- Entity limit properties --------------------
+    //region -------------------- Spawning / Despawning range properties --------------------
+
+    canRespawn, canRespawn_online, canRespawn_online_insideABlock,
+
+    behaviour_solo,
+    behaviour_localCoop,
+    behaviour_onlineCoop, behaviour_onlineVS,
+
+
+    offscreenSpawningAndDespawningReferencePoint,
+    offscreenSpawningHorizontalRange,
+    offscreenDespawningHorizontalRange,
+
+    offscreenSpawningUpwardVerticalRange,
+    offscreenDespawningUpwardVerticalRange,
+
+    offscreenSpawningDownwardVerticalRange,
+    offscreenDespawningDownwardVerticalRange,
+
+    //endregion -------------------- Spawning / Despawning range properties --------------------
+    //region -------------------- Reference on specific condition properties --------------------
+
+    inDayTheme,
+    inNightTheme,
+
+    inGroundTheme,
+    inUndergroundTheme,
+    inUnderwaterTheme,
+    inDesertTheme,
+    inSnowTheme,
+    inSkyTheme,
+    inForestTheme,
+    inGhostHouseTheme,
+    inAirshipTheme,
+    inCastleTheme,
+
+    inSMBGameStyle,
+    inSMB3GameStyle,
+    inSMWGameStyle,
+    inNSMBUGameStyle,
+    inSM3DWGameStyle,
+
+    //endregion -------------------- Reference on specific condition properties -------------------
+
+    hasANameReferencedInMarioMaker,
+
+    //region -------------------- Languages --------------------
+
+    english, americanEnglish, europeanEnglish,
+    french, canadianFrench, europeanFrench,
+    german,
+    spanish, americanSpanish, europeanSpanish,
+    italian,
+    dutch,
+    portuguese, americanPortuguese, europeanPortuguese,
+    russian,
+    japanese,
+    chinese, traditionalChinese, simplifiedChinese,
+    korean,
+    greek,
+
+    //endregion -------------------- Languages --------------------
+
+}
+
+//region -------------------- Properties --------------------
+
+//region -------------------- Exclusive properties --------------------
+
+type ExclusivePropertiesArray1 = [
+    entityType: PossibleEntityType,
+];
+type ExclusivePropertiesArray2 = [
+    //region -------------------- Basic properties --------------------
+
+    categoryInTheEditor: | PossibleEnglishName_Category | null,
+
+    hasAMushroomVariant: PossibleHasAMushroomVariant,
+    canBeInAParachute: PossibleCanBeInAParachute,
+    canHaveWings: PossibleCanHaveWings,
+
+    //endregion -------------------- Basic properties --------------------
+    //region -------------------- Specific properties --------------------
+
+    canContainOrSpawnAKey: CanContainOrSpawnAKey,
+
+    isAffectedDirectlyByAnOnOrOffState: IsAffectedDirectlyByAnOnOrOffState,
+
+    canBePutOnATrack: CanBePutOnATrack,
+    editorLimit_canBePutOnATrack: | PossibleEnglishName_Limit | null,
+    whilePlaying_canBePutOnATrack: | PossibleEnglishName_Limit | null,
+
+    canSpawnOutOfAPipe: CanSpawnOutOfAPipe,
+
+    canBePutInASwingingClaw: CanBePutInASwingingClaw,
+
+    canBeThrownByALakitu: CanBeThrownByALakitu,
+    canBePutInALakituCloud: CanBePutInALakituCloud,
+
+    canBePutInAClownCar: CanBePutInAClownCar,
+
+    canBeFiredOutOfABulletLauncher: CanBeFiredOutOfABulletLauncher,
+
+    canBePutInABlock: CanBePutInABlock,
+
+    canBePutInATree: CanBePutInATree,
+
+    lightSourceEmitted: PossibleLightSource,
+    lightSourceEmitted_isInSMB: HasALightSourceEmittedInSMB,
+
+    canSurviveInTheLavaOrThePoison: CanSurviveInTheLavaOrThePoison,
+
+    canIgniteABobOmb: CanIgniteABobOmb,
+
+    canBeAffectedByATwister: CanBeAffectedByATwister,
+
+    canGoThroughWalls: CanGoThroughWalls,
+    canGoThroughWalls_inSM3DW: CanGoThroughWallsInSM3DW,
+
+    canBeStacked: CanBeStacked,
+
+    isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal,
+
+    instrument: PossibleInstrument,
+    canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,
+
+    //endregion -------------------- Specific properties --------------------
+    //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+
+    canBeThrownByBowserInClownCar: CanBeThrownByBowserInClownCar,
+
+    canBeThrownByBowserJr: CanBeThrownByBowserJr,
+    canBeThrownByBowserJrInClownCar: CanBeThrownByBowserJrInClownCar,
+
+    canBeTransformedByMagikoopa: CanBeTransformedByMagikoopa,
+    canBeSpawnedByMagikoopa: CanBeSpawnedByMagikoopa,
+    canBeSpawnedByWingedMagikoopa: CanBeSpawnedByWingedMagikoopa,
+
+    //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+    //region -------------------- Entity limit properties --------------------
+
+    limitAmount: LimitAmountType,
+
+    editorLimit: EditorLimitType,
+
+    whilePlaying_isInGEL: GeneralEntityLimitType,
+    whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType,
+
+    whilePlaying_isInPEL: PowerUpEntityLimitType,
+
+    whilePlaying_isInPJL: ProjectileEntityLimitType,
+
+    whilePlaying_customLimit: CustomLimitType,
+    whilePlaying_customLimit_comment: CustomLimitCommentType,
+
+    //endregion -------------------- Entity limit properties --------------------
+    //region -------------------- Spawning / Despawning range properties --------------------
+
+    canRespawn: CanRespawnType,
+    canRespawn_online: CanRespawnOnlineType,
+    canRespawn_online_insideABlock: CanRespawnOnlineOutOfABlockType,
+
+    behaviour_solo: PossibleSoloBehaviourType,
+    behaviour_localCoop: PossibleLocalCoopBehaviourType,
+    behaviour_onlineCoop: PossibleOnlineCoopBehaviourType,
+    behaviour_onlineVS: PossibleOnlineVersusBehaviourType,
+
+
+    offscreenSpawningAndDespawningReferencePoint: OffscreenSpawningAndDespawningReferencePoint,
+    offscreenSpawningHorizontalRange: OffscreenSpawningHorizontalRangeLimitType,
+    offscreenDespawningHorizontalRange: OffscreenDespawningHorizontalRangeLimitType,
+
+    offscreenSpawingUpwardVerticalRange: OffscreenSpawningUpwardVerticalRangeLimitType,
+    offscreenDespawningUpwardVerticalRange: OffscreenDespawningUpwardVerticalRangeLimitType,
+
+    offscreenSpawningDownwardVerticalRange: OffscreenSpawningDownwardVerticalRangeLimitType,
+    offscreenDespawningDownwardVerticalRange: OffscreenDespawningDownwardVerticalRangeLimitType,
+
+    //endregion -------------------- Spawning / Despawning range properties --------------------
+    //region -------------------- Reference on specific condition properties -------------------
+
+    inDayTheme: EntityLink,
+    inNightTheme: | EntityLink | null,
+
+    inGroundTheme: EntityLink,
+    inUndergroundTheme: EntityLink,
+    inUnderwaterTheme: EntityLink,
+    inDesertTheme: | EntityLink | null,
+    inSnowTheme: | EntityLink | null,
+    inSkyTheme: | EntityLink | null,
+    inForestTheme: | EntityLink | null,
+    inGhostHouseTheme: EntityLink,
+    inAirshipTheme: EntityLink,
+    inCastleTheme: EntityLink,
+
+    inSMBGameStyle: | EntityLink | null,
+    inSMB3GameStyle: | EntityLink | null,
+    inSMWGameStyle: | EntityLink | null,
+    inNSMBUGameStyle: | EntityLink | null,
+    inSM3DWGameStyle: | EntityLink | null,
+
+    //endregion -------------------- Reference on specific condition properties --------------------
+    hasANameReferencedInMarioMaker: HasAReferenceInMarioMaker,
+];
+
+//endregion -------------------- Exclusive properties --------------------
+
+type PropertiesArray = [
+    ...ExclusivePropertiesArray1,
+    ...GamesPropertyArray,
+    ...ExclusivePropertiesArray2,
+    ...LanguagesPropertyArray,
+];
+
+//endregion -------------------- Properties --------------------
+
+//endregion -------------------- CSV array related types --------------------
+
+/**
+ * @singleton
+ */
+export class EntityLoader
+    implements Loader<ReadonlyMap<PossibleEnglishName, Entity>> {
+
+    //region -------------------- Singleton usage --------------------
+
+    static #instance?: EntityLoader;
+
+    private constructor() {
+    }
+
+    public static get get() {
+        return this.#instance ??= new this();
+    }
+
+    //endregion -------------------- Singleton usage --------------------
+
+    public static readonly UNKNOWN_CHARACTER = '?';
+    public static readonly INFINITE_CHARACTER = '∞';
+    public static readonly THIS_REFERENCE = 'this';
+
+    #map?: Map<PossibleEnglishName, Entity>;
+
+    public load(): ReadonlyMap<PossibleEnglishName, Entity> {
+        if (this.#map == null) {
+            const references = new Map<PossibleEnglishName, Entity>();
+            const templateReferences = new Map<PossibleEnglishName, EntityTemplate>();
+            const referencesToWatch = new ReferencesToWatch(templateReferences);
+
+            //region -------------------- Builder initialisation --------------------
+
+            EntityBuilder.categoriesMap = EntityCategoryLoader.get.load();
+
+            //endregion -------------------- Builder initialisation --------------------
+            //region -------------------- CSV Loader --------------------
+
+            new CSVLoader<PropertiesArray, Builder<EntityTemplate>, keyof typeof Headers>(everyEntities, convertedContent => new TemplateBuilder(convertedContent))
+                .setDefaultConversion('emptyable string')
+
+                .convertTo(['(Entity)', 'Entity', 'Projectile', 'Object',], 'entityType',)
+                .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
+                .convertToNullableBoolean('hasAMushroomVariant',)
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'While playing → LCL',], 'canBeInAParachute', 'canHaveWings',)
+
+                .convertToNullableBoolean('canContainOrSpawnAKey',)
+                .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
+
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+
+                .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
+                .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
+
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Full light when falling', 'Full light when collected', 'Full light when shooting', 'Dim light / Full light when falling or collected', 'Project a light in front of them', 'Only when lit',], 'lightSourceEmitted')
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
+                .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Castle', 'Castle / Night Forest', 'Float', 'Melt to Coin', 'Only inside the ground',], 'canSurviveInTheLavaOrThePoison',)
+                .convertToNullableBooleanAnd(['NSMBU', 'Castle', 'Only when the player press the run button',], 'canIgniteABobOmb',)
+                .convertToNullableBooleanAnd(['When falling', 'Parachute',], 'canBeAffectedByATwister',)
+                .convertToNullableBoolean('canGoThroughWalls',)
+                .convertToNullableBooleanAnd(['on down curve',], 'canGoThroughWalls_inSM3DW',)
+                .convertToNullableBoolean('canBeStacked',)
+                .convertToNullableBooleanAnd(['SM3DW',], 'isGlobalGroundOrGlobal',)
+                .convertToNullableBooleanAnd(['Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
+
+                .convertToBooleanAnd('Bob-omb clear condition', 'canBeThrownByBowserInClownCar',)
+                .convertToBooleanAnd('3rd phase', 'canBeThrownByBowserJr',)
+                .convertToBooleanAnd('Koopa Troopa clear condition', 'canBeThrownByBowserJrInClownCar',)
+                .convertToBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeTransformedByMagikoopa',)
+                .convertToBoolean('canBeSpawnedByMagikoopa',)
+                .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'green winged', 'winged',], 'canBeSpawnedByWingedMagikoopa',)
+
+                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 1, 2, '1?', EntityLoader.INFINITE_CHARACTER,
+                    'For each entity', 'For each clone (2-4)',
+                    'For each projectile', 'For each projectile (1)',
+                    'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)',
+                    'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)',
+                    'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
+                .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
+                    'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
+                .convertToNullableBooleanAnd(['Not on track', 'While holding an entity',], 'whilePlaying_isInGEL_isSuperGlobal',)
+                .convertToNullableBoolean('whilePlaying_isInPEL',)
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
+                    'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'whilePlaying_customLimit',)
+                .convertToEmptyableStringAnd('Only falling coin', 'whilePlaying_customLimit_comment',)
+
+                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine',], 'canRespawn',)
+                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)
+                .convertToEmptyableString('behaviour_solo', 'behaviour_localCoop', 'behaviour_onlineCoop', 'behaviour_onlineVS',)//TODO change to any possible behaviour type
+
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, 'Variable', EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningHorizontalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, 'Variable',], 'offscreenDespawningHorizontalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningUpwardVerticalRange')
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER,], 'offscreenSpawningUpwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningDownwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER,], 'offscreenDespawningDownwardVerticalRange',)
+
+                .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inDayTheme',)
+                .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inNightTheme',)
+
+                .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+                .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+                .convertToStringAnd(EntityLoader.THIS_REFERENCE, 'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+
+                .convertToEmptyableStringAnd(EntityLoader.THIS_REFERENCE, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inDayTheme',)
+                // .convertToNullableHeadersAnd(['english', 'americanEnglish',], thisText,'inNightTheme',)
+                //
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inGroundTheme', 'inUndergroundTheme', 'inUnderwaterTheme',)
+                // .convertToNullableHeadersAnd(['english', 'americanEnglish',], 'inDesertTheme', 'inSnowTheme', 'inSkyTheme', 'inForestTheme',)
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
+                //
+                // .convertToHeadersAnd(['english', 'americanEnglish',], thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
+                .convertToNullableBooleanAnd(['French only', 'Only spoken (in english) in Editor',], 'hasANameReferencedInMarioMaker')
+                .convertTo(HeaderTypesForConvertor.everyPossibleEntityNames, 'english', 'americanEnglish',)
+
+                .onAfterFinalObjectCreated(finalContent => {
+                    const template = finalContent.build();
+                    const englishName = (template.name.english.simple ?? template.name.english.american) as | PossibleEnglishName | null;
+                    assert(englishName != null, `The template english name should never be null since it is a key reference for the whole program.`,);
+                    templateReferences.set(englishName, template,);
+                    referencesToWatch.addSubReference(template);
+                })
+                .onInitialisationEnd(() => {
+                    referencesToWatch.testReferences();
+                    referencesToWatch.setReferences();
+                    templateReferences.forEach((template, englishName,) =>
+                        references.set(englishName, new GenericSingleInstanceBuilder(new EntityBuilder(template)).build(),)
+                    );
+                })
+                .load();
+
+            //endregion -------------------- CSV Loader --------------------
+
+            console.log('-------------------- "entity" has been loaded --------------------');// temporary console.log
+            console.log(references);// temporary console.log
+            console.log('-------------------- "entity" has been loaded --------------------');// temporary console.log
+
+            this.#map = references;
+        }
+        return this.#map;
+    }
+
+}
+
+//region -------------------- Template related methods & classes --------------------
+
+class TemplateBuilder
+    extends AbstractTemplateBuilder<EntityTemplate, PropertiesArray, typeof Headers> {
+
+    static readonly #SLASH_SEPARATOR = ' / ';
+    static readonly #LINK_AS_THIS = 'this';
+
+    public constructor(content: PropertiesArray,) {
+        super(content);
+    }
+
+    protected get _headersIndexMap() {
+        return Headers;
+    }
+
+    public build(): EntityTemplate {
+        const [
+            isInSuperMarioMaker1, isInSuperMarioMaker2,
+            dayLink, nightLink,
+            groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,
+            superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink,
+        ] = [
+            this._getContent(this._headersIndexMap.isInSuperMarioMaker1), this._getContent(this._headersIndexMap.isInSuperMarioMaker2),
+            this._getContent(this._headersIndexMap.inDayTheme), this._getContent(this._headersIndexMap.inNightTheme),
+            this._getContent(this._headersIndexMap.inGroundTheme), this._getContent(this._headersIndexMap.inUndergroundTheme), this._getContent(this._headersIndexMap.inUnderwaterTheme), this._getContent(this._headersIndexMap.inDesertTheme), this._getContent(this._headersIndexMap.inSnowTheme), this._getContent(this._headersIndexMap.inSkyTheme), this._getContent(this._headersIndexMap.inForestTheme), this._getContent(this._headersIndexMap.inGhostHouseTheme), this._getContent(this._headersIndexMap.inAirshipTheme), this._getContent(this._headersIndexMap.inCastleTheme),
+            this._getContent(this._headersIndexMap.inSMBGameStyle), this._getContent(this._headersIndexMap.inSMB3GameStyle), this._getContent(this._headersIndexMap.inSMWGameStyle), this._getContent(this._headersIndexMap.inNSMBUGameStyle), this._getContent(this._headersIndexMap.inSM3DWGameStyle),
+        ];
+
+        return {
+            properties: {
+                entityType: this._getContent(this._headersIndexMap.entityType),
+
+                //region ---------- Basic properties ----------
+
+                isIn: {
+                    game: this._createGameTemplate(),
+                    style: {
+                        superMarioBros: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioBrosLink),
+                        superMarioBros3: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioBros3Link),
+                        superMarioWorld: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioWorldLink),
+                        newSuperMarioBrosU: TemplateBuilder.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
+                        superMario3DWorld: isInSuperMarioMaker1 && !isInSuperMarioMaker2 ? TemplateBuilder.__convertLinkToNullableBoolean(superMario3DWorldLink) : TemplateBuilder.__convertLinkToOnlyBoolean(superMario3DWorldLink),
+                    },
+                    theme: {
+                        ground: TemplateBuilder.__convertLinkToBoolean(groundLink),
+                        underground: TemplateBuilder.__convertLinkToBoolean(undergroundLink),
+                        underwater: TemplateBuilder.__convertLinkToBoolean(underwaterLink),
+                        desert: TemplateBuilder.__convertLinkToNullableBoolean(desertLink),
+                        snow: TemplateBuilder.__convertLinkToNullableBoolean(snowLink),
+                        sky: TemplateBuilder.__convertLinkToNullableBoolean(skyLink),
+                        forest: TemplateBuilder.__convertLinkToNullableBoolean(forestLink),
+                        ghostHouse: TemplateBuilder.__convertLinkToBoolean(ghostHouseLink),
+                        airship: TemplateBuilder.__convertLinkToBoolean(airshipLink),
+                        castle: TemplateBuilder.__convertLinkToBoolean(castleLink),
+                    },
+                    time: {
+                        day: TemplateBuilder.__convertLinkToBoolean(dayLink),
+                        night: TemplateBuilder.__convertLinkToNullableBoolean(nightLink),
+                    },
+                },
+
+                basic: {
+                    hasAMushroomVariant: this._getContent(this._headersIndexMap.hasAMushroomVariant),
+                    canBeInAParachute: this._getContent(this._headersIndexMap.canBeInAParachute),
+                    canHaveWings: this._getContent(this._headersIndexMap.canHaveWings),
+                },
+
+                //endregion ---------- Basic properties ----------
+                //region ---------- Specific properties ----------
+
+                canContainOrSpawnAKey: this._getContent(this._headersIndexMap.canContainOrSpawnAKey),
+
+                isAffectedDirectlyByAnOnOrOffState: this._getContent(this._headersIndexMap.isAffectedDirectlyByAnOnOrOffState),
+
+                canBePutOnATrack: {
+                    value: this._getContent(this._headersIndexMap.canBePutOnATrack),
+                    editorLimit: this._getContent(this._headersIndexMap.editorLimit_canBePutOnATrack),
+                    whilePlaying: this._getContent(this._headersIndexMap.whilePlaying_canBePutOnATrack),
+                },
+
+                canSpawnOutOfAPipe: this._getContent(this._headersIndexMap.canSpawnOutOfAPipe),
+
+                canBePutInASwingingClaw: this._getContent(this._headersIndexMap.canBePutInASwingingClaw),
+
+                canBeThrownByALakitu: this._getContent(this._headersIndexMap.canBeThrownByALakitu),
+                canBePutInALakituCloud: this._getContent(this._headersIndexMap.canBePutInALakituCloud),
+
+                canBePutInAClownCar: this._getContent(this._headersIndexMap.canBePutInAClownCar),
+
+                canBeFiredOutOfABulletLauncher: this._getContent(this._headersIndexMap.canBeFiredOutOfABulletLauncher),
+
+                canBePutInABlock: this._getContent(this._headersIndexMap.canBePutInABlock),
+
+                canBePutInATree: this._getContent(this._headersIndexMap.canBePutInATree),
+
+                lightSourceEmitted: {
+                    value: this._getContent(this._headersIndexMap.lightSourceEmitted),
+                    isInSMB: this._getContent(this._headersIndexMap.lightSourceEmitted_isInSMB)
+                },
+
+                canSurviveInTheLavaOrThePoison: this._getContent(this._headersIndexMap.canSurviveInTheLavaOrThePoison),
+
+                canIgniteABobOmb: this._getContent(this._headersIndexMap.canIgniteABobOmb),
+
+                canBeAffectedByATwister: this._getContent(this._headersIndexMap.canBeAffectedByATwister),
+
+                canGoThroughWalls: {
+                    value: this._getContent(this._headersIndexMap.canGoThroughWalls),
+                    inSM3DW: this._getContent(this._headersIndexMap.canGoThroughWalls_inSM3DW),
+                },
+
+                canBeStacked: this._getContent(this._headersIndexMap.canBeStacked),
+
+                isGlobalGroundOrGlobal: this._getContent(this._headersIndexMap.isGlobalGroundOrGlobal),
+
+                sound: {
+                    instrument: this._getContent(this._headersIndexMap.instrument),
+                    canMakeASoundOutOfAMusicBlock: this._getContent(this._headersIndexMap.canMakeASoundOutOfAMusicBlock),
+                },
+
+                //endregion ---------- Specific properties ----------
+                //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+
+                bowserBowserJrMagikoopa: {
+                    bowser: {
+                        clownCar: this._getContent(this._headersIndexMap.canBeThrownByBowserInClownCar),
+                    },
+                    bowserJr: {
+                        value: this._getContent(this._headersIndexMap.canBeThrownByBowserJr),
+                        clownCar: this._getContent(this._headersIndexMap.canBeThrownByBowserJrInClownCar),
+                    },
+                    magikoopa: {
+                        transformed: this._getContent(this._headersIndexMap.canBeTransformedByMagikoopa),
+                        spawn: {
+                            value: this._getContent(this._headersIndexMap.canBeSpawnedByMagikoopa),
+                            wing: this._getContent(this._headersIndexMap.canBeSpawnedByWingedMagikoopa),
+                        },
+                    },
+                },
+
+                //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+                limits: {
+                    amount: this._getContent(this._headersIndexMap.limitAmount),
+                    editor: this._getContent(this._headersIndexMap.editorLimit),
+                    whilePlaying: {
+                        isInGEL: {
+                            value: this._getContent(this._headersIndexMap.whilePlaying_isInGEL),
+                            isSuperGlobal: this._getContent(this._headersIndexMap.whilePlaying_isInGEL_isSuperGlobal),
+                        },
+                        isInPEL: this._getContent(this._headersIndexMap.whilePlaying_isInPEL),
+                        isInPJL: this._getContent(this._headersIndexMap.whilePlaying_isInPJL),
+                        customLimit: {
+                            value: this._getContent(this._headersIndexMap.whilePlaying_customLimit),
+                            comment: this._getContent(this._headersIndexMap.whilePlaying_customLimit_comment),
+                        },
+                    },
+                },
+                canRespawn: {
+                    value: this._getContent(this._headersIndexMap.canRespawn),
+                    online: {
+                        value: this._getContent(this._headersIndexMap.canRespawn_online),
+                        insideABlock: this._getContent(this._headersIndexMap.canRespawn_online_insideABlock),
+                    }
+                },
+                behaviour: {
+                    solo: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_solo),),
+                    localCoop: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_localCoop),),
+                    online: {
+                        coop: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_onlineCoop),),
+                        versus: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_onlineVS),),
+                    },
+                },
+                offscreenRange: {
+                    referencePoint: this._getContent(this._headersIndexMap.offscreenSpawningAndDespawningReferencePoint),
+                    spawning: {
+                        horizontal: this._getContent(this._headersIndexMap.offscreenSpawningHorizontalRange),
+                        vertical: {
+                            upward: this._getContent(this._headersIndexMap.offscreenSpawningUpwardVerticalRange),
+                            downward: this._getContent(this._headersIndexMap.offscreenSpawningDownwardVerticalRange),
+                        },
+                    },
+                    despawning: {
+                        horizontal: this._getContent(this._headersIndexMap.offscreenDespawningHorizontalRange),
+                        vertical: {
+                            upward: this._getContent(this._headersIndexMap.offscreenDespawningUpwardVerticalRange),
+                            downward: this._getContent(this._headersIndexMap.offscreenDespawningDownwardVerticalRange),
+                        },
+                    },
+                },
+                reference: {
+                    style: {
+                        superMarioBros: superMarioBrosLink,
+                        superMarioBros3: superMarioBros3Link,
+                        superMarioWorld: superMarioWorldLink,
+                        newSuperMarioBrosU: newSuperMarioBrosULink,
+                        superMario3DWorld: superMario3DWorldLink,
+                    },
+                    theme: {
+                        ground: groundLink,
+                        underground: undergroundLink,
+                        underwater: underwaterLink,
+                        desert: desertLink,
+                        snow: snowLink,
+                        sky: skyLink,
+                        forest: forestLink,
+                        ghostHouse: ghostHouseLink,
+                        airship: airshipLink,
+                        castle: castleLink,
+                    },
+                    time: {
+                        day: dayLink,
+                        night: nightLink,
+                    },
+                    group: {
+                        all: null,
+                        gameStyle: null,
+                        theme: null,
+                        time: null,
+                    },
+                },
+            },
+            categoryInTheEditor: this._getContent(this._headersIndexMap.categoryInTheEditor),
+            name: this._createEntityNameTemplate(this._getContent(this._headersIndexMap.hasANameReferencedInMarioMaker)),
+        };
+    }
+
+    private static __convertLinkToOnlyBoolean(link: | EntityLink | null,) {
+        return link != null && this.__convertLinkToBoolean(link);
+    }
+
+    private static __convertLinkToBoolean(link: EntityLink,): boolean {
+        return link.includes(this.#LINK_AS_THIS);
+    }
+
+    private static __convertLinkToNullableBoolean(link: | EntityLink | null,): | boolean | null {
+        return link == null
+            ? null
+            : this.__convertLinkToBoolean(link);
+    }
+
+    private static __convertToBehaviourArray(behaviour: | string | null,): EveryPossibleLinkedBehaviourAcronymArray {
+        return behaviour == null
+            ? EMPTY_ARRAY
+            : behaviour.split(this.#SLASH_SEPARATOR) as | [string,] | [string, string,] | [string, string, string,] as EveryPossibleLinkedBehaviourAcronymArray;
+    }
+
+}
+
+//endregion -------------------- Template related methods & classes --------------------

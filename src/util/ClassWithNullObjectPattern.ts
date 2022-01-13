@@ -15,6 +15,11 @@ export interface ClassWithNullObjectPattern<NAME extends EveryPossibleEmptyName 
 
 export type EmptyEntityName = 'Empty entity';
 
+export type EmptyEditorImageName = 'Empty editor image';
+export type EmptyClearConditionImageName = 'Empty clear condition image';
+export type EmptyInGameImageName = 'Empty "in game" image';
+export type EmptyUnusedImageName = 'Empty "unused" image';
+
 //endregion -------------------- Entity types --------------------
 //region -------------------- Entity category types --------------------
 
@@ -60,6 +65,7 @@ export type EmptySoundEffectCategoryName = 'Empty sound effect category';
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
+    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName | EmptyUnusedImageName
 
     | EmptyEntityCategoryName
 

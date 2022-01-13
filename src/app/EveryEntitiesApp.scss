@@ -1,4 +1,4 @@
-#entity_table {
+#entity-table {
 
   tbody {
     //td {
@@ -6,59 +6,118 @@
     //}
 
     tr > {
-      //region -------------------- 2 - name --------------------
+      $index: 1;
+      //region -------------------- image - SMB --------------------
+      $index: $index+1;
 
-      :nth-child(2) {
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image - SMB --------------------
+      //region -------------------- image - SMB3 --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image - SMB3 --------------------
+      //region -------------------- image - SMW --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image - SMW --------------------
+      //region -------------------- image - NSMBU --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image - NSMBU --------------------
+      //region -------------------- image - SM3DW --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
+        max-width: 2cm;
+      }
+
+      //endregion -------------------- image - SM3DW --------------------
+      //region -------------------- name --------------------
+      $index: $index+1;
+
+      :nth-child(#{$index}) {
         min-width: 5cm;
       }
 
-      //endregion -------------------- 2 - name --------------------
-      //region -------------------- 3 - game --------------------
+      //endregion -------------------- name --------------------
+      //region -------------------- game --------------------
+      $index: $index+1;
 
-      :nth-child(3) {
+      :nth-child(#{$index}) {
         min-width: 2.5cm;
       }
 
-      //endregion -------------------- 3 - game --------------------
-      //region -------------------- 4 - game style --------------------
+      //endregion -------------------- game --------------------
+      //region -------------------- game style --------------------
+      $index: $index+1;
 
-      :nth-child(4) {
+      :nth-child(#{$index}) {
         max-width: 4cm;
       }
 
-      //endregion -------------------- 4 - game style --------------------
-      //region -------------------- 5 - course theme --------------------
+      //endregion -------------------- game style --------------------
+      //region -------------------- course theme --------------------
+      $index: $index+1;
 
-      :nth-child(5) {
+      :nth-child(#{$index}) {
         min-width: 4cm;
         max-width: 6cm;
       }
 
-      //endregion -------------------- 5 - course theme --------------------
-      //region -------------------- 6 - time --------------------
+      //endregion -------------------- course theme --------------------
+      //region -------------------- time --------------------
+      $index: $index+1;
 
-      :nth-child(6) {
+      :nth-child(#{$index}) {
         min-width: 1.5cm;
       }
 
-      //endregion -------------------- 6 - time --------------------
-      //region -------------------- 7 - entity category --------------------
+      //endregion -------------------- time --------------------
+      //region -------------------- entity category --------------------
+      $index: $index+1;
 
-      :nth-child(7) {
+      :nth-child(#{$index}) {
         min-width: 3cm;
       }
 
-      //endregion -------------------- 7 - entity category --------------------
-      //region -------------------- 8 - limit (editor) --------------------
+      //endregion -------------------- entity category --------------------
+      //region -------------------- limit (editor) --------------------
+      $index: $index+1;
 
-      :nth-child(8) {
+      :nth-child(#{$index}) {
         min-width: 5cm;
         max-width: 7.5cm;
       }
 
-      //endregion -------------------- 8 - limit (editor) --------------------
+      //endregion -------------------- limit (editor) --------------------
+
     }
 
+  }
+
+  .big-mushroom-image {
+    height: 32px;
+    margin: var(--bs-spacer-sm);
+  }
+
+  .animated-image, .non-animated-image {
+    --amount-of-blocks: 2;
+    --single-height: 16px;
   }
 
 }

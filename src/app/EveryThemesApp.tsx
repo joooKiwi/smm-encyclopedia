@@ -1,17 +1,17 @@
-import type {CourseAndWorldTheme, PossibleEnglishName} from '../entity/theme/Themes.types';
-import type {PossibleEffectInNightTheme}               from '../entity/theme/Theme.template';
+import type {CourseAndWorldTheme, PossibleEnglishName} from '../core/theme/Themes.types';
+import type {PossibleEffectInNightTheme}               from '../core/theme/Theme.template';
 import type {SingleTableContent}                       from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EmptyCourseTheme}              from '../entity/theme/EmptyCourseTheme';
-import {EmptyWorldTheme}               from '../entity/theme/EmptyWorldTheme';
+import {EmptyCourseTheme}              from '../core/theme/EmptyCourseTheme';
+import {EmptyWorldTheme}               from '../core/theme/EmptyWorldTheme';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../entity/game/Games';
+import {Games}                         from '../core/game/Games';
 import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
-import {ThemeLoader}                   from '../entity/theme/Theme.loader';
-import {Themes}                        from '../entity/theme/Themes';
+import {ThemeLoader}                   from '../core/theme/Theme.loader';
+import {Themes}                        from '../core/theme/Themes';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
 /**
@@ -42,7 +42,7 @@ export default class EveryThemesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, [courseTheme, worldTheme,],] of this.map.entries()) {
+        for (const [englishName, [courseTheme, worldTheme,],] of this.map) {
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
             const name = isInCourseTheme ? courseTheme : worldTheme;

@@ -1,13 +1,13 @@
-import type {PossibleEnglishName} from '../entity/gameStyle/GameStyles.types';
+import type {PossibleEnglishName} from '../core/gameStyle/GameStyles.types';
 import type {SingleTableContent}  from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {GameStyle}                     from '../entity/gameStyle/GameStyle';
-import {GameStyleLoader}               from '../entity/gameStyle/GameStyle.loader';
-import {GameStyles}                    from '../entity/gameStyle/GameStyles';
-import {Games}                         from '../entity/game/Games';
+import {GameStyle}                     from '../core/gameStyle/GameStyle';
+import {GameStyleLoader}               from '../core/gameStyle/GameStyle.loader';
+import {GameStyles}                    from '../core/gameStyle/GameStyles';
+import {Games}                         from '../core/game/Games';
 import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
@@ -36,7 +36,7 @@ export default class EveryGameStylesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, gameStyle,] of this.map.entries()) {
+        for (const [englishName, gameStyle,] of this.map) {
             content.push([englishName,
                 <>{index}</>,
                 this.enum[index - 1].renderSingleComponent,

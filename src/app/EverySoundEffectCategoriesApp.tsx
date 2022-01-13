@@ -1,13 +1,14 @@
-import type {SoundEffectCategory} from '../entity/soundEffect/category/SoundEffectCategory';
+import type {SoundEffectCategory} from '../core/soundEffectCategory/SoundEffectCategory';
 import type {SingleTableContent}  from './tools/table/Table.types';
-import type {PossibleEnglishName} from '../entity/soundEffect/category/SoundEffectCategories.types';
+import type {PossibleEnglishName} from '../core/soundEffectCategory/SoundEffectCategories.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
-import {SoundEffectCategories}         from '../entity/soundEffect/category/SoundEffectCategories';
-import {SoundEffectCategoryLoader}     from '../entity/soundEffect/category/SoundEffectCategory.loader';
+import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
+import {SoundEffectCategoryLoader}     from '../core/soundEffectCategory/SoundEffectCategory.loader';
 import Table                           from './tools/table/Table';
 
 /**
@@ -35,10 +36,11 @@ export default class EverySoundEffectCategoriesApp
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const [englishName, soundEffectCategory,] of this.map.entries()) {
+        for (const [englishName, soundEffectCategory,] of this.map) {
             content.push([englishName,
                 <>{index}</>,
-                <NameComponent id="name" name={soundEffectCategory} popoverOrientation="left"/>
+                <Image source={this.enum[index - 1].imagePath} fallbackName={`${englishName} - image`}/>,
+                <NameComponent id="name" name={soundEffectCategory} popoverOrientation="left"/>,
             ]);
             index++;
         }
@@ -54,6 +56,7 @@ export default class EverySoundEffectCategoriesApp
             caption={<GameContentTranslationComponent translationKey="Every sound effect categories"/>}
             headers={[
                 '#',
+                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
             ]}
             content={this.content}

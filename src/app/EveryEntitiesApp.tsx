@@ -1,36 +1,50 @@
 import './EveryEntitiesApp.scss';
 
-import type {DebugEntityReferences} from '../entity/simple/Entity.loader';
-import type {SingleTableContent}    from './tools/table/Table.types';
+import type {Entity}               from '../core/entity/Entity';
+import type {EntityAppStates}      from './AppStates.types';
+import type {PossibleEnglishName}  from '../core/entity/Entities.types';
+import type {SingleHeadersContent} from './tools/table/SimpleHeader';
+import type {SingleTableContent}   from './tools/table/Table.types';
 
-import AbstractApp                       from './AbstractApp';
-import {assert}                          from '../util/utilitiesMethods';
-import ContentTranslationComponent       from '../lang/components/ContentTranslationComponent';
-import CourseThemeComponent              from '../entity/theme/CourseTheme.component';
-import {EntityLimitTypes}                from '../entity/limit/EntityLimitTypes';
-import {EntityLoader}                    from '../entity/simple/Entity.loader';
-import GameComponent                     from '../entity/game/Game.component';
-import {GameContentTranslationContainer} from '../lang/containers/GameContentTranslation.container';
-import GameContentTranslationComponent   from '../lang/components/GameContentTranslationComponent';
-import GameStyleComponent                from '../entity/gameStyle/GameStyle.component';
-import LimitComponent                    from '../entity/limit/Limit.component';
-import NameComponent                     from '../lang/name/component/Name.component';
-import Table                             from './tools/table/Table';
-import TimeComponent                     from '../entity/time/Time.component';
+import AbstractApp                     from './AbstractApp';
+import {EntityLoader}                  from '../core/entity/Entity.loader';
+import {Entities}                      from '../core/entity/Entities';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Table                           from './tools/table/Table';
+import {EntityAppOption}               from './options/EntityAppOption';
 
 /**
  * @reactComponent
  */
 export default class EveryEntitiesApp
-    extends AbstractApp {
+    extends AbstractApp<{}, EntityAppStates> {
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<string, DebugEntityReferences>;
+    //region -------------------- Attributes --------------------
+
+    #map?: ReadonlyMap<PossibleEnglishName, Entity>;
+
+    //endregion -------------------- Attributes --------------------
+
+    public constructor(props: {},) {
+        super(props,);
+        EntityAppOption.REFERENCE = this;
+        this.state = EntityAppOption.createDefaultState;
+    }
+
+    //region -------------------- Getter methods --------------------
+
+    protected get enum() {
+        return Entities.values;
+    }
 
     protected get map() {
         return this.#map ??= EntityLoader.get.load();
     }
+
+
+    //endregion -------------------- Getter methods --------------------
 
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
@@ -38,18 +52,21 @@ export default class EveryEntitiesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, {entity},] of this.map.entries()) {
-            assert(entity != null, `The entity #${index} (${englishName}) was not initialised!`);
+        for (const [englishName,] of this.map) {
+            const enumeration = this.enum[index - 1];
+            EntityAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration;
             content.push([englishName,
-                <>{index}</>,
-                <NameComponent id="name" name={entity} popoverOrientation="right"/>,
-                <GameComponent reference={entity} name={entity}/>,
-                <GameStyleComponent reference={entity} name={entity}/>,
-                <CourseThemeComponent reference={entity} name={entity}/>,
-                <TimeComponent reference={entity} name={entity}/>,
-                <NameComponent id={`category-name-${index}`} name={entity.category} popoverOrientation="left"/>,
-                <LimitComponent id={`editor-${index}`} limits={entity.toLimitInTheEditorMap()}/>,
-                <LimitComponent id={`whilePlaying-${index}`} limits={entity.toLimitWhilePlayingMap()}/>,
+                ...[
+                    <>{index}</>,
+                    EntityAppOption.IMAGES.renderContent,
+                    EntityAppOption.NAME.renderContent,
+                    EntityAppOption.GAME.renderContent,
+                    EntityAppOption.GAME_STYLE.renderContent,
+                    EntityAppOption.COURSE_THEME.renderContent,
+                    EntityAppOption.TIME.renderContent,
+                    EntityAppOption.CATEGORY.renderContent,
+                    EntityAppOption.LIMIT.renderContent,
+                ].flat(),
             ]);
             index++;
         }
@@ -64,26 +81,15 @@ export default class EveryEntitiesApp
             caption={<GameContentTranslationComponent translationKey="Every entities"/>}
             headers={[
                 {key: 'originalOrder', element: <>#</>,},
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
-                {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,},
-                {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,},
-                {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,},
-                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
-                {
-                    key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
-                    subHeaders: [
-                        {
-                            key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
-                            tooltip: new GameContentTranslationContainer('Limit in the editor'),
-                        },
-                        {
-                            key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
-                            tooltip: new GameContentTranslationContainer('Limit while playing'),
-                        },
-                    ],
-                },
-            ]}
+                EntityAppOption.IMAGES.renderTableHeader,
+                EntityAppOption.NAME.renderTableHeader,
+                EntityAppOption.GAME.renderTableHeader,
+                EntityAppOption.GAME_STYLE.renderTableHeader,
+                EntityAppOption.COURSE_THEME.renderTableHeader,
+                EntityAppOption.TIME.renderTableHeader,
+                EntityAppOption.CATEGORY.renderTableHeader,
+                EntityAppOption.LIMIT.renderTableHeader,
+            ].filter(header => header != null) as SingleHeadersContent}
             content={this.content}
         />;
     }

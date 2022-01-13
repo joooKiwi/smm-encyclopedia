@@ -10,12 +10,12 @@ export type EnumName = 'Enum';
 
 export type SimpleEnum<N extends string, E extends Enumerable = Enumerable, > = Record<N, E>;
 
-export type EnumByOrdinal<A extends readonly E[], O extends E['ordinal'], E extends Enumerable = Enumerable, > = A[O];
-export type EnumByNumber<A extends readonly Enumerable[], O extends number = number, > = | NonNullable<A[O]> | null
+export type EnumByOrdinal<ARRAY extends readonly E[], ORDINAL extends E['ordinal'], E extends Enumerable = Enumerable, > = ARRAY[ORDINAL];
+export type EnumByNumber<ARRAY extends readonly Enumerable[], ORDINAL extends number = number, > = | NonNullable<ARRAY[ORDINAL]> | null;
 
-export type EnumByName<N extends string, E extends Enumerable = Enumerable, > = SimpleEnum<N, E>[N];
-export type EnumByPossibleString<PS extends | string | N, N extends string, E extends Enumerable = Enumerable, > = PS extends N ? EnumByName<N, E> : E
-export type EnumByString<S extends | PS | string, PS extends | N | string, N extends string, E extends Enumerable = Enumerable, > = S extends PS ? EnumByPossibleString<PS, N, E> : | E | null;
+export type EnumByName<NAME extends string, E extends Enumerable = Enumerable, > = SimpleEnum<NAME, E>[NAME];
+export type EnumByPossibleString<POSSIBLE_STRING extends | string | NAME, NAME extends string, E extends Enumerable = Enumerable, > = POSSIBLE_STRING extends NAME ? EnumByName<NAME, E> : E
+export type EnumByString<STRING extends | POSSIBLE_STRING | string, POSSIBLE_STRING extends | NAME | string, NAME extends string, E extends Enumerable = Enumerable, > = STRING extends POSSIBLE_STRING ? EnumByPossibleString<POSSIBLE_STRING, NAME, E> : | E | null;
 
 export type StaticReference<E extends Enumerable, > = EnumerableStatic<E['ordinal'], E['name'], E>;
 
