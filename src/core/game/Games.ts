@@ -60,7 +60,7 @@ export abstract class Games
         } else {
             this.#acronym = enumeration_or_acronym;
             this.#englishName = new StringContainer(englishName);
-            this.#imagePath = `/game/logos/${englishName}.svg`;
+            this.#imagePath = `/game/${englishName}.svg`;
         }
     }
 

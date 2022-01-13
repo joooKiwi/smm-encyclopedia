@@ -24,7 +24,7 @@ export type Names = keyof typeof Enum;
 
 export type PossibleAcronym = PossibleAcronym_Game;
 export type PossibleEnglishName = PossibleEnglishName_Game;
-export type PossibleImagePath = `/game/logos/${PossibleEnglishName}.svg`;
+export type PossibleImagePath = `/game/${PossibleEnglishName}.svg`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
