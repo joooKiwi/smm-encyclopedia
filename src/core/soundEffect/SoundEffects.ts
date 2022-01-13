@@ -91,8 +91,8 @@ export class SoundEffects
     private constructor(englishName: PossibleEnglishName, SMM1PartialImage: | MiddleSoundEffectImage | null, SMM2PartialImage: StartingSoundEffectImage | null,) {
         super();
         this.#englishName = new StringContainer(englishName);
-        this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/sound effects/SMM1/${SMM1PartialImage} - ${englishName as PossibleEnglishName_SMM1}.png`;
-        this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/sound effects/SMM2/${SMM2PartialImage} - ${englishName as PossibleEnglishName_SMM2}.png`;
+        this.#SMM1ImagePath = SMM1PartialImage == null ? null : `/sound effect/SMM1/${SMM1PartialImage} - ${englishName as PossibleEnglishName_SMM1}.png`;
+        this.#SMM2ImagePath = SMM2PartialImage == null ? null : `/sound effect/SMM2/${SMM2PartialImage} - ${englishName as PossibleEnglishName_SMM2}.png`;
     }
 
     //region -------------------- Getter methods --------------------

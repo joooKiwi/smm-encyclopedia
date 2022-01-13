@@ -91,12 +91,12 @@ export type PossibleEnglishName_SMM2 =
 export type PossibleEnglishName = | PossibleEnglishName_SMM1 | PossibleEnglishName_SMM2;
 
 export type MiddleSoundEffectImage = `${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14}-${| 1 | 2}`;
-export type PossibleImagePath_SMM1 = `/sound effects/SMM1/${MiddleSoundEffectImage} - ${PossibleEnglishName_SMM1}.png`;
+export type PossibleImagePath_SMM1 = `/sound effect/SMM1/${MiddleSoundEffectImage} - ${PossibleEnglishName_SMM1}.png`;
 
 type EveryPossibleSoundEffectStarting = `${| 1 | 2 | 3 | 4 | 5}.${| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11}`;
 type ExcludedPossibleSoundEffectStarting = | '1.11' | `3.${| 7 | 8 | 9 | 10 | 11}` | `4.${| 10 | 11}`;
 export type StartingSoundEffectImage = Exclude<EveryPossibleSoundEffectStarting, ExcludedPossibleSoundEffectStarting>;
-export type PossibleImagePath_SMM2 = `/sound effects/SMM2/${StartingSoundEffectImage} - ${PossibleEnglishName_SMM2}.png`;
+export type PossibleImagePath_SMM2 = `/sound effect/SMM2/${StartingSoundEffectImage} - ${PossibleEnglishName_SMM2}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
