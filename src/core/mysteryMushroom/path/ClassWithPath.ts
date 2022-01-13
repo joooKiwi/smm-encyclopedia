@@ -267,7 +267,7 @@ export type LostALifeSound = 'down.wav';
 //endregion -------------------- Specific image / sound files --------------------
 //region -------------------- Path (starting / ending) --------------------
 
-export type BasicStartingPath = '/mystery mushrooms/';
+export type BasicStartingPath = '/mystery mushroom/';
 export type JapanesePath = '/Japanese';
 export type LeftVariationPath = '/Left variation';
 export type UnderwaterVariationPath = '/Underwater variation';
@@ -275,7 +275,7 @@ export type UnderwaterVariationPath = '/Underwater variation';
 //endregion -------------------- Path (starting / ending) --------------------
 //region -------------------- Possible paths --------------------
 
-export type PossibleBasicPath<T extends PossiblePath = PossiblePath, > = `/mystery mushrooms/${T}`;
+export type PossibleBasicPath<T extends PossiblePath = PossiblePath, > = `${BasicStartingPath}${T}`;
 export type PossibleJapaneseImagePath<T extends PossiblePath = PossiblePath, > = `${BasicStartingPath}${T}${JapanesePath}`;
 export type PossibleLeftVariationImagePath<T extends PossiblePath = PossiblePath, > = `${BasicStartingPath}${T}${LeftVariationPath}`;
 export type PossibleUnderwaterVariationImagePath<T extends PossiblePath = PossiblePath, > = `${BasicStartingPath}${T}${UnderwaterVariationPath}`;

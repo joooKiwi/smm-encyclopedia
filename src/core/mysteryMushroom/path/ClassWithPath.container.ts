@@ -9,7 +9,7 @@ export abstract class ClassWithPathContainer<PATH extends PossiblePath,
 
     //region -------------------- Attributes --------------------
 
-    protected static readonly BASIC_STARTING_PATH: BasicStartingPath = '/mystery mushrooms/';
+    protected static readonly BASIC_STARTING_PATH: BasicStartingPath = '/mystery mushroom/';
     protected static readonly JAPANESE_PATH: JapanesePath = '/Japanese';
     protected static readonly LEFT_VARIATION_PATH: LeftVariationPath = '/Left variation';
     protected static readonly UNDERWATER_VARIATION_PATH: UnderwaterVariationPath = '/Underwater variation';
