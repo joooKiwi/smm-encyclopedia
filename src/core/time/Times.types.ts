@@ -24,7 +24,7 @@ export type Names = keyof typeof Enum;
 export type PossibleEnglishName = | 'Day' | 'Night';
 
 export type PossibleSimpleImagePath = | 'Sun' | 'Moon';
-export type PossibleImagePath = `/game/times/${PossibleSimpleImagePath}.png`;
+export type PossibleImagePath = `/time/${PossibleSimpleImagePath}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

@@ -74,7 +74,7 @@ export abstract class Times
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/game/times/${this.#simpleImagePath}.png`;
+        return this.#imagePath ??= `/time/${this.#simpleImagePath}.png`;
     }
 
     //endregion -------------------- Getter methods --------------------
