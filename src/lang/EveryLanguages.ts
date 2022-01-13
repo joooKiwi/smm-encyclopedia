@@ -20,6 +20,14 @@ export abstract class EveryLanguages
 
     public static readonly ENGLISH =             new class EveryLanguages_English extends EveryLanguages {
 
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
         }
@@ -40,7 +48,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.originalEnglish;
         }
 
-    }           (true,  false,           'en',    'en',    'English',              'English',);
+    }           (true,  'en',    'en',    'English',              'English',);
     public static readonly AMERICAN_ENGLISH =    new class EveryLanguages_AmericanEnglish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -55,7 +63,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.americanEnglish;
         }
 
-    }   (true,  false,           'en_AM', 'en-US', 'English (America)',    'English (America)',   'America',      EveryLanguages.ENGLISH,);
+    }   (true,  'en_AM', 'en-US', 'English (America)',    'English (America)',   'America',      EveryLanguages.ENGLISH,);
     public static readonly EUROPEAN_ENGLISH =    new class EveryLanguages_EuropeanEnglish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -70,8 +78,16 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanEnglish;
         }
 
-    }   (true,  false,           'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    'Europe',       EveryLanguages.ENGLISH,);
+    }   (true,  'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    'Europe',       EveryLanguages.ENGLISH,);
     public static readonly FRENCH =              new class EveryLanguages_French extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
@@ -93,7 +109,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.originalFrench;
         }
 
-    }            (true,  false,           'fr',    'fr',    'French',               'Français',);
+    }            (true,  'fr',    'fr',    'French',               'Français',);
     public static readonly CANADIAN_FRENCH =     new class EveryLanguages_CanadianFrench extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -108,7 +124,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.canadianFrench;
         }
 
-    }    (true,  false,           'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   'Canada',       EveryLanguages.FRENCH,);
+    }    (true,  'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   'Canada',       EveryLanguages.FRENCH,);
     public static readonly EUROPEAN_FRENCH =     new class EveryLanguages_EuropeanFrench extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -123,15 +139,31 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanFrench;
         }
 
-    }    (true,  false,           'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   'Europe',       EveryLanguages.FRENCH,);
+    }    (true,  'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   'Europe',       EveryLanguages.FRENCH,);
     public static readonly GERMAN =              new class EveryLanguages_German extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends | ClassWithEveryLanguages | CompleteClassWithEveryLanguages>(classWithEveryLanguages: T,): T['german'] {
             return classWithEveryLanguages.german;
         }
 
-    }            (false, false,           'de',    'de',    'German',               'Deutsche',);
+    }            (false, 'de',    'de',    'German',               'Deutsche',);
     public static readonly SPANISH =             new class EveryLanguages_Spanish extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage;
@@ -149,7 +181,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.originalSpanish;
         }
 
-    }           (false, false,           'es',    'es',    'Spanish',              'Español',);
+    }           (false, 'es',    'es',    'Spanish',              'Español',);
     public static readonly AMERICAN_SPANISH =    new class EveryLanguages_AmericanSpanish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -160,7 +192,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.americanSpanish;
         }
 
-    }   (false, false,           'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   'America',      EveryLanguages.SPANISH,);
+    }   (false, 'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   'America',      EveryLanguages.SPANISH,);
     public static readonly EUROPEAN_SPANISH =    new class EveryLanguages_EuropeanSpanish extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -171,22 +203,46 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanSpanish;
         }
 
-    }   (false, false,           'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    'Europe',       EveryLanguages.SPANISH,);
+    }   (false, 'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    'Europe',       EveryLanguages.SPANISH,);
     public static readonly ITALIAN =             new class EveryLanguages_Italian extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['italian'] {
             return classWithEveryLanguages.italian;
         }
 
-    }           (false, false,           'it',    'it',    'Italian',              'Italiano',);
+    }           (false, 'it',    'it',    'Italian',              'Italiano',);
     public static readonly DUTCH =               new class EveryLanguages_Dutch extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['dutch'] {
             return classWithEveryLanguages.dutch;
         }
 
-    }             (false, false,           'nl',    'nl',    'Dutch',                'Nederlands',);
+    }             (false, 'nl',    'nl',    'Dutch',                'Nederlands',);
     public static readonly PORTUGUESE =          new class EveryLanguages_Portuguese extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
@@ -204,7 +260,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.originalPortuguese;
         }
 
-    }        (false, false,           'pt',    'pt',    'Portuguese',           'Português',);
+    }        (false, 'pt',    'pt',    'Portuguese',           'Português',);
     public static readonly AMERICAN_PORTUGUESE = new class EveryLanguages_AmericanPortuguese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -215,7 +271,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.americanPortuguese;
         }
 
-    }(false, false,           'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', 'America',      EveryLanguages.PORTUGUESE,);
+    }(false, 'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', 'America',      EveryLanguages.PORTUGUESE,);
     public static readonly EUROPEAN_PORTUGUESE = new class EveryLanguages_EuropeanPortuguese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -226,22 +282,46 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.europeanPortuguese;
         }
 
-    }(false, false,           'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  'Europe',       EveryLanguages.PORTUGUESE,);
+    }(false, 'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  'Europe',       EveryLanguages.PORTUGUESE,);
     public static readonly RUSSIAN =             new class EveryLanguages_Russian extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['russian'] {
             return classWithEveryLanguages.russian;
         }
 
-    }           (false, false,           'ru',    'ru',    'Russian',              'русский',);
+    }           (false, 'ru',    'ru',    'Russian',              'русский',);
     public static readonly JAPANESE =            new class EveryLanguages_Japanese extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['japanese'] {
             return classWithEveryLanguages.japanese;
         }
 
-    }          (false, true,            'ja',    'ja',    'Japanese',             '日本語',);
+    }          (false, 'ja',    'ja',    'Japanese',             '日本語',);
     public static readonly CHINESE =             new class EveryLanguages_Chinese extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         public get isCurrentLanguage(): boolean {
             return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
@@ -259,7 +339,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.originalChinese;
         }
 
-    }           (false, true,            'zh',    'zh',    'Chinese',              '中国人',);
+    }           (false, 'zh',    'zh',    'Chinese',              '中国人',);
     public static readonly TRADITIONAL_CHINESE = new class EveryLanguages_TraditionalChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -270,7 +350,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.traditionalChinese;
         }
 
-    }(false, true,            'zh_T',  'zh',    'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
+    }(false, 'zh_T',  'zh',    'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
     public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -281,22 +361,38 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.simplifiedChinese;
         }
 
-    } (false, true,            'zh_S',  'zh',    'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
+    } (false, 'zh_S',  'zh',    'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_EVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['korean'] {
             return classWithEveryLanguages.korean;
         }
 
-    }            (false, [true, false,],  'ko',    'ko',    'Korean',               '한국어',);
+    }            (false, 'ko',    'ko',    'Korean',               '한국어',);
 
     public static readonly GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
 
         protected _get<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): T['greek'] {
             return classWithEveryLanguages.greek;
         }
 
-    }             (false, false,           'el',    'el',    'Greek',                'ελληνικά',);
+    }             (false, 'el',    'el',    'Greek',                'ελληνικά',);
 
     protected static readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH;
 
@@ -311,12 +407,17 @@ export abstract class EveryLanguages
     static #CURRENT_LANGUAGE: EveryLanguages;
     public static readonly UNKNOWN_STRING = '???';
     public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleInternationalAcronym_Project>> | null = null;
+    protected static readonly _SPACE_EVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, true, false,];
+    protected static readonly _SPACE_EVEN_LANGUAGE_WITHOUT_SPACE: SpaceParameterReceived = [false, true,];
+    protected static readonly _SPACE_UNEVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, false,];
 
     readonly #isACompleteLanguage: boolean;
 
-    readonly #isASpaceEvenLanguage: boolean;
-    readonly #isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace: boolean;
-    readonly #isASpaceEvenLanguageForThePointsAndSpace: boolean;
+    #spaceParameter?: SpaceParameters;
+    #hasSpace?: boolean;
+    #isASpaceEvenLanguage?: boolean;
+    #isASpaceEvenLanguageForThePointsAndSpace?: boolean;
+    #isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace?: boolean;
 
     readonly #projectAcronym: PossibleAcronym;
     readonly #internationalAcronym: PossibleInternationalAcronym;
@@ -341,20 +442,13 @@ export abstract class EveryLanguages
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, differenceWords: PossibleDifferentWord, parent: EveryLanguages,)
-    private constructor(isACompleteLanguage: boolean, isASpaceEvenLanguage: IsASpaceEvenLanguageReceived, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: | PossibleDifferentWord | null = null, parent: | EveryLanguages | null = null,) {
+    private constructor(isACompleteLanguage: boolean, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, differenceWords: PossibleDifferentWord, parent: EveryLanguages,)
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: | PossibleDifferentWord | null = null, parent: | EveryLanguages | null = null,) {
         super();
         this.#isACompleteLanguage = isACompleteLanguage;
-        if (typeof isASpaceEvenLanguage == 'boolean')
-            this.#isASpaceEvenLanguage = this.#isASpaceEvenLanguageForThePointsAndSpace = this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace = isASpaceEvenLanguage;
-        else {
-            this.#isASpaceEvenLanguage = isASpaceEvenLanguage[0] && isASpaceEvenLanguage[1];
-            this.#isASpaceEvenLanguageForThePointsAndSpace = isASpaceEvenLanguage[0];
-            this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace = isASpaceEvenLanguage[1];
-        }
         this.#projectAcronym = projectAcronym;
         this.#internationalAcronym = internationalAcronym;
         this.#englishName = englishName;
@@ -369,17 +463,40 @@ export abstract class EveryLanguages
         return this.#isACompleteLanguage;
     }
 
+    //region -------------------- Space getter methods --------------------
+
+    protected get _spaceParameters(): SpaceParameterReceived {
+        return this.parent!._spaceParameters;
+    }
+
+    private get __spaceParameters(): SpaceParameters {
+        if (this.#spaceParameter == null) {
+            const spaceParameters = this._spaceParameters;
+            if (spaceParameters.length === 3)
+                this.#spaceParameter = spaceParameters;
+            else
+                this.#spaceParameter = [spaceParameters[0], spaceParameters[1], spaceParameters[1],];
+        }
+        return this.#spaceParameter;
+    }
+
+    public get hasSpace(): boolean {
+        return this.#hasSpace ??= this.__spaceParameters[0];
+    }
+
     public get isASpaceEvenLanguage(): boolean {
-        return this.#isASpaceEvenLanguage;
+        return this.#isASpaceEvenLanguage ??= this.isASpaceEvenLanguageForThePointsAndSpace && this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace;
     }
 
     public get isASpaceEvenLanguageForThePointsAndSpace(): boolean {
-        return this.#isASpaceEvenLanguageForThePointsAndSpace;
+        return this.#isASpaceEvenLanguageForThePointsAndSpace ??= this.__spaceParameters[1];
     }
 
     public get isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace(): boolean {
-        return this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace;
+        return this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace ??= this.__spaceParameters[2];
     }
+
+    //endregion -------------------- Space getter methods --------------------
 
     public get projectAcronym(): PossibleAcronym {
         return this.#projectAcronym;
@@ -424,7 +541,7 @@ export abstract class EveryLanguages
     //region -------------------- Characters getter methods --------------------
 
     public get space(): PossibleSpaceCharacter {
-        return this.#space ??= this.isASpaceEvenLanguageForThePointsAndSpace ? ' ' : '';
+        return this.#space ??= this.hasSpace ? ' ' : '';
     }
 
     public get points(): PossiblePoints_Array {
@@ -540,11 +657,11 @@ export abstract class EveryLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected abstract _get<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string;
-    protected abstract _get<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | null;
+    protected abstract _get(classWithEveryLanguages: CompleteClassWithEveryLanguages,): string;
+    protected abstract _get(classWithEveryLanguages: ClassWithEveryLanguages,): | string | null;
     protected abstract _get(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | null;
 
-    public get(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+    public get(classWithEveryLanguages: AnyClassWithEveryLanguages,): string {
         return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages);
     }
 
@@ -557,8 +674,8 @@ export abstract class EveryLanguages
         return this.AMERICAN_ENGLISH.get(classWithEveryLanguages);
     }
 
-    public original<T extends CompleteClassWithEveryLanguages = CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
-    public original<T extends ClassWithEveryLanguages = ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    public original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
+    public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
     public original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
         return this.parent?.original(classWithEveryLanguages) ?? this.get(classWithEveryLanguages);
     }
@@ -665,5 +782,6 @@ export abstract class EveryLanguages
 
 }
 
-type IsASpaceEvenLanguageReceived = | boolean | [excludingPointsAndSpace: boolean, pointsAndSpace: boolean,];
+type SpaceParameterReceived = | [hasSpace: boolean, isSpaceEvenLanguage: boolean,] | readonly [hasSpace: boolean, isSpaceEvenLanguageExcludingPointsAndSpace: boolean, isSpaceEvenLanguagePointsAndSpace: boolean,];
+type SpaceParameters = readonly [hasSpace: boolean, isSpaceEvenLanguageExcludingPointsAndSpace: boolean, isSpaceEvenLanguagePointsAndSpace: boolean,];
 type PossibleChildrenLanguages = readonly [EveryLanguages, EveryLanguages,] | readonly [];

@@ -1,6 +1,6 @@
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages';
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './name/containers/Language';
 import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../core/ClassInAnySuperMarioMakerGame';
-import type {ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from './ClassWithEveryLanguages';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './ProjectLanguages.types';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './LanguageEnumerable';
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
@@ -110,6 +110,12 @@ export class ProjectLanguages
         return this.language.isACompleteLanguage;
     }
 
+    //region -------------------- Space getter methods --------------------
+
+    public get hasSpace(): boolean{
+        return this.language.hasSpace;
+    }
+
     public get isASpaceEvenLanguage(): boolean {
         return this.language.isASpaceEvenLanguage;
     }
@@ -121,6 +127,8 @@ export class ProjectLanguages
     public get isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace(): boolean {
         return this.language.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace;
     }
+
+    //endregion -------------------- Space getter methods --------------------
 
     public get projectAcronym(): PossibleAcronym {
         return this.language.projectAcronym as PossibleAcronym;
@@ -285,9 +293,7 @@ export class ProjectLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get<T extends CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string
-    public get<T extends ClassWithEveryLanguages, >(classWithEveryLanguages: T,): string
-    public get<T extends | ClassWithEveryLanguages | CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): string {
+    public get(classWithEveryLanguages: AnyClassWithEveryLanguages,): string {
         return this.language.get(classWithEveryLanguages);
     }
 
@@ -295,13 +301,13 @@ export class ProjectLanguages
      * @param classWithEveryLanguages
      * @see EveryLanguages.getEnglish
      */
-    public static getEnglish(classWithEveryLanguages: ClassWithEveryLanguages,): string {
+    public static getEnglish(classWithEveryLanguages: AnyClassWithEveryLanguages,): string {
         return this.AMERICAN_ENGLISH.get(classWithEveryLanguages);
     }
 
     public original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
     public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
-    public original(classWithEveryLanguages: | ClassWithEveryLanguages | CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
+    public original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
         return this.language.original(classWithEveryLanguages);
     }
 
@@ -379,8 +385,8 @@ export class ProjectLanguages
             ? null
             : typeof value === 'string'
                 ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.getValue(EveryLanguages.getValue(value))
-                    ?? null
+                ?? this.getValue(EveryLanguages.getValue(value))
+                ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
                     : value instanceof EveryLanguages

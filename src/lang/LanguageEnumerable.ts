@@ -15,6 +15,9 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
 
     get isACompleteLanguage(): boolean
 
+    //region -------------------- Space getter methods --------------------
+
+    get hasSpace(): boolean
 
     get isASpaceEvenLanguage(): boolean
 
@@ -22,6 +25,7 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
 
     get isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace(): boolean
 
+    //endregion -------------------- Space getter methods --------------------
 
     get projectAcronym(): PROJECT_ACRONYM
 
@@ -48,14 +52,14 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    get(classWithEveryLanguages: ClassWithEveryLanguages,): string
+    get(classWithEveryLanguages: AnyClassWithEveryLanguages,): string
 
 
-    original<T extends CompleteClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
+    original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
 
-    original<T extends ClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
 
-    original<T extends AnyClassWithEveryLanguages = AnyClassWithEveryLanguages, >(classWithEveryLanguages: T,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
 
     //endregion -------------------- Methods --------------------
 
