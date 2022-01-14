@@ -1,11 +1,12 @@
 import {Tooltip} from 'bootstrap';
 
-import type {TooltipEventCallbackReceived, TooltipEventsReceived} from './Tooltip.types';
+import type {TooltipEventCallbackReceived, TooltipEvents, TooltipEventsReceived} from './Tooltip.types';
 
-import {BootstrapInstance} from '../BootstapInstance';
+import {BootstrapInstance}                from '../BootstapInstance';
+import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance';
 
 export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
-    extends BootstrapInstance<typeof TooltipInstance, Tooltip, Tooltip.Options, ELEMENT, ID> {
+    extends BootstrapWithBasicEventsInstance<typeof TooltipInstance, Tooltip, Tooltip.Options, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<Tooltip.Options> = {};
     /**
@@ -39,7 +40,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     }
 
 
-    private __addEventListener(type: string, callback: TooltipEventCallbackReceived,): this {
+    private __addEventListener(type: string, callback: TooltipEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -49,18 +50,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/tooltips/#events
      */
-    public on(callbacks: TooltipEventsReceived,): this {
-        if (callbacks == null)
-            return this;
-
-        if (callbacks.show != null)
-            this.onShow(callbacks.show);
-        if (callbacks.shown != null)
-            this.onShown(callbacks.shown);
-        if (callbacks.hide != null)
-            this.onHide(callbacks.hide);
-        if (callbacks.hidden != null)
-            this.onHidden(callbacks.hidden);
+    public _on(callbacks: Partial<TooltipEvents<this>>,): this {
         if (callbacks.inserted != null)
             this.onInserted(callbacks.inserted);
         return this;
@@ -70,7 +60,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.show
      */
-    public onShow(callback: TooltipEventCallbackReceived,): this {
+    public onShow(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.SHOW_EVENT, callback,);
     }
 
@@ -78,7 +68,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.shown
      */
-    public onShown(callback: TooltipEventCallbackReceived,): this {
+    public onShown(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.SHOWN_EVENT, callback,);
     }
 
@@ -86,7 +76,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.hide
      */
-    public onHide(callback: TooltipEventCallbackReceived,): this {
+    public onHide(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.HIDE_EVENT, callback,);
     }
 
@@ -94,7 +84,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.hidden
      */
-    public onHidden(callback: TooltipEventCallbackReceived,): this {
+    public onHidden(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.HIDDEN_EVENT, callback,);
     }
 
@@ -102,7 +92,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.inserted
      */
-    public onInserted(callback: TooltipEventCallbackReceived,): this {
+    public onInserted(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.INSERTED_EVENT, callback,);
     }
 

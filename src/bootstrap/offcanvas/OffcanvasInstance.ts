@@ -1,12 +1,13 @@
 import {Offcanvas} from 'bootstrap';
 
-import type {ComponentOptions}                                        from 'bootstrap/js/dist/base-component';
-import type {OffcanvasEventCallbackReceived, OffcanvasEventsReceived} from './Offcanvas.types';
+import type {ComponentOptions}                                                         from 'bootstrap/js/dist/base-component';
+import type {OffcanvasEventCallbackReceived, OffcanvasEvents, OffcanvasEventsReceived} from './Offcanvas.types';
 
-import {BootstrapInstance} from '../BootstapInstance';
+import {BootstrapInstance}                from '../BootstapInstance';
+import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance';
 
 export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
-    extends BootstrapInstance<typeof OffcanvasInstance, Offcanvas, ComponentOptions, ELEMENT, ID> {
+    extends BootstrapWithBasicEventsInstance<typeof OffcanvasInstance, Offcanvas, ComponentOptions, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<ComponentOptions> = {};
     /**
@@ -36,7 +37,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
     }
 
 
-    private __addEventListener(type: string, callback: OffcanvasEventCallbackReceived,): this {
+    private __addEventListener(type: string, callback: OffcanvasEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -46,18 +47,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/offcanvas/#events
      */
-    public on(callbacks: OffcanvasEventsReceived,): this {
-        if (callbacks == null)
-            return this;
-
-        if (callbacks.show != null)
-            this.onShow(callbacks.show);
-        if (callbacks.shown != null)
-            this.onShown(callbacks.shown);
-        if (callbacks.hide != null)
-            this.onHide(callbacks.hide);
-        if (callbacks.hidden != null)
-            this.onHidden(callbacks.hidden);
+    public _on(callbacks: Partial<OffcanvasEvents<this>>,): this {
         return this;
     }
 
@@ -65,7 +55,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.show
      */
-    public onShow(callback: OffcanvasEventCallbackReceived,): this {
+    public onShow(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.SHOW_EVENT, callback,);
     }
 
@@ -73,7 +63,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.shown
      */
-    public onShown(callback: OffcanvasEventCallbackReceived,): this {
+    public onShown(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.SHOWN_EVENT, callback,);
     }
 
@@ -81,7 +71,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.hide
      */
-    public onHide(callback: OffcanvasEventCallbackReceived,): this {
+    public onHide(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.HIDE_EVENT, callback,);
     }
 
@@ -89,7 +79,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.hidden
      */
-    public onHidden(callback: OffcanvasEventCallbackReceived,): this {
+    public onHidden(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.HIDDEN_EVENT, callback,);
     }
 
