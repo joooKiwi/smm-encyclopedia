@@ -1,11 +1,12 @@
 import {Popover} from 'bootstrap';
 
-import type {PopoverEventCallbackReceived, PopoverEventsReceived} from './Popover.types';
+import type {PopoverEventCallbackReceived, PopoverEvents, PopoverEventsReceived} from './Popover.types';
 
-import {BootstrapInstance} from '../BootstapInstance';
+import {BootstrapInstance}                from '../BootstapInstance';
+import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance';
 
 export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
-    extends BootstrapInstance<typeof PopoverInstance, Popover, Popover.Options, ELEMENT, ID> {
+    extends BootstrapWithBasicEventsInstance<typeof PopoverInstance, Popover, Popover.Options, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<Popover.Options> = {};
     /**
@@ -39,7 +40,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     }
 
 
-    private __addEventListener(type: string, callback: PopoverEventCallbackReceived,): this {
+    private __addEventListener(type: string, callback: PopoverEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -49,18 +50,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/popovers/#events
      */
-    public on(callbacks: PopoverEventsReceived,): this {
-        if (callbacks == null)
-            return this;
-
-        if (callbacks.show != null)
-            this.onShow(callbacks.show);
-        if (callbacks.shown != null)
-            this.onShown(callbacks.shown);
-        if (callbacks.hide != null)
-            this.onHide(callbacks.hide);
-        if (callbacks.hidden != null)
-            this.onHidden(callbacks.hidden);
+    public _on(callbacks: Partial<PopoverEvents<this>>,): this {
         if (callbacks.inserted != null)
             this.onInserted(callbacks.inserted);
         return this;
@@ -70,7 +60,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.show
      */
-    public onShow(callback: PopoverEventCallbackReceived,): this {
+    public onShow(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.SHOW_EVENT, callback,);
     }
 
@@ -78,7 +68,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.shown
      */
-    public onShown(callback: PopoverEventCallbackReceived,): this {
+    public onShown(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.SHOWN_EVENT, callback,);
     }
 
@@ -86,7 +76,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.hide
      */
-    public onHide(callback: PopoverEventCallbackReceived,): this {
+    public onHide(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.HIDE_EVENT, callback,);
     }
 
@@ -94,7 +84,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.hidden
      */
-    public onHidden(callback: PopoverEventCallbackReceived,): this {
+    public onHidden(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.HIDDEN_EVENT, callback,);
     }
 
@@ -102,7 +92,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.inserted
      */
-    public onInserted(callback: PopoverEventCallbackReceived,): this {
+    public onInserted(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.INSERTED_EVENT, callback,);
     }
 

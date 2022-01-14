@@ -1,35 +1,36 @@
-import type {BootstrapConfigurationWithNoOption} from '../Bootstrap.types';
-import type {OffcanvasInstance}                  from './OffcanvasInstance';
+import type {BootstrapConfigurationWithNoOption}                                                                         from '../Bootstrap.types';
+import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEventsReceived} from '../BootstrapWithBasicEventsInstance.types';
+import type {OffcanvasInstance}                                                                                          from './OffcanvasInstance';
 
 export type OffcanvasConfiguration = BootstrapConfigurationWithNoOption<OffcanvasEvents>;
 
 /**
  * @see https://getbootstrap.com/docs/5.1/components/offcanvas/#events
  */
-export interface OffcanvasEvents {
+export interface OffcanvasEvents<I extends OffcanvasInstance = OffcanvasInstance, > {
 
     /**
      * @see Offcanvas.Events.show
      */
-    show: OffcanvasEventCallback
+    show: OffcanvasEventCallback<I>
 
     /**
      * @see Offcanvas.Events.shown
      */
-    shown: OffcanvasEventCallback
+    shown: OffcanvasEventCallback<I>
 
     /**
      * @see Offcanvas.Events.hide
      */
-    hide: OffcanvasEventCallback
+    hide: OffcanvasEventCallback<I>
 
     /**
      * @see Offcanvas.Events.hidden
      */
-    hidden: OffcanvasEventCallback
+    hidden: OffcanvasEventCallback<I>
 
 }
 
-export type OffcanvasEventCallback = (instance: OffcanvasInstance, event: Event,) => void;
-export type OffcanvasEventsReceived = | Partial<OffcanvasEvents> | null | undefined;
-export type OffcanvasEventCallbackReceived = | OffcanvasEventCallback | null | undefined;
+export type OffcanvasEventCallback<I extends OffcanvasInstance = OffcanvasInstance, > = BootstrapWithBasicEventCallback<I>;
+export type OffcanvasEventsReceived<I extends OffcanvasInstance = OffcanvasInstance, > = BootstrapWithBasicEventsReceived<I, OffcanvasEvents<I>>;
+export type OffcanvasEventCallbackReceived<I extends OffcanvasInstance = OffcanvasInstance, > = BootstrapWithBasicEventCallbackReceived<I, OffcanvasEventCallback<I>>;

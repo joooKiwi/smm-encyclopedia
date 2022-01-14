@@ -1,13 +1,21 @@
-import {assert}                          from '../util/utilitiesMethods';
-import BaseComponent, {ComponentOptions} from 'bootstrap/js/dist/base-component';
+import type BaseComponent      from 'bootstrap/js/dist/base-component';
+import type {ComponentOptions} from 'bootstrap/js/dist/base-component';
+
+import type {GenericBootstrapInstance, StaticBootstrapInstance, Template} from './BootstrapInstance.types';
+
+import {assert} from '../util/utilitiesMethods';
 
 export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > {
+
+    //region -------------------- Attributes --------------------
 
     static #referencesMaps: Map<StaticBootstrapInstance, Template> = new Map();
 
     readonly #element: ELEMENT;
     readonly #elementId: ID;
     readonly #instance: INSTANCE;
+
+    //endregion -------------------- Attributes --------------------
 
     protected constructor(instance: STATIC_INSTANCE, element: | ID | ELEMENT, options: Partial<OPTION>,) {
         if (typeof element === 'string') {
@@ -20,11 +28,12 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
             this.#elementId = element.id as ID;
         }
         this.#instance = this._createInstance(options);
-        BootstrapInstance.__addReference(instance, this);
+        BootstrapInstance.__addReference(instance, this,);
     }
 
     protected abstract _createInstance(options: Partial<OPTION>,): INSTANCE
 
+    //region -------------------- Getter methods --------------------
 
     public get id(): ID {
         return this.#elementId;
@@ -43,6 +52,9 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
         return this.#referencesMaps;
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
     private static __addReference(staticInstance: StaticBootstrapInstance, instance: GenericBootstrapInstance,): void {
         if (!this.__referencesMaps.has(staticInstance))
             this.__referencesMaps.set(staticInstance, {id: new Map(), element: new Map(),});
@@ -58,20 +70,6 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
         return instanceReturned;
     }
 
-}
-
-interface Template<INSTANCE extends GenericBootstrapInstance = GenericBootstrapInstance, > {
-
-    id: Map<string, INSTANCE>
-
-    element: Map<HTMLElement, INSTANCE>
+    //endregion -------------------- Methods --------------------
 
 }
-
-interface StaticBootstrapInstance<OPTION extends ComponentOptions = ComponentOptions, > {
-
-    get DEFAULT_OPTIONS(): Partial<OPTION>
-
-}
-
-type GenericBootstrapInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapInstance<StaticBootstrapInstance<ComponentOptions>, BaseComponent, ComponentOptions, ELEMENT, ID>;
