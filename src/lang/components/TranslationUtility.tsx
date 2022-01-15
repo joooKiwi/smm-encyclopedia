@@ -1,5 +1,7 @@
-import type {ReactElement}                                                                                           from '../../util/react/ReactProperty';
-import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnMethod} from './TranslationProperty';
+import type {TOptions} from 'i18next';
+
+import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
+import type {ReactElement}                                                                                          from '../../util/react/ReactProperty';
 
 import {assert} from '../../util/utilitiesMethods';
 
@@ -13,19 +15,22 @@ export class TranslationUtility {
     public static readonly ENDING_CHARACTER_LENGTH = this.ENDING_CHARACTER.length;
     public static readonly ENDING_REGEX = /}}/g;
     public static readonly ENDING_LENGTH = '}}'.length;
+    public static OPTION_TO_RETURN_OBJECT: TOptions = {returnObjects: true, interpolation: {skipOnVariables: true,},};
 
 
     private constructor() {
         throw new EvalError(`This class "${TranslationUtility}" cannot be created.`);
     }
 
-    public static testTranslation<N extends Namespace, T extends TranslationReturnMethod<N, SingleTranslationKey<N>, string> = TranslationReturnMethod<N, SingleTranslationKey<N>, string>, >(value: T,): T & string {
+    public static testTranslation<N extends Namespace, T extends TranslationReturnValue<N> = TranslationReturnValue<N>, >(value: T,): T & string {
         assert(typeof value == 'string', `The translation key ${value} cannot receive a translation that contain a sub value.`,);
         return value;
     }
 
-    public static replaceAndInterpretTranslation<N extends Namespace, >(translation: TranslationMethod<N>, value: SingleTranslationKey<N>, keyMap: TranslationReplaceKeysMap,) {
-        return this.replaceInTranslation(this.testTranslation(translation(value, {returnObjects: true, interpolation: {skipOnVariables: true,},})), keyMap,);
+    public static replaceAndInterpretTranslation<N extends Namespace, >(translation: TranslationMethod<N>, value: SingleTranslationKey<N>, keyMap: TranslationReplaceKeysMap,): ReactElement {
+        //FIXME remove the error (if possible) "Type 'string' is not assignable to type '"entityContent"'"
+        // @ts-ignore
+        return this.replaceInTranslation(this.testTranslation(translation(value, this.OPTION_TO_RETURN_OBJECT,)), keyMap,);
     }
 
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,) {

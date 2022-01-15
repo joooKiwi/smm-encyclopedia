@@ -1,4 +1,4 @@
-import type {DefaultResources, Namespace as OriginalNamespace, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
+import type {DefaultResources, KeyPrefix, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
 
 import type {ReactElement, SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
@@ -13,13 +13,33 @@ export type ContentNamespace = 'content';
 export type GameContentNamespace = 'gameContent';
 export type EntityContentNamespace = 'entityContent';
 export type LanguageNamespace = 'language';
-export type Namespace = OriginalNamespace;
+export type Namespace = keyof DefaultResources;
 
+/**
+ * A simple translation method based on the {@link Namespace namespace} used.
+ */
 export type TranslationMethod<N extends Namespace, > = TFunction<N>;
 
-export type TranslationReturnMethod<N extends Namespace, KEY, DEFAULT_RESULT, RESOURCE = DefaultResources, > = TFuncReturn<N, KEY, DEFAULT_RESULT, RESOURCE>;
+/**
+ * A simple translation return value based on a {@link Namespace namespace}.
+ *
+ * @see TranslationMethod
+ * @see SingleTranslationKey
+ */
+export type TranslationReturnValue<N extends Namespace, > = TFuncReturn<N, SingleTranslationKey<N>, string, KeyPrefix<N>, DefaultResources[N]>;
 
+/**
+ * A single translation key used for a translation
+ * on a specific {@link Namespace}.
+ */
 export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends infer S ? S : never;
+
+/**
+ * A replacement map to replace the selected key
+ * into a {@link ReactElement React element}.
+ *
+ * @note This has nothing with the React translation utilities.
+ */
 export type TranslationReplaceKeysMap = { [key: string]: ReactElement };
 
 interface _AnyTranslationProperty<N extends Namespace, > {

@@ -27,7 +27,7 @@ export default function AnyTranslationComponent<N extends Namespace, >(propertie
         options.interpolation = {skipOnVariables: true,};
     const {translationKey} = properties;
 
-    //TODO reimplement a proper translation type without the ts-ignore
+    //TODO remove (if possible) the "Type instantiation is excessively deep and possibly infinite."
     // @ts-ignore
     const translationReturnValue = TranslationUtility.testTranslation(translation(translationKey, options,));
 
