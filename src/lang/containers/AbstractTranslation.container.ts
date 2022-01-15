@@ -17,11 +17,11 @@ export abstract class AbstractTranslationContainer<N extends Namespace, >
 
     //region -------------------- Getter methods --------------------
 
-    public get namespace() {
+    public get namespace(): N {
         return this.#namespace;
     }
 
-    public get translationKey() {
+    public get translationKey(): SingleTranslationKey<N> {
         return this.#translationKey;
     }
 

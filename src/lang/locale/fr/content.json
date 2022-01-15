@@ -20,6 +20,13 @@
   "Minimum": { "m": "Minimum", "f": "Minimum" },
   "Maximum": { "m": "Maximum", "f": "Maximum" },
 
+  "Confirm":  "Confirmer",
+  "Save":     "Sauvegarder",
+  "Cancel":   "Annuler",
+  "Close":    "Fermer",
+  "Next":     "Suivant",
+  "Previous": "Précédant",
+
   "Image": "Image",
 
   "Limit": "Limite",
