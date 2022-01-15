@@ -8,7 +8,7 @@ export class EntityContentTranslationContainer
 
     public static readonly NAMESPACE: EntityContentNamespace = 'entityContent';
 
-    constructor(translationKey: SingleTranslationKey<EntityContentNamespace>,) {
+    public constructor(translationKey: SingleTranslationKey<EntityContentNamespace>,) {
         super(EntityContentTranslationContainer.NAMESPACE, translationKey,);
     }
 

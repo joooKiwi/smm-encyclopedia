@@ -8,7 +8,7 @@ export class ContentTranslationContainer
 
     public static readonly NAMESPACE: ContentNamespace = 'content';
 
-    constructor(translationKey: SingleTranslationKey<ContentNamespace>,) {
+    public constructor(translationKey: SingleTranslationKey<ContentNamespace>,) {
         super(ContentTranslationContainer.NAMESPACE, translationKey,);
     }
 
