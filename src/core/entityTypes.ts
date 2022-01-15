@@ -3,6 +3,9 @@ export type PossibleGroupName = string;
 
 /** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Object';
 
+/** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker = | 1 | 2 | null;
+/** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker_Version = | `v1.${| 2 | 3 | 4}0` | `v${| 2 | 3}.0.0` | 'SM3DW v3.0.0' | null;
+
 //region -------------------- Specific properties --------------------
 
 /** @temporaryLocation */export type CanContainOrSpawnAKey = | boolean | null;
