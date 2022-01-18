@@ -25,10 +25,15 @@ export default function DisplayTab() {
             <SingleDisplayTab routeName="everySoundEffects" callback={translation => translation('Display every sound effects')}/>
             <SingleDisplayTab routeName="everySoundEffectCategories" callback={translation => translation('Display every sound effect categories')}/>
             <div className="dropdown-divider"/>
+            <SingleDisplayTab routeName="everyMiiCostumes" callback={translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mii costumes',
+                {
+                    pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">Mii costumes{/*TODO add Mii costumes, but the plural name*/}</span>,
+            },)}/>
+            <div className="dropdown-divider"/>
             <SingleDisplayTab routeName="everyMysteryMushrooms" callback={translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mystery Mushrooms',
                 {
                     pluralName: <Fragment key="everyMysteryMushrooms-pluralName">
-                        <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushrooms</span>{/*TODO add Mystery Mushroom but the plural name*/}
+                        <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushrooms</span>{/*TODO add Mystery Mushroom, but the plural name*/}
                         <sup><Image key="mysteryMushroom-image" source="/entities/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
                     </Fragment>
                 })}/>

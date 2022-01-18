@@ -62,6 +62,11 @@ export type EmptyEntityReferenceName = 'Empty entity reference';
 export type EmptySoundEffectCategoryName = 'Empty sound effect category';
 
 //endregion -------------------- Sound effect category types --------------------
+//region -------------------- Sound effect category types --------------------
+
+export type EmptyMiiCostumeName = 'Empty Mii costume';
+
+//endregion -------------------- Sound effect category types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -79,6 +84,8 @@ export type EveryPossibleEmptyName =
 
     | EmptyIsInPropertyName | EmptyEntityReferenceName
 
-    | EmptySoundEffectCategoryName;
+    | EmptySoundEffectCategoryName
+
+    | EmptyMiiCostumeName;
 
 //endregion -------------------- Empty names types --------------------

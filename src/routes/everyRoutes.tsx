@@ -5,6 +5,7 @@ import EveryEntityGroupApp           from '../app/EveryEntityGroupApp';
 import EveryGameStylesApp            from '../app/EveryGameStylesApp';
 import EveryGameReferencesApp        from '../app/EveryGameReferencesApp';
 import EveryLimitsApp                from '../app/EveryLimitsApp';
+import EveryMiiCostumeApp            from '../app/EveryMiiCostumeApp';
 import EveryMysteryMushroomsApp      from '../app/EveryMysteryMushroomsApp';
 import EverySoundEffectCategoriesApp from '../app/EverySoundEffectCategoriesApp';
 import EverySoundEffectsApp          from '../app/EverySoundEffectsApp';
@@ -28,6 +29,8 @@ export const everySimpleRoutes = [
 
     SimpleRouteContainer.newInstance('everySoundEffects',          '/every/soundEffect',          ()=> <EverySoundEffectsApp/>,         ),
     SimpleRouteContainer.newInstance('everySoundEffectCategories', '/every/soundEffect/category', ()=> <EverySoundEffectCategoriesApp/>,),
+
+    SimpleRouteContainer.newInstance('everyMiiCostumes',           '/every/miiCostume',           ()=> <EveryMiiCostumeApp/>,           ),
 
     SimpleRouteContainer.newInstance('everyMysteryMushrooms',      '/every/mysteryMushroom',      ()=> <EveryMysteryMushroomsApp/>,     ),
 ] as const;
