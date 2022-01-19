@@ -2,7 +2,8 @@ import './TextComponent.scss';
 
 import type {PossibleTextContent, TextProperties} from './properties/TextProperties';
 
-const DEFAULT_IS_UNKNOWN = false;
+import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables';
+
 const NOT_APPLICABLE = 'N/A';
 const UNKNOWN_REFERENCE = '???';
 
@@ -11,13 +12,21 @@ const UNKNOWN_REFERENCE = '???';
  * @param properties
  * @reactComponent
  */
-export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown = DEFAULT_IS_UNKNOWN, classes, ...otherProperties}: TextProperties<T>,) {
-    if (content === NOT_APPLICABLE)
-        return <span className="not-applicable" {...otherProperties}/>;
-    if (content === UNKNOWN_REFERENCE)
-        return <span className="unknown-reference" {...otherProperties}/>;
+export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown, classes, ...otherProperties}: TextProperties<T>,) {
+    switch (content) {
+        case null:
+            if (Object.getOwnPropertyNames(otherProperties).length === 0 && classes == null)
+                return EMPTY_REACT_ELEMENT;
+            if (classes == null)
+                return <span {...otherProperties}/>;
+            return <span className={classes.join(' ')} {...otherProperties}/>;
+        case NOT_APPLICABLE:
+            return <span className="not-applicable" {...otherProperties}/>;
+        case UNKNOWN_REFERENCE:
+            return <span className="unknown-reference" {...otherProperties}/>;
+    }
 
-    if (isUnknown)
+    if (isUnknown === true)
         (classes ??= []).push('is-unknown');
 
     if (classes == null)
