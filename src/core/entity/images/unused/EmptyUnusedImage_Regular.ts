@@ -1,14 +1,14 @@
-import type {UnusedImage}                                      from './UnusedImage';
 import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from '../../../../util/ClassWithNullObjectPattern';
+import type {UnusedImage_Regular}                              from './UnusedImage_Regular';
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables';
+import {EMPTY_MAP} from '../../../../util/emptyVariables';
 
-export class EmptyUnusedImage
-    implements UnusedImage, ClassWithNullObjectPattern<EmptyUnusedImageName> {
+export class EmptyUnusedImage_Regular
+    implements UnusedImage_Regular, ClassWithNullObjectPattern<EmptyUnusedImageName> {
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyUnusedImage;
+    static #instance?: EmptyUnusedImage_Regular;
 
     private constructor() {
     }
@@ -19,7 +19,7 @@ export class EmptyUnusedImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly all = EMPTY_ARRAY;
+    public readonly all = EMPTY_MAP;
 
     public toString(): EmptyUnusedImageName {
         return 'Empty "unused" image';
