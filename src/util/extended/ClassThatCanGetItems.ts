@@ -1,21 +1,34 @@
-import type {ClassWithLength}                                from './ClassWithLength';
-import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ExtendedList';
-
-export interface ClassThatCanGetItems<T, LENGTH extends number = number, >
-    extends ClassWithLength<LENGTH> {
-
-    has(...values: readonly T[]): boolean
-
-    includes(...values: readonly T[]): boolean
-
-
-    get(value: T,): LENGTH
-
-    get(value: any,): | LENGTH | DefaultIndexIfNotFound
-
-
-    getIndex(index: LENGTH,): T
-
-    getIndex(index: number,): T | DefaultValueIfNotFound
+export interface ClassThatCanGetItems {
 
 }
+
+export interface ClassThatCanGetItemsOrKeys<K, V, >
+    extends ClassThatCanGetItems {
+
+    get(key: K,): V
+
+    get(key: any,): | V | DefaultValueIfNotFound
+
+
+    getKey(value: V,): K
+
+    getKey(value: any,): K | DefaultValueIfNotFound
+
+}
+
+export interface ClassThatCanGetItemsOrIndexes<I extends number, V, >
+    extends ClassThatCanGetItems {
+
+    get(index: I,): V
+
+    get(index: any,): | V | DefaultValueIfNotFound
+
+
+    getIndex(value: V,): I
+
+    getIndex(value: any,): I | DefaultIndexIfNotFound
+
+}
+
+export type DefaultValueIfNotFound = null;
+export type DefaultIndexIfNotFound = -1;

@@ -1,18 +1,24 @@
-import {ExtendedSet} from './ExtendedSet';
+import type {ExtendedSet} from './ExtendedSet';
+import type {ExtendedMap} from './ExtendedMap';
 
-export interface ClassThatCanBeConvertible<K extends number, V> {
-
-    toMap(): Map<K, V>
-
-    toArray(): V[]
+export interface ClassThatCanBeConvertible<V1, K, V2> {
 
 
-    toSet(): Set<V>
+    toArray(): V1[]
 
-    toExtendedSet(): ExtendedSet<V>
+
+    toSet(): Set<V1>
+
+    toExtendedSet(): ExtendedSet<V1>
+
+
+    toMap(): Map<K, V2>
+
+    toExtendedMap(): ExtendedMap<K, V2>
 
 
     toString(): string
 
     toLocalString(): string
+
 }
