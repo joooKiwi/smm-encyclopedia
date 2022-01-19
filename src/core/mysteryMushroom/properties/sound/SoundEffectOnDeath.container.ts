@@ -1,10 +1,10 @@
 import type {ExtendedList}                                                                                                                                                                                   from '../../../../util/extended/ExtendedList';
 import type {PossibleGames, PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnDeath} from './SoundEffectOnDeath';
 
-import {PropertyProvider} from '../../../_properties/PropertyProvider';
-import {GameReferences}   from '../../../gameReference/GameReferences';
-import {isArrayEquals}    from '../../../../util/utilitiesMethods';
-import {ExtendedSet}      from '../../../../util/extended/ExtendedSet';
+import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
+import {GameReferences}       from '../../../gameReference/GameReferences';
+import {isArrayEquals}        from '../../../../util/utilitiesMethods';
+import {PropertyProvider}     from '../../../_properties/PropertyProvider';
 
 /**
  * @multiton
@@ -15,7 +15,7 @@ export class SoundEffectOnDeathContainer
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectOnDeathContainer> = new ExtendedSet();
+    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectOnDeathContainer> = new ExtendedSetContainer();
 
     readonly #argumentsReceived: ArgumentsReceived;
 

@@ -4,13 +4,13 @@ import type {ExtendedList}                                                      
 import type {LimitProperty}                                                                                                                                                                                                                                                                                                                            from './LimitProperty';
 
 import {EmptyLimitProperty}                           from './EmptyLimitProperty';
+import {EntityLimits}                                 from '../../../entityLimit/EntityLimits';
+import {ExtendedSetContainer}                         from '../../../../util/extended/ExtendedSet.container';
+import {isArrayEquals}                                from '../../../../util/utilitiesMethods';
 import {PropertyContainer}                            from '../../../_properties/Property.container';
 import {PropertyProvider}                             from '../../../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../../../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {PropertyWithCommentContainer}                 from '../../../_properties/PropertyWithComment.container';
-import {EntityLimits}                                 from '../../../entityLimit/EntityLimits';
-import {ExtendedSet}                                  from '../../../../util/extended/ExtendedSet';
-import {isArrayEquals}                                from '../../../../util/utilitiesMethods';
 
 /**
  * @provider
@@ -20,7 +20,7 @@ export class LimitPropertyContainer
 
     //region -------------------- Static attributes --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<LimitPropertyContainer> = new ExtendedSet();
+    static readonly #EVERY_CONTAINERS: ExtendedList<LimitPropertyContainer> = new ExtendedSetContainer();
 
     readonly #originalValues: OriginalValues;
 

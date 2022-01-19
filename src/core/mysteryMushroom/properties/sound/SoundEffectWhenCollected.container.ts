@@ -1,10 +1,10 @@
 import type {ExtendedList}                                                                                           from '../../../../util/extended/ExtendedList';
 import type {PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectWhenCollected} from './SoundEffectWhenCollected';
 
-import {PropertyProvider} from '../../../_properties/PropertyProvider';
-import {GameReferences}   from '../../../gameReference/GameReferences';
-import {isArrayEquals}    from '../../../../util/utilitiesMethods';
-import {ExtendedSet}      from '../../../../util/extended/ExtendedSet';
+import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
+import {GameReferences}       from '../../../gameReference/GameReferences';
+import {isArrayEquals}        from '../../../../util/utilitiesMethods';
+import {PropertyProvider}     from '../../../_properties/PropertyProvider';
 
 /**
  * @multiton
@@ -15,7 +15,7 @@ export class SoundEffectWhenCollectedContainer
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectWhenCollectedContainer> = new ExtendedSet();
+    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectWhenCollectedContainer> = new ExtendedSetContainer();
 
     readonly #argumentsReceived: ArgumentsReceived;
 

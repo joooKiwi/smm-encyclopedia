@@ -1,8 +1,8 @@
 import type {ExtendedList}                                from '../../../util/extended/ExtendedList';
 import type {PossibleConditionToUnlockIt, UnlockProperty} from './UnlockProperty';
 
-import {isArrayEquals} from '../../../util/utilitiesMethods';
-import {ExtendedSet}   from '../../../util/extended/ExtendedSet';
+import {isArrayEquals}        from '../../../util/utilitiesMethods';
+import {ExtendedSetContainer} from '../../../util/extended/ExtendedSet.container';
 
 /**
  * @multiton
@@ -13,7 +13,7 @@ export class UnlockPropertyContainer
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<UnlockPropertyContainer> = new ExtendedSet();
+    static readonly #EVERY_CONTAINERS: ExtendedList<UnlockPropertyContainer> = new ExtendedSetContainer();
 
     readonly #argumentsReceived: ArgumentsReceived;
 
