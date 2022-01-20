@@ -16,6 +16,11 @@ export class UnusedImage_RegularBuilder
     #identifierMap: ExtendedMap<OriginalGameStyles, ExtendedMap<ImageIdentifier, PossibleImageNumber>> = new ExtendedMapContainer();
 
     //endregion -------------------- Attributes --------------------
+
+    public constructor(name: ImageName_Unused_SMM1,) {
+        super(name,);
+    }
+
     //region -------------------- Getter & setter methods --------------------
 
     protected get _identifierMap(): ExtendedMap<OriginalGameStyles, ExtendedMap<ImageIdentifier, PossibleImageNumber>> {
@@ -36,10 +41,6 @@ export class UnusedImage_RegularBuilder
 
     //endregion -------------------- Getter & setter methods --------------------
 
-    public constructor(name: ImageName_Unused_SMM1,) {
-        super(name,);
-    }
-
     protected _getImagePath(gameStyle: OriginalGameStyles, identifier: ImageIdentifier, numbers: readonly ImageNumber[],): readonly string[] {
         return numbers.map(number => `${GameStyles.getValue(gameStyle).gamePath_inGameSmm1}Enemy - ${this.simpleImageName}/${identifier}.${number}.tiff`);
     }
@@ -55,6 +56,6 @@ export class UnusedImage_RegularBuilder
 
 }
 
-export type ImageIdentifier = | 'out' | 'wait' | 'down_switch_hatena_Alb';
-export type ImageNumber = | 0 | 1 | 2 | 4 | `00${| 0 | 4}`;
+export type ImageIdentifier = | 'out' | 'wait' | 'weep' | 'down_switch_hatena_Alb';
+export type ImageNumber = | 0 | 1 | 2 | 4 | 5 | 6 | 7 | `00${| 0 | 4}`;
 type PossibleImageNumber = readonly ImageNumber[];

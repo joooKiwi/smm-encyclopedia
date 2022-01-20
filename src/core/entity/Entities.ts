@@ -1774,7 +1774,8 @@ export class Entities
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
             const images = [4, 5, 6, 7,] as const;
             return [
-                null,
+                new UnusedImage_RegularBuilder('KoopaClown',)
+                    .setImage(SMW, 'weep', images,),
                 new UnusedImage_BigMushroomBuilder('KoopaClown',)
                     .setImage('wait', images,)
                     .setImage('anger', images,)
@@ -2626,7 +2627,6 @@ export class Entities
         }
         return this.#unusedImages;
     }
-
 
     //endregion -------------------- unused image --------------------
 

@@ -8,6 +8,6 @@ export interface UnusedImage
 }
 
 export type ImageName_BigMushroom_Unused_SMM1 = | 'KoopaClown' | 'Kuribo D' | 'Necchi' | `Koopa${| '' | 'Jr'}` | 'SenkanHoudai D';
-export type ImageName_Unused_SMM1 = | 'Necchi' | 'PSwitch';
+export type ImageName_Unused_SMM1 = | 'KoopaClown' | 'Necchi' | 'PSwitch';
 
 export type UnusedImages = readonly [regular: UnusedImage_Regular, smm1_bigMushroom: UnusedImage_BigMushroom,];
