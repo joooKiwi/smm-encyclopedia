@@ -28,6 +28,7 @@ export default class EveryEntitiesApp
         let index = 1;
         for (const enumeration of Entities) {
             EntityAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration;
+
             content.push([enumeration.englishName,
                 ...[
                     <>{index}</>,

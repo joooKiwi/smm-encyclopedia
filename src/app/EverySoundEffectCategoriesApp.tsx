@@ -22,6 +22,7 @@ export default class EverySoundEffectCategoriesApp
         let index = 1;
         for (const enumerable of SoundEffectCategories) {
             const soundEffectCategory = enumerable.reference;
+
             content.push([enumerable.englishName,
                 <>{index}</>,
                 <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>,

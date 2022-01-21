@@ -21,6 +21,7 @@ export default class EveryEntityCategoriesApp
         let index = 1;
         for (const enumeration of EntityCategories) {
             const category = enumeration.reference;
+
             content.push([enumeration.englishName,
                 <>{index}</>,
                 <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>,

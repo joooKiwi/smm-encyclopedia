@@ -22,6 +22,7 @@ export default class EveryGameStylesApp
         let index = 1;
         for (const enumerable of GameStyles) {
             const gameStyle = enumerable.reference;
+
             content.push([enumerable.englishName,
                 <>{index}</>,
                 enumerable.renderSingleComponent,

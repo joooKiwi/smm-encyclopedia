@@ -35,6 +35,7 @@ export default class EveryMiiCostumeApp
         let index = 1;
         for (const enumerable of MiiCostumes) {
             const miiCostume = enumerable.reference;
+
             content.push([enumerable.englishName,
                 <>{index}</>,
                 <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>,

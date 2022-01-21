@@ -31,6 +31,7 @@ export default class EveryLimitsApp
         let index = 1;
         for (const enumerable of EntityLimits) {
             const entityLimit = enumerable.reference;
+
             if (entityLimit !== entityLimit.alternativeContainer) {
                 content.push([enumerable.englishName,
                     <>{index}</>,
