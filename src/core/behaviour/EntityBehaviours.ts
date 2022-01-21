@@ -1,11 +1,11 @@
 import type {ClassWithAcronym}                                                                                                                   from '../ClassWithAcronym';
+import type {ClassWithReference}                                                                                                                 from '../ClassWithReference';
 import type {ClassWithTranslationKey}                                                                                                            from '../../lang/ClassWithTranslationKey';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
 import type {StaticReference}                                                                                                                    from '../../util/enum/Enum.types';
 
-import {Enum}               from '../../util/enum/Enum';
-import {EntityBehaviour}    from './EntityBehaviour';
-import {ClassWithReference} from '../ClassWithReference';
+import {Enum}            from '../../util/enum/Enum';
+import {EntityBehaviour} from './EntityBehaviour';
 
 /**
  * @recursiveReference<{@link EntityBehaviourLoader}>

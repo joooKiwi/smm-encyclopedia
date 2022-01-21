@@ -1,5 +1,6 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                             from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                                                                                               from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                                                                                               from '../ClassWithReference';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumes.types';
 import type {MiiCostume}                                                                                                                                                                                                                       from './MiiCostume';
 import type {StaticReference}                                                                                                                                                                                                                  from '../../util/enum/Enum.types';
@@ -12,7 +13,8 @@ import {StringContainer} from '../../util/StringContainer';
  */
 export class MiiCostumes
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName>,
+    implements ClassWithReference<MiiCostume>,
+        ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImagePath<PossibleImagePath> {
 
     //region -------------------- Enum instances --------------------

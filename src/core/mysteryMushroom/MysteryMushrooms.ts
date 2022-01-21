@@ -23,8 +23,8 @@ import {SoundProperty}                         from './properties/sound/SoundPro
  */
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<UniqueEnglishName>,
-        ClassWithReference<MysteryMushroom>,
+    implements ClassWithReference<MysteryMushroom>,
+        ClassWithEnglishName<UniqueEnglishName>,
         Image, Sound {
 
     //region -------------------- Enum instances --------------------

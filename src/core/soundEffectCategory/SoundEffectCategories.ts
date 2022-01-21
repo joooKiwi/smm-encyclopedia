@@ -1,18 +1,20 @@
 import type {ClassWithEnglishName}                                                                                                                                    from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                      from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                      from '../ClassWithReference';
 import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
+import type {SoundEffectCategory}                                                                                                                                     from './SoundEffectCategory';
 import type {StaticReference}                                                                                                                                         from '../../util/enum/Enum.types';
 
-import {Enum}                from '../../util/enum/Enum';
-import {StringContainer}     from '../../util/StringContainer';
-import {SoundEffectCategory} from './SoundEffectCategory';
+import {Enum}            from '../../util/enum/Enum';
+import {StringContainer} from '../../util/StringContainer';
 
 /**
  * @recursiveReference<{@link SoundEffectCategoryLoader}>
  */
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName>,
+    implements ClassWithReference<SoundEffectCategory>,
+        ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImagePath<PossibleImagePath> {
 
     //region -------------------- Enum instances --------------------

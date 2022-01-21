@@ -1,4 +1,5 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                         from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                           from '../ClassWithReference';
 import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
 import type {SoundEffect}                                                                                                                                                                                                                                                                                                                                  from './SoundEffect';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
@@ -12,7 +13,8 @@ import {StringContainer}    from '../../util/StringContainer';
  */
 export class SoundEffects
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName> {
+    implements ClassWithReference<SoundEffect>,
+        ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
