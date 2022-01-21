@@ -2,8 +2,6 @@ import './EveryMysteryMushroomsApp.scss';
 
 import {Fragment} from 'react';
 
-import type {MysteryMushroom}                                  from '../core/mysteryMushroom/MysteryMushroom';
-import type {UniqueEnglishName}                                from '../core/mysteryMushroom/MysteryMushrooms.types';
 import type {MysteryMushroomAppStates, PossibleImageAnimation} from './AppStates.types';
 import type {SingleTableContent}                               from './tools/table/Table.types';
 
@@ -13,7 +11,6 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
-import {MysteryMushroomLoader}         from '../core/mysteryMushroom/MysteryMushroom.loader';
 import {MysteryMushrooms}              from '../core/mysteryMushroom/MysteryMushrooms';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Table                           from './tools/table/Table';
@@ -34,7 +31,6 @@ export default class EveryMysteryMushroomsApp
 
     //region -------------------- Attributes --------------------
 
-    #map?: ReadonlyMap<UniqueEnglishName, MysteryMushroom>;
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>;
 
     //endregion -------------------- Attributes --------------------
@@ -49,15 +45,6 @@ export default class EveryMysteryMushroomsApp
     }
 
     //region -------------------- Getter methods --------------------
-
-    protected get map() {
-        return this.#map ??= MysteryMushroomLoader.get.load();
-    }
-
-    protected get enum() {
-        return MysteryMushrooms.values;
-    }
-
 
     protected get _displayImageAnimations(): PossibleImageAnimation {
         return this.state.display.imageAnimations;
@@ -130,10 +117,11 @@ export default class EveryMysteryMushroomsApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, mysteryMushroom,] of this.map) {
-            const englishNameAsId = englishName.toLowerCase().replace(' ', '_');
-            const mysteryMushroomEnum = MysteryMushrooms.getValue(englishName);
-            const isMysteryMushroom = MysteryMushrooms.MYSTERY_MUSHROOM === mysteryMushroomEnum;
+        for (const enumerable of MysteryMushrooms) {
+            const mysteryMushroom = enumerable.reference;
+            const englishName = enumerable.englishName;
+            const englishNameAsId = enumerable.englishName.toLowerCase().replace(' ', '_');
+            const isMysteryMushroom = MysteryMushrooms.MYSTERY_MUSHROOM === enumerable;
 
             content.push([englishName,
                 <>{index}</>,
@@ -146,35 +134,35 @@ export default class EveryMysteryMushroomsApp
                     </Fragment>)}</div>,
                 <NameComponent id={`name_${englishNameAsId}`} name={mysteryMushroom} popoverOrientation="right"/>,
                 <div key={`${englishName} - power-up collected`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
-                    : EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.powerUpCollectedSounds, englishName, 'power-up collected',)
+                    : EveryMysteryMushroomsApp.__createSounds(enumerable.powerUpCollectedSounds, englishName, 'power-up collected',)
                 }</div>,
-                <div key={`${englishName} - waiting`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.waitingImages, englishName, 'waiting',)}</div>,
+                <div key={`${englishName} - waiting`}>{EveryMysteryMushroomsApp.__createImages(enumerable.waitingImages, englishName, 'waiting',)}</div>,
                 <div key={`${englishName} - taunt`}>
-                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.tauntImages, englishName, 'taunt',)}
-                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.tauntSounds, englishName, 'taunt',)}
+                    {EveryMysteryMushroomsApp.__createImages(enumerable.tauntImages, englishName, 'taunt',)}
+                    {EveryMysteryMushroomsApp.__createSounds(enumerable.tauntSounds, englishName, 'taunt',)}
                 </div>,
-                <div key={`${englishName} - lost a life`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.downImages, englishName, 'pressing ↓',)}</div>,
-                <div key={`${englishName} - walking`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.walkImages, englishName, 'walk',)}</div>,
-                <div key={`${englishName} - running`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.runningImages, englishName, 'running',)}</div>,
-                <div key={`${englishName} - swimming`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.swimmingImages, englishName, 'swimming',)}</div>,
+                <div key={`${englishName} - lost a life`}>{EveryMysteryMushroomsApp.__createImages(enumerable.downImages, englishName, 'pressing ↓',)}</div>,
+                <div key={`${englishName} - walking`}>{EveryMysteryMushroomsApp.__createImages(enumerable.walkImages, englishName, 'walk',)}</div>,
+                <div key={`${englishName} - running`}>{EveryMysteryMushroomsApp.__createImages(enumerable.runningImages, englishName, 'running',)}</div>,
+                <div key={`${englishName} - swimming`}>{EveryMysteryMushroomsApp.__createImages(enumerable.swimmingImages, englishName, 'swimming',)}</div>,
                 <div key={`${englishName} - jumping`}>
-                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.jumpImages, englishName, 'jump',)}
-                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.jumpSounds, englishName, 'jump',)}
+                    {EveryMysteryMushroomsApp.__createImages(enumerable.jumpImages, englishName, 'jump',)}
+                    {EveryMysteryMushroomsApp.__createSounds(enumerable.jumpSounds, englishName, 'jump',)}
                 </div>,
-                <div key={`${englishName} - falling after jump`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.fallingAfterJumpImages, englishName, 'falling after jump',)}</div>,
+                <div key={`${englishName} - falling after jump`}>{EveryMysteryMushroomsApp.__createImages(enumerable.fallingAfterJumpImages, englishName, 'falling after jump',)}</div>,
                 <div key={`${englishName} - ground after jump`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
-                    : EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.onGroundAfterJumpSounds, englishName, 'ground after jump',)
+                    : EveryMysteryMushroomsApp.__createSounds(enumerable.onGroundAfterJumpSounds, englishName, 'ground after jump',)
                 }</div>,
                 <div key={`${englishName} - turning`}>
-                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.turningImages, englishName, 'turning',)}
-                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.turningSounds, englishName, 'turning',)}</div>,
-                <div key={`${englishName} - climbing`}>{EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.climbingImages, englishName, 'climbing',)}</div>,
+                    {EveryMysteryMushroomsApp.__createImages(enumerable.turningImages, englishName, 'turning',)}
+                    {EveryMysteryMushroomsApp.__createSounds(enumerable.turningSounds, englishName, 'turning',)}</div>,
+                <div key={`${englishName} - climbing`}>{EveryMysteryMushroomsApp.__createImages(enumerable.climbingImages, englishName, 'climbing',)}</div>,
                 <div key={`${englishName} - goal pole`}>
-                    {EveryMysteryMushroomsApp.__createImages(mysteryMushroomEnum.goalPoleImages, englishName, 'goal pole',)}
-                    {EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.goalPoleSounds, englishName, 'goal pole',)}
+                    {EveryMysteryMushroomsApp.__createImages(enumerable.goalPoleImages, englishName, 'goal pole',)}
+                    {EveryMysteryMushroomsApp.__createSounds(enumerable.goalPoleSounds, englishName, 'goal pole',)}
                 </div>,
                 <div key={`${englishName} - death`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
-                    : EveryMysteryMushroomsApp.__createSounds(mysteryMushroomEnum.lostALifeSounds, englishName, 'lost a life',)
+                    : EveryMysteryMushroomsApp.__createSounds(enumerable.lostALifeSounds, englishName, 'lost a life',)
                 }</div>,
             ]);
             index++;
@@ -185,8 +173,6 @@ export default class EveryMysteryMushroomsApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        console.log(this.enum);//README this log is there only to help debugging.
-
         return <Table
             id="mysteryMushroom-table"
             caption={<GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: 'Mystery Mushrooms'})}</GameContentTranslationComponent>}
