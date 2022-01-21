@@ -1,8 +1,8 @@
 import type {ClassWithEnglishName}                                                                                                                                                        from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                          from '../ClassWithReference';
-import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages} from './image/Image';
-import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, UniqueEnglishName}     from './MysteryMushrooms.types';
-import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}                                             from './sound/Sound';
+import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages}                          from './image/Image';
+import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PossibleUniqueEnglishName, PossibleEnglishName} from './MysteryMushrooms.types';
+import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}                                                                      from './sound/Sound';
 import type {MysteryMushroom}                                                                                                                                                             from './MysteryMushroom';
 import type {PossiblePath}                                                                                                                                                                from './path/ClassWithPath';
 import type {StaticReference}                                                                                                                                                             from '../../util/enum/Enum.types';
@@ -24,7 +24,7 @@ import {SoundProperty}                         from './properties/sound/SoundPro
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MysteryMushroom>,
-        ClassWithEnglishName<UniqueEnglishName>,
+        ClassWithEnglishName<PossibleEnglishName>,
         Image, Sound {
 
     //region -------------------- Enum instances --------------------
@@ -300,7 +300,7 @@ export class MysteryMushrooms
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<UniqueEnglishName, MysteryMushroom>;
+    static #map?: ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>;
 
     #reference?: MysteryMushroom;
 
@@ -314,12 +314,12 @@ export class MysteryMushrooms
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(englishName_and_englishNameOnFile: UniqueEnglishName,)
-    public constructor(englishNameOnFile: EnglishNameOnFile, englishName: UniqueEnglishName,)
-    public constructor(englishNameOnFile: | EnglishNameOnFile | UniqueEnglishName, englishName?: UniqueEnglishName,) {
+    public constructor(englishName_and_englishNameOnFile: PossibleEnglishName,)
+    public constructor(englishNameOnFile: EnglishNameOnFile, englishName: PossibleEnglishName,)
+    public constructor(englishNameOnFile: | EnglishNameOnFile | PossibleEnglishName, englishName?: PossibleEnglishName,) {
         super();
         if (englishName == null) {
-            this.#englishName = new StringContainer(englishNameOnFile as UniqueEnglishName);
+            this.#englishName = new StringContainer(englishNameOnFile as PossibleEnglishName);
             this.#englishNameOnFile = englishNameOnFile as EnglishNameOnFile;
         } else {
             this.#englishName = new StringContainer(englishName);
@@ -342,7 +342,7 @@ export class MysteryMushrooms
     }
 
 
-    public get englishName(): UniqueEnglishName {
+    public get englishName(): PossibleEnglishName {
         return this.#englishName.get;
     }
 

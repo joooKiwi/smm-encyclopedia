@@ -2,7 +2,7 @@ import type {MysteryMushrooms}                 from './MysteryMushrooms';
 import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
 export type PossibleNonNullableValue = | MysteryMushrooms | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | EnglishNameOnFile | UniqueEnglishName;
+export type PossibleStringValue = | Names | EnglishNameOnFile | PossibleUniqueEnglishName;
 export type PossibleValue = | MysteryMushrooms | number | string | null | undefined;
 
 enum Enum {
@@ -161,11 +161,11 @@ export type Ordinals = typeof Enum[Names];
 
 export type Names = keyof typeof Enum;
 
-export type EnglishNameOnFile = | Exclude<EnglishName, | 'Mary O.' | 'Bowser Jr.' | 'Donkey Kong Jr.' | '? Block' | 'R.O.B.'>
+export type EnglishNameOnFile = | Exclude<PossibleEnglishName, | 'Mary O.' | 'Bowser Jr.' | 'Donkey Kong Jr.' | '? Block' | 'R.O.B.'>
                                 | 'Mary O' | 'Bowser Jr' | 'Donkey Kong Jr' | 'Question Mark Block' | 'Mario (MB)' | 'R.O.B';
 
-export type UniqueEnglishName = | EnglishName | 'Mario (MB)';
-export type EnglishName =
+export type PossibleUniqueEnglishName = | PossibleEnglishName | 'Mario (MB)';
+export type PossibleEnglishName =
     | 'Mystery Mushroom'
 
     | 'Yamamura' | 'Mary O.' | 'Undodog'

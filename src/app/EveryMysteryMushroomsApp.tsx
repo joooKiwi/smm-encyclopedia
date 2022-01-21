@@ -119,8 +119,8 @@ export default class EveryMysteryMushroomsApp
         let index = 1;
         for (const enumerable of MysteryMushrooms) {
             const mysteryMushroom = enumerable.reference;
-            const englishName = enumerable.englishName;
-            const englishNameAsId = enumerable.englishName.toLowerCase().replace(' ', '_');
+            const englishName = enumerable.englishNameOnFile;//FIXME temporary unique name
+            const englishNameAsId = enumerable.englishNameInHtml;
             const isMysteryMushroom = MysteryMushrooms.MYSTERY_MUSHROOM === enumerable;
 
             content.push([englishName,

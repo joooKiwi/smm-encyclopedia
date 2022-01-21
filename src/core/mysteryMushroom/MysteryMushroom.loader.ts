@@ -16,7 +16,7 @@ import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}           
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from './properties/sound/SoundEffectOnTurnAfterRun';
 import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                     from '../../lang/Loader.types';
 import type {SoundPropertyTemplate}                                                                                                                                                                                              from './properties/sound/SoundProperty.template';
-import type {UniqueEnglishName}                                                                                                                                                                                                  from './MysteryMushrooms.types';
+import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from './MysteryMushrooms.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -71,7 +71,7 @@ type ExclusivePropertiesArray = [
 
     reference: | PossibleGameReference | PokemonGeneration,
 
-    uniqueName: UniqueEnglishName,
+    uniqueName: PossibleUniqueEnglishName,
 
 
     haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected,
@@ -117,7 +117,7 @@ type PropertiesArray = [
  * @recursiveReference<{@link MysteryMushrooms}>
  */
 export class MysteryMushroomLoader
-    implements Loader<ReadonlyMap<UniqueEnglishName, MysteryMushroom>> {
+    implements Loader<ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -132,11 +132,11 @@ export class MysteryMushroomLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<UniqueEnglishName, MysteryMushroom>;
+    #map?: Map<PossibleUniqueEnglishName, MysteryMushroom>;
 
-    public load(): ReadonlyMap<UniqueEnglishName, MysteryMushroom> {
+    public load(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
         if (this.#map == null) {
-            const references = new Map<UniqueEnglishName, MysteryMushroom>();
+            const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>();
 
             //region -------------------- Builder initialisation --------------------
 
