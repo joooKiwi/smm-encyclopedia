@@ -7,11 +7,10 @@ import type {PossibleSoundEffectCategoryType, SoundEffectTemplate} from './Sound
 import type {PossibleEnglishName}                                  from './SoundEffects.types';
 import type {SoundEffect}                                          from './SoundEffect';
 
-import {AbstractTemplateBuilder}   from '../_template/AbstractTemplate.builder';
-import {CSVLoader}                 from '../../util/loader/CSVLoader';
-import {SoundEffectBuilder}        from './SoundEffect.builder';
-import {SoundEffectCategoryLoader} from '../soundEffectCategory/SoundEffectCategory.loader';
-import {HeaderTypesForConvertor}   from '../_util/loader/HeaderTypesForConvertor';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
+import {CSVLoader}               from '../../util/loader/CSVLoader';
+import {SoundEffectBuilder}      from './SoundEffect.builder';
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
@@ -120,11 +119,6 @@ export class SoundEffectLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, SoundEffect>();
 
-            //region -------------------- Builder initialisation --------------------
-
-            SoundEffectBuilder.categoriesMap = SoundEffectCategoryLoader.get.load();
-
-            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, SoundEffect, keyof typeof Headers>(everySoundEffects, convertedContent => new SoundEffectBuilder(new TemplateBuilder(convertedContent)).build())

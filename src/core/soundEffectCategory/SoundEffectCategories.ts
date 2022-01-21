@@ -3,8 +3,9 @@ import type {ClassWithImagePath}                                                
 import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
 import type {StaticReference}                                                                                                                                         from '../../util/enum/Enum.types';
 
-import {Enum}            from '../../util/enum/Enum';
-import {StringContainer} from '../../util/StringContainer';
+import {Enum}                from '../../util/enum/Enum';
+import {StringContainer}     from '../../util/StringContainer';
+import {SoundEffectCategory} from './SoundEffectCategory';
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
@@ -27,6 +28,9 @@ export class SoundEffectCategories
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, SoundEffectCategory>;
+
+    #reference?: SoundEffectCategory;
     readonly #englishName;
     #imagePath?: PossibleImagePath;
 
@@ -38,6 +42,18 @@ export class SoundEffectCategories
     }
 
     //region -------------------- Getter methods --------------------
+
+    private static get __map() {
+        return this.#map ??= require('./SoundEffectCategory.loader').SoundEffectCategoryLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
+    public get reference(): SoundEffectCategory {
+        return this.#reference ??= SoundEffectCategories.__map.get(this.englishName)!;
+    }
 
     public get englishName(): PossibleEnglishName {
         return this.#englishName.get;
