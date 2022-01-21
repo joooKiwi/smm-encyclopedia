@@ -1,10 +1,8 @@
-import type {EntityLimit}         from '../core/entityLimit/EntityLimit';
-import type {PossibleEnglishName} from '../core/entityLimit/EntityLimits.types';
-import type {SingleTableContent}  from './tools/table/Table.types';
+import type {EntityLimit}        from '../core/entityLimit/EntityLimit';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EntityLimitLoader}             from '../core/entityLimit/EntityLimit.loader';
 import {EntityLimits}                  from '../core/entityLimit/EntityLimits';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -18,19 +16,6 @@ import TextComponent                   from './tools/text/TextComponent';
 export default class EveryLimitsApp
     extends AbstractApp {
 
-    //region -------------------- Attributes & getter methods --------------------
-
-    #map?: ReadonlyMap<PossibleEnglishName, EntityLimit>;
-
-    protected get map() {
-        return this.#map ??= EntityLimitLoader.get.load();
-    }
-
-    protected get enum() {
-        return EntityLimits.values;
-    }
-
-    //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
     private static __getAcronym(entityLimit: EntityLimit,): '' | EntityLimit['acronym'] | `${EntityLimit['acronym']} / ${EntityLimit['alternativeAcronym']}` {
@@ -44,9 +29,10 @@ export default class EveryLimitsApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, entityLimit,] of this.map) {
+        for (const enumerable of EntityLimits) {
+            const entityLimit = enumerable.reference;
             if (entityLimit !== entityLimit.alternativeContainer) {
-                content.push([englishName,
+                content.push([enumerable.englishName,
                     <>{index}</>,
                     <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
                     <NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
