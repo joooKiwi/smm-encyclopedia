@@ -21,7 +21,6 @@ import {AbstractTemplateBuilder}      from '../_template/AbstractTemplate.builde
 import {assert}                       from '../../util/utilitiesMethods';
 import {CSVLoader}                    from '../../util/loader/CSVLoader';
 import {EMPTY_ARRAY}                  from '../../util/emptyVariables';
-import {EntityCategoryLoader}         from '../entityCategory/EntityCategory.loader';
 import {EntityBuilder}                from './Entity.builder';
 import {GenericSingleInstanceBuilder} from '../../util/builder/GenericSingleInstanceBuilder';
 import {HeaderTypesForConvertor}      from '../_util/loader/HeaderTypesForConvertor';
@@ -387,11 +386,6 @@ export class EntityLoader
             const templateReferences = new Map<PossibleEnglishName, EntityTemplate>();
             const referencesToWatch = new ReferencesToWatch(templateReferences);
 
-            //region -------------------- Builder initialisation --------------------
-
-            EntityBuilder.categoriesMap = EntityCategoryLoader.get.load();
-
-            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, Builder<EntityTemplate>, keyof typeof Headers>(everyEntities, convertedContent => new TemplateBuilder(convertedContent))

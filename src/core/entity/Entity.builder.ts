@@ -6,8 +6,8 @@ import type {EntityLink}                                                        
 import type {EntityTemplate}                                                                                                                          from './Entity.template';
 import type {Name}                                                                                                                                    from '../../lang/name/Name';
 import type {PossibleEnglishName}                                                                                                                     from './Entities.types';
-import type {PossibleEnglishName as PossibleEntityCategoryEnglishName}                                                                                from '../entityCategory/EntityCategories.types';
 
+import {EntityCategories}              from '../entityCategory/EntityCategories';
 import {EntityContainer}               from './Entity.container';
 import {EntityLimits}                  from '../entityLimit/EntityLimits';
 import {EntityReferencesContainer}     from './properties/EntityReferences.container';
@@ -26,11 +26,6 @@ export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
     implements Builder<Entity> {
 
-    //region -------------------- External object references --------------------
-
-    public static categoriesMap: ReadonlyMap<PossibleEntityCategoryEnglishName, EntityCategory>;
-
-    //endregion -------------------- External object references --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
@@ -59,9 +54,9 @@ export class EntityBuilder
 
     //region -------------------- Entity category helper methods --------------------
 
-    private __getEntityCategory() {
-        const category = this.template.categoryInTheEditor;
-        return category === null ? EmptyEntityCategory.get : EntityBuilder.categoriesMap.get(category)!;
+    private __getEntityCategory(): EntityCategory {
+        return EntityCategories.getValue(this.template.categoryInTheEditor)?.reference
+            ?? EmptyEntityCategory.get;
     }
 
     //endregion -------------------- Entity category helper methods --------------------
