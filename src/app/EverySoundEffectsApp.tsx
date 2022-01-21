@@ -1,6 +1,4 @@
 import './EverySoundEffectsApp.scss';
-
-import type {PossibleEnglishName}                                 from '../core/soundEffect/SoundEffects.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/soundEffectCategory/SoundEffectCategories.types';
 import type {SoundEffect}                                         from '../core/soundEffect/SoundEffect';
 import type {SoundEffectAppStates}                                from './AppStates.types';
@@ -13,7 +11,6 @@ import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {EmptyName}                     from '../lang/name/EmptyName';
 import NameComponent                   from '../lang/name/component/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
-import {SoundEffectLoader}             from '../core/soundEffect/SoundEffect.loader';
 import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 import Table                           from './tools/table/Table';
 import {ProjectLanguages}              from '../lang/ProjectLanguages';
@@ -29,19 +26,9 @@ export default class EverySoundEffectsApp
 
     //region -------------------- Attributes & getter methods --------------------
 
-    #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
-
-    public constructor(props: {}, context: any,) {
-        super(props, context);
+    public constructor(props: {},) {
+        super(props,);
         this.state = {display: {asText: {category: false,},},};
-    }
-
-    protected get map() {
-        return this.#map ??= SoundEffectLoader.get.load();
-    }
-
-    protected get enum() {
-        return SoundEffects.values;
     }
 
     protected get _displayCategoryAsText(): boolean {
@@ -67,11 +54,13 @@ export default class EverySoundEffectsApp
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const [englishName, soundEffect,] of this.map) {
-            content.push([englishName,
+        for (const enumerable of SoundEffects) {
+            const soundEffect = enumerable.reference;
+
+            content.push([enumerable.englishName,
                 <>{index}</>,
-                soundEffect.isInSuperMarioMaker1 ? <SoundEffectComponent reference={this.enum[index - 1]} name={soundEffect} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT,
-                soundEffect.isInSuperMarioMaker2 ? <SoundEffectComponent reference={this.enum[index - 1]} name={soundEffect} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT,
+                soundEffect.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={soundEffect} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT,
+                soundEffect.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={soundEffect} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT,
                 <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
                 this.__createCategoryComponent(index, soundEffect,),
                 <>--{soundEffect.translationKey}--</>,

@@ -1,5 +1,6 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                         from '../ClassWithEnglishName';
 import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
+import type {SoundEffect}                                                                                                                                                                                                                                                                                                                                  from './SoundEffect';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 
 import {Enum}               from '../../util/enum/Enum';
@@ -79,6 +80,9 @@ export class SoundEffects
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
+
+    #reference?: SoundEffect;
     readonly #englishName;
     readonly #SMM1ImagePath: | PossibleImagePath_SMM1 | null;
     readonly #SMM2ImagePath: | PossibleImagePath_SMM2 | null;
@@ -97,6 +101,18 @@ export class SoundEffects
     }
 
     //region -------------------- Getter methods --------------------
+
+    private static get __map() {
+        return this.#map ??= require('./SoundEffect.loader').SoundEffectLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
+    public get reference(): SoundEffect {
+        return this.#reference ??= SoundEffects.__map.get(this.englishName)!;
+    }
 
     public get englishName(): PossibleEnglishName {
         return this.#englishName.get;
