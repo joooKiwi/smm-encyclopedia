@@ -1,6 +1,6 @@
 import {lazy} from 'react';
 
-import {SimpleRouteContainer} from './SimpleRouteContainer';
+import {SimpleRouteContainer} from './SimpleRoute.container';
 
 const AboutApp =                       lazy(() => import('../app/AboutApp'));
 const EveryEntitiesApp =               lazy(() => import('../app/EveryEntitiesApp'));
