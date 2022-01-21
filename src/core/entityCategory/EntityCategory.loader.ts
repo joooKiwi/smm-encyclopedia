@@ -47,6 +47,7 @@ type PropertiesArray = [
  * and the unique creation of every categories.
  *
  * @singleton
+ * @recursiveReference<{@link EntityCategories}>
  */
 export class EntityCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, EntityCategory>> {

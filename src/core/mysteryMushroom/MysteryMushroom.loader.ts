@@ -114,6 +114,7 @@ type PropertiesArray = [
 
 /**
  * @singleton
+ * @recursiveReference<{@link MysteryMushrooms}>
  */
 export class MysteryMushroomLoader
     implements Loader<ReadonlyMap<UniqueEnglishName, MysteryMushroom>> {

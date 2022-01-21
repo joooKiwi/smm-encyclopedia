@@ -62,6 +62,10 @@ type PropertiesArray = [
 
 //endregion -------------------- CSV array related types --------------------
 
+/**
+ * @singleton
+ * @recursiveReference<{@link MiiCostumes}>
+ */
 export class MiiCostumeLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, MiiCostume>> {
 

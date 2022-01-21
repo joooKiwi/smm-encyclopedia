@@ -46,6 +46,7 @@ type PropertiesArray = [
 
 /**
  * @singleton
+ * @recursiveReference<{@link SoundEffectCategories}>
  */
 export class SoundEffectCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, SoundEffectCategory>> {

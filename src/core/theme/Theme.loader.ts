@@ -70,6 +70,7 @@ type PropertiesArray = [
 /**
  * @singleton
  * @recursiveReferenceVia<{@link ThemeBuilder}, {@link Themes}>
+ * @recursiveReference<{@link Themes}>
  */
 export class ThemeLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>> {

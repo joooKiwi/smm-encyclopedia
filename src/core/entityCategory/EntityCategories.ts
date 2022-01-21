@@ -8,6 +8,9 @@ import type {StaticReference}                                                   
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
 
+/**
+ * @recursiveReference<{@link EntityCategoryLoader}>
+ */
 export class EntityCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityCategory>,

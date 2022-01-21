@@ -44,6 +44,7 @@ type PropertiesArray = [
 /**
  * @singleton
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyles}>
+ * @recursiveReference<{@link GameStyles}>
  */
 export class GameStyleLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameStyle>> {

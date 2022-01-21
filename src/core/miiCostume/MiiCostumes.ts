@@ -8,7 +8,7 @@ import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
 
 /**
- * @recursiveReferenceVia<{@link MiiCostumeBuilder}, {@link MiiCostumeLoader}>
+ * @recursiveReference<{@link MiiCostumeLoader}>
  */
 export class MiiCostumes
     extends Enum<Ordinals, Names>

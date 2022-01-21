@@ -18,6 +18,9 @@ import {SoundContainer}                        from './sound/Sound.container';
 import {StringContainer}                       from '../../util/StringContainer';
 import {SoundProperty}                         from './properties/sound/SoundProperty';
 
+/**
+ * @recursiveReference<{@link MysteryMushroomLoader}>
+ */
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<UniqueEnglishName>,

@@ -1,5 +1,6 @@
 import source from '../../resources/Game references.csv';
 
+import type {GameReference}                             from './GameReference';
 import type {GameReferenceTemplate}                     from './GameReference.template';
 import type {Loader}                                    from '../../util/loader/Loader';
 import type {PossibleAcronym, PossibleEnglishName}      from './GameReferences.types';
@@ -8,7 +9,6 @@ import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
-import {GameReference}           from './GameReference';
 import {GameReferenceBuilder}    from './GameReference.builder';
 import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 

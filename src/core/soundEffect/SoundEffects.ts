@@ -7,6 +7,9 @@ import {Enum}               from '../../util/enum/Enum';
 import SoundEffectComponent from './SoundEffect.component';
 import {StringContainer}    from '../../util/StringContainer';
 
+/**
+ * @recursiveReference<{@link SoundEffectLoader}>
+ */
 export class SoundEffects
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName> {

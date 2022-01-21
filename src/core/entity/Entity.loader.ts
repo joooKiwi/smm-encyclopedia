@@ -357,6 +357,8 @@ type PropertiesArray = [
 
 /**
  * @singleton
+ * @recursiveReferenceVia<{@link EntityBuilder}, {@link Entities}>
+ * @recursiveReference<{@link Entities}>
  */
 export class EntityLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, Entity>> {

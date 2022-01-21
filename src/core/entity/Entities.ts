@@ -34,6 +34,7 @@ const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, 
 
 /**
  * @recursiveReferenceVia<{@link EntityLoader}, {@link EntityBuilder}>
+ * @recursiveReference<{@link EntityLoader}>
  */
 export class Entities
     extends Enum<Ordinals, Names>
