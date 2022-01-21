@@ -15,16 +15,11 @@ import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
 import {WorldThemeContainer}     from './WorldTheme.container';
+import {Entities}                from '../entity/Entities';
 
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
     implements Builder<CourseAndWorldTheme> {
-
-    //region -------------------- External object references --------------------
-
-    public static entitiesMap: ReadonlyMap<string, Entity>;
-
-    //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
         super(templateBuilder, template => template.isIn.game['1'] ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
@@ -50,11 +45,9 @@ export class ThemeBuilder
     private static __whereEntityIs(englishName: string,): Entity[] {
         const theme = Themes.getValue(englishName);
         assert(theme != null, `The english name "${englishName}" has no reference on the Themes class.`,);
-        const everyEntities = [] as Entity[];
-        for (const [, entity,] of this.entitiesMap.entries())
-            if (theme.get(entity))
-                everyEntities.push(entity);
-        return everyEntities;
+
+        return Entities.values.map(({reference,}) => reference)
+            .filter(reference => theme.get(reference));
     }
 
 

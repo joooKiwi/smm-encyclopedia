@@ -12,7 +12,6 @@ import type {PossibleGroupName}                                                 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityLimitBuilder}      from './EntityLimit.builder';
-import {EntityLoader}            from '../entity/Entity.loader';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
@@ -109,7 +108,6 @@ export class EntityLimitLoader
             //region -------------------- Builder initialisation --------------------
 
             EntityLimitBuilder.references = references;
-            EntityLimitBuilder.entitiesMap = EntityLoader.get.load();
 
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------

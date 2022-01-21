@@ -9,9 +9,11 @@ import type {PossibleEnglishName as PossibleEnglishName_Entity}                 
 import type {PossibleGroupName}                                                                  from '../entityTypes';
 
 import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
+import {DelayedObjectHolderContainer}                       from '../../util/holder/DelayedObjectHolderContainer';
 import {EmptyEntityLimit}                                   from './EmptyEntityLimit';
 import {EmptyEntityLimitAmount}                             from './properties/EmptyEntityLimitAmount';
 import {EmptyEntityLimitLink}                               from './properties/EmptyEntityLimitLink';
+import {Entities}                                           from '../entity/Entities';
 import {EntityLimitAmountContainer}                         from './properties/EntityLimitAmount.container';
 import {EntityLimitContainer}                               from './EntityLimit.container';
 import {EntityLimitLinkContainer}                           from './properties/EntityLimitLink.container';
@@ -20,6 +22,7 @@ import {EntityLimits}                                       from './EntityLimits
 import {Games}                                              from '../game/Games';
 import {NameBuilder}                                        from '../../lang/name/Name.builder';
 import {NumberPropertyThatCanBeUnknownWithCommentContainer} from '../_properties/number/NumberPropertyThatCanBeUnknownWithComment.container';
+import {ObjectHolders}                                      from '../../util/holder/objectHolders';
 import {TemplateBuilder}                                    from '../_template/Template.builder';
 
 export class EntityLimitBuilder
@@ -29,8 +32,6 @@ export class EntityLimitBuilder
     //region -------------------- External object references --------------------
 
     public static references: Map<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>;
-
-    public static entitiesMap: ReadonlyMap<string, Entity>;
 
     //endregion -------------------- External object references --------------------
 
@@ -67,7 +68,7 @@ export class EntityLimitBuilder
     }
 
     private static __getEntity(entity: PossibleEnglishName_Entity,): Entity {
-        return this.entitiesMap.get(entity)!;
+        return Entities.getValue(entity).reference;
     }
 
     private __createLink(): EntityLimitLink {
@@ -78,8 +79,8 @@ export class EntityLimitBuilder
         return groupName == null && entityName == null
             ? EmptyEntityLimitLink.get
             : groupName == null
-                ? new EntityLimitLinkContainer(null, EntityLimitBuilder.__getEntity(entityName!),)
-                : new EntityLimitLinkContainer(EntityLimitBuilder.__getGroupEntity(groupName), null,);
+                ? new EntityLimitLinkContainer(ObjectHolders.NULL, new DelayedObjectHolderContainer(() => EntityLimitBuilder.__getEntity(entityName!)),)
+                : new EntityLimitLinkContainer(new DelayedObjectHolderContainer(() => EntityLimitBuilder.__getGroupEntity(groupName)), ObjectHolders.NULL,);
 
 
     }

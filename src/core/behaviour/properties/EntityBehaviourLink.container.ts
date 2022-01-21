@@ -6,7 +6,7 @@ import type {PossibleGroupName}                 from '../../entityTypes';
 
 import {assert}                       from '../../../util/utilitiesMethods';
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
-import {EntityLoader}                 from '../../entity/Entity.loader';
+import {Entities}                     from '../../entity/Entities';
 
 /**
  * @multiton
@@ -26,7 +26,6 @@ export class EntityBehaviourLinkContainer
 
     static readonly #COINS_LINK =               new EntityBehaviourLinkContainer('Coins',     null,             );
     static readonly #POWER_UPS_LINK =           new EntityBehaviourLinkContainer('Power-ups', null,             );
-
 
     //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -54,7 +53,7 @@ export class EntityBehaviourLinkContainer
     }
 
     private static __getEntityByName(name: EntityName,): Entity {
-        return EntityLoader.get.load().get(name)!;
+        return Entities.getValue(name).reference;
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

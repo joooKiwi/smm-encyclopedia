@@ -1,5 +1,4 @@
 import type {Builder}                 from '../../util/builder/Builder';
-import type {Entity}                  from '../entity/Entity';
 import type {EntityBehaviour}         from './EntityBehaviour';
 import type {EntityBehaviourTemplate} from './EntityBehaviour.template';
 
@@ -11,12 +10,6 @@ import {EntityBehaviourLinkContainer}     from './properties/EntityBehaviourLink
 export class EntityBehaviourBuilder
     extends TemplateBuilder<EntityBehaviourTemplate, EntityBehaviour>
     implements Builder<EntityBehaviour> {
-
-    //region -------------------- External object references --------------------
-
-    public static entitiesMap: ReadonlyMap<string, Entity>;
-
-    //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<EntityBehaviourTemplate>,) {
         super(templateBuilder);

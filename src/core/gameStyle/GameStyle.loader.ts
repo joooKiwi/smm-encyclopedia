@@ -8,7 +8,6 @@ import type {PossibleAcronym, PossibleEnglishName}  from './GameStyles.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityLoader}            from '../entity/Entity.loader';
 import {GameStyleBuilder}        from './GameStyle.builder';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
@@ -68,11 +67,6 @@ export class GameStyleLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, GameStyle>();
 
-            //region -------------------- Builder initialisation --------------------
-
-            GameStyleBuilder.entitiesMap = EntityLoader.get.load();
-
-            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, GameStyle, keyof typeof Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(new TemplateBuilder(convertedContent)).build())

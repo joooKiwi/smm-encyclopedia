@@ -8,7 +8,6 @@ import type {PossibleEnglishName as EntityName}        from '../entity/Entities.
 import type {PossibleGroupName}                        from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {EntityLoader}            from '../entity/Entity.loader';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
@@ -71,12 +70,6 @@ export class EntityBehaviourLoader
         if (this.#map == null) {
             const references = new Map<PossibleTranslationKeys, EntityBehaviour>();
 
-            //region -------------------- Builder initialisation --------------------
-
-            EntityBehaviourBuilder.entitiesMap = EntityLoader.get.load();
-            //TODO add group map
-
-            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())

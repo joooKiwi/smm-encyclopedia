@@ -8,7 +8,6 @@ import type {Loader}                                    from '../../util/loader/
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityLoader}            from '../entity/Entity.loader';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {ThemeBuilder}            from './Theme.builder';
@@ -94,11 +93,6 @@ export class ThemeLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, CourseAndWorldTheme>();
 
-            //region -------------------- Builder initialisation --------------------
-
-            ThemeBuilder.entitiesMap = EntityLoader.get.load();
-
-            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, CourseAndWorldTheme, keyof typeof Headers>(everyThemes, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)).build())

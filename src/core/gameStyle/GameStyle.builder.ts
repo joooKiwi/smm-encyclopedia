@@ -2,8 +2,9 @@ import type {Builder}           from '../../util/builder/Builder';
 import type {Entity}            from '../entity/Entity';
 import type {GameStyle}         from './GameStyle';
 import type {GameStyleTemplate} from './GameStyle.template';
+import type {PossibleAcronym}   from './GameStyles.types';
 
-import {assert}                from '../../util/utilitiesMethods';
+import {Entities}              from '../entity/Entities';
 import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
 import {GameReferences}        from '../gameReference/GameReferences';
 import {GameStyles}            from './GameStyles';
@@ -14,12 +15,6 @@ export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
-    //region -------------------- External object references --------------------
-
-    public static entitiesMap: ReadonlyMap<string, Entity>;
-
-    //endregion -------------------- External object references --------------------
-
     public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
         super(templateBuilder,);
     }
@@ -29,14 +24,11 @@ export class GameStyleBuilder
         return GameStyleBuilder;
     }
 
-    private static __whereEntityIs(englishName: string,): readonly Entity[] {
+    private static __whereEntityIs(englishName: PossibleAcronym,): readonly Entity[] {
         const gameStyle = GameStyles.getValue(englishName);
-        assert(gameStyle != null, `The english name "${englishName}" has no reference on the Game Style class.`,);
-        const everyEntities = [] as Entity[];
-        for (const [, entity,] of this.entitiesMap)
-            if (entity !== undefined && gameStyle.get(entity))
-                everyEntities.push(entity);
-        return everyEntities;
+
+        return Entities.values.map(({reference,}) => reference)
+            .filter(reference => gameStyle.get(reference));
     }
 
     public build(): GameStyle {
