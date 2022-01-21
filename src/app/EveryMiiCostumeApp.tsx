@@ -1,36 +1,22 @@
 import './EveryMiiCostumeApp.scss';
 
+import type {MiiCostume} from '../core/miiCostume/MiiCostume';
+
 import AbstractApp                     from './AbstractApp';
-import type {PossibleEnglishName}      from '../core/miiCostume/MiiCostumes.types';
-import type {MiiCostume}               from '../core/miiCostume/MiiCostume';
-import {MiiCostumeLoader}              from '../core/miiCostume/MiiCostume.loader';
-import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
-import {SingleTableContent}            from './tools/table/Table.types';
-import Image                           from './tools/images/Image';
-import NameComponent                   from '../lang/name/component/Name.component';
-import Table                           from './tools/table/Table';
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import Image                           from './tools/images/Image';
+import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
+import NameComponent                   from '../lang/name/component/Name.component';
+import Table                           from './tools/table/Table';
+import {SingleTableContent}            from './tools/table/Table.types';
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
 import TextComponent                   from './tools/text/TextComponent';
 
 export default class EveryMiiCostumeApp
     extends AbstractApp {
 
-    //region -------------------- Attributes & getter methods --------------------
-
-    #map?: ReadonlyMap<PossibleEnglishName, MiiCostume>;
-
-    protected get map() {
-        return this.#map ??= MiiCostumeLoader.get.load();
-    }
-
-    protected get enum() {
-        return MiiCostumes.values;
-    }
-
-    //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
     private static __createConditionToUnlockIt(miiCostume: MiiCostume,) {
@@ -47,10 +33,11 @@ export default class EveryMiiCostumeApp
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const [englishName, miiCostume,] of this.map) {
-            content.push([englishName,
+        for (const enumerable of MiiCostumes) {
+            const miiCostume = enumerable.reference;
+            content.push([enumerable.englishName,
                 <>{index}</>,
-                <Image source={this.enum[index - 1].imagePath} fallbackName={`${englishName} - image`}/>,
+                <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>,
                 <NameComponent id="name" name={miiCostume} popoverOrientation="left"/>,
                 EveryMiiCostumeApp.__createConditionToUnlockIt(miiCostume),
                 miiCostume.category == null ? EMPTY_REACT_ELEMENT : <>--{miiCostume.category}--</>,// <NameComponent id="name" name={miiCostume.category} popoverOrientation="left"/>,

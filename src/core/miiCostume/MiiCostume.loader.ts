@@ -12,7 +12,6 @@ import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 import {MiiCostumeBuilder}       from './MiiCostume.builder';
 
-
 //region -------------------- CSV array related types --------------------
 
 enum Headers {
@@ -62,7 +61,6 @@ type PropertiesArray = [
 //endregion -------------------- Exclusive properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
-
 
 export class MiiCostumeLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, MiiCostume>> {

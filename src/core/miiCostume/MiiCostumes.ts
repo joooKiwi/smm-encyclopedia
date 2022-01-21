@@ -1,11 +1,15 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                             from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                                                                                               from '../ClassWithImagePath';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumes.types';
+import type {MiiCostume}                                                                                                                                                                                                                       from './MiiCostume';
 import type {StaticReference}                                                                                                                                                                                                                  from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
 
+/**
+ * @recursiveReferenceVia<{@link MiiCostumeBuilder}, {@link MiiCostumeLoader}>
+ */
 export class MiiCostumes
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
@@ -154,6 +158,9 @@ export class MiiCostumes
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #map?: ReadonlyMap<PossibleEnglishName, MiiCostume>;
+
+    #reference?: MiiCostume;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imageName: PossibleImageName;
     readonly #imagePath: PossibleImagePath;
@@ -168,6 +175,19 @@ export class MiiCostumes
     }
 
     //region -------------------- Getter methods --------------------
+
+    private static get __map() {
+        return this.#map ??= require('./MiiCostume.loader').MiiCostumeLoader.get.load();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @semiAsynchronously
+     */
+    public get reference(): MiiCostume {
+        return this.#reference ??= MiiCostumes.__map.get(this.englishName)!;
+    }
+
 
     public get englishName(): PossibleEnglishName {
         return this.#englishName.get;
