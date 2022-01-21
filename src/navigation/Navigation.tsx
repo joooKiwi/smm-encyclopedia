@@ -4,6 +4,7 @@ import ContentTranslationComponent from '../lang/components/ContentTranslationCo
 import DisplayTab                  from './DisplayTab';
 import {route}                     from '../routes/route';
 import Tooltip                     from '../bootstrap/tooltip/Tooltip';
+import {TooltipInstance}           from '../bootstrap/tooltip/TooltipInstance';
 
 const HOME_ID = 'home-link';
 
@@ -15,7 +16,8 @@ export default function Navigation() {
         <div className="container-fluid">
             <ContentTranslationComponent>{translation =>
                 <Tooltip option={({title: translation('Home'), placement: 'right',})} elementId={HOME_ID}>
-                    <Link key="navigationHome" id={HOME_ID} className="navbar-brand bi-house" aria-current="page" to={route('home')}/>
+                    <Link key="navigationHome" id={HOME_ID} className="navbar-brand bi-house" aria-current="page" to={route('home')}
+                          onClick={() => TooltipInstance.getInstance(HOME_ID).instance.hide()}/>
                 </Tooltip>
             }</ContentTranslationComponent>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-expanded="false" aria-label="Toggle navigation">
