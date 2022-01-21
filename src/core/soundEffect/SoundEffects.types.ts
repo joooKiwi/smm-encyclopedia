@@ -127,6 +127,13 @@ export type EnumArray<T extends SoundEffects = SoundEffects, > = readonly [
     SimpleEnum<T>['SUPER_MARIO_KART'], SimpleEnum<T>['SUPER_MARIO_64'], SimpleEnum<T>['SUPER_MARIO_SUNSHINE'], SimpleEnum<T>['SUPER_MARIO_GALAXY'],
 
 ];
+export type EnumArray_Games<T extends SoundEffects = SoundEffects, > = readonly [
+    SimpleEnum<T>['SUPER_MARIO_KART'],
+    SimpleEnum<T>['SUPER_MARIO_64'],
+    SimpleEnum<T>['SUPER_MARIO_SUNSHINE'],
+    SimpleEnum<T>['SUPER_MARIO_GALAXY'],
+];
+
 export type EnumArray_EnglishName = readonly [
     'Shock', 'Scream', 'Laughter', 'Guffaw', 'Booo!',
     'Cheer', 'Baby', 'Party Popper', 'Applause', 'Near Miss',

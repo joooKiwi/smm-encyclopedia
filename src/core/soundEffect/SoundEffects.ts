@@ -1,6 +1,6 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                        from '../ClassWithEnglishName';
-import type {EnumArray, EnumArray_EnglishName, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                             from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                         from '../ClassWithEnglishName';
+import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 
 import {Enum}               from '../../util/enum/Enum';
 import SoundEffectComponent from './SoundEffect.component';
@@ -82,6 +82,7 @@ export class SoundEffects
     readonly #englishName;
     readonly #SMM1ImagePath: | PossibleImagePath_SMM1 | null;
     readonly #SMM2ImagePath: | PossibleImagePath_SMM2 | null;
+    static #soundEffect_games?: EnumArray_Games;
 
     //endregion -------------------- Attributes --------------------
 
@@ -111,6 +112,11 @@ export class SoundEffects
 
     public get SMM2ImagePath(): | PossibleImagePath_SMM2 | null {
         return this.#SMM2ImagePath;
+    }
+
+
+    public static get soundEffect_games(): EnumArray_Games {
+        return this.#soundEffect_games ??= [this.SUPER_MARIO_KART, this.SUPER_MARIO_64, this.SUPER_MARIO_SUNSHINE, this.SUPER_MARIO_GALAXY,];
     }
 
     //endregion -------------------- Getter methods --------------------

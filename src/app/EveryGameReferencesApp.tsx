@@ -1,24 +1,18 @@
 import './EveryGameReferencesApp.scss';
 
-import {Fragment} from 'react';
-
-import type {GameReference}                     from '../core/gameReference/GameReference';
-import type {EnumArray as EnumArray_Games}      from '../core/game/Games.types';
-import type {EnumArray as EnumArray_GameStyles} from '../core/gameStyle/GameStyles.types';
-import type {PossibleEnglishName}               from '../core/gameReference/GameReferences.types';
-import type {PossibleEnglishName_Games}         from '../core/soundEffect/SoundEffects.types';
-import type {ReactElement}                      from '../util/react/ReactProperty';
+import {Fragment}                       from 'react';
+import type {PossibleEnglishName_Games} from '../core/soundEffect/SoundEffects.types';
+import type {ReactElement}              from '../util/react/ReactProperty';
 
 import AbstractApp                     from './AbstractApp';
-import {GameReferenceLoader}           from '../core/gameReference/GameReference.loader';
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {GameReferences}                from '../core/gameReference/GameReferences';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../core/game/Games';
 import {GameStyles}                    from '../core/gameStyle/GameStyles';
 import NameComponent                   from '../lang/name/component/Name.component';
-import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 import {SingleTranslationKey}          from '../lang/components/TranslationProperty';
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
+import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 
 /**
  * @reactComponent
@@ -28,6 +22,9 @@ export default class EveryGameReferencesApp
 
     //region -------------------- Attributes --------------------
 
+    /**
+     * Every {@link GameReferences} that will do a return of line after its rendering.
+     */
     public static RETURN_OF_LINES = [GameReferences.MARIO_AND_LUIGI_PAPER_JAM, GameReferences.DONKEY_KONG_COUNTRY, GameReferences.KIRBY_ADVENTURE,
         GameReferences.KID_ICARIUS_UPRISING, GameReferences.MEGA_MAN, GameReferences.METROID_ZERO_MISSION,
         GameReferences.NINTENDO_ENTERTAINMENT_SYSTEM_ROB, GameReferences.FIRE_EMBLEM_AWAKENING,
@@ -45,46 +42,21 @@ export default class EveryGameReferencesApp
         GameReferences.ICE_CLIMBER, GameReferences.SHAUN_THE_SHEEP,
     ] as const;
 
-    #map?: ReadonlyMap<PossibleEnglishName, GameReference>;
-    #games?: EnumArray_Games;
-    #gameStyles?: EnumArray_GameStyles;
-    #soundEffects?: EnumArray_SoundEffects;
-    #otherGames?: GameReferences_Others;
+    static #otherGameReferences?: readonly GameReferences[];
 
     //endregion -------------------- Attributes --------------------
     //region -------------------- Getter & initialisation methods --------------------
 
-    protected get map() {
-        return this.#map ??= GameReferenceLoader.get.load();
-    }
-
-    protected get enum() {
-        return GameReferences.values;
-    }
-
-
-    protected get games(): EnumArray_Games {
-        return this.#games ??= Games.values;
-    }
-
-    protected get gameStyles(): EnumArray_GameStyles {
-        return this.#gameStyles ??= GameStyles.values;
-    }
-
-    protected get soundEffects(): EnumArray_SoundEffects {
-        return this.#soundEffects ??= [SoundEffects.SUPER_MARIO_KART, SoundEffects.SUPER_MARIO_64, SoundEffects.SUPER_MARIO_SUNSHINE, SoundEffects.SUPER_MARIO_GALAXY,];
-    }
-
-    protected get otherGameReferences(): GameReferences_Others {
-        if (this.#otherGames == null) {
+    private static get __otherGameReferences(): readonly GameReferences[] {
+        if (EveryGameReferencesApp.#otherGameReferences == null) {
             const alreadyIncludedNames = [
-                ...this.games.map(game => game.englishName),
-                ...this.gameStyles.map(game => game.englishName),
-                ...this.soundEffects.map(game => game.englishName) as PossibleEnglishName_Games[],
+                ...Games.values.map(game => game.englishName),
+                ...GameStyles.values.map(game => game.englishName),
+                ...SoundEffects.soundEffect_games.map(game => game.englishName) as PossibleEnglishName_Games[],
             ];
-            this.#otherGames = this.enum.filter(enumerable => !alreadyIncludedNames.includes(enumerable.englishName as never));
+            EveryGameReferencesApp.#otherGameReferences = GameReferences.values.filter(enumerable => !alreadyIncludedNames.includes(enumerable.englishName as never));
         }
-        return this.#otherGames;
+        return EveryGameReferencesApp.#otherGameReferences;
     }
 
     //endregion -------------------- Getter & initialisation methods --------------------
@@ -119,17 +91,14 @@ export default class EveryGameReferencesApp
             <GameContentTranslationComponent>{translation =>
                 <h2 id="main-names-title" className="col-12 names-title">{translation('Game references')}</h2>
             }</GameContentTranslationComponent>
-            {this._getContainer('game', 'Games', this.games,)}
-            {this._getContainer('gameStyle', 'Game styles', this.gameStyles,)}
-            {this._getContainer('soundEffect', 'Sound effects', this.soundEffects,)}
-            {this._getContainer('otherGameReferences', 'Other game references', this.otherGameReferences, EveryGameReferencesApp.RETURN_OF_LINES,)}
+            {this._getContainer('game', 'Games', Games.values,)}
+            {this._getContainer('gameStyle', 'Game styles', GameStyles.values,)}
+            {this._getContainer('soundEffect', 'Sound effects', SoundEffects.soundEffect_games,)}
+            {this._getContainer('otherGameReferences', 'Other game references', EveryGameReferencesApp.__otherGameReferences, EveryGameReferencesApp.RETURN_OF_LINES,)}
         </div>;
     }
 
 }
-
-type EnumArray_SoundEffects = readonly [typeof SoundEffects['SUPER_MARIO_KART'], typeof SoundEffects['SUPER_MARIO_64'], typeof SoundEffects['SUPER_MARIO_SUNSHINE'], typeof SoundEffects['SUPER_MARIO_GALAXY'],];
-type GameReferences_Others = readonly GameReferences[];
 
 type PossibleGameReference = (Games | GameStyles | SoundEffects | GameReferences)
                              & { renderSingleComponent?: ReactElement };
