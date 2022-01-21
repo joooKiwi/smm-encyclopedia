@@ -1,9 +1,10 @@
+import type {ExtendedList}                                                                                     from '../../../../util/extended/ExtendedList';
 import type {PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnTaunt} from './SoundEffectOnTaunt';
 
-import {PropertyProvider} from '../../../_properties/PropertyProvider';
-import {GameReferences}   from '../../../gameReference/GameReferences';
-import {isArrayEquals}    from '../../../../util/utilitiesMethods';
-import {ExtendedSet}      from '../../../../util/extended/ExtendedSet';
+import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
+import {GameReferences}       from '../../../gameReference/GameReferences';
+import {isArrayEquals}        from '../../../../util/utilitiesMethods';
+import {PropertyProvider}     from '../../../_properties/PropertyProvider';
 
 /**
  * @multiton
@@ -14,7 +15,7 @@ export class SoundEffectOnTauntContainer
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #EVERY_CONTAINERS = new ExtendedSet<SoundEffectOnTauntContainer>();
+    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectOnTauntContainer> = new ExtendedSetContainer();
 
     readonly #argumentsReceived: ArgumentsReceived;
 

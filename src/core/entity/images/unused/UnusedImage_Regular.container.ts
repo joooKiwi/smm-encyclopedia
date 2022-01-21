@@ -1,33 +1,23 @@
-import type {EveryImages_Stretch, OutImages_Stretch, UnusedImage_Regular, WaitingImages_Stretch} from './UnusedImage_Regular';
+import type {UnusedImage_Regular} from './UnusedImage_Regular';
+import type {GameStyles}          from '../../../gameStyle/GameStyles';
 
 export class UnusedImage_RegularContainer
     implements UnusedImage_Regular {
 
     //region -------------------- Attributes --------------------
 
-    #all?: EveryImages_Stretch;
-    readonly #outImages;
-    readonly #waitingImages;
+    readonly #all;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(outImages: OutImages_Stretch, waitingImages: WaitingImages_Stretch,) {
-        this.#outImages = outImages;
-        this.#waitingImages = waitingImages;
+    public constructor(images: ReadonlyMap<GameStyles, readonly (readonly string[])[]>,) {
+        this.#all = images;
     }
 
     //region -------------------- Getter methods --------------------
 
-    public get outImages(): OutImages_Stretch {
-        return this.#outImages;
-    }
-
-    public get waitingImages(): WaitingImages_Stretch {
-        return this.#waitingImages;
-    }
-
-    public get all(): EveryImages_Stretch {
-        return this.#all ??= [this.outImages, this.waitingImages,];
+    public get all() {
+        return this.#all;
     }
 
     //endregion -------------------- Getter methods --------------------

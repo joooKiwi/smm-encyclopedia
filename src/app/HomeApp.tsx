@@ -1,5 +1,3 @@
-import './HomeApp.scss';
-
 import AbstractApp from './AbstractApp';
 
 /**

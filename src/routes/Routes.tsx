@@ -1,8 +1,11 @@
 import {BrowserRouter, Navigate, Route, Routes as ReactRoutes} from 'react-router-dom';
-import {everySimpleRoutes}                                     from './everyRoutes';
-import {ProjectLanguages}                                      from '../lang/ProjectLanguages';
-import {redirectToHome}                                        from './redirectToHome';
-import DirectRoute                                             from './DirectRoute';
+import {Suspense}                                              from 'react';
+
+import DirectRoute         from './DirectRoute';
+import {everySimpleRoutes} from './everyRoutes';
+import LoadingApp          from '../app/LoadingApp';
+import {ProjectLanguages}  from '../lang/ProjectLanguages';
+import {redirectToHome}    from './redirectToHome';
 
 /**
  *
@@ -10,12 +13,14 @@ import DirectRoute                                             from './DirectRou
  */
 export default function Routes() {
     return <BrowserRouter>
-        <ReactRoutes>
-            <Route path="/" element={redirectToHome()}/>
-            {getRedirectRoutesToProjectRoute_InDefault()}
-            {getRedirectRoutesToHome_InEveryLanguage()}
-            {getRoutesToProjectRoute_InEveryLanguage()}
-        </ReactRoutes>
+        <Suspense fallback={<LoadingApp/>}>
+            <ReactRoutes>
+                <Route path="/" element={redirectToHome()}/>
+                {getRedirectRoutesToProjectRoute_InDefault()}
+                {getRedirectRoutesToHome_InEveryLanguage()}
+                {getRoutesToProjectRoute_InEveryLanguage()}
+            </ReactRoutes>
+        </Suspense>
     </BrowserRouter>;
 }
 

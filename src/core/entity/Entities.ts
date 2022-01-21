@@ -9,19 +9,22 @@ import type {InGameImage}                                                       
 import type {SimpleImageName as SimpleImageName_ClearCondition}                                                                                                                                          from './images/clearCondition/ClearConditionImage.types';
 import type {SimpleImageName as SimpleImageName_Editor, SimpleImageName_GroundOrSlope}                                                                                                                   from './images/editor/EditorImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
-import type {UnusedImage, UnusedImages}                                                                                                                                                                  from './images/unused/UnusedImage';
+import type {UnusedImages}                                                                                                                                                                               from './images/unused/UnusedImage';
+import type {UnusedImage_BigMushroom}                                                                                                                                                                    from './images/unused/UnusedImage_BigMushroom';
+import type {UnusedImage_Regular}                                                                                                                                                                        from './images/unused/UnusedImage_Regular';
 
-import {ClearConditionImageBuilder}    from './images/clearCondition/ClearConditionImage.builder';
-import {EditorImageBuilder}            from './images/editor/EditorImage.builder';
-import {EmptyClearConditionImage}      from './images/clearCondition/EmptyClearConditionImage';
-import {EmptyEditorImage}              from './images/editor/EmptyEditorImage';
-import {EmptyInGameImage}              from './images/inGame/EmptyInGameImage';
-import {EmptyUnusedImage}              from './images/unused/EmptyUnusedImage';
-import {Enum}                          from '../../util/enum/Enum';
-import {GameStyles}                    from '../gameStyle/GameStyles';
-import {InGameImage_SMM1Builder}       from './images/inGame/InGameImage_SMM1.builder';
-import {StringContainer}               from '../../util/StringContainer';
-import {Themes}                        from '../theme/Themes';
+import {ClearConditionImageBuilder}     from './images/clearCondition/ClearConditionImage.builder';
+import {EditorImageBuilder}             from './images/editor/EditorImage.builder';
+import {EmptyClearConditionImage}       from './images/clearCondition/EmptyClearConditionImage';
+import {EmptyEditorImage}               from './images/editor/EmptyEditorImage';
+import {EmptyInGameImage}               from './images/inGame/EmptyInGameImage';
+import {EmptyUnusedImage_BigMushroom}   from './images/unused/EmptyUnusedImage_BigMushroom';
+import {EmptyUnusedImage_Regular}       from './images/unused/EmptyUnusedImage_Regular';
+import {Enum}                           from '../../util/enum/Enum';
+import {GameStyles}                     from '../gameStyle/GameStyles';
+import {InGameImage_SMM1Builder}        from './images/inGame/InGameImage_SMM1.builder';
+import {StringContainer}                from '../../util/StringContainer';
+import {Themes}                         from '../theme/Themes';
 import {Times}                          from '../time/Times';
 import {UnusedImage_BigMushroomBuilder} from './images/unused/UnusedImage_BigMushroom.builder';
 import {UnusedImage_RegularBuilder}     from './images/unused/UnusedImage_Regular.builder';
@@ -860,7 +863,14 @@ export class Entities
         }
 
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
-            return [null, new UnusedImage_BigMushroomBuilder('Kuribo',),];
+            return [
+                null,
+                new UnusedImage_BigMushroomBuilder('Kuribo D',)
+                    .setImage('damage', 1,)
+                    .setImage('swim', 2,)
+                    .setImage('walk', 2,)
+                    .setImage('kutsu', 1,),
+            ];
         }
 
     }('Goomba',);
@@ -1380,7 +1390,21 @@ export class Entities
     public static readonly STRETCH =                                       new class Entities_Stretch extends Entities {
 
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
-            return [new UnusedImage_RegularBuilder('Necchi'), new UnusedImage_BigMushroomBuilder('Necchi',),];
+            const waitImages = ['out', 1,] as const;
+            const outImages = ['wait', 4,] as const;
+            return [
+                new UnusedImage_RegularBuilder('Necchi',)
+                    .setImage(SMB, ...waitImages,)
+                    .setImage(SMB, ...outImages,)
+                    .setImage(SMB3, ...waitImages,)
+                    .setImage(SMB3, ...outImages,)
+                    .setImage(SMW, ...waitImages,)
+                    .setImage(SMW, ...outImages,),
+                new UnusedImage_BigMushroomBuilder('Necchi',)
+                    .setImage('wait', [1,],)
+                    .setImage('wait', [2,],)
+                    .setImage('out', [4,],),
+            ];
         }
 
     }('Stretch',);
@@ -1685,7 +1709,17 @@ export class Entities
         }
 
     }('Cannon',);
-    public static readonly CANNONBALL =                                    new Entities('Cannonball',);
+    public static readonly CANNONBALL =                                    new class Entities_Cannonball extends Entities {
+
+        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+            return [
+                null,
+                new UnusedImage_BigMushroomBuilder('SenkanHoudai D',)
+                    .setImage('senkan_houdai_ball',),
+            ];
+        }
+
+    }('Cannonball',);
     public static readonly RED_CANNON =                                    new class Entities_RedCannon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
@@ -1738,7 +1772,16 @@ export class Entities
         }
 
         protected get _createUnusedImage(): PossibleUnusedUnusedImage {
-            return [null, new UnusedImage_BigMushroomBuilder('KoopaClown',),];
+            const images = [4, 5, 6, 7,] as const;
+            return [
+                new UnusedImage_RegularBuilder('KoopaClown',)
+                    .setImage(SMW, 'weep', images,),
+                new UnusedImage_BigMushroomBuilder('KoopaClown',)
+                    .setImage('wait', images,)
+                    .setImage('anger', images,)
+                    .setImage('blink', images,)
+                    .setImage('weep', images,),
+            ];
         }
 
     }('Koopa Clown Car',);
@@ -1834,6 +1877,14 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+            return [
+                null,
+                new UnusedImage_BigMushroomBuilder('Koopa',)
+                    .setImage('fire', [1,],),
+            ];
+        }
+
     }('Bowser',);
     public static readonly MEOWSER =                                       new class Entities_Meowser extends Entities {
 
@@ -1861,6 +1912,14 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('KoopaJr',)
                 .setNotSM3DW();
+        }
+
+        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+            return [
+                null,
+                new UnusedImage_BigMushroomBuilder('KoopaJr',)
+                    .setImage('fire', [1,],),
+            ];
         }
 
     }('Bowser Jr.',);
@@ -2314,6 +2373,12 @@ export class Entities
             return 'PSwitch';
         }
 
+        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+            return new UnusedImage_RegularBuilder('PSwitch',)
+                .setImage(SMB, 'wait', [0, 1, 2,],)
+                .setImage(NSMBU, 'down_switch_hatena_Alb', ['000', '004',],);
+        }
+
     }('P Switch',);
 
     public static readonly STONE =                                         new class Entities_Stone extends Entities {
@@ -2380,7 +2445,7 @@ export class Entities
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, Entity>;
-    static readonly #EMPTY_UNUSED_IMAGE_ARRAY = [EmptyUnusedImage.get, EmptyUnusedImage.get,] as const;
+    static readonly #EMPTY_UNUSED_IMAGE_ARRAY = [EmptyUnusedImage_Regular.get, EmptyUnusedImage_BigMushroom.get,] as const;
 
     #reference?: Entity;
     readonly #englishNameContainer;
@@ -2533,7 +2598,7 @@ export class Entities
      * @private
      * @onlyCalledOnce
      */
-    private get __initialiseUnusedImageBuilder(): | readonly[Builder<UnusedImage>,] | readonly[Builder<UnusedImage>, Builder<UnusedImage>,] | readonly[null, Builder<UnusedImage>,] | null {
+    private get __initialiseUnusedImageBuilder(): | readonly[Builder<UnusedImage_Regular>,] | readonly[Builder<UnusedImage_Regular>, Builder<UnusedImage_BigMushroom>,] | readonly[null, Builder<UnusedImage_BigMushroom>,] | null {
         const builder_or_image = this._createUnusedImage;
         if (builder_or_image == null)
             return null;
@@ -2557,12 +2622,11 @@ export class Entities
             const builder_or_null = this.__initialiseUnusedImageBuilder;
             this.#unusedImages = builder_or_null == null
                 ? Entities.#EMPTY_UNUSED_IMAGE_ARRAY
-                : [builder_or_null[0]?.build() ?? EmptyUnusedImage.get,
-                    builder_or_null[1]?.build() ?? EmptyUnusedImage.get,];
+                : [builder_or_null[0]?.build() ?? EmptyUnusedImage_Regular.get,
+                    builder_or_null[1]?.build() ?? EmptyUnusedImage_BigMushroom.get,];
         }
         return this.#unusedImages;
     }
-
 
     //endregion -------------------- unused image --------------------
 
@@ -2630,7 +2694,7 @@ export class Entities
 type PossibleEditorImage = | Builder<EditorImage> | SimpleImageName_Editor | null;
 type PossibleClearConditionImage = | Builder<ClearConditionImage> | SimpleImageName_ClearCondition | null;
 type PossibleInGameImage = | Builder<InGameImage> | null;
-type PossibleUnusedUnusedImage = | Builder<UnusedImage> | [Builder<UnusedImage>, Builder<UnusedImage>,] | [null, Builder<UnusedImage>,] | null;
+type PossibleUnusedUnusedImage = | Builder<UnusedImage_Regular> | [Builder<UnusedImage_Regular>, Builder<UnusedImage_BigMushroom>,] | [null, Builder<UnusedImage_BigMushroom>,] | null;
 
 // @ts-ignore
 window.test = Entities;

@@ -3,6 +3,8 @@ export type PossibleGroupName = string;
 
 /** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Object';
 
+/** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker = | 1 | 2 | null;
+
 //region -------------------- Specific properties --------------------
 
 /** @temporaryLocation */export type CanContainOrSpawnAKey = | boolean | null;
@@ -59,8 +61,16 @@ export type PossibleGroupName = string;
 
 /** @temporaryLocation */export type CanBeTransformedByMagikoopa = | boolean | '?';
 /** @temporaryLocation */export type CanBeSpawnedByMagikoopa = boolean;
-/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = | false | `${| '' | 'green '}winged` | '?';
+/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = | false | 'winged' | 'Green Winged Koopa Troopa' | '?';
 
-//region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+//endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+//region -------------------- Dimension properties --------------------
 
-/** @temporaryBehaviour */export type HasAReferenceInMarioMaker = | boolean | 'French only' | 'Only spoken (in english) in Editor' | null;
+export type PossibleDimension = | `${number}x${number}` | 'string' | '?' | null;
+export type PossibleMaximumDimension = | `${number}x${number}` | 'string' | null;
+export type PossibleDimensionDifferentInSM3DW = | `${number}x${number}` | 'string' | null;
+export type PossibleMaximumDimensionDifferentInSM3DW = | `${number}x${number}` | 'string' | null;
+
+//endregion -------------------- Dimension properties --------------------
+
+/** @temporaryBehaviour */export type HasAReferenceInMarioMaker = | boolean | 'Only spoken (in english) in Editor' | '?' | null;

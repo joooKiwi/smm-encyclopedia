@@ -73,6 +73,11 @@ export class EntityCategories
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
+        return this.values.map(enumeration => enumeration.englishName);
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 

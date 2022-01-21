@@ -1,17 +1,18 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
-import {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
-import {EntityCategoryLoader}  from '../../entityCategory/EntityCategory.loader';
-import {EntityLimits}          from '../../entityLimit/EntityLimits';
-import {EntityLimitTypes}      from '../../entityLimit/EntityLimitTypes';
-import {Entities}              from '../../entity/Entities';
-import {GameReferences}        from '../../gameReference/GameReferences';
-import {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
-import {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
-import {SoundEffects}          from '../../soundEffect/SoundEffects';
-import {GameStyles}            from '../../gameStyle/GameStyles';
+import type {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
+import type {EntityCategories}      from '../../entityCategory/EntityCategories';
+import type {EntityLimits}          from '../../entityLimit/EntityLimits';
+import type {EntityLimitTypes}      from '../../entityLimit/EntityLimitTypes';
+import type {Entities}              from '../../entity/Entities';
+import type {GameReferences}        from '../../gameReference/GameReferences';
+import type {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
+import type {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
+import type {SoundEffects}          from '../../soundEffect/SoundEffects';
+import type {GameStyles}            from '../../gameStyle/GameStyles';
 
 /**
+ * @classWithDynamicImport
  * @singleton
  */
 class HeaderTypesForConvertorForTestAndDevelopment
@@ -34,6 +35,23 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
     static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
+
+    //region -------------------- Enum reference attributes --------------------
+
+    #gameReferences?: typeof GameReferences;
+    #gameStyles?: typeof GameStyles;
+    #entities?: typeof Entities;
+    #entityBehaviours?: typeof EntityBehaviours;
+    // #entityGroups?: typeof EntityGroups;
+    #entityCategories?: typeof EntityCategories;
+    #entityLimits?: typeof EntityLimits;
+    #entityLimitTypes?: typeof EntityLimitTypes;
+    #soundEffects?: typeof SoundEffects;
+    #soundEffectCategories?: typeof SoundEffectCategories;
+    #mysteryMushrooms?: typeof MysteryMushrooms;
+
+    //endregion -------------------- Enum reference attributes --------------------
+    //region -------------------- Array attributes --------------------
 
     #everyPossibleGameReferenceAcronym?: EveryPossibleAcronym_GameReference;
     #everyPossibleGameReferenceAcronymWithPokemonGeneration?: EveryPossibleAcronymWithPokemonGeneration_GameReference;
@@ -60,50 +78,106 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleSoundEffectsNames?: EveryPossibleEnglishName_SoundEffect;
     #everyPossibleSoundEffectCategoriesNames?: EveryPossibleEnglishName_SoundEffectCategory;
 
+    #everyPossibleConditionToUnlockIt_MiiCostume?: EveryConditionToUnlockIt_MiiCostume;
+    #everyPossibleMode_MiiCostume?: EveryPossibleMode_MiiCostume;
+    #everyPossibleCategory_MiiCostume?: EveryPossibleCategory_MiiCostume;
+
     #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
 
+    //endregion -------------------- Array attributes --------------------
+
     //endregion -------------------- Attributes --------------------
 
+    //region -------------------- Enum reference getter reference --------------------
+
+    public get gameReferences(): typeof GameReferences {
+        return this.#gameReferences ??= require('../../gameReference/GameReferences').GameReferences;
+    }
+
+    public get gameStyles(): typeof GameStyles {
+        return this.#gameStyles ??= require('../../gameStyle/GameStyles').GameStyles;
+    }
+
+    public get entities(): typeof Entities {
+        return this.#entities ??= require('../../entity/Entities').Entities;
+    }
+
+    public get entityBehaviours(): typeof EntityBehaviours {
+        return this.#entityBehaviours ??= require('../../behaviour/EntityBehaviours').EntityBehaviours;
+    }
+
+    // public get entityGroups(): typeof EntityCategories {
+    //     return this.#entityGroups ??= require('../../entityGroup/EntityGroup').EntityGroup;
+    // }
+
+    public get entityCategories(): typeof EntityCategories {
+        return this.#entityCategories ??= require('../../entityCategory/EntityCategories').EntityCategories;
+    }
+
+    public get entityLimits(): typeof EntityLimits {
+        return this.#entityLimits ??= require('../../entityLimit/EntityLimits').EntityLimits;
+    }
+
+    public get entityLimitTypes(): typeof EntityLimitTypes {
+        return this.#entityLimitTypes ??= require('../../entityLimit/EntityLimitTypes').EntityLimitTypes;
+    }
+
+    public get soundEffects(): typeof SoundEffects {
+        return this.#soundEffects ??= require('../../soundEffect/SoundEffects').SoundEffects;
+    }
+
+    public get soundEffectCategories(): typeof SoundEffectCategories {
+        return this.#soundEffectCategories ??= require('../../soundEffectCategory/SoundEffectCategories').SoundEffectCategories;
+    }
+
+    public get mysteryMushrooms(): typeof MysteryMushrooms {
+        return this.#mysteryMushrooms ??= require('../../mysteryMushroom/MysteryMushrooms').MysteryMushrooms;
+    }
+
+    //endregion -------------------- Enum reference getter reference --------------------
     //region -------------------- Game reference --------------------
 
     public get everyPossibleGameReferenceAcronym() {
-        return this.#everyPossibleGameReferenceAcronym ??= GameReferences.everyAcronyms;
+        return this.#everyPossibleGameReferenceAcronym ??= this.gameReferences.everyAcronyms;
     }
 
     public get everyPossibleGameReferenceAcronymWithPokemonGeneration() {
-        return this.#everyPossibleGameReferenceAcronymWithPokemonGeneration ??= [...GameReferences.everyAcronyms, 'Pokémon gen 1', 'Pokémon gen 4', 'Pokémon gen 6',];
+        return this.#everyPossibleGameReferenceAcronymWithPokemonGeneration ??= [
+            ...this.gameReferences.everyAcronyms,
+            'Pokémon gen 1', 'Pokémon gen 4', 'Pokémon gen 6',
+        ];
     }
 
     public get everyPossibleGameReferenceEnglishName() {
-        return this.#everyPossibleGameReferenceEnglishName ??= GameReferences.everyEnglishNames;
+        return this.#everyPossibleGameReferenceEnglishName ??= this.gameReferences.everyEnglishNames;
     }
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
 
     public get everyPossibleGameStyleAcronym() {
-        return this.#everyPossibleGameStyleAcronym ??= GameStyles.everyAcronyms;
+        return this.#everyPossibleGameStyleAcronym ??= this.gameStyles.everyAcronyms;
     }
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
     public get everyPossibleEntityNames() {
-        return this.#everyPossibleEntityNames ??= Entities.everyEnglishNames;
+        return this.#everyPossibleEntityNames ??= this.entities.everyEnglishNames;
     }
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
 
     public get everyPossibleBehavioursAcronyms() {
-        return this.#everyPossibleBehavioursAcronyms ??= EntityBehaviours.everyAcronyms;
+        return this.#everyPossibleBehavioursAcronyms ??= this.entityBehaviours.everyAcronyms;
     }
 
     public get everyPossibleBehavioursTranslationKeys() {
-        return this.#everyPossibleBehavioursTranslationKeys ??= EntityBehaviours.everyTranslationKeys;
+        return this.#everyPossibleBehavioursTranslationKeys ??= this.entityBehaviours.everyTranslationKeys;
     }
 
     //endregion -------------------- Entity behaviour --------------------
@@ -118,52 +192,99 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Entity category --------------------
 
     public get everyPossibleEntityCategoriesNames() {
-        //TODO change to enum usage instead (when it will be created)
-        return this.#everyPossibleEntityCategoriesNames ??= [...EntityCategoryLoader.get.load().keys()];
+        return this.#everyPossibleEntityCategoriesNames ??= this.entityCategories.everyEnglishNames;
     }
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Entity limit --------------------
 
     public get everyPossibleLimitsAcronyms() {
-        return this.#everyPossibleLimitsAcronyms ??= [...EntityLimits.everyAcronyms, ...EntityLimits.everyAlternativeAcronyms,];
+        return this.#everyPossibleLimitsAcronyms ??= [...this.entityLimits.everyAcronyms, ...this.entityLimits.everyAlternativeAcronyms,];
     }
 
     public get everyAlternativeLimitAcronyms() {
-        return this.#everyAlternativeLimitAcronyms ??= EntityLimits.everyAlternativeAcronyms;
+        return this.#everyAlternativeLimitAcronyms ??= this.entityLimits.everyAlternativeAcronyms;
     }
 
     public get everyPossibleLimitsNames() {
-        return this.#everyPossibleLimitsNames ??= [...EntityLimits.everyEnglishNames, ...EntityLimits.everyAlternativeEnglishNames,];
+        return this.#everyPossibleLimitsNames ??= [...this.entityLimits.everyEnglishNames, ...this.entityLimits.everyAlternativeEnglishNames,];
     }
 
     public get everyLimitsNamesOrUnknown() {
-        return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...EntityLimits.everyEnglishNames,];
+        return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...this.entityLimits.everyEnglishNames,];
     }
 
     //endregion -------------------- Entity limit --------------------
     //region -------------------- Entity limit type --------------------
 
     public get everyPossibleLimitTypesNames() {
-        return this.#everyPossibleLimitTypesNames ??= EntityLimitTypes.everyEnglishNames;
+        return this.#everyPossibleLimitTypesNames ??= this.entityLimitTypes.everyEnglishNames;
     }
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
     public get everyPossibleSoundEffectsNames() {
-        return this.#everyPossibleSoundEffectsNames ??= SoundEffects.everyEnglishNames;
+        return this.#everyPossibleSoundEffectsNames ??= this.soundEffects.everyEnglishNames;
     }
+
+    //endregion -------------------- Sound effect --------------------
+    //region -------------------- Sound effect category --------------------
 
     public get everyPossibleSoundEffectCategoriesNames() {
-        return this.#everyPossibleSoundEffectCategoriesNames ??= SoundEffectCategories.everyEnglishNames;
+        return this.#everyPossibleSoundEffectCategoriesNames ??= this.soundEffectCategories.everyEnglishNames;
     }
 
-    //endregion -------------------- Sound effectds --------------------
+    //endregion -------------------- Sound effect category --------------------
+    //region -------------------- Mii costume --------------------
+
+    public get everyPossibleConditionToUnlockIt_MiiCostume() {
+        return this.#everyPossibleConditionToUnlockIt_MiiCostume ??= ([
+            '1 stamp', ([4, 7, 10, 11, 14, 17, 20,] as const).map(amount => `${amount} stamps` as const),
+            (['1st', '2nd', '3rd',] as const).map(position => `${position} place` as const),
+            (['Bronze', 'Silver', 'Gold',] as const).map(position => `${position} medal` as const),
+            'All jobs', 'Finish all jobs', 'Finish rebuilding castle',
+            (['Partrick', 'Purple Toad', 'Soundfrog', 'Undodog', 'Yamamura',] as const).map(name => `Finish all 3 jobs (${name})` as const),
+            'Finish all 3 jobs (Purple Toad) + Hit Middle ? Block',
+            (['1st', '2nd', '3rd',] as const).map(position => `Finish ${position} job (Peach)` as const),
+            ([1, 2, 3, 4, 5, 10, 100,] as const).map(amount => `Clear ${amount}` as const),
+            ([
+                ([1, 10, 100,] as const).map(amount => `1st clear → ${amount}` as const),
+                ([1, 10, 100, 500, 1000, 3000, 5000, 10000,] as const).map(amount => `Clear ${amount}` as const),
+                'Like', 'Upload',
+                ([10, 100, 500, 1000, 3000,] as const).map(amount => `Play ${amount}` as const),
+                ([100, 500, 1000, 2000, 5000,] as const).map(amount => `Receive ${amount} play` as const), 'Receive feedback',
+            ] as const).flat().map(text => `Course → ${text}` as const),
+            ([10, 100, 300, 500, 1000,] as const).map(amount => `High score → ${amount}` as const),
+            ([2000, 5000, 7000,] as const).map(amount => `Maker Point → Earn ${amount}` as const),
+            (['Post', 'Receive',] as const).map(text => `${text} a comment` as const),
+            (['feedback (a lot)', 'like',] as const).map(text => `Receive ${text}` as const),
+            'Upload a level',
+            (['A', 'B', 'C', 'S', 'S+',] as const).map(rank => `Rank ${rank}` as const),
+            ([2, 5, 10,] as const).map(amount => `Win ${amount} consecutive match` as const), 'Win match',
+            ([
+                ([10, 100, 500,] as const).map(amount => `Hold ${amount}` as const),
+                'Set 1',
+            ] as const).flat().map(text => `World Record → ${text}` as const),
+        ] as const).flat();
+    }
+
+    public get everyPossibleMode_MiiCostume() {
+        return this.#everyPossibleMode_MiiCostume ??= ([
+            'Endless Mario', (['easy', 'normal', 'expert', 'super expert',] as const).map(mode => `Endless Mario (${mode})` as const),
+            'Story Mode', (['VS', 'Co-op',] as const).map(mode => `Multiplayer ${mode}` as const), 'Leaderboard', 'Super World', 'Ninji Speedrun',
+        ] as const).flat();
+    }
+
+    public get everyPossibleCategory_MiiCostume() {
+        return this.#everyPossibleCategory_MiiCostume ??= ['Top', 'Headgear', 'Costume', 'Bottom',];
+    }
+
+    //endregion -------------------- Mii costume --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
-        return this.#everyPossibleMysteryMushroomsIndividualNames ??= MysteryMushrooms.everyIndividualEnglishNames;
+        return this.#everyPossibleMysteryMushroomsIndividualNames ??= this.mysteryMushrooms.everyIndividualEnglishNames;
     }
 
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
@@ -284,9 +405,20 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Sound effect --------------------
 
     public readonly everyPossibleSoundEffectsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleSoundEffectCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Sound effect --------------------
+    //region -------------------- Sound effect category --------------------
+
+    public readonly everyPossibleSoundEffectCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Sound effect category --------------------
+    //region -------------------- Mii costume --------------------
+
+    public readonly everyPossibleConditionToUnlockIt_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleMode_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleCategory_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Mii costume --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
@@ -301,7 +433,8 @@ class HeaderTypesForConvertorForProduction
 /**
  * <p>
  *  A dynamic variable to make the production built faster.
- *  Mainly to avoid any useless validations (since they will never be used).
+ *  Mainly to avoid any useless validations (since they will never be used)
+ *  and to avoid any {@link Array array} creation that will never be used.
  * </p>
  *
  * <p>

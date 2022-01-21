@@ -1,17 +1,16 @@
 import type {Builder}                          from '../../../util/Builder';
 import type {ExtendedList}                     from '../../../util/extended/ExtendedList';
-import type {Image}                            from './Image';
 import type {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
+import type {Image}                            from './Image';
 
-import {ExtendedSet} from '../../../util/extended/ExtendedSet';
-import {GameStyles}  from './GameStyles';
+import {ExtendedSetContainer} from '../../../util/extended/ExtendedSet.container';
+import {GameStyles}           from './GameStyles';
 
 export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT extends number = number, >
     implements Builder<Image> {
 
     //region -------------------- Attributes --------------------
 
-    static readonly #EMPTY_SET: ExtendedList<never> = new ExtendedSet();
     static readonly #GAME_STYLE_ARRAY = GameStyles.values;
 
     readonly #simpleImageName;
@@ -41,11 +40,11 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     //region -------------------- Game Style --------------------
 
     private get __gameStyles(): ExtendedList<GameStyles> {
-        return this.#gameStyles ??= new ExtendedSet();
+        return this.#gameStyles ??= new ExtendedSetContainer();
     }
 
     protected get _gameStyles(): ExtendedList<GameStyles> {
-        return this.#gameStyles ?? AbstractImageBuilder.#EMPTY_SET;
+        return this.#gameStyles ?? ExtendedSetContainer.EMPTY;
     }
 
     protected _clearGameStyle(): this {

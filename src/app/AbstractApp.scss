@@ -1,3 +1,16 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+
+  //@include gradient-y-three-colors($cyan, cornFlowerBlue, null, $blue);
+
+  main {
+    flex: 1 1 auto;
+  }
+}
+
 //Every table ending with table
 table[id$="-table"] {
 
@@ -41,3 +54,4 @@ table[id$="-table"] {
   }
 
 }
+

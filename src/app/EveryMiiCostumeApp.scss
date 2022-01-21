@@ -1,0 +1,6 @@
+.miiCostume-mode {
+  &::before {
+    content: var(--mode-name) var(--text-space-rightArrow-space);
+    color: var(--bs-gray);
+  }
+}

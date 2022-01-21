@@ -1,6 +1,5 @@
 import everyMysteryMushrooms from '../../resources/Mystery Mushrooms.csv';
 
-import {UniqueEnglishName}                                                                                                                                                                                                       from './MysteryMushrooms.types';
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
 import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from './MysteryMushroom.template';
@@ -17,6 +16,7 @@ import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}           
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from './properties/sound/SoundEffectOnTurnAfterRun';
 import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                     from '../../lang/Loader.types';
 import type {SoundPropertyTemplate}                                                                                                                                                                                              from './properties/sound/SoundProperty.template';
+import type {UniqueEnglishName}                                                                                                                                                                                                  from './MysteryMushrooms.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -188,8 +188,9 @@ export class MysteryMushroomLoader
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "sound effect" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "mystery mushroom" has been loaded --------------------');// temporary console.log
             console.log(references);// temporary console.log
+            console.log('-------------------- "mystery mushroom" has been loaded --------------------');// temporary console.log
 
             this.#map = references;
         }

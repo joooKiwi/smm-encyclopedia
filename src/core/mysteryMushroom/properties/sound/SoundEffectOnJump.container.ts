@@ -1,10 +1,10 @@
 import type {ExtendedList}                                                                                                    from '../../../../util/extended/ExtendedList';
 import type {PossibleAmount, PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnJump} from './SoundEffectOnJump';
 
-import {PropertyProvider} from '../../../_properties/PropertyProvider';
-import {GameReferences}   from '../../../gameReference/GameReferences';
-import {isArrayEquals}    from '../../../../util/utilitiesMethods';
-import {ExtendedSet}      from '../../../../util/extended/ExtendedSet';
+import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
+import {GameReferences}       from '../../../gameReference/GameReferences';
+import {isArrayEquals}        from '../../../../util/utilitiesMethods';
+import {PropertyProvider}     from '../../../_properties/PropertyProvider';
 
 /**
  * @multiton
@@ -16,7 +16,7 @@ export class SoundEffectOnJumpContainer
     //region -------------------- Predefined containers --------------------
 
     public static readonly _3_IMAGES = '3 images';
-    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectOnJumpContainer> = new ExtendedSet();
+    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectOnJumpContainer> = new ExtendedSetContainer();
 
     readonly #argumentsReceived: ArgumentsReceived;
 

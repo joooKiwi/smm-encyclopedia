@@ -7,7 +7,7 @@ import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditor
 import {AbstractImageBuilder} from '../AbstractImage.builder';
 import {EditorImageContainer} from './EditorImage.container';
 import {EMPTY_MAP}            from '../../../../util/emptyVariables';
-import {ExtendedSet}          from '../../../../util/extended/ExtendedSet';
+import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
 import {GameStyles}           from '../GameStyles';
 import {Themes}               from '../../../theme/Themes';
 import {Times}                from '../../../time/Times';
@@ -20,7 +20,6 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     static readonly #SIMPLE_POWER_UP_ENDING: VariantEditorImage_PowerUp = 'Uni';
     static readonly #POWER_UP_ENDING: `${VariantEditorImage_PowerUp}_00` = `${this.#SIMPLE_POWER_UP_ENDING}_00`;
-    static readonly #EMPTY_SET: ExtendedList<never> = new ExtendedSet();
 
     #type: PossibleType;
     #defaultType: PossibleDefaultType;
@@ -160,11 +159,11 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //region -------------------- Time --------------------
 
     private get __times(): ExtendedList<Times> {
-        return this.#times ??= new ExtendedSet();
+        return this.#times ??= new ExtendedSetContainer();
     }
 
     protected get _times(): ExtendedList<Times> {
-        return this.#times ?? EditorImageBuilder.#EMPTY_SET;
+        return this.#times ?? ExtendedSetContainer.EMPTY;
     }
 
     private __addTimes(time: Times,): this
@@ -198,11 +197,11 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //region -------------------- Theme --------------------
 
     private get __themes(): ExtendedList<Themes> {
-        return this.#themes ??= new ExtendedSet();
+        return this.#themes ??= new ExtendedSetContainer();
     }
 
     protected get _themes(): ExtendedList<Themes> {
-        return this.#themes ?? EditorImageBuilder.#EMPTY_SET;
+        return this.#themes ?? ExtendedSetContainer.EMPTY;
     }
 
     private __addThemes(theme: Themes,): this

@@ -1,6 +1,6 @@
 import type {PossibleAcronym} from './EntityBehaviours.types';
 
-export type CanRespawnType = | boolean | '?' | 'With Vine';
+export type CanRespawnType = | boolean | '?' | 'With Vine' | 'If not collected';
 export type CanRespawnOnlineType = | boolean | '?';
 export type CanRespawnOnlineOutOfABlockType = | boolean | '?';
 
