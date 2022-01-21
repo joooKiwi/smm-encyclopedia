@@ -1,6 +1,5 @@
-import type {CourseAndWorldTheme, PossibleEnglishName} from '../core/theme/Themes.types';
-import type {PossibleEffectInNightTheme}               from '../core/theme/Theme.template';
-import type {SingleTableContent}                       from './tools/table/Table.types';
+import type {PossibleEffectInNightTheme} from '../core/theme/Theme.template';
+import type {SingleTableContent}         from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -10,7 +9,6 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import {Games}                         from '../core/game/Games';
 import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
-import {ThemeLoader}                   from '../core/theme/Theme.loader';
 import {Themes}                        from '../core/theme/Themes';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
@@ -20,19 +18,6 @@ import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextCompo
 export default class EveryThemesApp
     extends AbstractApp {
 
-    //region -------------------- Attributes & getter methods --------------------
-
-    #map?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>;
-
-    protected get map() {
-        return this.#map ??= ThemeLoader.get.load();
-    }
-
-    protected get enum() {
-        return Themes.values;
-    }
-
-    //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
     private static __getEffect(effect: PossibleEffectInNightTheme,) {
@@ -42,17 +27,19 @@ export default class EveryThemesApp
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, [courseTheme, worldTheme,],] of this.map) {
+        for (const enumerable of Themes) {
+            const [courseTheme, worldTheme,] = enumerable.reference;
+
             const isInCourseTheme = courseTheme !== EmptyCourseTheme.get;
             const isInWorldTheme = worldTheme !== EmptyWorldTheme.get;
             const name = isInCourseTheme ? courseTheme : worldTheme;
             const isInSMM1 = !isInWorldTheme && courseTheme.isInSuperMarioMaker1;
             const isInSMM2 = courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2;
-            const effect: PossibleEffectInNightTheme = isInCourseTheme ? courseTheme.effect : null;
+            const effect = isInCourseTheme ? courseTheme.effect : null;
 
-            content.push([englishName,
+            content.push([enumerable.englishName,
                 <>{index}</>,
-                this.enum[index - 1].renderSingleComponent(false),
+                enumerable.renderSingleComponent(false),
                 <NameComponent id="name" name={name} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={isInCourseTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInWorldTheme}/>,
