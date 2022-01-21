@@ -1,4 +1,4 @@
-import {Fragment} from 'react';
+import {Fragment, lazy} from 'react';
 
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
 import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
@@ -16,7 +16,6 @@ import {AbstractAppOption}               from './AbstractAppOption';
 import {AppOptionWithContentComponent}   from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}     from './component/AppOptionWithTable.component';
 import ContentTranslationComponent       from '../../lang/components/ContentTranslationComponent';
-import CourseThemeComponent              from '../../core/theme/CourseTheme.component';
 import {Enum}                            from '../../util/enum/Enum';
 import {EntityCategories}                from '../../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}                from '../../core/entityLimit/EntityLimitTypes';
@@ -27,16 +26,22 @@ import {EmptyEditorImage}                from '../../core/entity/images/editor/E
 import {EmptyName}                       from '../../lang/name/EmptyName';
 import {GameContentTranslationContainer} from '../../lang/containers/GameContentTranslation.container';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
-import GameComponent                     from '../../core/game/Game.component';
-import GameStyleComponent                from '../../core/gameStyle/GameStyle.component';
 import {GameStyles}                      from '../../core/gameStyle/GameStyles';
-import Image                             from '../tools/images/Image';
-import LimitComponent                    from '../../core/entityLimit/Limit.component';
-import NameComponent                     from '../../lang/name/component/Name.component';
 import {ProjectLanguages}                from '../../lang/ProjectLanguages';
 import {Themes}                          from '../../core/theme/Themes';
-import TimeComponent                     from '../../core/time/Time.component';
 import {Times}                           from '../../core/time/Times';
+
+//region -------------------- dynamic imports --------------------
+
+const CourseThemeComponent = lazy(() => import('../../core/theme/CourseTheme.component'));
+const GameComponent =        lazy(() => import('../../core/game/Game.component'));
+const GameStyleComponent =   lazy(() => import('../../core/gameStyle/GameStyle.component'));
+const Image =                lazy(() => import('../tools/images/Image'));
+const LimitComponent =       lazy(() => import('../../core/entityLimit/Limit.component'));
+const NameComponent =        lazy(() => import('../../lang/name/component/Name.component'));
+const TimeComponent =        lazy(() => import('../../core/time/Time.component'));
+
+//endregion -------------------- dynamic imports --------------------
 
 export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
     extends AbstractAppOption<T, EntityAppStates, Ordinals, Names>
