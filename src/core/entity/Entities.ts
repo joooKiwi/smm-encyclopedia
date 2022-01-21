@@ -802,7 +802,7 @@ export class Entities
         }
 
     }('Shoe Goomba',);
-    public static readonly SHOE =                                          new class EntitiesShoe extends Entities {
+    public static readonly SHOE =                                          new class Entities_Shoe extends Entities {
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('KutsuKuribo',)
