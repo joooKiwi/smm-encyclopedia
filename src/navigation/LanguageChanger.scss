@@ -1,0 +1,21 @@
+#language-container {
+  position: absolute;
+  width: auto;
+  right: var(--bs-spacer-md);
+  bottom: var(--bs-spacer-lg);
+}
+
+
+#languageChanger-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.languageChanger-link-container {
+  margin: var(--bs-spacer-md);
+
+  label, button, a, {
+    width: 100%;
+  }
+}

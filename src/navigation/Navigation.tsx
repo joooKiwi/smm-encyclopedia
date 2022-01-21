@@ -1,12 +1,10 @@
 import {Link} from 'react-router-dom';
 
-import ChangeTheLanguageTab        from './ChangeTheLanguageTab';
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import DisplayTab                  from './DisplayTab';
 import {route}                     from '../routes/route';
 
 /**
- *
  * @reactComponent
  */
 export default function Navigation() {
@@ -24,9 +22,7 @@ export default function Navigation() {
                 <ul id="left-navbar-container" className="navbar-nav me-auto mb-2 mb-lg-0">
                     <DisplayTab/>
                 </ul>
-                <ul id="right-navbar-container" className="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <ChangeTheLanguageTab/>
-                </ul>
+                <ul id="right-navbar-container" className="navbar-nav ms-auto mb-2 mb-lg-0"/>
             </div>
         </div>
     </nav>;
