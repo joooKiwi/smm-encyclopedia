@@ -1,11 +1,8 @@
-import type {PossibleEnglishName} from '../core/gameStyle/GameStyles.types';
-import type {SingleTableContent}  from './tools/table/Table.types';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {GameStyle}                     from '../core/gameStyle/GameStyle';
-import {GameStyleLoader}               from '../core/gameStyle/GameStyle.loader';
 import {GameStyles}                    from '../core/gameStyle/GameStyles';
 import {Games}                         from '../core/game/Games';
 import NameComponent                   from '../lang/name/component/Name.component';
@@ -18,28 +15,16 @@ import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextCompo
 export default class EveryGameStylesApp
     extends AbstractApp {
 
-    //region -------------------- Attributes & getter methods --------------------
-
-    #map?: ReadonlyMap<PossibleEnglishName, GameStyle>;
-
-    protected get map() {
-        return this.#map ??= GameStyleLoader.get.load();
-    }
-
-    protected get enum() {
-        return GameStyles.values;
-    }
-
-    //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
     protected get content() {
         const content = [] as SingleTableContent[];
         let index = 1;
-        for (const [englishName, gameStyle,] of this.map) {
-            content.push([englishName,
+        for (const enumerable of GameStyles) {
+            const gameStyle = enumerable.reference;
+            content.push([enumerable.englishName,
                 <>{index}</>,
-                this.enum[index - 1].renderSingleComponent,
+                enumerable.renderSingleComponent,
                 <NameComponent id="name" name={gameStyle} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
                 <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
