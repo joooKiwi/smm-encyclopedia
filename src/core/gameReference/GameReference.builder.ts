@@ -1,4 +1,4 @@
-import type {Builder}               from '../../util/Builder';
+import type {Builder}               from '../../util/builder/Builder';
 import type {GameReference}         from './GameReference';
 import type {GameReferenceTemplate} from './GameReference.template';
 import type {Name}                  from '../../lang/name/Name';

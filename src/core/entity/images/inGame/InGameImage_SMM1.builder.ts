@@ -1,4 +1,4 @@
-import type {Builder}                          from '../../../../util/Builder';
+import type {Builder}                          from '../../../../util/builder/Builder';
 import type {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
 import type {ImageName_SMM1}                   from './InGameImage.types';
 import type {Themes}                           from '../../../theme/Themes';

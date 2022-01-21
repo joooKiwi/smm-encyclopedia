@@ -1,4 +1,4 @@
-import type {Builder}                                              from '../../util/Builder';
+import type {Builder}                                              from '../../util/builder/Builder';
 import type {Name}                                                 from '../../lang/name/Name';
 import type {ObjectHolder}                                         from '../../util/holder/ObjectHolder';
 import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../lang/name/Name.builder.types';

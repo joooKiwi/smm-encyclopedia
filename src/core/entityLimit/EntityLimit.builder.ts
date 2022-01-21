@@ -1,6 +1,6 @@
 import type {AlternativeEntityLimit, EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
 import type {AlternativeLimitTemplate, EntityLimitTemplate}                                      from './EntityLimit.template';
-import type {Builder}                                                                            from '../../util/Builder';
+import type {Builder}                                                                            from '../../util/builder/Builder';
 import type {Entity}                                                                             from '../entity/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';

@@ -1,4 +1,4 @@
-import type {Builder}                     from '../../util/Builder';
+import type {Builder}                     from '../../util/builder/Builder';
 import type {Name}                        from '../../lang/name/Name';
 import type {SoundEffectCategory}         from './SoundEffectCategory';
 import type {SoundEffectCategoryTemplate} from './SoundEffectCategory.template';

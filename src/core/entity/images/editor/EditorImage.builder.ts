@@ -1,4 +1,4 @@
-import type {Builder}                                                                          from '../../../../util/Builder';
+import type {Builder}                                                                          from '../../../../util/builder/Builder';
 import type {EditorImage}                                                                      from './EditorImage';
 import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList';
 import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles';

@@ -1,4 +1,4 @@
-import type {Builder}             from '../../util/Builder';
+import type {Builder}             from '../../util/builder/Builder';
 import type {CourseTheme}         from './CourseTheme';
 import type {CourseAndWorldTheme} from './Themes.types';
 import type {Entity}              from '../entity/Entity';

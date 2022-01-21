@@ -1,4 +1,4 @@
-import type {Builder}                from '../../util/Builder';
+import type {Builder}                from '../../util/builder/Builder';
 import type {EntityCategory}         from './EntityCategory';
 import type {EntityCategoryTemplate} from './EntityCategory.template';
 import type {Name}                   from '../../lang/name/Name';

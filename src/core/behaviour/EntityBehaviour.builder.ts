@@ -1,4 +1,4 @@
-import type {Builder}                 from '../../util/Builder';
+import type {Builder}                 from '../../util/builder/Builder';
 import type {Entity}                  from '../entity/Entity';
 import type {EntityBehaviour}         from './EntityBehaviour';
 import type {EntityBehaviourTemplate} from './EntityBehaviour.template';

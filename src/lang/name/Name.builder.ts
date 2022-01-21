@@ -1,5 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language';
-import type {Builder}                                                                 from '../../util/Builder';
+import type {Builder}                                                                 from '../../util/builder/Builder';
 import type {Name}                                                                    from './Name';
 import type {PossibleNameTemplate}                                                    from './Name.template';
 import type {PossibleGameReceived}                                                    from './Name.builder.types';

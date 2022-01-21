@@ -1,4 +1,4 @@
-import {Builder}     from '../../../../util/Builder';
+import {Builder}     from '../../../../util/builder/Builder';
 import {UnusedImage} from './UnusedImage';
 
 export abstract class UnusedImageBuilder<T extends UnusedImage, N extends string, >

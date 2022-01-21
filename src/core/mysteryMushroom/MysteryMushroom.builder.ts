@@ -1,4 +1,4 @@
-import type {Builder}                               from '../../util/Builder';
+import type {Builder}                               from '../../util/builder/Builder';
 import type {MysteryMushroomTemplate}               from './MysteryMushroom.template';
 import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom';
 import type {Name}                                  from '../../lang/name/Name';
