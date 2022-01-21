@@ -33,7 +33,7 @@ const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, 
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
 
 /**
- * @recursiveReference<{@link EntityLoader}>
+ * @recursiveReferenceVia<{@link EntityLoader}, {@link EntityBuilder}>
  */
 export class Entities
     extends Enum<Ordinals, Names>
