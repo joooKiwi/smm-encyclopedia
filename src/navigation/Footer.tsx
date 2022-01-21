@@ -21,7 +21,7 @@ export default function Footer() {
                 }</ContentTranslationComponent>
                 <ContentTranslationComponent>{translation =>
                     <span id="copyright_lastEdited" className="text-center text-light small">
-                        {translation('Last update')}: <SimpleDate day={12} month={1} year={2022}/>
+                        {translation('Last update')}: <SimpleDate day={21} month={1} year={2022}/>
                     </span>
                 }</ContentTranslationComponent>
             </div>
