@@ -2,9 +2,9 @@ import {Fragment} from 'react';
 
 import type {ReactProperty} from '../util/react/ReactProperty';
 
+import {LanguageChangerSingleLink} from './LanguageChanger.single.link';
 import {ProjectLanguages}          from '../lang/ProjectLanguages';
 import {StringContainer}           from '../util/StringContainer';
-import {LanguageChangerSingleLink} from './LanguageChanger.single.link';
 
 export interface LanguageChangerLinkProperties
     extends ReactProperty {

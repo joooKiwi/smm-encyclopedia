@@ -4,8 +4,8 @@ import ContentTranslationComponent from '../lang/components/ContentTranslationCo
 import {EMPTY_OBJECT}              from '../util/emptyVariables';
 import LanguageChangerBody         from './LanguageChanger.body';
 import Modal                       from '../bootstrap/modal/Modal';
-import ModalButton                 from '../bootstrap/modal/element/ModalButton';
 import ModalBody                   from '../bootstrap/modal/element/ModalBody';
+import ModalButton                 from '../bootstrap/modal/element/ModalButton';
 import ModalContainer              from '../bootstrap/modal/element/ModalContainer';
 import ModalFooter                 from '../bootstrap/modal/element/ModalFooter';
 import ModalHeader                 from '../bootstrap/modal/element/ModalHeader';
