@@ -1,18 +1,21 @@
-import AboutApp                      from '../app/AboutApp';
-import EveryEntitiesApp              from '../app/EveryEntitiesApp';
-import EveryEntityCategoriesApp      from '../app/EveryEntityCategoriesApp';
-import EveryEntityGroupApp           from '../app/EveryEntityGroupApp';
-import EveryGameStylesApp            from '../app/EveryGameStylesApp';
-import EveryGameReferencesApp        from '../app/EveryGameReferencesApp';
-import EveryLimitsApp                from '../app/EveryLimitsApp';
-import EveryMiiCostumeApp            from '../app/EveryMiiCostumeApp';
-import EveryMysteryMushroomsApp      from '../app/EveryMysteryMushroomsApp';
-import EverySoundEffectCategoriesApp from '../app/EverySoundEffectCategoriesApp';
-import EverySoundEffectsApp          from '../app/EverySoundEffectsApp';
-import EveryThemesApp                from '../app/EveryThemesApp';
-import HomeApp                       from '../app/HomeApp';
-import {SimpleRouteContainer}        from './SimpleRouteContainer';
-import SourcesApp                    from '../app/SourcesApp';
+import {lazy} from 'react';
+
+import {SimpleRouteContainer} from './SimpleRouteContainer';
+
+const AboutApp =                       lazy(() => import('../app/AboutApp'));
+const EveryEntitiesApp =               lazy(() => import('../app/EveryEntitiesApp'));
+const EveryEntityCategoriesApp =       lazy(() => import('../app/EveryEntityCategoriesApp'));
+const EveryEntityGroupApp =            lazy(() => import('../app/EveryEntityGroupApp'));
+const EveryGameStylesApp =             lazy(() => import('../app/EveryGameStylesApp'));
+const EveryGameReferencesApp =         lazy(() => import('../app/EveryGameReferencesApp'));
+const EveryLimitsApp =                 lazy(() => import('../app/EveryLimitsApp'));
+const EveryMiiCostumeApp =             lazy(() => import('../app/EveryMiiCostumeApp'));
+const EveryMysteryMushroomsApp =       lazy(() => import('../app/EveryMysteryMushroomsApp'));
+const EverySoundEffectCategoriesApp =  lazy(() => import('../app/EverySoundEffectCategoriesApp'));
+const EverySoundEffectsApp =           lazy(() => import('../app/EverySoundEffectsApp'));
+const EveryThemesApp =                 lazy(() => import('../app/EveryThemesApp'));
+const HomeApp =                        lazy(() => import('../app/HomeApp'));
+const SourcesApp =                     lazy(() => import('../app/SourcesApp'));
 
 export const everySimpleRoutes = [
     SimpleRouteContainer.newInstance('home',                       '/home',                       () => <HomeApp/>,                     ),

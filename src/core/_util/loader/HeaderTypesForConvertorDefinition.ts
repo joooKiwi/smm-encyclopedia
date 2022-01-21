@@ -10,6 +10,7 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types';
 import type {PossibleCategory as PossibleCategory_MiiCostume, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MiiCostume, PossibleMode as PossibleMode_MiiCostume}                                                                                            from '../../miiCostume/MiiCostume.template';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
+import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
 
@@ -71,9 +72,12 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleSoundEffectsNames(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffect>
 
+    //endregion -------------------- Sound effect --------------------
+    //region -------------------- Sound effect category --------------------
+
     get everyPossibleSoundEffectCategoriesNames(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffectCategory>
 
-    //endregion -------------------- Sound effect --------------------
+    //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
 
     get everyPossibleConditionToUnlockIt_MiiCostume(): ValueOrStringConstant<EveryConditionToUnlockIt_MiiCostume>
@@ -124,7 +128,7 @@ export type EveryPossibleTranslationKey_EntityBehaviour = readonly PossibleTrans
 
 export type EveryPossibleName_EntityGroup = readonly string[];
 
-export type EveryPossibleName_EntityCategory = readonly string[];
+export type EveryPossibleName_EntityCategory = readonly PossibleEnglishName_EntityCategory[];
 
 export type EveryPossibleAcronym_EntityLimit = readonly (| PossibleAcronym_EntityLimit | PossibleAlternativeAcronym_EntityLimit)[];
 export type EveryAlternativeAcronym_EntityLimit = readonly PossibleAlternativeAcronym_EntityLimit[];
