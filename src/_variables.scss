@@ -73,5 +73,18 @@ $border-radius-circle-original: 50%;
 $border-radius-circle: var(--bs-border-circle-radius);
 
 //endregion -------------------- Border variables --------------------
+//region -------------------- Z-index variables --------------------
+
+$zindex-dropdown-original: $zindex-dropdown;
+$zindex-sticky-original: $zindex-sticky;
+$zindex-fixed-original: $zindex-fixed;
+$zindex-offcanvas-backdrop-original: $zindex-offcanvas-backdrop;
+$zindex-offcanvas-original: $zindex-offcanvas;
+$zindex-modal-backdrop-original: $zindex-modal-backdrop;
+$zindex-modal-original: $zindex-modal;
+$zindex-popover-original: $zindex-popover;
+$zindex-tooltip-original: $zindex-tooltip;
+
+//endregion -------------------- Z-index variables --------------------
 
 //endregion -------------------- Override variables --------------------

@@ -34,6 +34,19 @@
   --bs-border-circle-radius: #{$border-radius-circle-original};
 
   //endregion -------------------- Border variables --------------------
+  //region -------------------- Z-index variables --------------------
+
+  --bs-z-index-dropdown: #{$zindex-dropdown-original};
+  --bs-z-index-sticky: #{$zindex-sticky-original};
+  --bs-z-index-fixed: #{$zindex-fixed-original};
+  --bs-z-index-offcanvas-backdrop: #{$zindex-offcanvas-backdrop-original};
+  --bs-z-index-offcanvas: #{$zindex-offcanvas-original};
+  --bs-z-index-modal-backdrop: #{$zindex-modal-backdrop-original};
+  --bs-z-index-modal: #{$zindex-modal-original};
+  --bs-z-index-popover: #{$zindex-popover-original};
+  --bs-z-index-tooltip: #{$zindex-tooltip-original};
+
+  //endregion -------------------- Z-index variables --------------------
 
   --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
