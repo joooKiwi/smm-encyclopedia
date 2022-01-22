@@ -12,7 +12,7 @@ import Tooltip                      from '../bootstrap/tooltip/Tooltip';
 export interface SingleLanguageChangerLinkProperties
     extends ReactProperty, LanguageChangerLinkProperties {
 
-    type: | 'button' | 'label';
+    type: | 'button' | 'label'
 
 }
 
