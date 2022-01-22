@@ -40,7 +40,7 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
                 <ModalContainer id={AbstractApp.PARAMETER_ELEMENT_ID} verticallyCentered modalSize="xl">
                     <ModalHeader modalTitle={translation('Options')}/>
                     <ModalBody>{this._optionContent()}</ModalBody>
-                    <ModalFooter successButton={({value: translation('Confirm'),})}/>
+                    <ModalFooter successButton={({children: translation('Confirm'),})}/>
                 </ModalContainer>
             }</ContentTranslationComponent>
             <Footer/>
