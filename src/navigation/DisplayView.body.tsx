@@ -11,7 +11,10 @@ interface DisplayViewBodyProperties
 
 }
 
-
+/**
+ * @param properties
+ * @reactComponent
+ */
 export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,) {
     return <GameContentTranslationComponent>{translation =>
         <div id="display-modal-body-container" className="container">

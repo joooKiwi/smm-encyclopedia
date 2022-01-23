@@ -12,6 +12,10 @@ export interface DisplayViewProperties
 
 }
 
+/**
+ * @param properties
+ * @reactComponent
+ */
 export default function DisplayView({id, divId,}: DisplayViewProperties,) {
     return <ContentTranslationComponent>{translation =>
         <Tooltip elementId={divId} option={({title: `${translation('Display')}…`, placement: 'bottom',})}>

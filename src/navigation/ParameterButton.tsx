@@ -13,6 +13,10 @@ export interface ParameterButtonProperties
 
 const DIV_ELEMENT_ID = 'parameter-container';
 
+/**
+ * @param properties
+ * @reactComponent
+ */
 export default function ParameterButton({containerId,}: ParameterButtonProperties,) {
     return <ContentTranslationComponent>{translation =>
         <Tooltip elementId={DIV_ELEMENT_ID} option={({title: translation('Options'), placement: 'left',})}>

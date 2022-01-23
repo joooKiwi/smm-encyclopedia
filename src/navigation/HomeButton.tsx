@@ -8,6 +8,9 @@ import {TooltipInstance}           from '../bootstrap/tooltip/TooltipInstance';
 
 const HOME_ID = 'home-link';
 
+/**
+ * @reactComponent
+ */
 export default function HomeButton() {
     return <ContentTranslationComponent>{translation =>
         <Tooltip option={({title: translation('Home'), placement: 'left',})} elementId={HOME_ID}>

@@ -17,6 +17,10 @@ interface DisplayViewRouteButtonProperty
 
 }
 
+/**
+ * @param properties
+ * @reactComponent
+ */
 export default function DisplayViewRouteButton({routeName, value, id, divId,}: DisplayViewRouteButtonProperty,) {
     const {pathname: pathName,} = useLocation();
 
