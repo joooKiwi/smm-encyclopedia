@@ -36,17 +36,174 @@
   //endregion -------------------- Border variables --------------------
   //region -------------------- Z-index variables --------------------
 
-  --bs-z-index-dropdown: #{$zindex-dropdown-original};
-  --bs-z-index-sticky: #{$zindex-sticky-original};
-  --bs-z-index-fixed: #{$zindex-fixed-original};
-  --bs-z-index-offcanvas-backdrop: #{$zindex-offcanvas-backdrop-original};
-  --bs-z-index-offcanvas: #{$zindex-offcanvas-original};
-  --bs-z-index-modal-backdrop: #{$zindex-modal-backdrop-original};
-  --bs-z-index-modal: #{$zindex-modal-original};
-  --bs-z-index-popover: #{$zindex-popover-original};
-  --bs-z-index-tooltip: #{$zindex-tooltip-original};
+  --bs-z-index-dropdown: #{$z-index-dropdown-original};
+  --bs-z-index-sticky: #{$z-index-sticky-original};
+  --bs-z-index-fixed: #{$z-index-fixed-original};
+  --bs-z-index-offcanvas-backdrop: #{$z-index-offcanvas-backdrop-original};
+  --bs-z-index-offcanvas: #{$z-index-offcanvas-original};
+  --bs-z-index-modal-backdrop: #{$z-index-modal-backdrop-original};
+  --bs-z-index-modal: #{$z-index-modal-original};
+  --bs-z-index-popover: #{$z-index-popover-original};
+  --bs-z-index-tooltip: #{$z-index-tooltip-original};
 
   //endregion -------------------- Z-index variables --------------------
+  //region -------------------- Color variables --------------------
+
+  --bs-black: #{$black};
+
+  --bs-primary-100: #{$primary-100};
+  --bs-primary-100-rgb: #{to-rgb($primary-100)};
+  --bs-primary-200: #{$primary-200};
+  --bs-primary-200-rgb: #{to-rgb($primary-200)};
+  --bs-primary-300: #{$primary-300};
+  --bs-primary-300-rgb: #{to-rgb($primary-300)};
+  --bs-primary-400: #{$primary-400};
+  --bs-primary-400-rgb: #{to-rgb($primary-400)};
+  --bs-primary-500: #{$primary-500};
+  --bs-primary-500-rgb: #{to-rgb($primary-500)};
+  --bs-primary-600: #{$primary-600};
+  --bs-primary-600-rgb: #{to-rgb($primary-600)};
+  --bs-primary-700: #{$primary-700};
+  --bs-primary-700-rgb: #{to-rgb($primary-700)};
+  --bs-primary-800: #{$primary-800};
+  --bs-primary-800-rgb: #{to-rgb($primary-800)};
+  --bs-primary-900: #{$primary-900};
+  --bs-primary-900-rgb: #{to-rgb($primary-900)};
+
+  --bs-secondary-100: #{$secondary-100};
+  --bs-secondary-100-rgb: #{to-rgb($secondary-100)};
+  --bs-secondary-200: #{$secondary-200};
+  --bs-secondary-200-rgb: #{to-rgb($secondary-200)};
+  --bs-secondary-300: #{$secondary-300};
+  --bs-secondary-300-rgb: #{to-rgb($secondary-300)};
+  --bs-secondary-400: #{$secondary-400};
+  --bs-secondary-400-rgb: #{to-rgb($secondary-400)};
+  --bs-secondary-500: #{$secondary-500};
+  --bs-secondary-500-rgb: #{to-rgb($secondary-500)};
+  --bs-secondary-600: #{$secondary-600};
+  --bs-secondary-600-rgb: #{to-rgb($secondary-600)};
+  --bs-secondary-700: #{$secondary-700};
+  --bs-secondary-700-rgb: #{to-rgb($secondary-700)};
+  --bs-secondary-800: #{$secondary-800};
+  --bs-secondary-800-rgb: #{to-rgb($secondary-800)};
+  --bs-secondary-900: #{$secondary-900};
+  --bs-secondary-900-rgb: #{to-rgb($secondary-900)};
+
+  --bs-success-100: #{$success-100};
+  --bs-success-100-rgb: #{to-rgb($success-100)};
+  --bs-success-200: #{$success-200};
+  --bs-success-200-rgb: #{to-rgb($success-200)};
+  --bs-success-300: #{$success-300};
+  --bs-success-300-rgb: #{to-rgb($success-300)};
+  --bs-success-400: #{$success-400};
+  --bs-success-400-rgb: #{to-rgb($success-400)};
+  --bs-success-500: #{$success-500};
+  --bs-success-500-rgb: #{to-rgb($success-500)};
+  --bs-success-600: #{$success-600};
+  --bs-success-600-rgb: #{to-rgb($success-600)};
+  --bs-success-700: #{$success-700};
+  --bs-success-700-rgb: #{to-rgb($success-700)};
+  --bs-success-800: #{$success-800};
+  --bs-success-800-rgb: #{to-rgb($success-800)};
+  --bs-success-900: #{$success-900};
+  --bs-success-900-rgb: #{to-rgb($success-900)};
+
+  --bs-danger-100: #{$danger-100};
+  --bs-danger-100-rgb: #{to-rgb($danger-100)};
+  --bs-danger-200: #{$danger-200};
+  --bs-danger-200-rgb: #{to-rgb($danger-200)};
+  --bs-danger-300: #{$danger-300};
+  --bs-danger-300-rgb: #{to-rgb($danger-300)};
+  --bs-danger-400: #{$danger-400};
+  --bs-danger-400-rgb: #{to-rgb($danger-400)};
+  --bs-danger-500: #{$danger-500};
+  --bs-danger-500-rgb: #{to-rgb($danger-500)};
+  --bs-danger-600: #{$danger-600};
+  --bs-danger-600-rgb: #{to-rgb($danger-600)};
+  --bs-danger-700: #{$danger-700};
+  --bs-danger-700-rgb: #{to-rgb($danger-700)};
+  --bs-danger-800: #{$danger-800};
+  --bs-danger-800-rgb: #{to-rgb($danger-800)};
+  --bs-danger-900: #{$danger-900};
+  --bs-danger-900-rgb: #{to-rgb($danger-900)};
+
+  --bs-warning-100: #{$warning-100};
+  --bs-warning-100-rgb: #{to-rgb($warning-100)};
+  --bs-warning-200: #{$warning-200};
+  --bs-warning-200-rgb: #{to-rgb($warning-200)};
+  --bs-warning-300: #{$warning-300};
+  --bs-warning-300-rgb: #{to-rgb($warning-300)};
+  --bs-warning-400: #{$warning-400};
+  --bs-warning-400-rgb: #{to-rgb($warning-400)};
+  --bs-warning-500: #{$warning-500};
+  --bs-warning-500-rgb: #{to-rgb($warning-500)};
+  --bs-warning-600: #{$warning-600};
+  --bs-warning-600-rgb: #{to-rgb($warning-600)};
+  --bs-warning-700: #{$warning-700};
+  --bs-warning-700-rgb: #{to-rgb($warning-700)};
+  --bs-warning-800: #{$warning-800};
+  --bs-warning-800-rgb: #{to-rgb($warning-800)};
+  --bs-warning-900: #{$warning-900};
+  --bs-warning-900-rgb: #{to-rgb($warning-900)};
+
+  --bs-info-100: #{$info-100};
+  --bs-info-100-rgb: #{to-rgb($info-100)};
+  --bs-info-200: #{$info-200};
+  --bs-info-200-rgb: #{to-rgb($info-200)};
+  --bs-info-300: #{$info-300};
+  --bs-info-300-rgb: #{to-rgb($info-300)};
+  --bs-info-400: #{$info-400};
+  --bs-info-400-rgb: #{to-rgb($info-400)};
+  --bs-info-500: #{$info-500};
+  --bs-info-500-rgb: #{to-rgb($info-500)};
+  --bs-info-600: #{$info-600};
+  --bs-info-600-rgb: #{to-rgb($info-600)};
+  --bs-info-700: #{$info-700};
+  --bs-info-700-rgb: #{to-rgb($info-700)};
+  --bs-info-800: #{$info-800};
+  --bs-info-800-rgb: #{to-rgb($info-800)};
+  --bs-info-900: #{$info-900};
+  --bs-info-900-rgb: #{to-rgb($info-900)};
+
+  --bs-light-100: #{$light-100};
+  --bs-light-100-rgb: #{to-rgb($light-100)};
+  --bs-light-200: #{$light-200};
+  --bs-light-200-rgb: #{to-rgb($light-200)};
+  --bs-light-300: #{$light-300};
+  --bs-light-300-rgb: #{to-rgb($light-300)};
+  --bs-light-400: #{$light-400};
+  --bs-light-400-rgb: #{to-rgb($light-400)};
+  --bs-light-500: #{$light-500};
+  --bs-light-500-rgb: #{to-rgb($light-500)};
+  --bs-light-600: #{$light-600};
+  --bs-light-600-rgb: #{to-rgb($light-600)};
+  --bs-light-700: #{$light-700};
+  --bs-light-700-rgb: #{to-rgb($light-700)};
+  --bs-light-800: #{$light-800};
+  --bs-light-800-rgb: #{to-rgb($light-800)};
+  --bs-light-900: #{$light-900};
+  --bs-light-900-rgb: #{to-rgb($light-900)};
+
+  --bs-dark-100: #{$dark-100};
+  --bs-dark-100-rgb: #{to-rgb($dark-100)};
+  --bs-dark-200: #{$dark-200};
+  --bs-dark-200-rgb: #{to-rgb($dark-200)};
+  --bs-dark-300: #{$dark-300};
+  --bs-dark-300-rgb: #{to-rgb($dark-300)};
+  --bs-dark-400: #{$dark-400};
+  --bs-dark-400-rgb: #{to-rgb($dark-400)};
+  --bs-dark-500: #{$dark-500};
+  --bs-dark-500-rgb: #{to-rgb($dark-500)};
+  --bs-dark-600: #{$dark-600};
+  --bs-dark-600-rgb: #{to-rgb($dark-600)};
+  --bs-dark-700: #{$dark-700};
+  --bs-dark-700-rgb: #{to-rgb($dark-700)};
+  --bs-dark-800: #{$dark-800};
+  --bs-dark-800-rgb: #{to-rgb($dark-800)};
+  --bs-dark-900: #{$dark-900};
+  --bs-dark-900-rgb: #{to-rgb($dark-900)};
+
+  //endregion -------------------- Color variables --------------------
 
   --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
@@ -55,3 +212,76 @@
 .rounded-circle {
   border-radius: var(--bs-border-circle-radius);
 }
+
+//region -------------------- button colors --------------------
+
+@each $color, $value in $theme-colors {
+
+  $text-color: null;
+  $variant-amount: null;
+  @if ($color == 'primary' or $color =='secondary' or $color == 'warning' or $color =='info' or $color == 'light') {
+    $text-color: var(--bs-black);
+    $variant-amount: -1;
+  } @else {
+    $text-color: var(--bs-white);
+    $variant-amount: 1;
+  }
+
+  .btn-#{$color} {
+
+    color: $text-color;
+    background-color: var(--bs-#{$color});
+    border-color: var(--bs-#{$color});
+
+    &:hover, .btn-check:focus + &, &:focus, {
+      color: $text-color;
+      background-color: var(--bs-#{$color}-#{500 + $variant-amount * 200});
+      border-color: var(--bs-#{$color}-#{500 + $variant-amount * 100});
+    }
+
+    .btn-check:checked + &, .btn-check:active + &, &:active, &.active, .show > &.dropdown-toggle {
+      color: $text-color;
+      background-color: var(--bs-#{$color}-#{500 + $variant-amount * 100});
+      border-color: var(--bs-#{$color}-500);
+
+      //&:focus {}
+
+    }
+
+    &:disabled, &.disabled, {
+      color: $text-color;
+      background-color: var(--bs-#{$color});
+      border-color: var(--bs-#{$color});
+    }
+
+  }
+
+  .btn-outline-#{$color} {
+    color: var(--bs-#{$color});
+    border-color: var(--bs-#{$color});
+
+    &:hover, {
+      color: $text-color;
+      background-color: var(--bs-#{$color});
+      border-color: var(--bs-#{$color});
+    }
+
+    //.btn-check:focus + &, &:focus, {}
+
+    .btn-check:checked + &, .btn-check:active + &, &:active, &.active, &.dropdown-toggle.show, {
+      color: $text-color;
+      background-color: var(--bs-#{$color});
+      border-color: var(--bs-#{$color});
+
+      //&:focus{}
+
+    }
+
+    &:disabled, &.disabled, {
+      color: var(--bs-#{$color});
+    }
+
+  }
+}
+
+//endregion -------------------- button colors --------------------

@@ -75,16 +75,108 @@ $border-radius-circle: var(--bs-border-circle-radius);
 //endregion -------------------- Border variables --------------------
 //region -------------------- Z-index variables --------------------
 
-$zindex-dropdown-original: $zindex-dropdown;
-$zindex-sticky-original: $zindex-sticky;
-$zindex-fixed-original: $zindex-fixed;
-$zindex-offcanvas-backdrop-original: $zindex-offcanvas-backdrop;
-$zindex-offcanvas-original: $zindex-offcanvas;
-$zindex-modal-backdrop-original: $zindex-modal-backdrop;
-$zindex-modal-original: $zindex-modal;
-$zindex-popover-original: $zindex-popover;
-$zindex-tooltip-original: $zindex-tooltip;
+$z-index-dropdown-original: $zindex-dropdown;
+$zindex-dropdown: var(--bs-z-index-dropdown);
+$z-index-sticky-original: $zindex-sticky;
+$zindex-sticky: var(--bs-z-index-sticky);
+$z-index-fixed-original: $zindex-fixed;
+$zindex-fixed: var(--bs-z-index-fixed);
+$z-index-offcanvas-backdrop-original: $zindex-offcanvas-backdrop;
+$zindex-offcanvas-backdrop: var(--bs-z-index-offcanvas-backdrop);
+$z-index-offcanvas-original: $zindex-offcanvas;
+$zindex-offcanvas: var(--bs-z-index-offcanvas);
+$z-index-modal-backdrop-original: $zindex-modal-backdrop;
+$zindex-modal-backdrop: var(--bs-z-index-modal-backdrop);
+$z-index-modal-original: $zindex-modal;
+$zindex-modal: var(--bs-z-index-modal);
+$z-index-popover-original: $zindex-popover;
+$zindex-popover: var(--bs-z-index-popover);
+$z-index-tooltip-original: $zindex-tooltip;
+$zindex-tooltip: var(--bs-z-index-tooltip);
 
 //endregion -------------------- Z-index variables --------------------
+//region -------------------- Colors variables --------------------
+
+$primary-100: tint-color($primary, 80%);
+$primary-200: tint-color($primary, 60%);
+$primary-300: tint-color($primary, 40%);
+$primary-400: tint-color($primary, 20%);
+$primary-500: $primary;
+$primary-600: shade-color($primary, 20%);
+$primary-700: shade-color($primary, 40%);
+$primary-800: shade-color($primary, 60%);
+$primary-900: shade-color($primary, 80%);
+
+$secondary-100: tint-color($secondary, 80%);
+$secondary-200: tint-color($secondary, 60%);
+$secondary-300: tint-color($secondary, 40%);
+$secondary-400: tint-color($secondary, 20%);
+$secondary-500: $secondary;
+$secondary-600: shade-color($secondary, 20%);
+$secondary-700: shade-color($secondary, 40%);
+$secondary-800: shade-color($secondary, 60%);
+$secondary-900: shade-color($secondary, 80%);
+
+$success-100: tint-color($success, 80%);
+$success-200: tint-color($success, 60%);
+$success-300: tint-color($success, 40%);
+$success-400: tint-color($success, 20%);
+$success-500: $success;
+$success-600: shade-color($success, 20%);
+$success-700: shade-color($success, 40%);
+$success-800: shade-color($success, 60%);
+$success-900: shade-color($success, 80%);
+
+$danger-100: tint-color($danger, 80%);
+$danger-200: tint-color($danger, 60%);
+$danger-300: tint-color($danger, 40%);
+$danger-400: tint-color($danger, 20%);
+$danger-500: $danger;
+$danger-600: shade-color($danger, 20%);
+$danger-700: shade-color($danger, 40%);
+$danger-800: shade-color($danger, 60%);
+$danger-900: shade-color($danger, 80%);
+
+$warning-100: tint-color($warning, 80%);
+$warning-200: tint-color($warning, 60%);
+$warning-300: tint-color($warning, 40%);
+$warning-400: tint-color($warning, 20%);
+$warning-500: $warning;
+$warning-600: shade-color($warning, 20%);
+$warning-700: shade-color($warning, 40%);
+$warning-800: shade-color($warning, 60%);
+$warning-900: shade-color($warning, 80%);
+
+$info-100: tint-color($info, 80%);
+$info-200: tint-color($info, 60%);
+$info-300: tint-color($info, 40%);
+$info-400: tint-color($info, 20%);
+$info-500: $info;
+$info-600: shade-color($info, 20%);
+$info-700: shade-color($info, 40%);
+$info-800: shade-color($info, 60%);
+$info-900: shade-color($info, 80%);
+
+$light-100: tint-color($light, 80%);
+$light-200: tint-color($light, 60%);
+$light-300: tint-color($light, 40%);
+$light-400: tint-color($light, 20%);
+$light-500: $light;
+$light-600: shade-color($light, 20%);
+$light-700: shade-color($light, 40%);
+$light-800: shade-color($light, 60%);
+$light-900: shade-color($light, 80%);
+
+$dark-100: tint-color($dark, 80%);
+$dark-200: tint-color($dark, 60%);
+$dark-300: tint-color($dark, 40%);
+$dark-400: tint-color($dark, 20%);
+$dark-500: $dark;
+$dark-600: shade-color($dark, 20%);
+$dark-700: shade-color($dark, 40%);
+$dark-800: shade-color($dark, 60%);
+$dark-900: shade-color($dark, 80%);
+
+//endregion -------------------- Colors variables --------------------
 
 //endregion -------------------- Override variables --------------------
