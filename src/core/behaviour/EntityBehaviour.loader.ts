@@ -1,4 +1,4 @@
-import everyBehaviours from '../../resources/Entity behaviours.csv';
+import everyBehaviours from '../../resources/Entity behaviour.csv';
 
 import type {EntityBehaviour}                          from './EntityBehaviour';
 import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template';

@@ -1,4 +1,4 @@
-import everyGameStyles from '../../resources/Game styles.csv';
+import everyGameStyles from '../../resources/Game style.csv';
 
 import type {Loader}                                from '../../util/loader/Loader';
 import type {GameStyle}                             from './GameStyle';

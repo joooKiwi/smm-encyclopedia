@@ -1,4 +1,4 @@
-import everyThemes from '../../resources/Entity limits.csv';
+import everyThemes from '../../resources/Entity limit.csv';
 
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EmptyLinkTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                   from './EntityLimit';

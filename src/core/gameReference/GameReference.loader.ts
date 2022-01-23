@@ -1,4 +1,4 @@
-import source from '../../resources/Game references.csv';
+import source from '../../resources/Game reference.csv';
 
 import type {GameReference}                             from './GameReference';
 import type {GameReferenceTemplate}                     from './GameReference.template';

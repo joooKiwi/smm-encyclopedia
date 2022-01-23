@@ -1,4 +1,4 @@
-import everyMiiCostumes from '../../resources/Mii Costumes.csv';
+import everyMiiCostumes from '../../resources/Mii Costume.csv';
 
 import type {Loader}                                                                          from '../../util/loader/Loader';
 import type {PossibleEnglishName}                                                             from './MiiCostumes.types';

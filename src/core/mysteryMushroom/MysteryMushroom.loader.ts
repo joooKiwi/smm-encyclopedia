@@ -1,4 +1,4 @@
-import everyMysteryMushrooms from '../../resources/Mystery Mushrooms.csv';
+import everyMysteryMushrooms from '../../resources/Mystery Mushroom.csv';
 
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
