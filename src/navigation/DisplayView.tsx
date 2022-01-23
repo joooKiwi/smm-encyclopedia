@@ -1,4 +1,4 @@
-import './LanguageChanger.scss';
+import './DisplayView.scss';
 
 import type {ReactProperty}         from '../util/react/ReactProperty';
 import type {SimpleModalProperties} from './ModalContainers.types';
@@ -7,20 +7,18 @@ import ContentTranslationComponent from '../lang/components/ContentTranslationCo
 import ModalButton                 from '../bootstrap/modal/element/ModalButton';
 import Tooltip                     from '../bootstrap/tooltip/Tooltip';
 
-interface LanguageChangerProperties
+export interface DisplayViewProperties
     extends ReactProperty, SimpleModalProperties {
 
 }
 
-/**
- * @reactElement
- * @todo change the color to not be black for the "Change the language" tooltip
- */
-export default function LanguageChanger({id, divId,}: LanguageChangerProperties,) {
+export default function DisplayView({id, divId,}: DisplayViewProperties,) {
     return <ContentTranslationComponent>{translation =>
-        <Tooltip option={({title: translation('Change the language'), placement: 'left',})} elementId={divId}>
-            <div id={divId} className="container">
-                <ModalButton elementToShow={id} id="languageChanger-button" className="btn btn-lg btn-outline-light rounded-circle bi-translate"/>
+        <Tooltip elementId={divId} option={({title: `${translation('Display')}…`, placement: 'bottom',})}>
+            <div id={divId}>
+                <ModalButton elementToShow={id} className="btn btn-lg btn-outline-primary rounded-pill">
+                    {translation('Display')}…
+                </ModalButton>
             </div>
         </Tooltip>
     }</ContentTranslationComponent>;

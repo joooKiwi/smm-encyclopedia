@@ -1,11 +1,21 @@
+import type {ReactProperty}         from '../util/react/ReactProperty';
+import type {SimpleModalProperties} from './ModalContainers.types';
+
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import LanguageChanger             from './LanguageChanger';
 import SimpleDate                  from '../lang/date/SimpleDate';
 
+interface FooterProperties
+    extends ReactProperty {
+
+    languageChanger: SimpleModalProperties
+
+}
+
 /**
  * @reactComponent
  */
-export default function Footer() {
+export default function Footer({languageChanger,}: FooterProperties,) {
     return <footer id="footer-container" className="bg-dark bg-gradient pt-4 pb-3 mb-0 position-relative">
         <ContentTranslationComponent>{translation =>
             <div className="container">
@@ -22,6 +32,6 @@ export default function Footer() {
                 </div>
             </div>
         }</ContentTranslationComponent>
-        <LanguageChanger/>
+        <LanguageChanger {...languageChanger}/>
     </footer>;
 }
