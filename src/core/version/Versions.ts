@@ -57,6 +57,11 @@ export class Versions
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    public static get everySimpleNames(): readonly PossibleName[] {
+        return this.values.map(enumerable => enumerable.simpleName);
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 

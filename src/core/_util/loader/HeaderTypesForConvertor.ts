@@ -1,4 +1,4 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import type {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
 import type {EntityCategories}      from '../../entityCategory/EntityCategories';
@@ -10,6 +10,7 @@ import type {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms
 import type {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
 import type {SoundEffects}          from '../../soundEffect/SoundEffects';
 import type {GameStyles}            from '../../gameStyle/GameStyles';
+import type {Versions}              from '../../version/Versions';
 
 /**
  * @classWithDynamicImport
@@ -49,6 +50,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #soundEffects?: typeof SoundEffects;
     #soundEffectCategories?: typeof SoundEffectCategories;
     #mysteryMushrooms?: typeof MysteryMushrooms;
+    #versions?: typeof Versions;
 
     //endregion -------------------- Enum reference attributes --------------------
     //region -------------------- Array attributes --------------------
@@ -86,6 +88,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
+
+    #everyPossibleName_version?: EveryPossibleSimpleName_Version;
 
     //endregion -------------------- Array attributes --------------------
 
@@ -135,6 +139,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     public get mysteryMushrooms(): typeof MysteryMushrooms {
         return this.#mysteryMushrooms ??= require('../../mysteryMushroom/MysteryMushrooms').MysteryMushrooms;
+    }
+
+    public get versions(): typeof Versions {
+        return this.#versions ??= require('../../version/Versions').Versions;
     }
 
     //endregion -------------------- Enum reference getter reference --------------------
@@ -325,6 +333,13 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Version --------------------
+
+    public get everyPossibleName_version() {
+        return this.#everyPossibleName_version ??= this.versions.everySimpleNames;
+    }
+
+    //endregion -------------------- Version --------------------
 
 }
 
@@ -427,6 +442,11 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Version --------------------
+
+    public readonly everyPossibleName_version = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Version --------------------
 
 }
 

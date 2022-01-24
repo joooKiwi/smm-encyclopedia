@@ -11,6 +11,7 @@ import type {PossibleAcronym as PossibleAcronym_GameStyle}                      
 import type {PossibleCategory as PossibleCategory_MiiCostume, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MiiCostume, PossibleMode as PossibleMode_MiiCostume}                                                                                            from '../../miiCostume/MiiCostume.template';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
+import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                       from '../../version/Versions.types';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
 
@@ -98,6 +99,11 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): ValueOrStringConstant<EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom>
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Version --------------------
+
+    get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleSimpleName_Version>
+
+    //endregion -------------------- Version --------------------
 
 }
 
@@ -158,5 +164,10 @@ export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonl
 export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | '???'> | UnknownReference)[];
 
 //endregion -------------------- Mystery Mushroom --------------------
+//region -------------------- Version --------------------
+
+export type EveryPossibleSimpleName_Version = readonly PossibleName_Version[];
+
+//endregion -------------------- Version --------------------
 
 //endregion -------------------- External types --------------------

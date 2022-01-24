@@ -395,6 +395,8 @@ export class EntityLoader
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(['(Entity)', 'Entity', 'Projectile', 'Object',], 'entityType',)
+                .convertTo([1, 2,], 'firstAppearanceInMarioMaker',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker_version',)
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
