@@ -213,7 +213,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
             return {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,};
         }
 
-    }(true,);
+    }(false,);
     public static readonly WHEN_ALL_SELECTED_GAME =                 new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
@@ -248,7 +248,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
             return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
         }
 
-    }(true,);
+    }(false,);
     public static readonly WHEN_ALL_SELECTED_GAME_STYLE =           new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
@@ -283,7 +283,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
             return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
         }
 
-    }(true,);
+    }(false,);
     public static readonly WHEN_ALL_SELECTED_COURSE_THEME =         new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
@@ -319,7 +319,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
             return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
         }
 
-    }(true,);
+    }(false,);
     public static readonly WHEN_ALL_SELECTED_TIME =                 new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption<boolean> {
 
         protected _get(state: EntityAppStates,): boolean {
