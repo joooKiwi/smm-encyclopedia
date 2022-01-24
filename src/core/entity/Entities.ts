@@ -327,7 +327,7 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('PBlock',)
                 .setAmount(2)
-                .setNotSM3DW();
+                .setAllGameStyles();
         }
 
     }('P Block',);
