@@ -11,7 +11,7 @@ export type LimitAmountType = | 1 | 2 | `${| 1 | ''}?` | '∞' | PossibleLimitAm
 //endregion -------------------- Limit amount --------------------
 //region -------------------- Entity limit --------------------
 
-export type PossibleLimitType = | EditorLimitType | GeneralEntityLimitType | GeneralGlobalEntityLimitType | PowerUpEntityLimitType | ProjectileEntityLimitType | CustomLimitType;
+export type PossibleLimitType = | EditorLimitType | GeneralEntityLimitType | GeneralGlobalEntityLimitType | PowerUpEntityLimitType | ProjectileEntityLimitType | OtherLimitType;
 
 export type EditorLimitType = | PossibleEnglishName | '?' | null;
 
@@ -27,10 +27,10 @@ export type PowerUpEntityLimitType = | boolean | null;
 export type PossibleProjectileEntityLimitComment = | 'Temporary as it comes out' | 'Each one separated' | 'Always reserve 1 projectile' | 'By player, can overfill limit' | 'Can only spawn (available) based → limits';
 export type ProjectileEntityLimitType = | boolean | '?' | PossibleProjectileEntityLimitComment | null;
 
-export type PossibleCustomLimit = Exclude<PossibleEnglishName, `${`${'General' | 'Power-up'} Entity` | 'Projectile'} Limit`>;
-export type CustomLimitType = | PossibleCustomLimit | '?' | null;
-export type PossibleCustomLimitComment = 'Only falling coin';
-export type CustomLimitCommentType = | PossibleCustomLimitComment | null;
+export type PossibleOtherLimit = Exclude<PossibleEnglishName, `${`${'General' | 'Power-up'} Entity` | 'Projectile'} Limit`>;
+export type OtherLimitType = | PossibleOtherLimit | '?' | null;
+export type PossibleOtherLimitComment = 'Only falling coin';
+export type OtherLimitCommentType = | PossibleOtherLimitComment | null;
 
 //endregion -------------------- Entity limit --------------------
 //region -------------------- Spawning / Despawning range --------------------

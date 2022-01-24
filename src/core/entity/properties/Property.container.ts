@@ -1,9 +1,9 @@
-import type {CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './limit/LimitProperty.types';
-import type {GameProperty}                                                                                                  from './GameProperty';
-import type {GameStyleProperty}                                                                                             from './GameStyleProperty';
-import type {PossibleLimitProperty, Property}                                                                               from './Property';
-import type {ThemeProperty}                                                                                                 from './ThemeProperty';
-import type {TimeProperty}                                                                                                  from './TimeProperty';
+import type {EditorLimitReceived, GeneralLimitReceived, OtherLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './limit/LimitProperty.types';
+import type {GameProperty}                                                                                                 from './GameProperty';
+import type {GameStyleProperty}                                                                                            from './GameStyleProperty';
+import type {PossibleLimitProperty, Property}                                                                              from './Property';
+import type {ThemeProperty}                                                                                                from './ThemeProperty';
+import type {TimeProperty}                                                                                                 from './TimeProperty';
 
 import {GamePropertyContainer}      from './GameProperty.container';
 import {GameStylePropertyContainer} from './GameStyleProperty.container';
@@ -28,12 +28,12 @@ export class PropertyContainer
                        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,
                        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
                        isInDayTheme: boolean, isInNightTheme: | boolean | null,
-                       editorLimit: EditorLimitReceived, generalLimit: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, customLimit: CustomLimitReceived,) {
+                       editorLimit: EditorLimitReceived, generalLimit: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, otherLimit: OtherLimitReceived,) {
         this.#gameContainer = GamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
         this.#gameStyleContainer = GameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
         this.#themeContainer = ThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
         this.#timeContainer = TimePropertyContainer.get(isInDayTheme, isInNightTheme,);
-        this.#limitContainer = LimitPropertyContainer.get(editorLimit, generalLimit, powerUpLimit, projectileLimit, customLimit,) as PossibleLimitProperty;
+        this.#limitContainer = LimitPropertyContainer.get(editorLimit, generalLimit, powerUpLimit, projectileLimit, otherLimit,) as PossibleLimitProperty;
     }
 
     //region -------------------- Game properties --------------------
@@ -228,20 +228,20 @@ export class PropertyContainer
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Custom limit --------------------
 
-    public get customLimitWhilePlayingContainer() {
-        return this.limitContainer.customLimitWhilePlayingContainer;
+    public get otherLimitWhilePlayingContainer() {
+        return this.limitContainer.otherLimitWhilePlayingContainer;
     }
 
-    public get customLimitWhilePlaying() {
-        return this.limitContainer.customLimitWhilePlaying;
+    public get otherLimitWhilePlaying() {
+        return this.limitContainer.otherLimitWhilePlaying;
     }
 
-    public get isCustomLimitWhilePlayingUnknown() {
-        return this.limitContainer.isCustomLimitWhilePlayingUnknown;
+    public get isOtherLimitWhilePlayingUnknown() {
+        return this.limitContainer.isOtherLimitWhilePlayingUnknown;
     }
 
-    public get customLimitWhilePlayingComment() {
-        return this.limitContainer.customLimitWhilePlayingComment;
+    public get otherLimitWhilePlayingComment() {
+        return this.limitContainer.otherLimitWhilePlayingComment;
     }
 
     //endregion -------------------- Custom limit --------------------

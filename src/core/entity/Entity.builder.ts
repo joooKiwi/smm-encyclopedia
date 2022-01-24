@@ -1,11 +1,11 @@
-import type {Builder}                                                                                                                                 from '../../util/builder/Builder';
-import type {CallbackToGetEntityLimit, CustomLimitReceived, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
-import type {Entity, PossibleOtherEntities}                                                                                                           from './Entity';
-import type {EntityCategory}                                                                                                                          from '../entityCategory/EntityCategory';
-import type {EntityLink}                                                                                                                              from './loader.types';
-import type {EntityTemplate}                                                                                                                          from './Entity.template';
-import type {Name}                                                                                                                                    from '../../lang/name/Name';
-import type {PossibleEnglishName}                                                                                                                     from './Entities.types';
+import type {Builder}                                                                                                                                from '../../util/builder/Builder';
+import type {CallbackToGetEntityLimit, EditorLimitReceived, GeneralLimitReceived, OtherLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
+import type {Entity, PossibleOtherEntities}                                                                                                          from './Entity';
+import type {EntityCategory}                                                                                                                         from '../entityCategory/EntityCategory';
+import type {EntityLink}                                                                                                                             from './loader.types';
+import type {EntityTemplate}                                                                                                                         from './Entity.template';
+import type {Name}                                                                                                                                   from '../../lang/name/Name';
+import type {PossibleEnglishName}                                                                                                                    from './Entities.types';
 
 import {EntityCategories}              from '../entityCategory/EntityCategories';
 import {EntityContainer}               from './Entity.container';
@@ -73,16 +73,16 @@ export class EntityBuilder
         ] as const;
     }
 
-    private __createLimitPropertyAttributes(): readonly [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, CustomLimitReceived,] {
+    private __createLimitPropertyAttributes(): readonly [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, OtherLimitReceived,] {
         const limitsTemplate = this.template.properties.limits;
-        const {isInGEL: {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,}, isInPEL: PELTemplate, isInPJL: PJLTemplate, customLimit: customLimitTemplate,} = limitsTemplate.whilePlaying;
+        const {isInGEL: {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,}, isInPEL: PELTemplate, isInPJL: PJLTemplate, otherLimit: otherLimitTemplate,} = limitsTemplate.whilePlaying;
 
         return [
             [limitsTemplate.editor, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
             superGlobalGELTemplate == null ? GELTemplate : [GELTemplate, superGlobalGELTemplate,],
             PELTemplate,
             PJLTemplate,
-            [customLimitTemplate.value, customLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
+            [otherLimitTemplate.value, otherLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
         ];
     }
 

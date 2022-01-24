@@ -135,13 +135,13 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Custom limit --------------------
 
-    get customLimitWhilePlayingContainer(): this['limitContainer']['customLimitWhilePlayingContainer']
+    get otherLimitWhilePlayingContainer(): this['limitContainer']['otherLimitWhilePlayingContainer']
 
-    get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying']
+    get otherLimitWhilePlaying(): this['limitContainer']['otherLimitWhilePlaying']
 
-    get isCustomLimitWhilePlayingUnknown(): this['limitContainer']['isCustomLimitWhilePlayingUnknown']
+    get isOtherLimitWhilePlayingUnknown(): this['limitContainer']['isOtherLimitWhilePlayingUnknown']
 
-    get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment']
+    get otherLimitWhilePlayingComment(): this['limitContainer']['otherLimitWhilePlayingComment']
 
     //endregion -------------------- Custom limit --------------------
 

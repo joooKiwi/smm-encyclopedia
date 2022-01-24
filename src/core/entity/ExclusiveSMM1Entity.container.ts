@@ -45,7 +45,7 @@ export class ExclusiveSMM1EntityContainer
             && property.isInGeneralLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE && property.isInGlobalGeneralLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
             && property.isInPowerUpLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
             && property.isInProjectileLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
-            && property.customLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE, 'A SMM1 entity doesn\'t have any limit since it is only applicable to a SMM2 entity.',);
+            && property.otherLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE, 'A SMM1 entity doesn\'t have any limit since it is only applicable to a SMM2 entity.',);
 
         return property;
     }

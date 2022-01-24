@@ -44,10 +44,10 @@ export class EmptyLimitProperty
     public readonly isInProjectileLimitWhilePlayingUnknown = this.isInProjectileLimitWhilePlayingContainer.isUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.isInProjectileLimitWhilePlayingContainer.comment;
 
-    public readonly customLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
-    public readonly customLimitWhilePlaying = this.customLimitWhilePlayingContainer.value;
-    public readonly isCustomLimitWhilePlayingUnknown = this.customLimitWhilePlayingContainer.isUnknown;
-    public readonly customLimitWhilePlayingComment = this.customLimitWhilePlayingContainer.comment;
+    public readonly otherLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
+    public readonly otherLimitWhilePlaying = this.otherLimitWhilePlayingContainer.value;
+    public readonly isOtherLimitWhilePlayingUnknown = this.otherLimitWhilePlayingContainer.isUnknown;
+    public readonly otherLimitWhilePlayingComment = this.otherLimitWhilePlayingContainer.comment;
 
     public toLimitMap() {
         return EMPTY_MAP;

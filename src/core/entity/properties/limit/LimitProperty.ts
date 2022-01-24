@@ -1,13 +1,13 @@
-import type {EntityLimits}                                                                                                                                                from '../../../entityLimit/EntityLimits';
-import type {CustomLimitContainer, EditorLimitContainer, PowerUpLimitContainer, ProjectileLimitContainer, SingleGeneralGlobalLimitContainer, SingleGeneralLimitContainer} from './LimitProperty.types';
-import type {CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                   from './Loader.types';
+import type {EntityLimits}                                                                                                                                               from '../../../entityLimit/EntityLimits';
+import type {OtherLimitContainer, EditorLimitContainer, PowerUpLimitContainer, ProjectileLimitContainer, SingleGeneralGlobalLimitContainer, SingleGeneralLimitContainer} from './LimitProperty.types';
+import type {OtherLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                   from './Loader.types';
 
 export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
     GENERAL extends GeneralEntityLimitType = GeneralEntityLimitType,
     GENERAL_GLOBAL extends GeneralGlobalEntityLimitType = GeneralGlobalEntityLimitType,
     POWER_UP extends PowerUpEntityLimitType = PowerUpEntityLimitType,
     PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType,
-    CUSTOM extends CustomLimitType = CustomLimitType, > {
+    OTHER extends OtherLimitType = OtherLimitType, > {
 
     //region -------------------- Editor limit --------------------
 
@@ -57,17 +57,17 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
     get isInProjectileLimitWhilePlayingComment(): ProjectileLimitContainer<PROJECTILE>['comment']
 
     //endregion -------------------- Projectile limit --------------------
-    //region -------------------- Custom limit --------------------
+    //region -------------------- Other limit --------------------
 
-    get customLimitWhilePlayingContainer(): CustomLimitContainer<CUSTOM>
+    get otherLimitWhilePlayingContainer(): OtherLimitContainer<OTHER>
 
-    get customLimitWhilePlaying(): CustomLimitContainer<CUSTOM>['value']
+    get otherLimitWhilePlaying(): OtherLimitContainer<OTHER>['value']
 
-    get isCustomLimitWhilePlayingUnknown(): CustomLimitContainer<CUSTOM>['isUnknown']
+    get isOtherLimitWhilePlayingUnknown(): OtherLimitContainer<OTHER>['isUnknown']
 
-    get customLimitWhilePlayingComment(): CustomLimitContainer<CUSTOM>['comment']
+    get otherLimitWhilePlayingComment(): OtherLimitContainer<OTHER>['comment']
 
-    //endregion -------------------- Custom limit --------------------
+    //endregion -------------------- Other limit --------------------
 
     /**
      * Return a {@link Map} based on the enum {@link EntityLimits}
@@ -97,7 +97,7 @@ export interface LimitProperty<EDITOR extends EditorLimitType = EditorLimitType,
 }
 
 export type ExclusiveSMM1LimitProperty = LimitProperty<null, null, null, null, null, null>;
-export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, CUSTOM extends CustomLimitType = CustomLimitType,>
-    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, CUSTOM>;
+export type AbstractExclusiveSMM2LimitProperty<EDITOR extends EditorLimitType = EditorLimitType, GENERAL extends boolean = boolean, GENERAL_GLOBAL extends boolean = boolean, POWER_UP extends boolean = boolean, PROJECTILE extends ProjectileEntityLimitType = ProjectileEntityLimitType, OTHER extends OtherLimitType = OtherLimitType,>
+    = LimitProperty<EDITOR, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, OTHER>;
 export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<EditorLimitType, boolean, boolean, boolean, boolean, null>;
 export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;

@@ -203,10 +203,10 @@ export class EmptyEntity
     public readonly isInProjectileLimitWhilePlayingUnknown = this.propertyContainer.isInProjectileLimitWhilePlayingUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.propertyContainer.isInProjectileLimitWhilePlayingComment;
 
-    public readonly customLimitWhilePlayingContainer = this.propertyContainer.customLimitWhilePlayingContainer;
-    public readonly customLimitWhilePlaying = this.propertyContainer.customLimitWhilePlaying;
-    public readonly isCustomLimitWhilePlayingUnknown = this.propertyContainer.isCustomLimitWhilePlayingUnknown;
-    public readonly customLimitWhilePlayingComment = this.propertyContainer.customLimitWhilePlayingComment;
+    public readonly otherLimitWhilePlayingContainer = this.propertyContainer.otherLimitWhilePlayingContainer;
+    public readonly otherLimitWhilePlaying = this.propertyContainer.otherLimitWhilePlaying;
+    public readonly isOtherLimitWhilePlayingUnknown = this.propertyContainer.isOtherLimitWhilePlayingUnknown;
+    public readonly otherLimitWhilePlayingComment = this.propertyContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
 

@@ -88,10 +88,10 @@ export class EmptyIsInProperty
     public readonly isInProjectileLimitWhilePlayingUnknown = this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.limitContainer.isInProjectileLimitWhilePlayingComment;
 
-    public readonly customLimitWhilePlayingContainer = this.limitContainer.customLimitWhilePlayingContainer;
-    public readonly customLimitWhilePlaying = this.limitContainer.customLimitWhilePlaying;
-    public readonly isCustomLimitWhilePlayingUnknown = this.limitContainer.isCustomLimitWhilePlayingUnknown;
-    public readonly customLimitWhilePlayingComment = this.limitContainer.customLimitWhilePlayingComment;
+    public readonly otherLimitWhilePlayingContainer = this.limitContainer.otherLimitWhilePlayingContainer;
+    public readonly otherLimitWhilePlaying = this.limitContainer.otherLimitWhilePlaying;
+    public readonly isOtherLimitWhilePlayingUnknown = this.limitContainer.isOtherLimitWhilePlayingUnknown;
+    public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
 
