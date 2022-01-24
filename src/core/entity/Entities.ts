@@ -52,6 +52,8 @@ export class Entities
         }
 
     }('Ground',);
+    public static readonly STARTING_GROUND =                               new Entities('Starting Ground',);
+    public static readonly ENDING_GROUND =                                 new Entities('Ending Ground',);
     public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
@@ -66,6 +68,9 @@ export class Entities
         }
 
     }('Gentle Slope',);
+    public static readonly WATER =                                         new Entities('Water',);
+    public static readonly LAVA =                                          new Entities('Lava',);
+    public static readonly POISON =                                        new Entities('Poison',);
 
     public static readonly PIPE =                                          new class Entities_Pipe extends Entities {
 
@@ -2391,8 +2396,6 @@ export class Entities
 
     }('Stone',);
 
-    public static readonly BUBBLE =                                        new Entities('Bubble',);
-
     public static readonly WARP_DOOR =                                     new class Entities_WarpDoor extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
@@ -2434,6 +2437,8 @@ export class Entities
         }
 
     }('Warp Box (With Key)',);
+
+    public static readonly BUBBLE =                                        new Entities('Bubble',);
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 

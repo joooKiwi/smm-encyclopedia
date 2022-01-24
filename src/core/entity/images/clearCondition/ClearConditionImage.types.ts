@@ -5,8 +5,13 @@ interface ImageNameMap {
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
     'Ground': NoImages
+    'Starting Ground': NoImages
+    'Ending Ground': NoImages
     'Steep Slope': NoImages
     'Gentle Slope': NoImages
+    'Water': NoImages
+    'Lava': NoImages
+    'Poison': NoImages
 
     'Pipe': NoImages
     'Clear Pipe': NoImages
@@ -385,14 +390,14 @@ interface ImageNameMap {
 
     'Stone': ['Stone', Name_0<'Stone'>,]
 
-    'Bubble': NoImages
-
     'Warp Door': NoImages
     'P Warp Door': NoImages
     'Key Door': NoImages
 
     'Warp Box': NoImages
-    'Warp Box (With Key)': NoImages,
+    'Warp Box (With Key)': NoImages
+
+    'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 

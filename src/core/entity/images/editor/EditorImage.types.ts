@@ -6,8 +6,13 @@ interface ImageNameMap {
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
     'Ground': ImageThatIsAGround<'Ground'>
+    'Starting Ground': NoImages
+    'Ending Ground': NoImages
     'Steep Slope': ImageThatIsAGround<'slope_l30'>
     'Gentle Slope': ImageThatIsAGround<'slope_l45'>
+    'Water': NoImages
+    'Lava': NoImages
+    'Poison': NoImages
 
     'Pipe': ['Dokan', Name<'Dokan', | 0 | 1 | 2 | 3>,]
     'Clear Pipe': ImageThatHasOnly1Reference<'ToumeiDokan'>
@@ -387,14 +392,14 @@ interface ImageNameMap {
 
     'Stone': NoImages
 
-    'Bubble': NoImages
-
     'Warp Door': ['Door', Name<'Door', 0>,]
     'P Warp Door': ['Door', Name<'Door', 1>,]
     'Key Door': ['Door', Name<'Door', 2>,]
 
     'Warp Box': ['WarpBox', Name<'WarpBox', 0>,]
-    'Warp Box (With Key)': ['WarpBox', Name<'WarpBox', 1>,],
+    'Warp Box (With Key)': ['WarpBox', Name<'WarpBox', 1>,]
+
+    'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 

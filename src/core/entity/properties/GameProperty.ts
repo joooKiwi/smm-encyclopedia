@@ -1,5 +1,8 @@
 import type {ClassInAnySuperMarioMakerGame} from '../../ClassInAnySuperMarioMakerGame';
 
+/**
+ * @todo add toGameMap
+ */
 export interface GameProperty<SMM1 extends boolean = boolean, SMM2 extends boolean = boolean, >
     extends ClassInAnySuperMarioMakerGame<SMM1, SMM2> {
 

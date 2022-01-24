@@ -9,7 +9,9 @@ enum Enum {
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
-    GROUND, STEEP_SLOPE, GENTLE_SLOPE,
+    GROUND, STARTING_GROUND, ENDING_GROUND,
+    STEEP_SLOPE, GENTLE_SLOPE,
+    WATER, LAVA, POISON,
     PIPE, CLEAR_PIPE,
     SPIKE_TRAP, JELECTRO, SEA_URCHIN, SPIKE_BLOCK,
     MUSHROOM_PLATFORM, SEMISOLID_PLATFORM, BRIDGE,
@@ -149,9 +151,9 @@ enum Enum {
     POW_BLOCK, RED_POW_BLOCK,
     P_SWITCH,
     STONE,
-    BUBBLE,
     WARP_DOOR, P_WARP_DOOR, KEY_DOOR,
     WARP_BOX, WARP_BOX_WITH_KEY,
+    BUBBLE,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -169,7 +171,8 @@ export type Names = keyof typeof Enum;
 //region -------------------- English name --------------------
 
 export type PossibleEnglishName =
-    | 'Ground' | `${| 'Steep' | 'Gentle'} Slope` | `${| '' | 'Clear '}Pipe`
+    | `${| '' | `${| 'Starting' | 'Ending'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
+    | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
     | `Spike ${| 'Trap' | 'Block'}` | 'Jelectro' | 'Sea Urchin'
     | `${| 'Mushroom' | 'Semisolid'} Platform` | 'Bridge'
 
@@ -274,9 +277,9 @@ export type PossibleEnglishName =
     | `${| '' | 'Red '}POW Block`
     | 'P Switch'
     | 'Stone'
-    | 'Bubble'
     | `${| `${| '' | 'P '}Warp` | 'Key'} Door`
     | `Warp Box${| '' | ' (With Key)'}`
+    | 'Bubble'
     ;
 
 //endregion -------------------- English name --------------------
@@ -297,7 +300,9 @@ export type EnumByString<S extends string, E extends Entities = Entities, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<E extends Entities = Entities, > = readonly [
-    EnumByName<'GROUND', E>, EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
+    EnumByName<'GROUND', E>, EnumByName<'STARTING_GROUND', E>, EnumByName<'ENDING_GROUND', E>,
+    EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
+    EnumByName<'WATER', E>, EnumByName<'LAVA', E>, EnumByName<'POISON', E>,
     EnumByName<'PIPE', E>, EnumByName<'CLEAR_PIPE', E>,
     EnumByName<'SPIKE_TRAP', E>, EnumByName<'JELECTRO', E>, EnumByName<'SEA_URCHIN', E>, EnumByName<'SPIKE_BLOCK', E>,
     EnumByName<'MUSHROOM_PLATFORM', E>, EnumByName<'SEMISOLID_PLATFORM', E>, EnumByName<'BRIDGE', E>,
@@ -419,9 +424,9 @@ export type EnumArray<E extends Entities = Entities, > = readonly [
     EnumByName<'POW_BLOCK', E>, EnumByName<'RED_POW_BLOCK', E>,
     EnumByName<'P_SWITCH', E>,
     EnumByName<'STONE', E>,
-    EnumByName<'BUBBLE', E>,
     EnumByName<'WARP_DOOR', E>, EnumByName<'P_WARP_DOOR', E>, EnumByName<'KEY_DOOR', E>,
     EnumByName<'WARP_BOX', E>, EnumByName<'WARP_BOX_WITH_KEY', E>,
+    EnumByName<'BUBBLE', E>,
 ];
 
 //endregion -------------------- Array types --------------------

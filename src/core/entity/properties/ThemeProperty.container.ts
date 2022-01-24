@@ -1,33 +1,20 @@
-import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ThemeProperty} from './ThemeProperty';
+import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
+import type {ThemeProperty} from './ThemeProperty';
 
-import {assert} from '../../../util/utilitiesMethods';
-import {Themes} from '../../theme/Themes';
+import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
+import {Themes}               from '../../theme/Themes';
 
 /**
  * @multiton
  * @provider
+ * @todo change Themes to a dynamic import
  */
 export class ThemePropertyContainer
     implements ThemeProperty {
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #IS_IN_NO_THEMES =                              new ThemePropertyContainer(false, false, false, null,  null,  null,  null,  false, false, false,);
-    static readonly #IS_IN_SMM1_THEMES =                            new ThemePropertyContainer(true,  true,  true,  null,  null,  null,  null,  true,  true,  true, ) as ExclusiveSMM1ThemeProperty;
-
-    static readonly #IS_IN_EXCLUSIVE_GROUND_THEME =                 new ThemePropertyContainer(true,  false, false, false, false, false, false, false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_NOT_EXCLUSIVE_GROUND_THEME =             new ThemePropertyContainer(false, true,  true,  true,  true,  true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
-
-    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_THEME =             new ThemePropertyContainer(false, false, true,  false, false, false, false, false, false, false, ) as AbstractExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME =         new ThemePropertyContainer(true,  true,  false, true,  true,  true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
-
-    static readonly #IS_IN_EXCLUSIVE_SNOW_THEME =                   new ThemePropertyContainer(false, false, false, false, true,  false, false, false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_NOT_EXCLUSIVE_SNOW_THEME =               new ThemePropertyContainer(true,  true,  true,  true,  false, true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
-
-    static readonly #IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME = new ThemePropertyContainer(false, true,  false, false, false, false, true,  false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
-    static readonly #IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME =  new ThemePropertyContainer(false, false, true,  false, false, false, true,  false, false, false,) as AbstractExclusiveSMM2ThemeProperty;
-
-    static readonly #IS_IN_EVERY_THEMES =                           new ThemePropertyContainer(true,  true,  true,  true,  true,  true,  true,  true,  true,  true, ) as AbstractExclusiveSMM2ThemeProperty;
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemePropertyContainer> = new ExtendedMapContainer();
 
     //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -43,7 +30,7 @@ export class ThemePropertyContainer
     readonly #isInAirshipTheme: boolean;
     readonly #isInCastleTheme: boolean;
 
-    private constructor(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,) {
+    private constructor([isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,]: ArgumentsReceived,) {
         this.#isInGroundTheme = isInGroundTheme;
         this.#isInUndergroundTheme = isInUndergroundTheme;
         this.#isInUnderwaterTheme = isInUnderwaterTheme;
@@ -104,54 +91,21 @@ export class ThemePropertyContainer
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
-    public static get(isInGroundTheme: true, isInUndergroundTheme: true, isInUnderwaterTheme: true, isInDesertTheme: null, isInSnowTheme: null, isInSkyTheme: null, isInForestTheme: null, isInGhostHouseTheme: true, isInAirshipTheme: true, isInCastleTheme: true,): ExclusiveSMM1ThemeProperty
-    public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty
-    public static get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty {
-        if (isInDesertTheme === null && isInSnowTheme === null && isInSkyTheme === null && isInForestTheme === null) {
-            if (isInGroundTheme &&  isInUndergroundTheme &&  isInUnderwaterTheme &&  isInGhostHouseTheme &&  isInAirshipTheme &&  isInCastleTheme )
-                return this.#IS_IN_SMM1_THEMES;
-            if (!isInGroundTheme && !isInUndergroundTheme && !isInUnderwaterTheme && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-                return this.#IS_IN_NO_THEMES;
-        }
-        if (isInGroundTheme  && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
-            return this.#IS_IN_EVERY_THEMES;
-
-        //region ----- Exclusive (or not) on underwater theme -----
-
-        if (!isInGroundTheme && !isInUndergroundTheme && isInUnderwaterTheme  && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.#IS_IN_EXCLUSIVE_UNDERWATER_THEME;
-        if (isInGroundTheme  && isInUndergroundTheme  && !isInUnderwaterTheme && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
-            return this.#IS_IN_NOT_EXCLUSIVE_UNDERWATER_THEME;
-
-        //endregion ----- Exclusive (or not) on underwater theme -----
-        //region ----- Exclusive (or not) on snow theme -----
-
-        if (!isInGroundTheme && !isInUndergroundTheme && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme === true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.#IS_IN_EXCLUSIVE_SNOW_THEME;
-        if (isInGroundTheme  && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme !== true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  &&  isInAirshipTheme && isInCastleTheme )
-            return this.#IS_IN_NOT_EXCLUSIVE_SNOW_THEME;
-
-        //endregion ----- Exclusive (or not) on snow theme -----
-        //region ----- Exclusive (or not) on underground theme -----
-
-        if (isInGroundTheme  && !isInUndergroundTheme && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme !== true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.#IS_IN_EXCLUSIVE_GROUND_THEME;
-        if (!isInGroundTheme && isInUndergroundTheme  && isInUnderwaterTheme  && isInDesertTheme === true && isInSnowTheme === true && isInSkyTheme === true && isInForestTheme === true && isInGhostHouseTheme  && isInAirshipTheme  && isInCastleTheme )
-            return this.#IS_IN_NOT_EXCLUSIVE_GROUND_THEME;
-
-        //endregion ----- Exclusive (or not) on underground theme -----
-        //region ----- Exclusive 2 themes -----
-
-        if (!isInGroundTheme && isInUndergroundTheme  && !isInUnderwaterTheme && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme === true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.#IS_IN_EXCLUSIVE_UNDERGROUND_AND_FOREST_THEME;
-        if (!isInGroundTheme && !isInUndergroundTheme && isInUnderwaterTheme  && isInDesertTheme !== true && isInSnowTheme !== true && isInSkyTheme !== true && isInForestTheme === true && !isInGhostHouseTheme && !isInAirshipTheme && !isInCastleTheme)
-            return this.#IS_IN_EXCLUSIVE_UNDERWATER_AND_FOREST_THEME;
-
-        //endregion ----- Exclusive 2 themes -----
-
-        assert(false, `No theme can be used with this theme selection (${isInGroundTheme}, ${isInUndergroundTheme}, ${isInUnderwaterTheme}, ${isInDesertTheme}, ${isInSnowTheme}, ${isInSkyTheme}, ${isInForestTheme}, ${isInGhostHouseTheme}, ${isInAirshipTheme}, ${isInCastleTheme}).`,);
+    public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
+    /**
+     * Get a property instance based on the {@link Themes} properties.
+     *
+     * @param argumentsReceived
+     * @noDuplicateInstanceCreation
+     */
+    public static get(...argumentsReceived: ArgumentsReceived) {
+        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
+            .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))
+            .get(argumentsReceived);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------
 
 }
+
+type ArgumentsReceived = readonly [isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,];

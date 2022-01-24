@@ -1,4 +1,7 @@
-import type {AbstractExclusiveSMM2GameProperty, ExclusiveSMM1GameProperty, GameProperty} from './GameProperty';
+import type {ExtendedMap}  from '../../../util/extended/ExtendedMap';
+import type {GameProperty} from './GameProperty';
+
+import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
 
 /**
  * @multiton
@@ -9,11 +12,7 @@ export class GamePropertyContainer
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY = new GamePropertyContainer(true,  false,) as ExclusiveSMM1GameProperty;
-    static readonly #IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY = new GamePropertyContainer(false, true, ) as AbstractExclusiveSMM2GameProperty;
-
-    static readonly #IS_IN_BOTH_GAMES_PROPERTY =               new GamePropertyContainer(true,  true, );
-    static readonly #IS_IN_NO_GAMES_PROPERTY =                 new GamePropertyContainer(false, false,);
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GamePropertyContainer> = new ExtendedMapContainer();
 
     //endregion -------------------- Predefined containers --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
@@ -21,7 +20,7 @@ export class GamePropertyContainer
     readonly #isInSuperMarioMaker1;
     readonly #isInSuperMarioMaker2;
 
-    private constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,) {
+    private constructor([isInSuperMarioMaker1, isInSuperMarioMaker2,]: ArgumentsReceived,) {
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
         this.#isInSuperMarioMaker2 = isInSuperMarioMaker2;
     }
@@ -38,37 +37,22 @@ export class GamePropertyContainer
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
-    public static get(isInSuperMarioMaker1: true, isInSuperMarioMaker2: false,): ExclusiveSMM1GameProperty
-    public static get(isInSuperMarioMaker1: false, isInSuperMarioMaker2: true,): AbstractExclusiveSMM2GameProperty
-    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): GameProperty
+
+    public static get<SMM1 extends boolean = boolean, SMM2 extends boolean = boolean, >(isInSuperMarioMaker1: SMM1, isInSuperMarioMaker2: SMM2,): GameProperty<SMM1, SMM2>
     /**
-     * <p>
-     *     Return the property instance based on the booleans values received.
-     *     Note that it does not duplicate the class creation, but only give a predefined instance.
-     * </p>
+     * Get a property instance based on the {@link Games} properties.
      *
-     * The result vary based on the values received.
-     * <table>
-     *     <tr><th>booleans</th><th>result</th></tr>
-     *     <tr><td>true & true</td><td>A property in every games</td></tr>
-     *     <tr><td>true & false</td><td>A property only in {@link Games.SUPER_MARIO_MAKER_1}</td></tr>
-     *     <tr><td>false & true</td><td>A property only in {@link Games.SUPER_MARIO_MAKER_2}</td></tr>
-     *     <tr><td>false & false</td><td>A property where it is in no games.</td></tr>
-     * </table>
-     *
-     * @param isInSuperMarioMaker1
-     * @param isInSuperMarioMaker2
+     * @param argumentsReceived
+     * @noDuplicateInstanceCreation
      */
-    public static get(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,): GameProperty {
-        if (isInSuperMarioMaker1 && isInSuperMarioMaker2)
-            return this.#IS_IN_BOTH_GAMES_PROPERTY;
-        if (isInSuperMarioMaker1 && !isInSuperMarioMaker2)
-            return this.#IS_IN_ONLY_SUPER_MARIO_MAKER_1_PROPERTY;
-        if (!isInSuperMarioMaker1 && isInSuperMarioMaker2)
-            return this.#IS_IN_ONLY_SUPER_MARIO_MAKER_2_PROPERTY;
-        return this.#IS_IN_NO_GAMES_PROPERTY;
+    public static get(...argumentsReceived: ArgumentsReceived) {
+        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
+            .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))
+            .get(argumentsReceived);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------
 
 }
+
+type ArgumentsReceived = readonly [isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,];

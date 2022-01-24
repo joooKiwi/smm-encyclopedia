@@ -101,25 +101,25 @@ export class EntityBuilder
 
         //region -------------------- Single reference --------------------
 
-        const inSuperMarioBros = this.__createNullableEntityCallbackFor(reference.style.superMarioBros);
-        const inSuperMarioBros3 = this.__createNullableEntityCallbackFor(reference.style.superMarioBros3);
-        const inSuperMarioWorld = this.__createNullableEntityCallbackFor(reference.style.superMarioWorld);
-        const inNewSuperMarioBros = this.__createNullableEntityCallbackFor(reference.style.newSuperMarioBrosU);
-        const inSuperMario3DWorld = this.__createNullableEntityCallbackFor(reference.style.superMario3DWorld);
+        const inSuperMarioBros = this.__createEntityCallbackFor(reference.style.superMarioBros);
+        const inSuperMarioBros3 = this.__createEntityCallbackFor(reference.style.superMarioBros3);
+        const inSuperMarioWorld = this.__createEntityCallbackFor(reference.style.superMarioWorld);
+        const inNewSuperMarioBros = this.__createEntityCallbackFor(reference.style.newSuperMarioBrosU);
+        const inSuperMario3DWorld = this.__createEntityCallbackFor(reference.style.superMario3DWorld);
 
         const inGroundTheme = this.__createEntityCallbackFor(reference.theme.ground);
-        const inUndergroundTheme = this.__createNullableEntityCallbackFor(reference.theme.underground);
-        const inUnderwaterTheme = this.__createNullableEntityCallbackFor(reference.theme.underwater);
-        const inDesertTheme = this.__createNullableEntityCallbackFor(reference.theme.desert);
-        const inSnowTheme = this.__createNullableEntityCallbackFor(reference.theme.snow);
-        const inSkyTheme = this.__createNullableEntityCallbackFor(reference.theme.sky);
-        const inForestTheme = this.__createNullableEntityCallbackFor(reference.theme.forest);
-        const inGhostHouseTheme = this.__createNullableEntityCallbackFor(reference.theme.ghostHouse);
-        const inAirshipTheme = this.__createNullableEntityCallbackFor(reference.theme.airship);
-        const inCastleTheme = this.__createNullableEntityCallbackFor(reference.theme.castle);
+        const inUndergroundTheme = this.__createEntityCallbackFor(reference.theme.underground);
+        const inUnderwaterTheme = this.__createEntityCallbackFor(reference.theme.underwater);
+        const inDesertTheme = this.__createEntityCallbackFor(reference.theme.desert);
+        const inSnowTheme = this.__createEntityCallbackFor(reference.theme.snow);
+        const inSkyTheme = this.__createEntityCallbackFor(reference.theme.sky);
+        const inForestTheme = this.__createEntityCallbackFor(reference.theme.forest);
+        const inGhostHouseTheme = this.__createEntityCallbackFor(reference.theme.ghostHouse);
+        const inAirshipTheme = this.__createEntityCallbackFor(reference.theme.airship);
+        const inCastleTheme = this.__createEntityCallbackFor(reference.theme.castle);
 
         const inDayTheme = this.__createEntityCallbackFor(reference.time.day);
-        const inNightTheme = this.__createNullableEntityCallbackFor(reference.time.night);
+        const inNightTheme = this.__createEntityCallbackFor(reference.time.night);
 
         //endregion -------------------- Single reference --------------------
         //region -------------------- Group reference --------------------
@@ -153,16 +153,12 @@ export class EntityBuilder
             : () => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference);
     }
 
-    private __createEntityCallbackFor(link: EntityLink,): () => PossibleOtherEntities {
-        return link === 'this'
-            ? this.#selfCallback
-            : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities;
-    }
-
-    private __createNullableEntityCallbackFor(link: | EntityLink | null,): () => PossibleOtherEntities {
+    private __createEntityCallbackFor(link: | EntityLink | null,): () => PossibleOtherEntities {
         return link === null
             ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
-            : this.__createEntityCallbackFor(link);
+            : link === 'this'
+                ? this.#selfCallback
+                : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities;
     }
 
     //endregion -------------------- Entity references helper methods --------------------

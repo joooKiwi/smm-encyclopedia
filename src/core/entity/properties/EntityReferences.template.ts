@@ -15,7 +15,7 @@ export interface EntityReferencesTemplate {
     }
 
     theme: {
-        ground: EntityLink
+        ground: | EntityLink | null
         underground: | EntityLink | null
         underwater: | EntityLink | null
         desert: | EntityLink | null
@@ -28,7 +28,7 @@ export interface EntityReferencesTemplate {
     }
 
     time: {
-        day: EntityLink
+        day: | EntityLink | null
         night: | EntityLink | null
     }
 
