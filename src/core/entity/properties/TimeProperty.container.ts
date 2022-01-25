@@ -1,30 +1,38 @@
+import type {EnumArray}    from '../../time/Times.types';
 import type {ExtendedMap}  from '../../../util/extended/ExtendedMap';
 import type {TimeProperty} from './TimeProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {Times}                from '../../time/Times';
+import type {Times}           from '../../time/Times';
 
 /**
  * @multiton
  * @provider
- * @todo change Times to a dynamic import
+ * @classWithDynamicImport
  */
 export class TimePropertyContainer
     implements TimeProperty {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Attributes --------------------
 
+    static #values?: EnumArray;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, TimePropertyContainer> = new ExtendedMapContainer();
 
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
-
+    #map?: ReadonlyMap<Times, boolean>;
     readonly #isInDayTheme;
     readonly #isInNightTheme;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor([isInDayTheme, isInNightTheme,]: ArgumentsReceived,) {
         this.#isInDayTheme = isInDayTheme;
         this.#isInNightTheme = isInNightTheme;
+    }
+
+    //region -------------------- Getter methods --------------------
+
+    private static get __values(): EnumArray {
+        return this.#values ??= require('../../time/Times').Times.values;
     }
 
 
@@ -36,8 +44,10 @@ export class TimePropertyContainer
         return this.#isInNightTheme;
     }
 
-    public toTimeMap(): Map<Times, boolean> {
-        return new Map(Times.values.map(time => [time, time.get(this),]));
+    //endregion -------------------- Getter methods --------------------
+
+    public toTimeMap(): ReadonlyMap<Times, boolean> {
+        return this.#map ??= new Map(TimePropertyContainer.__values.map(time => [time, time.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

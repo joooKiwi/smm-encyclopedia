@@ -84,6 +84,10 @@ export class EmptyGameStyle
 
     public readonly entities = EMPTY_ARRAY;
 
+    public toGameMap() {
+        return EMPTY_MAP;
+    }
+
     public toNameMap() {
         return EMPTY_MAP;
     }

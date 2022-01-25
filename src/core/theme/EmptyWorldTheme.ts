@@ -87,6 +87,10 @@ export class EmptyWorldTheme
 
     //endregion -------------------- Game properties --------------------
 
+    public toGameMap() {
+        return EMPTY_MAP;
+    }
+
     public toNameMap() {
         return EMPTY_MAP;
     }

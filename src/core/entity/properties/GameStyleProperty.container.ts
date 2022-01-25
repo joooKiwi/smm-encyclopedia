@@ -1,30 +1,31 @@
+import type {EnumArray}         from '../../gameStyle/GameStyles.types';
 import type {ExtendedMap}       from '../../../util/extended/ExtendedMap';
 import type {GameStyleProperty} from './GameStyleProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {GameStyles}           from '../../gameStyle/GameStyles';
+import type {GameStyles}      from '../../gameStyle/GameStyles';
 
 /**
  * @multiton
  * @provider
- * @todo change GameStyles to a dynamic import
+ * @classWithDynamicImport
  */
 export class GameStylePropertyContainer
     implements GameStyleProperty {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Attributes --------------------
 
+    static #values?: EnumArray;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStylePropertyContainer> = new ExtendedMapContainer();
 
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
-
+    #map?: ReadonlyMap<GameStyles, boolean>;
     readonly #isInSuperMarioBrosStyle;
     readonly #isInSuperMarioBros3Style;
     readonly #isInSuperMarioWorldStyle;
     readonly #isInNewSuperMarioBrosUStyle;
     readonly #isInSuperMario3DWorldStyle;
 
+    //endregion -------------------- Attributes --------------------
 
     private constructor([isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,]: ArgumentsReceived,) {
         this.#isInSuperMarioBrosStyle = isInSuperMarioBrosStyle;
@@ -32,6 +33,12 @@ export class GameStylePropertyContainer
         this.#isInSuperMarioWorldStyle = isInSuperMarioWorldStyle;
         this.#isInNewSuperMarioBrosUStyle = isInNewSuperMarioBrosUStyle;
         this.#isInSuperMario3DWorldStyle = isInSuperMario3DWorldStyle;
+    }
+
+    //region -------------------- Getter methods --------------------
+
+    private static get __values(): EnumArray {
+        return this.#values ??= require('../../gameStyle/GameStyles').GameStyles.values;
     }
 
 
@@ -55,9 +62,10 @@ export class GameStylePropertyContainer
         return this.#isInSuperMario3DWorldStyle;
     }
 
+    //endregion -------------------- Getter methods --------------------
 
-    public toGameStyleMap(): Map<GameStyles, boolean> {
-        return new Map(GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
+    public toGameStyleMap(): ReadonlyMap<GameStyles, boolean> {
+        return this.#map ??= new Map(GameStylePropertyContainer.__values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

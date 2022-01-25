@@ -670,6 +670,10 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //endregion -------------------- References --------------------
 
+    public toGameMap() {
+        return this.propertyContainer.toGameMap();
+    }
+
     public toGameStyleMap() {
         return this.propertyContainer.toGameStyleMap();
     }

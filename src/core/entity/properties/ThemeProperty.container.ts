@@ -1,24 +1,24 @@
-import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
-import type {ThemeProperty} from './ThemeProperty';
+import type {EnumArray_OnlyCourseTheme} from '../../theme/Themes.types';
+import type {ExtendedMap}               from '../../../util/extended/ExtendedMap';
+import type {ThemeProperty}             from './ThemeProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {Themes}               from '../../theme/Themes';
+import type {Themes}          from '../../theme/Themes';
 
 /**
  * @multiton
  * @provider
- * @todo change Themes to a dynamic import
+ * @classWithDynamicImport
  */
 export class ThemePropertyContainer
     implements ThemeProperty {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Attributes --------------------
 
+    static #values?: EnumArray_OnlyCourseTheme;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemePropertyContainer> = new ExtendedMapContainer();
 
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
-
+    #map?: ReadonlyMap<Themes, boolean>;
     readonly #isInGroundTheme: boolean;
     readonly #isInUndergroundTheme: boolean;
     readonly #isInUnderwaterTheme: boolean;
@@ -29,6 +29,8 @@ export class ThemePropertyContainer
     readonly #isInGhostHouseTheme: boolean;
     readonly #isInAirshipTheme: boolean;
     readonly #isInCastleTheme: boolean;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor([isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,]: ArgumentsReceived,) {
         this.#isInGroundTheme = isInGroundTheme;
@@ -42,6 +44,13 @@ export class ThemePropertyContainer
         this.#isInAirshipTheme = isInAirshipTheme;
         this.#isInCastleTheme = isInCastleTheme;
     }
+
+    //region -------------------- Getter methods --------------------
+
+    private static get __values(): EnumArray_OnlyCourseTheme {
+        return this.#values ??= require('../../theme/Themes').Themes.courseThemes;
+    }
+
 
     public get isInGroundTheme() {
         return this.#isInGroundTheme;
@@ -83,9 +92,10 @@ export class ThemePropertyContainer
         return this.#isInCastleTheme;
     }
 
+    //endregion -------------------- Getter methods --------------------
 
-    public toCourseThemeMap(): Map<Themes, boolean> {
-        return new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]));
+    public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
+        return this.#map ??= new Map(ThemePropertyContainer.__values.map(theme => [theme, theme.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

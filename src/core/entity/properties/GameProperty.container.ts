@@ -1,28 +1,38 @@
+import type {EnumArray}    from '../../game/Games.types';
 import type {ExtendedMap}  from '../../../util/extended/ExtendedMap';
 import type {GameProperty} from './GameProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
+import type {Games}           from '../../game/Games';
 
 /**
  * @multiton
  * @provider
+ * @classWithDynamicImport
  */
 export class GamePropertyContainer
     implements GameProperty {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Attributes --------------------
 
+    static #values?: EnumArray;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GamePropertyContainer> = new ExtendedMapContainer();
 
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
-
+    #map?: ReadonlyMap<Games, boolean>;
     readonly #isInSuperMarioMaker1;
     readonly #isInSuperMarioMaker2;
+
+    //endregion -------------------- Attributes --------------------
 
     private constructor([isInSuperMarioMaker1, isInSuperMarioMaker2,]: ArgumentsReceived,) {
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
         this.#isInSuperMarioMaker2 = isInSuperMarioMaker2;
+    }
+
+    //region -------------------- Getter methods --------------------
+
+    private static get __values(): EnumArray {
+        return this.#values ??= require('../../game/Games').Games.values;
     }
 
 
@@ -32,6 +42,12 @@ export class GamePropertyContainer
 
     public get isInSuperMarioMaker2() {
         return this.#isInSuperMarioMaker2;
+    }
+
+    //endregion -------------------- Getter methods --------------------
+
+    public toGameMap(): ReadonlyMap<Games, boolean> {
+        return this.#map ??= new Map(GamePropertyContainer.__values.map(game => [game, game.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

@@ -1,9 +1,8 @@
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../../util/ClassWithNullObjectPattern';
 import type {Property}                                          from './Property';
 
-import {assert}             from '../../../util/utilitiesMethods';
-import {EMPTY_MAP}          from '../../../util/emptyVariables';
-import {EmptyLimitProperty} from './limit/EmptyLimitProperty';
+ import {EMPTY_MAP}                                              from '../../../util/emptyVariables';
+import {EmptyLimitProperty}                                     from './limit/EmptyLimitProperty';
 
 /**
  * @singleton
@@ -95,16 +94,20 @@ export class EmptyIsInProperty
 
     //endregion -------------------- Limit properties --------------------
 
-    public toGameStyleMap(): never {
-        assert(false, `An ${this} cannot have a game style map.`,);
+    public toGameMap() {
+        return EMPTY_MAP;
     }
 
-    public toCourseThemeMap(): never {
-        assert(false, `An ${this} cannot have a course theme map.`,);
+    public toGameStyleMap() {
+        return EMPTY_MAP;
     }
 
-    public toTimeMap(): never {
-        assert(false, `An ${this} cannot have a time map.`,);
+    public toCourseThemeMap() {
+        return EMPTY_MAP;
+    }
+
+    public toTimeMap() {
+        return EMPTY_MAP;
     }
 
     public toLimitMap() {

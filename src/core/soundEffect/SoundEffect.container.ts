@@ -388,6 +388,10 @@ export class SoundEffectContainer
 
     //endregion -------------------- Properties --------------------
 
+    public toGameMap() {
+        return this.propertyContainer.toGameMap();
+    }
+
     public toNameMap(): ReadonlyMap<EveryLanguages, string> {
         return this.nameContainer.toNameMap();
     }

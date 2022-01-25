@@ -2,7 +2,7 @@ import type {GameProperty} from '../entity/properties/GameProperty';
 import type {Name}         from '../../lang/name/Name';
 import type {Theme}        from './Theme';
 
-export class AbstractTheme
+export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     implements Theme {
 
     //region -------------------- Attributes --------------------
@@ -12,7 +12,7 @@ export class AbstractTheme
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, isInProperty: GameProperty,) {
+    protected constructor(name: Name, isInProperty: PROPERTY,) {
         this.#name = name;
         this.#isInProperty = isInProperty;
     }
@@ -160,19 +160,23 @@ export class AbstractTheme
     //endregion -------------------- Name properties --------------------
     //region -------------------- Game properties --------------------
 
-    public get isInProperty(): GameProperty {
+    public get isInProperty(): PROPERTY {
         return this.#isInProperty;
     }
 
-    public get isInSuperMarioMaker1() {
+    public get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1'] {
         return this.isInProperty.isInSuperMarioMaker1;
     }
 
-    public get isInSuperMarioMaker2() {
+    public get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2'] {
         return this.isInProperty.isInSuperMarioMaker2;
     }
 
     //endregion -------------------- Game properties --------------------
+
+    public toGameMap() {
+        return this.isInProperty.toGameMap();
+    }
 
     public toNameMap() {
         return this.nameContainer.toNameMap();

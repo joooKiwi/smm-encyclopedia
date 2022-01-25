@@ -247,6 +247,10 @@ export class PropertyContainer
     //endregion -------------------- Custom limit --------------------
     //endregion -------------------- Limit properties --------------------
 
+    public toGameMap() {
+        return this.gameContainer.toGameMap();
+    }
+
     public toGameStyleMap() {
         return this.gameStyleContainer.toGameStyleMap();
     }

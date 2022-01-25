@@ -184,6 +184,10 @@ export class GameStyleContainer
         return this.#entities.get;
     }
 
+    public toGameMap() {
+        return this.isInProperty.toGameMap();
+    }
+
     public toNameMap() {
         return this.nameContainer.toNameMap();
     }

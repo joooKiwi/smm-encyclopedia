@@ -95,4 +95,8 @@ export class SoundEffectPropertyContainer
 
     //endregion -------------------- Player sound effect trigger properties --------------------
 
+    public toGameMap() {
+        return this.gameContainer.toGameMap();
+    }
+
 }
