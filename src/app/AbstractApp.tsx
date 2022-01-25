@@ -25,6 +25,7 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
     static readonly #LANGUAGE_CHANGER_DIV_ELEMENT_ID = 'languageChanger-container';
 
     static readonly #PARAMETER_ELEMENT_ID = 'parameter-modal-container';
+    static readonly #PARAMETER_DIV_ELEMENT_ID = 'parameter-container';
 
     static readonly #DISPLAY_VIEW_ELEMENT_ID = 'displayView-modal-container';
     static readonly #DISPLAY_VIEW_DIV_ELEMENT_ID = 'displayView-container';
@@ -34,7 +35,7 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
     protected abstract _mainContent(): ReactElement;
 
     protected _parameterContent(): ReactElement {
-        return <GlobalOptionComponent/>;
+        return <GlobalOptionComponent id={AbstractApp.#PARAMETER_DIV_ELEMENT_ID}/>;
     }
 
     public render() {

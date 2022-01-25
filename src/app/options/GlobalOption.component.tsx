@@ -12,10 +12,17 @@ import {GlobalAppOption} from './GlobalAppOption';
 import {Themes}          from '../../core/theme/Themes';
 import {Times}           from '../../core/time/Times';
 
-export default class GlobalOptionComponent
-    extends Component<{}, GlobalAppState> {
+export interface GlobalOptionProperties {
 
-    public constructor(props: {},) {
+    id: string
+
+}
+
+
+export default class GlobalOptionComponent
+    extends Component<GlobalOptionProperties, GlobalAppState> {
+
+    public constructor(props: GlobalOptionProperties,) {
         super(props);
         GlobalAppOption.REFERENCE = this;
         this.state = GlobalAppOption.createDefaultState;
@@ -57,7 +64,7 @@ export default class GlobalOptionComponent
         const imagesValue = GlobalAppOption.IMAGES.get;
         const soundsValue = GlobalAppOption.SOUNDS.get;
 
-        return <div id="parameter-container" className="container-fluid">
+        return <div id={this.props.id} className="container-fluid">
             <div id="imagesAndSounds-option-container" className="container-fluid">
                 <div className="btn-group col" role="group">
                     <span className={`btn btn${imagesValue !== false ? '-outline' : ''}-secondary`}>{/*--No images--*/}</span>
