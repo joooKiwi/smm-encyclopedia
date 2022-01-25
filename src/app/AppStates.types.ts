@@ -1,4 +1,5 @@
-import type {ReactState} from '../util/react/ReactState';
+import type {ReactState}   from '../util/react/ReactState';
+import {GlobalThemeOption} from './options/GlobalThemeOption';
 
 export interface AppStates
     extends ReactState {
@@ -6,6 +7,45 @@ export interface AppStates
 }
 
 //region -------------------- Single states group --------------------
+
+export interface GlobalAppState
+    extends ReactState {
+
+    images: PossibleImageAnimation
+    sounds: boolean
+
+    game: {
+        1: boolean
+        2: boolean
+    }
+
+    gameStyle: {
+        SMB: boolean
+        SMB3: boolean
+        SMW: boolean
+        NSMBU: boolean
+        SM3DW: boolean
+    }
+
+    theme: {
+        ground: GlobalThemeOption
+        underground: GlobalThemeOption
+        underwater: GlobalThemeOption
+        desert: GlobalThemeOption
+        snow: GlobalThemeOption
+        sky: GlobalThemeOption
+        forest: GlobalThemeOption
+        ghostHouse: GlobalThemeOption
+        airship: GlobalThemeOption
+        castle: GlobalThemeOption
+    }
+
+    time: {
+        day: boolean
+        night: boolean
+    }
+
+}
 
 interface AppStateThatHaveACategory {
 

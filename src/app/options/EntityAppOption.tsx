@@ -103,7 +103,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
             };
         }
 
-    }                       (true,);
+    }(true,);
     /**
      * Display an animation or not.
      *

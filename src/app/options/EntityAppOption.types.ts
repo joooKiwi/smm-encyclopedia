@@ -92,4 +92,3 @@ export type EnumArray<T extends EntityAppOption = EntityAppOption, > = readonly 
 ];
 
 //endregion -------------------- Array types --------------------
-
