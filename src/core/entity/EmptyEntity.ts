@@ -12,6 +12,7 @@ import {EmptyName}            from '../../lang/name/EmptyName';
  *
  * @note A value that is equivalent to nothing can be false, null and itself
  * @singleton
+ * @recursiveReference<{@link EmptyEntityReference}>
  */
 export class EmptyEntity
     implements Entity, ClassWithNullObjectPattern<EmptyEntityName> {
