@@ -28,6 +28,9 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
     static readonly #DISPLAY_VIEW_ELEMENT_ID = 'displayView-modal-container';
     static readonly #DISPLAY_VIEW_DIV_ELEMENT_ID = 'displayView-container';
 
+    static readonly #SEARCH_ELEMENT_ID = 'search-modal-container';
+    static readonly #SEARCH_DIV_ELEMENT_ID = 'search-container';
+
     //endregion -------------------- Attributes --------------------
 
     protected abstract _mainContent(): ReactElement;
@@ -41,10 +44,11 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
         const languageProperties: ModalPropertiesWithDiv = {id: AbstractApp.#LANGUAGE_CHANGER_ELEMENT_ID, divId: AbstractApp.#LANGUAGE_CHANGER_DIV_ELEMENT_ID,};
         const parametersProperties: ModalPropertiesWithContent = {id: AbstractApp.#PARAMETER_ELEMENT_ID, content: this._parameterContent(),};
         const displayViewProperties: ModalPropertiesWithDiv = {id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,};
+        const searchProperties: ModalPropertiesWithDiv = {id: AbstractApp.#SEARCH_ELEMENT_ID, divId: AbstractApp.#SEARCH_DIV_ELEMENT_ID,};
 
         return (<>
-            <ModalContainers languageChanger={languageProperties} parameter={parametersProperties} displayView={displayViewProperties}/>
-            <Navigation parameter={parametersProperties} displayView={(displayViewProperties)}/>
+            <ModalContainers languageChanger={languageProperties} parameter={parametersProperties} displayView={displayViewProperties} search={searchProperties}/>
+            <Navigation parameter={parametersProperties} displayView={(displayViewProperties)} search={searchProperties}/>
             <main id="main-container" className="pt-3 pb-5 align-bottom container-fluid">
                 {this._mainContent()}
             </main>
