@@ -1,27 +1,29 @@
-import type {ReactProperty}   from '../util/react/ReactProperty';
-import type {ModalProperties} from './ModalContainers.types';
+import type {TranslationMethod} from '../lang/components/TranslationProperty';
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import ModalButton                 from '../bootstrap/modal/element/ModalButton';
-import Tooltip                     from '../bootstrap/tooltip/Tooltip';
-
-export interface SearchProperties
-    extends ReactProperty, ModalProperties {
-
-}
-
-const ID = 'search-button';
+import {AbstractNavigationButton} from './AbstractNavigationButton';
 
 /**
- * @param properties
  * @reactComponent
  */
-export default function SearchButton({id,}: SearchProperties,) {
-    return <ContentTranslationComponent>{translation =>
-        <Tooltip elementId={ID} option={({title: `${translation('Search')}…`, placement: 'bottom',})}>
-            <ModalButton id={ID} elementToShow={id} className="btn btn-lg btn-outline-primary rounded-pill bi-search">
-                {translation('Search')}…
-            </ModalButton>
-        </Tooltip>
-    }</ContentTranslationComponent>;
+export default class SearchButton
+    extends AbstractNavigationButton {
+
+    static readonly #ID = 'search-button';
+
+    protected get _id(): string {
+        return SearchButton.#ID;
+    }
+
+    protected get tooltipPlacement(): | 'bottom' | 'left' {
+        return 'bottom';
+    }
+
+    protected get _addedClass(): string {
+        return 'bi-search';
+    }
+
+    protected getContent(translation: TranslationMethod<'content'>,): string {
+        return `${translation('Search')}…`;
+    }
+
 }

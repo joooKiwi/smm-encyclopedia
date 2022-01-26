@@ -1,29 +1,27 @@
 import './DisplayView.scss';
 
-import type {ModalPropertiesWithDiv} from './ModalContainers.types';
-import type {ReactProperty}          from '../util/react/ReactProperty';
+import type {TranslationMethod} from '../lang/components/TranslationProperty';
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import ModalButton                 from '../bootstrap/modal/element/ModalButton';
-import Tooltip                     from '../bootstrap/tooltip/Tooltip';
-
-export interface DisplayViewProperties
-    extends ReactProperty, ModalPropertiesWithDiv {
-
-}
+import {AbstractNavigationButton} from './AbstractNavigationButton';
 
 /**
- * @param properties
  * @reactComponent
  */
-export default function DisplayViewButton({id, divId,}: DisplayViewProperties,) {
-    return <ContentTranslationComponent>{translation =>
-        <Tooltip elementId={divId} option={({title: `${translation('Display')}…`, placement: 'bottom',})}>
-            <div id={divId}>
-                <ModalButton elementToShow={id} className="btn btn-lg btn-outline-primary rounded-pill">
-                    {translation('Display')}…
-                </ModalButton>
-            </div>
-        </Tooltip>
-    }</ContentTranslationComponent>;
+export default class DisplayViewButton
+    extends AbstractNavigationButton {
+
+    static readonly #ID = 'displayView-button';
+
+    protected get _id(): string {
+        return DisplayViewButton.#ID;
+    }
+
+    protected get tooltipPlacement(): | 'bottom' | 'left' {
+        return 'bottom';
+    }
+
+    protected getContent(translation: TranslationMethod<'content'>,): string {
+        return `${translation('Display')}…`;
+    }
+
 }

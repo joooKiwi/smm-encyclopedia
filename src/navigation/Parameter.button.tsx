@@ -1,27 +1,29 @@
-import type {ModalProperties} from './ModalContainers.types';
-import type {ReactProperty}   from '../util/react/ReactProperty';
+import type {TranslationMethod} from '../lang/components/TranslationProperty';
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import ModalButton                 from '../bootstrap/modal/element/ModalButton';
-import Tooltip                     from '../bootstrap/tooltip/Tooltip';
-
-export interface ParameterButtonProperties
-    extends ReactProperty, ModalProperties {
-
-}
-
-const ID = 'parameter-button';
+import {AbstractNavigationButton} from './AbstractNavigationButton';
 
 /**
- * @param properties
  * @reactComponent
  */
-export default function ParameterButton({id,}: ParameterButtonProperties,) {
-    return <ContentTranslationComponent>{translation =>
-        <Tooltip elementId={ID} option={({title: translation('Options'), placement: 'left',})}>
-            <div id={ID}>
-                <ModalButton elementToShow={id} className="btn btn-lg btn-outline-primary rounded-circle bi-gear-fill"/>
-            </div>
-        </Tooltip>
-    }</ContentTranslationComponent>;
+export default class ParameterButton
+    extends AbstractNavigationButton {
+
+    static readonly #ID = 'parameter-button';
+
+    protected get _id(): string {
+        return ParameterButton.#ID;
+    }
+
+    protected get tooltipPlacement(): | 'bottom' | 'left' {
+        return 'left';
+    }
+
+    protected get _addedClass(): string {
+        return 'bi-gear-fill';
+    }
+
+    protected getContent(translation: TranslationMethod<'content'>,): string {
+        return translation('Options');
+    }
+
 }
