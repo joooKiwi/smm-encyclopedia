@@ -1,3 +1,5 @@
+import './DisplayView.scss';
+
 import type {ModalPropertiesWithDiv} from './ModalContainers.types';
 import type {ReactProperty}          from '../util/react/ReactProperty';
 

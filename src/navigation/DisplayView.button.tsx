@@ -1,5 +1,3 @@
-import './DisplayView.scss';
-
 import type {TranslationMethod} from '../lang/components/TranslationProperty';
 
 import {AbstractNavigationButton} from './AbstractNavigationButton';
