@@ -1,4 +1,5 @@
-import type {TranslationMethod} from '../lang/components/TranslationProperty';
+import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
+import type {TranslationMethod}                         from '../lang/components/TranslationProperty';
 
 import {AbstractNavigationButton} from './AbstractNavigationButton';
 
@@ -10,11 +11,15 @@ export default class ParameterButton
 
     static readonly #ID = 'parameter-button';
 
+    protected get _isTopButton(): boolean {
+        return true;
+    }
+
     protected get _id(): string {
         return ParameterButton.#ID;
     }
 
-    protected get tooltipPlacement(): | 'bottom' | 'left' {
+    protected get tooltipPlacement(): PossibleTooltipPlacement {
         return 'left';
     }
 
@@ -22,8 +27,8 @@ export default class ParameterButton
         return 'bi-gear-fill';
     }
 
-    protected getContent(translation: TranslationMethod<'content'>,): string {
-        return translation('Options');
+    protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+        return [translation('Options'), 'lg',];
     }
 
 }

@@ -1,34 +1,38 @@
+import './LanguageChanger.scss';
+
 import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
 import type {TranslationMethod}                         from '../lang/components/TranslationProperty';
 
-import {AbstractNavigationButton} from './AbstractNavigationButton';
+import {AbstractNavigationButton}                  from './AbstractNavigationButton';
+
 
 /**
  * @reactComponent
+ * @todo change the color to not be black for the "Change the language" tooltip
  */
-export default class SearchButton
+export default class LanguageChangerButton
     extends AbstractNavigationButton {
 
-    static readonly #ID = 'search-button';
+    static readonly #ID = 'languageChanger-button';
 
     protected get _isTopButton(): boolean {
-        return true;
+        return false;
     }
 
     protected get _id(): string {
-        return SearchButton.#ID;
+        return LanguageChangerButton.#ID;
     }
 
     protected get tooltipPlacement(): PossibleTooltipPlacement {
-        return 'bottom';
+        return 'left';
     }
 
     protected get _addedClass(): string {
-        return 'bi-search';
+        return 'bi-translate';
     }
 
     protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
-        return [`${translation('Search')}…`, 'md',];
+        return [translation('Change the language'), 'md',];
     }
 
 }
