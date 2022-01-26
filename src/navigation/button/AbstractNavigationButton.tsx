@@ -1,14 +1,14 @@
 import {PureComponent} from 'react';
 
-import type {ModalProperties}                           from './ModalContainers.types';
+import type {ModalProperties}                           from '../ModalContainers.types';
 import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
-import type {ReactComponent}                            from '../util/react/ReactComponent';
-import type {ReactProperty}                             from '../util/react/ReactProperty';
-import type {TranslationMethod}                         from '../lang/components/TranslationProperty';
+import type {ReactComponent}                            from '../../util/react/ReactComponent';
+import type {ReactProperty}                             from '../../util/react/ReactProperty';
+import type {TranslationMethod}                         from '../../lang/components/TranslationProperty';
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import Tooltip                     from '../bootstrap/tooltip/Tooltip';
-import ModalButton                 from '../bootstrap/modal/element/ModalButton';
+import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
+import Tooltip                     from '../../bootstrap/tooltip/Tooltip';
+import ModalButton                 from '../../bootstrap/modal/element/ModalButton';
 
 interface NavButtonProperties
     extends ReactProperty, ModalProperties {

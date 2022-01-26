@@ -1,34 +1,34 @@
 import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
-import type {TranslationMethod}                         from '../lang/components/TranslationProperty';
+import type {TranslationMethod}                         from '../../lang/components/TranslationProperty';
 
 import {AbstractNavigationButton} from './AbstractNavigationButton';
 
 /**
  * @reactComponent
  */
-export default class SearchButton
+export default class ParameterButton
     extends AbstractNavigationButton {
 
-    static readonly #ID = 'search-button';
+    static readonly #ID = 'parameter-button';
 
     protected get _isTopButton(): boolean {
         return true;
     }
 
     protected get _id(): string {
-        return SearchButton.#ID;
+        return ParameterButton.#ID;
     }
 
     protected get tooltipPlacement(): PossibleTooltipPlacement {
-        return 'bottom';
+        return 'left';
     }
 
     protected get _addedClass(): string {
-        return 'bi-search';
+        return 'bi-gear-fill';
     }
 
     protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
-        return [`${translation('Search')}…`, 'md',];
+        return [translation('Options'), 'lg',];
     }
 
 }

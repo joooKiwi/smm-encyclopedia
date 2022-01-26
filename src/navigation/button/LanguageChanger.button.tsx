@@ -1,9 +1,9 @@
-import './LanguageChanger.scss';
+import '../LanguageChanger.scss';
 
 import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
-import type {TranslationMethod}                         from '../lang/components/TranslationProperty';
+import type {TranslationMethod}                         from '../../lang/components/TranslationProperty';
 
-import {AbstractNavigationButton}                  from './AbstractNavigationButton';
+import {AbstractNavigationButton} from './AbstractNavigationButton';
 
 
 /**
