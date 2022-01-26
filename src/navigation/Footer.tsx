@@ -1,14 +1,14 @@
-import type {ReactProperty}         from '../util/react/ReactProperty';
-import type {SimpleModalProperties} from './ModalContainers.types';
+import type {ModalProperties} from './ModalContainers.types';
+import type {ReactProperty}   from '../util/react/ReactProperty';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import LanguageChanger             from './LanguageChanger';
+import LanguageChangerButton       from './button/LanguageChanger.button';
 import SimpleDate                  from '../lang/date/SimpleDate';
 
 interface FooterProperties
     extends ReactProperty {
 
-    languageChanger: SimpleModalProperties
+    languageChanger: ModalProperties
 
 }
 
@@ -27,11 +27,11 @@ export default function Footer({languageChanger,}: FooterProperties,) {
                     {translation('React application made by')}: JóôòKiwi & Geitje
                 </span>
                     <span id="copyright_lastEdited" className="text-center text-light small">
-                    {translation('Last update')}: <SimpleDate day={21} month={1} year={2022}/>
+                    {translation('Last update')}: <SimpleDate day={26} month={1} year={2022}/>
                 </span>
                 </div>
             </div>
         }</ContentTranslationComponent>
-        <LanguageChanger {...languageChanger}/>
+        <LanguageChangerButton {...languageChanger}/>
     </footer>;
 }

@@ -1,18 +1,21 @@
 import './Navigation.scss';
 
-import type {ReactProperty}         from '../util/react/ReactProperty';
-import type {SimpleModalProperties} from './ModalContainers.types';
+import type {ReactProperty}                           from '../util/react/ReactProperty';
+import type {ModalProperties, ModalPropertiesWithDiv} from './ModalContainers.types';
 
-import DisplayView     from './DisplayView';
-import HomeButton      from './HomeButton';
-import ParameterButton from './ParameterButton';
+import DisplayViewButton from './button/DisplayView.button';
+import HomeButton        from './button/Home.button';
+import ParameterButton   from './button/Parameter.button';
+import SearchButton      from './button/Search.button';
 
 export interface NavigationProperties
     extends ReactProperty {
 
-    parameterId: string
+    parameter: ModalProperties
 
-    displayView: SimpleModalProperties
+    displayView: ModalPropertiesWithDiv
+
+    search: ModalProperties
 
 }
 
@@ -20,12 +23,13 @@ export interface NavigationProperties
 /**
  * @reactComponent
  */
-export default function Navigation({parameterId, displayView,}: NavigationProperties,) {
+export default function Navigation({parameter, displayView, search,}: NavigationProperties,) {
     return <nav id="navigation-container" className="container-fluid bg-light bg-gradient">
         <div id="navigation-sub-container" className="position-relative">
             <HomeButton/>
-            <DisplayView {...displayView}/>
-            <ParameterButton containerId={parameterId}/>
+            <DisplayViewButton {...displayView}/>
+            <SearchButton {...search}/>
+            <ParameterButton {...parameter}/>
         </div>
     </nav>;
 }

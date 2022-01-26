@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import {route}                     from '../routes/route';
-import Tooltip                     from '../bootstrap/tooltip/Tooltip';
-import {TooltipInstance}           from '../bootstrap/tooltip/TooltipInstance';
+import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
+import {route}                     from '../../routes/route';
+import Tooltip                     from '../../bootstrap/tooltip/Tooltip';
+import {TooltipInstance}           from '../../bootstrap/tooltip/TooltipInstance';
 
 
 const HOME_ID = 'home-link';
