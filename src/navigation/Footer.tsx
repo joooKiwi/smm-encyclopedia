@@ -1,5 +1,5 @@
-import type {ReactProperty}         from '../util/react/ReactProperty';
-import type {SimpleModalProperties} from './ModalContainers.types';
+import type {ModalPropertiesWithDiv} from './ModalContainers.types';
+import type {ReactProperty}          from '../util/react/ReactProperty';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import LanguageChanger             from './LanguageChanger';
@@ -8,7 +8,7 @@ import SimpleDate                  from '../lang/date/SimpleDate';
 interface FooterProperties
     extends ReactProperty {
 
-    languageChanger: SimpleModalProperties
+    languageChanger: ModalPropertiesWithDiv
 
 }
 

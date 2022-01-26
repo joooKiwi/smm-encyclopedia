@@ -2,9 +2,10 @@ import './AbstractApp.scss';
 
 import {Component} from 'react';
 
-import type {AppStates}      from './AppStates.types';
-import type {ReactComponent} from '../util/react/ReactComponent';
-import type {ReactElement}   from '../util/react/ReactProperty';
+import type {AppStates}                                          from './AppStates.types';
+import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from '../navigation/ModalContainers.types';
+import type {ReactComponent}                                     from '../util/react/ReactComponent';
+import type {ReactElement}                                       from '../util/react/ReactProperty';
 
 import Footer          from '../navigation/Footer';
 import ModalContainers from '../navigation/ModalContainers';
@@ -37,16 +38,17 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
     }
 
     public render() {
+        const languageProperties: ModalPropertiesWithDiv = {id: AbstractApp.#LANGUAGE_CHANGER_ELEMENT_ID, divId: AbstractApp.#LANGUAGE_CHANGER_DIV_ELEMENT_ID,};
+        const parametersProperties: ModalPropertiesWithContent = {id: AbstractApp.#PARAMETER_ELEMENT_ID, content: this._parameterContent(),};
+        const displayViewProperties: ModalPropertiesWithDiv = {id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,};
+
         return (<>
-            <ModalContainers languageChanger={({id: AbstractApp.#LANGUAGE_CHANGER_ELEMENT_ID, divId: AbstractApp.#LANGUAGE_CHANGER_DIV_ELEMENT_ID,})}
-                             parameter={({id: AbstractApp.#PARAMETER_ELEMENT_ID, content: this._parameterContent(),})}
-                             displayView={({id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,})}/>
-            <Navigation parameterId={AbstractApp.#PARAMETER_ELEMENT_ID}
-                        displayView={({id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,})}/>
+            <ModalContainers languageChanger={languageProperties} parameter={parametersProperties} displayView={displayViewProperties}/>
+            <Navigation parameter={parametersProperties} displayView={(displayViewProperties)}/>
             <main id="main-container" className="pt-3 pb-5 align-bottom container-fluid">
                 {this._mainContent()}
             </main>
-            <Footer languageChanger={({id: AbstractApp.#LANGUAGE_CHANGER_ELEMENT_ID, divId: AbstractApp.#LANGUAGE_CHANGER_DIV_ELEMENT_ID,})}/>
+            <Footer languageChanger={languageProperties}/>
         </>);
     }
 

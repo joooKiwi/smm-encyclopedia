@@ -1,15 +1,15 @@
 import {Link, useLocation} from 'react-router-dom';
 
-import type {ReactElement, ReactProperty} from '../util/react/ReactProperty';
 import type {EveryPossibleRouteNames}     from '../routes/everyRoutes.types';
+import type {ModalPropertiesWithDiv}      from './ModalContainers.types';
+import type {ReactElement, ReactProperty} from '../util/react/ReactProperty';
 
-import {ModalInstance}         from '../bootstrap/modal/ModalInstance';
-import {route}                 from '../routes/route';
-import {TooltipInstance}       from '../bootstrap/tooltip/TooltipInstance';
-import {SimpleModalProperties} from './ModalContainers.types';
+import {ModalInstance}   from '../bootstrap/modal/ModalInstance';
+import {route}           from '../routes/route';
+import {TooltipInstance} from '../bootstrap/tooltip/TooltipInstance';
 
 interface DisplayViewRouteButtonProperty
-    extends ReactProperty, SimpleModalProperties {
+    extends ReactProperty, ModalPropertiesWithDiv {
 
     routeName: EveryPossibleRouteNames
 

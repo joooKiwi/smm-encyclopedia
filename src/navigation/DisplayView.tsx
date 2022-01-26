@@ -1,14 +1,14 @@
 import './DisplayView.scss';
 
-import type {ReactProperty}         from '../util/react/ReactProperty';
-import type {SimpleModalProperties} from './ModalContainers.types';
+import type {ModalPropertiesWithDiv} from './ModalContainers.types';
+import type {ReactProperty}          from '../util/react/ReactProperty';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import ModalButton                 from '../bootstrap/modal/element/ModalButton';
 import Tooltip                     from '../bootstrap/tooltip/Tooltip';
 
 export interface DisplayViewProperties
-    extends ReactProperty, SimpleModalProperties {
+    extends ReactProperty, ModalPropertiesWithDiv {
 
 }
 
