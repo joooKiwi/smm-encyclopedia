@@ -3,7 +3,7 @@ import './Navigation.scss';
 import type {ReactProperty}                           from '../util/react/ReactProperty';
 import type {ModalProperties, ModalPropertiesWithDiv} from './ModalContainers.types';
 
-import DisplayViewButton from './DisplayView';
+import DisplayViewButton from './DisplayView.button';
 import HomeButton        from './HomeButton';
 import ParameterButton   from './Parameter.button';
 import SearchButton      from './Search.button';
@@ -27,7 +27,7 @@ export default function Navigation({parameter, displayView, search,}: Navigation
     return <nav id="navigation-container" className="container-fluid bg-light bg-gradient">
         <div id="navigation-sub-container" className="position-relative">
             <HomeButton/>
-            <DisplayView {...displayView}/>
+            <DisplayViewButton {...displayView}/>
             <SearchButton {...search}/>
             <ParameterButton {...parameter}/>
         </div>
