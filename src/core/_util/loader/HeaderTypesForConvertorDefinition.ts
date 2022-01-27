@@ -11,6 +11,8 @@ import type {PossibleAcronym as PossibleAcronym_GameStyle}                      
 import type {PossibleCategory as PossibleCategory_MiiCostume, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MiiCostume, PossibleMode as PossibleMode_MiiCostume}                                                                                            from '../../miiCostume/MiiCostume.template';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
+import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../theme/NightEffects.types';
 import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                       from '../../version/Versions.types';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
@@ -48,6 +50,13 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleGroupNames(): ValueOrStringConstant<EveryPossibleName_EntityGroup>
 
     //endregion -------------------- Entity group --------------------
+    //region -------------------- Theme --------------------
+
+    get everyPossibleName_theme(): ValueOrStringConstant<EveryPossibleName_Theme>
+
+    get everyPossibleName_themeNightEffect(): ValueOrStringConstant<EveryPossibleName_ThemeNightEffect>
+
+    //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
     get everyPossibleEntityCategoriesNames(): ValueOrStringConstant<EveryPossibleName_EntityCategory>
@@ -133,6 +142,9 @@ export type EveryPossibleAcronym_EntityBehaviour = readonly PossibleAcronym_Enti
 export type EveryPossibleTranslationKey_EntityBehaviour = readonly PossibleTranslationKey_EntityBehaviour[];
 
 export type EveryPossibleName_EntityGroup = readonly string[];
+
+export type EveryPossibleName_Theme = readonly PossibleEnglishName_Theme[];
+export type EveryPossibleName_ThemeNightEffect = readonly PossibleEnglishName_Theme_NightEffect[];
 
 export type EveryPossibleName_EntityCategory = readonly PossibleEnglishName_EntityCategory[];
 

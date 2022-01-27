@@ -1,16 +1,18 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
-import type {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
-import type {EntityCategories}      from '../../entityCategory/EntityCategories';
-import type {EntityLimits}          from '../../entityLimit/EntityLimits';
-import type {EntityLimitTypes}      from '../../entityLimit/EntityLimitTypes';
-import type {Entities}              from '../../entity/Entities';
-import type {GameReferences}        from '../../gameReference/GameReferences';
-import type {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
-import type {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
-import type {SoundEffects}          from '../../soundEffect/SoundEffects';
-import type {GameStyles}            from '../../gameStyle/GameStyles';
-import type {Versions}              from '../../version/Versions';
+import type {EntityBehaviours}                  from '../../behaviour/EntityBehaviours';
+import type {EntityCategories}                  from '../../entityCategory/EntityCategories';
+import type {EntityLimits}                      from '../../entityLimit/EntityLimits';
+import type {EntityLimitTypes}                  from '../../entityLimit/EntityLimitTypes';
+import type {Entities}                          from '../../entity/Entities';
+import type {GameReferences}                    from '../../gameReference/GameReferences';
+import type {GameStyles}                        from '../../gameStyle/GameStyles';
+import type {MysteryMushrooms}                  from '../../mysteryMushroom/MysteryMushrooms';
+import type {NightEffects as ThemeNightEffects} from '../../theme/NightEffects';
+import type {SoundEffectCategories}             from '../../soundEffectCategory/SoundEffectCategories';
+import type {SoundEffects}                      from '../../soundEffect/SoundEffects';
+import type {Themes}                            from '../../theme/Themes';
+import type {Versions}                          from '../../version/Versions';
 
 /**
  * @classWithDynamicImport
@@ -44,6 +46,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #entities?: typeof Entities;
     #entityBehaviours?: typeof EntityBehaviours;
     // #entityGroups?: typeof EntityGroups;
+    #themes?: typeof Themes;
+    #themeNightEffects?: typeof ThemeNightEffects;
     #entityCategories?: typeof EntityCategories;
     #entityLimits?: typeof EntityLimits;
     #entityLimitTypes?: typeof EntityLimitTypes;
@@ -67,6 +71,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleBehavioursTranslationKeys?: EveryPossibleTranslationKey_EntityBehaviour;
 
     #everyPossibleGroupNames?: EveryPossibleName_EntityGroup;
+
+    #everyPossibleName_theme?: EveryPossibleName_Theme;
+    #everyPossibleName_themeNightEffect?: EveryPossibleName_ThemeNightEffect;
 
     #everyPossibleEntityCategoriesNames?: EveryPossibleName_EntityCategory;
 
@@ -116,6 +123,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
     // public get entityGroups(): typeof EntityCategories {
     //     return this.#entityGroups ??= require('../../entityGroup/EntityGroup').EntityGroup;
     // }
+
+    public get themes(): typeof Themes {
+        return this.#themes ??= require('../../theme/Themes').Themes;
+    }
+
+    public get themeNightEffects(): typeof ThemeNightEffects {
+        return this.#themeNightEffects ??= require('../../theme/NightEffects').ThemeNightEffects;
+    }
 
     public get entityCategories(): typeof EntityCategories {
         return this.#entityCategories ??= require('../../entityCategory/EntityCategories').EntityCategories;
@@ -197,6 +212,17 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Entity group --------------------
+    //region -------------------- Theme --------------------
+
+    public get everyPossibleName_theme(): EveryPossibleName_Theme {
+        return this.#everyPossibleName_theme ??= this.themes.everyEnglishNames;
+    }
+
+    public get everyPossibleName_themeNightEffect(): EveryPossibleName_ThemeNightEffect {
+        return this.#everyPossibleName_themeNightEffect ??= this.themeNightEffects.everyEnglishNames;
+    }
+
+    //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
     public get everyPossibleEntityCategoriesNames() {
@@ -399,6 +425,12 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleGroupNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Entity group --------------------
+    //region -------------------- Theme --------------------
+
+    public readonly everyPossibleName_theme = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_themeNightEffect = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
     public readonly everyPossibleEntityCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
