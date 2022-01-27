@@ -47,6 +47,18 @@
   "Is in the course theme": "Is in the course theme",
   "Is in the world theme":  "Is in the world theme",
 
+  "nightEffect": {
+    "Special effect on entities": "Change the behaviour of some {{entities}}.",
+    "Screen upside down":         "Turn the screen upside down.",
+    "Dark":                       "Makes the level dark (except the {{players}} & some {{entities}})",
+    "Wind":                       "Depending on the {{gameStyle}}, there is different wind effect.",
+    "Slippery":                   "Has a slippery floor.",
+    "Low gravity":                "Has a low gravity and some {{entities}} behave like in the {{underwaterImage}}.",
+    "Poison liquid":              "The {{water}} is turned into {{poison}}.",
+    "Entities in water":          "The {{entities}} behave like in the {{underwaterImage}}.",
+    "Characters in water":        "The {{players}} behave like in the {{underwaterImage}}."
+  },
+
   "Day":   "Day",
   "Night": "Night",
   "Time":  "Time",
