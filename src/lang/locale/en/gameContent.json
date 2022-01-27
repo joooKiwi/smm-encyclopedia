@@ -51,7 +51,15 @@
     "Special effect on entities": "Change the behaviour of some {{entities}}.",
     "Screen upside down":         "Turn the screen upside down.",
     "Dark":                       "Makes the level dark (except the {{players}} & some {{entities}})",
+
     "Wind":                       "Depending on the {{gameStyle}}, there is different wind effect.",
+    "nightDesertWindEffect": {
+      "→ periodic":               "The wind blows to the right periodically",
+      "← periodic":               "The wind blows to the left periodically",
+      "↔ periodic":               "The wind blows from left and right alternately periodically",
+      "← constant":               "The wind blows to the left constantly"
+    },
+
     "Slippery":                   "Has a slippery floor.",
     "Low gravity":                "Has a low gravity and some {{entities}} behave like in the {{underwaterImage}}.",
     "Poison liquid":              "The {{water}} is turned into {{poison}}.",
@@ -74,5 +82,6 @@
   "Game references":       "Game references",
   "Other game references": "Other game references",
 
-  "Effect (night)": "Effect ({{night}})"
+  "Wind effect (night desert)": "Wind effect ({{night}} {{desert}})",
+  "Effect (night)":             "Effect ({{night}})"
 }

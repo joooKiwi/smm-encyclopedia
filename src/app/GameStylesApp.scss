@@ -1,0 +1,19 @@
+#gameStyle-table {
+
+  .night-desert-wind-effect-container {
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    .time-image {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background-color: rgba(var(--bs-dark-300-rgb), 50%,);
+      width: .5cm;
+    }
+  }
+
+}
