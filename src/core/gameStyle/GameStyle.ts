@@ -9,4 +9,8 @@ export interface GameStyle
 
     get entities(): readonly Entity[]
 
+    get nightDesertWindTranslationKey(): PossibleNightDesertWindTranslationKey
+
 }
+
+export type PossibleNightDesertWindTranslationKey = `${| '→' | '←' | '↔'} periodic` | '← constant' | null

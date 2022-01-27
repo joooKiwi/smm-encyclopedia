@@ -1,8 +1,8 @@
-import type {Entity}       from '../entity/Entity';
-import type {GameProperty} from '../entity/properties/GameProperty';
-import type {GameStyle}    from './GameStyle';
-import type {Name}         from '../../lang/name/Name';
-import type {ObjectHolder} from '../../util/holder/ObjectHolder';
+import type {Entity}                                           from '../entity/Entity';
+import type {GameProperty}                                     from '../entity/properties/GameProperty';
+import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle';
+import type {Name}                                             from '../../lang/name/Name';
+import type {ObjectHolder}                                     from '../../util/holder/ObjectHolder';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
@@ -14,13 +14,15 @@ export class GameStyleContainer
     readonly #name: ObjectHolder<Name>;
     readonly #isInProperty;
     readonly #entities: ObjectHolder<readonly Entity[]>;
+    readonly #nightDesertWindTranslationKey;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: () => Name, isInProperty: GameProperty, entities: () => readonly Entity[],) {
+    public constructor(name: () => Name, isInProperty: GameProperty, entities: () => readonly Entity[], nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         this.#name = new DelayedObjectHolderContainer(name);
         this.#isInProperty = isInProperty;
         this.#entities = new DelayedObjectHolderContainer(entities);
+        this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey;
     }
 
     //region -------------------- Name properties --------------------
@@ -182,6 +184,11 @@ export class GameStyleContainer
 
     public get entities() {
         return this.#entities.get;
+    }
+
+
+    public get nightDesertWindTranslationKey() {
+        return this.#nightDesertWindTranslationKey;
     }
 
     public toGameMap() {

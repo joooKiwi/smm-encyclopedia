@@ -84,6 +84,8 @@ export class EmptyGameStyle
 
     public readonly entities = EMPTY_ARRAY;
 
+    public readonly nightDesertWindTranslationKey = null;
+
     public toGameMap() {
         return EMPTY_MAP;
     }
