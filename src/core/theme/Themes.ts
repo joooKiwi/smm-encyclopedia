@@ -258,6 +258,10 @@ export class Themes
     }
 
 
+    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
+        return this.values.map(limit => limit.englishName);
+    }
+
     public static get courseThemes(): EnumArray_OnlyCourseTheme {
         return this.#COURSES ??= [
             this.GROUND,

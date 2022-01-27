@@ -1,5 +1,6 @@
 import type {NameTemplate}             from '../../lang/name/Name.template';
 import type {SimpleGameTemplate}       from '../game/SimpleGame.template';
+import type {PossibleEnglishName}           from './NightEffects.types';
 import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
 
 /**
@@ -19,6 +20,4 @@ export interface ThemeTemplate
 
 }
 
-export type PossibleEffectInNightTheme = | 'Special effect on entities' | 'Screen upside down' | 'Dark' | 'Wind' | 'Slippery'
-                                         | 'Low gravity' | 'Poison liquid' | `${| 'Entities' | 'Characters'} in water`
-                                         | null;
+export type PossibleEffectInNightTheme = | PossibleEnglishName | null;
