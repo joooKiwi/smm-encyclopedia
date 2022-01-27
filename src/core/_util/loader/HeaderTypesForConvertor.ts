@@ -129,7 +129,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     public get themeNightEffects(): typeof ThemeNightEffects {
-        return this.#themeNightEffects ??= require('../../theme/NightEffects').ThemeNightEffects;
+        return this.#themeNightEffects ??= require('../../theme/NightEffects').NightEffects;
     }
 
     public get entityCategories(): typeof EntityCategories {
