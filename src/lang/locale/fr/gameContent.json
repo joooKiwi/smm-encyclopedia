@@ -47,7 +47,9 @@
   "Is in the course theme": "Est dans le décor de niveau",
   "Is in the world theme":  "Est dans le décor de monde",
 
-  "Time": "Temps",
+  "Day":   "Jour",
+  "Night": "Nuit",
+  "Time":  "Temps",
 
   "Sound effect":  "Effet sonore",
   "Sound effects": "Effets sonores",
@@ -60,6 +62,5 @@
   "Game references":       "Références de jeu",
   "Other game references": "Autres références de jeu",
 
-
-  "Effect (night)": "Effet (nuit)"
+  "Effect (night)":             "Effet ({{night}})"
 }

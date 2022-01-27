@@ -47,7 +47,9 @@
   "Is in the course theme": "Is in the course theme",
   "Is in the world theme":  "Is in the world theme",
 
-  "Time": "Time",
+  "Day":   "Day",
+  "Night": "Night",
+  "Time":  "Time",
 
   "Sound effect":  "Sound effect",
   "Sound effects": "Sound effects",
@@ -60,6 +62,5 @@
   "Game references":       "Game references",
   "Other game references": "Other game references",
 
-
-  "Effect (night)": "Effect (night)"
+  "Effect (night)": "Effect ({{night}})"
 }

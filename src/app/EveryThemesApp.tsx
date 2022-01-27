@@ -1,5 +1,4 @@
-import type {PossibleEffectInNightTheme} from '../core/theme/Theme.template';
-import type {SingleTableContent}         from './tools/table/Table.types';
+import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
@@ -7,9 +6,12 @@ import {EmptyCourseTheme}              from '../core/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}               from '../core/theme/EmptyWorldTheme';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../core/game/Games';
+import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
+import NightEffectComponent            from '../core/theme/NightEffect.component';
 import Table                           from './tools/table/Table';
 import {Themes}                        from '../core/theme/Themes';
+import {Times}                         from '../core/time/Times';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
 
 /**
@@ -19,10 +21,6 @@ export default class EveryThemesApp
     extends AbstractApp {
 
     //region -------------------- Methods --------------------
-
-    private static __getEffect(effect: PossibleEffectInNightTheme,) {
-        return <>{effect == null ? '' : `--${effect}--`}</>;
-    }
 
     protected get content() {
         const content = [] as SingleTableContent[];
@@ -35,7 +33,6 @@ export default class EveryThemesApp
             const name = isInCourseTheme ? courseTheme : worldTheme;
             const isInSMM1 = !isInWorldTheme && courseTheme.isInSuperMarioMaker1;
             const isInSMM2 = courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2;
-            const effect = isInCourseTheme ? courseTheme.effect : null;
 
             content.push([enumerable.englishName,
                 <>{index}</>,
@@ -45,7 +42,7 @@ export default class EveryThemesApp
                 <YesOrNoResultTextComponent boolean={isInWorldTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInSMM1}/>,
                 <YesOrNoResultTextComponent boolean={isInSMM2}/>,
-                EveryThemesApp.__getEffect(effect),
+                <NightEffectComponent theme={courseTheme}/>,
             ]);
             index++;
         }
@@ -55,31 +52,45 @@ export default class EveryThemesApp
     //endregion -------------------- Methods --------------------
 
     protected _mainContent() {
-        return <Table
-            id="theme-table"
-            caption={<GameContentTranslationComponent translationKey="Every themes"/>}
-            headers={[
-                {key: 'originalOrder', element: <>#</>,},
-                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {
-                    key: 'theme', element: <>--course & world theme--</>,
-                    subHeaders: [
-                        {key: 'isInTheCourseTheme', element: <GameContentTranslationComponent translationKey="Is in the course theme"/>,},
-                        {key: 'isInTheWorldTheme', element: <GameContentTranslationComponent translationKey="Is in the world theme"/>,},
-                    ],
-                },
-                {
-                    key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                    subHeaders: [
-                        {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                        {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                    ],
-                },
-                {key: 'effect', element: <GameContentTranslationComponent translationKey="Effect (night)"/>,},
-            ]}
-            content={this.content}
-        />;
+        return <GameContentTranslationComponent>{translation =>
+            <Table
+                id="theme-table"
+                caption={<GameContentTranslationComponent translationKey="Every themes"/>}
+                headers={[
+                    {key: 'originalOrder', element: <>#</>,},
+                    {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
+                    {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
+                    {
+                        key: 'theme', element: <>--course & world theme--</>,
+                        subHeaders: [
+                            {
+                                key: 'isInTheCourseTheme', element: <Image source="/theme/Course theme.tiff" fallbackName="Course theme"/>,
+                                tooltip: {namespace: 'gameContent', translationKey: 'Is in the course theme',},
+                            },
+                            {
+                                key: 'isInTheWorldTheme', element: <Image source="/theme/World theme.tiff" fallbackName="World theme"/>,
+                                tooltip: {namespace: 'gameContent', translationKey: 'Is in the world theme',},
+                            },
+                        ],
+                    },
+                    {
+                        key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
+                        subHeaders: [
+                            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                        ],
+                    },
+                    {
+                        key: 'effect', element: <Image source={Times.NIGHT.imagePath} fallbackName={`effect - ${Times.NIGHT.englishName}`}/>,
+                        tooltip: {
+                            namespace: 'gameContent', translationKey: 'Effect (night)',
+                            replace: {night: translation(Times.NIGHT.englishName).toLowerCase(),},
+                        },
+                    },
+                ]}
+                content={this.content}
+            />
+        }</GameContentTranslationComponent>;
     }
 
 }
