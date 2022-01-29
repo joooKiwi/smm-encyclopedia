@@ -36,11 +36,15 @@ export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends in
 
 /**
  * A replacement map to replace the selected key
- * into a {@link ReactElement React element}.
+ * into a {@link PossibleReactElement possible react element (string or React element)}.
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap = { [key: string]: ReactElement };
+export type TranslationReplaceKeysMap<T extends PossibleReactElement = PossibleReactElement, > = { [key: string]: T };
+/**
+ * A {@link ReactElement React element} or a simple {@link String string}
+ */
+export type PossibleReactElement = | ReactElement | string;
 
 interface _AnyTranslationProperty<N extends Namespace, > {
 
@@ -64,6 +68,8 @@ export interface AnyTranslationProperty<N extends Namespace, >
 export interface SimpleTranslationProperty<N extends Namespace, > {
 
     translationKey: SingleTranslationKey<N>
+
+    replace?: TranslationReplaceKeysMap
 
 }
 
