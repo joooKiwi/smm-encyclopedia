@@ -54,7 +54,7 @@ export type PossibleInternationalAcronym =
     | 'it' | 'nl'
     | 'pt-US' | 'pt-EU'
     | 'ru' | 'ja'
-    | 'zh'
+    | `zh-${| 'TW' | 'CN'}`
     | 'ko';
 
 //endregion -------------------- Acronyms --------------------
