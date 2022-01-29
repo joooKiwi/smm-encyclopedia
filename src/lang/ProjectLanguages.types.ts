@@ -36,23 +36,23 @@ export type Names = keyof typeof Enum;
 //region -------------------- Acronyms --------------------
 
 export type PossibleAcronym =
-    | 'en_AM' | 'en_EU'
-    | 'fr_CA' | 'fr_EU'
+    | `en_${| 'AM' | 'EU'}`
+    | `fr_${| 'CA' | 'EU'}`
     | 'de'
-    | 'es_AM' | 'es_EU'
+    | `es_${| 'AM' | 'EU'}`
     | 'it' | 'nl'
-    | 'pt_AM' | 'pt_EU'
+    | `pt_${| 'AM' | 'EU'}`
     | 'ru' | 'ja'
-    | 'zh_T' | 'zh_S'
+    | `zh_${| 'T' | 'S'}`
     | 'ko';
 
 export type PossibleInternationalAcronym =
-    | 'en-US' | 'en-EU'
-    | 'fr-CA' | 'fr-EU'
+    | `en-${| 'US' | 'EU'}`
+    | `fr-${| 'CA' | 'EU'}`
     | 'de'
-    | 'es-US' | 'es-EU'
+    | `es-${| 'US' | 'EU'}`
     | 'it' | 'nl'
-    | 'pt-US' | 'pt-EU'
+    | `pt-${| 'US' | 'EU'}`
     | 'ru' | 'ja'
     | `zh-${| 'TW' | 'CN'}`
     | 'ko';
@@ -72,11 +72,11 @@ export type PossibleEnglishName =
     | 'Korean';
 
 export type PossibleOriginalName =
-    | `English (${'America' | 'Europe'})`
-    | `Français (${'Canada' | 'Europe'})`
+    | `English (${| 'America' | 'Europe'})`
+    | `Français (${| 'Canada' | 'Europe'})`
     | 'Deutsche'
-    | `Español (${'America' | 'Europa'})`
-    | `Português (${'América' | 'Europa'})`//Canadá
+    | `Español (${| 'America' | 'Europa'})`
+    | `Português (${| 'América' | 'Europa'})`
     | 'Nederlands' | 'Italiano'
     | 'русский' | '日本語'
     | '简体中文' | '繁體中文'
