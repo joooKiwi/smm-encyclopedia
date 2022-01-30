@@ -350,7 +350,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.traditionalChinese;
         }
 
-    }(false, 'zh_T',  'zh',    'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
+     }(false, 'zh_T',  'zh-TW', 'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
     public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
         public get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -361,7 +361,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.simplifiedChinese;
         }
 
-    } (false, 'zh_S',  'zh',    'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
+    } (false, 'zh_S',  'zh-CN', 'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
         //region -------------------- Space getter methods --------------------

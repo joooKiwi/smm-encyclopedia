@@ -1,5 +1,6 @@
 import type {DefaultResources, KeyPrefix, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
 
+import type {Translation}                                   from '../containers/Translation';
 import type {ReactElement, SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
 
 export type TranslationReturnType = | string | JSX.Element;
@@ -36,42 +37,69 @@ export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends in
 
 /**
  * A replacement map to replace the selected key
- * into a {@link ReactElement React element}.
+ * into a {@link PossibleReactElement possible react element (string or React element)}.
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap = { [key: string]: ReactElement };
+export type TranslationReplaceKeysMap<T extends PossibleReactElement = PossibleReactElement, > = { [key: string]: T };
+/**
+ * A {@link ReactElement React element} or a simple {@link String string}
+ */
+export type PossibleReactElement = | ReactElement | string;
 
-interface _AnyTranslationProperty<N extends Namespace, > {
+//region -------------------- Simple property --------------------
 
-    namespace: N
+interface _TranslationPropertyWithReplace {
 
     replace?: TranslationReplaceKeysMap
 
 }
 
-export interface TranslationProperty<N extends Namespace, >
+interface _TranslationPropertyWithNamespace<N extends Namespace, > {
+
+    namespace: N
+
+}
+
+//endregion -------------------- Simple property --------------------
+//region -------------------- Any property --------------------
+
+export interface AnyTranslationPropertyByChildren<N extends Namespace, >
+    extends TranslationPropertyByChildren<N>, _TranslationPropertyWithNamespace<N> {
+
+}
+
+export interface SimpleAnyTranslationProperty<N extends Namespace, >
+    extends SimpleTranslationProperty<N>, _TranslationPropertyWithNamespace<N>, _TranslationPropertyWithReplace {
+
+}
+
+export interface AnyTranslationPropertyWithProperty<N extends Namespace, >
+    extends TranslationPropertyWithProperty<N> {
+}
+
+//endregion -------------------- Any property --------------------
+//region -------------------- Regular property --------------------
+
+export interface TranslationPropertyByChildren<N extends Namespace, >
     extends SimpleReactPropertyWithChildren<AnyTranslationCallback<N>> {
 
 }
 
-export interface AnyTranslationProperty<N extends Namespace, >
-    extends TranslationProperty<N>, _AnyTranslationProperty<N> {
-
-}
-
-
-export interface SimpleTranslationProperty<N extends Namespace, > {
+export interface SimpleTranslationProperty<N extends Namespace, >
+    extends _TranslationPropertyWithReplace {
 
     translationKey: SingleTranslationKey<N>
 
 }
 
-export interface SimpleAnyTranslationProperty<N extends Namespace, >
-    extends SimpleTranslationProperty<N>, _AnyTranslationProperty<N> {
+export interface TranslationPropertyWithProperty<N extends Namespace, > {
+
+    property: Translation<N>
 
 }
 
+//endregion -------------------- Regular property --------------------
 
-export type PossibleAnyTranslationPropertyReceived<N extends Namespace, > = | AnyTranslationProperty<N> | SimpleAnyTranslationProperty<N>;
-export type PossibleTranslationPropertyReceived<N extends Namespace, > = | TranslationProperty<N> | SimpleTranslationProperty<N>;
+export type PossibleAnyTranslationPropertyReceived<N extends Namespace, > = | AnyTranslationPropertyByChildren<N> | SimpleAnyTranslationProperty<N> | AnyTranslationPropertyWithProperty<N>;
+export type PossibleTranslationPropertyReceived<N extends Namespace, > = | TranslationPropertyByChildren<N> | SimpleTranslationProperty<N> | TranslationPropertyWithProperty<N>;

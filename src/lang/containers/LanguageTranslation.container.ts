@@ -1,15 +1,14 @@
-import type {LanguageNamespace, SimpleTranslationProperty, SingleTranslationKey} from '../components/TranslationProperty';
+import type {LanguageNamespace, PossibleReactElement, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
 
 import {AbstractTranslationContainer} from './AbstractTranslation.container';
 
-export class LanguageTranslationContainer
-    extends AbstractTranslationContainer<LanguageNamespace>
-    implements SimpleTranslationProperty<LanguageNamespace> {
+export class LanguageTranslationContainer<T extends PossibleReactElement = PossibleReactElement, >
+    extends AbstractTranslationContainer<LanguageNamespace> {
 
     public static readonly NAMESPACE: LanguageNamespace = 'language';
 
-    public constructor(translationKey: SingleTranslationKey<LanguageNamespace>,) {
-        super(LanguageTranslationContainer.NAMESPACE, translationKey,);
+    public constructor(translationKey: SingleTranslationKey<LanguageNamespace>, replace?: TranslationReplaceKeysMap<T>,) {
+        super(LanguageTranslationContainer.NAMESPACE, translationKey, replace,);
     }
 
 }

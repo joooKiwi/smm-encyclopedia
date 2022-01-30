@@ -1,7 +1,7 @@
 import type {TOptions}  from 'i18next';
 import {useTranslation} from 'react-i18next';
 
-import type {Namespace, PossibleAnyTranslationPropertyReceived} from './TranslationProperty';
+import type {AnyTranslationPropertyByChildren, AnyTranslationPropertyWithProperty, Namespace, PossibleAnyTranslationPropertyReceived, SimpleAnyTranslationProperty} from './TranslationProperty';
 
 import {TranslationUtility} from './TranslationUtility';
 
@@ -11,21 +11,37 @@ import {TranslationUtility} from './TranslationUtility';
  * @reactComponent
  */
 export default function AnyTranslationComponent<N extends Namespace, >(properties: PossibleAnyTranslationPropertyReceived<N>,) {
-    const {namespace} = properties;
+    if ('property' in properties)
+        return <AnyTranslationComponentByProperty property={properties.property}/>;
+    if ('children' in properties)
+        return <AnyTranslationComponentByChildren children={properties.children} namespace={properties.namespace}/>;
+    return <AnyTranslationComponentBySimpleProperty namespace={properties.namespace} translationKey={properties.translationKey} replace={properties.replace}/>;
+}
+
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
+function AnyTranslationComponentByChildren<N extends Namespace, >({children, namespace,}: AnyTranslationPropertyByChildren<N>,) {
     const {t: translation,} = useTranslation(namespace);
 
-    const isReplaceNotNull = properties.replace != null;
+    return <>{children(translation)}</>;
+}
 
-    if ('children' in properties) {
-        if (isReplaceNotNull)
-            console.warn(`The replace attributes (${Object.getOwnPropertyNames(properties.replace).join(', ')}) will be ignore for a translation using a children.`);
-        return <>{properties.children(translation)}</>;
-    }
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
+function AnyTranslationComponentBySimpleProperty<N extends Namespace, >({namespace, translationKey, replace,}: SimpleAnyTranslationProperty<N>,) {
+    const {t: translation,} = useTranslation(namespace);
+
+    const isReplaceNotNull = replace != null;
 
     const options: TOptions<object> = {returnObjects: true,};
     if (isReplaceNotNull)
         options.interpolation = {skipOnVariables: true,};
-    const {translationKey} = properties;
 
     //TODO remove (if possible) the "Type instantiation is excessively deep and possibly infinite."
     // @ts-ignore
@@ -33,5 +49,16 @@ export default function AnyTranslationComponent<N extends Namespace, >(propertie
 
     return !isReplaceNotNull
         ? <>{translationReturnValue}</>
-        : <>{TranslationUtility.replaceInTranslation(translationReturnValue, properties.replace!,)}</>;
+        : <>{TranslationUtility.replaceInTranslation(translationReturnValue, replace,)}</>;
+}
+
+/**
+ *
+ * @param properties
+ * @reactComponent
+ */
+function AnyTranslationComponentByProperty<N extends Namespace, >({property: {namespace, translationKey, replace,},}: AnyTranslationPropertyWithProperty<N>,) {
+    const {t: translation,} = useTranslation(namespace);
+
+    return <>{TranslationUtility.replaceAndInterpretTranslation(translation, translationKey, replace,)}</>;
 }

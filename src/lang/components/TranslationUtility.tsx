@@ -1,7 +1,7 @@
 import type {TOptions} from 'i18next';
 
-import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
-import type {ReactElement}                                                                                          from '../../util/react/ReactProperty';
+import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
+import type {ReactElement}                                                                                                                from '../../util/react/ReactProperty';
 
 import {assert} from '../../util/utilitiesMethods';
 
@@ -9,6 +9,7 @@ export class TranslationUtility {
 
     public static readonly STARTING_CHARACTER = '{';
     public static readonly STARTING_CHARACTER_LENGTH = this.STARTING_CHARACTER.length;
+    public static readonly STARTING_OR_ENDING_REGEX = /{{|}}/;
     public static readonly STARTING_REGEX = /{{/g;
     public static readonly STARTING_LENGTH = '{{'.length;
     public static readonly ENDING_CHARACTER = '}';
@@ -34,34 +35,38 @@ export class TranslationUtility {
     }
 
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,) {
-        let argumentsFounds: string[] = [];
+        let argumentsFound: string[] = [];
         for (const replaceKey of value.matchAll(this.STARTING_REGEX)) {
             const startingIndex = replaceKey.index!;
             const endingIndex = value.indexOf(this.ENDING_CHARACTER, startingIndex,);
-            argumentsFounds.push(value.substring(startingIndex + this.STARTING_LENGTH, endingIndex));
+            argumentsFound.push(value.substring(startingIndex + this.STARTING_LENGTH, endingIndex));
         }
 
-        let splitsArguments: string[] = [];
-        for (const replaceKey in keyMap) {
-            const indexOfReplaceKey = value.indexOf(replaceKey);
-            splitsArguments.push(
-                value.substring(0, indexOfReplaceKey - this.STARTING_LENGTH),
-                value.substring(indexOfReplaceKey + replaceKey.length + this.ENDING_LENGTH),
-            );
-        }
-
+        const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX).filter(splitValue => !argumentsFound.includes(splitValue));
         let finalArguments: (| string | ReactElement)[] = [];
-        for (let i = 0, j = 0; i < argumentsFounds.length || j < splitsArguments.length; i++, j++) {
-            finalArguments.push(splitsArguments[j]);
+        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
+            this.__addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]]);
+        return <>{finalArguments}</>;
+    }
 
-            const reactElement: | ReactElement | undefined = keyMap[argumentsFounds[i]];
-            if (reactElement != null) {
-                if (reactElement.key == null)
-                    console.warn(`The react element ${reactElement.type} included in a translation cannot be null. Otherwise, it will return a generic error.\n The properties included within it are ${Object.entries(reactElement.props).map(property => `[${property}]`)}.`);
-                finalArguments.push(reactElement);
-            }
-        }
-        return <>{finalArguments.filter(finalArgument => finalArgument != null)} </>;
+    /**
+     * Adds the arguments in the array provided in the first argument.
+     *
+     * The first argument is always added.
+     * But, if the second argument is null, it will not be added.
+     *
+     * @param finalArguments the final array of arguments without any null values
+     * @param firstElement the first element
+     * @param secondElement the second element
+     */
+    private static __addArgumentToArray(finalArguments: PossibleReactElement[], firstElement: PossibleReactElement, secondElement: PossibleReactElement | undefined,): void {
+        finalArguments.push(firstElement);
+        if (secondElement == null)
+            return;
+        finalArguments.push(secondElement);
+
+        if (process.env.NODE_ENV !== 'production' && typeof secondElement != 'string' && secondElement.key == null)
+            console.warn(`The react element ${secondElement.type} included in a translation should have a "key". Otherwise, it will return a generic error.\n The properties included within it are ${Object.entries(secondElement.props).map(property => `[${property}]`)}.`);
     }
 
 }
