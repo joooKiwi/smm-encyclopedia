@@ -73,8 +73,8 @@ export default class TableHeaders
             return EMPTY_REACT_ELEMENT;
 
         return <AnyTranslationComponent namespace={tooltip.namespace}>{translation =>
-            <Tooltip option={({title: translation(tooltip.translationKey) as string, placement: type.placement,})} elementId={`${this.getHeaderKey(header)}-${type.simpleName}`}/>}
-        </AnyTranslationComponent>;
+            <Tooltip option={({title: translation(tooltip.translationKey, tooltip.replace,) as string, placement: type.placement,})}
+                     elementId={`${this.getHeaderKey(header)}-${type.simpleName}`}/>}</AnyTranslationComponent>;
     }
 
     public static createSingleHeaderContent(type: HeaderTypes, header: SingleHeaderContent, height: number, width: number,) {
