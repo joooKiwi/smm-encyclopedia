@@ -8,9 +8,10 @@ import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTransla
 import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../entityLimit/EntityLimits.types';
 import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../gameReference/GameReferences.types';
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types';
-import type {PossibleCategory as PossibleCategory_MiiCostume, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MiiCostume, PossibleMode as PossibleMode_MiiCostume}                                                                                            from '../../miiCostume/MiiCostume.template';
+import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MiiCostume, PossibleMode as PossibleMode_MiiCostume}                                                                                                                                             from '../../miiCostume/MiiCostume.template';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from '../../miiCostumeCategory/MiiCostumeCategories.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../theme/NightEffects.types';
 import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                       from '../../version/Versions.types';
@@ -94,9 +95,12 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleMode_MiiCostume(): ValueOrStringConstant<EveryPossibleMode_MiiCostume>
 
-    get everyPossibleCategory_MiiCostume(): ValueOrStringConstant<EveryPossibleCategory_MiiCostume>
-
     //endregion -------------------- Mii costume --------------------
+    //region -------------------- Mii costume category --------------------
+
+    get everyPossibleName_MiiCostumeCategory(): ValueOrStringConstant<EveryPossibleCategory_MiiCostume>
+
+    //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     get everyPossibleMysteryMushroomIndividualEnglishNames(): ValueOrStringConstant<EveryPossibleEnglishNameOnFile_MysteryMushroom>
@@ -163,7 +167,7 @@ export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName
 export type EveryConditionToUnlockIt_MiiCostume = readonly NonNullable<PossibleConditionToUnlockIt_MiiCostume>[];
 export type EveryPossibleMode_MiiCostume = readonly NonNullable<PossibleMode_MiiCostume>[];
 
-export type EveryPossibleCategory_MiiCostume = readonly PossibleCategory_MiiCostume[];
+export type EveryPossibleCategory_MiiCostume = readonly PossibleEnglishName_MiiCostumeCategory[];
 
 //endregion -------------------- Mii costume --------------------
 //region -------------------- Mystery Mushroom --------------------

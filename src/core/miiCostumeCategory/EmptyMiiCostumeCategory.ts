@@ -1,19 +1,15 @@
-import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from '../../util/ClassWithNullObjectPattern';
-import type {MiiCostume}                                      from './MiiCostume';
+import type {MiiCostumeCategory}                                      from './MiiCostumeCategory';
+import type {ClassWithNullObjectPattern, EmptyMiiCostumeCategoryName} from '../../util/ClassWithNullObjectPattern';
 
-import {EMPTY_MAP}               from '../../util/emptyVariables';
-import {EmptyMiiCostumeCategory} from '../miiCostumeCategory/EmptyMiiCostumeCategory';
-import {EmptyName}               from '../../lang/name/EmptyName';
+import {EMPTY_MAP} from '../../util/emptyVariables';
+import {EmptyName} from '../../lang/name/EmptyName';
 
-/**
- * @singleton
- */
-export class EmptyMiiCostume
-    implements MiiCostume, ClassWithNullObjectPattern<EmptyMiiCostumeName> {
+export class EmptyMiiCostumeCategory
+    implements MiiCostumeCategory, ClassWithNullObjectPattern<EmptyMiiCostumeCategoryName> {
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyMiiCostume;
+    static #instance?: EmptyMiiCostumeCategory;
 
     private constructor() {
     }
@@ -74,17 +70,12 @@ export class EmptyMiiCostume
 
     //endregion -------------------- Name properties --------------------
 
-    public readonly mode = null;
-    public readonly conditionToUnlockId = null;
-    public readonly version = null;
-    public readonly category = EmptyMiiCostumeCategory.get;
-
     public toNameMap() {
         return EMPTY_MAP;
     }
 
-    public toString(): EmptyMiiCostumeName {
-        return 'Empty Mii costume';
+    public toString(): EmptyMiiCostumeCategoryName {
+        return 'Empty Mii costume category';
     }
 
 }

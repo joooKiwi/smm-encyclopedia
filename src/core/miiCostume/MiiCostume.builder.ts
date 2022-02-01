@@ -3,10 +3,13 @@ import type {Name}               from '../../lang/name/Name';
 import type {MiiCostume}         from './MiiCostume';
 import type {MiiCostumeTemplate} from './MiiCostume.template';
 
-import {Games}                   from '../game/Games';
-import {MiiCostumeContainer}     from './MiiCostume.container';
-import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
-import {Versions}                from '../version/Versions';
+import {Games}                        from '../game/Games';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {MiiCostumeCategories}         from '../miiCostumeCategory/MiiCostumeCategories';
+import {MiiCostumeContainer}          from './MiiCostume.container';
+import {ObjectHolders}                from '../../util/holder/objectHolders';
+import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder';
+import {Versions}                     from '../version/Versions';
 
 export class MiiCostumeBuilder
     extends TemplateWithNameBuilder<MiiCostumeTemplate, MiiCostume> {
@@ -20,10 +23,11 @@ export class MiiCostumeBuilder
     }
 
     public _build(name: Name,): MiiCostume {
-        const {category, conditionToUnlockIt: {mode, value}, version} = this.template;
+        const {category, conditionToUnlockIt: {mode, value,}, version,} = this.template;
 
         return new MiiCostumeContainer(name, mode, value,
-            () => Versions.getValue(version), () => category,);
+            version == null ? ObjectHolders.NULL : new DelayedObjectHolderContainer(() => Versions.getValue(version)),
+            new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValue(category).reference),);
     }
 
 }

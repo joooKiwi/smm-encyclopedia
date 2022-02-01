@@ -41,7 +41,7 @@ export default class EveryMiiCostumeApp
                 <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>,
                 <NameComponent id="name" name={miiCostume} popoverOrientation="left"/>,
                 EveryMiiCostumeApp.__createConditionToUnlockIt(miiCostume),
-                miiCostume.category == null ? EMPTY_REACT_ELEMENT : <>--{miiCostume.category}--</>,// <NameComponent id="name" name={miiCostume.category} popoverOrientation="left"/>,
+                miiCostume.category == null ? EMPTY_REACT_ELEMENT : <NameComponent id={`name-${enumerable.englishNameInHtml}`} name={miiCostume.category} popoverOrientation="left"/>,
             ]);
             index++;
         }

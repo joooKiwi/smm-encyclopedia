@@ -1,29 +1,17 @@
-import type {MiiCostume}                                from './MiiCostume';
-import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory';
-import type {Name}                                      from '../../lang/name/Name';
-import type {ObjectHolder}                              from '../../util/holder/ObjectHolder';
-import type {PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
-import type {Versions}                                  from '../version/Versions';
+import type {Name}               from '../../lang/name/Name';
+import type {MiiCostumeCategory} from './MiiCostumeCategory';
 
-export class MiiCostumeContainer
-    implements MiiCostume {
+export class MiiCostumeCategoryContainer
+    implements MiiCostumeCategory {
 
     //region -------------------- Attributes --------------------
 
     readonly #nameContainer;
-    readonly #mode;
-    readonly #conditionToUnlockId;
-    readonly #version: ObjectHolder<| Versions | null>;
-    readonly #category: ObjectHolder<MiiCostumeCategory>;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, mode: PossibleMode, conditionToUnlockId: PossibleConditionToUnlockIt, version: ObjectHolder<| Versions | null>, category: ObjectHolder<MiiCostumeCategory>,) {
+    public constructor(name: Name,) {
         this.#nameContainer = name;
-        this.#mode = mode;
-        this.#conditionToUnlockId = conditionToUnlockId;
-        this.#version = version;
-        this.#category = category;
     }
 
     //region -------------------- Name properties --------------------
@@ -167,25 +155,6 @@ export class MiiCostumeContainer
     }
 
     //endregion -------------------- Name properties --------------------
-    //region -------------------- Getter methods --------------------
-
-    public get mode() {
-        return this.#mode;
-    }
-
-    public get conditionToUnlockId() {
-        return this.#conditionToUnlockId;
-    }
-
-    public get version() {
-        return this.#version.get;
-    }
-
-    public get category() {
-        return this.#category.get;
-    }
-
-    //endregion -------------------- Getter methods --------------------
 
     public toNameMap() {
         return this.nameContainer.toNameMap();

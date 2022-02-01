@@ -1,11 +1,12 @@
 import everyMiiCostumes from '../../resources/Mii Costume.csv';
 
-import type {Loader}                                                                          from '../../util/loader/Loader';
-import type {PossibleEnglishName}                                                             from './MiiCostumes.types';
-import type {MiiCostume}                                                                      from './MiiCostume';
-import type {MiiCostumeTemplate, PossibleCategory, PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                  from '../../lang/Loader.types';
-import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}               from '../version/Versions.types';
+import type {Loader}                                                            from '../../util/loader/Loader';
+import type {PossibleEnglishName}                                               from './MiiCostumes.types';
+import type {MiiCostume}                                                        from './MiiCostume';
+import type {MiiCostumeTemplate, PossibleConditionToUnlockIt, PossibleMode}     from './MiiCostume.template';
+import type {PossibleEnglishName as PossibleEnglishName_Category}               from '../miiCostumeCategory/MiiCostumeCategories.types';
+import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number} from '../version/Versions.types';
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}    from '../../lang/Loader.types';
 
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
@@ -49,7 +50,7 @@ type ExclusivePropertiesArray = [
     mode: PossibleMode,
 
     MM2_version: | PossibleMarioMakerVersion_SMM2_Number | null,
-    category: PossibleCategory,
+    category: PossibleEnglishName_Category,
 
 ];
 
@@ -96,7 +97,7 @@ export class MiiCostumeLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleMode_MiiCostume, 'mode',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleConditionToUnlockIt_MiiCostume, 'conditionToUnlockIt',)
                 .convertToEmptyableStringAnd(['2.0.0', '3.0.0',], 'MM2_version',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleCategory_MiiCostume, 'category',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_MiiCostumeCategory, 'category',)
 
                 .onAfterFinalObjectCreated(finalContent =>
                     references.set(finalContent.americanEnglish as PossibleEnglishName, finalContent,))
