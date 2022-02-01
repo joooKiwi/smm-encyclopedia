@@ -12,24 +12,23 @@ import type {ReactComponentWithState}                                           
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
-import {AbstractAppOption}               from './AbstractAppOption';
-import {AppOptionWithContentComponent}   from './component/AppOptionWithContent.component';
-import {AppOptionWithTableComponent}     from './component/AppOptionWithTable.component';
-import ContentTranslationComponent       from '../../lang/components/ContentTranslationComponent';
-import {Enum}                            from '../../util/enum/Enum';
-import {EntityCategories}                from '../../core/entityCategory/EntityCategories';
-import {EntityLimitTypes}                from '../../core/entityLimit/EntityLimitTypes';
-import {EMPTY_ARRAY}                     from '../../util/emptyVariables';
-import {EMPTY_REACT_ELEMENT}             from '../../util/emptyReactVariables';
-import {EmptyAppOption}                  from './component/EmptyAppOption';
-import {EmptyEditorImage}                from '../../core/entity/images/editor/EmptyEditorImage';
-import {EmptyName}                       from '../../lang/name/EmptyName';
-import {GameContentTranslationContainer} from '../../lang/containers/GameContentTranslation.container';
-import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
-import {GameStyles}                      from '../../core/gameStyle/GameStyles';
-import {ProjectLanguages}                from '../../lang/ProjectLanguages';
-import {Themes}                          from '../../core/theme/Themes';
-import {Times}                           from '../../core/time/Times';
+import {AbstractAppOption}             from './AbstractAppOption';
+import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
+import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
+import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
+import {Enum}                          from '../../util/enum/Enum';
+import {EntityCategories}              from '../../core/entityCategory/EntityCategories';
+import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes';
+import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
+import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
+import {EmptyAppOption}                from './component/EmptyAppOption';
+import {EmptyEditorImage}              from '../../core/entity/images/editor/EmptyEditorImage';
+import {EmptyName}                     from '../../lang/name/EmptyName';
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
+import {GameStyles}                    from '../../core/gameStyle/GameStyles';
+import {ProjectLanguages}              from '../../lang/ProjectLanguages';
+import {Themes}                        from '../../core/theme/Themes';
+import {Times}                         from '../../core/time/Times';
 
 //region -------------------- dynamic imports --------------------
 
@@ -408,11 +407,11 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
                 subHeaders: [
                     {
                         key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
-                        tooltip: new GameContentTranslationContainer('Limit in the editor'),
+                        tooltip: {namespace: 'gameContent', translationKey: 'Limit in the editor',},
                     },
                     {
                         key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
-                        tooltip: new GameContentTranslationContainer('Limit while playing'),
+                        tooltip: {namespace: 'gameContent', translationKey: 'Limit while playing',},
                     },
                 ],
             };
