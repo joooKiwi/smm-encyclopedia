@@ -111,6 +111,23 @@ export interface SoundEffectAppStates
 
 }
 
+export interface MiiCostumeAppStates
+    extends AppStates, AppStateThatHaveACategory {
+
+    display: {
+        section: {
+            image: boolean
+            name: boolean
+            conditionToUnlockIt: boolean
+            category: boolean
+        }
+        asText: {
+            category: boolean
+        }
+    }
+
+}
+
 export interface MysteryMushroomAppStates
     extends AppStates, AppStateThatHaveAnimatedImages {
 
