@@ -31,7 +31,7 @@ export default class GlobalOptionComponent
 
     //region -------------------- Render helper methods --------------------
 
-    private static __createGroup<T extends | Games | GameStyles | Times | Themes, U extends boolean | ImageAnimations | GlobalThemeOption, >(id: string, callbackToCreateElement: (element: T, option: GlobalAppOption<U>,) => ReactElement, ...elements: readonly (readonly [T, GlobalAppOption<U>,])[]) {
+    private static __createGroup<T extends | Games | GameStyles | Times | Themes, U extends boolean | GlobalThemeOption, >(id: string, callbackToCreateElement: (element: T, option: GlobalAppOption<U>,) => ReactElement, ...elements: readonly (readonly [T, GlobalAppOption<U>,])[]) {
         return <div key={`option container (${id})`} id={`${id}-option-container`} className="container-fluid">{
             elements.map(([element, option,]) => callbackToCreateElement(element, option,))
         }</div>;
@@ -67,14 +67,14 @@ export default class GlobalOptionComponent
         const soundsValue = GlobalAppOption.SOUNDS.get;
 
         return <div id={this.props.id} className="container-fluid">
-            <div id="imagesAndSounds-option-container" className="container-fluid">
-                <div id="imageAnimations-option-container" className="btn-group col" role="group">
-                    <span className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>
-                    <span className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario image*/}
-                    <span className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario moving image*/}
+            <div key="option container (images & sounds)" id="imagesAndSounds-option-container" className="container-fluid">
+                <div key="option container (image animations)" id="imageAnimations-option-container" className="btn-group col" role="group">
+                    <span key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario image*/}
+                    <span key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario moving image*/}
+                    <span key="option container (image animations - separated)" className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO multiple mario image*/}
                 </div>
-                <span id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-3 bi-image-fill`}/>
-                <span id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-3 bi-music-note-beamed`}/>
+                <span key="option container (images)" id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-3 bi-image-fill`}/>
+                <span key="option container (sounds)" id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-3 bi-music-note-beamed`}/>
             </div>
             <div className="option-separator"/>
             {GlobalOptionComponent.__createGroup('games',
