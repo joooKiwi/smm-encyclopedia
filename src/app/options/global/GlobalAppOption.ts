@@ -139,7 +139,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.ground = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly UNDERGROUND =      new class GlobalAppOption_Underground extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -150,7 +150,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.underground = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly UNDERWATER =       new class GlobalAppOption_Underwater extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -161,7 +161,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.underwater = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly DESERT =           new class GlobalAppOption_Desert extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -172,7 +172,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.desert = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly SNOW =             new class GlobalAppOption_Snow extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -183,7 +183,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.snow = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly SKY =              new class GlobalAppOption_Sky extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -194,7 +194,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.sky = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly FOREST =           new class GlobalAppOption_Forest extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -205,7 +205,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.forest = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly GHOST_HOUSE =      new class GlobalAppOption_GhostHouse extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -216,7 +216,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.ghostHouse = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly AIRSHIP =          new class GlobalAppOption_Airship extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -227,7 +227,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.airship = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
     public static readonly CASTLE =           new class GlobalAppOption_Castle extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
@@ -238,7 +238,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             nextState.theme.castle = value;
         }
 
-    }(new GlobalThemeOption(),);
+    }(GlobalThemeOption.ALL,);
 
     public static readonly DAY =              new class GlobalAppOption_Day extends GlobalAppOption<boolean> {
 
