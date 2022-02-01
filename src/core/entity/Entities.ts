@@ -1440,6 +1440,7 @@ export class Entities
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Bombhei', 1,)
+                .setAsDifferentInSMBAndSMB3()
                 .setAllGameStyles();
         }
 
