@@ -1,13 +1,12 @@
-import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
+import type {AppOptionStatic}                                                                                                                                                       from '../AppOption';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GlobalAppOption.types';
-import type {GlobalAppState, PossibleImageAnimation}                                                                                                                                from '../AppStates.types';
-import type {ReactComponentWithState}                                                                                                                                               from '../../util/react/ReactComponent';
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
+import type {GlobalAppState, PossibleImageAnimation}                                                                                                                                from '../../AppStates.types';
+import type {ReactComponentWithState}                                                                                                                                               from '../../../util/react/ReactComponent';
+import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 
-import {AbstractAppOption} from './AbstractAppOption';
-import {Enum}              from '../../util/enum/Enum';
+import {AbstractAppOption} from '../AbstractAppOption';
+import {Enum}              from '../../../util/enum/Enum';
 import {GlobalThemeOption} from './GlobalThemeOption';
-
 
 export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimation | GlobalThemeOption = | boolean | PossibleImageAnimation | GlobalThemeOption, >
     extends AbstractAppOption<T, GlobalAppState, Ordinals, Names> {

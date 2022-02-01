@@ -8,7 +8,7 @@ import type {ReactComponent}                                     from '../util/r
 import type {ReactElement}                                       from '../util/react/ReactProperty';
 
 import Footer                from '../navigation/Footer';
-import GlobalOptionComponent from './options/GlobalOption.component';
+import GlobalOptionComponent from './options/global/GlobalOption.component';
 import ModalContainers       from '../navigation/ModalContainers';
 import Navigation            from '../navigation/Navigation';
 

@@ -2,15 +2,15 @@ import './GlobalOption.scss';
 
 import {Component} from 'react';
 
-import type {GlobalAppState, PossibleImageAnimation} from '../AppStates.types';
+import type {GlobalAppState, PossibleImageAnimation} from '../../AppStates.types';
 import type {GlobalThemeOption}                      from './GlobalThemeOption';
-import type {ReactElement}                           from '../../util/react/ReactProperty';
+import type {ReactElement}                           from '../../../util/react/ReactProperty';
 
-import {Games}           from '../../core/game/Games';
-import {GameStyles}      from '../../core/gameStyle/GameStyles';
+import {Games}           from '../../../core/game/Games';
+import {GameStyles}      from '../../../core/gameStyle/GameStyles';
 import {GlobalAppOption} from './GlobalAppOption';
-import {Themes}          from '../../core/theme/Themes';
-import {Times}           from '../../core/time/Times';
+import {Themes}          from '../../../core/theme/Themes';
+import {Times}           from '../../../core/time/Times';
 
 export interface GlobalOptionProperties {
 

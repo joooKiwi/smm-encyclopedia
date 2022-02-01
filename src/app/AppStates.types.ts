@@ -1,5 +1,5 @@
-import type {ReactState}   from '../util/react/ReactState';
-import {GlobalThemeOption} from './options/GlobalThemeOption';
+import type {ReactState}        from '../util/react/ReactState';
+import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
 
 export interface AppStates
     extends ReactState {
