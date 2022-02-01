@@ -11,7 +11,7 @@ import {Enum}                from '../../../util/enum/Enum';
 
 //region -------------------- dynamic imports --------------------
 
-const Image =                lazy(() => import('../../tools/images/Image'));
+const Image = lazy(() => import('../../tools/images/Image'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -25,7 +25,7 @@ const Image =                lazy(() => import('../../tools/images/Image'));
  */
 export abstract class Images
     extends Enum<Ordinals, Names>
-implements ClassWithValue<boolean>{
+    implements ClassWithValue<boolean> {
 
     //region -------------------- Enum instances --------------------
 
