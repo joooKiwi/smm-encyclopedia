@@ -2,6 +2,7 @@ import type {ImageAnimations}   from './options/global/ImageAnimations';
 import type {Images}            from './options/global/Images';
 import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
 import type {ReactState}        from '../util/react/ReactState';
+import type {Sounds}            from './options/global/Sounds';
 
 export interface AppStates
     extends ReactState {
@@ -15,7 +16,7 @@ export interface GlobalAppState
 
     images: Images
     imageAnimations: ImageAnimations
-    sounds: boolean
+    sounds: Sounds
 
     game: {
         1: boolean

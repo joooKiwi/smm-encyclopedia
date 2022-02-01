@@ -9,8 +9,9 @@ import {Enum}              from '../../../util/enum/Enum';
 import {ImageAnimations}   from './ImageAnimations';
 import {Images}            from './Images';
 import {GlobalThemeOption} from './GlobalThemeOption';
+import {Sounds}            from './Sounds';
 
-export abstract class GlobalAppOption<T extends | boolean | Images | ImageAnimations | GlobalThemeOption = | boolean | Images | ImageAnimations | GlobalThemeOption, >
+export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sounds | boolean | GlobalThemeOption = | ImageAnimations | Images | Sounds | boolean | GlobalThemeOption, >
     extends AbstractAppOption<T, GlobalAppState, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
@@ -37,17 +38,17 @@ export abstract class GlobalAppOption<T extends | boolean | Images | ImageAnimat
         }
 
     }(ImageAnimations.YES,);
-    public static readonly SOUNDS =           new class GlobalAppOption_Sounds extends GlobalAppOption<boolean> {
+    public static readonly SOUNDS =           new class GlobalAppOption_Sounds extends GlobalAppOption<Sounds> {
 
-        protected _get(state: GlobalAppState,): boolean {
+        protected _get(state: GlobalAppState,): Sounds {
             return state.sounds;
         }
 
-        protected _set(nextState: GlobalAppState, value: boolean,): void {
+        protected _set(nextState: GlobalAppState, value: Sounds,): void {
             nextState.sounds = value;
         }
 
-    }(true,);
+    }(Sounds.YES,);
 
     public static readonly SMM1 =             new class GlobalAppOption_SMM1 extends GlobalAppOption<boolean> {
 

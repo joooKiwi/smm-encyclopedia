@@ -14,7 +14,7 @@ import {Times}           from '../../../core/time/Times';
 
 export interface GlobalOptionProperties {
 
-    id: string;
+    id: string
 
 }
 
@@ -63,7 +63,7 @@ export default class GlobalOptionComponent
         //TODO make it work properly instead of just in a viewable state.
         const imageAnimationsValue = GlobalAppOption.IMAGE_ANIMATIONS.get.value;
         const imagesValue = GlobalAppOption.IMAGES.get.value;
-        const soundsValue = GlobalAppOption.SOUNDS.get;
+        const soundsValue = GlobalAppOption.SOUNDS.get.value;
 
         return <div id={this.props.id} className="container-fluid">
             <div key="option container (images & sounds)" id="imagesAndSounds-option-container" className="container-fluid">
