@@ -6,7 +6,7 @@ import type {AppOptionStatic}                                                   
 import type {Entities}                                                                                                                                                              from '../../core/entity/Entities';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                   from '../../core/entityCategory/EntityCategories.types';
-import type {EntityAppStates, PossibleImageAnimation}                                                                                                                               from '../AppStates.types';
+import type {EntityAppStates}                                                                                                                                                       from '../AppStates.types';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {ReactComponentWithState}                                                                                                                                               from '../../util/react/ReactComponent';
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
@@ -42,8 +42,8 @@ const TimeComponent =        lazy(() => import('../../core/time/Time.component')
 
 //endregion -------------------- dynamic imports --------------------
 
-export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
-    extends AbstractAppOption<T, EntityAppStates, Ordinals, Names>
+export abstract class EntityAppOption
+    extends AbstractAppOption<boolean, EntityAppStates, Ordinals, Names>
     implements AppOptionWithContent, AppOptionWithTable {
 
     //region -------------------- Enum instances --------------------
@@ -51,7 +51,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
     /**
      * Display every images.
      */
-    public static readonly IMAGES =                                 new class EntityAppOption_Images extends EntityAppOption<boolean> {
+    public static readonly IMAGES =                                 new class EntityAppOption_Images extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.images;
@@ -109,18 +109,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGE_ANIMATION =                        new class EntityAppOption_ImageAnimation extends EntityAppOption<PossibleImageAnimation> {
-
-        protected _get(state: EntityAppStates,): PossibleImageAnimation {
-            return state.display.imageAnimations;
-        }
-
-        protected _set(nextState: EntityAppStates, value: PossibleImageAnimation,) {
-            nextState.display.imageAnimations = value;
-        }
-
-    }(true,);
-    public static readonly IMAGES_ON_EDITOR =                       new class EntityAppOption_ImagesOnEditor extends EntityAppOption<boolean> {
+    public static readonly IMAGES_ON_EDITOR =                       new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.editor;
@@ -131,7 +120,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
-    public static readonly IMAGES_ON_CLEAR_CONDITION =              new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption<boolean> {
+    public static readonly IMAGES_ON_CLEAR_CONDITION =              new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.clearCondition;
@@ -142,7 +131,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
-    public static readonly IMAGES_ON_WHILE_PLAYING =                new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption<boolean> {
+    public static readonly IMAGES_ON_WHILE_PLAYING =                new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.whilePlaying;
@@ -153,7 +142,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(false,);
-    public static readonly IMAGES_ON_UNUSED =                       new class EntityAppOption_ImagesOnUnused extends EntityAppOption<boolean> {
+    public static readonly IMAGES_ON_UNUSED =                       new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.unused;
@@ -165,7 +154,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly NAME =                                   new class EntityAppOption_Name extends EntityAppOption<boolean> {
+    public static readonly NAME =                                   new class EntityAppOption_Name extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.name;
@@ -190,7 +179,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(true,);
 
-    public static readonly GAME =                                   new class EntityAppOption_Game extends EntityAppOption<boolean> {
+    public static readonly GAME =                                   new class EntityAppOption_Game extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.game;
@@ -213,7 +202,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME =                 new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_GAME =                 new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.game;
@@ -225,7 +214,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly GAME_STYLE =                             new class EntityAppOption_GameStyle extends EntityAppOption<boolean> {
+    public static readonly GAME_STYLE =                             new class EntityAppOption_GameStyle extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.gameStyle;
@@ -248,7 +237,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE =           new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE =           new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.gameStyle;
@@ -260,7 +249,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly COURSE_THEME =                           new class EntityAppOption_CourseTheme extends EntityAppOption<boolean> {
+    public static readonly COURSE_THEME =                           new class EntityAppOption_CourseTheme extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.courseTheme;
@@ -283,7 +272,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME =         new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME =         new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.courseTheme;
@@ -295,7 +284,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly TIME =                                   new class EntityAppOption_Time extends EntityAppOption<boolean> {
+    public static readonly TIME =                                   new class EntityAppOption_Time extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.time;
@@ -319,7 +308,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_TIME =                 new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption<boolean> {
+    public static readonly WHEN_ALL_SELECTED_TIME =                 new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.time;
@@ -331,7 +320,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly CATEGORY =                               new class EntityAppOption_Category extends EntityAppOption<boolean> {
+    public static readonly CATEGORY =                               new class EntityAppOption_Category extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.category;
@@ -365,7 +354,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT =                       new class EntityAppOption_CategoryAsText extends EntityAppOption<boolean> {
+    public static readonly CATEGORY_AS_TEXT =                       new class EntityAppOption_CategoryAsText extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.category;
@@ -377,7 +366,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     }(false,);
 
-    public static readonly LIMIT =                                  new class EntityAppOption_Limit extends EntityAppOption<boolean> {
+    public static readonly LIMIT =                                  new class EntityAppOption_Limit extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.limit;
@@ -418,7 +407,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         }
 
     }(true,);
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption<boolean> {
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.ifApplicable.acronymOnLimits;
@@ -456,7 +445,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(defaultValue: T,) {
+    private constructor(defaultValue: boolean,) {
         super(defaultValue,);
     }
 
@@ -483,7 +472,6 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
                     category: EntityAppOption.CATEGORY._lastValueRetrieved,
                     limit: EntityAppOption.LIMIT._lastValueRetrieved,
                 },
-                imageAnimations: EntityAppOption.IMAGE_ANIMATION._lastValueRetrieved,
                 asText: {
                     category: EntityAppOption.CATEGORY_AS_TEXT._lastValueRetrieved,
                     whenAll: {

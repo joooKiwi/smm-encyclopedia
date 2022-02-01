@@ -70,7 +70,7 @@ export type PossibleImageAnimation = | boolean | 'separated';
 //endregion -------------------- Single states group --------------------
 
 export interface EntityAppStates
-    extends AppStates, AppStateThatHaveAnimatedImages, AppStateThatHaveACategory {
+    extends AppStates, AppStateThatHaveACategory {
 
     display: {
         section: {
@@ -83,7 +83,6 @@ export interface EntityAppStates
             limit: boolean
             images: boolean
         }
-        imageAnimations: PossibleImageAnimation
         asText: {
             category: boolean
             whenAll: {

@@ -9,7 +9,6 @@ export type PossibleValue = | RealEnum | string | number | null | undefined;
 enum Enum {
 
     IMAGES,
-    IMAGE_ANIMATION,
     IMAGES_ON_EDITOR,
     IMAGES_ON_CLEAR_CONDITION,
     IMAGES_ON_WHILE_PLAYING,
@@ -63,7 +62,6 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['IMAGES'],
-    SimpleEnum<T>['IMAGE_ANIMATION'],
     SimpleEnum<T>['IMAGES_ON_EDITOR'],
     SimpleEnum<T>['IMAGES_ON_CLEAR_CONDITION'],
     SimpleEnum<T>['IMAGES_ON_WHILE_PLAYING'],
