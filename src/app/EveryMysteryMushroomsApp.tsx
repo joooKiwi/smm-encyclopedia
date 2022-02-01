@@ -2,8 +2,8 @@ import './EveryMysteryMushroomsApp.scss';
 
 import {Fragment} from 'react';
 
-import type {MysteryMushroomAppStates, PossibleImageAnimation} from './AppStates.types';
-import type {SingleTableContent}                               from './tools/table/Table.types';
+import type {MysteryMushroomAppStates} from './AppStates.types';
+import type {SingleTableContent}       from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import AnimatedImages                  from './tools/images/AnimatedImages';
@@ -37,20 +37,8 @@ export default class EveryMysteryMushroomsApp
 
     public constructor(props: {},) {
         super(props,);
-        this.state = {
-            display: {
-                imageAnimations: true,
-            },
-        };
+        this.state = {};
     }
-
-    //region -------------------- Getter methods --------------------
-
-    protected get _displayImageAnimations(): PossibleImageAnimation {
-        return this.state.display.imageAnimations;
-    }
-
-    //endregion -------------------- Getter methods --------------------
 
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------

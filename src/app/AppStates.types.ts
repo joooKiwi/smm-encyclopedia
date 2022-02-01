@@ -1,5 +1,6 @@
-import type {ReactState}        from '../util/react/ReactState';
+import type {ImageAnimations}        from './options/global/ImageAnimations';
 import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
+import type {ReactState}        from '../util/react/ReactState';
 
 export interface AppStates
     extends ReactState {
@@ -11,7 +12,8 @@ export interface AppStates
 export interface GlobalAppState
     extends ReactState {
 
-    images: PossibleImageAnimation
+    images: boolean
+    imageAnimations: ImageAnimations
     sounds: boolean
 
     game: {
@@ -56,16 +58,6 @@ interface AppStateThatHaveACategory {
     }
 
 }
-
-interface AppStateThatHaveAnimatedImages {
-
-    display: {
-        imageAnimations: PossibleImageAnimation
-    }
-
-}
-
-export type PossibleImageAnimation = | boolean | 'separated';
 
 //endregion -------------------- Single states group --------------------
 
@@ -128,6 +120,6 @@ export interface MiiCostumeAppStates
 }
 
 export interface MysteryMushroomAppStates
-    extends AppStates, AppStateThatHaveAnimatedImages {
+    extends AppStates {
 
 }

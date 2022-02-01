@@ -1,30 +1,42 @@
 import type {AppOptionStatic}                                                                                                                                                       from '../AppOption';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GlobalAppOption.types';
-import type {GlobalAppState, PossibleImageAnimation}                                                                                                                                from '../../AppStates.types';
+import type {GlobalAppState}                                                                                                                                from '../../AppStates.types';
 import type {ReactComponentWithState}                                                                                                                                               from '../../../util/react/ReactComponent';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 
 import {AbstractAppOption} from '../AbstractAppOption';
 import {Enum}              from '../../../util/enum/Enum';
+import {ImageAnimations}   from './ImageAnimations';
 import {GlobalThemeOption} from './GlobalThemeOption';
 
-export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimation | GlobalThemeOption = | boolean | PossibleImageAnimation | GlobalThemeOption, >
+export abstract class GlobalAppOption<T extends | boolean | ImageAnimations | GlobalThemeOption = | boolean | ImageAnimations | GlobalThemeOption, >
     extends AbstractAppOption<T, GlobalAppState, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGES =      new class GlobalAppOption_Images extends GlobalAppOption<PossibleImageAnimation> {
+    public static readonly IMAGES =           new class GlobalAppOption_Images extends GlobalAppOption<boolean> {
 
-        protected _get(state: GlobalAppState,): PossibleImageAnimation {
+        protected _get(state: GlobalAppState,): boolean {
             return state.images;
         }
 
-        protected _set(nextState: GlobalAppState, value: PossibleImageAnimation,): void {
+        protected _set(nextState: GlobalAppState, value: boolean,): void {
             nextState.images = value;
         }
 
     }(true,);
-    public static readonly SOUNDS =      new class GlobalAppOption_Sounds extends GlobalAppOption<boolean> {
+    public static readonly IMAGE_ANIMATIONS = new class GlobalAppOption_Images extends GlobalAppOption<ImageAnimations> {
+
+        protected _get(state: GlobalAppState,): ImageAnimations {
+            return state.imageAnimations;
+        }
+
+        protected _set(nextState: GlobalAppState, value: ImageAnimations,): void {
+            nextState.imageAnimations = value;
+        }
+
+    }(ImageAnimations.YES,);
+    public static readonly SOUNDS =           new class GlobalAppOption_Sounds extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.sounds;
@@ -36,7 +48,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
 
     }(true,);
 
-    public static readonly SMM1 =        new class GlobalAppOption_SMM1 extends GlobalAppOption<boolean> {
+    public static readonly SMM1 =             new class GlobalAppOption_SMM1 extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.game['1'];
@@ -47,7 +59,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(false,);
-    public static readonly SMM2 =        new class GlobalAppOption_SMM2 extends GlobalAppOption<boolean> {
+    public static readonly SMM2 =             new class GlobalAppOption_SMM2 extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.game['2'];
@@ -59,7 +71,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
 
     }(true,);
 
-    public static readonly SMB =         new class GlobalAppOption_SMB extends GlobalAppOption<boolean> {
+    public static readonly SMB =              new class GlobalAppOption_SMB extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.gameStyle.SMB;
@@ -70,7 +82,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(true,);
-    public static readonly SMB3 =        new class GlobalAppOption_SMB3 extends GlobalAppOption<boolean> {
+    public static readonly SMB3 =             new class GlobalAppOption_SMB3 extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.gameStyle.SMB3;
@@ -81,7 +93,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(true,);
-    public static readonly SMW =         new class GlobalAppOption_SMW extends GlobalAppOption<boolean> {
+    public static readonly SMW =              new class GlobalAppOption_SMW extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.gameStyle.SMW;
@@ -92,7 +104,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(true,);
-    public static readonly NSMBU =       new class GlobalAppOption_NSMBU extends GlobalAppOption<boolean> {
+    public static readonly NSMBU =            new class GlobalAppOption_NSMBU extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.gameStyle.NSMBU;
@@ -103,7 +115,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(true,);
-    public static readonly SM3DW =       new class GlobalAppOption_SM3DW extends GlobalAppOption<boolean> {
+    public static readonly SM3DW =            new class GlobalAppOption_SM3DW extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.gameStyle.SM3DW;
@@ -115,7 +127,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
 
     }(true,);
 
-    public static readonly GROUND =      new class GlobalAppOption_Ground extends GlobalAppOption<GlobalThemeOption> {
+    public static readonly GROUND =           new class GlobalAppOption_Ground extends GlobalAppOption<GlobalThemeOption> {
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.ground;
@@ -126,7 +138,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly UNDERGROUND = new class GlobalAppOption_Underground extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly UNDERGROUND =      new class GlobalAppOption_Underground extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.underground;
@@ -137,7 +149,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly UNDERWATER =  new class GlobalAppOption_Underwater extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly UNDERWATER =       new class GlobalAppOption_Underwater extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.underwater;
@@ -148,7 +160,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly DESERT =      new class GlobalAppOption_Desert extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly DESERT =           new class GlobalAppOption_Desert extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.desert;
@@ -159,7 +171,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly SNOW =        new class GlobalAppOption_Snow extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly SNOW =             new class GlobalAppOption_Snow extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.snow;
@@ -170,7 +182,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly SKY =         new class GlobalAppOption_Sky extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly SKY =              new class GlobalAppOption_Sky extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.sky;
@@ -181,7 +193,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly FOREST =      new class GlobalAppOption_Forest extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly FOREST =           new class GlobalAppOption_Forest extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.forest;
@@ -192,7 +204,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly GHOST_HOUSE = new class GlobalAppOption_GhostHouse extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly GHOST_HOUSE =      new class GlobalAppOption_GhostHouse extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.ghostHouse;
@@ -203,7 +215,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly AIRSHIP =     new class GlobalAppOption_Airship extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly AIRSHIP =          new class GlobalAppOption_Airship extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.airship;
@@ -214,7 +226,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(new GlobalThemeOption(),);
-    public static readonly CASTLE =      new class GlobalAppOption_Castle extends GlobalAppOption<GlobalThemeOption>{
+    public static readonly CASTLE =           new class GlobalAppOption_Castle extends GlobalAppOption<GlobalThemeOption>{
 
         protected _get(state: GlobalAppState,): GlobalThemeOption {
             return state.theme.castle;
@@ -226,7 +238,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
 
     }(new GlobalThemeOption(),);
 
-    public static readonly DAY =         new class GlobalAppOption_Day extends GlobalAppOption<boolean> {
+    public static readonly DAY =              new class GlobalAppOption_Day extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.time.day;
@@ -237,7 +249,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
         }
 
     }(true,);
-    public static readonly NIGHT =       new class GlobalAppOption_Night extends GlobalAppOption<boolean> {
+    public static readonly NIGHT =            new class GlobalAppOption_Night extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
             return state.time.night;
@@ -278,6 +290,7 @@ export abstract class GlobalAppOption<T extends | boolean | PossibleImageAnimati
     public static get createDefaultState(): GlobalAppState {
         return {
             images: this.IMAGES._lastValueRetrieved,
+            imageAnimations:this.IMAGE_ANIMATIONS._lastValueRetrieved,
             sounds: this.SOUNDS._lastValueRetrieved,
             game: {
                 1: this.SMM1._lastValueRetrieved,

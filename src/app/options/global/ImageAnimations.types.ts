@@ -1,39 +1,16 @@
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
-import type {GlobalAppOption as RealEnum}                                                                                                                                                                                                                  from './GlobalAppOption';
+import type {ImageAnimations as RealEnum}                                                                                                                                                                                                                  from './ImageAnimations';
 
-export type PossibleNonNullableValue = | Ordinals
-                                       | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue | PossibleImageAnimation;
 export type PossibleStringValue = | Names;
-export type PossibleValue = | PossibleNonNullableValue | string | number | null | undefined;
+export type PossibleValue = | RealEnum | string | number | boolean | null | undefined;
 
 enum Enum {
 
-    IMAGES,
-    IMAGE_ANIMATIONS,
-    SOUNDS,
-
-    SMM1,
-    SMM2,
-
-    SMB,
-    SMB3,
-    SMW,
-    NSMBU,
-    SM3DW,
-
-    GROUND,
-    UNDERGROUND,
-    UNDERWATER,
-    DESERT,
-    SNOW,
-    SKY,
-    FOREST,
-    GHOST_HOUSE,
-    AIRSHIP,
-    CASTLE,
-
-    DAY,
-    NIGHT,
+    ANIMATION,
+    YES,
+    NO,
 
 }
 
@@ -47,6 +24,11 @@ export type Ordinals = typeof Enum[Names];
 export type Names = keyof typeof Enum;
 
 //endregion -------------------- String types --------------------
+//region -------------------- Other types --------------------
+
+export type PossibleImageAnimation = | boolean | 'separated';
+
+//endregion -------------------- Other types --------------------
 //region -------------------- Instance types --------------------
 
 export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>;
@@ -62,33 +44,9 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['IMAGES'],
-    SimpleEnum<T>['IMAGE_ANIMATIONS'],
-    SimpleEnum<T>['SOUNDS'],
-
-    SimpleEnum<T>['SMM1'],
-    SimpleEnum<T>['SMM2'],
-
-    SimpleEnum<T>['SMB'],
-    SimpleEnum<T>['SMB3'],
-    SimpleEnum<T>['SMW'],
-    SimpleEnum<T>['NSMBU'],
-    SimpleEnum<T>['SM3DW'],
-
-    SimpleEnum<T>['GROUND'],
-    SimpleEnum<T>['UNDERGROUND'],
-    SimpleEnum<T>['UNDERWATER'],
-    SimpleEnum<T>['DESERT'],
-    SimpleEnum<T>['SNOW'],
-    SimpleEnum<T>['SKY'],
-    SimpleEnum<T>['FOREST'],
-    SimpleEnum<T>['GHOST_HOUSE'],
-    SimpleEnum<T>['AIRSHIP'],
-    SimpleEnum<T>['CASTLE'],
-
-    SimpleEnum<T>['DAY'],
-    SimpleEnum<T>['NIGHT'],
-
+    SimpleEnum<T>['ANIMATION'],
+    SimpleEnum<T>['YES'],
+    SimpleEnum<T>['NO'],
 ];
 
 //endregion -------------------- Array types --------------------
