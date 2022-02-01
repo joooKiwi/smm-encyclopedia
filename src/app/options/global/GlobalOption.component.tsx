@@ -2,9 +2,10 @@ import './GlobalOption.scss';
 
 import {Component} from 'react';
 
-import type {GlobalAppState, PossibleImageAnimation} from '../../AppStates.types';
-import type {GlobalThemeOption}                      from './GlobalThemeOption';
-import type {ReactElement}                           from '../../../util/react/ReactProperty';
+import type {GlobalAppState}    from '../../AppStates.types';
+import type {GlobalThemeOption} from './GlobalThemeOption';
+import type {ImageAnimations}   from './ImageAnimations';
+import type {ReactElement}      from '../../../util/react/ReactProperty';
 
 import {Games}           from '../../../core/game/Games';
 import {GameStyles}      from '../../../core/gameStyle/GameStyles';
@@ -30,7 +31,7 @@ export default class GlobalOptionComponent
 
     //region -------------------- Render helper methods --------------------
 
-    private static __createGroup<T extends | Games | GameStyles | Times | Themes, U extends boolean | PossibleImageAnimation | GlobalThemeOption, >(id: string, callbackToCreateElement: (element: T, option: GlobalAppOption<U>,) => ReactElement, ...elements: readonly (readonly [T, GlobalAppOption<U>,])[]) {
+    private static __createGroup<T extends | Games | GameStyles | Times | Themes, U extends boolean | ImageAnimations | GlobalThemeOption, >(id: string, callbackToCreateElement: (element: T, option: GlobalAppOption<U>,) => ReactElement, ...elements: readonly (readonly [T, GlobalAppOption<U>,])[]) {
         return <div key={`option container (${id})`} id={`${id}-option-container`} className="container-fluid">{
             elements.map(([element, option,]) => callbackToCreateElement(element, option,))
         }</div>;
@@ -61,20 +62,19 @@ export default class GlobalOptionComponent
 
     public render() {
         //TODO make it work properly instead of just in a viewable state.
+        const imageAnimationsValue = GlobalAppOption.IMAGE_ANIMATIONS.get.value;
         const imagesValue = GlobalAppOption.IMAGES.get;
         const soundsValue = GlobalAppOption.SOUNDS.get;
 
         return <div id={this.props.id} className="container-fluid">
             <div id="imagesAndSounds-option-container" className="container-fluid">
-                <div className="btn-group col" role="group">
-                    <span className={`btn btn${imagesValue !== false ? '-outline' : ''}-secondary`}>{/*--No images--*/}</span>
-                    <span className={`btn btn${imagesValue !== true ? '-outline' : ''}-secondary bi-image`}>{/*--Images--*/}</span>
-                    <span className={`btn btn${imagesValue !== 'separated' ? '-outline' : ''}-secondary`}>--Image animations--</span>
+                <div id="imageAnimations-option-container" className="btn-group col" role="group">
+                    <span className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>
+                    <span className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario image*/}
+                    <span className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario moving image*/}
                 </div>
-                <div className="btn-group col" role="group">
-                    <span className={`btn btn${soundsValue ? '-outline' : ''}-secondary`}>{/*--No sounds--*/}</span>
-                    <span className={`btn btn${!soundsValue ? '-outline' : ''}-secondary bi-music-note-beamed`}>{/*--sounds--*/}</span>
-                </div>
+                <span id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-3 bi-image-fill`}/>
+                <span id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-3 bi-music-note-beamed`}/>
             </div>
             <div className="option-separator"/>
             {GlobalOptionComponent.__createGroup('games',

@@ -7,6 +7,9 @@ $image-size: 3cm;
   [id$=-option-container] {
     padding: var(--bs-spacer-md);
   }
+  #imageAnimations-option-container{
+    padding: var(--bs-spacer-xs);
+  }
 
   [id^=optionInput-] {
     margin: var(--bs-spacer-sm);
@@ -27,9 +30,10 @@ $image-size: 3cm;
   display: flex;
   flex-wrap: wrap;
 
-  .btn-group {
+  > .btn-group, > .btn, {
     margin: var(--bs-spacer-sm);
   }
+
 }
 
 #themes-option-container {
