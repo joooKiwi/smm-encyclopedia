@@ -102,8 +102,8 @@ export abstract class Games
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue, >(name: PossibleStringValue,): EnumByPossibleString<S>
-    public static getValue<S extends string, >(name: S,): EnumByString<S>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends Games = Games, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): Games
     public static getValue(value: PossibleValue,): | Games | null

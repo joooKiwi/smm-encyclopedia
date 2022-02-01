@@ -1,5 +1,5 @@
-import type {EnumArray, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossiblePlacement, PossibleStringValue, PossibleValue} from './HeaderTypes.types';
-import type {StaticReference}                                                                                                           from '../../../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossiblePlacement, PossibleStringValue, PossibleValue} from './HeaderTypes.types';
+import type {StaticReference}                                                                                                                                                                                        from '../../../../util/enum/Enum.types';
 
 import {Enum} from '../../../../util/enum/Enum';
 
@@ -66,11 +66,11 @@ export abstract class HeaderTypes
 
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof HeaderTypes[N]
-    public static getValue(nameOrAcronym: PossibleStringValue,): HeaderTypes
-    public static getValue(nameOrAcronym: string,): | HeaderTypes | null
+    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrAcronym: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(nameOrAcronym: S,): EnumByString<S>
     public static getValue<I extends HeaderTypes, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): HeaderTypes
     public static getValue(value: PossibleValue,): | HeaderTypes | null

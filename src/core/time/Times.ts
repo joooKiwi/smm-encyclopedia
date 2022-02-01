@@ -1,11 +1,11 @@
-import type {ClassWithEnglishName}                                                                                                                                      from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                        from '../ClassWithImagePath';
-import type {PossibleOtherEntities}                                                                                                                                     from '../entity/Entity';
-import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                   from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                           from '../../util/enum/Enum.types';
-import type {TimeProperty}                                                                                                                                              from '../entity/properties/TimeProperty';
-import type {TimeReferences}                                                                                                                                            from '../entity/properties/TimeReferences';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                   from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                                                                                     from '../ClassWithImagePath';
+import type {PossibleOtherEntities}                                                                                                                                                                                                                  from '../entity/Entity';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                                        from '../../util/enum/Enum.types';
+import type {TimeProperty}                                                                                                                                                                                                                           from '../entity/properties/TimeProperty';
+import type {TimeReferences}                                                                                                                                                                                                                         from '../entity/properties/TimeReferences';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
@@ -96,11 +96,11 @@ export abstract class Times
     }
 
     public static getValue(nullValue: null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof Times[N]
-    public static getValue(name: PossibleStringValue,): Times
-    public static getValue(name: string,): | Times | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends Times = Times, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): Times
     public static getValue(value: PossibleValue,): | Times | null

@@ -1,10 +1,10 @@
-import {SoundStates}                                                                                                                                                                                                                                  from './SoundStates';
-import {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import type {SoundStates as RealEnum}                                                                                                                                                                                                                      from './SoundStates';
 
-export type PossibleNonNullableValue = | SoundStates | Ordinals | PossibleStringValue;
 
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | EnglishName;
-export type PossibleValue = SoundStates | string | number | null | undefined;
+export type PossibleValue = RealEnum | string | number | null | undefined;
 
 enum Enum {
     STANDBY,
@@ -25,19 +25,19 @@ export type EnglishName = | 'playing' | 'paused' | 'standby';
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends SoundStates = SoundStates, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
 
-export type EnumByOrdinal<O extends Ordinals, E extends SoundStates = SoundStates, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number, E extends SoundStates = SoundStates, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
 
-export type EnumByName<N extends Names, E extends SoundStates = SoundStates, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends SoundStates = SoundStates, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends SoundStates = SoundStates, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<E extends SoundStates = SoundStates, > = readonly [
+export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'STANDBY', E>,
     EnumByName<'PLAYING', E>,
     EnumByName<'PAUSED', E>,

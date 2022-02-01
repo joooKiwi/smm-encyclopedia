@@ -1,9 +1,10 @@
-import {MiiCostumeCategories as EnumInstance}                                                                                                                                                                                                         from './MiiCostumeCategories';
-import {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {MiiCostumeCategories as RealEnum}                                                                                                                                                                                                             from './MiiCostumeCategories';
 
-export type PossibleNonNullableValue = | EnumInstance | Ordinals | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName | PossibleImageName;
-export type PossibleValue = | EnumInstance | string | number | null | undefined;
+export type PossibleValue = | RealEnum | string | number | null | undefined;
 
 enum Enum {
 
@@ -40,19 +41,19 @@ export type PossibleImagePath = `/Mii costume category/${PossibleImageName}^s.ti
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends EnumInstance = EnumInstance, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
 
-export type EnumByOrdinal<O extends Ordinals, E extends EnumInstance = EnumInstance, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number, E extends EnumInstance = EnumInstance, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
 
-export type EnumByName<N extends Names, E extends EnumInstance = EnumInstance, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends EnumInstance = EnumInstance, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends EnumInstance = EnumInstance, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<T extends EnumInstance = EnumInstance, > = readonly [
+export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['TOP'],
     SimpleEnum<T>['HEADGEAR'],
     SimpleEnum<T>['COSTUME'],

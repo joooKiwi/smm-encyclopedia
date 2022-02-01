@@ -1,8 +1,8 @@
-import type {ClassWithAcronym}                                                                                                                   from '../ClassWithAcronym';
-import type {ClassWithReference}                                                                                                                 from '../ClassWithReference';
-import type {ClassWithTranslationKey}                                                                                                            from '../../lang/ClassWithTranslationKey';
-import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
-import type {StaticReference}                                                                                                                    from '../../util/enum/Enum.types';
+import type {ClassWithAcronym}                                                                                                                                                                                                from '../ClassWithAcronym';
+import type {ClassWithReference}                                                                                                                                                                                              from '../ClassWithReference';
+import type {ClassWithTranslationKey}                                                                                                                                                                                         from '../../lang/ClassWithTranslationKey';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
+import type {StaticReference}                                                                                                                                                                                                 from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {EntityBehaviour} from './EntityBehaviour';
@@ -97,11 +97,11 @@ export class EntityBehaviours
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof EntityBehaviours[N]
-    public static getValue(name: PossibleStringValue,): EntityBehaviours
-    public static getValue(name: string,): | EntityBehaviours | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends EntityBehaviours = EntityBehaviours, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): EntityBehaviours
     public static getValue(value: PossibleValue,): | EntityBehaviours | null

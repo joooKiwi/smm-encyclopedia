@@ -1,9 +1,10 @@
-import type {EntityBehaviours}                 from './EntityBehaviours';
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {EntityBehaviours as RealEnum}                                                                                                                                                                                                                 from './EntityBehaviours';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
-export type PossibleNonNullableValue = | EntityBehaviours | Ordinals | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = Names | PossibleTranslationKeys | PossibleAcronym;
-export type PossibleValue = | EntityBehaviours | number | string | null | undefined;
+export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
@@ -54,12 +55,19 @@ export type PossibleAcronym =
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends EntityBehaviours = EntityBehaviours, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
+
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<T extends EntityBehaviours = EntityBehaviours, > = readonly [
+export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['RESPAWN_WITH_VINE'],
     SimpleEnum<T>['RESPAWN_AS_QUESTION_MARK_BLOCK'],
     SimpleEnum<T>['ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN'],

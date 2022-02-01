@@ -1,12 +1,12 @@
-import type {EntityLimits}                     from './EntityLimits';
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {EntityLimits as RealEnum}                                                                                                                                                                                                                     from './EntityLimits';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
 
-export type PossibleNonNullableValue = | EntityLimits | Ordinals | PossibleStringValue;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names
                                   | PossibleStartingEnglishName | PossibleEnglishName | PossibleAlternativeEnglishName
                                   | PossibleAcronym | PossibleAlternativeAcronym;
-export type PossibleValue = | EntityLimits | number | string | null | undefined;
+export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
@@ -76,12 +76,19 @@ export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends EntityLimits = EntityLimits, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
+
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<T extends EntityLimits = EntityLimits, > = readonly [
+export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEnum<T>['POWER_UP_ENTITY_LIMIT_WHILE_PLAYING'],
 
     SimpleEnum<T>['LOOSE_COIN_LIMIT'], SimpleEnum<T>['SOUND_EFFECT_LIMIT'], SimpleEnum<T>['CORPSE_LIMIT'], SimpleEnum<T>['PROJECTILE_LIMIT'], SimpleEnum<T>['LIGHT_SOURCE_LIMIT'],

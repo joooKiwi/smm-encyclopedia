@@ -1,9 +1,10 @@
-import type {Entities}                                                                                                                                                                                                                                     from './Entities';
+import type {Entities as RealEnum}                                                                                                                                                                                                                         from './Entities';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
-export type PossibleNonNullableValue = | Entities | Ordinals | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName;
-export type PossibleValue = Entities | number | string | null | undefined;
+export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
@@ -287,19 +288,19 @@ export type PossibleEnglishName =
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends Entities = Entities, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
 
-export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends Entities = Entities, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number = number, E extends Entities = Entities, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
 
-export type EnumByName<N extends Names, E extends Entities = Entities, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends Entities = Entities, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends Entities = Entities, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<E extends Entities = Entities, > = readonly [
+export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'GROUND', E>, EnumByName<'STARTING_GROUND', E>, EnumByName<'ENDING_GROUND', E>,
     EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
     EnumByName<'WATER', E>, EnumByName<'LAVA', E>, EnumByName<'POISON', E>,

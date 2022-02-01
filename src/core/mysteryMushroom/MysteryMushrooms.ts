@@ -1,11 +1,12 @@
-import type {ClassWithEnglishName}                                                                                                                                                        from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                                          from '../ClassWithReference';
-import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages}                          from './image/Image';
-import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PossibleUniqueEnglishName, PossibleEnglishName} from './MysteryMushrooms.types';
-import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}                                                                      from './sound/Sound';
-import type {MysteryMushroom}                                                                                                                                                             from './MysteryMushroom';
-import type {PossiblePath}                                                                                                                                                                from './path/ClassWithPath';
-import type {StaticReference}                                                                                                                                                             from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                     from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                                       from '../ClassWithReference';
+import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages}                                                              from './image/Image';
+import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleUniqueEnglishName, PossibleValue} from './MysteryMushrooms.types';
+import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}                                                                                                          from './sound/Sound';
+import type {MysteryMushroom}                                                                                                                                                                                                                          from './MysteryMushroom';
+import type {PossiblePath}                                                                                                                                                                                                                             from './path/ClassWithPath';
+import type {SoundProperty}                                                                                                                                                                                                                            from './properties/sound/SoundProperty';
+import type {StaticReference}                                                                                                                                                                                                                          from '../../util/enum/Enum.types';
 
 import {Enum}                                  from '../../util/enum/Enum';
 import {BasicImageContainer}                   from './image/BasicImage.container';
@@ -16,7 +17,6 @@ import {NoImage}                               from './image/NoImage';
 import {NoSound}                               from './sound/NoSound';
 import {SoundContainer}                        from './sound/Sound.container';
 import {StringContainer}                       from '../../util/StringContainer';
-import {SoundProperty}                         from './properties/sound/SoundProperty';
 
 /**
  * @recursiveReference<{@link MysteryMushroomLoader}>
@@ -512,8 +512,8 @@ export class MysteryMushrooms
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue(name: PossibleStringValue,): MysteryMushrooms
-    public static getValue(name: string,): | MysteryMushrooms | null
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends MysteryMushrooms = MysteryMushrooms, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): MysteryMushrooms
     public static getValue(value: PossibleValue,): | MysteryMushrooms | null

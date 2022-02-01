@@ -1,10 +1,11 @@
-import type {PossibleEnglishName_SoundEffect}  from '../gameReference/GameReferences.types';
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {SoundEffects}                     from './SoundEffects';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {PossibleEnglishName_SoundEffect}                                                                                                                                                                                                              from '../gameReference/GameReferences.types';
+import type {SoundEffects as RealEnum}                                                                                                                                                                                                                     from './SoundEffects';
 
-export type PossibleNonNullableValue = | SoundEffects | Ordinals | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName;
-export type PossibleValue = | SoundEffects | number | string | null | undefined;
+export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
@@ -101,12 +102,19 @@ export type PossibleImagePath_SMM2 = `/sound effect/SMM2/${StartingSoundEffectIm
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends SoundEffects = SoundEffects, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>;
+
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<T extends SoundEffects = SoundEffects, > = readonly [
+export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SHOCK'], SimpleEnum<T>['SCREAM'], SimpleEnum<T>['LAUGHTER'], SimpleEnum<T>['GUFFAW'], SimpleEnum<T>['BOOO'],
     SimpleEnum<T>['CHEER'], SimpleEnum<T>['BABY'], SimpleEnum<T>['PARTY_POPPER'], SimpleEnum<T>['APPLAUSE'], SimpleEnum<T>['NEAR_MISS'],
 
@@ -127,7 +135,7 @@ export type EnumArray<T extends SoundEffects = SoundEffects, > = readonly [
     SimpleEnum<T>['SUPER_MARIO_KART'], SimpleEnum<T>['SUPER_MARIO_64'], SimpleEnum<T>['SUPER_MARIO_SUNSHINE'], SimpleEnum<T>['SUPER_MARIO_GALAXY'],
 
 ];
-export type EnumArray_Games<T extends SoundEffects = SoundEffects, > = readonly [
+export type EnumArray_Games<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SUPER_MARIO_KART'],
     SimpleEnum<T>['SUPER_MARIO_64'],
     SimpleEnum<T>['SUPER_MARIO_SUNSHINE'],

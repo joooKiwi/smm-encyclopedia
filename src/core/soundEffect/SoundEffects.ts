@@ -1,8 +1,8 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                         from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                           from '../ClassWithReference';
-import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
-import type {SoundEffect}                                                                                                                                                                                                                                                                                                                                  from './SoundEffect';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                      from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                        from '../ClassWithReference';
+import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, MiddleSoundEffectImage, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, StartingSoundEffectImage} from './SoundEffects.types';
+import type {SoundEffect}                                                                                                                                                                                                                                                                                                                                                                                                               from './SoundEffect';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                           from '../../util/enum/Enum.types';
 
 import {Enum}               from '../../util/enum/Enum';
 import SoundEffectComponent from './SoundEffect.component';
@@ -159,11 +159,11 @@ export class SoundEffects
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof SoundEffects[N]
-    public static getValue(name: PossibleStringValue,): SoundEffects
-    public static getValue(name: string,): | SoundEffects | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends SoundEffects = SoundEffects, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): SoundEffects
     public static getValue(value: PossibleValue,): | SoundEffects | null
