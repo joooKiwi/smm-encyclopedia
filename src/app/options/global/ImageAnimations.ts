@@ -1,3 +1,4 @@
+import type {ClassWithValue}                                                                                                                                                                                from './ClassWithValue';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleImageAnimation, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ImageAnimations.types';
 import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types';
 
@@ -13,7 +14,8 @@ import {Enum} from '../../../util/enum/Enum';
  * </ul>
  */
 export class ImageAnimations
-    extends Enum<Ordinals, Names> {
+    extends Enum<Ordinals, Names>
+    implements ClassWithValue<PossibleImageAnimation> {
 
     //region -------------------- Enum instances --------------------
 

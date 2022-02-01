@@ -1,4 +1,5 @@
-import type {ImageAnimations}        from './options/global/ImageAnimations';
+import type {ImageAnimations}   from './options/global/ImageAnimations';
+import type {Images}            from './options/global/Images';
 import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
 import type {ReactState}        from '../util/react/ReactState';
 
@@ -12,7 +13,7 @@ export interface AppStates
 export interface GlobalAppState
     extends ReactState {
 
-    images: boolean
+    images: Images
     imageAnimations: ImageAnimations
     sounds: boolean
 

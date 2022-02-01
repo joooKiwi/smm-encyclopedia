@@ -4,7 +4,6 @@ import {Component} from 'react';
 
 import type {GlobalAppState}    from '../../AppStates.types';
 import type {GlobalThemeOption} from './GlobalThemeOption';
-import type {ImageAnimations}   from './ImageAnimations';
 import type {ReactElement}      from '../../../util/react/ReactProperty';
 
 import {Games}           from '../../../core/game/Games';
@@ -15,7 +14,7 @@ import {Times}           from '../../../core/time/Times';
 
 export interface GlobalOptionProperties {
 
-    id: string
+    id: string;
 
 }
 
@@ -63,18 +62,27 @@ export default class GlobalOptionComponent
     public render() {
         //TODO make it work properly instead of just in a viewable state.
         const imageAnimationsValue = GlobalAppOption.IMAGE_ANIMATIONS.get.value;
-        const imagesValue = GlobalAppOption.IMAGES.get;
+        const imagesValue = GlobalAppOption.IMAGES.get.value;
         const soundsValue = GlobalAppOption.SOUNDS.get;
 
         return <div id={this.props.id} className="container-fluid">
             <div key="option container (images & sounds)" id="imagesAndSounds-option-container" className="container-fluid">
                 <div key="option container (image animations)" id="imageAnimations-option-container" className="btn-group col" role="group">
-                    <span key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario image*/}
-                    <span key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO mario moving image*/}
-                    <span key="option container (image animations - separated)" className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary ${!imagesValue ? 'disabled' : ''}`}/>{/*TODO multiple mario image*/}
+                    <button key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary`}
+                            type="button" disabled={!imagesValue}>
+                        {/*TODO mario image*/}
+                    </button>
+                    <button key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image`}
+                            type="button" disabled={!imagesValue}>
+                        {/*TODO mario moving image*/}
+                    </button>
+                    <button key="option container (image animations - separated)" className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary`}
+                            type="button" disabled={!imagesValue}>
+                        {/*TODO multiple mario image*/}
+                    </button>
                 </div>
-                <span key="option container (images)" id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-3 bi-image-fill`}/>
-                <span key="option container (sounds)" id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-3 bi-music-note-beamed`}/>
+                <button key="option container (images)" id="images-option-container" type="button" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-3 bi-image-fill`}/>
+                <button key="option container (sounds)" id="sounds-option-container" type="button" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-3 bi-music-note-beamed`}/>
             </div>
             <div className="option-separator"/>
             {GlobalOptionComponent.__createGroup('games',

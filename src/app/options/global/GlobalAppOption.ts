@@ -1,30 +1,31 @@
 import type {AppOptionStatic}                                                                                                                                                       from '../AppOption';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GlobalAppOption.types';
-import type {GlobalAppState}                                                                                                                                from '../../AppStates.types';
+import type {GlobalAppState}                                                                                                                                                        from '../../AppStates.types';
 import type {ReactComponentWithState}                                                                                                                                               from '../../../util/react/ReactComponent';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 
 import {AbstractAppOption} from '../AbstractAppOption';
 import {Enum}              from '../../../util/enum/Enum';
 import {ImageAnimations}   from './ImageAnimations';
+import {Images}            from './Images';
 import {GlobalThemeOption} from './GlobalThemeOption';
 
-export abstract class GlobalAppOption<T extends | boolean | ImageAnimations | GlobalThemeOption = | boolean | ImageAnimations | GlobalThemeOption, >
+export abstract class GlobalAppOption<T extends | boolean | Images | ImageAnimations | GlobalThemeOption = | boolean | Images | ImageAnimations | GlobalThemeOption, >
     extends AbstractAppOption<T, GlobalAppState, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGES =           new class GlobalAppOption_Images extends GlobalAppOption<boolean> {
+    public static readonly IMAGES =           new class GlobalAppOption_Images extends GlobalAppOption<Images> {
 
-        protected _get(state: GlobalAppState,): boolean {
+        protected _get(state: GlobalAppState,): Images {
             return state.images;
         }
 
-        protected _set(nextState: GlobalAppState, value: boolean,): void {
+        protected _set(nextState: GlobalAppState, value: Images,): void {
             nextState.images = value;
         }
 
-    }(true,);
+    }(Images.YES,);
     public static readonly IMAGE_ANIMATIONS = new class GlobalAppOption_Images extends GlobalAppOption<ImageAnimations> {
 
         protected _get(state: GlobalAppState,): ImageAnimations {
