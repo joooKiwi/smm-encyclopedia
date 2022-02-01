@@ -19,7 +19,7 @@ export class ImageAnimations
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly ANIMATION = new ImageAnimations('separated',);
+    public static readonly SEPARATED = new ImageAnimations('separated',);
     public static readonly YES =       new ImageAnimations(true,);
     public static readonly NO =        new ImageAnimations(false,);
 

@@ -8,7 +8,7 @@ export type PossibleValue = | RealEnum | string | number | boolean | null | unde
 
 enum Enum {
 
-    ANIMATION,
+    SEPARATED,
     YES,
     NO,
 
@@ -44,7 +44,7 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['ANIMATION'],
+    SimpleEnum<T>['SEPARATED'],
     SimpleEnum<T>['YES'],
     SimpleEnum<T>['NO'],
 ];
