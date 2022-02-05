@@ -46,7 +46,6 @@ export class GlobalThemeOption {
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Method --------------------
 
-
     /**
      * Reverse the {@link Times.NIGHT night} value.
      */
@@ -130,6 +129,15 @@ export class GlobalThemeOption {
         return this.onDay(false);
     }
 
+
+    /**
+     * Set to all or none.
+     *
+     * @param isAllOrNone all = true, none = false,
+     */
+    public set(isAllOrNone: boolean,): GlobalThemeOption {
+        return isAllOrNone ? GlobalThemeOption.ALL : GlobalThemeOption.NONE;
+    }
 
     //region -------------------- Method --------------------
 
