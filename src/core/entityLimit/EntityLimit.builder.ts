@@ -4,6 +4,7 @@ import type {Builder}                                                           
 import type {Entity}                                                                             from '../entity/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
+import type {Name}                                                                               from '../../lang/name/Name';
 import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                from './EntityLimits.types';
 import type {PossibleEnglishName as PossibleEnglishName_Entity}                                  from '../entity/Entities.types';
 import type {PossibleGroupName}                                                                  from '../entityTypes';
@@ -20,13 +21,12 @@ import {EntityLimitLinkContainer}                           from './properties/E
 import {EntityLimitTypes}                                   from './EntityLimitTypes';
 import {EntityLimits}                                       from './EntityLimits';
 import {Games}                                              from '../game/Games';
-import {NameBuilder}                                        from '../../lang/name/Name.builder';
 import {NumberPropertyThatCanBeUnknownWithCommentContainer} from '../_properties/number/NumberPropertyThatCanBeUnknownWithComment.container';
 import {ObjectHolders}                                      from '../../util/holder/objectHolders';
-import {TemplateBuilder}                                    from '../_template/Template.builder';
+import {TemplateWithNameBuilder}                            from '../_template/TemplateWithName.builder';
 
 export class EntityLimitBuilder
-    extends TemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, EntityLimit>
+    extends TemplateWithNameBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, EntityLimit>
     implements Builder<EntityLimit> {
 
     //region -------------------- External object references --------------------
@@ -36,18 +36,14 @@ export class EntityLimitBuilder
     //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
-        super(templateBuilder);
+        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
     //region -------------------- Build helper methods --------------------
 
-    //region -------------------- Name methods --------------------
-
-    private __createName() {
-        return new NameBuilder(this.template.name, Games.SUPER_MARIO_MAKER_2, false,).build();
+    protected get _static() {
+        return EntityLimitBuilder;
     }
-
-    //endregion -------------------- Name methods --------------------
 
     //region -------------------- Limit amount helper methods --------------------
 
@@ -89,13 +85,13 @@ export class EntityLimitBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public build(): EntityLimit {
+    public _build(name: Name,): EntityLimit {
         const template = this.template;
         const typeTemplate = template.type;
 
         if (typeTemplate == null)
             return new AlternativeEntityLimitContainer(
-                this.__createName(),
+                name,
                 template.acronym,
                 () => EntityLimits.getValue(template.name.english.simple!)!.reference as EntityLimitWithPossibleAlternativeEntityLimit,
                 this.__createLimitAmount(),
@@ -103,7 +99,7 @@ export class EntityLimitBuilder
             );
         const alternative = template.references.alternative;
         return new EntityLimitContainer(
-            this.__createName(),
+            name,
             template.acronym,
             () => alternative == null ? EmptyEntityLimit.get : EntityLimitBuilder.references.get(alternative) as AlternativeEntityLimit,
             () => EntityLimitTypes.getValue(typeTemplate),
