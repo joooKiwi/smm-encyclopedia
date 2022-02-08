@@ -1,6 +1,6 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language';
 import type {Builder}                                                                 from '../../util/builder/Builder';
-import type {EnumArray as GameArray, Ordinals as GameOrdinals}                        from '../../core/game/Games.types';
+import type {EnumArray as GameArray}                                                  from '../../core/game/Games.types';
 import type {IsACompleteNameCallback, PossibleGameReceived}                           from './Name.builder.types';
 import type {Name}                                                                    from './Name';
 import type {PossibleNameTemplate}                                                    from './Name.template';
@@ -74,7 +74,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
             this.#game = Games.values;
             this.#isACompleteName = () => isACompleteName;
         } else {
-            const _game = this.#game = typeof game == 'number' ? Games.getValue(game - 1 as GameOrdinals) : game;
+            const _game = this.#game = game;
             this.#isACompleteName = language => NameBuilder.#IS_A_COMPLETE_NAME_BASED_ON_GAME(_game, language,) && isACompleteName;
         }
     }

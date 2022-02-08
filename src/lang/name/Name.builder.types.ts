@@ -2,7 +2,7 @@ import type {EveryLanguages} from '../EveryLanguages';
 import type {Games}          from '../../core/game/Games';
 
 export type AllGameReceived = 'all';
-export type PossibleGameReceived = | Games | 1 | 2 | AllGameReceived;
+export type PossibleGameReceived = | Games | AllGameReceived;
 
 /**
  * The possible way to tell if the {@link Name} will be a complete one based
