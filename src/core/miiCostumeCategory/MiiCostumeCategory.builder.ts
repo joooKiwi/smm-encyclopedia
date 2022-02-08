@@ -12,7 +12,7 @@ export class MiiCostumeCategoryBuilder
 
 
     public constructor(templateBuilder_or_template: Builder<MiiCostumeCategoryTemplate>,) {
-        super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, false);
+        super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
     protected get _static() {

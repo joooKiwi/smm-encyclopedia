@@ -24,7 +24,7 @@ export class ThemeBuilder
     implements Builder<CourseAndWorldTheme> {
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
-        super(templateBuilder, template => template.isIn.game['1'] ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
+        super(templateBuilder, ({isIn: {game: {1: isInSMM1,},},},) => isInSMM1 ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
     protected get _static() {
