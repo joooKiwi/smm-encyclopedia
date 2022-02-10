@@ -2,6 +2,7 @@ import type {SingleTableContent} from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {EmptyCourseTheme}              from '../core/theme/EmptyCourseTheme';
 import {EmptyWorldTheme}               from '../core/theme/EmptyWorldTheme';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -37,6 +38,8 @@ export default class EveryThemesApp
             content.push([enumerable.englishName,
                 <>{index}</>,
                 enumerable.renderSingleComponent(false),
+                enumerable.endlessMarioImagePath == null ? EMPTY_REACT_ELEMENT :
+                    <Image source={enumerable.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumerable.englishName})`}/>,
                 <NameComponent id="name" name={name} popoverOrientation="left"/>,
                 <YesOrNoResultTextComponent boolean={isInCourseTheme}/>,
                 <YesOrNoResultTextComponent boolean={isInWorldTheme}/>,
@@ -58,7 +61,13 @@ export default class EveryThemesApp
                 caption={<GameContentTranslationComponent translationKey="Every themes"/>}
                 headers={[
                     {key: 'originalOrder', element: <>#</>,},
-                    {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
+                    {
+                        key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                        subHeaders: [
+                            {key: 'image-empty', element: EMPTY_REACT_ELEMENT,},
+                            {key: 'image-endless-mario', element: <>--Endless Mario--</>}
+                        ],
+                    },
                     {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
                     {
                         key: 'theme', element: <>--course & world theme--</>,
