@@ -37,14 +37,14 @@ export class MiiCostumeCategories
     #reference?: MiiCostumeCategory;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imageName: PossibleImageName;
-    readonly #imagePath: PossibleImagePath;
+    #imagePath?: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(englishName: PossibleEnglishName, imageName: PossibleImageNumber,) {
+    private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();
         this.#englishName = new StringContainer(englishName);
-        this.#imagePath = `/Mii costume category/${this.#imageName = `DressIcon_0${imageName}`}^s.tiff`;
+        this.#imageName = `DressIcon_0${imageNumber}`;
     }
 
     //region -------------------- Getter methods --------------------
@@ -75,7 +75,7 @@ export class MiiCostumeCategories
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath;
+        return this.#imagePath ??=`/category/${this.imageName}^s.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------

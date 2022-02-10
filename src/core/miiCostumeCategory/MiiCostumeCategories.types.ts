@@ -33,8 +33,7 @@ export type PossibleEnglishName = | 'Top' | 'Headgear' | 'Costume' | 'Bottom';
 
 export type PossibleImageNumber = | 0 | 1 | 2 | 3;
 export type PossibleImageName = `DressIcon_0${PossibleImageNumber}`;
-
-export type PossibleImagePath = `/Mii costume category/${PossibleImageName}^s.tiff`;
+export type PossibleImagePath = `/category/${PossibleImageName}^s.tiff`;
 
 //endregion -------------------- Image name --------------------
 

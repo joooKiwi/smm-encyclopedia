@@ -26,8 +26,9 @@ export type Names = keyof typeof Enum;
 
 export type PossibleEnglishName = | 'Terrain' | 'Item' | 'Enemy' | 'Gizmo';
 
-type PossibleBasicImagePath = | '1 - Terrain' | '2 - Item' | '3 - Enemy' | '4 - Gizmo';
-export type PossibleImagePath = `/category/entity/${PossibleBasicImagePath}.png`;
+export type PossibleImageNumber = | 0 | 1 | 2 | 3;
+export type PossibleImageName = `CategoryIcon_0${PossibleImageNumber}`;
+export type PossibleImagePath = `/category/${PossibleImageName}^s.tiff`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
