@@ -1,8 +1,11 @@
+import './SoundEffect.scss';
+
 import {PureComponent} from 'react';
 
 import type {Name}         from '../../lang/name/Name';
 import type {ReactElement} from '../../util/react/ReactProperty';
 
+import AnimatedImages     from '../../app/tools/images/AnimatedImages';
 import {SoundEffects}     from './SoundEffects';
 import {StringContainer}  from '../../util/StringContainer';
 import Image              from '../../app/tools/images/Image';
@@ -51,7 +54,17 @@ export default class SoundEffectComponent
         const key = isIdentifierNull ? soundEffect.englishName : `${identifier} - ${soundEffect.englishName}${isGameNull ? '' : ` (${game.acronym})`}`;
         const id = isIdentifierNull ? `${themeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${themeEnglishNameInHtml}-soundEffect${isGameNull ? '' : `-${game.acronym}`}-image`;
 
-        return <Image key={key} id={id} source={(game === Games.SUPER_MARIO_MAKER_1 ? soundEffect.SMM1ImagePath : soundEffect.SMM2ImagePath)!}
+        if (game === Games.SUPER_MARIO_MAKER_1) {
+            const [imagePath1, imagePath2,] = soundEffect.SMM1ImagePath!;
+            if (imagePath2 == null)
+                return <Image key={key} id={id} source={imagePath1}
+                              fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>;
+            return <AnimatedImages partialId={id} images={([
+                {source: imagePath1, fallbackName: `${soundEffect.englishName} #1`, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
+                {source: imagePath2, fallbackName: `${soundEffect.englishName} #2`, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
+            ])} className={`soundEffect-animated-image ${themeEnglishNameInHtml}-image`}/>;
+        }
+        return <Image key={key} id={id} source={soundEffect.SMM2ImagePath!}
                       fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>;
     }
 
