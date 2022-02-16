@@ -1,28 +1,19 @@
 import type {AlternativeEntityLimit, EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
 import type {AlternativeLimitTemplate, EntityLimitTemplate}                                      from './EntityLimit.template';
 import type {Builder}                                                                            from '../../util/builder/Builder';
-import type {Entity}                                                                             from '../entity/Entity';
 import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                                                                    from './properties/EntityLimitLink';
 import type {Name}                                                                               from '../../lang/name/Name';
 import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                  from '../entity/Entities.types';
-import type {PossibleGroupName}                                                                  from '../entityTypes';
 
 import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
-import {DelayedObjectHolderContainer}                       from '../../util/holder/DelayedObjectHolderContainer';
 import {EmptyEntityLimit}                                   from './EmptyEntityLimit';
 import {EmptyEntityLimitAmount}                             from './properties/EmptyEntityLimitAmount';
-import {EmptyEntityLimitLink}                               from './properties/EmptyEntityLimitLink';
-import {Entities}                                           from '../entity/Entities';
 import {EntityLimitAmountContainer}                         from './properties/EntityLimitAmount.container';
 import {EntityLimitContainer}                               from './EntityLimit.container';
-import {EntityLimitLinkContainer}                           from './properties/EntityLimitLink.container';
 import {EntityLimitTypes}                                   from './EntityLimitTypes';
 import {EntityLimits}                                       from './EntityLimits';
 import {Games}                                              from '../game/Games';
 import {NumberPropertyThatCanBeUnknownWithCommentContainer} from '../_properties/number/NumberPropertyThatCanBeUnknownWithComment.container';
-import {ObjectHolders}                                      from '../../util/holder/objectHolders';
 import {TemplateWithNameBuilder}                            from '../_template/TemplateWithName.builder';
 
 export class EntityLimitBuilder
@@ -55,33 +46,7 @@ export class EntityLimitBuilder
             : new EntityLimitAmountContainer(new NumberPropertyThatCanBeUnknownWithCommentContainer(limitTemplate.amount, limitTemplate.isUnknown, limitTemplate.comment,));
     }
 
-
     //endregion -------------------- Limit amount helper methods --------------------
-    //region -------------------- Link helper methods --------------------
-
-    private static __getGroupEntity(groupLink: PossibleGroupName,): object {
-        return {name: groupLink,};
-    }
-
-    private static __getEntity(entity: PossibleEnglishName_Entity,): Entity {
-        return Entities.getValue(entity).reference;
-    }
-
-    private __createLink(): EntityLimitLink {
-        const linkTemplate = this.template.link;
-        const groupName = linkTemplate.groupName;
-        const entityName = linkTemplate.entityName;
-
-        return groupName == null && entityName == null
-            ? EmptyEntityLimitLink.get
-            : groupName == null
-                ? new EntityLimitLinkContainer(ObjectHolders.NULL, new DelayedObjectHolderContainer(() => EntityLimitBuilder.__getEntity(entityName!)),)
-                : new EntityLimitLinkContainer(new DelayedObjectHolderContainer(() => EntityLimitBuilder.__getGroupEntity(groupName)), ObjectHolders.NULL,);
-
-
-    }
-
-    //endregion -------------------- Link helper methods --------------------
 
     //endregion -------------------- Build helper methods --------------------
 
@@ -95,7 +60,6 @@ export class EntityLimitBuilder
                 template.acronym,
                 () => EntityLimits.getValue(template.name.english.simple!)!.reference as EntityLimitWithPossibleAlternativeEntityLimit,
                 this.__createLimitAmount(),
-                this.__createLink(),
             );
         const alternative = template.references.alternative;
         return new EntityLimitContainer(
@@ -104,7 +68,6 @@ export class EntityLimitBuilder
             () => alternative == null ? EmptyEntityLimit.get : EntityLimitBuilder.references.get(alternative) as AlternativeEntityLimit,
             () => EntityLimitTypes.getValue(typeTemplate),
             this.__createLimitAmount(),
-            this.__createLink(),
         );
     }
 

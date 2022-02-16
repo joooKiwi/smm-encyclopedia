@@ -43,9 +43,11 @@ export class EntityLimits
     public static readonly TRACK_BLOCK_LIMIT =                                        new EntityLimits('Track Block',                                                                       );
     public static readonly ICICLE_LIMIT =                                             new EntityLimits('Icicle',                                                                            );
     public static readonly ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT =           new EntityLimits('One-Way Wall / Arrow Sign / Dash Block',                                            );
-    public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                           new EntityLimits('Entity Held By A Twister',                                                          );
 
-    public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new EntityLimits('[10- / 30- / 50-]Coin',                                                            );
+    public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                           new EntityLimits('Entity Held By A Twister',                                                          );
+    public static readonly SNOWBALL_THROWN_BY_A_SPIKE_LIMIT =                         new EntityLimits('Snowball Thrown By A Spike',                                                        );
+
+    public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new EntityLimits('[10- / 30- / 50-]Coin',                                                             );
     public static readonly PINK_COIN_LIMIT =                                          new EntityLimits('Pink Coin',                                                                         );
     public static readonly KEY_COLLECTED_LIMIT =                                      new EntityLimits('Key Collected',                                                                     );
 

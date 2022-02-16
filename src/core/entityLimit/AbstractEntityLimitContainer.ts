@@ -1,6 +1,5 @@
 import type {AlternativeEntityLimit, EntityLimit}         from './EntityLimit';
 import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                             from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                            from './EntityLimitTypes';
 import type {EveryLanguages}                              from '../../lang/EveryLanguages';
 import type {Name}                                        from '../../lang/name/Name';
@@ -11,9 +10,8 @@ import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolde
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
-    LINK extends EntityLimitLink = EntityLimitLink, >
-    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT, LINK> {
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
+    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT> {
 
     //region -------------------- Attributes --------------------
 
@@ -22,17 +20,15 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     readonly #alternativeCaller: ObjectHolder<AlternativeEntityLimit>;
     readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
     readonly #limitContainer: EntityLimitAmount;
-    readonly #linkContainer: EntityLimitLink;
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    protected constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount,) {
         this.#nameContainer = name;
         this.#acronym = acronym;
         this.#alternativeCaller = new DelayedObjectHolderContainer(alternative);
         this.#typeCaller = new DelayedObjectHolderContainer(type);
         this.#limitContainer = limitAmount;
-        this.#linkContainer = link;
     }
 
     //region -------------------- Type --------------------
@@ -361,23 +357,6 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public get alternativeLinkContainer(): this['alternativeContainer']['linkContainer'] {
-        return this.alternativeContainer.linkContainer;
-    }
-
-
-    public get alternativeGroupLink(): this['alternativeLinkContainer']['group'] {
-        return this.alternativeLinkContainer.group;
-    }
-
-
-    public get alternativeEntityLink(): this['alternativeLinkContainer']['entity'] {
-        return this.alternativeLinkContainer.entity;
-    }
-
-    //endregion -------------------- Link --------------------
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
@@ -400,23 +379,6 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public get linkContainer(): LINK {
-        return this.#linkContainer as LINK;
-    }
-
-
-    public get groupLink(): this['linkContainer']['group'] {
-        return this.linkContainer.group;
-    }
-
-
-    public get entityLink(): this['linkContainer']['entity'] {
-        return this.linkContainer.entity;
-    }
-
-    //endregion -------------------- Link --------------------
 
     public toAlternativeNameMap(): ReadonlyMap<EveryLanguages, string> {
         return this.alternativeNameContainer.toNameMap();

@@ -1,8 +1,6 @@
 import type {NameTemplate}                                                                                     from '../../lang/name/Name.template';
 import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                        from './EntityLimitTypes.types';
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                from '../entity/Entities.types';
-import type {PossibleGroupName}                                                                                from '../entityTypes';
 import type {TemplateWithNameTemplate}                                                                         from '../_template/TemplateWithName.template';
 
 //region -------------------- Limit types --------------------
@@ -30,26 +28,6 @@ export type LimitAmountTemplate = AbstractLimitAmountTemplate;
 export type EmptyLimitAmountTemplate = AbstractLimitAmountTemplate<null, false, null>;
 
 //endregion -------------------- Limit amount types --------------------
-//region -------------------- Link types --------------------
-
-interface AbstractLinkTemplate<GROUP extends PossibleGroupName | null, ENTITY extends PossibleEnglishName_Entity | null, > {
-
-    groupName: GROUP
-
-    entityName: ENTITY
-
-}
-
-/**
- * @template
- */
-export type EmptyLinkTemplate = AbstractLinkTemplate<null, null>;
-/**
- * @template
- */
-export type LinkTemplate = AbstractLinkTemplate<PossibleGroupName, null> | AbstractLinkTemplate<null, PossibleEnglishName_Entity> | EmptyLinkTemplate;
-
-//endregion -------------------- Link types --------------------
 
 //endregion -------------------- Limit types --------------------
 
@@ -69,8 +47,6 @@ interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends | PossibleEnglis
     acronym: ACRONYM
 
     limit: LIMIT_AMOUNT
-
-    link: LinkTemplate
 
     name: NameTemplate
 

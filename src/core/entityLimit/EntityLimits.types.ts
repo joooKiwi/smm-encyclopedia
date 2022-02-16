@@ -18,8 +18,9 @@ enum Enum {
 
     GROWN_VINE_LIMIT, CHECKPOINT_FLAG_LIMIT, TRACK_LIMIT,
     SNAKE_BLOCK_LIMIT, EXCLAMATION_BLOCK_LIMIT, TRACK_BLOCK_LIMIT,
-    ICICLE_LIMIT, ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT, ENTITY_HELD_BY_A_TWISTER_LIMIT,
+    ICICLE_LIMIT, ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT,
 
+    ENTITY_HELD_BY_A_TWISTER_LIMIT, SNOWBALL_THROWN_BY_A_SPIKE_LIMIT,
     _10_OR_30_OR_50_COIN_LIMIT, PINK_COIN_LIMIT, KEY_COLLECTED_LIMIT,
 
     POWER_UP_ENTITY_LIMIT_EDITOR,
@@ -56,8 +57,9 @@ export type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
 
     | 'Grown Vine' | 'Checkpoint Flag' | 'Track' | `${| 'Snake ' | '! ' | 'Track '}Block`
 
-    | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block' | 'Entity Held By A Twister'
+    | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block'
 
+    | 'Entity Held By A Twister' | 'Snowball Thrown By A Spike'
     | `${| '[10- / 30- / 50-]' | 'Pink '}Coin` | 'Key Collected'
 
     | 'Power-up' | `${| `${| 'Fire' | 'Super'}ball` | 'Builder Box' | 'Boomerang' | 'Cannonball'} thrown by a player` | 'Bomb thrown by a Link' | 'Hatched Yoshi'
@@ -91,20 +93,23 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['GENERAL_ENTITY_LIMIT_WHILE_PLAYING'], SimpleEnum<T>['POWER_UP_ENTITY_LIMIT_WHILE_PLAYING'],
 
-    SimpleEnum<T>['LOOSE_COIN_LIMIT'], SimpleEnum<T>['SOUND_EFFECT_LIMIT'], SimpleEnum<T>['CORPSE_LIMIT'], SimpleEnum<T>['PROJECTILE_LIMIT'], SimpleEnum<T>['LIGHT_SOURCE_LIMIT'],
+    SimpleEnum<T>['LOOSE_COIN_LIMIT'], SimpleEnum<T>['SOUND_EFFECT_LIMIT'], SimpleEnum<T>['CORPSE_LIMIT'],
+    SimpleEnum<T>['PROJECTILE_LIMIT'], SimpleEnum<T>['LIGHT_SOURCE_LIMIT'],
 
-    SimpleEnum<T>['GROUND_LIMIT'], SimpleEnum<T>['BLOCK_LIMIT'], SimpleEnum<T>['PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT'], SimpleEnum<T>['CLEAR_PIPE_LIMIT'],
+    SimpleEnum<T>['GROUND_LIMIT'], SimpleEnum<T>['BLOCK_LIMIT'], SimpleEnum<T>['PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT'],
+    SimpleEnum<T>['CLEAR_PIPE_LIMIT'],
 
-    SimpleEnum<T>['GROWN_VINE_LIMIT'], SimpleEnum<T>['CHECKPOINT_FLAG_LIMIT'], SimpleEnum<T>['TRACK_LIMIT'], SimpleEnum<T>['SNAKE_BLOCK_LIMIT'], SimpleEnum<T>['EXCLAMATION_BLOCK_LIMIT'], SimpleEnum<T>['TRACK_BLOCK_LIMIT'],
+    SimpleEnum<T>['GROWN_VINE_LIMIT'], SimpleEnum<T>['CHECKPOINT_FLAG_LIMIT'], SimpleEnum<T>['TRACK_LIMIT'],
+    SimpleEnum<T>['SNAKE_BLOCK_LIMIT'], SimpleEnum<T>['EXCLAMATION_BLOCK_LIMIT'], SimpleEnum<T>['TRACK_BLOCK_LIMIT'],
+    SimpleEnum<T>['ICICLE_LIMIT'], SimpleEnum<T>['ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT'],
 
-    SimpleEnum<T>['ICICLE_LIMIT'], SimpleEnum<T>['ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT'], SimpleEnum<T>['ENTITY_HELD_BY_A_TWISTER_LIMIT'],
+    SimpleEnum<T>['ENTITY_HELD_BY_A_TWISTER_LIMIT'], SimpleEnum<T>['SNOWBALL_THROWN_BY_A_SPIKE_LIMIT'],
 
     SimpleEnum<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEnum<T>['PINK_COIN_LIMIT'], SimpleEnum<T>['KEY_COLLECTED_LIMIT'],
 
     SimpleEnum<T>['POWER_UP_ENTITY_LIMIT_EDITOR'], SimpleEnum<T>['FIREBALL_THROWN_BY_A_PLAYER_LIMIT'], SimpleEnum<T>['SUPERBALL_THROWN_BY_A_PLAYER_LIMIT'],
-    SimpleEnum<T>['BOMB_THROWN_BY_A_LINK_LIMIT'], SimpleEnum<T>['BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT'],
-    SimpleEnum<T>['BOOMERANG_THROWN_BY_A_PLAYER_LIMIT'], SimpleEnum<T>['CANNONBALL_THROWN_BY_A_PLAYER_LIMIT'],
-    SimpleEnum<T>['HATCHED_YOSHI_LIMIT'],
+    SimpleEnum<T>['BOMB_THROWN_BY_A_LINK_LIMIT'], SimpleEnum<T>['BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT'], SimpleEnum<T>['BOOMERANG_THROWN_BY_A_PLAYER_LIMIT'],
+    SimpleEnum<T>['CANNONBALL_THROWN_BY_A_PLAYER_LIMIT'], SimpleEnum<T>['HATCHED_YOSHI_LIMIT'],
 
     SimpleEnum<T>['GENERAL_ENTITY_LIMIT_EDITOR'], SimpleEnum<T>['CHARVAARGH_LIMIT'], SimpleEnum<T>['PIRANHA_CREEPER_LIMIT'],
     SimpleEnum<T>['BOWSER_AND_BOWSER_JR_LIMIT'], SimpleEnum<T>['BOOM_BOOM_AND_POM_POM_LIMIT'], SimpleEnum<T>['KOOPALING_LIMIT'],

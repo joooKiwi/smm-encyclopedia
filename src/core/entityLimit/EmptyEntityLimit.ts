@@ -4,7 +4,6 @@ import type {EntityLimit}                                      from './EntityLim
 import {assert}                 from '../../util/utilitiesMethods';
 import {EmptyName}              from '../../lang/name/EmptyName';
 import {EmptyEntityLimitAmount} from './properties/EmptyEntityLimitAmount';
-import {EmptyEntityLimitLink}   from './properties/EmptyEntityLimitLink';
 
 /**
  * @singleton
@@ -150,14 +149,6 @@ export class EmptyEntityLimit
     public readonly alternativeAmountComment = this.alternativeLimitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public readonly alternativeLinkContainer = EmptyEntityLimitLink.get;
-
-    public readonly alternativeGroupLink = this.alternativeLinkContainer.group;
-    public readonly alternativeEntityLink = this.alternativeLinkContainer.entity;
-
-    //endregion -------------------- Link --------------------
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
@@ -169,14 +160,6 @@ export class EmptyEntityLimit
     public readonly amountComment = this.limitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public readonly linkContainer = EmptyEntityLimitLink.get;
-
-    public readonly groupLink = this.linkContainer.group;
-    public readonly entityLink = this.linkContainer.entity;
-
-    //endregion -------------------- Link --------------------
 
     public toAlternativeNameMap() {
         return this.alternativeNameContainer.toNameMap();
