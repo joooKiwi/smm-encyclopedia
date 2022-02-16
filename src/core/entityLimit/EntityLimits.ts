@@ -473,7 +473,7 @@ export class EntityLimits
 
 }
 
-type PossibleGroupLinkInitialisation = | Entities | readonly [Entities, Entities,] | null;
+type PossibleGroupLinkInitialisation = | object | null;
 type PossibleEntityLinkInitialisation = | Entities | readonly [Entities, Entities,] | null;
 type EnglishNameReceived = | PossibleStartingEnglishName | [englishName: PossibleAcronym, englishAcronym: PossibleStartingEnglishName,] | [englishName: PossibleAcronymInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEnglishNameInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
 type AlternativeEnglishNameReceived = | PossibleAlternativeEnglishName | [alternativeEnglishName: PossibleAlternativeAcronym, alternativeEnglishAcronym: PossibleAlternativeEnglishName,];
