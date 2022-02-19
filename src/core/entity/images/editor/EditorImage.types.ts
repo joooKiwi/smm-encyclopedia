@@ -1,5 +1,7 @@
 import type {PossibleEnglishName} from '../../Entities.types';
 import type {PossibleGameName}    from '../../../theme/Themes.types';
+import {Builder}                  from '../../../../util/builder/Builder';
+import {EditorImage}              from './EditorImage';
 
 interface ImageNameMap {
 
@@ -449,3 +451,5 @@ export type EditorImageName = | readonly []
  */
 export type PossibleAmountOfImages = | 1 | 2 | 3 | 4;
 export type ImageNumber = | 0 | 1 | 2 | 3;
+
+export type PossibleImageReceivedOnFactory = | Builder<EditorImage> | SimpleImageName | null;

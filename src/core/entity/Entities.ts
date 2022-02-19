@@ -1,4 +1,3 @@
-import type {Builder}                                                                                                                                                                                    from '../../util/builder/Builder';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
 import type {ClearConditionImage}                                                                                                                                                                        from './images/clearCondition/ClearConditionImage';
@@ -6,28 +5,27 @@ import type {EditorImage}                                                       
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage';
-import type {SimpleImageName as SimpleImageName_ClearCondition}                                                                                                                                          from './images/clearCondition/ClearConditionImage.types';
-import type {SimpleImageName as SimpleImageName_Editor, SimpleImageName_GroundOrSlope}                                                                                                                   from './images/editor/EditorImage.types';
+import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                                                                                                                              from './images/clearCondition/ClearConditionImage.types';
+import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope}                                                                                                       from './images/editor/EditorImage.types';
+import type {PossibleImageReceivedOnFactory as PossibleInGameImage}                                                                                                                                      from './images/inGame/InGameImage.types';
+import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}                                                                                                                                      from './images/unused/UnusedImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 import type {UnusedImages}                                                                                                                                                                               from './images/unused/UnusedImage';
-import type {UnusedImage_BigMushroom}                                                                                                                                                                    from './images/unused/UnusedImage_BigMushroom';
-import type {UnusedImage_Regular}                                                                                                                                                                        from './images/unused/UnusedImage_Regular';
 
 import {ClearConditionImageBuilder}     from './images/clearCondition/ClearConditionImage.builder';
+import {ClearConditionImageFactory}     from './images/clearCondition/ClearConditionImage.factory';
 import {EditorImageBuilder}             from './images/editor/EditorImage.builder';
-import {EmptyClearConditionImage}       from './images/clearCondition/EmptyClearConditionImage';
-import {EmptyEditorImage}               from './images/editor/EmptyEditorImage';
-import {EmptyInGameImage}               from './images/inGame/EmptyInGameImage';
-import {EmptyUnusedImage_BigMushroom}   from './images/unused/EmptyUnusedImage_BigMushroom';
-import {EmptyUnusedImage_Regular}       from './images/unused/EmptyUnusedImage_Regular';
+import {EditorImageFactory}             from './images/editor/EditorImage.factory';
 import {Enum}                           from '../../util/enum/Enum';
 import {GameStyles}                     from '../gameStyle/GameStyles';
 import {InGameImage_SMM1Builder}        from './images/inGame/InGameImage_SMM1.builder';
+import {InGameImageFactory}             from './images/inGame/InGameImage.factory';
 import {StringContainer}                from '../../util/StringContainer';
 import {Themes}                         from '../theme/Themes';
 import {Times}                          from '../time/Times';
 import {UnusedImage_BigMushroomBuilder} from './images/unused/UnusedImage_BigMushroom.builder';
 import {UnusedImage_RegularBuilder}     from './images/unused/UnusedImage_Regular.builder';
+import {UnusedImageFactory}             from './images/unused/UnusedImage.factory';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
@@ -868,7 +866,7 @@ export class Entities
                 .setNotGameStyle(SMW);
         }
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
                 new UnusedImage_BigMushroomBuilder('Kuribo D',)
@@ -1404,7 +1402,7 @@ export class Entities
     }('Boo',);
     public static readonly STRETCH =                                       new class Entities_Stretch extends Entities {
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             const waitImages = ['out', 1,] as const;
             const outImages = ['wait', 4,] as const;
             return [
@@ -1727,7 +1725,7 @@ export class Entities
     }('Cannon',);
     public static readonly CANNONBALL =                                    new class Entities_Cannonball extends Entities {
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
                 new UnusedImage_BigMushroomBuilder('SenkanHoudai D',)
@@ -1787,7 +1785,7 @@ export class Entities
                 .setNotGameStyle(NSMBU, SM3DW,);
         }
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             const images = [4, 5, 6, 7,] as const;
             return [
                 new UnusedImage_RegularBuilder('KoopaClown',)
@@ -1893,7 +1891,7 @@ export class Entities
                 .setNotSM3DW();
         }
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
                 new UnusedImage_BigMushroomBuilder('Koopa',)
@@ -1930,7 +1928,7 @@ export class Entities
                 .setNotSM3DW();
         }
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
                 new UnusedImage_BigMushroomBuilder('KoopaJr',)
@@ -2389,7 +2387,7 @@ export class Entities
             return 'PSwitch';
         }
 
-        protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+        protected get _createUnusedImage(): PossibleUnusedImage {
             return new UnusedImage_RegularBuilder('PSwitch',)
                 .setImage(SMB, 'wait', [0, 1, 2,],)
                 .setImage(NSMBU, 'down_switch_hatena_Alb', ['000', '004',],);
@@ -2461,7 +2459,6 @@ export class Entities
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, Entity>;
-    static readonly #EMPTY_UNUSED_IMAGE_ARRAY = [EmptyUnusedImage_Regular.get, EmptyUnusedImage_BigMushroom.get,] as const;
 
     #reference?: Entity;
     readonly #englishNameContainer;
@@ -2503,21 +2500,6 @@ export class Entities
     //region -------------------- editor image --------------------
 
     /**
-     * Initialise the editor depending on the {@link _createEditorImage} return value.
-     *
-     * @private
-     * @onlyCalledOnce
-     */
-    private get __initialiseEditorImageBuilder(): Builder<EditorImage> | null {
-        const builder_or_image = this._createEditorImage;
-        if (builder_or_image == null)
-            return null;
-        if (typeof builder_or_image == 'string')
-            return new EditorImageBuilder(builder_or_image).setAllGameStyles();
-        return builder_or_image;
-    }
-
-    /**
      * Get the editor image in a string form or in a builder form.
      *
      * @protected
@@ -2528,30 +2510,11 @@ export class Entities
     }
 
     public get editorImage(): EditorImage {
-        if (this.#editorImage == null) {
-            const builder = this.__initialiseEditorImageBuilder;
-            this.#editorImage = builder == null ? EmptyEditorImage.get : builder.build();
-        }
-        return this.#editorImage;
+        return this.#editorImage ??= EditorImageFactory.create(this._createEditorImage);
     }
 
     //endregion -------------------- editor image --------------------
     //region -------------------- clear condition image --------------------
-
-    /**
-     * Initialise the editor depending on the {@link _createClearConditionImage} return value.
-     *
-     * @private
-     * @onlyCalledOnce
-     */
-    private get __initialiseClearConditionImageBuilder(): Builder<ClearConditionImage> | null {
-        const builder_or_image = this._createClearConditionImage;
-        if (builder_or_image == null)
-            return null;
-        if (typeof builder_or_image == 'string')
-            return new ClearConditionImageBuilder(builder_or_image).setAllGameStyles();
-        return builder_or_image;
-    }
 
     /**
      * Get the clear condition image in a string form or in a builder form.
@@ -2564,28 +2527,11 @@ export class Entities
     }
 
     public get clearConditionImage(): ClearConditionImage {
-        if (this.#clearConditionImage == null) {
-            const builder = this.__initialiseClearConditionImageBuilder;
-            this.#clearConditionImage = builder == null ? EmptyClearConditionImage.get : builder.build();
-        }
-        return this.#clearConditionImage;
+        return this.#clearConditionImage ??= ClearConditionImageFactory.create(this._createClearConditionImage);
     }
 
     //endregion -------------------- clear condition image --------------------
     //region -------------------- while playing image --------------------
-
-    /**
-     * Initialise the editor depending on the {@link _createInGameImage} return value.
-     *
-     * @private
-     * @onlyCalledOnce
-     */
-    private get __initialiseInGameImageBuilder(): | Builder<InGameImage> | null {
-        const builder_or_image = this._createInGameImage;
-        if (builder_or_image == null)
-            return null;
-        return builder_or_image;
-    }
 
     /**
      * Get the "in game" image in a string form or in a builder form.
@@ -2598,30 +2544,11 @@ export class Entities
     }
 
     public get inGameImage(): InGameImage {
-        if (this.#whilePlayingImage == null) {
-            const builder = this.__initialiseInGameImageBuilder;
-            this.#whilePlayingImage = builder == null ? EmptyInGameImage.get : builder.build();
-        }
-        return this.#whilePlayingImage;
+        return this.#whilePlayingImage ??= InGameImageFactory.create(this._createInGameImage);
     }
 
     //endregion -------------------- while playing image --------------------
     //region -------------------- unused image --------------------
-
-    /**
-     * Initialise the editor depending on the {@link _createUnusedImage} return value.
-     *
-     * @private
-     * @onlyCalledOnce
-     */
-    private get __initialiseUnusedImageBuilder(): | readonly[Builder<UnusedImage_Regular>,] | readonly[Builder<UnusedImage_Regular>, Builder<UnusedImage_BigMushroom>,] | readonly[null, Builder<UnusedImage_BigMushroom>,] | null {
-        const builder_or_image = this._createUnusedImage;
-        if (builder_or_image == null)
-            return null;
-        return 'build' in builder_or_image
-            ? [builder_or_image]
-            : builder_or_image;
-    }
 
     /**
      * Get the "unused" image in a string form or in a builder form.
@@ -2629,19 +2556,12 @@ export class Entities
      * @protected
      * @onlyCalledOnce
      */
-    protected get _createUnusedImage(): PossibleUnusedUnusedImage {
+    protected get _createUnusedImage(): PossibleUnusedImage {
         return null;
     }
 
     public get unusedImages(): UnusedImages {
-        if (this.#unusedImages == null) {
-            const builder_or_null = this.__initialiseUnusedImageBuilder;
-            this.#unusedImages = builder_or_null == null
-                ? Entities.#EMPTY_UNUSED_IMAGE_ARRAY
-                : [builder_or_null[0]?.build() ?? EmptyUnusedImage_Regular.get,
-                    builder_or_null[1]?.build() ?? EmptyUnusedImage_BigMushroom.get,];
-        }
-        return this.#unusedImages;
+        return this.#unusedImages ??= UnusedImageFactory.create(this._createUnusedImage);
     }
 
     //endregion -------------------- unused image --------------------
@@ -2707,10 +2627,6 @@ export class Entities
 
 }
 
-type PossibleEditorImage = | Builder<EditorImage> | SimpleImageName_Editor | null;
-type PossibleClearConditionImage = | Builder<ClearConditionImage> | SimpleImageName_ClearCondition | null;
-type PossibleInGameImage = | Builder<InGameImage> | null;
-type PossibleUnusedUnusedImage = | Builder<UnusedImage_Regular> | [Builder<UnusedImage_Regular>, Builder<UnusedImage_BigMushroom>,] | [null, Builder<UnusedImage_BigMushroom>,] | null;
-
+//TODO remove this test variable when the entities will be complete
 // @ts-ignore
-window.test = Entities;
+(window.test ??= {}).Entities = Entities;
