@@ -147,9 +147,12 @@ interface ImageNameMap {
     'Goombrat': ['Kuribo', Name<'Kuribo', 1>,]
     'Goombud': ImageNameMap['Goombrat']
 
-    'Koopa Troopa': ['Nokonoko', Name_0<'Nokonoko'>,]
-    'Beach Koopa': NoImages
-    'Koopa Shell': ['NokonokoShell', Name_0<'NokonokoShell'>,]
+    'Green Koopa Troopa': ['Nokonoko', Name_0<'Nokonoko'>,]
+    'Red Koopa Troopa': NoImages
+    'Green Beach Koopa': NoImages
+    'Red Beach Koopa': NoImages
+    'Green Koopa Shell': ['NokonokoShell', Name_0<'NokonokoShell'>,]
+    'Red Koopa Shell': NoImages
 
     'Dry Bones': ['Karon', Name<'Karon', 0>,]
     'Parabones': NoImages

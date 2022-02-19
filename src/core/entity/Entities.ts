@@ -920,11 +920,10 @@ export class Entities
 
     }('Goombud',);
 
-    public static readonly KOOPA_TROOPA =                                  new class Entities_KoopaTroopa extends Entities {
+    public static readonly GREEN_KOOPA_TROOPA =                            new class Entities_GreenKoopaTroopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Nokonoko',)
-                .setAmount(2)
+            return new EditorImageBuilder('Nokonoko',1,)
                 .setAllGameStyles();
         }
 
@@ -932,16 +931,26 @@ export class Entities
             return 'Nokonoko';
         }
 
-    }('Koopa Troopa',);
-    public static readonly BEACH_KOOPA =                                   new Entities('Beach Koopa',);
-    public static readonly KOOPA_SHELL =                                   new class Entities_KoopaShell extends Entities {
+    }('Green Koopa Troopa',);
+    public static readonly RED_KOOPA_TROOPA =                              new class Entities_RedKoopaTroopa extends Entities {
+
+        protected get _createEditorImage(): PossibleEditorImage {
+            return new EditorImageBuilder('Nokonoko',2,)
+                .setAllGameStyles();
+        }
+
+    }('Red Koopa Troopa',);
+    public static readonly GREEN_BEACH_KOOPA =                             new Entities('Green Beach Koopa',);
+    public static readonly RED_BEACH_KOOPA =                               new Entities('Red Beach Koopa',);
+    public static readonly GREEN_KOOPA_SHELL =                             new class Entities_GreenKoopaShell extends Entities {
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('NokonokoShell',)
                 .setNotGameStyle(SMB);
         }
 
-    }('Koopa Shell',);
+    }('Green Koopa Shell',);
+    public static readonly RED_KOOPA_SHELL =                               new Entities('Red Koopa Shell',);
 
     public static readonly DRY_BONES =                                     new class Entities_DryBones extends Entities {
 

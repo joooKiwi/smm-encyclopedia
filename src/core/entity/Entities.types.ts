@@ -68,7 +68,9 @@ enum Enum {
     //region -------------------- General enemies --------------------
 
     GOOMBA, GALOOMBA, GOOMBRAT, GOOMBUD,
-    KOOPA_TROOPA, BEACH_KOOPA, KOOPA_SHELL,
+    GREEN_KOOPA_TROOPA, RED_KOOPA_TROOPA,
+    GREEN_BEACH_KOOPA, RED_BEACH_KOOPA,
+    GREEN_KOOPA_SHELL, RED_KOOPA_SHELL,
     DRY_BONES, PARABONES, BONE_THROWN_BY_A_DRY_BONES, DRY_BONES_SHELL,
     BUZZY_BEETLE, PARA_BEETLE, BUZZY_SHELL,
     SPINY, WINGED_SPINY, WINGED_SPINY_PROJECTILE, SPINY_EGG, SPINY_SHELL,
@@ -210,7 +212,7 @@ export type PossibleEnglishName =
     | `${|'Fire'} thrown by a Red Yoshi`
 
     | 'Goomba' | 'Galoomba' | 'Goombrat' | 'Goombud'
-    | 'Koopa Troopa' | 'Beach Koopa' | 'Koopa Shell'
+    | `${| 'Green' | 'Red'} ${| 'Koopa Troopa' | 'Beach Koopa' | 'Koopa Shell'}`
     | 'Dry Bones' | 'Parabones' | 'Bone thrown by a Dry Bones' | 'Dry Bones Shell'
     | 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
     | 'Spiny' | 'Winged Spiny' | '(Winged Spiny\'s projectile)' | `Spiny ${| 'Egg' | 'Shell'}`
@@ -350,7 +352,9 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'RED_YOSHI_EGG', E>, EnumByName<'RED_YOSHI', E>, EnumByName<'FIRE_THROWN_BY_A_RED_YOSHI', E>,
 
     EnumByName<'GOOMBA', E>, EnumByName<'GALOOMBA', E>, EnumByName<'GOOMBRAT', E>, EnumByName<'GOOMBUD', E>,
-    EnumByName<'KOOPA_TROOPA', E>, EnumByName<'BEACH_KOOPA', E>, EnumByName<'KOOPA_SHELL', E>,
+    EnumByName<'GREEN_KOOPA_TROOPA', E>, EnumByName<'RED_KOOPA_TROOPA', E>,
+    EnumByName<'GREEN_BEACH_KOOPA', E>, EnumByName<'RED_BEACH_KOOPA', E>,
+    EnumByName<'GREEN_KOOPA_SHELL', E>, EnumByName<'RED_KOOPA_SHELL', E>,
     EnumByName<'DRY_BONES', E>, EnumByName<'PARABONES', E>, EnumByName<'BONE_THROWN_BY_A_DRY_BONES', E>, EnumByName<'DRY_BONES_SHELL', E>,
     EnumByName<'BUZZY_BEETLE', E>, EnumByName<'PARA_BEETLE', E>, EnumByName<'BUZZY_SHELL', E>,
     EnumByName<'SPINY', E>, EnumByName<'WINGED_SPINY', E>, EnumByName<'WINGED_SPINY_PROJECTILE', E>, EnumByName<'SPINY_EGG', E>, EnumByName<'SPINY_SHELL', E>,
