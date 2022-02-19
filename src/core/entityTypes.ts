@@ -33,7 +33,7 @@ export type PossibleGroupName = string;
 
 /** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | '?' | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground';
 
-/** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle' | 'Only when the player press the run button';
+/** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle';
 /** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed';
 
 /** @temporaryLocation */export type CanBeAffectedByATwister = | boolean | 'When falling' | 'Parachute' | null;

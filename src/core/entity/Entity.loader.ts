@@ -422,7 +422,7 @@ export class EntityLoader
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
                 .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Castle', 'Castle / Night Forest', 'Float', 'Melt to Coin', 'Only inside the ground',], 'canSurviveInTheLavaOrThePoison',)
 
-                .convertToBooleanAnd(['NSMBU', 'Castle', 'Only when the player press the run button',], 'canIgniteABobOmb',)
+                .convertToBooleanAnd(['NSMBU', 'Castle',], 'canIgniteABobOmb',)
                 .convertToBooleanAnd(['Koopa Troopa', 'Unchained Chomp', 'Standing on top of block that get destroyed',], 'canBeBrokenOrKilledByABobOmb',)
 
                 .convertToNullableBooleanAnd(['When falling', 'Parachute',], 'canBeAffectedByATwister',)
