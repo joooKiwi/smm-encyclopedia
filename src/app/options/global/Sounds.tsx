@@ -3,11 +3,11 @@ import {lazy} from 'react';
 import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Sounds.types';
 import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperty';
-import type {SimpleSoundProperties} from '../../tools/sounds/properties/SimpleSoundProperties';
+import type {SimpleSoundProperties}                                                                                                                                                 from '../../tools/sounds/properties/SimpleSoundProperties';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 
-import {EMPTY_REACT_ELEMENT}   from '../../../util/emptyReactVariables';
-import {Enum}                  from '../../../util/enum/Enum';
+import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables';
+import {Enum}                from '../../../util/enum/Enum';
 
 //region -------------------- dynamic imports --------------------
 
@@ -65,7 +65,7 @@ export abstract class Sounds
 
     //region -------------------- Getter methods --------------------
 
-    public get value() {
+    public get value(): boolean {
         return this.#value;
     }
 
