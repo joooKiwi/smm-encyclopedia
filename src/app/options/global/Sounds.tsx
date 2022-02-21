@@ -16,11 +16,11 @@ const SimpleSound = lazy(() => import('../../tools/sounds/SimpleSound'));
 //endregion -------------------- dynamic imports --------------------
 
 /**
- * The possible image as either
+ * The possible sound as either
  *
  * <ul>
  *  <li>Yes → Display the sound viewer</li>
- *  <li>No → Display no sound viewer </li>
+ *  <li>No → Display no sound viewer</li>
  * </ul>
  *
  * @see SimpleSound
@@ -31,14 +31,14 @@ export abstract class Sounds
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly YES = new class Images_Yes extends Sounds {
+    public static readonly YES = new class Sounds_Yes extends Sounds {
 
         public renderComponent(properties: SimpleSoundProperties,): ReactElement {
             return <SimpleSound {...properties}/>;
         }
 
     }(true,);
-    public static readonly NO =  new class Images_No extends Sounds {
+    public static readonly NO =  new class Sounds_No extends Sounds {
 
         public renderComponent(): ReactElement {
             return EMPTY_REACT_ELEMENT;
