@@ -141,6 +141,7 @@ enum Enum {
     VINE, TREE,
     ARROW_SIGN,
     CHECKPOINT_FLAG,
+    GOAL_POLE, GOAL_WITH_CARDS, GIANT_GATE,
     DASH_BLOCK,
     SNAKE_BLOCK, FAST_SNAKE_BLOCK,
     CONVEYOR_BELT, FAST_CONVEYOR_BELT,
@@ -187,6 +188,7 @@ export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spin
 export type PossibleEnglishName_SpikeTop = `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`;
 export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`;
 export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai';
+export type PossibleEnglishName_Goals = | 'Goal Pole' | '(Goal (With Cards))' | 'Giant Gate';
 export type PossibleEnglishName =
     | `${| '' | `${| 'Start' | 'Goal'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
     | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
@@ -280,7 +282,7 @@ export type PossibleEnglishName =
     | `Track${| '' | ' Block'}`
     | 'Vine' | 'Tree'
     | 'Arrow Sign'
-    | 'Checkpoint Flag'
+    | 'Checkpoint Flag' | PossibleEnglishName_Goals
     | 'Dash Block'
     | `${| '' | 'Fast '}Snake Block`
     | `${| '' | 'Fast '}Conveyor Belt`
@@ -430,6 +432,7 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'VINE', E>, EnumByName<'TREE', E>,
     EnumByName<'ARROW_SIGN', E>,
     EnumByName<'CHECKPOINT_FLAG', E>,
+    EnumByName<'GOAL_POLE', E>, EnumByName<'GOAL_WITH_CARDS', E>, EnumByName<'GIANT_GATE', E>,
     EnumByName<'DASH_BLOCK', E>,
     EnumByName<'SNAKE_BLOCK', E>, EnumByName<'FAST_SNAKE_BLOCK', E>,
     EnumByName<'CONVEYOR_BELT', E>, EnumByName<'FAST_CONVEYOR_BELT', E>,

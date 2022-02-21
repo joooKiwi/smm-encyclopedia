@@ -358,6 +358,9 @@ interface ImageNameMap {
     'Arrow Sign': NoImages
 
     'Checkpoint Flag': NoImages
+    'Goal Pole': NoImages
+    '(Goal (With Cards))': NoImages
+    'Giant Gate': NoImages
 
     'Dash Block': NoImages
 

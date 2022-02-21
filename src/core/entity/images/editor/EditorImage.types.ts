@@ -1,7 +1,7 @@
+import type {Builder}             from '../../../../util/builder/Builder';
+import type {EditorImage}         from './EditorImage';
 import type {PossibleEnglishName} from '../../Entities.types';
 import type {PossibleGameName}    from '../../../theme/Themes.types';
-import {Builder}                  from '../../../../util/builder/Builder';
-import {EditorImage}              from './EditorImage';
 
 interface ImageNameMap {
 
@@ -360,6 +360,9 @@ interface ImageNameMap {
     'Arrow Sign': ImageThatHasOnly1Reference<'Yajirushi'>
 
     'Checkpoint Flag': ImageThatHasOnly1Reference<'MiddleFlag'>
+    'Goal Pole': NoImages
+    '(Goal (With Cards))': NoImages
+    'Giant Gate': NoImages
 
     'Dash Block': ImageThatHasOnly1Reference<'DashBlock'>
 

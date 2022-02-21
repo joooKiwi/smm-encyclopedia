@@ -2180,6 +2180,9 @@ export class Entities
         }
 
     }('Checkpoint Flag',);
+    public static readonly GOAL_POLE =                                     new Entities('Goal Pole',);
+    public static readonly GOAL_WITH_CARDS =                               new Entities('(Goal (With Cards))',);
+    public static readonly GIANT_GATE =                                    new Entities('Giant Gate',);
 
     public static readonly DASH_BLOCK =                                    new class Entities_DashBlock extends Entities {
 
