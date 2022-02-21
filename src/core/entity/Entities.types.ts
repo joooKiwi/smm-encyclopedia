@@ -173,15 +173,29 @@ export type Names = keyof typeof Enum;
 
 //region -------------------- English name --------------------
 
+export type PossibleEnglishName_BigMushroom = `Big Mushroom${| '' | ` (${'classic' | 'modern'})`}`;
+export type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto';
+export type PossibleEnglishName_Yoshi = `${| '' | 'Red '}Yoshi`;
+export type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`;
+export type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`;
+export type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`;
+export type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`;
+export type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`;
+export type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones';
+export type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell';
+export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`;
+export type PossibleEnglishName_SpikeTop = `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`;
+export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`;
+export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai';
 export type PossibleEnglishName =
     | `${| '' | `${| 'Start' | 'Goal'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
     | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
     | `Spike ${| 'Trap' | 'Block'}` | 'Jelectro' | 'Sea Urchin'
     | `${| 'Mushroom' | 'Semisolid'} Platform` | 'Bridge'
 
-    | `${| 'Brick' | 'Cristal' | 'Rotating'
-         | 'Hard' | 'Rock'
-         | '?' | 'Hidden' | 'Empty' | '!'
+    | PossibleEnglishName_Block
+    | PossibleEnglishName_HardBlock
+    | `${| '?' | 'Hidden' | 'Empty' | '!'
          | 'Note' | 'Music'
          | 'Donut'
          | 'Cloud'
@@ -195,7 +209,7 @@ export type PossibleEnglishName =
     | `${| 'Super' | 'Mystery' | 'Weird' | 'SMB2'} Mushroom`
     | `${| 'Fire' | 'Superball'} Flower`
     | 'Master Sword'
-    | `Big Mushroom${| '' | ` (${'classic' | 'modern'})`}`
+    | PossibleEnglishName_BigMushroom
     | 'Super Leaf' | 'Frog Suit'
     | 'Cape Feather' | 'Power Balloon'
     | 'Propeller Mushroom' | 'Super Acorn'
@@ -206,17 +220,17 @@ export type PossibleEnglishName =
     | 'Super Star'
     | `${| '1-Up' | 'Rotten'} Mushroom`
 
-    | `${| 'Shoe' | 'Stiletto'}${| '' | ' Goomba'}`
-    | `${| '' | 'Red '}Yoshi${| '' | '\'s Egg'}`
+    | `${PossibleEnglishName_Shoe}${| '' | ' Goomba'}`
+    | PossibleEnglishName_Yoshi | `${| '' | 'Red '}Yoshi's Egg`
     | `${| 'Fire' | 'Poison' | 'Bone' | 'Hammer'} thrown by a Yoshi`
     | `${|'Fire'} thrown by a Red Yoshi`
 
     | 'Goomba' | 'Galoomba' | 'Goombrat' | 'Goombud'
-    | `${| 'Green' | 'Red'} ${| 'Koopa Troopa' | 'Beach Koopa' | 'Koopa Shell'}`
-    | 'Dry Bones' | 'Parabones' | 'Bone thrown by a Dry Bones' | 'Dry Bones Shell'
-    | 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
-    | 'Spiny' | 'Winged Spiny' | '(Winged Spiny\'s projectile)' | `Spiny ${| 'Egg' | 'Shell'}`
-    | `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`
+    | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
+    | PossibleEnglishName_DryBones | 'Bone thrown by a Dry Bones' | 'Dry Bones Shell'
+    | PossibleEnglishName_BuzzyBeetleAndShell
+    | PossibleEnglishName_SpinyAndShell | '(Winged Spiny\'s projectile)'
+    | PossibleEnglishName_SpikeTop
     | `${| '' | 'Spiny '}Skipsqueak`
     | `${| '' | 'Horned '}Ant Trooper`
     | 'Stingby'
@@ -242,8 +256,8 @@ export type PossibleEnglishName =
     | 'Charvaargh'
     | 'Bully'
 
-    | `${| 'Bill' | 'Bull\'s-Eye'} Blaster` | `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`
-    | `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai'
+    | `${| 'Bill' | 'Bull\'s-Eye'} Blaster` | PossibleEnglishName_BulletBill
+    | PossibleEnglishName_BanzaiBill
     | `${| '' | 'Red '}${|`Cannon${| '' | 'ball'}`}`
     | 'Burner'
     | 'Fire Bar'

@@ -92,10 +92,13 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'icicle'
     | 'pinkcoin' | `${| 'Frozen' | `${| 10 | 30 | 50}-`}Coin`
 
+    | ItemWithPlayer_NotMario<'Super'>
+    | ItemWithPlayer_NotMario<'Fire'>
     | ItemWithPlayer<'Superball', 'Flower'>
     | 'MasterSword' | 'Link'
     | ItemWithPlayer_NotMario<'Big', 'Mushroom'>
     | ItemWithPlayer<'SMB2', 'Mushroom'>
+    | ItemWithPlayer_NotMario<'Raccoon'>
     | ItemWithPlayer<'Frog', 'Suit'>
     | ItemWithPlayer_NotMario<'Cape'>
     | 'PowerBalloon' | ItemWithPlayer<'Balloon'>
@@ -103,7 +106,7 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'SuperAcorn' | ItemWithPlayer<'FlyingSquirrel'>
     | 'SuperBell' | ItemWithPlayer<'Cat'>
     | 'SuperHammer' | ItemWithPlayer<'Builder'>
-    | ItemWithPlayer<'Boomerang', 'FLower'>
+    | ItemWithPlayer<'Boomerang', 'Flower'>
     | `${| 'Cannon' | 'Propeller' | 'RedPOW'}Box` | `${| 'Goomba' | 'BulletBill'}Mask`
     | 'RottenMushroom'
     | 'BigRedYoshisEgg'

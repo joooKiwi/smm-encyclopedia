@@ -9,17 +9,21 @@ import SimpleSound           from '../../app/tools/sounds/SimpleSound';
 interface EditorVoiceSoundComponentProperties
     extends ReactProperty {
 
-    editorVoiceSound: EditorVoiceSound
+    editorVoiceSound: | EditorVoiceSound | null | undefined
 
     name: string
 
 }
 
+const EMPTY_EDITOR_VOICE_SOUND: EditorVoiceSound<null, null> = {fileName: null, europeanFileName: null,};
+
 /**
  * @param properties
  * @reactComponent
  */
-export default function EditorVoiceSoundComponent({editorVoiceSound: {fileName, europeanFileName,}, name,}: EditorVoiceSoundComponentProperties,) {
+export default function EditorVoiceSoundComponent({editorVoiceSound, name,}: EditorVoiceSoundComponentProperties,) {
+    const {fileName, europeanFileName,} = editorVoiceSound ?? EMPTY_EDITOR_VOICE_SOUND;
+
     return fileName == null
         ? EMPTY_REACT_ELEMENT
         : europeanFileName == null
