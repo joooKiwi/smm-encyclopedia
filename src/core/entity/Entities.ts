@@ -71,7 +71,7 @@ export class Entities
             return new EditorVoiceSoundHolderWithVoiceBefore('goalground',);
         }
 
-    }('Ending Ground',);
+    }('Goal Ground',);
     public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
