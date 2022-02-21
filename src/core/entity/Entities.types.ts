@@ -156,7 +156,7 @@ enum Enum {
     STONE,
     WARP_DOOR, P_WARP_DOOR, KEY_DOOR,
     WARP_BOX, WARP_BOX_WITH_KEY,
-    BUBBLE,
+    WING, PARACHUTE, BUBBLE,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -282,7 +282,7 @@ export type PossibleEnglishName =
     | 'Stone'
     | `${| `${| '' | 'P '}Warp` | 'Key'} Door`
     | `Warp Box${| '' | ' (With Key)'}`
-    | 'Bubble'
+    | 'Wing' | 'Parachute' | 'Bubble'
     ;
 
 //endregion -------------------- English name --------------------
@@ -431,7 +431,7 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'STONE', E>,
     EnumByName<'WARP_DOOR', E>, EnumByName<'P_WARP_DOOR', E>, EnumByName<'KEY_DOOR', E>,
     EnumByName<'WARP_BOX', E>, EnumByName<'WARP_BOX_WITH_KEY', E>,
-    EnumByName<'BUBBLE', E>,
+    EnumByName<'WING', E>, EnumByName<'PARACHUTE', E>, EnumByName<'BUBBLE', E>,
 ];
 
 //endregion -------------------- Array types --------------------

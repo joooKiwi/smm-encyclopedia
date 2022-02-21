@@ -404,6 +404,8 @@ interface ImageNameMap {
     'Warp Box': ['WarpBox', Name<'WarpBox', 0>,]
     'Warp Box (With Key)': ['WarpBox', Name<'WarpBox', 1>,]
 
+    'Wing': ['Wing', Name_0<'Wing'>,]
+    'Parachute': ['parachute', Name_0<'parachute'>,]
     'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------

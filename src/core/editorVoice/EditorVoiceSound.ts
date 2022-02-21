@@ -75,7 +75,8 @@ export type PossibleStartingName_WithVoiceBefore =
     | 'trampline'
     | 'powblock'
     | 'pswitch'
-    | `${| `${| '' | 'p'}warp` | 'key'}door`;
+    | `${| `${| '' | 'p'}warp` | 'key'}door`
+    | 'wings';
 
 //endregion -------------------- Starting name (voice before) --------------------
 //region -------------------- Starting name (singing part before) --------------------

@@ -3275,6 +3275,24 @@ export class Entities
 
     }('Warp Box (With Key)',);
 
+    public static readonly WING =                                          new class Entities_Wing extends Entities {
+
+        protected get _createEditorImage(): PossibleEditorImage {
+            return 'Wing';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('wings',);
+        }
+
+    }('Wing',);
+    public static readonly PARACHUTE =                                     new class Entities_Parachute extends Entities {
+
+        protected get _createEditorImage(): PossibleEditorImage {
+            return 'parachute';
+        }
+
+    }('Parachute',);
     public static readonly BUBBLE =                                        new Entities('Bubble',);
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------

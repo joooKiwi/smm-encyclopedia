@@ -402,6 +402,8 @@ interface ImageNameMap {
     'Warp Box': NoImages
     'Warp Box (With Key)': NoImages
 
+    'Wing': NoImages,
+    'Parachute': NoImages,
     'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
