@@ -1,8 +1,8 @@
-import type {AppOptionStatic}                                                                                                                                                       from '../AppOption';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GlobalAppOption.types';
-import type {GlobalAppState}                                                                                                                                                        from '../../AppStates.types';
-import type {ReactComponentWithState}                                                                                                                                               from '../../../util/react/ReactComponent';
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
+import type {AppOptionStatic}                                                                                                                                                                               from '../AppOption';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAppOptionValue, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GlobalAppOption.types';
+import type {GlobalAppState}                                                                                                                                                                                from '../../AppStates.types';
+import type {ReactComponentWithState}                                                                                                                                                                       from '../../../util/react/ReactComponent';
+import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types';
 
 import {AbstractAppOption} from '../AbstractAppOption';
 import {Enum}              from '../../../util/enum/Enum';
@@ -10,8 +10,9 @@ import {ImageAnimations}   from './ImageAnimations';
 import {Images}            from './Images';
 import {GlobalThemeOption} from './GlobalThemeOption';
 import {Sounds}            from './Sounds';
+import {Texts}             from './Texts';
 
-export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sounds | boolean | GlobalThemeOption = | ImageAnimations | Images | Sounds | boolean | GlobalThemeOption, >
+export abstract class GlobalAppOption<T extends PossibleAppOptionValue = PossibleAppOptionValue, >
     extends AbstractAppOption<T, GlobalAppState, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
@@ -49,6 +50,17 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
         }
 
     }(Sounds.YES,);
+    public static readonly TEXTS =           new class GlobalAppOption_Sounds extends GlobalAppOption<Texts> {
+
+        protected _get(state: GlobalAppState,): Texts {
+            return state.texts;
+        }
+
+        protected _set(nextState: GlobalAppState, value: Texts,): void {
+            nextState.texts = value;
+        }
+
+    }(Texts.YES,);
 
     public static readonly SMM1 =             new class GlobalAppOption_SMM1 extends GlobalAppOption<boolean> {
 
@@ -294,6 +306,7 @@ export abstract class GlobalAppOption<T extends | ImageAnimations | Images | Sou
             images: this.IMAGES._lastValueRetrieved,
             imageAnimations:this.IMAGE_ANIMATIONS._lastValueRetrieved,
             sounds: this.SOUNDS._lastValueRetrieved,
+            texts: this.TEXTS._lastValueRetrieved,
             game: {
                 1: this.SMM1._lastValueRetrieved,
                 2: this.SMM2._lastValueRetrieved,

@@ -2,27 +2,28 @@ import './GlobalOption.scss';
 
 import {Component} from 'react';
 
-import type {GlobalAppState} from '../../AppStates.types';
-import type {ReactProperty}  from '../../../util/react/ReactProperty';
+import type {GlobalAppState}    from '../../AppStates.types';
+import type {GlobalThemeOption} from './GlobalThemeOption';
+import type {ReactProperty}     from '../../../util/react/ReactProperty';
 
-import GameGroup           from './group/GameGroup';
-import {Games}             from '../../../core/game/Games';
-import GameStyleGroup      from './group/GameStyleGroup';
-import {GameStyles}        from '../../../core/gameStyle/GameStyles';
-import {GlobalAppOption}   from './GlobalAppOption';
-import {ImageAnimations}   from './ImageAnimations';
-import {Images}            from './Images';
-import {Sounds}            from './Sounds';
-import ThemeGroup          from './group/ThemeGroup';
-import {Themes}            from '../../../core/theme/Themes';
-import TimeGroup           from './group/TimeGroup';
-import {Times}             from '../../../core/time/Times';
-import {GlobalThemeOption} from './GlobalThemeOption';
+import GameGroup         from './group/GameGroup';
+import {Games}           from '../../../core/game/Games';
+import GameStyleGroup    from './group/GameStyleGroup';
+import {GameStyles}      from '../../../core/gameStyle/GameStyles';
+import {GlobalAppOption} from './GlobalAppOption';
+import {ImageAnimations} from './ImageAnimations';
+import {Images}          from './Images';
+import {Sounds}          from './Sounds';
+import {Texts}           from './Texts';
+import ThemeGroup        from './group/ThemeGroup';
+import {Themes}          from '../../../core/theme/Themes';
+import TimeGroup         from './group/TimeGroup';
+import {Times}           from '../../../core/time/Times';
 
 export interface GlobalOptionProperties
     extends ReactProperty {
 
-    id: string;
+    id: string
 
 }
 
@@ -38,23 +39,26 @@ export default class GlobalOptionComponent
     public render() {
         //TODO move the groups into multiple different sub components.
         const imageAnimations = GlobalAppOption.IMAGE_ANIMATIONS, imageAnimationsValue = imageAnimations.get.value;
+        const texts = GlobalAppOption.TEXTS, textsValue = texts.get.value;
         const images = GlobalAppOption.IMAGES, imagesValue = images.get.value;
-        const sounds = GlobalAppOption.SOUNDS, soundsValue = sounds.get.value;
-        const smm1 = GlobalAppOption.SMM1, smm1Value = smm1.get;
-        const smm2 = GlobalAppOption.SMM2, smm2Value = smm1.get;
+        const sounds = GlobalAppOption.SOUNDS, soundsValue =  sounds.get.value;
+        const smm1 = GlobalAppOption.SMM1, smm1Value =  smm1.get;
+        const smm2 = GlobalAppOption.SMM2, smm2Value =  smm1.get;
         const isSmm1Exclusive = smm1Value && !smm2Value;
 
         const everyThemeOptions = Themes.values.map(({name,}) => GlobalAppOption.getValue(name)) as GlobalAppOption<GlobalThemeOption>[];
 
         return <div id={this.props.id} className="container-fluid">
-            <div key="option container (images & sounds)" id="imagesAndSounds-option-container" className="container-fluid">
+            <div key="option container (texts, images & sounds)" id="textsAndImagesAndSounds-option-container" className="container-fluid">
+                <button key="option container (texts)" id="texts-option-container" className={`btn btn${!textsValue ? '-outline' : ''}-secondary col-3 bi-type`}
+                        type="button" onClick={() => texts.set(Texts.getValue(!textsValue))}/>
                 <div key="option container (image animations)" id="imageAnimations-option-container" className="btn-group col" role="group">
-                    <button key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary`}
-                            type="button" disabled={!imagesValue} onClick={() => imageAnimations.set(ImageAnimations.YES)}>
-                        {/*TODO mario image*/}
-                    </button>
-                    <button key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image`}
+                    <button key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary`}
                             type="button" disabled={!imagesValue} onClick={() => imageAnimations.set(ImageAnimations.NO)}>
+                        {/*TODO no mario image*/}
+                    </button>
+                    <button key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image`}
+                            type="button" disabled={!imagesValue} onClick={() => imageAnimations.set(ImageAnimations.YES)}>
                         {/*TODO mario moving image*/}
                     </button>
                     <button key="option container (image animations - separated)" className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary`}
@@ -62,9 +66,9 @@ export default class GlobalOptionComponent
                         {/*TODO multiple mario image*/}
                     </button>
                 </div>
-                <button key="option container (images)" id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-3 bi-image-fill`}
+                <button key="option container (images)" id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-2 bi-image-fill`}
                         type="button" onClick={() => images.set(Images.getValue(!imagesValue))}/>
-                <button key="option container (sounds)" id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-3 bi-music-note-beamed`}
+                <button key="option container (sounds)" id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-2 bi-music-note-beamed`}
                         type="button" onClick={() => sounds.set(Sounds.getValue(!soundsValue))}/>
             </div>
             <div className="option-separator"/>

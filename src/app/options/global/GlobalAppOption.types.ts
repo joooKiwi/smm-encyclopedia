@@ -1,10 +1,16 @@
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
 import type {GlobalAppOption as RealEnum}                                                                                                                                                                                                                  from './GlobalAppOption';
+import type {GlobalThemeOption}                                                                                                                                                                                                                            from './GlobalThemeOption';
+import type {ImageAnimations}                                                                                                                                                                                                                              from './ImageAnimations';
+import type {Images}                                                                                                                                                                                                                                       from './Images';
+import type {Sounds}                                                                                                                                                                                                                                       from './Sounds';
+import type {Texts}                                                                                                                                                                                                                                        from './Texts';
 
 export type PossibleNonNullableValue = | Ordinals
                                        | PossibleStringValue;
 export type PossibleStringValue = | Names;
 export type PossibleValue = | PossibleNonNullableValue | string | number | null | undefined;
+export type PossibleAppOptionValue = | ImageAnimations | Images | Sounds | Texts | boolean | GlobalThemeOption;
 
 enum Enum {
 
