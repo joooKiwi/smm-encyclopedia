@@ -10,7 +10,7 @@ enum Enum {
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
-    GROUND, STARTING_GROUND, ENDING_GROUND,
+    GROUND, START_GROUND, GOAL_GROUND,
     STEEP_SLOPE, GENTLE_SLOPE,
     WATER, LAVA, POISON,
     PIPE, CLEAR_PIPE,
@@ -174,7 +174,7 @@ export type Names = keyof typeof Enum;
 //region -------------------- English name --------------------
 
 export type PossibleEnglishName =
-    | `${| '' | `${| 'Starting' | 'Ending'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
+    | `${| '' | `${| 'Start' | 'Goal'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
     | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
     | `Spike ${| 'Trap' | 'Block'}` | 'Jelectro' | 'Sea Urchin'
     | `${| 'Mushroom' | 'Semisolid'} Platform` | 'Bridge'
@@ -303,7 +303,7 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
-    EnumByName<'GROUND', E>, EnumByName<'STARTING_GROUND', E>, EnumByName<'ENDING_GROUND', E>,
+    EnumByName<'GROUND', E>, EnumByName<'START_GROUND', E>, EnumByName<'GOAL_GROUND', E>,
     EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
     EnumByName<'WATER', E>, EnumByName<'LAVA', E>, EnumByName<'POISON', E>,
     EnumByName<'PIPE', E>, EnumByName<'CLEAR_PIPE', E>,

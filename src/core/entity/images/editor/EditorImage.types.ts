@@ -8,8 +8,8 @@ interface ImageNameMap {
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
     'Ground': ImageThatIsAGround<'Ground'>
-    'Starting Ground': NoImages
-    'Ending Ground': NoImages
+    'Start Ground': NoImages
+    'Goal Ground': NoImages
     'Steep Slope': ImageThatIsAGround<'slope_l30'>
     'Gentle Slope': ImageThatIsAGround<'slope_l45'>
     'Water': NoImages

@@ -58,14 +58,14 @@ export class Entities
         }
 
     }('Ground',);
-    public static readonly STARTING_GROUND =                               new class Entities_StartingGround extends Entities {
+    public static readonly START_GROUND =                                  new class Entities_StartingGround extends Entities {
 
         protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
             return new EditorVoiceSoundHolderWithVoiceBefore('startground',);
         }
 
-    }('Starting Ground',);
-    public static readonly ENDING_GROUND =                                 new class Entities_GoalGround extends Entities {
+    }('Start Ground',);
+    public static readonly GOAL_GROUND =                                   new class Entities_GoalGround extends Entities {
 
         protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
             return new EditorVoiceSoundHolderWithVoiceBefore('goalground',);
