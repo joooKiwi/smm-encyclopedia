@@ -32,13 +32,14 @@ import {Times}                         from '../../core/time/Times';
 
 //region -------------------- dynamic imports --------------------
 
-const CourseThemeComponent = lazy(() => import('../../core/theme/CourseTheme.component'));
-const GameComponent =        lazy(() => import('../../core/game/Game.component'));
-const GameStyleComponent =   lazy(() => import('../../core/gameStyle/GameStyle.component'));
-const Image =                lazy(() => import('../tools/images/Image'));
-const LimitComponent =       lazy(() => import('../../core/entityLimit/Limit.component'));
-const NameComponent =        lazy(() => import('../../lang/name/component/Name.component'));
-const TimeComponent =        lazy(() => import('../../core/time/Time.component'));
+const CourseThemeComponent =      lazy(() => import('../../core/theme/CourseTheme.component'));
+const EditorVoiceSoundComponent = lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'));
+const GameComponent =             lazy(() => import('../../core/game/Game.component'));
+const GameStyleComponent =        lazy(() => import('../../core/gameStyle/GameStyle.component'));
+const Image =                     lazy(() => import('../tools/images/Image'));
+const LimitComponent =            lazy(() => import('../../core/entityLimit/Limit.component'));
+const NameComponent =             lazy(() => import('../../lang/name/component/Name.component'));
+const TimeComponent =             lazy(() => import('../../core/time/Time.component'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -167,9 +168,13 @@ export abstract class EntityAppOption
 
         protected get _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const entity = enumeration.reference;
 
-                return <NameComponent id="name" name={entity} popoverOrientation="right"/>;
+                return <div className="nameAndEditorVoiceSound-container container">
+                    <NameComponent id="name" name={entity} popoverOrientation="right"/>
+                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishNameInHtml}/>
+                </div>;
             };
         }
 

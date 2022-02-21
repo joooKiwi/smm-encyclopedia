@@ -1,4 +1,6 @@
 import './EveryEntitiesApp.scss';
+import './options/EntityAppOption.scss'
+
 import type {EntityAppStates}      from './AppStates.types';
 import type {SingleHeadersContent} from './tools/table/SimpleHeader';
 import type {SingleTableContent}   from './tools/table/Table.types';

@@ -20,6 +20,8 @@ export type EmptyClearConditionImageName = 'Empty clear condition image';
 export type EmptyInGameImageName = 'Empty "in game" image';
 export type EmptyUnusedImageName = 'Empty "unused" image';
 
+export type EmptyEditorVoiceSoundName = 'Empty "editor voice" sound';
+
 //endregion -------------------- Entity types --------------------
 //region -------------------- Entity category types --------------------
 
@@ -76,6 +78,7 @@ export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category';
 export type EveryPossibleEmptyName =
     | EmptyEntityName
     | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName | EmptyUnusedImageName
+    | EmptyEditorVoiceSoundName
 
     | EmptyEntityCategoryName
 

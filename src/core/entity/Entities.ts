@@ -2,6 +2,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
 import type {ClearConditionImage}                                                                                                                                                                        from './images/clearCondition/ClearConditionImage';
 import type {EditorImage}                                                                                                                                                                                from './images/editor/EditorImage';
+import type {EditorVoiceSound, PossibleSoundReceivedOnFactory}                                                                                                                                           from '../editorVoice/EditorVoiceSound';
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage';
@@ -12,20 +13,23 @@ import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}             
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 import type {UnusedImages}                                                                                                                                                                               from './images/unused/UnusedImage';
 
-import {ClearConditionImageBuilder}     from './images/clearCondition/ClearConditionImage.builder';
-import {ClearConditionImageFactory}     from './images/clearCondition/ClearConditionImage.factory';
-import {EditorImageBuilder}             from './images/editor/EditorImage.builder';
-import {EditorImageFactory}             from './images/editor/EditorImage.factory';
-import {Enum}                           from '../../util/enum/Enum';
-import {GameStyles}                     from '../gameStyle/GameStyles';
-import {InGameImage_SMM1Builder}        from './images/inGame/InGameImage_SMM1.builder';
-import {InGameImageFactory}             from './images/inGame/InGameImage.factory';
-import {StringContainer}                from '../../util/StringContainer';
-import {Themes}                         from '../theme/Themes';
-import {Times}                          from '../time/Times';
-import {UnusedImage_BigMushroomBuilder} from './images/unused/UnusedImage_BigMushroom.builder';
-import {UnusedImage_RegularBuilder}     from './images/unused/UnusedImage_Regular.builder';
-import {UnusedImageFactory}             from './images/unused/UnusedImage.factory';
+import {ClearConditionImageBuilder}                  from './images/clearCondition/ClearConditionImage.builder';
+import {ClearConditionImageFactory}                  from './images/clearCondition/ClearConditionImage.factory';
+import {EditorImageBuilder}                          from './images/editor/EditorImage.builder';
+import {EditorImageFactory}                          from './images/editor/EditorImage.factory';
+import {EditorVoiceSoundFactory}                     from '../editorVoice/EditorVoiceSound.factory';
+import {EditorVoiceSoundHolderWithVoiceBefore}       from '../editorVoice/holder/EditorVoiceSoundHolderWithVoiceBefore';
+import {EditorVoiceSoundHolderWithSingingPartBefore} from '../editorVoice/holder/EditorVoiceSoundHolderWithSingingPartBefore';
+import {Enum}                                        from '../../util/enum/Enum';
+import {GameStyles}                                  from '../gameStyle/GameStyles';
+import {InGameImage_SMM1Builder}                     from './images/inGame/InGameImage_SMM1.builder';
+import {InGameImageFactory}                          from './images/inGame/InGameImage.factory';
+import {StringContainer}                             from '../../util/StringContainer';
+import {Themes}                                      from '../theme/Themes';
+import {Times}                                       from '../time/Times';
+import {UnusedImage_BigMushroomBuilder}              from './images/unused/UnusedImage_BigMushroom.builder';
+import {UnusedImage_RegularBuilder}                  from './images/unused/UnusedImage_Regular.builder';
+import {UnusedImageFactory}                          from './images/unused/UnusedImage.factory';
 
 const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
@@ -49,13 +53,33 @@ export class Entities
             return Entities.__createGroundEditorImage('Ground',);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('ground',);
+        }
+
     }('Ground',);
-    public static readonly STARTING_GROUND =                               new Entities('Starting Ground',);
-    public static readonly ENDING_GROUND =                                 new Entities('Ending Ground',);
+    public static readonly STARTING_GROUND =                               new class Entities_StartingGround extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('startground',);
+        }
+
+    }('Starting Ground',);
+    public static readonly ENDING_GROUND =                                 new class Entities_GoalGround extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('goalground',);
+        }
+
+    }('Ending Ground',);
     public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return Entities.__createGroundEditorImage('slope_l30',);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('steepslope',);
         }
 
     }('Steep Slope',);
@@ -63,6 +87,10 @@ export class Entities
 
         protected get _createEditorImage(): PossibleEditorImage {
             return Entities.__createGroundEditorImage('slope_l45',);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('gentleslope',);
         }
 
     }('Gentle Slope',);
@@ -79,12 +107,20 @@ export class Entities
                 .setNightTheme(SMB3, SNOW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('pipe',);
+        }
+
     }('Pipe',);
     public static readonly CLEAR_PIPE =                                    new class Entities_ClearPipe extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('ToumeiDokan',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('ClearPipe',);
         }
 
     }('Clear Pipe',);
@@ -98,6 +134,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('spiketrap',);
+        }
+
     }('Spike Trap',);
     public static readonly JELECTRO =                                      new class Entities_Jelectro extends Entities {
 
@@ -105,6 +145,10 @@ export class Entities
             return new EditorImageBuilder('Toge',)
                 .hasNoDefaultImage()
                 .setTheme(SMB3, UNDERWATER,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('jellelectro',);
         }
 
     }('Jelectro',);
@@ -116,6 +160,10 @@ export class Entities
                 .setTheme(SMW, UNDERWATER,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('seaechinus',);
+        }
+
     }('Sea Urchin',);
     public static readonly SPIKE_BLOCK =                                   new class Entities_SpikeBlock extends Entities {
 
@@ -123,6 +171,10 @@ export class Entities
             return new EditorImageBuilder('TogeBlock',)
                 .setAmount(3)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SpikeBlock',);
         }
 
     }('Spike Block',);
@@ -140,6 +192,10 @@ export class Entities
                 .setNightTheme(SMW, SNOW,)
                 .setTheme(NSMBU, UNDERWATER, SNOW, AIRSHIP,)
                 .setNightTheme(NSMBU, SNOW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('mushroomplatform',);
         }
 
     }('Mushroom Platform',);
@@ -161,6 +217,10 @@ export class Entities
                 .setDefaultAmount(SM3DW, 1,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('semisolidplatform',);
+        }
+
     }('Semisolid Platform',);
     public static readonly BRIDGE =                                        new class Entities_Bridge extends Entities {
 
@@ -174,6 +234,10 @@ export class Entities
                 .setNightTheme(SMW, SNOW,)
                 .setTheme(NSMBU, UNDERGROUND, UNDERWATER, SNOW, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
                 .setNightTheme(NSMBU, SNOW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('bridge',);
         }
 
     }('Bridge',);
@@ -191,6 +255,10 @@ export class Entities
                 .setNotGameStyle(SMW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('block',);
+        }
+
     }('Brick Block',);
     public static readonly CRISTAL_BLOCK =                                 new class Entities_CristalBlock extends Entities {
 
@@ -200,12 +268,20 @@ export class Entities
                 .setTheme(SM3DW, UNDERGROUND, FOREST,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.BRICK_BLOCK;
+        }
+
     }('Cristal Block',);
     public static readonly ROTATING_BLOCK =                                new class Entities_RotatingBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('RengaBlock',)
                 .setGameStyle(SMW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.BRICK_BLOCK;
         }
 
     }('Rotating Block',);
@@ -224,12 +300,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('hardblock',);
+        }
+
     }('Hard Block',);
     public static readonly ROCK_BLOCK =                                    new class Entities_RockBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('HardBlock',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.HARD_BLOCK;
         }
 
     }('Rock Block',);
@@ -243,11 +327,19 @@ export class Entities
                 .setNightTheme(SMB3, SNOW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('questionblock',);
+        }
+
     }('? Block',);
     public static readonly HIDDEN_BLOCK =                                  new class Entities_HiddenBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'ClearBlock';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('hiddenblock',);
         }
 
     }('Hidden Block',);
@@ -260,6 +352,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('!Block',);
+        }
+
     }('! Block',);
 
     public static readonly NOTE_BLOCK =                                    new class Entities_NoteBlock extends Entities {
@@ -269,6 +365,10 @@ export class Entities
                 .setNotSM3DW()
                 .setNightTheme(SMB, SNOW,)
                 .setNightTheme(SMB3, SNOW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('noteblock',);
         }
 
     }('Note Block',);
@@ -292,6 +392,10 @@ export class Entities
                 .setNightTheme(SMB3, SNOW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('donutblock',);
+        }
+
     }('Donut Block',);
 
     public static readonly CLOUD_BLOCK =                                   new class Entities_CloudBlock extends Entities {
@@ -306,12 +410,20 @@ export class Entities
                 .setTheme(SMW, UNDERWATER,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('cloudblock',);
+        }
+
     }('Cloud Block',);
 
     public static readonly ON_OFF_SWITCH =                                 new class Entities_OnOffBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'OnOffSwitch';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('ONOFFswitch',);
         }
 
     }('ON/OFF Switch',);
@@ -321,6 +433,10 @@ export class Entities
             return new EditorImageBuilder('OnOffBlock',)
                 .setAmount(2)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Dotted-LineBlock_nr',);
         }
 
     }('Dotted-Line Block',);
@@ -333,6 +449,10 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('PBlock',);
+        }
+
     }('P Block',);
 
     public static readonly BLINKING_BLOCK =                                new class Entities_BlinkingBlock extends Entities {
@@ -341,6 +461,10 @@ export class Entities
             return new EditorImageBuilder('Chikachika',)
                 .setAmount(2)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BlinkingBlock',);
         }
 
     }('Blinking Block',);
@@ -353,6 +477,10 @@ export class Entities
                 .setNightTheme(SMB3, SNOW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('iceblock2',);
+        }
+
     }('Ice Block',);
     public static readonly ICICLE =                                        new class Entities_Icicle extends Entities {
 
@@ -360,6 +488,10 @@ export class Entities
             return new EditorImageBuilder('Icicle',)
                 .setAmount(2)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('icicle',);
         }
 
     }('Icicle',);
@@ -375,6 +507,10 @@ export class Entities
             return 'Coin';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('coin',);
+        }
+
     }('Coin',);
     public static readonly FROZEN_COIN =                                   new class Entities_FrozenCoin extends Entities {
 
@@ -382,6 +518,10 @@ export class Entities
             return new EditorImageBuilder('Coin', 2,)
                 .setNotSM3DW()
                 .setNightTheme(SMB3, SNOW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('FrozenCoin',);
         }
 
     }('Frozen Coin',);
@@ -397,6 +537,10 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('10-Coin',);
+        }
+
     }('10-Coin',);
     public static readonly THIRTY_COIN =                                   new class Entities_ThirtyCoin extends Entities {
 
@@ -408,6 +552,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('10Coin', 2,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('30-Coin',);
         }
 
     }('30-Coin',);
@@ -423,11 +571,19 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('50-Coin',);
+        }
+
     }('50-Coin',);
     public static readonly PINK_COIN =                                     new class Entities_PinkCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'PinkCoin';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('pinkcoin',);
         }
 
     }('Pink Coin',);
@@ -447,6 +603,10 @@ export class Entities
                 .setGameStyle(SMB);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('supermushroom',);
+        }
+
     }('Super Mushroom',);
 
     public static readonly FIRE_FLOWER =                                   new class Entities_FireFlower extends Entities {
@@ -460,6 +620,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('FireFlower', 1,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('fireflower',);
         }
 
     }('Fire Flower',);
@@ -478,20 +642,32 @@ export class Entities
                 .setGameStyle(SMB,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SuperballFlower',);
+        }
+
     }('Superball Flower',);
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',);
 
     public static readonly MYSTERY_MUSHROOM =                             new class Entities_MysteryMushroom extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new InGameImage_SMM1Builder('Kinoko2');
+            return new InGameImage_SMM1Builder('Kinoko2',);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('mysterymushroom',);
         }
 
     }('Mystery Mushroom',);
     public static readonly WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new InGameImage_SMM1Builder('KinokoFunny');
+            return new InGameImage_SMM1Builder('KinokoFunny',);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('weiredmashroom',);
         }
 
     }('Weird Mushroom',);
@@ -506,6 +682,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('SuperKinoko', 2,)
                 .setGameStyle(SMB);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('MasterSword',);
         }
 
     }('Master Sword',);
@@ -525,6 +705,10 @@ export class Entities
                 .setGameStyle(SMB);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BigMushroom',);
+        }
+
     }('Big Mushroom',);
     public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
 
@@ -533,12 +717,20 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('bigmashroom',);
+        }
+
     }('Big Mushroom (classic)',);
     public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
             return new InGameImage_SMM1Builder('MegaKinoko2')
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.BIG_MUSHROOM_CLASSIC;
         }
 
     }('Big Mushroom (modern)',);
@@ -556,6 +748,10 @@ export class Entities
                 .setGameStyle(SMB);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Mushroom',);
+        }
+
     }('SMB2 Mushroom',);
 
     public static readonly SUPER_LEAF =                                    new class Entities_SuperLeaf extends Entities {
@@ -569,6 +765,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('SuperKonoha',)
                 .setGameStyle(SMB3);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('superleaf',);
         }
 
     }('Super Leaf',);
@@ -586,6 +786,10 @@ export class Entities
                 .setGameStyle(SMB3);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('FrogSuit',);
+        }
+
     }('Frog Suit',);
 
     public static readonly CAPE_FEATHER =                                  new class Entities_CapeFeather extends Entities {
@@ -599,6 +803,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('MantleWing',)
                 .setGameStyle(SMW);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('capefeather',);
         }
 
     }('Cape Feather',);
@@ -616,6 +824,10 @@ export class Entities
                 .setGameStyle(SMW);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('PowerBalloon',);
+        }
+
     }('Power Balloon',);
 
     public static readonly PROPELLER_MUSHROOM =                            new class Entities_PropellerMushroom extends Entities {
@@ -629,6 +841,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('PropellerKinoko',)
                 .setGameStyle(NSMBU);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('propellermushroom',);
         }
 
     }('Propeller Mushroom',);
@@ -646,6 +862,10 @@ export class Entities
                 .setGameStyle(NSMBU);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SuperAcorn',);
+        }
+
     }('Super Acorn',);
 
     public static readonly SUPER_BELL =                                    new class Entities_SuperBell extends Entities {
@@ -661,6 +881,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SuperBell',);
+        }
+
     }('Super Bell',);
 
     public static readonly SUPER_HAMMER =                                  new class Entities_SuperHammer extends Entities {
@@ -674,6 +898,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('SuperHammer',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SuperHammer',);
         }
 
     }('Super Hammer',);
@@ -692,6 +920,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangFLower',);
+        }
+
     }('Boomerang Flower',);
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER =                  new Entities('Boomerang thrown by a player',);
 
@@ -705,6 +937,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('BoxKiller',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('CannonBox',);
         }
 
     }('Cannon Box',);
@@ -722,6 +958,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('PropellerBox',);
+        }
+
     }('Propeller Box',);
 
     public static readonly GOOMBA_MASK =                                   new class Entities_GoombaMask extends Entities {
@@ -734,6 +974,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('BoxKuribo',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('GoombaMask',);
         }
 
     }('Goomba Mask',);
@@ -749,6 +993,11 @@ export class Entities
             return new ClearConditionImageBuilder('BoxKillerPlayer',)
                 .setOnlySM3DW();
         }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BulletBillMask',);
+        }
+
     }('Bullet Bill Mask',);
 
     public static readonly RED_POW_BOX =                                   new class Entities_RedPowBox extends Entities {
@@ -763,6 +1012,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBox',);
+        }
+
     }('Red POW Box',);
 
     public static readonly SUPER_STAR =                                    new class Entities_SuperStar extends Entities {
@@ -773,6 +1026,10 @@ export class Entities
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return 'SuperStar';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('superstar',);
         }
 
     }('Super Star',);
@@ -787,12 +1044,20 @@ export class Entities
             return '1upKinoko';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('oneupmushroom',);
+        }
+
     }('1-Up Mushroom',);
     public static readonly ROTTEN_MUSHROOM =                               new class Entities_RottenMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('DokuKinoko',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('RottenMushroom',);
         }
 
     }('Rotten Mushroom',);
@@ -802,6 +1067,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KutsuKuribo', 1,)
                 .setGameStyle(SMB, SMB3,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('shoegoomba',);
         }
 
     }('Shoe Goomba',);
@@ -820,6 +1089,10 @@ export class Entities
                 .setGameStyle(SMB, SMB3,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('stilettogoomba',);
+        }
+
     }('Stiletto Goomba',);
     public static readonly STILETTO =                                      new Entities('Stiletto',);
     public static readonly YOSHI_EGG =                                     new class Entities_YoshiEgg extends Entities {
@@ -834,6 +1107,10 @@ export class Entities
                 .setGameStyle(SMW, NSMBU,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('yoshiegg',);
+        }
+
     }('Yoshi\'s Egg',);
     public static readonly YOSHI =                                         new Entities('Yoshi',);
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',);
@@ -845,6 +1122,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('YosshiEggRed',)
                 .setGameStyle(SMW, NSMBU,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BigRedYoshisEgg',);
         }
 
     }('Red Yoshi\'s Egg',);
@@ -877,6 +1158,10 @@ export class Entities
             ];
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('goomba',);
+        }
+
     }('Goomba',);
     public static readonly GALOOMBA =                                      new class Entities_Galoomba extends Entities {
 
@@ -888,6 +1173,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Kuribo', 1,)
                 .setGameStyle(SMW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('galoomba',);
         }
 
     }('Galoomba',);
@@ -903,6 +1192,10 @@ export class Entities
                 .setNotGameStyle(SMW, SM3DW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Goombrat',);
+        }
+
     }('Goombrat',);
     public static readonly GOOMBUD =                                       new class Entities_Goombud extends Entities {
 
@@ -914,6 +1207,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Kuribo', 2,)
                 .setGameStyle(SMW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Goombud',);
         }
 
     }('Goombud',);
@@ -929,12 +1226,20 @@ export class Entities
             return 'Nokonoko';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('koopatrooper',);
+        }
+
     }('Green Koopa Troopa',);
     public static readonly RED_KOOPA_TROOPA =                              new class Entities_RedKoopaTroopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Nokonoko',2,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.GREEN_KOOPA_TROOPA;
         }
 
     }('Red Koopa Troopa',);
@@ -962,8 +1267,18 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('drybones',);
+        }
+
     }('Dry Bones',);
-    public static readonly PARABONES =                                     new Entities('Parabones',);
+    public static readonly PARABONES =                                     new class Entities_Parabones extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.DRY_BONES;
+        }
+
+    }('Parabones',);
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new Entities('Bone thrown by a Dry Bones',);
     public static readonly DRY_BONES_SHELL =                               new class Entities_DryBonesShell extends Entities {
 
@@ -975,6 +1290,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Karon', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('DryBonesShell',);
         }
 
     }('Dry Bones Shell',);
@@ -992,8 +1311,18 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('buzzybeatle',);
+        }
+
     }('Buzzy Beetle',);
-    public static readonly PARA_BEETLE =                                   new Entities('Para-Beetle',);
+    public static readonly PARA_BEETLE =                                   new class Entities_ParaBeetle extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.BUZZY_BEETLE;
+        }
+
+    }('Para-Beetle',);
     public static readonly BUZZY_SHELL =                                   new class Entities_BuzzyShell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
@@ -1005,6 +1334,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Met', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.BUZZY_BEETLE;
         }
 
     }('Buzzy Shell',);
@@ -1021,10 +1354,26 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('spiny',);
+        }
+
     }('Spiny',);
-    public static readonly WINGED_SPINY =                                  new Entities('Winged Spiny',);
+    public static readonly WINGED_SPINY =                                  new class Entities_WingedSpiny extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.SPINY;
+        }
+
+    }('Winged Spiny',);
     public static readonly WINGED_SPINY_PROJECTILE =                       new Entities('(Winged Spiny\'s projectile)',);
-    public static readonly SPINY_EGG =                                     new Entities('Spiny Egg',);
+    public static readonly SPINY_EGG =                                     new class Entities_SpinyEgg extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.SPINY;
+        }
+
+    }('Spiny Egg',);
     public static readonly SPINY_SHELL =                                   new class Entities_SpinyShell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
@@ -1035,6 +1384,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Togezo', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.SPINY;
         }
 
     }('Spiny Shell',);
@@ -1051,8 +1404,18 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('spiketop',);
+        }
+
     }('Spike Top',);
-    public static readonly WINGED_SPIKE_TOP =                              new Entities('Winged Spike Top',);
+    public static readonly WINGED_SPIKE_TOP =                              new class Entities_WingedSpikeTop extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.SPIKE_TOP;
+        }
+
+    }('Winged Spike Top',);
     public static readonly FAST_SPIKE_TOP =                                new class Entities_FastSpikeTop extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
@@ -1060,8 +1423,18 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.SPIKE_TOP;
+        }
+
     }('Fast Spike Top',);
-    public static readonly FAST_WINGED_SPIKE_TOP =                         new Entities('Fast Winged Spike Top',);
+    public static readonly FAST_WINGED_SPIKE_TOP =                         new class Entities_FastWingedSpikeTop extends Entities {
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.SPIKE_TOP;
+        }
+
+    }('Fast Winged Spike Top',);
 
     public static readonly SKIPSQUEAK =                                    new class Entities_Skipsqueak extends Entities {
 
@@ -1075,12 +1448,20 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Skipsqueak',);
+        }
+
     }('Skipsqueak',);
     public static readonly SPINY_SKIPSQUEAK =                              new class Entities_SpinySkipsqueak extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Pyonchu', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SpinySkipsqueak',);
         }
 
     }('Spiny Skipsqueak',);
@@ -1097,12 +1478,20 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('AntTrooper',);
+        }
+
     }('Ant Trooper',);
     public static readonly HORNED_ANT_TROOPER =                            new class Entities_HornedAntTrooper extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Arihei', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('HornedAntTrooper',);
         }
 
     }('Horned Ant Trooper',);
@@ -1117,6 +1506,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Hacchin',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Stingby',);
         }
 
     }('Stingby',);
@@ -1136,6 +1529,10 @@ export class Entities
                 .setNotGameStyle(SMW, NSMBU,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('cheapcheap',);
+        }
+
     }('Cheep Cheep',);
     public static readonly BLURPS =                                        new class Entities_Blurps extends Entities {
 
@@ -1147,6 +1544,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Pukupuku',)
                 .setGameStyle(SMW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.CHEEP_CHEEP;
         }
 
     }('Blurps',);
@@ -1162,6 +1563,10 @@ export class Entities
                 .setGameStyle(NSMBU,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.CHEEP_CHEEP;
+        }
+
     }('Deep Cheep',);
     public static readonly FISH_BONE =                                     new class Entities_FishBone extends Entities {
 
@@ -1171,6 +1576,10 @@ export class Entities
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return 'FishBone';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('FishBones',);
         }
 
     }('Fish Bone',);
@@ -1186,12 +1595,20 @@ export class Entities
             return 'Gesso';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('blooper',);
+        }
+
     }('Blooper',);
     public static readonly BLOOPER_NANNY =                                 new class Entities_BlooperNanny extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Gesso', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BlooperNanny',);
         }
 
     }('Blooper Nanny',);
@@ -1209,6 +1626,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Porcupuffer',);
+        }
+
     }('Porcupuffer',);
 
     public static readonly WIGGLER =                                       new class Entities_Wiggler extends Entities {
@@ -1223,12 +1644,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('wiggler',);
+        }
+
     }('Wiggler',);
     public static readonly ANGRY_WIGGLER =                                 new class Entities_AngryWiggler extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Hanachan', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('AngryWiggler',);
         }
 
     }('Angry Wiggler',);
@@ -1245,6 +1674,10 @@ export class Entities
                 .setNotGameStyle(SMW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('piranhaplant',);
+        }
+
     }('Piranha Plant',);
     public static readonly JUMPING_PIRANHA_PLANT =                         new class Entities_JumpingPiranhaPlant extends Entities {
 
@@ -1258,6 +1691,10 @@ export class Entities
                 .setGameStyle(SMW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('jumpingpiranhaplant',);
+        }
+
     }('Jumping Piranha Plant',);
     public static readonly FIRE_PIRANHA_PLANT =                            new class Entities_FirePiranhaPlant extends Entities {
 
@@ -1269,6 +1706,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Pakkun', 2,)
                 .setGameStyle(SMW,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('firepiranhaplant',);
         }
 
     }('Fire Piranha Plant',);
@@ -1286,6 +1727,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('monchar',);
+        }
+
     }('Muncher',);
     public static readonly PIRANHA_CREEPER =                               new class Entities_PiranhaCreeper extends Entities {
 
@@ -1300,6 +1745,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('PiranhaCreeper',);
+        }
+
     }('Piranha Creeper',);
 
     public static readonly CHAIN_CHOMP =                                   new class Entities_ChainChomp extends Entities {
@@ -1308,6 +1757,10 @@ export class Entities
             return new EditorImageBuilder('Wanwan', 1,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('chainchomp',);
         }
 
     }('Chain Chomp',);
@@ -1324,6 +1777,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('UnchainedChomp',);
+        }
+
     }('Unchained Chomp',);
     public static readonly CHAIN_CHOMP_STUMP =                             new Entities('Chain Chomp\'s Stump',);
 
@@ -1338,6 +1795,10 @@ export class Entities
             return 'Gabon';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Spike',);
+        }
+
     }('Spike',);
     public static readonly SPIKE_BALL =                                    new class Entities_SpikeBall extends Entities {
 
@@ -1350,6 +1811,10 @@ export class Entities
                 .setNightTheme(SMB3, GROUND,  DESERT, SKY, FOREST, AIRSHIP,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SpikeBall',);
+        }
+
     }('Spike Ball',);
     public static readonly SNOWBALL =                                      new class Entities_Snowball extends Entities {
 
@@ -1357,6 +1822,10 @@ export class Entities
             return new EditorImageBuilder('Gabon', 2,)
                 .setAllGameStyles()
                 .setAsSnow();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SnowBall',);
         }
 
     }('Snowball',);
@@ -1373,6 +1842,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('lakitu',);
+        }
+
     }('Lakitu',);
     public static readonly LAKITU_CLOUD =                                  new class Entities_LakituCloud extends Entities {
 
@@ -1386,6 +1859,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('lakitucloud',);
+        }
+
     }('Lakitu\'s Cloud',);
 
     public static readonly BOO =                                           new class Entities_Boo extends Entities {
@@ -1397,6 +1874,10 @@ export class Entities
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return 'Teresa';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('boo',);
         }
 
     }('Boo',);
@@ -1420,12 +1901,20 @@ export class Entities
             ];
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Stretch',);
+        }
+
     }('Stretch',);
     public static readonly BOO_BUDDIES =                                   new class Entities_BooBuddies extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Teresa', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('boobuddies',);
         }
 
     }('Boo Buddies',);
@@ -1439,6 +1928,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Teresa', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Peepa',);
         }
 
     }('Peepa',);
@@ -1455,12 +1948,20 @@ export class Entities
             return 'Bombhei';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('bombomb',);
+        }
+
     }('Bob-omb',);
     public static readonly LIT_BOB_OMB =                                   new class Entities_LitBobOmb extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Bombhei', 2,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('litBob-omb',);
         }
 
     }('Lit Bob-omb',);
@@ -1475,6 +1976,10 @@ export class Entities
             return 'Sambo';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Pokey',);
+        }
+
     }('Pokey',);
     public static readonly SNOW_POKEY =                                    new class Entities_SnowPokey extends Entities {
 
@@ -1482,6 +1987,10 @@ export class Entities
             return new EditorImageBuilder('Sambo', 1,)
                 .setAllGameStyles()
                 .setAsSnow();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SnowPokey',);
         }
 
     }('Snow Pokey',);
@@ -1494,6 +2003,10 @@ export class Entities
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return 'Dossun';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('thwomp',);
         }
 
     }('Thwomp',);
@@ -1510,6 +2023,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('montymole',);
+        }
+
     }('Monty Mole',);
     public static readonly ROCKY_WRENCH =                                  new class Entities_RockyWrench extends Entities {
 
@@ -1523,6 +2040,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('rockeyrench',);
+        }
+
     }('Rocky Wrench',);
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new Entities('Wrench thrown by a Rocky Wrench',);
 
@@ -1534,6 +2055,10 @@ export class Entities
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return 'Kameck';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return [new EditorVoiceSoundHolderWithVoiceBefore('magikoopa',), new EditorVoiceSoundHolderWithVoiceBefore('kameck_EU',),];
         }
 
     }('Magikoopa',);
@@ -1550,6 +2075,10 @@ export class Entities
             return 'Bros';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('hammerbro',);
+        }
+
     }('Hammer Bro',);
     public static readonly SLEDGE_BRO =                                    new class Entities_SledgeBro extends Entities {
 
@@ -1562,6 +2091,10 @@ export class Entities
             return 'MegaBros';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('sledgebro',);
+        }
+
     }('Sledge Bro',);
     public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new Entities('Hammer thrown by a Hammer / Sledge Bro',);
     public static readonly FIRE_BRO =                                      new class Entities_FireBro extends Entities {
@@ -1571,12 +2104,20 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('FireBro',);
+        }
+
     }('Fire Bro',);
     public static readonly HEAVY_FIRE_BRO =                                new class Entities_HeavyFireBro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('MegaBros', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('HeavyFireBro',);
         }
 
     }('Heavy Fire Bro',);
@@ -1590,6 +2131,10 @@ export class Entities
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return 'Bubble';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('lavabubble',);
         }
 
     }('Lava Bubble',);
@@ -1606,12 +2151,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Mechakoopa',);
+        }
+
     }('Mechakoopa',);
     public static readonly BLASTA_MECHAKOOPA =                             new class Entities_BlastaMechakoopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KoopaMecha', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BlastaMechakoopa',);
         }
 
     }('Blasta Mechakoopa',);
@@ -1621,6 +2174,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KoopaMecha', 3,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('ZappaMechakoopa',);
         }
 
     }('Zappa Mechakoopa',);
@@ -1638,6 +2195,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Charvaargh',);
+        }
+
     }('Charvaargh',);
 
     public static readonly BULLY =                                         new class Entities_Bully extends Entities {
@@ -1650,6 +2211,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Donketsu',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Bully',);
         }
 
     }('Bully',);
@@ -1665,6 +2230,10 @@ export class Entities
                 .setAsDifferentInSMBAndSMB3();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('billblaster',);
+        }
+
     }('Bill Blaster',);
     public static readonly BULLET_BILL =                                   new class Entities_BulletBill extends Entities {
 
@@ -1678,6 +2247,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KillerHoudai', 2,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBlaster',);
         }
 
     }('Bull\'s-Eye Blaster',);
@@ -1696,12 +2269,20 @@ export class Entities
             return 'MagnumKiller';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BanzaiBill',);
+        }
+
     }('Banzai Bill',);
     public static readonly BULL_EYE_BANZAI =                               new class Entities_BullEyeBanzai extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('MagnumKiller', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBanzai',);
         }
 
     }('Bull\'s-Eye Banzai',);
@@ -1712,6 +2293,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return Entities.BULL_EYE_BANZAI;
+        }
+
     }('Cat Banzai Bill',);
 
     public static readonly CANNON =                                        new class Entities_Cannon extends Entities {
@@ -1720,6 +2305,10 @@ export class Entities
             return new EditorImageBuilder('Houdai', 1,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('cannon',);
         }
 
     }('Cannon',);
@@ -1741,6 +2330,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('redcannon',);
+        }
+
     }('Red Cannon',);
     public static readonly RED_CANNONBALL =                                new Entities('Red Cannonball',);
 
@@ -1752,6 +2345,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('burner',);
+        }
+
     }('Burner',);
 
     public static readonly FIRE_BAR =                                      new class Entities_FireBar extends Entities {
@@ -1759,6 +2356,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('FireBar',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('firebar',);
         }
 
     }('Fire Bar',);
@@ -1769,6 +2370,10 @@ export class Entities
             return new EditorImageBuilder('TogeKonbo',)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return [new EditorVoiceSoundHolderWithVoiceBefore('skewer'), new EditorVoiceSoundHolderWithVoiceBefore('spikepiller'),];
         }
 
     }('Skewer',);
@@ -1798,6 +2403,10 @@ export class Entities
             ];
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('koopaclowncar',);
+        }
+
     }('Koopa Clown Car',);
     public static readonly JUNIOR_CLOWN_CAR =                              new class Entities_JuniorClownCar extends Entities {
 
@@ -1811,6 +2420,10 @@ export class Entities
                 .setGameStyle(NSMBU,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('juniorclowncar',);
+        }
+
     }('Junior Clown Car',);
     public static readonly FIRE_KOOPA_CLOWN_CAR =                          new class Entities_FireKoopaClownCar extends Entities {
 
@@ -1819,12 +2432,20 @@ export class Entities
                 .setNotGameStyle(NSMBU, SM3DW,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('firekoopaclowncar',);
+        }
+
     }('Fire Koopa Clown Car',);
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new class Entities_FireJuniorClownCar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('KoopaClown', 2,)
                 .setGameStyle(NSMBU,);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('firejuniorclowncar',);
         }
 
     }('Fire Junior Clown Car',);
@@ -1842,6 +2463,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('KoopaTroopaCar',);
+        }
+
     }('Koopa Troopa Car',);
     public static readonly CAR =                                           new Entities('Car',);
 
@@ -1850,6 +2475,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Saw',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('grinder',);
         }
 
     }('Grinder',);
@@ -1866,12 +2495,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Sun',);
+        }
+
     }('Angry Sun',);
     public static readonly MOON =                                          new class Entities_Moon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('SunMoon', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Moon',);
         }
 
     }('Moon',);
@@ -1899,6 +2536,10 @@ export class Entities
             ];
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('bowser',);
+        }
+
     }('Bowser',);
     public static readonly MEOWSER =                                       new class Entities_Meowser extends Entities {
 
@@ -1910,6 +2551,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Koopa',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Meowser',);
         }
 
     }('Meowser',);
@@ -1936,6 +2581,10 @@ export class Entities
             ];
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('bowserjr',);
+        }
+
     }('Bowser Jr.',);
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new Entities('Fire thrown by a Bowser Jr.',);
 
@@ -1951,6 +2600,10 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('BoomBoom',);
+        }
+
     }('Boom Boom',);
     public static readonly POM_POM =                                       new class Entities_PomPom extends Entities {
 
@@ -1962,6 +2615,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Bunbun', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('PomPom',);
         }
 
     }('Pom Pom',);
@@ -1980,6 +2637,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Larry',);
+        }
+
     }('Larry',);
     public static readonly LARRY_WAND =                                    new Entities('Larry\'s Wand',);
     public static readonly LARRY_PROJECTILE =                              new Entities('(Larry\'s projectile)',);
@@ -1994,6 +2655,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Iggy',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Iggy',);
         }
 
     }('Iggy',);
@@ -2012,6 +2677,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Wendy',);
+        }
+
     }('Wendy',);
     public static readonly WENDY_WAND =                                    new Entities('Wendy\'s Wand',);
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new Entities('Candy Ring thrown by a Wendy',);
@@ -2026,6 +2695,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Lemmy',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Lemmy',);
         }
 
     }('Lemmy',);
@@ -2044,6 +2717,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Roy',);
+        }
+
     }('Roy',);
     public static readonly ROY_WAND =                                      new Entities('Roy\'s Wand',);
     public static readonly ROY_PROJECTILE =                                new Entities('(Roy\'s projectile)',);
@@ -2058,6 +2735,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('Morton',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Morton',);
         }
 
     }('Morton',);
@@ -2077,6 +2758,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Ludwig',);
+        }
+
     }('Ludwig',);
     public static readonly LUDWIG_WAND =                                   new Entities('Ludwig\'s Wand',);
     public static readonly LUDWIG_PROJECTILE =                             new Entities('(Ludwig\'s projectile)',);
@@ -2089,6 +2774,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Marumaru',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('bumper',);
         }
 
     }('Bumper',);
@@ -2105,12 +2794,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('swingingclaw',);
+        }
+
     }('Swinging Claw',);
 
     public static readonly TWISTER =                                       new class Entities_Twister extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'Tornado';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Twister',);
         }
 
     }('Twister',);
@@ -2122,6 +2819,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('onewaywall',);
+        }
+
     }('One-Way Wall',);
 
     public static readonly TRACK =                                         new class Entities_Track extends Entities {
@@ -2129,6 +2830,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Rail',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('track',);
         }
 
     }('Track',);
@@ -2140,6 +2845,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('TrackBlock',);
+        }
+
     }('Track Block',);
 
     public static readonly VINE =                                          new class Entities_Vine extends Entities {
@@ -2147,6 +2856,10 @@ export class Entities
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('TsutaBlock',)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('vine',);
         }
 
     }('Vine',);
@@ -2162,6 +2875,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('tree',);
+        }
+
     }('Tree',);
 
     public static readonly ARROW_SIGN =                                    new class Entities_ArrowSign extends Entities {
@@ -2170,12 +2887,20 @@ export class Entities
             return 'Yajirushi';
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('arrowsign',);
+        }
+
     }('Arrow Sign',);
 
     public static readonly CHECKPOINT_FLAG =                               new class Entities_CheckpointFlag extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return 'MiddleFlag';
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('CheckpointFlag',);
         }
 
     }('Checkpoint Flag',);
@@ -2187,6 +2912,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('DashBlock',);
+        }
+
     }('Dash Block',);
 
     public static readonly SNAKE_BLOCK =                                   new class Entities_SnakeBlock extends Entities {
@@ -2196,12 +2925,20 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('SnakeBlock',);
+        }
+
     }('Snake Block',);
     public static readonly FAST_SNAKE_BLOCK =                              new class Entities_FastSnakeBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('SnakeBlock', 2,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('FastSnakeBlock',);
         }
 
     }('Fast Snake Block',);
@@ -2213,12 +2950,20 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('conveyorbelt',);
+        }
+
     }('Conveyor Belt',);
     public static readonly FAST_CONVEYOR_BELT =                            new class Entities_FastConveyorBelt extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('BeltConveyor', 2,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('fastconveyorbelt');
         }
 
     }('Fast Conveyor Belt',);
@@ -2231,6 +2976,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('MushroomTrampoline',);
+        }
+
     }('Mushroom Trampoline',);
     public static readonly ON_OFF_TRAMPOLINE =                             new class Entities_OnOffTrampoline extends Entities {
 
@@ -2238,6 +2987,10 @@ export class Entities
             return new EditorImageBuilder('OnOffTrampoline',)
                 .setAmount(2)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('ONOFFTrampoline',);
         }
 
     }('ON/OFF Trampoline',);
@@ -2249,6 +3002,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('lift',);
+        }
+
     }('Lift',);
     public static readonly FLIMSY_LIFT =                                   new class Entities_FlimsyLift extends Entities {
 
@@ -2257,12 +3014,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('flimsylift',);
+        }
+
     }('Flimsy Lift',);
     public static readonly CLOUD_LIFT =                                    new class Entities_CloudLift extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Lift', 1,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('CloudLift',);
         }
 
     }('Cloud Lift',);
@@ -2274,6 +3039,10 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('seesaw',);
+        }
+
     }('Seesaw',);
 
     public static readonly LAVA_LIFT =                                     new class Entities_LavaLift extends Entities {
@@ -2283,12 +3052,20 @@ export class Entities
                 .setNotSM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('lavalift',);
+        }
+
     }('Lava Lift',);
     public static readonly FAST_LAVA_LIFT =                                new class Entities_FastLavaLift extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('YouganLift', 2,)
                 .setNotSM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('FastLavaLift',);
         }
 
     }('Fast Lava Lift',);
@@ -2305,6 +3082,10 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('crate',);
+        }
+
     }('Crate',);
 
     public static readonly KEY =                                           new class Entities_Key extends Entities {
@@ -2314,12 +3095,20 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('key',);
+        }
+
     }('Key',);
     public static readonly CURSED_KEY =                                    new class Entities_CursedKey extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Key', 2,)
                 .setGameStyle(SMB);
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('cursedkey',);
         }
 
     }('Cursed Key',);
@@ -2340,12 +3129,20 @@ export class Entities
                 .setNotGameStyle(SMB,);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('trampline',);
+        }
+
     }('Trampoline',);
     public static readonly HOP_CHOPS =                                     new class Entities_HopChops extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Hopper',)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('Hop-Chops',);
         }
 
     }('Hop-Chops',);
@@ -2362,6 +3159,10 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('powblock',);
+        }
+
     }('POW Block',);
     public static readonly RED_POW_BLOCK =                                 new class Entities_RedPowBlock extends Entities {
 
@@ -2373,6 +3174,10 @@ export class Entities
         protected get _createClearConditionImage(): PossibleClearConditionImage {
             return new ClearConditionImageBuilder('PowBlock', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBlock',);
         }
 
     }('Red POW Block',);
@@ -2393,6 +3198,10 @@ export class Entities
                 .setImage(NSMBU, 'down_switch_hatena_Alb', ['000', '004',],);
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('pswitch',);
+        }
+
     }('P Switch',);
 
     public static readonly STONE =                                         new class Entities_Stone extends Entities {
@@ -2411,6 +3220,10 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('warpdoor',);
+        }
+
     }('Warp Door',);
     public static readonly P_WARP_DOOR =                                   new class Entities_PWarpDoor extends Entities {
 
@@ -2419,12 +3232,20 @@ export class Entities
                 .setAllGameStyles();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('pwarpdoor',);
+        }
+
     }('P Warp Door',);
     public static readonly KEY_DOOR =                                      new class Entities_KeyDoor extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('Door', 3,)
                 .setAllGameStyles();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithVoiceBefore('keydoor',);
         }
 
     }('Key Door',);
@@ -2436,12 +3257,20 @@ export class Entities
                 .setOnlySM3DW();
         }
 
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('WarpBox',);
+        }
+
     }('Warp Box',);
     public static readonly WARP_BOX_WITH_KEY =                             new class Entities_WarpBoxWithKey extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
             return new EditorImageBuilder('WarpBox', 2,)
                 .setOnlySM3DW();
+        }
+
+        protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+            return new EditorVoiceSoundHolderWithSingingPartBefore('WarpBox_withkey',);
         }
 
     }('Warp Box (With Key)',);
@@ -2466,6 +3295,7 @@ export class Entities
     #clearConditionImage?: ClearConditionImage;
     #whilePlayingImage?: InGameImage;
     #unusedImages?: UnusedImages;
+    #editorVoiceSound?:EditorVoiceSound;
 
     //endregion -------------------- Attributes --------------------
 
@@ -2565,6 +3395,28 @@ export class Entities
     }
 
     //endregion -------------------- unused image --------------------
+    //region -------------------- editor voice sound --------------------
+
+    /**
+     * Get the "editor voice sound" in an array form (european & regular file name)
+     * or a single {@link EditorVoiceSoundHolder}
+     * or even another {@link Entities enum} reference.
+     *
+     * @protected
+     * @onlyCalledOnce
+     */
+    protected get _createEditorVoiceSound(): PossibleEditorVoiceSound {
+        return null;
+    }
+
+    public get editorVoiceSound(): EditorVoiceSound {
+        return this.#editorVoiceSound ??= (() => {
+            const sound = this._createEditorVoiceSound;
+            return sound instanceof Entities ? sound.editorVoiceSound : EditorVoiceSoundFactory.create(sound);
+        })();
+    }
+
+    //endregion -------------------- editor voice sound --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -2627,6 +3479,7 @@ export class Entities
 
 }
 
+type PossibleEditorVoiceSound = | PossibleSoundReceivedOnFactory | Entities;
 //TODO remove this test variable when the entities will be complete
 // @ts-ignore
 (window.test ??= {}).Entities = Entities;
