@@ -1,3 +1,4 @@
+import type {ClassWithEditorVoiceSound}                                                                                                                                                                  from './ClassWithEditorVoiceSound';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EditorVoices.types';
 import type {EntityReferenceHolder, PossibleEntityReferences_Received}                                                                                                                                   from './holder/EntityReferenceHolder';
@@ -14,9 +15,14 @@ import {EntityReferenceHolderContainer}              from './holder/EntityRefere
 import {Enum}                                        from '../../util/enum/Enum';
 import {StringContainer}                             from '../../util/StringContainer';
 
+/**
+ *
+ * @recursiveReference<{@link Entities}>
+ */
 export class EditorVoices
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName> {
+    implements ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithEditorVoiceSound {
 
     //region -------------------- Enum instances --------------------
 

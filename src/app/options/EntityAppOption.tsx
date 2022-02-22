@@ -16,7 +16,6 @@ import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
-import {EditorVoices}                  from '../../core/editorVoice/EditorVoices';
 import {Enum}                          from '../../util/enum/Enum';
 import {EntityCategories}              from '../../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes';
@@ -174,7 +173,7 @@ export abstract class EntityAppOption
 
                 return <div className="nameAndEditorVoiceSound-container container">
                     <NameComponent id="name" name={entity} popoverOrientation="right"/>
-                    <EditorVoiceSoundComponent editorVoiceSound={EditorVoices.getValue(enumeration)?.editorVoiceSound} name={enumeration.englishName}/>
+                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
                 </div>;
             };
         }

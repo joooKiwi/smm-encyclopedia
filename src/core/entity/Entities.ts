@@ -1,7 +1,9 @@
+import type {ClassWithEditorVoiceSound}                                                                                                                                                                  from '../editorVoice/ClassWithEditorVoiceSound';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
 import type {ClearConditionImage}                                                                                                                                                                        from './images/clearCondition/ClearConditionImage';
 import type {EditorImage}                                                                                                                                                                                from './images/editor/EditorImage';
+import type {EditorVoiceSound}                                                                                                                                                                           from '../editorVoice/EditorVoiceSound';
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
 import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage';
@@ -16,6 +18,8 @@ import {ClearConditionImageBuilder}     from './images/clearCondition/ClearCondi
 import {ClearConditionImageFactory}     from './images/clearCondition/ClearConditionImage.factory';
 import {EditorImageBuilder}             from './images/editor/EditorImage.builder';
 import {EditorImageFactory}             from './images/editor/EditorImage.factory';
+import type {EditorVoices}              from '../editorVoice/EditorVoices';
+import {EmptyEditorVoiceSound}          from '../editorVoice/EmptyEditorVoiceSound';
 import {Enum}                           from '../../util/enum/Enum';
 import {GameStyles}                     from '../gameStyle/GameStyles';
 import {InGameImage_SMM1Builder}        from './images/inGame/InGameImage_SMM1.builder';
@@ -33,11 +37,13 @@ const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, 
 /**
  * @recursiveReferenceVia<{@link EntityLoader}, {@link EntityBuilder}>
  * @recursiveReference<{@link EntityLoader}>
+ * @recursiveReference<{@link __EditorVoices}>
  */
 export class Entities
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithReference<Entity> {
+        ClassWithReference<Entity>,
+        ClassWithEditorVoiceSound {
 
     //region -------------------- Enum instances --------------------
 
@@ -2477,6 +2483,7 @@ export class Entities
     //region -------------------- Attributes --------------------
 
     static #map?: ReadonlyMap<PossibleEnglishName, Entity>;
+    static #EditorVoices?: typeof EditorVoices;
 
     #reference?: Entity;
     readonly #englishNameContainer;
@@ -2484,6 +2491,7 @@ export class Entities
     #clearConditionImage?: ClearConditionImage;
     #whilePlayingImage?: InGameImage;
     #unusedImages?: UnusedImages;
+    #editorVoiceSound?: EditorVoiceSound;
 
     //endregion -------------------- Attributes --------------------
 
@@ -2497,6 +2505,11 @@ export class Entities
     private static get __map(): ReadonlyMap<PossibleEnglishName, Entity> {
         return this.#map ??= require('./Entity.loader').EntityLoader.get.load();
     }
+
+    private static get __EditorVoices(): typeof EditorVoices {
+        return this.#EditorVoices ??= require('../editorVoice/EditorVoices').EditorVoices;
+    }
+
 
     /**
      * {@inheritDoc}
@@ -2532,6 +2545,11 @@ export class Entities
     }
 
     //endregion -------------------- editor image --------------------
+
+    public get editorVoiceSound(): EditorVoiceSound {
+        return this.#editorVoiceSound ??= Entities.__EditorVoices.getValue(this)?.editorVoiceSound ?? EmptyEditorVoiceSound.get;
+    }
+
     //region -------------------- clear condition image --------------------
 
     /**
