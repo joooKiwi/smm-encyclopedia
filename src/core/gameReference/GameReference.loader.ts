@@ -10,7 +10,6 @@ import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 import {GameReferenceBuilder}    from './GameReference.builder';
-import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 
 //region -------------------- CSV array related types --------------------
 
@@ -79,7 +78,7 @@ export class GameReferenceLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'acronym',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceEnglishName, 'english',)
 
-                .onAfterFinalObjectCreated(finalContent => references.set(ProjectLanguages.getEnglish(finalContent) as PossibleEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

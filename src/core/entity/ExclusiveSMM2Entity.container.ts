@@ -15,7 +15,7 @@ export class ExclusiveSMM2EntityContainer<CATEGORY extends EntityCategory = Enti
     extends AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property>
     implements ExclusiveSMM2Entity<CATEGORY> {
 
-    public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
+    public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,);
     }
 

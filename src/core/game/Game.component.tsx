@@ -4,7 +4,6 @@ import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEnt
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';
 import {Games}                               from './Games';
 import Image                                 from '../../app/tools/images/Image';
-import {ProjectLanguages}                    from '../../lang/ProjectLanguages';
 import {StringContainer}                     from '../../util/StringContainer';
 
 /**
@@ -46,6 +45,6 @@ export default class GameComponent
     }
 
     protected _renderComponentForAllAsImages() {
-        return <div key={`${ProjectLanguages.getEnglish(this.name)} (every games)`}>{Games.values.map(game => this._renderSingleComponent(game))}</div>;
+        return <div key={`${this.name.english} (every games)`}>{Games.values.map(game => this._renderSingleComponent(game))}</div>;
     }
 }

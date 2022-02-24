@@ -6,12 +6,12 @@ import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables';
 /**
  * @singleton
  */
-export class EmptyName
-    implements Name, ClassWithNullObjectPattern<EmptyNameName> {
+export class EmptyStringName
+    implements Name<string>, ClassWithNullObjectPattern<EmptyNameName> {
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyName;
+    static #instance?: EmptyStringName;
 
     private constructor() {
     }

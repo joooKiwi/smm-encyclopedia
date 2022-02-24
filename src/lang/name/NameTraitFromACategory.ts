@@ -1,91 +1,95 @@
-import type {NameTrait}          from './NameTrait';
+import type {EveryLanguages} from '../EveryLanguages';
+import type {NameTrait}      from './NameTrait';
 
 /**
  * A simili-trait class method that is a kind of {@link NameTrait},
  * but with every methods that the trait reference has with "category" before.
  */
-export interface NameTraitFromACategory<CATEGORY extends NameTrait, > {
+export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
-    get category(): CATEGORY
+    get categoryContainer(): CATEGORY
 
     //region -------------------- Properties --------------------
 
-    get categoryName(): this['category']['nameContainer']
+    get categoryNameContainer(): this['categoryContainer']['nameContainer']
 
 
-    get categoryLanguageValue(): this['categoryName']['languageValue']
+    get categoryLanguageValue(): this['categoryNameContainer']['languageValue']
 
 
-    get categoryOriginalEnglish(): this['categoryName']['originalEnglish']
+    get categoryOriginalEnglish(): this['categoryNameContainer']['originalEnglish']
 
-    get categoryEnglish(): this['categoryName']['english']
+    get categoryEnglish(): this['categoryNameContainer']['english']
 
-    get categoryAmericanEnglish(): this['categoryName']['americanEnglish']
+    get categoryAmericanEnglish(): this['categoryNameContainer']['americanEnglish']
 
-    get categoryEuropeanEnglish(): this['categoryName']['europeanEnglish']
-
-
-    get categoryOriginalFrench(): this['categoryName']['originalFrench']
-
-    get categoryFrench(): this['categoryName']['french']
-
-    get categoryCanadianFrench(): this['categoryName']['canadianFrench']
-
-    get categoryEuropeanFrench(): this['categoryName']['europeanFrench']
+    get categoryEuropeanEnglish(): this['categoryNameContainer']['europeanEnglish']
 
 
-    get categoryGerman(): this['categoryName']['german']
+    get categoryOriginalFrench(): this['categoryNameContainer']['originalFrench']
+
+    get categoryFrench(): this['categoryNameContainer']['french']
+
+    get categoryCanadianFrench(): this['categoryNameContainer']['canadianFrench']
+
+    get categoryEuropeanFrench(): this['categoryNameContainer']['europeanFrench']
 
 
-    get categoryOriginalSpanish(): this['categoryName']['originalSpanish']
-
-    get categorySpanish(): this['categoryName']['spanish']
-
-    get categoryAmericanSpanish(): this['categoryName']['americanSpanish']
-
-    get categoryEuropeanSpanish(): this['categoryName']['europeanSpanish']
+    get categoryGerman(): this['categoryNameContainer']['german']
 
 
-    get categoryItalian(): this['categoryName']['italian']
+    get categoryOriginalSpanish(): this['categoryNameContainer']['originalSpanish']
+
+    get categorySpanish(): this['categoryNameContainer']['spanish']
+
+    get categoryAmericanSpanish(): this['categoryNameContainer']['americanSpanish']
+
+    get categoryEuropeanSpanish(): this['categoryNameContainer']['europeanSpanish']
 
 
-    get categoryDutch(): this['categoryName']['dutch']
+    get categoryItalian(): this['categoryNameContainer']['italian']
 
 
-    get categoryOriginalPortuguese(): this['categoryName']['originalPortuguese']
-
-    get categoryPortuguese(): this['categoryName']['portuguese']
-
-    get categoryAmericanPortuguese(): this['categoryName']['americanPortuguese']
-
-    get categoryEuropeanPortuguese(): this['categoryName']['europeanPortuguese']
+    get categoryDutch(): this['categoryNameContainer']['dutch']
 
 
-    get categoryRussian(): this['categoryName']['russian']
+    get categoryOriginalPortuguese(): this['categoryNameContainer']['originalPortuguese']
+
+    get categoryPortuguese(): this['categoryNameContainer']['portuguese']
+
+    get categoryAmericanPortuguese(): this['categoryNameContainer']['americanPortuguese']
+
+    get categoryEuropeanPortuguese(): this['categoryNameContainer']['europeanPortuguese']
 
 
-    get categoryJapanese(): this['categoryName']['japanese']
+    get categoryRussian(): this['categoryNameContainer']['russian']
 
 
-    get categoryOriginalChinese(): this['categoryName']['originalChinese']
-
-    get categoryChinese(): this['categoryName']['chinese']
-
-    get categoryTraditionalChinese(): this['categoryName']['traditionalChinese']
-
-    get categorySimplifiedChinese(): this['categoryName']['simplifiedChinese']
+    get categoryJapanese(): this['categoryNameContainer']['japanese']
 
 
-    get categoryKorean(): this['categoryName']['korean']
+    get categoryOriginalChinese(): this['categoryNameContainer']['originalChinese']
+
+    get categoryChinese(): this['categoryNameContainer']['chinese']
+
+    get categoryTraditionalChinese(): this['categoryNameContainer']['traditionalChinese']
+
+    get categorySimplifiedChinese(): this['categoryNameContainer']['simplifiedChinese']
 
 
-    get categoryIsGreekUsed(): this['categoryName']['isGreekUsed']
-
-    get categoryGreek(): this['categoryName']['greek']
+    get categoryKorean(): this['categoryNameContainer']['korean']
 
 
-    get categoryOriginalLanguages(): this['categoryName']['originalLanguages']
+    get categoryIsGreekUsed(): this['categoryNameContainer']['isGreekUsed']
+
+    get categoryGreek(): this['categoryNameContainer']['greek']
+
+
+    get categoryOriginalLanguages(): this['categoryNameContainer']['originalLanguages']
 
     //endregion -------------------- Properties --------------------
+
+    toCategoryNameMap(): ReadonlyMap<EveryLanguages, T>
+
 
 }

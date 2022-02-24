@@ -21,7 +21,7 @@ export class GameReferenceBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    protected _build(name: Name,): GameReference {
+    protected _build(name: Name<string>,): GameReference {
         return new GameReferenceContainer(this.template.acronym, name,);
     }
 

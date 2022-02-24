@@ -9,7 +9,7 @@ export interface EntityPropertyProperties<R>
 
     reference: R
 
-    name: Name
+    name: Name<string>
 
     displayAllAsText: boolean
 

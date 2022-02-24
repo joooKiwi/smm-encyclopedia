@@ -4,7 +4,6 @@ import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPrope
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
 import {GameStyles}                      from './GameStyles';
 import Image                             from '../../app/tools/images/Image';
-import {ProjectLanguages}                from '../../lang/ProjectLanguages';
 import {StringContainer}                 from '../../util/StringContainer';
 
 /**
@@ -27,7 +26,7 @@ export default class GameStyleComponent
     }
 
     protected _renderSingleComponent(gameStyle: GameStyles,) {
-        return GameStyleComponent.renderSingleComponent(gameStyle, ProjectLanguages.getEnglish(this.name),);
+        return GameStyleComponent.renderSingleComponent(gameStyle, this.name.english,);
     }
 
     public static renderSingleComponent(gameStyle: GameStyles, identifier?: string,) {
@@ -43,7 +42,7 @@ export default class GameStyleComponent
     }
 
     protected _renderComponentForAllAsImages() {
-        return <div key={`${ProjectLanguages.getEnglish(this.name)} (every game styles)`}>{GameStyles.values.map(gameStyle => this._renderSingleComponent(gameStyle))}</div>;
+        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.values.map(gameStyle => this._renderSingleComponent(gameStyle))}</div>;
     }
 
 }

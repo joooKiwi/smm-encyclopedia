@@ -19,7 +19,7 @@ export class MiiCostumeBuilder
         return MiiCostumeBuilder;
     }
 
-    public _build(name: Name,): MiiCostume {
+    public _build(name: Name<string>,): MiiCostume {
         const {category, conditionToUnlockIt: {mode, value}, version} = this.template;
 
         return new MiiCostumeContainer(name, mode, value,

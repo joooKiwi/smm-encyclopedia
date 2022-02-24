@@ -32,7 +32,7 @@ export default function NameComponent({popoverOrientation, id, name, ...otherPro
         return () => clearTimeout(timeoutId);
     });
 
-    const elementId = `${id}-${StringContainer.getInHtml(ProjectLanguages.getEnglish(name))}`;
+    const elementId = `${id}-${StringContainer.getInHtml(name.english)}`;
     const listId = `${elementId}-list`;
 
     return <div key={`${elementId} - container`} id={`${elementId}-container`}>
@@ -41,9 +41,9 @@ export default function NameComponent({popoverOrientation, id, name, ...otherPro
     </div>;
 }
 
-function createTextComponent(name: Name, elementId: string, listId: string, doesDisplaySpan: boolean, setDoesDisplaySpan: Dispatch<SetStateAction<boolean>>, setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>, popoverOrientation: | PopoverOrientation | undefined, otherProperties: Omit<NameProperties, 'popoverOrientation' | 'id' | 'name'>) {
+function createTextComponent(name: Name<string>, elementId: string, listId: string, doesDisplaySpan: boolean, setDoesDisplaySpan: Dispatch<SetStateAction<boolean>>, setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>, popoverOrientation: | PopoverOrientation | undefined, otherProperties: Omit<NameProperties, 'popoverOrientation' | 'id' | 'name'>) {
     const listElement = document.getElementById(listId)!;
-    const currentLanguageTextContent = ProjectLanguages.currentLanguage.get(name);
+    const currentLanguageTextContent = ProjectLanguages.currentLanguage.get<string>(name);
 
     return doesDisplaySpan
         ? <ContentTranslationComponent>{translation =>
@@ -69,7 +69,7 @@ function createOption(element: HTMLElement, popoverOrientation: | PopoverOrienta
 }
 
 
-function createListComponent(name: Name, elementId: string, listId: string, doesDisplayPopover: boolean,) {
+function createListComponent(name: Name<string>, elementId: string, listId: string, doesDisplayPopover: boolean,) {
     const languagesToDisplay = name.originalLanguages.filter(language => !language.isCurrentLanguage);
 
     return <ul key={`${elementId} - list`} id={listId} className={`language-list ${doesDisplayPopover ? '' : 'visually-hidden'}`}>{

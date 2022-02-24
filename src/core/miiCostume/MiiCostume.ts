@@ -3,7 +3,7 @@ import type {Versions}                                               from '../ve
 import {PossibleCategory, PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
 
 export interface MiiCostume
-    extends NameTrait {
+    extends NameTrait<string> {
 
     /*TODO change to a translation key or another kind of object that can use the translation*/
     get mode(): PossibleMode

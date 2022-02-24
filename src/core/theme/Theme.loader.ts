@@ -9,7 +9,6 @@ import type {Loader}                                    from '../../util/loader/
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
-import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {ThemeBuilder}            from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
@@ -105,7 +104,7 @@ export class ThemeLoader
                 )
                 .convertToEmptyableStringAnd(['Special effect on entities', 'Screen upside down', 'Dark', 'Wind', 'Slippery', 'Low gravity', 'Poison liquid', 'Entities in water', 'Characters in water',], 'effectInNightTheme')
 
-                .onAfterFinalObjectCreated(finalContent => references.set(ProjectLanguages.getEnglish(finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]) as PossibleEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set((finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]).english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

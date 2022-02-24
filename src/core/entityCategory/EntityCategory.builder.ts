@@ -19,7 +19,7 @@ export class EntityCategoryBuilder
         return EntityCategoryBuilder;
     }
 
-    protected _build(name: Name,): EntityCategory {
+    protected _build(name: Name<string>,): EntityCategory {
         return new EntityCategoryContainer(
             name,
         );

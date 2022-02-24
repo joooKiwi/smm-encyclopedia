@@ -5,8 +5,8 @@ import {EMPTY_ARRAY} from '../../../util/emptyVariables';
 /**
  * @provider
  */
-export class LanguageContainer<S extends | string | never, A extends | readonly string[] | never = never, >
-    implements Language<S, A> {
+export class LanguageContainer<T, S extends T = T, A extends readonly T[] = readonly [], >
+    implements Language<T, S, A> {
 
     //region -------------------- Attributes --------------------
 
@@ -51,11 +51,11 @@ export class LanguageContainer<S extends | string | never, A extends | readonly 
 
 export namespace LanguageContainer {
 
-    export function newInstance<S extends string, >(value: S,): Language<S>
-    export function newInstance<A extends readonly string[], >(value: A,): Language<never, A>
-    export function newInstance<S extends string, A extends readonly string[], >(value: | S | A,): Language<S, A>
-    export function newInstance(value: | string | readonly string[],): Language<string, readonly string[]> {
-        return new LanguageContainer(value);
+    export function newInstance<T, S extends T, >(value: T,): Language<T, S, never>
+    export function newInstance<T, A extends readonly T[], >(value: A,): Language<T, never, A>
+    export function newInstance<T, S extends T, A extends readonly T[], >(value: | T | A,): Language<T, S, A>
+    export function newInstance<T, >(value: | T | readonly T[],): Language<T, T, readonly T[]> {
+        return new LanguageContainer<T, T, readonly T[]>(value);
     }
 
 }

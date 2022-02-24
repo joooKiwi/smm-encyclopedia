@@ -10,7 +10,8 @@ export class AlternativeEntityLimitContainer
     extends AbstractEntityLimitContainer<| PossibleAlternativeAcronym | null>
     implements AlternativeEntityLimit {
 
-    public constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, regularEntityLimitCallback: () => EntityLimitWithPossibleAlternativeEntityLimit, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    //TODO change to object holder directly instead of creating the object holder instance here.
+    public constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, regularEntityLimitCallback: () => EntityLimitWithPossibleAlternativeEntityLimit, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
         super(name, acronym, () => this, () => {
             return regularEntityLimitCallback().type;
         }, limitAmount, link,);

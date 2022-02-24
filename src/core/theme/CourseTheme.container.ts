@@ -19,7 +19,7 @@ export class CourseThemeContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, isInProperty: GameProperty, entities: () => Entity[], effect: PossibleEffectInNightTheme,) {
+    public constructor(name: Name<string>, isInProperty: GameProperty, entities: () => Entity[], effect: PossibleEffectInNightTheme,) {
         super(name, isInProperty);
         this.#entities = new DelayedObjectHolderContainer(entities);
         this.#effect = effect;
@@ -31,10 +31,6 @@ export class CourseThemeContainer
 
     public get effect() {
         return this.#effect;
-    }
-
-    public toNameMap() {
-        return this.nameContainer.toNameMap();
     }
 
 }

@@ -86,7 +86,7 @@ export class MysteryMushroomBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    protected _build(name: Name,): MysteryMushroom {
+    protected _build(name: Name<string>,): MysteryMushroom {
         return new MysteryMushroomContainer(name, this._getGames(), this.__createProperty());
     }
 }

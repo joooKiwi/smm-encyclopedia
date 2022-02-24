@@ -1,6 +1,6 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './name/containers/Language';
-import type {ClassWithOnlyProjectLanguages}                                           from './ClassWithOnlyProjectLanguages';
-import type {EveryLanguages}                                                          from './EveryLanguages';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './name/containers/Language';
+import type {ClassWithOnlyProjectLanguages, PossibleLanguageValue}                                                                           from './ClassWithOnlyProjectLanguages';
+import type {EveryLanguages}                                                                                                                 from './EveryLanguages';
 
 /**
  * <p>
@@ -12,30 +12,31 @@ import type {EveryLanguages}                                                    
  *     as every languages included inside {@link ClassWithOnlyProjectLanguages}
  * </p>
  */
-export interface ClassWithEveryLanguages<GERMAN extends | string | null = | string | null,
-    ORIGINAL_SPANISH extends | AmericanOrEuropeanOriginal | null = | AmericanOrEuropeanOriginal | null, SPANISH extends | string | null = | string | null, AMERICAN_SPANISH extends | string | null = | string | null, EUROPEAN_SPANISH extends | string | null = | string | null,
-    ITALIAN extends | string | null = | string | null,
-    DUTCH extends | string | null = | string | null,
-    ORIGINAL_PORTUGUESE extends | AmericanOrEuropeanOriginal | null = | AmericanOrEuropeanOriginal | null, PORTUGUESE extends | string | null = | string | null, AMERICAN_PORTUGUESE extends | string | null = | string | null, EUROPEAN_PORTUGUESE extends | string | null = | string | null,
-    RUSSIAN extends | string | null = | string | null,
-    JAPANESE extends | string | null = | string | null,
-    ORIGINAL_CHINESE extends | ChineseOriginal | null = | ChineseOriginal | null, CHINESE extends | string | null = | string | null, TRADITIONAL_CHINESE extends | string | null = | string | null, SIMPLIFIED_CHINESE extends | string | null = | string | null,
-    KOREAN extends | string | null = | string | null,
-    GREEK extends | string | null = | string | null,>
-    extends ClassWithOnlyProjectLanguages<GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, GREEK> {
+export interface ClassWithEveryLanguages<T,
+    GERMAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    ORIGINAL_SPANISH extends PossibleAmericanOrEuropeanValue<T> = PossibleAmericanOrEuropeanValue<T>, SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, AMERICAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    ITALIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    DUTCH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    ORIGINAL_PORTUGUESE extends PossibleAmericanOrEuropeanValue<T> = PossibleAmericanOrEuropeanValue<T>, PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, AMERICAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    RUSSIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    JAPANESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    ORIGINAL_CHINESE extends PossibleChineseValue<T> = PossibleChineseValue<T>, CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, TRADITIONAL_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, SIMPLIFIED_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    KOREAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    GREEK extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, >
+    extends ClassWithOnlyProjectLanguages<T, GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, GREEK> {
 
     //region -------------------- English properties --------------------
 
-    get english(): string
+    get english(): T
 
-    get originalEnglish(): AmericanOrEuropeanOriginal
+    get originalEnglish(): AmericanOrEuropeanOriginal<T>
 
     //endregion -------------------- English properties --------------------
     //region -------------------- French properties --------------------
 
-    get french(): string
+    get french(): T
 
-    get originalFrench(): CanadianOrEuropeanOriginal
+    get originalFrench(): CanadianOrEuropeanOriginal<T>
 
     //endregion -------------------- French properties --------------------
     //region -------------------- Spanish properties --------------------
@@ -67,19 +68,20 @@ export interface ClassWithEveryLanguages<GERMAN extends | string | null = | stri
      * Return a {@link Map} based on the enum {@link EveryLanguages}
      * with every values used by the original value stored for this instance.
      */
-    toNameMap(): ReadonlyMap<EveryLanguages, string>
+    toNameMap(): ReadonlyMap<EveryLanguages, T>
 
 }
 
-export type CompleteClassWithEveryLanguages = ClassWithEveryLanguages<string,
-    AmericanOrEuropeanOriginal, string, string, string,
-    string,
-    string,
-    AmericanOrEuropeanOriginal, string, string, string,
-    string,
-    string,
-    ChineseOriginal, string, string, string,
-    string,
-    | string | null>;
 
-export type AnyClassWithEveryLanguages = | ClassWithEveryLanguages | CompleteClassWithEveryLanguages;
+export type CompleteClassWithEveryLanguages<T, > = ClassWithEveryLanguages<T,
+    T,
+    AmericanOrEuropeanOriginal<T>, T, T, T,
+    T,
+    T,
+    AmericanOrEuropeanOriginal<T>, T, T, T,
+    T,
+    T,
+    ChineseOriginal<T>, T, T, T,
+    T>;
+
+export type AnyClassWithEveryLanguages<T, > = | ClassWithEveryLanguages<T> | CompleteClassWithEveryLanguages<T>;

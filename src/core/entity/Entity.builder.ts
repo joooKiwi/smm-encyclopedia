@@ -169,7 +169,7 @@ export class EntityBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public _build(name: Name,) {
+    public _build(name: Name<string>,) {
         const isInProperty = this.__createProperty();
         const isInSMM1 = isInProperty.isInSuperMarioMaker1;
         const isInSMM2 = isInProperty.isInSuperMarioMaker2;

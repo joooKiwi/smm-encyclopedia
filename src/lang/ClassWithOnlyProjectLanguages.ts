@@ -9,29 +9,30 @@
  *     but not the simple language.
  * </p>
  */
-export interface ClassWithOnlyProjectLanguages<GERMAN extends string | null = string | null,
-    AMERICAN_SPANISH extends string | null = string | null, EUROPEAN_SPANISH extends string | null = string | null,
-    ITALIAN extends string | null = string | null,
-    DUTCH extends string | null = string | null,
-    AMERICAN_PORTUGUESE extends string | null = string | null, EUROPEAN_PORTUGUESE extends string | null = string | null,
-    RUSSIAN extends string | null = string | null,
-    JAPANESE extends string | null = string | null,
-    TRADITIONAL_CHINESE extends string | null = string | null, SIMPLIFIED_CHINESE extends string | null = string | null,
-    KOREAN extends string | null = string | null,
-    GREEK extends | string | null = | string | null,> {
+export interface ClassWithOnlyProjectLanguages<T,
+    GERMAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    AMERICAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    ITALIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    DUTCH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    AMERICAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    RUSSIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    JAPANESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    TRADITIONAL_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, SIMPLIFIED_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    KOREAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    GREEK extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>, > {
 
     //region -------------------- English properties --------------------
 
-    get americanEnglish(): string
+    get americanEnglish(): T
 
-    get europeanEnglish(): string
+    get europeanEnglish(): T
 
     //endregion -------------------- English properties --------------------
     //region -------------------- French properties --------------------
 
-    get canadianFrench(): string
+    get canadianFrench(): T
 
-    get europeanFrench(): string
+    get europeanFrench(): T
 
     //endregion -------------------- French properties --------------------
     //region -------------------- German properties --------------------
@@ -94,3 +95,8 @@ export interface ClassWithOnlyProjectLanguages<GERMAN extends string | null = st
     //endregion -------------------- Greek properties --------------------
 
 }
+
+/**
+ * The possible language value as either the generic type or null.
+ */
+export type PossibleLanguageValue<T, > = | T | null;

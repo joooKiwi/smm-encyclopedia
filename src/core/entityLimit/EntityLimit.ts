@@ -1,7 +1,6 @@
 import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
 import type {EntityLimitLink}                             from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                            from './EntityLimitTypes';
-import type {EveryLanguages}                              from '../../lang/EveryLanguages';
 import type {NameTrait}                                   from '../../lang/name/NameTrait';
 import type {NameTraitFromAnAlternativeContainer}         from '../../lang/name/NameTraitFromAnAlternativeContainer';
 import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
@@ -10,7 +9,7 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
     TYPE extends EntityLimitTypes = EntityLimitTypes,
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
     LINK extends EntityLimitLink = EntityLimitLink, >
-    extends NameTrait, NameTraitFromAnAlternativeContainer<AlternativeEntityLimit>/*,
+    extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
         ClassWithEnglishName<PossibleEntityLimits>*/ {
 
@@ -42,8 +41,6 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
     get alternativeEntityLink(): this['alternativeLinkContainer']['entity']
 
     //endregion -------------------- Link --------------------
-
-    toAlternativeNameMap(): ReadonlyMap<EveryLanguages, string>
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------

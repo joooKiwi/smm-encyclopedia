@@ -1,15 +1,18 @@
-import {EmptyableLanguage} from './EmptyableLanguage';
+import type {EmptyableLanguage} from './EmptyableLanguage';
 
-export type AmericanOrEuropeanOriginal = | string | AmericanOrEuropeanArray;
-export type AmericanOrEuropeanArray = readonly [american: string, european: string,];
+export type AmericanOrEuropeanOriginal<T, > = | T | AmericanOrEuropeanArray<T>;
+export type AmericanOrEuropeanArray<T, > = readonly [american: T, european: T,];
+export type PossibleAmericanOrEuropeanValue<T, > = | AmericanOrEuropeanOriginal<T> | null;
 
-export type CanadianOrEuropeanOriginal = | string | CanadianOrEuropeanArray;
-export type CanadianOrEuropeanArray = readonly [canadian: string, european: string,];
+export type CanadianOrEuropeanOriginal<T, > = | T | CanadianOrEuropeanArray<T>;
+export type CanadianOrEuropeanArray<T, > = readonly [canadian: T, european: T,];
+export type PossibleCanadianOrEuropeanValue<T, > = | CanadianOrEuropeanArray<T> | null;
 
-export type ChineseOriginal = | string | ChineseArray;
-export type ChineseArray = readonly [simplified: string, traditional: string,];
+export type ChineseOriginal<T, > = | T | ChineseArray<T>;
+export type ChineseArray<T, > = readonly [simplified: T, traditional: T,];
+export type PossibleChineseValue<T, > = | ChineseOriginal<T> | null;
 
-export interface Language<S extends | string | never, A extends | readonly string[] | never = never, >
-    extends EmptyableLanguage<S, A, never, never, never> {
+export interface Language<T, S extends T = T, A extends readonly T[] = readonly [], >
+    extends EmptyableLanguage<T, S, A, never, never, never> {
 
 }

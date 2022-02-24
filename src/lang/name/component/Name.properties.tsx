@@ -1,6 +1,6 @@
-import {ReactProperty}      from '../../../util/react/ReactProperty';
-import {HTMLSpanProperties} from '../../../util/react/html/HTMLSpanProperties';
-import {Name}               from '../Name';
+import type {HTMLSpanProperties} from '../../../util/react/html/HTMLSpanProperties';
+import type {Name}               from '../Name';
+import type {ReactProperty}      from '../../../util/react/ReactProperty';
 
 export type PopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right';
 
@@ -11,6 +11,6 @@ export interface NameProperties
 
     id: string
 
-    name: Name
+    name: Name<string>
 
 }

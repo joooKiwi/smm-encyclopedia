@@ -1,7 +1,7 @@
 import type {NameTrait} from '../../lang/name/NameTrait';
 
 export interface EntityCategory
-    extends NameTrait/*,
+    extends NameTrait<string>/*,
         ClassWithEnglishName<PossibleEntityCategoriesName>*/ {
 
 }
