@@ -4,7 +4,7 @@ import type {NameTrait} from './NameTrait';
  * A simili-trait class method that is a kind of {@link  NameTrait},
  * but with every methods that the trait reference has with "alternativeContainer" before.
  */
-export interface NameTraitFromAnAlternativeContainer<ALTERNATIVE_CONTAINER extends NameTrait<string>,>{
+export interface NameTraitFromAnAlternativeContainer<T, ALTERNATIVE_CONTAINER extends NameTrait<T>,>{
 
     get alternativeContainer(): ALTERNATIVE_CONTAINER
 

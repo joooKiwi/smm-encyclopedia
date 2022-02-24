@@ -11,7 +11,7 @@ import type {TimeProperty}                                                      
 
 export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
     extends NameTrait<string>,
-        NameTraitFromACategory<CATEGORY>,
+        NameTraitFromACategory<string, CATEGORY>,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
         GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
         GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,

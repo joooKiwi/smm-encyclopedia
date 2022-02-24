@@ -4,7 +4,7 @@ import type {NameTrait}          from './NameTrait';
  * A simili-trait class method that is a kind of {@link NameTrait},
  * but with every methods that the trait reference has with "category" before.
  */
-export interface NameTraitFromACategory<CATEGORY extends NameTrait<string>, > {
+export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get category(): CATEGORY
 

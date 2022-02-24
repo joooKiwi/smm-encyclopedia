@@ -10,7 +10,7 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
     TYPE extends EntityLimitTypes = EntityLimitTypes,
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
     LINK extends EntityLimitLink = EntityLimitLink, >
-    extends NameTrait<string>, NameTraitFromAnAlternativeContainer<AlternativeEntityLimit>/*,
+    extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
         ClassWithEnglishName<PossibleEntityLimits>*/ {
 
