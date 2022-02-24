@@ -33,8 +33,4 @@ export class CourseThemeContainer
         return this.#effect;
     }
 
-    public toNameMap() {
-        return this.nameContainer.toNameMap();
-    }
-
 }

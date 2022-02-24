@@ -1,12 +1,13 @@
 import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/ClassWithNullObjectPattern';
 import type {Entity}                                      from './Entity';
 
-import {assert}               from '../../util/utilitiesMethods';
-import {EMPTY_MAP}            from '../../util/emptyVariables';
-import {EmptyEntityReference} from './properties/EmptyEntityReference';
-import {EmptyEntityCategory}  from '../entityCategory/EmptyEntityCategory';
-import {EmptyIsInProperty} from './properties/EmptyIsInProperty';
-import {EmptyStringName}   from '../../lang/name/EmptyStringName';
+import {assert}                           from '../../util/utilitiesMethods';
+import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
+import {EMPTY_MAP}                        from '../../util/emptyVariables';
+import {EmptyEntityReference}             from './properties/EmptyEntityReference';
+import {EmptyEntityCategory}              from '../entityCategory/EmptyEntityCategory';
+import {EmptyIsInProperty}                from './properties/EmptyIsInProperty';
+import {EmptyStringName}                  from '../../lang/name/EmptyStringName';
 
 /**
  * An empty entity with the default values of nothing
@@ -15,6 +16,7 @@ import {EmptyStringName}   from '../../lang/name/EmptyStringName';
  * @singleton
  */
 export class EmptyEntity
+    extends ClassContainingANameAndACategory<string, string, EmptyEntityCategory>
     implements Entity, ClassWithNullObjectPattern<EmptyEntityName> {
 
     //region -------------------- Singleton usage --------------------
@@ -22,6 +24,7 @@ export class EmptyEntity
     static #instance?: EmptyEntity;
 
     private constructor() {
+        super(EmptyStringName.get, EmptyEntityCategory.get,);
     }
 
     public static get get() {
@@ -30,107 +33,6 @@ export class EmptyEntity
 
     //endregion -------------------- Singleton usage --------------------
 
-    //region -------------------- Name properties --------------------
-
-    public readonly nameContainer = EmptyStringName.get;
-
-    public readonly languageValue = this.nameContainer.languageValue;
-
-    public readonly originalEnglish = this.nameContainer.originalEnglish;
-    public readonly english = this.nameContainer.english;
-    public readonly americanEnglish = this.nameContainer.americanEnglish;
-    public readonly europeanEnglish = this.nameContainer.europeanEnglish;
-
-    public readonly originalFrench = this.nameContainer.originalFrench;
-    public readonly french = this.nameContainer.french;
-    public readonly canadianFrench = this.nameContainer.canadianFrench;
-    public readonly europeanFrench = this.nameContainer.europeanFrench;
-
-    public readonly german = this.nameContainer.german;
-
-    public readonly originalSpanish = this.nameContainer.originalSpanish;
-    public readonly spanish = this.nameContainer.spanish;
-    public readonly americanSpanish = this.nameContainer.americanSpanish;
-    public readonly europeanSpanish = this.nameContainer.europeanSpanish;
-
-    public readonly italian = this.nameContainer.italian;
-
-    public readonly dutch = this.nameContainer.dutch;
-
-    public readonly originalPortuguese = this.nameContainer.originalPortuguese;
-    public readonly portuguese = this.nameContainer.portuguese;
-    public readonly americanPortuguese = this.nameContainer.americanPortuguese;
-    public readonly europeanPortuguese = this.nameContainer.europeanPortuguese;
-
-    public readonly russian = this.nameContainer.russian;
-
-    public readonly japanese = this.nameContainer.japanese;
-
-    public readonly originalChinese = this.nameContainer.originalChinese;
-    public readonly chinese = this.nameContainer.chinese;
-    public readonly traditionalChinese = this.nameContainer.traditionalChinese;
-    public readonly simplifiedChinese = this.nameContainer.simplifiedChinese;
-
-    public readonly korean = this.nameContainer.korean;
-
-    public readonly isGreekUsed = this.nameContainer.isGreekUsed;
-    public readonly greek = this.nameContainer.greek;
-
-    public readonly originalLanguages = this.nameContainer.originalLanguages;
-
-    //endregion -------------------- Name properties --------------------
-    //region -------------------- Category properties --------------------
-
-    public readonly category = EmptyEntityCategory.get;
-
-    public readonly categoryName = this.category.nameContainer;
-
-    public readonly categoryLanguageValue = this.categoryName.languageValue;
-
-    public readonly categoryOriginalEnglish = this.categoryName.originalEnglish;
-    public readonly categoryEnglish = this.categoryName.english;
-    public readonly categoryAmericanEnglish = this.categoryName.americanEnglish;
-    public readonly categoryEuropeanEnglish = this.categoryName.europeanEnglish;
-
-
-    public readonly categoryOriginalFrench = this.categoryName.originalFrench;
-    public readonly categoryFrench = this.categoryName.french;
-    public readonly categoryCanadianFrench = this.categoryName.canadianFrench;
-    public readonly categoryEuropeanFrench = this.categoryName.europeanFrench;
-
-    public readonly categoryGerman = this.categoryName.german;
-
-    public readonly categoryOriginalSpanish = this.categoryName.originalSpanish;
-    public readonly categorySpanish = this.categoryName.spanish;
-    public readonly categoryAmericanSpanish = this.categoryName.americanSpanish;
-    public readonly categoryEuropeanSpanish = this.categoryName.europeanSpanish;
-
-    public readonly categoryItalian = this.categoryName.italian;
-
-    public readonly categoryDutch = this.categoryName.dutch;
-
-    public readonly categoryOriginalPortuguese = this.categoryName.originalPortuguese;
-    public readonly categoryPortuguese = this.categoryName.portuguese;
-    public readonly categoryAmericanPortuguese = this.categoryName.americanPortuguese;
-    public readonly categoryEuropeanPortuguese = this.categoryName.europeanPortuguese;
-
-    public readonly categoryRussian = this.categoryName.russian;
-
-    public readonly categoryJapanese = this.categoryName.japanese;
-
-    public readonly categoryOriginalChinese = this.categoryName.originalChinese;
-    public readonly categoryChinese = this.categoryName.chinese;
-    public readonly categoryTraditionalChinese = this.categoryName.traditionalChinese;
-    public readonly categorySimplifiedChinese = this.categoryName.simplifiedChinese;
-
-    public readonly categoryKorean = this.categoryName.korean;
-
-    public readonly categoryIsGreekUsed = this.categoryName.isGreekUsed;
-    public readonly categoryGreek = this.categoryName.greek;
-
-    public readonly categoryOriginalLanguages = this.categoryName.originalLanguages;
-
-    //endregion -------------------- Category properties --------------------
     //region -------------------- Properties --------------------
 
     public readonly propertyContainer = EmptyIsInProperty.get;

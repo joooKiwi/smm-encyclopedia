@@ -1,4 +1,5 @@
-import type {NameTrait} from './NameTrait';
+import type {EveryLanguages} from '../EveryLanguages';
+import type {NameTrait}      from './NameTrait';
 
 /**
  * A simili-trait class method that is a kind of {@link  NameTrait},
@@ -87,5 +88,7 @@ export interface NameTraitFromAnAlternativeContainer<T, ALTERNATIVE_CONTAINER ex
     get alternativeOriginalLanguages(): this['alternativeNameContainer']['originalLanguages']
 
     //endregion -------------------- Name --------------------
+
+    toAlternativeNameMap(): ReadonlyMap<EveryLanguages, T>
 
 }

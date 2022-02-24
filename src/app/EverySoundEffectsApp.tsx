@@ -38,7 +38,7 @@ export default class EverySoundEffectsApp
     //region -------------------- Methods --------------------
 
     private __createCategoryComponent(index: number, soundEffect: SoundEffect,) {
-        const categoryName = soundEffect.categoryName;
+        const categoryName = soundEffect.categoryNameContainer;
         if (categoryName === EmptyStringName.get)
             return EMPTY_REACT_ELEMENT;
 

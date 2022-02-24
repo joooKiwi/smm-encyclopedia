@@ -344,7 +344,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
         protected get _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const categoryName = enumeration.reference.categoryName;
+                const categoryName = enumeration.reference.categoryNameContainer;
                 if (categoryName === EmptyStringName.get)
                     return EMPTY_REACT_ELEMENT;
 

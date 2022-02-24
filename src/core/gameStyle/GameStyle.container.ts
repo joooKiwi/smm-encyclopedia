@@ -4,14 +4,15 @@ import type {GameStyle}    from './GameStyle';
 import type {Name}         from '../../lang/name/Name';
 import type {ObjectHolder} from '../../util/holder/ObjectHolder';
 
+import {ClassContainingAName}         from '../../lang/name/ClassContainingAName';
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
 
 export class GameStyleContainer
+    extends ClassContainingAName<string>
     implements GameStyle {
 
     //region -------------------- Attributes --------------------
 
-    readonly #name: ObjectHolder<Name<string>>;
     readonly #isInProperty;
     readonly #entities: ObjectHolder<readonly Entity[]>;
 
@@ -19,7 +20,7 @@ export class GameStyleContainer
 
     //TODO change to object holder directly instead of creating the object holder instance here.
     public constructor(name: () => Name<string>, isInProperty: GameProperty, entities: () => readonly Entity[],) {
-        this.#name = new DelayedObjectHolderContainer(name);
+        super(name,);
         this.#isInProperty = isInProperty;
         this.#entities = new DelayedObjectHolderContainer(entities);
     }
@@ -183,10 +184,6 @@ export class GameStyleContainer
 
     public get entities() {
         return this.#entities.get;
-    }
-
-    public toNameMap() {
-        return this.nameContainer.toNameMap();
     }
 
 }
