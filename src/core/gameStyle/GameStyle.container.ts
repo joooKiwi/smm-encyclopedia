@@ -5,7 +5,7 @@ import type {Name}         from '../../lang/name/Name';
 import type {ObjectHolder} from '../../util/holder/ObjectHolder';
 
 import {ClassContainingAName}         from '../../lang/name/ClassContainingAName';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class GameStyleContainer
     extends ClassContainingAName<string>

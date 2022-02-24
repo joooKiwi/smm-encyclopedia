@@ -1,7 +1,7 @@
 import type {BooleanPropertyThatCanBeUnknownWithAmount} from '../PropertyThatCanBeUnknownWithAmount';
 import type {PossibleAmount}                            from '../ClassWithAmount';
 import type {PossibleBoolean}                           from '../Property';
-import type {ValueOrCallbackValue}                      from '../../../util/holder/ObjectHolder';
+import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder';
 
 import {PropertyThatCanBeUnknownWithAmountContainer} from '../PropertyThatCanBeUnknownWithAmount.container';
 
@@ -9,7 +9,7 @@ export class BooleanPropertyThatCanBeUnknownWithAmountContainer<B extends Possib
     extends PropertyThatCanBeUnknownWithAmountContainer<B, IS_UNKNOWN, AMOUNT>
     implements BooleanPropertyThatCanBeUnknownWithAmount<B, IS_UNKNOWN, AMOUNT> {
 
-    public constructor(value: ValueOrCallbackValue<B>, isUnknown: IS_UNKNOWN, amount: AMOUNT,) {
+    public constructor(value: PossibleValueOnObjectHolder<B>, isUnknown: IS_UNKNOWN, amount: AMOUNT,) {
         super(value, isUnknown, amount,);
     }
 

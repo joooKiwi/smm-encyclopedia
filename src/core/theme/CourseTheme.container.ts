@@ -6,7 +6,7 @@ import type {ObjectHolder}               from '../../util/holder/ObjectHolder';
 import type {PossibleEffectInNightTheme} from './Theme.template';
 
 import {AbstractTheme}                from './AbstractTheme';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class CourseThemeContainer
     extends AbstractTheme

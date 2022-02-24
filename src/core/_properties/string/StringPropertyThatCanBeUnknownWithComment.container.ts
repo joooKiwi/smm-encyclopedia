@@ -1,7 +1,7 @@
 import type {PossibleComment}                           from '../ClassWithComment';
 import type {PossibleString}                            from '../Property';
+import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder';
 import type {StringPropertyThatCanBeUnknownWithComment} from '../PropertyThatCanBeUnknownWithComment';
-import type {ValueOrCallbackValue}                      from '../../../util/holder/ObjectHolder';
 
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../PropertyThatCanBeUnknownWithComment.container';
 
@@ -9,7 +9,7 @@ export class StringPropertyThatCanBeUnknownWithCommentContainer<S extends Possib
     extends PropertyThatCanBeUnknownWithCommentContainer<S, IS_UNKNOWN, COMMENT>
     implements StringPropertyThatCanBeUnknownWithComment<S, IS_UNKNOWN, COMMENT> {
 
-    public constructor(value: ValueOrCallbackValue<S>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
+    public constructor(value: PossibleValueOnObjectHolder<S>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
         super(value, isUnknown, comment,);
     }
 

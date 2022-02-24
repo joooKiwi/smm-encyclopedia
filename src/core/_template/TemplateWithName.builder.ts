@@ -5,7 +5,7 @@ import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../l
 import type {PossibleGameReceived}                                 from './TemplateWithName.builder.types';
 import type {TemplateWithNameTemplate}                             from './TemplateWithName.template';
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 import {NameBuilder}                  from '../../lang/name/Name.builder';
 import {NameCreator}                  from '../../lang/name/Name.creator';
 import {TemplateBuilder}              from './Template.builder';

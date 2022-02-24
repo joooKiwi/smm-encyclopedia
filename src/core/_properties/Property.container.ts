@@ -1,10 +1,10 @@
 import type {DEFAULT_AMOUNT, DEFAULT_COMMENT, DEFAULT_IS_UNKNOWN}                                                       from './Property';
 import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from './PropertyWithEverything';
-import type {ObjectHolder, ValueOrCallbackValue}                                                                        from '../../util/holder/ObjectHolder';
+import type {ObjectHolder, PossibleValueOnObjectHolder}                                                                 from '../../util/holder/ObjectHolder';
 import type {PossibleAmount}                                                                                            from './ClassWithAmount';
 import type {PossibleComment}                                                                                           from './ClassWithComment';
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOWN, AMOUNT extends PossibleAmount = DEFAULT_AMOUNT, COMMENT extends PossibleComment = DEFAULT_COMMENT, >
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
@@ -41,15 +41,15 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOW
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(value: ValueOrCallbackValue<T>,)
-    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN,)
-    protected constructor(value: ValueOrCallbackValue<T>, amount: AMOUNT,)
-    protected constructor(value: ValueOrCallbackValue<T>, comment: COMMENT,)
-    protected constructor(value: ValueOrCallbackValue<T>, amount: AMOUNT, comment: COMMENT,)
-    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
-    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
-    protected constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
-    protected constructor(value: ValueOrCallbackValue<T>, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
+    protected constructor(value: PossibleValueOnObjectHolder<T>,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, comment: COMMENT,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT, comment: COMMENT,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
+    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
         this.#value = new DelayedObjectHolderContainer<T>(value);
 
         switch (typeof isUnknown_or_amount_or_comment) {

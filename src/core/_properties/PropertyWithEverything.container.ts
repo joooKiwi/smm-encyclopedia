@@ -1,7 +1,7 @@
-import type {PossibleAmount}         from './ClassWithAmount';
-import type {PossibleComment}        from './ClassWithComment';
-import type {PropertyWithEverything} from './PropertyWithEverything';
-import type {ValueOrCallbackValue}   from '../../util/holder/ObjectHolder';
+import type {PossibleAmount}              from './ClassWithAmount';
+import type {PossibleComment}             from './ClassWithComment';
+import type {PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
+import type {PropertyWithEverything}      from './PropertyWithEverything';
 
 import {PropertyContainer} from './Property.container';
 
@@ -9,7 +9,7 @@ export class PropertyWithEverythingContainer<T, IS_UNKNOWN extends boolean = boo
     extends PropertyContainer<T, IS_UNKNOWN, AMOUNT, COMMENT>
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
 
-    public constructor(value: ValueOrCallbackValue<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
         super(value, isUnknown, amount, comment,);
     }
 

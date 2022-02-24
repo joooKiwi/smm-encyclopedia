@@ -8,7 +8,7 @@ import type {ReactComponent}             from '../../../util/react/ReactComponen
 import type {SingleHeaderContent}        from './SimpleHeader';
 import type {TableProperties}            from './Table.types';
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 import {EMPTY_REACT_ELEMENT}          from '../../../util/emptyReactVariables';
 import {HeaderTypes}                  from './header/HeaderTypes';
 import {HeaderHolderContainer}        from './header/HeaderHolder.container';
