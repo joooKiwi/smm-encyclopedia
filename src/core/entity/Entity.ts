@@ -10,7 +10,7 @@ import type {ThemeProperty}                                                     
 import type {TimeProperty}                                                                                                        from './properties/TimeProperty';
 
 export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
-    extends NameTrait,
+    extends NameTrait<string>,
         NameTraitFromACategory<CATEGORY>,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
         GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,

@@ -1,7 +1,6 @@
 import type {ThemeProperty} from '../entity/properties/ThemeProperty';
 
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {ProjectLanguages}              from '../../lang/ProjectLanguages';
 import {ThemeComponent}                from './Theme.component';
 import {Themes}                        from './Themes';
 
@@ -30,7 +29,7 @@ export default class CourseThemeComponent
     }
 
     protected _renderSingleComponent(theme: Themes,) {
-        return CourseThemeComponent.renderSingleComponent(theme, true, ProjectLanguages.getEnglish(this.name),);
+        return CourseThemeComponent.renderSingleComponent(theme, true, this.name.english,);
     }
 
     protected _renderComponentForAllAsText() {
@@ -38,7 +37,7 @@ export default class CourseThemeComponent
     }
 
     protected _renderComponentForAllAsImages() {
-        return <div key={`${ProjectLanguages.getEnglish(this.name)} (every course themes)`}>{Themes.courseThemes.map(courseTheme => this._renderSingleComponent(courseTheme))}</div>;
+        return <div key={`${this.name.english} (every course themes)`}>{Themes.courseThemes.map(courseTheme => this._renderSingleComponent(courseTheme))}</div>;
     }
 
 }

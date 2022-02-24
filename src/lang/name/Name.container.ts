@@ -1,67 +1,68 @@
-import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from './containers/Language';
-import type {EmptyableOptionalLanguage}                                                                                                                         from './containers/EmptyableOptionalLanguage';
-import type {EmptyableLanguage}                                                                                                                                 from './containers/EmptyableLanguage';
-import type {Name}                                                                                                                                              from './Name';
-import type {OptionalLanguage}                                                                                                                                  from './containers/OptionalLanguage';
+import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, Language, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language';
+import type {EmptyableOptionalLanguage}                                                                                                                                                               from './containers/EmptyableOptionalLanguage';
+import type {EmptyableLanguage}                                                                                                                                                                       from './containers/EmptyableLanguage';
+import type {Name}                                                                                                                                                                                    from './Name';
+import type {OptionalLanguage}                                                                                                                                                                        from './containers/OptionalLanguage';
+import type {PossibleLanguageValue}                                                                                                                                                                   from '../ClassWithOnlyProjectLanguages';
 
 import {assert}                    from '../../util/utilitiesMethods';
+import {EmptyLanguageContainer}    from './containers/EmptyLanguageContainer';
 import {EveryLanguages}            from '../EveryLanguages';
-import {ProjectLanguages}          from '../ProjectLanguages';
 import {LanguageContainer}         from './containers/LanguageContainer';
 import {OptionalLanguageContainer} from './containers/OptionalLanguageContainer';
-import {EmptyLanguageContainer}    from './containers/EmptyLanguageContainer';
+import {ProjectLanguages}          from '../ProjectLanguages';
 
-export class NameContainer
-    implements Name {
+export class NameContainer<T, >
+    implements Name<T> {
 
     //region -------------------- Attributes --------------------
 
     static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.GREEK,] as const;
 
     readonly #originalLanguages: readonly EveryLanguages[];
-    #map?: Map<EveryLanguages, string>;
+    #map?: Map<EveryLanguages, T>;
 
-    readonly #englishContainer: Language<string, AmericanOrEuropeanArray>;
-    readonly #frenchContainer: Language<string, CanadianOrEuropeanArray>;
-    readonly #germanContainer: EmptyableLanguage<string>;
-    readonly #spanishContainer: EmptyableLanguage<string, AmericanOrEuropeanArray>;
-    readonly #italianContainer: EmptyableLanguage<string>;
-    readonly #dutchContainer: EmptyableLanguage<string>;
-    readonly #portugueseContainer: EmptyableLanguage<string, AmericanOrEuropeanArray>;
-    readonly #russianContainer: EmptyableLanguage<string>;
-    readonly #japaneseContainer: EmptyableLanguage<string>;
-    readonly #chineseContainer: EmptyableLanguage<string, ChineseArray>;
-    readonly #koreanContainer: EmptyableLanguage<string>;
-    readonly #greekContainer: EmptyableOptionalLanguage<string>;
+    readonly #englishContainer: Language<T, T, AmericanOrEuropeanArray<T>>;
+    readonly #frenchContainer: Language<T, T, CanadianOrEuropeanArray<T>>;
+    readonly #germanContainer: EmptyableLanguage<T, T, never>;
+    readonly #spanishContainer: EmptyableLanguage<T, T, AmericanOrEuropeanArray<T>>;
+    readonly #italianContainer: EmptyableLanguage<T, T, never>;
+    readonly #dutchContainer: EmptyableLanguage<T, T, never>;
+    readonly #portugueseContainer: EmptyableLanguage<T, T, AmericanOrEuropeanArray<T>>;
+    readonly #russianContainer: EmptyableLanguage<T, T, never>;
+    readonly #japaneseContainer: EmptyableLanguage<T, T, never>;
+    readonly #chineseContainer: EmptyableLanguage<T, T, ChineseArray<T>>;
+    readonly #koreanContainer: EmptyableLanguage<T, T, never>;
+    readonly #greekContainer: EmptyableOptionalLanguage<T, T, never>;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(english: AmericanOrEuropeanOriginal,
-                       french: CanadianOrEuropeanOriginal,
-                       german: | string | null,
-                       spanish: | AmericanOrEuropeanOriginal | null,
-                       italian: | string | null,
-                       dutch: | string | null,
-                       portuguese: | AmericanOrEuropeanOriginal | null,
-                       russian: | string | null,
-                       japanese: | string | null,
-                       chinese: | ChineseOriginal | null,
-                       korean: | string | null,
-                       greek: | string | null,) {
+    public constructor(english: AmericanOrEuropeanOriginal<T>,
+                       french: CanadianOrEuropeanOriginal<T>,
+                       german: PossibleLanguageValue<T>,
+                       spanish: PossibleAmericanOrEuropeanValue<T>,
+                       italian: PossibleLanguageValue<T>,
+                       dutch: PossibleLanguageValue<T>,
+                       portuguese: PossibleAmericanOrEuropeanValue<T>,
+                       russian: PossibleLanguageValue<T>,
+                       japanese: PossibleLanguageValue<T>,
+                       chinese: PossibleChineseValue<T>,
+                       korean: PossibleLanguageValue<T>,
+                       greek: PossibleLanguageValue<T>,) {
         const originalLanguages: EveryLanguages[] = [];
 
-        this.#englishContainer = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.ENGLISH, originalLanguages, english,);
-        this.#frenchContainer = NameContainer.__newLanguageContainer<string, CanadianOrEuropeanArray>(EveryLanguages.FRENCH, originalLanguages, french,);
-        this.#germanContainer = NameContainer.__newLanguageContainer(EveryLanguages.GERMAN, originalLanguages, german,);
-        this.#spanishContainer = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.SPANISH, originalLanguages, spanish,);
-        this.#italianContainer = NameContainer.__newLanguageContainer(EveryLanguages.ITALIAN, originalLanguages, italian,);
-        this.#dutchContainer = NameContainer.__newLanguageContainer(EveryLanguages.DUTCH, originalLanguages, dutch,);
-        this.#portugueseContainer = NameContainer.__newLanguageContainer<string, AmericanOrEuropeanArray>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
-        this.#russianContainer = NameContainer.__newLanguageContainer(EveryLanguages.RUSSIAN, originalLanguages, russian,);
-        this.#japaneseContainer = NameContainer.__newLanguageContainer(EveryLanguages.JAPANESE, originalLanguages, japanese,);
-        this.#chineseContainer = NameContainer.__newLanguageContainer<string, ChineseArray>(EveryLanguages.CHINESE, originalLanguages, chinese,);
-        this.#koreanContainer = NameContainer.__newLanguageContainer(EveryLanguages.KOREAN, originalLanguages, korean,);
-        this.#greekContainer = NameContainer.__newLanguageContainer(EveryLanguages.GREEK, originalLanguages, greek,);
+        this.#englishContainer = NameContainer.__newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.ENGLISH, originalLanguages, english,);
+        this.#frenchContainer = NameContainer.__newLanguageContainer<T, T, CanadianOrEuropeanArray<T>>(EveryLanguages.FRENCH, originalLanguages, french,);
+        this.#germanContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.GERMAN, originalLanguages, german,);
+        this.#spanishContainer = NameContainer.__newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.SPANISH, originalLanguages, spanish,);
+        this.#italianContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.ITALIAN, originalLanguages, italian,);
+        this.#dutchContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.DUTCH, originalLanguages, dutch,);
+        this.#portugueseContainer = NameContainer.__newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
+        this.#russianContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.RUSSIAN, originalLanguages, russian,);
+        this.#japaneseContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.JAPANESE, originalLanguages, japanese,);
+        this.#chineseContainer = NameContainer.__newLanguageContainer<T, T, ChineseArray<T>>(EveryLanguages.CHINESE, originalLanguages, chinese,);
+        this.#koreanContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.KOREAN, originalLanguages, korean,);
+        this.#greekContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.GREEK, originalLanguages, greek,);
 
         this.#originalLanguages = originalLanguages;
     }
@@ -92,143 +93,143 @@ export class NameContainer
         return this.#OPTIONAL_LANGUAGES;
     }
 
-    public get languageValue() {
-        return ProjectLanguages.currentLanguage.get(this);
+    public get languageValue(): T {
+        return ProjectLanguages.currentLanguage.get<T>(this);
     }
 
     //region -------------------- English properties --------------------
 
-    public get originalEnglish() {
+    public get originalEnglish(): AmericanOrEuropeanOriginal<T> {
         return this.#englishContainer.original;
     }
 
-    public get english() {
+    public get english(): T {
         return this.#englishContainer.get();
     }
 
-    public get americanEnglish() {
+    public get americanEnglish(): T {
         return this.#englishContainer.get(0);
     }
 
-    public get europeanEnglish() {
+    public get europeanEnglish(): T {
         return this.#englishContainer.get(1);
     }
 
     //endregion -------------------- English properties --------------------
     //region -------------------- French properties --------------------
 
-    public get originalFrench() {
+    public get originalFrench(): CanadianOrEuropeanOriginal<T> {
         return this.#frenchContainer.original;
     }
 
-    public get french() {
+    public get french(): T {
         return this.#frenchContainer.get();
     }
 
-    public get canadianFrench() {
+    public get canadianFrench(): T {
         return this.#frenchContainer.get(0);
     }
 
-    public get europeanFrench() {
+    public get europeanFrench(): T {
         return this.#frenchContainer.get(1);
     }
 
     //endregion -------------------- French properties --------------------
     //region -------------------- German properties --------------------
 
-    public get german() {
+    public get german(): PossibleLanguageValue<T> {
         return this.#germanContainer.original;
     }
 
     //endregion -------------------- German properties --------------------
     //region -------------------- Spanish properties --------------------
 
-    public get originalSpanish() {
+    public get originalSpanish(): PossibleAmericanOrEuropeanValue<T> {
         return this.#spanishContainer.original;
     }
 
-    public get spanish() {
+    public get spanish(): PossibleLanguageValue<T> {
         return this.#spanishContainer.get();
     }
 
-    public get americanSpanish() {
+    public get americanSpanish(): PossibleLanguageValue<T> {
         return this.#spanishContainer.get(0);
     }
 
-    public get europeanSpanish() {
+    public get europeanSpanish(): PossibleLanguageValue<T> {
         return this.#spanishContainer.get(1);
     }
 
     //endregion -------------------- Spanish properties --------------------
     //region -------------------- Italian properties --------------------
 
-    public get italian() {
+    public get italian(): PossibleLanguageValue<T> {
         return this.#italianContainer.original;
     }
 
     //endregion -------------------- Italian properties --------------------
     //region -------------------- Dutch properties --------------------
 
-    public get dutch() {
+    public get dutch(): PossibleLanguageValue<T> {
         return this.#dutchContainer.original;
     }
 
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
-    public get originalPortuguese() {
+    public get originalPortuguese(): PossibleAmericanOrEuropeanValue<T> {
         return this.#portugueseContainer.original;
     }
 
-    public get portuguese() {
+    public get portuguese(): PossibleLanguageValue<T> {
         return this.#portugueseContainer.get();
     }
 
-    public get americanPortuguese() {
+    public get americanPortuguese(): PossibleLanguageValue<T> {
         return this.#portugueseContainer.get(0);
     }
 
-    public get europeanPortuguese() {
+    public get europeanPortuguese(): PossibleLanguageValue<T> {
         return this.#portugueseContainer.get(1);
     }
 
     //endregion -------------------- Portuguese properties --------------------
     //region -------------------- Russian properties --------------------
 
-    public get russian() {
+    public get russian(): PossibleLanguageValue<T> {
         return this.#russianContainer.original;
     }
 
     //endregion -------------------- Russian properties --------------------
     //region -------------------- Japanese properties --------------------
 
-    public get japanese() {
+    public get japanese(): PossibleLanguageValue<T> {
         return this.#japaneseContainer.original;
     }
 
     //endregion -------------------- Japanese properties --------------------
     //region -------------------- Chinese properties --------------------
 
-    public get originalChinese() {
+    public get originalChinese(): PossibleChineseValue<T> {
         return this.#chineseContainer.original;
     }
 
-    public get chinese() {
+    public get chinese(): PossibleLanguageValue<T> {
         return this.#chineseContainer.get();
     }
 
-    public get traditionalChinese() {
+    public get traditionalChinese(): PossibleLanguageValue<T> {
         return this.#chineseContainer.get(1);
     }
 
-    public get simplifiedChinese() {
+    public get simplifiedChinese(): PossibleLanguageValue<T> {
         return this.#chineseContainer.get(0);
     }
 
     //endregion -------------------- Chinese properties --------------------
     //region -------------------- Korean properties --------------------
 
-    public get korean() {
+    public get korean(): PossibleLanguageValue<T> {
         return this.#koreanContainer.original;
     }
 
@@ -239,75 +240,73 @@ export class NameContainer
         return this.#greekContainer.isUsed;
     }
 
-    public get greek() {
+    public get greek(): PossibleLanguageValue<T> {
         return this.#greekContainer.original;
     }
 
     //endregion -------------------- Greek properties --------------------
 
-    public get originalLanguages() {
+    public get originalLanguages(): readonly EveryLanguages[] {
         return this.#originalLanguages;
     }
 
     //endregion -------------------- Name properties --------------------
 
-    public toNameMap() {
+    public toNameMap(): ReadonlyMap<EveryLanguages, T> {
         return this.#map ??= new Map(this.originalLanguages.map(language => [language, language.get(this)!,]));
     }
 
 
-    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableOptionalLanguage<S>
-    private static __newLanguageContainer<S extends string, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<S>
-    private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<S>
-    private static __newLanguageContainer<S extends string, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | null,): Language<S>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<S, A>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<S, A>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<S, A>
-    private static __newLanguageContainer<S extends string, A extends readonly string[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<S, A>
-    private static __newLanguageContainer(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | string | readonly string[] | null,) {
+    private static __newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): EmptyableOptionalLanguage<T, S, never>
+    private static __newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<T, S, never>
+    private static __newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<T, S, never>
+    private static __newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | null,): Language<T, S, never>
+    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<T, S, A>
+    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<T, S, A>
+    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<T, S, A>
+    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<T, S, A>
+    private static __newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | T | readonly T[] | null,) {
         if (value == null) {
             assert(!language.isACompleteLanguage, `The language "${language.englishName}" cannot be null if it is a complete language.`,);
             return EmptyLanguageContainer.get;
         }
 
         const languageContainer = this.optionalLanguages.includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value);
-
-        const isValueString = typeof value === 'string';
-
+        const isValueArray = value instanceof Array;
 
         switch (language) {
             case EveryLanguages.ENGLISH:
-                if (isValueString)
-                    originalLanguages.push(EveryLanguages.ENGLISH);
-                else
+                if (isValueArray)
                     originalLanguages.push(EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH,);
+                else
+                    originalLanguages.push(EveryLanguages.ENGLISH);
                 break;
             case EveryLanguages.FRENCH:
-                if (isValueString)
-                    originalLanguages.push(EveryLanguages.FRENCH);
-                else
+                if (isValueArray)
                     originalLanguages.push(EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH,);
+                else
+                    originalLanguages.push(EveryLanguages.FRENCH);
                 break;
             case EveryLanguages.SPANISH:
-                if (isValueString)
-                    originalLanguages.push(EveryLanguages.SPANISH);
-                else
+                if (isValueArray)
                     originalLanguages.push(EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH,);
+                else
+                    originalLanguages.push(EveryLanguages.SPANISH);
                 break;
             case EveryLanguages.CHINESE:
-                if (isValueString)
-                    originalLanguages.push(EveryLanguages.CHINESE);
-                else
+                if (isValueArray)
                     originalLanguages.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,);
+                else
+                    originalLanguages.push(EveryLanguages.CHINESE);
                 break;
             case EveryLanguages.PORTUGUESE:
-                if (isValueString)
-                    originalLanguages.push(EveryLanguages.PORTUGUESE);
-                else
+                if (isValueArray)
                     originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
+                else
+                    originalLanguages.push(EveryLanguages.PORTUGUESE);
                 break;
             case EveryLanguages.GREEK:
-                if ((languageContainer as OptionalLanguage<string, readonly string[]>).isUsed)
+                if ((languageContainer as OptionalLanguage<T>).isUsed)
                     originalLanguages.push(EveryLanguages.GREEK);
                 break;
             default:

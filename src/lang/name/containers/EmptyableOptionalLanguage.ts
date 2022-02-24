@@ -1,7 +1,7 @@
 import type {EmptyableLanguage}     from './EmptyableLanguage';
 import type {LanguageThatCanBeUsed} from './LanguageThatCanBeUsed';
 
-export interface EmptyableOptionalLanguage<S extends string | never, A extends readonly string[] | never = never, U extends boolean = boolean, >
-    extends EmptyableLanguage<S, A>, LanguageThatCanBeUsed<U> {
+export interface EmptyableOptionalLanguage<T, S extends T = T, A extends readonly T[] = readonly [], U extends boolean = boolean, >
+    extends EmptyableLanguage<T, S, A>, LanguageThatCanBeUsed<U> {
 
 }

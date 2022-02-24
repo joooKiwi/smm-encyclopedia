@@ -2,7 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyWorldThemeName} from '../../util/C
 import type {WorldTheme}                                      from './WorldTheme';
 
 import {EMPTY_MAP}             from '../../util/emptyVariables';
-import {EmptyName}             from '../../lang/name/EmptyName';
+import {EmptyStringName}       from '../../lang/name/EmptyStringName';
 import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
 
 /**
@@ -26,7 +26,7 @@ export class EmptyWorldTheme
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 

@@ -2,7 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyGameStyleName} from '../../util/Cl
 import type {GameStyle}                                      from './GameStyle';
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
-import {EmptyName}              from '../../lang/name/EmptyName';
+import {EmptyStringName}        from '../../lang/name/EmptyStringName';
 import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
 
 /**
@@ -26,7 +26,7 @@ export class EmptyGameStyle
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 

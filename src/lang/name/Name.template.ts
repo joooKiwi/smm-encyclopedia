@@ -1,49 +1,51 @@
+import type {PossibleLanguageValue} from '../ClassWithOnlyProjectLanguages';
+
 /**
  * @template
  */
-export interface NameTemplate<GREEK extends string | null = null, > {
+export interface NameTemplate<GREEK extends PossibleLanguageValue<string> = null, > {
 
     english: {
-        simple: | string | null
-        american: | string | null
-        european: | string | null
+        simple: PossibleLanguageValue<string>
+        american: PossibleLanguageValue<string>
+        european: PossibleLanguageValue<string>
     }
 
-    german: | string | null
+    german: PossibleLanguageValue<string>
 
     french: {
-        simple: | string | null
-        canadian: | string | null
-        european: | string | null
+        simple: PossibleLanguageValue<string>
+        canadian: PossibleLanguageValue<string>
+        european: PossibleLanguageValue<string>
     }
 
     spanish: {
-        simple: | string | null
-        american: | string | null
-        european: | string | null
+        simple: PossibleLanguageValue<string>
+        american: PossibleLanguageValue<string>
+        european: PossibleLanguageValue<string>
     }
 
-    italian: | string | null
+    italian: PossibleLanguageValue<string>
 
-    dutch: | string | null
+    dutch: PossibleLanguageValue<string>
 
     portuguese: {
-        simple: | string | null
-        american: | string | null
-        european: | string | null
+        simple: PossibleLanguageValue<string>
+        american: PossibleLanguageValue<string>
+        european: PossibleLanguageValue<string>
     }
 
-    russian: | string | null
+    russian: PossibleLanguageValue<string>
 
     chinese: {
-        simple: | string | null
-        traditional: | string | null
-        simplified: | string | null
+        simple: PossibleLanguageValue<string>
+        traditional: PossibleLanguageValue<string>
+        simplified: PossibleLanguageValue<string>
     }
 
-    japanese: | string | null
+    japanese: PossibleLanguageValue<string>
 
-    korean: | string | null
+    korean: PossibleLanguageValue<string>
 
     greek: GREEK
 
@@ -53,7 +55,7 @@ export interface NameTemplate<GREEK extends string | null = null, > {
  * @template
  */
 export interface NameTemplateWithOptionalLanguages
-    extends NameTemplate<| string | null> {
+    extends NameTemplate<PossibleLanguageValue<string>> {
 
 }
 

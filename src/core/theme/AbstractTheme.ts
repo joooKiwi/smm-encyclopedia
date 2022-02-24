@@ -12,14 +12,14 @@ export class AbstractTheme
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, isInProperty: GameProperty,) {
+    protected constructor(name: Name<string>, isInProperty: GameProperty,) {
         this.#name = name;
         this.#isInProperty = isInProperty;
     }
 
     //region -------------------- Name properties --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#name;
     }
 

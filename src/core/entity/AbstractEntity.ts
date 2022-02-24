@@ -11,6 +11,9 @@ import type {Times}                         from '../time/Times';
  * A simple entity implementation, but without any specification.
  *
  * @note It use the generic to have a type based on the property used for each methods in {@link Property}.
+ *
+ * @property CATEGORY the {@link EntityCategory entity category} instance
+ * @property PROPERTY the {@link Property property} specific to the current instance
  */
 export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
     implements Entity<CATEGORY, PROPERTY> {
@@ -26,7 +29,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
+    protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         this.#nameContainer = name;
         this.#category = this.__testCategory(category);
         this.#propertyContainer = this.__testProperty(property);
@@ -57,7 +60,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //region -------------------- Name properties --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

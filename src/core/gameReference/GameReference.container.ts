@@ -9,7 +9,7 @@ export class GameReferenceContainer
     readonly #acronym;
     readonly #nameContainer;
 
-    public constructor(acronym: PossibleAcronym, name: Name,) {
+    public constructor(acronym: PossibleAcronym, name: Name<string>,) {
         this.#acronym = acronym;
         this.#nameContainer = name;
     }
@@ -20,7 +20,7 @@ export class GameReferenceContainer
 
     //region -------------------- Name --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

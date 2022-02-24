@@ -14,7 +14,7 @@ export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategor
     extends EntityContainer<CATEGORY, PROPERTY>
     implements AbstractExclusiveSMM2EntityInterface<CATEGORY> {
 
-    protected constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
+    protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,);
     }
 

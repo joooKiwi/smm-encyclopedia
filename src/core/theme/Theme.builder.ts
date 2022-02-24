@@ -11,7 +11,6 @@ import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {EmptyWorldTheme}         from './EmptyWorldTheme';
 import {GamePropertyContainer}   from '../entity/properties/GameProperty.container';
 import {Games}                   from '../game/Games';
-import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder';
 import {Themes}                  from './Themes';
 import {WorldThemeContainer}     from './WorldTheme.container';
@@ -29,7 +28,7 @@ export class ThemeBuilder
         return ThemeBuilder;
     }
 
-    private __createCourseTheme(name: Name,): CourseTheme {
+    private __createCourseTheme(name: Name<string>,): CourseTheme {
         const template = this.template;
         const gameTemplate = template.isIn.game;
 
@@ -37,7 +36,7 @@ export class ThemeBuilder
         return new CourseThemeContainer(
             name,
             GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
-            () => ThemeBuilder.__whereEntityIs(ProjectLanguages.getEnglish(name)),
+            () => ThemeBuilder.__whereEntityIs(name.english),
             template.effect,
         );
     }
@@ -51,7 +50,7 @@ export class ThemeBuilder
     }
 
 
-    protected _build(name: Name,): CourseAndWorldTheme {
+    protected _build(name: Name<string>,): CourseAndWorldTheme {
         const themeTemplate = this.template.isIn.theme;
         const isInCourseTheme = themeTemplate.course;
         const isInWorldTheme = themeTemplate.world;

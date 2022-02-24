@@ -1,7 +1,7 @@
 import type {ClassWithNullObjectPattern, EmptyEntityCategoryName} from '../../util/ClassWithNullObjectPattern';
 import type {EntityCategory}                                      from './EntityCategory';
 
-import {EmptyName} from '../../lang/name/EmptyName';
+import {EmptyStringName} from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -24,7 +24,7 @@ export class EmptyEntityCategory
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
 
     public readonly languageValue = this.nameContainer.languageValue;

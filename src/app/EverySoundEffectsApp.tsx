@@ -8,12 +8,11 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../core/game/Games';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
-import {EmptyName}                     from '../lang/name/EmptyName';
+import {EmptyStringName}               from '../lang/name/EmptyStringName';
 import NameComponent                   from '../lang/name/component/Name.component';
 import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 import Table                           from './tools/table/Table';
-import {ProjectLanguages}              from '../lang/ProjectLanguages';
 import Image                           from './tools/images/Image';
 import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
 import SoundEffectComponent            from '../core/soundEffect/SoundEffect.component';
@@ -40,13 +39,13 @@ export default class EverySoundEffectsApp
 
     private __createCategoryComponent(index: number, soundEffect: SoundEffect,) {
         const categoryName = soundEffect.categoryName;
-        if (categoryName === EmptyName.get)
+        if (categoryName === EmptyStringName.get)
             return EMPTY_REACT_ELEMENT;
 
         if (this._displayCategoryAsText)
             return <NameComponent id={`${index}_soundEffectCategory-name`} name={categoryName} popoverOrientation="right"/>;
 
-        const categoryEnglishName = ProjectLanguages.getEnglish(categoryName) as PossibleEnglishName_Category;
+        const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
         return <Image source={SoundEffectCategories.getValue(categoryEnglishName)!.imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
     }
 

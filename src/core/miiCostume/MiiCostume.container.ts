@@ -19,7 +19,8 @@ export class MiiCostumeContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, mode: PossibleMode, conditionToUnlockId: PossibleConditionToUnlockIt, version: () => | Versions | null, category: () => PossibleCategory,) {
+    //TODO change to object holder directly instead of creating the object holder instance here.
+    public constructor(name: Name<string>, mode: PossibleMode, conditionToUnlockId: PossibleConditionToUnlockIt, version: () => | Versions | null, category: () => PossibleCategory,) {
         this.#nameContainer = name;
         this.#mode = mode;
         this.#conditionToUnlockId = conditionToUnlockId;
@@ -29,7 +30,7 @@ export class MiiCostumeContainer
 
     //region -------------------- Name properties --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

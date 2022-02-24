@@ -13,7 +13,7 @@ export class MysteryMushroomContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, games: MysteryMushroomGames, property: MysteryMushroomProperty,) {
+    public constructor(name: Name<string>, games: MysteryMushroomGames, property: MysteryMushroomProperty,) {
         this.#nameContainer = name;
         this.#games = games;
         this.#propertyContainer = property;
@@ -21,7 +21,7 @@ export class MysteryMushroomContainer
 
     //region -------------------- Name properties --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

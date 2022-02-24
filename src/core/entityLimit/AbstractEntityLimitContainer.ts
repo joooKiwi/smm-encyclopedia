@@ -17,16 +17,17 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
 
     //region -------------------- Attributes --------------------
 
-    readonly #nameContainer: Name;
-    readonly #acronym: PossibleAcronym | PossibleAlternativeAcronym | null;
+    readonly #nameContainer;
+    readonly #acronym;
     readonly #alternativeCaller: ObjectHolder<AlternativeEntityLimit>;
     readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
-    readonly #limitContainer: EntityLimitAmount;
-    readonly #linkContainer: EntityLimitLink;
+    readonly #limitContainer;
+    readonly #linkContainer;
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    //TODO change to object holder directly instead of creating the object holder instance here.
+    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
         this.#nameContainer = name;
         this.#acronym = acronym;
         this.#alternativeCaller = new DelayedObjectHolderContainer(alternative);
@@ -51,7 +52,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     //endregion -------------------- Acronym --------------------
     //region -------------------- Name --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

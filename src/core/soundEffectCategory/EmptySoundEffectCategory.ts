@@ -1,7 +1,7 @@
 import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from '../../util/ClassWithNullObjectPattern';
 import type {SoundEffectCategory}                                      from './SoundEffectCategory';
 
-import {EmptyName} from '../../lang/name/EmptyName';
+import {EmptyStringName} from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -24,7 +24,7 @@ export class EmptySoundEffectCategory
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 

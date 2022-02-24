@@ -3,7 +3,7 @@ import type {GameProperty} from '../entity/properties/GameProperty';
 import type {NameTrait}    from '../../lang/name/NameTrait';
 
 export interface GameStyle
-    extends NameTrait, GameProperty {
+    extends NameTrait<string>, GameProperty {
 
     get isInProperty(): GameProperty
 

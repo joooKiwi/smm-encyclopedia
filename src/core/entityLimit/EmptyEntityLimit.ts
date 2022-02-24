@@ -2,7 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from '../../util/
 import type {EntityLimit}                                      from './EntityLimit';
 
 import {assert}                 from '../../util/utilitiesMethods';
-import {EmptyName}              from '../../lang/name/EmptyName';
+import {EmptyStringName}        from '../../lang/name/EmptyStringName';
 import {EmptyEntityLimitAmount} from './properties/EmptyEntityLimitAmount';
 import {EmptyEntityLimitLink}   from './properties/EmptyEntityLimitLink';
 
@@ -39,7 +39,7 @@ export class EmptyEntityLimit
     //endregion -------------------- Acronym --------------------
     //region -------------------- Name --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 
@@ -94,7 +94,7 @@ export class EmptyEntityLimit
 
     //region -------------------- Name --------------------
 
-    public readonly alternativeNameContainer = EmptyName.get;
+    public readonly alternativeNameContainer = EmptyStringName.get;
 
     public readonly alternativeLanguageValue = this.alternativeNameContainer.languageValue;
 

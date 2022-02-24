@@ -15,7 +15,7 @@ export class ExclusiveSMM1EntityContainer
     extends EntityContainer<EmptyEntityCategory, ExclusiveSMM1Property>
     implements ExclusiveSMM1Entity {
 
-    public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
+    public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,);
     }
 

@@ -15,7 +15,7 @@ export class SoundEffectContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, category: SoundEffectCategory, property: SoundEffectProperty,) {
+    public constructor(name: Name<string>, category: SoundEffectCategory, property: SoundEffectProperty,) {
         this.#nameContainer = name;
         this.#category = category;
         this.#propertyContainer = property;
@@ -23,7 +23,7 @@ export class SoundEffectContainer
 
     //region -------------------- Name --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

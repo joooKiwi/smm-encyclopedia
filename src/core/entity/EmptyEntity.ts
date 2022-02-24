@@ -5,8 +5,8 @@ import {assert}               from '../../util/utilitiesMethods';
 import {EMPTY_MAP}            from '../../util/emptyVariables';
 import {EmptyEntityReference} from './properties/EmptyEntityReference';
 import {EmptyEntityCategory}  from '../entityCategory/EmptyEntityCategory';
-import {EmptyIsInProperty}    from './properties/EmptyIsInProperty';
-import {EmptyName}            from '../../lang/name/EmptyName';
+import {EmptyIsInProperty} from './properties/EmptyIsInProperty';
+import {EmptyStringName}   from '../../lang/name/EmptyStringName';
 
 /**
  * An empty entity with the default values of nothing
@@ -32,7 +32,7 @@ export class EmptyEntity
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 

@@ -1,8 +1,8 @@
-import {Language}                  from './Language';
-import {EmptyableOptionalLanguage} from './EmptyableOptionalLanguage';
+import type {EmptyableOptionalLanguage} from './EmptyableOptionalLanguage';
+import type {Language}                  from './Language';
 
-export interface OptionalLanguage<S extends string | never, A extends readonly string[] | never = never, U extends boolean = boolean, >
-    extends Language<S, A>, EmptyableOptionalLanguage<S, A, U> {
+export interface OptionalLanguage<T, S extends T = T, A extends readonly T[] = readonly [], U extends boolean = boolean, >
+    extends Language<T, S, A>, EmptyableOptionalLanguage<T, S, A, U> {
 
     get original(): | S | A
 
@@ -11,9 +11,3 @@ export interface OptionalLanguage<S extends string | never, A extends readonly s
     get<INDEX extends number = number, >(index: INDEX,): | NonNullable<A[INDEX]> | S
 
 }
-
-type OptionalLanguageUsed<S extends string | never, A extends readonly string[] | never = never, > = OptionalLanguage<S, A, true>;
-type OptionalLanguageUnused = OptionalLanguage<never, never, false>;
-
-export type PossibleOptionalLanguage<S extends string | never, A extends readonly string[] | never = never, > =
-    | OptionalLanguageUsed<S, A> | OptionalLanguageUnused;

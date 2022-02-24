@@ -23,11 +23,10 @@ import {EMPTY_ARRAY}                     from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}             from '../../util/emptyReactVariables';
 import {EmptyAppOption}                  from './component/EmptyAppOption';
 import {EmptyEditorImage}                from '../../core/entity/images/editor/EmptyEditorImage';
-import {EmptyName}                       from '../../lang/name/EmptyName';
+import {EmptyStringName}                 from '../../lang/name/EmptyStringName';
 import {GameContentTranslationContainer} from '../../lang/containers/GameContentTranslation.container';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';
 import {GameStyles}                      from '../../core/gameStyle/GameStyles';
-import {ProjectLanguages}                from '../../lang/ProjectLanguages';
 import {Themes}                          from '../../core/theme/Themes';
 import {Times}                           from '../../core/time/Times';
 
@@ -346,13 +345,13 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
                 const categoryName = enumeration.reference.categoryName;
-                if (categoryName === EmptyName.get)
+                if (categoryName === EmptyStringName.get)
                     return EMPTY_REACT_ELEMENT;
 
                 if (EntityAppOption.CATEGORY_AS_TEXT.get)
                     return <NameComponent id={`category-name-${enumeration.englishNameInHtml}`} name={categoryName} popoverOrientation="left"/>;
 
-                const categoryEnglishName = ProjectLanguages.getEnglish(categoryName) as PossibleEnglishName_Category;
+                const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
                 return <Image source={EntityCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
             };
         }

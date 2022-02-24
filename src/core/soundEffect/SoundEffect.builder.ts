@@ -44,7 +44,7 @@ export class SoundEffectBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    protected _build(name: Name,): SoundEffect {
+    protected _build(name: Name<string>,): SoundEffect {
         return new SoundEffectContainer(
             name,
             this.__createCategory(),

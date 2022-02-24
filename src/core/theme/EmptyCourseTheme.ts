@@ -3,7 +3,7 @@ import type {CourseTheme}                                      from './CourseThe
 
 import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
 import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
-import {EmptyName}              from '../../lang/name/EmptyName';
+import {EmptyStringName}        from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -26,7 +26,7 @@ export class EmptyCourseTheme
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 

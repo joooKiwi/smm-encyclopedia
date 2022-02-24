@@ -7,13 +7,13 @@ export class SoundEffectCategoryContainer
 
     readonly #nameContainer;
 
-    public constructor(name: Name,) {
+    public constructor(name: Name<string>,) {
         this.#nameContainer = name;
     }
 
     //region -------------------- Name --------------------
 
-    public get nameContainer(): Name {
+    public get nameContainer(): Name<string> {
         return this.#nameContainer;
     }
 

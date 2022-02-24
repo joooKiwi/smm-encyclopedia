@@ -1,8 +1,8 @@
 import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from '../../util/ClassWithNullObjectPattern';
 import type {MiiCostume}                                      from './MiiCostume';
 
-import {EmptyName} from '../../lang/name/EmptyName';
-import {EMPTY_MAP} from '../../util/emptyVariables';
+import {EMPTY_MAP}       from '../../util/emptyVariables';
+import {EmptyStringName} from '../../lang/name/EmptyStringName';
 
 export class EmptyMiiCostume
     implements MiiCostume, ClassWithNullObjectPattern<EmptyMiiCostumeName> {
@@ -22,7 +22,7 @@ export class EmptyMiiCostume
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 
