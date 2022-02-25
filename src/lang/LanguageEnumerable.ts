@@ -1,8 +1,9 @@
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                              from './ClassWithEveryLanguages';
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                           from './name/containers/Language';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleCanadianOrEuropeanValue, PossibleChineseValue}                                                                                   from './name/containers/Language';
 import type {CharactersTrait}                                                                                                                                                                                                                                   from './CharactersTrait';
 import type {PossibleAcronym as PossibleAcronym_All, PossibleEnglishName as PossibleEnglishName_All, PossibleInternationalAcronym as PossibleInternationalAcronym_All, PossibleOriginalName as PossibleOriginalName_All, PossibleSpaceCharacter}                from './EveryLanguages.types';
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from './ProjectLanguages.types';
+import type {PossibleLanguageValue}                                                                                                                                                                                                                             from './ClassWithOnlyProjectLanguages';
 
 export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_All | PossibleAcronym_Project,
     INTERNATIONAL_ACRONYM extends | PossibleInternationalAcronym_All | PossibleInternationalAcronym_Project,
@@ -52,14 +53,14 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    get(classWithEveryLanguages: AnyClassWithEveryLanguages,): string
+    get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T
 
 
-    original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
+    original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
 
-    original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T>
 
-    original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
+    original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T>
 
     //endregion -------------------- Methods --------------------
 

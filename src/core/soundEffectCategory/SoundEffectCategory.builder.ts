@@ -18,7 +18,7 @@ export class SoundEffectCategoryBuilder
         return SoundEffectCategoryBuilder;
     }
 
-    protected _build(name: Name,): SoundEffectCategory {
+    protected _build(name: Name<string>,): SoundEffectCategory {
         return new SoundEffectCategoryContainer(name);
     }
 

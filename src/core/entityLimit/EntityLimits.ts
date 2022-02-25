@@ -433,6 +433,18 @@ export class EntityLimits
         return EntityLimits;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.englishName === value
+                || enumerable.englishName.substring(0, enumerable.englishName.length - this.#LIMIT_LENGTH) === value
+                || enumerable.englishName.substring(0, enumerable.englishName.length - this.#LIMIT_IN_EDITOR_LENGTH) === value
+                || enumerable.englishName.substring(0, enumerable.englishName.length - this.#LIMIT_WHILE_PLAYING_LENGTH) === value
+                || enumerable.alternativeEnglishName === value
+                || enumerable.acronym === value
+                || enumerable.alternativeAcronym === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -443,21 +455,7 @@ export class EntityLimits
     public static getValue(value: PossibleNonNullableValue,): EntityLimits
     public static getValue(value: PossibleValue,): | EntityLimits | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                ?? this.values.find(theme => theme.englishName === value)
-                    ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_LENGTH) === value)
-                    ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_IN_EDITOR_LENGTH) === value)
-                    ?? this.values.find(theme => theme.englishName.substring(0, theme.englishName.length - this.#LIMIT_WHILE_PLAYING_LENGTH) === value)
-                    ?? this.values.find(theme => theme.alternativeEnglishName === value)
-                    ?? this.values.find(theme => theme.acronym === value)
-                    ?? this.values.find(theme => theme.alternativeAcronym === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

@@ -1,7 +1,7 @@
-import type {NumberPropertyWithComment} from '../PropertyWithComment';
-import type {PossibleComment}           from '../ClassWithComment';
-import type {PossibleNumber}            from '../Property';
-import type {ValueOrCallbackValue}      from '../../../util/holder/ObjectHolder';
+import type {NumberPropertyWithComment}   from '../PropertyWithComment';
+import type {PossibleComment}             from '../ClassWithComment';
+import type {PossibleNumber}              from '../Property';
+import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder';
 
 import {PropertyWithCommentContainer} from '../PropertyWithComment.container';
 
@@ -9,7 +9,7 @@ export class NumberPropertyWithCommentContainer<N extends PossibleNumber = Possi
     extends PropertyWithCommentContainer<N, COMMENT>
     implements NumberPropertyWithComment<N, COMMENT> {
 
-    public constructor(value: ValueOrCallbackValue<N>, comment: COMMENT,) {
+    public constructor(value: PossibleValueOnObjectHolder<N>, comment: COMMENT,) {
         super(value, comment,);
     }
 

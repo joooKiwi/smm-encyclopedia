@@ -11,10 +11,10 @@ import type {Name} from './Name';
  *  with a reference to the method {@link NameTrait.nameContainer nameContainer(): Name}.
  * </p>
  */
-export interface NameTrait
-    extends Name {
+export interface NameTrait<T,>
+    extends Name<T> {
 
-    get nameContainer(): Name
+    get nameContainer(): Name<T>
 
     //region -------------------- Properties --------------------
 

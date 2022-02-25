@@ -2,7 +2,7 @@ import type {BooleanPropertyWithAmountAndComment} from '../PropertyWithAmountAnd
 import type {PossibleAmount}                      from '../ClassWithAmount';
 import type {PossibleBoolean}                     from '../Property';
 import type {PossibleComment}                     from '../ClassWithComment';
-import type {ValueOrCallbackValue}                from '../../../util/holder/ObjectHolder';
+import type {PossibleValueOnObjectHolder}         from '../../../util/holder/ObjectHolder';
 
 import {PropertyWithAmountAndCommentContainer} from '../PropertyWithAmountAndComment.container';
 
@@ -10,7 +10,7 @@ export class BooleanPropertyWithAmountAndCommentContainer<B extends PossibleBool
     extends PropertyWithAmountAndCommentContainer<B, AMOUNT, COMMENT>
     implements BooleanPropertyWithAmountAndComment<B, AMOUNT, COMMENT> {
 
-    public constructor(value: ValueOrCallbackValue<B>, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: PossibleValueOnObjectHolder<B>, amount: AMOUNT, comment: COMMENT,) {
         super(value, amount, comment,);
     }
 

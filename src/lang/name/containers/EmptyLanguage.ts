@@ -2,7 +2,7 @@ import type {EmptyableLanguage}         from './EmptyableLanguage';
 import type {EmptyableOptionalLanguage} from './EmptyableOptionalLanguage';
 
 export interface EmptyLanguage
-    extends EmptyableLanguage<never>, EmptyableOptionalLanguage<never, never, false> {
+    extends EmptyableLanguage<never>, EmptyableOptionalLanguage<never, never, never, false> {
 
     get original(): null
 

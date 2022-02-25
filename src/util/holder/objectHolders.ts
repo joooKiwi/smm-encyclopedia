@@ -1,10 +1,11 @@
-import {ObjectHolder}          from './ObjectHolder';
-import {ObjectHolderContainer} from './ObjectHolderContainer';
+import type {ObjectHolder} from './ObjectHolder';
+
+import {ObjectHolderContainer} from './ObjectHolder.container';
 
 export class ObjectHolders {
 
     private constructor() {
-        throw new Error(`The class ${this} cannot be instantiated.`);
+        throw new Error('This class cannot be instantiated.');
     }
 
     /**

@@ -5,11 +5,16 @@ import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../l
 import type {PossibleGameReceived}                                 from './TemplateWithName.builder.types';
 import type {TemplateWithNameTemplate}                             from './TemplateWithName.template';
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 import {NameBuilder}                  from '../../lang/name/Name.builder';
 import {NameCreator}                  from '../../lang/name/Name.creator';
 import {TemplateBuilder}              from './Template.builder';
 
+/**
+ *
+ * @property T the {@link TemplateWithNameBuilder template builder}
+ * @property U the object to create
+ */
 export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate, U, >
     extends TemplateBuilder<T, U> {
 
@@ -55,6 +60,6 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
         return this._build(this._createName());
     }
 
-    protected abstract _build(name: Name,): U;
+    protected abstract _build(name: Name<string>,): U;
 
 }

@@ -2,7 +2,7 @@ import type {NumberPropertyWithEverything} from '../PropertyWithEverything';
 import type {PossibleAmount}               from '../ClassWithAmount';
 import type {PossibleComment}              from '../ClassWithComment';
 import type {PossibleNumber}               from '../Property';
-import type {ValueOrCallbackValue}         from '../../../util/holder/ObjectHolder';
+import type {PossibleValueOnObjectHolder}  from '../../../util/holder/ObjectHolder';
 
 import {PropertyWithEverythingContainer} from '../PropertyWithEverything.container';
 
@@ -10,7 +10,7 @@ export class NumberPropertyWithEverythingContainer<N extends PossibleNumber = Po
     extends PropertyWithEverythingContainer<N, IS_UNKNOWN, AMOUNT, COMMENT>
     implements NumberPropertyWithEverything<N, IS_UNKNOWN, AMOUNT, COMMENT> {
 
-    public constructor(value: ValueOrCallbackValue<N>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: PossibleValueOnObjectHolder<N>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
         super(value, isUnknown, amount, comment,);
     }
 

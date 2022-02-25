@@ -18,7 +18,7 @@ export class CourseThemeContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name, isInProperty: GameProperty, entities: ObjectHolder<readonly Entity[]>, effect: ObjectHolder<NightEffects>,) {
+    public constructor(name: Name<string>, isInProperty: GameProperty, entities: ObjectHolder<readonly Entity[]>, effect: ObjectHolder<NightEffects>,) {
         super(name, isInProperty);
         this.#entities = entities;
         this.#effect = effect;
@@ -30,10 +30,6 @@ export class CourseThemeContainer
 
     public get effect() {
         return this.#effect.get;
-    }
-
-    public toNameMap() {
-        return this.nameContainer.toNameMap();
     }
 
 }

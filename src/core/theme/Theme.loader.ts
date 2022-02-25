@@ -10,7 +10,6 @@ import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
-import {ProjectLanguages}        from '../../lang/ProjectLanguages';
 import {ThemeBuilder}            from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
@@ -106,7 +105,7 @@ export class ThemeLoader
                 )
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 
-                .onAfterFinalObjectCreated(finalContent => references.set(ProjectLanguages.getEnglish(finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]) as PossibleEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set((finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]).english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

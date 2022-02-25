@@ -4,13 +4,12 @@ import {PureComponent} from 'react';
 
 import type {Name}         from '../../lang/name/Name';
 import type {ReactElement} from '../../util/react/ReactProperty';
+import type {SoundEffects} from './SoundEffects';
 
 import AnimatedImages     from '../../app/tools/images/AnimatedImages';
-import {SoundEffects}     from './SoundEffects';
-import {StringContainer}  from '../../util/StringContainer';
-import Image              from '../../app/tools/images/Image';
 import {Games}            from '../game/Games';
-import {ProjectLanguages} from '../../lang/ProjectLanguages';
+import Image              from '../../app/tools/images/Image';
+import {StringContainer}  from '../../util/StringContainer';
 
 interface SoundEffectProperties {
 
@@ -18,7 +17,7 @@ interface SoundEffectProperties {
 
     game: Games
 
-    name: Name
+    name: Name<string>
 
 }
 
@@ -41,7 +40,7 @@ export default class SoundEffectComponent
     }
 
     protected _render() {
-        return SoundEffectComponent.render(this.reference, this.game, ProjectLanguages.getEnglish(this.name),);
+        return SoundEffectComponent.render(this.reference, this.game, this.name.english,);
     }
 
     public static render(soundEffect: SoundEffects,): ReactElement

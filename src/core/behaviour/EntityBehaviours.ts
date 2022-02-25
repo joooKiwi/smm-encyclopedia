@@ -96,6 +96,13 @@ export class EntityBehaviours
         return EntityBehaviours;
     }
 
+
+    public static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.acronym === value
+                || enumerable.translationKey === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -106,16 +113,7 @@ export class EntityBehaviours
     public static getValue(value: PossibleNonNullableValue,): EntityBehaviours
     public static getValue(value: PossibleValue,): | EntityBehaviours | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(theme => theme.translationKey === value)
-                    ?? this.values.find(theme => theme.acronym === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

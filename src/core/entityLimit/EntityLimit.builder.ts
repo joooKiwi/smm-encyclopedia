@@ -50,7 +50,7 @@ export class EntityLimitBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public _build(name: Name,): EntityLimit {
+    public _build(name: Name<string>,): EntityLimit {
         const template = this.template;
         const typeTemplate = template.type;
 

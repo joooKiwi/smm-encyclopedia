@@ -1,9 +1,10 @@
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages';
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './name/containers/Language';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleCanadianOrEuropeanValue, PossibleChineseValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from './name/containers/Language';
 import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../core/ClassInAnySuperMarioMakerGame';
 import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './ProjectLanguages.types';
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './LanguageEnumerable';
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types';
+import type {PossibleLanguageValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithOnlyProjectLanguages';
 import type {PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './EveryLanguages.types';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../util/enum/Enum.types';
 
@@ -293,22 +294,14 @@ export class ProjectLanguages
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(classWithEveryLanguages: AnyClassWithEveryLanguages,): string {
+    public get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
         return this.language.get(classWithEveryLanguages);
     }
 
-    /**
-     * @param classWithEveryLanguages
-     * @see EveryLanguages.getEnglish
-     */
-    public static getEnglish(classWithEveryLanguages: AnyClassWithEveryLanguages,): string {
-        return this.AMERICAN_ENGLISH.get(classWithEveryLanguages);
-    }
-
-    public original(classWithEveryLanguages: CompleteClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal
-    public original(classWithEveryLanguages: ClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null
-    public original(classWithEveryLanguages: AnyClassWithEveryLanguages,): | string | AmericanOrEuropeanOriginal | CanadianOrEuropeanOriginal | ChineseOriginal | null {
-        return this.language.original(classWithEveryLanguages);
+    public original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
+    public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T>
+    public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T> {
+        return this.language.original<T>(classWithEveryLanguages);
     }
 
     //region -------------------- Transformation methods --------------------
@@ -370,6 +363,16 @@ export class ProjectLanguages
     }
 
 
+    protected static _getValueByObject(value: object,) {
+        return value instanceof EveryLanguages
+            ? this.values.find(enumerable => enumerable.language === value) ?? null
+            : null;
+    }
+
+    protected static _getValueByString(value: string,) {
+        return this.getValue(EveryLanguages.getValue(value));
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -380,18 +383,8 @@ export class ProjectLanguages
     public static getValue(instance: EveryLanguages,): | ProjectLanguages | null
     public static getValue(value: PossibleNonNullableValue,): ProjectLanguages
     public static getValue(value: PossibleValue,): | ProjectLanguages | null
-    public static getValue(value: PossibleValue,): | ProjectLanguages | null {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                ?? this.getValue(EveryLanguages.getValue(value))
-                ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value instanceof EveryLanguages
-                        ? this.values.find(language => language.language === value) ?? null
-                        : value;
+    public static getValue(value: PossibleValue,) {
+        return Enum.getValueOn<ProjectLanguages>(this, value,);
     }
 
 

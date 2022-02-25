@@ -10,7 +10,7 @@ export class EntityLimitContainer
     extends AbstractEntityLimitContainer<| PossibleAcronym | null>
     implements EntityLimitWithPossibleAlternativeEntityLimit {
 
-    public constructor(name: Name, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount,) {
+    public constructor(name: Name<string>, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount,) {
         super(name, acronym, alternative, type, limitAmount,);
     }
 

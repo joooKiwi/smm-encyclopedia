@@ -15,7 +15,7 @@ export class ExclusiveSM3DWEntityContainer<CATEGORY extends EntityCategory = Ent
     extends AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW>
     implements ExclusiveSM3DWEntity<CATEGORY> {
 
-    public constructor(name: Name, category: EntityCategory, property: Property, references: EntityReferences,) {
+    public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,);
     }
 

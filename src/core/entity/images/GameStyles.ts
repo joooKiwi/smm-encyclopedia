@@ -24,6 +24,8 @@ export class GameStyles
 
     static [index: number]: GameStyles;
 
+    protected static _PARENT: StaticReference<OriginalGameStyles> = OriginalGameStyles;
+
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
@@ -96,8 +98,7 @@ export class GameStyles
     public static getValue(value: PossibleNonNullableValue,): GameStyles
     public static getValue(value: PossibleValue,): | GameStyles | null
     public static getValue(value: PossibleValue,) {
-        return value == null ? null
-            : this.values[OriginalGameStyles.getValue(value)?.ordinal ?? -1] ?? null;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray<GameStyles> {

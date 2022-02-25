@@ -7,17 +7,16 @@ import type {PossibleEffectInNightTheme, ThemeTemplate} from './Theme.template';
 
 import {assert}                       from '../../util/utilitiesMethods';
 import {CourseThemeContainer}         from './CourseTheme.container';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 import {EmptyCourseTheme}             from './EmptyCourseTheme';
 import {EmptyWorldTheme}              from './EmptyWorldTheme';
-import {Entities}                     from '../entity/Entities';
 import {GamePropertyContainer}        from '../entity/properties/GameProperty.container';
 import {Games}                        from '../game/Games';
 import {NightEffects}                 from './NightEffects';
-import {ProjectLanguages}             from '../../lang/ProjectLanguages';
 import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder';
 import {Themes}                       from './Themes';
 import {WorldThemeContainer}          from './WorldTheme.container';
+import {Entities}                     from '../entity/Entities';
 
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
@@ -31,15 +30,15 @@ export class ThemeBuilder
         return ThemeBuilder;
     }
 
-    private __createCourseTheme(name: Name,): CourseTheme {
+    private __createCourseTheme(name: Name<string>,): CourseTheme {
         const template = this.template;
         const gameTemplate = template.isIn.game;
 
         return new CourseThemeContainer(
             name,
             GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
-            new DelayedObjectHolderContainer(() => ThemeBuilder.__whereEntityIs(ProjectLanguages.getEnglish(name))),
-            new DelayedObjectHolderContainer(() => ThemeBuilder.__whereNightEffectIs(ProjectLanguages.getEnglish(name), template.effect,)),
+            new DelayedObjectHolderContainer(() => ThemeBuilder.__whereEntityIs(name.english)),
+            new DelayedObjectHolderContainer(() => ThemeBuilder.__whereNightEffectIs(name.english, template.effect,)),
         );
     }
 
@@ -59,7 +58,7 @@ export class ThemeBuilder
     }
 
 
-    protected _build(name: Name,): CourseAndWorldTheme {
+    protected _build(name: Name<string>,): CourseAndWorldTheme {
         const themeTemplate = this.template.isIn.theme;
         const isInCourseTheme = themeTemplate.course;
         const isInWorldTheme = themeTemplate.world;

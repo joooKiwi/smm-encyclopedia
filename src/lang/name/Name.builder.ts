@@ -1,9 +1,10 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language';
-import type {Builder}                                                                 from '../../util/builder/Builder';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language';
+import type {Builder}                                                                                                       from '../../util/builder/Builder';
 import type {EnumArray as GameArray}                                                  from '../../core/game/Games.types';
 import type {IsACompleteNameCallback, PossibleGameReceived}                           from './Name.builder.types';
 import type {Name}                                                                    from './Name';
-import type {PossibleNameTemplate}                                                    from './Name.template';
+import type {PossibleNameTemplate}                                                                                          from './Name.template';
+import type {PossibleLanguageValue}                                                                                         from '../ClassWithOnlyProjectLanguages';
 
 import {assert}         from '../../util/utilitiesMethods';
 import {EveryLanguages} from '../EveryLanguages';
@@ -11,7 +12,7 @@ import {Games}          from '../../core/game/Games';
 import {NameContainer}  from './Name.container';
 
 export class NameBuilder<T extends PossibleNameTemplate, >
-    implements Builder<Name> {
+    implements Builder<Name<string>> {
 
     //region -------------------- Attributes --------------------
 
@@ -40,18 +41,18 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         = (game, language,) => game === Games.SUPER_MARIO_MAKER_1 ? this.#SMM1_LANGUAGES.includes(language) : this.#SMM2_LANGUAGES.includes(language);
 
 
-    #english?: AmericanOrEuropeanOriginal;
-    #french?: CanadianOrEuropeanOriginal;
-    #german?: | string | null;
-    #spanish?: | AmericanOrEuropeanOriginal | null;
-    #italian?: | string | null;
-    #dutch?: | string | null;
-    #portuguese?: | AmericanOrEuropeanOriginal | null;
-    #russian?: | string | null;
-    #japanese?: | string | null;
-    #chinese?: | ChineseOriginal | null;
-    #korean?: | string | null;
-    #greek?: | string | null;
+    #english?: AmericanOrEuropeanOriginal<string>;
+    #french?: CanadianOrEuropeanOriginal<string>;
+    #german?: PossibleLanguageValue<string>;
+    #spanish?: PossibleAmericanOrEuropeanValue<string>;
+    #italian?: PossibleLanguageValue<string>;
+    #dutch?: PossibleLanguageValue<string>;
+    #portuguese?: PossibleAmericanOrEuropeanValue<string>;
+    #russian?: PossibleLanguageValue<string>;
+    #japanese?: PossibleLanguageValue<string>;
+    #chinese?: PossibleChineseValue<string>;
+    #korean?: PossibleLanguageValue<string>;
+    #greek?: PossibleLanguageValue<string>;
 
     readonly #template;
     readonly #game;
@@ -87,7 +88,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#english;
     }
 
-    public setEnglish(value: AmericanOrEuropeanOriginal,): this {
+    public setEnglish(value: AmericanOrEuropeanOriginal<string>,): this {
         this.#english = value;
         return this;
     }
@@ -99,7 +100,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#french;
     }
 
-    public setFrench(value: CanadianOrEuropeanOriginal,): this {
+    public setFrench(value: CanadianOrEuropeanOriginal<string>,): this {
         this.#french = value;
         return this;
     }
@@ -111,7 +112,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#german;
     }
 
-    public setGerman(value: | string | null,): this {
+    public setGerman(value: PossibleLanguageValue<string>,): this {
         this.#german = value;
         return this;
     }
@@ -123,7 +124,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#spanish;
     }
 
-    public setSpanish(value: | AmericanOrEuropeanOriginal | null,): this {
+    public setSpanish(value: PossibleAmericanOrEuropeanValue<string>,): this {
         this.#spanish = value;
         return this;
     }
@@ -135,7 +136,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#italian;
     }
 
-    public setItalian(value: | string | null,): this {
+    public setItalian(value: PossibleLanguageValue<string>,): this {
         this.#italian = value;
         return this;
     }
@@ -147,7 +148,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#dutch;
     }
 
-    public setDutch(value: | string | null,): this {
+    public setDutch(value: PossibleLanguageValue<string>,): this {
         this.#dutch = value;
         return this;
     }
@@ -159,7 +160,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#portuguese;
     }
 
-    public setPortuguese(value: | AmericanOrEuropeanOriginal | null,): this {
+    public setPortuguese(value: PossibleAmericanOrEuropeanValue<string>,): this {
         this.#portuguese = value;
         return this;
     }
@@ -171,7 +172,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#russian;
     }
 
-    public setRussian(value: | string | null,): this {
+    public setRussian(value: PossibleLanguageValue<string>,): this {
         this.#russian = value;
         return this;
     }
@@ -183,7 +184,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#japanese;
     }
 
-    public setJapanese(value: | string | null,): this {
+    public setJapanese(value: PossibleLanguageValue<string>,): this {
         this.#japanese = value;
         return this;
     }
@@ -195,7 +196,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#chinese;
     }
 
-    public setChinese(value: | ChineseOriginal | null,): this {
+    public setChinese(value: |PossibleChineseValue<string>,): this {
         this.#chinese = value;
         return this;
     }
@@ -207,7 +208,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#korean;
     }
 
-    public setKorean(value: | string | null,): this {
+    public setKorean(value: PossibleLanguageValue<string>,): this {
         this.#korean = value;
         return this;
     }
@@ -219,7 +220,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return this.#greek;
     }
 
-    public setGreek(value: | string | null,): this {
+    public setGreek(value: PossibleLanguageValue<string>,): this {
         this.#greek = value;
         return this;
     }
@@ -243,7 +244,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     private __get<S extends string = string, >(language: EveryLanguages, value: | S | null,): | S | null
     private __get<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(language: EveryLanguages, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,]
-    private __get(language: EveryLanguages, value1: | string | null, value2?: | string | null, value3?: | string | null,) {
+    private __get(language: EveryLanguages, value1: PossibleLanguageValue<string>, value2?: PossibleLanguageValue<string>, value3?: PossibleLanguageValue<string>,) {
         const canBeNullable = (() => {
             //TODO change to the ProjectLanguages.isACompleteLanguage instead
             switch (language) {
@@ -256,7 +257,6 @@ export class NameBuilder<T extends PossibleNameTemplate, >
                     return !this.isACompleteName(language,);
             }
         })();
-
         if (value2 === undefined) {
             assert(canBeNullable || value1 != null, `The value cannot be null on the ${language.englishName} attribute.`,);
             return value1;
@@ -270,7 +270,7 @@ export class NameBuilder<T extends PossibleNameTemplate, >
 
     //endregion -------------------- Methods --------------------
 
-    public build() {
+    public build(): Name<string> {
         const {english, french, german, spanish, italian, dutch, portuguese, russian, japanese, chinese, korean, greek,} = this.template;
 
         this.setEnglish(this.__get(EveryLanguages.ENGLISH, english.simple, english.american, english.european,))

@@ -160,6 +160,12 @@ export class SoundEffects
         return SoundEffects;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.englishName === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -170,15 +176,7 @@ export class SoundEffects
     public static getValue(value: PossibleNonNullableValue,): SoundEffects
     public static getValue(value: PossibleValue,): | SoundEffects | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(soundEffectCategory => soundEffectCategory.englishName === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

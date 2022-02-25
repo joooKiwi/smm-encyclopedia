@@ -69,6 +69,12 @@ export class Versions
         return Versions;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.simpleName === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -79,15 +85,7 @@ export class Versions
     public static getValue(value: PossibleNonNullableValue,): Versions
     public static getValue(value: PossibleValue,): | Versions | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(enumeration => enumeration.simpleName === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {
