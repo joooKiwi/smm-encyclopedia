@@ -20,7 +20,7 @@ export class MiiCostumeCategoryBuilder
     }
 
 
-    protected _build(name: Name,): MiiCostumeCategory {
+    protected _build(name: Name<string>,): MiiCostumeCategory {
         return new MiiCostumeCategoryContainer(name);
     }
 

@@ -2,6 +2,7 @@ import type {ClassWithNullObjectPattern, EmptyWorldThemeName} from '../../util/C
 import type {WorldTheme}                                      from './WorldTheme';
 
 import {ClassContainingAName}  from '../../lang/name/ClassContainingAName';
+import {EMPTY_MAP}             from '../../util/emptyVariables';
 import {EmptyStringName}       from '../../lang/name/EmptyStringName';
 import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
 

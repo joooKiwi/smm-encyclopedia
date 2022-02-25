@@ -4,7 +4,7 @@ import type {MiiCostume}         from './MiiCostume';
 import type {MiiCostumeTemplate} from './MiiCostume.template';
 
 import {Games}                        from '../game/Games';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 import {MiiCostumeCategories}         from '../miiCostumeCategory/MiiCostumeCategories';
 import {MiiCostumeContainer}          from './MiiCostume.container';
 import {ObjectHolders}                from '../../util/holder/objectHolders';

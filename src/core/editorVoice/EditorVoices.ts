@@ -6,7 +6,7 @@ import type {EditorVoiceSound, PossibleSoundReceivedOnFactory}                  
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 import type {ObjectHolder}                                                                                                                                                                               from '../../util/holder/ObjectHolder';
 
-import {DelayedObjectHolderContainer}                from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer}                from '../../util/holder/DelayedObjectHolder.container';
 import {EditorVoiceSoundFactory}                     from './EditorVoiceSound.factory';
 import {EditorVoiceSoundHolderWithSingingPartBefore} from './holder/EditorVoiceSoundHolderWithSingingPartBefore';
 import {EditorVoiceSoundHolderWithVoiceBefore}       from './holder/EditorVoiceSoundHolderWithVoiceBefore';

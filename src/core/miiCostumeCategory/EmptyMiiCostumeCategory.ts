@@ -1,8 +1,8 @@
 import type {MiiCostumeCategory}                                      from './MiiCostumeCategory';
 import type {ClassWithNullObjectPattern, EmptyMiiCostumeCategoryName} from '../../util/ClassWithNullObjectPattern';
 
-import {EMPTY_MAP} from '../../util/emptyVariables';
-import {EmptyName} from '../../lang/name/EmptyName';
+import {EMPTY_MAP}       from '../../util/emptyVariables';
+import {EmptyStringName} from '../../lang/name/EmptyStringName';
 
 export class EmptyMiiCostumeCategory
     implements MiiCostumeCategory, ClassWithNullObjectPattern<EmptyMiiCostumeCategoryName> {
@@ -22,7 +22,7 @@ export class EmptyMiiCostumeCategory
 
     //region -------------------- Name properties --------------------
 
-    public readonly nameContainer = EmptyName.get;
+    public readonly nameContainer = EmptyStringName.get;
 
     public readonly languageValue = this.nameContainer.languageValue;
 

@@ -1,10 +1,10 @@
 import type {EntityReferenceHolder, PossibleEntityReferences, PossibleEntityReferences_Received} from './EntityReferenceHolder';
 import type {ObjectHolder}                                                                       from '../../../util/holder/ObjectHolder';
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 import {EMPTY_ARRAY}                  from '../../../util/emptyVariables';
 import {Entities}                     from '../../entity/Entities';
-import {ObjectHolderContainer}        from '../../../util/holder/ObjectHolderContainer';
+import {ObjectHolderContainer}        from '../../../util/holder/ObjectHolder.container';
 
 export class EntityReferenceHolderContainer
     implements EntityReferenceHolder {

@@ -67,7 +67,7 @@ export default class EveryGameStylesApp
                             namespace: 'gameContent', translationKey: 'Wind effect (night desert)',
                             replace: {
                                 night: translation('Night').toLowerCase(),
-                                desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference[0]).toLowerCase(),
+                                desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference[0])!.toLowerCase(),
                             },
                         },
                     }

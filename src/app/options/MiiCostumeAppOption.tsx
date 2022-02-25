@@ -21,14 +21,13 @@ import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {EmptyAppOption}                from './component/EmptyAppOption';
 import {Enum}                          from '../../util/enum/Enum';
-import {EmptyName}                     from '../../lang/name/EmptyName';
+import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
-import {ProjectLanguages}              from '../../lang/ProjectLanguages';
 
 //region -------------------- dynamic imports --------------------
 
-const Image = lazy(() => import('../tools/images/Image'));
+const Image =         lazy(() => import('../tools/images/Image'));
 const NameComponent = lazy(() => import('../../lang/name/component/Name.component'));
 const TextComponent = lazy(() => import('../tools/text/TextComponent'));
 
@@ -135,13 +134,13 @@ export abstract class MiiCostumeAppOption
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
                 const categoryName = enumeration.reference.category.nameContainer;
 
-                if (categoryName === EmptyName.get)
+                if (categoryName === EmptyStringName.get)
                     return EMPTY_REACT_ELEMENT;
 
                 if (MiiCostumeAppOption.CATEGORY_AS_TEXT.get)
                     return <NameComponent id={`category-name-${enumeration.englishNameInHtml}`} name={categoryName} popoverOrientation="left"/>;
 
-                const categoryEnglishName = ProjectLanguages.getEnglish(categoryName) as PossibleEnglishName_Category;
+                const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
                 return <Image source={MiiCostumeCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
             };
         }
