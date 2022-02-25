@@ -5,7 +5,7 @@ import type {PossibleEnglishName as EntityName} from '../../entity/Entities.type
 import type {PossibleGroupName}                 from '../../entityTypes';
 
 import {assert}                       from '../../../util/utilitiesMethods';
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 import {Entities}                     from '../../entity/Entities';
 
 /**

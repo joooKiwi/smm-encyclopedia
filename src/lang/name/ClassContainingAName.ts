@@ -1,9 +1,9 @@
 import type {NameTrait}                                 from './NameTrait';
 import type {Name}                                      from './Name';
-import type {EveryLanguages}                     from '../EveryLanguages';
-import type {ObjectHolder, ValueOrCallbackValue} from '../../util/holder/ObjectHolder';
+import type {EveryLanguages}                            from '../EveryLanguages';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 /**
  * A simple implementation of the {@link NameTrait}
@@ -18,7 +18,7 @@ export class ClassContainingAName<T, >
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: ValueOrCallbackValue<Name<T>>,) {
+    public constructor(name: PossibleValueOnObjectHolder<Name<T>>,) {
         this.#nameContainer = new DelayedObjectHolderContainer(name);
     }
 

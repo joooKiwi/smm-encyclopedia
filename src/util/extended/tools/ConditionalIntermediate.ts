@@ -1,7 +1,7 @@
 import type {ObjectHolder} from '../../holder/ObjectHolder';
 
 import {AbstractIntermediate}         from './AbstractIntermediate';
-import {DelayedObjectHolderContainer} from '../../holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../holder/DelayedObjectHolder.container';
 
 export class ConditionalIntermediate<T, >
     extends AbstractIntermediate<T> {

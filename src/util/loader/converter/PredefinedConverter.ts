@@ -278,6 +278,12 @@ export abstract class PredefinedConverter
         return PredefinedConverter;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.simpleName === value.toLowerCase())
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): NonNullable<EnumArray[O]> | null
@@ -287,15 +293,7 @@ export abstract class PredefinedConverter
     public static getValue(value: PossibleNonNullableValue,): PredefinedConverter
     public static getValue(value: PossibleValue,): | PredefinedConverter | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(predefinedConverter => predefinedConverter.simpleName === value.toLowerCase())
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : null;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

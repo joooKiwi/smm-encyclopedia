@@ -9,7 +9,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Entity}                 
 import type {PossibleGroupName}                                                                  from '../entityTypes';
 
 import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
-import {DelayedObjectHolderContainer}                       from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer}                       from '../../util/holder/DelayedObjectHolder.container';
 import {EmptyEntityLimit}                                   from './EmptyEntityLimit';
 import {EmptyEntityLimitAmount}                             from './properties/EmptyEntityLimitAmount';
 import {EmptyEntityLimitLink}                               from './properties/EmptyEntityLimitLink';

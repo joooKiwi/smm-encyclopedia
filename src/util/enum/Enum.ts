@@ -2,6 +2,63 @@ import type {Enumerable}       from './Enumerable';
 import type {EnumerableStatic} from './EnumerableStatic';
 import type {EnumName}         from './Enum.types';
 
+/**
+ * <p>
+ *  The first possible instance of an enum implementation using self reference instead of string or number.
+ * </p>
+ *
+ * <p>
+ *  Even though it's custom-made, it requires some custom implementation to work properly.
+ *  It can have everything that a normal class have.
+ *  But everything should be declared in statically in order to work as intended.
+ * </p>
+ *
+ * <code>
+ *     class SubEnum extends Enum {
+ *
+ *         public static readonly SUB_SUB_ENUM_1 = new class extends SubEnum(arguments);
+ *         public static readonly SUB_SUB_ENUM_2 = new class extends SubEnum(arguments);
+ *         public static readonly SUB_SUB_ENUM_3 = new class extends SubEnum(arguments);
+ *         public static readonly SUB_SUB_ENUM_4 = new class extends SubEnum(arguments);
+ *
+ *         private constructor(argumentsReceived: any,){
+ *             super();
+ *         }
+ *
+ *
+ *         protected get _static(): StaticReference<SubEnum> {
+ *             return SubEnum;
+ *         }
+ *
+ *          public static getValue(value: | null | undefined,): null
+ *          public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+ *          public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+ *          public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+ *          public static getValue<S extends PossibleStringValue = PossibleStringValue, >(value: S,): EnumByPossibleString<S>
+ *          public static getValue<S extends string = string, >(value: S,): EnumByString<S>
+ *          public static getValue<I extends SubEnum = SubEnum, >(instance: I,): I
+ *          public static getValue(value: PossibleNonNullableValue,): EveryLanguages
+ *          public static getValue(value: PossibleValue,): | SubEnum | null
+ *          public static getValue(value: PossibleValue,) {
+ *              return Enum.getValueOn(this, value,);
+ *          }
+ *
+ *          public static get values(): EnumArray {
+ *              return Enum.getValuesOn(this);
+ *          }
+ *
+ *          public static [Symbol.iterator]() {
+ *              return this.values[Symbol.iterator]();
+ *          }
+ *
+ *     }
+ * <code/><br/>
+ *
+ * <p>
+ *  Then, with the proper implementation, everything for a class-based enum is present.
+ * </p><br/>
+ *
+ */
 export abstract class Enum<O extends number = number, N extends string = string, >
     implements Enumerable<O, N> {
 
@@ -9,8 +66,64 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
     static readonly #DEFAULT_NULL_DEFAULT_ARRAY = [null, null,] as const;
     static readonly #PROTOTYPE_NAME = 'prototype';
-    public static readonly EXCLUDED_NAMES: string[] = [];
-     static readonly #NUMBER_ONLY_REGEX = /^\d+$/;
+    /**
+     * <p>
+     *  The excluded name from the values of the current enum.
+     * </p>
+     *
+     * <code>
+     *      class SubEnum extends Enum {
+     *
+     *         public static readonly SIMPLE_SUB_SUB_ENUM = new class extends SubEnum(arguments);
+     *         public static readonly IGNORED_SUB_SUB_ENUM = new class extends SubEnum(arguments);
+     *
+     *
+     *         protected static readonly _EXCLUDED_NAMES: readonly string[] = ['IGNORED_SUB_SUB_ENUM',];
+     *
+     *          ...
+     *     }
+     * </code>
+     *
+     * @see EnumerableStatic.getValues
+     */
+    protected static readonly _EXCLUDED_NAMES: readonly string[] = [];
+    /**
+     * <p>
+     *  The parent {@link Enum enum} of the current {@link Enum enum}.<br/>
+     * </p>
+     *
+     * <p>
+     *  It is retrieved by the {@link EnumerableStatic.getValue parent getValue} method
+     *  in order to call it.
+     * </p>
+     *
+     * <code>
+     *      class SubEnum extends ParentEnum {
+     *
+     *         public static readonly SUB_SUB_ENUM_1 = new class extends SubEnum(arguments);
+     *         public static readonly SUB_SUB_ENUM_2 = new class extends SubEnum(arguments);
+     *         public static readonly SUB_SUB_ENUM_3 = new class extends SubEnum(arguments);
+     *
+     *
+     *         protected static readonly _PARENT: StaticReference<ParentEnum> = ParentEnum;//optional
+     *
+     *          ...
+     *     }
+     * </code>
+     *
+     * @see EnumerableStatic.getValue
+     */
+        // @ts-ignore
+    protected static readonly _PARENT: EnumerableStatic<any, any> = Enum;
+    static readonly #NUMBER_ONLY_REGEX = /^\d+$/;
+    /**
+     * The default name used for the default value stored by the current instance.
+     *
+     * @see Enum.getDefaultOn
+     * @see Enum.setDefaultOn
+     * @see Enum.getNonNullDefaultOn
+     * @see Enum.setNonNullDefaultOn
+     */
     protected static _DEFAULT_NAME = '_DEFAULT';
 
     static readonly #LAST_ORDINAL_MAP = new Map<EnumerableStatic, number>();
@@ -30,7 +143,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
         const everyProperties = (Object.entries(Object.getOwnPropertyDescriptors(instance))
             .filter(([, property,]) => property.get == null && property.set == null)
             .filter(([name,]) => name !== this.#PROTOTYPE_NAME)
-            .filter(([name,]) => !instance.EXCLUDED_NAMES.includes(name))
+            .filter(([name,]) => !instance._EXCLUDED_NAMES.includes(name))
             .filter(([name,]) => !this.#NUMBER_ONLY_REGEX.test(name))
             .filter(([, property,]) => property.value instanceof instance) as [string, TypedPropertyDescriptor<Enumerable>][])
             .map(([name, property,]) => ([name, property.value!,] as const));
@@ -162,6 +275,107 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
         return this.setDefaultOn(instance, value,);
     }
+
+    //region -------------------- GetValue methods --------------------
+
+    protected static _getValueByString(value: string,): | Enumerable | null {
+        return null;
+    }
+
+    protected static _getValueByNumber(value: number,): | Enumerable | null {
+        return null;
+    }
+
+    protected static _getValueByBoolean(value: boolean,): | Enumerable | null {
+        return null;
+    }
+
+    protected static _getValueByObject(value: object,): | Enumerable | null {
+        return null;
+    }
+
+    protected static _getValueByEnumerable(value: Enumerable,): | Enumerable | null {
+        return null;
+    }
+
+    /**
+     * <p>
+     *  Get the enum value of the instance selected.
+     *  It does call the value by a selected argument
+     *  if the values received are not those handled automatically.
+     * </p>
+     * <p>
+     *  The possible arguments received handled are:
+     *  <ol>
+     *      <li><i>undefined</i> or <i>null</i></li>
+     *      <li>the {@link Enum.ordinal ordinal},</li>
+     *      <li>the {@link Enum.name name},</li>
+     *      <li>directly as a {@link Enum}</li>
+     *      <li>a static {@link Enum._PARENT _PARENT} attribute</li>
+     *  </ol>
+     *  And the possible arguments received can be <i>undefined</i>, <i>null</i>,
+     *  a <i>{@link String string}</i>, a <i>{@link Number number}</i>
+     *  or an {@link Object object}.
+     * </p>
+     *
+     * @param instance the enum instance
+     * @param value the value to compare
+     * @see Enum._getValueByString
+     * @see Enum._getValueByNumber
+     * @see Enum._getValueByBoolean
+     * @see Enum._getValueByObject
+     * @see Enum._getValueByEnumerable
+     * @see Enum._PARENT
+     */
+    public static getValueOn<I extends Enumerable, IS extends EnumerableStatic<I['ordinal'], I['name'], any> = EnumerableStatic<I['ordinal'], I['name'], any>, >(instance: IS, value: | number | I['ordinal'] | string | I['name'] | I | object | null | undefined,): | I | null
+    public static getValueOn<I extends Enum, >(instance: EnumerableStatic & typeof Enum, value: | number | I['ordinal'] | string | I['name'] | I | object | null | undefined,): | I | null {
+        if (value == null)
+            return null;
+
+        if (instance !== Enum) {
+            const parent = instance._PARENT as EnumerableStatic & typeof Enum;
+            const parentValue = parent.getValueOn(parent, value,) as Enumerable | null;
+            if (parentValue == null)
+                return null;
+            return Enum.getValueOn<I>(instance, parentValue,);
+        }
+
+
+        switch (typeof value) {
+            case 'string':
+                return this.__getEnumInstance(instance, value,)
+                    ?? instance._getValueByString(value,) as | I | null;
+            case 'number':
+                return this.__getEnumInstance(instance, value,)
+                    ?? instance._getValueByNumber(value,) as | I | null;
+            case 'boolean':
+                return this._getValueByBoolean(value) as | I | null;
+            default:
+                if ('_static' in value)
+                    return value._static === instance
+                        ? value
+                        : instance._getValueByEnumerable(value) as | I | null;
+                return instance._getValueByObject(value,) as | I | null;
+        }
+    }
+
+    /**
+     * Get the enum instance reflectively and compare the {@link Enum._static} with the instance received.
+     *
+     * @param instance the enum instance to compare
+     * @param nameOrIndex the name or the index
+     * @return the enum instance or null
+     */
+    private static __getEnumInstance<I extends Enum, >(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,): | I | null {
+        const value = instance[nameOrIndex] as | Enum | undefined;
+        if (value == null)
+            return null;
+        if (value._static === instance)
+            return value as I;
+        return null;
+    }
+
+    //endregion -------------------- GetValue methods --------------------
 
     public static getValuesOn<IS extends EnumerableStatic<any, any, any>, >(instance: IS,): IS['values']
     public static getValuesOn(instance: EnumerableStatic,) {

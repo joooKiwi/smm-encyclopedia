@@ -1,10 +1,11 @@
+import type {EveryLanguages}                            from '../EveryLanguages';
 import type {Name}                                      from './Name';
 import type {NameTrait}                                 from './NameTrait';
-import type {NameTraitFromAnAlternativeContainer} from './NameTraitFromAnAlternativeContainer';
-import type {ObjectHolder, ValueOrCallbackValue}  from '../../util/holder/ObjectHolder';
+import type {NameTraitFromAnAlternativeContainer}       from './NameTraitFromAnAlternativeContainer';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
 import {ClassContainingAName}         from './ClassContainingAName';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends NameTrait<U>, >
     extends ClassContainingAName<T>
@@ -16,7 +17,7 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: ValueOrCallbackValue<Name<T>>, alternative: ValueOrCallbackValue<ALTERNATIVE>,) {
+    public constructor(name: PossibleValueOnObjectHolder<Name<T>>, alternative: PossibleValueOnObjectHolder<ALTERNATIVE>,) {
         super(name,);
         this.#alternativeContainer = new DelayedObjectHolderContainer(alternative);
     }
@@ -166,7 +167,7 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
 
     //endregion -------------------- Getter methods --------------------
 
-    public toAlternativeNameMap() {
+    public toAlternativeNameMap(): ReadonlyMap<EveryLanguages, U> {
         return this.alternativeNameContainer.toNameMap();
     }
 

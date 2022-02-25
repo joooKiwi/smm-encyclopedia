@@ -1,8 +1,8 @@
 import type {PossibleAmount}                     from '../ClassWithAmount';
 import type {PossibleComment}                    from '../ClassWithComment';
 import type {PossibleString}                     from '../Property';
+import type {PossibleValueOnObjectHolder}        from '../../../util/holder/ObjectHolder';
 import type {StringPropertyWithAmountAndComment} from '../PropertyWithAmountAndComment';
-import type {ValueOrCallbackValue}               from '../../../util/holder/ObjectHolder';
 
 import {PropertyWithAmountAndCommentContainer} from '../PropertyWithAmountAndComment.container';
 
@@ -10,7 +10,7 @@ export class StringPropertyWithAmountAndCommentContainer<S extends PossibleStrin
     extends PropertyWithAmountAndCommentContainer<S, AMOUNT, COMMENT>
     implements StringPropertyWithAmountAndComment<S, AMOUNT, COMMENT> {
 
-    public constructor(value: ValueOrCallbackValue<S>, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: PossibleValueOnObjectHolder<S>, amount: AMOUNT, comment: COMMENT,) {
         super(value, amount, comment,);
     }
 

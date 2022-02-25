@@ -54,6 +54,13 @@ export class EntityLimitTypes
         return EntityLimitTypes;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.englishName === value
+                || enumerable.englishCommonText === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -64,16 +71,7 @@ export class EntityLimitTypes
     public static getValue(value: PossibleNonNullableValue,): EntityLimitTypes
     public static getValue(value: PossibleValue,): | EntityLimitTypes | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(limit => limit.englishName === value)
-                    ?? this.values.find(limit => limit.englishCommonText === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

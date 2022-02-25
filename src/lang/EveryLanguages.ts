@@ -774,6 +774,14 @@ export abstract class EveryLanguages
     }
 
 
+    public static _getValueByString(value: string,): | EveryLanguages | null {
+        return this.values.find(enumerable => enumerable.projectAcronym === value
+                || enumerable.internationalAcronym === value
+                || enumerable.englishName === value
+                || enumerable.originalName === value)
+            ?? null;
+    }
+
     public static getValue(value: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -784,15 +792,7 @@ export abstract class EveryLanguages
     public static getValue(value: PossibleNonNullableValue,): EveryLanguages
     public static getValue(value: PossibleValue,): | EveryLanguages | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(language => language.projectAcronym === value || language.internationalAcronym === value || language.englishName === value || language.originalName === value)
-                    ?? null
-                : typeof value == 'number'
-                    ? this.values[value] ?? null
-                    : value ?? null;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

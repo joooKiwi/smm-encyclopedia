@@ -1,6 +1,6 @@
-import type {ObjectHolder, ValueOrCallbackValue} from './ObjectHolder';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder';
 
-import {ObjectHolderContainer} from './ObjectHolderContainer';
+import {ObjectHolderContainer} from './ObjectHolder.container';
 
 export class DelayedObjectHolderContainer<T>
     implements ObjectHolder<T> {
@@ -8,7 +8,7 @@ export class DelayedObjectHolderContainer<T>
     #object?: T;
     readonly #callback;
 
-    public constructor(value: ValueOrCallbackValue<T>,) {
+    public constructor(value: PossibleValueOnObjectHolder<T>,) {
         this.#callback = () => new ObjectHolderContainer(value).get;
     }
 

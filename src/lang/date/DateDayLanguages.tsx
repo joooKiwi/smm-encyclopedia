@@ -140,6 +140,8 @@ export abstract class DateDayLanguages
 
     static [index: number]: DateDayLanguages;
 
+    protected static readonly _PARENT: StaticReference<ProjectLanguages> = ProjectLanguages;
+
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
@@ -192,16 +194,7 @@ export abstract class DateDayLanguages
     public static getValue(value: PossibleNonNullableValue,): DateDayLanguages
     public static getValue(value: PossibleValue,): | DateDayLanguages | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.getValue(ProjectLanguages.getValue(value))
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value instanceof DateDayLanguages
-                        ? value
-                        : this.values.find(language => language.reference === value) ?? null;
+        return Enum.getValueOn<DateDayLanguages>(this, value,);
     }
 
     public static get values(): EnumArray<DateDayLanguages> {

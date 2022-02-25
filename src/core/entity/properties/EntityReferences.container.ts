@@ -5,7 +5,7 @@ import type {ObjectHolder}                  from '../../../util/holder/ObjectHol
 import type {Themes}                        from '../../theme/Themes';
 import type {Times}                         from '../../time/Times';
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 
 export class EntityReferencesContainer
     implements EntityReferences {

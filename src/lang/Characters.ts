@@ -1,5 +1,7 @@
-import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, EnumArray, EnumArray_Braces, EnumArray_Brackets, EnumArray_Number, EnumArray_Parentheses, EnumArray_Points, EnumArray_RomainAlphabet, EnumArray_Slashes, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Letters_Array, Letters_SpaceEven_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNonNullableValue, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleStringValue, PossibleValue, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean} from './Characters.types';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../util/enum/Enum.types';
+import type {
+    Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, EnumArray, EnumArray_Braces, EnumArray_Brackets, EnumArray_Number, EnumArray_Parentheses, EnumArray_Points, EnumArray_RomainAlphabet, EnumArray_Slashes, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Letters_Array, Letters_SpaceEven_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNonNullableValue, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleStringValue, PossibleValue, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean
+}                             from './Characters.types';
+import type {StaticReference} from '../util/enum/Enum.types';
 
 import {Enum} from '../util/enum/Enum';
 
@@ -405,6 +407,13 @@ export class Characters
         return Characters;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.spaceEvenCharacters.includes(value as never)
+                || enumerable.spaceUnevenCharacters.includes(value as never))
+            ?? null;
+    }
+
     public static getValue(value: | null | undefined,): null
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
@@ -415,15 +424,7 @@ export class Characters
     public static getValue(value: PossibleNonNullableValue,): Characters
     public static getValue(value: PossibleValue,): | Characters | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(enumeration => enumeration.spaceEvenCharacters.includes(value as never) || enumeration.spaceUnevenCharacters.includes(value as never))
-                    ?? null
-                : typeof value == 'number'
-                    ? this.values[value] ?? null
-                    : value ?? null;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

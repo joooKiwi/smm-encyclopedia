@@ -5,7 +5,7 @@ import type {PossibleCategory, PossibleConditionToUnlockIt, PossibleMode} from '
 import type {Versions}                                                    from '../version/Versions';
 
 import {ClassContainingAName}         from '../../lang/name/ClassContainingAName';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class MiiCostumeContainer
     extends ClassContainingAName<string>

@@ -7,7 +7,7 @@ import type {ObjectHolder}                                from '../../util/holde
 import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
 
 import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative';
-import {DelayedObjectHolderContainer}         from '../../util/holder/DelayedObjectHolderContainer';
+import {DelayedObjectHolderContainer}         from '../../util/holder/DelayedObjectHolder.container';
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,

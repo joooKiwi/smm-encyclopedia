@@ -1,11 +1,11 @@
+import type {EveryLanguages}                            from '../EveryLanguages';
 import type {Name}                                      from './Name';
 import type {NameTrait}                                 from './NameTrait';
-import type {NameTraitFromACategory}             from './NameTraitFromACategory';
-import type {ObjectHolder, ValueOrCallbackValue} from '../../util/holder/ObjectHolder';
+import type {NameTraitFromACategory}                    from './NameTraitFromACategory';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
 import {ClassContainingAName}         from './ClassContainingAName';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolderContainer';
-import {EveryLanguages}               from '../EveryLanguages';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U>, >
     extends ClassContainingAName<T>
@@ -17,7 +17,7 @@ export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: ValueOrCallbackValue<Name<T>>, category: ValueOrCallbackValue<CATEGORY>,) {
+    public constructor(name: PossibleValueOnObjectHolder<Name<T>>, category: PossibleValueOnObjectHolder<CATEGORY>,) {
         super(name,);
         this.#categoryContainer = new DelayedObjectHolderContainer(category);
     }

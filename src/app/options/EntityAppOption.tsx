@@ -588,14 +588,7 @@ export abstract class EntityAppOption<T = | boolean | PossibleImageAnimation, >
     public static getValue(value: PossibleNonNullableValue,): EntityAppOption
     public static getValue(value: PossibleValue,): | EntityAppOption | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {
