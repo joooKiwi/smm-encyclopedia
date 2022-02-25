@@ -332,12 +332,12 @@ export abstract class Enum<O extends number = number, N extends string = string,
         if (value == null)
             return null;
 
-        if (instance !== Enum) {
-            const parent = instance._PARENT as EnumerableStatic & typeof Enum;
-            const parentValue = parent.getValueOn(parent, value,) as Enumerable | null;
+        const parent = instance._PARENT as EnumerableStatic & typeof Enum;
+        if (parent !== Enum) {
+            const parentValue = Enum.getValueOn(parent, value,) as Enumerable | null;
             if (parentValue == null)
                 return null;
-            return Enum.getValueOn<I>(instance, parentValue,);
+            return instance._getValueByEnumerable(parentValue) as | I | null;
         }
 
 
