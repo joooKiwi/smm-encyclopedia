@@ -1,5 +1,5 @@
-import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityLimitTypes.types';
-import type {StaticReference}                                                                                                                                                 from '../../util/enum/Enum.types';
+import type {EnumArray, EnumArray_EnglishName, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityLimitTypes.types';
+import type {StaticReference}                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 
 import {Enum} from '../../util/enum/Enum';
 
@@ -62,11 +62,11 @@ export class EntityLimitTypes
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof EntityLimitTypes[N]
-    public static getValue(name: PossibleStringValue,): EntityLimitTypes
-    public static getValue(name: string,): | EntityLimitTypes | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends EntityLimitTypes = EntityLimitTypes, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): EntityLimitTypes
     public static getValue(value: PossibleValue,): | EntityLimitTypes | null

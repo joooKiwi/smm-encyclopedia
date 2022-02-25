@@ -1,13 +1,13 @@
-import everyThemes from '../../resources/Entity limits.csv';
+import everyThemes from '../../resources/Entity limit.csv';
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EmptyLinkTemplate, EntityLimitTemplate, LimitAmountTemplate, LinkTemplate} from './EntityLimit.template';
-import type {EntityLimit}                                                                                                                   from './EntityLimit';
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                   from '../../lang/Loader.types';
-import type {Loader}                                                                                                                        from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                              from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                             from '../entity/Entities.types';
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                          from './EntityLimitTypes.types';
-import type {PossibleGroupName}                                                                                                             from '../entityTypes';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate}     from './EntityLimit.template';
+import type {EntityLimit}                                                                                      from './EntityLimit';
+import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                      from '../../lang/Loader.types';
+import type {Loader}                                                                                           from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from './EntityLimits.types';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                from '../entity/Entities.types';
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                             from './EntityLimitTypes.types';
+import type {PossibleGroupName}                                                                                from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -26,8 +26,6 @@ enum Headers {
     acronym,
 
     limit, limit_comment,
-
-    link_group, link_entity,
 
     //region -------------------- Languages --------------------
 
@@ -119,8 +117,6 @@ export class EntityLimitLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
                 .convertToNullableNumberAnd(['?', 'string',], 'limit',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGroupNames, 'link_group',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleEntityNames, 'link_entity',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
 
@@ -147,10 +143,6 @@ class TemplateBuilder
         amount: null,
         isUnknown: false,
         comment: null,
-    };
-    static readonly #EMPTY_LINK_TEMPLATE: EmptyLinkTemplate = {
-        groupName: null,
-        entityName: null,
     };
     static readonly #EMPTY_REFERENCES = {
         regular: null,
@@ -188,8 +180,6 @@ class TemplateBuilder
 
             limit: this.__createLimitAmountTemplate(),
 
-            link: this.__createLinkTemplate(),
-
             name: this._createNameTemplate(),
 
         };
@@ -204,8 +194,6 @@ class TemplateBuilder
             acronym: acronym,
 
             limit: TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
-
-            link: this.__createLinkTemplate(),
 
             name: this._createNameTemplate(),
 
@@ -239,23 +227,6 @@ class TemplateBuilder
             default:
                 return TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE;
         }
-    }
-
-    private __createLinkTemplate(): LinkTemplate {
-        const entity = this._getContent(this._headersIndexMap.link_entity);
-        const group = this._getContent(this._headersIndexMap.link_group);
-
-        if (entity == null && group == null)
-            return TemplateBuilder.#EMPTY_LINK_TEMPLATE;
-        if (entity == null)
-            return {
-                groupName: group,
-                entityName: null,
-            };
-        return {
-            groupName: null,
-            entityName: entity,
-        };
     }
 
 }

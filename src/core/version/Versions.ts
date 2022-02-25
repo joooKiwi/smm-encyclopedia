@@ -1,5 +1,5 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Versions.types';
-import type {StaticReference}                                                                                                                                 from '../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Versions.types';
+import type {StaticReference}                                                                                                                                                                     from '../../util/enum/Enum.types';
 
 import {Enum}       from '../../util/enum/Enum';
 import {Games}      from '../game/Games';
@@ -57,6 +57,11 @@ export class Versions
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    public static get everySimpleNames(): readonly PossibleName[] {
+        return this.values.map(enumerable => enumerable.simpleName);
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
@@ -74,8 +79,8 @@ export class Versions
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
     public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue(name: PossibleStringValue,): Versions
-    public static getValue(name: string,): | Versions | null
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends Versions = Versions, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): Versions
     public static getValue(value: PossibleValue,): | Versions | null

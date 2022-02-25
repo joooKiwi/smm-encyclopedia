@@ -1,12 +1,12 @@
-import type {Entity}                     from '../entity/Entity';
-import type {PossibleEffectInNightTheme} from './Theme.template';
-import type {Theme}                      from './Theme';
+import type {Entity}  from '../entity/Entity';
+import type {NightEffects} from './NightEffects';
+import type {Theme}   from './Theme';
 
 export interface CourseTheme
     extends Theme {
 
     get entities(): readonly Entity[]
 
-    get effect(): PossibleEffectInNightTheme
+    get effect(): | NightEffects | null
 
 }

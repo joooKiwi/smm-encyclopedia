@@ -5,7 +5,6 @@ import {assert}                               from '../../util/utilitiesMethods'
 import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative';
 import {EmptyStringName}                      from '../../lang/name/EmptyStringName';
 import {EmptyEntityLimitAmount}               from './properties/EmptyEntityLimitAmount';
-import {EmptyEntityLimitLink}                 from './properties/EmptyEntityLimitLink';
 
 /**
  * @singleton
@@ -53,14 +52,6 @@ export class EmptyEntityLimit
     public readonly alternativeAmountComment = this.alternativeLimitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public readonly alternativeLinkContainer = EmptyEntityLimitLink.get;
-
-    public readonly alternativeGroupLink = this.alternativeLinkContainer.group;
-    public readonly alternativeEntityLink = this.alternativeLinkContainer.entity;
-
-    //endregion -------------------- Link --------------------
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
@@ -72,14 +63,6 @@ export class EmptyEntityLimit
     public readonly amountComment = this.limitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public readonly linkContainer = EmptyEntityLimitLink.get;
-
-    public readonly groupLink = this.linkContainer.group;
-    public readonly entityLink = this.linkContainer.entity;
-
-    //endregion -------------------- Link --------------------
 
     public toString(): EmptyEntityLimitName {
         return 'Empty entity limit';

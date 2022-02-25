@@ -1,11 +1,11 @@
-import type {MiiCostume}                                                  from './MiiCostume';
-import type {Name}                                                        from '../../lang/name/Name';
-import type {ObjectHolder}                                                from '../../util/holder/ObjectHolder';
-import type {PossibleCategory, PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
-import type {Versions}                                                    from '../version/Versions';
+import type {MiiCostume}                                from './MiiCostume';
+import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory';
+import type {Name}                                      from '../../lang/name/Name';
+import type {ObjectHolder}                              from '../../util/holder/ObjectHolder';
+import type {PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
+import type {Versions}                                  from '../version/Versions';
 
 import {ClassContainingAName}         from '../../lang/name/ClassContainingAName';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
 
 export class MiiCostumeContainer
     extends ClassContainingAName<string>
@@ -15,18 +15,18 @@ export class MiiCostumeContainer
 
     readonly #mode;
     readonly #conditionToUnlockId;
-    readonly #version: ObjectHolder<| Versions | null>;
-    readonly #category: ObjectHolder<PossibleCategory>;
+    readonly #version;
+    readonly #category;
 
     //endregion -------------------- Attributes --------------------
 
     //TODO change to object holder directly instead of creating the object holder instance here.
-    public constructor(name: Name<string>, mode: PossibleMode, conditionToUnlockId: PossibleConditionToUnlockIt, version: () => | Versions | null, category: () => PossibleCategory,) {
+    public constructor(name: Name<string>, mode: PossibleMode, conditionToUnlockId: PossibleConditionToUnlockIt, version: ObjectHolder<| Versions | null>, category: ObjectHolder<MiiCostumeCategory>,) {
         super(name,);
         this.#mode = mode;
         this.#conditionToUnlockId = conditionToUnlockId;
-        this.#version = new DelayedObjectHolderContainer(version);
-        this.#category = new DelayedObjectHolderContainer(category);
+        this.#version = version;
+        this.#category = category;
     }
 
     //region -------------------- Getter methods --------------------

@@ -1,4 +1,9 @@
-import type {ReactState} from '../util/react/ReactState';
+import type {ImageAnimations}   from './options/global/ImageAnimations';
+import type {Images}            from './options/global/Images';
+import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
+import type {ReactState}        from '../util/react/ReactState';
+import type {Sounds}            from './options/global/Sounds';
+import type {Texts}             from './options/global/Texts';
 
 export interface AppStates
     extends ReactState {
@@ -6,6 +11,47 @@ export interface AppStates
 }
 
 //region -------------------- Single states group --------------------
+
+export interface GlobalAppState
+    extends ReactState {
+
+    images: Images
+    imageAnimations: ImageAnimations
+    sounds: Sounds
+    texts: Texts
+
+    game: {
+        1: boolean
+        2: boolean
+    }
+
+    gameStyle: {
+        SMB: boolean
+        SMB3: boolean
+        SMW: boolean
+        NSMBU: boolean
+        SM3DW: boolean
+    }
+
+    theme: {
+        ground: GlobalThemeOption
+        underground: GlobalThemeOption
+        underwater: GlobalThemeOption
+        desert: GlobalThemeOption
+        snow: GlobalThemeOption
+        sky: GlobalThemeOption
+        forest: GlobalThemeOption
+        ghostHouse: GlobalThemeOption
+        airship: GlobalThemeOption
+        castle: GlobalThemeOption
+    }
+
+    time: {
+        day: boolean
+        night: boolean
+    }
+
+}
 
 interface AppStateThatHaveACategory {
 
@@ -17,20 +63,10 @@ interface AppStateThatHaveACategory {
 
 }
 
-interface AppStateThatHaveAnimatedImages {
-
-    display: {
-        imageAnimations: PossibleImageAnimation
-    }
-
-}
-
-export type PossibleImageAnimation = | boolean | 'separated';
-
 //endregion -------------------- Single states group --------------------
 
 export interface EntityAppStates
-    extends AppStates, AppStateThatHaveAnimatedImages, AppStateThatHaveACategory {
+    extends AppStates, AppStateThatHaveACategory {
 
     display: {
         section: {
@@ -43,7 +79,6 @@ export interface EntityAppStates
             limit: boolean
             images: boolean
         }
-        imageAnimations: PossibleImageAnimation
         asText: {
             category: boolean
             whenAll: {
@@ -71,7 +106,24 @@ export interface SoundEffectAppStates
 
 }
 
+export interface MiiCostumeAppStates
+    extends AppStates, AppStateThatHaveACategory {
+
+    display: {
+        section: {
+            image: boolean
+            name: boolean
+            conditionToUnlockIt: boolean
+            category: boolean
+        }
+        asText: {
+            category: boolean
+        }
+    }
+
+}
+
 export interface MysteryMushroomAppStates
-    extends AppStates, AppStateThatHaveAnimatedImages {
+    extends AppStates {
 
 }

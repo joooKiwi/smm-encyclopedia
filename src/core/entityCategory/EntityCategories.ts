@@ -1,9 +1,9 @@
-import type {ClassWithEnglishName}                                                                                                             from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                               from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                               from '../ClassWithReference';
-import type {EntityCategory}                                                                                                                   from './EntityCategory';
-import type {EnumArray, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
-import type {StaticReference}                                                                                                                  from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                  from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                                                                                                    from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                                                                                                                    from '../ClassWithReference';
+import type {EntityCategory}                                                                                                                                                                                                                                        from './EntityCategory';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
+import type {StaticReference}                                                                                                                                                                                                                                       from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
@@ -19,10 +19,10 @@ export class EntityCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly TERRAIN = new EntityCategories('Terrain',);
-    public static readonly ITEM =    new EntityCategories('Item',   );
-    public static readonly ENEMY =   new EntityCategories('Enemy',  );
-    public static readonly GIZMO =   new EntityCategories('Gizmo',  );
+    public static readonly TERRAIN = new EntityCategories('Terrain', 0,);
+    public static readonly ITEM =    new EntityCategories('Item',    1,);
+    public static readonly ENEMY =   new EntityCategories('Enemy',   2,);
+    public static readonly GIZMO =   new EntityCategories('Gizmo',   3,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -36,15 +36,15 @@ export class EntityCategories
 
     #reference?: EntityCategory;
     readonly #englishName;
+    readonly #imageName: PossibleImageName;
     #imagePath?: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    // private constructor(englishNameAndImagePath: PossibleEntityCategories)
-    // private constructor(englishName: PossibleEntityCategories, basicImagePath: string)
-    private constructor(englishName: PossibleEnglishName,) {
+    private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();
         this.#englishName = new StringContainer<PossibleEnglishName, Lowercase<PossibleEnglishName>>(englishName);
+        this.#imageName = `CategoryIcon_0${imageNumber}`;
     }
 
     //region -------------------- Getter methods --------------------
@@ -70,8 +70,12 @@ export class EntityCategories
         return this.#englishName.getInHtml;
     }
 
+    public get imageName(): PossibleImageName {
+        return this.#imageName;
+    }
+
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/category/entity/${this.ordinal + 1} - ${this.englishName}.png` as PossibleImagePath;
+        return this.#imagePath ??= `/category/${this.imageName}^s.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -95,11 +99,11 @@ export class EntityCategories
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof EntityCategories[N]
-    public static getValue(name: PossibleStringValue,): EntityCategories
-    public static getValue(name: string,): | EntityCategories | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends EntityCategories = EntityCategories, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): EntityCategories
     public static getValue(value: PossibleValue,): | EntityCategories | null

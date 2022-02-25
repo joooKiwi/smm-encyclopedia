@@ -1,9 +1,10 @@
-import type {SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import {Versions}                              from './Versions';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {Versions as RealEnum}                                                                                                                                                                                                                         from './Versions';
 
-export type PossibleNonNullableValue = | Versions | Ordinals | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleName;
-export type PossibleValue = | Versions | number | string | null | undefined;
+export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
@@ -29,16 +30,19 @@ export type PossibleName_SMM2_Number = `v${| 2 | 3}.0.0`;
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends Versions = Versions, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
 
-export type EnumByOrdinal<O extends Ordinals = Ordinals, > = EnumArray[O];
-export type EnumByNumber<O extends number = number, > = | NonNullable<EnumArray[O]> | null;
-export type EnumByName<N extends Names = Names, E extends Versions = Versions, > = SimpleEnum<E>[N];
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<E extends Versions = Versions, > = readonly [
+export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<E>['V1_20'], SimpleEnum<E>['V1_30'], SimpleEnum<E>['V1_40'],
     SimpleEnum<E>['V_2_0_0'], SimpleEnum<E>['V_3_0_0'], SimpleEnum<E>['SM3DW_V_3_0_0'],
 ];

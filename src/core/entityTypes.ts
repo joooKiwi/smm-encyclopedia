@@ -3,7 +3,7 @@ export type PossibleGroupName = string;
 
 /** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Object';
 
-/** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker = | 1 | 2 | null;
+/** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker = | 1 | 2;
 
 //region -------------------- Specific properties --------------------
 
@@ -26,13 +26,15 @@ export type PossibleGroupName = string;
 
 /** @temporaryLocation */export type CanBePutInABlock = | boolean | null;
 
+/** @temporaryLocation */export type PossibleWeight = | 0 | 1 | '½' | 2 | '?' | null;
 /** @temporaryLocation */export type CanBePutInATree = | boolean | null;
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = | boolean | null;
 
 /** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | '?' | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground';
 
-/** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle' | 'Only when the player press the run button' | null;
+/** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle';
+/** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed';
 
 /** @temporaryLocation */export type CanBeAffectedByATwister = | boolean | 'When falling' | 'Parachute' | null;
 
@@ -55,13 +57,13 @@ export type PossibleGroupName = string;
 //endregion -------------------- Specific properties --------------------
 //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 
-/** @temporaryLocation */export type CanBeThrownByBowserInClownCar = | boolean | 'Bob-omb clear condition';
-/** @temporaryLocation */export type CanBeThrownByBowserJr = | boolean | '3rd phase';
-/** @temporaryLocation */export type CanBeThrownByBowserJrInClownCar = | boolean | 'Koopa Troopa clear condition';
+/** @temporaryLocation */export type CanBeThrownByBowserInClownCar = | boolean | 'Bob-omb clear condition' | null;
+/** @temporaryLocation */export type CanBeThrownByBowserJr = | boolean | '3rd phase' | null;
+/** @temporaryLocation */export type CanBeThrownByBowserJrInClownCar = | boolean | 'Koopa Troopa clear condition' | null;
 
-/** @temporaryLocation */export type CanBeTransformedByMagikoopa = | boolean | '?';
-/** @temporaryLocation */export type CanBeSpawnedByMagikoopa = boolean;
-/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = | false | 'winged' | 'Green Winged Koopa Troopa' | '?';
+/** @temporaryLocation */export type CanBeTransformedByMagikoopa = | boolean | '?' | null;
+/** @temporaryLocation */export type CanBeSpawnedByMagikoopa = | boolean | null;
+/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = | false | 'winged' | 'Green Winged Koopa Troopa' | '?' | null;
 
 //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 //region -------------------- Dimension properties --------------------

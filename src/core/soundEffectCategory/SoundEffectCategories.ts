@@ -1,9 +1,9 @@
-import type {ClassWithEnglishName}                                                                                                                                    from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                      from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                                                      from '../ClassWithReference';
-import type {EnumArray, EnumArray_EnglishName, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
-import type {SoundEffectCategory}                                                                                                                                     from './SoundEffectCategory';
-import type {StaticReference}                                                                                                                                         from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                         from '../ClassWithEnglishName';
+import type {ClassWithImagePath}                                                                                                                                                                                                                                                           from '../ClassWithImagePath';
+import type {ClassWithReference}                                                                                                                                                                                                                                                           from '../ClassWithReference';
+import type {EnumArray, EnumArray_EnglishName, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types';
+import type {SoundEffectCategory}                                                                                                                                                                                                                                                          from './SoundEffectCategory';
+import type {StaticReference}                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
@@ -19,11 +19,11 @@ export class SoundEffectCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly FEELINGS =   new SoundEffectCategories('Feelings',  );
-    public static readonly STINGERS =   new SoundEffectCategories('Stingers',  );
-    public static readonly REACTIONS =  new SoundEffectCategories('Reactions', );
-    public static readonly ANIMATIONS = new SoundEffectCategories('Animations',);
-    public static readonly MUSIC =      new SoundEffectCategories('Music',     );
+    public static readonly FEELINGS =   new SoundEffectCategories('Feelings',   4,);
+    public static readonly STINGERS =   new SoundEffectCategories('Stingers',   5,);
+    public static readonly REACTIONS =  new SoundEffectCategories('Reactions',  6,);
+    public static readonly ANIMATIONS = new SoundEffectCategories('Animations', 7,);
+    public static readonly MUSIC =      new SoundEffectCategories('Music',      8,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -37,13 +37,15 @@ export class SoundEffectCategories
 
     #reference?: SoundEffectCategory;
     readonly #englishName;
+    readonly #imageName: PossibleImageName;
     #imagePath?: PossibleImagePath;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(englishName: PossibleEnglishName,) {
+    public constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();
         this.#englishName = new StringContainer(englishName);
+        this.#imageName = `CategoryIcon_0${imageNumber}`;
     }
 
     //region -------------------- Getter methods --------------------
@@ -68,8 +70,12 @@ export class SoundEffectCategories
         return this.#englishName.getInHtml;
     }
 
+    public get imageName(): PossibleImageName {
+        return this.#imageName;
+    }
+
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/category/sound effect/${this.ordinal + 1} - ${this.englishName}.png` as PossibleImagePath;
+        return this.#imagePath ??= `/category/${this.imageName}^s.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -93,11 +99,11 @@ export class SoundEffectCategories
     }
 
     public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof SoundEffectCategories[N]
-    public static getValue(name: PossibleStringValue,): SoundEffectCategories
-    public static getValue(name: string,): | SoundEffectCategories | null
+    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
+    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
+    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
+    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
+    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
     public static getValue<I extends SoundEffectCategories = SoundEffectCategories, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): SoundEffectCategories
     public static getValue(value: PossibleValue,): | SoundEffectCategories | null

@@ -1,15 +1,20 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
-import type {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
-import type {EntityCategories}      from '../../entityCategory/EntityCategories';
-import type {EntityLimits}          from '../../entityLimit/EntityLimits';
-import type {EntityLimitTypes}      from '../../entityLimit/EntityLimitTypes';
-import type {Entities}              from '../../entity/Entities';
-import type {GameReferences}        from '../../gameReference/GameReferences';
-import type {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
-import type {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
-import type {SoundEffects}          from '../../soundEffect/SoundEffects';
-import type {GameStyles}            from '../../gameStyle/GameStyles';
+import type {EntityBehaviours}                  from '../../behaviour/EntityBehaviours';
+import type {EntityCategories}                  from '../../entityCategory/EntityCategories';
+import type {EntityLimits}                      from '../../entityLimit/EntityLimits';
+import type {EntityLimitTypes}                  from '../../entityLimit/EntityLimitTypes';
+import type {Entities}                          from '../../entity/Entities';
+import type {GameReferences}                    from '../../gameReference/GameReferences';
+import type {GameStyles}                        from '../../gameStyle/GameStyles';
+import type {MiiCostumeCategories}              from '../../miiCostumeCategory/MiiCostumeCategories';
+import type {MiiCostumes}                       from '../../miiCostume/MiiCostumes';
+import type {MysteryMushrooms}                  from '../../mysteryMushroom/MysteryMushrooms';
+import type {NightEffects as ThemeNightEffects} from '../../theme/NightEffects';
+import type {SoundEffectCategories}             from '../../soundEffectCategory/SoundEffectCategories';
+import type {SoundEffects}                      from '../../soundEffect/SoundEffects';
+import type {Themes}                            from '../../theme/Themes';
+import type {Versions}                          from '../../version/Versions';
 
 /**
  * @classWithDynamicImport
@@ -43,12 +48,17 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #entities?: typeof Entities;
     #entityBehaviours?: typeof EntityBehaviours;
     // #entityGroups?: typeof EntityGroups;
+    #themes?: typeof Themes;
+    #themeNightEffects?: typeof ThemeNightEffects;
     #entityCategories?: typeof EntityCategories;
     #entityLimits?: typeof EntityLimits;
     #entityLimitTypes?: typeof EntityLimitTypes;
     #soundEffects?: typeof SoundEffects;
     #soundEffectCategories?: typeof SoundEffectCategories;
     #mysteryMushrooms?: typeof MysteryMushrooms;
+    #miiCostumes?: typeof MiiCostumes;
+    #miiCostumeCategories?: typeof MiiCostumeCategories;
+    #versions?: typeof Versions;
 
     //endregion -------------------- Enum reference attributes --------------------
     //region -------------------- Array attributes --------------------
@@ -66,6 +76,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleGroupNames?: EveryPossibleName_EntityGroup;
 
+    #everyPossibleName_theme?: EveryPossibleName_Theme;
+    #everyPossibleName_themeNightEffect?: EveryPossibleName_ThemeNightEffect;
+
     #everyPossibleEntityCategoriesNames?: EveryPossibleName_EntityCategory;
 
     #everyPossibleLimitsAcronyms?: EveryPossibleAcronym_EntityLimit;
@@ -80,12 +93,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleConditionToUnlockIt_MiiCostume?: EveryConditionToUnlockIt_MiiCostume;
     #everyPossibleMode_MiiCostume?: EveryPossibleMode_MiiCostume;
-    #everyPossibleCategory_MiiCostume?: EveryPossibleCategory_MiiCostume;
+    #everyPossibleName_MiiCostumeCategory?: EveryPossibleCategory_MiiCostume;
 
     #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
+
+    #everyPossibleName_version?: EveryPossibleSimpleName_Version;
 
     //endregion -------------------- Array attributes --------------------
 
@@ -113,6 +128,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //     return this.#entityGroups ??= require('../../entityGroup/EntityGroup').EntityGroup;
     // }
 
+    public get themes(): typeof Themes {
+        return this.#themes ??= require('../../theme/Themes').Themes;
+    }
+
+    public get themeNightEffects(): typeof ThemeNightEffects {
+        return this.#themeNightEffects ??= require('../../theme/NightEffects').NightEffects;
+    }
+
     public get entityCategories(): typeof EntityCategories {
         return this.#entityCategories ??= require('../../entityCategory/EntityCategories').EntityCategories;
     }
@@ -133,8 +156,20 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#soundEffectCategories ??= require('../../soundEffectCategory/SoundEffectCategories').SoundEffectCategories;
     }
 
+    public get miiCostumes(): typeof MiiCostumes {
+        return this.#miiCostumes ??= require('../../miiCostume/MiiCostume').MiiCostumes;
+    }
+
+    public get miiCostumeCategories(): typeof MiiCostumeCategories {
+        return this.#miiCostumeCategories ??= require('../../miiCostumeCategory/MiiCostumeCategories').MiiCostumeCategories;
+    }
+
     public get mysteryMushrooms(): typeof MysteryMushrooms {
         return this.#mysteryMushrooms ??= require('../../mysteryMushroom/MysteryMushrooms').MysteryMushrooms;
+    }
+
+    public get versions(): typeof Versions {
+        return this.#versions ??= require('../../version/Versions').Versions;
     }
 
     //endregion -------------------- Enum reference getter reference --------------------
@@ -189,6 +224,17 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Entity group --------------------
+    //region -------------------- Theme --------------------
+
+    public get everyPossibleName_theme(): EveryPossibleName_Theme {
+        return this.#everyPossibleName_theme ??= this.themes.everyEnglishNames;
+    }
+
+    public get everyPossibleName_themeNightEffect(): EveryPossibleName_ThemeNightEffect {
+        return this.#everyPossibleName_themeNightEffect ??= this.themeNightEffects.everyEnglishNames;
+    }
+
+    //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
     public get everyPossibleEntityCategoriesNames() {
@@ -276,11 +322,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
         ] as const).flat();
     }
 
-    public get everyPossibleCategory_MiiCostume() {
-        return this.#everyPossibleCategory_MiiCostume ??= ['Top', 'Headgear', 'Costume', 'Bottom',];
+    //endregion -------------------- Mii costume --------------------
+    //region -------------------- Mii costume category --------------------
+
+    public get everyPossibleName_MiiCostumeCategory() {
+        return this.#everyPossibleName_MiiCostumeCategory ??= this.miiCostumeCategories.everyEnglishNames;
     }
 
-    //endregion -------------------- Mii costume --------------------
+    //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
@@ -325,6 +374,13 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Version --------------------
+
+    public get everyPossibleName_version() {
+        return this.#everyPossibleName_version ??= this.versions.everySimpleNames;
+    }
+
+    //endregion -------------------- Version --------------------
 
 }
 
@@ -384,6 +440,12 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleGroupNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Entity group --------------------
+    //region -------------------- Theme --------------------
+
+    public readonly everyPossibleName_theme = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_themeNightEffect = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
     public readonly everyPossibleEntityCategoriesNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
@@ -416,9 +478,13 @@ class HeaderTypesForConvertorForProduction
 
     public readonly everyPossibleConditionToUnlockIt_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleMode_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleCategory_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Mii costume --------------------
+    //region -------------------- Mii costume category --------------------
+
+    public readonly everyPossibleName_MiiCostumeCategory = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public readonly everyPossibleMysteryMushroomIndividualEnglishNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
@@ -427,6 +493,11 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Version --------------------
+
+    public readonly everyPossibleName_version = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Version --------------------
 
 }
 

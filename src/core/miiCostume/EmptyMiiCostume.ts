@@ -1,9 +1,13 @@
 import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from '../../util/ClassWithNullObjectPattern';
 import type {MiiCostume}                                      from './MiiCostume';
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
-import {EmptyStringName}      from '../../lang/name/EmptyStringName';
+import {ClassContainingAName}    from '../../lang/name/ClassContainingAName';
+import {EmptyMiiCostumeCategory} from '../miiCostumeCategory/EmptyMiiCostumeCategory';
+import {EmptyStringName}         from '../../lang/name/EmptyStringName';
 
+/**
+ * @singleton
+ */
 export class EmptyMiiCostume
     extends ClassContainingAName<string>
     implements MiiCostume, ClassWithNullObjectPattern<EmptyMiiCostumeName> {
@@ -25,7 +29,7 @@ export class EmptyMiiCostume
     public readonly mode = null;
     public readonly conditionToUnlockId = null;
     public readonly version = null;
-    public readonly category = null;
+    public readonly category = EmptyMiiCostumeCategory.get;
 
     public toString(): EmptyMiiCostumeName {
         return 'Empty Mii costume';

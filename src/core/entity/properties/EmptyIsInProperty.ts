@@ -1,7 +1,6 @@
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../../util/ClassWithNullObjectPattern';
 import type {Property}                                          from './Property';
 
-import {assert}             from '../../../util/utilitiesMethods';
 import {EMPTY_MAP}          from '../../../util/emptyVariables';
 import {EmptyLimitProperty} from './limit/EmptyLimitProperty';
 
@@ -88,23 +87,27 @@ export class EmptyIsInProperty
     public readonly isInProjectileLimitWhilePlayingUnknown = this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.limitContainer.isInProjectileLimitWhilePlayingComment;
 
-    public readonly customLimitWhilePlayingContainer = this.limitContainer.customLimitWhilePlayingContainer;
-    public readonly customLimitWhilePlaying = this.limitContainer.customLimitWhilePlaying;
-    public readonly isCustomLimitWhilePlayingUnknown = this.limitContainer.isCustomLimitWhilePlayingUnknown;
-    public readonly customLimitWhilePlayingComment = this.limitContainer.customLimitWhilePlayingComment;
+    public readonly otherLimitWhilePlayingContainer = this.limitContainer.otherLimitWhilePlayingContainer;
+    public readonly otherLimitWhilePlaying = this.limitContainer.otherLimitWhilePlaying;
+    public readonly isOtherLimitWhilePlayingUnknown = this.limitContainer.isOtherLimitWhilePlayingUnknown;
+    public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
 
-    public toGameStyleMap(): never {
-        assert(false, `An ${this} cannot have a game style map.`,);
+    public toGameMap() {
+        return EMPTY_MAP;
     }
 
-    public toCourseThemeMap(): never {
-        assert(false, `An ${this} cannot have a course theme map.`,);
+    public toGameStyleMap() {
+        return EMPTY_MAP;
     }
 
-    public toTimeMap(): never {
-        assert(false, `An ${this} cannot have a time map.`,);
+    public toCourseThemeMap() {
+        return EMPTY_MAP;
+    }
+
+    public toTimeMap() {
+        return EMPTY_MAP;
     }
 
     public toLimitMap() {

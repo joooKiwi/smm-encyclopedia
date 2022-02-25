@@ -47,7 +47,29 @@
   "Is in the course theme": "Est dans le décor de niveau",
   "Is in the world theme":  "Est dans le décor de monde",
 
-  "Time": "Temps",
+  "nightEffect": {
+    "Special effect on entities": "Change le comportement sur certaines {{entities}}.",
+    "Screen upside down":         "Vire l'écran à l'envers.",
+    "Dark":                       "Rend le niveau sombre (excepté les {{players}} & certaines {{entities}})",
+
+    "Wind":                       "Tout dépendament du {{gameStyle}}, il y a différents effets de vent.",
+    "nightDesertWindEffect": {
+      "→ periodic":               "Le vent souffle à droite périodiquement",
+      "← periodic":               "Le vent souffle à gauche périodiquement",
+      "↔ periodic":               "Le vent souffle de gauche à droite en alternance périodiquement",
+      "← constant":               "Le vent souffle à gauche constamment"
+    },
+
+    "Slippery":                   "A un sol glissant.",
+    "Low gravity":                "A une gravité faible et quelques {{entities}} se comportent comme si c'était dans {{underwaterImage}}.",
+    "Poison liquid":              "L'{{water}} est changé en {{poison}}.",
+    "Entities in water":          "Les {{entities}} se comportent comme dans {{underwaterImage}}.",
+    "Characters in water":        "Les {{players}} se comportent comme dans {{underwaterImage}}."
+  },
+
+  "Day":   "Jour",
+  "Night": "Nuit",
+  "Time":  "Temps",
 
   "Sound effect":  "Effet sonore",
   "Sound effects": "Effets sonores",
@@ -60,6 +82,6 @@
   "Game references":       "Références de jeu",
   "Other game references": "Autres références de jeu",
 
-
-  "Effect (night)": "Effet (nuit)"
+  "Wind effect (night desert)": "Effet de vent ({{night}} du {{desert}})",
+  "Effect (night)":             "Effet ({{night}})"
 }

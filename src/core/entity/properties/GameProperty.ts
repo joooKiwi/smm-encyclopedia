@@ -1,7 +1,10 @@
 import type {ClassInAnySuperMarioMakerGame} from '../../ClassInAnySuperMarioMakerGame';
+import type {Games}                         from '../../game/Games';
 
 export interface GameProperty<SMM1 extends boolean = boolean, SMM2 extends boolean = boolean, >
     extends ClassInAnySuperMarioMakerGame<SMM1, SMM2> {
+
+    toGameMap(): ReadonlyMap<Games, boolean>
 
 }
 

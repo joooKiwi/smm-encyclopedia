@@ -1,7 +1,6 @@
 import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/ClassWithNullObjectPattern';
 import type {Entity}                                      from './Entity';
 
-import {assert}                           from '../../util/utilitiesMethods';
 import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
 import {EMPTY_MAP}                        from '../../util/emptyVariables';
 import {EmptyEntityReference}             from './properties/EmptyEntityReference';
@@ -14,6 +13,7 @@ import {EmptyStringName}                  from '../../lang/name/EmptyStringName'
  *
  * @note A value that is equivalent to nothing can be false, null and itself
  * @singleton
+ * @recursiveReference<{@link EmptyEntityReference}>
  */
 export class EmptyEntity
     extends ClassContainingANameAndACategory<string, string, EmptyEntityCategory>
@@ -105,10 +105,10 @@ export class EmptyEntity
     public readonly isInProjectileLimitWhilePlayingUnknown = this.propertyContainer.isInProjectileLimitWhilePlayingUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.propertyContainer.isInProjectileLimitWhilePlayingComment;
 
-    public readonly customLimitWhilePlayingContainer = this.propertyContainer.customLimitWhilePlayingContainer;
-    public readonly customLimitWhilePlaying = this.propertyContainer.customLimitWhilePlaying;
-    public readonly isCustomLimitWhilePlayingUnknown = this.propertyContainer.isCustomLimitWhilePlayingUnknown;
-    public readonly customLimitWhilePlayingComment = this.propertyContainer.customLimitWhilePlayingComment;
+    public readonly otherLimitWhilePlayingContainer = this.propertyContainer.otherLimitWhilePlayingContainer;
+    public readonly otherLimitWhilePlaying = this.propertyContainer.otherLimitWhilePlaying;
+    public readonly isOtherLimitWhilePlayingUnknown = this.propertyContainer.isOtherLimitWhilePlayingUnknown;
+    public readonly otherLimitWhilePlayingComment = this.propertyContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
 
@@ -199,16 +199,20 @@ export class EmptyEntity
 
     //endregion -------------------- References --------------------
 
-    public toGameStyleMap(): never {
-        assert(false,`An ${this} cannot have a game style map.`,);
+    public toGameMap() {
+        return EMPTY_MAP;
     }
 
-    public toCourseThemeMap(): never {
-        assert(false,`An ${this} cannot have a course theme map.`,);
+    public toGameStyleMap() {
+        return EMPTY_MAP;
     }
 
-    public toTimeMap(): never {
-        assert(false,`An ${this} cannot have a time map.`,);
+    public toCourseThemeMap() {
+        return EMPTY_MAP;
+    }
+
+    public toTimeMap() {
+        return EMPTY_MAP;
     }
 
     public toLimitMap() {
@@ -221,10 +225,6 @@ export class EmptyEntity
 
     public toLimitWhilePlayingMap() {
         return EMPTY_MAP;
-    }
-
-    public toNameMap() {
-        return this.nameContainer.toNameMap();
     }
 
 

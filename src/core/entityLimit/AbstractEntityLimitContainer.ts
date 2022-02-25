@@ -1,6 +1,5 @@
 import type {AlternativeEntityLimit, EntityLimit}         from './EntityLimit';
 import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                             from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                            from './EntityLimitTypes';
 import type {Name}                                        from '../../lang/name/Name';
 import type {ObjectHolder}                                from '../../util/holder/ObjectHolder';
@@ -11,27 +10,24 @@ import {DelayedObjectHolderContainer}         from '../../util/holder/DelayedObj
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
-    LINK extends EntityLimitLink = EntityLimitLink, >
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
     extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
-    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT, LINK> {
+    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT> {
 
     //region -------------------- Attributes --------------------
 
     readonly #acronym;
     readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
     readonly #limitContainer;
-    readonly #linkContainer;
 
     //endregion -------------------- Attributes --------------------
 
     //TODO change to object holder directly instead of creating the object holder instance here.
-    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount,) {
         super(name, alternative,);
         this.#acronym = acronym;
         this.#typeCaller = new DelayedObjectHolderContainer(type);
         this.#limitContainer = limitAmount;
-        this.#linkContainer = link;
     }
 
     //region -------------------- Type --------------------
@@ -74,23 +70,6 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public get alternativeLinkContainer(): this['alternativeContainer']['linkContainer'] {
-        return this.alternativeContainer.linkContainer;
-    }
-
-
-    public get alternativeGroupLink(): this['alternativeLinkContainer']['group'] {
-        return this.alternativeLinkContainer.group;
-    }
-
-
-    public get alternativeEntityLink(): this['alternativeLinkContainer']['entity'] {
-        return this.alternativeLinkContainer.entity;
-    }
-
-    //endregion -------------------- Link --------------------
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
@@ -113,22 +92,5 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     }
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    public get linkContainer(): LINK {
-        return this.#linkContainer as LINK;
-    }
-
-
-    public get groupLink(): this['linkContainer']['group'] {
-        return this.linkContainer.group;
-    }
-
-
-    public get entityLink(): this['linkContainer']['entity'] {
-        return this.linkContainer.entity;
-    }
-
-    //endregion -------------------- Link --------------------
 
 }

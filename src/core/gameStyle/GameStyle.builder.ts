@@ -1,8 +1,8 @@
-import type {Builder}           from '../../util/builder/Builder';
-import type {Entity}            from '../entity/Entity';
-import type {GameStyle}         from './GameStyle';
-import type {GameStyleTemplate} from './GameStyle.template';
-import type {PossibleAcronym}   from './GameStyles.types';
+import type {Builder}                                          from '../../util/builder/Builder';
+import type {Entity}                                           from '../entity/Entity';
+import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle';
+import type {GameStyleTemplate}                                from './GameStyle.template';
+import type {PossibleAcronym}                                  from './GameStyles.types';
 
 import {Entities}              from '../entity/Entities';
 import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
@@ -31,14 +31,22 @@ export class GameStyleBuilder
             .filter(reference => gameStyle.get(reference));
     }
 
+    private __getNightDesertWindTranslationKey(): PossibleNightDesertWindTranslationKey {
+        const {direction, frequency,} = this.template.nightDesertWind;
+
+        return direction == null || frequency == null
+            ? null
+            : `${direction} ${frequency}` as PossibleNightDesertWindTranslationKey;
+    }
+
     public build(): GameStyle {
-        const template = this.template;
-        const gameTemplate = template.isIn.game;
+        const {reference, isIn: {game: gameTemplate,},} = this.template;
 
         return new GameStyleContainer(
-            () => GameReferences.getValue(template.reference).reference.nameContainer,
+            () => GameReferences.getValue(reference).reference.nameContainer,
             GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
-            () => GameStyleBuilder.__whereEntityIs(template.reference),
+            () => GameStyleBuilder.__whereEntityIs(reference),
+            this.__getNightDesertWindTranslationKey(),
         );
     }
 }

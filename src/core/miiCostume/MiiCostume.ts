@@ -1,6 +1,7 @@
-import type {NameTrait}                                              from '../../lang/name/NameTrait';
-import type {Versions}                                               from '../version/Versions';
-import {PossibleCategory, PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
+import type {NameTrait}                                 from '../../lang/name/NameTrait';
+import type {Versions}                                  from '../version/Versions';
+import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory';
+import type {PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
 
 export interface MiiCostume
     extends NameTrait<string> {
@@ -13,7 +14,6 @@ export interface MiiCostume
 
     get version(): | Versions | null
 
-    /*TODO change to category object*/
-    get category(): |PossibleCategory|null
+    get category(): MiiCostumeCategory
 
 }

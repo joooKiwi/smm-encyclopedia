@@ -1,4 +1,4 @@
-import everyThemes from '../../resources/Themes.csv';
+import everyThemes from '../../resources/Theme.csv';
 
 import type {CourseAndWorldTheme, PossibleEnglishName}  from './Themes.types';
 import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
@@ -9,6 +9,7 @@ import type {Loader}                                    from '../../util/loader/
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {EmptyCourseTheme}        from './EmptyCourseTheme';
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 import {ThemeBuilder}            from './Theme.builder';
 
 //region -------------------- CSV array related types --------------------
@@ -102,7 +103,7 @@ export class ThemeLoader
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
                 )
-                .convertToEmptyableStringAnd(['Special effect on entities', 'Screen upside down', 'Dark', 'Wind', 'Slippery', 'Low gravity', 'Poison liquid', 'Entities in water', 'Characters in water',], 'effectInNightTheme')
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 
                 .onAfterFinalObjectCreated(finalContent => references.set((finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]).english as PossibleEnglishName, finalContent,))
                 .load();

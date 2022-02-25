@@ -20,6 +20,8 @@ export type EmptyClearConditionImageName = 'Empty clear condition image';
 export type EmptyInGameImageName = 'Empty "in game" image';
 export type EmptyUnusedImageName = 'Empty "unused" image';
 
+export type EmptyEditorVoiceSoundName = 'Empty "editor voice" sound';
+
 //endregion -------------------- Entity types --------------------
 //region -------------------- Entity category types --------------------
 
@@ -62,15 +64,21 @@ export type EmptyEntityReferenceName = 'Empty entity reference';
 export type EmptySoundEffectCategoryName = 'Empty sound effect category';
 
 //endregion -------------------- Sound effect category types --------------------
-//region -------------------- Sound effect category types --------------------
+//region -------------------- Mii costume types --------------------
 
 export type EmptyMiiCostumeName = 'Empty Mii costume';
 
-//endregion -------------------- Sound effect category types --------------------
+//endregion -------------------- Mii costume types --------------------
+//region -------------------- Mii costume category types --------------------
+
+export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category';
+
+//endregion -------------------- Mii costume category types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
     | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName | EmptyUnusedImageName
+    | EmptyEditorVoiceSoundName
 
     | EmptyEntityCategoryName
 
@@ -86,6 +94,7 @@ export type EveryPossibleEmptyName =
 
     | EmptySoundEffectCategoryName
 
-    | EmptyMiiCostumeName;
+    | EmptyMiiCostumeName
+    | EmptyMiiCostumeCategoryName;
 
 //endregion -------------------- Empty names types --------------------

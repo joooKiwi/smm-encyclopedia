@@ -257,20 +257,20 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Custom limit --------------------
 
-    public get customLimitWhilePlayingContainer(): this['limitContainer']['customLimitWhilePlayingContainer'] {
-        return this.limitContainer.customLimitWhilePlayingContainer;
+    public get otherLimitWhilePlayingContainer(): this['limitContainer']['otherLimitWhilePlayingContainer'] {
+        return this.limitContainer.otherLimitWhilePlayingContainer;
     }
 
-    public get customLimitWhilePlaying(): this['limitContainer']['customLimitWhilePlaying'] {
-        return this.limitContainer.customLimitWhilePlaying;
+    public get otherLimitWhilePlaying(): this['limitContainer']['otherLimitWhilePlaying'] {
+        return this.limitContainer.otherLimitWhilePlaying;
     }
 
-    public get isCustomLimitWhilePlayingUnknown(): this['limitContainer']['isCustomLimitWhilePlayingUnknown'] {
-        return this.limitContainer.isCustomLimitWhilePlayingUnknown;
+    public get isOtherLimitWhilePlayingUnknown(): this['limitContainer']['isOtherLimitWhilePlayingUnknown'] {
+        return this.limitContainer.isOtherLimitWhilePlayingUnknown;
     }
 
-    public get customLimitWhilePlayingComment(): this['limitContainer']['customLimitWhilePlayingComment'] {
-        return this.limitContainer.customLimitWhilePlayingComment;
+    public get otherLimitWhilePlayingComment(): this['limitContainer']['otherLimitWhilePlayingComment'] {
+        return this.limitContainer.otherLimitWhilePlayingComment;
     }
 
     //endregion -------------------- Custom limit --------------------
@@ -387,6 +387,10 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     }
 
     //endregion -------------------- References --------------------
+
+    public toGameMap() {
+        return this.propertyContainer.toGameMap();
+    }
 
     public toGameStyleMap() {
         return this.propertyContainer.toGameStyleMap();

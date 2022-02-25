@@ -1,10 +1,10 @@
 import type {ClassWithNullObjectPattern, EmptyGameStyleName} from '../../util/ClassWithNullObjectPattern';
 import type {GameStyle}                                      from './GameStyle';
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
-import {EMPTY_ARRAY}          from '../../util/emptyVariables';
-import {EmptyIsInProperty}    from '../entity/properties/EmptyIsInProperty';
-import {EmptyStringName}      from '../../lang/name/EmptyStringName';
+import {ClassContainingAName}   from '../../lang/name/ClassContainingAName';
+import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
+import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
+import {EmptyStringName}        from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -37,6 +37,13 @@ export class EmptyGameStyle
     //endregion -------------------- Game properties --------------------
 
     public readonly entities = EMPTY_ARRAY;
+
+    public readonly nightDesertWindTranslationKey = null;
+
+    public toGameMap() {
+        return EMPTY_MAP;
+    }
+
 
     public toString(): EmptyGameStyleName {
         return 'Empty game style';

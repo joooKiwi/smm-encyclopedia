@@ -6,6 +6,7 @@ import {EmptyEntity} from '../EmptyEntity';
 
 /**
  * @singleton
+ * @recursiveReference<{@link EmptyEntity}>
  */
 export class EmptyEntityReference
     implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {

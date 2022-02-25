@@ -1,10 +1,11 @@
-import everyGameStyles from '../../resources/Game styles.csv';
+import everyGameStyles from '../../resources/Game style.csv';
 
-import type {Loader}                                from '../../util/loader/Loader';
-import type {GameStyle}                             from './GameStyle';
-import type {GameStyleTemplate}                     from './GameStyle.template';
-import type {PropertiesArray as GamesPropertyArray} from '../game/Loader.types';
-import type {PossibleAcronym, PossibleEnglishName}  from './GameStyles.types';
+import type {Loader}                                                             from '../../util/loader/Loader';
+import type {GameStyle}                                                          from './GameStyle';
+import type {GameStyleTemplate}                                                  from './GameStyle.template';
+import type {PropertiesArray as GamesPropertyArray}                              from '../game/Loader.types';
+import type {PossibleAcronym, PossibleEnglishName}                               from './GameStyles.types';
+import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -24,12 +25,17 @@ enum Headers {
 
     reference,
 
+    nightDesertWindDirection,
+    nightDesertWindFrequency,
+
 }
 
 //region -------------------- Properties --------------------
 
 export type ExclusivePropertiesArray = [
     reference: PossibleAcronym,
+    nightDesertWindDirection: PossibleNightDesertWindDirection,
+    nightDesertWindFrequency: PossibleNightDesertWindFrequency,
 ];
 
 type PropertiesArray = [
@@ -74,7 +80,11 @@ export class GameStyleLoader
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'reference',)
+
+                .convertToEmptyableStringAnd(['←', '↔', '→',], 'nightDesertWindDirection',)
+                .convertToEmptyableStringAnd(['periodic', 'constant',], 'nightDesertWindFrequency',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
@@ -109,6 +119,10 @@ class TemplateBuilder
                 game: this._createGameTemplate(),
             },
             reference: this._getContent(this._headersIndexMap.reference),
+            nightDesertWind: {
+                direction: this._getContent(this._headersIndexMap.nightDesertWindDirection),
+                frequency: this._getContent(this._headersIndexMap.nightDesertWindFrequency),
+            },
         };
     }
 

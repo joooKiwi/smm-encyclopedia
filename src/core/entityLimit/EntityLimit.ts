@@ -1,5 +1,4 @@
 import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                             from './properties/EntityLimitLink';
 import type {EntityLimitTypes}                            from './EntityLimitTypes';
 import type {NameTrait}                                   from '../../lang/name/NameTrait';
 import type {NameTraitFromAnAlternativeContainer}         from '../../lang/name/NameTraitFromAnAlternativeContainer';
@@ -7,8 +6,7 @@ import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.t
 
 export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,
-    LINK extends EntityLimitLink = EntityLimitLink, >
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,>
     extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
         ClassWithEnglishName<PossibleEntityLimits>*/ {
@@ -30,17 +28,6 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
     get alternativeAmountComment(): this['alternativeContainer']['amountComment']
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    get alternativeLinkContainer(): this['alternativeContainer']['linkContainer']
-
-
-    get alternativeGroupLink(): this['alternativeLinkContainer']['group']
-
-
-    get alternativeEntityLink(): this['alternativeLinkContainer']['entity']
-
-    //endregion -------------------- Link --------------------
 
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
@@ -54,19 +41,8 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
     get amountComment(): this['limitContainer']['comment']
 
     //endregion -------------------- Limit amount --------------------
-    //region -------------------- Link --------------------
-
-    get linkContainer(): LINK
-
-
-    get groupLink(): this['linkContainer']['group']
-
-
-    get entityLink(): this['linkContainer']['entity']
-
-    //endregion -------------------- Link --------------------
 
 }
 
 export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronym | null>;
-export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronym | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer'], EntityLimitWithPossibleAlternativeEntityLimit['linkContainer']>;
+export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronym | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer']>;

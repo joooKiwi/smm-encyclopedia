@@ -101,4 +101,8 @@ export class SoundEffectContainer
 
     //endregion -------------------- Properties --------------------
 
+    public toGameMap() {
+        return this.propertyContainer.toGameMap();
+    }
+
 }

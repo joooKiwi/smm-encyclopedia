@@ -1,4 +1,4 @@
-import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                      from './Loader.types';
+import type {EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                        from './Loader.types';
 import type {EntityLimits}                                                                                                                                                                                           from '../../../entityLimit/EntityLimits';
 import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment, InferredBooleanPropertyWithEverything, InferredStringPropertyThatCanBeNotApplicable, InferredStringPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property';
 import type {PropertyThatCanBeUnknown}                                                                                                                                                                               from '../../../_properties/PropertyThatCanBeUnknown';
@@ -22,5 +22,5 @@ export type PowerUpLimitContainer<T extends PowerUpEntityLimitType = PowerUpEnti
 export type ProjectileLimitReceived = ProjectileEntityLimitType
 export type ProjectileLimitContainer<T extends ProjectileEntityLimitType = ProjectileEntityLimitType, > = InferredBooleanPropertyWithEverything<T, null>;
 
-export type CustomLimitReceived = readonly [value: CustomLimitType, comment: CustomLimitCommentType, callback: CallbackToGetEntityLimit,];
-export type CustomLimitContainer<T extends CustomLimitType = CustomLimitType, C extends CustomLimitCommentType = CustomLimitCommentType, > = T extends PossibleEnglishName ? PropertyThatCanBeUnknownWithComment<EntityLimits, false, C> : InferredStringPropertyThatCanBeNotApplicableWithComment<T, C>;
+export type OtherLimitReceived = readonly [value: OtherLimitType, comment: OtherLimitCommentType, callback: CallbackToGetEntityLimit,];
+export type OtherLimitContainer<T extends OtherLimitType = OtherLimitType, C extends OtherLimitCommentType = OtherLimitCommentType, > = T extends PossibleEnglishName ? PropertyThatCanBeUnknownWithComment<EntityLimits, false, C> : InferredStringPropertyThatCanBeNotApplicableWithComment<T, C>;

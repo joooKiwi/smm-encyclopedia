@@ -1,3 +1,5 @@
+import type {Builder}             from '../../../../util/builder/Builder';
+import type {ClearConditionImage} from './ClearConditionImage';
 import type {PossibleEnglishName} from '../../Entities.types';
 
 interface ImageNameMap {
@@ -5,8 +7,13 @@ interface ImageNameMap {
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
     'Ground': NoImages
+    'Start Ground': NoImages
+    'Goal Ground': NoImages
     'Steep Slope': NoImages
     'Gentle Slope': NoImages
+    'Water': NoImages
+    'Lava': NoImages
+    'Poison': NoImages
 
     'Pipe': NoImages
     'Clear Pipe': NoImages
@@ -142,9 +149,12 @@ interface ImageNameMap {
     'Goombrat': ['Kuribo', Name<'Kuribo', 1>,]
     'Goombud': ImageNameMap['Goombrat']
 
-    'Koopa Troopa': ['Nokonoko', Name_0<'Nokonoko'>,]
-    'Beach Koopa': NoImages
-    'Koopa Shell': ['NokonokoShell', Name_0<'NokonokoShell'>,]
+    'Green Koopa Troopa': ['Nokonoko', Name_0<'Nokonoko'>,]
+    'Red Koopa Troopa': NoImages
+    'Green Beach Koopa': NoImages
+    'Red Beach Koopa': NoImages
+    'Green Koopa Shell': ['NokonokoShell', Name_0<'NokonokoShell'>,]
+    'Red Koopa Shell': NoImages
 
     'Dry Bones': ['Karon', Name<'Karon', 0>,]
     'Parabones': NoImages
@@ -348,6 +358,9 @@ interface ImageNameMap {
     'Arrow Sign': NoImages
 
     'Checkpoint Flag': NoImages
+    'Goal Pole': NoImages
+    '(Goal (With Cards))': NoImages
+    'Giant Gate': NoImages
 
     'Dash Block': NoImages
 
@@ -385,14 +398,16 @@ interface ImageNameMap {
 
     'Stone': ['Stone', Name_0<'Stone'>,]
 
-    'Bubble': NoImages
-
     'Warp Door': NoImages
     'P Warp Door': NoImages
     'Key Door': NoImages
 
     'Warp Box': NoImages
-    'Warp Box (With Key)': NoImages,
+    'Warp Box (With Key)': NoImages
+
+    'Wing': NoImages,
+    'Parachute': NoImages,
+    'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -410,3 +425,5 @@ export type ImageName = ImageNameMap[PossibleEnglishName][1];
 
 export type PossibleAmountOfImages = | 1 | 2 | 3;
 export type ImageNumber = | 0 | 1 | 2;
+
+export type PossibleImageReceivedOnFactory = | Builder<ClearConditionImage> | SimpleImageName | null;

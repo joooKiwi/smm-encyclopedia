@@ -1,8 +1,8 @@
-import type {LimitProperty}                              from './LimitProperty';
 import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../../util/ClassWithNullObjectPattern';
+import type {LimitProperty}                              from './LimitProperty';
 
-import {PropertyContainer} from '../../../_properties/Property.container';
 import {EMPTY_MAP}         from '../../../../util/emptyVariables';
+import {PropertyContainer} from '../../../_properties/Property.container';
 
 /**
  * @singleton
@@ -44,10 +44,10 @@ export class EmptyLimitProperty
     public readonly isInProjectileLimitWhilePlayingUnknown = this.isInProjectileLimitWhilePlayingContainer.isUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.isInProjectileLimitWhilePlayingContainer.comment;
 
-    public readonly customLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
-    public readonly customLimitWhilePlaying = this.customLimitWhilePlayingContainer.value;
-    public readonly isCustomLimitWhilePlayingUnknown = this.customLimitWhilePlayingContainer.isUnknown;
-    public readonly customLimitWhilePlayingComment = this.customLimitWhilePlayingContainer.comment;
+    public readonly otherLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
+    public readonly otherLimitWhilePlaying = this.otherLimitWhilePlayingContainer.value;
+    public readonly isOtherLimitWhilePlayingUnknown = this.otherLimitWhilePlayingContainer.isUnknown;
+    public readonly otherLimitWhilePlayingComment = this.otherLimitWhilePlayingContainer.comment;
 
     public toLimitMap() {
         return EMPTY_MAP;

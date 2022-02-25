@@ -1,12 +1,11 @@
-import type {CourseTheme}                from './CourseTheme';
-import type {Entity}                     from '../entity/Entity';
-import type {GameProperty}               from '../entity/properties/GameProperty';
-import type {Name}                       from '../../lang/name/Name';
-import type {ObjectHolder}               from '../../util/holder/ObjectHolder';
-import type {PossibleEffectInNightTheme} from './Theme.template';
+import type {CourseTheme}  from './CourseTheme';
+import type {Entity}       from '../entity/Entity';
+import type {GameProperty} from '../entity/properties/GameProperty';
+import type {Name}         from '../../lang/name/Name';
+import type {NightEffects} from './NightEffects';
+import type {ObjectHolder} from '../../util/holder/ObjectHolder';
 
-import {AbstractTheme}                from './AbstractTheme';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
+import {AbstractTheme} from './AbstractTheme';
 
 export class CourseThemeContainer
     extends AbstractTheme
@@ -14,14 +13,14 @@ export class CourseThemeContainer
 
     //region -------------------- Attributes --------------------
 
-    readonly #entities: ObjectHolder<Entity[]>;
+    readonly #entities;
     readonly #effect;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name<string>, isInProperty: GameProperty, entities: () => Entity[], effect: PossibleEffectInNightTheme,) {
+    public constructor(name: Name<string>, isInProperty: GameProperty, entities: ObjectHolder<readonly Entity[]>, effect: ObjectHolder<NightEffects>,) {
         super(name, isInProperty);
-        this.#entities = new DelayedObjectHolderContainer(entities);
+        this.#entities = entities;
         this.#effect = effect;
     }
 
@@ -30,7 +29,7 @@ export class CourseThemeContainer
     }
 
     public get effect() {
-        return this.#effect;
+        return this.#effect.get;
     }
 
 }

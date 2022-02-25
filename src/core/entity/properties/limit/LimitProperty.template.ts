@@ -1,4 +1,4 @@
-import type {CustomLimitCommentType, CustomLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
+import type {OtherLimitCommentType, OtherLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
 
 /**
  * @template
@@ -13,7 +13,7 @@ export interface LimitPropertyTemplate {
         isInGEL: GeneralEntityLimitTemplate
         isInPEL: PowerUpEntityLimitType
         isInPJL: ProjectileEntityLimitType
-        customLimit: CustomLimitTemplate
+        otherLimit: OtherLimitTemplate
     }
 
 }
@@ -32,10 +32,10 @@ export interface GeneralEntityLimitTemplate {
 /**
  * @template
  */
-export interface CustomLimitTemplate {
+export interface OtherLimitTemplate {
 
-    value: CustomLimitType
+    value: OtherLimitType
 
-    comment: CustomLimitCommentType
+    comment: OtherLimitCommentType
 
 }

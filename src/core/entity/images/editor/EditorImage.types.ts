@@ -1,3 +1,5 @@
+import type {Builder}             from '../../../../util/builder/Builder';
+import type {EditorImage}         from './EditorImage';
 import type {PossibleEnglishName} from '../../Entities.types';
 import type {PossibleGameName}    from '../../../theme/Themes.types';
 
@@ -6,8 +8,13 @@ interface ImageNameMap {
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
     'Ground': ImageThatIsAGround<'Ground'>
+    'Start Ground': NoImages
+    'Goal Ground': NoImages
     'Steep Slope': ImageThatIsAGround<'slope_l30'>
     'Gentle Slope': ImageThatIsAGround<'slope_l45'>
+    'Water': NoImages
+    'Lava': NoImages
+    'Poison': NoImages
 
     'Pipe': ['Dokan', Name<'Dokan', | 0 | 1 | 2 | 3>,]
     'Clear Pipe': ImageThatHasOnly1Reference<'ToumeiDokan'>
@@ -143,9 +150,12 @@ interface ImageNameMap {
     'Goombrat': ImageNameMap['Goomba']
     'Goombud': ImageNameMap['Galoomba']
 
-    'Koopa Troopa': ['Nokonoko', Name_0_1<'Nokonoko'>,]
-    'Beach Koopa': NoImages
-    'Koopa Shell': NoImages
+    'Green Koopa Troopa': ['Nokonoko', Name<'Nokonoko', 0>,]
+    'Red Koopa Troopa': ['Nokonoko', Name<'Nokonoko', 1>,]
+    'Green Beach Koopa': NoImages
+    'Red Beach Koopa': NoImages
+    'Green Koopa Shell': NoImages
+    'Red Koopa Shell': NoImages
 
     'Dry Bones': ['Karon', Name<'Karon', 0>,]
     'Parabones': NoImages
@@ -350,6 +360,9 @@ interface ImageNameMap {
     'Arrow Sign': ImageThatHasOnly1Reference<'Yajirushi'>
 
     'Checkpoint Flag': ImageThatHasOnly1Reference<'MiddleFlag'>
+    'Goal Pole': NoImages
+    '(Goal (With Cards))': NoImages
+    'Giant Gate': NoImages
 
     'Dash Block': ImageThatHasOnly1Reference<'DashBlock'>
 
@@ -387,14 +400,16 @@ interface ImageNameMap {
 
     'Stone': NoImages
 
-    'Bubble': NoImages
-
     'Warp Door': ['Door', Name<'Door', 0>,]
     'P Warp Door': ['Door', Name<'Door', 1>,]
     'Key Door': ['Door', Name<'Door', 2>,]
 
     'Warp Box': ['WarpBox', Name<'WarpBox', 0>,]
-    'Warp Box (With Key)': ['WarpBox', Name<'WarpBox', 1>,],
+    'Warp Box (With Key)': ['WarpBox', Name<'WarpBox', 1>,]
+
+    'Wing': ['Wing', Name_0<'Wing'>,]
+    'Parachute': ['parachute', Name_0<'parachute'>,]
+    'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -441,3 +456,5 @@ export type EditorImageName = | readonly []
  */
 export type PossibleAmountOfImages = | 1 | 2 | 3 | 4;
 export type ImageNumber = | 0 | 1 | 2 | 3;
+
+export type PossibleImageReceivedOnFactory = | Builder<EditorImage> | SimpleImageName | null;

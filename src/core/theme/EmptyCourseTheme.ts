@@ -1,10 +1,10 @@
 import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/ClassWithNullObjectPattern';
 import type {CourseTheme}                                      from './CourseTheme';
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
-import {EMPTY_ARRAY}          from '../../util/emptyVariables';
-import {EmptyIsInProperty}    from '../entity/properties/EmptyIsInProperty';
-import {EmptyStringName}      from '../../lang/name/EmptyStringName';
+import {ClassContainingAName}   from '../../lang/name/ClassContainingAName';
+import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
+import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
+import {EmptyStringName}        from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -38,6 +38,10 @@ export class EmptyCourseTheme
 
     public readonly entities = EMPTY_ARRAY;
     public readonly effect = null;
+
+    public toGameMap() {
+        return EMPTY_MAP;
+    }
 
     public toString(): EmptyCourseThemeName {
         return 'Empty course theme';

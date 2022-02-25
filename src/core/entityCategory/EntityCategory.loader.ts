@@ -1,4 +1,4 @@
-import everyEntityCategories from '../../resources/Entity categories.csv';
+import everyEntityCategories from '../../resources/Entity category.csv';
 
 import type {EntityCategory}                            from './EntityCategory';
 import type {EntityCategoryTemplate}                    from './EntityCategory.template';

@@ -1,6 +1,5 @@
 import type {AlternativeEntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
 import type {EntityLimitAmount}                                                     from './properties/EntityLimitAmount';
-import type {EntityLimitLink}                                                       from './properties/EntityLimitLink';
 import type {Name}                                                                  from '../../lang/name/Name';
 import type {PossibleAcronym, PossibleAlternativeAcronym}                           from './EntityLimits.types';
 
@@ -11,10 +10,10 @@ export class AlternativeEntityLimitContainer
     implements AlternativeEntityLimit {
 
     //TODO change to object holder directly instead of creating the object holder instance here.
-    public constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, regularEntityLimitCallback: () => EntityLimitWithPossibleAlternativeEntityLimit, limitAmount: EntityLimitAmount, link: EntityLimitLink,) {
+    public constructor(name: Name<string>, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, regularEntityLimitCallback: () => EntityLimitWithPossibleAlternativeEntityLimit, limitAmount: EntityLimitAmount,) {
         super(name, acronym, () => this, () => {
             return regularEntityLimitCallback().type;
-        }, limitAmount, link,);
+        }, limitAmount,);
     }
 
 }

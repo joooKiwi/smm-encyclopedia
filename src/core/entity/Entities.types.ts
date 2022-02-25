@@ -1,15 +1,18 @@
-import type {Entities}                                                                                                                                                                                                                                     from './Entities';
+import type {Entities as RealEnum}                                                                                                                                                                                                                         from './Entities';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
-export type PossibleNonNullableValue = | Entities | Ordinals | PossibleStringValue;
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
 export type PossibleStringValue = | Names | PossibleEnglishName;
-export type PossibleValue = Entities | number | string | null | undefined;
+export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
-    GROUND, STEEP_SLOPE, GENTLE_SLOPE,
+    GROUND, START_GROUND, GOAL_GROUND,
+    STEEP_SLOPE, GENTLE_SLOPE,
+    WATER, LAVA, POISON,
     PIPE, CLEAR_PIPE,
     SPIKE_TRAP, JELECTRO, SEA_URCHIN, SPIKE_BLOCK,
     MUSHROOM_PLATFORM, SEMISOLID_PLATFORM, BRIDGE,
@@ -65,7 +68,9 @@ enum Enum {
     //region -------------------- General enemies --------------------
 
     GOOMBA, GALOOMBA, GOOMBRAT, GOOMBUD,
-    KOOPA_TROOPA, BEACH_KOOPA, KOOPA_SHELL,
+    GREEN_KOOPA_TROOPA, RED_KOOPA_TROOPA,
+    GREEN_BEACH_KOOPA, RED_BEACH_KOOPA,
+    GREEN_KOOPA_SHELL, RED_KOOPA_SHELL,
     DRY_BONES, PARABONES, BONE_THROWN_BY_A_DRY_BONES, DRY_BONES_SHELL,
     BUZZY_BEETLE, PARA_BEETLE, BUZZY_SHELL,
     SPINY, WINGED_SPINY, WINGED_SPINY_PROJECTILE, SPINY_EGG, SPINY_SHELL,
@@ -136,6 +141,7 @@ enum Enum {
     VINE, TREE,
     ARROW_SIGN,
     CHECKPOINT_FLAG,
+    GOAL_POLE, GOAL_WITH_CARDS, GIANT_GATE,
     DASH_BLOCK,
     SNAKE_BLOCK, FAST_SNAKE_BLOCK,
     CONVEYOR_BELT, FAST_CONVEYOR_BELT,
@@ -149,9 +155,9 @@ enum Enum {
     POW_BLOCK, RED_POW_BLOCK,
     P_SWITCH,
     STONE,
-    BUBBLE,
     WARP_DOOR, P_WARP_DOOR, KEY_DOOR,
     WARP_BOX, WARP_BOX_WITH_KEY,
+    WING, PARACHUTE, BUBBLE,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -168,14 +174,30 @@ export type Names = keyof typeof Enum;
 
 //region -------------------- English name --------------------
 
+export type PossibleEnglishName_BigMushroom = `Big Mushroom${| '' | ` (${'classic' | 'modern'})`}`;
+export type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto';
+export type PossibleEnglishName_Yoshi = `${| '' | 'Red '}Yoshi`;
+export type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`;
+export type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`;
+export type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`;
+export type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`;
+export type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`;
+export type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones';
+export type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell';
+export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`;
+export type PossibleEnglishName_SpikeTop = `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`;
+export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`;
+export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai';
+export type PossibleEnglishName_Goals = | 'Goal Pole' | '(Goal (With Cards))' | 'Giant Gate';
 export type PossibleEnglishName =
-    | 'Ground' | `${| 'Steep' | 'Gentle'} Slope` | `${| '' | 'Clear '}Pipe`
+    | `${| '' | `${| 'Start' | 'Goal'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
+    | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
     | `Spike ${| 'Trap' | 'Block'}` | 'Jelectro' | 'Sea Urchin'
     | `${| 'Mushroom' | 'Semisolid'} Platform` | 'Bridge'
 
-    | `${| 'Brick' | 'Cristal' | 'Rotating'
-         | 'Hard' | 'Rock'
-         | '?' | 'Hidden' | 'Empty' | '!'
+    | PossibleEnglishName_Block
+    | PossibleEnglishName_HardBlock
+    | `${| '?' | 'Hidden' | 'Empty' | '!'
          | 'Note' | 'Music'
          | 'Donut'
          | 'Cloud'
@@ -189,7 +211,7 @@ export type PossibleEnglishName =
     | `${| 'Super' | 'Mystery' | 'Weird' | 'SMB2'} Mushroom`
     | `${| 'Fire' | 'Superball'} Flower`
     | 'Master Sword'
-    | `Big Mushroom${| '' | ` (${'classic' | 'modern'})`}`
+    | PossibleEnglishName_BigMushroom
     | 'Super Leaf' | 'Frog Suit'
     | 'Cape Feather' | 'Power Balloon'
     | 'Propeller Mushroom' | 'Super Acorn'
@@ -200,17 +222,17 @@ export type PossibleEnglishName =
     | 'Super Star'
     | `${| '1-Up' | 'Rotten'} Mushroom`
 
-    | `${| 'Shoe' | 'Stiletto'}${| '' | ' Goomba'}`
-    | `${| '' | 'Red '}Yoshi${| '' | '\'s Egg'}`
+    | `${PossibleEnglishName_Shoe}${| '' | ' Goomba'}`
+    | PossibleEnglishName_Yoshi | `${| '' | 'Red '}Yoshi's Egg`
     | `${| 'Fire' | 'Poison' | 'Bone' | 'Hammer'} thrown by a Yoshi`
     | `${|'Fire'} thrown by a Red Yoshi`
 
     | 'Goomba' | 'Galoomba' | 'Goombrat' | 'Goombud'
-    | 'Koopa Troopa' | 'Beach Koopa' | 'Koopa Shell'
-    | 'Dry Bones' | 'Parabones' | 'Bone thrown by a Dry Bones' | 'Dry Bones Shell'
-    | 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
-    | 'Spiny' | 'Winged Spiny' | '(Winged Spiny\'s projectile)' | `Spiny ${| 'Egg' | 'Shell'}`
-    | `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`
+    | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
+    | PossibleEnglishName_DryBones | 'Bone thrown by a Dry Bones' | 'Dry Bones Shell'
+    | PossibleEnglishName_BuzzyBeetleAndShell
+    | PossibleEnglishName_SpinyAndShell | '(Winged Spiny\'s projectile)'
+    | PossibleEnglishName_SpikeTop
     | `${| '' | 'Spiny '}Skipsqueak`
     | `${| '' | 'Horned '}Ant Trooper`
     | 'Stingby'
@@ -236,8 +258,8 @@ export type PossibleEnglishName =
     | 'Charvaargh'
     | 'Bully'
 
-    | `${| 'Bill' | 'Bull\'s-Eye'} Blaster` | `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`
-    | `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai'
+    | `${| 'Bill' | 'Bull\'s-Eye'} Blaster` | PossibleEnglishName_BulletBill
+    | PossibleEnglishName_BanzaiBill
     | `${| '' | 'Red '}${|`Cannon${| '' | 'ball'}`}`
     | 'Burner'
     | 'Fire Bar'
@@ -260,7 +282,7 @@ export type PossibleEnglishName =
     | `Track${| '' | ' Block'}`
     | 'Vine' | 'Tree'
     | 'Arrow Sign'
-    | 'Checkpoint Flag'
+    | 'Checkpoint Flag' | PossibleEnglishName_Goals
     | 'Dash Block'
     | `${| '' | 'Fast '}Snake Block`
     | `${| '' | 'Fast '}Conveyor Belt`
@@ -274,9 +296,9 @@ export type PossibleEnglishName =
     | `${| '' | 'Red '}POW Block`
     | 'P Switch'
     | 'Stone'
-    | 'Bubble'
     | `${| `${| '' | 'P '}Warp` | 'Key'} Door`
     | `Warp Box${| '' | ' (With Key)'}`
+    | 'Wing' | 'Parachute' | 'Bubble'
     ;
 
 //endregion -------------------- English name --------------------
@@ -284,20 +306,22 @@ export type PossibleEnglishName =
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends Entities = Entities, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
 
-export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends Entities = Entities, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number = number, E extends Entities = Entities, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
 
-export type EnumByName<N extends Names, E extends Entities = Entities, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends Entities = Entities, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends Entities = Entities, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<E extends Entities = Entities, > = readonly [
-    EnumByName<'GROUND', E>, EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
+export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
+    EnumByName<'GROUND', E>, EnumByName<'START_GROUND', E>, EnumByName<'GOAL_GROUND', E>,
+    EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
+    EnumByName<'WATER', E>, EnumByName<'LAVA', E>, EnumByName<'POISON', E>,
     EnumByName<'PIPE', E>, EnumByName<'CLEAR_PIPE', E>,
     EnumByName<'SPIKE_TRAP', E>, EnumByName<'JELECTRO', E>, EnumByName<'SEA_URCHIN', E>, EnumByName<'SPIKE_BLOCK', E>,
     EnumByName<'MUSHROOM_PLATFORM', E>, EnumByName<'SEMISOLID_PLATFORM', E>, EnumByName<'BRIDGE', E>,
@@ -344,7 +368,9 @@ export type EnumArray<E extends Entities = Entities, > = readonly [
     EnumByName<'RED_YOSHI_EGG', E>, EnumByName<'RED_YOSHI', E>, EnumByName<'FIRE_THROWN_BY_A_RED_YOSHI', E>,
 
     EnumByName<'GOOMBA', E>, EnumByName<'GALOOMBA', E>, EnumByName<'GOOMBRAT', E>, EnumByName<'GOOMBUD', E>,
-    EnumByName<'KOOPA_TROOPA', E>, EnumByName<'BEACH_KOOPA', E>, EnumByName<'KOOPA_SHELL', E>,
+    EnumByName<'GREEN_KOOPA_TROOPA', E>, EnumByName<'RED_KOOPA_TROOPA', E>,
+    EnumByName<'GREEN_BEACH_KOOPA', E>, EnumByName<'RED_BEACH_KOOPA', E>,
+    EnumByName<'GREEN_KOOPA_SHELL', E>, EnumByName<'RED_KOOPA_SHELL', E>,
     EnumByName<'DRY_BONES', E>, EnumByName<'PARABONES', E>, EnumByName<'BONE_THROWN_BY_A_DRY_BONES', E>, EnumByName<'DRY_BONES_SHELL', E>,
     EnumByName<'BUZZY_BEETLE', E>, EnumByName<'PARA_BEETLE', E>, EnumByName<'BUZZY_SHELL', E>,
     EnumByName<'SPINY', E>, EnumByName<'WINGED_SPINY', E>, EnumByName<'WINGED_SPINY_PROJECTILE', E>, EnumByName<'SPINY_EGG', E>, EnumByName<'SPINY_SHELL', E>,
@@ -406,6 +432,7 @@ export type EnumArray<E extends Entities = Entities, > = readonly [
     EnumByName<'VINE', E>, EnumByName<'TREE', E>,
     EnumByName<'ARROW_SIGN', E>,
     EnumByName<'CHECKPOINT_FLAG', E>,
+    EnumByName<'GOAL_POLE', E>, EnumByName<'GOAL_WITH_CARDS', E>, EnumByName<'GIANT_GATE', E>,
     EnumByName<'DASH_BLOCK', E>,
     EnumByName<'SNAKE_BLOCK', E>, EnumByName<'FAST_SNAKE_BLOCK', E>,
     EnumByName<'CONVEYOR_BELT', E>, EnumByName<'FAST_CONVEYOR_BELT', E>,
@@ -419,9 +446,9 @@ export type EnumArray<E extends Entities = Entities, > = readonly [
     EnumByName<'POW_BLOCK', E>, EnumByName<'RED_POW_BLOCK', E>,
     EnumByName<'P_SWITCH', E>,
     EnumByName<'STONE', E>,
-    EnumByName<'BUBBLE', E>,
     EnumByName<'WARP_DOOR', E>, EnumByName<'P_WARP_DOOR', E>, EnumByName<'KEY_DOOR', E>,
     EnumByName<'WARP_BOX', E>, EnumByName<'WARP_BOX_WITH_KEY', E>,
+    EnumByName<'WING', E>, EnumByName<'PARACHUTE', E>, EnumByName<'BUBBLE', E>,
 ];
 
 //endregion -------------------- Array types --------------------

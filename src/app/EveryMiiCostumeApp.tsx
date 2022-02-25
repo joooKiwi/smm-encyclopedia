@@ -1,47 +1,43 @@
 import './EveryMiiCostumeApp.scss';
 
-import type {MiiCostume} from '../core/miiCostume/MiiCostume';
+import type {MiiCostumeAppStates}  from './AppStates.types';
+import type {SingleHeadersContent} from './tools/table/SimpleHeader';
+import type {SingleTableContent}   from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
-import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import Image                           from './tools/images/Image';
 import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
-import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
-import {SingleTableContent}            from './tools/table/Table.types';
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
-import TextComponent                   from './tools/text/TextComponent';
+import {MiiCostumeAppOption}           from './options/MiiCostumeAppOption';
 
 export default class EveryMiiCostumeApp
-    extends AbstractApp {
+    extends AbstractApp<{}, MiiCostumeAppStates> {
+
+
+    public constructor(props: {},) {
+        super(props,);
+        MiiCostumeAppOption.REFERENCE = this;
+        this.state = MiiCostumeAppOption.createDefaultState;
+    }
 
     //region -------------------- Methods --------------------
-
-    private static __createConditionToUnlockIt(miiCostume: MiiCostume,) {
-        if (miiCostume.conditionToUnlockId == null)
-            return EMPTY_REACT_ELEMENT;
-
-        if (miiCostume.mode == null)
-            return <TextComponent content={miiCostume.conditionToUnlockId}/>;
-
-        return <TextComponent classes={['miiCostume-mode',]} style={({'--mode-name': `"${miiCostume.mode}"`})} content={miiCostume.conditionToUnlockId}/>;
-    }
 
     protected get content() {
         const content = [] as SingleTableContent[];
 
         let index = 1;
-        for (const enumerable of MiiCostumes) {
-            const miiCostume = enumerable.reference;
+        for (const enumeration of MiiCostumes) {
+            MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration;
 
-            content.push([enumerable.englishName,
+            content.push([enumeration.englishName,
                 <>{index}</>,
-                <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>,
-                <NameComponent id="name" name={miiCostume} popoverOrientation="left"/>,
-                EveryMiiCostumeApp.__createConditionToUnlockIt(miiCostume),
-                miiCostume.category == null ? EMPTY_REACT_ELEMENT : <>--{miiCostume.category}--</>,// <NameComponent id="name" name={miiCostume.category} popoverOrientation="left"/>,
+                ...[
+                    MiiCostumeAppOption.IMAGE.renderContent,
+                    MiiCostumeAppOption.NAME.renderContent,
+                    MiiCostumeAppOption.CONDITION_TO_UNLOCK_IT.renderContent,
+                    MiiCostumeAppOption.CATEGORY.renderContent,
+                ].flat(),
             ]);
             index++;
         }
@@ -59,11 +55,11 @@ export default class EveryMiiCostumeApp
             })}</GameContentTranslationComponent>}
             headers={[
                 '#',
-                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,},
-                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
-            ]}
+                MiiCostumeAppOption.IMAGE.renderTableHeader,
+                MiiCostumeAppOption.NAME.renderTableHeader,
+                MiiCostumeAppOption.CONDITION_TO_UNLOCK_IT.renderTableHeader,
+                MiiCostumeAppOption.CATEGORY.renderTableHeader,
+            ].filter(header => header != null) as SingleHeadersContent}
             content={this.content}
         />;
     }
