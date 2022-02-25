@@ -65,6 +65,11 @@ export abstract class HeaderTypes
     }
 
 
+    public static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.simpleName === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray[O]
     public static getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
@@ -74,16 +79,8 @@ export abstract class HeaderTypes
     public static getValue<I extends HeaderTypes, >(instance: I,): I
     public static getValue(value: PossibleNonNullableValue,): HeaderTypes
     public static getValue(value: PossibleValue,): | HeaderTypes | null
-    public static getValue(value: PossibleValue,): | HeaderTypes | null {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                ?? this.values.find(enumerable => enumerable.simpleName === value)
-                ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+    public static getValue(value: PossibleValue,) {
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

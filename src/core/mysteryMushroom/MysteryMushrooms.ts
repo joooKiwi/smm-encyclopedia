@@ -1,11 +1,11 @@
-import type {ClassWithEnglishName}                                                                                                                                                        from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                                          from '../ClassWithReference';
+import type {ClassWithEnglishName}                                                                                                                                                                                 from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                   from '../ClassWithReference';
 import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages}                          from './image/Image';
-import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PossibleUniqueEnglishName, PossibleEnglishName} from './MysteryMushrooms.types';
+import type {EnglishNameOnFile, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleUniqueEnglishName, PossibleValue} from './MysteryMushrooms.types';
 import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}                                                                      from './sound/Sound';
-import type {MysteryMushroom}                                                                                                                                                             from './MysteryMushroom';
-import type {PossiblePath}                                                                                                                                                                from './path/ClassWithPath';
-import type {StaticReference}                                                                                                                                                             from '../../util/enum/Enum.types';
+import type {MysteryMushroom}                                                                                                                                                                                      from './MysteryMushroom';
+import type {PossiblePath}                                                                                                                                                                                         from './path/ClassWithPath';
+import type {StaticReference}                                                                                                                                                                                      from '../../util/enum/Enum.types';
 
 import {Enum}                                  from '../../util/enum/Enum';
 import {BasicImageContainer}                   from './image/BasicImage.container';
@@ -508,6 +508,13 @@ export class MysteryMushrooms
         return MysteryMushrooms;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.englishName === value
+                || enumerable.englishNameOnFile === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -518,16 +525,7 @@ export class MysteryMushrooms
     public static getValue(value: PossibleNonNullableValue,): MysteryMushrooms
     public static getValue(value: PossibleValue,): | MysteryMushrooms | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(enumeration => enumeration.englishName === value)
-                    ?? this.values.find(enumeration => enumeration.englishNameOnFile === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {
