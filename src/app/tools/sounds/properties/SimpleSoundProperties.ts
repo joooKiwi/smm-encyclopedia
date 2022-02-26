@@ -1,4 +1,5 @@
 import type {ReactProperty} from '../../../../util/react/ReactProperty';
+import type {SoundFounds}        from '../SoundFounds';
 
 export interface SimpleSoundProperties
     extends ReactProperty {
@@ -6,5 +7,7 @@ export interface SimpleSoundProperties
     source: string
 
     title: string
+
+    isSoundFound?: SoundFounds
 
 }
