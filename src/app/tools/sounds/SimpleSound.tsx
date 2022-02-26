@@ -74,6 +74,7 @@ export default class SimpleSound
         return this.#audio;
     }
 
+
     private get __playElement() {
         return this.#playElement ??= <div key={`${this._title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.__play()}/>;
     }
@@ -84,6 +85,10 @@ export default class SimpleSound
 
     private get __stopElement() {
         return this.#stopElement ??= <div key={`${this._title} - stop`} className={SimpleSound.#STOP_CLASSES} onClick={() => this.__stop()}/>;
+    }
+
+    private get __exceptionElement() {
+        return this.#errorElement ??= <div key={`${this._title} - exception`} className={SimpleSound.#EXCEPTION_CLASSES}/>;
     }
 
     protected get _source() {
@@ -98,7 +103,16 @@ export default class SimpleSound
     //region -------------------- Methods --------------------
 
     private __play(): void {
-        this._audio.play();
+        const playPromise = this._audio.play();
+        if (this.state.isSourceFound == null) {
+            let isSourceFound = true;
+            playPromise
+                .catch(() => {
+                    this.setState({state: SoundStates.EXCEPTION,});
+                    isSourceFound = false;
+                })
+                .finally(() => this.setState({isSourceFound: isSourceFound,}));
+        }
         this.setState({state: SoundStates.PLAYING,});
     }
 
@@ -125,7 +139,11 @@ export default class SimpleSound
 
     public render() {
         return <div key={this._title} className="audio-state-container container">{
-            this.state.state.getElements(() => this.__playElement, () => this.__pauseElement, () => this.__stopElement,)
+            this.state.state.getElements(new SoundSubElementsHolder(
+                () => this.__playElement,
+                () => this.__pauseElement,
+                () => this.__stopElement,
+                () => this.__exceptionElement,))
         }</div>;
     }
 

@@ -10,6 +10,7 @@ enum Enum {
     STANDBY,
     PLAYING,
     PAUSED,
+    EXCEPTION,
 }
 
 //region -------------------- Number types --------------------
@@ -20,7 +21,7 @@ export type Ordinals = typeof Enum[Names];
 //region -------------------- String types --------------------
 
 export type Names = keyof typeof Enum;
-export type EnglishName = | 'playing' | 'paused' | 'standby';
+export type EnglishName = | 'playing' | 'paused' | 'standby' | 'exception';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -41,6 +42,7 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'STANDBY', E>,
     EnumByName<'PLAYING', E>,
     EnumByName<'PAUSED', E>,
+    EnumByName<'EXCEPTION', E>,
 ];
 
 //endregion -------------------- Array types --------------------

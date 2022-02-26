@@ -2,6 +2,7 @@ import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, En
 import type {ClassWithEnglishName}                                                                                                                                                               from '../../../core/ClassWithEnglishName';
 import type {StaticReference}                                                                                                                                                                    from '../../../util/enum/Enum.types';
 import type {ReactElement}                                                                                                                                                                       from '../../../util/react/ReactProperty';
+import type {SoundSubElementsHolder}                                                                                                                                                             from './holder/SoundSubElementsHolder';
 
 import {Enum} from '../../../util/enum/Enum';
 
@@ -13,25 +14,32 @@ export abstract class SoundStates
 
     public static readonly STANDBY = new class SoundStates_Standby extends SoundStates {
 
-        public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
+        public getElements({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
             return [playElement(),];
         }
 
     }('standby',);
     public static readonly PAUSED =  new class SoundStates_Paused extends SoundStates {
 
-        public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
+        public getElements({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
             return [playElement(), stopElement(),];
         }
 
     } ('paused',);
     public static readonly PLAYING = new class SoundStates_Playing extends SoundStates {
 
-        public getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement): readonly ReactElement[] {
+        public getElements({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
             return [pauseElement(), stopElement(),];
         }
 
     }('playing',);
+    public static readonly EXCEPTION = new class SoundStates_Exception extends SoundStates {
+
+        public getElements({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+            return [exceptionElement(),];
+        }
+
+    }('exception',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -63,7 +71,7 @@ export abstract class SoundStates
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract getElements(playElement: () => ReactElement, pauseElement: () => ReactElement, stopElement: () => ReactElement,): readonly ReactElement[];
+    public abstract getElements(elementsHolder: SoundSubElementsHolder,): readonly ReactElement[];
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
