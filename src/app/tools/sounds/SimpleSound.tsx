@@ -105,16 +105,8 @@ export default class SimpleSound
     //region -------------------- Methods --------------------
 
     private __play(): void {
-        const playPromise = this._audio.play();
-        if (this.state.isSourceFound == null) {
-            let isSourceFound = true;
-            playPromise
-                .catch(() => {
-                    this.setState({state: SoundStates.EXCEPTION,});
-                    isSourceFound = false;
-                })
-                .finally(() => this.setState({isSourceFound: isSourceFound,}));
-        }
+        this._audio.play()
+            .catch(() => this.setState({state: SoundStates.EXCEPTION,}));
         this.setState({state: SoundStates.PLAYING,});
     }
 
