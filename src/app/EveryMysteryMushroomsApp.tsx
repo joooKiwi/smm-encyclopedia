@@ -6,7 +6,6 @@ import type {MysteryMushroomAppStates} from './AppStates.types';
 import type {SingleTableContent}       from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
-import AnimatedImages                  from './tools/images/AnimatedImages';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -87,7 +86,7 @@ export default class EveryMysteryMushroomsApp
 
         const id = StringContainer.getInHtml(englishName);
         return imagesFormattedAsGroup.map((images, index,) =>
-            <AnimatedImages key={`${fallbackName} - ${index + 1}`} partialId={`${id}-${index + 1}`}
+            <Image key={`${fallbackName} - ${index + 1}`} partialId={`${id}-${index + 1}`}
                             images={images.map<ImageProperties>((image, index,) => ({source: image, fallbackName: `${fallbackName}-${index + 1}`,}))}/>);
     }
 

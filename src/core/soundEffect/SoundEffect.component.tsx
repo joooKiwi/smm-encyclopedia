@@ -6,7 +6,6 @@ import type {Name}         from '../../lang/name/Name';
 import type {ReactElement} from '../../util/react/ReactProperty';
 import type {SoundEffects} from './SoundEffects';
 
-import AnimatedImages     from '../../app/tools/images/AnimatedImages';
 import {Games}            from '../game/Games';
 import Image              from '../../app/tools/images/Image';
 import {StringContainer}  from '../../util/StringContainer';
@@ -58,7 +57,7 @@ export default class SoundEffectComponent
             if (imagePath2 == null)
                 return <Image key={key} id={id} source={imagePath1}
                               fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>;
-            return <AnimatedImages partialId={id} images={([
+            return <Image partialId={id} images={([
                 {source: imagePath1, fallbackName: `${soundEffect.englishName} #1`, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
                 {source: imagePath2, fallbackName: `${soundEffect.englishName} #2`, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
             ])} className={`soundEffect-animated-image ${themeEnglishNameInHtml}-image`}/>;
