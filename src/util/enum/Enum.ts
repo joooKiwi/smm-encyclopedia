@@ -138,6 +138,28 @@ export abstract class Enum<O extends number = number, N extends string = string,
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Enum static methods --------------------
 
+    /**
+     * <p>
+     *  Initialise everything for the current instance.
+     * </p>
+     *
+     * <p>
+     *  It retrieves every values that are not from a getter or setter.
+     *  It also ignores the values based on {@link _EXCLUDED_NAMES}.
+     * </p>
+     *
+     * <p>
+     *  The initialisation includes:
+     *  <ul>
+     *      <li>default value</li>
+     *      <li>values map</li>
+     *      <li>names map</li>
+     *      <li>ordinals map</li>
+     *  </ul>
+     * </p>
+     *
+     * @param instance the static instance to initialise
+     */
     private static __initialiseOn(instance: EnumerableStatic,): typeof Enum
     private static __initialiseOn(instance: EnumerableStatic & typeof Enum,) {
         const everyProperties = (Object.entries(Object.getOwnPropertyDescriptors(instance))
@@ -162,6 +184,12 @@ export abstract class Enum<O extends number = number, N extends string = string,
         return this;
     }
 
+    /**
+     * Get the name based on the {@link _static} object.
+     *
+     * @param instance the instance
+     * @see Enum.name
+     */
     private static __getNameOn<I extends Enumerable, >(instance: I,): I['name']
     private static __getNameOn(instance: Enumerable & Enum,) {
         if (!this.#NAME_MAP.has(instance))
@@ -169,6 +197,12 @@ export abstract class Enum<O extends number = number, N extends string = string,
         return this.#NAME_MAP.get(instance);
     }
 
+    /**
+     * Get the ordinal based on the {@link _static} object.
+     *
+     * @param instance the instance
+     * @see Enum.ordinal
+     */
     private static __getOrdinalOn<I extends Enumerable, >(instance: I,): I['ordinal']
     private static __getOrdinalOn(instance: Enumerable & Enum,) {
         if (!this.#ORDINAL_MAP.has(instance))
@@ -176,6 +210,13 @@ export abstract class Enum<O extends number = number, N extends string = string,
         return this.#ORDINAL_MAP.get(instance);
     }
 
+    /**
+     * Get the last ordinal of the current instance retrieved.
+     *
+     * @param instance the static instance to retrieve the last ordinal
+     * @onlyCalledAtConstruction
+     * @see Enum.ordinal
+     */
     private static __getLastOrdinalOn<I extends Enumerable, >(instance: EnumerableStatic<I['ordinal'], I['name'], I>,): I['ordinal']
     private static __getLastOrdinalOn(instance: EnumerableStatic,) {
         const map = this.#LAST_ORDINAL_MAP;
@@ -278,22 +319,53 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
     //region -------------------- GetValue methods --------------------
 
+    /**
+     * Get the value by a string.
+     *
+     *
+     * @param value the string value (excluding {@link name})
+     * @see Enum.getValueOn
+     */
     protected static _getValueByString(value: string,): | Enumerable | null {
         return null;
     }
 
+    /**
+     * Get the value by a number.
+     *
+     * @param value the number value (excluding {@link ordinal})
+     * @see Enum.getValueOn
+     */
     protected static _getValueByNumber(value: number,): | Enumerable | null {
         return null;
     }
 
+    /**
+     * Get the value by an object
+     *
+     * @param value the boolean value
+     * @see Enum.getValueOn
+     */
     protected static _getValueByBoolean(value: boolean,): | Enumerable | null {
         return null;
     }
 
+    /**
+     * Get the value by an object.
+     *
+     * @param value the object value (excluding {@link string}, {@link number}, {@link boolean} & {@link Enumerable})
+     * @see Enum.getValueOn
+     */
     protected static _getValueByObject(value: object,): | Enumerable | null {
         return null;
     }
 
+    /**
+     * Get the value by an enumerable that is not the current instance <u> !={@link _static}</u>
+     *
+     * @param value the enumerable value
+     * @see Enum.getValueOn
+     */
     protected static _getValueByEnumerable(value: Enumerable,): | Enumerable | null {
         return null;
     }
@@ -332,12 +404,12 @@ export abstract class Enum<O extends number = number, N extends string = string,
         if (value == null)
             return null;
 
-        if (instance !== Enum) {
-            const parent = instance._PARENT as EnumerableStatic & typeof Enum;
-            const parentValue = parent.getValueOn(parent, value,) as Enumerable | null;
+        const parent = instance._PARENT as EnumerableStatic & typeof Enum;
+        if (parent !== Enum) {
+            const parentValue = Enum.getValueOn(parent, value,) as Enumerable | null;
             if (parentValue == null)
                 return null;
-            return Enum.getValueOn<I>(instance, parentValue,);
+            return instance._getValueByEnumerable(parentValue) as | I | null;
         }
 
 
@@ -377,6 +449,11 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
     //endregion -------------------- GetValue methods --------------------
 
+    /**
+     * Get every value based on the current instance received.
+     *
+     * @param instance the instance to retrieve every values
+     */
     public static getValuesOn<IS extends EnumerableStatic<any, any, any>, >(instance: IS,): IS['values']
     public static getValuesOn(instance: EnumerableStatic,) {
         if (!this.#VALUES_MAP.has(instance))

@@ -1,5 +1,5 @@
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
-import type {SoundStates as RealEnum}                                                                                                                                                                                                                      from './SoundStates';
+import type {SoundFounds as RealEnum}                                                                                                                                                                                                                      from './SoundFounds';
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
@@ -7,10 +7,10 @@ export type PossibleStringValue = | Names | EnglishName;
 export type PossibleValue = RealEnum | string | number | null | undefined;
 
 enum Enum {
-    STANDBY,
-    PLAYING,
-    PAUSED,
-    EXCEPTION,
+    YES,
+    NO,
+    ON_PLAY,
+    ON_CREATE,
 }
 
 //region -------------------- Number types --------------------
@@ -21,7 +21,7 @@ export type Ordinals = typeof Enum[Names];
 //region -------------------- String types --------------------
 
 export type Names = keyof typeof Enum;
-export type EnglishName = | 'playing' | 'paused' | 'standby' | 'exception';
+export type EnglishName = | 'yes' | 'no' | `on ${| 'play' | 'create'}`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -39,10 +39,15 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
-    EnumByName<'STANDBY', E>,
-    EnumByName<'PLAYING', E>,
-    EnumByName<'PAUSED', E>,
-    EnumByName<'EXCEPTION', E>,
+    EnumByName<'YES', E>,
+    EnumByName<'NO', E>,
+    EnumByName<'ON_PLAY', E>,
+    EnumByName<'ON_CREATE', E>,
 ];
 
 //endregion -------------------- Array types --------------------
+//region -------------------- Other types --------------------
+
+export type IsSourceFoundCallback = (value?: boolean,) => void;
+
+//endregion -------------------- Other types --------------------

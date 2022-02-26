@@ -5,17 +5,21 @@ import {Component} from 'react';
 import type {ReactElement}          from '../../../util/react/ReactProperty';
 import type {SimpleSoundProperties} from './properties/SimpleSoundProperties';
 import type {SimpleSoundState}      from './properties/SimpleSoundState';
+import type {IsSourceFoundCallback} from './SoundFounds.types';
 
-import {SoundStates} from './SoundStates';
+import {SoundFounds}            from './SoundFounds';
+import {SoundStates}            from './SoundStates';
+import {SoundSubElementsHolder} from './holder/SoundSubElementsHolder';
 
 export default class SimpleSound
     extends Component<SimpleSoundProperties, SimpleSoundState> {
 
     //region -------------------- Attributes --------------------
 
+    static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
     static readonly #PAUSE_CLASSES = 'btn btn-lg bi-pause-btn-fill audio-state audio-state-pause';
     static readonly #STOP_CLASSES = 'btn btn-lg bi-stop-btn-fill audio-state audio-state-stop';
-    static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
+    static readonly #EXCEPTION_CLASSES = 'bi-shield-fill-exclamation audio-state audio-state-exception';
 
     static #IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED = false;
 
@@ -25,15 +29,27 @@ export default class SimpleSound
     #playElement?: ReactElement;
     #pauseElement?: ReactElement;
     #stopElement?: ReactElement;
+    #errorElement?: ReactElement;
+    readonly #isSourceFoundCallback: IsSourceFoundCallback;
 
     //endregion -------------------- Attributes --------------------
 
     public constructor(properties: SimpleSoundProperties,) {
         super(properties);
-        this.state = {state: SoundStates.STANDBY,};
+        this.state = {
+            state: SoundStates.STANDBY,
+            isSourceRetrieved: false,
+        };
+        this.#isSourceFoundCallback = (value: boolean = this.__isSoundFound,) =>
+            value
+                ? this.setState({isSourceRetrieved: true,})
+                : this.setState({isSourceRetrieved: true, state: SoundStates.EXCEPTION,});
+
     }
 
     //region -------------------- Getter & setter methods --------------------
+
+    //region -------------------- Getter & setter methods (audio) --------------------
 
     /**
      * A {@link Map} of every audio elements.<br/>
@@ -62,17 +78,21 @@ export default class SimpleSound
      */
     protected get _audio(): HTMLAudioElement {
         if (this.#audio == null) {
+            const source = this._source;
             let audio: HTMLAudioElement;
-            if (SimpleSound._everyAudioElements.has(this._source))
-                audio = SimpleSound._everyAudioElements.get(this._source)!;
+            if (SimpleSound._everyAudioElements.has(source))
+                audio = SimpleSound._everyAudioElements.get(source)!;
             else
-                SimpleSound._everyAudioElements.set(this._source, audio = new Audio(this._source));
+                SimpleSound._everyAudioElements.set(source, audio = new Audio(source));
             this.#audio = audio;
             audio.onended = () => this.setState({state: SoundStates.STANDBY,});
             audio.loop = SimpleSound.isEveryAudioLoopsAfterCompleted;
         }
         return this.#audio;
     }
+
+    //endregion -------------------- Getter & setter methods (audio) --------------------
+    //region -------------------- Getter methods (element) --------------------
 
     private get __playElement() {
         return this.#playElement ??= <div key={`${this._title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.__play()}/>;
@@ -86,9 +106,26 @@ export default class SimpleSound
         return this.#stopElement ??= <div key={`${this._title} - stop`} className={SimpleSound.#STOP_CLASSES} onClick={() => this.__stop()}/>;
     }
 
+    private get __exceptionElement() {
+        return this.#errorElement ??= <div key={`${this._title} - exception`} className={SimpleSound.#EXCEPTION_CLASSES}/>;
+    }
+
+    //endregion -------------------- Getter methods (element) --------------------
+    //region -------------------- Getter methods (source) --------------------
+
     protected get _source() {
         return this.props.source;
     }
+
+    public get isSoundFound(): SoundFounds {
+        return this.props.isSoundFound ?? SoundFounds.default;
+    }
+
+    private get __isSoundFound(): boolean {
+        return Number.isFinite(this._audio.duration);
+    }
+
+    //endregion -------------------- Getter methods (source) --------------------
 
     protected get _title() {
         return this.props.title;
@@ -97,25 +134,62 @@ export default class SimpleSound
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
+    /**
+     * <p>
+     *  Play the current audio element.
+     *
+     *  And when the audio element has finished playing,
+     *  it will change the state to {@link SoundStates.STANDBY standby}.
+     * </p>
+     *
+     * <p>
+     *  Depending on if an {@link Error exception} is raised,
+     *  it will change the state to {@link SoundStates.EXCEPTION exception}.
+     * </p>
+     *
+     * <p>
+     *  But, if the {@link SoundFounds} is {@link SoundFounds.YES},
+     *  it will assume that the source is valid.
+     * </p>
+     */
     private __play(): void {
-        this._audio.play();
+        this._audio.play()
+            .then(() => {
+                const isSoundFound = this.isSoundFound.onPlay(this.#isSourceFoundCallback) ?? this.__isSoundFound;
+                if (!isSoundFound)
+                    this.__stop(SoundStates.EXCEPTION);
+            })
+            .catch(() => this.setState({state: SoundStates.EXCEPTION,}));
         this.setState({state: SoundStates.PLAYING,});
     }
 
+    /**
+     * Pause the current audio element.
+     */
     private __pause(): void {
         this._audio.pause();
         this.setState({state: SoundStates.PAUSED,});
     }
 
-    private __stop(): void {
+    /**
+     * Stop the current audio element.
+     *
+     * @param state either {@link SoundStates.STANDBY standby} or {@link SoundStates.EXCEPTION exception} state
+     */
+    private __stop(state: SoundStates = SoundStates.STANDBY,): void {
         const audio = this._audio;
         audio.pause();
         audio.currentTime = 0;
-        this.setState({state: SoundStates.STANDBY,});
+        this.setState({state: state,});
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- React methods --------------------
+
+    public componentDidMount() {
+        if (!this.state.isSourceRetrieved)
+            this.isSoundFound.onCreate(this.#isSourceFoundCallback);
+    }
 
     public componentWillUnmount() {
         const audio = this.#audio;
@@ -125,7 +199,11 @@ export default class SimpleSound
 
     public render() {
         return <div key={this._title} className="audio-state-container container">{
-            this.state.state.getElements(() => this.__playElement, () => this.__pauseElement, () => this.__stopElement,)
+            this.state.state.getElements(new SoundSubElementsHolder(
+                () => this.__playElement,
+                () => this.__pauseElement,
+                () => this.__stopElement,
+                () => this.__exceptionElement,))
         }</div>;
     }
 

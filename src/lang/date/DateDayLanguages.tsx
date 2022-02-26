@@ -1,5 +1,6 @@
 import type {DayNumber}                                       from './types';
 import type {EnumArray, Names, Ordinals, PossibleStringValue} from '../ProjectLanguages.types';
+import type {Enumerable}                                      from '../../util/enum/Enumerable';
 import type {EveryLanguages}                                  from '../EveryLanguages';
 import type {PossibleNonNullableValue, PossibleValue}         from './DateDayLanguages.types';
 import type {StaticReference}                                 from '../../util/enum/Enum.types';
@@ -167,7 +168,7 @@ export abstract class DateDayLanguages
 
 
     public static get currentLanguage(): DateDayLanguages {
-        return this.getValue(ProjectLanguages.currentLanguage)!;
+        return this.getValue(ProjectLanguages.currentLanguage);
     }
 
     //endregion -------------------- Methods --------------------
@@ -181,6 +182,12 @@ export abstract class DateDayLanguages
         return this.getValue(ProjectLanguages.default)!;
     }
 
+
+    protected static _getValueByEnumerable(value: Enumerable,) {
+        return value instanceof ProjectLanguages
+            ? this.values.find(enumerable => enumerable.reference === value) ?? null
+            : null;
+    }
 
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray<DateDayLanguages>[O]
