@@ -6,7 +6,8 @@ import type {ReactElement}          from '../../../util/react/ReactProperty';
 import type {SimpleSoundProperties} from './properties/SimpleSoundProperties';
 import type {SimpleSoundState}      from './properties/SimpleSoundState';
 
-import {SoundStates} from './SoundStates';
+import {SoundStates}            from './SoundStates';
+import {SoundSubElementsHolder} from './holder/SoundSubElementsHolder';
 
 export default class SimpleSound
     extends Component<SimpleSoundProperties, SimpleSoundState> {
@@ -15,7 +16,7 @@ export default class SimpleSound
 
     static readonly #PAUSE_CLASSES = 'btn btn-lg bi-pause-btn-fill audio-state audio-state-pause';
     static readonly #STOP_CLASSES = 'btn btn-lg bi-stop-btn-fill audio-state audio-state-stop';
-    static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
+    static readonly #EXCEPTION_CLASSES = 'bi-shield-fill-exclamation audio-state audio-state-exception';
 
     static #IS_EVERY_AUDIO_LOOPS_AFTER_COMPLETED = false;
 
@@ -25,6 +26,7 @@ export default class SimpleSound
     #playElement?: ReactElement;
     #pauseElement?: ReactElement;
     #stopElement?: ReactElement;
+    #errorElement?: ReactElement;
 
     //endregion -------------------- Attributes --------------------
 
