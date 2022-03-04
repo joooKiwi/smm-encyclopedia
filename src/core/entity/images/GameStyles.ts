@@ -1,3 +1,4 @@
+import type {Enumerable}                                                                                                                                                                            from '../../../util/enum/Enumerable';
 import type {GamePath_ClearCondition, GamePath_Editor, GamePath_InGameSMM1}                                                                                                                         from './GameStyles.types';
 import type {GameStyleProperty}                                                                                                                                                                     from '../properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                                                   from '../properties/GameStyleReferences';
@@ -85,6 +86,13 @@ export class GameStyles
 
     protected get _static(): StaticReference<GameStyles> {
         return GameStyles;
+    }
+
+
+    protected static _getValueByEnumerable(value: Enumerable,) {
+        if (value instanceof OriginalGameStyles)
+            return GameStyles[value.ordinal];
+        return null;
     }
 
     public static getValue(nullValue: | null | undefined,): null
