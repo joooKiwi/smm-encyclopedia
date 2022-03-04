@@ -32,6 +32,7 @@ export class EmptyGameStyle
     public readonly isInProperty = EmptyIsInProperty.get;
 
     public readonly isInSuperMarioMaker1 = this.isInProperty.isInSuperMarioMaker1;
+    public readonly isInSuperMarioMakerFor3DS = this.isInProperty.isInSuperMarioMakerFor3DS;
     public readonly isInSuperMarioMaker2 = this.isInProperty.isInSuperMarioMaker2;
 
     //endregion -------------------- Game properties --------------------

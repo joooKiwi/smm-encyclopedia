@@ -19,14 +19,21 @@ export abstract class Games
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_MAKER_1 = new class Games_SuperMarioMaker1 extends Games {
+    public static readonly SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games {
 
         public get(property: GameProperty,): boolean {
             return property.isInSuperMarioMaker1;
         }
 
     }('SMM',  'Super Mario Maker',);
-    public static readonly SUPER_MARIO_MAKER_2 = new class Games_SuperMarioMaker2 extends Games {
+    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
+
+        public get(property: GameProperty,): boolean {
+            return property.isInSuperMarioMakerFor3DS;
+        }
+
+    }('SMM3DS', 'Super Mario Maker for Nintendo 3DS',);
+    public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
 
         public get(property: GameProperty,): boolean {
             return property.isInSuperMarioMaker2;

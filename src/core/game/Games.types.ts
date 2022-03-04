@@ -10,6 +10,7 @@ export type PossibleValue = | RealEnum | number | string | null | undefined;
 enum Enum {
 
     SUPER_MARIO_MAKER_1,
+    SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,
     SUPER_MARIO_MAKER_2,
 
 }
@@ -44,6 +45,7 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SUPER_MARIO_MAKER_1'],
+    SimpleEnum<T>['SUPER_MARIO_MAKER_FOR_NINTENDO_3DS'],
     SimpleEnum<T>['SUPER_MARIO_MAKER_2'],
 ];
 

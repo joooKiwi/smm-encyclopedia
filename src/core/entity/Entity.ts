@@ -13,7 +13,7 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     extends NameTrait<string>,
         NameTraitFromACategory<string, CATEGORY>,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
-        GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
+        GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMakerFor3DS'], PROPERTY['isInSuperMarioMaker2']>,
         GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,
         ThemeProperty<PROPERTY['isInGroundTheme'], PROPERTY['isInUndergroundTheme'], PROPERTY['isInUnderwaterTheme'], PROPERTY['isInDesertTheme'], PROPERTY['isInSnowTheme'], PROPERTY['isInSkyTheme'], PROPERTY['isInForestTheme'], PROPERTY['isInGhostHouseTheme'], PROPERTY['isInAirshipTheme'], PROPERTY['isInCastleTheme']>,
         TimeProperty<PROPERTY['isInDayTheme'], PROPERTY['isInNightTheme']>,
@@ -28,6 +28,8 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     get gameContainer(): this['propertyContainer']['gameContainer']
 
     get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+
+    get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS']
 
     get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
 

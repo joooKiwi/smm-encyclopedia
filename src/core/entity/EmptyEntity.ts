@@ -42,6 +42,7 @@ export class EmptyEntity
     public readonly gameContainer = this.propertyContainer.gameContainer;
 
     public readonly isInSuperMarioMaker1 = this.gameContainer.isInSuperMarioMaker1;
+    public readonly isInSuperMarioMakerFor3DS = this.gameContainer.isInSuperMarioMakerFor3DS;
     public readonly isInSuperMarioMaker2 = this.gameContainer.isInSuperMarioMaker2;
 
     //endregion -------------------- Game properties --------------------

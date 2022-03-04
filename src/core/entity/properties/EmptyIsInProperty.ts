@@ -27,6 +27,7 @@ export class EmptyIsInProperty
 
     public readonly gameContainer = this;
     public readonly isInSuperMarioMaker1 = false;
+    public readonly isInSuperMarioMakerFor3DS = false;
     public readonly isInSuperMarioMaker2 = false;
 
     //endregion -------------------- Game properties --------------------

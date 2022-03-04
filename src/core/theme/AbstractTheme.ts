@@ -29,6 +29,10 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
         return this.isInProperty.isInSuperMarioMaker1;
     }
 
+    public get isInSuperMarioMakerFor3DS(): this['isInProperty']['isInSuperMarioMakerFor3DS'] {
+        return this.isInProperty.isInSuperMarioMakerFor3DS;
+    }
+
     public get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2'] {
         return this.isInProperty.isInSuperMarioMaker2;
     }

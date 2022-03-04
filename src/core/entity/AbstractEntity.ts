@@ -75,6 +75,10 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.gameContainer.isInSuperMarioMaker1;
     }
 
+    public get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS'] {
+        return this.gameContainer.isInSuperMarioMakerFor3DS;
+    }
+
     public get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2'] {
         return this.gameContainer.isInSuperMarioMaker2;
     }
