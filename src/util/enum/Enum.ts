@@ -415,10 +415,10 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
         switch (typeof value) {
             case 'string':
-                return this.__getEnumInstance(instance, value,)
+                return this.__getEnumInstanceByNameOrIndex(instance, value,)
                     ?? instance._getValueByString(value,) as | I | null;
             case 'number':
-                return this.__getEnumInstance(instance, value,)
+                return this.__getEnumInstanceByNameOrIndex(instance, value,)
                     ?? instance._getValueByNumber(value,) as | I | null;
             case 'boolean':
                 return this._getValueByBoolean(value) as | I | null;
@@ -438,7 +438,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
      * @param nameOrIndex the name or the index
      * @return the enum instance or null
      */
-    private static __getEnumInstance<I extends Enum, >(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,): | I | null {
+    private static __getEnumInstanceByNameOrIndex<I extends Enum, >(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,): | I | null {
         const value = instance[nameOrIndex] as | Enum | undefined;
         if (value == null)
             return null;
