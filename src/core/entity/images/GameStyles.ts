@@ -1,3 +1,4 @@
+import type {Enumerable}                                                                                                                                                                            from '../../../util/enum/Enumerable';
 import type {GamePath_ClearCondition, GamePath_Editor, GamePath_InGameSMM1}                                                                                                                         from './GameStyles.types';
 import type {GameStyleProperty}                                                                                                                                                                     from '../properties/GameStyleProperty';
 import type {GameStyleReferences}                                                                                                                                                                   from '../properties/GameStyleReferences';
@@ -53,15 +54,15 @@ export class GameStyles
     }
 
     public get gamePath_editor(): GamePath_Editor {
-        return this.#gamePath_editor ??= `/entities/${this.shortImagePath}/Editor/`;
+        return this.#gamePath_editor ??= `/entity/${this.shortImagePath}/Editor/`;
     }
 
     public get gamePath_clearCondition(): GamePath_ClearCondition {
-        return this.#gamePath_clearCondition ??= `/entities/${this.shortImagePath}/Clear Condition/`;
+        return this.#gamePath_clearCondition ??= `/entity/${this.shortImagePath}/Clear Condition/`;
     }
 
     public get gamePath_inGameSmm1(): GamePath_InGameSMM1 {
-        return this.#gamePath_smm1 ??= `/entities/${this.shortImagePath}/In game/SMM1/`;
+        return this.#gamePath_smm1 ??= `/entity/${this.shortImagePath}/In game/SMM1/`;
     }
 
     //endregion -------------------- Getter methods --------------------
