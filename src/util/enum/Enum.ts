@@ -407,6 +407,10 @@ export abstract class Enum<O extends number = number, N extends string = string,
         const parent = instance._PARENT as EnumerableStatic & typeof Enum;
         if (parent !== Enum) {
             const parentValue = Enum.getValueOn(parent, value,) as Enumerable | null;
+
+            if (value instanceof Enum)
+                return instance.__getEnumInstanceByThisOrEnumerable(instance, parentValue ?? value);
+
             if (parentValue == null)
                 return null;
             return instance._getValueByEnumerable(parentValue) as | I | null;
@@ -424,9 +428,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
                 return this._getValueByBoolean(value) as | I | null;
             default:
                 if ('_static' in value)
-                    return value._static === instance
-                        ? value
-                        : instance._getValueByEnumerable(value) as | I | null;
+                    return Enum.__getEnumInstanceByThisOrEnumerable(instance, value,);
                 return instance._getValueByObject(value,) as | I | null;
         }
     }
@@ -445,6 +447,20 @@ export abstract class Enum<O extends number = number, N extends string = string,
         if (value._static === instance)
             return value as I;
         return null;
+    }
+
+    /**
+     * Get the enum instance by a comparison of {@link _static} & the {@link EnumerableStatic instance}.
+     * Or by utilising from the current context {@link _getValueByEnumerable}.
+     *
+     * @param instance the enum instance to compare
+     * @param enumerable the enumerable to send or return
+     */
+    private static __getEnumInstanceByThisOrEnumerable<I extends Enum, >(instance: EnumerableStatic, enumerable: Enumerable,): | I | null
+    private static __getEnumInstanceByThisOrEnumerable(instance: EnumerableStatic & typeof Enum, enumerable: Enum,) {
+        return enumerable._static === instance
+            ? enumerable
+            : instance._getValueByEnumerable(enumerable);
     }
 
     //endregion -------------------- GetValue methods --------------------
