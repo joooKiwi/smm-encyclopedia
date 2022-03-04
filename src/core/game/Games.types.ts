@@ -4,7 +4,7 @@ import type {PossibleAcronym_Game, PossibleEnglishName_Game}                    
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym;
+export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym | PossibleSimpleValue;
 export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
@@ -26,6 +26,7 @@ export type Names = keyof typeof Enum;
 
 export type PossibleAcronym = PossibleAcronym_Game;
 export type PossibleEnglishName = PossibleEnglishName_Game;
+export type PossibleSimpleValue = `${| 1 | 2}` | '3DS';
 export type PossibleImagePath = `/game/${PossibleEnglishName}.svg`;
 
 //endregion -------------------- String types --------------------
