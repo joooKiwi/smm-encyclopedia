@@ -88,6 +88,13 @@ export class GameStyles
         return GameStyles;
     }
 
+
+    protected static _getValueByEnumerable(value: Enumerable,) {
+        if (value instanceof OriginalGameStyles)
+            return GameStyles[value.ordinal];
+        return null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O, GameStyles>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O, GameStyles>

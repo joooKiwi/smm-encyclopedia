@@ -407,6 +407,10 @@ export abstract class Enum<O extends number = number, N extends string = string,
         const parent = instance._PARENT as EnumerableStatic & typeof Enum;
         if (parent !== Enum) {
             const parentValue = Enum.getValueOn(parent, value,) as Enumerable | null;
+
+            if (value instanceof Enum)
+                return instance.__getEnumInstanceByThisOrEnumerable(instance, parentValue ?? value);
+
             if (parentValue == null)
                 return null;
             return instance._getValueByEnumerable(parentValue) as | I | null;
@@ -415,18 +419,16 @@ export abstract class Enum<O extends number = number, N extends string = string,
 
         switch (typeof value) {
             case 'string':
-                return this.__getEnumInstance(instance, value,)
+                return this.__getEnumInstanceByNameOrIndex(instance, value,)
                     ?? instance._getValueByString(value,) as | I | null;
             case 'number':
-                return this.__getEnumInstance(instance, value,)
+                return this.__getEnumInstanceByNameOrIndex(instance, value,)
                     ?? instance._getValueByNumber(value,) as | I | null;
             case 'boolean':
                 return this._getValueByBoolean(value) as | I | null;
             default:
                 if ('_static' in value)
-                    return value._static === instance
-                        ? value
-                        : instance._getValueByEnumerable(value) as | I | null;
+                    return Enum.__getEnumInstanceByThisOrEnumerable(instance, value,);
                 return instance._getValueByObject(value,) as | I | null;
         }
     }
@@ -438,13 +440,28 @@ export abstract class Enum<O extends number = number, N extends string = string,
      * @param nameOrIndex the name or the index
      * @return the enum instance or null
      */
-    private static __getEnumInstance<I extends Enum, >(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,): | I | null {
+    private static __getEnumInstanceByNameOrIndex<I extends Enum, >(instance: EnumerableStatic, nameOrIndex: | string | number,): | I | null
+    private static __getEnumInstanceByNameOrIndex(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,) {
         const value = instance[nameOrIndex] as | Enum | undefined;
         if (value == null)
             return null;
         if (value._static === instance)
-            return value as I;
+            return value;
         return null;
+    }
+
+    /**
+     * Get the enum instance by a comparison of {@link _static} & the {@link EnumerableStatic instance}.
+     * Or by utilising from the current context {@link _getValueByEnumerable}.
+     *
+     * @param instance the enum instance to compare
+     * @param enumerable the enumerable to send or return
+     */
+    private static __getEnumInstanceByThisOrEnumerable<I extends Enum, >(instance: EnumerableStatic, enumerable: Enumerable,): | I | null
+    private static __getEnumInstanceByThisOrEnumerable(instance: EnumerableStatic & typeof Enum, enumerable: Enum,) {
+        return enumerable._static === instance
+            ? enumerable
+            : instance._getValueByEnumerable(enumerable);
     }
 
     //endregion -------------------- GetValue methods --------------------
