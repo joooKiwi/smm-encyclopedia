@@ -99,17 +99,15 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     protected _add(times: readonly Times[], gameStyles: readonly OriginalGameStyles[], themes: readonly Themes[],): this {
         const map = this._selectedMap;
-        const _times = times;
         const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
-        const _themes = themes.map(theme => Themes.getValue(theme));
 
-        _times.forEach(time =>
+        times.forEach(time =>
             _gameStyles.forEach(gameStyle =>
-                _themes.forEach(theme =>
+                themes.forEach(theme =>
                     map.get(time)!.get(gameStyle)!.set(theme, true,))
             )
         );
-        return this.__addTimes(_times)._addGameStyle(_gameStyles).__addThemes(_themes);
+        return this.__addTimes(times)._addGameStyle(_gameStyles).__addThemes(themes);
     }
 
     //endregion -------------------- Selected map --------------------
