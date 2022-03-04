@@ -440,12 +440,13 @@ export abstract class Enum<O extends number = number, N extends string = string,
      * @param nameOrIndex the name or the index
      * @return the enum instance or null
      */
-    private static __getEnumInstanceByNameOrIndex<I extends Enum, >(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,): | I | null {
+    private static __getEnumInstanceByNameOrIndex<I extends Enum, >(instance: EnumerableStatic, nameOrIndex: | string | number,): | I | null
+    private static __getEnumInstanceByNameOrIndex(instance: EnumerableStatic & typeof Enum, nameOrIndex: | string | number,) {
         const value = instance[nameOrIndex] as | Enum | undefined;
         if (value == null)
             return null;
         if (value._static === instance)
-            return value as I;
+            return value;
         return null;
     }
 
