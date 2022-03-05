@@ -21,11 +21,28 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
 
     //region -------------------- Limit amount --------------------
 
-    get alternativeAmount(): this['alternativeContainer']['amount']
+    get alternativeLimitContainer(): this['alternativeContainer']['limitContainer']
 
-    get alternativeIsAmountUnknown(): this['alternativeContainer']['isAmountUnknown']
+    //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    get alternativeAmountComment(): this['alternativeContainer']['amountComment']
+    get alternativeLimitContainerInSMM1AndSMM3DS(): this['alternativeLimitContainer']['limitContainerInSMM1AndSMM3DS']
+
+    get alternativeLimitAmountInSMM1AndSMM3DS(): this['alternativeLimitContainerInSMM1AndSMM3DS']['value']
+
+    get isUnknownAlternativeLimitInSMM1AndSMM3DS(): this['alternativeLimitContainerInSMM1AndSMM3DS']['isUnknown']
+
+    //endregion -------------------- SMM1 & SMM3DS limit --------------------
+    //region -------------------- SMM2 limit --------------------
+
+    get alternativeLimitContainerInSMM2(): this['alternativeLimitContainer']['limitContainerInSMM2']
+
+    get alternativeLimitAmountInSMM2(): this['alternativeLimitContainerInSMM2']['value']
+
+    get isUnknownAlternativeLimitInSMM2(): this['alternativeLimitContainerInSMM2']['isUnknown']
+
+    //endregion -------------------- SMM2 limit --------------------
+
+    get alternativeAmountComment(): this['alternativeLimitContainer']['comment']
 
     //endregion -------------------- Limit amount --------------------
 
@@ -34,9 +51,24 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
 
     get limitContainer(): LIMIT_AMOUNT
 
-    get amount(): this['limitContainer']['value']
+    //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    get isAmountUnknown(): this['limitContainer']['isUnknown']
+    get limitContainerInSMM1AndSMM3DS(): this['limitContainer']['limitContainerInSMM1AndSMM3DS']
+
+    get limitAmountInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['value']
+
+    get isUnknownLimitInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['isUnknown']
+
+    //endregion -------------------- SMM1 & SMM3DS limit --------------------
+    //region -------------------- SMM2 limit --------------------
+
+    get limitContainerInSMM2(): this['limitContainer']['limitContainerInSMM2']
+
+    get limitAmountInSMM2(): this['limitContainerInSMM2']['value']
+
+    get isUnknownLimitInSMM2(): this['limitContainerInSMM2']['isUnknown']
+
+    //endregion -------------------- SMM2 limit --------------------
 
     get amountComment(): this['limitContainer']['comment']
 

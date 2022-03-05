@@ -7,25 +7,32 @@ import type {TemplateWithNameTemplate}                                          
 
 //region -------------------- Limit amount types --------------------
 
-interface AbstractLimitAmountTemplate<AMOUNT extends | number | null = | number | null, IS_UNKNOWN extends boolean = boolean, COMMENT extends | string | null = | string | null, > {
+/**
+ * @template
+ */
+export interface LimitAmountTemplate {
 
-    amount: AMOUNT
+    1: PossibleLimitAmount_SMM1
 
-    isUnknown: IS_UNKNOWN
+    2: PossibleLimitAmount_SMM2
 
-    comment: COMMENT
+    comment: PossibleLimitAmount_Comment
 
 }
 
 /**
  * @template
  */
-export type LimitAmountTemplate = AbstractLimitAmountTemplate;
+export interface EmptyLimitAmountTemplate
+    extends LimitAmountTemplate {
 
-/**
- * @template
- */
-export type EmptyLimitAmountTemplate = AbstractLimitAmountTemplate<null, false, null>;
+    1: null
+
+    2: null
+
+    comment: null
+
+}
 
 //endregion -------------------- Limit amount types --------------------
 
@@ -35,7 +42,7 @@ interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends | PossibleEnglis
     ALTERNATIVE_REFERENCE extends | PossibleAlternativeEnglishName | null = | PossibleAlternativeEnglishName | null,
     TYPE extends | PossibleEntityLimitTypeEnglishName | null = | PossibleEntityLimitTypeEnglishName | null,
     ACRONYM extends | PossibleAcronym | PossibleAlternativeAcronym | null = | PossibleAcronym | PossibleAlternativeAcronym | null,
-    LIMIT_AMOUNT extends LimitAmountTemplate = LimitAmountTemplate, >
+    LIMIT extends LimitAmountTemplate = LimitAmountTemplate, >
     extends TemplateWithNameTemplate<NameTemplate> {
 
     references: {
@@ -46,7 +53,7 @@ interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends | PossibleEnglis
     type: TYPE
     acronym: ACRONYM
 
-    limit: LIMIT_AMOUNT
+    limit: LIMIT
 
     name: NameTemplate
 
@@ -60,3 +67,20 @@ export type EntityLimitTemplate = AbstractEntityLimitTemplate<PossibleEnglishNam
  * @template
  */
 export type AlternativeLimitTemplate = AbstractEntityLimitTemplate<null, null, null, | PossibleAlternativeAcronym | null, EmptyLimitAmountTemplate>;
+
+
+//region -------------------- Limit amount --------------------
+
+export type PossibleLimitAmount_SMM1_Amount = | 1 | 2 | 3 | 4 | 5 | 8
+                                              | 10
+                                              | 100 | 200 | 300 | 2000;
+export type PossibleLimitAmount_SMM1 = | PossibleLimitAmount_SMM1_Amount | '?' | 'N/A' | null;
+
+export type PossibleLimitAmount_SMM2_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+                                              | 10 | 50
+                                              | 100 | 200 | 300 | 500 | 999 | 2000 | 4000;
+export type PossibleLimitAmount_SMM2 = | PossibleLimitAmount_SMM2_Amount | `${|10}?` | '?' | null;
+
+export type PossibleLimitAmount_Comment = | 'Crash online if met' | `Per ${| 'player' | 'pair' | 'section'}` | null;
+
+//endregion -------------------- Limit amount --------------------

@@ -2,7 +2,7 @@ import type {AlternativeEntityLimit, EntityLimit}         from './EntityLimit';
 import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
 import type {EntityLimitTypes}                            from './EntityLimitTypes';
 import type {Name}                                        from '../../lang/name/Name';
-import type {ObjectHolder}                                from '../../util/holder/ObjectHolder';
+import type {ObjectHolder, PossibleValueOnObjectHolder}   from '../../util/holder/ObjectHolder';
 import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
 
 import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative';
@@ -17,23 +17,22 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     //region -------------------- Attributes --------------------
 
     readonly #acronym;
-    readonly #typeCaller: ObjectHolder<EntityLimitTypes>;
+    readonly #typeContainer: ObjectHolder<EntityLimitTypes>;
     readonly #limitContainer;
 
     //endregion -------------------- Attributes --------------------
 
-    //TODO change to object holder directly instead of creating the object holder instance here.
-    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: () => AlternativeEntityLimit, type: () => EntityLimitTypes, limitAmount: EntityLimitAmount,) {
+    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: PossibleValueOnObjectHolder<EntityLimitTypes>, limitAmount: EntityLimitAmount,) {
         super(name, alternative,);
         this.#acronym = acronym;
-        this.#typeCaller = new DelayedObjectHolderContainer(type);
+        this.#typeContainer = new DelayedObjectHolderContainer(type);
         this.#limitContainer = limitAmount;
     }
 
     //region -------------------- Type --------------------
 
     public get type(): TYPE {
-        return this.#typeCaller.get as TYPE;
+        return this.#typeContainer.get as TYPE;
     }
 
     //endregion -------------------- Type --------------------
@@ -56,14 +55,36 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
         return this.alternativeContainer.limitContainer;
     }
 
+    //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    public get alternativeAmount(): this['alternativeLimitContainer']['value'] {
-        return this.alternativeLimitContainer.value;
+    public get alternativeLimitContainerInSMM1AndSMM3DS(): this['alternativeLimitContainer']['limitContainerInSMM1AndSMM3DS'] {
+        return this.alternativeLimitContainer.limitContainerInSMM1AndSMM3DS;
     }
 
-    public get alternativeIsAmountUnknown(): this['alternativeLimitContainer']['isUnknown'] {
-        return this.alternativeLimitContainer.isUnknown;
+    public get alternativeLimitAmountInSMM1AndSMM3DS(): this['alternativeLimitContainerInSMM1AndSMM3DS']['value'] {
+        return this.alternativeLimitContainerInSMM1AndSMM3DS.value;
     }
+
+    public get isUnknownAlternativeLimitInSMM1AndSMM3DS(): this['alternativeLimitContainerInSMM1AndSMM3DS']['isUnknown'] {
+        return this.alternativeLimitContainerInSMM1AndSMM3DS.isUnknown;
+    }
+
+    //endregion -------------------- SMM1 & SMM3DS limit --------------------
+    //region -------------------- SMM2 limit --------------------
+
+    public get alternativeLimitContainerInSMM2(): this['alternativeLimitContainer']['limitContainerInSMM2'] {
+        return this.alternativeLimitContainer.limitContainerInSMM2;
+    }
+
+    public get alternativeLimitAmountInSMM2(): this['alternativeLimitContainerInSMM2']['value'] {
+        return this.alternativeLimitContainerInSMM2.value;
+    }
+
+    public get isUnknownAlternativeLimitInSMM2(): this['alternativeLimitContainerInSMM2']['isUnknown'] {
+        return this.alternativeLimitContainerInSMM2.isUnknown;
+    }
+
+    //endregion -------------------- SMM2 limit --------------------
 
     public get alternativeAmountComment(): this['alternativeLimitContainer']['comment'] {
         return this.alternativeLimitContainer.comment;
@@ -78,14 +99,36 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
         return this.#limitContainer as LIMIT_AMOUNT;
     }
 
+    //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    public get amount(): this['limitContainer']['value'] {
-        return this.limitContainer.value;
+    public get limitContainerInSMM1AndSMM3DS(): this['limitContainer']['limitContainerInSMM1AndSMM3DS'] {
+        return this.limitContainer.limitContainerInSMM1AndSMM3DS;
     }
 
-    public get isAmountUnknown(): this['limitContainer']['isUnknown'] {
-        return this.limitContainer.isUnknown;
+    public get limitAmountInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['value'] {
+        return this.limitContainerInSMM1AndSMM3DS.value;
     }
+
+    public get isUnknownLimitInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['isUnknown'] {
+        return this.limitContainerInSMM1AndSMM3DS.isUnknown;
+    }
+
+    //endregion -------------------- SMM1 & SMM3DS limit --------------------
+    //region -------------------- SMM2 limit --------------------
+
+    public get limitContainerInSMM2(): this['limitContainer']['limitContainerInSMM2'] {
+        return this.limitContainer.limitContainerInSMM2;
+    }
+
+    public get limitAmountInSMM2(): this['limitContainerInSMM2']['value'] {
+        return this.limitContainerInSMM2.value;
+    }
+
+    public get isUnknownLimitInSMM2(): this['limitContainerInSMM2']['isUnknown'] {
+        return this.limitContainerInSMM2.isUnknown;
+    }
+
+    //endregion -------------------- SMM2 limit --------------------
 
     public get amountComment(): this['limitContainer']['comment'] {
         return this.limitContainer.comment;

@@ -45,7 +45,7 @@ export class EntityLimits
             return EntityLimits._entities.GROUND;
         }
 
-    }                                ('Ground', 'Ground Limit 1',                                        );
+    }                                   ('Ground', 'Ground Limit 1',                                        );
     public static readonly BLOCK_LIMIT =                                              new EntityLimits                                                                                ('Block', 'Ground Limit 2',                                         );
     public static readonly PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT = new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
 
@@ -133,6 +133,8 @@ export class EntityLimits
         }
 
     }                   ('Snowball Thrown By A Spike',                                                                   );
+    public static readonly CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT =                      new EntityLimits                                                                                ('Clear Condition Entity Amount',                                                     );
+    public static readonly RENDERED_BLOCK_LIMIT =                                     new EntityLimits                                                                                ('Rendered Block', 'Block Displayed Limit'                          );
 
     public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
 
@@ -157,48 +159,48 @@ export class EntityLimits
     }                             ('Key Collected',                                                                                );
 
     public static readonly POWER_UP_ENTITY_LIMIT_EDITOR =                             new EntityLimits                                                                                (['PEL (E)', 'Power-up Entity', false,],                                              );
-    public static readonly FIREBALL_THROWN_BY_A_PLAYER_LIMIT =                        new class EntityLimits_FireballThrownByAPlayerLimit extends EntityLimits {
+    public static readonly PLAYER_FIREBALL =                                          new class EntityLimits_FireballThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
             return EntityLimits._entities.FIREBALL_THROWN_BY_A_PLAYER;
         }
 
-    }                  ('Fireball thrown by a player',                                                                  );
-    public static readonly SUPERBALL_THROWN_BY_A_PLAYER_LIMIT =                       new class EntityLimits_SuperballThrownByAPlayerLimit extends EntityLimits {
+    }                  ('Player\'s Fireball',                                                                           );
+    public static readonly PLAYER_SUPERBALL =                                         new class EntityLimits_SuperballThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
             return EntityLimits._entities.SUPERBALL_THROWN_BY_A_PLAYER;
         }
 
-    }                 ('Superball thrown by a player',                                                                 );
-    public static readonly BOMB_THROWN_BY_A_LINK_LIMIT =                              new class EntityLimits_BombThrownByALinkLimit extends EntityLimits {
+    }                 ('Player\'s Superball',                                                                          );
+    public static readonly PLAYER_BOMB =                                              new class EntityLimits_BombThrownByALinkLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
             return EntityLimits._entities.BOMB_THROWN_BY_A_LINK;
         }
 
-    }                        ('Bomb thrown by a Link',                                                                        );
-    public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER_LIMIT =                     new class EntityLimits_BuilderBoxThrownByAPlayerLimit extends EntityLimits {
+    }                        ('Player\'s Bomb',                                                                               );
+    public static readonly PLAYER_BUILDER_BOX =                                       new class EntityLimits_BuilderBoxThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
             return EntityLimits._entities.BUILDER_BOX_THROWN_BY_A_PLAYER;
         }
 
-    }                ('Builder Box thrown by a player',                                                               );
-    public static readonly BOOMERANG_THROWN_BY_A_PLAYER_LIMIT =                       new class EntityLimits_BoomerangThrownByAPlayerLimit extends EntityLimits {
+    }                ('Player\'s Builder Box',                                                                        );
+    public static readonly PLAYER_BOOMERANG =                                         new class EntityLimits_BoomerangThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
             return EntityLimits._entities.BOOMERANG_THROWN_BY_A_PLAYER;
         }
 
-    }                 ('Boomerang thrown by a player',                                                                 );
-    public static readonly CANNONBALL_THROWN_BY_A_PLAYER_LIMIT =                      new class EntityLimits_CannonballThrownByAPlayerLimit extends EntityLimits {
+    }                 ('Player\'s Boomerang',                                                                          );
+    public static readonly PLAYER_CANNONBALL =                                        new class EntityLimits_CannonballThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
             return EntityLimits._entities.CANNONBALL_THROWN_BY_A_PLAYER;
         }
 
-    }                ('Cannonball thrown by a player',                                                                );
+    }                ('Player\'s Cannonball',                                                                         );
     public static readonly HATCHED_YOSHI_LIMIT =                                      new class EntityLimits_HatchedYoshiLimit extends EntityLimits {
 
         protected get _groupLink(): PossibleGroupLinkInitialisation {
@@ -279,6 +281,13 @@ export class EntityLimits
         }
 
     }                                  ('Warp Box',                                                                                     );
+    public static readonly WARP_PIPE_LIMIT =                                          new class EntityLimits_WarpBoxLimit extends EntityLimits {
+
+        protected get _entityLink(): PossibleEntityLinkInitialisation {
+            return EntityLimits._entities.PIPE;
+        }
+
+    }                                  ('Warp Pipe',                                                                                    );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -475,3 +484,6 @@ type PossibleGroupLinkInitialisation = | object | null;
 type PossibleEntityLinkInitialisation = | Entities | readonly [Entities, Entities,] | null;
 type EnglishNameReceived = | PossibleStartingEnglishName | [englishName: PossibleAcronym, englishAcronym: PossibleStartingEnglishName,] | [englishName: PossibleAcronymInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEnglishNameInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
 type AlternativeEnglishNameReceived = | PossibleAlternativeEnglishName | [alternativeEnglishName: PossibleAlternativeAcronym, alternativeEnglishAcronym: PossibleAlternativeEnglishName,];
+
+// @ts-ignore
+(window.test??={}).EntityLimits = EntityLimits;

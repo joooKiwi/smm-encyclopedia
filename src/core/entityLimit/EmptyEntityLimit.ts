@@ -47,8 +47,14 @@ export class EmptyEntityLimit
 
     public readonly alternativeLimitContainer = EmptyEntityLimitAmount.get;
 
-    public readonly alternativeAmount = this.alternativeLimitContainer.value;
-    public readonly alternativeIsAmountUnknown = this.alternativeLimitContainer.isUnknown;
+    public readonly alternativeLimitContainerInSMM1AndSMM3DS = this.alternativeLimitContainer.limitContainerInSMM1AndSMM3DS;
+    public readonly alternativeLimitAmountInSMM1AndSMM3DS = this.alternativeLimitContainerInSMM1AndSMM3DS.value;
+    public readonly isUnknownAlternativeLimitInSMM1AndSMM3DS = this.alternativeLimitContainerInSMM1AndSMM3DS.isUnknown;
+
+    public readonly alternativeLimitContainerInSMM2 = this.alternativeLimitContainer.limitContainerInSMM2;
+    public readonly alternativeLimitAmountInSMM2 = this.alternativeLimitContainerInSMM2.value;
+    public readonly isUnknownAlternativeLimitInSMM2 = this.alternativeLimitContainerInSMM2.isUnknown;
+
     public readonly alternativeAmountComment = this.alternativeLimitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
@@ -58,8 +64,14 @@ export class EmptyEntityLimit
 
     public readonly limitContainer = EmptyEntityLimitAmount.get;
 
-    public readonly amount = this.limitContainer.value;
-    public readonly isAmountUnknown = this.limitContainer.isUnknown;
+    public readonly limitContainerInSMM1AndSMM3DS = this.limitContainer.limitContainerInSMM1AndSMM3DS;
+    public readonly limitAmountInSMM1AndSMM3DS = this.limitContainerInSMM1AndSMM3DS.value;
+    public readonly isUnknownLimitInSMM1AndSMM3DS = this.limitContainerInSMM1AndSMM3DS.isUnknown;
+
+    public readonly limitContainerInSMM2 = this.limitContainer.limitContainerInSMM2;
+    public readonly limitAmountInSMM2 = this.limitContainerInSMM2.value;
+    public readonly isUnknownLimitInSMM2 = this.limitContainerInSMM2.isUnknown;
+
     public readonly amountComment = this.limitContainer.comment;
 
     //endregion -------------------- Limit amount --------------------
