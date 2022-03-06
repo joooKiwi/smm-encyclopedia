@@ -21,7 +21,7 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOW
 
     public static readonly NULL_CONTAINER: NullProperty = new PropertyContainer(null, false, null, null,);
 
-    public static readonly UNKNOWN_CONTAINER: UnknownProperty = new PropertyContainer(false, true, null, null,);
+    public static readonly UNKNOWN_CONTAINER: UnknownProperty = new PropertyContainer(null, true, null, null,);
 
     public static readonly NOT_APPLICABLE_CONTAINER: NotApplicableProperty = new PropertyContainer('N/A', false, null, null,);
 
