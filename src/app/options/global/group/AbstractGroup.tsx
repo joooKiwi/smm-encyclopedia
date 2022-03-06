@@ -12,6 +12,11 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
     extends PureComponent<GroupProperties<T, U>>
     implements ReactComponent {
 
+    //region -------------------- Attributes --------------------
+
+    static readonly #IS_NOT_DISABLED = [false, false,] as const;
+
+    //endregion -------------------- Attributes --------------------
     //region -------------------- Getter methods --------------------
 
     public get id(): PossibleId {
@@ -24,12 +29,15 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     //endregion -------------------- Getter methods --------------------
 
-    protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: boolean, onClickCallback: | OnClickCallback | null,): ReactElement
+    protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement
 
     public render(): ReactElement {
         return <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{
-            this.elements.map(([element, option, isDisabled, onClickCallback = null,]) =>
-                this._renderElement(element, option, isDisabled ?? false, onClickCallback,))
+            this.elements.map(([element, option, isDisabled, onClickCallback = null,]) => this._renderElement(
+                element,
+                option,
+                isDisabled == null ? AbstractGroup.#IS_NOT_DISABLED : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled,
+                onClickCallback,))
         }</div>;
     }
 

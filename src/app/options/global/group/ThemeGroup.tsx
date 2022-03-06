@@ -13,17 +13,18 @@ import type {Themes}            from '../../../../core/theme/Themes';
 export default class ThemeGroup
     extends AbstractGroup<Themes, GlobalThemeOption> {
 
-    protected _renderElement(element: Themes, option: GlobalAppOption<GlobalThemeOption>, isDisabled: boolean, onClickCallback: | OnClickCallback | null,): ReactElement {
+    protected _renderElement(element: Themes, option: GlobalAppOption<GlobalThemeOption>, [isDisabledDay, isDisabledNight,]: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement {
         const optionValue = option.get;
         const [value, timeValues,] = [optionValue.dayValue || optionValue.nightValue,
             [
-                [Times.DAY, optionValue.dayValue, false, () => option.set(optionValue.reverseDayValue),],
-                [Times.NIGHT, optionValue.nightValue, isDisabled, () => option.set(optionValue.reverseNightValue),],
+                [Times.DAY, optionValue.dayValue, isDisabledDay, () => option.set(optionValue.reverseDayValue),],
+                [Times.NIGHT, optionValue.nightValue, isDisabledNight, () => option.set(optionValue.reverseNightValue),],
             ],
         ] as const;
 
         return <div key={`option container (${element.englishName})`} id={`${element.englishNameInHtml}-option-container`} className="btn-group-vertical" role="group">
-            <img key={`option image (${element.englishName})`} id={`${element.englishNameInHtml}-option-image`} className={`btn btn${value ? '' : '-outline'}-secondary`}
+            <img key={`option image (${element.englishName})`} id={`${element.englishNameInHtml}-option-image`}
+                 className={`btn btn${value ? '' : '-outline'}-secondary ${isDisabledDay && isDisabledNight ? 'disabled' : ''}`}
                  src={element.smallImagePath} alt={`option - ${element.englishName}`}
                  onClick={() => option.set(optionValue.set(value))}/>
             <div key={`option time image (${element.englishName})`} id={`${element.englishNameInHtml}-option-time-image`} className="btn-group btn-group-sm">{

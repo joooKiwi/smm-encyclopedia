@@ -23,4 +23,5 @@ export type OnClickCallback = () => void;
 export type SingleElement<T extends PossibleElement, U extends PossibleOptionValue, >
     = | readonly [element: T, option: GlobalAppOption<U>,]
       | readonly [element: T, option: GlobalAppOption<U>, isDisabled: | boolean | null,]
+      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: [boolean, boolean,],]
       | readonly [element: T, option: GlobalAppOption<U>, isDisabled: | boolean | null, onClickCallback?: OnClickCallback,];
