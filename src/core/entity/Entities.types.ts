@@ -188,7 +188,7 @@ export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spin
 export type PossibleEnglishName_SpikeTop = `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`;
 export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`;
 export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai';
-export type PossibleEnglishName_Goals = | 'Goal Pole' | '(Goal (With Cards))' | 'Giant Gate';
+export type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate';
 export type PossibleEnglishName =
     | `${| '' | `${| 'Start' | 'Goal'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
     | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
