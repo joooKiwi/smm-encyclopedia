@@ -23,7 +23,7 @@ import {Times}           from '../../../core/time/Times';
 export interface GlobalOptionProperties
     extends ReactProperty {
 
-    id: string
+    id: string;
 
 }
 
@@ -79,28 +79,28 @@ export default class GlobalOptionComponent
                 [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, smm3ds,],
                 [Games.SUPER_MARIO_MAKER_2, smm2,],
             ]}/>
-            <GameStyleGroup id="gameStyles" elements={[
-                [GameStyles.SUPER_MARIO_BROS, GlobalAppOption.SMB, isNoGame,],
-                [GameStyles.SUPER_MARIO_BROS_3, GlobalAppOption.SMB3, isNoGame,],
-                [GameStyles.SUPER_MARIO_WORLD, GlobalAppOption.SMW, isNoGame,],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, GlobalAppOption.NSMBU, isNoGame,],
-                [GameStyles.SUPER_MARIO_3D_WORLD, GlobalAppOption.SM3DW, isNoGame || isSmm1Or3DSExclusive,],
+            <GameStyleGroup id="gameStyles" isHidden={isNoGame} elements={[
+                [GameStyles.SUPER_MARIO_BROS, GlobalAppOption.SMB,],
+                [GameStyles.SUPER_MARIO_BROS_3, GlobalAppOption.SMB3,],
+                [GameStyles.SUPER_MARIO_WORLD, GlobalAppOption.SMW,],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, GlobalAppOption.NSMBU,],
+                [GameStyles.SUPER_MARIO_3D_WORLD, GlobalAppOption.SM3DW, null, isSmm1Or3DSExclusive,],
             ]}/>
-            <ThemeGroup id="themes" elements={[
-                [Themes.GROUND, GlobalAppOption.GROUND, [isNoGame, isNoGame,],],
-                [Themes.UNDERGROUND, GlobalAppOption.UNDERGROUND, [isNoGame, isNoGame,],],
-                [Themes.UNDERWATER, GlobalAppOption.UNDERWATER, [isNoGame, isNoGame,],],
-                [Themes.DESERT, GlobalAppOption.DESERT, [isNoGame, isNoGame || isSmm1Or3DSExclusive,],],
-                [Themes.SNOW, GlobalAppOption.SNOW, [isNoGame, isNoGame || isSmm1Or3DSExclusive,],],
-                [Themes.SKY, GlobalAppOption.SKY, [isNoGame, isNoGame || isSmm1Or3DSExclusive,],],
-                [Themes.FOREST, GlobalAppOption.FOREST, [isNoGame, isNoGame || isSmm1Or3DSExclusive,],],
-                [Themes.GHOST_HOUSE, GlobalAppOption.GHOST_HOUSE, [isNoGame, isNoGame,],],
-                [Themes.AIRSHIP, GlobalAppOption.AIRSHIP, [isNoGame, isNoGame,],],
-                [Themes.CASTLE, GlobalAppOption.CASTLE, [isNoGame, isNoGame,],],
+            <ThemeGroup id="themes" isHidden={isNoGame} elements={[
+                [Themes.GROUND, GlobalAppOption.GROUND, smm2Value,],
+                [Themes.UNDERGROUND, GlobalAppOption.UNDERGROUND, smm2Value,],
+                [Themes.UNDERWATER, GlobalAppOption.UNDERWATER, smm2Value,],
+                [Themes.DESERT, GlobalAppOption.DESERT, [smm2Value, isSmm1Or3DSExclusive,], isSmm1Or3DSExclusive,],
+                [Themes.SNOW, GlobalAppOption.SNOW, [smm2Value, isSmm1Or3DSExclusive,], isSmm1Or3DSExclusive,],
+                [Themes.SKY, GlobalAppOption.SKY, [smm2Value, isSmm1Or3DSExclusive,], isSmm1Or3DSExclusive,],
+                [Themes.FOREST, GlobalAppOption.FOREST, [smm2Value, isSmm1Or3DSExclusive,], isSmm1Or3DSExclusive,],
+                [Themes.GHOST_HOUSE, GlobalAppOption.GHOST_HOUSE, smm2Value,],
+                [Themes.AIRSHIP, GlobalAppOption.AIRSHIP, smm2Value,],
+                [Themes.CASTLE, GlobalAppOption.CASTLE, smm2Value,],
             ]}/>
-            <TimeGroup id="times" elements={[
-                [Times.DAY, GlobalAppOption.DAY, isNoGame, () => everyThemeOptions.forEach(option => option.set(option.get.onDay(GlobalAppOption.DAY.get))),],
-                [Times.NIGHT, GlobalAppOption.NIGHT, isNoGame || isSmm1Or3DSExclusive, () => everyThemeOptions.forEach(option => option.set(option.get.onNight(GlobalAppOption.NIGHT.get))),],
+            <TimeGroup id="times" isHidden={isNoGame} elements={[
+                [Times.DAY, GlobalAppOption.DAY, null, null, () => everyThemeOptions.forEach(option => option.set(option.get.onDay(GlobalAppOption.DAY.get))),],
+                [Times.NIGHT, GlobalAppOption.NIGHT, isSmm1Or3DSExclusive, null, () => everyThemeOptions.forEach(option => option.set(option.get.onNight(GlobalAppOption.NIGHT.get))),],
             ]}/>
         </div>;
     }

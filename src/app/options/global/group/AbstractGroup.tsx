@@ -5,6 +5,8 @@ import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, Poss
 import type {ReactComponent}                                                                                    from '../../../../util/react/ReactComponent';
 import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperty';
 
+import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables';
+
 /**
  * @reactComponent
  */
@@ -23,6 +25,10 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
         return this.props.id;
     }
 
+    public get isHidden(): boolean {
+        return this.props.isHidden ?? false;
+    }
+
     public get elements(): readonly SingleElement<T, U>[] {
         return this.props.elements;
     }
@@ -32,13 +38,18 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
     protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement
 
     public render(): ReactElement {
-        return <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{
-            this.elements.map(([element, option, isDisabled, onClickCallback = null,]) => this._renderElement(
-                element,
-                option,
-                isDisabled == null ? AbstractGroup.#IS_NOT_DISABLED : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled,
-                onClickCallback,))
-        }</div>;
+        return this.isHidden
+            ? EMPTY_REACT_ELEMENT
+            : <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{
+                this.elements.map(([element, option, isDisabled, isHidden, onClickCallback = null,]) =>
+                    isHidden
+                        ? EMPTY_REACT_ELEMENT
+                        : this._renderElement(
+                            element,
+                            option,
+                            isDisabled == null ? AbstractGroup.#IS_NOT_DISABLED : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled,
+                            onClickCallback,))
+            }</div>;
     }
 
 }

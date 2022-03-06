@@ -11,17 +11,22 @@ export interface GroupProperties<T extends PossibleElement, U extends PossibleOp
 
     id: PossibleId
 
+    isHidden?: boolean
+
     elements: readonly SingleElement<T, U>[]
 
 }
 
-export type PossibleId = |'games'|'gameStyles'|'times'|'themes';
+export type PossibleId = | 'games' | 'gameStyles' | 'times' | 'themes';
 export type PossibleElement = | Games | GameStyles | Times | Themes;
 export type PossibleOptionValue = | boolean | GlobalThemeOption;
 export type OnClickCallback = () => void;
 
+type PossibleIsDisabled = | boolean | [boolean, boolean,];
+type PossibleIsHidden = boolean;
+
 export type SingleElement<T extends PossibleElement, U extends PossibleOptionValue, >
     = | readonly [element: T, option: GlobalAppOption<U>,]
-      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: | boolean | null,]
-      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: [boolean, boolean,],]
-      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: | boolean | null, onClickCallback?: OnClickCallback,];
+      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: PossibleIsDisabled,]
+      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: | PossibleIsDisabled | null, isHidden: PossibleIsHidden,]
+      | readonly [element: T, option: GlobalAppOption<U>, isDisabled: | PossibleIsDisabled | null, isHidden: | PossibleIsHidden | null, onClickCallback?: OnClickCallback,];
