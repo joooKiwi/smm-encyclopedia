@@ -1,54 +1,54 @@
 isInSuperMarioMaker1And3DS,isInSuperMarioMaker2,doesTrigger_player_jumpAfterLanding,doesTrigger_player_turnAroundAfterBeingAtFullSpeed,doesTrigger_player_crouch,doesTrigger_player_after3SecondsRepeatedly,doesTrigger_player_collectPowerUp,doesTrigger_player_getIntoAnEntity,doesTrigger_player_spawn,doesTrigger_player_damage,doesTrigger_player_lostALife,category,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Shock,,,Panique,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Scream,,,Cri,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Laughter,,,Rire,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Guffaw,,,Gros rire,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Feelings,Booo!,,,Pfffft,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Feelings,Cheer,,,Encouragement,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Baby,,,Bébé,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Party Popper,,,Pétard,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Feelings,Applause,,,Ovation,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Near Miss,,,C'est pas passé loin!,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Clatter,,,Fracas,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Drama!,,,Tada-dadam!,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Kick,,,Frappe,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Jump,,,Saut,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Honk Honk,,,Klaxon,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Punch,,,Coup de poing,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Oink,,,Cochon,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Stingers,Kuh-thunk!,,,Tambour,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Beep!,,,Biiip!,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Ninja Attack!,,,Chambara,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Zap!,,,Dziiit!,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Ding Dong,,,Sonette,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Bzzzt!,,,Erreur,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Glory,,,Bon augure,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Doom,,,Mauvais augure,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Reactions,Yeah!,,,Yeah!,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Reactions,Aww...,,,Aaah...,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Fireworks,,,Feu d'artifice,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Audience,,,Public,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,Animations,Scatting,,,Romance,,,,,,,,,N/A,,,,,,,,
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Shock,,,Panique,,,Schock,Susto,,,Lamento,Gejammer,,,,Испуг,びっくり,,驚嚇,惊讶,놀람
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Scream,,,Cri,,,Schrei,Grito,,,Grido,Gil,,,,Крик,悲鳴,,哀嚎,悲鸣,비명
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Laughter,,,Rire,,,Lachen,Risas,,,Risate,Gegiechel,,,,Хихиканье,笑い,笑,,,하하하
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Feelings,Guffaw,,,Gros rire,,,Gelächter,Risas enlatadas,,,Risate del pubblico,Lachend publiek,,,,Хохот,ばく笑,爆笑,,,폭소
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Feelings,Booo!,,,Pfffft,,,Spott,Burla,,,Spruzzo,Pfffff,,,,Фу-у-у!,ブ～！,,噓聲,卟～！,우우～!
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Feelings,Cheer,,,Encouragement,,,Jubel,Ovación,,,Ovazione,Toejuiching,,,,Овации,かんせい,,歡呼,欢呼声,환성
+TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Baby,,,Bébé,,,Baby,Bebé,,,Baby,Baby,,,,Малыш,アッフン,,呀呀,咿咿呀呀,아항
+FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Party Popper,,,Pétard,,,Partyknaller,,Confeti,Serpentinas,Sparacoriandoli,Feestje,,,,Хлопушка,クラッカー,拉炮,,,폭죽
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Feelings,Applause,,,Ovation,,,Applaus,Aplauso,,,Applauso,Applaus,,,,Аплодисменты,はくしゅ,鼓掌,,,박수
+FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Near Miss,,,,C'est pas passé loin!,C'est pas passé loin !,Beinahe!,,Por poquito,Por los pelos,Collisione evitata,Kantje boord!,,,,Треньк!,ヒヤリハット,,虛驚一場,失误,소름
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Clatter,,,Fracas,,,Scheppern,Estrépito,,,Caduta massi,Gekletter,,,,Обвал!,ドンガラガッシャ～ン！,,砰砰磅磅～！,咚茨当茨～！,와장창!
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Drama!,,,,Tada-dadam!,Tada-dadam !,Drama!,Tensión,,,Colpo di scena,Spanning,,,,ВНЕЗАПНО!,ガガ～ン！,,危險！,当～！,두둥
+TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Kick,,,Frappe,,,Tritt,Patada,,,Calcio,Trap,,,,Пинок,ホップ,,熱舞彈腿,踢,킥
+TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Jump,,,Saut,,,Sprung,Salto,,,Salto,Sprong,,,,Прыжок,ジャンプ,,熱舞跳躍,跳,점프
+TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Honk Honk,,,Klaxon,,,Hupe,Bocina,,,Clacson,Claxon,,,,Гудок,パフ,,叭哺,叭叭,빵빵
+TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Punch,,,Coup de poing,,,Schlag,Puñetazo,,,Colpo,Mep,,,,Бокс,パンチ,,拳擊,拳头,펀치
+FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Oink,,,Cochon,,,Grunz,,Chanchito,Gorrinete,Prot,Knor,,,,Конфуз,ブゥブゥ,噗噗,,,뿡뿡
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Stingers,Kuh-thunk!,,,Tambour,,,Trommel,Tambor,,,Tamburo,Bam bam!,,,,Ту-дум!,どどん！,,咚咚！,哆咚！,뜨든!
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Beep!,,,,Biiip!,Biiip !,Störton,,¡Bip!,Zapeo,Interferenza,Bliep!,,,,Би-и-ип!,ピー,,嗶——,哔——,삐～
+FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Ninja Attack!,,,Chambara,,,Samurai,Samurái,,,Attacco ninja,Ninja-aanval,,,,8 бит,ドタバタ,,勢如破竹,闹哄哄,우당탕탕
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Zap!,,,,Dziiit!,Dziiit !,Gebritzel,Conmoción,,,Scossa,Stroomstoot,,,,Бреньк!,ショック,,電擊,冲击,충격
+TRUE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Ding Dong,,,Sonette,,,"Ding, dong!",Acierto,,,Idea,Deurbel,,,,Звонок-ретро,ピンポン,叮咚,,,딩동
+TRUE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Bzzzt!,,,Erreur,,,Falsch!,Fallo,,,Svarione,Fout!,,,,Звонок-модерн,ブブー,,噗噗——,卟卟——,땡
+TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Glory,,,Bon augure,,,Erleuchtung,Gloria,,,Gloria,Glorie,,,,Торжество,天国,天堂,,,천국
+TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Doom,,,Mauvais augure,,,Verhängnis,Perdición,,,Paura,Onheil,,,,Кошмар,じごく,,地獄,地狱,지옥
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Reactions,Yeah!,,,,Yeah!,Yeah !,Yeah!,¡Bieeen!,,,Yeah!,Jeee!,,,,Йес!,Yeah!,Yeah!,,,예～!
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Reactions,Aww...,,,Aaah...,,,Aaah...,"Oh, no...",,,Nooo!,Ahhh...,,,,Ах!,Ahh...,Ahh...,,,아...
+TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Fireworks,,,Feu d'artifice,,,Feuerwerk,Fuegos artificiales,,,Pirotecnica,Vuurwerk,,,,Салют,花火,,煙火,烟花,불꽃
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Audience,,,Public,,,Publikum,Público,,,Pubblico,Uitzinnig publiek,,,,Зрители,オーディエンス,,觀眾聲,听众,관중
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,Animations,Scatting,,,Romance,,,Märchen,Balada,,,Canzone d'epoca,Vleugje romantiek,,,,Романтика,スキャット,,即興歌聲,即兴叫喊,라라라
 TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,Bird's Chirping,,,Chant d'un oiseau,,,,,,,,,,,,,,,,,
-FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Spark,,,Étincelles,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Traditional,,,Lampions,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Electric Guitar,,,Guitare électrique,,,,,,,,,N/A,,,,,,,,
+FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Spark,,,Étincelles,,,Funkenfontäne,,Chispas,Chisporroteo,Fontana di scintille,Sterretjesfontein,,,,Искры,スパーク,,火樹銀花,焰火,파지직
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Traditional,,,Lampions,,,Matsuri,,Festival,Festival oriental,Matsuri,Lampionnenfestival,,,,Фестиваль,おはやし,,日式祭典樂,伴奏,축제 음악
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Electric Guitar,,,Guitare électrique,,,Riff,Guitarra eléctrica,,,Chitarra elettrica,Elektrische gitaar,,,,Гитарное соло,エレキギター,,電吉他,电吉他,일렉트릭 기타
 TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,Distortion,,,Distortion,,,,,,,,,,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Twisty Turny,,,Distance,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,Animations,Woozy,,,Distorsion,,,,,,,,,N/A,,,,,,,,
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Twisty Turny,,,Distance,,,Dimensionstor,Distorsión,,,Distorsione,Echo onder water,,,,Скретч,うねうね,,扭曲變調,蜿蜒,울렁울렁
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,Animations,Woozy,,,Distorsion,,,Verzerrung,,Anomalía,Scratch,Scratch,Verdraaiing,,,,Диджей,グチャグチャ,,畸形變調,乱七八糟,뒤죽박죽
 TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,Telephone,,,Téléphone,,,,,,,,,,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Animations,Flash,,,Flash,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Peaceful,,,Relaxation,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Horror,,,Horreur,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Bonus Music,,,Bonus,,,,,,,,,N/A,,,,,,,,
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Animations,Flash,,,Flash,,,Blitz,Destello,,,Bagliore,Flits,,,,Вспышка,フラッシュ,,閃光,闪光,번쩍번쩍
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Peaceful,,,Relaxation,,,Entspannung,Alivio,,,New age,Ontspanning,,,,Счастливый конец,ヒーリング,,安寧,治愈,힐링
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Horror,,,Horreur,,,Horror,Terror,,,Horror,Horror,,,,Саспенс,ホラー,恐怖,,,호러
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Bonus Music,,,Bonus,,,Bonus,Bonificación,,,Bonus,Bonusmuziek,,,,Бонус,ボーナス,,獎勵,奖励,보너스
 TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,Festive Music,,,Musique festive,,,,,,,,,,,,,,,,,
 TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,Rave Music,,,Musique folle,,,,,,,,,,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Heartbeat,,,Cœur qui bat,,,,,,,,,N/A,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Silence,,,Silence,,,,,,,,,N/A,,,,,,,,
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Heartbeat,,,Cœur qui bat,,,Herzschlag,Latido,,,Cuore,Hartslag,,,,Пульс,ドキドキ,,撲通撲通,扑通扑通,두근두근
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Silence,,,Silence,,,Stille,Silencio,,,Silenzio,Stilte,,,,Тишина,シ～ン,,悄然無聲,嘘～,쉬잇
 TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,Bird's Tweeting Noise,,,Son d'un oiseau chantant,,,,,,,,,,,,,,,,,
 TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,Chicken's Clucking Noise,,,Son d'un poulet gloussant,,,,,,,,,,,,,,,,,
-TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Boss Music,,,Boss,,,,,,,,,N/A,,,,,,,,
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Final Boss,,,Boss de fin,,,,,,,,,N/A,,,,,,,,
+TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Boss Music,,,Boss,,,Boss,Jefe,,,Boss,Baasmuziek,,,,Босс,ボス,BOSS,,,보스
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Final Boss,,,Boss de fin,,,Letzter Boss,Jefe final,,,Boss finale,Eindbaasmuziek,,,,Последний босс,ラスボス,,最終BOSS,最终BOSS,최종 보스
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Super Mario Kart,,,Super Mario Kart,,,Super Mario Kart,Super Mario Kart,,,Super Mario Kart,Super Mario Kart,Super Mario Kart,,,Super Mario Kart,スーパーマリオカート,,Super Mario Kart,Super Mario Kart,Super Mario Kart
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Super Mario 64,,,Super Mario 64,,,Super Mario 64,Super Mario 64,,,Super Mario 64,Super Mario 64,Super Mario 64,,,Super Mario 64,スーパーマリオ64,,Super Mario 64,Super Mario 64,Super Mario 64
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Super Mario Sunshine,,,Super Mario Sunshine,,,Super Mario Sunshine,Super Mario Sunshine,,,Super Mario Sunshine,Super Mario Sunshine,Super Mario Sunshine,,,Super Mario Sunshine,スーパーマリオサンシャイン,,Super Mario Sunshine,Super Mario Sunshine,Super Mario Sunshine
