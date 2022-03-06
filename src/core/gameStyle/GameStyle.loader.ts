@@ -3,7 +3,7 @@ import everyGameStyles from '../../resources/Game style.csv';
 import type {Loader}                                                             from '../../util/loader/Loader';
 import type {GameStyle}                                                          from './GameStyle';
 import type {GameStyleTemplate}                                                  from './GameStyle.template';
-import type {PropertiesArray as GamesPropertyArray}                              from '../game/Loader.types';
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                     from '../game/Loader.types';
 import type {PossibleAcronym, PossibleEnglishName}                               from './GameStyles.types';
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types';
 
@@ -18,7 +18,7 @@ enum Headers {
 
     //region -------------------- Games --------------------
 
-    isInSuperMarioMaker1,
+    isInSuperMarioMaker1And3DS,
     isInSuperMarioMaker2,
 
     //endregion -------------------- Games --------------------
@@ -79,7 +79,7 @@ export class GameStyleLoader
             new CSVLoader<PropertiesArray, GameStyle, keyof typeof Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertToBoolean('isInSuperMarioMaker1', 'isInSuperMarioMaker2',)
+                .convertToBoolean('isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'reference',)
 

@@ -4,12 +4,13 @@ import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle
 import type {GameStyleTemplate}                                from './GameStyle.template';
 import type {PossibleAcronym}                                  from './GameStyles.types';
 
-import {Entities}              from '../entity/Entities';
-import {GamePropertyContainer} from '../entity/properties/GameProperty.container';
-import {GameReferences}        from '../gameReference/GameReferences';
-import {GameStyles}            from './GameStyles';
-import {GameStyleContainer}    from './GameStyle.container';
-import {TemplateBuilder}       from '../_template/Template.builder';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
+import {Entities}                     from '../entity/Entities';
+import {GamePropertyContainer}        from '../entity/properties/GameProperty.container';
+import {GameReferences}               from '../gameReference/GameReferences';
+import {GameStyles}                   from './GameStyles';
+import {GameStyleContainer}           from './GameStyle.container';
+import {TemplateBuilder}              from '../_template/Template.builder';
 
 export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
@@ -44,8 +45,8 @@ export class GameStyleBuilder
 
         return new GameStyleContainer(
             () => GameReferences.getValue(reference).reference.nameContainer,
-            GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
-            () => GameStyleBuilder.__whereEntityIs(reference),
+            GamePropertyContainer.get(gameTemplate['1And3DS'], gameTemplate['2'],),
+            new DelayedObjectHolderContainer(() => GameStyleBuilder.__whereEntityIs(reference)),
             this.__getNightDesertWindTranslationKey(),
         );
     }

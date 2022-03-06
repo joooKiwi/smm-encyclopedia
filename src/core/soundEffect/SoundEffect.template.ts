@@ -1,6 +1,6 @@
 import type {PlayerSoundEffectTriggerTemplate}                              from './properties/PlayerSoundEffectTrigger.template';
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types';
-import type {SimpleGameTemplate}                                            from '../game/SimpleGame.template';
+import type {SimpleGameFrom1And2Template}                                   from '../game/SimpleGame.template';
 import type {TemplateWithNameTemplate}                                      from '../_template/TemplateWithName.template';
 
 export interface SoundEffectTemplate
@@ -9,7 +9,7 @@ export interface SoundEffectTemplate
     properties: {
 
         isIn: {
-            game: SimpleGameTemplate
+            game: SimpleGameFrom1And2Template
 
             trigger: {
                 player: PlayerSoundEffectTriggerTemplate

@@ -1,10 +1,10 @@
 import everyThemes from '../../resources/Theme.csv';
 
-import type {CourseAndWorldTheme, PossibleEnglishName}  from './Themes.types';
-import type {PropertiesArray as GamesPropertyArray}     from '../game/Loader.types';
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {PossibleEffectInNightTheme, ThemeTemplate} from './Theme.template';
-import type {Loader}                                    from '../../util/loader/Loader';
+import type {CourseAndWorldTheme, PossibleEnglishName}       from './Themes.types';
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types';
+import type {PropertiesArray as LanguagesPropertyArray}      from '../../lang/Loader.types';
+import type {PossibleEffectInNightTheme, ThemeTemplate}      from './Theme.template';
+import type {Loader}                                         from '../../util/loader/Loader';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -21,7 +21,7 @@ enum Headers {
 
     //region -------------------- Games --------------------
 
-    isInSuperMarioMaker1,
+    isInSuperMarioMaker1And3DS,
     isInSuperMarioMaker2,
 
     //endregion -------------------- Games --------------------
@@ -101,7 +101,7 @@ export class ThemeLoader
 
                 .convertToBoolean(
                     'isInCourseTheme', 'isInWorldTheme',
-                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                    'isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',
                 )
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 

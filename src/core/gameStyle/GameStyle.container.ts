@@ -2,10 +2,9 @@ import type {Entity}                                           from '../entity/E
 import type {GameProperty}                                     from '../entity/properties/GameProperty';
 import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle';
 import type {Name}                                             from '../../lang/name/Name';
-import type {ObjectHolder}                                     from '../../util/holder/ObjectHolder';
+import type {ObjectHolder, PossibleValueOnObjectHolder}        from '../../util/holder/ObjectHolder';
 
-import {ClassContainingAName}         from '../../lang/name/ClassContainingAName';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
+import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
 
 export class GameStyleContainer
     extends ClassContainingAName<string>
@@ -14,16 +13,15 @@ export class GameStyleContainer
     //region -------------------- Attributes --------------------
 
     readonly #isInProperty;
-    readonly #entities: ObjectHolder<readonly Entity[]>;
+    readonly #entities;
     readonly #nightDesertWindTranslationKey;
 
     //endregion -------------------- Attributes --------------------
 
-    //TODO change to object holder directly instead of creating the object holder instance here.
-    public constructor(name: () => Name<string>, isInProperty: GameProperty, entities: () => readonly Entity[], nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
+    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, isInProperty: GameProperty, entities: ObjectHolder<readonly Entity[]>, nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,);
         this.#isInProperty = isInProperty;
-        this.#entities = new DelayedObjectHolderContainer(entities);
+        this.#entities = entities;
         this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey;
     }
 

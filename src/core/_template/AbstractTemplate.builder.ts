@@ -1,11 +1,12 @@
 import type {Builder}                                                               from '../../util/builder/Builder';
-import type {EntityNameTemplate}                                                    from '../entity/Entity.template';
-import type {HasAReferenceInMarioMaker}                                             from '../entityTypes';
+import type {EntityNameTemplate}                                                              from '../entity/Entity.template';
+import type {HasAReferenceInMarioMaker}                                                       from '../entityTypes';
 import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template';
-import type {PartialGameEnum}                                                       from './PartialGameEnum';
+import type {PartialGameEnumFrom1And2}                                              from './PartialGameEnumFrom1And2';
+import type {PartialGameEnumFromAllGames}                                           from './PartialGameEnumFromAllGames';
 import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum';
 import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types';
-import type {SimpleGameTemplate}                                                    from '../game/SimpleGame.template';
+import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate, SimpleGameTemplate} from '../game/SimpleGame.template';
 
 /**
  * An abstract template builder with a lot of utilities methods
@@ -135,21 +136,38 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     /**
      * Create a game template (without any validations).
-     * It imply that has both {@link PartialGameEnum.isInSuperMarioMaker1 SMM1} & {@link PartialGameEnum.isInSuperMarioMaker2 SMM2}
-     * properties that returns a number.
+     * It implies that has either
+     * <ol>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_2 SMM2}</li>
+     * </ol>
+     * or
+     * <ol>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1}</li>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_2 SMM2}</li>
+     * </ol>
+     * properties that returns a {@link boolean}.
      *
-     * @protected
-     * @see PartialGameEnum
+     * @see PartialGameEnumFrom1And2
+     * @see PartialGameEnumFromAllGames
      */
     protected _createGameTemplate(): SimpleGameTemplate {
-        return AbstractTemplateBuilder.__createGameTemplate(this._headersIndexMap as unknown as PartialGameEnum, this._content,);
+        return AbstractTemplateBuilder.__createGameTemplate(this._headersIndexMap as unknown as | PartialGameEnumFrom1And2 | PartialGameEnumFromAllGames, this._content,);
     }
 
-    private static __createGameTemplate<ARRAY extends any[], >(headers: PartialGameEnum, content: ARRAY,): SimpleGameTemplate {
-        return {
-            1: this.__getContent(content, headers.isInSuperMarioMaker1),
-            2: this.__getContent(content, headers.isInSuperMarioMaker2),
-        };
+    private static __createGameTemplate<ARRAY extends any[], >(headers: | PartialGameEnumFrom1And2 | PartialGameEnumFromAllGames, content: ARRAY,): SimpleGameTemplate
+    private static __createGameTemplate(headers: | PartialGameEnumFrom1And2 | PartialGameEnumFromAllGames, content: any[],): | SimpleGameFrom1And2Template | SimpleGameFromAllGamesTemplate {
+        return 'isInSuperMarioMaker1And3DS' in headers
+            ? {
+                '1And3DS': this.__getContent(content, headers.isInSuperMarioMaker1And3DS),
+                2: this.__getContent(content, headers.isInSuperMarioMaker2),
+            }
+            : {
+                1: this.__getContent(content, headers.isInSuperMarioMaker1),
+                '3DS': this.__getContent(content, headers.isInSuperMarioMakerFor3DS),
+                2: this.__getContent(content, headers.isInSuperMarioMaker2),
+            };
     }
 
     //endregion -------------------- Game methods --------------------

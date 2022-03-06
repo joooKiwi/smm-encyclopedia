@@ -1,4 +1,4 @@
-isInSuperMarioMaker1,isInSuperMarioMaker2,reference,nightDesertWindDirection,nightDesertWindFrequency
+isInSuperMarioMaker1And3DS,isInSuperMarioMaker2,reference,nightDesertWindDirection,nightDesertWindFrequency
 TRUE,TRUE,SMB,←,periodic
 TRUE,TRUE,SMB3,→,periodic
 TRUE,TRUE,SMW,↔,periodic

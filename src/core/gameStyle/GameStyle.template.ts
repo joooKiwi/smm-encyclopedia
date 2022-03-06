@@ -1,6 +1,6 @@
-import type {SimpleGameTemplate}                                                 from '../game/SimpleGame.template';
 import type {PossibleAcronym}                                                    from './GameStyles.types';
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types';
+import type {SimpleGameFrom1And2Template}                                        from '../game/SimpleGame.template';
 
 /**
  * @template
@@ -8,7 +8,7 @@ import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency}
 export interface GameStyleTemplate {
 
     isIn: {
-        game: SimpleGameTemplate
+        game: SimpleGameFrom1And2Template
     }
 
     reference: PossibleAcronym

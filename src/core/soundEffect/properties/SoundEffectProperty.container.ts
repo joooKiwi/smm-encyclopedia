@@ -1,8 +1,6 @@
+import type {GameProperty}                     from '../../entity/properties/GameProperty';
 import type {PlayerSoundEffectTriggerProperty} from './PlayerSoundEffectTriggerProperty';
 import type {SoundEffectProperty}              from './SoundEffectProperty';
-
-import {GamePropertyContainer}                     from '../../entity/properties/GameProperty.container';
-import {PlayerSoundEffectTriggerPropertyContainer} from './PlayerSoundEffectTriggerProperty.container';
 
 export class SoundEffectPropertyContainer
     implements SoundEffectProperty {
@@ -14,12 +12,9 @@ export class SoundEffectPropertyContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
-                       onJumpAfterLanding: boolean, onTurnAroundAfterBeingAtFullSpeed: boolean, onCrouch: boolean, after3SecondsOfNonMovementRepeatedly: boolean,
-                       onPowerUpCollected: boolean, whenGettingIntoAEntity: boolean,
-                       atSpawn: boolean, onDamageTaken: boolean, whenLosingALife: boolean,) {
-        this.#gameContainer = GamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
-        this.#playerSoundEffectTriggerContainer = PlayerSoundEffectTriggerPropertyContainer.get(onJumpAfterLanding, onTurnAroundAfterBeingAtFullSpeed, onCrouch, after3SecondsOfNonMovementRepeatedly, onPowerUpCollected, whenGettingIntoAEntity, atSpawn, onDamageTaken, whenLosingALife,);
+    public constructor(game: GameProperty, playerSoundEffectTrigger: PlayerSoundEffectTriggerProperty,) {
+        this.#gameContainer = game;
+        this.#playerSoundEffectTriggerContainer = playerSoundEffectTrigger;
     }
 
     //region -------------------- Game properties --------------------

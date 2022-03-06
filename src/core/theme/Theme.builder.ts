@@ -23,7 +23,7 @@ export class ThemeBuilder
     implements Builder<CourseAndWorldTheme> {
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
-        super(templateBuilder, ({isIn: {game: {1: isInSMM1,},},},) => isInSMM1 ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
+        super(templateBuilder, ({isIn: {game: {'1And3DS': isInSMM1And3DS,},},},) => isInSMM1And3DS ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
     protected get _static() {
@@ -36,7 +36,7 @@ export class ThemeBuilder
 
         return new CourseThemeContainer(
             name,
-            GamePropertyContainer.get(gameTemplate['1'], gameTemplate['2'],),
+            GamePropertyContainer.get(gameTemplate['1And3DS'], gameTemplate['2'],),
             new DelayedObjectHolderContainer(() => ThemeBuilder.__whereEntityIs(name.english)),
             new DelayedObjectHolderContainer(() => ThemeBuilder.__whereNightEffectIs(name.english, template.effect,)),
         );
