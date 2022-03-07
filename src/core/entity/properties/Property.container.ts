@@ -1,45 +1,35 @@
-import type {EditorLimitReceived, GeneralLimitReceived, OtherLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './limit/LimitProperty.types';
-import type {GameProperty}                                                                                                 from './GameProperty';
-import type {GameStyleProperty}                                                                                            from './GameStyleProperty';
-import type {PossibleLimitProperty, Property}                                                                              from './Property';
-import type {ThemeProperty}                                                                                                from './ThemeProperty';
-import type {TimeProperty}                                                                                                 from './TimeProperty';
-
-import {GamePropertyContainer}      from './GameProperty.container';
-import {GameStylePropertyContainer} from './GameStyleProperty.container';
-import {ThemePropertyContainer}     from './ThemeProperty.container';
-import {TimePropertyContainer}      from './TimeProperty.container';
-import {LimitPropertyContainer}     from './limit/LimitProperty.container';
+import type {GameProperty}                    from './GameProperty';
+import type {GameStyleProperty}               from './GameStyleProperty';
+import type {ObjectHolder}                    from '../../../util/holder/ObjectHolder';
+import type {PossibleLimitProperty, Property} from './Property';
+import type {ThemeProperty}                   from './ThemeProperty';
+import type {TimeProperty}                    from './TimeProperty';
 
 export class PropertyContainer
     implements Property {
 
     //region -------------------- Attributes --------------------
 
-    readonly #gameContainer: GameProperty;
-    readonly #gameStyleContainer: GameStyleProperty;
-    readonly #themeContainer: ThemeProperty;
-    readonly #timeContainer: TimeProperty;
-    readonly #limitContainer: PossibleLimitProperty;
+    readonly #gameContainer;
+    readonly #gameStyleContainer;
+    readonly #themeContainer;
+    readonly #timeContainer;
+    readonly #limitContainer;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,
-                       isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: | boolean | null,
-                       isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
-                       isInDayTheme: boolean, isInNightTheme: | boolean | null,
-                       editorLimit: EditorLimitReceived, generalLimit: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, otherLimit: OtherLimitReceived,) {
-        this.#gameContainer = GamePropertyContainer.get(isInSuperMarioMaker1, isInSuperMarioMaker2,);
-        this.#gameStyleContainer = GameStylePropertyContainer.get(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,);
-        this.#themeContainer = ThemePropertyContainer.get(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,);
-        this.#timeContainer = TimePropertyContainer.get(isInDayTheme, isInNightTheme,);
-        this.#limitContainer = LimitPropertyContainer.get(editorLimit, generalLimit, powerUpLimit, projectileLimit, otherLimit,) as PossibleLimitProperty;
+    public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<PossibleLimitProperty>,) {
+        this.#gameContainer = game;
+        this.#gameStyleContainer = gameStyle;
+        this.#themeContainer = theme;
+        this.#timeContainer = time;
+        this.#limitContainer = limit;
     }
 
     //region -------------------- Game properties --------------------
 
     public get gameContainer() {
-        return this.#gameContainer;
+        return this.#gameContainer.get;
     }
 
     public get isInSuperMarioMaker1() {
@@ -58,7 +48,7 @@ export class PropertyContainer
     //region -------------------- Game style properties --------------------
 
     public get gameStyleContainer() {
-        return this.#gameStyleContainer;
+        return this.#gameStyleContainer.get;
     }
 
     public get isInSuperMarioBrosStyle() {
@@ -85,7 +75,7 @@ export class PropertyContainer
     //region -------------------- Theme properties --------------------
 
     public get themeContainer() {
-        return this.#themeContainer;
+        return this.#themeContainer.get;
     }
 
     public get isInGroundTheme() {
@@ -132,7 +122,7 @@ export class PropertyContainer
     //region -------------------- Time properties --------------------
 
     public get timeContainer() {
-        return this.#timeContainer;
+        return this.#timeContainer.get;
     }
 
     public get isInDayTheme() {
@@ -147,7 +137,7 @@ export class PropertyContainer
     //region -------------------- Limit properties --------------------
 
     public get limitContainer() {
-        return this.#limitContainer;
+        return this.#limitContainer.get;
     }
 
     //region -------------------- Editor limit --------------------

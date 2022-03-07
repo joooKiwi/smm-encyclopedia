@@ -2,7 +2,8 @@ import type {EveryLanguages} from '../EveryLanguages';
 import type {Games}          from '../../core/game/Games';
 
 export type AllGameReceived = 'all';
-export type PossibleGameReceived = | Games | AllGameReceived;
+export type NotSMM2GameReceived = 'notSMM2';
+export type PossibleGameReceived = | Games | NotSMM2GameReceived | AllGameReceived;
 
 /**
  * The possible way to tell if the {@link Name} will be a complete one based

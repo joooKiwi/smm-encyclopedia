@@ -1,12 +1,15 @@
-import type {Builder}                                                                                                                                from '../../util/builder/Builder';
-import type {CallbackToGetEntityLimit, EditorLimitReceived, GeneralLimitReceived, OtherLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived} from './properties/limit/LimitProperty.types';
-import type {Entity, PossibleOtherEntities}                                                                                                          from './Entity';
-import type {EntityCategory}                                                                                                                         from '../entityCategory/EntityCategory';
-import type {EntityLink}                                                                                                                             from './loader.types';
-import type {EntityTemplate}                                                                                                                         from './Entity.template';
-import type {Name}                                                                                                                                   from '../../lang/name/Name';
-import type {PossibleEnglishName}                                                                                                                    from './Entities.types';
+import type {Builder}                                              from '../../util/builder/Builder';
+import type {CallbackToGetEntityLimit}                             from './properties/limit/LimitProperty.types';
+import type {Entity, PossibleOtherEntities}                        from './Entity';
+import type {EntityCategory}                                       from '../entityCategory/EntityCategory';
+import type {EntityLink}                                           from './loader.types';
+import type {EntityTemplate}                                       from './Entity.template';
+import type {Name}                                                 from '../../lang/name/Name';
+import type {PossibleEnglishName}                                  from './Entities.types';
+import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../lang/name/Name.builder.types';
+import type {PossibleLimitProperty}                                from './properties/Property';
 
+import {DelayedObjectHolderContainer}  from '../../util/holder/DelayedObjectHolder.container';
 import {EntityCategories}              from '../entityCategory/EntityCategories';
 import {EntityContainer}               from './Entity.container';
 import {EntityLimits}                  from '../entityLimit/EntityLimits';
@@ -18,9 +21,14 @@ import {EmptyEntityCategory}           from '../entityCategory/EmptyEntityCatego
 import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
+import {GamePropertyContainer}         from './properties/GameProperty.container';
 import {Games}                         from '../game/Games';
+import {GameStylePropertyContainer}    from './properties/GameStyleProperty.container';
+import {LimitPropertyContainer}        from './properties/limit/LimitProperty.container';
 import {PropertyContainer}             from './properties/Property.container';
 import {TemplateWithNameBuilder}       from '../_template/TemplateWithName.builder';
+import {ThemePropertyContainer}        from './properties/ThemeProperty.container';
+import {TimePropertyContainer}         from './properties/TimeProperty.container';
 
 export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
@@ -37,13 +45,17 @@ export class EntityBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(template: EntityTemplate,) {
-        super(template, ({properties: {isIn: {game: {1: isInSMM1, 2: isInSMM2,},},},},) => {
-            return isInSMM1 && !isInSMM2
+        super(template, (template,) => EntityBuilder.__getGames(template,), false,);
+    }
+
+    private static __getGames({properties: {isIn: {game: {1: isInSMM1, '3DS': isInSMM3DS, 2: isInSMM2,},},},}: EntityTemplate,): OriginalPossibleGameReceived {
+        return isInSMM1 && isInSMM3DS
+            ? isInSMM2
+                ? 'all'
+                : 'notSMM2'
+            : isInSMM1 && !isInSMM2
                 ? Games.SUPER_MARIO_MAKER_1
-                : !isInSMM1 && isInSMM2
-                    ? Games.SUPER_MARIO_MAKER_2
-                    : 'all';
-        }, false,);
+                : Games.SUPER_MARIO_MAKER_2;
     }
 
     //region -------------------- Build helper methods --------------------
@@ -62,34 +74,28 @@ export class EntityBuilder
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
-    private __createIsInPropertyAttributes() {
-        const {game, style, theme, time,} = this.template.properties.isIn;
-
-        return [
-            game['1'], game['2'],
-            style.superMarioBros, style.superMarioBros3, style.superMarioWorld, style.newSuperMarioBrosU, style.superMario3DWorld,
-            theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,
-            time.day, time.night,
-        ] as const;
-    }
-
-    private __createLimitPropertyAttributes(): readonly [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, OtherLimitReceived,] {
+    private __createLimitPropertyAttributes(): PossibleLimitProperty {
         const limitsTemplate = this.template.properties.limits;
         const {isInGEL: {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,}, isInPEL: PELTemplate, isInPJL: PJLTemplate, otherLimit: otherLimitTemplate,} = limitsTemplate.whilePlaying;
 
-        return [
+        return LimitPropertyContainer.get(
             [limitsTemplate.editor, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
             superGlobalGELTemplate == null ? GELTemplate : [GELTemplate, superGlobalGELTemplate,],
             PELTemplate,
             PJLTemplate,
             [otherLimitTemplate.value, otherLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
-        ];
+        ) as PossibleLimitProperty;
     }
 
     private __createProperty() {
+        const {game, style: gameStyle, theme, time,} = this.template.properties.isIn;
+
         return new PropertyContainer(
-            ...this.__createIsInPropertyAttributes(),
-            ...this.__createLimitPropertyAttributes(),
+            new DelayedObjectHolderContainer(() => GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
+            new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
+            new DelayedObjectHolderContainer(() => ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
+            new DelayedObjectHolderContainer(() => TimePropertyContainer.get(time.day, time.night,)),
+            new DelayedObjectHolderContainer(() => this.__createLimitPropertyAttributes()),
         );
     }
 
