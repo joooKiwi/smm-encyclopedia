@@ -30,10 +30,29 @@ import {TemplateWithNameBuilder}       from '../_template/TemplateWithName.build
 import {ThemePropertyContainer}        from './properties/ThemeProperty.container';
 import {TimePropertyContainer}         from './properties/TimeProperty.container';
 
+/**
+ * Create an {@link Entity} from a {@link EntityTemplate template} received.
+ *
+ * @classWithDynamicImport
+ * @see ExclusiveSMM1EntityContainer
+ * @see ExclusiveSM3DWEntityContainer
+ * @see ExclusiveSMM2EntityContainer
+ * @see EntityContainer
+ */
 export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
     implements Builder<Entity> {
 
+    //region -------------------- Other references --------------------
+
+    static #entities: typeof Entities;
+    static #entityLimits: typeof EntityLimits;
+    static #emptyEntity: typeof EmptyEntity;
+    static #themePropertyContainer: typeof ThemePropertyContainer;
+    static #timePropertyContainer: typeof TimePropertyContainer;
+    static #limitPropertyContainer: typeof LimitPropertyContainer;
+
+    //endregion -------------------- Other references --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
@@ -48,6 +67,13 @@ export class EntityBuilder
         super(template, (template,) => EntityBuilder.__getGames(template,), false,);
     }
 
+    /**
+     * Get the game depending on the {@link EntityTemplate entity template}.
+     * By retrieving, the template, it returns 'all', 'not in SMM2', {@link Games.SUPER_MARIO_MAKER_1 SMM1} or {@link Games.SUPER_MARIO_MAKER_2 SMM2}.
+     *
+     *
+     * @param template the template destructured to get only the games
+     */
     private static __getGames({properties: {isIn: {game: {1: isInSMM1, '3DS': isInSMM3DS, 2: isInSMM2,},},},}: EntityTemplate,): OriginalPossibleGameReceived {
         return isInSMM1 && isInSMM3DS
             ? isInSMM2
@@ -66,6 +92,10 @@ export class EntityBuilder
 
     //region -------------------- Entity category helper methods --------------------
 
+    /**
+     * Get the entity category reference from the {@link EntityTemplate template}
+     * or return an {@link EmptyEntityCategory empty category}.
+     */
     private __getEntityCategory(): EntityCategory {
         return EntityCategories.getValue(this.template.categoryInTheEditor)?.reference
             ?? EmptyEntityCategory.get;
@@ -74,6 +104,11 @@ export class EntityBuilder
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
+    /**
+     * Get the {@link LimitProperty limit property} from the {@link EntityTemplate template}
+     *
+     * @methodWithDynamicImport
+     */
     private __createLimitPropertyAttributes(): PossibleLimitProperty {
         const limitsTemplate = this.template.properties.limits;
         const {isInGEL: {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,}, isInPEL: PELTemplate, isInPJL: PJLTemplate, otherLimit: otherLimitTemplate,} = limitsTemplate.whilePlaying;
@@ -87,6 +122,12 @@ export class EntityBuilder
         ) as PossibleLimitProperty;
     }
 
+    /**
+     * Create the {@link Property property} from the {@link EntityTemplate template}
+     * with the games, game style, theme, time & limit.
+     *
+     * @methodWithDynamicImport
+     */
     private __createProperty() {
         const {game, style: gameStyle, theme, time,} = this.template.properties.isIn;
 
@@ -102,6 +143,11 @@ export class EntityBuilder
     //endregion -------------------- Property helper methods --------------------
     //region -------------------- Entity references helper methods --------------------
 
+    /**
+     * Create every entity references possible applicable to a single entity.
+     * It gets the single references (game, game style, theme & time),
+     * but it can also get every reference from the {@link EntityTemplate template}.
+     */
     private __createReferences() {
         const reference = this.template.properties.reference;
 
@@ -159,6 +205,13 @@ export class EntityBuilder
             : () => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference);
     }
 
+    /**
+     * Create an entity {@link ObjectHolder} with returning type 1 or 2 entity.
+     * It can contain 'this' that will return itself in the callback.
+     *
+     * @param link the entity link or null
+     * @methodWithDynamicImport
+     */
     private __createEntityCallbackFor(link: | EntityLink | null,): () => PossibleOtherEntities {
         return link === null
             ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
