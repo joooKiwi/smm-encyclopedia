@@ -116,7 +116,7 @@ class TemplateBuilder
     public build(): GameStyleTemplate {
         return {
             isIn: {
-                game: this._createGameTemplate(),
+                game: this._createGameTemplateFrom1And2(),
             },
             reference: this._getContent(this._headersIndexMap.reference),
             nightDesertWind: {

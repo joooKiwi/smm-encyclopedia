@@ -1,9 +1,11 @@
-import type {EnumArray}    from '../../game/Games.types';
-import type {ExtendedMap}  from '../../../util/extended/ExtendedMap';
-import type {GameProperty} from './GameProperty';
+import type {EnumArray}     from '../../game/Games.types';
+import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
+import type {GameProperty}  from './GameProperty';
+import type {GameStructure} from '../../game/GameStructure';
 
-import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import type {Games}           from '../../game/Games';
+import {ExtendedMapContainer}   from '../../../util/extended/ExtendedMap.container';
+import type {Games}             from '../../game/Games';
+import {GameStructureContainer} from '../../game/GameStructure.container';
 
 /**
  * @multiton
@@ -19,16 +21,12 @@ export class GamePropertyContainer
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GamePropertyContainer> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<Games, boolean>;
-    readonly #isInSuperMarioMaker1;
-    readonly #isInSuperMarioMakerFor3DS;
-    readonly #isInSuperMarioMaker2;
+    readonly #structure;
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor([isInSuperMarioMaker1, isInSuperMarioMakerFor3DS, isInSuperMarioMaker2,]: ArgumentsReceived,) {
-        this.#isInSuperMarioMaker1 = isInSuperMarioMaker1;
-        this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS;
-        this.#isInSuperMarioMaker2 = isInSuperMarioMaker2;
+    private constructor(structure: GameStructure<boolean, boolean, boolean>,) {
+        this.#structure = structure;
     }
 
     //region -------------------- Getter methods --------------------
@@ -39,15 +37,15 @@ export class GamePropertyContainer
 
 
     public get isInSuperMarioMaker1() {
-        return this.#isInSuperMarioMaker1;
+        return this.#structure.superMarioMaker;
     }
 
     public get isInSuperMarioMakerFor3DS() {
-        return this.#isInSuperMarioMakerFor3DS;
+        return this.#structure.superMarioMakerForNintendo3DS;
     }
 
     public get isInSuperMarioMaker2() {
-        return this.#isInSuperMarioMaker2;
+        return this.#structure.superMarioMaker2;
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -73,7 +71,7 @@ export class GamePropertyContainer
             return this.get(argumentsReceived[0], argumentsReceived[0], argumentsReceived[1],);
 
         return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
-            .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))
+            .isNotMet(map => map.set(argumentsReceived, new this(GameStructureContainer.get(...argumentsReceived),)))
             .get(argumentsReceived);
     }
 

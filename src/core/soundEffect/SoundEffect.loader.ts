@@ -166,7 +166,7 @@ class TemplateBuilder
         return {
             properties: {
                 isIn: {
-                    game: this._createGameTemplate(),
+                    game: this._createGameTemplateFrom1And2(),
 
                     trigger: {
                         player: {

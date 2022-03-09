@@ -1,12 +1,4 @@
 /**
- * @template
- */
-export type SimpleGameTemplate<_1 extends boolean = boolean, _3DS_OR_2 extends boolean = boolean, _2 extends boolean = never, >
-    = _2 extends never
-    ? SimpleGameFrom1And2Template<_1, _3DS_OR_2>
-    : SimpleGameFromAllGamesTemplate<_1, _3DS_OR_2, _2>;
-
-/**
  * A game template with only 2 arguments
  * <ol>
  *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
@@ -15,11 +7,11 @@ export type SimpleGameTemplate<_1 extends boolean = boolean, _3DS_OR_2 extends b
  *
  * @template
  */
-export interface SimpleGameFrom1And2Template<_1 extends boolean = boolean, _2 extends boolean = boolean, > {
+export interface SimpleGameFrom1And2Template<SMM1AND3DS, SMM2, > {
 
-    '1And3DS': _1
+    '1And3DS': SMM1AND3DS
 
-    2: _2
+    2: SMM2
 
 }
 
@@ -33,12 +25,12 @@ export interface SimpleGameFrom1And2Template<_1 extends boolean = boolean, _2 ex
  *
  * @template
  */
-export interface SimpleGameFromAllGamesTemplate<_1 extends boolean = boolean, _3DS extends boolean = boolean, _2 extends boolean = boolean, > {
+export interface SimpleGameFromAllGamesTemplate<SMM1, SMM3DS, SMM2, > {
 
-    1: _1
+    1: SMM1
 
-    '3DS': _3DS
+    '3DS': SMM3DS
 
-    2: _2
+    2: SMM2
 
 }

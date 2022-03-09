@@ -8,7 +8,7 @@ import type {SimpleGameFrom1And2Template}                                       
 export interface GameStyleTemplate {
 
     isIn: {
-        game: SimpleGameFrom1And2Template
+        game: SimpleGameFrom1And2Template<boolean, boolean>
     }
 
     reference: PossibleAcronym

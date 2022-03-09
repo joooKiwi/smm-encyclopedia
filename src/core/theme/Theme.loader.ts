@@ -135,7 +135,7 @@ class TemplateBuilder
     public build(): ThemeTemplate {
         return {
             isIn: {
-                game: this._createGameTemplate(),
+                game: this._createGameTemplateFrom1And2(),
                 theme: {
                     course: this._getContent(this._headersIndexMap.isInCourseTheme),
                     world: this._getContent(this._headersIndexMap.isInWorldTheme),

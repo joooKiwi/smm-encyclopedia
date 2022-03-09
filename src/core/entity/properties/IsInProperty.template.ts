@@ -8,7 +8,7 @@ import type {SimpleTimeTemplate}       from '../../time/SimpleTime.template';
  */
 export interface IsInPropertyTemplate {
 
-    game: SimpleGameFromAllGamesTemplate
+    game: SimpleGameFromAllGamesTemplate<boolean, boolean, boolean>
 
     style: SimpleGameStyleTemplate
 

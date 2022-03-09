@@ -1,12 +1,12 @@
 import type {Builder}                                                               from '../../util/builder/Builder';
-import type {EntityNameTemplate}                                                              from '../entity/Entity.template';
-import type {HasAReferenceInMarioMaker}                                                       from '../entityTypes';
+import type {EntityNameTemplate}                                                    from '../entity/Entity.template';
+import type {HasAReferenceInMarioMaker}                                             from '../entityTypes';
 import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template';
 import type {PartialGameEnumFrom1And2}                                              from './PartialGameEnumFrom1And2';
 import type {PartialGameEnumFromAllGames}                                           from './PartialGameEnumFromAllGames';
 import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum';
 import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types';
-import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate, SimpleGameTemplate} from '../game/SimpleGame.template';
+import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}           from '../game/SimpleGame.template';
 
 /**
  * An abstract template builder with a lot of utilities methods
@@ -136,12 +136,26 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     /**
      * Create a game template (without any validations).
-     * It implies that has either
+     * It implies that has
      * <ol>
      *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
      *     <li>{@link Games.SUPER_MARIO_MAKER_2 SMM2}</li>
      * </ol>
-     * or
+     * properties that returns a {@link boolean}.
+     *
+     * @see PartialGameEnumFrom1And2
+     */
+    protected _createGameTemplateFrom1And2(): SimpleGameFrom1And2Template<boolean, boolean> {
+        const headers = this._headersIndexMap as unknown as PartialGameEnumFrom1And2;
+        return {
+            '1And3DS': AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker1And3DS),
+            2: AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker2),
+        };
+    }
+
+    /**
+     * Create a game template (without any validations).
+     * It implies that has
      * <ol>
      *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1}</li>
      *     <li>{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
@@ -149,25 +163,15 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
      * </ol>
      * properties that returns a {@link boolean}.
      *
-     * @see PartialGameEnumFrom1And2
      * @see PartialGameEnumFromAllGames
      */
-    protected _createGameTemplate(): SimpleGameTemplate {
-        return AbstractTemplateBuilder.__createGameTemplate(this._headersIndexMap as unknown as | PartialGameEnumFrom1And2 | PartialGameEnumFromAllGames, this._content,);
-    }
-
-    private static __createGameTemplate<ARRAY extends any[], >(headers: | PartialGameEnumFrom1And2 | PartialGameEnumFromAllGames, content: ARRAY,): SimpleGameTemplate
-    private static __createGameTemplate(headers: | PartialGameEnumFrom1And2 | PartialGameEnumFromAllGames, content: any[],): | SimpleGameFrom1And2Template | SimpleGameFromAllGamesTemplate {
-        return 'isInSuperMarioMaker1And3DS' in headers
-            ? {
-                '1And3DS': this.__getContent(content, headers.isInSuperMarioMaker1And3DS),
-                2: this.__getContent(content, headers.isInSuperMarioMaker2),
-            }
-            : {
-                1: this.__getContent(content, headers.isInSuperMarioMaker1),
-                '3DS': this.__getContent(content, headers.isInSuperMarioMakerFor3DS),
-                2: this.__getContent(content, headers.isInSuperMarioMaker2),
-            };
+    protected _createGameTemplateFromAllGames(): SimpleGameFromAllGamesTemplate<boolean, boolean, boolean> {
+        const headers = this._headersIndexMap as unknown as PartialGameEnumFromAllGames;
+        return {
+            1: AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker1),
+            '3DS': AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMakerFor3DS),
+            2: AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker2),
+        };
     }
 
     //endregion -------------------- Game methods --------------------

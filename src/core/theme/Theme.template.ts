@@ -10,7 +10,7 @@ export interface ThemeTemplate
     extends TemplateWithNameTemplate<NameTemplate> {
 
     isIn: {
-        game: SimpleGameFrom1And2Template
+        game: SimpleGameFrom1And2Template<boolean, boolean>
         theme: {
             course: boolean
             world: boolean

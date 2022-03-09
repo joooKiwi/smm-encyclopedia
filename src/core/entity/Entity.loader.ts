@@ -574,7 +574,7 @@ class TemplateBuilder
                 //region ---------- Basic properties ----------
 
                 isIn: {//TODO change every theme, time & style to have a nullable boolean instead of just boolean or nullable boolean
-                    game: this._createGameTemplate(),
+                    game: this._createGameTemplateFromAllGames(),
                     style: gameStyleTemplate,
                     theme: {
                         ground: TemplateBuilder.__convertLinkToOnlyBoolean(groundLink),
