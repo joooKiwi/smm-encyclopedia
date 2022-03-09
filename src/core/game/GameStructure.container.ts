@@ -65,5 +65,5 @@ export class GameStructureContainer<SMM1, SMM3DS, SMM2, >
 
 }
 
-type ArgumentsReceived<_1 = any, _3DS = any, _2 = any, > = [smm1: _1, smm3ds: _3DS, smm2: _2,];
-type ArgumentsReceived_Simplified<_1 = any, _3DS = any, _2 = any, > = | [smm1And3DS: _1 & _3DS, smm2: _2,]
+type ArgumentsReceived<SMM1 = any, SMM3DS = any, SMM2 = any, > = readonly [smm1: SMM1, smm3ds: SMM3DS, smm2: SMM2,];
+type ArgumentsReceived_Simplified<SMM1AND3DS = any, SMM2 = any, > = readonly [smm1And3DS: SMM1AND3DS, smm2: SMM2,];

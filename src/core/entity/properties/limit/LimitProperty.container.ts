@@ -7,6 +7,7 @@ import {EntityLimits}         from '../../../entityLimit/EntityLimits';
 import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
 
 /**
+ * @multiton
  * @provider
  */
 export class LimitPropertyContainer
