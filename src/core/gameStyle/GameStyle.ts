@@ -1,8 +1,7 @@
-import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
-import {PossibleIsAvailableFromTheStart}       from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
-import type {Entity}                           from '../entity/Entity';
-import type {GameProperty}                     from '../entity/properties/GameProperty';
-import type {NameTrait}                        from '../../lang/name/NameTrait';
+import type {ClassThatIsAvailableFromTheStart, InferredClassThatIsAvailableFromTheStartBySMM1, PossibleIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {Entity}                                                                                                            from '../entity/Entity';
+import type {GameProperty}                                                                                                      from '../entity/properties/GameProperty';
+import type {NameTrait}                                                                                                         from '../../lang/name/NameTrait';
 
 export interface GameStyle<IS_AVAILABLE_FROM_THE_START extends PossibleClassThatIsAvailableFromTheStart = PossibleClassThatIsAvailableFromTheStart, >
     extends NameTrait<string>, GameProperty,
@@ -26,6 +25,4 @@ export type PossibleNightDesertWindTranslationKey = `${| '→' | '←' | '↔'} 
  * But the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM3DS SMM3DS attribute} will be a boolean
  * if the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM1 SMM1 attribute} is also a boolean, but null in the other case.
  */
-export type PossibleClassThatIsAvailableFromTheStart<T extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > =
-    T extends null ? ClassThatIsAvailableFromTheStart<T, null, true>
-        : ClassThatIsAvailableFromTheStart<T, true, true>;
+export type PossibleClassThatIsAvailableFromTheStart<T extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > = InferredClassThatIsAvailableFromTheStartBySMM1<T>;
