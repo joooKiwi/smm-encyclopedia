@@ -39,7 +39,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     private __testCategory(category: EntityCategory,): CATEGORY
     private __testCategory(category: EntityCategory,) {
-        return window.IS_IN_PRODUCTION
+        return process.env.NODE_ENV === 'production'
             ? category
             : this._testCategory(category);
     }
@@ -50,7 +50,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     private __testProperty(property: Property,): PROPERTY
     private __testProperty(property: Property,) {
-        return window.IS_IN_PRODUCTION
+        return process.env.NODE_ENV === 'production'
             ? property
             : this._testProperty(property);
     }
