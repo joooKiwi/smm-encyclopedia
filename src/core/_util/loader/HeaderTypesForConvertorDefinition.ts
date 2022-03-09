@@ -71,6 +71,8 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleLimitsNames(): ValueOrStringConstant<EveryPossibleName_EntityLimit>
 
+    get everyLimitsNames(): ValueOrStringConstant<EveryEnglishName_EntityLimit>
+
     get everyLimitsNamesOrUnknown(): ValueOrStringConstant<EveryEnglishNameOrUnknown_EntityLimit>
 
     //endregion -------------------- Entity limit --------------------
@@ -155,6 +157,7 @@ export type EveryPossibleName_EntityCategory = readonly PossibleEnglishName_Enti
 export type EveryPossibleAcronym_EntityLimit = readonly (| PossibleAcronym_EntityLimit | PossibleAlternativeAcronym_EntityLimit)[];
 export type EveryAlternativeAcronym_EntityLimit = readonly PossibleAlternativeAcronym_EntityLimit[];
 export type EveryPossibleName_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit)[];
+export type EveryEnglishName_EntityLimit = readonly PossibleEnglishName_EntityLimit[];
 export type EveryEnglishNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | UnknownCharacter)[];
 
 export type EveryPossibleEnglishName_EntityLimitType = EnumArray_EnglishName_EntityLimitType;

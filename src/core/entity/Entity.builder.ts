@@ -1,36 +1,45 @@
-import type {Builder}                                              from '../../util/builder/Builder';
-import type {CallbackToGetEntityLimit}                             from './properties/limit/LimitProperty.types';
-import type {Entity, PossibleOtherEntities}                        from './Entity';
-import type {EntityCategory}                                       from '../entityCategory/EntityCategory';
-import type {EntityLink}                                           from './loader.types';
-import type {EntityTemplate}                                       from './Entity.template';
-import type {Name}                                                 from '../../lang/name/Name';
-import type {ObjectHolder}                                         from '../../util/holder/ObjectHolder';
-import type {PossibleEnglishName}                                  from './Entities.types';
-import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../lang/name/Name.builder.types';
-import type {PossibleLimitProperty}                                from './properties/Property';
+import type {Builder}                                                                         from '../../util/builder/Builder';
+import type {Entity, PossibleOtherEntities}                                                   from './Entity';
+import type {EntityCategory}                                                                  from '../entityCategory/EntityCategory';
+import type {EntityLink}                                                                      from './loader.types';
+import type {EntityTemplate}                                                                  from './Entity.template';
+import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from './properties/limit/Loader.types';
+import type {LimitProperty}                                                                   from './properties/limit/LimitProperty';
+import type {LimitPropertyTemplate}                                                           from './properties/limit/LimitProperty.template';
+import type {Name}                                                                            from '../../lang/name/Name';
+import type {NotApplicableProperty, UnknownProperty}                                          from '../_properties/PropertyWithEverything';
+import type {ObjectHolder}                                                                    from '../../util/holder/ObjectHolder';
+import type {PossibleComment}                                                                 from '../_properties/ClassWithComment';
+import type {PossibleEnglishName}                                                             from './Entities.types';
+import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from '../entityLimit/EntityLimits.types';
+import type {PossibleGameReceived as OriginalPossibleGameReceived}                            from '../../lang/name/Name.builder.types';
+import type {PropertyThatCanBeUnknownWithComment}                                             from '../_properties/PropertyThatCanBeUnknownWithComment';
 
-import {DelayedObjectHolderContainer}  from '../../util/holder/DelayedObjectHolder.container';
-import {EntityCategories}              from '../entityCategory/EntityCategories';
-import {EntityContainer}               from './Entity.container';
-import type {EntityLimits}             from '../entityLimit/EntityLimits';
-import {EntityReferencesContainer}     from './properties/EntityReferences.container';
-import type {Entities}                 from './Entities';
-import type {EmptyEntity}              from './EmptyEntity';
-import {EmptyEntityCategory}           from '../entityCategory/EmptyEntityCategory';
-import {ExclusiveSM3DWEntityContainer} from './ExclusiveSM3DWEntity.container';
-import {ExclusiveSMM1EntityContainer}  from './ExclusiveSMM1Entity.container';
-import {ExclusiveSMM2EntityContainer}  from './ExclusiveSMM2Entity.container';
-import {GamePropertyContainer}         from './properties/GameProperty.container';
-import {Games}                         from '../game/Games';
-import {GameStylePropertyContainer}    from './properties/GameStyleProperty.container';
-import type {LimitPropertyContainer}   from './properties/limit/LimitProperty.container';
-import {ObjectHolders}                 from '../../util/holder/objectHolders';
-import {ObjectHolderContainer}         from '../../util/holder/ObjectHolder.container';
-import {PropertyContainer}             from './properties/Property.container';
-import {TemplateWithNameBuilder}       from '../_template/TemplateWithName.builder';
-import type {ThemePropertyContainer}   from './properties/ThemeProperty.container';
-import type {TimePropertyContainer}    from './properties/TimeProperty.container';
+import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
+import {EntityCategories}                               from '../entityCategory/EntityCategories';
+import {EntityContainer}                                from './Entity.container';
+import type {EntityLimits}                              from '../entityLimit/EntityLimits';
+import {EntityReferencesContainer}                      from './properties/EntityReferences.container';
+import type {Entities}                                  from './Entities';
+import type {EmptyEntity}                               from './EmptyEntity';
+import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory';
+import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container';
+import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container';
+import {ExclusiveSMM2EntityContainer}                   from './ExclusiveSMM2Entity.container';
+import {GamePropertyContainer}                          from './properties/GameProperty.container';
+import {Games}                                          from '../game/Games';
+import {GameStructureContainer}                         from '../game/GameStructure.container';
+import {GameStylePropertyContainer}                     from './properties/GameStyleProperty.container';
+import type {LimitPropertyContainer}                    from './properties/limit/LimitProperty.container';
+import {ObjectHolders}                                  from '../../util/holder/objectHolders';
+import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
+import {PropertyContainer}                              from '../_properties/Property.container';
+import {PropertyContainer as PropertyInstanceContainer} from './properties/Property.container';
+import {PropertyProvider}                               from '../_properties/PropertyProvider';
+import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container';
+import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
+import type {ThemePropertyContainer}                    from './properties/ThemeProperty.container';
+import type {TimePropertyContainer}                     from './properties/TimeProperty.container';
 
 /**
  * Create an {@link Entity} from a {@link EntityTemplate template} received.
@@ -58,7 +67,6 @@ export class EntityBuilder
     //region -------------------- Attributes --------------------
 
     static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EntityBuilder.__emptyEntity.get];
-    static readonly #GET_ENTITY_LIMIT_CALLBACK: CallbackToGetEntityLimit = entityLimit => this.__entityLimits.getValue(entityLimit);
 
     readonly #selfCallback = () => [this.build()] as const;
 
@@ -132,22 +140,60 @@ export class EntityBuilder
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
+    private static __whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
+    private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
+    private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
+        return this.__entityLimits.getValue(entityLimit);
+    }
+
+    private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
+    private static __getPropertyWhereEntityLimit<COMMENT extends PossibleComment, >(entityLimit: | PossibleEnglishName_EntityLimit | null, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
+    private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?', comment: PossibleComment = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
+        if (entityLimit === '?')
+            return PropertyContainer.UNKNOWN_CONTAINER;
+        if (entityLimit == null)
+            return PropertyContainer.NOT_APPLICABLE_CONTAINER;
+        return new PropertyThatCanBeUnknownWithCommentContainer(this.__whereEntityLimit(entityLimit), false, comment,);
+    }
+
     /**
      * Get the {@link LimitProperty limit property} from the {@link EntityTemplate template}
      *
+     * @param limitTemplate the limit template
      * @methodWithDynamicImport
      */
-    private __getLimitPropertyAttributes(): PossibleLimitProperty {
-        const limitsTemplate = this.template.properties.limits;
-        const {isInGEL: {value: GELTemplate, isSuperGlobal: superGlobalGELTemplate,}, isInPEL: PELTemplate, isInPJL: PJLTemplate, otherLimit: otherLimitTemplate,} = limitsTemplate.whilePlaying;
+    private static __getLimitPropertyAttributes(limitTemplate: LimitPropertyTemplate,): LimitProperty {
+        const {
+            editor: {'1And3DS': editorLimit_SMM1And3DS, 2: editorLimit_SMM2,},
+            whilePlaying: {
+                isInGEL: {value: generalLimit, isSuperGlobal: superGlobalGeneralLimit,},
+                isInPEL: powerUpLimit,
+                isInPJL: projectileLimit,
+                otherLimit: {value: otherLimit, comment: otherLimitComment,},
+            },
+        } = limitTemplate;
 
-        return EntityBuilder.__limitPropertyContainer.get(
-            [limitsTemplate.editor, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
-            superGlobalGELTemplate == null ? GELTemplate : [GELTemplate, superGlobalGELTemplate,],
-            PELTemplate,
-            PJLTemplate,
-            [otherLimitTemplate.value, otherLimitTemplate.comment, EntityBuilder.#GET_ENTITY_LIMIT_CALLBACK,],
-        ) as PossibleLimitProperty;
+        return this.__limitPropertyContainer.get(
+            [
+                GameStructureContainer.get(this.__whereEntityLimit(editorLimit_SMM1And3DS),
+                    this.__getPropertyWhereEntityLimit(editorLimit_SMM2),
+                ),
+                [
+                    PropertyProvider.newBooleanContainer<GeneralEntityLimitType, true, false, true>(generalLimit, true, false,),
+                    PropertyProvider.newBooleanContainer<GeneralGlobalEntityLimitType, true, false, true>(superGlobalGeneralLimit, true, false,),
+                ],
+                PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
+                PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
+                this.__getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
+            ],
+            [
+                [editorLimit_SMM1And3DS, editorLimit_SMM2,],
+                [generalLimit, superGlobalGeneralLimit,],
+                powerUpLimit,
+                projectileLimit,
+                [otherLimit, otherLimitComment,]
+            ]
+        );
     }
 
     /**
@@ -157,14 +203,14 @@ export class EntityBuilder
      * @methodWithDynamicImport
      */
     private __createProperty() {
-        const {game, style: gameStyle, theme, time,} = this.template.properties.isIn;
+        const {isIn: {game, style: gameStyle, theme, time,}, limits,} = this.template.properties;
 
-        return new PropertyContainer(
+        return new PropertyInstanceContainer(
             new ObjectHolderContainer(GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
             new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.__themePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.__timePropertyContainer.get(time.day, time.night,)),
-            new DelayedObjectHolderContainer(() => this.__getLimitPropertyAttributes()),
+            new DelayedObjectHolderContainer(() => EntityBuilder.__getLimitPropertyAttributes(limits)),
         );
     }
 

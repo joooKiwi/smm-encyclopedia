@@ -68,8 +68,9 @@ export class EmptyIsInProperty
     public readonly limitContainer = EmptyLimitProperty.get;
 
     public readonly editorLimitContainer = this.limitContainer.editorLimitContainer;
-    public readonly editorLimit = this.limitContainer.editorLimit;
-    public readonly isEditorLimitUnknown = this.limitContainer.isEditorLimitUnknown;
+    public readonly editorLimit_smm1And3ds = this.limitContainer.editorLimit_smm1And3ds;
+    public readonly editorLimit_smm2 = this.limitContainer.editorLimit_smm2;
+    public readonly isUnknown_editorLimit_smm2 = this.limitContainer.isUnknown_editorLimit_smm2;
 
     public readonly isInGeneralLimitWhilePlayingContainer = this.limitContainer.isInGeneralLimitWhilePlayingContainer;
     public readonly isInGeneralLimitWhilePlaying = this.limitContainer.isInGeneralLimitWhilePlaying;
@@ -81,16 +82,13 @@ export class EmptyIsInProperty
 
     public readonly isInPowerUpLimitWhilePlayingContainer = this.limitContainer.isInPowerUpLimitWhilePlayingContainer;
     public readonly isInPowerUpLimitWhilePlaying = this.limitContainer.isInPowerUpLimitWhilePlaying;
-    public readonly isInPowerUpLimitWhilePlayingComment = this.limitContainer.isInPowerUpLimitWhilePlayingComment;
 
     public readonly isInProjectileLimitWhilePlayingContainer = this.limitContainer.isInProjectileLimitWhilePlayingContainer;
     public readonly isInProjectileLimitWhilePlaying = this.limitContainer.isInProjectileLimitWhilePlaying;
-    public readonly isInProjectileLimitWhilePlayingUnknown = this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.limitContainer.isInProjectileLimitWhilePlayingComment;
 
     public readonly otherLimitWhilePlayingContainer = this.limitContainer.otherLimitWhilePlayingContainer;
     public readonly otherLimitWhilePlaying = this.limitContainer.otherLimitWhilePlaying;
-    public readonly isOtherLimitWhilePlayingUnknown = this.limitContainer.isOtherLimitWhilePlayingUnknown;
     public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------

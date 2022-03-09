@@ -1,4 +1,5 @@
-import type {OtherLimitCommentType, OtherLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, PowerUpEntityLimitType, ProjectileEntityLimitType} from './Loader.types';
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from './Loader.types';
+import type {SimpleGameFrom1And2Template}                                                                                                                                                                                                                from '../../../game/SimpleGame.template';
 
 /**
  * @template
@@ -7,12 +8,13 @@ export interface LimitPropertyTemplate {
 
     amount: LimitAmountType
 
-    editor: EditorLimitType
+    editor: SimpleGameFrom1And2Template<EditorLimitType_SMM1And3DS, EditorLimitType_SMM2>
 
     whilePlaying: {
         isInGEL: GeneralEntityLimitTemplate
         isInPEL: PowerUpEntityLimitType
         isInPJL: ProjectileEntityLimitType
+        isInRenderedObjectLimit: RenderedObjectLimitType
         otherLimit: OtherLimitTemplate
     }
 

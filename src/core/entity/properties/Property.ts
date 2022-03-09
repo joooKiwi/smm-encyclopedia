@@ -4,7 +4,7 @@ import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, Exc
 import type {AbstractExclusiveSMM2TimeProperty, ExclusiveSMM1TimeProperty, ExclusiveSMM2TimeProperty, ExclusiveSMM2TimePropertyInSM3DW, TimeProperty}                          from './TimeProperty';
 import type {AbstractExclusiveSMM2LimitProperty, ExclusiveSMM1LimitProperty, ExclusiveSMM2LimitProperty, ExclusiveSMM2LimitPropertyInSM3DW, LimitProperty}                     from './limit/LimitProperty';
 
-export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE extends GameStyleProperty = GameStyleProperty, THEME extends ThemeProperty = ThemeProperty, TIME extends TimeProperty = TimeProperty, LIMIT extends PossibleLimitProperty = PossibleLimitProperty, >
+export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE extends GameStyleProperty = GameStyleProperty, THEME extends ThemeProperty = ThemeProperty, TIME extends TimeProperty = TimeProperty, LIMIT extends LimitProperty = LimitProperty, >
     extends GameProperty<GAME['isInSuperMarioMaker1'], GAME['isInSuperMarioMakerFor3DS'], GAME['isInSuperMarioMaker2']>,
         GameStyleProperty<GAME_STYLE['isInSuperMarioBrosStyle'], GAME_STYLE['isInSuperMarioBros3Style'], GAME_STYLE['isInSuperMarioWorldStyle'], GAME_STYLE['isInNewSuperMarioBrosUStyle'], GAME_STYLE['isInSuperMario3DWorldStyle']>,
         ThemeProperty<THEME['isInGroundTheme'], THEME['isInUndergroundTheme'], THEME['isInUnderwaterTheme'], THEME['isInDesertTheme'], THEME['isInSnowTheme'], THEME['isInSkyTheme'], THEME['isInForestTheme'], THEME['isInGhostHouseTheme'], THEME['isInAirshipTheme'], THEME['isInCastleTheme']>,
@@ -23,8 +23,7 @@ export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE e
 
 }
 
-export type PossibleLimitProperty = | ExclusiveSMM1LimitProperty | AbstractExclusiveSMM2LimitProperty | PossibleSMM2LimitProperty;
-export type PossibleSMM2LimitProperty = | ExclusiveSMM2LimitPropertyInSM3DW | ExclusiveSMM2LimitProperty;
+type PossibleSMM2LimitProperty = | ExclusiveSMM2LimitPropertyInSM3DW | ExclusiveSMM2LimitProperty;
 
 export type ExclusiveSMM1Property
     = Property<ExclusiveSMM1GameProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM1TimeProperty, ExclusiveSMM1LimitProperty>

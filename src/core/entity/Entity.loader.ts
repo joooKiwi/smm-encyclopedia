@@ -3,7 +3,8 @@ import everyEntities from '../../resources/Entity.csv';
 import type {Builder}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../../util/builder/Builder';
 import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeStacked, CanBeThrownByALakitu, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanContainOrSpawnAKey, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanMakeASoundOutOfAMusicBlock, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from '../entityTypes';
 import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, EveryPossibleLinkedBehaviourAcronymArray, PossibleLocalCoopBehaviourType, PossibleOnlineCoopBehaviourType, PossibleOnlineVersusBehaviourType, PossibleSoloBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../behaviour/Loader.types';
-import type {EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                                                                                                                                                                                                                                                                                                                                                                                                            from './properties/limit/Loader.types';
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                                                                                                                                                                                                                                                                                                                                                                           from './properties/limit/Loader.types';
+import {RenderedObjectLimitType}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './properties/limit/Loader.types';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from './Entity';
 import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './loader.types';
 import type {DimensionTemplate, EntityTemplate, SimpleDimensionTemplate, SimpleDimensionTemplateDifferentInSM3DW}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './Entity.template';
@@ -108,7 +109,8 @@ enum Headers {
 
     limitAmount,
 
-    editorLimit,
+    editorLimit_SMM1And3DS,
+    editorLimit_SMM2,
 
     whilePlaying_isInGEL,
     whilePlaying_isInGEL_isSuperGlobal,
@@ -116,6 +118,8 @@ enum Headers {
     whilePlaying_isInPEL,
 
     whilePlaying_isInPJL,
+
+    whilePlaying_isInObjectRenderedLimit,
 
     whilePlaying_otherLimit, whilePlaying_otherLimit_comment,
 
@@ -278,7 +282,8 @@ type ExclusivePropertiesArray2 = [
 
     limitAmount: LimitAmountType,
 
-    editorLimit: EditorLimitType,
+    editorLimit_SMM1And3DS: EditorLimitType_SMM1And3DS,
+    editorLimit_SMM2: EditorLimitType_SMM2,
 
     whilePlaying_isInGEL: GeneralEntityLimitType,
     whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType,
@@ -286,6 +291,8 @@ type ExclusivePropertiesArray2 = [
     whilePlaying_isInPEL: PowerUpEntityLimitType,
 
     whilePlaying_isInPJL: ProjectileEntityLimitType,
+
+    whilePlaying_isInObjectRenderedLimit: RenderedObjectLimitType,
 
     whilePlaying_otherLimit: OtherLimitType,
     whilePlaying_otherLimit_comment: OtherLimitCommentType,
@@ -446,13 +453,15 @@ export class EntityLoader
                     'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)',
                     'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)',
                     'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
-                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNames, 'editorLimit_SMM1And3DS',)
+                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit_SMM2',)
                 .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
                     'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
                 .convertToNullableBooleanAnd(['Not on track', 'While holding an entity',], 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
                     'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)
+                .convertToNullableBooleanAnd(['Only when not dotted',], 'whilePlaying_isInObjectRenderedLimit',)
                 .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'whilePlaying_otherLimit',)
                 .convertToEmptyableStringAnd('Only falling coin', 'whilePlaying_otherLimit_comment',)
 
@@ -681,7 +690,10 @@ class TemplateBuilder
                 //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
                 limits: {
                     amount: this._getContent(this._headersIndexMap.limitAmount),
-                    editor: this._getContent(this._headersIndexMap.editorLimit),
+                    editor: {
+                        '1And3DS': this._getContent(this._headersIndexMap.editorLimit_SMM1And3DS),
+                        '2': this._getContent(this._headersIndexMap.editorLimit_SMM2),
+                    },
                     whilePlaying: {
                         isInGEL: {
                             value: this._getContent(this._headersIndexMap.whilePlaying_isInGEL),
@@ -689,6 +701,7 @@ class TemplateBuilder
                         },
                         isInPEL: this._getContent(this._headersIndexMap.whilePlaying_isInPEL),
                         isInPJL: this._getContent(this._headersIndexMap.whilePlaying_isInPJL),
+                        isInRenderedObjectLimit: this._getContent(this._headersIndexMap.whilePlaying_isInObjectRenderedLimit),
                         otherLimit: {
                             value: this._getContent(this._headersIndexMap.whilePlaying_otherLimit),
                             comment: this._getContent(this._headersIndexMap.whilePlaying_otherLimit_comment),

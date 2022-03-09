@@ -1,9 +1,10 @@
-import type {GameProperty}                    from './GameProperty';
-import type {GameStyleProperty}               from './GameStyleProperty';
-import type {ObjectHolder}                    from '../../../util/holder/ObjectHolder';
-import type {PossibleLimitProperty, Property} from './Property';
-import type {ThemeProperty}                   from './ThemeProperty';
-import type {TimeProperty}                    from './TimeProperty';
+import type {GameProperty}      from './GameProperty';
+import type {GameStyleProperty} from './GameStyleProperty';
+import type {LimitProperty}     from './limit/LimitProperty';
+import type {ObjectHolder}      from '../../../util/holder/ObjectHolder';
+import type {Property}          from './Property';
+import type {ThemeProperty}     from './ThemeProperty';
+import type {TimeProperty}      from './TimeProperty';
 
 export class PropertyContainer
     implements Property {
@@ -18,7 +19,7 @@ export class PropertyContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<PossibleLimitProperty>,) {
+    public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<LimitProperty>,) {
         this.#gameContainer = game;
         this.#gameStyleContainer = gameStyle;
         this.#themeContainer = theme;
@@ -146,12 +147,16 @@ export class PropertyContainer
         return this.limitContainer.editorLimitContainer;
     }
 
-    public get editorLimit() {
-        return this.limitContainer.editorLimit;
+    public get editorLimit_smm1And3ds() {
+        return this.limitContainer.editorLimit_smm1And3ds;
     }
 
-    public get isEditorLimitUnknown() {
-        return this.limitContainer.isEditorLimitUnknown;
+    public get editorLimit_smm2() {
+        return this.limitContainer.editorLimit_smm2;
+    }
+
+    public get isUnknown_editorLimit_smm2() {
+        return this.limitContainer.isUnknown_editorLimit_smm2;
     }
 
     //endregion -------------------- Editor limit --------------------
@@ -196,10 +201,6 @@ export class PropertyContainer
         return this.limitContainer.isInPowerUpLimitWhilePlaying;
     }
 
-    public get isInPowerUpLimitWhilePlayingComment() {
-        return this.limitContainer.isInPowerUpLimitWhilePlayingComment;
-    }
-
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
@@ -209,10 +210,6 @@ export class PropertyContainer
 
     public get isInProjectileLimitWhilePlaying() {
         return this.limitContainer.isInProjectileLimitWhilePlaying;
-    }
-
-    public get isInProjectileLimitWhilePlayingUnknown() {
-        return this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     }
 
     public get isInProjectileLimitWhilePlayingComment() {
@@ -228,10 +225,6 @@ export class PropertyContainer
 
     public get otherLimitWhilePlaying() {
         return this.limitContainer.otherLimitWhilePlaying;
-    }
-
-    public get isOtherLimitWhilePlayingUnknown() {
-        return this.limitContainer.isOtherLimitWhilePlayingUnknown;
     }
 
     public get otherLimitWhilePlayingComment() {

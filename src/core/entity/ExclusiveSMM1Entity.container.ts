@@ -41,7 +41,7 @@ export class ExclusiveSMM1EntityContainer
 
         assert(property.isInDayTheme && property.isInNightTheme == null, 'A SMM1 entity is never in the night theme, but always in the day theme.',);
 
-        assert(property.editorLimit === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
+        assert(property.editorLimit_smm2 === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
             && property.isInGeneralLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE && property.isInGlobalGeneralLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
             && property.isInPowerUpLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
             && property.isInProjectileLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
