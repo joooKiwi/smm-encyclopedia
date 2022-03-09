@@ -1,8 +1,9 @@
-import type {Entity}                                                                                     from '../entity/Entity';
-import type {GameProperty}                                                                               from '../entity/properties/GameProperty';
-import type {GameStyle, PossibleClassThatIsAvailableFromTheStart, PossibleNightDesertWindTranslationKey} from './GameStyle';
-import type {Name}                                                                                       from '../../lang/name/Name';
-import type {ObjectHolder, PossibleValueOnObjectHolder}                                                  from '../../util/holder/ObjectHolder';
+import type {ClassThatIsAvailableFromTheStart}                 from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {Entity}                                           from '../entity/Entity';
+import type {GameProperty}                                     from '../entity/properties/GameProperty';
+import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle';
+import type {Name}                                             from '../../lang/name/Name';
+import type {ObjectHolder, PossibleValueOnObjectHolder}        from '../../util/holder/ObjectHolder';
 
 import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
 
@@ -19,7 +20,7 @@ export class GameStyleContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, isInProperty: ObjectHolder<GameProperty>, isAvailableFromTheStart: ObjectHolder<PossibleClassThatIsAvailableFromTheStart>, entities: ObjectHolder<readonly Entity[]>, nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
+    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, isInProperty: ObjectHolder<GameProperty>, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>, entities: ObjectHolder<readonly Entity[]>, nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,);
         this.#isInPropertyHolder = isInProperty;
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart;
@@ -48,7 +49,7 @@ export class GameStyleContainer
     //endregion -------------------- Game properties --------------------
     //region -------------------- "Is available from the start" properties --------------------
 
-    public get isAvailableFromTheStartContainer(): PossibleClassThatIsAvailableFromTheStart {
+    public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
         return this.#isAvailableFromTheStartHolder.get;
     }
 

@@ -1,13 +1,13 @@
-import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart}                          from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
-import type {Builder}                                                                                    from '../../util/builder/Builder';
-import type {Entity}                                                                                     from '../entity/Entity';
-import type {GameProperty}                                                                               from '../entity/properties/GameProperty';
-import type {GameStyle, PossibleClassThatIsAvailableFromTheStart, PossibleNightDesertWindTranslationKey} from './GameStyle';
-import type {GameStyleTemplate, NightDesertWindTemplate}                                                 from './GameStyle.template';
-import type {Name}                                                                                       from '../../lang/name/Name';
-import type {ObjectHolder}                                                                               from '../../util/holder/ObjectHolder';
-import type {PossibleAcronym}                                                                            from './GameStyles.types';
-import type {SimpleGameFrom1And2Template}                                                                from '../game/SimpleGame.template';
+import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {Builder}                                                           from '../../util/builder/Builder';
+import type {Entity}                                                            from '../entity/Entity';
+import type {GameProperty}                                                      from '../entity/properties/GameProperty';
+import type {GameStyle, PossibleNightDesertWindTranslationKey}                  from './GameStyle';
+import type {GameStyleTemplate, NightDesertWindTemplate}                        from './GameStyle.template';
+import type {Name}                                                              from '../../lang/name/Name';
+import type {ObjectHolder}                                                      from '../../util/holder/ObjectHolder';
+import type {PossibleAcronym}                                                   from './GameStyles.types';
+import type {SimpleGameFrom1And2Template}                                       from '../game/SimpleGame.template';
 
 import type {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
 import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
@@ -82,7 +82,7 @@ export class GameStyleBuilder
             : this.#GAME_PROPERTY_IN_SMM2;
     }
 
-    private static __getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<PossibleClassThatIsAvailableFromTheStart> {
+    private static __getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
         return value == null
             ? this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1
             : value

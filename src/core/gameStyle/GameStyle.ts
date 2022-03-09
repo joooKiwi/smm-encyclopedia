@@ -1,15 +1,15 @@
-import type {ClassThatIsAvailableFromTheStart, InferredClassThatIsAvailableFromTheStartBySMM1, PossibleIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
-import type {Entity}                                                                                                            from '../entity/Entity';
-import type {GameProperty}                                                                                                      from '../entity/properties/GameProperty';
-import type {NameTrait}                                                                                                         from '../../lang/name/NameTrait';
+import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {Entity}                           from '../entity/Entity';
+import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {NameTrait}                        from '../../lang/name/NameTrait';
 
-export interface GameStyle<IS_AVAILABLE_FROM_THE_START extends PossibleClassThatIsAvailableFromTheStart = PossibleClassThatIsAvailableFromTheStart, >
+export interface GameStyle
     extends NameTrait<string>, GameProperty,
-        ClassThatIsAvailableFromTheStart<IS_AVAILABLE_FROM_THE_START['isAvailableFromTheStartInSMM1'], IS_AVAILABLE_FROM_THE_START['isAvailableFromTheStartInSMM3DS'], IS_AVAILABLE_FROM_THE_START['isAvailableFromTheStartInSMM2']> {
+        ClassThatIsAvailableFromTheStart {
 
     get isInProperty(): GameProperty
 
-    get isAvailableFromTheStartContainer(): IS_AVAILABLE_FROM_THE_START
+    get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart
 
     get entities(): readonly Entity[]
 
@@ -18,9 +18,3 @@ export interface GameStyle<IS_AVAILABLE_FROM_THE_START extends PossibleClassThat
 }
 
 export type PossibleNightDesertWindTranslationKey = `${| '→' | '←' | '↔'} periodic` | '← constant' | null
-/**
- * Every possible {@link ClassThatIsAvailableFromTheStart} possibilities for a {@link GameStyle}.
- *
- * @see InferredClassThatIsAvailableFromTheStartBySMM1
- */
-export type PossibleClassThatIsAvailableFromTheStart<T extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > = InferredClassThatIsAvailableFromTheStartBySMM1<T>;
