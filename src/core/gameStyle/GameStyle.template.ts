@@ -12,7 +12,7 @@ export interface GameStyleTemplate {
         in: {
             game: SimpleGameFrom1And2Template<boolean, boolean>
         }
-        availableFromTheStart:  PossibleIsAvailableFromTheStart
+        availableFromTheStart: PossibleIsAvailableFromTheStart
     }
 
     reference: PossibleAcronym
