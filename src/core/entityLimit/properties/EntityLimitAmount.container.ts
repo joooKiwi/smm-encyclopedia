@@ -1,8 +1,8 @@
-import type {EntityLimitAmount}                                                                             from './EntityLimitAmount';
-import type {NotApplicableProperty, UnknownProperty}                                                        from '../../_properties/PropertyWithEverything';
-import type {NumberPropertyThatCanBeUnknown}                                                                from '../../_properties/PropertyThatCanBeUnknown';
-import type {ObjectHolder}                                                                                  from '../../../util/holder/ObjectHolder';
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1_Amount, PossibleLimitAmount_SMM2_Amount} from '../EntityLimit.template';
+import type {EntityLimitAmount}                                                                                   from './EntityLimitAmount';
+import type {NotApplicableProperty, UnknownProperty}                                                              from '../../_properties/PropertyWithEverything';
+import type {NumberPropertyThatCanBeUnknown}                                                                      from '../../_properties/PropertyThatCanBeUnknown';
+import type {ObjectHolder}                                                                                        from '../../../util/holder/ObjectHolder';
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from '../EntityLimit.template';
 
 export class EntityLimitAmountContainer
     implements EntityLimitAmount {
@@ -15,7 +15,7 @@ export class EntityLimitAmountContainer
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(limitInSMM1AndSMM3DS: ObjectHolder<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM1_Amount> | NotApplicableProperty | UnknownProperty>,
+    public constructor(limitInSMM1AndSMM3DS: ObjectHolder<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicableProperty | UnknownProperty>,
                        limitInSMM2: ObjectHolder<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | UnknownProperty>,
                        comment: PossibleLimitAmount_Comment,) {
         this.#limitInSMM1AndSMM3DS = limitInSMM1AndSMM3DS;

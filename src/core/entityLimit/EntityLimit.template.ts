@@ -12,7 +12,7 @@ import type {TemplateWithNameTemplate}                                          
  */
 export interface LimitAmountTemplate {
 
-    1: PossibleLimitAmount_SMM1
+    1: PossibleLimitAmount_SMM1And3DS
 
     2: PossibleLimitAmount_SMM2
 
@@ -71,10 +71,10 @@ export type AlternativeLimitTemplate = AbstractEntityLimitTemplate<null, null, n
 
 //region -------------------- Limit amount --------------------
 
-export type PossibleLimitAmount_SMM1_Amount = | 1 | 2 | 3 | 4 | 5 | 8
-                                              | 10
-                                              | 100 | 200 | 300 | 2000;
-export type PossibleLimitAmount_SMM1 = | PossibleLimitAmount_SMM1_Amount | '?' | 'N/A' | null;
+export type PossibleLimitAmount_SMM1And3DS_Amount = | 1 | 2 | 3 | 4 | 5 | 8
+                                                    | 10
+                                                    | 100 | 200 | 300 | 2000;
+export type PossibleLimitAmount_SMM1And3DS = | PossibleLimitAmount_SMM1And3DS_Amount | '?' | 'N/A' | null;
 
 export type PossibleLimitAmount_SMM2_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
                                               | 10 | 50

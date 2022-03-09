@@ -1,13 +1,13 @@
 import everyThemes from '../../resources/Entity limit.csv';
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1, PossibleLimitAmount_SMM2} from './EntityLimit.template';
-import type {EntityLimit}                                                                                                                                                                   from './EntityLimit';
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                   from '../../lang/Loader.types';
-import type {Loader}                                                                                                                                                                        from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                              from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                             from '../entity/Entities.types';
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                          from './EntityLimitTypes.types';
-import type {PossibleGroupName}                                                                                                                                                             from '../entityTypes';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template';
+import type {EntityLimit}                                                                                                                                                                         from './EntityLimit';
+import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from '../../lang/Loader.types';
+import type {Loader}                                                                                                                                                                              from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from './EntityLimits.types';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from '../entity/Entities.types';
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from './EntityLimitTypes.types';
+import type {PossibleGroupName}                                                                                                                                                                   from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -23,7 +23,7 @@ enum Headers {
     type,
     acronym,
 
-    limit_SMM1, limit_SMM2, limit_comment,
+    limit_SMM1And3DS, limit_SMM2, limit_comment,
 
     //region -------------------- Languages --------------------
 
@@ -52,7 +52,7 @@ type ExclusivePropertyArray = [
     type: | PossibleEnglishName_LimitType | null,
     acronym: | PossibleAcronym | PossibleAlternativeAcronym | null,
 
-    limit_SMM1: PossibleLimitAmount_SMM1,
+    limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS,
     limit_SMM2: PossibleLimitAmount_SMM2,
     limit_comment: PossibleLimitAmount_Comment,
 
@@ -115,7 +115,7 @@ export class EntityLimitLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
-                .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1',)
+                .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)
                 .convertToNullableNumberAnd(['?', '10?',], 'limit_SMM2',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
@@ -198,7 +198,7 @@ class TemplateBuilder
 
 
     private __createLimitAmountTemplate(): LimitAmountTemplate {
-        const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1);
+        const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1And3DS);
         const limit_SMM2 = this._getContent(this._headersIndexMap.limit_SMM2);
 
         return limit_SMM1 == null && limit_SMM2 == null
