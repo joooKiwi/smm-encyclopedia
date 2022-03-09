@@ -44,6 +44,14 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
             : this._testCategory(category);
     }
 
+    /**
+     * Test the category during development or in test.
+     *
+     * @param category the category
+     * @onlyCalledDuringConstruction
+     * @onlyCalledOnDevelopment
+     * @onlyCalledOnTest
+     */
     protected _testCategory(category: EntityCategory,): EntityCategory {
         return category;
     }
@@ -55,6 +63,14 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
             : this._testProperty(property);
     }
 
+    /**
+     * Test the property in development or in test.
+     *
+     * @param property the property
+     * @onlyCalledDuringConstruction
+     * @onlyCalledOnDevelopment
+     * @onlyCalledOnTest
+     */
     protected _testProperty(property: Property,): Property {
         return property;
     }
