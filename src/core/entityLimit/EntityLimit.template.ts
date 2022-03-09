@@ -71,15 +71,17 @@ export type AlternativeLimitTemplate = AbstractEntityLimitTemplate<null, null, n
 
 //region -------------------- Limit amount --------------------
 
-export type PossibleLimitAmount_SMM1And3DS_Amount = | 1 | 2 | 3 | 4 | 5 | 8
+export type PossibleLimitAmount_SMM1And3DS_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 8
                                                     | 10
-                                                    | 100 | 200 | 300 | 2000;
+                                                    | 100 | 200 | 300 | 400
+                                                    | 2000;
 export type PossibleLimitAmount_SMM1And3DS = | PossibleLimitAmount_SMM1And3DS_Amount | '?' | 'N/A' | null;
 
 export type PossibleLimitAmount_SMM2_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
                                               | 10 | 50
-                                              | 100 | 200 | 300 | 500 | 999 | 2000 | 4000;
-export type PossibleLimitAmount_SMM2 = | PossibleLimitAmount_SMM2_Amount | `${|10}?` | '?' | null;
+                                              | 100 | 200 | 300 | 400 | 500 | 999
+                                              | 1500 | 2000 | 4000;
+export type PossibleLimitAmount_SMM2 = | PossibleLimitAmount_SMM2_Amount | `${| 10 | 400 | 500}?` | '?' | null;
 
 export type PossibleLimitAmount_Comment = | 'Crash online if met' | `Per ${| 'player' | 'pair' | 'section'}` | null;
 

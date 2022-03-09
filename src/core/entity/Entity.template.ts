@@ -111,7 +111,7 @@ export interface EntityTemplate
             }
         }
 
-        //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+        //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 
         limits: LimitPropertyTemplate
         canRespawn: {

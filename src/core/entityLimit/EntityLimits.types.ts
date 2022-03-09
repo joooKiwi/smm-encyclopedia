@@ -21,7 +21,7 @@ enum Enum {
     ICICLE_LIMIT, ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT,
 
     ENTITY_HELD_BY_A_TWISTER_LIMIT, SNOWBALL_THROWN_BY_A_SPIKE_LIMIT,
-    CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT, RENDERED_BLOCK_LIMIT,
+    CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT, RENDERED_OBJECT_LIMIT,
 
     _10_OR_30_OR_50_COIN_LIMIT, PINK_COIN_LIMIT,
     KEY_COLLECTED_LIMIT,
@@ -63,7 +63,7 @@ export type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
     | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block'
 
     | 'Entity Held By A Twister' | 'Snowball Thrown By A Spike'
-    | 'Clear Condition Entity Amount' | 'Rendered Block'
+    | 'Clear Condition Entity Amount' | 'Rendered Object'
 
 
     | `${| '[10- / 30- / 50-]' | 'Pink '}Coin`
@@ -80,7 +80,7 @@ export type PossibleStartingEnglishName = | PossibleStartingEnglishNameNotInBoth
 export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit` | `${PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${| 'While Playing' | 'Editor'})`;
 
 export type PossibleAlternativeAcronym = `EL${| 'B' | 'C'}`;
-export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Block Displayed Limit';
+export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Object Displayed Limit';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -111,7 +111,7 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['ICICLE_LIMIT'], SimpleEnum<T>['ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT'],
 
     SimpleEnum<T>['ENTITY_HELD_BY_A_TWISTER_LIMIT'], SimpleEnum<T>['SNOWBALL_THROWN_BY_A_SPIKE_LIMIT'],
-    SimpleEnum<T>['CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT'], SimpleEnum<T>['RENDERED_BLOCK_LIMIT'],
+    SimpleEnum<T>['CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT'], SimpleEnum<T>['RENDERED_OBJECT_LIMIT'],
 
     SimpleEnum<T>['_10_OR_30_OR_50_COIN_LIMIT'], SimpleEnum<T>['PINK_COIN_LIMIT'],
     SimpleEnum<T>['KEY_COLLECTED_LIMIT'],

@@ -116,7 +116,8 @@ export class EntityLimitLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
                 .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)
-                .convertToNullableNumberAnd(['?', '10?',], 'limit_SMM2',)
+                .convertToNullableNumberAnd(['?', '10?', '400?', '500?',], 'limit_SMM2',)
+                .convertToEmptyableStringAnd(['Crash online if met', 'Per player', 'Per pair', 'Per section',], 'limit_comment',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
 

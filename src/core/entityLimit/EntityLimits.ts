@@ -134,7 +134,7 @@ export class EntityLimits
 
     }                   ('Snowball Thrown By A Spike',                                                                   );
     public static readonly CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT =                      new EntityLimits                                                                                ('Clear Condition Entity Amount',                                                     );
-    public static readonly RENDERED_BLOCK_LIMIT =                                     new EntityLimits                                                                                ('Rendered Block', 'Block Displayed Limit'                          );
+    public static readonly RENDERED_OBJECT_LIMIT =                                    new EntityLimits                                                                                ('Rendered Object', 'Object Displayed Limit'                          );
 
     public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
 
