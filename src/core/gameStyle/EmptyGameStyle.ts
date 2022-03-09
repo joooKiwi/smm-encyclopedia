@@ -1,8 +1,8 @@
 import type {ClassWithNullObjectPattern, EmptyGameStyleName} from '../../util/ClassWithNullObjectPattern';
 import type {GameStyle}                                      from './GameStyle';
 
-import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
 import {ClassContainingAName}                      from '../../lang/name/ClassContainingAName';
+import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
 import {EMPTY_ARRAY, EMPTY_MAP}                    from '../../util/emptyVariables';
 import {EmptyIsInProperty}                         from '../entity/properties/EmptyIsInProperty';
 import {EmptyStringName}                           from '../../lang/name/EmptyStringName';
