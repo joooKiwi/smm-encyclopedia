@@ -1,53 +1,122 @@
-import type {Builder}                                          from '../../util/builder/Builder';
-import type {Entity}                                           from '../entity/Entity';
-import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle';
-import type {GameStyleTemplate}                                from './GameStyle.template';
-import type {PossibleAcronym}                                  from './GameStyles.types';
+import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart}                          from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {Builder}                                                                                    from '../../util/builder/Builder';
+import type {Entity}                                                                                     from '../entity/Entity';
+import type {GameProperty}                                                                               from '../entity/properties/GameProperty';
+import type {GameStyle, PossibleClassThatIsAvailableFromTheStart, PossibleNightDesertWindTranslationKey} from './GameStyle';
+import type {GameStyleTemplate}                                                                          from './GameStyle.template';
+import {NightDesertWindTemplate}                                                                         from './GameStyle.template';
+import type {Name}                                                                                       from '../../lang/name/Name';
+import type {ObjectHolder}                                                                               from '../../util/holder/ObjectHolder';
+import type {PossibleAcronym}                                                                            from './GameStyles.types';
+import type {SimpleGameFrom1And2Template}                                                                from '../game/SimpleGame.template';
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
-import {Entities}                     from '../entity/Entities';
-import {GamePropertyContainer}        from '../entity/properties/GameProperty.container';
-import {GameReferences}               from '../gameReference/GameReferences';
-import {GameStyles}                   from './GameStyles';
-import {GameStyleContainer}           from './GameStyle.container';
-import {TemplateBuilder}              from '../_template/Template.builder';
+import type {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
+import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
+import type {Entities}                                  from '../entity/Entities';
+import {GamePropertyContainer}                          from '../entity/properties/GameProperty.container';
+import type {GameReferences}                            from '../gameReference/GameReferences';
+import type {GameStyles}                                from './GameStyles';
+import {GameStyleContainer}                             from './GameStyle.container';
+import {TemplateBuilder}                                from '../_template/Template.builder';
 
 export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
+    //region -------------------- Dynamic imports attributes --------------------
+
+    static #classThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer;
+    static #gameReferences?: typeof GameReferences;
+    static #gameStyles?: typeof GameStyles;
+    static #entities?: typeof Entities;
+
+    //endregion -------------------- Dynamic imports attributes --------------------
+    //region -------------------- Attributes --------------------
+
+    static readonly #GAME_PROPERTY_IN_ALL_GAMES: ObjectHolder<GameProperty<true, true, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(true, true,));
+    static readonly #GAME_PROPERTY_IN_SMM2: ObjectHolder<GameProperty<false, false, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(false, true,));
+
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(null, null, true,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(true, true, true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(false, true, true,));
+
+    //endregion -------------------- Attributes --------------------
+
     public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
         super(templateBuilder,);
     }
 
+    //region -------------------- Dynamic imports getter methods --------------------
+
+    private static get __classThatIsAvailableFromTheStartContainer(): typeof ClassThatIsAvailableFromTheStartContainer {
+        return this.#classThatIsAvailableFromTheStartContainer ??= require('../availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer;
+    }
+
+    private static get __gameReferences(): typeof GameReferences {
+        return this.#gameReferences ??= require('../gameReference/GameReferences').GameReferences;
+    }
+
+    private static get __gameStyles(): typeof GameStyles {
+        return this.#gameStyles ??= require('./GameStyles').GameStyles;
+    }
+
+    private static get __entities(): typeof Entities {
+        return this.#entities ??= require('../entity/Entities').Entities;
+    }
+
+    //endregion -------------------- Dynamic imports getter methods --------------------
+    //region -------------------- Dynamic imports attributes --------------------
 
     protected get _static() {
         return GameStyleBuilder;
     }
 
-    private static __whereEntityIs(englishName: PossibleAcronym,): readonly Entity[] {
-        const gameStyle = GameStyles.getValue(englishName);
+    //region -------------------- Builder helper methods --------------------
 
-        return Entities.values.map(({reference,}) => reference)
-            .filter(reference => gameStyle.get(reference));
+    private static __getNameBy(reference: PossibleAcronym,): () => Name<string> {
+        return () => this.__gameReferences.getValue(reference).reference.nameContainer;
     }
 
-    private __getNightDesertWindTranslationKey(): PossibleNightDesertWindTranslationKey {
-        const {direction, frequency,} = this.template.nightDesertWind;
+    private static __getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): ObjectHolder<GameProperty> {
+        return isInSMM1And3DS
+            ? this.#GAME_PROPERTY_IN_ALL_GAMES
+            : this.#GAME_PROPERTY_IN_SMM2;
+    }
 
-        return direction == null || frequency == null
+    private static __getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<PossibleClassThatIsAvailableFromTheStart> {
+        return value == null
+            ? this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1
+            : value
+                ? this.#IS_AVAILABLE_FROM_THE_START_IN_SMM1
+                : this.#IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1;
+    }
+
+    private static __getEntityBy(englishName: PossibleAcronym,): ObjectHolder<readonly Entity[]> {
+        return new DelayedObjectHolderContainer(() => {
+            const gameStyle = this.__gameStyles.getValue(englishName);
+
+            return this.__entities.values.map(({reference,}) => reference)
+                .filter(reference => gameStyle.get(reference));
+        });
+    }
+
+    private static __getNightDesertWindTranslationKey({direction, frequency,}: NightDesertWindTemplate,): PossibleNightDesertWindTranslationKey {
+        return direction == null
             ? null
             : `${direction} ${frequency}` as PossibleNightDesertWindTranslationKey;
     }
 
+    //endregion -------------------- Builder helper methods --------------------
+
     public build(): GameStyle {
-        const {reference, isIn: {game: gameTemplate,},} = this.template;
+        const template = this.template;
 
         return new GameStyleContainer(
-            () => GameReferences.getValue(reference).reference.nameContainer,
-            GamePropertyContainer.get(gameTemplate['1And3DS'], gameTemplate['2'],),
-            new DelayedObjectHolderContainer(() => GameStyleBuilder.__whereEntityIs(reference)),
-            this.__getNightDesertWindTranslationKey(),
+            GameStyleBuilder.__getNameBy(template.reference),
+            GameStyleBuilder.__getGameProperty(template.is.in.game),
+            GameStyleBuilder.__getIsAvailableFromTheStart(template.is.availableFromTheStart),
+            GameStyleBuilder.__getEntityBy(template.reference),
+            GameStyleBuilder.__getNightDesertWindTranslationKey(template.nightDesertWind),
         );
     }
 }

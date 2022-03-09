@@ -1,6 +1,6 @@
-isInSuperMarioMaker1And3DS,isInSuperMarioMaker2,reference,nightDesertWindDirection,nightDesertWindFrequency
-TRUE,TRUE,SMB,←,periodic
-TRUE,TRUE,SMB3,→,periodic
-TRUE,TRUE,SMW,↔,periodic
-TRUE,TRUE,NSMBU,←,constant
-FALSE,TRUE,SM3DW,,
+isInSuperMarioMaker1And3DS,isInSuperMarioMaker2,isAvailableFromTheStart_SMM1,reference,nightDesertWindDirection,nightDesertWindFrequency
+TRUE,TRUE,TRUE,SMB,←,periodic
+TRUE,TRUE,FALSE,SMB3,→,periodic
+TRUE,TRUE,FALSE,SMW,↔,periodic
+TRUE,TRUE,TRUE,NSMBU,←,constant
+FALSE,TRUE,,SM3DW,,

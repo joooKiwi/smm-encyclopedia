@@ -5,6 +5,7 @@ import type {GameStyle}                                                         
 import type {GameStyleTemplate}                                                  from './GameStyle.template';
 import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                     from '../game/Loader.types';
 import type {PossibleAcronym, PossibleEnglishName}                               from './GameStyles.types';
+import type {PossibleIsAvailableFromTheStart}                                    from '../availableFromTheStart/loader.types';
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
@@ -23,6 +24,8 @@ enum Headers {
 
     //endregion -------------------- Games --------------------
 
+    isAvailableFromTheStart_SMM1,
+
     reference,
 
     nightDesertWindDirection,
@@ -33,6 +36,7 @@ enum Headers {
 //region -------------------- Properties --------------------
 
 export type ExclusivePropertiesArray = [
+    isAvailableFromTheStart: PossibleIsAvailableFromTheStart,
     reference: PossibleAcronym,
     nightDesertWindDirection: PossibleNightDesertWindDirection,
     nightDesertWindFrequency: PossibleNightDesertWindFrequency,
@@ -80,6 +84,7 @@ export class GameStyleLoader
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',)
+                .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'reference',)
 
@@ -115,8 +120,9 @@ class TemplateBuilder
 
     public build(): GameStyleTemplate {
         return {
-            isIn: {
-                game: this._createGameTemplateFrom1And2(),
+            is: {
+                in: {game: this._createGameTemplateFrom1And2(),},
+                availableFromTheStart: this._getContent(this._headersIndexMap.isAvailableFromTheStart_SMM1),
             },
             reference: this._getContent(this._headersIndexMap.reference),
             nightDesertWind: {
