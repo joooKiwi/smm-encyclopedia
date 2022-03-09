@@ -21,8 +21,6 @@ export type PossibleNightDesertWindTranslationKey = `${| '→' | '←' | '↔'} 
 /**
  * Every possible {@link ClassThatIsAvailableFromTheStart} possibilities for a {@link GameStyle}.
  *
- * The {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM2 SMM2 attribute} will always be true.
- * But the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM3DS SMM3DS attribute} will be a boolean
- * if the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM1 SMM1 attribute} is also a boolean, but null in the other case.
+ * @see InferredClassThatIsAvailableFromTheStartBySMM1
  */
 export type PossibleClassThatIsAvailableFromTheStart<T extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > = InferredClassThatIsAvailableFromTheStartBySMM1<T>;
