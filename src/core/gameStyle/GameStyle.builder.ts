@@ -3,8 +3,7 @@ import type {Builder}                                                           
 import type {Entity}                                                                                     from '../entity/Entity';
 import type {GameProperty}                                                                               from '../entity/properties/GameProperty';
 import type {GameStyle, PossibleClassThatIsAvailableFromTheStart, PossibleNightDesertWindTranslationKey} from './GameStyle';
-import type {GameStyleTemplate}                                                                          from './GameStyle.template';
-import {NightDesertWindTemplate}                                                                         from './GameStyle.template';
+import type {GameStyleTemplate, NightDesertWindTemplate}                                                 from './GameStyle.template';
 import type {Name}                                                                                       from '../../lang/name/Name';
 import type {ObjectHolder}                                                                               from '../../util/holder/ObjectHolder';
 import type {PossibleAcronym}                                                                            from './GameStyles.types';
@@ -36,9 +35,9 @@ export class GameStyleBuilder
     static readonly #GAME_PROPERTY_IN_ALL_GAMES: ObjectHolder<GameProperty<true, true, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(true, true,));
     static readonly #GAME_PROPERTY_IN_SMM2: ObjectHolder<GameProperty<false, false, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(false, true,));
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(null, null, true,));
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(true, true, true,));
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(false, true, true,));
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(null,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(false,));
 
     //endregion -------------------- Attributes --------------------
 

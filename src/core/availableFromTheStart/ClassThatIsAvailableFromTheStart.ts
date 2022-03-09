@@ -8,4 +8,7 @@ export interface ClassThatIsAvailableFromTheStart<SMM1 extends PossibleIsAvailab
 
 }
 
+export type InferredClassThatIsAvailableFromTheStartBySMM1<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > =
+    SMM1 extends null ? ClassThatIsAvailableFromTheStart<SMM1, null, true>
+        : ClassThatIsAvailableFromTheStart<SMM1, true, true>;
 export type PossibleIsAvailableFromTheStart = | boolean | null;
