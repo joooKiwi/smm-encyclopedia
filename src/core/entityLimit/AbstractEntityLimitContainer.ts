@@ -6,7 +6,6 @@ import type {ObjectHolder, PossibleValueOnObjectHolder}   from '../../util/holde
 import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
 
 import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative';
-import {DelayedObjectHolderContainer}         from '../../util/holder/DelayedObjectHolder.container';
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
@@ -17,22 +16,22 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     //region -------------------- Attributes --------------------
 
     readonly #acronym;
-    readonly #typeContainer: ObjectHolder<EntityLimitTypes>;
-    readonly #limitContainer;
+    readonly #typeHolder;
+    readonly #limitHolder;
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: PossibleValueOnObjectHolder<EntityLimitTypes>, limitAmount: EntityLimitAmount,) {
+    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: ObjectHolder<EntityLimitTypes>, limitAmount: ObjectHolder<EntityLimitAmount>,) {
         super(name, alternative,);
         this.#acronym = acronym;
-        this.#typeContainer = new DelayedObjectHolderContainer(type);
-        this.#limitContainer = limitAmount;
+        this.#typeHolder = type;
+        this.#limitHolder = limitAmount;
     }
 
     //region -------------------- Type --------------------
 
     public get type(): TYPE {
-        return this.#typeContainer.get as TYPE;
+        return this.#typeHolder.get as TYPE;
     }
 
     //endregion -------------------- Type --------------------
@@ -96,7 +95,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     //region -------------------- Limit amount --------------------
 
     public get limitContainer(): LIMIT_AMOUNT {
-        return this.#limitContainer as LIMIT_AMOUNT;
+        return this.#limitHolder.get as LIMIT_AMOUNT;
     }
 
     //region -------------------- SMM1 & SMM3DS limit --------------------

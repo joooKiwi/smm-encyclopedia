@@ -140,7 +140,7 @@ export class EntityLimitLoader
 class TemplateBuilder
     extends AbstractTemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray, typeof Headers> {
 
-    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {1: null, 2: null, comment: null,};
+    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,};
     static readonly #EMPTY_REFERENCES = {
         regular: null,
         alternative: null,
@@ -205,7 +205,7 @@ class TemplateBuilder
         return limit_SMM1 == null && limit_SMM2 == null
             ? TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE
             : {
-                1: limit_SMM1,
+                '1And3DS': limit_SMM1,
                 2: limit_SMM2,
                 comment: this._getContent(this._headersIndexMap.limit_comment),
             };
