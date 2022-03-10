@@ -13,6 +13,9 @@ const UNKNOWN_REFERENCE = '???';
  * @reactComponent
  */
 export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown, classes, ...otherProperties}: TextProperties<T>,) {
+    if (isUnknown === true)
+        (classes ??= []).push('is-unknown');
+
     switch (content) {
         case null:
             if (Object.getOwnPropertyNames(otherProperties).length === 0 && classes == null)
@@ -25,9 +28,6 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
         case UNKNOWN_REFERENCE:
             return <span className="unknown-reference" {...otherProperties}/>;
     }
-
-    if (isUnknown === true)
-        (classes ??= []).push('is-unknown');
 
     if (classes == null)
         return <span {...otherProperties}>{content}</span>;
