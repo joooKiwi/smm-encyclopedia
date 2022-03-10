@@ -16,6 +16,7 @@ export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get categoryLanguageValue(): this['categoryNameContainer']['languageValue']
 
+    //region -------------------- English properties --------------------
 
     get categoryOriginalEnglish(): this['categoryNameContainer']['originalEnglish']
 
@@ -25,6 +26,8 @@ export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get categoryEuropeanEnglish(): this['categoryNameContainer']['europeanEnglish']
 
+    //endregion -------------------- English properties --------------------
+    //region -------------------- French properties --------------------
 
     get categoryOriginalFrench(): this['categoryNameContainer']['originalFrench']
 
@@ -34,9 +37,13 @@ export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get categoryEuropeanFrench(): this['categoryNameContainer']['europeanFrench']
 
+    //endregion -------------------- French properties --------------------
+    //region -------------------- German properties --------------------
 
     get categoryGerman(): this['categoryNameContainer']['german']
 
+    //endregion -------------------- German properties --------------------
+    //region -------------------- Spanish properties --------------------
 
     get categoryOriginalSpanish(): this['categoryNameContainer']['originalSpanish']
 
@@ -46,12 +53,18 @@ export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get categoryEuropeanSpanish(): this['categoryNameContainer']['europeanSpanish']
 
+    //endregion -------------------- Spanish properties --------------------
+    //region -------------------- Italian properties --------------------
 
     get categoryItalian(): this['categoryNameContainer']['italian']
 
+    //endregion -------------------- Italian properties --------------------
+    //region -------------------- Dutch properties --------------------
 
     get categoryDutch(): this['categoryNameContainer']['dutch']
 
+    //endregion -------------------- Dutch properties --------------------
+    //region -------------------- Portuguese properties --------------------
 
     get categoryOriginalPortuguese(): this['categoryNameContainer']['originalPortuguese']
 
@@ -61,12 +74,18 @@ export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get categoryEuropeanPortuguese(): this['categoryNameContainer']['europeanPortuguese']
 
+    //endregion -------------------- Portuguese properties --------------------
+    //region -------------------- Russian properties --------------------
 
     get categoryRussian(): this['categoryNameContainer']['russian']
 
+    //endregion -------------------- Russian properties --------------------
+    //region -------------------- Japanese properties --------------------
 
     get categoryJapanese(): this['categoryNameContainer']['japanese']
 
+    //endregion -------------------- Japanese properties --------------------
+    //region -------------------- Chinese properties --------------------
 
     get categoryOriginalChinese(): this['categoryNameContainer']['originalChinese']
 
@@ -76,14 +95,40 @@ export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
     get categorySimplifiedChinese(): this['categoryNameContainer']['simplifiedChinese']
 
+    //endregion -------------------- Chinese properties --------------------
+    //region -------------------- Korean properties --------------------
 
     get categoryKorean(): this['categoryNameContainer']['korean']
 
+    //endregion -------------------- Korean properties --------------------
+    //region -------------------- Hebrew properties --------------------
+
+    get categoryIsHebrewUsed(): this['categoryNameContainer']['isHebrewUsed']
+
+    get categoryHebrew(): this['categoryNameContainer']['hebrew']
+
+    //endregion -------------------- Hebrew properties --------------------
+    //region -------------------- Polish properties --------------------
+
+    get categoryIsPolishUsed(): this['categoryNameContainer']['isPolishUsed']
+
+    get categoryPolish(): this['categoryNameContainer']['polish']
+
+    //endregion -------------------- Polish properties --------------------
+    //region -------------------- Ukrainian properties --------------------
+
+    get categoryIsUkrainianUsed(): this['categoryNameContainer']['isUkrainianUsed']
+
+    get categoryUkrainian(): this['categoryNameContainer']['ukrainian']
+
+    //endregion -------------------- Ukrainian properties --------------------
+    //region -------------------- Greek properties --------------------
 
     get categoryIsGreekUsed(): this['categoryNameContainer']['isGreekUsed']
 
     get categoryGreek(): this['categoryNameContainer']['greek']
 
+    //endregion -------------------- Greek properties --------------------
 
     get categoryOriginalLanguages(): this['categoryNameContainer']['originalLanguages']
 

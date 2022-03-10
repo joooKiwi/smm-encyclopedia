@@ -1,21 +1,25 @@
-import type {EnumArray}         from '../../gameStyle/GameStyles.types';
 import type {ExtendedMap}       from '../../../util/extended/ExtendedMap';
 import type {GameStyleProperty} from './GameStyleProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
 import type {GameStyles}      from '../../gameStyle/GameStyles';
+import {lazy}                 from '../../../util/utilitiesMethods';
+
+//region -------------------- Dynamic imports --------------------
+
+const _GameStyles = lazy(() => require('../../gameStyle/GameStyles').GameStyles as typeof GameStyles);
+
+//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
  * @provider
- * @classWithDynamicImport
  */
 export class GameStylePropertyContainer
     implements GameStyleProperty {
 
     //region -------------------- Attributes --------------------
 
-    static #values?: EnumArray;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStylePropertyContainer> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<GameStyles, boolean>;
@@ -36,11 +40,6 @@ export class GameStylePropertyContainer
     }
 
     //region -------------------- Getter methods --------------------
-
-    private static get __values(): EnumArray {
-        return this.#values ??= require('../../gameStyle/GameStyles').GameStyles.values;
-    }
-
 
     public get isInSuperMarioBrosStyle() {
         return this.#isInSuperMarioBrosStyle;
@@ -65,7 +64,7 @@ export class GameStylePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toGameStyleMap(): ReadonlyMap<GameStyles, boolean> {
-        return this.#map ??= new Map(GameStylePropertyContainer.__values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
+        return this.#map ??= new Map(_GameStyles.get.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

@@ -1,4 +1,3 @@
-import type {EnumArray}     from '../../game/Games.types';
 import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
 import type {GameProperty}  from './GameProperty';
 import type {GameStructure} from '../../game/GameStructure';
@@ -6,18 +5,23 @@ import type {GameStructure} from '../../game/GameStructure';
 import {ExtendedMapContainer}   from '../../../util/extended/ExtendedMap.container';
 import type {Games}             from '../../game/Games';
 import {GameStructureContainer} from '../../game/GameStructure.container';
+import {lazy}                   from '../../../util/utilitiesMethods';
+
+//region -------------------- Dynamic imports --------------------
+
+const _Games = lazy(() => require('../../game/Games').Games as typeof Games);
+
+//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
  * @provider
- * @classWithDynamicImport
  */
 export class GamePropertyContainer
     implements GameProperty {
 
     //region -------------------- Attributes --------------------
 
-    static #values?: EnumArray;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GamePropertyContainer> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<Games, boolean>;
@@ -30,11 +34,6 @@ export class GamePropertyContainer
     }
 
     //region -------------------- Getter methods --------------------
-
-    private static get __values(): EnumArray {
-        return this.#values ??= require('../../game/Games').Games.values;
-    }
-
 
     public get isInSuperMarioMaker1() {
         return this.#structure.superMarioMaker;
@@ -51,7 +50,7 @@ export class GamePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toGameMap(): ReadonlyMap<Games, boolean> {
-        return this.#map ??= new Map(GamePropertyContainer.__values.map(game => [game, game.get(this),]));
+        return this.#map ??= new Map(_Games.get.values.map(game => [game, game.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
