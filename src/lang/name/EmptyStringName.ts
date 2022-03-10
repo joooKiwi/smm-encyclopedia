@@ -34,11 +34,6 @@ export class EmptyStringName
     public readonly europeanEnglish = EMPTY_STRING;
 
     //endregion -------------------- English properties --------------------
-    //region -------------------- German properties --------------------
-
-    public readonly german = EMPTY_STRING;
-
-    //endregion -------------------- German properties --------------------
     //region -------------------- French properties --------------------
 
     public readonly originalFrench = EMPTY_STRING;
@@ -47,6 +42,11 @@ export class EmptyStringName
     public readonly europeanFrench = EMPTY_STRING;
 
     //endregion -------------------- French properties --------------------
+    //region -------------------- German properties --------------------
+
+    public readonly german = EMPTY_STRING;
+
+    //endregion -------------------- German properties --------------------
     //region -------------------- Spanish properties --------------------
 
     public readonly originalSpanish = EMPTY_STRING;
@@ -102,6 +102,24 @@ export class EmptyStringName
     public readonly greek = EMPTY_STRING;
 
     //endregion -------------------- Greek properties --------------------
+    //region -------------------- Hebrew properties --------------------
+
+    public readonly isHebrewUsed = false;
+    public readonly hebrew = EMPTY_STRING;
+
+    //endregion -------------------- Hebrew properties --------------------
+    //region -------------------- Polish properties --------------------
+
+    public readonly isPolishUsed = false;
+    public readonly polish = EMPTY_STRING;
+
+    //endregion -------------------- Polish properties --------------------
+    //region -------------------- Ukrainian properties --------------------
+
+    public readonly isUkrainianUsed = false;
+    public readonly ukrainian = EMPTY_STRING;
+
+    //endregion -------------------- Ukrainian properties --------------------
 
     public readonly originalLanguages = EMPTY_ARRAY;
 

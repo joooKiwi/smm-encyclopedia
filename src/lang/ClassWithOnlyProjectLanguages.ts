@@ -19,6 +19,9 @@ export interface ClassWithOnlyProjectLanguages<T,
     JAPANESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
     TRADITIONAL_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, SIMPLIFIED_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
     KOREAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    HEBREW extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>,
+    POLISH extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>,
+    UKRAINIAN extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>,
     GREEK extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>, > {
 
     //region -------------------- English properties --------------------
@@ -86,6 +89,27 @@ export interface ClassWithOnlyProjectLanguages<T,
     get korean(): KOREAN
 
     //endregion -------------------- Korean properties --------------------
+    //region -------------------- Hebrew properties --------------------
+
+    get isHebrewUsed(): boolean
+
+    get hebrew(): HEBREW
+
+    //endregion -------------------- Hebrew properties --------------------
+    //region -------------------- Polish properties --------------------
+
+    get isPolishUsed(): boolean
+
+    get polish(): POLISH
+
+    //endregion -------------------- Polish properties --------------------
+    //region -------------------- Ukrainian properties --------------------
+
+    get isUkrainianUsed(): boolean
+
+    get ukrainian(): UKRAINIAN
+
+    //endregion -------------------- Ukrainian properties --------------------
     //region -------------------- Greek properties --------------------
 
     get isGreekUsed(): boolean

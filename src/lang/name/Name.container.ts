@@ -17,7 +17,8 @@ export class NameContainer<T, >
 
     //region -------------------- Attributes --------------------
 
-    static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.GREEK,] as const;
+    static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.HEBREW, EveryLanguages.POLISH,
+        EveryLanguages.UKRAINIAN, EveryLanguages.GREEK,] as const;
 
     readonly #originalLanguages: readonly EveryLanguages[];
     #map?: Map<EveryLanguages, T>;
@@ -33,6 +34,9 @@ export class NameContainer<T, >
     readonly #japaneseContainer: EmptyableLanguage<T, T, never>;
     readonly #chineseContainer: EmptyableLanguage<T, T, ChineseArray<T>>;
     readonly #koreanContainer: EmptyableLanguage<T, T, never>;
+    readonly #hebrewContainer: EmptyableOptionalLanguage<T, T, never>;
+    readonly #polishContainer: EmptyableOptionalLanguage<T, T, never>;
+    readonly #ukrainianContainer: EmptyableOptionalLanguage<T, T, never>;
     readonly #greekContainer: EmptyableOptionalLanguage<T, T, never>;
 
     //endregion -------------------- Attributes --------------------
@@ -48,6 +52,9 @@ export class NameContainer<T, >
                        japanese: PossibleLanguageValue<T>,
                        chinese: PossibleChineseValue<T>,
                        korean: PossibleLanguageValue<T>,
+                       hebrew: PossibleLanguageValue<T>,
+                       polish: PossibleLanguageValue<T>,
+                       ukrainian: PossibleLanguageValue<T>,
                        greek: PossibleLanguageValue<T>,) {
         const originalLanguages: EveryLanguages[] = [];
 
@@ -62,6 +69,9 @@ export class NameContainer<T, >
         this.#japaneseContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.JAPANESE, originalLanguages, japanese,);
         this.#chineseContainer = NameContainer.__newLanguageContainer<T, T, ChineseArray<T>>(EveryLanguages.CHINESE, originalLanguages, chinese,);
         this.#koreanContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.KOREAN, originalLanguages, korean,);
+        this.#hebrewContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.HEBREW, originalLanguages, hebrew,);
+        this.#polishContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.POLISH, originalLanguages, polish,);
+        this.#ukrainianContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.UKRAINIAN, originalLanguages, ukrainian,);
         this.#greekContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.GREEK, originalLanguages, greek,);
 
         this.#originalLanguages = originalLanguages;
@@ -71,15 +81,17 @@ export class NameContainer<T, >
     //region -------------------- Name properties --------------------
 
     /**
-     * The optional languages on the {@link Name} used in the project.
-     *
-     * As it stands, only the portuguese is there.
-     * The greek is used there too even though it is rare to have it.
-     * But other languages may be added in the future when more translation are found.
+     * The optional languages on the {@link Name} used in the project:
+     * <ol>
+     *  <li>{@link EveryLanguages.HEBREW}</li>
+     *  <li>{@link EveryLanguages.POLISH}</li>
+     *  <li>{@link EveryLanguages.UKRAINIAN}</li>
+     *  <li>{@link EveryLanguages.GREEK}</li>
+     * </ol>
      *
      * @see ProjectLanguages.isInEverySuperMarioMakerGame
      */
-    public static get optionalLanguages(): readonly [EveryLanguages,] {
+    public static get optionalLanguages(): readonly [EveryLanguages, EveryLanguages, EveryLanguages, EveryLanguages,] {
         return this._optionalLanguages;
     }
 
@@ -234,6 +246,39 @@ export class NameContainer<T, >
     }
 
     //endregion -------------------- Korean properties --------------------
+    //region -------------------- Hebrew properties --------------------
+
+    public get isHebrewUsed(): boolean {
+        return this.#hebrewContainer.isUsed;
+    }
+
+    public get hebrew(): PossibleLanguageValue<T> {
+        return this.#hebrewContainer.original;
+    }
+
+    //endregion -------------------- Hebrew properties --------------------
+    //region -------------------- Polish properties --------------------
+
+    public get isPolishUsed(): boolean {
+        return this.#polishContainer.isUsed;
+    }
+
+    public get polish(): PossibleLanguageValue<T> {
+        return this.#polishContainer.original;
+    }
+
+    //endregion -------------------- Polish properties --------------------
+    //region -------------------- Ukrainian properties --------------------
+
+    public get isUkrainianUsed(): boolean {
+        return this.#ukrainianContainer.isUsed;
+    }
+
+    public get ukrainian(): PossibleLanguageValue<T> {
+        return this.#ukrainianContainer.original;
+    }
+
+    //endregion -------------------- Ukrainian properties --------------------
     //region -------------------- Greek properties --------------------
 
     public get isGreekUsed(): boolean {
@@ -276,38 +321,21 @@ export class NameContainer<T, >
 
         switch (language) {
             case EveryLanguages.ENGLISH:
-                if (isValueArray)
-                    originalLanguages.push(EveryLanguages.AMERICAN_ENGLISH, EveryLanguages.EUROPEAN_ENGLISH,);
-                else
-                    originalLanguages.push(EveryLanguages.ENGLISH);
-                break;
             case EveryLanguages.FRENCH:
-                if (isValueArray)
-                    originalLanguages.push(EveryLanguages.CANADIAN_FRENCH, EveryLanguages.EUROPEAN_FRENCH,);
-                else
-                    originalLanguages.push(EveryLanguages.FRENCH);
-                break;
             case EveryLanguages.SPANISH:
-                if (isValueArray)
-                    originalLanguages.push(EveryLanguages.AMERICAN_SPANISH, EveryLanguages.EUROPEAN_SPANISH,);
-                else
-                    originalLanguages.push(EveryLanguages.SPANISH);
-                break;
             case EveryLanguages.CHINESE:
-                if (isValueArray)
-                    originalLanguages.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,);
-                else
-                    originalLanguages.push(EveryLanguages.CHINESE);
-                break;
             case EveryLanguages.PORTUGUESE:
                 if (isValueArray)
-                    originalLanguages.push(EveryLanguages.AMERICAN_PORTUGUESE, EveryLanguages.EUROPEAN_PORTUGUESE,);
+                    originalLanguages.push(...language.children);
                 else
-                    originalLanguages.push(EveryLanguages.PORTUGUESE);
+                    originalLanguages.push(language);
                 break;
+            case EveryLanguages.HEBREW:
+            case EveryLanguages.POLISH:
+            case EveryLanguages.UKRAINIAN:
             case EveryLanguages.GREEK:
                 if ((languageContainer as OptionalLanguage<T>).isUsed)
-                    originalLanguages.push(EveryLanguages.GREEK);
+                    originalLanguages.push(language);
                 break;
             default:
                 originalLanguages.push(language);

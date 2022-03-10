@@ -411,6 +411,54 @@ export abstract class EveryLanguages
 
     }            (false, 'ko',    'ko',    'Korean',               '한국어',);
 
+    public static readonly HEBREW =              new class EveryLanguages_Hebrew extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['hebrew']
+        protected _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.hebrew;
+        }
+
+    }            (false, 'he',    'he',    'Hebrew',               'עִברִית',);
+    public static readonly POLISH =              new class EveryLanguages_Polish extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['polish']
+        protected _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.polish;
+        }
+
+    }            (false, 'pl',    'pl',    'Polish',               'Polski',);
+    public static readonly UKRAINIAN =           new class EveryLanguages_Ukrainian extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['ukrainian']
+        protected _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.ukrainian;
+        }
+
+    }         (false, 'uk',    'uk',    'Ukrainian',            'Український',);
     public static readonly GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
 
         //region -------------------- Space getter methods --------------------

@@ -22,8 +22,11 @@ export interface ClassWithEveryLanguages<T,
     JAPANESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
     ORIGINAL_CHINESE extends PossibleChineseValue<T> = PossibleChineseValue<T>, CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, TRADITIONAL_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, SIMPLIFIED_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
     KOREAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    HEBREW extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    POLISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
+    UKRAINIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
     GREEK extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, >
-    extends ClassWithOnlyProjectLanguages<T, GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, GREEK> {
+    extends ClassWithOnlyProjectLanguages<T, GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, HEBREW, POLISH, UKRAINIAN, GREEK> {
 
     //region -------------------- English properties --------------------
 
@@ -73,6 +76,11 @@ export interface ClassWithEveryLanguages<T,
 }
 
 
+/**
+ * A complete class with every language,
+ * excluding the optional languages ({@link EveryLanguages.HEBREW hebrew}, {@link EveryLanguages.POLISH polish},
+ * {@link EveryLanguages.UKRAINIAN ukrainian} & {@link EveryLanguages.GREEK greek}).
+ */
 export type CompleteClassWithEveryLanguages<T, > = ClassWithEveryLanguages<T,
     T,
     AmericanOrEuropeanOriginal<T>, T, T, T,
