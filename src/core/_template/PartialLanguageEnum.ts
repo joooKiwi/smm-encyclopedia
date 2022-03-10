@@ -37,6 +37,12 @@ export interface PartialLanguagesEnum {
 export interface PartialLanguagesEnumWithOptionalLanguages
     extends PartialLanguagesEnum {
 
+    hebrew: number
+
+    polish: number
+
+    ukrainian: number
+
     greek: number
 
 }

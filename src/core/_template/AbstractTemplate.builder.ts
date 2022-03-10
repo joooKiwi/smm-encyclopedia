@@ -17,6 +17,9 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     //region -------------------- Attributes --------------------
 
+    static readonly #EMPTY_HEBREW = null;
+    static readonly #EMPTY_POLISH = null;
+    static readonly #EMPTY_UKRAINIAN = null;
     static readonly #EMPTY_GREEK = null;
 
     readonly #content;
@@ -69,6 +72,9 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
     }
 
     private static __createNameTemplateFromClass<ARRAY extends any[], >(headers: PossibleLanguagesDefinition, content: ARRAY,): PossibleNameTemplate {
+        const hebrew = 'hebrew' in headers ? content[headers.hebrew] : this.#EMPTY_HEBREW;
+        const polish = 'polish' in headers ? content[headers.polish] : this.#EMPTY_POLISH;
+        const ukrainian = 'ukrainian' in headers ? content[headers.ukrainian] : this.#EMPTY_UKRAINIAN;
         const greek = 'greek' in headers ? content[headers.greek] : this.#EMPTY_GREEK;
 
         const languages: PropertiesArrayWithOptionalLanguages = [
@@ -83,13 +89,17 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
             content[headers.japanese],
             content[headers.chinese], content[headers.traditionalChinese], content[headers.simplifiedChinese],
             content[headers.korean],
+            hebrew,
+            polish,
+            ukrainian,
             greek,
         ];
 
         return this.__createNameTemplateFromArray(languages);
     }
 
-    private static __createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
+    private static __createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,
+                                                     hebrew = this.#EMPTY_HEBREW, polish = this.#EMPTY_POLISH, ukrainian = this.#EMPTY_UKRAINIAN, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
         return {
             english: {
                 simple: english,
@@ -122,6 +132,9 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
             },
             japanese: japanese,
             korean: korean,
+            hebrew: hebrew,
+            polish: polish,
+            ukrainian: ukrainian,
             greek: greek,
         };
     }
