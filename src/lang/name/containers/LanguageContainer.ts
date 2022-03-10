@@ -19,7 +19,7 @@ export class LanguageContainer<T, S extends T = T, A extends readonly T[] = read
     public constructor(value: | S | A,) {
         this.#original = value;
         if (value instanceof Array) {
-            this.#singleValue = '' as const;//FIXME this is set as an empty string, only temporary
+            this.#singleValue = null;
             this.#arrayValue = value;
         } else {
             this.#singleValue = value;
@@ -31,11 +31,11 @@ export class LanguageContainer<T, S extends T = T, A extends readonly T[] = read
         return this.#original;
     }
 
-    protected get _singleValue(): S | '' {
+    protected get _singleValue(): | S | null {
         return this.#singleValue;
     }
 
-    protected get _arrayValue(): A | readonly [] {
+    protected get _arrayValue(): | A | readonly [] {
         return this.#arrayValue;
     }
 
@@ -43,7 +43,7 @@ export class LanguageContainer<T, S extends T = T, A extends readonly T[] = read
     public get<INDEX extends number = number, >(index: INDEX,): | NonNullable<A[INDEX]> | S
     public get<INDEX extends number = number, >(index?: INDEX,) {
         if (index == null)
-            return this._singleValue;
+            return this._singleValue ?? this._arrayValue[0];
         return this._arrayValue[index] ?? this._singleValue;
     }
 
