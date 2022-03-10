@@ -10,11 +10,13 @@ export class ObjectHolderContainer<T>
     }
 
     private static __retrieveValue<T, >(value: PossibleValueOnObjectHolder<T>,): T {
-        return value instanceof Function
-            ? value()
-            : typeof value == 'object' && 'get' in value
-                ? this.__retrieveValue(value.get,)
-                : value;
+        return value == null
+            ? value
+            : value instanceof Function
+                ? value()
+                : typeof value == 'object' && 'get' in value
+                    ? this.__retrieveValue(value.get,)
+                    : value;
     }
 
     public get get(): T {
