@@ -4,6 +4,7 @@ import type {CourseAndWorldTheme, PossibleEnglishName}       from './Themes.type
 import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types';
 import type {PropertiesArray as LanguagesPropertyArray}      from '../../lang/Loader.types';
 import type {PossibleEffectInNightTheme, ThemeTemplate}      from './Theme.template';
+import type {PossibleIsAvailableFromTheStart}                from '../availableFromTheStart/loader.types';
 import type {Loader}                                         from '../../util/loader/Loader';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
@@ -26,6 +27,7 @@ enum Headers {
 
     //endregion -------------------- Games --------------------
 
+    isAvailableFromTheStart_SMM1,
     effectInNightTheme,
 
     //region -------------------- Languages --------------------
@@ -54,6 +56,7 @@ type ExclusivePropertiesArray1 = [
     isInWorldTheme: boolean,
 ];
 type ExclusivePropertiesArray2 = [
+    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart,
     effectInNightTheme: PossibleEffectInNightTheme,
 ];
 type PropertiesArray = [
@@ -103,6 +106,7 @@ export class ThemeLoader
                     'isInCourseTheme', 'isInWorldTheme',
                     'isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',
                 )
+                .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 
                 .onAfterFinalObjectCreated(finalContent => references.set((finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]).english as PossibleEnglishName, finalContent,))
@@ -134,12 +138,15 @@ class TemplateBuilder
 
     public build(): ThemeTemplate {
         return {
-            isIn: {
-                game: this._createGameTemplateFrom1And2(),
-                theme: {
-                    course: this._getContent(this._headersIndexMap.isInCourseTheme),
-                    world: this._getContent(this._headersIndexMap.isInWorldTheme),
+            is: {
+                in: {
+                    game: this._createGameTemplateFrom1And2(),
+                    theme: {
+                        course: this._getContent(this._headersIndexMap.isInCourseTheme),
+                        world: this._getContent(this._headersIndexMap.isInWorldTheme),
+                    },
                 },
+                availableFromTheStart: this._getContent(this._headersIndexMap.isAvailableFromTheStart_SMM1),
             },
             effect: this._getContent(this._headersIndexMap.effectInNightTheme),
             name: this._createNameTemplate(),

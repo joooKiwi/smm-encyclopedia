@@ -1,6 +1,8 @@
-import type {GameProperty} from '../entity/properties/GameProperty';
-import type {Name}         from '../../lang/name/Name';
-import type {Theme}        from './Theme';
+import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {Name}                             from '../../lang/name/Name';
+import type {ObjectHolder}                     from '../../util/holder/ObjectHolder';
+import type {Theme}                            from './Theme';
 
 import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
 
@@ -11,12 +13,14 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     //region -------------------- Attributes --------------------
 
     readonly #isInProperty;
+    readonly #isAvailableFromTheStartHolder;
 
     //endregion -------------------- Attributes --------------------
 
-    protected constructor(name: Name<string>, isInProperty: PROPERTY,) {
+    protected constructor(name: Name<string>, isInProperty: PROPERTY, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>,) {
         super(name,);
         this.#isInProperty = isInProperty;
+        this.#isAvailableFromTheStartHolder = isAvailableFromTheStart;
     }
 
     //region -------------------- Game properties --------------------
@@ -38,6 +42,25 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     }
 
     //endregion -------------------- Game properties --------------------
+    //region -------------------- "Is available from the start" properties --------------------
+
+    public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
+        return this.#isAvailableFromTheStartHolder.get;
+    }
+
+    public get isAvailableFromTheStartInSMM1() {
+        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1;
+    }
+
+    public get isAvailableFromTheStartInSMM3DS() {
+        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS;
+    }
+
+    public get isAvailableFromTheStartInSMM2() {
+        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM2;
+    }
+
+    //endregion -------------------- "Is available from the start" properties --------------------
 
     public toGameMap() {
         return this.isInProperty.toGameMap();

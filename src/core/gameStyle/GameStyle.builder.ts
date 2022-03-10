@@ -25,6 +25,7 @@ export class GameStyleBuilder
     //region -------------------- Dynamic imports attributes --------------------
 
     static #classThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer;
+
     static #gameReferences?: typeof GameReferences;
     static #gameStyles?: typeof GameStyles;
     static #entities?: typeof Entities;
@@ -83,6 +84,7 @@ export class GameStyleBuilder
     }
 
     private static __getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
+        //TODO move this code elsewhere to remove duplicate code
         return value == null
             ? this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1
             : value

@@ -1,7 +1,8 @@
-import type {NameTemplate}                from '../../lang/name/Name.template';
-import type {PossibleEnglishName}         from './NightEffects.types';
-import type {SimpleGameFrom1And2Template} from '../game/SimpleGame.template';
-import type {TemplateWithNameTemplate}    from '../_template/TemplateWithName.template';
+import type {NameTemplate}                    from '../../lang/name/Name.template';
+import type {PossibleEnglishName}             from './NightEffects.types';
+import type {PossibleIsAvailableFromTheStart} from '../availableFromTheStart/loader.types';
+import type {SimpleGameFrom1And2Template}     from '../game/SimpleGame.template';
+import type {TemplateWithNameTemplate}        from '../_template/TemplateWithName.template';
 
 /**
  * @template
@@ -9,12 +10,15 @@ import type {TemplateWithNameTemplate}    from '../_template/TemplateWithName.te
 export interface ThemeTemplate
     extends TemplateWithNameTemplate<NameTemplate> {
 
-    isIn: {
-        game: SimpleGameFrom1And2Template<boolean, boolean>
-        theme: {
-            course: boolean
-            world: boolean
+    is: {
+        in: {
+            game: SimpleGameFrom1And2Template<boolean, boolean>
+            theme: {
+                course: boolean
+                world: boolean
+            }
         }
+        availableFromTheStart: PossibleIsAvailableFromTheStart
     }
     effect: PossibleEffectInNightTheme
 
