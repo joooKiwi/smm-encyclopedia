@@ -1,5 +1,5 @@
-import type {NameTrait}                                 from './NameTrait';
-import type {Name}                                      from './Name';
+import type {NameTrait}                          from './NameTrait';
+import type {Name}                               from './Name';
 import type {EveryLanguages}                            from '../EveryLanguages';
 import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
@@ -33,6 +33,7 @@ export class ClassContainingAName<T, >
         return this.nameContainer.languageValue;
     }
 
+    //region -------------------- English properties --------------------
 
     public get originalEnglish(): this['nameContainer']['originalEnglish'] {
         return this.nameContainer.originalEnglish;
@@ -50,6 +51,8 @@ export class ClassContainingAName<T, >
         return this.nameContainer.europeanEnglish;
     }
 
+    //endregion -------------------- English properties --------------------
+    //region -------------------- French properties --------------------
 
     public get originalFrench(): this['nameContainer']['originalFrench'] {
         return this.nameContainer.originalFrench;
@@ -67,11 +70,15 @@ export class ClassContainingAName<T, >
         return this.nameContainer.europeanFrench;
     }
 
+    //endregion -------------------- French properties --------------------
+    //region -------------------- German properties --------------------
 
     public get german(): this['nameContainer']['german'] {
         return this.nameContainer.german;
     }
 
+    //endregion -------------------- German properties --------------------
+    //region -------------------- Spanish properties --------------------
 
     public get originalSpanish(): this['nameContainer']['originalSpanish'] {
         return this.nameContainer.originalSpanish;
@@ -89,16 +96,22 @@ export class ClassContainingAName<T, >
         return this.nameContainer.europeanSpanish;
     }
 
+    //endregion -------------------- Spanish properties --------------------
+    //region -------------------- Italian properties --------------------
 
     public get italian(): this['nameContainer']['italian'] {
         return this.nameContainer.italian;
     }
 
+    //endregion -------------------- Italian properties --------------------
+    //region -------------------- Dutch properties --------------------
 
     public get dutch(): this['nameContainer']['dutch'] {
         return this.nameContainer.dutch;
     }
 
+    //endregion -------------------- Dutch properties --------------------
+    //region -------------------- Portuguese properties --------------------
 
     public get originalPortuguese(): this['nameContainer']['originalPortuguese'] {
         return this.nameContainer.originalPortuguese;
@@ -116,16 +129,22 @@ export class ClassContainingAName<T, >
         return this.nameContainer.europeanPortuguese;
     }
 
+    //endregion -------------------- Portuguese properties --------------------
+    //region -------------------- Russian properties --------------------
 
     public get russian(): this['nameContainer']['russian'] {
         return this.nameContainer.russian;
     }
 
+    //endregion -------------------- Russian properties --------------------
+    //region -------------------- Japanese properties --------------------
 
     public get japanese(): this['nameContainer']['japanese'] {
         return this.nameContainer.japanese;
     }
 
+    //endregion -------------------- Japanese properties --------------------
+    //region -------------------- Chinese properties --------------------
 
     public get originalChinese(): this['nameContainer']['originalChinese'] {
         return this.nameContainer.originalChinese;
@@ -143,11 +162,48 @@ export class ClassContainingAName<T, >
         return this.nameContainer.simplifiedChinese;
     }
 
+    //endregion -------------------- Chinese properties --------------------
+    //region -------------------- Korean properties --------------------
 
     public get korean(): this['nameContainer']['korean'] {
         return this.nameContainer.korean;
     }
 
+    //endregion -------------------- Korean properties --------------------
+    //region -------------------- Hebrew properties --------------------
+
+    public get isHebrewUsed(): this['nameContainer']['isHebrewUsed'] {
+        return this.nameContainer.isHebrewUsed;
+    }
+
+    public get hebrew(): this['nameContainer']['hebrew'] {
+        return this.nameContainer.hebrew;
+    }
+
+    //endregion -------------------- Hebrew properties --------------------
+    //region -------------------- Polish properties --------------------
+
+    public get isPolishUsed(): this['nameContainer']['isPolishUsed'] {
+        return this.nameContainer.isPolishUsed;
+    }
+
+    public get polish(): this['nameContainer']['polish'] {
+        return this.nameContainer.polish;
+    }
+
+    //endregion -------------------- Polish properties --------------------
+    //region -------------------- Ukrainian properties --------------------
+
+    public get isUkrainianUsed(): this['nameContainer']['isUkrainianUsed'] {
+        return this.nameContainer.isUkrainianUsed;
+    }
+
+    public get ukrainian(): this['nameContainer']['ukrainian'] {
+        return this.nameContainer.ukrainian;
+    }
+
+    //endregion -------------------- Ukrainian properties --------------------
+    //region -------------------- Greek properties --------------------
 
     public get isGreekUsed(): this['nameContainer']['isGreekUsed'] {
         return this.nameContainer.isGreekUsed;
@@ -157,6 +213,7 @@ export class ClassContainingAName<T, >
         return this.nameContainer.greek;
     }
 
+    //endregion -------------------- Greek properties --------------------
 
     public get originalLanguages(): this['nameContainer']['originalLanguages'] {
         return this.nameContainer.originalLanguages;
