@@ -1,21 +1,25 @@
-import type {EnumArray}    from '../../time/Times.types';
 import type {ExtendedMap}  from '../../../util/extended/ExtendedMap';
 import type {TimeProperty} from './TimeProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
+import {lazy}                 from '../../../util/utilitiesMethods';
 import type {Times}           from '../../time/Times';
+
+//region -------------------- Dynamic imports --------------------
+
+const _Times = lazy(() => require('../../time/Times').Times as typeof Times);
+
+//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
  * @provider
- * @classWithDynamicImport
  */
 export class TimePropertyContainer
     implements TimeProperty {
 
     //region -------------------- Attributes --------------------
 
-    static #values?: EnumArray;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, TimePropertyContainer> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<Times, boolean>;
@@ -31,11 +35,6 @@ export class TimePropertyContainer
 
     //region -------------------- Getter methods --------------------
 
-    private static get __values(): EnumArray {
-        return this.#values ??= require('../../time/Times').Times.values;
-    }
-
-
     public get isInDayTheme() {
         return this.#isInDayTheme;
     }
@@ -47,7 +46,7 @@ export class TimePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toTimeMap(): ReadonlyMap<Times, boolean> {
-        return this.#map ??= new Map(TimePropertyContainer.__values.map(time => [time, time.get(this),]));
+        return this.#map ??= new Map(_Times.get.values.map(time => [time, time.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

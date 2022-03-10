@@ -1,21 +1,25 @@
-import type {EnumArray_OnlyCourseTheme} from '../../theme/Themes.types';
-import type {ExtendedMap}               from '../../../util/extended/ExtendedMap';
-import type {ThemeProperty}             from './ThemeProperty';
+import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
+import type {ThemeProperty} from './ThemeProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
+import {lazy}                 from '../../../util/utilitiesMethods';
 import type {Themes}          from '../../theme/Themes';
+
+//region -------------------- Dynamic imports --------------------
+
+const _Themes = lazy(() => require('../../theme/Themes').Themes as typeof Themes);
+
+//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
  * @provider
- * @classWithDynamicImport
  */
 export class ThemePropertyContainer
     implements ThemeProperty {
 
     //region -------------------- Attributes --------------------
 
-    static #values?: EnumArray_OnlyCourseTheme;
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemePropertyContainer> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<Themes, boolean>;
@@ -46,11 +50,6 @@ export class ThemePropertyContainer
     }
 
     //region -------------------- Getter methods --------------------
-
-    private static get __values(): EnumArray_OnlyCourseTheme {
-        return this.#values ??= require('../../theme/Themes').Themes.courseThemes;
-    }
-
 
     public get isInGroundTheme() {
         return this.#isInGroundTheme;
@@ -95,7 +94,7 @@ export class ThemePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
-        return this.#map ??= new Map(ThemePropertyContainer.__values.map(theme => [theme, theme.get(this),]));
+        return this.#map ??= new Map(_Themes.get.courseThemes.map(theme => [theme, theme.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
@@ -103,7 +102,7 @@ export class ThemePropertyContainer
 
     public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
     /**
-     * Get a property instance based on the {@link Themes} properties.
+     * Get a property instance based on the {@link _Themes} properties.
      *
      * @param argumentsReceived
      * @noDuplicateInstanceCreation
