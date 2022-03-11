@@ -3,7 +3,10 @@ import type {PossibleLanguageValue} from '../ClassWithOnlyProjectLanguages';
 /**
  * @template
  */
-export interface NameTemplate<GREEK extends PossibleLanguageValue<string> = null, > {
+export interface NameTemplate<HEBREW extends PossibleLanguageValue<string> = null,
+    POLISH extends PossibleLanguageValue<string> = null,
+    UKRAINIAN extends PossibleLanguageValue<string> = null,
+    GREEK extends PossibleLanguageValue<string> = null, > {
 
     english: {
         simple: PossibleLanguageValue<string>
@@ -47,6 +50,12 @@ export interface NameTemplate<GREEK extends PossibleLanguageValue<string> = null
 
     korean: PossibleLanguageValue<string>
 
+    hebrew: HEBREW
+
+    polish: POLISH
+
+    ukrainian: UKRAINIAN
+
     greek: GREEK
 
 }
@@ -55,7 +64,7 @@ export interface NameTemplate<GREEK extends PossibleLanguageValue<string> = null
  * @template
  */
 export interface NameTemplateWithOptionalLanguages
-    extends NameTemplate<PossibleLanguageValue<string>> {
+    extends NameTemplate<PossibleLanguageValue<string>,PossibleLanguageValue<string>,PossibleLanguageValue<string>,PossibleLanguageValue<string>> {
 
 }
 

@@ -45,6 +45,9 @@ export type PropertiesArrayWithOptionalLanguages<ENGLISH extends NullableLanguag
     JAPANESE extends NullableLanguage = NullableLanguage,
     CHINESE extends NullableLanguage = NullableLanguage, TRADITIONAL_CHINESE extends NullableLanguage = NullableLanguage, SIMPLIFIED_CHINESE extends NullableLanguage = NullableLanguage,
     KOREAN extends NullableLanguage = NullableLanguage,
+    HEBREW extends NullableLanguage = NullableLanguage,
+    POLISH extends NullableLanguage = NullableLanguage,
+    UKRAINIAN extends NullableLanguage = NullableLanguage,
     GREEK extends NullableLanguage = NullableLanguage, >
     = readonly [
     ...PropertiesArray<ENGLISH, AMERICAN_ENGLISH, EUROPEAN_ENGLISH,
@@ -58,7 +61,10 @@ export type PropertiesArrayWithOptionalLanguages<ENGLISH extends NullableLanguag
         JAPANESE,
         CHINESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE,
         KOREAN>,
-    /*greek*/GREEK,
+    HEBREW,
+    POLISH,
+    UKRAINIAN,
+    GREEK,
 ];
 
 export type NonNullablePropertiesArray = readonly [

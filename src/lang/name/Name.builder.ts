@@ -52,6 +52,9 @@ export class NameBuilder<T extends PossibleNameTemplate, >
     #japanese?: PossibleLanguageValue<string>;
     #chinese?: PossibleChineseValue<string>;
     #korean?: PossibleLanguageValue<string>;
+    #hebrew?: PossibleLanguageValue<string>;
+    #polish?: PossibleLanguageValue<string>;
+    #ukrainian?: PossibleLanguageValue<string>;
     #greek?: PossibleLanguageValue<string>;
 
     readonly #template;
@@ -217,6 +220,42 @@ export class NameBuilder<T extends PossibleNameTemplate, >
     }
 
     //endregion -------------------- Korean getter & setter methods --------------------
+    //region -------------------- Hebrew getter & setter methods --------------------
+
+    public get hebrew() {
+        return this.#hebrew;
+    }
+
+    public setHebrew(value: PossibleLanguageValue<string>,): this {
+        this.#hebrew = value;
+        return this;
+    }
+
+    //endregion -------------------- Hebrew getter & setter methods --------------------
+    //region -------------------- Polish getter & setter methods --------------------
+
+    public get polish() {
+        return this.#polish;
+    }
+
+    public setPolish(value: PossibleLanguageValue<string>,): this {
+        this.#polish = value;
+        return this;
+    }
+
+    //endregion -------------------- Polish getter & setter methods --------------------
+    //region -------------------- Ukrainian getter & setter methods --------------------
+
+    public get ukrainian() {
+        return this.#ukrainian;
+    }
+
+    public setUkrainian(value: PossibleLanguageValue<string>,): this {
+        this.#ukrainian = value;
+        return this;
+    }
+
+    //endregion -------------------- Ukrainian getter & setter methods --------------------
     //region -------------------- Greek getter & setter methods --------------------
 
     public get greek() {
@@ -254,6 +293,9 @@ export class NameBuilder<T extends PossibleNameTemplate, >
                 case EveryLanguages.ENGLISH:
                 case EveryLanguages.FRENCH:
                     return NameBuilder.#IS_NULLABLE_FOR_COMPLETED_LANGUAGES;
+                case EveryLanguages.HEBREW:
+                case EveryLanguages.POLISH:
+                case EveryLanguages.UKRAINIAN:
                 case EveryLanguages.GREEK:
                     return NameBuilder.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES;
                 default:
@@ -270,11 +312,10 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         return all3ValuesAreNull ? null : value1 ?? [value2, value3,];
     }
 
-
     //endregion -------------------- Methods --------------------
 
     public build(): Name<string> {
-        const {english, french, german, spanish, italian, dutch, portuguese, russian, japanese, chinese, korean, greek,} = this.template;
+        const {english, french, german, spanish, italian, dutch, portuguese, russian, japanese, chinese, korean, hebrew,polish,ukrainian,greek,} = this.template;
 
         this.setEnglish(this.__get(EveryLanguages.ENGLISH, english.simple, english.american, english.european,))
             .setFrench(this.__get(EveryLanguages.FRENCH, french.simple, french.canadian, french.european,))
@@ -287,6 +328,9 @@ export class NameBuilder<T extends PossibleNameTemplate, >
             .setJapanese(this.__get(EveryLanguages.JAPANESE, japanese,))
             .setChinese(this.__get(EveryLanguages.CHINESE, chinese.simple, chinese.simplified, chinese.traditional,))
             .setKorean(this.__get(EveryLanguages.KOREAN, korean,))
+            .setHebrew(this.__get(EveryLanguages.HEBREW, hebrew,))
+            .setPolish(this.__get(EveryLanguages.POLISH, polish,))
+            .setUkrainian(this.__get(EveryLanguages.UKRAINIAN, ukrainian,))
             .setGreek(this.__get(EveryLanguages.GREEK, greek,));
 
         assert(this.english !== undefined, 'The english reference has not been initialised.',);
@@ -300,6 +344,9 @@ export class NameBuilder<T extends PossibleNameTemplate, >
         assert(this.japanese !== undefined, 'The japanese reference has not been initialised.',);
         assert(this.chinese !== undefined, 'The chinese reference has not been initialised.',);
         assert(this.korean !== undefined, 'The korean reference has not been initialised.',);
+        assert(this.hebrew !== undefined, 'The hebrew reference has not been initialised.',);
+        assert(this.polish !== undefined, 'The polish reference has not been initialised.',);
+        assert(this.ukrainian !== undefined, 'The ukrainian reference has not been initialised.',);
         assert(this.greek !== undefined, 'The greek reference has not been initialised.',);
 
 
@@ -315,6 +362,9 @@ export class NameBuilder<T extends PossibleNameTemplate, >
             this.japanese,
             this.chinese,
             this.korean,
+            this.hebrew,
+            this.polish,
+            this.ukrainian,
             this.greek,
         );
     }
