@@ -11,29 +11,20 @@ import type {SimpleGameFrom1And2Template}                                       
 import type {ThemeTemplate}                                                     from './Theme.template';
 import type {WorldTheme}                                                        from './WorldTheme';
 
-import type {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
 import {CourseThemeContainer}                           from './CourseTheme.container';
 import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
-import type {Entities}                                  from '../entity/Entities';
 import {EmptyCourseTheme}                               from './EmptyCourseTheme';
 import {EmptyWorldTheme}                                from './EmptyWorldTheme';
 import {GamePropertyContainer}                          from '../entity/properties/GameProperty.container';
 import {Games}                                          from '../game/Games';
-import {lazy}                                           from '../../util/utilitiesMethods';
 import type {NightEffects}                              from './NightEffects';
 import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
-import type {Themes}                                    from './Themes';
 import {WorldThemeContainer}                            from './WorldTheme.container';
+import {Import}                                         from '../../util/DynamicImporter';
 
-//region -------------------- Dynamic imports --------------------
-
-const _ClassThatIsAvailableFromTheStartContainer = lazy(() => require('../availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer as typeof ClassThatIsAvailableFromTheStartContainer);
-const _Entities =                                  lazy(() => require('../entity/Entities').Entities as typeof Entities);
-const _NightEffects =                              lazy(() => require('./NightEffects').NightEffects as typeof NightEffects);
-const _Themes =                                    lazy(() => require('./Themes').Themes as typeof Themes);
-
-//endregion -------------------- Dynamic imports --------------------
-
+/**
+ * @classWithDynamicImport {@link ClassThatIsAvailableFromTheStartContainer}, {@link Entities}, {@link Themes}, {@link NightEffects}
+ */
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
     implements Builder<CourseAndWorldTheme> {
@@ -42,9 +33,9 @@ export class ThemeBuilder
 
     static readonly #WORLD_THEME_PROPERTY = GamePropertyContainer.get(false, true,);
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => _ClassThatIsAvailableFromTheStartContainer.get.get(null,));
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => _ClassThatIsAvailableFromTheStartContainer.get.get(true,));
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => _ClassThatIsAvailableFromTheStartContainer.get.get(false,));
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(null,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(false,));
 
     //endregion -------------------- Attributes --------------------
 
@@ -91,9 +82,9 @@ export class ThemeBuilder
      */
     private static __getWhereEntityIs(name: PossibleEnglishName,): ObjectHolder<readonly Entity[]> {
         return new DelayedObjectHolderContainer(() => {
-            const theme = _Themes.get.getValue(name);
+            const theme = Import.Themes.getValue(name);
 
-            return _Entities.get.values.map(({reference,}) => reference)
+            return Import.Entities.values.map(({reference,}) => reference)
                 .filter(reference => theme.get(reference));
         });
     }
@@ -104,7 +95,7 @@ export class ThemeBuilder
      * @param name the night effect
      */
     private static __getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): ObjectHolder<NightEffects> {
-        return new DelayedObjectHolderContainer(() => _NightEffects.get.getValue(name));
+        return new DelayedObjectHolderContainer(() => Import.NightEffects.getValue(name));
     }
 
     //endregion -------------------- Course theme builder helper methods --------------------

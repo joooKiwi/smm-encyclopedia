@@ -3,15 +3,8 @@ import type {GameProperty}  from './GameProperty';
 import type {GameStructure} from '../../game/GameStructure';
 
 import {ExtendedMapContainer}   from '../../../util/extended/ExtendedMap.container';
-import type {Games}             from '../../game/Games';
+import {Games}                  from '../../game/Games';
 import {GameStructureContainer} from '../../game/GameStructure.container';
-import {lazy}                   from '../../../util/utilitiesMethods';
-
-//region -------------------- Dynamic imports --------------------
-
-const _Games = lazy(() => require('../../game/Games').Games as typeof Games);
-
-//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
@@ -50,7 +43,7 @@ export class GamePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toGameMap(): ReadonlyMap<Games, boolean> {
-        return this.#map ??= new Map(_Games.get.values.map(game => [game, game.get(this),]));
+        return this.#map ??= new Map(Games.values.map(game => [game, game.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

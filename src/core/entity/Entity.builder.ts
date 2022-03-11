@@ -20,8 +20,6 @@ import {EntityCategories}                               from '../entityCategory/
 import {EntityContainer}                                from './Entity.container';
 import type {EntityLimits}                              from '../entityLimit/EntityLimits';
 import {EntityReferencesContainer}                      from './properties/EntityReferences.container';
-import type {Entities}                                  from './Entities';
-import type {EmptyEntity}                               from './EmptyEntity';
 import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory';
 import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container';
@@ -30,8 +28,7 @@ import {GamePropertyContainer}                          from './properties/GameP
 import {Games}                                          from '../game/Games';
 import {GameStructureContainer}                         from '../game/GameStructure.container';
 import {GameStylePropertyContainer}                     from './properties/GameStyleProperty.container';
-import {lazy}                                           from '../../util/utilitiesMethods';
-import type {LimitPropertyContainer}                    from './properties/limit/LimitProperty.container';
+import {Import}                                         from '../../util/DynamicImporter';
 import {ObjectHolders}                                  from '../../util/holder/objectHolders';
 import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
 import {PropertyContainer}                              from '../_properties/Property.container';
@@ -39,19 +36,7 @@ import {PropertyContainer as PropertyInstanceContainer} from './properties/Prope
 import {PropertyProvider}                               from '../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
-import type {ThemePropertyContainer}                    from './properties/ThemeProperty.container';
-import type {TimePropertyContainer}                     from './properties/TimeProperty.container';
 
-//region -------------------- Dynamic imports --------------------
-
-const _EntityLimits =           lazy(() => require('../entityLimit/EntityLimits').EntityLimits as typeof EntityLimits);
-const _Entities =               lazy(() => require('./Entities').Entities as typeof Entities);
-const _EmptyEntity =            lazy(() => require('./EmptyEntity').EmptyEntity as typeof EmptyEntity);
-const _LimitPropertyContainer = lazy(() => require('./properties/limit/LimitProperty.container').LimitPropertyContainer as typeof LimitPropertyContainer);
-const _ThemePropertyContainer = lazy(() => require('./properties/ThemeProperty.container').ThemePropertyContainer as typeof ThemePropertyContainer);
-const _TimePropertyContainer =  lazy(() => require('./properties/TimeProperty.container').TimePropertyContainer as typeof TimePropertyContainer);
-
-//endregion -------------------- Dynamic imports --------------------
 
 /**
  * Create an {@link Entity} from a {@link EntityTemplate template} received.
@@ -60,6 +45,7 @@ const _TimePropertyContainer =  lazy(() => require('./properties/TimeProperty.co
  * @see ExclusiveSM3DWEntityContainer
  * @see ExclusiveSMM2EntityContainer
  * @see EntityContainer
+ * @classWithDynamicImport {@link EntityLimits}, {@link Entities}, {@link EmptyEntity}, {@link LimitPropertyContainer}, {@link ThemePropertyContainer}, {@link TimePropertyContainer}
  */
 export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
@@ -67,7 +53,7 @@ export class EntityBuilder
 
     //region -------------------- Attributes --------------------
 
-    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [_EmptyEntity.get.get];
+    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [Import.EmptyEntity.get];
 
     readonly #selfCallback = () => [this.build()] as const;
 
@@ -83,6 +69,7 @@ export class EntityBuilder
      *
      *
      * @param template the template destructured to get only the games
+     * @onlyCalledAtConstruction
      */
     private static __getGames({properties: {isIn: {game: {1: isInSMM1, '3DS': isInSMM3DS, 2: isInSMM2,},},},}: EntityTemplate,): OriginalPossibleGameReceived {
         return isInSMM1 && isInSMM3DS
@@ -117,7 +104,7 @@ export class EntityBuilder
     private static __whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
     private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
     private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
-        return _EntityLimits.get.getValue(entityLimit);
+        return Import.EntityLimits.getValue(entityLimit);
     }
 
     private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
@@ -146,7 +133,7 @@ export class EntityBuilder
             },
         } = limitTemplate;
 
-        return _LimitPropertyContainer.get.get(
+        return Import.LimitPropertyContainer.get(
             [
                 GameStructureContainer.get(this.__whereEntityLimit(editorLimit_SMM1And3DS),
                     this.__getPropertyWhereEntityLimit(editorLimit_SMM2),
@@ -179,8 +166,8 @@ export class EntityBuilder
         return new PropertyInstanceContainer(
             new ObjectHolderContainer(GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
             new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
-            new DelayedObjectHolderContainer(() => _ThemePropertyContainer.get.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
-            new DelayedObjectHolderContainer(() => _TimePropertyContainer.get.get(time.day, time.night,)),
+            new DelayedObjectHolderContainer(() => Import.ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
+            new DelayedObjectHolderContainer(() => Import.TimePropertyContainer.get(time.day, time.night,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.__getLimitPropertyAttributes(limits)),
         );
     }
@@ -247,7 +234,7 @@ export class EntityBuilder
     private __createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => _Entities.get.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
+            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Import.Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
     }
 
     /**
@@ -262,7 +249,7 @@ export class EntityBuilder
                 ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
                 : link === 'this'
                     ? this.#selfCallback
-                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => _Entities.get.getValue(splitLink).reference) as unknown as PossibleOtherEntities
+                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Import.Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
         );
     }
 
