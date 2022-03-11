@@ -9,36 +9,27 @@ import type {ObjectHolder}                                                      
 import type {PossibleAcronym}                                                   from './GameStyles.types';
 import type {SimpleGameFrom1And2Template}                                       from '../game/SimpleGame.template';
 
-import type {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
-import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
-import type {Entities}                                  from '../entity/Entities';
-import {GamePropertyContainer}                          from '../entity/properties/GameProperty.container';
-import type {GameReferences}                            from '../gameReference/GameReferences';
-import type {GameStyles}                                from './GameStyles';
-import {GameStyleContainer}                             from './GameStyle.container';
-import {TemplateBuilder}                                from '../_template/Template.builder';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
+import {GamePropertyContainer}        from '../entity/properties/GameProperty.container';
+import {GameStyleContainer}           from './GameStyle.container';
+import {Import}                       from '../../util/DynamicImporter';
+import {TemplateBuilder}              from '../_template/Template.builder';
 
+/**
+ * @classWithDynamicImport {@link Entities}m {@link GameReferences}, {@link GameStyles}, {@link ClassThatIsAvailableFromTheStartContainer}
+ */
 export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
-    //region -------------------- Dynamic imports attributes --------------------
-
-    static #classThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer;
-
-    static #gameReferences?: typeof GameReferences;
-    static #gameStyles?: typeof GameStyles;
-    static #entities?: typeof Entities;
-
-    //endregion -------------------- Dynamic imports attributes --------------------
     //region -------------------- Attributes --------------------
 
     static readonly #GAME_PROPERTY_IN_ALL_GAMES: ObjectHolder<GameProperty<true, true, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(true, true,));
     static readonly #GAME_PROPERTY_IN_SMM2: ObjectHolder<GameProperty<false, false, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(false, true,));
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(null,));
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(true,));
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(false,));
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(null,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(false,));
 
     //endregion -------------------- Attributes --------------------
 
@@ -46,25 +37,6 @@ export class GameStyleBuilder
         super(templateBuilder,);
     }
 
-    //region -------------------- Dynamic imports getter methods --------------------
-
-    private static get __classThatIsAvailableFromTheStartContainer(): typeof ClassThatIsAvailableFromTheStartContainer {
-        return this.#classThatIsAvailableFromTheStartContainer ??= require('../availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer;
-    }
-
-    private static get __gameReferences(): typeof GameReferences {
-        return this.#gameReferences ??= require('../gameReference/GameReferences').GameReferences;
-    }
-
-    private static get __gameStyles(): typeof GameStyles {
-        return this.#gameStyles ??= require('./GameStyles').GameStyles;
-    }
-
-    private static get __entities(): typeof Entities {
-        return this.#entities ??= require('../entity/Entities').Entities;
-    }
-
-    //endregion -------------------- Dynamic imports getter methods --------------------
     //region -------------------- Dynamic imports attributes --------------------
 
     protected get _static() {
@@ -74,7 +46,7 @@ export class GameStyleBuilder
     //region -------------------- Builder helper methods --------------------
 
     private static __getNameBy(reference: PossibleAcronym,): () => Name<string> {
-        return () => this.__gameReferences.getValue(reference).reference.nameContainer;
+        return () => Import.GameReferences.getValue(reference).reference.nameContainer;
     }
 
     private static __getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): ObjectHolder<GameProperty> {
@@ -94,9 +66,9 @@ export class GameStyleBuilder
 
     private static __getEntityBy(englishName: PossibleAcronym,): ObjectHolder<readonly Entity[]> {
         return new DelayedObjectHolderContainer(() => {
-            const gameStyle = this.__gameStyles.getValue(englishName);
+            const gameStyle = Import.GameStyles.getValue(englishName);
 
-            return this.__entities.values.map(({reference,}) => reference)
+            return Import.Entities.values.map(({reference,}) => reference)
                 .filter(reference => gameStyle.get(reference));
         });
     }

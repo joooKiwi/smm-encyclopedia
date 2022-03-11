@@ -8,18 +8,13 @@ import type {PossiblePath}                                                      
 import type {SoundProperty}                                                                                                                                                                                                                            from './properties/sound/SoundProperty';
 import type {StaticReference}                                                                                                                                                                                                                          from '../../util/enum/Enum.types';
 
-import {Enum}                                  from '../../util/enum/Enum';
-import {BasicImageContainer}                   from './image/BasicImage.container';
-import {ImageWithLeftVariationContainer}       from './image/ImageWithLeftVariation.container';
-import {ImageWithJapaneseContainer}            from './image/ImageWithJapanese.container';
-import {ImageWithUnderwaterVariationContainer} from './image/ImageWithUnderwaterVariation.container';
-import {NoImage}                               from './image/NoImage';
-import {NoSound}                               from './sound/NoSound';
-import {SoundContainer}                        from './sound/Sound.container';
-import {StringContainer}                       from '../../util/StringContainer';
+import {Enum}            from '../../util/enum/Enum';
+import {Import}          from '../../util/DynamicImporter';
+import {StringContainer} from '../../util/StringContainer';
 
 /**
- * @recursiveReference<{@link MysteryMushroomLoader}>
+ * @recursiveReference {@link MysteryMushroomLoader}
+ * @classWithDynamicImport {@link MysteryMushroomLoader}, {@link NoImage}, {@link BasicImageContainer}, {@link ImageWithUnderwaterVariationContainer}, {@link ImageWithLeftVariationContainer}, {@link ImageWithJapaneseContainer}, {@link NoSound}, {@link SoundContainer}
  */
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
@@ -32,11 +27,11 @@ export class MysteryMushrooms
     public static readonly MYSTERY_MUSHROOM =       new class MysteryMushrooms_MysteryMushroom extends MysteryMushrooms {
 
         protected _createImageContainer(): Image {
-            return NoImage.get;
+            return Import.NoImage.get;
         }
 
         protected _createSoundContainer(): Sound {
-            return NoSound.get;
+            return Import.NoSound.get;
         }
 
     }('Mystery Mushroom',);
@@ -83,7 +78,7 @@ export class MysteryMushrooms
     public static readonly QUESTION_MARK_BLOCK =    new class MysteryMushrooms_QuestionMarkBlock extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithLeftVariationContainer(imagePath);
+            return new Import.ImageWithLeftVariationContainer(imagePath);
         }
 
     }('Question Mark Block', '? Block',);
@@ -152,7 +147,7 @@ export class MysteryMushrooms
     public static readonly SONIC =                  new class MysteryMushrooms_Sonic extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new BasicImageContainer(imagePath, 3,);
+            return new Import.BasicImageContainer(imagePath, 3,);
         }
 
     }('Sonic',);
@@ -234,28 +229,28 @@ export class MysteryMushrooms
     public static readonly INKLING_BOY =            new class MysteryMushrooms_InklingBoy extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithUnderwaterVariationContainer(imagePath);
+            return new Import.ImageWithUnderwaterVariationContainer(imagePath);
         }
 
     }('Inkling Boy',);
     public static readonly INKLING_GIRL =           new class MysteryMushrooms_InklingGirl extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithUnderwaterVariationContainer(imagePath);
+            return new Import.ImageWithUnderwaterVariationContainer(imagePath);
         }
 
     }('Inkling Girl',);
     public static readonly CALLIE =                 new class MysteryMushrooms_Callie extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithUnderwaterVariationContainer(imagePath);
+            return new Import.ImageWithUnderwaterVariationContainer(imagePath);
         }
 
     }('Callie',);
     public static readonly MARIE =                  new class MysteryMushrooms_Marie extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithUnderwaterVariationContainer(imagePath);
+            return new Import.ImageWithUnderwaterVariationContainer(imagePath);
         }
 
     }('Marie',);
@@ -263,7 +258,7 @@ export class MysteryMushrooms
     public static readonly ROB =                    new class MysteryMushrooms_ROB extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithJapaneseContainer(imagePath);
+            return new Import.ImageWithJapaneseContainer(imagePath);
         }
 
     }('R.O.B', 'R.O.B.',);
@@ -273,14 +268,14 @@ export class MysteryMushrooms
     public static readonly KITTY_WHITE =            new class MysteryMushrooms_KittyWhite extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithLeftVariationContainer(imagePath);
+            return new Import.ImageWithLeftVariationContainer(imagePath);
         }
 
     }('Kitty White',);
     public static readonly MELODY =                 new class MysteryMushrooms_Melody extends MysteryMushrooms {
 
         protected _createImageContainer(imagePath: PossiblePath,): Image {
-            return new ImageWithLeftVariationContainer(imagePath);
+            return new Import.ImageWithLeftVariationContainer(imagePath);
         }
 
     }('Melody',);
@@ -299,8 +294,6 @@ export class MysteryMushrooms
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
-
-    static #map?: ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>;
 
     #reference?: MysteryMushroom;
 
@@ -329,16 +322,12 @@ export class MysteryMushrooms
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= require('./MysteryMushroom.loader').MysteryMushroomLoader.get.load();
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): MysteryMushroom {
-        return this.#reference ??= MysteryMushrooms.__map.get(this.englishName)!;
+        return this.#reference ??= Import.MysteryMushroomLoader.get.load().get(this.englishName)!;
     }
 
 
@@ -368,7 +357,7 @@ export class MysteryMushrooms
     }
 
     protected _createImageContainer(imagePath: PossiblePath,): Image {
-        return new BasicImageContainer(imagePath);
+        return new Import.BasicImageContainer(imagePath);
     }
 
     private get __imageContainer(): Image {
@@ -376,7 +365,7 @@ export class MysteryMushrooms
     }
 
     protected _createSoundContainer(path: PossiblePath, property: SoundProperty,): Sound {
-        return new SoundContainer(path, property,);
+        return new Import.SoundContainer(path, property,);
     }
 
     private get __soundContainer(): Sound {

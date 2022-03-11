@@ -14,30 +14,15 @@ import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}             
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 import type {UnusedImages}                                                                                                                                                                               from './images/unused/UnusedImage';
 
-import {ClearConditionImageBuilder}     from './images/clearCondition/ClearConditionImage.builder';
-import {ClearConditionImageFactory}     from './images/clearCondition/ClearConditionImage.factory';
-import {EditorImageBuilder}             from './images/editor/EditorImage.builder';
-import {EditorImageFactory}             from './images/editor/EditorImage.factory';
-import type {EditorVoices}              from '../editorVoice/EditorVoices';
-import {EmptyEditorVoiceSound}          from '../editorVoice/EmptyEditorVoiceSound';
-import {Enum}                           from '../../util/enum/Enum';
-import {GameStyles}                     from '../gameStyle/GameStyles';
-import {InGameImage_SMM1Builder}        from './images/inGame/InGameImage_SMM1.builder';
-import {InGameImageFactory}             from './images/inGame/InGameImage.factory';
-import {StringContainer}                from '../../util/StringContainer';
-import {Themes}                         from '../theme/Themes';
-import {Times}                          from '../time/Times';
-import {UnusedImage_BigMushroomBuilder} from './images/unused/UnusedImage_BigMushroom.builder';
-import {UnusedImage_RegularBuilder}     from './images/unused/UnusedImage_Regular.builder';
-import {UnusedImageFactory}             from './images/unused/UnusedImage.factory';
-
-const {SUPER_MARIO_BROS: SMB, SUPER_MARIO_BROS_3: SMB3, SUPER_MARIO_WORLD: SMW, NEW_SUPER_MARIO_BROS_U: NSMBU, SUPER_MARIO_3D_WORLD: SM3DW} = GameStyles;
-const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE} = Themes;
+import type {EditorImageBuilder} from './images/editor/EditorImage.builder';
+import {Enum}               from '../../util/enum/Enum';
+import {Import}             from '../../util/DynamicImporter';
+import {StringContainer}    from '../../util/StringContainer';
 
 /**
- * @recursiveReferenceVia<{@link EntityLoader}, {@link EntityBuilder}>
- * @recursiveReference<{@link EntityLoader}>
- * @recursiveReference<{@link __EditorVoices}>
+ * @recursiveReferenceVia {@link EntityLoader} →  {@link EntityBuilder}
+ * @recursiveReference {@link EntityLoader}, {@link EditorVoices}
+ * @classWithDynamicImport {@link EntityLoader}, {@link ClearConditionImageBuilder}, {@link ClearConditionImageFactory}, {@link EditorImageBuilder}, {@link EditorImageFactory}, {@link EmptyEditorVoiceSound}, {@link InGameImage_SMM1Builder}, {@link InGameImageFactory}, {@link UnusedImage_BigMushroomBuilder}, {@link UnusedImage_RegularBuilder}, {@link UnusedImageFactory}, {@link EditorVoices}, {@link Times}, {@link Themes}, {@link GameStyles}
  */
 export class Entities
     extends Enum<Ordinals, Names>
@@ -79,17 +64,17 @@ export class Entities
     public static readonly PIPE =                                          new class Entities_Pipe extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Dokan',)
+            return new Import.EditorImageBuilder('Dokan',)
                 .setAmount(4)
                 .setAllGameStyles()
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('Pipe',);
     public static readonly CLEAR_PIPE =                                    new class Entities_ClearPipe extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('ToumeiDokan',)
+            return new Import.EditorImageBuilder('ToumeiDokan',)
                 .setOnlySM3DW();
         }
 
@@ -98,9 +83,9 @@ export class Entities
     public static readonly SPIKE_TRAP =                                    new class Entities_SpikeTrap extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Toge',)
-                .setNightTheme(SMB, SNOW,)
-                .setNightTheme(SMB3, SNOW,)
+            return new Import.EditorImageBuilder('Toge',)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
                 .setNotSM3DW();
         }
 
@@ -108,25 +93,25 @@ export class Entities
     public static readonly JELECTRO =                                      new class Entities_Jelectro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Toge',)
+            return new Import.EditorImageBuilder('Toge',)
                 .hasNoDefaultImage()
-                .setTheme(SMB3, UNDERWATER,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.UNDERWATER,);
         }
 
     }('Jelectro',);
     public static readonly SEA_URCHIN =                                    new class Entities_SeaUrchin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Toge',)
+            return new Import.EditorImageBuilder('Toge',)
                 .hasNoDefaultImage()
-                .setTheme(SMW, UNDERWATER,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.UNDERWATER,);
         }
 
     }('Sea Urchin',);
     public static readonly SPIKE_BLOCK =                                   new class Entities_SpikeBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('TogeBlock',)
+            return new Import.EditorImageBuilder('TogeBlock',)
                 .setAmount(3)
                 .setOnlySM3DW();
         }
@@ -136,50 +121,50 @@ export class Entities
     public static readonly MUSHROOM_PLATFORM =                             new class Entities_MushroomPlatform extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('GroundMushroom',)
+            return new Import.EditorImageBuilder('GroundMushroom',)
                 .setAmount(3)
-                .setTheme(SMB, UNDERWATER, SNOW, AIRSHIP,)
-                .setNightTheme(SMB, SNOW,)
-                .setTheme(SMB3, UNDERWATER, SNOW, AIRSHIP,)
-                .setNightTheme(SMB3, SNOW,)
-                .setTheme(SMW, UNDERWATER, SNOW, AIRSHIP,)
-                .setNightTheme(SMW, SNOW,)
-                .setTheme(NSMBU, UNDERWATER, SNOW, AIRSHIP,)
-                .setNightTheme(NSMBU, SNOW,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.AIRSHIP,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.AIRSHIP,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.AIRSHIP,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.AIRSHIP,)
+                .setNightTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.SNOW,);
         }
 
     }('Mushroom Platform',);
     public static readonly SEMISOLID_PLATFORM =                            new class Entities_SemisolidPlatform extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('GroundBox',)
+            return new Import.EditorImageBuilder('GroundBox',)
                 .setAmount(3)
-                .setTheme(SMB, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(SMB, SNOW, AIRSHIP,)
-                .setImage(SMB, AIRSHIP, Times.NIGHT, 2,)
-                .setTheme(SMB3, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(SMB3, SNOW,)
-                .setTheme(SMW, UNDERGROUND, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(SMW, SNOW,)
-                .setTheme(NSMBU, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(NSMBU, SNOW,)
-                .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setDefaultAmount(SM3DW, 1,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW, Import.Themes.AIRSHIP,)
+                .setImage(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.AIRSHIP, Import.Times.NIGHT, 2,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.UNDERGROUND, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_3D_WORLD, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setDefaultAmount(Import.GameStyles.SUPER_MARIO_3D_WORLD, 1,);
         }
 
     }('Semisolid Platform',);
     public static readonly BRIDGE =                                        new class Entities_Bridge extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bridge',)
-                .setTheme(SMB, SNOW, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(SMB, SNOW,)
-                .setTheme(SMB3, SNOW,)
-                .setNightTheme(SMB3, SNOW,)
-                .setTheme(SMW, GROUND, DESERT, SNOW, SKY, FOREST,)
-                .setNightTheme(SMW, SNOW,)
-                .setTheme(NSMBU, UNDERGROUND, UNDERWATER, SNOW, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(NSMBU, SNOW,);
+            return new Import.EditorImageBuilder('Bridge',)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.GROUND, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.SNOW,);
         }
 
     }('Bridge',);
@@ -190,28 +175,28 @@ export class Entities
     public static readonly BRICK_BLOCK =                                   new class Entities_BrickBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('RengaBlock',)
-                .setTheme(SMB, UNDERGROUND, SNOW, GHOST_HOUSE, CASTLE,)
-                .setNightTheme(SMB, SNOW,)
-                .setNightTheme(SMB3, SNOW,)
-                .setNotGameStyle(SMW,);
+            return new Import.EditorImageBuilder('RengaBlock',)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERGROUND, Import.Themes.SNOW, Import.Themes.GHOST_HOUSE, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Brick Block',);
     public static readonly CRISTAL_BLOCK =                                 new class Entities_CristalBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('RengaBlock',)
+            return new Import.EditorImageBuilder('RengaBlock',)
                 .hasNoDefaultImage()
-                .setTheme(SM3DW, UNDERGROUND, FOREST,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_3D_WORLD, Import.Themes.UNDERGROUND, Import.Themes.FOREST,);
         }
 
     }('Cristal Block',);
     public static readonly ROTATING_BLOCK =                                new class Entities_RotatingBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('RengaBlock',)
-                .setGameStyle(SMW,);
+            return new Import.EditorImageBuilder('RengaBlock',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Rotating Block',);
@@ -219,14 +204,14 @@ export class Entities
     public static readonly HARD_BLOCK =                                    new class Entities_HardBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('HardBlock',)
-                .setTheme(SMB, UNDERGROUND, UNDERWATER, SNOW, GHOST_HOUSE, AIRSHIP, CASTLE,)
-                .setNightTheme(SMB, UNDERGROUND, SNOW,)
-                .setTheme(SMB3, SNOW,)
-                .setNightTheme(SMB3, SNOW,)
-                .setTheme(SMW, GHOST_HOUSE, AIRSHIP,)
-                .setNightTheme(SMW, AIRSHIP,)
-                .setTheme(NSMBU, UNDERGROUND, UNDERWATER, SNOW, SKY, FOREST, CASTLE,)
+            return new Import.EditorImageBuilder('HardBlock',)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERGROUND, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.AIRSHIP,)
+                .setTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.CASTLE,)
                 .setNotSM3DW();
         }
 
@@ -234,7 +219,7 @@ export class Entities
     public static readonly ROCK_BLOCK =                                    new class Entities_RockBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('HardBlock',)
+            return new Import.EditorImageBuilder('HardBlock',)
                 .setOnlySM3DW();
         }
 
@@ -243,10 +228,10 @@ export class Entities
     public static readonly QUESTION_MARK_BLOCK =                           new class Entities_QuestionMarkBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('HatenaBlock',)
+            return new Import.EditorImageBuilder('HatenaBlock',)
                 .setAllGameStyles()
-                .setNightTheme(SMB, SNOW,)
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('? Block',);
@@ -262,7 +247,7 @@ export class Entities
     public static readonly EXCLAMATION_MARK_BLOCK =                        new class Entities_ExclamationMarkBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BikkuriBlock',)
+            return new Import.EditorImageBuilder('BikkuriBlock',)
                 .setOnlySM3DW();
         }
 
@@ -271,20 +256,20 @@ export class Entities
     public static readonly NOTE_BLOCK =                                    new class Entities_NoteBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('OnpuBlock', 1,)
+            return new Import.EditorImageBuilder('OnpuBlock', 1,)
                 .setNotSM3DW()
-                .setNightTheme(SMB, SNOW,)
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('Note Block',);
     public static readonly MUSIC_BLOCK =                                   new class Entities_MusicBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('OnpuBlock', 2,)
+            return new Import.EditorImageBuilder('OnpuBlock', 2,)
                 .setNotSM3DW()
-                .setNightTheme(SMB, SNOW,)
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('Music Block',);
@@ -292,10 +277,10 @@ export class Entities
     public static readonly DONUT_BLOCK =                                   new class Entities_DonutBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('ChikuwaBlock',)
+            return new Import.EditorImageBuilder('ChikuwaBlock',)
                 .setAllGameStyles()
-                .setNightTheme(SMB, SNOW,)
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('Donut Block',);
@@ -303,13 +288,13 @@ export class Entities
     public static readonly CLOUD_BLOCK =                                   new class Entities_CloudBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KumoBlock',)
+            return new Import.EditorImageBuilder('KumoBlock',)
                 .setAllGameStyles()
-                .setTheme(SMB, UNDERWATER,)
-                .setNightTheme(SMB, SNOW,)
-                .setTheme(SMB3, UNDERWATER,)
-                .setNightTheme(SMB3, SNOW,)
-                .setTheme(SMW, UNDERWATER,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERWATER,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.UNDERWATER,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.UNDERWATER,);
         }
 
     }('Cloud Block',);
@@ -324,7 +309,7 @@ export class Entities
     public static readonly DOTTED_LINE_BLOCK =                             new class Entities_DottedLineBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('OnOffBlock',)
+            return new Import.EditorImageBuilder('OnOffBlock',)
                 .setAmount(2)
                 .setAllGameStyles();
         }
@@ -334,7 +319,7 @@ export class Entities
     public static readonly P_BLOCK =                                       new class Entities_PBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('PBlock',)
+            return new Import.EditorImageBuilder('PBlock',)
                 .setAmount(2)
                 .setAllGameStyles();
         }
@@ -344,7 +329,7 @@ export class Entities
     public static readonly BLINKING_BLOCK =                                new class Entities_BlinkingBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Chikachika',)
+            return new Import.EditorImageBuilder('Chikachika',)
                 .setAmount(2)
                 .setOnlySM3DW();
         }
@@ -354,16 +339,16 @@ export class Entities
     public static readonly ICE_BLOCK =                                     new class Entities_IceBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('IceBlock',)
+            return new Import.EditorImageBuilder('IceBlock',)
                 .setAllGameStyles()
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('Ice Block',);
     public static readonly ICICLE =                                        new class Entities_Icicle extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Icicle',)
+            return new Import.EditorImageBuilder('Icicle',)
                 .setAmount(2)
                 .setAllGameStyles();
         }
@@ -373,7 +358,7 @@ export class Entities
     public static readonly COIN =                                          new class Entities_Coin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Coin', 1,)
+            return new Import.EditorImageBuilder('Coin', 1,)
                 .setAllGameStyles();
         }
 
@@ -385,21 +370,21 @@ export class Entities
     public static readonly FROZEN_COIN =                                   new class Entities_FrozenCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Coin', 2,)
+            return new Import.EditorImageBuilder('Coin', 2,)
                 .setNotSM3DW()
-                .setNightTheme(SMB3, SNOW,);
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW,);
         }
 
     }('Frozen Coin',);
     public static readonly TEN_COIN =                                      new class Entities_TenCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('10Coin', 1,)
+            return new Import.EditorImageBuilder('10Coin', 1,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('10Coin', 1,)
+            return new Import.ClearConditionImageBuilder('10Coin', 1,)
                 .setAllGameStyles();
         }
 
@@ -407,12 +392,12 @@ export class Entities
     public static readonly THIRTY_COIN =                                   new class Entities_ThirtyCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('10Coin', 2,)
+            return new Import.EditorImageBuilder('10Coin', 2,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('10Coin', 2,)
+            return new Import.ClearConditionImageBuilder('10Coin', 2,)
                 .setAllGameStyles();
         }
 
@@ -420,12 +405,12 @@ export class Entities
     public static readonly FIFTY_COIN =                                    new class Entities_FiftyCoin extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('10Coin', 3,)
+            return new Import.EditorImageBuilder('10Coin', 3,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('10Coin', 3,)
+            return new Import.ClearConditionImageBuilder('10Coin', 3,)
                 .setAllGameStyles();
         }
 
@@ -444,13 +429,13 @@ export class Entities
     public static readonly SUPER_MUSHROOM =                                new class Entities_SuperMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SuperKinoko', 1,)
+            return new Import.EditorImageBuilder('SuperKinoko', 1,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SuperKinoko', 1,)
-                .setGameStyle(SMB);
+            return new Import.ClearConditionImageBuilder('SuperKinoko', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
     }('Super Mushroom',);
@@ -458,13 +443,13 @@ export class Entities
     public static readonly FIRE_FLOWER =                                   new class Entities_FireFlower extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('FireFlower', 1,)
+            return new Import.EditorImageBuilder('FireFlower', 1,)
                 .setAsPowerUp()
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('FireFlower', 1,)
+            return new Import.ClearConditionImageBuilder('FireFlower', 1,)
                 .setAllGameStyles();
         }
 
@@ -474,14 +459,14 @@ export class Entities
     public static readonly SUPERBALL_FLOWER =                              new class Entities_SuperballFlower extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('FireFlower', 2,)
+            return new Import.EditorImageBuilder('FireFlower', 2,)
                 .setAsPowerUp()
-                .setGameStyle(SMB);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('FireFlower', 2,)
-                .setGameStyle(SMB,);
+            return new Import.ClearConditionImageBuilder('FireFlower', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS,);
         }
 
     }('Superball Flower',);
@@ -490,14 +475,14 @@ export class Entities
     public static readonly MYSTERY_MUSHROOM =                             new class Entities_MysteryMushroom extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new InGameImage_SMM1Builder('Kinoko2',);
+            return new Import.InGameImage_SMM1Builder('Kinoko2',);
         }
 
     }('Mystery Mushroom',);
     public static readonly WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new InGameImage_SMM1Builder('KinokoFunny',);
+            return new Import.InGameImage_SMM1Builder('KinokoFunny',);
         }
 
     }('Weird Mushroom',);
@@ -505,13 +490,13 @@ export class Entities
     public static readonly MASTER_SWORD =                                  new class Entities_MasterSword extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SuperKinoko', 2,)
-                .setGameStyle(SMB);
+            return new Import.EditorImageBuilder('SuperKinoko', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SuperKinoko', 2,)
-                .setGameStyle(SMB);
+            return new Import.ClearConditionImageBuilder('SuperKinoko', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
     }('Master Sword',);
@@ -521,21 +506,21 @@ export class Entities
     public static readonly BIG_MUSHROOM =                                  new class Entities_BigMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('DekaKinoko',)
+            return new Import.EditorImageBuilder('DekaKinoko',)
                 .setAsPowerUp()
-                .setGameStyle(SMB,);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('DekaKinoko',)
-                .setGameStyle(SMB);
+            return new Import.ClearConditionImageBuilder('DekaKinoko',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
     }('Big Mushroom',);
     public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new InGameImage_SMM1Builder('MegaKinoko')
+            return new Import.InGameImage_SMM1Builder('MegaKinoko')
                 .setAllGameStyles();
         }
 
@@ -543,7 +528,7 @@ export class Entities
     public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
 
         protected get _createInGameImage(): PossibleInGameImage {
-            return new InGameImage_SMM1Builder('MegaKinoko2')
+            return new Import.InGameImage_SMM1Builder('MegaKinoko2')
                 .setAllGameStyles();
         }
 
@@ -552,14 +537,14 @@ export class Entities
     public static readonly SMB2_MUSHROOM =                                 new class Entities_SMB2Mushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KinokoUSA')
+            return new Import.EditorImageBuilder('KinokoUSA')
                 .setAsPowerUp()
-                .setGameStyle(SMB);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KinokoUSA')
-                .setGameStyle(SMB);
+            return new Import.ClearConditionImageBuilder('KinokoUSA')
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
     }('SMB2 Mushroom',);
@@ -567,14 +552,14 @@ export class Entities
     public static readonly SUPER_LEAF =                                    new class Entities_SuperLeaf extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SuperKonoha',)
+            return new Import.EditorImageBuilder('SuperKonoha',)
                 .setAsPowerUp()
-                .setGameStyle(SMB3,);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS_3,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SuperKonoha',)
-                .setGameStyle(SMB3);
+            return new Import.ClearConditionImageBuilder('SuperKonoha',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS_3);
         }
 
     }('Super Leaf',);
@@ -582,14 +567,14 @@ export class Entities
     public static readonly FROG_SUIT =                                     new class Entities_FrogSuit extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('FrogSuit',)
+            return new Import.EditorImageBuilder('FrogSuit',)
                 .setAsPowerUp()
-                .setGameStyle(SMB3,);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS_3,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('FrogSuit',)
-                .setGameStyle(SMB3);
+            return new Import.ClearConditionImageBuilder('FrogSuit',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS_3);
         }
 
     }('Frog Suit',);
@@ -597,14 +582,14 @@ export class Entities
     public static readonly CAPE_FEATHER =                                  new class Entities_CapeFeather extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MantleWing',)
+            return new Import.EditorImageBuilder('MantleWing',)
                 .setAsPowerUp()
-                .setGameStyle(SMW,);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('MantleWing',)
-                .setGameStyle(SMW);
+            return new Import.ClearConditionImageBuilder('MantleWing',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD);
         }
 
     }('Cape Feather',);
@@ -612,14 +597,14 @@ export class Entities
     public static readonly POWER_BALLOON =                                 new class Entities_PowerBalloon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('PowerBalloon',)
+            return new Import.EditorImageBuilder('PowerBalloon',)
                 .setAsPowerUp()
-                .setGameStyle(SMW,);
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('PowerBalloon',)
-                .setGameStyle(SMW);
+            return new Import.ClearConditionImageBuilder('PowerBalloon',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD);
         }
 
     }('Power Balloon',);
@@ -627,14 +612,14 @@ export class Entities
     public static readonly PROPELLER_MUSHROOM =                            new class Entities_PropellerMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('PropellerKinoko',)
+            return new Import.EditorImageBuilder('PropellerKinoko',)
                 .setAsPowerUp()
-                .setGameStyle(NSMBU,);
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('PropellerKinoko',)
-                .setGameStyle(NSMBU);
+            return new Import.ClearConditionImageBuilder('PropellerKinoko',)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U);
         }
 
     }('Propeller Mushroom',);
@@ -642,14 +627,14 @@ export class Entities
     public static readonly SUPER_ACORN =                                   new class Entities_SuperAcorn extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SuperDonguri',)
+            return new Import.EditorImageBuilder('SuperDonguri',)
                 .setAsPowerUp()
-                .setGameStyle(NSMBU,);
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SuperDonguri',)
-                .setGameStyle(NSMBU);
+            return new Import.ClearConditionImageBuilder('SuperDonguri',)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U);
         }
 
     }('Super Acorn',);
@@ -657,13 +642,13 @@ export class Entities
     public static readonly SUPER_BELL =                                    new class Entities_SuperBell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SuperBell',)
+            return new Import.EditorImageBuilder('SuperBell',)
                 .setAsPowerUp()
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SuperBell',)
+            return new Import.ClearConditionImageBuilder('SuperBell',)
                 .setOnlySM3DW();
         }
 
@@ -672,13 +657,13 @@ export class Entities
     public static readonly SUPER_HAMMER =                                  new class Entities_SuperHammer extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SuperHammer',)
+            return new Import.EditorImageBuilder('SuperHammer',)
                 .setAsPowerUp()
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SuperHammer',)
+            return new Import.ClearConditionImageBuilder('SuperHammer',)
                 .setOnlySM3DW();
         }
 
@@ -688,13 +673,13 @@ export class Entities
     public static readonly BOOMERANG_FLOWER =                              new class Entities_BoomerangFlower extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BoomerangFlower',)
+            return new Import.EditorImageBuilder('BoomerangFlower',)
                 .setAsPowerUp()
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BoomerangFlower',)
+            return new Import.ClearConditionImageBuilder('BoomerangFlower',)
                 .setOnlySM3DW();
         }
 
@@ -704,12 +689,12 @@ export class Entities
     public static readonly CANNON_BOX =                                    new class Entities_CannonBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BoxKiller',)
+            return new Import.EditorImageBuilder('BoxKiller',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BoxKiller',)
+            return new Import.ClearConditionImageBuilder('BoxKiller',)
                 .setOnlySM3DW();
         }
 
@@ -719,12 +704,12 @@ export class Entities
     public static readonly PROPELLER_BOX =                                 new class Entities_PropellerBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BoxPropeller',)
+            return new Import.EditorImageBuilder('BoxPropeller',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BoxPropeller',)
+            return new Import.ClearConditionImageBuilder('BoxPropeller',)
                 .setOnlySM3DW();
         }
 
@@ -733,12 +718,12 @@ export class Entities
     public static readonly GOOMBA_MASK =                                   new class Entities_GoombaMask extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BoxKuribo',)
+            return new Import.EditorImageBuilder('BoxKuribo',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BoxKuribo',)
+            return new Import.ClearConditionImageBuilder('BoxKuribo',)
                 .setOnlySM3DW();
         }
 
@@ -747,12 +732,12 @@ export class Entities
     public static readonly BULLET_BILL_MASK =                              new class Entities_BulletBillMask extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BoxKillerPlayer',)
+            return new Import.EditorImageBuilder('BoxKillerPlayer',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BoxKillerPlayer',)
+            return new Import.ClearConditionImageBuilder('BoxKillerPlayer',)
                 .setOnlySM3DW();
         }
 
@@ -761,12 +746,12 @@ export class Entities
     public static readonly RED_POW_BOX =                                   new class Entities_RedPowBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BoxPow',)
+            return new Import.EditorImageBuilder('BoxPow',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BoxPow',)
+            return new Import.ClearConditionImageBuilder('BoxPow',)
                 .setOnlySM3DW();
         }
 
@@ -798,7 +783,7 @@ export class Entities
     public static readonly ROTTEN_MUSHROOM =                               new class Entities_RottenMushroom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('DokuKinoko',)
+            return new Import.EditorImageBuilder('DokuKinoko',)
                 .setNotSM3DW();
         }
 
@@ -807,24 +792,24 @@ export class Entities
     public static readonly SHOE_GOOMBA =                                   new class Entities_ShoeGoomba extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KutsuKuribo', 1,)
-                .setGameStyle(SMB, SMB3,);
+            return new Import.EditorImageBuilder('KutsuKuribo', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS, Import.GameStyles.SUPER_MARIO_BROS_3,);
         }
 
     }('Shoe Goomba',);
     public static readonly SHOE =                                          new class Entities_Shoe extends Entities {
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KutsuKuribo',)
-                .setGameStyle(SMB, SMB3,);
+            return new Import.ClearConditionImageBuilder('KutsuKuribo',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS, Import.GameStyles.SUPER_MARIO_BROS_3,);
         }
 
     }('Shoe',);
     public static readonly STILETTO_GOOMBA =                               new class Entities_StilettoGoomba extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KutsuKuribo', 2,)
-                .setGameStyle(SMB, SMB3,);
+            return new Import.EditorImageBuilder('KutsuKuribo', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS, Import.GameStyles.SUPER_MARIO_BROS_3,);
         }
 
     }('Stiletto Goomba',);
@@ -832,13 +817,13 @@ export class Entities
     public static readonly YOSHI_EGG =                                     new class Entities_YoshiEgg extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('YosshiEgg',)
-                .setGameStyle(SMW, NSMBU,);
+            return new Import.EditorImageBuilder('YosshiEgg',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD, Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('YosshiEgg',)
-                .setGameStyle(SMW, NSMBU,);
+            return new Import.ClearConditionImageBuilder('YosshiEgg',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD, Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
     }('Yoshi\'s Egg',);
@@ -850,8 +835,8 @@ export class Entities
     public static readonly RED_YOSHI_EGG =                                 new class Entities_RedYoshiEgg extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('YosshiEggRed',)
-                .setGameStyle(SMW, NSMBU,);
+            return new Import.EditorImageBuilder('YosshiEggRed',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD, Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
     }('Red Yoshi\'s Egg',);
@@ -864,19 +849,19 @@ export class Entities
     public static readonly GOOMBA =                                        new class Entities_Goomba extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Kuribo', 1,)
-                .setNotGameStyle(SMW,);
+            return new Import.EditorImageBuilder('Kuribo', 1,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Kuribo', 1,)
-                .setNotGameStyle(SMW);
+            return new Import.ClearConditionImageBuilder('Kuribo', 1,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD);
         }
 
         protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
-                new UnusedImage_BigMushroomBuilder('Kuribo D',)
+                new Import.UnusedImage_BigMushroomBuilder('Kuribo D',)
                     .setImage('damage', 1,)
                     .setImage('swim', 2,)
                     .setImage('walk', 2,)
@@ -888,39 +873,39 @@ export class Entities
     public static readonly GALOOMBA =                                      new class Entities_Galoomba extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Kuribo', 1,)
-                .setGameStyle(SMW,);
+            return new Import.EditorImageBuilder('Kuribo', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Kuribo', 1,)
-                .setGameStyle(SMW,);
+            return new Import.ClearConditionImageBuilder('Kuribo', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Galoomba',);
     public static readonly GOOMBRAT =                                      new class Entities_Goombrat extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Kuribo', 2,)
-                .setNotGameStyle(SMW, SM3DW,);
+            return new Import.EditorImageBuilder('Kuribo', 2,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD, Import.GameStyles.SUPER_MARIO_3D_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Kuribo', 2,)
-                .setNotGameStyle(SMW, SM3DW,);
+            return new Import.ClearConditionImageBuilder('Kuribo', 2,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD, Import.GameStyles.SUPER_MARIO_3D_WORLD,);
         }
 
     }('Goombrat',);
     public static readonly GOOMBUD =                                       new class Entities_Goombud extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Kuribo', 2,)
-                .setGameStyle(SMW,);
+            return new Import.EditorImageBuilder('Kuribo', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Kuribo', 2,)
-                .setGameStyle(SMW,);
+            return new Import.ClearConditionImageBuilder('Kuribo', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Goombud',);
@@ -928,7 +913,7 @@ export class Entities
     public static readonly GREEN_KOOPA_TROOPA =                            new class Entities_GreenKoopaTroopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Nokonoko',1,)
+            return new Import.EditorImageBuilder('Nokonoko',1,)
                 .setAllGameStyles();
         }
 
@@ -940,7 +925,7 @@ export class Entities
     public static readonly RED_KOOPA_TROOPA =                              new class Entities_RedKoopaTroopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Nokonoko',2,)
+            return new Import.EditorImageBuilder('Nokonoko',2,)
                 .setAllGameStyles();
         }
 
@@ -950,8 +935,8 @@ export class Entities
     public static readonly GREEN_KOOPA_SHELL =                             new class Entities_GreenKoopaShell extends Entities {
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('NokonokoShell',)
-                .setNotGameStyle(SMB);
+            return new Import.ClearConditionImageBuilder('NokonokoShell',)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
     }('Green Koopa Shell',);
@@ -960,12 +945,12 @@ export class Entities
     public static readonly DRY_BONES =                                     new class Entities_DryBones extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Karon', 1,)
+            return new Import.EditorImageBuilder('Karon', 1,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Karon', 1,)
+            return new Import.ClearConditionImageBuilder('Karon', 1,)
                 .setAllGameStyles();
         }
 
@@ -975,12 +960,12 @@ export class Entities
     public static readonly DRY_BONES_SHELL =                               new class Entities_DryBonesShell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Karon', 2,)
+            return new Import.EditorImageBuilder('Karon', 2,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Karon', 2,)
+            return new Import.ClearConditionImageBuilder('Karon', 2,)
                 .setNotSM3DW();
         }
 
@@ -989,13 +974,13 @@ export class Entities
     public static readonly BUZZY_BEETLE =                                  new class Entities_BuzzyBeetle extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Met', 1,)
+            return new Import.EditorImageBuilder('Met', 1,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Met', 1,)
+            return new Import.ClearConditionImageBuilder('Met', 1,)
                 .setNotSM3DW();
         }
 
@@ -1004,13 +989,13 @@ export class Entities
     public static readonly BUZZY_SHELL =                                   new class Entities_BuzzyShell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Met', 2,)
+            return new Import.EditorImageBuilder('Met', 2,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Met', 2,)
+            return new Import.ClearConditionImageBuilder('Met', 2,)
                 .setNotSM3DW();
         }
 
@@ -1019,12 +1004,12 @@ export class Entities
     public static readonly SPINY =                                         new class Entities_Spiny extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Togezo', 1,)
+            return new Import.EditorImageBuilder('Togezo', 1,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Togezo', 1,)
+            return new Import.ClearConditionImageBuilder('Togezo', 1,)
                 .setAllGameStyles();
         }
 
@@ -1035,12 +1020,12 @@ export class Entities
     public static readonly SPINY_SHELL =                                   new class Entities_SpinyShell extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Togezo', 2,)
+            return new Import.EditorImageBuilder('Togezo', 2,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Togezo', 2,)
+            return new Import.ClearConditionImageBuilder('Togezo', 2,)
                 .setNotSM3DW();
         }
 
@@ -1049,12 +1034,12 @@ export class Entities
     public static readonly SPIKE_TOP =                                     new class Entities_SpikeTop extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('TogeMet',)
+            return new Import.EditorImageBuilder('TogeMet',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('TogeMet')
+            return new Import.ClearConditionImageBuilder('TogeMet')
                 .setNotSM3DW();
         }
 
@@ -1063,7 +1048,7 @@ export class Entities
     public static readonly FAST_SPIKE_TOP =                                new class Entities_FastSpikeTop extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('TogeMet', 2,)
+            return new Import.EditorImageBuilder('TogeMet', 2,)
                 .setNotSM3DW();
         }
 
@@ -1073,12 +1058,12 @@ export class Entities
     public static readonly SKIPSQUEAK =                                    new class Entities_Skipsqueak extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pyonchu', 1,)
+            return new Import.EditorImageBuilder('Pyonchu', 1,)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pyonchu',)
+            return new Import.ClearConditionImageBuilder('Pyonchu',)
                 .setOnlySM3DW();
         }
 
@@ -1086,7 +1071,7 @@ export class Entities
     public static readonly SPINY_SKIPSQUEAK =                              new class Entities_SpinySkipsqueak extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pyonchu', 2,)
+            return new Import.EditorImageBuilder('Pyonchu', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1095,12 +1080,12 @@ export class Entities
     public static readonly ANT_TROOPER =                                   new class Entities_AntTrooper extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Arihei', 1,)
+            return new Import.EditorImageBuilder('Arihei', 1,)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Arihei',)
+            return new Import.ClearConditionImageBuilder('Arihei',)
                 .setOnlySM3DW();
         }
 
@@ -1108,7 +1093,7 @@ export class Entities
     public static readonly HORNED_ANT_TROOPER =                            new class Entities_HornedAntTrooper extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Arihei', 2,)
+            return new Import.EditorImageBuilder('Arihei', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1117,12 +1102,12 @@ export class Entities
     public static readonly STINGBY =                                       new class Entities_Stingby extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Hacchin',)
+            return new Import.EditorImageBuilder('Hacchin',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Hacchin',)
+            return new Import.ClearConditionImageBuilder('Hacchin',)
                 .setOnlySM3DW();
         }
 
@@ -1131,42 +1116,42 @@ export class Entities
     public static readonly CHEEP_CHEEP =                                   new class Entities_CheepCheep extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pukupuku',)
+            return new Import.EditorImageBuilder('Pukupuku',)
                 .setAmount(2)
                 .setAllGameStyles()
-                .setImage(SMW, null, null, 2,)
-                .setImage(NSMBU, null, null, 2,);
+                .setImage(Import.GameStyles.SUPER_MARIO_WORLD, null, null, 2,)
+                .setImage(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, null, null, 2,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pukupuku',)
-                .setNotGameStyle(SMW, NSMBU,);
+            return new Import.ClearConditionImageBuilder('Pukupuku',)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD, Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
     }('Cheep Cheep',);
     public static readonly BLURPS =                                        new class Entities_Blurps extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pukupuku', 1,)
-                .setGameStyle(SMW,);
+            return new Import.EditorImageBuilder('Pukupuku', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pukupuku',)
-                .setGameStyle(SMW,);
+            return new Import.ClearConditionImageBuilder('Pukupuku',)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Blurps',);
     public static readonly DEEP_CHEEP =                                    new class Entities_DeepCheep extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pukupuku', 1,)
-                .setGameStyle(NSMBU,);
+            return new Import.EditorImageBuilder('Pukupuku', 1,)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pukupuku',)
-                .setGameStyle(NSMBU,);
+            return new Import.ClearConditionImageBuilder('Pukupuku',)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
     }('Deep Cheep',);
@@ -1185,7 +1170,7 @@ export class Entities
     public static readonly BLOOPER =                                       new class Entities_Blooper extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Gesso', 1,)
+            return new Import.EditorImageBuilder('Gesso', 1,)
                 .setAllGameStyles();
         }
 
@@ -1197,7 +1182,7 @@ export class Entities
     public static readonly BLOOPER_NANNY =                                 new class Entities_BlooperNanny extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Gesso', 2,)
+            return new Import.EditorImageBuilder('Gesso', 2,)
                 .setNotSM3DW();
         }
 
@@ -1207,12 +1192,12 @@ export class Entities
     public static readonly PORCUPUFFER =                                   new class Entities_Porcupuffer extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Fugumannen',)
+            return new Import.EditorImageBuilder('Fugumannen',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Fugumannen',)
+            return new Import.ClearConditionImageBuilder('Fugumannen',)
                 .setOnlySM3DW();
         }
 
@@ -1221,12 +1206,12 @@ export class Entities
     public static readonly WIGGLER =                                       new class Entities_Wiggler extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Hanachan', 1,)
+            return new Import.EditorImageBuilder('Hanachan', 1,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Hanachan',)
+            return new Import.ClearConditionImageBuilder('Hanachan',)
                 .setNotSM3DW();
         }
 
@@ -1234,7 +1219,7 @@ export class Entities
     public static readonly ANGRY_WIGGLER =                                 new class Entities_AngryWiggler extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Hanachan', 2,)
+            return new Import.EditorImageBuilder('Hanachan', 2,)
                 .setNotSM3DW();
         }
 
@@ -1243,39 +1228,39 @@ export class Entities
     public static readonly PIRANHA_PLANT =                                 new class Entities_PiranhaPlant extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pakkun', 1,)
-                .setNotGameStyle(SMW,);
+            return new Import.EditorImageBuilder('Pakkun', 1,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pakkun', 1,)
-                .setNotGameStyle(SMW,);
+            return new Import.ClearConditionImageBuilder('Pakkun', 1,)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Piranha Plant',);
     public static readonly JUMPING_PIRANHA_PLANT =                         new class Entities_JumpingPiranhaPlant extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pakkun', 1,)
-                .setGameStyle(SMW,);
+            return new Import.EditorImageBuilder('Pakkun', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pakkun', 1,)
-                .setGameStyle(SMW,);
+            return new Import.ClearConditionImageBuilder('Pakkun', 1,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Jumping Piranha Plant',);
     public static readonly FIRE_PIRANHA_PLANT =                            new class Entities_FirePiranhaPlant extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Pakkun', 2,)
+            return new Import.EditorImageBuilder('Pakkun', 2,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Pakkun', 2,)
-                .setGameStyle(SMW,);
+            return new Import.ClearConditionImageBuilder('Pakkun', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_WORLD,);
         }
 
     }('Fire Piranha Plant',);
@@ -1283,13 +1268,13 @@ export class Entities
     public static readonly MUNCHER =                                       new class Entities_Muncher extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BlackPakkun',)
+            return new Import.EditorImageBuilder('BlackPakkun',)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BlackPakkun',)
+            return new Import.ClearConditionImageBuilder('BlackPakkun',)
                 .setNotSM3DW();
         }
 
@@ -1297,13 +1282,13 @@ export class Entities
     public static readonly PIRANHA_CREEPER =                               new class Entities_PiranhaCreeper extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('PackunPipe',)
+            return new Import.EditorImageBuilder('PackunPipe',)
                 .setAmount(2)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('PackunPipe',)
+            return new Import.ClearConditionImageBuilder('PackunPipe',)
                 .setOnlySM3DW();
         }
 
@@ -1312,7 +1297,7 @@ export class Entities
     public static readonly CHAIN_CHOMP =                                   new class Entities_ChainChomp extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Wanwan', 1,)
+            return new Import.EditorImageBuilder('Wanwan', 1,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
@@ -1321,13 +1306,13 @@ export class Entities
     public static readonly UNCHAINED_CHOMP =                               new class Entities_UnchainedChomp extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Wanwan', 2,)
+            return new Import.EditorImageBuilder('Wanwan', 2,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Wanwan')
+            return new Import.ClearConditionImageBuilder('Wanwan')
                 .setNotSM3DW();
         }
 
@@ -1337,7 +1322,7 @@ export class Entities
     public static readonly SPIKE =                                         new class Entities_Spike extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Gabon', 1,)
+            return new Import.EditorImageBuilder('Gabon', 1,)
                 .setAllGameStyles();
         }
 
@@ -1349,19 +1334,19 @@ export class Entities
     public static readonly SPIKE_BALL =                                    new class Entities_SpikeBall extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Gabon', 2,)
+            return new Import.EditorImageBuilder('Gabon', 2,)
                 .setAllGameStyles()
-                .setTheme(SMB, UNDERGROUND, GHOST_HOUSE, CASTLE,)
-                .setTheme(SMB3, UNDERGROUND, GHOST_HOUSE, CASTLE,)
-                .setNightTheme(SMB, GROUND, DESERT, SKY, FOREST, AIRSHIP,)
-                .setNightTheme(SMB3, GROUND,  DESERT, SKY, FOREST, AIRSHIP,);
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERGROUND, Import.Themes.GHOST_HOUSE, Import.Themes.CASTLE,)
+                .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.UNDERGROUND, Import.Themes.GHOST_HOUSE, Import.Themes.CASTLE,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.GROUND, Import.Themes.DESERT, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.AIRSHIP,)
+                .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.GROUND, Import.Themes.DESERT, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.AIRSHIP,);
         }
 
     }('Spike Ball',);
     public static readonly SNOWBALL =                                      new class Entities_Snowball extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Gabon', 2,)
+            return new Import.EditorImageBuilder('Gabon', 2,)
                 .setAllGameStyles()
                 .setAsSnow();
         }
@@ -1371,12 +1356,12 @@ export class Entities
     public static readonly LAKITU =                                        new class Entities_Lakitu extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Jugem', 1,)
+            return new Import.EditorImageBuilder('Jugem', 1,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Jugem', 1,)
+            return new Import.ClearConditionImageBuilder('Jugem', 1,)
                 .setNotSM3DW();
         }
 
@@ -1384,12 +1369,12 @@ export class Entities
     public static readonly LAKITU_CLOUD =                                  new class Entities_LakituCloud extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Jugem', 2,)
+            return new Import.EditorImageBuilder('Jugem', 2,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Jugem', 2,)
+            return new Import.ClearConditionImageBuilder('Jugem', 2,)
                 .setNotSM3DW();
         }
 
@@ -1398,7 +1383,7 @@ export class Entities
     public static readonly BOO =                                           new class Entities_Boo extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Teresa', 1,)
+            return new Import.EditorImageBuilder('Teresa', 1,)
                 .setAllGameStyles();
         }
 
@@ -1413,14 +1398,14 @@ export class Entities
             const waitImages = ['out', 1,] as const;
             const outImages = ['wait', 4,] as const;
             return [
-                new UnusedImage_RegularBuilder('Necchi',)
-                    .setImage(SMB, ...waitImages,)
-                    .setImage(SMB, ...outImages,)
-                    .setImage(SMB3, ...waitImages,)
-                    .setImage(SMB3, ...outImages,)
-                    .setImage(SMW, ...waitImages,)
-                    .setImage(SMW, ...outImages,),
-                new UnusedImage_BigMushroomBuilder('Necchi',)
+                new Import.UnusedImage_RegularBuilder('Necchi',)
+                    .setImage(Import.GameStyles.SUPER_MARIO_BROS, ...waitImages,)
+                    .setImage(Import.GameStyles.SUPER_MARIO_BROS, ...outImages,)
+                    .setImage(Import.GameStyles.SUPER_MARIO_BROS_3, ...waitImages,)
+                    .setImage(Import.GameStyles.SUPER_MARIO_BROS_3, ...outImages,)
+                    .setImage(Import.GameStyles.SUPER_MARIO_WORLD, ...waitImages,)
+                    .setImage(Import.GameStyles.SUPER_MARIO_WORLD, ...outImages,),
+                new Import.UnusedImage_BigMushroomBuilder('Necchi',)
                     .setImage('wait', [1,],)
                     .setImage('wait', [2,],)
                     .setImage('out', [4,],),
@@ -1431,7 +1416,7 @@ export class Entities
     public static readonly BOO_BUDDIES =                                   new class Entities_BooBuddies extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Teresa', 2,)
+            return new Import.EditorImageBuilder('Teresa', 2,)
                 .setNotSM3DW();
         }
 
@@ -1439,12 +1424,12 @@ export class Entities
     public static readonly PEEPA =                                         new class Entities_Peepa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Teresa', 2,)
+            return new Import.EditorImageBuilder('Teresa', 2,)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Teresa', 2,)
+            return new Import.ClearConditionImageBuilder('Teresa', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1453,7 +1438,7 @@ export class Entities
     public static readonly BOB_OMB =                                       new class Entities_BobOmb extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bombhei', 1,)
+            return new Import.EditorImageBuilder('Bombhei', 1,)
                 .setAsDifferentInSMBAndSMB3()
                 .setAllGameStyles();
         }
@@ -1466,7 +1451,7 @@ export class Entities
     public static readonly LIT_BOB_OMB =                                   new class Entities_LitBobOmb extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bombhei', 2,)
+            return new Import.EditorImageBuilder('Bombhei', 2,)
                 .setAllGameStyles();
         }
 
@@ -1486,7 +1471,7 @@ export class Entities
     public static readonly SNOW_POKEY =                                    new class Entities_SnowPokey extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Sambo', 1,)
+            return new Import.EditorImageBuilder('Sambo', 1,)
                 .setAllGameStyles()
                 .setAsSnow();
         }
@@ -1508,12 +1493,12 @@ export class Entities
     public static readonly MONTY_MOLE =                                    new class Entities_MontyMole extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('ChoroPoo',)
+            return new Import.EditorImageBuilder('ChoroPoo',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('ChoroPoo',)
+            return new Import.ClearConditionImageBuilder('ChoroPoo',)
                 .setNotSM3DW();
         }
 
@@ -1521,12 +1506,12 @@ export class Entities
     public static readonly ROCKY_WRENCH =                                  new class Entities_RockyWrench extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Poo',)
+            return new Import.EditorImageBuilder('Poo',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Poo',)
+            return new Import.ClearConditionImageBuilder('Poo',)
                 .setNotSM3DW();
         }
 
@@ -1549,7 +1534,7 @@ export class Entities
     public static readonly HAMMER_BRO =                                    new class Entities_HammerBro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bros', 1,)
+            return new Import.EditorImageBuilder('Bros', 1,)
                 .setAllGameStyles();
         }
 
@@ -1561,7 +1546,7 @@ export class Entities
     public static readonly SLEDGE_BRO =                                    new class Entities_SledgeBro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MegaBros', 1,)
+            return new Import.EditorImageBuilder('MegaBros', 1,)
                 .setAllGameStyles();
         }
 
@@ -1574,7 +1559,7 @@ export class Entities
     public static readonly FIRE_BRO =                                      new class Entities_FireBro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bros', 2,)
+            return new Import.EditorImageBuilder('Bros', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1582,7 +1567,7 @@ export class Entities
     public static readonly HEAVY_FIRE_BRO =                                new class Entities_HeavyFireBro extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MegaBros', 2,)
+            return new Import.EditorImageBuilder('MegaBros', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1604,12 +1589,12 @@ export class Entities
     public static readonly MECHAKOOPA =                                    new class Entities_Mechakoopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaMecha', 1,)
+            return new Import.EditorImageBuilder('KoopaMecha', 1,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KoopaMecha',)
+            return new Import.ClearConditionImageBuilder('KoopaMecha',)
                 .setNotSM3DW();
         }
 
@@ -1617,7 +1602,7 @@ export class Entities
     public static readonly BLASTA_MECHAKOOPA =                             new class Entities_BlastaMechakoopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaMecha', 2,)
+            return new Import.EditorImageBuilder('KoopaMecha', 2,)
                 .setNotSM3DW();
         }
 
@@ -1626,7 +1611,7 @@ export class Entities
     public static readonly ZAPPA_MECHAKOOPA =                              new class Entities_ZappaMechakoopa extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaMecha', 3,)
+            return new Import.EditorImageBuilder('KoopaMecha', 3,)
                 .setNotSM3DW();
         }
 
@@ -1636,12 +1621,12 @@ export class Entities
     public static readonly CHARVAARGH =                                    new class Entities_Charvaargh extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MagmaFish',)
+            return new Import.EditorImageBuilder('MagmaFish',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('MagmaFish',)
+            return new Import.ClearConditionImageBuilder('MagmaFish',)
                 .setOnlySM3DW();
         }
 
@@ -1650,12 +1635,12 @@ export class Entities
     public static readonly BULLY =                                         new class Entities_Bully extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Donketsu',)
+            return new Import.EditorImageBuilder('Donketsu',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Donketsu',)
+            return new Import.ClearConditionImageBuilder('Donketsu',)
                 .setOnlySM3DW();
         }
 
@@ -1667,7 +1652,7 @@ export class Entities
     public static readonly BILL_BLASTER =                                  new class Entities_BillBlaster extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KillerHoudai', 1,)
+            return new Import.EditorImageBuilder('KillerHoudai', 1,)
                 .setAllGameStyles()
                 .setAsDifferentInSMBAndSMB3();
         }
@@ -1683,7 +1668,7 @@ export class Entities
     public static readonly BULL_EYE_BLASTER =                              new class Entities_BullEyeBlaster extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KillerHoudai', 2,)
+            return new Import.EditorImageBuilder('KillerHoudai', 2,)
                 .setAllGameStyles();
         }
 
@@ -1694,7 +1679,7 @@ export class Entities
     public static readonly BANZAI_BILL =                                   new class Entities_BanzaiBill extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MagnumKiller', 1,)
+            return new Import.EditorImageBuilder('MagnumKiller', 1,)
                 .setAllGameStyles()
                 .setAsDifferentInSMBAndSMB3();
         }
@@ -1707,7 +1692,7 @@ export class Entities
     public static readonly BULL_EYE_BANZAI =                               new class Entities_BullEyeBanzai extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MagnumKiller', 2,)
+            return new Import.EditorImageBuilder('MagnumKiller', 2,)
                 .setNotSM3DW();
         }
 
@@ -1715,7 +1700,7 @@ export class Entities
     public static readonly CAT_BANZAI_BILL =                               new class Entities_CatBanzaiBill extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('MagnumKiller', 2,)
+            return new Import.EditorImageBuilder('MagnumKiller', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1724,7 +1709,7 @@ export class Entities
     public static readonly CANNON =                                        new class Entities_Cannon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Houdai', 1,)
+            return new Import.EditorImageBuilder('Houdai', 1,)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
@@ -1735,7 +1720,7 @@ export class Entities
         protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
-                new UnusedImage_BigMushroomBuilder('SenkanHoudai D',)
+                new Import.UnusedImage_BigMushroomBuilder('SenkanHoudai D',)
                     .setImage('senkan_houdai_ball',),
             ];
         }
@@ -1744,7 +1729,7 @@ export class Entities
     public static readonly RED_CANNON =                                    new class Entities_RedCannon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Houdai', 2,)
+            return new Import.EditorImageBuilder('Houdai', 2,)
                 .setNotSM3DW();
         }
 
@@ -1754,7 +1739,7 @@ export class Entities
     public static readonly BURNER =                                        new class Entities_Burner extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Burner',)
+            return new Import.EditorImageBuilder('Burner',)
                 .setAmount(2)
                 .setNotSM3DW();
         }
@@ -1764,7 +1749,7 @@ export class Entities
     public static readonly FIRE_BAR =                                      new class Entities_FireBar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('FireBar',)
+            return new Import.EditorImageBuilder('FireBar',)
                 .setNotSM3DW();
         }
 
@@ -1773,7 +1758,7 @@ export class Entities
     public static readonly SKEWER =                                        new class Entities_Skewer extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('TogeKonbo',)
+            return new Import.EditorImageBuilder('TogeKonbo',)
                 .setAsDifferentInSMBAndSMB3()
                 .setNotSM3DW();
         }
@@ -1783,21 +1768,21 @@ export class Entities
     public static readonly KOOPA_CLOWN_CAR =                               new class Entities_KoopaClownCar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaClown', 1,)
-                .setNotGameStyle(NSMBU, SM3DW,);
+            return new Import.EditorImageBuilder('KoopaClown', 1,)
+                .setNotGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.GameStyles.SUPER_MARIO_3D_WORLD,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KoopaClown',)
-                .setNotGameStyle(NSMBU, SM3DW,);
+            return new Import.ClearConditionImageBuilder('KoopaClown',)
+                .setNotGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.GameStyles.SUPER_MARIO_3D_WORLD,);
         }
 
         protected get _createUnusedImage(): PossibleUnusedImage {
             const images = [4, 5, 6, 7,] as const;
             return [
-                new UnusedImage_RegularBuilder('KoopaClown',)
-                    .setImage(SMW, 'weep', images,),
-                new UnusedImage_BigMushroomBuilder('KoopaClown',)
+                new Import.UnusedImage_RegularBuilder('KoopaClown',)
+                    .setImage(Import.GameStyles.SUPER_MARIO_WORLD, 'weep', images,),
+                new Import.UnusedImage_BigMushroomBuilder('KoopaClown',)
                     .setImage('wait', images,)
                     .setImage('anger', images,)
                     .setImage('blink', images,)
@@ -1809,29 +1794,29 @@ export class Entities
     public static readonly JUNIOR_CLOWN_CAR =                              new class Entities_JuniorClownCar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaClown', 1,)
-                .setGameStyle(NSMBU,);
+            return new Import.EditorImageBuilder('KoopaClown', 1,)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KoopaClown',)
-                .setGameStyle(NSMBU,);
+            return new Import.ClearConditionImageBuilder('KoopaClown',)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
     }('Junior Clown Car',);
     public static readonly FIRE_KOOPA_CLOWN_CAR =                          new class Entities_FireKoopaClownCar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaClown', 2,)
-                .setNotGameStyle(NSMBU, SM3DW,);
+            return new Import.EditorImageBuilder('KoopaClown', 2,)
+                .setNotGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.GameStyles.SUPER_MARIO_3D_WORLD,);
         }
 
     }('Fire Koopa Clown Car',);
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new class Entities_FireJuniorClownCar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaClown', 2,)
-                .setGameStyle(NSMBU,);
+            return new Import.EditorImageBuilder('KoopaClown', 2,)
+                .setGameStyle(Import.GameStyles.NEW_SUPER_MARIO_BROS_U,);
         }
 
     }('Fire Junior Clown Car',);
@@ -1840,12 +1825,12 @@ export class Entities
     public static readonly KOOPA_TROOPA_CAR =                              new class Entities_KoopaTroopaCar extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaCar',)
+            return new Import.EditorImageBuilder('KoopaCar',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KoopaCar',)
+            return new Import.ClearConditionImageBuilder('KoopaCar',)
                 .setOnlySM3DW();
         }
 
@@ -1855,7 +1840,7 @@ export class Entities
     public static readonly GRINDER =                                       new class Entities_Grinder extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Saw',)
+            return new Import.EditorImageBuilder('Saw',)
                 .setNotSM3DW();
         }
 
@@ -1864,12 +1849,12 @@ export class Entities
     public static readonly ANGRY_SUN =                                     new class Entities_AngrySun extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SunMoon', 1,)
+            return new Import.EditorImageBuilder('SunMoon', 1,)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('SunMoon',)
+            return new Import.ClearConditionImageBuilder('SunMoon',)
                 .setNotSM3DW();
         }
 
@@ -1877,7 +1862,7 @@ export class Entities
     public static readonly MOON =                                          new class Entities_Moon extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SunMoon', 2,)
+            return new Import.EditorImageBuilder('SunMoon', 2,)
                 .setNotSM3DW();
         }
 
@@ -1889,19 +1874,19 @@ export class Entities
     public static readonly BOWSER =                                        new class Entities_Bowser extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Koopa',)
+            return new Import.EditorImageBuilder('Koopa',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Koopa',)
+            return new Import.ClearConditionImageBuilder('Koopa',)
                 .setNotSM3DW();
         }
 
         protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
-                new UnusedImage_BigMushroomBuilder('Koopa',)
+                new Import.UnusedImage_BigMushroomBuilder('Koopa',)
                     .setImage('fire', [1,],),
             ];
         }
@@ -1910,12 +1895,12 @@ export class Entities
     public static readonly MEOWSER =                                       new class Entities_Meowser extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Koopa',)
+            return new Import.EditorImageBuilder('Koopa',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Koopa',)
+            return new Import.ClearConditionImageBuilder('Koopa',)
                 .setOnlySM3DW();
         }
 
@@ -1926,19 +1911,19 @@ export class Entities
     public static readonly BOWSER_JR =                                     new class Entities_BowserJr extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('KoopaJr',)
+            return new Import.EditorImageBuilder('KoopaJr',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('KoopaJr',)
+            return new Import.ClearConditionImageBuilder('KoopaJr',)
                 .setNotSM3DW();
         }
 
         protected get _createUnusedImage(): PossibleUnusedImage {
             return [
                 null,
-                new UnusedImage_BigMushroomBuilder('KoopaJr',)
+                new Import.UnusedImage_BigMushroomBuilder('KoopaJr',)
                     .setImage('fire', [1,],),
             ];
         }
@@ -1949,12 +1934,12 @@ export class Entities
     public static readonly BOOM_BOOM =                                     new class Entities_BoomBoom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bunbun', 1,)
+            return new Import.EditorImageBuilder('Bunbun', 1,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Bunbun', 1,)
+            return new Import.ClearConditionImageBuilder('Bunbun', 1,)
                 .setAllGameStyles();
         }
 
@@ -1962,12 +1947,12 @@ export class Entities
     public static readonly POM_POM =                                       new class Entities_PomPom extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Bunbun', 2,)
+            return new Import.EditorImageBuilder('Bunbun', 2,)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Bunbun', 2,)
+            return new Import.ClearConditionImageBuilder('Bunbun', 2,)
                 .setOnlySM3DW();
         }
 
@@ -1978,12 +1963,12 @@ export class Entities
     public static readonly LARRY =                                         new class Entities_Larry extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Larry',)
+            return new Import.EditorImageBuilder('Larry',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Larry',)
+            return new Import.ClearConditionImageBuilder('Larry',)
                 .setNotSM3DW();
         }
 
@@ -1994,12 +1979,12 @@ export class Entities
     public static readonly IGGY =                                          new class Entities_Iggy extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Iggy',)
+            return new Import.EditorImageBuilder('Iggy',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Iggy',)
+            return new Import.ClearConditionImageBuilder('Iggy',)
                 .setNotSM3DW();
         }
 
@@ -2010,12 +1995,12 @@ export class Entities
     public static readonly WENDY =                                         new class Entities_Wendy extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Wendy',)
+            return new Import.EditorImageBuilder('Wendy',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Wendy',)
+            return new Import.ClearConditionImageBuilder('Wendy',)
                 .setNotSM3DW();
         }
 
@@ -2026,12 +2011,12 @@ export class Entities
     public static readonly LEMMY =                                         new class Entities_Lemmy extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Lemmy',)
+            return new Import.EditorImageBuilder('Lemmy',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Lemmy',)
+            return new Import.ClearConditionImageBuilder('Lemmy',)
                 .setNotSM3DW();
         }
 
@@ -2042,12 +2027,12 @@ export class Entities
     public static readonly ROY =                                           new class Entities_Roy extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Roy',)
+            return new Import.EditorImageBuilder('Roy',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Roy',)
+            return new Import.ClearConditionImageBuilder('Roy',)
                 .setNotSM3DW();
         }
 
@@ -2058,12 +2043,12 @@ export class Entities
     public static readonly MORTON =                                        new class Entities_Morton extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Morton',)
+            return new Import.EditorImageBuilder('Morton',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Morton',)
+            return new Import.ClearConditionImageBuilder('Morton',)
                 .setNotSM3DW();
         }
 
@@ -2075,12 +2060,12 @@ export class Entities
     public static readonly LUDWIG =                                        new class Entities_Ludwig extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Ludwig',)
+            return new Import.EditorImageBuilder('Ludwig',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Ludwig',)
+            return new Import.ClearConditionImageBuilder('Ludwig',)
                 .setNotSM3DW();
         }
 
@@ -2094,7 +2079,7 @@ export class Entities
     public static readonly BUMPER =                                        new class Entities_Bumper extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Marumaru',)
+            return new Import.EditorImageBuilder('Marumaru',)
                 .setNotSM3DW();
         }
 
@@ -2103,12 +2088,12 @@ export class Entities
     public static readonly SWINGING_CLAW =                                 new class Entities_SwingingClaw extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BurankoCrane',)
+            return new Import.EditorImageBuilder('BurankoCrane',)
                 .setNotSM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BurankoCrane',)
+            return new Import.ClearConditionImageBuilder('BurankoCrane',)
                 .setNotSM3DW();
         }
 
@@ -2125,7 +2110,7 @@ export class Entities
     public static readonly ONE_WAY_WALL =                                  new class Entities_OneWayWall extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Hanatari',)
+            return new Import.EditorImageBuilder('Hanatari',)
                 .setNotSM3DW();
         }
 
@@ -2134,7 +2119,7 @@ export class Entities
     public static readonly TRACK =                                         new class Entities_Track extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Rail',)
+            return new Import.EditorImageBuilder('Rail',)
                 .setNotSM3DW();
         }
 
@@ -2142,7 +2127,7 @@ export class Entities
     public static readonly TRACK_BLOCK =                                   new class Entities_TrackBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('OrbitBlock',)
+            return new Import.EditorImageBuilder('OrbitBlock',)
                 .setAmount(2)
                 .setOnlySM3DW();
         }
@@ -2152,7 +2137,7 @@ export class Entities
     public static readonly VINE =                                          new class Entities_Vine extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('TsutaBlock',)
+            return new Import.EditorImageBuilder('TsutaBlock',)
                 .setNotSM3DW();
         }
 
@@ -2160,12 +2145,12 @@ export class Entities
     public static readonly TREE =                                          new class Entities_Tree extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BellTree',)
-                .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, FOREST,);
+            return new Import.EditorImageBuilder('BellTree',)
+                .setTheme(Import.GameStyles.SUPER_MARIO_3D_WORLD, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.FOREST,);
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('BellTree',)
+            return new Import.ClearConditionImageBuilder('BellTree',)
                 .setOnlySM3DW();
         }
 
@@ -2193,7 +2178,7 @@ export class Entities
     public static readonly DASH_BLOCK =                                    new class Entities_DashBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('DashBlock',)
+            return new Import.EditorImageBuilder('DashBlock',)
                 .setOnlySM3DW();
         }
 
@@ -2202,7 +2187,7 @@ export class Entities
     public static readonly SNAKE_BLOCK =                                   new class Entities_SnakeBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SnakeBlock', 1,)
+            return new Import.EditorImageBuilder('SnakeBlock', 1,)
                 .setAllGameStyles();
         }
 
@@ -2210,7 +2195,7 @@ export class Entities
     public static readonly FAST_SNAKE_BLOCK =                              new class Entities_FastSnakeBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('SnakeBlock', 2,)
+            return new Import.EditorImageBuilder('SnakeBlock', 2,)
                 .setAllGameStyles();
         }
 
@@ -2219,7 +2204,7 @@ export class Entities
     public static readonly CONVEYOR_BELT =                                 new class Entities_ConveyorBelt extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BeltConveyor', 1,)
+            return new Import.EditorImageBuilder('BeltConveyor', 1,)
                 .setAllGameStyles();
         }
 
@@ -2227,7 +2212,7 @@ export class Entities
     public static readonly FAST_CONVEYOR_BELT =                            new class Entities_FastConveyorBelt extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('BeltConveyor', 2,)
+            return new Import.EditorImageBuilder('BeltConveyor', 2,)
                 .setAllGameStyles();
         }
 
@@ -2236,7 +2221,7 @@ export class Entities
     public static readonly MUSHROOM_TRAMPOLINE =                           new class Entities_MushroomTrampoline extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Trampoline',)
+            return new Import.EditorImageBuilder('Trampoline',)
                 .setAmount(2)
                 .setOnlySM3DW();
         }
@@ -2245,7 +2230,7 @@ export class Entities
     public static readonly ON_OFF_TRAMPOLINE =                             new class Entities_OnOffTrampoline extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('OnOffTrampoline',)
+            return new Import.EditorImageBuilder('OnOffTrampoline',)
                 .setAmount(2)
                 .setOnlySM3DW();
         }
@@ -2255,7 +2240,7 @@ export class Entities
     public static readonly LIFT =                                          new class Entities_List extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Lift', 1,)
+            return new Import.EditorImageBuilder('Lift', 1,)
                 .setNotSM3DW();
         }
 
@@ -2263,7 +2248,7 @@ export class Entities
     public static readonly FLIMSY_LIFT =                                   new class Entities_FlimsyLift extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Lift', 2,)
+            return new Import.EditorImageBuilder('Lift', 2,)
                 .setNotSM3DW();
         }
 
@@ -2271,7 +2256,7 @@ export class Entities
     public static readonly CLOUD_LIFT =                                    new class Entities_CloudLift extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Lift', 1,)
+            return new Import.EditorImageBuilder('Lift', 1,)
                 .setOnlySM3DW();
         }
 
@@ -2280,7 +2265,7 @@ export class Entities
     public static readonly SEESAW =                                        new class Entities_Seesaw extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Seesaw',)
+            return new Import.EditorImageBuilder('Seesaw',)
                 .setNotSM3DW();
         }
 
@@ -2289,7 +2274,7 @@ export class Entities
     public static readonly LAVA_LIFT =                                     new class Entities_LavaLift extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('YouganLift', 1,)
+            return new Import.EditorImageBuilder('YouganLift', 1,)
                 .setNotSM3DW();
         }
 
@@ -2297,7 +2282,7 @@ export class Entities
     public static readonly FAST_LAVA_LIFT =                                new class Entities_FastLavaLift extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('YouganLift', 2,)
+            return new Import.EditorImageBuilder('YouganLift', 2,)
                 .setNotSM3DW();
         }
 
@@ -2306,12 +2291,12 @@ export class Entities
     public static readonly CRATE =                                         new class Entities_Crate extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('WoodBox',)
+            return new Import.EditorImageBuilder('WoodBox',)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('WoodBox',)
+            return new Import.ClearConditionImageBuilder('WoodBox',)
                 .setOnlySM3DW();
         }
 
@@ -2320,7 +2305,7 @@ export class Entities
     public static readonly KEY =                                           new class Entities_Key extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Key', 1,)
+            return new Import.EditorImageBuilder('Key', 1,)
                 .setAllGameStyles();
         }
 
@@ -2328,8 +2313,8 @@ export class Entities
     public static readonly CURSED_KEY =                                    new class Entities_CursedKey extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Key', 2,)
-                .setGameStyle(SMB);
+            return new Import.EditorImageBuilder('Key', 2,)
+                .setGameStyle(Import.GameStyles.SUPER_MARIO_BROS);
         }
 
     }('Cursed Key',);
@@ -2340,21 +2325,21 @@ export class Entities
     public static readonly TRAMPOLINE =                                    new class Entities_Trampoline extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('JumpStep',)
+            return new Import.EditorImageBuilder('JumpStep',)
                 .setAmount(2)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('JumpStep',)
-                .setNotGameStyle(SMB,);
+            return new Import.ClearConditionImageBuilder('JumpStep',)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_BROS,);
         }
 
     }('Trampoline',);
     public static readonly HOP_CHOPS =                                     new class Entities_HopChops extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Hopper',)
+            return new Import.EditorImageBuilder('Hopper',)
                 .setOnlySM3DW();
         }
 
@@ -2363,12 +2348,12 @@ export class Entities
     public static readonly POW_BLOCK =                                     new class Entities_PowBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('PowBlock', 1,)
+            return new Import.EditorImageBuilder('PowBlock', 1,)
                 .setAllGameStyles();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('PowBlock', 1,)
+            return new Import.ClearConditionImageBuilder('PowBlock', 1,)
                 .setAllGameStyles();
         }
 
@@ -2376,12 +2361,12 @@ export class Entities
     public static readonly RED_POW_BLOCK =                                 new class Entities_RedPowBlock extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('PowBlock', 2,)
+            return new Import.EditorImageBuilder('PowBlock', 2,)
                 .setOnlySM3DW();
         }
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('PowBlock', 2,)
+            return new Import.ClearConditionImageBuilder('PowBlock', 2,)
                 .setOnlySM3DW();
         }
 
@@ -2398,9 +2383,9 @@ export class Entities
         }
 
         protected get _createUnusedImage(): PossibleUnusedImage {
-            return new UnusedImage_RegularBuilder('PSwitch',)
-                .setImage(SMB, 'wait', [0, 1, 2,],)
-                .setImage(NSMBU, 'down_switch_hatena_Alb', ['000', '004',],);
+            return new Import.UnusedImage_RegularBuilder('PSwitch',)
+                .setImage(Import.GameStyles.SUPER_MARIO_BROS, 'wait', [0, 1, 2,],)
+                .setImage(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, 'down_switch_hatena_Alb', ['000', '004',],);
         }
 
     }('P Switch',);
@@ -2408,8 +2393,8 @@ export class Entities
     public static readonly STONE =                                         new class Entities_Stone extends Entities {
 
         protected get _createClearConditionImage(): PossibleClearConditionImage {
-            return new ClearConditionImageBuilder('Stone',)
-                .setNotGameStyle(SMB,);
+            return new Import.ClearConditionImageBuilder('Stone',)
+                .setNotGameStyle(Import.GameStyles.SUPER_MARIO_BROS,);
         }
 
     }('Stone',);
@@ -2417,7 +2402,7 @@ export class Entities
     public static readonly WARP_DOOR =                                     new class Entities_WarpDoor extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Door', 1,)
+            return new Import.EditorImageBuilder('Door', 1,)
                 .setAllGameStyles();
         }
 
@@ -2425,7 +2410,7 @@ export class Entities
     public static readonly P_WARP_DOOR =                                   new class Entities_PWarpDoor extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Door', 2,)
+            return new Import.EditorImageBuilder('Door', 2,)
                 .setAllGameStyles();
         }
 
@@ -2433,7 +2418,7 @@ export class Entities
     public static readonly KEY_DOOR =                                      new class Entities_KeyDoor extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('Door', 3,)
+            return new Import.EditorImageBuilder('Door', 3,)
                 .setAllGameStyles();
         }
 
@@ -2442,7 +2427,7 @@ export class Entities
     public static readonly WARP_BOX =                                      new class Entities_WarpBox extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('WarpBox', 1,)
+            return new Import.EditorImageBuilder('WarpBox', 1,)
                 .setOnlySM3DW();
         }
 
@@ -2450,7 +2435,7 @@ export class Entities
     public static readonly WARP_BOX_WITH_KEY =                             new class Entities_WarpBoxWithKey extends Entities {
 
         protected get _createEditorImage(): PossibleEditorImage {
-            return new EditorImageBuilder('WarpBox', 2,)
+            return new Import.EditorImageBuilder('WarpBox', 2,)
                 .setOnlySM3DW();
         }
 
@@ -2482,9 +2467,6 @@ export class Entities
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, Entity>;
-    static #EditorVoices?: typeof EditorVoices;
-
     #reference?: Entity;
     readonly #englishNameContainer;
     #editorImage?: EditorImage;
@@ -2502,21 +2484,12 @@ export class Entities
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map(): ReadonlyMap<PossibleEnglishName, Entity> {
-        return this.#map ??= require('./Entity.loader').EntityLoader.get.load();
-    }
-
-    private static get __EditorVoices(): typeof EditorVoices {
-        return this.#EditorVoices ??= require('../editorVoice/EditorVoices').EditorVoices;
-    }
-
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): Entity {
-        return this.#reference ??= Entities.__map.get(this.englishName)!;
+        return this.#reference ??= Import.EntityLoader.get.load().get(this.englishName)!;
     }
 
 
@@ -2541,13 +2514,13 @@ export class Entities
     }
 
     public get editorImage(): EditorImage {
-        return this.#editorImage ??= EditorImageFactory.create(this._createEditorImage);
+        return this.#editorImage ??= Import.EditorImageFactory.create(this._createEditorImage);
     }
 
     //endregion -------------------- editor image --------------------
 
     public get editorVoiceSound(): EditorVoiceSound {
-        return this.#editorVoiceSound ??= Entities.__EditorVoices.getValue(this)?.editorVoiceSound ?? EmptyEditorVoiceSound.get;
+        return this.#editorVoiceSound ??= Import.EditorVoices.getValue(this)?.editorVoiceSound ?? Import.EmptyEditorVoiceSound.get;
     }
 
     //region -------------------- clear condition image --------------------
@@ -2563,7 +2536,7 @@ export class Entities
     }
 
     public get clearConditionImage(): ClearConditionImage {
-        return this.#clearConditionImage ??= ClearConditionImageFactory.create(this._createClearConditionImage);
+        return this.#clearConditionImage ??= Import.ClearConditionImageFactory.create(this._createClearConditionImage);
     }
 
     //endregion -------------------- clear condition image --------------------
@@ -2580,7 +2553,7 @@ export class Entities
     }
 
     public get inGameImage(): InGameImage {
-        return this.#whilePlayingImage ??= InGameImageFactory.create(this._createInGameImage);
+        return this.#whilePlayingImage ??= Import.InGameImageFactory.create(this._createInGameImage);
     }
 
     //endregion -------------------- while playing image --------------------
@@ -2597,7 +2570,7 @@ export class Entities
     }
 
     public get unusedImages(): UnusedImages {
-        return this.#unusedImages ??= UnusedImageFactory.create(this._createUnusedImage);
+        return this.#unusedImages ??= Import.UnusedImageFactory.create(this._createUnusedImage);
     }
 
     //endregion -------------------- unused image --------------------
@@ -2606,16 +2579,16 @@ export class Entities
     //region -------------------- Methods --------------------
 
     private static __createGroundEditorImage(simpleImageName: SimpleImageName_GroundOrSlope,): EditorImageBuilder {
-        return new EditorImageBuilder(simpleImageName,)
-            .setTheme(SMB, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-            .setNightTheme(SMB, AIRSHIP,)
-            .setTheme(SMB3, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-            .setNightTheme(SMB3, SNOW, AIRSHIP, CASTLE,)
-            .setTheme(SMW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-            .setNightTheme(SMW, UNDERWATER, SNOW,)
-            .setTheme(NSMBU, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,)
-            .setNightTheme(NSMBU, SNOW, AIRSHIP,)
-            .setTheme(SM3DW, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,);
+        return new Import.EditorImageBuilder(simpleImageName,)
+            .setTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+            .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS, Import.Themes.AIRSHIP,)
+            .setTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+            .setNightTheme(Import.GameStyles.SUPER_MARIO_BROS_3, Import.Themes.SNOW, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+            .setTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+            .setNightTheme(Import.GameStyles.SUPER_MARIO_WORLD, Import.Themes.UNDERWATER, Import.Themes.SNOW,)
+            .setTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,)
+            .setNightTheme(Import.GameStyles.NEW_SUPER_MARIO_BROS_U, Import.Themes.SNOW, Import.Themes.AIRSHIP,)
+            .setTheme(Import.GameStyles.SUPER_MARIO_3D_WORLD, Import.Themes.UNDERGROUND, Import.Themes.UNDERWATER, Import.Themes.DESERT, Import.Themes.SNOW, Import.Themes.SKY, Import.Themes.FOREST, Import.Themes.GHOST_HOUSE, Import.Themes.AIRSHIP, Import.Themes.CASTLE,);
     }
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {

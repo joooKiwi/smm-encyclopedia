@@ -1,20 +1,20 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../ClassWithEnglishName';
 import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../ClassWithAcronym';
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../ClassWithReference';
-import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                          from './EntityLimit';
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../entity/Entity';
+import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                                       from './EntityLimit';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleNonNullableValue, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying, PossibleStringValue, PossibleValue} from './EntityLimits.types';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../../util/enum/Enum.types';
 
-import {EmptyEntity}      from '../entity/EmptyEntity';
-import {Enum}             from '../../util/enum/Enum';
-import type {Entities}    from '../entity/Entities';
-import {Entity}           from '../entity/Entity';
-import {EntityLimitTypes} from './EntityLimitTypes';
-import {StringContainer}  from '../../util/StringContainer';
+import {Enum}            from '../../util/enum/Enum';
+import type {Entities}   from '../entity/Entities';
+import {Import}          from '../../util/DynamicImporter';
+import {StringContainer} from '../../util/StringContainer';
 
 /**
- * @recursiveReferenceVia<{@link EntityLimitBuilder}, {@link EntityLimitLoader}>
- * @recursiveReference<{@link EntityLimitLoader}>
+ * @recursiveReferenceVia {@link EntityLimitBuilder} → {@link EntityLimitLoader}
+ * @recursiveReference {@link EntityLimitLoader}
+ * @classWithDynamicImport {@link EntityLimitLoader}, {@link Entities}, {@link EmptyEntity}, {@link EntityLimitTypes}
  */
 export class EntityLimits
     extends Enum<Ordinals, Names>
@@ -30,7 +30,7 @@ export class EntityLimits
     public static readonly LOOSE_COIN_LIMIT =                                         new class EntityLimits_LooseCoinLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.COIN;
+            return Import.Entities.COIN;
         }
 
     }                                (['LCL', 'Loose Coin',],                                                                         );
@@ -42,7 +42,7 @@ export class EntityLimits
     public static readonly GROUND_LIMIT =                                             new class EntityLimits_GroundLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.GROUND;
+            return Import.Entities.GROUND;
         }
 
     }                                   ('Ground', 'Ground Limit 1',                                        );
@@ -57,7 +57,7 @@ export class EntityLimits
     public static readonly CLEAR_PIPE_LIMIT =                                         new class EntityLimits_ClearPipeLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.CLEAR_PIPE;
+            return Import.Entities.CLEAR_PIPE;
         }
 
     }                                ('Clear Pipe',                                                                                   );
@@ -65,49 +65,49 @@ export class EntityLimits
     public static readonly GROWN_VINE_LIMIT =                                         new class EntityLimits_GrownVineLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.VINE;
+            return Import.Entities.VINE;
         }
 
     }                                (['GVL', 'Grown Vine',],                                                                         );
     public static readonly CHECKPOINT_FLAG_LIMIT =                                    new class EntityLimits_CheckpointFlagLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.CHECKPOINT_FLAG;
+            return Import.Entities.CHECKPOINT_FLAG;
         }
 
     }                           ('Checkpoint Flag',                                                                              );
     public static readonly TRACK_LIMIT =                                              new class EntityLimits_TrackLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.TRACK;
+            return Import.Entities.TRACK;
         }
 
     }                                    ('Track',                                                                                        );
     public static readonly SNAKE_BLOCK_LIMIT =                                        new class EntityLimits_SnakeBlockLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.SNAKE_BLOCK;
+            return Import.Entities.SNAKE_BLOCK;
         }
 
     }                               ('Snake Block',                                                                                  );
     public static readonly EXCLAMATION_BLOCK_LIMIT =                                  new class EntityLimits_ExclamationBlockLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.EXCLAMATION_MARK_BLOCK;
+            return Import.Entities.EXCLAMATION_MARK_BLOCK;
         }
 
     }                         ('! Block',                                                                                      );
     public static readonly TRACK_BLOCK_LIMIT =                                        new class EntityLimits_TrackBlockLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.TRACK_BLOCK;
+            return Import.Entities.TRACK_BLOCK;
         }
 
     }                               ('Track Block',                                                                                  );
     public static readonly ICICLE_LIMIT =                                             new class EntityLimits_IcicleLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.ICICLE;
+            return Import.Entities.ICICLE;
         }
 
     }                                   ('Icicle',                                                                                       );
@@ -122,14 +122,14 @@ export class EntityLimits
     public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                           new class EntityLimits_EntityHeldByATwisterLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.TWISTER;
+            return Import.Entities.TWISTER;
         }
 
     }                     ('Entity Held By A Twister',                                                                     );
     public static readonly SNOWBALL_THROWN_BY_A_SPIKE_LIMIT =                         new class EntityLimits_SnowballThrownByASpikeLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return [EntityLimits._entities.SNOWBALL, EntityLimits._entities.SPIKE,];
+            return [Import.Entities.SNOWBALL, Import.Entities.SPIKE,];
         }
 
     }                   ('Snowball Thrown By A Spike',                                                                   );
@@ -146,7 +146,7 @@ export class EntityLimits
     public static readonly PINK_COIN_LIMIT =                                          new class EntityLimits_PinkCoinLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.PINK_COIN;
+            return Import.Entities.PINK_COIN;
         }
 
     }                                 ('Pink Coin',                                                                                    );
@@ -162,42 +162,42 @@ export class EntityLimits
     public static readonly PLAYER_FIREBALL =                                          new class EntityLimits_FireballThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.FIREBALL_THROWN_BY_A_PLAYER;
+            return Import.Entities.FIREBALL_THROWN_BY_A_PLAYER;
         }
 
     }                  ('Player\'s Fireball',                                                                           );
     public static readonly PLAYER_SUPERBALL =                                         new class EntityLimits_SuperballThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.SUPERBALL_THROWN_BY_A_PLAYER;
+            return Import.Entities.SUPERBALL_THROWN_BY_A_PLAYER;
         }
 
     }                 ('Player\'s Superball',                                                                          );
     public static readonly PLAYER_BOMB =                                              new class EntityLimits_BombThrownByALinkLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.BOMB_THROWN_BY_A_LINK;
+            return Import.Entities.BOMB_THROWN_BY_A_LINK;
         }
 
     }                        ('Player\'s Bomb',                                                                               );
     public static readonly PLAYER_BUILDER_BOX =                                       new class EntityLimits_BuilderBoxThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.BUILDER_BOX_THROWN_BY_A_PLAYER;
+            return Import.Entities.BUILDER_BOX_THROWN_BY_A_PLAYER;
         }
 
     }                ('Player\'s Builder Box',                                                                        );
     public static readonly PLAYER_BOOMERANG =                                         new class EntityLimits_BoomerangThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.BOOMERANG_THROWN_BY_A_PLAYER;
+            return Import.Entities.BOOMERANG_THROWN_BY_A_PLAYER;
         }
 
     }                 ('Player\'s Boomerang',                                                                          );
     public static readonly PLAYER_CANNONBALL =                                        new class EntityLimits_CannonballThrownByAPlayerLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.CANNONBALL_THROWN_BY_A_PLAYER;
+            return Import.Entities.CANNONBALL_THROWN_BY_A_PLAYER;
         }
 
     }                ('Player\'s Cannonball',                                                                         );
@@ -213,14 +213,14 @@ export class EntityLimits
     public static readonly CHARVAARGH_LIMIT =                                         new class EntityLimits_CharvaarghLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.CHARVAARGH;
+            return Import.Entities.CHARVAARGH;
         }
 
     }                               ('Charvaargh',                                                                                   );
     public static readonly PIRANHA_CREEPER_LIMIT =                                    new class EntityLimits_PiranhaCreeperLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.PIRANHA_CREEPER;
+            return Import.Entities.PIRANHA_CREEPER;
         }
 
     }                           ('Piranha Creeper',                                                                              );
@@ -255,14 +255,14 @@ export class EntityLimits
     public static readonly PHANTO_LIMIT =                                             new class EntityLimits_PhantoLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.PHANTO;
+            return Import.Entities.PHANTO;
         }
 
     }                                   ('Phanto',                                                                                       );
     public static readonly KOOPA_TROOPA_CAR_LIMIT =                                   new class EntityLimits_KoopaTroopaCarLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.KOOPA_TROOPA_CAR;
+            return Import.Entities.KOOPA_TROOPA_CAR;
         }
 
     }                           ('Koopa Troopa Car',                                                                             );
@@ -284,7 +284,7 @@ export class EntityLimits
     public static readonly WARP_PIPE_LIMIT =                                          new class EntityLimits_WarpBoxLimit extends EntityLimits {
 
         protected get _entityLink(): PossibleEntityLinkInitialisation {
-            return EntityLimits._entities.PIPE;
+            return Import.Entities.PIPE;
         }
 
     }                                  ('Warp Pipe',                                                                                    );
@@ -297,11 +297,9 @@ export class EntityLimits
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, EntityLimit>;
-    static #entities?: typeof Entities;
     static readonly #LIMIT_LENGTH = ' Limit'.length;
-    static readonly #LIMIT_WHILE_PLAYING_LENGTH = ` Limit (${EntityLimitTypes.WHILE_PLAYING.englishName})`.length;
-    static readonly #LIMIT_IN_EDITOR_LENGTH = ` Limit (${EntityLimitTypes.EDITOR.englishName})`.length;
+    static readonly #LIMIT_WHILE_PLAYING_LENGTH = ` Limit (While Playing)`.length;
+    static readonly #LIMIT_IN_EDITOR_LENGTH = ` Limit (Editor)`.length;
 
     #reference?: EntityLimitWithPossibleAlternativeEntityLimit;
     readonly #acronym: PossibleAcronym | null;
@@ -323,7 +321,7 @@ export class EntityLimits
             const isWhilePlaying = englishName[2];
             this.#englishName = new StringContainer(isWhilePlaying == null
                 ? `${englishName[1] as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`
-                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? EntityLimitTypes.WHILE_PLAYING.englishName : EntityLimitTypes.EDITOR.englishName})`
+                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? Import.EntityLimitTypes.WHILE_PLAYING.englishName : Import.EntityLimitTypes.EDITOR.englishName})`
             );
         }
         if (alternativeEnglishName instanceof Array) {
@@ -337,20 +335,12 @@ export class EntityLimits
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= require('./EntityLimit.loader').EntityLimitLoader.get.load();
-    }
-
-    protected static get _entities(): typeof Entities {
-        return this.#entities ??= require('../entity/Entities').Entities;
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): EntityLimitWithPossibleAlternativeEntityLimit {
-        return this.#reference ??= EntityLimits.__map.get(this.englishName)! as EntityLimitWithPossibleAlternativeEntityLimit;
+        return this.#reference ??= Import.EntityLimitLoader.get.load().get(this.englishName)! as EntityLimitWithPossibleAlternativeEntityLimit;
     }
 
 
@@ -406,7 +396,7 @@ export class EntityLimits
         if (this.#entityLink == null) {
             const link = this._entityLink;
             this.#entityLink = link == null
-                ? [EmptyEntity.get]
+                ? [Import.EmptyEntity.get]
                 : link instanceof Array
                     ? [link[0].reference, link[1].reference,]
                     : [link.reference,];
@@ -484,6 +474,3 @@ type PossibleGroupLinkInitialisation = | object | null;
 type PossibleEntityLinkInitialisation = | Entities | readonly [Entities, Entities,] | null;
 type EnglishNameReceived = | PossibleStartingEnglishName | [englishName: PossibleAcronym, englishAcronym: PossibleStartingEnglishName,] | [englishName: PossibleAcronymInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEnglishNameInBothEditorAndWhilePlaying, isWhilePlaying: boolean,];
 type AlternativeEnglishNameReceived = | PossibleAlternativeEnglishName | [alternativeEnglishName: PossibleAlternativeAcronym, alternativeEnglishAcronym: PossibleAlternativeEnglishName,];
-
-// @ts-ignore
-(window.test??={}).EntityLimits = EntityLimits;

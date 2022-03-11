@@ -2,13 +2,15 @@ import type {ClassWithAcronym}                                                  
 import type {ClassWithReference}                                                                                                                                                                                              from '../ClassWithReference';
 import type {ClassWithTranslationKey}                                                                                                                                                                                         from '../../lang/ClassWithTranslationKey';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types';
+import type {EntityBehaviour}                                                                                                                                                                                                 from './EntityBehaviour';
 import type {StaticReference}                                                                                                                                                                                                 from '../../util/enum/Enum.types';
 
-import {Enum}            from '../../util/enum/Enum';
-import {EntityBehaviour} from './EntityBehaviour';
+import {Enum}   from '../../util/enum/Enum';
+import {Import} from '../../util/DynamicImporter';
 
 /**
- * @recursiveReference<{@link EntityBehaviourLoader}>
+ * @recursiveReference {@link EntityBehaviourLoader}
+ * @classWithDynamicImport {@link EntityBehaviourLoader}
  */
 export class EntityBehaviours
     extends Enum<Ordinals, Names>
@@ -58,7 +60,7 @@ export class EntityBehaviours
     //region -------------------- Getter methods --------------------
 
     private static get __map() {
-        return this.#map ??= require('./EntityBehaviour.loader').EntityBehaviourLoader.get.load();
+        return this.#map ??= Import.EntityBehaviourLoader.get.load();
     }
 
     /**

@@ -5,11 +5,13 @@ import type {SoundEffect}                                                       
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/enum/Enum.types';
 
 import {Enum}               from '../../util/enum/Enum';
+import {Import}             from '../../util/DynamicImporter';
 import SoundEffectComponent from './SoundEffect.component';
 import {StringContainer}    from '../../util/StringContainer';
 
 /**
- * @recursiveReference<{@link SoundEffectLoader}>
+ * @recursiveReference {@link SoundEffectLoader}
+ * @classWithDynamicImport {@link SoundEffectLoader}
  */
 export class SoundEffects
     extends Enum<Ordinals, Names>
@@ -85,8 +87,6 @@ export class SoundEffects
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
-
     #reference?: SoundEffect;
     readonly #englishName;
     readonly #SMM1ImagePath: | readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,] | null;
@@ -109,16 +109,12 @@ export class SoundEffects
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= require('./SoundEffect.loader').SoundEffectLoader.get.load();
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): SoundEffect {
-        return this.#reference ??= SoundEffects.__map.get(this.englishName)!;
+        return this.#reference ??= Import.SoundEffectLoader.get.load().get(this.englishName)!;
     }
 
     public get englishName(): PossibleEnglishName {

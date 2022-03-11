@@ -6,10 +6,12 @@ import type {MiiCostume}                                                        
 import type {StaticReference}                                                                                                                                                                                                                  from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
+import {Import}          from '../../util/DynamicImporter';
 import {StringContainer} from '../../util/StringContainer';
 
 /**
- * @recursiveReference<{@link MiiCostumeLoader}>
+ * @recursiveReference {@link MiiCostumeLoader}
+ * @classWithDynamicImport {@link MiiCostumeLoader}
  */
 export class MiiCostumes
     extends Enum<Ordinals, Names>
@@ -160,8 +162,6 @@ export class MiiCostumes
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, MiiCostume>;
-
     #reference?: MiiCostume;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imageName: PossibleImageName;
@@ -178,16 +178,12 @@ export class MiiCostumes
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= require('./MiiCostume.loader').MiiCostumeLoader.get.load();
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): MiiCostume {
-        return this.#reference ??= MiiCostumes.__map.get(this.englishName)!;
+        return this.#reference ??= Import.MiiCostumeLoader.get.load().get(this.englishName)!;
     }
 
 

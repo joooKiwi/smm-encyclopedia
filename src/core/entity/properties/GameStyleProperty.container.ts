@@ -9,10 +9,11 @@ import type {GameStyles}      from '../../gameStyle/GameStyles';
 /**
  * @multiton
  * @provider
- * @classWithDynamicImport @link GameStyles}
+ * @classWithDynamicImport {@link GameStyles}
  */
 export class GameStylePropertyContainer
     implements GameStyleProperty {
+
 
     //region -------------------- Attributes --------------------
 

@@ -3,9 +3,12 @@ import type {ObjectHolder}                                                      
 
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 import {EMPTY_ARRAY}                  from '../../../util/emptyVariables';
-import {Entities}                     from '../../entity/Entities';
+import {Import}                       from '../../../util/DynamicImporter';
 import {ObjectHolderContainer}        from '../../../util/holder/ObjectHolder.container';
 
+/**
+ * @classWithDynamicImport {@link Entities}
+ */
 export class EntityReferenceHolderContainer
     implements EntityReferenceHolder {
 
@@ -18,7 +21,7 @@ export class EntityReferenceHolderContainer
     public constructor(references: PossibleEntityReferences_Received,) {
         this.#references = references.length === 1
             ? new DelayedObjectHolderContainer(() => {
-                const reference = Entities.getValue(references[0]);
+                const reference = Import.Entities.getValue(references[0]);
                 return reference == null ? EMPTY_ARRAY : [reference];
             })
             : new ObjectHolderContainer(references);
