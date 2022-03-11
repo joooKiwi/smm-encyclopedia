@@ -30,6 +30,7 @@ import {GamePropertyContainer}                          from './properties/GameP
 import {Games}                                          from '../game/Games';
 import {GameStructureContainer}                         from '../game/GameStructure.container';
 import {GameStylePropertyContainer}                     from './properties/GameStyleProperty.container';
+import {lazy}                                           from '../../util/utilitiesMethods';
 import type {LimitPropertyContainer}                    from './properties/limit/LimitProperty.container';
 import {ObjectHolders}                                  from '../../util/holder/objectHolders';
 import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
@@ -41,10 +42,20 @@ import {TemplateWithNameBuilder}                        from '../_template/Templ
 import type {ThemePropertyContainer}                    from './properties/ThemeProperty.container';
 import type {TimePropertyContainer}                     from './properties/TimeProperty.container';
 
+//region -------------------- Dynamic imports --------------------
+
+const _EntityLimits =           lazy(() => require('../entityLimit/EntityLimits').EntityLimits as typeof EntityLimits);
+const _Entities =               lazy(() => require('./Entities').Entities as typeof Entities);
+const _EmptyEntity =            lazy(() => require('./EmptyEntity').EmptyEntity as typeof EmptyEntity);
+const _LimitPropertyContainer = lazy(() => require('./properties/limit/LimitProperty.container').LimitPropertyContainer as typeof LimitPropertyContainer);
+const _ThemePropertyContainer = lazy(() => require('./properties/ThemeProperty.container').ThemePropertyContainer as typeof ThemePropertyContainer);
+const _TimePropertyContainer =  lazy(() => require('./properties/TimeProperty.container').TimePropertyContainer as typeof TimePropertyContainer);
+
+//endregion -------------------- Dynamic imports --------------------
+
 /**
  * Create an {@link Entity} from a {@link EntityTemplate template} received.
  *
- * @classWithDynamicImport
  * @see ExclusiveSMM1EntityContainer
  * @see ExclusiveSM3DWEntityContainer
  * @see ExclusiveSMM2EntityContainer
@@ -54,19 +65,9 @@ export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
     implements Builder<Entity> {
 
-    //region -------------------- Other references --------------------
-
-    static #entities?: typeof Entities;
-    static #entityLimits?: typeof EntityLimits;
-    static #emptyEntity?: typeof EmptyEntity;
-    static #themePropertyContainer?: typeof ThemePropertyContainer;
-    static #timePropertyContainer?: typeof TimePropertyContainer;
-    static #limitPropertyContainer?: typeof LimitPropertyContainer;
-
-    //endregion -------------------- Other references --------------------
     //region -------------------- Attributes --------------------
 
-    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EntityBuilder.__emptyEntity.get];
+    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [_EmptyEntity.get.get];
 
     readonly #selfCallback = () => [this.build()] as const;
 
@@ -93,33 +94,6 @@ export class EntityBuilder
                 : Games.SUPER_MARIO_MAKER_2;
     }
 
-    //region -------------------- Other references getter methods --------------------
-
-    private static get __entities(): typeof Entities {
-        return this.#entities ??= require('./Entities').Entities;
-    }
-
-    private static get __entityLimits(): typeof EntityLimits {
-        return this.#entityLimits ??= require('../entityLimit/EntityLimits').EntityLimits;
-    }
-
-    private static get __emptyEntity(): typeof EmptyEntity {
-        return this.#emptyEntity ??= require('./EmptyEntity').EmptyEntity;
-    }
-
-    private static get __themePropertyContainer(): typeof ThemePropertyContainer {
-        return this.#themePropertyContainer ??= require('./properties/ThemeProperty.container').ThemePropertyContainer;
-    }
-
-    private static get __timePropertyContainer(): typeof TimePropertyContainer {
-        return this.#timePropertyContainer ??= require('./properties/TimeProperty.container').TimePropertyContainer;
-    }
-
-    private static get __limitPropertyContainer(): typeof LimitPropertyContainer {
-        return this.#limitPropertyContainer ??= require('./properties/limit/LimitProperty.container').LimitPropertyContainer;
-    }
-
-    //endregion -------------------- Other references getter methods --------------------
     //region -------------------- Build helper methods --------------------
 
     protected get _static() {
@@ -143,7 +117,7 @@ export class EntityBuilder
     private static __whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
     private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
     private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
-        return this.__entityLimits.getValue(entityLimit);
+        return _EntityLimits.get.getValue(entityLimit);
     }
 
     private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
@@ -160,7 +134,6 @@ export class EntityBuilder
      * Get the {@link LimitProperty limit property} from the {@link EntityTemplate template}
      *
      * @param limitTemplate the limit template
-     * @methodWithDynamicImport
      */
     private static __getLimitPropertyAttributes(limitTemplate: LimitPropertyTemplate,): LimitProperty {
         const {
@@ -173,7 +146,7 @@ export class EntityBuilder
             },
         } = limitTemplate;
 
-        return this.__limitPropertyContainer.get(
+        return _LimitPropertyContainer.get.get(
             [
                 GameStructureContainer.get(this.__whereEntityLimit(editorLimit_SMM1And3DS),
                     this.__getPropertyWhereEntityLimit(editorLimit_SMM2),
@@ -199,8 +172,6 @@ export class EntityBuilder
     /**
      * Create the {@link Property property} from the {@link EntityTemplate template}
      * with the games, game style, theme, time & limit.
-     *
-     * @methodWithDynamicImport
      */
     private __createProperty() {
         const {isIn: {game, style: gameStyle, theme, time,}, limits,} = this.template.properties;
@@ -208,8 +179,8 @@ export class EntityBuilder
         return new PropertyInstanceContainer(
             new ObjectHolderContainer(GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
             new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
-            new DelayedObjectHolderContainer(() => EntityBuilder.__themePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
-            new DelayedObjectHolderContainer(() => EntityBuilder.__timePropertyContainer.get(time.day, time.night,)),
+            new DelayedObjectHolderContainer(() => _ThemePropertyContainer.get.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
+            new DelayedObjectHolderContainer(() => _TimePropertyContainer.get.get(time.day, time.night,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.__getLimitPropertyAttributes(limits)),
         );
     }
@@ -276,7 +247,7 @@ export class EntityBuilder
     private __createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => EntityBuilder.__entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
+            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => _Entities.get.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
     }
 
     /**
@@ -284,7 +255,6 @@ export class EntityBuilder
      * It can contain 'this' that will return itself in the callback.
      *
      * @param link the entity link or null
-     * @methodWithDynamicImport
      */
     private __createOtherEntityReferences(link: | EntityLink | null,): ObjectHolder<PossibleOtherEntities> {
         return new DelayedObjectHolderContainer(
@@ -292,7 +262,7 @@ export class EntityBuilder
                 ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
                 : link === 'this'
                     ? this.#selfCallback
-                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => EntityBuilder.__entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
+                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => _Entities.get.getValue(splitLink).reference) as unknown as PossibleOtherEntities
         );
     }
 

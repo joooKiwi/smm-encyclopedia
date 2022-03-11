@@ -19,35 +19,32 @@ import {EmptyCourseTheme}                               from './EmptyCourseTheme
 import {EmptyWorldTheme}                                from './EmptyWorldTheme';
 import {GamePropertyContainer}                          from '../entity/properties/GameProperty.container';
 import {Games}                                          from '../game/Games';
+import {lazy}                                           from '../../util/utilitiesMethods';
 import type {NightEffects}                              from './NightEffects';
 import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
 import type {Themes}                                    from './Themes';
 import {WorldThemeContainer}                            from './WorldTheme.container';
 
-/**
- * @classWithDynamicImport
- */
+//region -------------------- Dynamic imports --------------------
+
+const _ClassThatIsAvailableFromTheStartContainer = lazy(() => require('../availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer as typeof ClassThatIsAvailableFromTheStartContainer);
+const _Entities =                                  lazy(() => require('../entity/Entities').Entities as typeof Entities);
+const _NightEffects =                              lazy(() => require('./NightEffects').NightEffects as typeof NightEffects);
+const _Themes =                                    lazy(() => require('./Themes').Themes as typeof Themes);
+
+//endregion -------------------- Dynamic imports --------------------
+
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
     implements Builder<CourseAndWorldTheme> {
 
     //region -------------------- Attributes --------------------
 
-    //region -------------------- Dynamic import attributes --------------------
-
-    static #classThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer;
-
-    static #themes?: typeof Themes;
-    static #nightEffects?: typeof NightEffects;
-    static #entities?: typeof Entities;
-
-    //endregion -------------------- Dynamic import attributes --------------------
-
     static readonly #WORLD_THEME_PROPERTY = GamePropertyContainer.get(false, true,);
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(null,));
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(true,));
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => this.__classThatIsAvailableFromTheStartContainer.get(false,));
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => _ClassThatIsAvailableFromTheStartContainer.get.get(null,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => _ClassThatIsAvailableFromTheStartContainer.get.get(true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => _ClassThatIsAvailableFromTheStartContainer.get.get(false,));
 
     //endregion -------------------- Attributes --------------------
 
@@ -55,25 +52,6 @@ export class ThemeBuilder
         super(templateBuilder, ({is: {in: {game: {'1And3DS': isInSMM1And3DS,},},},},) => isInSMM1And3DS ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
     }
 
-    //region -------------------- Dynamic imports getter methods --------------------
-
-    private static get __classThatIsAvailableFromTheStartContainer(): typeof ClassThatIsAvailableFromTheStartContainer {
-        return this.#classThatIsAvailableFromTheStartContainer ??= require('../availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer;
-    }
-
-    private static get __themes(): typeof Themes {
-        return this.#themes ??= require('./Themes').Themes;
-    }
-
-    private static get __nightEffects(): typeof NightEffects {
-        return this.#nightEffects ??= require('./NightEffects').NightEffects;
-    }
-
-    private static get __entities(): typeof Entities {
-        return this.#entities ??= require('../entity/Entities').Entities;
-    }
-
-    //endregion -------------------- Dynamic imports getter methods --------------------
     //region -------------------- Builder helper methods --------------------
 
     protected get _static() {
@@ -109,14 +87,13 @@ export class ThemeBuilder
      * Get the {@link Entity entities} where the theme is applied.
      *
      * @param name the english name to retrieve the {@link Themes}
-     * @methodWithDynamicImport
      * @see Themes.get
      */
     private static __getWhereEntityIs(name: PossibleEnglishName,): ObjectHolder<readonly Entity[]> {
         return new DelayedObjectHolderContainer(() => {
-            const theme = this.__themes.getValue(name);
+            const theme = _Themes.get.getValue(name);
 
-            return this.__entities.values.map(({reference,}) => reference)
+            return _Entities.get.values.map(({reference,}) => reference)
                 .filter(reference => theme.get(reference));
         });
     }
@@ -125,10 +102,9 @@ export class ThemeBuilder
      * Get the {@link NightEffects night effect} based on the name received.
      *
      * @param name the night effect
-     * @methodWithDynamicImport
      */
     private static __getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): ObjectHolder<NightEffects> {
-        return new DelayedObjectHolderContainer(() => this.__nightEffects.getValue(name));
+        return new DelayedObjectHolderContainer(() => _NightEffects.get.getValue(name));
     }
 
     //endregion -------------------- Course theme builder helper methods --------------------
