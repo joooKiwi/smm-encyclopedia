@@ -2,19 +2,21 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../ClassWithAcronym';
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../ClassWithReference';
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../entity/Entity';
-import type {EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                                       from './EntityLimit';
+import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                          from './EntityLimit';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleNonNullableValue, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying, PossibleStringValue, PossibleValue} from './EntityLimits.types';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../../util/enum/Enum.types';
 
-import {Enum}            from '../../util/enum/Enum';
-import type {Entities}   from '../entity/Entities';
-import {Import}          from '../../util/DynamicImporter';
-import {StringContainer} from '../../util/StringContainer';
+import {Enum}             from '../../util/enum/Enum';
+import {EmptyEntity}      from '../entity/EmptyEntity';
+import type {Entities}    from '../entity/Entities';
+import {EntityLimitTypes} from './EntityLimitTypes';
+import {Import}           from '../../util/DynamicImporter';
+import {StringContainer}  from '../../util/StringContainer';
 
 /**
  * @recursiveReferenceVia {@link EntityLimitBuilder} → {@link EntityLimitLoader}
  * @recursiveReference {@link EntityLimitLoader}
- * @classWithDynamicImport {@link EntityLimitLoader}, {@link Entities}, {@link EmptyEntity}, {@link EntityLimitTypes}
+ * @classWithDynamicImport {@link EntityLimitLoader}, {@link Entities}
  */
 export class EntityLimits
     extends Enum<Ordinals, Names>
@@ -297,6 +299,7 @@ export class EntityLimits
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, EntityLimit>;
     static readonly #LIMIT_LENGTH = ' Limit'.length;
     static readonly #LIMIT_WHILE_PLAYING_LENGTH = ` Limit (While Playing)`.length;
     static readonly #LIMIT_IN_EDITOR_LENGTH = ` Limit (Editor)`.length;
@@ -321,7 +324,7 @@ export class EntityLimits
             const isWhilePlaying = englishName[2];
             this.#englishName = new StringContainer(isWhilePlaying == null
                 ? `${englishName[1] as PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit`
-                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? Import.EntityLimitTypes.WHILE_PLAYING.englishName : Import.EntityLimitTypes.EDITOR.englishName})`
+                : `${englishName[1] as PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${isWhilePlaying ? EntityLimitTypes.WHILE_PLAYING.englishName : EntityLimitTypes.EDITOR.englishName})`
             );
         }
         if (alternativeEnglishName instanceof Array) {
@@ -335,12 +338,16 @@ export class EntityLimits
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, EntityLimit> {
+        return this.#REFERENCE_MAP ??= Import.EntityLimitLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): EntityLimitWithPossibleAlternativeEntityLimit {
-        return this.#reference ??= Import.EntityLimitLoader.get.load().get(this.englishName)! as EntityLimitWithPossibleAlternativeEntityLimit;
+        return this.#reference ??= EntityLimits.REFERENCE_MAP.get(this.englishName)! as EntityLimitWithPossibleAlternativeEntityLimit;
     }
 
 
@@ -396,7 +403,7 @@ export class EntityLimits
         if (this.#entityLink == null) {
             const link = this._entityLink;
             this.#entityLink = link == null
-                ? [Import.EmptyEntity.get]
+                ? [EmptyEntity.get]
                 : link instanceof Array
                     ? [link[0].reference, link[1].reference,]
                     : [link.reference,];

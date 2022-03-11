@@ -10,14 +10,15 @@ import type {ThemeReferences}                                                   
 import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './WorldTheme';
 
 import {Enum}            from '../../util/enum/Enum';
-import {StringContainer} from '../../util/StringContainer';
+import {EmptyEntity}     from '../entity/EmptyEntity';
 import {Import}          from '../../util/DynamicImporter';
+import {StringContainer} from '../../util/StringContainer';
 import {ThemeComponent}  from './Theme.component';
 
 /**
  * @recursiveReferenceVia {@link ThemeBuilder} → {@link ThemeLoader}
  * @recursiveReference {@link ThemeLoader}
- * @classWithDynamicImport {@link EmptyEntity}, {@link ThemeLoader}
+ * @classWithDynamicImport {@link ThemeLoader}
  */
 export class Themes
     extends Enum<Ordinals, Names>
@@ -162,6 +163,7 @@ export class Themes
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>;
     static #COURSES: EnumArray_OnlyCourseTheme;
     static #COURSES_SMM1: EnumArray_OnlyCourseTheme_SMM1;
     static #WORLDS: EnumArray_OnlyWorldTheme;
@@ -193,13 +195,16 @@ export class Themes
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
+        return this.#REFERENCE_MAP ??= Import.ThemeLoader.get.load();
+    }
 
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): CourseAndWorldTheme {
-        return this.#reference ??= Import.ThemeLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= Themes.REFERENCE_MAP.get(this.englishName)!;
     }
 
 
@@ -247,7 +252,7 @@ export class Themes
     }
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
-        return [Import.EmptyEntity.get,];
+        return [EmptyEntity.get,];
     }
 
     public getGameName(name: null, isNightTheme: any,): ''
