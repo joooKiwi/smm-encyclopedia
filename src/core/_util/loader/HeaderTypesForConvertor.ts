@@ -192,7 +192,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     public get everyLimitsNames() {
-        return this.#everyLimitsNames ??= this.entityLimits.everyEnglishNames;
+        return this.#everyLimitsNames ??= _EntityLimits.get.everyEnglishNames;
     }
 
     public get everyLimitsNamesOrUnknown() {
