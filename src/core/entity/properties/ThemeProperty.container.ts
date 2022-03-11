@@ -2,8 +2,7 @@ import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
 import type {ThemeProperty} from './ThemeProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {Import}               from '../../../util/DynamicImporter';
-import type {Themes}          from '../../theme/Themes';
+import {Themes}               from '../../theme/Themes';
 
 /**
  * @multiton
@@ -89,7 +88,7 @@ export class ThemePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
-        return this.#map ??= new Map(Import.Themes.courseThemes.map(theme => [theme, theme.get(this),]));
+        return this.#map ??= new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------
@@ -97,7 +96,7 @@ export class ThemePropertyContainer
 
     public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
     /**
-     * Get a property instance based on the {@link _Themes} properties.
+     * Get a property instance based on the {@link Themes} properties.
      *
      * @param argumentsReceived
      * @noDuplicateInstanceCreation

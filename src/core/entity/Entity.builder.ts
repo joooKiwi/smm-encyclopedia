@@ -16,11 +16,13 @@ import type {PossibleGameReceived as OriginalPossibleGameReceived}              
 import type {PropertyThatCanBeUnknownWithComment}                                             from '../_properties/PropertyThatCanBeUnknownWithComment';
 
 import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
+import {EmptyEntity}                                    from './EmptyEntity';
+import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory';
+import {Entities}                                       from './Entities';
 import {EntityCategories}                               from '../entityCategory/EntityCategories';
 import {EntityContainer}                                from './Entity.container';
-import type {EntityLimits}                              from '../entityLimit/EntityLimits';
+import {EntityLimits}                                   from '../entityLimit/EntityLimits';
 import {EntityReferencesContainer}                      from './properties/EntityReferences.container';
-import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory';
 import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}                   from './ExclusiveSMM2Entity.container';
@@ -28,7 +30,7 @@ import {GamePropertyContainer}                          from './properties/GameP
 import {Games}                                          from '../game/Games';
 import {GameStructureContainer}                         from '../game/GameStructure.container';
 import {GameStylePropertyContainer}                     from './properties/GameStyleProperty.container';
-import {Import}                                         from '../../util/DynamicImporter';
+import {LimitPropertyContainer}                         from './properties/limit/LimitProperty.container';
 import {ObjectHolders}                                  from '../../util/holder/objectHolders';
 import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
 import {PropertyContainer}                              from '../_properties/Property.container';
@@ -36,6 +38,8 @@ import {PropertyContainer as PropertyInstanceContainer} from './properties/Prope
 import {PropertyProvider}                               from '../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
+import {ThemePropertyContainer}                         from './properties/ThemeProperty.container';
+import {TimePropertyContainer}                          from './properties/TimeProperty.container';
 
 
 /**
@@ -45,7 +49,6 @@ import {TemplateWithNameBuilder}                        from '../_template/Templ
  * @see ExclusiveSM3DWEntityContainer
  * @see ExclusiveSMM2EntityContainer
  * @see EntityContainer
- * @classWithDynamicImport {@link EntityLimits}, {@link Entities}, {@link EmptyEntity}, {@link LimitPropertyContainer}, {@link ThemePropertyContainer}, {@link TimePropertyContainer}
  */
 export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
@@ -53,7 +56,7 @@ export class EntityBuilder
 
     //region -------------------- Attributes --------------------
 
-    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [Import.EmptyEntity.get];
+    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
 
     readonly #selfCallback = () => [this.build()] as const;
 
@@ -104,7 +107,7 @@ export class EntityBuilder
     private static __whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
     private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
     private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
-        return Import.EntityLimits.getValue(entityLimit);
+        return EntityLimits.getValue(entityLimit);
     }
 
     private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
@@ -133,7 +136,7 @@ export class EntityBuilder
             },
         } = limitTemplate;
 
-        return Import.LimitPropertyContainer.get(
+        return LimitPropertyContainer.get(
             [
                 GameStructureContainer.get(this.__whereEntityLimit(editorLimit_SMM1And3DS),
                     this.__getPropertyWhereEntityLimit(editorLimit_SMM2),
@@ -166,8 +169,8 @@ export class EntityBuilder
         return new PropertyInstanceContainer(
             new ObjectHolderContainer(GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
             new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
-            new DelayedObjectHolderContainer(() => Import.ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
-            new DelayedObjectHolderContainer(() => Import.TimePropertyContainer.get(time.day, time.night,)),
+            new DelayedObjectHolderContainer(() => ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
+            new DelayedObjectHolderContainer(() => TimePropertyContainer.get(time.day, time.night,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.__getLimitPropertyAttributes(limits)),
         );
     }
@@ -234,7 +237,7 @@ export class EntityBuilder
     private __createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Import.Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
+            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
     }
 
     /**
@@ -249,7 +252,7 @@ export class EntityBuilder
                 ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
                 : link === 'this'
                     ? this.#selfCallback
-                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Import.Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
+                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
         );
     }
 
