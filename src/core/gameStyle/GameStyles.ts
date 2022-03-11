@@ -94,6 +94,7 @@ export abstract class GameStyles
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>;
     static #GAME_STYLES_SMM1?: EnumArray_SMM1;
 
     #reference?: GameStyle;
@@ -123,12 +124,16 @@ export abstract class GameStyles
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameStyle> {
+        return this.#REFERENCE_MAP ??= Import.GameStyleLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): GameStyle {
-        return this.#reference ??= Import.GameStyleLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= GameStyles.REFERENCE_MAP.get(this.englishName)!;
     }
 
 

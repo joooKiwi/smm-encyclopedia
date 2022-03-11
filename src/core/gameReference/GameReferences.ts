@@ -182,6 +182,8 @@ export class GameReferences
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameReference>;
+
     #reference?: GameReference;
     readonly #acronym;
     readonly #englishName;
@@ -196,12 +198,16 @@ export class GameReferences
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameReference> {
+        return this.#REFERENCE_MAP ??= Import.GameReferenceLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): GameReference {
-        return this.#reference ??= Import.GameReferenceLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= GameReferences.REFERENCE_MAP.get(this.englishName)!;
     }
 
     public get acronym(): PossibleAcronym {

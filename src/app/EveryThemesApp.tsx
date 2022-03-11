@@ -9,7 +9,7 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import {Games}                         from '../core/game/Games';
 import Image                           from './tools/images/Image';
 import NameComponent                   from '../lang/name/component/Name.component';
-import NightEffectComponent            from '../core/theme/NightEffect.component';
+import NightEffectComponent            from '../core/nightEffect/NightEffect.component';
 import Table                           from './tools/table/Table';
 import {Themes}                        from '../core/theme/Themes';
 import {Times}                         from '../core/time/Times';

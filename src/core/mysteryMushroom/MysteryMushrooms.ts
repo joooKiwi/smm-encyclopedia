@@ -304,10 +304,9 @@ export class MysteryMushrooms
     //region -------------------- Attributes --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>;
+
     #reference?: MysteryMushroom;
-
     readonly #englishName;
-
     readonly #englishNameOnFile;
     #path?: PossiblePath;
     #imageContainer?: Image;

@@ -15,7 +15,7 @@ import GameContentTranslationComponent from '../../lang/components/GameContentTr
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';
 import {route}                         from '../../routes/route';
 import {StringContainer}               from '../../util/StringContainer';
-import {Themes}                        from './Themes';
+import {Themes}                        from '../theme/Themes';
 
 export class NightEffects
     extends Enum<Ordinals, Names>

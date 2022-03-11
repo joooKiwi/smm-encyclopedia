@@ -43,7 +43,7 @@ export class EntityBehaviours
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>;
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>;
 
     #reference?: EntityBehaviour;
     readonly #acronym;
@@ -59,8 +59,8 @@ export class EntityBehaviours
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= Import.EntityBehaviourLoader.get.load();
+    public static get REFERENCE_MAP() {
+        return this.#REFERENCE_MAP ??= Import.EntityBehaviourLoader.get.load();
     }
 
     /**
@@ -68,7 +68,7 @@ export class EntityBehaviours
      * @semiAsynchronously
      */
     public get reference(): EntityBehaviour {
-        return this.#reference ??= EntityBehaviours.__map.get(this.translationKey)!;
+        return this.#reference ??= EntityBehaviours.REFERENCE_MAP.get(this.translationKey)!;
     }
 
 

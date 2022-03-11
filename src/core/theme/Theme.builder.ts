@@ -6,7 +6,7 @@ import type {Entity}                                                            
 import type {GameProperty}                                                      from '../entity/properties/GameProperty';
 import type {Name}                                                              from '../../lang/name/Name';
 import type {ObjectHolder}                                                      from '../../util/holder/ObjectHolder';
-import type {PossibleEnglishName as PossibleEnglishName_NightEffect}            from './NightEffects.types';
+import type {PossibleEnglishName as PossibleEnglishName_NightEffect}            from '../nightEffect/NightEffects.types';
 import type {SimpleGameFrom1And2Template}                                       from '../game/SimpleGame.template';
 import type {ThemeTemplate}                                                     from './Theme.template';
 import type {WorldTheme}                                                        from './WorldTheme';
@@ -19,7 +19,7 @@ import {EmptyWorldTheme}                           from './EmptyWorldTheme';
 import {Entities}                                  from '../entity/Entities';
 import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
 import {Games}                                     from '../game/Games';
-import {NightEffects}                              from './NightEffects';
+import {NightEffects}                              from '../nightEffect/NightEffects';
 import {TemplateWithNameBuilder}                   from '../_template/TemplateWithName.builder';
 import {Themes}                                    from './Themes';
 import {WorldThemeContainer}                       from './WorldTheme.container';

@@ -18,7 +18,7 @@ import type {MiiCostumeLoader}                          from '../core/miiCostume
 import type {MiiCostumes}                               from '../core/miiCostume/MiiCostumes';
 import type {MysteryMushroomLoader}                     from '../core/mysteryMushroom/MysteryMushroom.loader';
 import type {MysteryMushrooms}                          from '../core/mysteryMushroom/MysteryMushrooms';
-import type {NightEffects}                              from '../core/theme/NightEffects';
+import type {NightEffects}                              from '../core/nightEffect/NightEffects';
 import type {SoundEffectCategories}                     from '../core/soundEffectCategory/SoundEffectCategories';
 import type {SoundEffectCategoryLoader}                 from '../core/soundEffectCategory/SoundEffectCategory.loader';
 import type {SoundEffectLoader}                         from '../core/soundEffect/SoundEffect.loader';
@@ -196,7 +196,7 @@ export class DynamicImporter {
     }
 
     public get NightEffects(): typeof NightEffects {
-        return this.#NightEffects ??= require('../core/theme/NightEffects').NightEffects;
+        return this.#NightEffects ??= require('../core/nightEffect/NightEffects').NightEffects;
     }
 
     //endregion -------------------- Theme getter methods --------------------

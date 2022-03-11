@@ -162,6 +162,8 @@ export class MiiCostumes
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostume>;
+
     #reference?: MiiCostume;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imageName: PossibleImageName;
@@ -172,18 +174,22 @@ export class MiiCostumes
     private constructor(englishName: PossibleEnglishName, imageName: PossibleImageName,) {
         super();
         this.#englishName = new StringContainer(englishName);
-        this.#imageName=imageName;
+        this.#imageName = imageName;
         this.#imagePath = `/Mii costume/${imageName}.tiff`;
     }
 
     //region -------------------- Getter methods --------------------
+
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, MiiCostume> {
+        return this.#REFERENCE_MAP ??= Import.MiiCostumeLoader.get.load();
+    }
 
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): MiiCostume {
-        return this.#reference ??= Import.MiiCostumeLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= MiiCostumes.REFERENCE_MAP.get(this.englishName)!;
     }
 
 

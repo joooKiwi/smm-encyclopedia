@@ -34,6 +34,8 @@ export class EntityCategories
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, EntityCategory>;
+
     #reference?: EntityCategory;
     readonly #englishName;
     readonly #imageName: PossibleImageName;
@@ -49,12 +51,16 @@ export class EntityCategories
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, EntityCategory> {
+        return this.#REFERENCE_MAP ??= Import.EntityCategoryLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): EntityCategory {
-        return this.#reference ??= Import.EntityCategoryLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= EntityCategories.REFERENCE_MAP.get(this.englishName)!;
     }
 
 

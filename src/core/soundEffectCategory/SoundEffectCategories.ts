@@ -35,6 +35,8 @@ export class SoundEffectCategories
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffectCategory>;
+
     #reference?: SoundEffectCategory;
     readonly #englishName;
     readonly #imageName: PossibleImageName;
@@ -50,12 +52,16 @@ export class SoundEffectCategories
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, SoundEffectCategory> {
+        return this.#REFERENCE_MAP ??= Import.SoundEffectCategoryLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): SoundEffectCategory {
-        return this.#reference ??= Import.SoundEffectCategoryLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= SoundEffectCategories.REFERENCE_MAP.get(this.englishName)!;
     }
 
     public get englishName(): PossibleEnglishName {

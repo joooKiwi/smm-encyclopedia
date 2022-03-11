@@ -34,6 +34,8 @@ export class MiiCostumeCategories
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>;
+
     #reference?: MiiCostumeCategory;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #imageName: PossibleImageName;
@@ -49,12 +51,16 @@ export class MiiCostumeCategories
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, MiiCostumeCategory> {
+        return this.#REFERENCE_MAP ??= Import.MiiCostumeCategoryLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): MiiCostumeCategory {
-        return this.#reference ??= Import.MiiCostumeCategoryLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= MiiCostumeCategories.REFERENCE_MAP.get(this.englishName)!;
     }
 
 

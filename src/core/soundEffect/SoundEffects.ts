@@ -87,11 +87,13 @@ export class SoundEffects
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
+    static #soundEffect_games?: EnumArray_Games;
+
     #reference?: SoundEffect;
     readonly #englishName;
     readonly #SMM1ImagePath: | readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,] | null;
     readonly #SMM2ImagePath: | PossibleImagePath_SMM2 | null;
-    static #soundEffect_games?: EnumArray_Games;
 
     //endregion -------------------- Attributes --------------------
 
@@ -109,12 +111,16 @@ export class SoundEffects
 
     //region -------------------- Getter methods --------------------
 
+    public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
+        return this.#REFERENCE_MAP ??= Import.SoundEffectLoader.get.load();
+    }
+
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): SoundEffect {
-        return this.#reference ??= Import.SoundEffectLoader.get.load().get(this.englishName)!;
+        return this.#reference ??= SoundEffects.REFERENCE_MAP.get(this.englishName)!;
     }
 
     public get englishName(): PossibleEnglishName {
