@@ -2,7 +2,7 @@ import everySoundEffects from '../../resources/Sound effect.csv';
 
 import type {PropertiesArray as LanguagesPropertyArray}            from '../../lang/Loader.types';
 import type {Loader}                                               from '../../util/loader/Loader';
-import type {PropertiesArray as GamesPropertyArray}                from '../game/Loader.types';
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray}       from '../game/Loader.types';
 import type {PossibleSoundEffectCategoryType, SoundEffectTemplate} from './SoundEffect.template';
 import type {PossibleEnglishName}                                  from './SoundEffects.types';
 import type {SoundEffect}                                          from './SoundEffect';
@@ -18,7 +18,7 @@ enum Headers {
 
     //region -------------------- Games --------------------
 
-    isInSuperMarioMaker1,
+    isInSuperMarioMaker1And3DS,
     isInSuperMarioMaker2,
 
     //endregion -------------------- Games --------------------
@@ -126,7 +126,7 @@ export class SoundEffectLoader
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean(
-                    'isInSuperMarioMaker1', 'isInSuperMarioMaker2',
+                    'isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',
 
                     'doesTrigger_player_jumpAfterLanding', 'doesTrigger_player_turnAroundAfterBeingAtFullSpeed', 'doesTrigger_player_crouch', 'doesTrigger_player_after3SecondsRepeatedly',
                     'doesTrigger_player_collectPowerUp', 'doesTrigger_player_getIntoAnEntity',
@@ -166,7 +166,7 @@ class TemplateBuilder
         return {
             properties: {
                 isIn: {
-                    game: this._createGameTemplate(),
+                    game: this._createGameTemplateFrom1And2(),
 
                     trigger: {
                         player: {

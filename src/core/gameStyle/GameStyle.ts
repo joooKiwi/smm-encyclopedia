@@ -1,11 +1,15 @@
-import type {Entity}       from '../entity/Entity';
-import type {GameProperty} from '../entity/properties/GameProperty';
-import type {NameTrait}    from '../../lang/name/NameTrait';
+import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {Entity}                           from '../entity/Entity';
+import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {NameTrait}                        from '../../lang/name/NameTrait';
 
 export interface GameStyle
-    extends NameTrait<string>, GameProperty {
+    extends NameTrait<string>, GameProperty,
+        ClassThatIsAvailableFromTheStart {
 
     get isInProperty(): GameProperty
+
+    get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart
 
     get entities(): readonly Entity[]
 

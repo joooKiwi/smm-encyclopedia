@@ -1,20 +1,38 @@
-import type {AlternativeEntityLimit, EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
-import type {AlternativeLimitTemplate, EntityLimitTemplate}                                      from './EntityLimit.template';
-import type {Builder}                                                                            from '../../util/builder/Builder';
-import type {EntityLimitAmount}                                                                  from './properties/EntityLimitAmount';
-import type {Name}                                                                               from '../../lang/name/Name';
-import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                from './EntityLimits.types';
+import type {AlternativeEntityLimit, EntityLimit}                                                                                                                                         from './EntityLimit';
+import type {AlternativeLimitTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2, PossibleLimitAmount_SMM2_UnknownAmount_Amount} from './EntityLimit.template';
+import type {Builder}                                                                                                                                                                     from '../../util/builder/Builder';
+import type {EntityLimitAmount}                                                                                                                                                           from './properties/EntityLimitAmount';
+import type {ObjectHolder}                                                                                                                                                                from '../../util/holder/ObjectHolder';
+import type {Name}                                                                                                                                                                        from '../../lang/name/Name';
+import type {NotApplicableProperty, UnknownProperty}                                                                                                                                      from '../_properties/PropertyWithEverything';
+import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                                                         from './EntityLimits.types';
+import type {PossibleEnglishName as PossibleEnglishName_EntityLimitType}                                                                                                                  from './EntityLimitTypes.types';
 
-import {AlternativeEntityLimitContainer}                    from './AlternativeEntityLimitContainer';
-import {EmptyEntityLimit}                                   from './EmptyEntityLimit';
-import {EmptyEntityLimitAmount}                             from './properties/EmptyEntityLimitAmount';
-import {EntityLimitAmountContainer}                         from './properties/EntityLimitAmount.container';
-import {EntityLimitContainer}                               from './EntityLimit.container';
-import {EntityLimitTypes}                                   from './EntityLimitTypes';
-import {EntityLimits}                                       from './EntityLimits';
-import {Games}                                              from '../game/Games';
-import {NumberPropertyThatCanBeUnknownWithCommentContainer} from '../_properties/number/NumberPropertyThatCanBeUnknownWithComment.container';
-import {TemplateWithNameBuilder}                            from '../_template/TemplateWithName.builder';
+import {AlternativeEntityLimitContainer}         from './AlternativeEntityLimitContainer';
+import {DelayedObjectHolderContainer}            from '../../util/holder/DelayedObjectHolder.container';
+import type {EmptyEntityLimit}                   from './EmptyEntityLimit';
+import type {EmptyEntityLimitAmount}             from './properties/EmptyEntityLimitAmount';
+import type {EntityLimitAmountContainer}         from './properties/EntityLimitAmount.container';
+import {EntityLimitContainer}                    from './EntityLimit.container';
+import type {EntityLimitTypes}                   from './EntityLimitTypes';
+import type {EntityLimits}                       from './EntityLimits';
+import {Games}                                   from '../game/Games';
+import {NumberPropertyThatCanBeUnknownContainer} from '../_properties/number/NumberPropertyThatCanBeUnknown.container';
+import {ObjectHolderContainer}                   from '../../util/holder/ObjectHolder.container';
+import {lazy}                                    from '../../util/utilitiesMethods';
+import {PropertyProvider}                        from '../_properties/PropertyProvider';
+import {PropertyContainer}                       from '../_properties/Property.container';
+import {TemplateWithNameBuilder}                 from '../_template/TemplateWithName.builder';
+
+//region -------------------- Dynamic imports --------------------
+
+const _EmptyEntityLimit =           lazy(() => require('./EmptyEntityLimit').EmptyEntityLimit as typeof EmptyEntityLimit);
+const _EmptyEntityLimitAmount =     lazy(() => require('./properties/EmptyEntityLimitAmount').EmptyEntityLimitAmount as typeof EmptyEntityLimitAmount);
+const _EntityLimitAmountContainer = lazy(() => require('./properties/EntityLimitAmount.container').EntityLimitAmountContainer as typeof EntityLimitAmountContainer);
+const _EntityLimitTypes =           lazy(() => require('./EntityLimitTypes').EntityLimitTypes as typeof EntityLimitTypes);
+const _EntityLimits =               lazy(() => require('./EntityLimits').EntityLimits as typeof EntityLimits);
+
+//endregion -------------------- Dynamic imports --------------------
 
 export class EntityLimitBuilder
     extends TemplateWithNameBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, EntityLimit>
@@ -25,6 +43,15 @@ export class EntityLimitBuilder
     public static references: Map<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>;
 
     //endregion -------------------- External object references --------------------
+    //region -------------------- Attributes --------------------
+
+    static readonly #NOT_APPLICABLE_CONTAINER: ObjectHolder<NotApplicableProperty> = new ObjectHolderContainer(PropertyContainer.NOT_APPLICABLE_CONTAINER);
+    static readonly #UNKNOWN_CONTAINER: ObjectHolder<UnknownProperty> = new ObjectHolderContainer(PropertyContainer.UNKNOWN_CONTAINER);
+
+    static readonly #EMPTY_ENTITY_LIMIT: ObjectHolder<EmptyEntityLimit> = new DelayedObjectHolderContainer(() => _EmptyEntityLimit.get.get);
+    static readonly #EMPTY_ENTITY_LIMIT_AMOUNT: ObjectHolder<EmptyEntityLimitAmount> = new DelayedObjectHolderContainer(() => _EmptyEntityLimitAmount.get.get);
+
+    //endregion -------------------- Attributes --------------------
 
     public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
         super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
@@ -36,14 +63,64 @@ export class EntityLimitBuilder
         return EntityLimitBuilder;
     }
 
+
+    /**
+     * Get the {@link EntityLimitTypes} based on the template name using the reference of the {@link EntityLimits}.
+     *
+     * @param template
+     */
+    private __getEntityLimitTypeBy(template: AlternativeLimitTemplate,): ObjectHolder<EntityLimitTypes> {
+        return new DelayedObjectHolderContainer(() => _EntityLimits.get.getValue(template.name.english.simple!)!.reference.type);
+    }
+
+    private __getAlternativeEntityLimitBy(limit: | PossibleAlternativeEnglishName | null,): ObjectHolder<AlternativeEntityLimit> {
+        return limit == null
+            ? EntityLimitBuilder.#EMPTY_ENTITY_LIMIT
+            : new DelayedObjectHolderContainer(() => EntityLimitBuilder.references.get(limit) as AlternativeEntityLimit);
+    }
+
+    /**
+     * Get a {@link EntityLimitTypes} based on the name received.
+     *
+     * @param name
+     */
+    private __getTypeBy(name: PossibleEnglishName_EntityLimitType,): ObjectHolder<EntityLimitTypes> {
+        return new DelayedObjectHolderContainer(() => _EntityLimitTypes.get.getValue(name));
+    }
+
     //region -------------------- Limit amount helper methods --------------------
 
-    private __createLimitAmount(): EntityLimitAmount {
-        const limitTemplate = this.template.limit;
+    private __createLimitTemplateInSMM1And3DS(amount: Exclude<PossibleLimitAmount_SMM1And3DS, null>,) {
+        return amount === 'N/A'
+            ? EntityLimitBuilder.#NOT_APPLICABLE_CONTAINER
+            : new DelayedObjectHolderContainer(() => PropertyProvider.newNumberContainer(amount, true,));
+    }
 
-        return limitTemplate == null
-            ? EmptyEntityLimitAmount.get
-            : new EntityLimitAmountContainer(new NumberPropertyThatCanBeUnknownWithCommentContainer(limitTemplate.amount, limitTemplate.isUnknown, limitTemplate.comment,));
+    private __createLimitTemplateInSMM2(amount: Exclude<PossibleLimitAmount_SMM2, null>,) {
+        return amount === '?'
+            ? EntityLimitBuilder.#UNKNOWN_CONTAINER
+            : new DelayedObjectHolderContainer(() =>
+                typeof amount == 'number'
+                    ? PropertyProvider.newNumberContainer(amount, true,)
+                    : new NumberPropertyThatCanBeUnknownContainer(Number(amount.substring(0, amount.length - 1)) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,));
+    }
+
+    /**
+     * Create the {@link EntityLimitAmount} encapsulated in a {@link ObjectHolder} to return the proper amount
+     *
+     *
+     * @param template the limit amount template
+     * @canContainDuplicateObjects
+     */
+    private __createLimitAmount({'1And3DS': amountInSMM1And3DS, 2: amountInSMM2, comment,}: LimitAmountTemplate,): ObjectHolder<EntityLimitAmount> {
+        return amountInSMM1And3DS == null || amountInSMM2 == null
+            ? EntityLimitBuilder.#EMPTY_ENTITY_LIMIT_AMOUNT
+            : new DelayedObjectHolderContainer(() => new _EntityLimitAmountContainer.get(
+                this.__createLimitTemplateInSMM1And3DS(amountInSMM1And3DS),
+                this.__createLimitTemplateInSMM2(amountInSMM2),
+                comment,
+            ));
+
     }
 
     //endregion -------------------- Limit amount helper methods --------------------
@@ -52,23 +129,21 @@ export class EntityLimitBuilder
 
     public _build(name: Name<string>,): EntityLimit {
         const template = this.template;
-        const typeTemplate = template.type;
 
-        if (typeTemplate == null)
-            return new AlternativeEntityLimitContainer(
+        return template.type == null
+            ? new AlternativeEntityLimitContainer(
                 name,
                 template.acronym,
-                () => EntityLimits.getValue(template.name.english.simple!)!.reference as EntityLimitWithPossibleAlternativeEntityLimit,
-                this.__createLimitAmount(),
+                this.__getEntityLimitTypeBy(template),
+                this.__createLimitAmount(template.limit),
+            )
+            : new EntityLimitContainer(
+                name,
+                template.acronym,
+                this.__getAlternativeEntityLimitBy(template.references.alternative),
+                this.__getTypeBy(template.type),
+                this.__createLimitAmount(template.limit),
             );
-        const alternative = template.references.alternative;
-        return new EntityLimitContainer(
-            name,
-            template.acronym,
-            () => alternative == null ? EmptyEntityLimit.get : EntityLimitBuilder.references.get(alternative) as AlternativeEntityLimit,
-            () => EntityLimitTypes.getValue(typeTemplate),
-            this.__createLimitAmount(),
-        );
     }
 
 }

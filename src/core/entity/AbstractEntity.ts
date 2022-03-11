@@ -39,22 +39,38 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     private __testCategory(category: EntityCategory,): CATEGORY
     private __testCategory(category: EntityCategory,) {
-        return window.IS_IN_PRODUCTION
+        return process.env.NODE_ENV === 'production'
             ? category
             : this._testCategory(category);
     }
 
+    /**
+     * Test the category during development or in test.
+     *
+     * @param category the category
+     * @onlyCalledDuringConstruction
+     * @onlyCalledOnDevelopment
+     * @onlyCalledOnTest
+     */
     protected _testCategory(category: EntityCategory,): EntityCategory {
         return category;
     }
 
     private __testProperty(property: Property,): PROPERTY
     private __testProperty(property: Property,) {
-        return window.IS_IN_PRODUCTION
+        return process.env.NODE_ENV === 'production'
             ? property
             : this._testProperty(property);
     }
 
+    /**
+     * Test the property in development or in test.
+     *
+     * @param property the property
+     * @onlyCalledDuringConstruction
+     * @onlyCalledOnDevelopment
+     * @onlyCalledOnTest
+     */
     protected _testProperty(property: Property,): Property {
         return property;
     }
@@ -73,6 +89,10 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     public get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1'] {
         return this.gameContainer.isInSuperMarioMaker1;
+    }
+
+    public get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS'] {
+        return this.gameContainer.isInSuperMarioMakerFor3DS;
     }
 
     public get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2'] {
@@ -181,12 +201,16 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.limitContainer.editorLimitContainer;
     }
 
-    public get editorLimit(): this['limitContainer']['editorLimit'] {
-        return this.limitContainer.editorLimit;
+    public get editorLimit_smm1And3ds(): this['limitContainer']['editorLimit_smm1And3ds'] {
+        return this.limitContainer.editorLimit_smm1And3ds;
     }
 
-    public get isEditorLimitUnknown(): this['limitContainer']['isEditorLimitUnknown'] {
-        return this.limitContainer.isEditorLimitUnknown;
+    public get editorLimit_smm2(): this['limitContainer']['editorLimit_smm2'] {
+        return this.limitContainer.editorLimit_smm2;
+    }
+
+    public get isUnknown_editorLimit_smm2(): this['limitContainer']['isUnknown_editorLimit_smm2'] {
+        return this.limitContainer.isUnknown_editorLimit_smm2;
     }
 
     //endregion -------------------- Editor limit --------------------
@@ -231,10 +255,6 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.limitContainer.isInPowerUpLimitWhilePlaying;
     }
 
-    public get isInPowerUpLimitWhilePlayingComment(): this['limitContainer']['isInPowerUpLimitWhilePlayingComment'] {
-        return this.limitContainer.isInPowerUpLimitWhilePlayingComment;
-    }
-
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
@@ -244,10 +264,6 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     public get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying'] {
         return this.limitContainer.isInProjectileLimitWhilePlaying;
-    }
-
-    public get isInProjectileLimitWhilePlayingUnknown(): this['limitContainer']['isInProjectileLimitWhilePlayingUnknown'] {
-        return this.limitContainer.isInProjectileLimitWhilePlayingUnknown;
     }
 
     public get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment'] {
@@ -263,10 +279,6 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     public get otherLimitWhilePlaying(): this['limitContainer']['otherLimitWhilePlaying'] {
         return this.limitContainer.otherLimitWhilePlaying;
-    }
-
-    public get isOtherLimitWhilePlayingUnknown(): this['limitContainer']['isOtherLimitWhilePlayingUnknown'] {
-        return this.limitContainer.isOtherLimitWhilePlayingUnknown;
     }
 
     public get otherLimitWhilePlayingComment(): this['limitContainer']['otherLimitWhilePlayingComment'] {

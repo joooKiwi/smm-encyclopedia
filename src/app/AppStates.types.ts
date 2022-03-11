@@ -22,6 +22,7 @@ export interface GlobalAppState
 
     game: {
         1: boolean
+        '3DS': boolean
         2: boolean
     }
 

@@ -1,4 +1,4 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import type {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
 import type {EntityCategories}      from '../../entityCategory/EntityCategories';
@@ -85,6 +85,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleLimitsAcronyms?: EveryPossibleAcronym_EntityLimit;
     #everyAlternativeLimitAcronyms?: EveryAlternativeAcronym_EntityLimit;
     #everyPossibleLimitsNames?: EveryPossibleName_EntityLimit;
+    #everyLimitsNames?: EveryEnglishName_EntityLimit;
     #everyLimitsNamesOrUnknown?: EveryEnglishNameOrUnknown_EntityLimit;
 
     #everyPossibleLimitTypesNames?: EveryPossibleEnglishName_EntityLimitType;
@@ -188,6 +189,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     public get everyPossibleLimitsNames() {
         return this.#everyPossibleLimitsNames ??= [..._EntityLimits.get.everyEnglishNames, ..._EntityLimits.get.everyAlternativeEnglishNames,];
+    }
+
+    public get everyLimitsNames() {
+        return this.#everyLimitsNames ??= this.entityLimits.everyEnglishNames;
     }
 
     public get everyLimitsNamesOrUnknown() {
@@ -390,6 +395,7 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleLimitsAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyAlternativeLimitAcronyms = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleLimitsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyLimitsNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyLimitsNamesOrUnknown = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Entity limit --------------------

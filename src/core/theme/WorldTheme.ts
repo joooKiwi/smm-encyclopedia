@@ -9,6 +9,8 @@ export interface WorldTheme
 
     get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1']
 
+    get isInSuperMarioMakerFor3DS(): this['isInProperty']['isInSuperMarioMakerFor3DS']
+
     get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2']
 
 }

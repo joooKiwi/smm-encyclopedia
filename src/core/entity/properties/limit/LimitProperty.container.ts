@@ -1,18 +1,13 @@
-import type {OtherLimitContainer, OtherLimitReceived, EditorLimitContainer, EditorLimitReceived, GeneralLimitReceived, PowerUpLimitContainer, PowerUpLimitReceived, ProjectileLimitContainer, ProjectileLimitReceived, SingleGeneralGlobalLimitContainer, SingleGeneralGlobalLimitReceived, SingleGeneralLimitContainer, SingleGeneralLimitReceived} from './LimitProperty.types';
-import type {OtherLimitCommentType, OtherLimitType, EditorLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}                                                                                                                                                                        from './Loader.types';
-import type {ExtendedList}                                                                                                                                                                                                                                                                                                                            from '../../../../util/extended/ExtendedList';
-import type {LimitProperty}                                                                                                                                                                                                                                                                                                                            from './LimitProperty';
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}             from './Loader.types';
+import type {ExtendedMap}                                                                                                                                                                                                  from '../../../../util/extended/ExtendedMap';
+import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from './LimitProperty';
+import type {GameStructure}                                                                                                                                                                                                from '../../../game/GameStructure';
 
-import {EmptyLimitProperty}                           from './EmptyLimitProperty';
-import {EntityLimits}                                 from '../../../entityLimit/EntityLimits';
-import {ExtendedSetContainer}                         from '../../../../util/extended/ExtendedSet.container';
-import {isArrayEquals}                                from '../../../../util/utilitiesMethods';
-import {PropertyContainer}                            from '../../../_properties/Property.container';
-import {PropertyProvider}                             from '../../../_properties/PropertyProvider';
-import {PropertyThatCanBeUnknownWithCommentContainer} from '../../../_properties/PropertyThatCanBeUnknownWithComment.container';
-import {PropertyWithCommentContainer}                 from '../../../_properties/PropertyWithComment.container';
+import {EntityLimits}         from '../../../entityLimit/EntityLimits';
+import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
 
 /**
+ * @multiton
  * @provider
  */
 export class LimitPropertyContainer
@@ -20,38 +15,26 @@ export class LimitPropertyContainer
 
     //region -------------------- Static attributes --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<LimitPropertyContainer> = new ExtendedSetContainer();
-
-    readonly #originalValues: OriginalValues;
+    static readonly #EVERY_CONTAINERS: ExtendedMap<Key, LimitProperty> = new ExtendedMapContainer();
 
     //endregion -------------------- Static attributes --------------------
     //region -------------------- Container attributes, constructor & methods --------------------
 
-    readonly #editorLimitContainer: EditorLimitContainer;
-    readonly #isGeneralLimitContainer: SingleGeneralLimitContainer;
-    readonly #isGeneralGlobalLimitContainer: SingleGeneralGlobalLimitContainer;
-    readonly #isPowerUpLimitContainer: PowerUpLimitContainer;
-    readonly #isProjectileLimitContainer: ProjectileLimitContainer;
-    readonly #isOtherLimitContainer: OtherLimitContainer;
+    readonly #editorLimitContainer;
+    readonly #isGeneralLimitContainer;
+    readonly #isGeneralGlobalLimitContainer;
+    readonly #isPowerUpLimitContainer;
+    readonly #isProjectileLimitContainer;
+    readonly #isOtherLimitContainer;
 
 
-    private constructor([[editorLimit, callbackToGetEntityLimit1,], generalLimit, powerUpLimit, projectileLimit, [otherLimit, customLimitComment, callbackToGetEntityLimit2,],]: ArgumentsReceived, originalValues: OriginalValues,) {
-        this.#originalValues = originalValues;
-
-        this.#editorLimitContainer = editorLimit == null || editorLimit === '?' ? PropertyProvider.newStringContainer(editorLimit, true,) : new PropertyWithCommentContainer(callbackToGetEntityLimit1(editorLimit), null,);
-        if (generalLimit == null) {
-            this.#isGeneralLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
-            this.#isGeneralGlobalLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
-        } else if (generalLimit instanceof Array) {
-            this.#isGeneralLimitContainer = PropertyProvider.newBooleanContainer<SingleGeneralLimitReceived, true, true, true>(generalLimit[0], true, true,);
-            this.#isGeneralGlobalLimitContainer = PropertyProvider.newBooleanContainer<SingleGeneralGlobalLimitReceived, true, false, true>(generalLimit[1], true, false,);
-        } else {
-            this.#isGeneralLimitContainer = PropertyProvider.newBooleanContainer<SingleGeneralLimitReceived, true, true, true>(generalLimit, true, true,);
-            this.#isGeneralGlobalLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
-        }
-        this.#isPowerUpLimitContainer = PropertyProvider.newBooleanContainer<PowerUpLimitReceived, true, false, true>(powerUpLimit, true, false,);
-        this.#isProjectileLimitContainer = PropertyProvider.newBooleanContainer<ProjectileLimitReceived, true, true, true>(projectileLimit, true, true,);
-        this.#isOtherLimitContainer = otherLimit == null || otherLimit === '?' ? PropertyProvider.newStringContainer(otherLimit, true, customLimitComment,) : new PropertyThatCanBeUnknownWithCommentContainer(callbackToGetEntityLimit2(otherLimit), false, customLimitComment,);
+    private constructor([editorLimit, [generalLimit, generalGlobalLimit,], powerUpLimit, projectileLimit, otherLimit,]: ArgumentsReceived,) {
+        this.#editorLimitContainer = editorLimit;
+        this.#isGeneralLimitContainer = generalLimit;
+        this.#isGeneralGlobalLimitContainer = generalGlobalLimit;
+        this.#isPowerUpLimitContainer = powerUpLimit;
+        this.#isProjectileLimitContainer = projectileLimit;
+        this.#isOtherLimitContainer = otherLimit;
     }
 
     //region -------------------- Editor limit --------------------
@@ -60,12 +43,16 @@ export class LimitPropertyContainer
         return this.#editorLimitContainer;
     }
 
-    public get editorLimit() {
-        return this.editorLimitContainer.value;
+    public get editorLimit_smm1And3ds() {
+        return this.editorLimitContainer.superMarioMaker;
     }
 
-    public get isEditorLimitUnknown() {
-        return this.editorLimitContainer.isUnknown;
+    public get editorLimit_smm2() {
+        return this.editorLimitContainer.superMarioMaker2.value;
+    }
+
+    public get isUnknown_editorLimit_smm2() {
+        return this.editorLimitContainer.superMarioMaker2.isUnknown;
     }
 
     //endregion -------------------- Editor limit --------------------
@@ -110,10 +97,6 @@ export class LimitPropertyContainer
         return this.isInPowerUpLimitWhilePlayingContainer.value;
     }
 
-    public get isInPowerUpLimitWhilePlayingComment() {
-        return this.isInPowerUpLimitWhilePlayingContainer.comment;
-    }
-
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
@@ -123,10 +106,6 @@ export class LimitPropertyContainer
 
     public get isInProjectileLimitWhilePlaying() {
         return this.isInProjectileLimitWhilePlayingContainer.value;
-    }
-
-    public get isInProjectileLimitWhilePlayingUnknown() {
-        return this.isInProjectileLimitWhilePlayingContainer.isUnknown;
     }
 
     public get isInProjectileLimitWhilePlayingComment() {
@@ -142,10 +121,6 @@ export class LimitPropertyContainer
 
     public get otherLimitWhilePlaying() {
         return this.otherLimitWhilePlayingContainer.value;
-    }
-
-    public get isOtherLimitWhilePlayingUnknown() {
-        return this.otherLimitWhilePlayingContainer.isUnknown;
     }
 
     public get otherLimitWhilePlayingComment() {
@@ -164,9 +139,9 @@ export class LimitPropertyContainer
     }
 
     public toLimitInTheEditorMap() {
-        const editorLimit = this.editorLimit;
+        const editorLimits = [this.editorLimit_smm1And3ds, this.editorLimit_smm2,];
 
-        return this.__newMap(editorLimit instanceof EntityLimits ? editorLimit : null,);
+        return this.__newMap(...editorLimits.map(editorLimit => editorLimit instanceof EntityLimits ? editorLimit : null));
     }
 
     public toLimitWhilePlayingMap() {
@@ -184,28 +159,27 @@ export class LimitPropertyContainer
     //endregion -------------------- Container attributes, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
-    public static get(editorLimit: EditorLimitReceived, generalLimit: GeneralLimitReceived, powerUpLimit: PowerUpLimitReceived, projectileLimit: ProjectileLimitReceived, otherLimit: OtherLimitReceived,): LimitProperty {
-        const [_generalLimit, globalGeneralLimit,] = generalLimit instanceof Array ? generalLimit : [generalLimit, null,];
-        const [_otherLimit,] = otherLimit;
-
-        if (editorLimit == null && generalLimit == null && powerUpLimit == null && projectileLimit == null && _otherLimit == null)
-            return EmptyLimitProperty.get;
-
-        const originalValues: OriginalValues = [editorLimit[0], _generalLimit, globalGeneralLimit, powerUpLimit, projectileLimit, _otherLimit, otherLimit[1],];
-        return this.#EVERY_CONTAINERS.find(value => isArrayEquals(value.#originalValues, originalValues,))
-            ?? this.#EVERY_CONTAINERS.addAndGet(new this([editorLimit, generalLimit, powerUpLimit, projectileLimit, otherLimit,], originalValues,));
+    public static get(argumentsReceived: ArgumentsReceived, key: Key,): LimitProperty {
+        return this.#EVERY_CONTAINERS.if(map => map.has(key))
+            .isNotMet(map => map.set(key, new this(argumentsReceived,)))
+            .get(key);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------
 
 }
 
-type ArgumentsReceived = readonly [EditorLimitReceived, GeneralLimitReceived, PowerUpLimitReceived, ProjectileLimitReceived, OtherLimitReceived,];
-
-type OriginalValues = readonly [
-    EditorLimitType,
-    GeneralEntityLimitType, | GeneralGlobalEntityLimitType | null,
-    PowerUpEntityLimitType,
-    ProjectileEntityLimitType,
-    OtherLimitType, OtherLimitCommentType,
+type Key = readonly [
+    editorLimit: readonly [EditorLimitType_SMM1And3DS, EditorLimitType_SMM2,],
+    generalLimit: readonly [GeneralEntityLimitType, GeneralGlobalEntityLimitType,],
+    powerUpLimit: PowerUpEntityLimitType,
+    projectileLimit: ProjectileEntityLimitType,
+    otherLimit: readonly [OtherLimitType, OtherLimitCommentType,],
+]
+type ArgumentsReceived = readonly [
+    editorLimit: GameStructure<PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2>,
+    generalLimit: [value: PossibleIsInGeneralLimit, superGlobal: PossibleIsInGeneralGlobalLimit,],
+    powerUpLimit: PossibleIsInPowerUpLimit,
+    projectileLimit: PossibleIsInProjectileLimit,
+    otherLimit: PossibleOtherLimit,
 ];

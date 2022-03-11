@@ -20,6 +20,7 @@ export class GameReferences
     //region -------------------- Enum instances --------------------
 
     public static readonly SUPER_MARIO_MAKER_1 =                         new GameReferences('SMM',      'Super Mario Maker',);
+    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS =          new GameReferences('SMM3DS',   'Super Mario Maker for Nintendo 3DS',);
     public static readonly SUPER_MARIO_MAKER_2 =                         new GameReferences('SMM2',     'Super Mario Maker 2',);
 
     public static readonly SUPER_MARIO_BROS =                            new GameReferences('SMB',      'Super Mario Bros.',);

@@ -8,7 +8,7 @@ export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
 
-    SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_2,
+    SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, SUPER_MARIO_MAKER_2,
 
     SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD,
     NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD,
@@ -126,8 +126,8 @@ export type Ordinals = typeof Enum[Names];
 
 export type Names = keyof typeof Enum;
 
-export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' 2'}`;
-export type PossibleAcronym_Game = `SMM${| '' | 2}`;
+export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' for Nintendo 3DS' | ' 2'}`;
+export type PossibleAcronym_Game = `SMM${| '' | '3DS' | 2}`;
 
 export type PossibleEnglishName_GameStyle = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U';
 export type PossibleAcronym_GameStyle = `SM${`B${'' | 3}` | `${'' | '3D'}W`}` | 'NSMBU';
@@ -295,7 +295,7 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['SUPER_MARIO_MAKER_1'], SimpleEnum<T>['SUPER_MARIO_MAKER_2'],
+    SimpleEnum<T>['SUPER_MARIO_MAKER_1'], SimpleEnum<T>['SUPER_MARIO_MAKER_FOR_NINTENDO_3DS'], SimpleEnum<T>['SUPER_MARIO_MAKER_2'],
 
     SimpleEnum<T>['SUPER_MARIO_BROS'], SimpleEnum<T>['SUPER_MARIO_WORLD'], SimpleEnum<T>['SUPER_MARIO_BROS_3'],
     SimpleEnum<T>['NEW_SUPER_MARIO_BROS_U'], SimpleEnum<T>['SUPER_MARIO_3D_WORLD'],

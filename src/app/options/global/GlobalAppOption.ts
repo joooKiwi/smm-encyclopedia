@@ -73,6 +73,17 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
         }
 
     }(false,);
+    public static readonly SMM3DS =           new class GlobalAppOption_SMM3DS extends GlobalAppOption<boolean> {
+
+        protected _get(state: GlobalAppState,): boolean {
+            return state.game['3DS'];
+        }
+
+        protected _set(nextState: GlobalAppState, value: boolean,): void {
+            nextState.game['3DS'] = value;
+        }
+
+    }(false,);
     public static readonly SMM2 =             new class GlobalAppOption_SMM2 extends GlobalAppOption<boolean> {
 
         protected _get(state: GlobalAppState,): boolean {
@@ -309,6 +320,7 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
             texts: this.TEXTS._lastValueRetrieved,
             game: {
                 1: this.SMM1._lastValueRetrieved,
+                '3DS': this.SMM3DS._lastValueRetrieved,
                 2: this.SMM2._lastValueRetrieved,
             },
             gameStyle: {

@@ -5,68 +5,67 @@ import type {ObjectHolder}                  from '../../../util/holder/ObjectHol
 import type {Themes}                        from '../../theme/Themes';
 import type {Times}                         from '../../time/Times';
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
-
 export class EntityReferencesContainer
     implements EntityReferences {
 
     //region -------------------- Attributes --------------------
 
-    readonly #referenceInSuperMarioBrosStyle: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInSuperMarioBros3Style: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInSuperMarioWorldStyle: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInNewSuperMarioBrosUStyle: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInSuperMario3DWorldStyle: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInSuperMarioBrosStyle;
+    readonly #referenceInSuperMarioBros3Style;
+    readonly #referenceInSuperMarioWorldStyle;
+    readonly #referenceInNewSuperMarioBrosUStyle;
+    readonly #referenceInSuperMario3DWorldStyle;
 
-    readonly #referenceInGroundTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInUndergroundTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInUnderwaterTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInDesertTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInSnowTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInSkyTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInForestTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInGhostHouseTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInAirshipTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInCastleTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInGroundTheme;
+    readonly #referenceInUndergroundTheme;
+    readonly #referenceInUnderwaterTheme;
+    readonly #referenceInDesertTheme;
+    readonly #referenceInSnowTheme;
+    readonly #referenceInSkyTheme;
+    readonly #referenceInForestTheme;
+    readonly #referenceInGhostHouseTheme;
+    readonly #referenceInAirshipTheme;
+    readonly #referenceInCastleTheme;
 
-    readonly #referenceInDayTheme: ObjectHolder<PossibleOtherEntities>;
-    readonly #referenceInNightTheme: ObjectHolder<PossibleOtherEntities>;
+    readonly #referenceInDayTheme;
+    readonly #referenceInNightTheme;
 
-    readonly #everyGameStyleReferences: ObjectHolder<readonly Entity[]>;
-    readonly #everyThemeReferences: ObjectHolder<readonly Entity[]>;
-    readonly #everyTimeReferences: ObjectHolder<readonly Entity[]>;
-    readonly #everyReferences: ObjectHolder<readonly Entity[]>;
+    readonly #everyGameStyleReferences;
+    readonly #everyThemeReferences;
+    readonly #everyTimeReferences;
+    readonly #everyReferences;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(referenceInSuperMarioBrosStyle: CallbackReceivedOnOtherEntities, referenceInSuperMarioBros3Style: CallbackReceivedOnOtherEntities, referenceInSuperMarioWorldStyle: CallbackReceivedOnOtherEntities, referenceInNewSuperMarioBrosUStyle: CallbackReceivedOnOtherEntities, referenceInSuperMario3DWorldStyle: CallbackReceivedOnOtherEntities,
-                       referenceInGroundTheme: CallbackReceivedOnOtherEntities, referenceInUndergroundTheme: CallbackReceivedOnOtherEntities, referenceInUnderwaterTheme: CallbackReceivedOnOtherEntities, referenceInDesertTheme: CallbackReceivedOnOtherEntities, referenceInSnowTheme: CallbackReceivedOnOtherEntities, referenceInSkyTheme: CallbackReceivedOnOtherEntities, referenceInForestTheme: CallbackReceivedOnOtherEntities, referenceInGhostHouseTheme: CallbackReceivedOnOtherEntities, referenceInAirshipTheme: CallbackReceivedOnOtherEntities, referenceInCastleTheme: CallbackReceivedOnOtherEntities,
-                       referenceInDayTheme: CallbackReceivedOnOtherEntities, referenceInNightTheme: CallbackReceivedOnOtherEntities,
-                       everyGameStyleReferences: () => readonly Entity[], everyThemeReferences: () => readonly Entity[], everyTimeReferences: () => readonly Entity[], everyReferences: () => readonly Entity[],) {
-        this.#referenceInSuperMarioBrosStyle = new DelayedObjectHolderContainer(referenceInSuperMarioBrosStyle);
-        this.#referenceInSuperMarioBros3Style = new DelayedObjectHolderContainer(referenceInSuperMarioBros3Style);
-        this.#referenceInSuperMarioWorldStyle = new DelayedObjectHolderContainer(referenceInSuperMarioWorldStyle);
-        this.#referenceInNewSuperMarioBrosUStyle = new DelayedObjectHolderContainer(referenceInNewSuperMarioBrosUStyle);
-        this.#referenceInSuperMario3DWorldStyle = new DelayedObjectHolderContainer(referenceInSuperMario3DWorldStyle);
+    //TODO change the singular references to a GameStyle, Theme & Time structure based objects.
+    public constructor(referenceInSuperMarioBrosStyle: ObjectHolder<PossibleOtherEntities>, referenceInSuperMarioBros3Style: ObjectHolder<PossibleOtherEntities>, referenceInSuperMarioWorldStyle: ObjectHolder<PossibleOtherEntities>, referenceInNewSuperMarioBrosUStyle: ObjectHolder<PossibleOtherEntities>, referenceInSuperMario3DWorldStyle: ObjectHolder<PossibleOtherEntities>,
+                       referenceInGroundTheme: ObjectHolder<PossibleOtherEntities>, referenceInUndergroundTheme: ObjectHolder<PossibleOtherEntities>, referenceInUnderwaterTheme: ObjectHolder<PossibleOtherEntities>, referenceInDesertTheme: ObjectHolder<PossibleOtherEntities>, referenceInSnowTheme: ObjectHolder<PossibleOtherEntities>, referenceInSkyTheme: ObjectHolder<PossibleOtherEntities>, referenceInForestTheme: ObjectHolder<PossibleOtherEntities>, referenceInGhostHouseTheme: ObjectHolder<PossibleOtherEntities>, referenceInAirshipTheme: ObjectHolder<PossibleOtherEntities>, referenceInCastleTheme: ObjectHolder<PossibleOtherEntities>,
+                       referenceInDayTheme: ObjectHolder<PossibleOtherEntities>, referenceInNightTheme: ObjectHolder<PossibleOtherEntities>,
+                       everyGameStyleReferences: ObjectHolder<readonly Entity[]>, everyThemeReferences: ObjectHolder<readonly Entity[]>, everyTimeReferences: ObjectHolder<readonly Entity[]>, everyReferences: ObjectHolder<readonly Entity[]>,) {
+        this.#referenceInSuperMarioBrosStyle = referenceInSuperMarioBrosStyle;
+        this.#referenceInSuperMarioBros3Style = referenceInSuperMarioBros3Style;
+        this.#referenceInSuperMarioWorldStyle = referenceInSuperMarioWorldStyle;
+        this.#referenceInNewSuperMarioBrosUStyle = referenceInNewSuperMarioBrosUStyle;
+        this.#referenceInSuperMario3DWorldStyle = referenceInSuperMario3DWorldStyle;
 
-        this.#referenceInGroundTheme = new DelayedObjectHolderContainer(referenceInGroundTheme);
-        this.#referenceInUndergroundTheme = new DelayedObjectHolderContainer(referenceInUndergroundTheme);
-        this.#referenceInUnderwaterTheme = new DelayedObjectHolderContainer(referenceInUnderwaterTheme);
-        this.#referenceInDesertTheme = new DelayedObjectHolderContainer(referenceInDesertTheme);
-        this.#referenceInSnowTheme = new DelayedObjectHolderContainer(referenceInSnowTheme);
-        this.#referenceInSkyTheme = new DelayedObjectHolderContainer(referenceInSkyTheme);
-        this.#referenceInForestTheme = new DelayedObjectHolderContainer(referenceInForestTheme);
-        this.#referenceInGhostHouseTheme = new DelayedObjectHolderContainer(referenceInGhostHouseTheme);
-        this.#referenceInAirshipTheme = new DelayedObjectHolderContainer(referenceInAirshipTheme);
-        this.#referenceInCastleTheme = new DelayedObjectHolderContainer(referenceInCastleTheme);
+        this.#referenceInGroundTheme = referenceInGroundTheme;
+        this.#referenceInUndergroundTheme = referenceInUndergroundTheme;
+        this.#referenceInUnderwaterTheme = referenceInUnderwaterTheme;
+        this.#referenceInDesertTheme = referenceInDesertTheme;
+        this.#referenceInSnowTheme = referenceInSnowTheme;
+        this.#referenceInSkyTheme = referenceInSkyTheme;
+        this.#referenceInForestTheme = referenceInForestTheme;
+        this.#referenceInGhostHouseTheme = referenceInGhostHouseTheme;
+        this.#referenceInAirshipTheme = referenceInAirshipTheme;
+        this.#referenceInCastleTheme = referenceInCastleTheme;
 
-        this.#referenceInDayTheme = new DelayedObjectHolderContainer(referenceInDayTheme);
-        this.#referenceInNightTheme = new DelayedObjectHolderContainer(referenceInNightTheme);
+        this.#referenceInDayTheme = referenceInDayTheme;
+        this.#referenceInNightTheme = referenceInNightTheme;
 
-        this.#everyGameStyleReferences = new DelayedObjectHolderContainer(everyGameStyleReferences);
-        this.#everyThemeReferences = new DelayedObjectHolderContainer(everyThemeReferences);
-        this.#everyTimeReferences = new DelayedObjectHolderContainer(everyTimeReferences);
-        this.#everyReferences = new DelayedObjectHolderContainer(everyReferences);
+        this.#everyGameStyleReferences = everyGameStyleReferences;
+        this.#everyThemeReferences = everyThemeReferences;
+        this.#everyTimeReferences = everyTimeReferences;
+        this.#everyReferences = everyReferences;
     }
 
 
@@ -177,5 +176,3 @@ export class EntityReferencesContainer
     //endregion -------------------- References methods --------------------
 
 }
-
-type CallbackReceivedOnOtherEntities = () => PossibleOtherEntities;

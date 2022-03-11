@@ -1,13 +1,13 @@
 import everyThemes from '../../resources/Entity limit.csv';
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate}     from './EntityLimit.template';
-import type {EntityLimit}                                                                                      from './EntityLimit';
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                      from '../../lang/Loader.types';
-import type {Loader}                                                                                           from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                from '../entity/Entities.types';
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                             from './EntityLimitTypes.types';
-import type {PossibleGroupName}                                                                                from '../entityTypes';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template';
+import type {EntityLimit}                                                                                                                                                                         from './EntityLimit';
+import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from '../../lang/Loader.types';
+import type {Loader}                                                                                                                                                                              from '../../util/loader/Loader';
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from './EntityLimits.types';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from '../entity/Entities.types';
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from './EntityLimitTypes.types';
+import type {PossibleGroupName}                                                                                                                                                                   from '../entityTypes';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
@@ -16,8 +16,6 @@ import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 
 //region -------------------- CSV array related types --------------------
 
-type PossibleLimitNumber = | number | `${number}?` | '?' | null;
-
 enum Headers {
 
     alternative,
@@ -25,7 +23,7 @@ enum Headers {
     type,
     acronym,
 
-    limit, limit_comment,
+    limit_SMM1And3DS, limit_SMM2, limit_comment,
 
     //region -------------------- Languages --------------------
 
@@ -54,8 +52,9 @@ type ExclusivePropertyArray = [
     type: | PossibleEnglishName_LimitType | null,
     acronym: | PossibleAcronym | PossibleAlternativeAcronym | null,
 
-    limit: PossibleLimitNumber,
-    limit_comment: | string | null,
+    limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS,
+    limit_SMM2: PossibleLimitAmount_SMM2,
+    limit_comment: PossibleLimitAmount_Comment,
 
     link_group: | PossibleGroupName | null,
     link_entity: | PossibleEnglishName_Entity | null,
@@ -116,7 +115,9 @@ export class EntityLimitLoader
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
-                .convertToNullableNumberAnd(['?', 'string',], 'limit',)
+                .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)
+                .convertToNullableNumberAnd(['?', '10?', '400?', '500?',], 'limit_SMM2',)
+                .convertToEmptyableStringAnd(['Crash online if met', 'Per player', 'Per pair', 'Per section',], 'limit_comment',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
 
@@ -139,11 +140,7 @@ export class EntityLimitLoader
 class TemplateBuilder
     extends AbstractTemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray, typeof Headers> {
 
-    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {
-        amount: null,
-        isUnknown: false,
-        comment: null,
-    };
+    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,};
     static readonly #EMPTY_REFERENCES = {
         regular: null,
         alternative: null,
@@ -202,31 +199,16 @@ class TemplateBuilder
 
 
     private __createLimitAmountTemplate(): LimitAmountTemplate {
-        const limit = this._getContent(this._headersIndexMap.limit);
-        const comment = this._getContent(this._headersIndexMap.limit_comment);
+        const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1And3DS);
+        const limit_SMM2 = this._getContent(this._headersIndexMap.limit_SMM2);
 
-        switch (typeof limit) {
-            case 'number':
-                return {
-                    amount: limit,
-                    isUnknown: false,
-                    comment: comment,
-                };
-            case 'string':
-                if (limit === '?')
-                    return {
-                        amount: null,
-                        isUnknown: true,
-                        comment: comment,
-                    };
-                return {
-                    amount: Number(limit.substring(0, limit.length - 1)),
-                    isUnknown: true,
-                    comment: comment,
-                };
-            default:
-                return TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE;
-        }
+        return limit_SMM1 == null && limit_SMM2 == null
+            ? TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE
+            : {
+                '1And3DS': limit_SMM1,
+                2: limit_SMM2,
+                comment: this._getContent(this._headersIndexMap.limit_comment),
+            };
     }
 
 }

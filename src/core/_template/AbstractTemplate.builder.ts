@@ -2,10 +2,11 @@ import type {Builder}                                                           
 import type {EntityNameTemplate}                                                    from '../entity/Entity.template';
 import type {HasAReferenceInMarioMaker}                                             from '../entityTypes';
 import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template';
-import type {PartialGameEnum}                                                       from './PartialGameEnum';
+import type {PartialGameEnumFrom1And2}                                              from './PartialGameEnumFrom1And2';
+import type {PartialGameEnumFromAllGames}                                           from './PartialGameEnumFromAllGames';
 import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum';
 import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types';
-import type {SimpleGameTemplate}                                                    from '../game/SimpleGame.template';
+import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}           from '../game/SimpleGame.template';
 
 /**
  * An abstract template builder with a lot of utilities methods
@@ -16,6 +17,9 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     //region -------------------- Attributes --------------------
 
+    static readonly #EMPTY_HEBREW = null;
+    static readonly #EMPTY_POLISH = null;
+    static readonly #EMPTY_UKRAINIAN = null;
     static readonly #EMPTY_GREEK = null;
 
     readonly #content;
@@ -68,6 +72,9 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
     }
 
     private static __createNameTemplateFromClass<ARRAY extends any[], >(headers: PossibleLanguagesDefinition, content: ARRAY,): PossibleNameTemplate {
+        const hebrew = 'hebrew' in headers ? content[headers.hebrew] : this.#EMPTY_HEBREW;
+        const polish = 'polish' in headers ? content[headers.polish] : this.#EMPTY_POLISH;
+        const ukrainian = 'ukrainian' in headers ? content[headers.ukrainian] : this.#EMPTY_UKRAINIAN;
         const greek = 'greek' in headers ? content[headers.greek] : this.#EMPTY_GREEK;
 
         const languages: PropertiesArrayWithOptionalLanguages = [
@@ -82,13 +89,17 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
             content[headers.japanese],
             content[headers.chinese], content[headers.traditionalChinese], content[headers.simplifiedChinese],
             content[headers.korean],
+            hebrew,
+            polish,
+            ukrainian,
             greek,
         ];
 
         return this.__createNameTemplateFromArray(languages);
     }
 
-    private static __createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
+    private static __createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,
+                                                     hebrew = this.#EMPTY_HEBREW, polish = this.#EMPTY_POLISH, ukrainian = this.#EMPTY_UKRAINIAN, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
         return {
             english: {
                 simple: english,
@@ -121,6 +132,9 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
             },
             japanese: japanese,
             korean: korean,
+            hebrew: hebrew,
+            polish: polish,
+            ukrainian: ukrainian,
             greek: greek,
         };
     }
@@ -135,20 +149,41 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     /**
      * Create a game template (without any validations).
-     * It imply that has both {@link PartialGameEnum.isInSuperMarioMaker1 SMM1} & {@link PartialGameEnum.isInSuperMarioMaker2 SMM2}
-     * properties that returns a number.
+     * It implies that has
+     * <ol>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_2 SMM2}</li>
+     * </ol>
+     * properties that returns a {@link boolean}.
      *
-     * @protected
-     * @see PartialGameEnum
+     * @see PartialGameEnumFrom1And2
      */
-    protected _createGameTemplate(): SimpleGameTemplate {
-        return AbstractTemplateBuilder.__createGameTemplate(this._headersIndexMap as unknown as PartialGameEnum, this._content,);
+    protected _createGameTemplateFrom1And2(): SimpleGameFrom1And2Template<boolean, boolean> {
+        const headers = this._headersIndexMap as unknown as PartialGameEnumFrom1And2;
+        return {
+            '1And3DS': AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker1And3DS),
+            2: AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker2),
+        };
     }
 
-    private static __createGameTemplate<ARRAY extends any[], >(headers: PartialGameEnum, content: ARRAY,): SimpleGameTemplate {
+    /**
+     * Create a game template (without any validations).
+     * It implies that has
+     * <ol>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_1 SMM1}</li>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}</li>
+     *     <li>{@link Games.SUPER_MARIO_MAKER_2 SMM2}</li>
+     * </ol>
+     * properties that returns a {@link boolean}.
+     *
+     * @see PartialGameEnumFromAllGames
+     */
+    protected _createGameTemplateFromAllGames(): SimpleGameFromAllGamesTemplate<boolean, boolean, boolean> {
+        const headers = this._headersIndexMap as unknown as PartialGameEnumFromAllGames;
         return {
-            1: this.__getContent(content, headers.isInSuperMarioMaker1),
-            2: this.__getContent(content, headers.isInSuperMarioMaker2),
+            1: AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker1),
+            '3DS': AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMakerFor3DS),
+            2: AbstractTemplateBuilder.__getContent(this._content, headers.isInSuperMarioMaker2),
         };
     }
 

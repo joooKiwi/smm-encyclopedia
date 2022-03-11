@@ -6,6 +6,7 @@ import ContentTranslationComponent     from '../lang/components/ContentTranslati
 import {EntityLimits}                  from '../core/entityLimit/EntityLimits';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {Games}                         from '../core/game/Games';
 import NameComponent                   from '../lang/name/component/Name.component';
 import Table                           from './tools/table/Table';
 import TextComponent                   from './tools/text/TextComponent';
@@ -38,7 +39,8 @@ export default class EveryLimitsApp
                     <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
                     <NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                     <NameComponent id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
-                    <TextComponent content={entityLimit.amount} isUnknown={entityLimit.isAmountUnknown}/>,
+                    <TextComponent content={entityLimit.limitAmountInSMM1AndSMM3DS} isUnknown={entityLimit.isUnknownLimitInSMM1AndSMM3DS}/>,
+                    <TextComponent content={entityLimit.limitAmountInSMM2} isUnknown={entityLimit.isUnknownLimitInSMM2}/>,
                     <GameContentTranslationComponent>{translation => <TextComponent content={translation(entityLimit.type.englishCommonText)}/>}</GameContentTranslationComponent>,
                 ]);
                 index++;
@@ -63,7 +65,12 @@ export default class EveryLimitsApp
                         {key: 'alternativeName', element: <ContentTranslationComponent translationKey="Alternative name"/>,},
                     ],
                 },
-                {key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>,},
+                {
+                    key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>, subHeaders: [
+                        {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                        {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                    ],
+                },
                 {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,},
             ]}
             content={this.content}/>;

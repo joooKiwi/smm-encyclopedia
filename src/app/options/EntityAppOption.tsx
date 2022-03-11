@@ -23,12 +23,13 @@ import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {EmptyAppOption}                from './component/EmptyAppOption';
 import {EmptyEditorImage}              from '../../core/entity/images/editor/EmptyEditorImage';
-import {EmptyStringName}                     from '../../lang/name/EmptyStringName';
+import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {GameStyles}                    from '../../core/gameStyle/GameStyles';
 
-import {Themes}                        from '../../core/theme/Themes';
-import {Times}                         from '../../core/time/Times';
+import {Games}  from '../../core/game/Games';
+import {Themes} from '../../core/theme/Themes';
+import {Times}  from '../../core/time/Times';
 
 //region -------------------- dynamic imports --------------------
 
@@ -40,6 +41,7 @@ const Image =                     lazy(() => import('../tools/images/Image'));
 const LimitComponent =            lazy(() => import('../../core/entityLimit/Limit.component'));
 const NameComponent =             lazy(() => import('../../lang/name/component/Name.component'));
 const TimeComponent =             lazy(() => import('../../core/time/Time.component'));
+const TextComponent =             lazy(() => import( '../tools/text/TextComponent'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -52,7 +54,7 @@ export abstract class EntityAppOption
     /**
      * Display every images.
      */
-    public static readonly IMAGES =                                 new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGES = new class EntityAppOption_Images extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.images;
@@ -110,7 +112,7 @@ export abstract class EntityAppOption
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGES_ON_EDITOR =                       new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
+    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.editor;
@@ -121,7 +123,7 @@ export abstract class EntityAppOption
         }
 
     }(true,);
-    public static readonly IMAGES_ON_CLEAR_CONDITION =              new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.clearCondition;
@@ -132,7 +134,7 @@ export abstract class EntityAppOption
         }
 
     }(true,);
-    public static readonly IMAGES_ON_WHILE_PLAYING =                new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
+    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.whilePlaying;
@@ -143,7 +145,7 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly IMAGES_ON_UNUSED =                       new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
+    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.images.unused;
@@ -155,7 +157,7 @@ export abstract class EntityAppOption
 
     }(false,);
 
-    public static readonly NAME =                                   new class EntityAppOption_Name extends EntityAppOption {
+    public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.name;
@@ -184,7 +186,7 @@ export abstract class EntityAppOption
 
     }(true,);
 
-    public static readonly GAME =                                   new class EntityAppOption_Game extends EntityAppOption {
+    public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.game;
@@ -207,7 +209,7 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME =                 new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
+    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.game;
@@ -219,7 +221,7 @@ export abstract class EntityAppOption
 
     }(false,);
 
-    public static readonly GAME_STYLE =                             new class EntityAppOption_GameStyle extends EntityAppOption {
+    public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.gameStyle;
@@ -242,7 +244,7 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE =           new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.gameStyle;
@@ -254,7 +256,7 @@ export abstract class EntityAppOption
 
     }(false,);
 
-    public static readonly COURSE_THEME =                           new class EntityAppOption_CourseTheme extends EntityAppOption {
+    public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.courseTheme;
@@ -277,7 +279,7 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME =         new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.courseTheme;
@@ -289,7 +291,7 @@ export abstract class EntityAppOption
 
     }(false,);
 
-    public static readonly TIME =                                   new class EntityAppOption_Time extends EntityAppOption {
+    public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.time;
@@ -313,7 +315,7 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_TIME =                 new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
+    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.whenAll.time;
@@ -325,7 +327,7 @@ export abstract class EntityAppOption
 
     }(false,);
 
-    public static readonly CATEGORY =                               new class EntityAppOption_Category extends EntityAppOption {
+    public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.category;
@@ -359,7 +361,7 @@ export abstract class EntityAppOption
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT =                       new class EntityAppOption_CategoryAsText extends EntityAppOption {
+    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.asText.category;
@@ -371,7 +373,7 @@ export abstract class EntityAppOption
 
     }(false,);
 
-    public static readonly LIMIT =                                  new class EntityAppOption_Limit extends EntityAppOption {
+    public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
         protected _get(state: EntityAppStates,): boolean {
             return state.display.section.limit;
@@ -383,12 +385,21 @@ export abstract class EntityAppOption
 
         protected get _createContentOption(): PossibleOptionWithContent {
             return () => {
-
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
                 const entity = enumeration.reference;
 
-                return [<LimitComponent id={`editor-${enumeration.englishNameInHtml}`} limits={entity.toLimitInTheEditorMap()}
-                                        displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds;
+                const editorLimit_SMM2 = entity.editorLimit_smm2;
+
+                return [
+                    editorLimit_SMM1And3DS == null
+                        ? <TextComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} content={'N/A'}/>
+                        : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS}
+                                          displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                    editorLimit_SMM2 == null || editorLimit_SMM2 === 'N/A'
+                        ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
+                        : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2}
+                                          displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
                     <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()}
                                     displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
                 ];
@@ -402,6 +413,10 @@ export abstract class EntityAppOption
                     {
                         key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
                         tooltip: {namespace: 'gameContent', translationKey: 'Limit in the editor',},
+                        subHeaders: [
+                            {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                            {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                        ],
                     },
                     {
                         key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,

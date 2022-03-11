@@ -361,7 +361,7 @@ interface ImageNameMap {
 
     'Checkpoint Flag': ImageThatHasOnly1Reference<'MiddleFlag'>
     'Goal Pole': NoImages
-    '(Goal (With Cards))': NoImages
+    'Cards Roulette': NoImages
     'Giant Gate': NoImages
 
     'Dash Block': ImageThatHasOnly1Reference<'DashBlock'>

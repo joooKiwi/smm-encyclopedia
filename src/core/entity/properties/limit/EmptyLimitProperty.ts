@@ -1,14 +1,17 @@
 import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../../util/ClassWithNullObjectPattern';
 import type {LimitProperty}                              from './LimitProperty';
+import type {NotApplicableProperty}                      from '../../../_properties/PropertyWithEverything';
 
-import {EMPTY_MAP}         from '../../../../util/emptyVariables';
-import {PropertyContainer} from '../../../_properties/Property.container';
+import {EMPTY_MAP}              from '../../../../util/emptyVariables';
+import {GameStructureContainer} from '../../../game/GameStructure.container';
+import {PropertyContainer}      from '../../../_properties/Property.container';
 
 /**
  * @singleton
  */
 export class EmptyLimitProperty
-    implements LimitProperty<null, null, null, null, null, null>, ClassWithNullObjectPattern<EmptyLimitName> {
+    implements LimitProperty<null, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty>,
+        ClassWithNullObjectPattern<EmptyLimitName> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -23,9 +26,10 @@ export class EmptyLimitProperty
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly editorLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
-    public readonly editorLimit = this.editorLimitContainer.value;
-    public readonly isEditorLimitUnknown = this.editorLimitContainer.isUnknown;
+    public readonly editorLimitContainer = GameStructureContainer.get(null, PropertyContainer.NOT_APPLICABLE_CONTAINER,);
+    public readonly editorLimit_smm1And3ds = this.editorLimitContainer.superMarioMaker;
+    public readonly editorLimit_smm2 = this.editorLimitContainer.superMarioMaker2.value;
+    public readonly isUnknown_editorLimit_smm2 = this.editorLimitContainer.superMarioMaker2.isUnknown;
 
     public readonly isInGeneralLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInGeneralLimitWhilePlaying = this.isInGeneralLimitWhilePlayingContainer.value;
@@ -37,16 +41,13 @@ export class EmptyLimitProperty
 
     public readonly isInPowerUpLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInPowerUpLimitWhilePlaying = this.isInPowerUpLimitWhilePlayingContainer.value;
-    public readonly isInPowerUpLimitWhilePlayingComment = this.isInPowerUpLimitWhilePlayingContainer.comment;
 
     public readonly isInProjectileLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly isInProjectileLimitWhilePlaying = this.isInProjectileLimitWhilePlayingContainer.value;
-    public readonly isInProjectileLimitWhilePlayingUnknown = this.isInProjectileLimitWhilePlayingContainer.isUnknown;
     public readonly isInProjectileLimitWhilePlayingComment = this.isInProjectileLimitWhilePlayingContainer.comment;
 
     public readonly otherLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER;
     public readonly otherLimitWhilePlaying = this.otherLimitWhilePlayingContainer.value;
-    public readonly isOtherLimitWhilePlayingUnknown = this.otherLimitWhilePlayingContainer.isUnknown;
     public readonly otherLimitWhilePlayingComment = this.otherLimitWhilePlayingContainer.comment;
 
     public toLimitMap() {

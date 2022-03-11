@@ -17,6 +17,8 @@ export interface SoundEffect
 
     get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
 
+    get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS']
+
     get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
 
     //endregion -------------------- Game properties --------------------

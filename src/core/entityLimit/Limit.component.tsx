@@ -1,8 +1,8 @@
 import {Fragment} from 'react';
 
-import type {EntityLimits}  from './EntityLimits';
 import type {ReactProperty} from '../../util/react/ReactProperty';
 
+import {EntityLimits}     from './EntityLimits';
 import NameComponent      from '../../lang/name/component/Name.component';
 import {ProjectLanguages} from '../../lang/ProjectLanguages';
 import TextComponent      from '../../app/tools/text/TextComponent';
@@ -14,7 +14,7 @@ interface EditorLimitProperties
 
     id: Id
 
-    limits: ReadonlyMap<EntityLimits, boolean>
+    limits: | EntityLimits | ReadonlyMap<EntityLimits, boolean>
 
     displayAcronymIfApplicable: boolean
 
@@ -26,6 +26,9 @@ interface EditorLimitProperties
  * @reactComponent
  */
 export default function LimitComponent({id, limits, displayAcronymIfApplicable,}: EditorLimitProperties,) {
+    if (limits instanceof EntityLimits)
+        return createSingleComponent(id, limits, displayAcronymIfApplicable,);
+
     const selectedLimits = [...limits].filter(([, hasLimit]) => hasLimit).map(([limit,]) => limit);
     return selectedLimits.length === 0
         ? <></>

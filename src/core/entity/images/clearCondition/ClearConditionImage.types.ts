@@ -359,7 +359,7 @@ interface ImageNameMap {
 
     'Checkpoint Flag': NoImages
     'Goal Pole': NoImages
-    '(Goal (With Cards))': NoImages
+    'Cards Roulette': NoImages
     'Giant Gate': NoImages
 
     'Dash Block': NoImages

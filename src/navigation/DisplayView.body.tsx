@@ -71,7 +71,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 <h3 className="text-center text-decoration-underline pb-2">{/*TranslationUtility.replaceAndInterpretTranslation(translation, 'Mystery Mushroom',{
                   name:<span key="miiCostume-name" className="text-decoration-underline">Mystery Mushroom{/*TODO add Mystery Mushroom (singular name)*//*}</span>
                 },)*/}--Mystery Mushroom--
-                    <sup><Image key="mysteryMushroom-image" source="/entities/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
+                    <sup><Image key="mysteryMushroom-image" source="/entity/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
                 </h3>
                 <div className="btn-group col-12">
                     <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mystery Mushrooms', {

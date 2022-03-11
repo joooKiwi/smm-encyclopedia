@@ -1,7 +1,9 @@
-import type {AlternativeEntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit';
-import type {EntityLimitAmount}                                                     from './properties/EntityLimitAmount';
-import type {Name}                                                                  from '../../lang/name/Name';
-import type {PossibleAcronym, PossibleAlternativeAcronym}                           from './EntityLimits.types';
+import type {AlternativeEntityLimit}     from './EntityLimit';
+import type {EntityLimitAmount}          from './properties/EntityLimitAmount';
+import type {EntityLimitTypes}           from './EntityLimitTypes';
+import type {Name}                       from '../../lang/name/Name';
+import type {ObjectHolder}               from '../../util/holder/ObjectHolder';
+import type {PossibleAlternativeAcronym} from './EntityLimits.types';
 
 import {AbstractEntityLimitContainer} from './AbstractEntityLimitContainer';
 
@@ -9,11 +11,8 @@ export class AlternativeEntityLimitContainer
     extends AbstractEntityLimitContainer<| PossibleAlternativeAcronym | null>
     implements AlternativeEntityLimit {
 
-    //TODO change to object holder directly instead of creating the object holder instance here.
-    public constructor(name: Name<string>, acronym: PossibleAcronym | PossibleAlternativeAcronym | null, regularEntityLimitCallback: () => EntityLimitWithPossibleAlternativeEntityLimit, limitAmount: EntityLimitAmount,) {
-        super(name, acronym, () => this, () => {
-            return regularEntityLimitCallback().type;
-        }, limitAmount,);
+    public constructor(name: Name<string>, acronym: | PossibleAlternativeAcronym | null, regularEntityLimit: ObjectHolder<EntityLimitTypes>, limitAmount: ObjectHolder<EntityLimitAmount>,) {
+        super(name, acronym, () => this, regularEntityLimit, limitAmount,);
     }
 
 }

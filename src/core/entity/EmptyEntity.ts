@@ -42,6 +42,7 @@ export class EmptyEntity
     public readonly gameContainer = this.propertyContainer.gameContainer;
 
     public readonly isInSuperMarioMaker1 = this.gameContainer.isInSuperMarioMaker1;
+    public readonly isInSuperMarioMakerFor3DS = this.gameContainer.isInSuperMarioMakerFor3DS;
     public readonly isInSuperMarioMaker2 = this.gameContainer.isInSuperMarioMaker2;
 
     //endregion -------------------- Game properties --------------------
@@ -85,30 +86,28 @@ export class EmptyEntity
     public readonly limitContainer = this.propertyContainer.limitContainer;
 
     public readonly editorLimitContainer = this.propertyContainer.editorLimitContainer;
-    public readonly editorLimit = this.propertyContainer.editorLimit;
-    public readonly isEditorLimitUnknown = this.propertyContainer.isEditorLimitUnknown;
+    public readonly editorLimit_smm1And3ds = this.limitContainer.editorLimit_smm1And3ds;
+    public readonly editorLimit_smm2 = this.limitContainer.editorLimit_smm2;
+    public readonly isUnknown_editorLimit_smm2 = this.limitContainer.isUnknown_editorLimit_smm2;
 
-    public readonly isInGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGeneralLimitWhilePlayingContainer;
-    public readonly isInGeneralLimitWhilePlaying = this.propertyContainer.isInGeneralLimitWhilePlaying;
-    public readonly isInGeneralLimitWhilePlayingComment = this.propertyContainer.isInGeneralLimitWhilePlayingComment;
+    public readonly isInGeneralLimitWhilePlayingContainer = this.limitContainer.isInGeneralLimitWhilePlayingContainer;
+    public readonly isInGeneralLimitWhilePlaying = this.limitContainer.isInGeneralLimitWhilePlaying;
+    public readonly isInGeneralLimitWhilePlayingComment = this.limitContainer.isInGeneralLimitWhilePlayingComment;
 
-    public readonly isInGlobalGeneralLimitWhilePlayingContainer = this.propertyContainer.isInGlobalGeneralLimitWhilePlayingContainer;
-    public readonly isInGlobalGeneralLimitWhilePlaying = this.propertyContainer.isInGlobalGeneralLimitWhilePlaying;
-    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.propertyContainer.isInGlobalGeneralLimitWhilePlayingComment;
+    public readonly isInGlobalGeneralLimitWhilePlayingContainer = this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer;
+    public readonly isInGlobalGeneralLimitWhilePlaying = this.limitContainer.isInGlobalGeneralLimitWhilePlaying;
+    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment;
 
-    public readonly isInPowerUpLimitWhilePlayingContainer = this.propertyContainer.isInPowerUpLimitWhilePlayingContainer;
-    public readonly isInPowerUpLimitWhilePlaying = this.propertyContainer.isInPowerUpLimitWhilePlaying;
-    public readonly isInPowerUpLimitWhilePlayingComment = this.propertyContainer.isInPowerUpLimitWhilePlayingComment;
+    public readonly isInPowerUpLimitWhilePlayingContainer = this.limitContainer.isInPowerUpLimitWhilePlayingContainer;
+    public readonly isInPowerUpLimitWhilePlaying = this.limitContainer.isInPowerUpLimitWhilePlaying;
 
-    public readonly isInProjectileLimitWhilePlayingContainer = this.propertyContainer.isInProjectileLimitWhilePlayingContainer;
-    public readonly isInProjectileLimitWhilePlaying = this.propertyContainer.isInProjectileLimitWhilePlaying;
-    public readonly isInProjectileLimitWhilePlayingUnknown = this.propertyContainer.isInProjectileLimitWhilePlayingUnknown;
-    public readonly isInProjectileLimitWhilePlayingComment = this.propertyContainer.isInProjectileLimitWhilePlayingComment;
+    public readonly isInProjectileLimitWhilePlayingContainer = this.limitContainer.isInProjectileLimitWhilePlayingContainer;
+    public readonly isInProjectileLimitWhilePlaying = this.limitContainer.isInProjectileLimitWhilePlaying;
+    public readonly isInProjectileLimitWhilePlayingComment = this.limitContainer.isInProjectileLimitWhilePlayingComment;
 
-    public readonly otherLimitWhilePlayingContainer = this.propertyContainer.otherLimitWhilePlayingContainer;
-    public readonly otherLimitWhilePlaying = this.propertyContainer.otherLimitWhilePlaying;
-    public readonly isOtherLimitWhilePlayingUnknown = this.propertyContainer.isOtherLimitWhilePlayingUnknown;
-    public readonly otherLimitWhilePlayingComment = this.propertyContainer.otherLimitWhilePlayingComment;
+    public readonly otherLimitWhilePlayingContainer = this.limitContainer.otherLimitWhilePlayingContainer;
+    public readonly otherLimitWhilePlaying = this.limitContainer.otherLimitWhilePlaying;
+    public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
 

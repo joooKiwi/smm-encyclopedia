@@ -22,6 +22,7 @@ export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategor
         property = super._testProperty(property);
 
         assert(!property.isInSuperMarioMaker1, 'The property isInSMM1 should always be set to false for a SMM2 exclusive property.',);
+        assert(!property.isInSuperMarioMakerFor3DS, 'The property isInSMM3DS should always be set to false for a SMM2 exclusive property.',);
         assert(property.isInSuperMarioMaker2, 'The property isInSMM2 should always be set to true for a SMM2 exclusive property.',);
 
         assert(property.isInSuperMario3DWorldStyle != null, 'The property isInSuperMario3DWorldStyle should always be set to a boolean for a SMM2 exclusive property.',);
@@ -29,7 +30,7 @@ export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategor
         assert(property.isInGeneralLimitWhilePlaying != null, 'The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.',);
         assert(property.isInGlobalGeneralLimitWhilePlaying != null, 'The property isInGlobalGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.',);
         assert(property.isInPowerUpLimitWhilePlaying != null, 'The property isInGeneralLimitWhilePlaying should always be a boolean for a SMM2 exclusive property.',);
-        assert(property.isInProjectileLimitWhilePlayingUnknown || property.isInProjectileLimitWhilePlaying != null, 'The property isInProjectileLimitWhilePlaying should always be boolean in the case of a known limit for a SMM2 exclusive property.',);
+        assert(property.editorLimit_smm1And3ds == null, 'The property editorLimit_smm1And3ds should always be null for an exclusive SMM2 property.',);
 
         return property;
     }

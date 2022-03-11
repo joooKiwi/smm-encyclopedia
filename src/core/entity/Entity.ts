@@ -13,7 +13,7 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     extends NameTrait<string>,
         NameTraitFromACategory<string, CATEGORY>,
         Property<PROPERTY['gameContainer'], PROPERTY['gameStyleContainer'], PROPERTY['themeContainer'], PROPERTY['timeContainer']>,
-        GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMaker2']>,
+        GameProperty<PROPERTY['isInSuperMarioMaker1'], PROPERTY['isInSuperMarioMakerFor3DS'], PROPERTY['isInSuperMarioMaker2']>,
         GameStyleProperty<PROPERTY['isInSuperMarioBrosStyle'], PROPERTY['isInSuperMarioBros3Style'], PROPERTY['isInSuperMarioWorldStyle'], PROPERTY['isInNewSuperMarioBrosUStyle'], PROPERTY['isInSuperMario3DWorldStyle']>,
         ThemeProperty<PROPERTY['isInGroundTheme'], PROPERTY['isInUndergroundTheme'], PROPERTY['isInUnderwaterTheme'], PROPERTY['isInDesertTheme'], PROPERTY['isInSnowTheme'], PROPERTY['isInSkyTheme'], PROPERTY['isInForestTheme'], PROPERTY['isInGhostHouseTheme'], PROPERTY['isInAirshipTheme'], PROPERTY['isInCastleTheme']>,
         TimeProperty<PROPERTY['isInDayTheme'], PROPERTY['isInNightTheme']>,
@@ -28,6 +28,8 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     get gameContainer(): this['propertyContainer']['gameContainer']
 
     get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+
+    get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS']
 
     get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
 
@@ -89,9 +91,11 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
 
     get editorLimitContainer(): this['limitContainer']['editorLimitContainer']
 
-    get editorLimit(): this['limitContainer']['editorLimit']
+    get editorLimit_smm1And3ds(): this['limitContainer']['editorLimit_smm1And3ds']
 
-    get isEditorLimitUnknown(): this['limitContainer']['isEditorLimitUnknown']
+    get editorLimit_smm2(): this['limitContainer']['editorLimit_smm2']
+
+    get isUnknown_editorLimit_smm2(): this['limitContainer']['isUnknown_editorLimit_smm2']
 
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
@@ -119,16 +123,12 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
 
     get isInPowerUpLimitWhilePlaying(): this['limitContainer']['isInPowerUpLimitWhilePlaying']
 
-    get isInPowerUpLimitWhilePlayingComment(): this['limitContainer']['isInPowerUpLimitWhilePlayingComment']
-
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
     get isInProjectileLimitWhilePlayingContainer(): this['limitContainer']['isInProjectileLimitWhilePlayingContainer']
 
     get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying']
-
-    get isInProjectileLimitWhilePlayingUnknown(): this['limitContainer']['isInProjectileLimitWhilePlayingUnknown']
 
     get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment']
 
@@ -138,8 +138,6 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     get otherLimitWhilePlayingContainer(): this['limitContainer']['otherLimitWhilePlayingContainer']
 
     get otherLimitWhilePlaying(): this['limitContainer']['otherLimitWhilePlaying']
-
-    get isOtherLimitWhilePlayingUnknown(): this['limitContainer']['isOtherLimitWhilePlayingUnknown']
 
     get otherLimitWhilePlayingComment(): this['limitContainer']['otherLimitWhilePlayingComment']
 

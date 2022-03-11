@@ -1,10 +1,11 @@
 import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/ClassWithNullObjectPattern';
 import type {CourseTheme}                                      from './CourseTheme';
 
-import {ClassContainingAName}   from '../../lang/name/ClassContainingAName';
-import {EMPTY_ARRAY, EMPTY_MAP} from '../../util/emptyVariables';
-import {EmptyIsInProperty}      from '../entity/properties/EmptyIsInProperty';
-import {EmptyStringName}        from '../../lang/name/EmptyStringName';
+import {ClassContainingAName}                      from '../../lang/name/ClassContainingAName';
+import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
+import {EMPTY_ARRAY, EMPTY_MAP}                    from '../../util/emptyVariables';
+import {EmptyIsInProperty}                         from '../entity/properties/EmptyIsInProperty';
+import {EmptyStringName}                           from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -32,9 +33,19 @@ export class EmptyCourseTheme
     public readonly isInProperty = EmptyIsInProperty.get;
 
     public readonly isInSuperMarioMaker1 = this.isInProperty.isInSuperMarioMaker1;
+    public readonly isInSuperMarioMakerFor3DS = this.isInProperty.isInSuperMarioMakerFor3DS;
     public readonly isInSuperMarioMaker2 = this.isInProperty.isInSuperMarioMaker2;
 
     //endregion -------------------- Game properties --------------------
+    //region -------------------- "Is available from the start" properties --------------------
+
+    public readonly isAvailableFromTheStartContainer = ClassThatIsAvailableFromTheStartContainer.get(null, null, null,);
+
+    public readonly isAvailableFromTheStartInSMM1 = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1;
+    public readonly isAvailableFromTheStartInSMM3DS = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS;
+    public readonly isAvailableFromTheStartInSMM2 = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM2;
+
+    //endregion -------------------- "Is available from the start" properties --------------------
 
     public readonly entities = EMPTY_ARRAY;
     public readonly effect = null;

@@ -20,7 +20,7 @@ export type NumberPropertyWithEverything<N extends PossibleNumber = PossibleNumb
 export type StringPropertyWithEverything<S extends PossibleString = PossibleString, CAN_BE_UNKNOWN extends boolean = boolean, AMOUNT extends PossibleAmount = PossibleAmount, COMMENT extends PossibleComment = PossibleComment, > = PropertyWithEverything<S, CAN_BE_UNKNOWN, AMOUNT, COMMENT>;
 
 export type NullProperty<COMMENT extends PossibleComment = null, > = PropertyWithEverything<null, false, null, COMMENT>;
-export type UnknownProperty<COMMENT extends PossibleComment = null, > = PropertyWithEverything<false, true, null, COMMENT>;
+export type UnknownProperty<COMMENT extends PossibleComment = null, > = PropertyWithEverything<null, true, null, COMMENT>;
 export type NotApplicableProperty = PropertyWithEverything<NotApplicable, false, null, null>;
 export type TrueProperty<AMOUNT extends PossibleAmountOnTrue = null, > = PropertyWithEverything<true, false, AMOUNT, null>;
 export type FalseProperty<AMOUNT extends PossibleAmountOnFalse = null, > = PropertyWithEverything<false, false, AMOUNT, null>;

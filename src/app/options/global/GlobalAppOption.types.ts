@@ -19,6 +19,7 @@ enum Enum {
     SOUNDS,
 
     SMM1,
+    SMM3DS,
     SMM2,
 
     SMB,
@@ -73,6 +74,7 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SOUNDS'],
 
     SimpleEnum<T>['SMM1'],
+    SimpleEnum<T>['SMM3DS'],
     SimpleEnum<T>['SMM2'],
 
     SimpleEnum<T>['SMB'],
