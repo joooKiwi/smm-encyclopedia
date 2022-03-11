@@ -1,7 +1,4 @@
-import type {ObjectHolder} from './holder/ObjectHolder';
-
-import {AssertionError}               from 'assert';
-import {DelayedObjectHolderContainer} from './holder/DelayedObjectHolder.container';
+import {AssertionError} from 'assert';
 
 /**
  * Validate if an array is equals to another one.
@@ -37,14 +34,4 @@ export function assert(condition: boolean, message: string,): asserts condition 
         return;
     if (!condition)
         throw new AssertionError({message: message,});
-}
-
-/**
- * A method used to hold a lazy implementation of a specific import.
- * It uses a callback as an argument to delay the importation of the specific importation.
- *
- * @param value the value to delay the importation
- */
-export function lazy<T, >(value: () => T,): ObjectHolder<T> {
-    return new DelayedObjectHolderContainer(value);
 }

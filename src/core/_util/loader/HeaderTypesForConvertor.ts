@@ -1,45 +1,16 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {
+    EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference
+} from './HeaderTypesForConvertorDefinition';
 
-import type {EntityBehaviours}      from '../../behaviour/EntityBehaviours';
-import type {EntityCategories}      from '../../entityCategory/EntityCategories';
-import type {EntityLimits}          from '../../entityLimit/EntityLimits';
-import type {EntityLimitTypes}      from '../../entityLimit/EntityLimitTypes';
-import type {Entities}              from '../../entity/Entities';
-import type {GameReferences}        from '../../gameReference/GameReferences';
-import type {GameStyles}            from '../../gameStyle/GameStyles';
-import {lazy}                       from '../../../util/utilitiesMethods';
-import type {MiiCostumeCategories}  from '../../miiCostumeCategory/MiiCostumeCategories';
-import type {MiiCostumes}           from '../../miiCostume/MiiCostumes';
-import type {MysteryMushrooms}      from '../../mysteryMushroom/MysteryMushrooms';
-import type {NightEffects}               from '../../theme/NightEffects';
-import type {SoundEffectCategories} from '../../soundEffectCategory/SoundEffectCategories';
-import type {SoundEffects}          from '../../soundEffect/SoundEffects';
-import type {Themes}                from '../../theme/Themes';
-import type {Versions}              from '../../version/Versions';
+import {Import} from '../../../util/DynamicImporter';
 
 //region -------------------- Dynamic imports --------------------
-
-const _GameReferences =        lazy(() => require('../../gameReference/GameReferences').GameReferences as typeof GameReferences);
-const _GameStyles =            lazy(() => require('../../gameStyle/GameStyles').GameStyles as typeof GameStyles);
-const _Entities =              lazy(() => require('../../entity/Entities').Entities as typeof Entities);
-const _EntityBehaviours =      lazy(() => require('../../behaviour/EntityBehaviours').EntityBehaviours as typeof EntityBehaviours);
-// const _EntityGroups =          lazy(()=> require('../../entityGroup/EntityGroup').EntityGroups as typeof EntityGroups);
-const _Themes =                lazy(() => require('../../theme/Themes').Themes as typeof Themes);
-const _NightEffects =          lazy(() => require('../../theme/NightEffects').NightEffects as typeof NightEffects);
-const _EntityCategories =      lazy(() => require('../../entityCategory/EntityCategories').EntityCategories as typeof EntityCategories);
-const _EntityLimits =          lazy(() => require('../../entityLimit/EntityLimits').EntityLimits as typeof EntityLimits);
-const _EntityLimitTypes =      lazy(() => require('../../entityLimit/EntityLimitTypes').EntityLimitTypes as typeof EntityLimitTypes);
-const _SoundEffects =          lazy(() => require('../../soundEffect/SoundEffects').SoundEffects as typeof SoundEffects);
-const _SoundEffectCategories = lazy(() => require('../../soundEffectCategory/SoundEffectCategories').SoundEffectCategories as typeof SoundEffectCategories);
-// const _MiiCostumes =           lazy(() => require('../../miiCostume/MiiCostume').MiiCostumes as typeof MiiCostumes);
-const _MiiCostumeCategories =  lazy(() => require('../../miiCostumeCategory/MiiCostumeCategories').MiiCostumeCategories as typeof MiiCostumeCategories);
-const _MysteryMushrooms =      lazy(() => require('../../mysteryMushroom/MysteryMushrooms').MysteryMushrooms as typeof MysteryMushrooms);
-const _Versions =              lazy(() => require('../../version/Versions').Versions as typeof Versions);
 
 //endregion -------------------- Dynamic imports --------------------
 
 /**
  * @singleton
+ * @classWithDynamicImport {@link GameReferences}, {@link GameStyles}, {@link Entities}, {@link EntityBehaviours} {@link Themes}, {@link NightEffects}, {@link EntityCategories}, {@link EntityLimits}, {@link EntityLimitTypes}, {@link SoundEffects}, {@link SoundEffectCategories}, {@link MiiCostumeCategories}, {@link MysteryMushrooms}, {@link Versions}
  */
 class HeaderTypesForConvertorForTestAndDevelopment
     implements HeaderTypesForConvertorDefinition {
@@ -111,43 +82,43 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Game reference --------------------
 
     public get everyPossibleGameReferenceAcronym() {
-        return this.#everyPossibleGameReferenceAcronym ??= _GameReferences.get.everyAcronyms;
+        return this.#everyPossibleGameReferenceAcronym ??= Import.GameReferences.everyAcronyms;
     }
 
     public get everyPossibleGameReferenceAcronymWithPokemonGeneration() {
         return this.#everyPossibleGameReferenceAcronymWithPokemonGeneration ??= [
-            ...this.everyPossibleGameReferenceAcronym,
+            ...Import.GameReferences.everyAcronyms,
             'Pokémon gen 1', 'Pokémon gen 4', 'Pokémon gen 6',
         ];
     }
 
     public get everyPossibleGameReferenceEnglishName() {
-        return this.#everyPossibleGameReferenceEnglishName ??= _GameReferences.get.everyEnglishNames;
+        return this.#everyPossibleGameReferenceEnglishName ??= Import.GameReferences.everyEnglishNames;
     }
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
 
     public get everyPossibleGameStyleAcronym() {
-        return this.#everyPossibleGameStyleAcronym ??= _GameStyles.get.everyAcronyms;
+        return this.#everyPossibleGameStyleAcronym ??= Import.GameStyles.everyAcronyms;
     }
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
     public get everyPossibleEntityNames() {
-        return this.#everyPossibleEntityNames ??= _Entities.get.everyEnglishNames;
+        return this.#everyPossibleEntityNames ??= Import.Entities.everyEnglishNames;
     }
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
 
     public get everyPossibleBehavioursAcronyms() {
-        return this.#everyPossibleBehavioursAcronyms ??= _EntityBehaviours.get.everyAcronyms;
+        return this.#everyPossibleBehavioursAcronyms ??= Import.EntityBehaviours.everyAcronyms;
     }
 
     public get everyPossibleBehavioursTranslationKeys() {
-        return this.#everyPossibleBehavioursTranslationKeys ??= _EntityBehaviours.get.everyTranslationKeys;
+        return this.#everyPossibleBehavioursTranslationKeys ??= Import.EntityBehaviours.everyTranslationKeys;
     }
 
     //endregion -------------------- Entity behaviour --------------------
@@ -162,62 +133,62 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Theme --------------------
 
     public get everyPossibleName_theme(): EveryPossibleName_Theme {
-        return this.#everyPossibleName_theme ??= _Themes.get.everyEnglishNames;
+        return this.#everyPossibleName_theme ??= Import.Themes.everyEnglishNames;
     }
 
     public get everyPossibleName_themeNightEffect(): EveryPossibleName_ThemeNightEffect {
-        return this.#everyPossibleName_themeNightEffect ??= _NightEffects.get.everyEnglishNames;
+        return this.#everyPossibleName_themeNightEffect ??= Import.NightEffects.everyEnglishNames;
     }
 
     //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
     public get everyPossibleEntityCategoriesNames() {
-        return this.#everyPossibleEntityCategoriesNames ??= _EntityCategories.get.everyEnglishNames;
+        return this.#everyPossibleEntityCategoriesNames ??= Import.EntityCategories.everyEnglishNames;
     }
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Entity limit --------------------
 
     public get everyPossibleLimitsAcronyms() {
-        return this.#everyPossibleLimitsAcronyms ??= [..._EntityLimits.get.everyAcronyms, ..._EntityLimits.get.everyAlternativeAcronyms,];
+        return this.#everyPossibleLimitsAcronyms ??= [...Import.EntityLimits.everyAcronyms, ...Import.EntityLimits.everyAlternativeAcronyms,];
     }
 
     public get everyAlternativeLimitAcronyms() {
-        return this.#everyAlternativeLimitAcronyms ??= _EntityLimits.get.everyAlternativeAcronyms;
+        return this.#everyAlternativeLimitAcronyms ??= Import.EntityLimits.everyAlternativeAcronyms;
     }
 
     public get everyPossibleLimitsNames() {
-        return this.#everyPossibleLimitsNames ??= [..._EntityLimits.get.everyEnglishNames, ..._EntityLimits.get.everyAlternativeEnglishNames,];
+        return this.#everyPossibleLimitsNames ??= [...Import.EntityLimits.everyEnglishNames, ...Import.EntityLimits.everyAlternativeEnglishNames,];
     }
 
     public get everyLimitsNames() {
-        return this.#everyLimitsNames ??= this.entityLimits.everyEnglishNames;
+        return this.#everyLimitsNames ??= Import.EntityLimits.everyEnglishNames;
     }
 
     public get everyLimitsNamesOrUnknown() {
-        return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ..._EntityLimits.get.everyEnglishNames,];
+        return this.#everyLimitsNamesOrUnknown ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...Import.EntityLimits.everyEnglishNames,];
     }
 
     //endregion -------------------- Entity limit --------------------
     //region -------------------- Entity limit type --------------------
 
     public get everyPossibleLimitTypesNames() {
-        return this.#everyPossibleLimitTypesNames ??= _EntityLimitTypes.get.everyEnglishNames;
+        return this.#everyPossibleLimitTypesNames ??= Import.EntityLimitTypes.everyEnglishNames;
     }
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
     public get everyPossibleSoundEffectsNames() {
-        return this.#everyPossibleSoundEffectsNames ??= _SoundEffects.get.everyEnglishNames;
+        return this.#everyPossibleSoundEffectsNames ??= Import.SoundEffects.everyEnglishNames;
     }
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Sound effect category --------------------
 
     public get everyPossibleSoundEffectCategoriesNames() {
-        return this.#everyPossibleSoundEffectCategoriesNames ??= _SoundEffectCategories.get.everyEnglishNames;
+        return this.#everyPossibleSoundEffectCategoriesNames ??= Import.SoundEffectCategories.everyEnglishNames;
     }
 
     //endregion -------------------- Sound effect category --------------------
@@ -265,14 +236,14 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Mii costume category --------------------
 
     public get everyPossibleName_MiiCostumeCategory() {
-        return this.#everyPossibleName_MiiCostumeCategory ??= _MiiCostumeCategories.get.everyEnglishNames;
+        return this.#everyPossibleName_MiiCostumeCategory ??= Import.MiiCostumeCategories.everyEnglishNames;
     }
 
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleMysteryMushroomIndividualEnglishNames() {
-        return this.#everyPossibleMysteryMushroomsIndividualNames ??= _MysteryMushrooms.get.everyIndividualEnglishNames;
+        return this.#everyPossibleMysteryMushroomsIndividualNames ??= Import.MysteryMushrooms.everyIndividualEnglishNames;
     }
 
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
@@ -316,7 +287,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Version --------------------
 
     public get everyPossibleName_version() {
-        return this.#everyPossibleName_version ??= _Versions.get.everySimpleNames;
+        return this.#everyPossibleName_version ??= Import.Versions.everySimpleNames;
     }
 
     //endregion -------------------- Version --------------------

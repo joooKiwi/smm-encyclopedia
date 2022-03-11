@@ -12,6 +12,7 @@ import type {StaticReference}                                                   
 
 import {Enum}             from '../../util/enum/Enum';
 import GameStyleComponent from './GameStyle.component';
+import {Import}           from '../../util/DynamicImporter';
 import {StringContainer}  from '../../util/StringContainer';
 
 /**
@@ -93,7 +94,6 @@ export abstract class GameStyles
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, GameStyle>;
     static #GAME_STYLES_SMM1?: EnumArray_SMM1;
 
     #reference?: GameStyle;
@@ -123,16 +123,12 @@ export abstract class GameStyles
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= require('./GameStyle.loader').GameStyleLoader.get.load();
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): GameStyle {
-        return this.#reference ??= GameStyles.__map.get(this.englishName)!;
+        return this.#reference ??= Import.GameStyleLoader.get.load().get(this.englishName)!;
     }
 
 

@@ -2,25 +2,20 @@ import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
 import type {ThemeProperty} from './ThemeProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {lazy}                 from '../../../util/utilitiesMethods';
+import {Import}               from '../../../util/DynamicImporter';
 import type {Themes}          from '../../theme/Themes';
-
-//region -------------------- Dynamic imports --------------------
-
-const _Themes = lazy(() => require('../../theme/Themes').Themes as typeof Themes);
-
-//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
  * @provider
+ * @classWithDynamicImport {@link Themes}
  */
 export class ThemePropertyContainer
     implements ThemeProperty {
 
     //region -------------------- Attributes --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemePropertyContainer> = new ExtendedMapContainer();
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemeProperty> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<Themes, boolean>;
     readonly #isInGroundTheme: boolean;
@@ -94,7 +89,7 @@ export class ThemePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
-        return this.#map ??= new Map(_Themes.get.courseThemes.map(theme => [theme, theme.get(this),]));
+        return this.#map ??= new Map(Import.Themes.courseThemes.map(theme => [theme, theme.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

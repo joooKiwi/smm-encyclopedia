@@ -1,22 +1,23 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../ClassWithEnglishName';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                                                          from '../ClassWithReference';
-import type {CourseAndWorldTheme, DayGameName, DayOrNightGameName, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyCourseTheme_SMM1, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SmallImagePath} from './Themes.types';
+import type {CourseAndWorldTheme, DayGameName, DayOrNightGameName, EndlessMarioImagePath, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyCourseTheme_SMM1, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, LargeImagePath, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SmallImagePath} from './Themes.types';
 import type {CourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './CourseTheme';
-import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../entity/Entity';
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                                                                                                                                                                       from '../PropertyGetter';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../../util/enum/Enum.types';
-import type {ThemeProperty}                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../entity/properties/ThemeProperty';
-import type {ThemeReferences}                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../entity/properties/ThemeReferences';
-import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './WorldTheme';
+import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../entity/Entity';
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                                                                                                                                                                     from '../PropertyGetter';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../../util/enum/Enum.types';
+import type {ThemeProperty}                                                                                                                                                                                                                                                                                                                                                                                                                                               from '../entity/properties/ThemeProperty';
+import type {ThemeReferences}                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../entity/properties/ThemeReferences';
+import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './WorldTheme';
 
 import {Enum}            from '../../util/enum/Enum';
-import {EmptyEntity}     from '../entity/EmptyEntity';
 import {StringContainer} from '../../util/StringContainer';
+import {Import}          from '../../util/DynamicImporter';
 import {ThemeComponent}  from './Theme.component';
 
 /**
- * @recursiveReferenceVia<{@link ThemeBuilder}, {@link ThemeLoader}>
- * @recursiveReference<{@link ThemeLoader}>
+ * @recursiveReferenceVia {@link ThemeBuilder} → {@link ThemeLoader}
+ * @recursiveReference {@link ThemeLoader}
+ * @classWithDynamicImport {@link EmptyEntity}, {@link ThemeLoader}
  */
 export class Themes
     extends Enum<Ordinals, Names>
@@ -161,7 +162,6 @@ export class Themes
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>;
     static #COURSES: EnumArray_OnlyCourseTheme;
     static #COURSES_SMM1: EnumArray_OnlyCourseTheme_SMM1;
     static #WORLDS: EnumArray_OnlyWorldTheme;
@@ -194,16 +194,12 @@ export class Themes
     //region -------------------- Getter methods --------------------
 
 
-    private static get __map() {
-        return this.#map ??= require('./Theme.loader').ThemeLoader.get.load();
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): CourseAndWorldTheme {
-        return this.#reference ??= Themes.__map.get(this.englishName)!;
+        return this.#reference ??= Import.ThemeLoader.get.load().get(this.englishName)!;
     }
 
 
@@ -251,7 +247,7 @@ export class Themes
     }
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
-        return [EmptyEntity.get];
+        return [Import.EmptyEntity.get,];
     }
 
     public getGameName(name: null, isNightTheme: any,): ''

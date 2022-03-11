@@ -2,25 +2,22 @@ import type {ExtendedMap}       from '../../../util/extended/ExtendedMap';
 import type {GameStyleProperty} from './GameStyleProperty';
 
 import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
+import {Import}               from '../../../util/DynamicImporter';
 import type {GameStyles}      from '../../gameStyle/GameStyles';
-import {lazy}                 from '../../../util/utilitiesMethods';
 
-//region -------------------- Dynamic imports --------------------
-
-const _GameStyles = lazy(() => require('../../gameStyle/GameStyles').GameStyles as typeof GameStyles);
-
-//endregion -------------------- Dynamic imports --------------------
 
 /**
  * @multiton
  * @provider
+ * @classWithDynamicImport {@link GameStyles}
  */
 export class GameStylePropertyContainer
     implements GameStyleProperty {
 
+
     //region -------------------- Attributes --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStylePropertyContainer> = new ExtendedMapContainer();
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStyleProperty> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<GameStyles, boolean>;
     readonly #isInSuperMarioBrosStyle;
@@ -64,7 +61,7 @@ export class GameStylePropertyContainer
     //endregion -------------------- Getter methods --------------------
 
     public toGameStyleMap(): ReadonlyMap<GameStyles, boolean> {
-        return this.#map ??= new Map(_GameStyles.get.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
+        return this.#map ??= new Map(Import.GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
     }
 
     //endregion -------------------- Container attributes, constructor & methods --------------------

@@ -6,10 +6,12 @@ import type {GameReference}                                                     
 import type {StaticReference}                                                                                                                                                                                             from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
+import {Import}          from '../../util/DynamicImporter';
 import {StringContainer} from '../../util/StringContainer';
 
 /**
- * @recursiveReference<{@link GameReferenceLoader}>
+ * @recursiveReference {@link GameReferenceLoader}
+ * @classWithDynamicImport {@link GameReferenceLoader}
  */
 export class GameReferences
     extends Enum<Ordinals, Names>
@@ -180,8 +182,6 @@ export class GameReferences
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #map?: ReadonlyMap<PossibleEnglishName, GameReference>;
-
     #reference?: GameReference;
     readonly #acronym;
     readonly #englishName;
@@ -196,16 +196,12 @@ export class GameReferences
 
     //region -------------------- Getter methods --------------------
 
-    private static get __map() {
-        return this.#map ??= require('./GameReference.loader').GameReferenceLoader.get.load();
-    }
-
     /**
      * {@inheritDoc}
      * @semiAsynchronously
      */
     public get reference(): GameReference {
-        return this.#reference ??= GameReferences.__map.get(this.englishName)!;
+        return this.#reference ??= Import.GameReferenceLoader.get.load().get(this.englishName)!;
     }
 
     public get acronym(): PossibleAcronym {

@@ -10,14 +10,15 @@ import {DelayedObjectHolderContainer}                from '../../util/holder/Del
 import {EditorVoiceSoundFactory}                     from './EditorVoiceSound.factory';
 import {EditorVoiceSoundHolderWithSingingPartBefore} from './holder/EditorVoiceSoundHolderWithSingingPartBefore';
 import {EditorVoiceSoundHolderWithVoiceBefore}       from './holder/EditorVoiceSoundHolderWithVoiceBefore';
-import {Entities}                                    from '../entity/Entities';
+import type {Entities}                               from '../entity/Entities';
 import {EntityReferenceHolderContainer}              from './holder/EntityReferenceHolder.container';
 import {Enum}                                        from '../../util/enum/Enum';
+import {Import}                                      from '../../util/DynamicImporter';
 import {StringContainer}                             from '../../util/StringContainer';
 
 /**
- *
- * @recursiveReference<{@link Entities}>
+ * @recursiveReference {@link Entities}
+ * @classWithDynamicImport {@link Entities}
  */
 export class EditorVoices
     extends Enum<Ordinals, Names>
@@ -52,7 +53,7 @@ export class EditorVoices
     public static readonly BLOCK =                    new class EditorVoices_Block extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.BRICK_BLOCK, Entities.CRISTAL_BLOCK, Entities.ROTATING_BLOCK,];
+            return [Import.Entities.BRICK_BLOCK, Import.Entities.CRISTAL_BLOCK, Import.Entities.ROTATING_BLOCK,];
         }
 
     }('Block', () => new EditorVoiceSoundHolderWithVoiceBefore('block',),);
@@ -60,7 +61,7 @@ export class EditorVoices
     public static readonly HARD_BLOCK =               new class EditorVoices_HardBlock extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.HARD_BLOCK, Entities.ROCK_BLOCK,];
+            return [Import.Entities.HARD_BLOCK, Import.Entities.ROCK_BLOCK,];
         }
 
     }('Hard Block', () => new EditorVoiceSoundHolderWithVoiceBefore('hardblock',),);
@@ -126,14 +127,14 @@ export class EditorVoices
     public static readonly BIG_MUSHROOM_SMM1 =        new class EditorVoices_BigMushroomSMM1 extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.BIG_MUSHROOM_CLASSIC, Entities.BIG_MUSHROOM_MODERN,];
+            return [Import.Entities.BIG_MUSHROOM_CLASSIC, Import.Entities.BIG_MUSHROOM_MODERN,];
         }
 
     }('Big Mushroom (SMM1)', () => new EditorVoiceSoundHolderWithVoiceBefore('bigmashroom',),);
     public static readonly BIG_MUSHROOM_SMM2 =        new class EditorVoices_BigMushroomSMM2 extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.BIG_MUSHROOM,];
+            return [Import.Entities.BIG_MUSHROOM,];
         }
 
     }('Big Mushroom (SMM2)', () => new EditorVoiceSoundHolderWithSingingPartBefore('BigMushroom',),);
@@ -229,7 +230,7 @@ export class EditorVoices
     public static readonly KOOPA_TROOPA =             new class EditorVoices_KoopaTroopa extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.GREEN_KOOPA_TROOPA, Entities.RED_KOOPA_TROOPA,];
+            return [Import.Entities.GREEN_KOOPA_TROOPA, Import.Entities.RED_KOOPA_TROOPA,];
         }
 
     }('Koopa Troopa', () => new EditorVoiceSoundHolderWithVoiceBefore('koopatrooper',),);
@@ -237,7 +238,7 @@ export class EditorVoices
     public static readonly DRY_BONES =                new class EditorVoices_DryBones extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.DRY_BONES, Entities.PARABONES,];
+            return [Import.Entities.DRY_BONES, Import.Entities.PARABONES,];
         }
 
     }('Dry Bones', () => new EditorVoiceSoundHolderWithVoiceBefore('drybones',),);
@@ -246,7 +247,7 @@ export class EditorVoices
     public static readonly BUZZY_BEETLE =             new class EditorVoices_BuzzyBeetle extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.BUZZY_BEETLE, Entities.PARA_BEETLE, Entities.BUZZY_SHELL,];
+            return [Import.Entities.BUZZY_BEETLE, Import.Entities.PARA_BEETLE, Import.Entities.BUZZY_SHELL,];
         }
 
     }('Buzzy Beetle', () => new EditorVoiceSoundHolderWithVoiceBefore('buzzybeatle',),);
@@ -254,7 +255,7 @@ export class EditorVoices
     public static readonly SPINY =                    new class EditorVoices_Spiny extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.SPINY, Entities.WINGED_SPINY, Entities.SPINY_EGG, Entities.SPINY_SHELL,];
+            return [Import.Entities.SPINY, Import.Entities.WINGED_SPINY, Import.Entities.SPINY_EGG, Import.Entities.SPINY_SHELL,];
         }
 
     }('Spiny', () => new EditorVoiceSoundHolderWithVoiceBefore('spiny',),);
@@ -262,7 +263,7 @@ export class EditorVoices
     public static readonly SPIKE_TOP =                new class EditorVoices_SpikeTop extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.SPIKE_TOP, Entities.WINGED_SPIKE_TOP, Entities.FAST_SPIKE_TOP, Entities.FAST_WINGED_SPIKE_TOP,];
+            return [Import.Entities.SPIKE_TOP, Import.Entities.WINGED_SPIKE_TOP, Import.Entities.FAST_SPIKE_TOP, Import.Entities.FAST_WINGED_SPIKE_TOP,];
         }
 
     }('Spike Top', () => new EditorVoiceSoundHolderWithVoiceBefore('spiketop',),);
@@ -278,7 +279,7 @@ export class EditorVoices
     public static readonly CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.CHEEP_CHEEP, Entities.BLURPS, Entities.DEEP_CHEEP,];
+            return [Import.Entities.CHEEP_CHEEP, Import.Entities.BLURPS, Import.Entities.DEEP_CHEEP,];
         }
 
     }('Cheep Cheep', () => new EditorVoiceSoundHolderWithVoiceBefore('cheapcheap',),);
@@ -351,7 +352,7 @@ export class EditorVoices
     public static readonly BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.BULL_EYE_BANZAI, Entities.CAT_BANZAI_BILL,];
+            return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,];
         }
 
     }('Bull\'s-Eye Banzai', () => new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBanzai',),);
@@ -377,7 +378,7 @@ export class EditorVoices
     public static readonly SUN =                      new class EditorVoices_Sun extends EditorVoices {
 
         protected get _createEntityReferences(): PossibleEntityReferences_Received {
-            return [Entities.ANGRY_SUN,];
+            return [Import.Entities.ANGRY_SUN,];
         }
 
     }('Sun', () => new EditorVoiceSoundHolderWithSingingPartBefore('Sun',),);
@@ -560,7 +561,7 @@ export class EditorVoices
                     ?? null
                 : typeof value === 'number'
                     ? this.values[value] ?? null
-                    : value instanceof Entities
+                    : value instanceof Import.Entities
                         ? this.values.find(enumerable => (enumerable.entityReferences.references as readonly Entities[]).includes(value))
                             ?? null
                         : value;
