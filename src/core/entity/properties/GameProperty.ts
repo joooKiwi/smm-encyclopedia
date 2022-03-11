@@ -1,4 +1,4 @@
-import type {ClassInAnySuperMarioMakerGame} from '../../ClassInAnySuperMarioMakerGame';
+import type {ClassInAnySuperMarioMakerGame} from '../../game/ClassInAnySuperMarioMakerGame';
 import type {Games}                         from '../../game/Games';
 
 export interface GameProperty<SMM1 extends boolean = boolean, SMM3DS extends boolean = boolean, SMM2 extends boolean = boolean, >
