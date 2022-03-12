@@ -1,4 +1,4 @@
-import everySoundEffectCategories from '../../resources/Sound effect category.csv';
+import resource from '../../resources/Sound effect category.csv';
 
 import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {Loader}                                    from '../../util/loader/Loader';
@@ -72,7 +72,7 @@ export class SoundEffectCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, SoundEffectCategory, keyof typeof Headers>(everySoundEffectCategories, convertedContent => new SoundEffectCategoryBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, SoundEffectCategory, keyof typeof Headers>(resource, convertedContent => new SoundEffectCategoryBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)

@@ -1,4 +1,4 @@
-import everyGameStyles from '../../resources/Game style.csv';
+import resource from '../../resources/Game style.csv';
 
 import type {Loader}                                                             from '../../util/loader/Loader';
 import type {GameStyle}                                                          from './GameStyle';
@@ -80,7 +80,7 @@ export class GameStyleLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, GameStyle, keyof typeof Headers>(everyGameStyles, convertedContent => new GameStyleBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, GameStyle, keyof typeof Headers>(resource, convertedContent => new GameStyleBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',)

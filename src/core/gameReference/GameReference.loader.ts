@@ -1,4 +1,4 @@
-import source from '../../resources/Game reference.csv';
+import resource from '../../resources/Game reference.csv';
 
 import type {GameReference}                             from './GameReference';
 import type {GameReferenceTemplate}                     from './GameReference.template';
@@ -72,7 +72,7 @@ export class GameReferenceLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, GameReference, keyof typeof Headers>(source, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, GameReference, keyof typeof Headers>(resource, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'acronym',)

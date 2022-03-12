@@ -1,4 +1,4 @@
-import everyThemes from '../../resources/Theme.csv';
+import resource from '../../resources/Theme.csv';
 
 import type {CourseAndWorldTheme, PossibleEnglishName}       from './Themes.types';
 import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types';
@@ -99,7 +99,7 @@ export class ThemeLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, CourseAndWorldTheme, keyof typeof Headers>(everyThemes, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, CourseAndWorldTheme, keyof typeof Headers>(resource, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean(

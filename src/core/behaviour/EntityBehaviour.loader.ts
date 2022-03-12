@@ -1,4 +1,4 @@
-import everyBehaviours from '../../resources/Entity behaviour.csv';
+import resource from '../../resources/Entity behaviour.csv';
 
 import type {EntityBehaviour}                          from './EntityBehaviour';
 import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template';
@@ -72,7 +72,7 @@ export class EntityBehaviourLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(everyBehaviours, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(resource, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('boolean')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleBehavioursAcronyms, 'acronym',)

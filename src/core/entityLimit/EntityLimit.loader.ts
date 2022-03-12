@@ -1,4 +1,4 @@
-import everyThemes from '../../resources/Entity limit.csv';
+import resource from '../../resources/Entity limit.csv';
 
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                                                                         from './EntityLimit';
@@ -109,7 +109,7 @@ export class EntityLimitLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityLimit, keyof typeof Headers>(everyThemes, convertedContent => new EntityLimitBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityLimit, keyof typeof Headers>(resource, convertedContent => new EntityLimitBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)

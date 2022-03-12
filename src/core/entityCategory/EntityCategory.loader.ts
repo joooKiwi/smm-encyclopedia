@@ -1,4 +1,4 @@
-import everyEntityCategories from '../../resources/Entity category.csv';
+import resource from '../../resources/Entity category.csv';
 
 import type {EntityCategory}                            from './EntityCategory';
 import type {EntityCategoryTemplate}                    from './EntityCategory.template';
@@ -73,7 +73,7 @@ export class EntityCategoryLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityCategory, keyof typeof Headers>(everyEntityCategories, convertedContent => new EntityCategoryBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, EntityCategory, keyof typeof Headers>(resource, convertedContent => new EntityCategoryBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
