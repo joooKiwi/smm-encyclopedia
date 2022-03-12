@@ -1,4 +1,4 @@
-import everyMiiCostumes from '../../resources/Mii Costume.csv';
+import resource from '../../resources/Mii Costume (SMM2).csv';
 
 import type {Loader}                                                            from '../../util/loader/Loader';
 import type {PossibleEnglishName}                                               from './MiiCostumes.types';
@@ -91,7 +91,7 @@ export class MiiCostumeLoader
 
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, MiiCostume, keyof typeof Headers>(everyMiiCostumes, convertedContent => new MiiCostumeBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, MiiCostume, keyof typeof Headers>(resource, convertedContent => new MiiCostumeBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleMode_MiiCostume, 'mode',)

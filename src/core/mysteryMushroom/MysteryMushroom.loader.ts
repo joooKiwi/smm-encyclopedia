@@ -1,4 +1,4 @@
-import everyMysteryMushrooms from '../../resources/Mystery Mushroom.csv';
+import resource from '../../resources/Mystery Mushroom (SMM).csv';
 
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
@@ -146,7 +146,7 @@ export class MysteryMushroomLoader
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, MysteryMushroom, keyof typeof Headers>(everyMysteryMushrooms, convertedContent => new MysteryMushroomBuilder(new TemplateBuilder(convertedContent)).build())
+            new CSVLoader<PropertiesArray, MysteryMushroom, keyof typeof Headers>(resource, convertedContent => new MysteryMushroomBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleConditionToUnlockIt_mysteryMushroom, 'conditionToUnlockIt',)
