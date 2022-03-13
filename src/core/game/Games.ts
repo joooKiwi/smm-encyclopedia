@@ -19,27 +19,33 @@ export abstract class Games
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games {
+    public static/* readonly*/ SUPER_MARIO_MAKER_1;
+    public static/* readonly*/ SUPER_MARIO_MAKER_FOR_NINTENDO_3DS;
+    public static/* readonly*/ SUPER_MARIO_MAKER_2;
 
-        public get(property: GameProperty,): boolean {
-            return property.isInSuperMarioMaker1;
-        }
+    static {
+        this.SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games {
 
-    }('SMM', '1', 'Super Mario Maker',);
-    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
+                public get(property: GameProperty,): boolean {
+                    return property.isInSuperMarioMaker1;
+                }
 
-        public get(property: GameProperty,): boolean {
-            return property.isInSuperMarioMakerFor3DS;
-        }
+            }('SMM', '1', 'Super Mario Maker',);
+        this.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
 
-    }('SMM3DS', '3DS', 'Super Mario Maker for Nintendo 3DS',);
-    public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
+                public get(property: GameProperty,): boolean {
+                    return property.isInSuperMarioMakerFor3DS;
+                }
 
-        public get(property: GameProperty,): boolean {
-            return property.isInSuperMarioMaker2;
-        }
+            }('SMM3DS', '3DS', 'Super Mario Maker for Nintendo 3DS',);
+        this.SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
 
-    }('SMM2', '2', 'Super Mario Maker 2',);
+            public get(property: GameProperty,): boolean {
+                return property.isInSuperMarioMaker2;
+            }
+
+        }('SMM2', '2', 'Super Mario Maker 2',);
+    }
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

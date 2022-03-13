@@ -16,36 +16,14 @@ export abstract class SoundFounds
      * @noValidationOnPlay
      * @noValidationOnCreate
      */
-    public static readonly YES =       new class SoundFounds_Yes extends SoundFounds {
-
-        public onCreate(callback: IsSourceFoundCallback,): void {
-            callback(true);
-        }
-
-        public onPlay(callback: IsSourceFoundCallback,): true {
-            callback(true);
-            return true;
-        }
-
-    }('yes',);
+    public static /*readonly*/ YES;
     /**
      * Tell that the sound will never be found.
      *
      * @noValidationOnPlay
      * @noValidationOnCreate
      */
-    public static readonly NO =        new class SoundFounds_No extends SoundFounds {
-
-        public onCreate(callback: IsSourceFoundCallback,): void {
-            callback(false);
-        }
-
-        public onPlay(callback: IsSourceFoundCallback,): false {
-            callback(false);
-            return false;
-        }
-
-    }('no',);
+    public static /*readonly*/ NO;
     /**
      * Tell whenever the sound is present or not
      * when the audio source will be played.
@@ -53,27 +31,56 @@ export abstract class SoundFounds
      * @noValidationOnCreate
      * @defaultValue
      */
-    public static readonly ON_PLAY =   new class SoundFounds_OnPlay extends SoundFounds {
-
-        public onPlay(callback: IsSourceFoundCallback,): null {
-            callback();
-            return null;
-        }
-
-    }('on play',);
+    public static /*readonly*/ ON_PLAY;
     /**
      * Tell whenever the sound is present or not
      * when creating the audio element.
      *
      * @noValidationOnPlay
      */
-    public static readonly ON_CREATE = new class SoundFounds_OnCreate extends SoundFounds {
+    public static /*readonly*/ ON_CREATE;
 
-        public onCreate(callback: IsSourceFoundCallback,): void {
-            callback();
-        }
+    static {
+        this.YES =       new class SoundFounds_Yes extends SoundFounds {
 
-    }('on create',);
+            public onCreate(callback: IsSourceFoundCallback,): void {
+                callback(true);
+            }
+
+            public onPlay(callback: IsSourceFoundCallback,): true {
+                callback(true);
+                return true;
+            }
+
+        }('yes',);
+        this.NO =        new class SoundFounds_No extends SoundFounds {
+
+            public onCreate(callback: IsSourceFoundCallback,): void {
+                callback(false);
+            }
+
+            public onPlay(callback: IsSourceFoundCallback,): false {
+                callback(false);
+                return false;
+            }
+
+        }('no',);
+        this.ON_PLAY =   new class SoundFounds_OnPlay extends SoundFounds {
+
+            public onPlay(callback: IsSourceFoundCallback,): null {
+                callback();
+                return null;
+            }
+
+        }('on play',);
+        this.ON_CREATE = new class SoundFounds_OnCreate extends SoundFounds {
+
+            public onCreate(callback: IsSourceFoundCallback,): void {
+                callback();
+            }
+
+        }('on create',);
+    }
 
     protected static readonly _DEFAULT = SoundFounds.ON_PLAY;
 

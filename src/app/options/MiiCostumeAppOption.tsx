@@ -38,134 +38,142 @@ export abstract class MiiCostumeAppOption
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGE =                  new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
+    public static/* readonly*/ IMAGE;
+    public static/* readonly*/ NAME;
+    public static/* readonly*/ CONDITION_TO_UNLOCK_IT;
 
-        protected _get(state: MiiCostumeAppStates,): boolean {
-            return state.display.section.image;
-        }
-
-        protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
-            nextState.display.section.image = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>;
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
-        }
-
-    }(true,);
-    public static readonly NAME =                   new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
-
-        protected _get(state: MiiCostumeAppStates,): boolean {
-            return state.display.section.name;
-        }
-
-        protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
-            nextState.display.section.name = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const miiCostume = enumeration.reference;
-
-                return <NameComponent id="name" name={miiCostume} popoverOrientation="left"/>;
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,};
-        }
-
-    }(true,);
-    public static readonly CONDITION_TO_UNLOCK_IT = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
-
-        protected _get(state: MiiCostumeAppStates,): boolean {
-            return state.display.section.conditionToUnlockIt;
-        }
-
-        protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
-            nextState.display.section.conditionToUnlockIt = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const miiCostume = enumeration.reference;
-
-                const {conditionToUnlockId} = miiCostume;
-                if (conditionToUnlockId == null)
-                    return EMPTY_REACT_ELEMENT;
-
-                const {mode} = miiCostume;
-                if (mode == null)
-                    return <TextComponent content={conditionToUnlockId}/>;
-
-                return <TextComponent classes={['miiCostume-mode',]} style={({'--mode-name': `"${mode}"`})} content={conditionToUnlockId}/>;
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            //TODO add new translation to the header value.
-            return {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,};
-        }
-
-    }(true,);
-
-    public static readonly CATEGORY =               new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
-
-        protected _get(state: MiiCostumeAppStates,): boolean {
-            return state.display.section.category;
-        }
-
-        protected _set(nextState: MiiCostumeAppStates, value: boolean,) {
-            nextState.display.section.category = value;
-        }
-
-        protected get _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const categoryName = enumeration.reference.category.nameContainer;
-
-                if (categoryName === EmptyStringName.get)
-                    return EMPTY_REACT_ELEMENT;
-
-                if (MiiCostumeAppOption.CATEGORY_AS_TEXT.get)
-                    return <NameComponent id={`category-name-${enumeration.englishNameInHtml}`} name={categoryName} popoverOrientation="left"/>;
-
-                const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
-                return <Image source={MiiCostumeCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
-            };
-        }
-
-        protected get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,};
-        }
-
-    }(true,);
+    public static/* readonly*/ CATEGORY;
     /**
      * Tell whenever a {@link MiiCostumeAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT =       new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
+    public static/* readonly*/ CATEGORY_AS_TEXT;
 
-        protected _get(state: MiiCostumeAppStates,): boolean {
-            return state.display.asText.category;
-        }
+    static {
+        this.IMAGE =                  new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-        protected _set(nextState: MiiCostumeAppStates, value: boolean,) {
-            nextState.display.asText.category = value;
-        }
+            protected _get(state: MiiCostumeAppStates,): boolean {
+                return state.display.section.image;
+            }
 
-    }(false,);
+            protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+                nextState.display.section.image = value;
+            }
 
+            protected get _createContentOption(): PossibleOptionWithContent {
+                return () => {
+                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+
+                    return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>;
+                };
+            }
+
+            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+                return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
+            }
+
+        }(true,);
+        this.NAME =                   new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
+
+            protected _get(state: MiiCostumeAppStates,): boolean {
+                return state.display.section.name;
+            }
+
+            protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+                nextState.display.section.name = value;
+            }
+
+            protected get _createContentOption(): PossibleOptionWithContent {
+                return () => {
+                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+                    const miiCostume = enumeration.reference;
+
+                    return <NameComponent id="name" name={miiCostume} popoverOrientation="left"/>;
+                };
+            }
+
+            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+                return {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,};
+            }
+
+        }(true,);
+        this.CONDITION_TO_UNLOCK_IT = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
+
+            protected _get(state: MiiCostumeAppStates,): boolean {
+                return state.display.section.conditionToUnlockIt;
+            }
+
+            protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+                nextState.display.section.conditionToUnlockIt = value;
+            }
+
+            protected get _createContentOption(): PossibleOptionWithContent {
+                return () => {
+                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+                    const miiCostume = enumeration.reference;
+
+                    const {conditionToUnlockId} = miiCostume;
+                    if (conditionToUnlockId == null)
+                        return EMPTY_REACT_ELEMENT;
+
+                    const {mode} = miiCostume;
+                    if (mode == null)
+                        return <TextComponent content={conditionToUnlockId}/>;
+
+                    return <TextComponent classes={['miiCostume-mode',]} style={({'--mode-name': `"${mode}"`})} content={conditionToUnlockId}/>;
+                };
+            }
+
+            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+                //TODO add new translation to the header value.
+                return {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,};
+            }
+
+        }(true,);
+
+        this.CATEGORY =               new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
+
+            protected _get(state: MiiCostumeAppStates,): boolean {
+                return state.display.section.category;
+            }
+
+            protected _set(nextState: MiiCostumeAppStates, value: boolean,) {
+                nextState.display.section.category = value;
+            }
+
+            protected get _createContentOption(): PossibleOptionWithContent {
+                return () => {
+                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+                    const categoryName = enumeration.reference.category.nameContainer;
+
+                    if (categoryName === EmptyStringName.get)
+                        return EMPTY_REACT_ELEMENT;
+
+                    if (MiiCostumeAppOption.CATEGORY_AS_TEXT.get)
+                        return <NameComponent id={`category-name-${enumeration.englishNameInHtml}`} name={categoryName} popoverOrientation="left"/>;
+
+                    const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
+                    return <Image source={MiiCostumeCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
+                };
+            }
+
+            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+                return {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,};
+            }
+
+        }(true,);
+        this.CATEGORY_AS_TEXT =       new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
+
+            protected _get(state: MiiCostumeAppStates,): boolean {
+                return state.display.asText.category;
+            }
+
+            protected _set(nextState: MiiCostumeAppStates, value: boolean,) {
+                nextState.display.asText.category = value;
+            }
+
+        }(false,);
+    }
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

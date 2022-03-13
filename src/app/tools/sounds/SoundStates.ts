@@ -12,34 +12,41 @@ export abstract class SoundStates
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly STANDBY = new class SoundStates_Standby extends SoundStates {
+    public static/* readonly*/ STANDBY;
+    public static/* readonly*/ PAUSED;
+    public static/* readonly*/ PLAYING;
+    public static/* readonly*/ EXCEPTION;
 
-        public getElements({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
-            return [playElement(),];
-        }
+    static {
+        this.STANDBY = new class SoundStates_Standby extends SoundStates {
 
-    }('standby',);
-    public static readonly PAUSED =  new class SoundStates_Paused extends SoundStates {
+            public getElements({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+                return [playElement(),];
+            }
 
-        public getElements({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
-            return [playElement(), stopElement(),];
-        }
+        }('standby',);
+        this.PAUSED =  new class SoundStates_Paused extends SoundStates {
 
-    } ('paused',);
-    public static readonly PLAYING = new class SoundStates_Playing extends SoundStates {
+            public getElements({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+                return [playElement(), stopElement(),];
+            }
 
-        public getElements({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
-            return [pauseElement(), stopElement(),];
-        }
+        } ('paused',);
+        this.PLAYING = new class SoundStates_Playing extends SoundStates {
 
-    }('playing',);
-    public static readonly EXCEPTION = new class SoundStates_Exception extends SoundStates {
+            public getElements({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+                return [pauseElement(), stopElement(),];
+            }
 
-        public getElements({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
-            return [exceptionElement(),];
-        }
+        }('playing',);
+        this.EXCEPTION = new class SoundStates_Exception extends SoundStates {
 
-    }('exception',);
+            public getElements({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+                return [exceptionElement(),];
+            }
+
+        }('exception',);
+    }
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

@@ -42,52 +42,57 @@ export abstract class Texts
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly YES = new class Texts_Yes extends Texts {
+    public static /*readonly*/ YES;
+    public static /*readonly*/ NO;
 
-        public renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
-            return <TextComponent {...properties}/>;
-        }
+    static {
+        this.YES = new class Texts_Yes extends Texts {
 
-        public renderNameComponent(properties: _NameProperties,): ReactElement {
-            return <NameComponent {...properties}/>;
-        }
+            public renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
+                return <TextComponent {...properties}/>;
+            }
 
-        public renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
-            return <YesOrNoResultTextComponent {...properties}/>;
-        }
+            public renderNameComponent(properties: _NameProperties,): ReactElement {
+                return <NameComponent {...properties}/>;
+            }
 
-        public renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
-            return <BooleanTextComponent {...properties}/>;
-        }
+            public renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
+                return <YesOrNoResultTextComponent {...properties}/>;
+            }
 
-        public renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
-            return <BooleanResultTextComponent {...properties}/>;
-        }
+            public renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
+                return <BooleanTextComponent {...properties}/>;
+            }
 
-    }(true,);
-    public static readonly NO =  new class Texts_No extends Texts {
+            public renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
+                return <BooleanResultTextComponent {...properties}/>;
+            }
 
-        public renderTextComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
-        }
+        }(true,);
+        this.NO =  new class Texts_No extends Texts {
 
-        public renderNameComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
-        }
+            public renderTextComponent(): ReactElement {
+                return EMPTY_REACT_ELEMENT;
+            }
 
-        public renderYesNoComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
-        }
+            public renderNameComponent(): ReactElement {
+                return EMPTY_REACT_ELEMENT;
+            }
 
-        public renderBooleanComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
-        }
+            public renderYesNoComponent(): ReactElement {
+                return EMPTY_REACT_ELEMENT;
+            }
 
-        public renderBooleanResultComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
-        }
+            public renderBooleanComponent(): ReactElement {
+                return EMPTY_REACT_ELEMENT;
+            }
 
-    }(false,);
+            public renderBooleanResultComponent(): ReactElement {
+                return EMPTY_REACT_ELEMENT;
+            }
+
+        }(false,);
+    }
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

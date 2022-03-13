@@ -13,7 +13,25 @@ export abstract class DateDayLanguages
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
+    public static /*readonly*/ AMERICAN_ENGLISH;
+    public static /*readonly*/ EUROPEAN_ENGLISH;
+    public static /*readonly*/ CANADIAN_FRENCH;
+    public static /*readonly*/ EUROPEAN_FRENCH;
+    public static /*readonly*/ GERMAN;
+    public static /*readonly*/ AMERICAN_SPANISH;
+    public static /*readonly*/ EUROPEAN_SPANISH;
+    public static /*readonly*/ ITALIAN;
+    public static /*readonly*/ DUTCH;
+    public static /*readonly*/ AMERICAN_PORTUGUESE;
+    public static /*readonly*/ EUROPEAN_PORTUGUESE;
+    public static /*readonly*/ RUSSIAN;
+    public static /*readonly*/ JAPANESE;
+    public static /*readonly*/ TRADITIONAL_CHINESE;
+    public static /*readonly*/ SIMPLIFIED_CHINESE;
+    public static /*readonly*/ KOREAN;
+
+    static {
+        this.AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
 
         public newDayComponent(day: DayNumber,) {
             return day === 2 || day === 22
@@ -24,115 +42,116 @@ export abstract class DateDayLanguages
         }
 
     }   (ProjectLanguages.AMERICAN_ENGLISH,   );
-    public static readonly EUROPEAN_ENGLISH =    new class DateDayLanguages_EuropeanEnglish extends DateDayLanguages {
+        this.EUROPEAN_ENGLISH =    new class DateDayLanguages_EuropeanEnglish extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return DateDayLanguages.AMERICAN_ENGLISH.newDayComponent(day);
-        }
+            public newDayComponent(day: DayNumber,) {
+                return DateDayLanguages.AMERICAN_ENGLISH.newDayComponent(day);
+            }
 
-    }   (ProjectLanguages.EUROPEAN_ENGLISH,   );
-    public static readonly CANADIAN_FRENCH =     new class DateDayLanguages_CanadianFrench extends DateDayLanguages {
+        }   (ProjectLanguages.EUROPEAN_ENGLISH,   );
+        this.CANADIAN_FRENCH =     new class DateDayLanguages_CanadianFrench extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return day === 1
-                ? <>{day}<sup>er</sup></>
-                : <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return day === 1
+                    ? <>{day}<sup>er</sup></>
+                    : <>{day}</>;
+            }
 
-    }    (ProjectLanguages.CANADIAN_FRENCH,    );
-    public static readonly EUROPEAN_FRENCH =     new class DateDayLanguages_EuropeanFrench extends DateDayLanguages {
+        }    (ProjectLanguages.CANADIAN_FRENCH,    );
+        this.EUROPEAN_FRENCH =     new class DateDayLanguages_EuropeanFrench extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return DateDayLanguages.CANADIAN_FRENCH.newDayComponent(day);
-        }
+            public newDayComponent(day: DayNumber,) {
+                return DateDayLanguages.CANADIAN_FRENCH.newDayComponent(day);
+            }
 
-    }    (ProjectLanguages.EUROPEAN_FRENCH,    );
-    public static readonly GERMAN =              new class DateDayLanguages_German extends DateDayLanguages {
+        }    (ProjectLanguages.EUROPEAN_FRENCH,    );
+        this.GERMAN =              new class DateDayLanguages_German extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day === 1
-                ? 'der ' + day
-                : day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day === 1
+                    ? 'der ' + day
+                    : day}</>;
+            }
 
-    }            (ProjectLanguages.GERMAN,             );
-    public static readonly AMERICAN_SPANISH =    new class DateDayLanguages_AmericanSpanish extends DateDayLanguages {
+        }            (ProjectLanguages.GERMAN,             );
+        this.AMERICAN_SPANISH =    new class DateDayLanguages_AmericanSpanish extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day}</>;
+            }
 
-    }   (ProjectLanguages.AMERICAN_SPANISH,   );
-    public static readonly EUROPEAN_SPANISH =    new class DateDayLanguages_EuropeanSpanish extends DateDayLanguages {
+        }   (ProjectLanguages.AMERICAN_SPANISH,   );
+        this.EUROPEAN_SPANISH =    new class DateDayLanguages_EuropeanSpanish extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return DateDayLanguages.AMERICAN_SPANISH.newDayComponent(day);
-        }
+            public newDayComponent(day: DayNumber,) {
+                return DateDayLanguages.AMERICAN_SPANISH.newDayComponent(day);
+            }
 
-    }   (ProjectLanguages.EUROPEAN_SPANISH,   );
-    public static readonly ITALIAN =             new class DateDayLanguages_Italian extends DateDayLanguages {
+        }   (ProjectLanguages.EUROPEAN_SPANISH,   );
+        this.ITALIAN =             new class DateDayLanguages_Italian extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day === 1 ? 'il' : day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day === 1 ? 'il' : day}</>;
+            }
 
-    }           (ProjectLanguages.ITALIAN,            );
-    public static readonly DUTCH =               new class DateDayLanguages_Dutch extends DateDayLanguages {
+        }           (ProjectLanguages.ITALIAN,            );
+        this.DUTCH =               new class DateDayLanguages_Dutch extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day}</>;
+            }
 
-    }             (ProjectLanguages.DUTCH,              );
-    public static readonly AMERICAN_PORTUGUESE = new class DateDayLanguages_AmericanPortuguese extends DateDayLanguages {
+        }             (ProjectLanguages.DUTCH,              );
+        this.AMERICAN_PORTUGUESE = new class DateDayLanguages_AmericanPortuguese extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day}</>;
+            }
 
-    }(ProjectLanguages.AMERICAN_PORTUGUESE,);
-    public static readonly EUROPEAN_PORTUGUESE = new class DateDayLanguages_EuropeanPortuguese extends DateDayLanguages {
+        }(ProjectLanguages.AMERICAN_PORTUGUESE,);
+        this.EUROPEAN_PORTUGUESE = new class DateDayLanguages_EuropeanPortuguese extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return DateDayLanguages.AMERICAN_PORTUGUESE.newDayComponent(day);
-        }
+            public newDayComponent(day: DayNumber,) {
+                return DateDayLanguages.AMERICAN_PORTUGUESE.newDayComponent(day);
+            }
 
-    }(ProjectLanguages.EUROPEAN_PORTUGUESE,);
-    public static readonly RUSSIAN =             new class DateDayLanguages_Russian extends DateDayLanguages {
+        }(ProjectLanguages.EUROPEAN_PORTUGUESE,);
+        this.RUSSIAN =             new class DateDayLanguages_Russian extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day}</>;
+            }
 
-    }           (ProjectLanguages.RUSSIAN,            );
-    public static readonly JAPANESE =            new class DateDayLanguages_Japanese extends DateDayLanguages {
+        }           (ProjectLanguages.RUSSIAN,            );
+        this.JAPANESE =            new class DateDayLanguages_Japanese extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day}</>;
+            }
 
-    }          (ProjectLanguages.JAPANESE,           );
-    public static readonly TRADITIONAL_CHINESE = new class DateDayLanguages_TraditionalChinese extends DateDayLanguages {
+        }          (ProjectLanguages.JAPANESE,           );
+        this.TRADITIONAL_CHINESE = new class DateDayLanguages_TraditionalChinese extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return DateDayLanguages.JAPANESE.newDayComponent(day);
-        }
+            public newDayComponent(day: DayNumber,) {
+                return DateDayLanguages.JAPANESE.newDayComponent(day);
+            }
 
-    }(ProjectLanguages.TRADITIONAL_CHINESE,);
-    public static readonly SIMPLIFIED_CHINESE =  new class DateDayLanguages_SimplifiedChinese extends DateDayLanguages {
+        }(ProjectLanguages.TRADITIONAL_CHINESE,);
+        this.SIMPLIFIED_CHINESE =  new class DateDayLanguages_SimplifiedChinese extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return DateDayLanguages.JAPANESE.newDayComponent(day);
-        }
+            public newDayComponent(day: DayNumber,) {
+                return DateDayLanguages.JAPANESE.newDayComponent(day);
+            }
 
-    } (ProjectLanguages.SIMPLIFIED_CHINESE, );
-    public static readonly KOREAN =              new class DateDayLanguages_Korean extends DateDayLanguages {
+        } (ProjectLanguages.SIMPLIFIED_CHINESE, );
+        this.KOREAN =              new class DateDayLanguages_Korean extends DateDayLanguages {
 
-        public newDayComponent(day: DayNumber,) {
-            return <>{day}</>;
-        }
+            public newDayComponent(day: DayNumber,) {
+                return <>{day}</>;
+            }
 
-    }            (ProjectLanguages.KOREAN,             );
+        }            (ProjectLanguages.KOREAN,             );
+    }
 
     protected static readonly _DEFAULT = this.getValue(ProjectLanguages._DEFAULT);
 

@@ -31,20 +31,25 @@ export abstract class Sounds
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly YES = new class Sounds_Yes extends Sounds {
+    public static /*readonly*/ YES;
+    public static /*readonly*/ NO;
 
-        public renderComponent(properties: SimpleSoundProperties,): ReactElement {
-            return <SimpleSound {...properties}/>;
-        }
+    static {
+        this.YES = new class Sounds_Yes extends Sounds {
 
-    }(true,);
-    public static readonly NO =  new class Sounds_No extends Sounds {
+            public renderComponent(properties: SimpleSoundProperties,): ReactElement {
+                return <SimpleSound {...properties}/>;
+            }
 
-        public renderComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
-        }
+        }(true,);
+        this.NO =  new class Sounds_No extends Sounds {
 
-    }(false,);
+            public renderComponent(): ReactElement {
+                return EMPTY_REACT_ELEMENT;
+            }
+
+        }(false,);
+    }
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

@@ -20,28 +20,33 @@ export abstract class Times
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly DAY =   new class Times_Day extends Times {
+    public static/* readonly*/ DAY;
+    public static/* readonly*/ NIGHT;
 
-        public get(property: TimeProperty,): boolean {
-            return property.isInDayTheme;
-        }
+    static {
+        this.DAY =   new class Times_Day extends Times {
 
-        public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
-            return referenceProperty.referenceInDayTheme;
-        }
+            public get(property: TimeProperty,): boolean {
+                return property.isInDayTheme;
+            }
 
-    }  ('Day',   'Sun',);
-    public static readonly NIGHT = new class Times_Night extends Times {
+            public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
+                return referenceProperty.referenceInDayTheme;
+            }
 
-        public get(property: TimeProperty,): boolean {
-            return property.isInNightTheme === true;
-        }
+        }  ('Day',   'Sun',);
+        this.NIGHT = new class Times_Night extends Times {
 
-        public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
-            return referenceProperty.referenceInNightTheme;
-        }
+            public get(property: TimeProperty,): boolean {
+                return property.isInNightTheme === true;
+            }
 
-    }('Night', 'Moon',);
+            public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
+                return referenceProperty.referenceInNightTheme;
+            }
+
+        }('Night', 'Moon',);
+    }
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
