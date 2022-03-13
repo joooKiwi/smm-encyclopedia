@@ -13,7 +13,8 @@ module.exports = {
     ],
     babel: {
         plugins: [
-            "@babel/plugin-proposal-logical-assignment-operators"
+            "@babel/plugin-proposal-logical-assignment-operators",
+            "@babel/plugin-proposal-class-static-block",
         ]
     }
 }
