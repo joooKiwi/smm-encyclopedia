@@ -33,6 +33,6 @@ export default function DisplayViewRouteButton({routeName, value, id, divId,}: D
         : <Link key={key} to={routeValue} className="btn btn-outline-primary"
                 onClick={() => {
                     ModalInstance.getInstance(id).instance.hide();
-                    TooltipInstance.getInstance(divId).instance.hide();
+                    TooltipInstance.getInstance(divId).instance.hide();//FIXME, this throws an assertion error once the link is clicked.
                 }}>{value}</Link>;
 }
