@@ -410,7 +410,7 @@ export class OfficialNotifications
 
         }('Earn # Maker Point', 'maker point', 2000, 5000, 7000,);
 
-        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EASY =         new class OfficialNotifications_ extends OfficialNotifications {
+        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EASY =         new class OfficialNotifications_HighScoreOfXInEndlessChallengeEasy extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 return this._addCourse(key,
@@ -419,7 +419,7 @@ export class OfficialNotifications
             }
 
         }('High score of # in Endless Challenge (easy)', translationKey_highScore, ...possibleAmountInEndlessMarioEasyOrNormal,);
-        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_NORMAL =       new class OfficialNotifications_ extends OfficialNotifications {
+        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_NORMAL =       new class OfficialNotifications_HighScoreOfXInEndlessChallengeNormal extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 return this._addCourse(key,
@@ -428,7 +428,7 @@ export class OfficialNotifications
             }
 
         }('High score of # in Endless Challenge (normal)', translationKey_highScore, ...possibleAmountInEndlessMarioEasyOrNormal,);
-        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EXPERT =       new class OfficialNotifications_ extends OfficialNotifications {
+        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EXPERT =       new class OfficialNotifications_HighScoreOfXInEndlessChallengeExpert extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 return this._addCourse(key,
@@ -437,7 +437,7 @@ export class OfficialNotifications
             }
 
         }('High score of # in Endless Challenge (expert)', translationKey_highScore, ...possibleAmountInEndlessMarioExpertOrSuperExpert,);
-        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_SUPER_EXPERT = new class OfficialNotifications_ extends OfficialNotifications {
+        this.HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_SUPER_EXPERT = new class OfficialNotifications_HighScoreOfXInEndlessChallengeSuperExpert extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 return this._addCourse(key,
@@ -447,7 +447,7 @@ export class OfficialNotifications
 
         }('High score of # in Endless Challenge (super expert)', translationKey_highScore, ...possibleAmountInEndlessMarioExpertOrSuperExpert,);
 
-        this.GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_ extends OfficialNotifications {
+        this.GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_GoldMedalOnTheLeaderboard extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 keyMap.medalImage = <Image key={`${key} - gold medal image`} source="/others/medal/BadgeS_03^u.tiff" fallbackName="Gold medal image"/>;
@@ -455,7 +455,7 @@ export class OfficialNotifications
             }
 
         }('Gold medal on the leaderboard', translationKey_medal,);
-        this.SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_ extends OfficialNotifications {
+        this.SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_SilverMedalOnTheLeaderboard extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 keyMap.medalImage = <Image key={`${key} - silver medal image`} source="/others/medal/BadgeS_04^u.tiff" fallbackName="Silver medal image"/>;
@@ -463,7 +463,7 @@ export class OfficialNotifications
             }
 
         }('Silver medal on the leaderboard', translationKey_medal,);
-        this.BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_ extends OfficialNotifications {
+        this.BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_BronzeMedalOnTheLeaderboard extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 keyMap.medalImage = <Image key={`${key} - bronze medal image`} source="/others/medal/BadgeS_05^u.tiff" fallbackName="Bronze medal image"/>;
@@ -523,14 +523,14 @@ export class OfficialNotifications
             }
 
         }('Upload a Super World', 'super world.upload',);
-        this.CLEAR_1_SUPER_WORLD =                               new class OfficialNotifications_ extends OfficialNotifications {
+        this.CLEAR_1_SUPER_WORLD =                               new class OfficialNotifications_Clear1SuperWorld extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 return this._addSuperWorld(key, keyMap,);
             }
 
         }('Clear 1 Super World', 'super world.clear - 1', one,);
-        this.CLEAR_X_SUPER_WORLD =                               new class OfficialNotifications_ extends OfficialNotifications {
+        this.CLEAR_X_SUPER_WORLD =                               new class OfficialNotifications_ClearXSuperWorld extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
                 return this._addSuperWorlds(key, keyMap,);
