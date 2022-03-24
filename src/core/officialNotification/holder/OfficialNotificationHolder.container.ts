@@ -1,8 +1,9 @@
-import type {ExtendedMap}                  from '../../../util/extended/ExtendedMap';
-import type {OfficialNotificationHolder}   from './OfficialNotificationHolder';
-import type {OfficialNotifications}        from '../OfficialNotifications';
-import {ExtendedMapContainer}              from '../../../util/extended/ExtendedMap.container';
-import {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types';
+import type {ExtendedMap}                       from '../../../util/extended/ExtendedMap';
+import type {OfficialNotificationHolder}        from './OfficialNotificationHolder';
+import type {OfficialNotifications}             from '../OfficialNotifications';
+import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types';
+
+import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
 
 /**
  * @multiton

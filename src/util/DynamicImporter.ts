@@ -19,6 +19,7 @@ import type {MiiCostumes}                               from '../core/miiCostume
 import type {MysteryMushroomLoader}                     from '../core/mysteryMushroom/MysteryMushroom.loader';
 import type {MysteryMushrooms}                          from '../core/mysteryMushroom/MysteryMushrooms';
 import type {NightEffects}                              from '../core/nightEffect/NightEffects';
+import type {OfficialNotifications}                     from '../core/officialNotification/OfficialNotifications';
 import type {SoundEffectCategories}                     from '../core/soundEffectCategory/SoundEffectCategories';
 import type {SoundEffectCategoryLoader}                 from '../core/soundEffectCategory/SoundEffectCategory.loader';
 import type {SoundEffectLoader}                         from '../core/soundEffect/SoundEffect.loader';
@@ -27,7 +28,6 @@ import type {ThemeLoader}                               from '../core/theme/Them
 import type {Themes}                                    from '../core/theme/Themes';
 import type {Times}                                     from '../core/time/Times';
 import type {Versions}                                  from '../core/version/Versions';
-import {OfficialNotifications}                          from '../core/officialNotification/OfficialNotifications';
 
 /**
  * <p>
