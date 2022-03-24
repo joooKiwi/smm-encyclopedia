@@ -87,7 +87,6 @@ export class ClassThatIsAvailableFromTheStartContainer<SMM1 extends PossibleIsAv
 
     //endregion -------------------- Provider / Multiton method --------------------
 
-
 }
 
 type ArgumentsReceived<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM3DS extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM2 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > = readonly [SMM1, SMM3DS, SMM2,];
