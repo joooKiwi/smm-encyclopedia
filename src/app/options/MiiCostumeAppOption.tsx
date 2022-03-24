@@ -1,4 +1,4 @@
-import {lazy} from 'react';
+import {Fragment, lazy} from 'react';
 
 import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
@@ -11,9 +11,9 @@ import type {ReactComponentWithState}                                           
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
+import type {TranslationReplaceKeysMap}                                                                                                                                             from '../../lang/components/TranslationProperty';
 
-import {AbstractAppOption} from './AbstractAppOption';
-
+import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
@@ -24,6 +24,7 @@ import {Enum}                          from '../../util/enum/Enum';
 import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
+import {TranslationUtility}            from '../../lang/components/TranslationUtility';
 
 //region -------------------- dynamic imports --------------------
 
@@ -40,7 +41,7 @@ export abstract class MiiCostumeAppOption
 
     public static/* readonly*/ IMAGE;
     public static/* readonly*/ NAME;
-    public static/* readonly*/ CONDITION_TO_UNLOCK_IT;
+    public static/* readonly*/ OFFICIAL_NOTIFICATION;
 
     public static/* readonly*/ CATEGORY;
     /**
@@ -97,7 +98,7 @@ export abstract class MiiCostumeAppOption
             }
 
         }(true,);
-        this.CONDITION_TO_UNLOCK_IT = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
+        this.OFFICIAL_NOTIFICATION =  new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
             protected _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.section.conditionToUnlockIt;
@@ -112,21 +113,50 @@ export abstract class MiiCostumeAppOption
                     const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
                     const miiCostume = enumeration.reference;
 
-                    const {conditionToUnlockId} = miiCostume;
-                    if (conditionToUnlockId == null)
+                    const {officialNotification} = miiCostume;
+                    if (officialNotification == null)
                         return EMPTY_REACT_ELEMENT;
 
-                    const {mode} = miiCostume;
-                    if (mode == null)
-                        return <TextComponent content={conditionToUnlockId}/>;
+                    const keyMap:TranslationReplaceKeysMap = {};
+                    const {officialNotificationAmount} = miiCostume;
+                    if (officialNotificationAmount != null)
+                        keyMap.amount = <Fragment key={`${miiCostume.english} - amount`}>{officialNotificationAmount}</Fragment>;
 
-                    return <TextComponent classes={['miiCostume-mode',]} style={({'--mode-name': `"${mode}"`})} content={conditionToUnlockId}/>;
+                    //TODO change to officialNotification.createTranslation(keyMap) instead
+                    keyMap.job = <Fragment key={`${miiCostume.english} - job`}>--job--</Fragment>;
+                    keyMap.jobs = <Fragment key={`${miiCostume.english} - jobs`}>--jobs--</Fragment>;
+                    keyMap.course = <Fragment key={`${miiCostume.english} - course`}>--course--</Fragment>;
+                    keyMap.courses = <Fragment key={`${miiCostume.english} - courses`}>--courses--</Fragment>;
+                    keyMap.worldRecord = <Fragment key={`${miiCostume.english} - world record`}>--world record--</Fragment>;
+                    keyMap.worldRecords = <Fragment key={`${miiCostume.english} - world records`}>--world records--</Fragment>;
+                    keyMap.name = <Fragment key={`${miiCostume.english} - name`}>--name--</Fragment>;
+                    keyMap.rank = <Fragment key={`${miiCostume.english} - rank`}>--rank--</Fragment>;
+                    keyMap.position = <Fragment key={`${miiCostume.english} - position`}>--position--</Fragment>;
+                    keyMap.difficulty = <Fragment key={`${miiCostume.english} - difficulty`}>--difficulty--</Fragment>;
+                    keyMap.entityImage = <Fragment key={`${miiCostume.english} - entityImage`}>--entityImage--</Fragment>;
+                    keyMap.likeImage = <Fragment key={`${miiCostume.english} - likeImage`}>--likeImage--</Fragment>;
+                    keyMap.stampImage = <Fragment key={`${miiCostume.english} - stampImage`}>--stampImage--</Fragment>;
+                    keyMap.medalImage = <Fragment key={`${miiCostume.english} - medalImage`}>--medalImage--</Fragment>;
+                    keyMap.StoryMode = <Fragment key={`${miiCostume.english} - Story Mode`}>--Story Mode--</Fragment>;
+                    keyMap.MissionTitle = <Fragment key={`${miiCostume.english} - Mission Title`}>--Mission title--</Fragment>;
+                    keyMap.MultiplayerCoop = <Fragment key={`${miiCostume.english} - Multiplayer Co-op`}>--Multiplayer Co-op--</Fragment>;
+                    keyMap.MultiplayerVersus = <Fragment key={`${miiCostume.english} - Multiplayer Versus`}>--Multiplayer Versus--</Fragment>;
+                    keyMap.leaderboard = <Fragment key={`${miiCostume.english} - leaderboard`}>--leaderboard--</Fragment>;
+                    keyMap.MakerPoints = <Fragment key={`${miiCostume.english} - Maker Points`}>--Maker Points--</Fragment>;
+                    keyMap.EndlessChallenge = <Fragment key={`${miiCostume.english} - Endless Challenge`}>--Endless Challenge--</Fragment>;
+                    keyMap.NinjiSpeedruns = <Fragment key={`${miiCostume.english} - Ninji Speedruns`}>--Ninji Speedruns--</Fragment>;
+                    keyMap.SuperWorld = <Fragment key={`${miiCostume.english} - Super World`}>--Super World--</Fragment>;
+                    keyMap.SuperWorlds = <Fragment key={`${miiCostume.english} - Super Worlds`}>--Super Worlds--</Fragment>;
+
+                    return <GameContentTranslationComponent>{translation =>
+                        <TextComponent content={TranslationUtility.replaceAndInterpretTranslation(translation, `Official notification.${officialNotification.translationKey}`, keyMap,)}/>
+                    }</GameContentTranslationComponent>;
                 };
             }
 
             protected get _createTableHeaderOption(): PossibleOptionWithTable {
                 //TODO add new translation to the header value.
-                return {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,};
+                return {key: 'officialNotification', element: <>--Official notification--</>,};
             }
 
         }(true,);
@@ -216,7 +246,7 @@ export abstract class MiiCostumeAppOption
                 section: {
                     image: MiiCostumeAppOption.IMAGE._lastValueRetrieved,
                     name: MiiCostumeAppOption.NAME._lastValueRetrieved,
-                    conditionToUnlockIt: MiiCostumeAppOption.CONDITION_TO_UNLOCK_IT._lastValueRetrieved,
+                    conditionToUnlockIt: MiiCostumeAppOption.OFFICIAL_NOTIFICATION._lastValueRetrieved,
                     category: MiiCostumeAppOption.CATEGORY._lastValueRetrieved,
                 },
                 asText: {

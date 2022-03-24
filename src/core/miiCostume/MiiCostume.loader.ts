@@ -1,12 +1,13 @@
 import resource from '../../resources/Mii Costume (SMM2).csv';
 
-import type {Loader}                                                            from '../../util/loader/Loader';
-import type {PossibleEnglishName}                                               from './MiiCostumes.types';
-import type {MiiCostume}                                                        from './MiiCostume';
-import type {MiiCostumeTemplate, PossibleConditionToUnlockIt, PossibleMode}     from './MiiCostume.template';
-import type {PossibleEnglishName as PossibleEnglishName_Category}               from '../miiCostumeCategory/MiiCostumeCategories.types';
-import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number} from '../version/Versions.types';
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}    from '../../lang/Loader.types';
+import type {Loader}                                                                        from '../../util/loader/Loader';
+import type {PossibleEnglishName}                                                           from './MiiCostumes.types';
+import type {MiiCostume}                                                                    from './MiiCostume';
+import type {MiiCostumeTemplate}                                                            from './MiiCostume.template';
+import type {PossibleEnglishName as PossibleEnglishName_Category}                           from '../miiCostumeCategory/MiiCostumeCategories.types';
+import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from '../officialNotification/OfficialNotifications.types';
+import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from '../version/Versions.types';
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                from '../../lang/Loader.types';
 
 import {CSVLoader}               from '../../util/loader/CSVLoader';
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
@@ -17,8 +18,7 @@ import {MiiCostumeBuilder}       from './MiiCostume.builder';
 
 enum Headers {
 
-    conditionToUnlockIt,
-    mode,
+    notificationIfUnlocked,
 
     MM2_version,
     category,
@@ -46,8 +46,7 @@ enum Headers {
 
 type ExclusivePropertiesArray = [
 
-    conditionToUnlockIt: PossibleConditionToUnlockIt,
-    mode: PossibleMode,
+    notificationIfUnlocked: | PossibleEnglishName_OfficialNotification | null,
 
     MM2_version: | PossibleMarioMakerVersion_SMM2_Number | null,
     category: PossibleEnglishName_Category,
@@ -94,8 +93,7 @@ export class MiiCostumeLoader
             new CSVLoader<PropertiesArray, MiiCostume, keyof typeof Headers>(resource, convertedContent => new MiiCostumeBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleMode_MiiCostume, 'mode',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleConditionToUnlockIt_MiiCostume, 'conditionToUnlockIt',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleNameWithAmount_officialNotification, 'notificationIfUnlocked',)
                 .convertToEmptyableStringAnd(['2.0.0', '3.0.0',], 'MM2_version',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_MiiCostumeCategory, 'category',)
 
@@ -128,10 +126,7 @@ class TemplateBuilder
 
     public build(): MiiCostumeTemplate {
         return {
-            conditionToUnlockIt: {
-                value: this._getContent(this._headersIndexMap.conditionToUnlockIt),
-                mode: this._getContent(this._headersIndexMap.mode),
-            },
+            officialNotification: this._getContent(this._headersIndexMap.notificationIfUnlocked),
             version: this._getContent(this._headersIndexMap.MM2_version),
             category: this._getContent(this._headersIndexMap.category),
             name: this._createNameTemplate(),

@@ -1,9 +1,10 @@
 import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from '../../util/ClassWithNullObjectPattern';
 import type {MiiCostume}                                      from './MiiCostume';
 
-import {ClassContainingAName}    from '../../lang/name/ClassContainingAName';
-import {EmptyMiiCostumeCategory} from '../miiCostumeCategory/EmptyMiiCostumeCategory';
-import {EmptyStringName}         from '../../lang/name/EmptyStringName';
+import {ClassContainingAName}            from '../../lang/name/ClassContainingAName';
+import {EmptyMiiCostumeCategory}         from '../miiCostumeCategory/EmptyMiiCostumeCategory';
+import {EmptyStringName}                 from '../../lang/name/EmptyStringName';
+import {EmptyOfficialNotificationHolder} from '../officialNotification/holder/EmptyOfficialNotificationHolder';
 
 /**
  * @singleton
@@ -26,8 +27,10 @@ export class EmptyMiiCostume
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly mode = null;
-    public readonly conditionToUnlockId = null;
+    public readonly officialNotificationContainer = EmptyOfficialNotificationHolder.get;
+    public readonly officialNotification = this.officialNotificationContainer.officialNotification;
+    public readonly officialNotificationAmount = this.officialNotificationContainer.amount;
+
     public readonly version = null;
     public readonly category = EmptyMiiCostumeCategory.get;
 

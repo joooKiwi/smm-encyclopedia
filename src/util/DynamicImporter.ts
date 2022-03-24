@@ -27,6 +27,7 @@ import type {ThemeLoader}                               from '../core/theme/Them
 import type {Themes}                                    from '../core/theme/Themes';
 import type {Times}                                     from '../core/time/Times';
 import type {Versions}                                  from '../core/version/Versions';
+import {OfficialNotifications}                          from '../core/officialNotification/OfficialNotifications';
 
 /**
  * <p>
@@ -132,6 +133,11 @@ export class DynamicImporter {
     #MiiCostumeCategories?: typeof MiiCostumeCategories;
 
     //endregion -------------------- "Mii costume" attributes --------------------
+    //region -------------------- "Official notification" attributes --------------------
+
+    #OfficialNotifications?: typeof OfficialNotifications;
+
+    //endregion -------------------- "Official notification" attributes --------------------
     //region -------------------- Version attributes --------------------
 
     #Versions?: typeof Versions;
@@ -290,6 +296,13 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Mii costume" getter methods --------------------
+    //region -------------------- "Official notification" getter methods --------------------
+
+    get OfficialNotifications(): typeof OfficialNotifications {
+        return this.#OfficialNotifications ??= require('../core/officialNotification/OfficialNotifications').OfficialNotifications;
+    }
+
+    //endregion -------------------- "Official notification" getter methods --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {
