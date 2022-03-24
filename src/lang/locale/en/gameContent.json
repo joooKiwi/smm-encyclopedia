@@ -37,11 +37,24 @@
   "Category": "Category",
 
   "Official notification": {
+    "position": {
+      "place": {
+        "1": "st",
+        "2": "nd",
+        "3": "rd"
+      },
+      "job": {
+        "1": "st",
+        "2": "nd",
+        "3": "rd"
+      }
+    },
+
 
     "finish all job":                    "Finish all {{jobs}} in the {{StoryMode}}.",
-    "finish all 3 job (character)":      "Finish all 3 {{jobs}} in the {{StoryMode}} for {{name}}.",
-    "finish X job (Peach)":              "Finish {{position}} {{job}} ({{MissionTitle}}) in the {{StoryMode}} for {{name}}.",
-    "hit ? Block near Purple Toad":      "Hit the middle {{entityImage}} near the {{characterName}} in the {{StoryMode}}.",
+    "finish all 3 job (character)":      "Finish all 3 {{jobs}} in the {{StoryMode}} for {{characterImage}}.",
+    "finish X job (Peach)":              "Finish {{position}} {{job}} ({{MissionTitle}}) in the {{StoryMode}} for {{characterImage}}.",
+    "hit ? Block near Purple Toad":      "Hit the middle {{entityImage}} near the {{characterImage}} in the {{StoryMode}}.",
     "finish rebuilding castle":          "Finish rebuilding the castle in the {{StoryMode}}.",
 
     "course": {
@@ -80,7 +93,7 @@
     "rank":                              "Reach rank {{rank}} in the {{MultiplayerVersus}} mode.",
 
     "medal":                             "Earn a {{medalImage}} on the {{leaderboard}}.",
-    "place":                             "Be in the {{position}} place in the worldwide {{leaderboard}}.",
+    "place":                             "Be in the {{position}} place{{medalImage}} in the worldwide {{leaderboard}}.",
 
     "stamp":                             "Unlock {{amount}} {{stampImage}} in the {{NinjiSpeedruns}}.",
 

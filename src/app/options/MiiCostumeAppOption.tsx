@@ -1,4 +1,4 @@
-import {Fragment, lazy} from 'react';
+import {lazy} from 'react';
 
 import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
@@ -11,7 +11,6 @@ import type {ReactComponentWithState}                                           
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
-import type {TranslationReplaceKeysMap}                                                                                                                                             from '../../lang/components/TranslationProperty';
 
 import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
@@ -24,13 +23,11 @@ import {Enum}                          from '../../util/enum/Enum';
 import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
-import {TranslationUtility}            from '../../lang/components/TranslationUtility';
 
 //region -------------------- dynamic imports --------------------
 
 const Image =         lazy(() => import('../tools/images/Image'));
 const NameComponent = lazy(() => import('../../lang/name/component/Name.component'));
-const TextComponent = lazy(() => import('../tools/text/TextComponent'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -114,43 +111,11 @@ export abstract class MiiCostumeAppOption
                     const miiCostume = enumeration.reference;
 
                     const {officialNotification} = miiCostume;
-                    if (officialNotification == null)
-                        return EMPTY_REACT_ELEMENT;
 
-                    const keyMap:TranslationReplaceKeysMap = {};
-                    const {officialNotificationAmount} = miiCostume;
-                    if (officialNotificationAmount != null)
-                        keyMap.amount = <Fragment key={`${miiCostume.english} - amount`}>{officialNotificationAmount}</Fragment>;
+                    return officialNotification == null
+                        ? EMPTY_REACT_ELEMENT
+                        : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,);
 
-                    //TODO change to officialNotification.createTranslation(keyMap) instead
-                    keyMap.job = <Fragment key={`${miiCostume.english} - job`}>--job--</Fragment>;
-                    keyMap.jobs = <Fragment key={`${miiCostume.english} - jobs`}>--jobs--</Fragment>;
-                    keyMap.course = <Fragment key={`${miiCostume.english} - course`}>--course--</Fragment>;
-                    keyMap.courses = <Fragment key={`${miiCostume.english} - courses`}>--courses--</Fragment>;
-                    keyMap.worldRecord = <Fragment key={`${miiCostume.english} - world record`}>--world record--</Fragment>;
-                    keyMap.worldRecords = <Fragment key={`${miiCostume.english} - world records`}>--world records--</Fragment>;
-                    keyMap.name = <Fragment key={`${miiCostume.english} - name`}>--name--</Fragment>;
-                    keyMap.rank = <Fragment key={`${miiCostume.english} - rank`}>--rank--</Fragment>;
-                    keyMap.position = <Fragment key={`${miiCostume.english} - position`}>--position--</Fragment>;
-                    keyMap.difficulty = <Fragment key={`${miiCostume.english} - difficulty`}>--difficulty--</Fragment>;
-                    keyMap.entityImage = <Fragment key={`${miiCostume.english} - entityImage`}>--entityImage--</Fragment>;
-                    keyMap.likeImage = <Fragment key={`${miiCostume.english} - likeImage`}>--likeImage--</Fragment>;
-                    keyMap.stampImage = <Fragment key={`${miiCostume.english} - stampImage`}>--stampImage--</Fragment>;
-                    keyMap.medalImage = <Fragment key={`${miiCostume.english} - medalImage`}>--medalImage--</Fragment>;
-                    keyMap.StoryMode = <Fragment key={`${miiCostume.english} - Story Mode`}>--Story Mode--</Fragment>;
-                    keyMap.MissionTitle = <Fragment key={`${miiCostume.english} - Mission Title`}>--Mission title--</Fragment>;
-                    keyMap.MultiplayerCoop = <Fragment key={`${miiCostume.english} - Multiplayer Co-op`}>--Multiplayer Co-op--</Fragment>;
-                    keyMap.MultiplayerVersus = <Fragment key={`${miiCostume.english} - Multiplayer Versus`}>--Multiplayer Versus--</Fragment>;
-                    keyMap.leaderboard = <Fragment key={`${miiCostume.english} - leaderboard`}>--leaderboard--</Fragment>;
-                    keyMap.MakerPoints = <Fragment key={`${miiCostume.english} - Maker Points`}>--Maker Points--</Fragment>;
-                    keyMap.EndlessChallenge = <Fragment key={`${miiCostume.english} - Endless Challenge`}>--Endless Challenge--</Fragment>;
-                    keyMap.NinjiSpeedruns = <Fragment key={`${miiCostume.english} - Ninji Speedruns`}>--Ninji Speedruns--</Fragment>;
-                    keyMap.SuperWorld = <Fragment key={`${miiCostume.english} - Super World`}>--Super World--</Fragment>;
-                    keyMap.SuperWorlds = <Fragment key={`${miiCostume.english} - Super Worlds`}>--Super Worlds--</Fragment>;
-
-                    return <GameContentTranslationComponent>{translation =>
-                        <TextComponent content={TranslationUtility.replaceAndInterpretTranslation(translation, `Official notification.${officialNotification.translationKey}`, keyMap,)}/>
-                    }</GameContentTranslationComponent>;
                 };
             }
 

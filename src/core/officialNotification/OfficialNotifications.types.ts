@@ -194,13 +194,6 @@ export type PossibleTranslationKey =
 export type PossibleAdditionalTranslationKey = `position.${| 'place' | 'job'}.${1 | 2 | 3}`;
 
 //endregion -------------------- Translation key --------------------
-//region -------------------- Image association --------------------
-
-export type PossibleImageAssociation =
-    | readonly ['likeImage', 'other/Heart_00^s.tiff',]
-    | readonly ['stampImage', 'other/EventClearListIcon_00^s.tiff',];
-
-//endregion -------------------- Image Association --------------------
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

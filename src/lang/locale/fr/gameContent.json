@@ -37,11 +37,24 @@
   "Category": "Catégorie",
 
   "Official notification": {
+    "position": {
+      "place": {
+        "1": "ère",
+        "2": "ème",
+        "3": "ème"
+      },
+      "job": {
+        "1": "ère",
+        "2": "ème",
+        "3": "ème"
+      }
+    },
+
 
     "finish all job":                    "Terminer toutes les {{jobs}} dans le {{StoryMode}}.",
-    "finish all 3 job (character)":      "Terminer toutes les 3 {{jobs}} dans le {{StoryMode}} pour {{name}}.",
-    "finish X job (Peach)":              "Terminer la {{position}} {{job}} ({{MissionTitle}}) dans le {{StoryMode}} pour {{name}}.",
-    "hit ? Block near Purple Toad":      "Toucher le {{entityImage}} central près du {{characterName}} dans le {{StoryMode}}.",
+    "finish all 3 job (character)":      "Terminer toutes les 3 {{jobs}} dans le {{StoryMode}} pour {{characterImage}}.",
+    "finish X job (Peach)":              "Terminer la {{position}} {{job}} ({{MissionTitle}}) dans le {{StoryMode}} pour {{characterImage}}.",
+    "hit ? Block near Purple Toad":      "Toucher le {{entityImage}} central près du {{characterImage}} dans le {{StoryMode}}.",
     "finish rebuilding castle":          "Terminer de reconstruire le château dans le {{StoryMode}}.",
 
     "course": {
@@ -80,7 +93,7 @@
     "rank":                              "Obtenir un rang {rank}} dans le mode {{MultiplayerVersus}}.",
 
     "medal":                             "Obtenir une {{medalImage}} dans le {{leaderboard}}.",
-    "place":                             "Être en {{position}} place dans le {{leaderboard}} mondial.",
+    "place":                             "Être en {{position}} place{{medalImage}} dans le {{leaderboard}} mondial.",
 
     "stamp":                             "Débloquer {{amount}} {{stampImage}} dans le {{NinjiSpeedruns}}.",
 
