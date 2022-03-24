@@ -83,8 +83,8 @@
     "win match":                         "Win {{amount}} matches in {{MultiplayerVersus}} mode.",
     "win consecutive match":             "Win {{amount}} consecutive match in {{MultiplayerVersus}} mode.",
 
-    "course.clear - 1.multiplayer coop": "Clear {{amount}} {{course}} in {{MultiplayerCoop}} mode.",
-    "course.clear.multiplayer coop":     "Clear {{amount}} {{courses}} in {{MultiplayerCoop}} mode.",
+    "clear course multiplayer coop - 1": "Clear {{amount}} {{course}} in {{MultiplayerCoop}} mode.",
+    "clear course multiplayer coop":     "Clear {{amount}} {{courses}} in {{MultiplayerCoop}} mode.",
 
     "maker point":                       "Earn {{amount}} {{MakerPoints}}.",
 

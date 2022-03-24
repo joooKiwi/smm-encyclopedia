@@ -83,14 +83,14 @@
     "win match":                         "Gagner {{amount}} matchs dans le mode {{MultiplayerVersus}}",
     "win consecutive match":             "Gagner {{amount}} matchs consécutifs dans le mode {{MultiplayerVersus}}.",
 
-    "course.clear - 1.multiplayer coop": "Terminer {{amount}} {{course}} dans le mode {{MultiplayerCoop}}.",
-    "course.clear.multiplayer coop":     "Terminer {{amount}} {{courses}} dans le mode {{MultiplayerCoop}}.",
+    "clear course multiplayer coop - 1": "Terminer {{amount}} {{course}} dans le mode {{MultiplayerCoop}}.",
+    "clear course multiplayer coop":     "Terminer {{amount}} {{courses}} dans le mode {{MultiplayerCoop}}.",
 
     "maker point":                       "Obtenir {{amount}} {{MakerPoints}}.",
 
     "high score":                        "Obtenir un record de {{amount}} {{courses}} ou plus dans le {{EndlessChallenge}} ({{difficulty}}).",
 
-    "rank":                              "Obtenir un rang {rank}} dans le mode {{MultiplayerVersus}}.",
+    "rank":                              "Obtenir un rang {{rank}} dans le mode {{MultiplayerVersus}}.",
 
     "medal":                             "Obtenir une {{medalImage}} dans le {{leaderboard}}.",
     "place":                             "Être en {{position}} place{{medalImage}} dans le {{leaderboard}} mondial.",

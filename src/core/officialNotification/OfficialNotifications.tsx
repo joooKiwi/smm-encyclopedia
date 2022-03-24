@@ -392,7 +392,7 @@ export class OfficialNotifications
                     this._addCourse(key, keyMap,),);
             }
 
-        }('Clear 1 course in Multiplayer Co-op', 'course.clear - 1.multiplayer coop', one,);
+        }('Clear 1 course in Multiplayer Co-op', 'clear course multiplayer coop - 1', one,);
         this.CLEAR_X_COURSE_IN_MULTIPLAYER_COOP =                new class OfficialNotifications_ClearXCourseInMultiplayerCoop extends OfficialNotifications {
 
             protected _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
@@ -400,7 +400,7 @@ export class OfficialNotifications
                     this._addCourses(key, keyMap,),);
             }
 
-        }('Clear # course in Multiplayer Co-op', 'course.clear.multiplayer coop', 10, 100,);
+        }('Clear # course in Multiplayer Co-op', 'clear course multiplayer coop', 10, 100,);
 
         this.X_MAKER_POINT_EARN =                                new class OfficialNotifications_XMakerPointsEarn extends OfficialNotifications {
 

@@ -183,7 +183,7 @@ export type PossibleTranslationKey =
                 | 'play'}`
     | `${| 'set' | 'hold'} world record`
     | TranslationPartThatCanContainMultiple<'win match'> | 'win consecutive match'
-    | `course.${TranslationPartThatCanContainMultiple<'clear'>}.multiplayer coop`
+    | `${TranslationPartThatCanContainMultiple<'clear course multiplayer coop'>}`
     | 'maker point'
     | 'high score'
     | 'rank'
