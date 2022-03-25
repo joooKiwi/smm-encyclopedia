@@ -35,7 +35,7 @@ export default class EveryMiiCostumeApp
                 ...[
                     MiiCostumeAppOption.IMAGE.renderContent,
                     MiiCostumeAppOption.NAME.renderContent,
-                    MiiCostumeAppOption.CONDITION_TO_UNLOCK_IT.renderContent,
+                    MiiCostumeAppOption.OFFICIAL_NOTIFICATION.renderContent,
                     MiiCostumeAppOption.CATEGORY.renderContent,
                 ].flat(),
             ]);
@@ -57,7 +57,7 @@ export default class EveryMiiCostumeApp
                 '#',
                 MiiCostumeAppOption.IMAGE.renderTableHeader,
                 MiiCostumeAppOption.NAME.renderTableHeader,
-                MiiCostumeAppOption.CONDITION_TO_UNLOCK_IT.renderTableHeader,
+                MiiCostumeAppOption.OFFICIAL_NOTIFICATION.renderTableHeader,
                 MiiCostumeAppOption.CATEGORY.renderTableHeader,
             ].filter(header => header != null) as SingleHeadersContent}
             content={this.content}

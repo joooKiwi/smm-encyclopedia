@@ -10,7 +10,7 @@ enum Enum {
 
     IMAGE,
     NAME,
-    CONDITION_TO_UNLOCK_IT,
+    OFFICIAL_NOTIFICATION,
     CATEGORY,
 
     CATEGORY_AS_TEXT,
@@ -44,7 +44,7 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['IMAGE'],
     SimpleEnum<T>['NAME'],
-    SimpleEnum<T>['CONDITION_TO_UNLOCK_IT'],
+    SimpleEnum<T>['OFFICIAL_NOTIFICATION'],
     SimpleEnum<T>['CATEGORY'],
     SimpleEnum<T>['CATEGORY_AS_TEXT'],
 ];

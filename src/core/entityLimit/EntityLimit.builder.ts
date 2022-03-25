@@ -14,7 +14,7 @@ import {EmptyEntityLimit}                        from './EmptyEntityLimit';
 import {EmptyEntityLimitAmount}                  from './properties/EmptyEntityLimitAmount';
 import {EntityLimitAmountContainer}              from './properties/EntityLimitAmount.container';
 import {EntityLimitContainer}                    from './EntityLimit.container';
-import {EntityLimitTypes}                   from './EntityLimitTypes';
+import {EntityLimitTypes}                        from './EntityLimitTypes';
 import {Import}                                  from '../../util/DynamicImporter';
 import {Games}                                   from '../game/Games';
 import {NumberPropertyThatCanBeUnknownContainer} from '../_properties/number/NumberPropertyThatCanBeUnknown.container';

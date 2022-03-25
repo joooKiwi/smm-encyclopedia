@@ -11,6 +11,8 @@
   "Every game references":         "Toutes les références de jeu",
   "Every games":                   "Tous les jeux",
   "Every game styles":             "Tous les styles de jeu",
+  "Every course tags":             "Tous les {{tags}} de {{course}}",
+  "Every predefined messages":     "Tous les {{predefinedMessages}}",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
@@ -32,9 +34,79 @@
   "Display every game references":         "Afficher toutes les références de jeu",
   "Display every games":                   "Afficher tous les jeux",
   "Display every game styles":             "Afficher tous les styles de jeu",
+  "Display every predefined messages":     "Afficher tous les {{predefinedMessages}}",
 
 
   "Category": "Catégorie",
+
+  "Official notification": {
+    "position": {
+      "place": {
+        "1": "ère",
+        "2": "ème",
+        "3": "ème"
+      },
+      "job": {
+        "1": "ère",
+        "2": "ème",
+        "3": "ème"
+      }
+    },
+
+
+    "finish all job":                    "Terminer toutes les {{jobs}} dans le {{StoryMode}}.",
+    "finish all 3 job (character)":      "Terminer toutes les 3 {{jobs}} dans le {{StoryMode}} pour {{characterImage}}.",
+    "finish X job (Peach)":              "Terminer la {{position}} {{job}} ({{MissionTitle}}) dans le {{StoryMode}} pour {{characterImage}}.",
+    "hit ? Block near Purple Toad":      "Toucher le {{entityImage}} central près du {{characterImage}} dans le {{StoryMode}}.",
+    "finish rebuilding castle":          "Terminer de reconstruire le château dans le {{StoryMode}}.",
+
+    "course": {
+      "receive like":                    "Recevoir un {{likeImage}}.",
+      "receive comment":                 "Recevoir un commentaire.",
+      "receive feedback (a lot)":        "Recevoir beaucoup de commentaires sur un {{course}}.",
+      "receive play":                    "Recevoir {{amount}} jouers sur un {{course}}.",
+
+      "like":                            "{{likeImage}} un {{course}}.",
+      "comment":                         "Commenter un {{course}}.",
+      "upload":                          "Publier un {{course}}.",
+
+      "1st to clear - 1":                "Être le/la premier(ère) à compléter {{amount}} {{course}}.",
+      "1st to clear":                    "Être le/la premier(ère) à compléter {{amount}} {{courses}}.",
+
+      "clear - 1":                       "Terminer {{amount}} {{course}}.",
+      "clear":                           "Terminer {{amount}} {{courses}}.",
+
+      "play":                            "Jouer {{amount}} {{courses}}."
+    },
+
+    "set world record":                  "Obtenir {{amount}} {{worldRecord}}.",
+    "hold world record":                 "Maintenir {{amount}} {{worldRecords}}.",
+
+    "win match - 1":                     "Gagner {{amount}} match dans le mode {{MultiplayerVersus}}",
+    "win match":                         "Gagner {{amount}} matchs dans le mode {{MultiplayerVersus}}",
+    "win consecutive match":             "Gagner {{amount}} matchs consécutifs dans le mode {{MultiplayerVersus}}.",
+
+    "clear course multiplayer coop - 1": "Terminer {{amount}} {{course}} dans le mode {{MultiplayerCoop}}.",
+    "clear course multiplayer coop":     "Terminer {{amount}} {{courses}} dans le mode {{MultiplayerCoop}}.",
+
+    "maker point":                       "Obtenir {{amount}} {{MakerPoints}}.",
+
+    "high score":                        "Obtenir un record de {{amount}} {{courses}} ou plus dans le {{EndlessChallenge}} ({{difficulty}}).",
+
+    "rank":                              "Obtenir un rang {{rank}} dans le mode {{MultiplayerVersus}}.",
+
+    "medal":                             "Obtenir une {{medalImage}} dans le {{leaderboard}}.",
+    "place":                             "Être en {{position}} place{{medalImage}} dans le {{leaderboard}} mondial.",
+
+    "stamp":                             "Débloquer {{amount}} {{stampImage}} dans le {{NinjiSpeedruns}}.",
+
+    "super world": {
+      "upload":                          "Publier un {{SuperWorld}}.",
+
+      "clear - 1":                       "Terminer {{amount}} {{SuperWorld}}.",
+      "clear":                           "Terminer {{amount}} {{SuperWorlds}}."
+    }
+  },
 
   "Limit":               "Limite",
   "In the editor":       "Dans l'éditeur",
@@ -83,5 +155,8 @@
   "Other game references": "Autres références de jeu",
 
   "Wind effect (night desert)": "Effet de vent ({{night}} du {{desert}})",
-  "Effect (night)":             "Effet ({{night}})"
+  "Effect (night)":             "Effet ({{night}})",
+
+  "Course tag":       "{{Tag}} de {{course}}",
+  "First appearance": "Première apparition"
 }

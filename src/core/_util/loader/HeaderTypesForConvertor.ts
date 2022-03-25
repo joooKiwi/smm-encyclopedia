@@ -1,5 +1,5 @@
 import type {
-    EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MiiCostume, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleMode_MiiCostume, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference
+    EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleNameWithAmount_officialNotification, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference
 } from './HeaderTypesForConvertorDefinition';
 
 import {Import} from '../../../util/DynamicImporter';
@@ -64,14 +64,16 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleSoundEffectsNames?: EveryPossibleEnglishName_SoundEffect;
     #everyPossibleSoundEffectCategoriesNames?: EveryPossibleEnglishName_SoundEffectCategory;
 
-    #everyPossibleConditionToUnlockIt_MiiCostume?: EveryConditionToUnlockIt_MiiCostume;
-    #everyPossibleMode_MiiCostume?: EveryPossibleMode_MiiCostume;
     #everyPossibleName_MiiCostumeCategory?: EveryPossibleCategory_MiiCostume;
 
     #everyPossibleMysteryMushroomsIndividualNames?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
+
+    #everyPossibleNameWithAmount_officialNotification?: EveryPossibleNameWithAmount_officialNotification;
+
+    #everyPossibleName_predefinedMessage?: EveryPossibleEnglishName_PredefinedMessage;
 
     #everyPossibleName_version?: EveryPossibleSimpleName_Version;
 
@@ -193,45 +195,6 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
-
-    public get everyPossibleConditionToUnlockIt_MiiCostume() {
-        return this.#everyPossibleConditionToUnlockIt_MiiCostume ??= ([
-            '1 stamp', ([4, 7, 10, 11, 14, 17, 20,] as const).map(amount => `${amount} stamps` as const),
-            (['1st', '2nd', '3rd',] as const).map(position => `${position} place` as const),
-            (['Bronze', 'Silver', 'Gold',] as const).map(position => `${position} medal` as const),
-            'All jobs', 'Finish all jobs', 'Finish rebuilding castle',
-            (['Partrick', 'Purple Toad', 'Soundfrog', 'Undodog', 'Yamamura',] as const).map(name => `Finish all 3 jobs (${name})` as const),
-            'Finish all 3 jobs (Purple Toad) + Hit Middle ? Block',
-            (['1st', '2nd', '3rd',] as const).map(position => `Finish ${position} job (Peach)` as const),
-            ([1, 2, 3, 4, 5, 10, 100,] as const).map(amount => `Clear ${amount}` as const),
-            ([
-                ([1, 10, 100,] as const).map(amount => `1st clear → ${amount}` as const),
-                ([1, 10, 100, 500, 1000, 3000, 5000, 10000,] as const).map(amount => `Clear ${amount}` as const),
-                'Like', 'Upload',
-                ([10, 100, 500, 1000, 3000,] as const).map(amount => `Play ${amount}` as const),
-                ([100, 500, 1000, 2000, 5000,] as const).map(amount => `Receive ${amount} play` as const), 'Receive feedback',
-            ] as const).flat().map(text => `Course → ${text}` as const),
-            ([10, 100, 300, 500, 1000,] as const).map(amount => `High score → ${amount}` as const),
-            ([2000, 5000, 7000,] as const).map(amount => `Maker Point → Earn ${amount}` as const),
-            (['Post', 'Receive',] as const).map(text => `${text} a comment` as const),
-            (['feedback (a lot)', 'like',] as const).map(text => `Receive ${text}` as const),
-            'Upload a level',
-            (['A', 'B', 'C', 'S', 'S+',] as const).map(rank => `Rank ${rank}` as const),
-            ([2, 5, 10,] as const).map(amount => `Win ${amount} consecutive match` as const), 'Win match',
-            ([
-                ([10, 100, 500,] as const).map(amount => `Hold ${amount}` as const),
-                'Set 1',
-            ] as const).flat().map(text => `World Record → ${text}` as const),
-        ] as const).flat();
-    }
-
-    public get everyPossibleMode_MiiCostume() {
-        return this.#everyPossibleMode_MiiCostume ??= ([
-            'Endless Mario', (['easy', 'normal', 'expert', 'super expert',] as const).map(mode => `Endless Mario (${mode})` as const),
-            'Story Mode', (['VS', 'Co-op',] as const).map(mode => `Multiplayer ${mode}` as const), 'Leaderboard', 'Super World', 'Ninji Speedrun',
-        ] as const).flat();
-    }
-
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
@@ -284,6 +247,20 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Official notification --------------------
+
+    public get everyPossibleNameWithAmount_officialNotification(): EveryPossibleNameWithAmount_officialNotification {
+        return this.#everyPossibleNameWithAmount_officialNotification ??= Import.OfficialNotifications.values.map(enumerable => [enumerable.englishName, enumerable.additionalEnglishName]).flat(2);
+    }
+
+    //endregion -------------------- Official notification --------------------
+    //region -------------------- Predefined message --------------------
+
+    public get everyPossibleName_predefinedMessage() {
+        return this.#everyPossibleName_predefinedMessage ??= Import.PredefinedMessages.everyEnglishNames;
+    }
+
+    //endregion -------------------- Predefined message --------------------
     //region -------------------- Version --------------------
 
     public get everyPossibleName_version() {
@@ -386,10 +363,6 @@ class HeaderTypesForConvertorForProduction
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
-
-    public readonly everyPossibleConditionToUnlockIt_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleMode_MiiCostume = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
@@ -404,6 +377,16 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Official notification --------------------
+
+    public readonly everyPossibleNameWithAmount_officialNotification = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Official notification --------------------
+    //region -------------------- Predefined message --------------------
+
+    public readonly everyPossibleName_predefinedMessage = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Predefined message --------------------
     //region -------------------- Version --------------------
 
     public readonly everyPossibleName_version = HeaderTypesForConvertorForProduction.#STRING_VALUE;

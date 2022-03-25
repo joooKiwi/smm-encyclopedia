@@ -1,4 +1,6 @@
 import type {ClassThatIsAvailableFromTheStartContainer} from '../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
+import type {CourseTagLoader}                           from '../core/courseTag/CourseTag.loader';
+import type {CourseTags}                                from '../core/courseTag/CourseTags';
 import type {EntityBehaviourLoader}                     from '../core/behaviour/EntityBehaviour.loader';
 import type {EntityBehaviours}                          from '../core/behaviour/EntityBehaviours';
 import type {EntityCategoryLoader}                      from '../core/entityCategory/EntityCategory.loader';
@@ -19,6 +21,9 @@ import type {MiiCostumes}                               from '../core/miiCostume
 import type {MysteryMushroomLoader}                     from '../core/mysteryMushroom/MysteryMushroom.loader';
 import type {MysteryMushrooms}                          from '../core/mysteryMushroom/MysteryMushrooms';
 import type {NightEffects}                              from '../core/nightEffect/NightEffects';
+import type {OfficialNotifications}                     from '../core/officialNotification/OfficialNotifications';
+import type {PredefinedMessageLoader}                   from '../core/predefinedMessage/PredefinedMessage.loader';
+import type {PredefinedMessages}                        from '../core/predefinedMessage/PredefinedMessages';
 import type {SoundEffectCategories}                     from '../core/soundEffectCategory/SoundEffectCategories';
 import type {SoundEffectCategoryLoader}                 from '../core/soundEffectCategory/SoundEffectCategory.loader';
 import type {SoundEffectLoader}                         from '../core/soundEffect/SoundEffect.loader';
@@ -132,6 +137,23 @@ export class DynamicImporter {
     #MiiCostumeCategories?: typeof MiiCostumeCategories;
 
     //endregion -------------------- "Mii costume" attributes --------------------
+    //region -------------------- "Official notification" attributes --------------------
+
+    #OfficialNotifications?: typeof OfficialNotifications;
+
+    //endregion -------------------- "Official notification" attributes --------------------
+    //region -------------------- "Course tag" attributes --------------------
+
+    #CourseTags?: typeof CourseTags;
+    #CourseTagLoader?: typeof CourseTagLoader;
+
+    //endregion -------------------- "Course tag" attributes --------------------
+    //region -------------------- "Predefined message" attributes --------------------
+
+    #PredefinedMessages?: typeof PredefinedMessages;
+    #PredefinedMessageLoader?: typeof PredefinedMessageLoader;
+
+    //endregion -------------------- "Predefined message" attributes --------------------
     //region -------------------- Version attributes --------------------
 
     #Versions?: typeof Versions;
@@ -290,6 +312,35 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Mii costume" getter methods --------------------
+    //region -------------------- "Official notification" getter methods --------------------
+
+    get OfficialNotifications(): typeof OfficialNotifications {
+        return this.#OfficialNotifications ??= require('../core/officialNotification/OfficialNotifications').OfficialNotifications;
+    }
+
+    //endregion -------------------- "Official notification" getter methods --------------------
+    //region -------------------- "Course tag" attributes --------------------
+
+    public get CourseTags(): typeof CourseTags {
+        return this.#CourseTags ??= require('../core/courseTag/CourseTags').CourseTags;
+    }
+
+    public get CourseTagLoader(): typeof CourseTagLoader {
+        return this.#CourseTagLoader ??= require('../core/courseTag/CourseTag.loader').CourseTagLoader;
+    }
+
+    //endregion -------------------- "Course tag" attributes --------------------
+    //region -------------------- "Predefined message" attributes --------------------
+
+    public get PredefinedMessages(): typeof PredefinedMessages {
+        return this.#PredefinedMessages ??= require('../core/predefinedMessage/PredefinedMessages').PredefinedMessages;
+    }
+
+    public get PredefinedMessageLoader(): typeof PredefinedMessageLoader {
+        return this.#PredefinedMessageLoader ??= require('../core/predefinedMessage/PredefinedMessage.loader').PredefinedMessageLoader;
+    }
+
+    //endregion -------------------- "Predefined message" attributes --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {

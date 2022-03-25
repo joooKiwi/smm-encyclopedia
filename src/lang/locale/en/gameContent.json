@@ -11,6 +11,8 @@
   "Every game references":         "Every game references",
   "Every games":                   "Every games",
   "Every game styles":             "Every game styles",
+  "Every course tags":             "Every {{course}} {{tags}}",
+  "Every predefined messages":     "Every {{predefinedMessages}}",
 
   "Empty entity":             "Empty entity",
   "Empty entity category":    "Empty entity category",
@@ -32,9 +34,80 @@
   "Display every game references":         "Display every game references",
   "Display every games":                   "Display every games",
   "Display every game styles":             "Display every game styles",
+  "Display every course tags":             "Display every {{course}} {{tags}}",
+  "Display every predefined messages":     "Display every {{predefinedMessages}}",
 
 
   "Category": "Category",
+
+  "Official notification": {
+    "position": {
+      "place": {
+        "1": "st",
+        "2": "nd",
+        "3": "rd"
+      },
+      "job": {
+        "1": "st",
+        "2": "nd",
+        "3": "rd"
+      }
+    },
+
+
+    "finish all job":                    "Finish all {{jobs}} in the {{StoryMode}}.",
+    "finish all 3 job (character)":      "Finish all 3 {{jobs}} in the {{StoryMode}} for {{characterImage}}.",
+    "finish X job (Peach)":              "Finish {{position}} {{job}} ({{MissionTitle}}) in the {{StoryMode}} for {{characterImage}}.",
+    "hit ? Block near Purple Toad":      "Hit the middle {{entityImage}} near the {{characterImage}} in the {{StoryMode}}.",
+    "finish rebuilding castle":          "Finish rebuilding the castle in the {{StoryMode}}.",
+
+    "course": {
+      "receive like":                    "Receive a {{likeImage}}.",
+      "receive comment":                 "Receive a comment.",
+      "receive feedback (a lot)":        "Receive a lot of feedback on a {{course}}.",
+      "receive play":                    "Receive {{amount}} plays on a {{course}}.",
+
+      "like":                            "{{likeImage}} a {{course}}.",
+      "comment":                         "Comment a {{course}}.",
+      "upload":                          "Upload a {{course}}.",
+
+      "1st to clear - 1":                "Be the first to clear {{amount}} {{course}}.",
+      "1st to clear":                    "Be the first to clear {{amount}} {{courses}}.",
+
+      "clear - 1":                       "Clear {{amount}} {{course}}.",
+      "clear":                           "Clear {{amount}} {{courses}}.",
+
+      "play":                            "Play {{amount}} {{courses}}."
+    },
+
+    "set world record":                  "Set {{amount}} {{worldRecord}}.",
+    "hold world record":                 "Hold {{amount}} {{worldRecords}}.",
+
+    "win match - 1":                     "Win {{amount}} match in {{MultiplayerVersus}} mode.",
+    "win match":                         "Win {{amount}} matches in {{MultiplayerVersus}} mode.",
+    "win consecutive match":             "Win {{amount}} consecutive match in {{MultiplayerVersus}} mode.",
+
+    "clear course multiplayer coop - 1": "Clear {{amount}} {{course}} in {{MultiplayerCoop}} mode.",
+    "clear course multiplayer coop":     "Clear {{amount}} {{courses}} in {{MultiplayerCoop}} mode.",
+
+    "maker point":                       "Earn {{amount}} {{MakerPoints}}.",
+
+    "high score":                        "Reach a high score of {{amount}} or more {{courses}} in {{EndlessChallenge}} ({{difficulty}}).",
+
+    "rank":                              "Reach rank {{rank}} in the {{MultiplayerVersus}} mode.",
+
+    "medal":                             "Earn a {{medalImage}} on the {{leaderboard}}.",
+    "place":                             "Be in the {{position}} place{{medalImage}} in the worldwide {{leaderboard}}.",
+
+    "stamp":                             "Unlock {{amount}} {{stampImage}} in the {{NinjiSpeedruns}}.",
+
+    "super world": {
+      "upload":                          "Upload a {{SuperWorld}}.",
+
+      "clear - 1":                       "Clear {{amount}} {{SuperWorld}}.",
+      "clear":                           "Clear {{amount}} {{SuperWorlds}}."
+    }
+  },
 
   "Limit":               "Limit",
   "In the editor":       "In the editor",
@@ -83,5 +156,9 @@
   "Other game references": "Other game references",
 
   "Wind effect (night desert)": "Wind effect ({{night}} {{desert}})",
-  "Effect (night)":             "Effect ({{night}})"
+  "Effect (night)":             "Effect ({{night}})",
+
+  "Course tag":         "{{Course}} {{tag}}",
+  "Is an official tag": "Is an official {{tag}}",
+  "First appearance":   "First appearance"
 }

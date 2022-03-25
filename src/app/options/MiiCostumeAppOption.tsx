@@ -12,8 +12,7 @@ import type {ReactElement}                                                      
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
-import {AbstractAppOption} from './AbstractAppOption';
-
+import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
@@ -29,7 +28,6 @@ import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCo
 
 const Image =         lazy(() => import('../tools/images/Image'));
 const NameComponent = lazy(() => import('../../lang/name/component/Name.component'));
-const TextComponent = lazy(() => import('../tools/text/TextComponent'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -40,7 +38,7 @@ export abstract class MiiCostumeAppOption
 
     public static/* readonly*/ IMAGE;
     public static/* readonly*/ NAME;
-    public static/* readonly*/ CONDITION_TO_UNLOCK_IT;
+    public static/* readonly*/ OFFICIAL_NOTIFICATION;
 
     public static/* readonly*/ CATEGORY;
     /**
@@ -97,7 +95,7 @@ export abstract class MiiCostumeAppOption
             }
 
         }(true,);
-        this.CONDITION_TO_UNLOCK_IT = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
+        this.OFFICIAL_NOTIFICATION =  new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
             protected _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.section.conditionToUnlockIt;
@@ -112,21 +110,18 @@ export abstract class MiiCostumeAppOption
                     const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
                     const miiCostume = enumeration.reference;
 
-                    const {conditionToUnlockId} = miiCostume;
-                    if (conditionToUnlockId == null)
-                        return EMPTY_REACT_ELEMENT;
+                    const {officialNotification} = miiCostume;
 
-                    const {mode} = miiCostume;
-                    if (mode == null)
-                        return <TextComponent content={conditionToUnlockId}/>;
+                    return officialNotification == null
+                        ? EMPTY_REACT_ELEMENT
+                        : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,);
 
-                    return <TextComponent classes={['miiCostume-mode',]} style={({'--mode-name': `"${mode}"`})} content={conditionToUnlockId}/>;
                 };
             }
 
             protected get _createTableHeaderOption(): PossibleOptionWithTable {
                 //TODO add new translation to the header value.
-                return {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,};
+                return {key: 'officialNotification', element: <>--Official notification--</>,};
             }
 
         }(true,);
@@ -216,7 +211,7 @@ export abstract class MiiCostumeAppOption
                 section: {
                     image: MiiCostumeAppOption.IMAGE._lastValueRetrieved,
                     name: MiiCostumeAppOption.NAME._lastValueRetrieved,
-                    conditionToUnlockIt: MiiCostumeAppOption.CONDITION_TO_UNLOCK_IT._lastValueRetrieved,
+                    conditionToUnlockIt: MiiCostumeAppOption.OFFICIAL_NOTIFICATION._lastValueRetrieved,
                     category: MiiCostumeAppOption.CATEGORY._lastValueRetrieved,
                 },
                 asText: {

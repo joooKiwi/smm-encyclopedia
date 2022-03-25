@@ -1,16 +1,21 @@
-import type {NameTrait}                                 from '../../lang/name/NameTrait';
-import type {Versions}                                  from '../version/Versions';
-import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory';
-import type {PossibleConditionToUnlockIt, PossibleMode} from './MiiCostume.template';
+import type {MiiCostumeCategory}         from '../miiCostumeCategory/MiiCostumeCategory';
+import type {NameTrait}                  from '../../lang/name/NameTrait';
+import type {OfficialNotificationHolder} from '../officialNotification/holder/OfficialNotificationHolder';
+import type {OfficialNotifications}      from '../officialNotification/OfficialNotifications';
+import type {Versions}                   from '../version/Versions';
 
 export interface MiiCostume
     extends NameTrait<string> {
 
-    /*TODO change to a translation key or another kind of object that can use the translation*/
-    get mode(): PossibleMode
+    //region -------------------- Official notification --------------------
 
-    /*TODO change to a translation key or another kind of object that can use the translation*/
-    get conditionToUnlockId(): PossibleConditionToUnlockIt
+    get officialNotificationContainer(): OfficialNotificationHolder
+
+    get officialNotification(): | OfficialNotifications | null
+
+    get officialNotificationAmount(): | number | null
+
+    //endregion -------------------- Official notification --------------------
 
     get version(): | Versions | null
 

@@ -1,0 +1,25 @@
+#predefinedMessage-container {
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    margin: var(--bs-spacer-md);
+
+    .predefinedMessage-container {
+      padding: var(--bs-spacer-sm);
+
+      > span {
+        background-color: var(--bs-primary-300);
+        padding: var(--bs-spacer-md);
+
+        display: flex;
+        justify-content: center;
+      }
+
+    }
+
+  }
+
+}

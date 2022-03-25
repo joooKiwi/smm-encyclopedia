@@ -8,10 +8,11 @@ import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTransla
 import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../entityLimit/EntityLimits.types';
 import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../gameReference/GameReferences.types';
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types';
-import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MiiCostume, PossibleMode as PossibleMode_MiiCostume}                                                                                                                                             from '../../miiCostume/MiiCostume.template';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from '../../miiCostumeCategory/MiiCostumeCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from '../../officialNotification/OfficialNotifications.types';
+import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../nightEffect/NightEffects.types';
 import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                       from '../../version/Versions.types';
@@ -92,11 +93,6 @@ export interface HeaderTypesForConvertorDefinition {
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
-
-    get everyPossibleConditionToUnlockIt_MiiCostume(): ValueOrStringConstant<EveryConditionToUnlockIt_MiiCostume>
-
-    get everyPossibleMode_MiiCostume(): ValueOrStringConstant<EveryPossibleMode_MiiCostume>
-
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
@@ -114,6 +110,16 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): ValueOrStringConstant<EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom>
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Official notification --------------------
+
+    get everyPossibleNameWithAmount_officialNotification(): ValueOrStringConstant<EveryPossibleNameWithAmount_officialNotification>;
+
+    //endregion -------------------- Official notification --------------------
+    //region -------------------- Predefined message --------------------
+
+    get everyPossibleName_predefinedMessage(): ValueOrStringConstant<EveryPossibleEnglishName_PredefinedMessage>
+
+    //endregion -------------------- Predefined message --------------------
     //region -------------------- Version --------------------
 
     get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleSimpleName_Version>
@@ -167,9 +173,6 @@ export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName
 
 //region -------------------- Mii costume --------------------
 
-export type EveryConditionToUnlockIt_MiiCostume = readonly NonNullable<PossibleConditionToUnlockIt_MiiCostume>[];
-export type EveryPossibleMode_MiiCostume = readonly NonNullable<PossibleMode_MiiCostume>[];
-
 export type EveryPossibleCategory_MiiCostume = readonly PossibleEnglishName_MiiCostumeCategory[];
 
 //endregion -------------------- Mii costume --------------------
@@ -183,6 +186,16 @@ export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonl
 export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | '???'> | UnknownReference)[];
 
 //endregion -------------------- Mystery Mushroom --------------------
+//region -------------------- Official notification --------------------
+
+export type EveryPossibleNameWithAmount_officialNotification = readonly (PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount)[];
+
+//endregion -------------------- Official notification --------------------
+//region -------------------- Predefined message --------------------
+
+export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglishName_PredefinedMessage[];
+
+//endregion -------------------- Predefined message --------------------
 //region -------------------- Version --------------------
 
 export type EveryPossibleSimpleName_Version = readonly PossibleName_Version[];

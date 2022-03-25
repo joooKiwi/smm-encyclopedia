@@ -7,6 +7,7 @@ import DisplayViewRouteButton          from './DisplayView.routeButton';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from '../app/tools/images/Image';
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
+import {Fragment}                      from 'react';
 
 interface DisplayViewBodyProperties
     extends ReactProperty, ModalPropertiesWithDiv {
@@ -76,6 +77,20 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 <div className="btn-group col-12">
                     <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mystery Mushrooms', {
                         pluralName: <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushroom{/*TODO add Mystery Mushroom (plural name)*/}</span>,
+                    },)} id={id} divId={divId}/>
+                </div>
+            </div>
+            <div id="display-other-container" className="container">
+                <h3 className="text-center text-decoration-underline pb-2">--Other--</h3>
+                <div className="btn-group col-6">
+                    <DisplayViewRouteButton routeName={'everyCourseTags'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every course tags', {
+                        course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
+                        tags: <Fragment key="every course tag (plural lowercase course)">--tags--</Fragment>,//TODO add tag reference
+                    },)} id={id} divId={divId}/>
+                </div>
+                <div className="btn-group col-6">
+                    <DisplayViewRouteButton routeName={'everyPredefinedMessages'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every predefined messages', {
+                        predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
                     },)} id={id} divId={divId}/>
                 </div>
             </div>
