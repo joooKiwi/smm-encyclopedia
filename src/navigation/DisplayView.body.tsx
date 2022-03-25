@@ -6,8 +6,6 @@ import type {ReactProperty}          from '../util/react/ReactProperty';
 import DisplayViewRouteButton          from './DisplayView.routeButton';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from '../app/tools/images/Image';
-import {TranslationUtility}            from '../lang/components/TranslationUtility';
-import {Fragment}                      from 'react';
 
 interface DisplayViewBodyProperties
     extends ReactProperty, ModalPropertiesWithDiv {
@@ -24,74 +22,84 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
             <div id="display-entity-container" className="container">
                 <h3 className="text-center text-decoration-underline pb-2">{/*{translation('Entity')}*/}--Entity--</h3>
                 <div className="btn-group col-12">
-                    <DisplayViewRouteButton routeName={'everyEntities'} value={translation('Display every entities')} id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everyEntities'} value={'--Entity--'}//TODO add entity translation
+                                            tooltipValue={translation('Display every entities')}
+                                            elementId="displayView-entity-button" id={id} divId={divId}/>
+                    {/*TODO add other predefined group of entities*/}
                 </div>
                 <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyCategories'} value={translation('Display every entity categories')} id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everyCategories'} value={translation('Category')}
+                                            tooltipValue={translation('Display every entity categories')}
+                                            elementId="displayView-entityCategory-button" id={id} divId={divId}/>
                 </div>
                 <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyGroups'} value={translation('Display every entity groups')} id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everyGroups'} value={'--Group--'}//TODO add group translation
+                                            tooltipValue={translation('Display every entity groups')}
+                                            elementId="displayView-entityGroup-button" id={id} divId={divId}/>
                 </div>
                 <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyLimits'} value={translation('Display every limits')} id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everyLimits'} value={translation('Limit')}
+                                            tooltipValue={translation('Display every limits')}
+                                            elementId="displayView-entityLimit-button" id={id} divId={divId}/>
                 </div>
                 <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyThemes'} value={translation('Display every themes')} id={id} divId={divId}/>
-                </div>
-            </div>
-            <div id="display-soundEffect-container" className="container">
-                <h3 className="text-center text-decoration-underline pb-2">{translation('Sound effect')}</h3>
-                <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everySoundEffects'} value={translation('Display every sound effects')} id={id} divId={divId}/>
-                </div>
-                <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everySoundEffectCategories'} value={translation('Display every sound effect categories')} id={id}
-                                            divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everyThemes'} value={'--Course & world theme--'}//TODO add course & world theme translation
+                                            tooltipValue={translation('Display every themes')}
+                                            elementId="displayView-theme-button" id={id} divId={divId}/>
                 </div>
             </div>
             <div id="display-game-container" className="container">
                 <h3 className="text-center text-decoration-underline pb-2">{translation('Game')}</h3>
-                <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyGameReferences'} value={translation('Display every game references')} id={id} divId={divId}/>
-                </div>
-                <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyGameStyles'} value={translation('Display every game styles')} id={id} divId={divId}/>
-                </div>
-            </div>
-            <div id="display-miiCostume-container" className="container">
-                <h3 className="text-center text-decoration-underline pb-2">{/*TranslationUtility.replaceAndInterpretTranslation(translation, 'Mii costume',{
-                  name:<span key="miiCostume-name" className="text-decoration-underline">Mii costume{/*TODO add Mii costume (singular name)*//*}</span>
-                },)*/}--Mii costume--</h3>
-                <div className="btn-group col-12">
-                    <DisplayViewRouteButton routeName={'everyMiiCostumes'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mii costumes', {
-                        pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">Mii costumes{/*TODO add Mii costume (plural name)*/}</span>,
-                    },)} id={id} divId={divId}/>
-                </div>
-            </div>
-            <div id="display-miiCostume-container" className="container">
-                <h3 className="text-center text-decoration-underline pb-2">{/*TranslationUtility.replaceAndInterpretTranslation(translation, 'Mystery Mushroom',{
-                  name:<span key="miiCostume-name" className="text-decoration-underline">Mystery Mushroom{/*TODO add Mystery Mushroom (singular name)*//*}</span>
-                },)*/}--Mystery Mushroom--
-                    <sup><Image key="mysteryMushroom-image" source="/entity/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
-                </h3>
-                <div className="btn-group col-12">
-                    <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mystery Mushrooms', {
-                        pluralName: <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushroom{/*TODO add Mystery Mushroom (plural name)*/}</span>,
-                    },)} id={id} divId={divId}/>
+                <div key="button group container (game)" id="game-buttonGroup-container" className="btn-group col-12" role="group">
+                    <DisplayViewRouteButton routeName={'everyGameReferences'} value={translation('Game reference')}
+                                            tooltipValue={translation('Display every game references')}
+                                            elementId="displayView-gameReference-button" id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everyGameStyles'} value={translation('Game style')}
+                                            tooltipValue={translation('Display every game styles')}
+                                            elementId="displayView-gameStyle-button" id={id} divId={divId}/>
                 </div>
             </div>
             <div id="display-other-container" className="container">
                 <h3 className="text-center text-decoration-underline pb-2">--Other--</h3>
-                <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyCourseTags'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every course tags', {
-                        course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
-                        tags: <Fragment key="every course tag (plural lowercase course)">--tags--</Fragment>,//TODO add tag reference
-                    },)} id={id} divId={divId}/>
+                <div key="button group container (mii costume)" id="miiCostume-buttonGroup-container" className="btn-group col-12" role="group">
+                    <DisplayViewRouteButton routeName={'everyMiiCostumes'} value="--Mii costume--"//TODO add Mii costume reference
+                                            tooltipValue={translation('Display every Mii costumes', {pluralName: '--Mii costumes--',},)}//TODO add Mii costume reference
+                                            elementId="displayView-miiCostume-button" id={id} divId={divId}/>
+                    {/*TODO add category route for the Mii costume*/}
                 </div>
-                <div className="btn-group col-6">
-                    <DisplayViewRouteButton routeName={'everyPredefinedMessages'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every predefined messages', {
-                        predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
-                    },)} id={id} divId={divId}/>
+                <div key="button group container (mystery mushroom)" id="mysteryMushroom-buttonGroup-container" className="btn-group col-12" role="group">
+                    <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={<>--Mystery Mushroom--{/*TODO add Mystery Mushroom reference*/}
+                        <sup><Image key="mysteryMushroom-image" source="/entity/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
+                    </>}
+                                            tooltipValue={translation('Display every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--',},)}//TODO add Mystery Mushroom reference
+                                            elementId="displayView-mysteryMushroom-button" id={id} divId={divId}/>
+                    {/*TODO add other options for the Mystery Mushroom*/}
+                </div>
+                <div key="button group container (sound effect)" id="soundEffect-buttonGroup-container" className="btn-group col-12" role="group">
+                    <DisplayViewRouteButton routeName={'everySoundEffects'} value={translation('Sound effect')}
+                                            tooltipValue={translation('Display every sound effects')}
+                                            elementId="displayView-soundEffect-button" id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName={'everySoundEffectCategories'} value={translation('Category')}
+                                            tooltipValue={translation('Display every sound effect categories')}
+                                            elementId="displayView-soundEffectCategory-button" id={id} divId={divId}/>
+                </div>
+                <div key="button group container (course tag (SMM2))" id="courseTag-buttonGroup-container" className="btn-group col-6" role="group">
+                    <DisplayViewRouteButton routeName={'everyCourseTags'} value={translation('Course tag', {
+                        Course: '--Course--',//TODO add course reference
+                        course: '--course--',//TODO add course reference
+                        Tag: '--tag--',//TODO add tag reference
+                        tag: '--tag--',//TODO add tag reference
+                    },)}
+                                            tooltipValue={translation('Display every course tags', {
+                                                course: '--course--',//TODO add course reference
+                                                tags: '--tags--',//TODO add tag reference
+                                            })}
+                                            elementId="displayView-courseTag-button" id={id} divId={divId}/>
+                </div>
+                <div key="button group container (predefined message (SMM2))" id="predefinedMessage-buttonGroup-container" className="btn-group col-6" role="group">
+                    <DisplayViewRouteButton routeName={'everyPredefinedMessages'} value={'--predefined message--'}//TODO add predefined message reference
+                                            tooltipValue={translation('Display every predefined messages', {predefinedMessages: '--predefined messages--',},)}//TODO add predefined message reference
+                                            elementId="displayView-predefinedMessage-button" id={id} divId={divId}/>
                 </div>
             </div>
         </div>
