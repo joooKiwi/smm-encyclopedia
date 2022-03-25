@@ -467,6 +467,7 @@ export class Characters
         return Characters;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.spaceEvenCharacters.includes(value as never)
@@ -490,6 +491,8 @@ export class Characters
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

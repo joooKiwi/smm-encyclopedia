@@ -196,6 +196,7 @@ export abstract class GameStyles
         return GameStyles;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
@@ -219,6 +220,7 @@ export abstract class GameStyles
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

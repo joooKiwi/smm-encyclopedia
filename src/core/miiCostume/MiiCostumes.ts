@@ -353,6 +353,7 @@ export class MiiCostumes
         return MiiCostumes;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
@@ -377,6 +378,7 @@ export class MiiCostumes
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

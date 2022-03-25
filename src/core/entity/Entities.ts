@@ -3030,6 +3030,7 @@ export class Entities
         return Entities;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     public static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
@@ -3052,6 +3053,8 @@ export class Entities
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

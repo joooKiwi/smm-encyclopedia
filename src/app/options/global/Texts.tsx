@@ -137,6 +137,7 @@ export abstract class Texts
         return Texts;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
@@ -159,6 +160,8 @@ export abstract class Texts
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

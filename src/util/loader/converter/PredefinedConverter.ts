@@ -291,6 +291,7 @@ export abstract class PredefinedConverter
         return PredefinedConverter;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.simpleName === value.toLowerCase())
@@ -313,6 +314,7 @@ export abstract class PredefinedConverter
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

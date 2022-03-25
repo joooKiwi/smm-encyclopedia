@@ -838,6 +838,8 @@ export abstract class EveryLanguages
         return EveryLanguages;
     }
 
+    //region -------------------- Enum default methods --------------------
+
     public static get default(): EveryLanguages {
         return Enum.getNonNullDefaultOn(EveryLanguages);
     }
@@ -850,6 +852,8 @@ export abstract class EveryLanguages
         return Enum.setNonNullDefaultOn(EveryLanguages, value,);
     }
 
+    //endregion -------------------- Enum default methods --------------------
+    //region -------------------- Enum value methods --------------------
 
     public static _getValueByString(value: string,): | EveryLanguages | null {
         return this.values.find(enumerable => enumerable.projectAcronym === value
@@ -875,6 +879,8 @@ export abstract class EveryLanguages
     public static get values(): EnumArray {
         return Enum.getValuesOn(EveryLanguages);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

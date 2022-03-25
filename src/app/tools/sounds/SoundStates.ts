@@ -87,6 +87,7 @@ export abstract class SoundStates
         return SoundStates;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     public static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
@@ -109,6 +110,8 @@ export abstract class SoundStates
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

@@ -122,6 +122,7 @@ export class PredefinedMessages
         return PredefinedMessages;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
@@ -145,6 +146,7 @@ export class PredefinedMessages
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

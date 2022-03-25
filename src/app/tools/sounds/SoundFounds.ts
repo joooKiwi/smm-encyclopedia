@@ -138,6 +138,8 @@ export abstract class SoundFounds
         return SoundFounds;
     }
 
+    //region -------------------- Enum default methods --------------------
+
     public static get default(): SoundFounds {
         return Enum.getNonNullDefaultOn(this);
     }
@@ -150,6 +152,8 @@ export abstract class SoundFounds
         return Enum.setNonNullDefaultOn(this, value,);
     }
 
+    //endregion -------------------- Enum default methods --------------------
+    //region -------------------- Enum value methods --------------------
 
     public static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
@@ -172,6 +176,8 @@ export abstract class SoundFounds
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

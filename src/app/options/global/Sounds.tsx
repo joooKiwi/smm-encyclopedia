@@ -86,6 +86,7 @@ export abstract class Sounds
         return Sounds;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
@@ -108,6 +109,8 @@ export abstract class Sounds
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

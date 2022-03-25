@@ -88,6 +88,7 @@ export class GameStyles
         return GameStyles;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByEnumerable(value: Enumerable,) {
         if (value instanceof OriginalGameStyles)
@@ -113,6 +114,7 @@ export class GameStyles
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

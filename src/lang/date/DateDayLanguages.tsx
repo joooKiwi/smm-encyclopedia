@@ -197,10 +197,14 @@ export abstract class DateDayLanguages
         return DateDayLanguages;
     }
 
+    //region -------------------- Enum default methods --------------------
+
     public static get default(): DateDayLanguages {
         return this.getValue(ProjectLanguages.default)!;
     }
 
+    //endregion -------------------- Enum default methods --------------------
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByEnumerable(value: Enumerable,) {
         return value instanceof ProjectLanguages
@@ -227,6 +231,7 @@ export abstract class DateDayLanguages
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

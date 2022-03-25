@@ -276,6 +276,8 @@ export abstract class MiiCostumeAppOption
         return MiiCostumeAppOption;
     }
 
+    //region -------------------- Enum value methods --------------------
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -292,6 +294,8 @@ export abstract class MiiCostumeAppOption
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

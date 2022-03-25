@@ -373,6 +373,8 @@ export class ProjectLanguages
         return ProjectLanguages;
     }
 
+    //region -------------------- Enum default methods --------------------
+
     public static get default(): ProjectLanguages {
         return this.getValue(EveryLanguages.default)!;
     }
@@ -389,6 +391,8 @@ export class ProjectLanguages
         return this;
     }
 
+    //endregion -------------------- Enum default methods --------------------
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.getValue(EveryLanguages.getValue(value));
@@ -414,11 +418,11 @@ export class ProjectLanguages
         return Enum.getValueOn<ProjectLanguages>(this, value,);
     }
 
-
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
 
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

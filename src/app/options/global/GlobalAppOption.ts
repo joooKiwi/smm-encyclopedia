@@ -389,6 +389,7 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
         return GlobalAppOption;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
@@ -406,6 +407,8 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

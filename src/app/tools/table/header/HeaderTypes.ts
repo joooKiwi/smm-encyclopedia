@@ -69,6 +69,7 @@ export abstract class HeaderTypes
         return HeaderTypes;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     public static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.simpleName === value)
@@ -91,6 +92,8 @@ export abstract class HeaderTypes
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();

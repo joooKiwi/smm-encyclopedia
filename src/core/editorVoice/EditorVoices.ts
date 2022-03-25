@@ -914,6 +914,7 @@ export class EditorVoices
         return EditorVoices;
     }
 
+    //region -------------------- Enum value methods --------------------
 
     protected static _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
@@ -923,7 +924,7 @@ export class EditorVoices
     protected static _getValueByEnumerable(value: Enumerable,) {
         return value instanceof Import.Entities
             ? this.values.find(enumerable => (enumerable.entityReferences.references as readonly Entities[]).includes(value))
-                ?? null
+            ?? null
             : null;
     }
 
@@ -943,6 +944,8 @@ export class EditorVoices
     public static get values(): EnumArray {
         return Enum.getValuesOn(this);
     }
+
+    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
