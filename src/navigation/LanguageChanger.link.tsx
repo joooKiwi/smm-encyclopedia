@@ -19,7 +19,7 @@ export interface LanguageChangerLinkProperties
  * @reactComponent
  */
 export default function LanguageChangerLink({language, callbackToSetLanguage,}: LanguageChangerLinkProperties,) {
-    const childrenLanguages = language.language.children;
+    const childrenLanguages = (language.language.parent ?? language.language).children;
     const englishNameAsId = StringContainer.getInHtml(language.englishName);
 
     if (childrenLanguages.length === 0)
