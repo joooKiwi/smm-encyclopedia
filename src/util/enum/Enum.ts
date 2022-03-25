@@ -399,8 +399,8 @@ export abstract class Enum<O extends number = number, N extends string = string,
      * @see Enum._getValueByEnumerable
      * @see Enum._PARENT
      */
-    public static getValueOn<I extends Enumerable, IS extends EnumerableStatic<I['ordinal'], I['name'], any> = EnumerableStatic<I['ordinal'], I['name'], any>, >(instance: IS, value: | number | I['ordinal'] | string | I['name'] | I | object | null | undefined,): | I | null
-    public static getValueOn<I extends Enum, >(instance: EnumerableStatic & typeof Enum, value: | number | I['ordinal'] | string | I['name'] | I | object | null | undefined,): | I | null {
+    public static getValueOn<I extends Enumerable, IS extends EnumerableStatic<I['ordinal'], I['name'], any> = EnumerableStatic<I['ordinal'], I['name'], any>, >(instance: IS, value: | number | I['ordinal'] | string | I['name'] | boolean | I | object | null | undefined,): | I | null
+    public static getValueOn<I extends Enum, >(instance: EnumerableStatic & typeof Enum, value: | number | I['ordinal'] | string | I['name'] | boolean | I | object | null | undefined,): | I | null {
         if (value == null)
             return null;
 

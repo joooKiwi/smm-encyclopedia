@@ -61,6 +61,17 @@ export class ImageAnimations
         return ImageAnimations;
     }
 
+
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.value === value)
+            ?? null;
+    }
+
+    protected static _getValueByBoolean(value: boolean,) {
+        return this.values.find(enumerable => enumerable.value === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -71,17 +82,7 @@ export class ImageAnimations
     public static getValue(value: PossibleNonNullableValue,): ImageAnimations
     public static getValue(value: PossibleValue,): | ImageAnimations | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(enumerable => enumerable.value === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this[value] ?? null
-                    : typeof value == 'boolean'
-                        ? this.values.find(enumerable => enumerable.value === value)
-                        : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

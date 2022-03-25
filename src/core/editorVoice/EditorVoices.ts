@@ -1,6 +1,7 @@
 import type {ClassWithEditorVoiceSound}                                                                                                                                                                  from './ClassWithEditorVoiceSound';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EditorVoices.types';
+import type {Enumerable}                                                                                                                                                                                 from '../../util/enum/Enumerable';
 import type {EntityReferenceHolder, PossibleEntityReferences_Received}                                                                                                                                   from './holder/EntityReferenceHolder';
 import type {EditorVoiceSound, PossibleSoundReceivedOnFactory}                                                                                                                                           from './EditorVoiceSound';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
@@ -914,6 +915,18 @@ export class EditorVoices
     }
 
 
+    protected static _getValueByString(value: string,) {
+        return this.values.find(enumerable => enumerable.englishName === value)
+            ?? null;
+    }
+
+    protected static _getValueByEnumerable(value: Enumerable,) {
+        return value instanceof Import.Entities
+            ? this.values.find(enumerable => (enumerable.entityReferences.references as readonly Entities[]).includes(value))
+                ?? null
+            : null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -924,18 +937,7 @@ export class EditorVoices
     public static getValue(value: PossibleNonNullableValue,): EditorVoices
     public static getValue(value: PossibleValue,): | EditorVoices | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? this.values.find(enumerable => enumerable.englishName === value)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value instanceof Import.Entities
-                        ? this.values.find(enumerable => (enumerable.entityReferences.references as readonly Entities[]).includes(value))
-                            ?? null
-                        : value;
+        return Enum.getValueOn<EditorVoices>(this, value,);
     }
 
     public static get values(): EnumArray {

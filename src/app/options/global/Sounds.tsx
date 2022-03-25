@@ -86,6 +86,12 @@ export abstract class Sounds
         return Sounds;
     }
 
+
+    protected static _getValueByBoolean(value: boolean,) {
+        return this.values.find(enumerable => enumerable.value === value)
+            ?? null;
+    }
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -96,16 +102,7 @@ export abstract class Sounds
     public static getValue(value: PossibleNonNullableValue,): Sounds
     public static getValue(value: PossibleValue,): | Sounds | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? null
-                : typeof value === 'number'
-                    ? this[value] ?? null
-                    : typeof value == 'boolean'
-                        ? this.values.find(enumerable => enumerable.value === value)
-                        : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {

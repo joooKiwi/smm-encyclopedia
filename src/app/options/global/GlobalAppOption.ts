@@ -389,6 +389,7 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
         return GlobalAppOption;
     }
 
+
     public static getValue(nullValue: | null | undefined,): null
     public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
     public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
@@ -399,14 +400,7 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     public static getValue(value: PossibleNonNullableValue,): GlobalAppOption
     public static getValue(value: PossibleValue,): | GlobalAppOption | null
     public static getValue(value: PossibleValue,) {
-        return value == null
-            ? null
-            : typeof value === 'string'
-                ? Reflect.get(this, value.toUpperCase(),)
-                    ?? null
-                : typeof value === 'number'
-                    ? this.values[value] ?? null
-                    : value;
+        return Enum.getValueOn(this, value,);
     }
 
     public static get values(): EnumArray {
