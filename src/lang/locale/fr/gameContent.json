@@ -11,6 +11,7 @@
   "Every game references":         "Toutes les références de jeu",
   "Every games":                   "Tous les jeux",
   "Every game styles":             "Tous les styles de jeu",
+  "Every course tags":             "Tous les {{tags}} de {{course}}",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
@@ -152,5 +153,8 @@
   "Other game references": "Autres références de jeu",
 
   "Wind effect (night desert)": "Effet de vent ({{night}} du {{desert}})",
-  "Effect (night)":             "Effet ({{night}})"
+  "Effect (night)":             "Effet ({{night}})",
+
+  "Course tag":       "{{Tag}} de {{course}}",
+  "First appearance": "Première apparition"
 }

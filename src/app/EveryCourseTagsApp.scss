@@ -1,0 +1,32 @@
+#courseTag-container {
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    margin: var(--bs-spacer-md);
+
+    .courseTag-container {
+      padding: var(--bs-spacer-sm);
+
+      > span {
+        background-color: var(--bs-primary-300);
+        padding: var(--bs-spacer-md);
+        width: 100%;
+
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: baseline;
+
+        > sub {
+          color: RGBA(var(--bs-dark-rgb), 50%,);
+        }
+      }
+
+    }
+
+  }
+
+}

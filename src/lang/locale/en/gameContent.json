@@ -11,6 +11,7 @@
   "Every game references":         "Every game references",
   "Every games":                   "Every games",
   "Every game styles":             "Every game styles",
+  "Every course tags":             "Every {{course}} {{tags}}",
 
   "Empty entity":             "Empty entity",
   "Empty entity category":    "Empty entity category",
@@ -32,6 +33,7 @@
   "Display every game references":         "Display every game references",
   "Display every games":                   "Display every games",
   "Display every game styles":             "Display every game styles",
+  "Display every course tags":             "Display every {{course}} {{tags}}",
 
 
   "Category": "Category",
@@ -152,5 +154,9 @@
   "Other game references": "Other game references",
 
   "Wind effect (night desert)": "Wind effect ({{night}} {{desert}})",
-  "Effect (night)":             "Effect ({{night}})"
+  "Effect (night)":             "Effect ({{night}})",
+
+  "Course tag":         "{{Course}} {{tag}}",
+  "Is an official tag": "Is an official {{tag}}",
+  "First appearance":   "First appearance"
 }

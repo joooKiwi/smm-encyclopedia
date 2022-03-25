@@ -7,6 +7,7 @@ import DisplayViewRouteButton          from './DisplayView.routeButton';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from '../app/tools/images/Image';
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
+import {Fragment}                      from 'react';
 
 interface DisplayViewBodyProperties
     extends ReactProperty, ModalPropertiesWithDiv {
@@ -76,6 +77,20 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 <div className="btn-group col-12">
                     <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every Mystery Mushrooms', {
                         pluralName: <span key="mysteryMushroom-pluralName" className="text-decoration-underline">Mystery Mushroom{/*TODO add Mystery Mushroom (plural name)*/}</span>,
+                    },)} id={id} divId={divId}/>
+                </div>
+            </div>
+            <div id="display-other-container" className="container">
+                <h3 className="text-center text-decoration-underline pb-2">{TranslationUtility.replaceAndInterpretTranslation(translation, 'Course tag', {
+                    Course: <Fragment key="course tag (uppercase course)">--Course--</Fragment>,//TODO add course reference
+                    course: <Fragment key="course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
+                    Tag: <Fragment key="course tag (uppercase tag)">--Tag--</Fragment>,//TODO add tag reference
+                    tag: <Fragment key="course tag (lowercase tag)">--tag--</Fragment>,//TODO add tag reference
+                },)}</h3>
+                <div className="btn-group col-6">
+                    <DisplayViewRouteButton routeName={'everyCourseTags'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every course tags', {
+                        course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
+                        tags: <Fragment key="every course tag (plural lowercase course)">--tags--</Fragment>,//TODO add tag reference
                     },)} id={id} divId={divId}/>
                 </div>
             </div>

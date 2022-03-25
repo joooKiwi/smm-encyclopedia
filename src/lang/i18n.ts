@@ -13,7 +13,9 @@ import frenchContent                   from './locale/fr/content.json';
 import frenchGameContent               from './locale/fr/gameContent.json';
 import frenchEntityContent             from './locale/fr/entityContent.json';
 import canadianFrenchContent           from './locale/fr/fr_CA/content.json';
+import canadianFrenchGameContent       from './locale/fr/fr_CA/gameContent.json';
 import europeanFrenchContent           from './locale/fr/fr_EU/content.json';
+import europeanFrenchGameContent       from './locale/fr/fr_EU/gameContent.json';
 import germanLanguage                  from './locale/de/language.json';
 import germanContent                   from './locale/de/content.json';
 import germanGameContent               from './locale/de/gameContent.json';
@@ -101,9 +103,11 @@ const resources: Resource = {
     },
     fr_CA: {
         content: canadianFrenchContent,
+        gameContent: canadianFrenchGameContent,
     },
     fr_EU: {
         content: europeanFrenchContent,
+        gameContent: europeanFrenchGameContent,
     },
 
     //endregion -------------------- French --------------------

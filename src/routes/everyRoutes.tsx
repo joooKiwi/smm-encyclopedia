@@ -3,6 +3,7 @@ import {lazy} from 'react';
 import {SimpleRouteContainer} from './SimpleRoute.container';
 
 const AboutApp =                       lazy(() => import('../app/AboutApp'));
+const EveryCourseTagsApp =             lazy(() => import('../app/EveryCourseTagsApp'));
 const EveryEntitiesApp =               lazy(() => import('../app/EveryEntitiesApp'));
 const EveryEntityCategoriesApp =       lazy(() => import('../app/EveryEntityCategoriesApp'));
 const EveryEntityGroupApp =            lazy(() => import('../app/EveryEntityGroupApp'));
@@ -36,4 +37,6 @@ export const everySimpleRoutes = [
     SimpleRouteContainer.newInstance('everyMiiCostumes',           '/every/miiCostume',           ()=> <EveryMiiCostumeApp/>,           ),
 
     SimpleRouteContainer.newInstance('everyMysteryMushrooms',      '/every/mysteryMushroom',      ()=> <EveryMysteryMushroomsApp/>,     ),
+
+    SimpleRouteContainer.newInstance('everyCourseTags',            '/every/courseTag',            ()=> <EveryCourseTagsApp/>,           ),
 ] as const;

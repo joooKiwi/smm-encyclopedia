@@ -1,4 +1,6 @@
 import type {ClassThatIsAvailableFromTheStartContainer} from '../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
+import type {CourseTagLoader}                           from '../core/courseTag/CourseTag.loader';
+import type {CourseTags}                                from '../core/courseTag/CourseTags';
 import type {EntityBehaviourLoader}                     from '../core/behaviour/EntityBehaviour.loader';
 import type {EntityBehaviours}                          from '../core/behaviour/EntityBehaviours';
 import type {EntityCategoryLoader}                      from '../core/entityCategory/EntityCategory.loader';
@@ -138,6 +140,12 @@ export class DynamicImporter {
     #OfficialNotifications?: typeof OfficialNotifications;
 
     //endregion -------------------- "Official notification" attributes --------------------
+    //region -------------------- "Course tag" attributes --------------------
+
+    #CourseTags?: typeof CourseTags;
+    #CourseTagLoader?: typeof CourseTagLoader;
+
+    //endregion -------------------- "Course tag" attributes --------------------
     //region -------------------- Version attributes --------------------
 
     #Versions?: typeof Versions;
@@ -303,6 +311,17 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Official notification" getter methods --------------------
+    //region -------------------- "Course tag" attributes --------------------
+
+    public get CourseTags(): typeof CourseTags {
+        return this.#CourseTags ??= require('../core/courseTag/CourseTags').CourseTags;
+    }
+
+    public get CourseTagLoader(): typeof CourseTagLoader {
+        return this.#CourseTagLoader ??= require('../core/courseTag/CourseTag.loader').CourseTagLoader;
+    }
+
+    //endregion -------------------- "Course tag" attributes --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {
