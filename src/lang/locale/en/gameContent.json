@@ -12,6 +12,7 @@
   "Every games":                   "Every games",
   "Every game styles":             "Every game styles",
   "Every course tags":             "Every {{course}} {{tags}}",
+  "Every predefined messages":     "Every {{predefinedMessages}}",
 
   "Empty entity":             "Empty entity",
   "Empty entity category":    "Empty entity category",
@@ -34,6 +35,7 @@
   "Display every games":                   "Display every games",
   "Display every game styles":             "Display every game styles",
   "Display every course tags":             "Display every {{course}} {{tags}}",
+  "Display every predefined messages":     "Display every {{predefinedMessages}}",
 
 
   "Category": "Category",

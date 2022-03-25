@@ -74,11 +74,16 @@ export type EmptyMiiCostumeName = 'Empty Mii costume';
 export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category';
 
 //endregion -------------------- Mii costume category types --------------------
-//region -------------------- Mii costume category types --------------------
+//region -------------------- Official notification types --------------------
 
 export type EmptyOfficialNotificationName = 'Empty official notification';
 
-//endregion -------------------- Mii costume category types --------------------
+//endregion -------------------- Official notification types --------------------
+//region -------------------- Predefined message types --------------------
+
+export type EmptyPredefinedMessageName = 'Empty predefined message';
+
+//endregion -------------------- Predefined message types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -102,6 +107,8 @@ export type EveryPossibleEmptyName =
     | EmptyMiiCostumeName
     | EmptyMiiCostumeCategoryName
 
-    | EmptyOfficialNotificationName;
+    | EmptyOfficialNotificationName
+
+    | EmptyPredefinedMessageName;
 
 //endregion -------------------- Empty names types --------------------

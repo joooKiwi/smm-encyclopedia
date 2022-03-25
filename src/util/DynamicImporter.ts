@@ -22,6 +22,8 @@ import type {MysteryMushroomLoader}                     from '../core/mysteryMus
 import type {MysteryMushrooms}                          from '../core/mysteryMushroom/MysteryMushrooms';
 import type {NightEffects}                              from '../core/nightEffect/NightEffects';
 import type {OfficialNotifications}                     from '../core/officialNotification/OfficialNotifications';
+import type {PredefinedMessageLoader}                   from '../core/predefinedMessage/PredefinedMessage.loader';
+import type {PredefinedMessages}                        from '../core/predefinedMessage/PredefinedMessages';
 import type {SoundEffectCategories}                     from '../core/soundEffectCategory/SoundEffectCategories';
 import type {SoundEffectCategoryLoader}                 from '../core/soundEffectCategory/SoundEffectCategory.loader';
 import type {SoundEffectLoader}                         from '../core/soundEffect/SoundEffect.loader';
@@ -146,6 +148,12 @@ export class DynamicImporter {
     #CourseTagLoader?: typeof CourseTagLoader;
 
     //endregion -------------------- "Course tag" attributes --------------------
+    //region -------------------- "Predefined message" attributes --------------------
+
+    #PredefinedMessages?: typeof PredefinedMessages;
+    #PredefinedMessageLoader?: typeof PredefinedMessageLoader;
+
+    //endregion -------------------- "Predefined message" attributes --------------------
     //region -------------------- Version attributes --------------------
 
     #Versions?: typeof Versions;
@@ -322,6 +330,17 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Course tag" attributes --------------------
+    //region -------------------- "Predefined message" attributes --------------------
+
+    public get PredefinedMessages(): typeof PredefinedMessages {
+        return this.#PredefinedMessages ??= require('../core/predefinedMessage/PredefinedMessages').PredefinedMessages;
+    }
+
+    public get PredefinedMessageLoader(): typeof PredefinedMessageLoader {
+        return this.#PredefinedMessageLoader ??= require('../core/predefinedMessage/PredefinedMessage.loader').PredefinedMessageLoader;
+    }
+
+    //endregion -------------------- "Predefined message" attributes --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {

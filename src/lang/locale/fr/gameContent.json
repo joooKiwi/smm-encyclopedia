@@ -12,6 +12,7 @@
   "Every games":                   "Tous les jeux",
   "Every game styles":             "Tous les styles de jeu",
   "Every course tags":             "Tous les {{tags}} de {{course}}",
+  "Every predefined messages":     "Tous les {{predefinedMessages}}",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
@@ -33,6 +34,7 @@
   "Display every game references":         "Afficher toutes les références de jeu",
   "Display every games":                   "Afficher tous les jeux",
   "Display every game styles":             "Afficher tous les styles de jeu",
+  "Display every predefined messages":     "Afficher tous les {{predefinedMessages}}",
 
 
   "Category": "Catégorie",

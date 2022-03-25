@@ -1,4 +1,6 @@
-import type {EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleNameWithAmount_officialNotification, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {
+    EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleCategory_MiiCostume, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleNameWithAmount_officialNotification, EveryPossibleSimpleName_Version, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference
+} from './HeaderTypesForConvertorDefinition';
 
 import {Import} from '../../../util/DynamicImporter';
 
@@ -70,6 +72,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
 
     #everyPossibleNameWithAmount_officialNotification?: EveryPossibleNameWithAmount_officialNotification;
+
+    #everyPossibleName_predefinedMessage?: EveryPossibleEnglishName_PredefinedMessage;
 
     #everyPossibleName_version?: EveryPossibleSimpleName_Version;
 
@@ -250,6 +254,13 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     //endregion -------------------- Official notification --------------------
+    //region -------------------- Predefined message --------------------
+
+    public get everyPossibleName_predefinedMessage() {
+        return this.#everyPossibleName_predefinedMessage ??= Import.PredefinedMessages.everyEnglishNames;
+    }
+
+    //endregion -------------------- Predefined message --------------------
     //region -------------------- Version --------------------
 
     public get everyPossibleName_version() {
@@ -371,6 +382,11 @@ class HeaderTypesForConvertorForProduction
     public readonly everyPossibleNameWithAmount_officialNotification = HeaderTypesForConvertorForProduction.#STRING_VALUE;
 
     //endregion -------------------- Official notification --------------------
+    //region -------------------- Predefined message --------------------
+
+    public readonly everyPossibleName_predefinedMessage = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+
+    //endregion -------------------- Predefined message --------------------
     //region -------------------- Version --------------------
 
     public readonly everyPossibleName_version = HeaderTypesForConvertorForProduction.#STRING_VALUE;

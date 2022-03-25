@@ -81,16 +81,16 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 </div>
             </div>
             <div id="display-other-container" className="container">
-                <h3 className="text-center text-decoration-underline pb-2">{TranslationUtility.replaceAndInterpretTranslation(translation, 'Course tag', {
-                    Course: <Fragment key="course tag (uppercase course)">--Course--</Fragment>,//TODO add course reference
-                    course: <Fragment key="course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
-                    Tag: <Fragment key="course tag (uppercase tag)">--Tag--</Fragment>,//TODO add tag reference
-                    tag: <Fragment key="course tag (lowercase tag)">--tag--</Fragment>,//TODO add tag reference
-                },)}</h3>
+                <h3 className="text-center text-decoration-underline pb-2">--Other--</h3>
                 <div className="btn-group col-6">
                     <DisplayViewRouteButton routeName={'everyCourseTags'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every course tags', {
                         course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
                         tags: <Fragment key="every course tag (plural lowercase course)">--tags--</Fragment>,//TODO add tag reference
+                    },)} id={id} divId={divId}/>
+                </div>
+                <div className="btn-group col-6">
+                    <DisplayViewRouteButton routeName={'everyPredefinedMessages'} value={TranslationUtility.replaceAndInterpretTranslation(translation, 'Display every predefined messages', {
+                        predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
                     },)} id={id} divId={divId}/>
                 </div>
             </div>
