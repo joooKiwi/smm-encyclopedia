@@ -6,14 +6,19 @@ import type {ReactElement, ReactProperty} from '../util/react/ReactProperty';
 
 import {ModalInstance}   from '../bootstrap/modal/ModalInstance';
 import {route}           from '../routes/route';
+import Tooltip           from '../bootstrap/tooltip/Tooltip';
 import {TooltipInstance} from '../bootstrap/tooltip/TooltipInstance';
 
 interface DisplayViewRouteButtonProperty
     extends ReactProperty, ModalPropertiesWithDiv {
 
+    elementId: string
+
     routeName: EveryPossibleRouteNames
 
     value: | string | ReactElement
+
+    tooltipValue: string
 
 }
 
@@ -21,7 +26,7 @@ interface DisplayViewRouteButtonProperty
  * @param properties
  * @reactComponent
  */
-export default function DisplayViewRouteButton({routeName, value, id, divId,}: DisplayViewRouteButtonProperty,) {
+export default function DisplayViewRouteButton({routeName, value, tooltipValue, elementId, id, divId,}: DisplayViewRouteButtonProperty,) {
     const {pathname: pathName,} = useLocation();
 
     const key = `route button (${routeName})`;
@@ -29,10 +34,12 @@ export default function DisplayViewRouteButton({routeName, value, id, divId,}: D
     const isRouteSameFromPathName = routeValue === pathName;
 
     return isRouteSameFromPathName
-        ? <button key={key} className="btn btn-primary" disabled>{value}</button>
-        : <Link key={key} to={routeValue} className="btn btn-outline-primary"
-                onClick={() => {
-                    ModalInstance.getInstance(id).instance.hide();
-                    TooltipInstance.getInstance(divId).instance.hide();//FIXME, this throws an assertion error once the link is clicked.
-                }}>{value}</Link>;
+        ? <button key={key} id={elementId} className="btn btn-primary" disabled>{value}</button>
+        : <Tooltip option={{placement: 'top', title: tooltipValue,}} elementId={elementId}>
+            <Link key={key} id={elementId} to={routeValue} className="btn btn-outline-primary"
+                  onClick={() => {
+                      ModalInstance.getInstance(id).instance.hide();
+                      TooltipInstance.getInstance(divId).instance.hide();//FIXME, this throws an assertion error once the link is clicked.
+                  }}>{value}</Link>
+        </Tooltip>;
 }
