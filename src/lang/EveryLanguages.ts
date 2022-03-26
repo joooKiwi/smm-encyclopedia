@@ -634,7 +634,9 @@ export abstract class EveryLanguages
     }
 
     public get children(): PossibleChildrenLanguages {
-        return this.#children ??= EveryLanguages.values.filter(language => language.parent != null).filter(language => language.parent === this.parent) as unknown as PossibleChildrenLanguages;
+        return this.#children ??= EveryLanguages.values.filter(language => language.parent != null)
+            .filter(language => language !== this)
+            .filter(language => language.parent === this) as unknown as PossibleChildrenLanguages;
     }
 
     public get isCurrentLanguage(): boolean {
