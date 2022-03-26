@@ -1,6 +1,6 @@
 import './Name.component.scss';
 
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import type {NameProperties} from './Name.properties';
 
@@ -16,22 +16,17 @@ import NameListComponent    from './NameList.component';
  * @reactComponent
  * @see Name.toNameMap
  * @see ProjectLanguages.currentLanguage
+ * @todo move the name structure into the popover
  */
 export default function NameComponent({id, ...otherProperties}: NameProperties,) {
-    const [doesDisplaySpan, setDoesDisplaySpan,] = useState(false);
     const [doesDisplayPopover, setDoesDisplayPopover,] = useState(false);
-    useEffect(() => {
-        //FIXME remove this timeout and find a better implementation.
-        const timeoutId = setTimeout(() => setDoesDisplaySpan(true), 1,);
-        return () => clearTimeout(timeoutId);
-    });
     const {name,} = otherProperties;
 
     const elementId = `${id}-${StringContainer.getInHtml(name.english)}`;
     const listId = `${elementId}-list`;
 
     return <div key={`${elementId} - container`} id={`${elementId}-container`}>
-        <NamePopoverComponent id={elementId} listId={listId} doesDisplaySpan={doesDisplaySpan} setDoesDisplayPopover={setDoesDisplayPopover} otherProperties={otherProperties}/>
+        <NamePopoverComponent id={elementId} listId={listId} setDoesDisplayPopover={setDoesDisplayPopover} otherProperties={otherProperties}/>
         <NameListComponent name={name} id={elementId} listId={listId} doesDisplayPopover={doesDisplayPopover}/>
     </div>;
 }

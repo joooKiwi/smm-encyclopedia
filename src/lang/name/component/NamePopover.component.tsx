@@ -1,6 +1,9 @@
-import {Popover} from 'bootstrap';
+import {Popover}                                       from 'bootstrap';
+import {Component, type Dispatch, type SetStateAction} from 'react';
 
-import type {NamePopoverProperties, PopoverOrientation} from './Name.properties';
+import type {Name}                                                                         from '../Name';
+import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties';
+import type {ReactComponent}                                                               from '../../../util/react/ReactComponent';
 
 import ContentTranslationComponent from '../../components/ContentTranslationComponent';
 import {ProjectLanguages}          from '../../ProjectLanguages';
@@ -10,32 +13,76 @@ import TextPopover                 from '../../../bootstrap/popover/TextPopover'
 /**
  * @reactComponent
  */
-export default function NamePopoverComponent({id, listId, doesDisplaySpan, setDoesDisplayPopover, otherProperties,}: NamePopoverProperties,) {
-    const {name, popoverOrientation,} = otherProperties;
-    const listElement = document.getElementById(listId)!;
-    const currentLanguageTextContent = ProjectLanguages.currentLanguage.get<string>(name);
+export default class NamePopoverComponent
+    extends Component<NamePopoverProperties, NamePopoverStates>
+    implements ReactComponent {
 
-    return doesDisplaySpan
-        ? <ContentTranslationComponent>{translation =>
-            <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(listElement, popoverOrientation, translation('In other languages'),)}
-                         {...otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
-                {currentLanguageTextContent}
-            </TextPopover>
-        }</ContentTranslationComponent>
-        : <TextComponent key={`${id} - temporary`} content={currentLanguageTextContent}/>;
+    readonly #currentLanguageTextContent;
+
+    constructor(props: NamePopoverProperties,) {
+        super(props,);
+        this.#currentLanguageTextContent = ProjectLanguages.currentLanguage.get<string>(this.otherProperties.name);
+        this.state = {
+            element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
+        };
+    }
+
+    public get id(): string {
+        return this.props.id;
+    }
+
+    public get listId(): string {
+        return this.props.listId;
+    }
+
+    public get setDoesDisplayPopover(): Dispatch<SetStateAction<boolean>> {
+        return this.props.setDoesDisplayPopover;
+    }
+
+    public get otherProperties(): Omit<NameProperties, 'id'> {
+        return this.props.otherProperties;
+    }
+
+    public get name(): Name<string> {
+        return this.otherProperties.name;
+    }
+
+    public get popoverOrientation(): | PopoverOrientation | undefined {
+        return this.otherProperties.popoverOrientation;
+    }
+
+
+    public componentDidMount(): void {
+        const id = this.id;
+        const setDoesDisplayPopover = this.setDoesDisplayPopover;
+
+        this.setState({
+            element: <ContentTranslationComponent>{translation =>
+                <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, translation('In other languages'),)}
+                             {...this.otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
+                    {this.#currentLanguageTextContent}
+                </TextPopover>
+            }</ContentTranslationComponent>,
+        });
+    }
+
+    public render() {
+        return this.state.element;
+    }
+
 }
 
 /**
  * Create the option for the name popover
  *
- * @param element the element
+ * @param elementId the element id
  * @param popoverOrientation the {@link Popover popover} orientation
  * @param title popover title
  */
-function createOption(element: HTMLElement, popoverOrientation: | PopoverOrientation | undefined, title: string,): Partial<Popover.Options> {
+function createOption(elementId: string, popoverOrientation: | PopoverOrientation | undefined, title: string,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: title,
-        content: element,
+        content: document.getElementById(elementId)!,
         html: true,
         trigger: 'hover focus',
     };
