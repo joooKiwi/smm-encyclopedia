@@ -60,5 +60,7 @@ function AnyTranslationComponentBySimpleProperty<N extends Namespace, >({namespa
 function AnyTranslationComponentByProperty<N extends Namespace, >({property: {namespace, translationKey, replace,},}: AnyTranslationPropertyWithProperty<N>,) {
     const {t: translation,} = useTranslation(namespace);
 
+    //TODO remove (if possible) the "Type instantiation is excessively deep and possibly infinite."
+    // @ts-ignore
     return <>{TranslationUtility.replaceAndInterpretTranslation(translation, translationKey, replace,)}</>;
 }
