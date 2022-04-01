@@ -3,8 +3,8 @@ import type {Images}            from './options/global/Images';
 import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
 import type {ReactState}        from '../util/react/ReactState';
 import type {Sounds}            from './options/global/Sounds';
-import type {Texts}        from './options/global/Texts';
-import type {ViewDisplays} from './withInterpreter/ViewDisplays';
+import type {Texts}             from './options/global/Texts';
+import type {ViewDisplays}      from './withInterpreter/ViewDisplays';
 
 export interface AppStates
     extends ReactState {
