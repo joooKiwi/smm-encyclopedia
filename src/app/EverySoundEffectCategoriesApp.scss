@@ -1,0 +1,26 @@
+//TODO find better colors
+#soundEffectCategory-feelings-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-yellow);
+  }
+}
+#soundEffectCategory-stingers-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-orange);
+  }
+}
+#soundEffectCategory-reactions-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-green);
+  }
+}
+#soundEffectCategory-animations-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-pink);
+  }
+}
+#soundEffectCategory-music-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-blue);
+  }
+}

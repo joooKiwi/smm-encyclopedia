@@ -1,0 +1,24 @@
+//TODO find better colors
+#entityCategory-terrain-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-blue);
+  }
+}
+
+#entityCategory-item-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-pink);
+  }
+}
+
+#entityCategory-enemy-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-green);
+  }
+}
+
+#entityCategory-gizmo-container {
+  .simpleListElement-container, .cardListElement-container, {
+    background-color: var(--bs-yellow);
+  }
+}

@@ -1,50 +1,56 @@
-import type {SingleTableContent} from './tools/table/Table.types';
+import './EveryEntityCategoriesApp.scss';
 
-import AbstractApp                     from './AbstractApp';
-import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
+import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
+
+import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import {EntityCategories}              from '../core/entityCategory/EntityCategories';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
-import NameComponent                   from '../lang/name/component/Name.component';
-import Table                           from './tools/table/Table';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
  */
 export default class EveryEntityCategoriesApp
-    extends AbstractApp {
+    extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
 
-    //region -------------------- Methods --------------------
-
-    protected get content() {
-        const content = [] as SingleTableContent[];
-        let index = 1;
-        for (const enumeration of EntityCategories) {
-            const category = enumeration.reference;
-
-            content.push([enumeration.englishName,
-                <>{index}</>,
-                <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>,
-                <NameComponent id="name" name={category} popoverOrientation="left"/>,
-            ]);
-            index++;
-        }
-        return content;
+    public constructor(props: {},) {
+        super(props,);
+        this.state = {typeDisplayed: ViewDisplays.CARD_LIST,};
     }
 
-    //endregion -------------------- Methods --------------------
+    //region -------------------- Create methods --------------------
 
-    protected _mainContent() {
-        return <Table
-            id="entityCategory-table"
-            caption={<GameContentTranslationComponent translationKey="Every entity categories"/>}
-            headers={[
-                '#',
-                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-            ]}
-            content={this.content}
-        />;
+    protected _createKey(): string {
+        return 'entityCategory';
     }
+
+    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
+        return new class implements AppInterpreterWithCardList<EntityCategories> {
+
+            public get iterable(): IterableIterator<EntityCategories> {
+                return EntityCategories[Symbol.iterator]();
+            }
+
+            //region -------------------- List interpreter --------------------
+
+            public get createListTitleContent(): ReactElementOrString {
+                return <GameContentTranslationComponent translationKey="Every entity categories"/>;
+            }
+
+            //endregion -------------------- List interpreter --------------------
+            //region -------------------- Card list interpreter --------------------
+
+            public createCardListContent(enumerable: EntityCategories): ReactElement {
+                return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;
+            }
+
+            //endregion -------------------- Card list interpreter --------------------
+
+        }();
+    }
+
+    //region -------------------- Create methods --------------------
 
 }
