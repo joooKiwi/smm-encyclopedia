@@ -3,10 +3,18 @@ import type {Images}            from './options/global/Images';
 import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
 import type {ReactState}        from '../util/react/ReactState';
 import type {Sounds}            from './options/global/Sounds';
-import type {Texts}             from './options/global/Texts';
+import type {Texts}        from './options/global/Texts';
+import type {ViewDisplays} from './withInterpreter/ViewDisplays';
 
 export interface AppStates
     extends ReactState {
+
+}
+
+export interface AppWithVariableDisplayStates
+    extends AppStates {
+
+    typeDisplayed: ViewDisplays
 
 }
 
@@ -65,6 +73,7 @@ interface AppStateThatHaveACategory {
 }
 
 //endregion -------------------- Single states group --------------------
+//region -------------------- Specific states --------------------
 
 export interface EntityAppStates
     extends AppStates, AppStateThatHaveACategory {
@@ -128,3 +137,5 @@ export interface MysteryMushroomAppStates
     extends AppStates {
 
 }
+
+//endregion -------------------- Specific states --------------------
