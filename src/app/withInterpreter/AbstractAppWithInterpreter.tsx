@@ -1,8 +1,8 @@
 import './AbstractAppWithInterpreter.scss';
 
-import type {AppInterpreter}               from '../interpreter/AppInterpreter';
-import type {AppWithVariableDisplayStates} from '../AppStates.types';
-import type {ReactElement}                 from '../../util/react/ReactProperty';
+import type {AppInterpreter}                     from '../interpreter/AppInterpreter';
+import type {AppWithVariableDisplayStates}       from '../AppStates.types';
+import type {ReactElement, ReactElementOrString} from '../../util/react/ReactProperty';
 
 import AbstractApp    from '../AbstractApp';
 import {ViewDisplays} from './ViewDisplays';
@@ -79,12 +79,20 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
         </div>;
     }
 
+    protected abstract _createTitleContent(): ReactElementOrString;
+
     protected _mainContent(): ReactElement {
+        const typeDisplayed = this.typeDisplayed;
+
         return <div key={`${this._key} (sub main container)`} id="subMain-container">
             <aside id="viewChanger-container">
                 {this.__createViewDisplayGroup}
             </aside>
-            {this.typeDisplayed.createComponent(this,)}
+            <div id={`${this._key}-container`} className={`${typeDisplayed.htmlType}-container`}>
+                <h1 key={`${this._key} (title)`} id={`${this._key}-title`} className="app-title">{this._createTitleContent()}</h1>
+                <div key={`${this._key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
+            </div>
+
         </div>;
     }
 

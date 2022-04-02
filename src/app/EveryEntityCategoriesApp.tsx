@@ -26,6 +26,10 @@ export default class EveryEntityCategoriesApp
         return 'entityCategory';
     }
 
+    protected _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent translationKey="Every entity categories"/>;
+    }
+
     protected _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
         return new class implements AppInterpreterWithCardList<EntityCategories> {
 
@@ -33,13 +37,6 @@ export default class EveryEntityCategoriesApp
                 return EntityCategories[Symbol.iterator]();
             }
 
-            //region -------------------- List interpreter --------------------
-
-            public get createListTitleContent(): ReactElementOrString {
-                return <GameContentTranslationComponent translationKey="Every entity categories"/>;
-            }
-
-            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
             public createCardListContent(enumerable: EntityCategories): ReactElement {

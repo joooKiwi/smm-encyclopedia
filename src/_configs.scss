@@ -2,6 +2,20 @@
 @import '~bootstrap/scss/bootstrap';
 
 :root {
+  --entityCategory-terrain-bg-color: var(--bs-blue);
+  --entityCategory-item-bg-color: var(--bs-pink);
+  --entityCategory-ennemy-bg-color: var(--bs-green);
+  --entityCategory-gizmo-bg-color: var(--bs-yellow);
+
+  --soundEffectCategory-feelings-bg-color: var(--bs-yellow);
+  --soundEffectCategory-stingers-bg-color: var(--bs-orange);
+  --soundEffectCategory-reactions-bg-color: var(--bs-green);
+  --soundEffectCategory-animations-bg-color: var(--bs-pink);
+  --soundEffectCategory-music-bg-color: var(--bs-blue);
+
+}
+
+:root {
 
   //region -------------------- Spacer variables --------------------
 

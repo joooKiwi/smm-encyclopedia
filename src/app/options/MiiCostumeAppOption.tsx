@@ -23,6 +23,7 @@ import {Enum}                          from '../../util/enum/Enum';
 import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
+import {ViewDisplays}                  from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
@@ -207,6 +208,7 @@ export abstract class MiiCostumeAppOption
 
     public static get createDefaultState(): MiiCostumeAppStates {
         return {
+            typeDisplayed: ViewDisplays.TABLE,
             display: {
                 section: {
                     image: MiiCostumeAppOption.IMAGE._lastValueRetrieved,

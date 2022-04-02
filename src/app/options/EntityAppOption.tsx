@@ -27,9 +27,10 @@ import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {GameStyles}                    from '../../core/gameStyle/GameStyles';
 
-import {Games}  from '../../core/game/Games';
-import {Themes} from '../../core/theme/Themes';
-import {Times}  from '../../core/time/Times';
+import {Games}        from '../../core/game/Games';
+import {Themes}       from '../../core/theme/Themes';
+import {Times}        from '../../core/time/Times';
+import {ViewDisplays} from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
@@ -509,6 +510,7 @@ export abstract class EntityAppOption
 
     public static get createDefaultState(): EntityAppStates {
         return {
+            typeDisplayed: ViewDisplays.TABLE,
             display: {
                 section: {
                     images: EntityAppOption.IMAGES._lastValueRetrieved,

@@ -1,26 +1,26 @@
 //TODO find better colors
 #soundEffectCategory-feelings-container {
   .simpleListElement-container, .cardListElement-container, {
-    background-color: var(--bs-yellow);
+    background-color: var(--soundEffectCategory-feelings-bg-color);
   }
 }
 #soundEffectCategory-stingers-container {
   .simpleListElement-container, .cardListElement-container, {
-    background-color: var(--bs-orange);
+    background-color: var(--soundEffectCategory-stingers-bg-color);
   }
 }
 #soundEffectCategory-reactions-container {
   .simpleListElement-container, .cardListElement-container, {
-    background-color: var(--bs-green);
+    background-color: var(--soundEffectCategory-reactions-bg-color);
   }
 }
 #soundEffectCategory-animations-container {
   .simpleListElement-container, .cardListElement-container, {
-    background-color: var(--bs-pink);
+    background-color: var(--soundEffectCategory-animations-bg-color);
   }
 }
 #soundEffectCategory-music-container {
   .simpleListElement-container, .cardListElement-container, {
-    background-color: var(--bs-blue);
+    background-color: var(--soundEffectCategory-music-bg-color);
   }
 }

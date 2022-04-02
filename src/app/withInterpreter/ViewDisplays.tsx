@@ -71,7 +71,7 @@ export abstract class ViewDisplays
         return this.#type;
     }
 
-    public get htmlType() {
+    public get htmlType(): HTMLType {
         return this.#htmlType;
     }
 

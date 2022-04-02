@@ -76,7 +76,7 @@ interface AppStateThatHaveACategory {
 //region -------------------- Specific states --------------------
 
 export interface EntityAppStates
-    extends AppStates, AppStateThatHaveACategory {
+    extends AppStates, AppWithVariableDisplayStates, AppStateThatHaveACategory {
 
     display: {
         section: {
@@ -117,7 +117,7 @@ export interface SoundEffectAppStates
 }
 
 export interface MiiCostumeAppStates
-    extends AppStates, AppStateThatHaveACategory {
+    extends AppStates, AppWithVariableDisplayStates, AppStateThatHaveACategory {
 
     display: {
         section: {

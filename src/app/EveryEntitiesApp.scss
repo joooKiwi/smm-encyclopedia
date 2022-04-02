@@ -1,3 +1,21 @@
+.cardListName-content-container, .simpleListName-content-container {
+  &.entityCategory-Terrain {
+    background-color: var(--entityCategory-terrain-bg-color);
+  }
+
+  &.entityCategory-Item {
+    background-color: var(--entityCategory-item-bg-color);
+  }
+
+  &.entityCategory-Enemy {
+    background-color: var(--entityCategory-ennemy-bg-color);
+  }
+
+  &.entityCategory-Gizmo {
+    background-color: var(--entityCategory-gizmo-bg-color);
+  }
+}
+
 #entity-table {
 
   tbody {

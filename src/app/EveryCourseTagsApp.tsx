@@ -26,6 +26,17 @@ export default class EveryCourseTagsApp
         return 'courseTag';
     }
 
+    protected _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
+            translation,
+            'Every course tags', {
+                course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
+                tags: <Fragment key="every course tag (plural lowercase tag)">--tags--</Fragment>,//TODO add tag reference
+            },
+        )}</>
+        }</GameContentTranslationComponent>;
+    }
+
     protected _createAppOptionInterpreter(): AppInterpreterWithCardList<CourseTags> {
         return new class implements AppInterpreterWithCardList<CourseTags> {
 
@@ -33,20 +44,6 @@ export default class EveryCourseTagsApp
                 return CourseTags[Symbol.iterator]();
             }
 
-            //region -------------------- List interpreter --------------------
-
-            public get createListTitleContent(): ReactElementOrString {
-                return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
-                    translation,
-                    'Every course tags', {
-                        course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
-                        tags: <Fragment key="every course tag (plural lowercase tag)">--tags--</Fragment>,//TODO add tag reference
-                    },
-                )}</>
-                }</GameContentTranslationComponent>;
-            }
-
-            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
             public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,): ReactElement {

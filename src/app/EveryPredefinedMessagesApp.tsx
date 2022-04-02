@@ -23,26 +23,22 @@ export default class EveryPredefinedMessagesApp
         return 'predefinedMessage';
     }
 
+    protected _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
+            translation,
+            'Every predefined messages', {
+                predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
+            },
+        )}</>
+        }</GameContentTranslationComponent>;
+    }
+
     protected _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {
         return new class implements AppInterpreterWithSimpleList<PredefinedMessages> {
 
             public get iterable(): IterableIterator<PredefinedMessages> {
                 return PredefinedMessages[Symbol.iterator]();
             }
-
-            //region -------------------- List interpreter --------------------
-
-            public get createListTitleContent(): ReactElementOrString {
-                return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
-                    translation,
-                    'Every predefined messages', {
-                        predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
-                    },
-                )}</>
-                }</GameContentTranslationComponent>;
-            }
-
-            //endregion -------------------- List interpreter --------------------
 
         }();
     }

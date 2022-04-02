@@ -26,6 +26,10 @@ export default class EverySoundEffectCategoriesApp
         return 'soundEffectCategory';
     }
 
+    protected _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent translationKey="Every sound effect categories"/>;
+    }
+
     protected _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
         return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
 
@@ -33,13 +37,6 @@ export default class EverySoundEffectCategoriesApp
                 return SoundEffectCategories[Symbol.iterator]();
             }
 
-            //region -------------------- List interpreter --------------------
-
-            public get createListTitleContent(): ReactElementOrString {
-                return <GameContentTranslationComponent translationKey="Every sound effect categories"/>;
-            }
-
-            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
             public createCardListContent(enumerable: SoundEffectCategories): ReactElement {
