@@ -71,7 +71,9 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                     <DisplayViewRouteButton routeName={'everyMiiCostumes'} value="--Mii costume--"//TODO add Mii costume reference
                                             tooltipValue={translation('Display every Mii costumes', {pluralName: '--Mii costumes--',},)}//TODO add Mii costume reference
                                             elementId="displayView-miiCostume-button" id={id} divId={divId}/>
-                    {/*TODO add category route for the Mii costume*/}
+                    <DisplayViewRouteButton routeName={'everyMiiCostumeCategories'} value={translation('Category')}
+                                            tooltipValue={translation('Display every Mii costume categories',{MiiCostume: '--Mii costume--',},)}//TODO add Mii costume reference
+                                            elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
                 </div> : EMPTY_REACT_ELEMENT}
                 {isSMM1Selected ? <div key="button group container (mystery mushroom)" id="mysteryMushroom-buttonGroup-container" className="btn-group col-12" role="group">
                     <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={<>--Mystery Mushroom--{/*TODO add Mystery Mushroom reference*/}
