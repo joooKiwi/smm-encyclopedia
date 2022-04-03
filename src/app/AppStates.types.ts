@@ -111,6 +111,20 @@ export interface EntityAppStates
 
 }
 
+export interface GameStyleAppStates
+    extends AppStates {
+
+    display: {
+        section: {
+            image: boolean
+            name: boolean
+            game: boolean
+            nightDesertWind: boolean
+        }
+    }
+
+}
+
 export interface SoundEffectAppStates
     extends AppStates, AppStateThatHaveACategory {
 
