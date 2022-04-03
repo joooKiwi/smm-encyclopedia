@@ -6,7 +6,6 @@ import type {AppOptionWithTable}                                                
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeAppOption.types';
 import type {MiiCostumeAppStates}                                                                                                                                                   from '../AppStates.types';
 import type {MiiCostumes}                                                                                                                                                           from '../../core/miiCostume/MiiCostumes';
-import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                   from '../../core/miiCostumeCategory/MiiCostumeCategories.types';
 import type {ReactComponentWithState}                                                                                                                                               from '../../util/react/ReactComponent';
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
@@ -15,20 +14,18 @@ import type {StaticReference}                                                   
 import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
+import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {EmptyAppOption}                from './component/EmptyAppOption';
 import {Enum}                          from '../../util/enum/Enum';
-import {EmptyStringName}               from '../../lang/name/EmptyStringName';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
 import {ViewDisplays}                  from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
 const Image =         lazy(() => import('../tools/images/Image'));
-const NameComponent = lazy(() => import('../../lang/name/component/Name.component'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -83,16 +80,11 @@ export abstract class MiiCostumeAppOption
             }
 
             protected get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const miiCostume = enumeration.reference;
-
-                    return <NameComponent id="name" name={miiCostume} popoverOrientation="left"/>;
-                };
+                return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION());
             }
 
             protected get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,};
+                return CommonOptions.get.nameHeader;
             }
 
         }(true,);
@@ -139,22 +131,18 @@ export abstract class MiiCostumeAppOption
 
             protected get _createContentOption(): PossibleOptionWithContent {
                 return () => {
-                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const categoryName = enumeration.reference.category.nameContainer;
+                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
+                        categoryName = enumeration.reference.categoryContainer.nameContainer;
 
-                    if (categoryName === EmptyStringName.get)
-                        return EMPTY_REACT_ELEMENT;
-
-                    if (MiiCostumeAppOption.CATEGORY_AS_TEXT.get)
-                        return <NameComponent id={`category-name-${enumeration.englishNameInHtml}`} name={categoryName} popoverOrientation="left"/>;
-
-                    const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
-                    return <Image source={MiiCostumeCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
+                    return CommonOptions.get.getCategoryContent(enumeration,
+                        () => MiiCostumeAppOption.CATEGORY_AS_TEXT.get
+                            ? categoryName
+                            : MiiCostumeCategories.getValue(categoryName.english)!.imagePath,);
                 };
             }
 
             protected get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,};
+                return CommonOptions.get.categoryHeader;
             }
 
         }(true,);

@@ -1,16 +1,17 @@
 import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from '../../util/ClassWithNullObjectPattern';
 import type {MiiCostume}                                      from './MiiCostume';
 
-import {ClassContainingAName}            from '../../lang/name/ClassContainingAName';
-import {EmptyMiiCostumeCategory}         from '../miiCostumeCategory/EmptyMiiCostumeCategory';
-import {EmptyStringName}                 from '../../lang/name/EmptyStringName';
-import {EmptyOfficialNotificationHolder} from '../officialNotification/holder/EmptyOfficialNotificationHolder';
+import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
+import {EmptyMiiCostumeCategory}          from '../miiCostumeCategory/EmptyMiiCostumeCategory';
+import {EmptyStringName}                  from '../../lang/name/EmptyStringName';
+import {EmptyOfficialNotificationHolder}  from '../officialNotification/holder/EmptyOfficialNotificationHolder';
+import {MiiCostumeCategory}               from '../miiCostumeCategory/MiiCostumeCategory';
 
 /**
  * @singleton
  */
 export class EmptyMiiCostume
-    extends ClassContainingAName<string>
+    extends ClassContainingANameAndACategory<string, string, MiiCostumeCategory>
     implements MiiCostume, ClassWithNullObjectPattern<EmptyMiiCostumeName> {
 
     //region -------------------- Singleton usage --------------------
@@ -18,7 +19,7 @@ export class EmptyMiiCostume
     static #instance?: EmptyMiiCostume;
 
     private constructor() {
-        super(EmptyStringName.get,);
+        super(EmptyStringName.get, EmptyMiiCostumeCategory.get,);
     }
 
     public static get get() {
@@ -32,7 +33,6 @@ export class EmptyMiiCostume
     public readonly officialNotificationAmount = this.officialNotificationContainer.amount;
 
     public readonly version = null;
-    public readonly category = EmptyMiiCostumeCategory.get;
 
     public toString(): EmptyMiiCostumeName {
         return 'Empty Mii costume';

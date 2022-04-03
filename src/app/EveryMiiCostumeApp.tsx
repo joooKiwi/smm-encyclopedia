@@ -44,7 +44,7 @@ export default class EveryMiiCostumeApp
             //region -------------------- Card list interpreter --------------------
 
             public createCardListContent({reference, englishName, imagePath,}: MiiCostumes,): ReactElement {
-                const category = reference.category.english === '' ? '' : `entityCategory-${reference.category.english}`;//TODO move to the parent container className.
+                const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`;//TODO move to the parent container className.
                 return <div className={`${category}`}>
                     <Image source={imagePath} fallbackName={englishName}/>
                 </div>;
