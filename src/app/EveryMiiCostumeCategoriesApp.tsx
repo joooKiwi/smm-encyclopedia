@@ -1,19 +1,21 @@
-import './EveryEntityCategoriesApp.scss';
+import {lazy} from 'react';
 
 import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
 import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
-import {EntityCategories}              from '../core/entityCategory/EntityCategories';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import Image                           from './tools/images/Image';
+import {MiiCostumeCategories}          from '../core/miiCostumeCategory/MiiCostumeCategories';
+import {TranslationUtility}            from '../lang/components/TranslationUtility';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
+
+const Image = lazy(() => import('./tools/images/Image'));
 
 /**
  * @reactComponent
  */
 export default class EveryEntityCategoriesApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
+    extends AbstractCardListApp<AppInterpreterWithCardList<MiiCostumeCategories>> {
 
     public constructor(props: {},) {
         super(props,);
@@ -23,23 +25,25 @@ export default class EveryEntityCategoriesApp
     //region -------------------- Create methods --------------------
 
     protected _createKey(): string {
-        return 'entityCategory';
+        return 'miiCostumeCategory';
     }
 
     protected _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entity categories"/>;
+        return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costume categories', {
+            MiiCostume: <span key="miiCostume-singularName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costume reference
+        })}</GameContentTranslationComponent>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
-        return new class implements AppInterpreterWithCardList<EntityCategories> {
+    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
+        return new class implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
-            public get iterable(): IterableIterator<EntityCategories> {
-                return EntityCategories[Symbol.iterator]();
+            public get iterable(): IterableIterator<MiiCostumeCategories> {
+                return MiiCostumeCategories[Symbol.iterator]();
             }
 
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListContent(enumerable: EntityCategories): ReactElement {
+            public createCardListContent(enumerable: MiiCostumeCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;
             }
 

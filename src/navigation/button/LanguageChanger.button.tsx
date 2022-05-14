@@ -5,7 +5,6 @@ import type {TranslationMethod}                         from '../../lang/compone
 
 import {AbstractNavigationButton} from './AbstractNavigationButton';
 
-
 /**
  * @reactComponent
  * @todo change the color to not be black for the "Change the language" tooltip

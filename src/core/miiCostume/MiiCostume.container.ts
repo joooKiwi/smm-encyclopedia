@@ -1,29 +1,27 @@
-import type {MiiCostume}                 from './MiiCostume';
-import type {MiiCostumeCategory}         from '../miiCostumeCategory/MiiCostumeCategory';
-import type {Name}                       from '../../lang/name/Name';
-import type {ObjectHolder}               from '../../util/holder/ObjectHolder';
-import type {OfficialNotificationHolder} from '../officialNotification/holder/OfficialNotificationHolder';
-import type {Versions}                   from '../version/Versions';
+import type {MiiCostume}                                from './MiiCostume';
+import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory';
+import type {Name}                                      from '../../lang/name/Name';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
+import type {OfficialNotificationHolder}                from '../officialNotification/holder/OfficialNotificationHolder';
+import type {Versions}                                  from '../version/Versions';
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
+import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
 
 export class MiiCostumeContainer
-    extends ClassContainingAName<string>
+    extends ClassContainingANameAndACategory<string, string, MiiCostumeCategory>
     implements MiiCostume {
 
     //region -------------------- Attributes --------------------
 
     readonly #officialNotificationHolder;
     readonly #version;
-    readonly #category;
 
     //endregion -------------------- Attributes --------------------
 
-    public constructor(name: Name<string>, officialNotification: ObjectHolder<OfficialNotificationHolder>, version: ObjectHolder<| Versions | null>, category: ObjectHolder<MiiCostumeCategory>,) {
-        super(name,);
+    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, officialNotification: ObjectHolder<OfficialNotificationHolder>, version: ObjectHolder<| Versions | null>, category: PossibleValueOnObjectHolder<MiiCostumeCategory>,) {
+        super(name, category,);
         this.#officialNotificationHolder = officialNotification;
         this.#version = version;
-        this.#category = category;
     }
 
     //region -------------------- Getter methods --------------------
@@ -46,10 +44,6 @@ export class MiiCostumeContainer
 
     public get version() {
         return this.#version.get;
-    }
-
-    public get category() {
-        return this.#category.get;
     }
 
     //endregion -------------------- Getter methods --------------------

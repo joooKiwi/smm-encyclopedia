@@ -5,8 +5,8 @@ import type {SingleHeaderContent}          from '../tools/table/SimpleHeader';
 import type {SingleTableContent}           from '../tools/table/Table.types';
 
 import {AbstractCardListApp} from './AbstractCardListApp';
-import Table          from '../tools/table/Table';
-import {ViewDisplays} from './ViewDisplays';
+import Table                 from '../tools/table/Table';
+import {ViewDisplays}        from './ViewDisplays';
 
 export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >

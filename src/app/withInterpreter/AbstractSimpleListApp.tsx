@@ -24,7 +24,12 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
     //endregion -------------------- Create methods --------------------
     //region -------------------- Render methods --------------------
 
-    private __listContent(optionInterpreter: APP,): readonly ReactElement[] {
+    /**
+     * Create a list with only the names displayed.
+     */
+    public createList(): ReactElement {
+        const optionInterpreter = this._appOptionInterpreter;
+
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
             const englishName = enumerable.englishName;
@@ -41,18 +46,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
                 </div>
             );
         }
-        return content;
-    }
-
-    /**
-     * Create a list with only the names displayed.
-     */
-    public createList(): ReactElement {
-        const optionInterpreter = this._appOptionInterpreter;
-        return <div id={`${this._key}-container`} className="list-container">
-            <h1 key={`${this._key} (title)`} id={`${this._key}-title`} className="app-title">{optionInterpreter.createListTitleContent}</h1>
-            <div key={`${this._key} (list)`} className="app-content">{this.__listContent(optionInterpreter)}</div>
-        </div>;
+        return <>{content}</>;
     }
 
     //endregion -------------------- Render methods --------------------

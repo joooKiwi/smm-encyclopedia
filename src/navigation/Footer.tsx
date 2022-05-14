@@ -23,10 +23,10 @@ export default function Footer({languageChanger,}: FooterProperties,) {
                 <span id="copyright" className="text-center text-light small">
                     {translation('Copyright')}<sup>©</sup> Nintendo™
                 </span>
-                    <span id="copyright_madeBy" className="text-center text-light small">
+                <span id="copyright_madeBy" className="text-center text-light small">
                     {translation('React application made by')}: JóôòKiwi & Geitje
                 </span>
-                    <span id="copyright_lastEdited" className="text-center text-light small">
+                <span id="copyright_lastEdited" className="text-center text-light small">
                     {translation('Last update')}: <SimpleDate day={24} month={3} year={2022}/>
                 </span>
                 </div>

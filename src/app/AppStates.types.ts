@@ -3,8 +3,8 @@ import type {Images}            from './options/global/Images';
 import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
 import type {ReactState}        from '../util/react/ReactState';
 import type {Sounds}            from './options/global/Sounds';
-import type {Texts}        from './options/global/Texts';
-import type {ViewDisplays} from './withInterpreter/ViewDisplays';
+import type {Texts}             from './options/global/Texts';
+import type {ViewDisplays}      from './withInterpreter/ViewDisplays';
 
 export interface AppStates
     extends ReactState {
@@ -76,7 +76,7 @@ interface AppStateThatHaveACategory {
 //region -------------------- Specific states --------------------
 
 export interface EntityAppStates
-    extends AppStates, AppStateThatHaveACategory {
+    extends AppStates, AppWithVariableDisplayStates, AppStateThatHaveACategory {
 
     display: {
         section: {
@@ -111,13 +111,27 @@ export interface EntityAppStates
 
 }
 
+export interface GameStyleAppStates
+    extends AppStates {
+
+    display: {
+        section: {
+            image: boolean
+            name: boolean
+            game: boolean
+            nightDesertWind: boolean
+        }
+    }
+
+}
+
 export interface SoundEffectAppStates
     extends AppStates, AppStateThatHaveACategory {
 
 }
 
 export interface MiiCostumeAppStates
-    extends AppStates, AppStateThatHaveACategory {
+    extends AppStates, AppWithVariableDisplayStates, AppStateThatHaveACategory {
 
     display: {
         section: {

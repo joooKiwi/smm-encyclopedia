@@ -24,7 +24,13 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
     //endregion -------------------- Create methods --------------------
     //region -------------------- Render methods --------------------
 
-    private __cardListContent(optionInterpreter: APP,): readonly ReactElement[] {
+    /**
+     * Create a list of elements in a card manner.
+     * It can be similar to the {@link createList} but has more information displayed.
+     */
+    public createCardList(): ReactElement {
+        const optionInterpreter = this._appOptionInterpreter;
+
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
             const englishName = enumerable.englishName;
@@ -37,24 +43,12 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
                      className={`${this._key}-container listElement-container col-12 col-sm-4 col-md-3 col-lg-2`}>
                     <div key={`${name} - main card list sub-container`} className="cardListElement-container rounded-pill">
                         <NameComponent key={`${englishName} - text container`} id="name" name={name} popoverOrientation="left"/>
-                        <div className="cardListName-content-container" >{optionInterpreter.createCardListContent(enumerable)}</div>
+                        <div className="cardListName-content-container">{optionInterpreter.createCardListContent(enumerable)}</div>
                     </div>
                 </div>
             );
         }
-        return content;
-    }
-
-    /**
-     * Create a list of elements in a card manner.
-     * It can be similar to the {@link createList} but has more information displayed.
-     */
-    public createCardList(): ReactElement {
-        const optionInterpreter = this._appOptionInterpreter;
-        return <div id={`${this._key}-container`} className="cardList-container">
-            <h1 key={`${this._key} (title)`} id={`${this._key}-title`} className="app-title">{optionInterpreter.createListTitleContent}</h1>
-            <div key={`${this._key} (card list)`} className="app-content">{this.__cardListContent(optionInterpreter)}</div>
-        </div>;
+        return <>{content}</>;
     }
 
     //endregion -------------------- Render methods --------------------

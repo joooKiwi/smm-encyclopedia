@@ -1,52 +1,53 @@
-import type {SingleTableContent} from './tools/table/Table.types';
+import './EverySoundEffectCategoriesApp.scss';
 
-import AbstractApp                     from './AbstractApp';
-import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
+import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
+
+import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
-import NameComponent                   from '../lang/name/component/Name.component';
 import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
-import Table                           from './tools/table/Table';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
  */
 export default class EverySoundEffectCategoriesApp
-    extends AbstractApp {
+    extends AbstractCardListApp<AppInterpreterWithCardList<SoundEffectCategories>> {
 
-    //region -------------------- Methods --------------------
-
-    protected get content() {
-        const content = [] as SingleTableContent[];
-
-        let index = 1;
-        for (const enumerable of SoundEffectCategories) {
-            const soundEffectCategory = enumerable.reference;
-
-            content.push([enumerable.englishName,
-                <>{index}</>,
-                <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>,
-                <NameComponent id="name" name={soundEffectCategory} popoverOrientation="left"/>,
-            ]);
-            index++;
-        }
-
-        return content;
+    public constructor(props: {},) {
+        super(props,);
+        this.state = {typeDisplayed: ViewDisplays.CARD_LIST,};
     }
 
-    //endregion -------------------- Methods --------------------
+    //region -------------------- Create methods --------------------
 
-    protected _mainContent() {
-        return <Table
-            id="soundEffectCategory-table"
-            caption={<GameContentTranslationComponent translationKey="Every sound effect categories"/>}
-            headers={[
-                '#',
-                {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,},
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-            ]}
-            content={this.content}
-        />;
+    protected _createKey(): string {
+        return 'soundEffectCategory';
     }
+
+    protected _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent translationKey="Every sound effect categories"/>;
+    }
+
+    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
+        return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
+
+            public get iterable(): IterableIterator<SoundEffectCategories> {
+                return SoundEffectCategories[Symbol.iterator]();
+            }
+
+            //region -------------------- Card list interpreter --------------------
+
+            public createCardListContent(enumerable: SoundEffectCategories): ReactElement {
+                return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;
+            }
+
+            //endregion -------------------- Card list interpreter --------------------
+
+        }();
+    }
+
+    //endregion -------------------- Create methods --------------------
 
 }

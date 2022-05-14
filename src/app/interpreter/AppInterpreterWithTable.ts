@@ -10,7 +10,7 @@ import type {ReactElement}                 from '../../util/react/ReactProperty'
  * An application interpreter when using {@link AbstractTableApp}
  * to encapsulate the {@link Table table react element}.
  */
-export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTION extends AbstractAppOption<any, AppWithVariableDisplayStates> = AbstractAppOption<any, AppWithVariableDisplayStates>, >
+export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTION extends Option = Option, >
     extends AppInterpreterWithCardList<CONTENT> {
 
 
@@ -55,3 +55,8 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
  * for an {@link AppInterpreter application interpreter}.
  */
 export type SimplifiedTableProperties = Omit<TableProperties, | 'key' | 'id' | 'headers' | 'content'>;
+/**
+ * An option made to display any table column
+ * based on the {@link Content content receive}.
+ */
+export type Option = AbstractAppOption<any, AppWithVariableDisplayStates, any, any>;

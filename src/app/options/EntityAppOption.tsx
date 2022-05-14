@@ -5,7 +5,6 @@ import type {AppOptionWithTable}                                                
 import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
 import type {Entities}                                                                                                                                                              from '../../core/entity/Entities';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
-import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                   from '../../core/entityCategory/EntityCategories.types';
 import type {EntityAppStates}                                                                                                                                                       from '../AppStates.types';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {ReactComponentWithState}                                                                                                                                               from '../../util/react/ReactComponent';
@@ -15,21 +14,20 @@ import type {StaticReference}                                                   
 import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
+import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {Enum}                          from '../../util/enum/Enum';
 import {EntityCategories}              from '../../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes';
 import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {EmptyAppOption}                from './component/EmptyAppOption';
 import {EmptyEditorImage}              from '../../core/entity/images/editor/EmptyEditorImage';
-import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
+import {Games}                         from '../../core/game/Games';
 import {GameStyles}                    from '../../core/gameStyle/GameStyles';
-
-import {Games}  from '../../core/game/Games';
-import {Themes} from '../../core/theme/Themes';
-import {Times}  from '../../core/time/Times';
+import {Themes}                        from '../../core/theme/Themes';
+import {Times}                         from '../../core/time/Times';
+import {ViewDisplays}                  from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
@@ -37,9 +35,7 @@ const CourseThemeComponent =      lazy(() => import('../../core/theme/CourseThem
 const EditorVoiceSoundComponent = lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'));
 const GameComponent =             lazy(() => import('../../core/game/Game.component'));
 const GameStyleComponent =        lazy(() => import('../../core/gameStyle/GameStyle.component'));
-const Image =                     lazy(() => import('../tools/images/Image'));
 const LimitComponent =            lazy(() => import('../../core/entityLimit/Limit.component'));
-const NameComponent =             lazy(() => import('../../lang/name/component/Name.component'));
 const TimeComponent =             lazy(() => import('../../core/time/Time.component'));
 const TextComponent =             lazy(() => import( '../tools/text/TextComponent'));
 
@@ -202,17 +198,16 @@ export abstract class EntityAppOption
             protected get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const entity = enumeration.reference;
 
                     return <div className="nameAndEditorVoiceSound-container container">
-                        <NameComponent id="name" name={entity} popoverOrientation="right"/>
+                        {CommonOptions.get.getNameContent(enumeration)}
                         <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
                     </div>;
                 };
             }
 
             protected get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,};
+                return CommonOptions.get.nameHeader;
             }
 
         }(true,);
@@ -370,21 +365,18 @@ export abstract class EntityAppOption
 
             protected get _createContentOption(): PossibleOptionWithContent {
                 return () => {
-                    const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const categoryName = enumeration.reference.categoryNameContainer;
-                    if (categoryName === EmptyStringName.get)
-                        return EMPTY_REACT_ELEMENT;
+                    const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
+                        categoryName = enumeration.reference.categoryNameContainer;
 
-                    if (EntityAppOption.CATEGORY_AS_TEXT.get)
-                        return <NameComponent id={`category-name-${enumeration.englishNameInHtml}`} name={categoryName} popoverOrientation="left"/>;
-
-                    const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
-                    return <Image source={EntityCategories.getValue(categoryEnglishName).imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
+                    return CommonOptions.get.getCategoryContent(enumeration,
+                        () => EntityAppOption.CATEGORY_AS_TEXT.get
+                        ? categoryName
+                        : EntityCategories.getValue(categoryName.english)!.imagePath,);
                 };
             }
 
             protected get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,};
+                return CommonOptions.get.categoryHeader;
             }
 
         }(true,);
@@ -509,6 +501,7 @@ export abstract class EntityAppOption
 
     public static get createDefaultState(): EntityAppStates {
         return {
+            typeDisplayed: ViewDisplays.TABLE,
             display: {
                 section: {
                     images: EntityAppOption.IMAGES._lastValueRetrieved,

@@ -12,6 +12,7 @@ const EveryGameStylesApp =             lazy(() => import('../app/EveryGameStyles
 const EveryGameReferencesApp =         lazy(() => import('../app/EveryGameReferencesApp'));
 const EveryLimitsApp =                 lazy(() => import('../app/EveryLimitsApp'));
 const EveryMiiCostumeApp =             lazy(() => import('../app/EveryMiiCostumeApp'));
+const EveryMiiCostumeCategoriesApp =   lazy(() => import('../app/EveryMiiCostumeCategoriesApp'));
 const EveryMysteryMushroomsApp =       lazy(() => import('../app/EveryMysteryMushroomsApp'));
 const EverySoundEffectCategoriesApp =  lazy(() => import('../app/EverySoundEffectCategoriesApp'));
 const EverySoundEffectsApp =           lazy(() => import('../app/EverySoundEffectsApp'));
@@ -20,25 +21,26 @@ const HomeApp =                        lazy(() => import('../app/HomeApp'));
 const SourcesApp =                     lazy(() => import('../app/SourcesApp'));
 
 export const everySimpleRoutes = [
-    SimpleRouteContainer.newInstance('home',                       '/home',                       () => <HomeApp/>,                     ),
-    SimpleRouteContainer.newInstance('about',                      '/about',                      () => <AboutApp/>,                    ),
-    SimpleRouteContainer.newInstance('sources',                    '/sources',                    () => <SourcesApp/>,                  ),
+    SimpleRouteContainer.newInstance('home',                       '/home',                       () => <HomeApp/>,                      ),
+    SimpleRouteContainer.newInstance('about',                      '/about',                      () => <AboutApp/>,                     ),
+    SimpleRouteContainer.newInstance('sources',                    '/sources',                    () => <SourcesApp/>,                   ),
 
-    SimpleRouteContainer.newInstance('everyGameReferences',        '/every/gameReference',        () => <EveryGameReferencesApp/>,      ),
-    SimpleRouteContainer.newInstance('everyEntities',              '/every/entity',               () => <EveryEntitiesApp/>,            ),
-    SimpleRouteContainer.newInstance('everyGameStyles',            '/every/gameStyle',            () => <EveryGameStylesApp/>,          ),
-    SimpleRouteContainer.newInstance('everyCategories',            '/every/entity/category',      () => <EveryEntityCategoriesApp/>,    ),
-    SimpleRouteContainer.newInstance('everyGroups',                '/every/entity/group',         () => <EveryEntityGroupApp/>,         ),
-    SimpleRouteContainer.newInstance('everyLimits',                '/every/limit',                () => <EveryLimitsApp/>,              ),
-    SimpleRouteContainer.newInstance('everyThemes',                '/every/theme',                () => <EveryThemesApp/>,              ),
+    SimpleRouteContainer.newInstance('everyGameReferences',        '/every/gameReference',        () => <EveryGameReferencesApp/>,       ),
+    SimpleRouteContainer.newInstance('everyEntities',              '/every/entity',               () => <EveryEntitiesApp/>,             ),
+    SimpleRouteContainer.newInstance('everyGameStyles',            '/every/gameStyle',            () => <EveryGameStylesApp/>,           ),
+    SimpleRouteContainer.newInstance('everyCategories',            '/every/entity/category',      () => <EveryEntityCategoriesApp/>,     ),
+    SimpleRouteContainer.newInstance('everyGroups',                '/every/entity/group',         () => <EveryEntityGroupApp/>,          ),
+    SimpleRouteContainer.newInstance('everyLimits',                '/every/limit',                () => <EveryLimitsApp/>,               ),
+    SimpleRouteContainer.newInstance('everyThemes',                '/every/theme',                () => <EveryThemesApp/>,               ),
 
-    SimpleRouteContainer.newInstance('everySoundEffects',          '/every/soundEffect',          ()=> <EverySoundEffectsApp/>,         ),
-    SimpleRouteContainer.newInstance('everySoundEffectCategories', '/every/soundEffect/category', ()=> <EverySoundEffectCategoriesApp/>,),
+    SimpleRouteContainer.newInstance('everySoundEffects',          '/every/soundEffect',          () => <EverySoundEffectsApp/>,         ),
+    SimpleRouteContainer.newInstance('everySoundEffectCategories', '/every/soundEffect/category', () => <EverySoundEffectCategoriesApp/>,),
 
-    SimpleRouteContainer.newInstance('everyMiiCostumes',           '/every/miiCostume',           ()=> <EveryMiiCostumeApp/>,           ),
+    SimpleRouteContainer.newInstance('everyMiiCostumes',           '/every/miiCostume',           () => <EveryMiiCostumeApp/>,           ),
+    SimpleRouteContainer.newInstance('everyMiiCostumeCategories',  '/every/miiCostume/category',  () => <EveryMiiCostumeCategoriesApp/>, ),
 
-    SimpleRouteContainer.newInstance('everyMysteryMushrooms',      '/every/mysteryMushroom',      ()=> <EveryMysteryMushroomsApp/>,     ),
+    SimpleRouteContainer.newInstance('everyMysteryMushrooms',      '/every/mysteryMushroom',      () => <EveryMysteryMushroomsApp/>,     ),
 
-    SimpleRouteContainer.newInstance('everyPredefinedMessages',    '/every/PredefinedMessage',    ()=> <EveryPredefinedMessagesApp/>,       ),
-    SimpleRouteContainer.newInstance('everyCourseTags',            '/every/courseTag',            ()=> <EveryCourseTagsApp/>,           ),
+    SimpleRouteContainer.newInstance('everyPredefinedMessages',    '/every/PredefinedMessage',    () => <EveryPredefinedMessagesApp/>,   ),
+    SimpleRouteContainer.newInstance('everyCourseTags',            '/every/courseTag',            () => <EveryCourseTagsApp/>,           ),
 ] as const;

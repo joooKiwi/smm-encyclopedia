@@ -1,18 +1,19 @@
 import './EveryMiiCostumeApp.scss';
 
-import type {MiiCostumeAppStates}  from './AppStates.types';
-import type {SingleHeadersContent} from './tools/table/SimpleHeader';
-import type {SingleTableContent}   from './tools/table/Table.types';
+import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
+import type {MiiCostumeAppStates}                                from './AppStates.types';
+import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
 
-import AbstractApp                     from './AbstractApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
-import Table                           from './tools/table/Table';
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
 import {MiiCostumeAppOption}           from './options/MiiCostumeAppOption';
+import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
+import Image                           from './tools/images/Image';
 
 export default class EveryMiiCostumeApp
-    extends AbstractApp<{}, MiiCostumeAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, {}, MiiCostumeAppStates> {
 
 
     public constructor(props: {},) {
@@ -21,47 +22,72 @@ export default class EveryMiiCostumeApp
         this.state = MiiCostumeAppOption.createDefaultState;
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Create methods --------------------
 
-    protected get content() {
-        const content = [] as SingleTableContent[];
-
-        let index = 1;
-        for (const enumeration of MiiCostumes) {
-            MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration;
-
-            content.push([enumeration.englishName,
-                <>{index}</>,
-                ...[
-                    MiiCostumeAppOption.IMAGE.renderContent,
-                    MiiCostumeAppOption.NAME.renderContent,
-                    MiiCostumeAppOption.OFFICIAL_NOTIFICATION.renderContent,
-                    MiiCostumeAppOption.CATEGORY.renderContent,
-                ].flat(),
-            ]);
-            index++;
-        }
-
-        return content;
+    protected _createKey(): string {
+        return 'miiCostume';
     }
 
-    //endregion -------------------- Methods --------------------
-
-    protected _mainContent() {
-        return <Table
-            id="miiCostume-table"
-            caption={<GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costumes', {
-                pluralName: <span key="miiCostume-pluralName2" className="text-decoration-underline">Mii costumes{/*TODO add Mii costumes, but the plural name*/}</span>,
-            })}</GameContentTranslationComponent>}
-            headers={[
-                '#',
-                MiiCostumeAppOption.IMAGE.renderTableHeader,
-                MiiCostumeAppOption.NAME.renderTableHeader,
-                MiiCostumeAppOption.OFFICIAL_NOTIFICATION.renderTableHeader,
-                MiiCostumeAppOption.CATEGORY.renderTableHeader,
-            ].filter(header => header != null) as SingleHeadersContent}
-            content={this.content}
-        />;
+    protected _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costumes', {
+            pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
+        })}</GameContentTranslationComponent>;
     }
+
+    protected _createAppOptionInterpreter(): AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
+        return new class implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
+
+            public get iterable(): IterableIterator<MiiCostumes> {
+                return MiiCostumes[Symbol.iterator]();
+            }
+
+            //region -------------------- Card list interpreter --------------------
+
+            public createCardListContent({reference, englishName, imagePath,}: MiiCostumes,): ReactElement {
+                const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`;//TODO move to the parent container className.
+                return <div className={`${category}`}>
+                    <Image source={imagePath} fallbackName={englishName}/>
+                </div>;
+            }
+
+            //endregion -------------------- Card list interpreter --------------------
+            //region -------------------- Table interpreter --------------------
+
+            public set callbackToGetEnumerable(value: () => MiiCostumes,) {
+                MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION = value;
+            }
+
+            public get tableOptions(): MiiCostumeAppOption[] {
+                return [
+                    MiiCostumeAppOption.IMAGE,
+                    MiiCostumeAppOption.NAME,
+                    MiiCostumeAppOption.OFFICIAL_NOTIFICATION,
+                    MiiCostumeAppOption.CATEGORY,
+                ];
+            }
+
+            public get tableProperties(): SimplifiedTableProperties {
+                return {
+                    caption: <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costumes', {
+                        pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
+                    })}</GameContentTranslationComponent>,
+                };
+            }
+
+
+            public createTableContent(option: MiiCostumeAppOption,): readonly ReactElement[] {
+                return option.renderContent;
+            }
+
+            public createTableHeader(option: MiiCostumeAppOption,): | SingleHeaderContent | null {
+                return option.renderTableHeader;
+            }
+
+            //endregion -------------------- Table interpreter --------------------
+
+        }();
+    }
+
+    //endregion -------------------- Create methods --------------------
 
 }
