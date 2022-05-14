@@ -4,12 +4,14 @@ import type {EveryLanguages}                                                    
 
 /**
  * <p>
- *     A class with every languages including the simple language.
+ *     A class with every language including the simple language.
+ *     The English & French are included in the first type
+ *     since they are always complete in the current project.
  * </p>
  *
  * <p>
  *     As a reference, this class utilise the simple language without the region as well
- *     as every languages included inside {@link ClassWithOnlyProjectLanguages}
+ *     as every language included inside {@link ClassWithOnlyProjectLanguages}
  * </p>
  */
 export interface ClassWithEveryLanguages<T,
@@ -64,6 +66,9 @@ export interface ClassWithEveryLanguages<T,
 
     //endregion -------------------- Chinese properties --------------------
 
+    /**
+     * The original languages used when the instance was constructed.
+     */
     get originalLanguages(): readonly EveryLanguages[]
 
 
