@@ -6,7 +6,7 @@ import type {PossibleGameReceived}                                 from './Templ
 import type {TemplateWithNameTemplate}                             from './TemplateWithName.template';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
-import {NameBuilder}                  from '../../lang/name/Name.builder';
+import {NameBuilderContainer}         from '../../lang/name/Name.builder.container';
 import {NameCreator}                  from '../../lang/name/Name.creator';
 import {TemplateBuilder}              from './Template.builder';
 
@@ -49,10 +49,10 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
     protected _createName() {
         const template = this.template;
         const nameTemplate = template.name;
-        const name = new NameBuilder(nameTemplate, this.__game, this.isACompleteName,).build();
+        const nameBuilder = new NameBuilderContainer(nameTemplate, this.__game, this.isACompleteName,);
 
         NameCreator.addEnglishReference(nameTemplate, this._static, this._uniqueName(template),);
-        return name;
+        return nameBuilder.build();
     }
 
 
