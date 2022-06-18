@@ -909,14 +909,16 @@ export class Entities
         this.MYSTERY_MUSHROOM =                             new class Entities_MysteryMushroom extends Entities {
 
             protected get _createInGameImage(): PossibleInGameImage {
-                return new InGameImage_SMM1Builder('Kinoko2',);
+                return new InGameImage_SMM1Builder('Kinoko2',)
+                    .setGameStyle(GameStyles.SUPER_MARIO_BROS);
             }
 
         }('Mystery Mushroom',);
         this.WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
 
             protected get _createInGameImage(): PossibleInGameImage {
-                return new InGameImage_SMM1Builder('KinokoFunny',);
+                return new InGameImage_SMM1Builder('KinokoFunny',)
+                    .setGameStyle(GameStyles.SUPER_MARIO_BROS);
             }
 
         }('Weird Mushroom',);
