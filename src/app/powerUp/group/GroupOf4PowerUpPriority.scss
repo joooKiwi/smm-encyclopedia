@@ -1,0 +1,48 @@
+.groupOf4-powerUp-priority {
+  --group-line-size: 1cm;
+
+  flex-direction: column;
+  align-items: initial;
+  justify-content: initial;
+
+  > .start-container, > .end-container, {
+    display: flex;
+
+    .arrows-container {
+      min-width: var(--group-line-size);
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+
+  }
+
+  > .arrows-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: var(--bs-spacer-lg);
+    margin-right: var(--bs-spacer-lg);
+
+    > .vertical-arrow-container {
+      padding: 0;
+      width: auto;
+    }
+
+    > .diagonal-arrows-container {
+      position: relative;
+      width: auto;
+
+      > * {
+        position: absolute;
+      }
+
+      > :nth-child(1) {
+        transform: rotate(45deg);
+      }
+
+      > :nth-child(2) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+}

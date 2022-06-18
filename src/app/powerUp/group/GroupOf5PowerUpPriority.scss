@@ -1,0 +1,107 @@
+.groupOf5-powerUp-priority {
+  --group-line-size: 2cm;
+
+  flex-direction: column;
+  align-items: initial;
+  justify-content: initial;
+
+  > .start-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  > .first-external-arrows-container {
+    display: flex;
+    justify-content: space-evenly;
+
+    > :first-child {
+      transform: rotate(45deg);
+    }
+
+    > :last-child {
+      transform: rotate(-45deg);
+    }
+  }
+
+  > .middle-container {
+    min-width: var(--group-line-size);
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+
+    > .centered-arrows-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+
+      position: relative;
+
+      > .diagonal-arrows-container {
+        transform-origin: top;
+        transform: rotate(12.5deg);
+
+        &:last-child {
+          transform: rotate(-12.5deg);
+
+          > .diagonal-arrow-container {
+            transform: rotate(-30deg);
+          }
+        }
+
+        position: absolute;
+
+        .line {
+          --min-line-size: calc(var(--group-line-size) * 1.75);
+        }
+
+        > .diagonal-arrow-container {
+          transform-origin: bottom;
+          transform: rotate(30deg);
+          position: absolute;
+          margin-top: calc(var(--group-line-size) / 2);
+
+          .line {
+            --min-line-size: calc(var(--group-line-size) * 1.25);
+          }
+
+        }
+
+      }
+
+      > .horizontal-arrow-container {
+        padding: 0;
+        min-width: var(--group-line-size);
+        width: auto;
+      }
+
+    }
+
+  }
+
+  > .second-external-arrows-container {
+    display: flex;
+    justify-content: space-around;
+
+    > :first-child {
+      transform: rotate(-15deg);
+    }
+
+    > :last-child {
+      transform: rotate(15deg);
+    }
+
+  }
+
+  > .end-container {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+
+    .arrows-container {
+      min-width: calc(var(--group-line-size) / 2);
+    }
+  }
+
+}
