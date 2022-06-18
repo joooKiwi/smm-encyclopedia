@@ -1,0 +1,127 @@
+//region arrow container
+
+.arrows-container {
+  display: flex;
+  justify-content: center;
+
+  &.horizontal {
+    flex-direction: column;
+  }
+
+  &.vertical {
+    flex-direction: row;
+  }
+}
+
+.arrow-container {
+  --color: var(--bs-black);
+  --line-width: 1px;
+  --line-size: auto;
+  --min-line-size: auto;
+  --max-line-size: auto;
+  --line-background-color: transparent;
+  --line-style: solid;
+  --arrow-color: var(--color);
+  --arrow-size: 7px;
+
+  &.horizontal {
+    display: flex;
+    --line-size: 100%;
+  }
+
+  &.vertical {
+    display: inline-flex;
+    flex-direction: column;
+    //--line-size: 100%;
+    --line-size: 50px
+  }
+
+}
+
+
+.arrow-container, .arrows-container, {
+
+  &.horizontal {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &.vertical {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.arrows-container .arrow-container {
+  margin: 0;
+}
+
+//endregion arrow container
+//region line
+
+.horizontal .line {
+  height: 0;
+
+  min-width: var(--min-line-size);
+  width: var(--line-size);
+  max-width: var(--max-line-size);
+}
+
+.vertical .line {
+  min-height: var(--min-line-size);
+  height: var(--line-size);
+  max-height: var(--max-line-size);
+
+  width: 0;
+}
+
+.line {
+  border-color: var(--line-color);
+  border-style: var(--line-style);
+  border-width: 0;
+  border-block-width: 0;
+  border-inline-width: 0;
+}
+
+.horizontal .line {
+  border-top-width: var(--line-width);
+
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.vertical .line {
+  border-left-width: var(--line-width);
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//endregion line
+//region arrow
+
+.arrow {
+  height: var(--arrow-size);
+  width: var(--arrow-size);
+  background-color: var(--arrow-color);
+
+  &.left {
+    clip-path: polygon(100% 0, 100% 100%, 0 50%,);
+  }
+
+  &.right {
+    clip-path: polygon(0 0, 100% 50%, 0 100%,);
+  }
+
+  &.up {
+    clip-path: polygon(50% 0, 0 100%, 100% 100%,);
+  }
+
+  &.down {
+    clip-path: polygon(50% 100%, 0 0, 100% 0,);
+  }
+
+}
+
+
+//endregion arrow
