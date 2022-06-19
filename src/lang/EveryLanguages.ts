@@ -658,7 +658,7 @@ export abstract class EveryLanguages
     }
 
     public get points(): PossiblePoints_Array {
-        return this.#points ??= this.isASpaceEvenLanguage ? Characters.points_spaceEven : Characters.points_spaceUneven;
+        return this.#points ??= Characters.getPoints(this.isASpaceEvenLanguage);
     }
 
     public get point(): PossiblePoint {
@@ -696,7 +696,7 @@ export abstract class EveryLanguages
 
 
     public get parentheses(): PossibleParentheses_Array {
-        return this.#parentheses ??= this.isASpaceEvenLanguage ? Characters.parentheses_spaceEven : Characters.parentheses_spaceUneven;
+        return this.#parentheses ??= Characters.getParentheses(this.isASpaceEvenLanguage);
     }
 
     public get startingParenthesis(): PossibleStartingParentheses {
@@ -708,7 +708,7 @@ export abstract class EveryLanguages
     }
 
     public get brackets(): PossibleBrackets_Array {
-        return this.#brackets ??= this.isASpaceEvenLanguage ? Characters.brackets_spaceEven : Characters.brackets_spaceUneven;
+        return this.#brackets ??= Characters.getBrackets(this.isASpaceEvenLanguage);
     }
 
     public get startingBrackets(): PossibleStartingBracket {
@@ -720,7 +720,7 @@ export abstract class EveryLanguages
     }
 
     public get braces(): PossibleBraces_Array {
-        return this.#braces ??= this.isASpaceEvenLanguage ? Characters.braces_spaceEven : Characters.braces_spaceUneven;
+        return this.#braces ??= Characters.getBraces(this.isASpaceEvenLanguage);
     }
 
     public get startingBraces(): PossibleStartingBrace {
@@ -733,7 +733,7 @@ export abstract class EveryLanguages
 
 
     public get slashes(): PossibleSlashes_Array {
-        return this.#slashes ??= this.isASpaceEvenLanguage ? Characters.slashes_spaceEven : Characters.slashes_spaceUneven;
+        return this.#slashes ??= Characters.getSlashes(this.isASpaceEvenLanguage);
     }
 
     public get slash(): PossibleSlash {
@@ -746,16 +746,16 @@ export abstract class EveryLanguages
 
 
     public get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Array {
-        return this.#romainLowercaseAlphabet ??= this.isASpaceEvenLanguage ? Characters.lowercaseLetters_spaceEven : Characters.lowercaseLetters_spaceUneven;
+        return this.#romainLowercaseAlphabet ??= Characters.getLowercaseLetters(this.isASpaceEvenLanguage);
     }
 
     public get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Array {
-        return this.#romainUppercaseAlphabet ??= this.isASpaceEvenLanguage ? Characters.uppercaseLetters_spaceEven : Characters.uppercaseLetters_spaceUneven;
+        return this.#romainUppercaseAlphabet ??= Characters.getUppercaseLetters(this.isASpaceEvenLanguage);
     }
 
 
     public get numbers(): PossibleNumbers_Array {
-        return this.#numbers ??= this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace ? Characters.numbers_spaceEven : Characters.numbers_spaceUneven;
+        return this.#numbers ??= Characters.getNumbers(this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace);
     }
 
 

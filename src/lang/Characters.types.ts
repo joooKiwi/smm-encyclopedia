@@ -35,7 +35,7 @@ enum Enum {
 
 //region -------------------- Utility types --------------------
 
-/** @temporary */export type VariableValueByBoolean<B extends boolean, V1, V2, > = B extends true ? V1 : B extends false ? V2 : | V1 | V2;
+export type VariableValueByBoolean<B extends boolean, V1, V2, > = B extends true ? V1 : B extends false ? V2 : | V1 | V2;
 
 export type VariableCharactersByBoolean<B extends boolean, > = VariableValueByBoolean<B, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters>
 export type VariableCharacterByCharacter<B extends boolean, C extends PossibleSingleCharacter, > = VariableValueByBoolean<B, SpaceEvenCharacterFromEquivalenceMap<C>, SpaceUnevenCharacterFromEquivalenceMap<C>>
@@ -325,7 +325,7 @@ export type UppercaseRomainAlphabet_SpaceEven_Array = readonly ['Ａ', 'Ｂ', '�
 export type RomainAlphabet_SpaceUneven_Array = _MergedRomainAlphabetArray2<UppercaseRomainAlphabet_SpaceUneven_Array, LowercaseRomainAlphabet_SpaceUneven_Array>;
 export type PossibleRomainAlphabet_SpaceUneven_Array = | UppercaseRomainAlphabet_SpaceUneven_Array | LowercaseRomainAlphabet_SpaceUneven_Array;
 
-export type Letters_SpaceEven_Array = _MergedRomainAlphabetArray2<UppercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceEven_Array>;
+export type RomainAlphabet_SpaceEven_Array = _MergedRomainAlphabetArray2<UppercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceEven_Array>;
 export type PossibleRomainAlphabet_SpaceEven_Array = | UppercaseRomainAlphabet_SpaceEven_Array | LowercaseRomainAlphabet_SpaceEven_Array;
 
 export type LowercaseLetters_Array = _MergedRomainAlphabetArray2<LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array>;
