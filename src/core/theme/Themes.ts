@@ -185,8 +185,6 @@ export class Themes
     static #WORLDS: EnumArray_OnlyWorldTheme;
 
     #reference?: CourseAndWorldTheme;
-    #courseTheme?: CourseTheme;
-    #worldTheme?: WorldTheme;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #gameName: PossibleGameName;
     #smallImagePath?: SmallImagePath;
@@ -237,11 +235,11 @@ export class Themes
     }
 
     public get courseTheme(): CourseTheme {
-        return this.#courseTheme ??= this.reference[0];
+        return this.reference[0];
     }
 
     public get worldTheme(): WorldTheme {
-        return this.#worldTheme ??= this.reference[1];
+        return this.reference[1];
     }
 
     public get smallImagePath(): SmallImagePath {

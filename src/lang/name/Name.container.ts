@@ -98,8 +98,6 @@ export class NameContainer<T, >
     /**
      * The options languages on the {@link NameContainer},
      * but as the type used by the private static attributes.
-     *
-     * @protected
      */
     protected static get _optionalLanguages() {
         return this.#OPTIONAL_LANGUAGES;
@@ -346,4 +344,4 @@ export class NameContainer<T, >
 
 }
 
-type OptionalLanguages = typeof NameContainer['_optionalLanguages'][number];
+type OptionalLanguages = typeof NameContainer['optionalLanguages'][number];
