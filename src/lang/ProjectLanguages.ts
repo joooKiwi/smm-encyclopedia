@@ -199,7 +199,7 @@ export class ProjectLanguages
     }
 
     public get isInEverySuperMarioMakerGame(): boolean {
-        return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMaker2;
+        return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMakerFor3DS && this.isInSuperMarioMaker2;
     }
 
     //region -------------------- Characters getter methods --------------------
