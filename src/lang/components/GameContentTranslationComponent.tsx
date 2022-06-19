@@ -8,5 +8,6 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  * @reactComponent
  */
 export default function GameContentTranslationComponent(properties: PossibleTranslationPropertyReceived<GameContentNamespace>,) {
+    // @ts-ignore
     return <AnyTranslationComponent namespace="gameContent" {...properties}/>;
 }

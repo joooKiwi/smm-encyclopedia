@@ -28,9 +28,9 @@ export class MiiCostumeCategories
 
     static {
         this.HEADGEAR = new MiiCostumeCategories('Headgear', 1,);
-        this.TOP = new MiiCostumeCategories('Top', 0,);
-        this.COSTUME = new MiiCostumeCategories('Costume', 3,);
-        this.BOTTOM = new MiiCostumeCategories('Bottom', 2,);
+        this.TOP =      new MiiCostumeCategories('Top', 0,);
+        this.COSTUME =  new MiiCostumeCategories('Costume', 3,);
+        this.BOTTOM =   new MiiCostumeCategories('Bottom', 2,);
     }
 
     //endregion -------------------- Enum instances --------------------

@@ -605,6 +605,7 @@ export class OfficialNotifications
     //region -------------------- Methods --------------------
 
     //region -------------------- Add argument to "key map" --------------------
+
     /**
      * Add any arguments specified by the current instance to be ready to
      * @param key

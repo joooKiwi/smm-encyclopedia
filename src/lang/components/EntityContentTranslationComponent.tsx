@@ -8,5 +8,6 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  * @reactComponent
  */
 export default function EntityTranslationComponent(properties: PossibleTranslationPropertyReceived<EntityContentNamespace>,) {
+    // @ts-ignore
     return <AnyTranslationComponent namespace="entityContent"  {...properties}/>;
 }

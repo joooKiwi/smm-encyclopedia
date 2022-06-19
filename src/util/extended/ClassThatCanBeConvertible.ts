@@ -3,7 +3,6 @@ import type {ExtendedMap} from './ExtendedMap';
 
 export interface ClassThatCanBeConvertible<V1, K, V2> {
 
-
     toArray(): V1[]
 
 

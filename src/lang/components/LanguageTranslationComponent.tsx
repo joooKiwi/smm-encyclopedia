@@ -8,5 +8,6 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  * @reactComponent
  */
 export default function LanguageTranslationComponent(properties: PossibleTranslationPropertyReceived<LanguageNamespace>,) {
+    // @ts-ignore
     return <AnyTranslationComponent namespace="language" {...properties}/>;
 }
