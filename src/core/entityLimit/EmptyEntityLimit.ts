@@ -76,7 +76,7 @@ export class EmptyEntityLimit
 
     //endregion -------------------- Limit amount --------------------
 
-    public toString(): EmptyEntityLimitName {
+    public override toString(): EmptyEntityLimitName {
         return 'Empty entity limit';
     }
 

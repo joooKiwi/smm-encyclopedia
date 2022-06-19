@@ -15,13 +15,13 @@ export class GameReferenceBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return GameReferenceBuilder;
     }
 
     //endregion -------------------- Build helper methods --------------------
 
-    protected _build(name: Name<string>,): GameReference {
+    protected override _build(name: Name<string>,): GameReference {
         return new GameReferenceContainer(this.template.acronym, name,);
     }
 

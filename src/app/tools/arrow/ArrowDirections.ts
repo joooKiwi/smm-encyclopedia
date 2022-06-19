@@ -51,13 +51,13 @@ export class ArrowDirections
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<ArrowDirections> {
+    protected override get _static(): StaticReference<ArrowDirections> {
         return ArrowDirections;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.value === value)
             ?? null;
     }

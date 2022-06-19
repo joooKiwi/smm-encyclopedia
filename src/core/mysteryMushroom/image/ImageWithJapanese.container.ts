@@ -15,7 +15,7 @@ export class ImageWithJapaneseContainer<PATH extends PossiblePath = PossiblePath
             amountOfImagesOnJump,);
     }
 
-    protected _createPaths() {
+    protected override _createPaths() {
         return [this._basicPath, this._japanesePath,] as const;
     }
 

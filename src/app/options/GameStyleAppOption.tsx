@@ -45,38 +45,37 @@ export abstract class GameStyleAppOption
     static {
         this.IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-            protected _get(state: GameStyleAppStates,): boolean {
+            protected override _get(state: GameStyleAppStates,): boolean {
                 return state.display.section.image;
             }
 
-            protected _set(nextState: GameStyleAppStates, value: boolean,): void {
+            protected override _set(nextState: GameStyleAppStates, value: boolean,): void {
                 nextState.display.section.image = value;
             }
 
-            protected get _createContentOption(): () => PossibleRenderReactElement {
+            protected override get _createContentOption(): () => PossibleRenderReactElement {
                 return () => {
                     const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
                     return enumerable.renderSingleComponent;
                 };
             }
 
-            protected get _createTableHeaderOption(): SingleHeaderContent {
+            protected override get _createTableHeaderOption(): SingleHeaderContent {
                 return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,}
             }
 
         }(true,);
         this.NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-            protected _get(state: GameStyleAppStates,): boolean {
+            protected override _get(state: GameStyleAppStates,): boolean {
                 return state.display.section.name;
             }
 
-            protected _set(nextState: GameStyleAppStates, value: boolean,): void {
+            protected override _set(nextState: GameStyleAppStates, value: boolean,): void {
                 nextState.display.section.name = value;
             }
 
-
-            protected get _createContentOption(): () => PossibleRenderReactElement {
+            protected override get _createContentOption(): () => PossibleRenderReactElement {
                 return () => {
                     const enumeration = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -84,22 +83,22 @@ export abstract class GameStyleAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): SingleHeaderContent {
+            protected override get _createTableHeaderOption(): SingleHeaderContent {
                 return CommonOptions.get.nameHeader;
             }
 
         }(true,);
         this.GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
 
-            protected _get(state: GameStyleAppStates,): boolean {
+            protected override _get(state: GameStyleAppStates,): boolean {
                 return state.display.section.game;
             }
 
-            protected _set(nextState: GameStyleAppStates, value: boolean,) {
+            protected override _set(nextState: GameStyleAppStates, value: boolean,) {
                 nextState.display.section.game = value;
             }
 
-            protected get _createContentOption(): () => PossibleRenderReactElement {
+            protected override get _createContentOption(): () => PossibleRenderReactElement {
                 return () => {
                     const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
                     const gameStyle = enumerable.reference;
@@ -111,7 +110,7 @@ export abstract class GameStyleAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): SingleHeaderContent {
+            protected override get _createTableHeaderOption(): SingleHeaderContent {
                 return {
                     key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
                     subHeaders: [
@@ -125,15 +124,15 @@ export abstract class GameStyleAppOption
         }(true,);
         this.NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-            protected _get(state: GameStyleAppStates,): boolean {
+            protected override _get(state: GameStyleAppStates,): boolean {
                 return state.display.section.nightDesertWind;
             }
 
-            protected _set(nextState: GameStyleAppStates, value: boolean,) {
+            protected override _set(nextState: GameStyleAppStates, value: boolean,) {
                 nextState.display.section.nightDesertWind = value;
             }
 
-            protected get _createContentOption(): () => PossibleRenderReactElement {
+            protected override get _createContentOption(): () => PossibleRenderReactElement {
                 return () => {
                     const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
                     const gameStyle = enumerable.reference;
@@ -142,7 +141,7 @@ export abstract class GameStyleAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): SingleHeaderContent {
+            protected override get _createTableHeaderOption(): SingleHeaderContent {
                 return {
                     key: 'nightDesertWind',
                     element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
@@ -245,7 +244,7 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<GameStyleAppOption> & AppOptionStatic<GameStyleAppStates> {
+    protected override get _static(): StaticReference<GameStyleAppOption> & AppOptionStatic<GameStyleAppStates> {
         return GameStyleAppOption;
     }
 

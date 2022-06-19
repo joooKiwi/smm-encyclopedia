@@ -11,11 +11,11 @@ export class StringToSingleBooleanConverter<B extends boolean, >
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): B {
+    protected override _convertTheValue(validValue: string,) {
         return ConverterUtil.convertToBoolean(validValue) as B;
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return ConverterPatterns.NUMBER_PATTERN.test(value)
             && ConverterUtil.convertToBoolean(value) === this.singleValue;
     }

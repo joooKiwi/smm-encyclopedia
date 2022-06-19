@@ -25,7 +25,7 @@ export class EmptyEntityCategory
 
     //endregion -------------------- Singleton usage --------------------
 
-    public toString(): EmptyEntityCategoryName {
+    public override toString(): EmptyEntityCategoryName {
         return 'Empty entity category';
     }
 

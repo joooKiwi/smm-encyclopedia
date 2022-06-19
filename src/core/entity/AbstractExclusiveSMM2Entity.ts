@@ -18,7 +18,7 @@ export abstract class AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategor
         super(name, category, property, references,);
     }
 
-    protected _testProperty(property: Property,): Property {
+    protected override _testProperty(property: Property,): Property {
         property = super._testProperty(property);
 
         assert(!property.isInSuperMarioMaker1, 'The property isInSMM1 should always be set to false for a SMM2 exclusive property.',);

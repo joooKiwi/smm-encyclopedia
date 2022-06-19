@@ -30,15 +30,15 @@ export default class EveryEntitiesApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'entity';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent translationKey="Every entities"/>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
         return new class implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
             public get iterable(): IterableIterator<Entities> {

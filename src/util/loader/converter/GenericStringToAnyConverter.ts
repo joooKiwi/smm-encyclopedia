@@ -38,15 +38,15 @@ export class GenericStringToAnyConverter<T>
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): T {
+    protected override _convertTheValue(validValue: string,) {
         return this.convertTheValueCallback(validValue);
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" could not be converted to a "${this.typeName}".`);
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return this.isValueValidCallback(value);
     }
 

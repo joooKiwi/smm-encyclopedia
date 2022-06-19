@@ -14,23 +14,23 @@ export default class LanguageChangerButton
 
     static readonly #ID = 'languageChanger-button';
 
-    protected get _isTopButton(): boolean {
+    protected override get _isTopButton() {
         return false;
     }
 
-    protected get _id(): string {
+    protected override get _id() {
         return LanguageChangerButton.#ID;
     }
 
-    protected get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get tooltipPlacement(): PossibleTooltipPlacement {
         return 'left';
     }
 
-    protected get _addedClass(): string {
+    protected override get _addedClass() {
         return 'bi-translate';
     }
 
-    protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return [translation('Change the language'), 'md',];
     }
 

@@ -5,6 +5,7 @@ import type {HeaderHolder}               from './header/HeaderHolder';
 import type {EveryHeaderHolders, Layout} from './TableHeaders.types';
 import type {ObjectHolder}               from '../../../util/holder/ObjectHolder';
 import type {ReactComponent}             from '../../../util/react/ReactComponent';
+import type {ReactElement}               from '../../../util/react/ReactProperty';
 import type {SingleHeaderContent}        from './SimpleHeader';
 import type {TableProperties}            from './Table.types';
 
@@ -101,7 +102,7 @@ export default class Table
 
     //endregion -------------------- Getter methods --------------------
 
-    public render() {
+    public override render(): ReactElement {
         const caption = this.caption;
         const headers = this.headers;
         const isHeaderNull = headers == null;

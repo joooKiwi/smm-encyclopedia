@@ -44,7 +44,7 @@ export class ThemeBuilder
 
     //region -------------------- Builder helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return ThemeBuilder;
     }
 
@@ -111,7 +111,7 @@ export class ThemeBuilder
 
     //endregion -------------------- Builder helper methods --------------------
 
-    protected _build(name: Name<string>,): CourseAndWorldTheme {
+    protected override _build(name: Name<string>,): CourseAndWorldTheme {
         const template = this.template;
         const {course: isInCourseTheme, world: isInWorldTheme,} = template.is.in.theme;
 

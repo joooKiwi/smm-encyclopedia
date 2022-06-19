@@ -48,15 +48,15 @@ export abstract class MiiCostumeAppOption
     static {
         this.IMAGE =                  new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-            protected _get(state: MiiCostumeAppStates,): boolean {
+            protected override _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.section.image;
             }
 
-            protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+            protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
                 nextState.display.section.image = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -64,41 +64,41 @@ export abstract class MiiCostumeAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
             }
 
         }(true,);
         this.NAME =                   new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
-            protected _get(state: MiiCostumeAppStates,): boolean {
+            protected override _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.section.name;
             }
 
-            protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+            protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
                 nextState.display.section.name = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION());
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return CommonOptions.get.nameHeader;
             }
 
         }(true,);
         this.OFFICIAL_NOTIFICATION =  new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
-            protected _get(state: MiiCostumeAppStates,): boolean {
+            protected override _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.section.conditionToUnlockIt;
             }
 
-            protected _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+            protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
                 nextState.display.section.conditionToUnlockIt = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
                     const miiCostume = enumeration.reference;
@@ -112,7 +112,7 @@ export abstract class MiiCostumeAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 //TODO add new translation to the header value.
                 return {key: 'officialNotification', element: <>--Official notification--</>,};
             }
@@ -121,15 +121,15 @@ export abstract class MiiCostumeAppOption
 
         this.CATEGORY =               new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
-            protected _get(state: MiiCostumeAppStates,): boolean {
+            protected override _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.section.category;
             }
 
-            protected _set(nextState: MiiCostumeAppStates, value: boolean,) {
+            protected override _set(nextState: MiiCostumeAppStates, value: boolean,) {
                 nextState.display.section.category = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
                         categoryName = enumeration.reference.categoryContainer.nameContainer;
@@ -141,18 +141,18 @@ export abstract class MiiCostumeAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return CommonOptions.get.categoryHeader;
             }
 
         }(true,);
         this.CATEGORY_AS_TEXT =       new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
 
-            protected _get(state: MiiCostumeAppStates,): boolean {
+            protected override _get(state: MiiCostumeAppStates,): boolean {
                 return state.display.asText.category;
             }
 
-            protected _set(nextState: MiiCostumeAppStates, value: boolean,) {
+            protected override _set(nextState: MiiCostumeAppStates, value: boolean,) {
                 nextState.display.asText.category = value;
             }
 
@@ -262,7 +262,7 @@ export abstract class MiiCostumeAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<MiiCostumeAppOption> & AppOptionStatic<MiiCostumeAppStates> {
+    protected override get _static(): StaticReference<MiiCostumeAppOption> & AppOptionStatic<MiiCostumeAppStates> {
         return MiiCostumeAppOption;
     }
 

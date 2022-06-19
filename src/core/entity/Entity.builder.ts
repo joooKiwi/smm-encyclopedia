@@ -86,7 +86,7 @@ export class EntityBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return EntityBuilder;
     }
 
@@ -260,7 +260,7 @@ export class EntityBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public _build(name: Name<string>,) {
+    public override _build(name: Name<string>,) {
         const isInProperty = this.__createProperty();
         const isInSMM1 = isInProperty.isInSuperMarioMaker1;
         const isInSMM2 = isInProperty.isInSuperMarioMaker2;

@@ -234,11 +234,11 @@ export class MysteryMushrooms
     static {
         this.MYSTERY_MUSHROOM =       new class MysteryMushrooms_MysteryMushroom extends MysteryMushrooms {
 
-            protected _createImageContainer(): Image {
+            protected override _createImageContainer(): Image {
                 return NoImage.get;
             }
 
-            protected _createSoundContainer(): Sound {
+            protected override _createSoundContainer(): Sound {
                 return NoSound.get;
             }
 
@@ -285,7 +285,7 @@ export class MysteryMushrooms
         this.BABY_MARIO =             new MysteryMushrooms('Baby Mario',);
         this.QUESTION_MARK_BLOCK =    new class MysteryMushrooms_QuestionMarkBlock extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithLeftVariationContainer(imagePath);
             }
 
@@ -354,7 +354,7 @@ export class MysteryMushrooms
 
         this.SONIC =                  new class MysteryMushrooms_Sonic extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new BasicImageContainer(imagePath, 3,);
             }
 
@@ -436,28 +436,28 @@ export class MysteryMushrooms
         this.INKLING_SQUID =          new MysteryMushrooms('Inkling Squid',);
         this.INKLING_BOY =            new class MysteryMushrooms_InklingBoy extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithUnderwaterVariationContainer(imagePath);
             }
 
         }('Inkling Boy',);
         this.INKLING_GIRL =           new class MysteryMushrooms_InklingGirl extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithUnderwaterVariationContainer(imagePath);
             }
 
         }('Inkling Girl',);
         this.CALLIE =                 new class MysteryMushrooms_Callie extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithUnderwaterVariationContainer(imagePath);
             }
 
         }('Callie',);
         this.MARIE =                  new class MysteryMushrooms_Marie extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithUnderwaterVariationContainer(imagePath);
             }
 
@@ -465,7 +465,7 @@ export class MysteryMushrooms
 
         this.ROB =                    new class MysteryMushrooms_ROB extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithJapaneseContainer(imagePath);
             }
 
@@ -475,14 +475,14 @@ export class MysteryMushrooms
 
         this.KITTY_WHITE =            new class MysteryMushrooms_KittyWhite extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithLeftVariationContainer(imagePath);
             }
 
         }('Kitty White',);
         this.MELODY =                 new class MysteryMushrooms_Melody extends MysteryMushrooms {
 
-            protected _createImageContainer(imagePath: PossiblePath,): Image {
+            protected override _createImageContainer(imagePath: PossiblePath,): Image {
                 return new ImageWithLeftVariationContainer(imagePath);
             }
 
@@ -707,13 +707,13 @@ export class MysteryMushrooms
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<MysteryMushrooms> {
+    protected override get _static(): StaticReference<MysteryMushrooms> {
         return MysteryMushrooms;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
                 || enumerable.englishNameOnFile === value)
             ?? null;

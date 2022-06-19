@@ -100,11 +100,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): MiiCostumeCategoryTemplate {
+    public override build(): MiiCostumeCategoryTemplate {
         return {
             name: this._createNameTemplate(),
         };

@@ -46,7 +46,7 @@ export class UnusedImage_RegularBuilder
     }
 
 
-    public build(): UnusedImage_Regular {
+    public override build(): UnusedImage_Regular {
         return new UnusedImage_RegularContainer(new Map(this._identifierMap
             .map((gameStyle, imagesMap,) => imagesMap.toArray()).toArray()
             .map(({key: gameStyle, value: imagesArray,},) =>

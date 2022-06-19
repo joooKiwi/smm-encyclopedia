@@ -85,7 +85,7 @@ export default class EveryGameReferencesApp
 
     //endregion -------------------- Methods --------------------
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <div className="container-fluid main-container">
             <GameContentTranslationComponent>{translation =>
                 <h2 id="main-names-title" className="col-12 names-title">{translation('Game references')}</h2>

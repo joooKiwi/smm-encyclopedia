@@ -48,46 +48,46 @@ export abstract class Texts
     static {
         this.YES = new class Texts_Yes extends Texts {
 
-            public renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
+            public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
                 return <TextComponent {...properties}/>;
             }
 
-            public renderNameComponent(properties: _NameProperties,): ReactElement {
+            public override renderNameComponent(properties: _NameProperties,): ReactElement {
                 return <NameComponent {...properties}/>;
             }
 
-            public renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
+            public override renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
                 return <YesOrNoResultTextComponent {...properties}/>;
             }
 
-            public renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
+            public override renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
                 return <BooleanTextComponent {...properties}/>;
             }
 
-            public renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
+            public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
                 return <BooleanResultTextComponent {...properties}/>;
             }
 
         }(true,);
         this.NO =  new class Texts_No extends Texts {
 
-            public renderTextComponent(): ReactElement {
+            public override renderTextComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
-            public renderNameComponent(): ReactElement {
+            public override renderNameComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
-            public renderYesNoComponent(): ReactElement {
+            public override renderYesNoComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
-            public renderBooleanComponent(): ReactElement {
+            public override renderBooleanComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
-            public renderBooleanResultComponent(): ReactElement {
+            public override renderBooleanResultComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
@@ -133,13 +133,13 @@ export abstract class Texts
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Texts> {
+    protected override get _static(): StaticReference<Texts> {
         return Texts;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByBoolean(value: boolean,) {
+    protected static override _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
             ?? null;
     }

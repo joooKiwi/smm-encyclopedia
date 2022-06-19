@@ -14,11 +14,11 @@ export class SoundEffectCategoryBuilder
         super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return SoundEffectCategoryBuilder;
     }
 
-    protected _build(name: Name<string>,): SoundEffectCategory {
+    protected override _build(name: Name<string>,): SoundEffectCategory {
         return new SoundEffectCategoryContainer(name);
     }
 

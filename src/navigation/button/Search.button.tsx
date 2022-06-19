@@ -11,23 +11,23 @@ export default class SearchButton
 
     static readonly #ID = 'search-button';
 
-    protected get _isTopButton(): boolean {
+    protected override get _isTopButton() {
         return true;
     }
 
-    protected get _id(): string {
+    protected override get _id() {
         return SearchButton.#ID;
     }
 
-    protected get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get tooltipPlacement(): PossibleTooltipPlacement {
         return 'bottom';
     }
 
-    protected get _addedClass(): string {
+    protected override get _addedClass() {
         return 'bi-search';
     }
 
-    protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return [`${translation('Search')}…`, 'md',];
     }
 

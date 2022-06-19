@@ -127,7 +127,7 @@ export class Versions
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.simpleName === value)
             ?? null;
     }

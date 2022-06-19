@@ -11,19 +11,19 @@ export default class DisplayViewButton
 
     static readonly #ID = 'displayView-button';
 
-    protected get _isTopButton(): boolean {
+    protected override get _isTopButton() {
         return true;
     }
 
-    protected get _id(): string {
+    protected override get _id() {
         return DisplayViewButton.#ID;
     }
 
-    protected get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get tooltipPlacement(): PossibleTooltipPlacement {
         return 'bottom';
     }
 
-    protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return `${translation('Display')}…`;
     }
 

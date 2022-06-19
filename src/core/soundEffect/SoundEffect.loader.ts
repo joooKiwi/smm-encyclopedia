@@ -158,11 +158,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): SoundEffectTemplate {
+    public override build(): SoundEffectTemplate {
         return {
             properties: {
                 isIn: {

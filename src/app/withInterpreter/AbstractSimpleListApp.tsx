@@ -17,7 +17,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
     //endregion -------------------- Attributes --------------------
     //region -------------------- Create methods --------------------
 
-    protected _createPossibleViewDisplay(): readonly ViewDisplays[] {
+    protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
         return AbstractSimpleListApp.#APP_OPTION_INTERPRETER;
     }
 

@@ -41,7 +41,7 @@ export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
 
     protected abstract _renderComponentForAllAsImages(): ReactElement;
 
-    public render(): ReactElement {
+    public override render(): ReactElement {
         if (this._isInAll) {
             if (this.displayAllAsText)
                 return this._renderComponentForAllAsText();

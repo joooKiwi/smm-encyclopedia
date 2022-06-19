@@ -114,11 +114,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): GameStyleTemplate {
+    public override build(): GameStyleTemplate {
         return {
             is: {
                 in: {game: this._createGameTemplateFrom1And2(),},

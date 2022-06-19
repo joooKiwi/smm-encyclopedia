@@ -9,11 +9,11 @@ export class StringToSingleStringConverter<S extends string, >
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): S {
+    protected override _convertTheValue(validValue: string,) {
         return validValue as S;
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return value === this.singleValue;
     }
 

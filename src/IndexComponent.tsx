@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {IntlProvider}    from 'react-intl';
+import React, {type ErrorInfo, PureComponent, useState} from 'react';
+import {IntlProvider}                                   from 'react-intl';
 
 import type {PossibleInternationalAcronym} from './lang/ProjectLanguages.types';
 import type {ReactState}                   from './util/react/ReactState';
@@ -36,7 +36,7 @@ interface IndexState
 }
 
 export default class IndexComponent
-    extends React.PureComponent<{}, IndexState> {
+    extends PureComponent<{}, IndexState> {
 
     public constructor(props: {},) {
         super(props);
@@ -47,12 +47,12 @@ export default class IndexComponent
         return {hasError: true,};
     }
 
-    public componentDidCatch(error: Error, errorInfo: React.ErrorInfo,): void {
+    public override componentDidCatch(error: Error, errorInfo: ErrorInfo,): void {
         console.warn(error.message);
         console.warn(errorInfo.componentStack);
     }
 
-    public render() {
+    public override render() {
         if (this.state.hasError)
             return <h1>An error happened in the application!</h1>;
         return <FunctionIndexComponent/>;

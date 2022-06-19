@@ -89,11 +89,11 @@ export abstract class EntityAppOption
     static {
         this.IMAGES = new class EntityAppOption_Images extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.images;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,): void {
+            protected override _set(nextState: EntityAppStates, value: boolean,): void {
                 nextState.display.section.images = value;
             }
 
@@ -120,7 +120,7 @@ export abstract class EntityAppOption
                     }</Fragment>);
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -130,7 +130,7 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {
                     key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
                     subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
@@ -141,44 +141,44 @@ export abstract class EntityAppOption
         }(true,);
         this.IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.images.editor;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.images.editor = value;
             }
 
         }(true,);
         this.IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.images.clearCondition;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.images.clearCondition = value;
             }
 
         }(true,);
         this.IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.images.whilePlaying;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.images.whilePlaying = value;
             }
 
         }(false,);
         this.IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.images.unused;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.images.unused = value;
             }
 
@@ -186,16 +186,16 @@ export abstract class EntityAppOption
 
         this.NAME = new class EntityAppOption_Name extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.name;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,): void {
+            protected override _set(nextState: EntityAppStates, value: boolean,): void {
                 nextState.display.section.name = value;
             }
 
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -206,7 +206,7 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return CommonOptions.get.nameHeader;
             }
 
@@ -214,15 +214,15 @@ export abstract class EntityAppOption
 
         this.GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.game;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.section.game = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
@@ -230,18 +230,18 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,};
             }
 
         }(false,);
         this.WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.asText.whenAll.game;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,): void {
+            protected override _set(nextState: EntityAppStates, value: boolean,): void {
                 nextState.display.asText.whenAll.game = value;
             }
 
@@ -249,15 +249,15 @@ export abstract class EntityAppOption
 
         this.GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.gameStyle;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.section.gameStyle = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
@@ -265,18 +265,18 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
             }
 
         }(false,);
         this.WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.asText.whenAll.gameStyle;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,): void {
+            protected override _set(nextState: EntityAppStates, value: boolean,): void {
                 nextState.display.asText.whenAll.gameStyle = value;
             }
 
@@ -284,15 +284,15 @@ export abstract class EntityAppOption
 
         this.COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.courseTheme;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.section.courseTheme = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
@@ -300,18 +300,18 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
             }
 
         }(false,);
         this.WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.asText.whenAll.courseTheme;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,): void {
+            protected override _set(nextState: EntityAppStates, value: boolean,): void {
                 nextState.display.asText.whenAll.courseTheme = value;
             }
 
@@ -319,15 +319,15 @@ export abstract class EntityAppOption
 
         this.TIME = new class EntityAppOption_Time extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.time;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.section.time = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
 
                 return () => {
                     const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
@@ -336,18 +336,18 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
             }
 
         }(false,);
         this.WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.asText.whenAll.time;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,): void {
+            protected override _set(nextState: EntityAppStates, value: boolean,): void {
                 nextState.display.asText.whenAll.time = value;
             }
 
@@ -355,15 +355,15 @@ export abstract class EntityAppOption
 
         this.CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.category;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.section.category = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                         categoryName = enumeration.reference.categoryNameContainer;
@@ -375,18 +375,18 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return CommonOptions.get.categoryHeader;
             }
 
         }(true,);
         this.CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.asText.category;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.asText.category = value;
             }
 
@@ -394,15 +394,15 @@ export abstract class EntityAppOption
 
         this.LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.section.limit;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.section.limit = value;
             }
 
-            protected get _createContentOption(): PossibleOptionWithContent {
+            protected override get _createContentOption(): PossibleOptionWithContent {
                 return () => {
                     const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
                     const entity = enumeration.reference;
@@ -425,7 +425,7 @@ export abstract class EntityAppOption
                 };
             }
 
-            protected get _createTableHeaderOption(): PossibleOptionWithTable {
+            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
                 return {
                     key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
                     subHeaders: [
@@ -448,11 +448,11 @@ export abstract class EntityAppOption
         }(true,);
         this.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {
 
-            protected _get(state: EntityAppStates,): boolean {
+            protected override _get(state: EntityAppStates,): boolean {
                 return state.display.asText.ifApplicable.acronymOnLimits;
             }
 
-            protected _set(nextState: EntityAppStates, value: boolean,) {
+            protected override _set(nextState: EntityAppStates, value: boolean,) {
                 nextState.display.asText.ifApplicable.acronymOnLimits = value;
             }
 
@@ -603,7 +603,7 @@ export abstract class EntityAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<EntityAppOption> & AppOptionStatic<EntityAppStates> {
+    protected override get _static(): StaticReference<EntityAppOption> & AppOptionStatic<EntityAppStates> {
         return EntityAppOption;
     }
 

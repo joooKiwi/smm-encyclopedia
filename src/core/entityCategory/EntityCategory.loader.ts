@@ -99,11 +99,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): EntityCategoryTemplate {
+    public override build(): EntityCategoryTemplate {
         return {
             entities: null,
             name: this._createNameTemplate(),

@@ -37,7 +37,7 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement
 
-    public render(): ReactElement {
+    public override render(): ReactElement {
         return this.isHidden
             ? EMPTY_REACT_ELEMENT
             : <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{

@@ -11,15 +11,15 @@ export class StringToNullableNumberConverter
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): number {
+    protected override _convertTheValue(validValue: string,) {
         return ConverterUtil.convertToNumber(validValue);
     }
 
-    protected _isValueValid(nonEmptyValue: string,): boolean {
+    protected override _isValueValid(nonEmptyValue: string,) {
         return ConverterPatterns.NUMBER_PATTERN.test(nonEmptyValue);
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a number`);
     }
 

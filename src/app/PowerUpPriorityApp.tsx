@@ -95,7 +95,7 @@ export default class PowerUpPriorityApp
 
     //endregion Power-up priority holders
 
-    protected _mainContent(): ReactElement {
+    protected override _mainContent(): ReactElement {
         return <>
             {/*TODO add legend for the colors & styles*/}
             <div key="Power-up priority (container)" id="powerUpPriority-container" className="container-fluid">

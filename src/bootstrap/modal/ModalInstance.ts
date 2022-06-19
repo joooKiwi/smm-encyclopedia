@@ -35,7 +35,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
         this.on(callbacks);
     }
 
-    protected _createInstance(options: Partial<Modal.Options>,): Modal {
+    protected override _createInstance(options: Partial<Modal.Options>,): Modal {
         return Modal.getOrCreateInstance(this.element, options,);
     }
 
@@ -50,7 +50,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/modal/#events
      */
-    public _on(callbacks: Partial<ModalEvents<this>>,): this {
+    protected override _on(callbacks: Partial<ModalEvents<this>>,): this {
         if (callbacks.hidePrevented != null)
             this.onHidePrevented(callbacks.hidePrevented);
         return this;
@@ -60,7 +60,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @param callback
      * @see Modal.Events.show
      */
-    public onShow(callback: ModalEventCallbackReceived<this>,): this {
+    public override onShow(callback: ModalEventCallbackReceived<this>,): this {
         return this.__addEventListener(ModalInstance.SHOW_EVENT, callback,);
     }
 
@@ -68,7 +68,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @param callback
      * @see Modal.Events.shown
      */
-    public onShown(callback: ModalEventCallbackReceived<this>,): this {
+    public override onShown(callback: ModalEventCallbackReceived<this>,): this {
         return this.__addEventListener(ModalInstance.SHOWN_EVENT, callback,);
     }
 
@@ -76,7 +76,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @param callback
      * @see Modal.Events.hide
      */
-    public onHide(callback: ModalEventCallbackReceived<this>): this {
+    public override onHide(callback: ModalEventCallbackReceived<this>): this {
         return this.__addEventListener(ModalInstance.HIDE_EVENT, callback,);
     }
 
@@ -84,7 +84,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @param callback
      * @see Modal.Events.hidden
      */
-    public onHidden(callback: ModalEventCallbackReceived<this>,): this {
+    public override onHidden(callback: ModalEventCallbackReceived<this>,): this {
         return this.__addEventListener(ModalInstance.HIDDEN_EVENT, callback,);
     }
 

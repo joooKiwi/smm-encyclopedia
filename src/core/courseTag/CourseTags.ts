@@ -137,13 +137,13 @@ export class CourseTags
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<CourseTags> {
+    protected override get _static(): StaticReference<CourseTags> {
         return CourseTags;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    public static _getValueByString(value: string,) {
+    public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

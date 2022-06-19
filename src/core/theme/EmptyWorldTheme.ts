@@ -52,7 +52,7 @@ export class EmptyWorldTheme
     }
 
 
-    public toString(): EmptyWorldThemeName {
+    public override toString(): EmptyWorldThemeName {
         return 'Empty world theme';
     }
 

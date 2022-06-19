@@ -19,7 +19,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     //endregion -------------------- Attributes --------------------
     //region -------------------- Create methods --------------------
 
-    protected _createPossibleViewDisplay(): readonly ViewDisplays[] {
+    protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
         return AbstractTableApp.#APP_OPTION_INTERPRETER;
     }
 

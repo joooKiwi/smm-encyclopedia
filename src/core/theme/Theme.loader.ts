@@ -132,11 +132,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): ThemeTemplate {
+    public override build(): ThemeTemplate {
         return {
             is: {
                 in: {

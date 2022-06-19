@@ -544,11 +544,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): EntityTemplate {
+    public override build(): EntityTemplate {
         const [
             isInSuperMarioMaker1, isInSuperMarioMaker2,
             dayLink, nightLink,

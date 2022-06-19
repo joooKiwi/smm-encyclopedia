@@ -32,7 +32,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
         this.on(callbacks);
     }
 
-    protected _createInstance(): Offcanvas {
+    protected override _createInstance(): Offcanvas {
         return Offcanvas.getOrCreateInstance(this.element,);
     }
 
@@ -47,7 +47,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/offcanvas/#events
      */
-    public _on(callbacks: Partial<OffcanvasEvents<this>>,): this {
+    protected override _on(callbacks: Partial<OffcanvasEvents<this>>,): this {
         return this;
     }
 
@@ -55,7 +55,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.show
      */
-    public onShow(callback: OffcanvasEventCallbackReceived<this>,): this {
+    public override onShow(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.SHOW_EVENT, callback,);
     }
 
@@ -63,7 +63,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.shown
      */
-    public onShown(callback: OffcanvasEventCallbackReceived<this>,): this {
+    public override onShown(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.SHOWN_EVENT, callback,);
     }
 
@@ -71,7 +71,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.hide
      */
-    public onHide(callback: OffcanvasEventCallbackReceived<this>,): this {
+    public override onHide(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.HIDE_EVENT, callback,);
     }
 
@@ -79,7 +79,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @param callback
      * @see Offcanvas.Events.hidden
      */
-    public onHidden(callback: OffcanvasEventCallbackReceived<this>,): this {
+    public override onHidden(callback: OffcanvasEventCallbackReceived<this>,): this {
         return this.__addEventListener(OffcanvasInstance.HIDDEN_EVENT, callback,);
     }
 

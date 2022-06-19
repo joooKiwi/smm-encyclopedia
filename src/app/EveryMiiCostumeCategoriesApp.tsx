@@ -24,17 +24,17 @@ export default class EveryEntityCategoriesApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'miiCostumeCategory';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costume categories', {
             MiiCostume: <span key="miiCostume-singularName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costume reference
         })}</GameContentTranslationComponent>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
         return new class implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
             public get iterable(): IterableIterator<MiiCostumeCategories> {

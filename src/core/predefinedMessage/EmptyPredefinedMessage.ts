@@ -23,7 +23,7 @@ export class EmptyPredefinedMessage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public toString(): EmptyPredefinedMessageName {
+    public override toString(): EmptyPredefinedMessageName {
         return 'Empty predefined message';
     }
 

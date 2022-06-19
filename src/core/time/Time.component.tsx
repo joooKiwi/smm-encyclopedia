@@ -13,12 +13,12 @@ import {StringContainer}                     from '../../util/StringContainer';
 export default class TimeComponent
     extends AbstractDualEntityPropertyComponent<TimeProperty> {
 
-    protected get _isInAll() {
+    protected override get _isInAll() {
         return this.reference.isInDayTheme
             && (this.reference.isInNightTheme ?? false);
     }
 
-    protected get _isInFirst() {
+    protected override get _isInFirst() {
         return this.reference.isInDayTheme;
     }
 
@@ -34,19 +34,19 @@ export default class TimeComponent
         return <Image key={key} id={id} source={time.imagePath} fallbackName={`${time.englishName} - image`} className={`time-image ${timeEnglishNameInHtml}-image`}/>;
     }
 
-    protected _renderFirstComponent() {
+    protected override _renderFirstComponent() {
         return this._renderSingleComponent(Times.DAY);
     }
 
-    protected _renderSecondComponent() {
+    protected override _renderSecondComponent() {
         return this._renderSingleComponent(Times.NIGHT);
     }
 
-    protected _renderComponentForAllAsText() {
+    protected override _renderComponentForAllAsText() {
         return <GameContentTranslationComponent>{translation => <TextComponent content={translation('Every times')}/>}</GameContentTranslationComponent>;
     }
 
-    protected _renderComponentForAllAsImages() {
+    protected override _renderComponentForAllAsImages() {
         return <div key={`Every times images (${this.name.english})`}>{Times.values.map(time => this._renderSingleComponent(time))}</div>;
     }
 

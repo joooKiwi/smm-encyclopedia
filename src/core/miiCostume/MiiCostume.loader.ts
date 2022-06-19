@@ -120,11 +120,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): MiiCostumeTemplate {
+    public override build(): MiiCostumeTemplate {
         return {
             officialNotification: this._getContent(this._headersIndexMap.notificationIfUnlocked),
             version: this._getContent(this._headersIndexMap.MM2_version),

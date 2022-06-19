@@ -52,7 +52,7 @@ export class UnusedImage_BigMushroomBuilder
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): UnusedImage_BigMushroom {
+    public override build(): UnusedImage_BigMushroom {
         return new UnusedImage_BigMushroomContainer([...this._identifierMap.entries()].map(([identifier, images,]) => this._getImagePath(identifier, images,)));
     }
 

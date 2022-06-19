@@ -99,11 +99,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): PredefinedMessageTemplate {
+    public override build(): PredefinedMessageTemplate {
         return {
             name: this._createNameTemplate(),
         };

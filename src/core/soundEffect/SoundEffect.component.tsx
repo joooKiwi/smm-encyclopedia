@@ -66,7 +66,7 @@ export default class SoundEffectComponent
                       fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>;
     }
 
-    public render() {
+    public override render(): ReactElement {
         return this._render();
     }
 

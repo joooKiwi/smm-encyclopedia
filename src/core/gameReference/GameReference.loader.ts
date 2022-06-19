@@ -101,11 +101,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap(): typeof Headers {
+    protected override get _headersIndexMap(): typeof Headers {
         return Headers;
     }
 
-    public build(): GameReferenceTemplate {
+    public override build(): GameReferenceTemplate {
         return {
             acronym: this._getContent(this._headersIndexMap.acronym),
             name: this._createNameTemplate(),

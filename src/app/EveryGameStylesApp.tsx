@@ -47,7 +47,7 @@ export default class EveryGameStylesApp
 
     //endregion -------------------- Methods --------------------
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <Table
             id="gameStyle-table"
             caption={<GameContentTranslationComponent translationKey="Every game styles"/>}

@@ -14,7 +14,7 @@ export default class GroupTextButton
         super(props);
     }
 
-    protected _createContent({text}: ActivatableTextProperties,) {
+    protected override _createContent({text}: ActivatableTextProperties,) {
         return <TextComponent content={text}/>;
     }
 

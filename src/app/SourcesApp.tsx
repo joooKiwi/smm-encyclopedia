@@ -6,7 +6,7 @@ import AbstractApp from './AbstractApp';
 export default class SourcesApp
     extends AbstractApp {
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <>Every sources</>;
     }
 

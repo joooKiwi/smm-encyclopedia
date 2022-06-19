@@ -118,13 +118,13 @@ export class PredefinedMessages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<PredefinedMessages> {
+    protected override get _static(): StaticReference<PredefinedMessages> {
         return PredefinedMessages;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

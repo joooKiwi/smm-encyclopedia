@@ -423,7 +423,7 @@ export class EditorVoices
 
         this.BLOCK =                    new class EditorVoices_Block extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.BRICK_BLOCK, Import.Entities.CRISTAL_BLOCK, Import.Entities.ROTATING_BLOCK,];
                 }
 
@@ -431,7 +431,7 @@ export class EditorVoices
 
         this.HARD_BLOCK =               new class EditorVoices_HardBlock extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.HARD_BLOCK, Import.Entities.ROCK_BLOCK,];
                 }
 
@@ -497,14 +497,14 @@ export class EditorVoices
 
         this.BIG_MUSHROOM_SMM1 =        new class EditorVoices_BigMushroomSMM1 extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.BIG_MUSHROOM_CLASSIC, Import.Entities.BIG_MUSHROOM_MODERN,];
                 }
 
             }('Big Mushroom (SMM1)', () => new EditorVoiceSoundHolderWithVoiceBefore('bigmashroom',),);
         this.BIG_MUSHROOM_SMM2 =        new class EditorVoices_BigMushroomSMM2 extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.BIG_MUSHROOM,];
                 }
 
@@ -600,7 +600,7 @@ export class EditorVoices
 
         this.KOOPA_TROOPA =             new class EditorVoices_KoopaTroopa extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.GREEN_KOOPA_TROOPA, Import.Entities.RED_KOOPA_TROOPA,];
                 }
 
@@ -608,7 +608,7 @@ export class EditorVoices
 
         this.DRY_BONES =                new class EditorVoices_DryBones extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.DRY_BONES, Import.Entities.PARABONES,];
                 }
 
@@ -617,7 +617,7 @@ export class EditorVoices
 
         this.BUZZY_BEETLE =             new class EditorVoices_BuzzyBeetle extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.BUZZY_BEETLE, Import.Entities.PARA_BEETLE, Import.Entities.BUZZY_SHELL,];
                 }
 
@@ -625,7 +625,7 @@ export class EditorVoices
 
         this.SPINY =                    new class EditorVoices_Spiny extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.SPINY, Import.Entities.WINGED_SPINY, Import.Entities.SPINY_EGG, Import.Entities.SPINY_SHELL,];
                 }
 
@@ -633,7 +633,7 @@ export class EditorVoices
 
         this.SPIKE_TOP =                new class EditorVoices_SpikeTop extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.SPIKE_TOP, Import.Entities.WINGED_SPIKE_TOP, Import.Entities.FAST_SPIKE_TOP, Import.Entities.FAST_WINGED_SPIKE_TOP,];
                 }
 
@@ -649,7 +649,7 @@ export class EditorVoices
 
         this.CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.CHEEP_CHEEP, Import.Entities.BLURPS, Import.Entities.DEEP_CHEEP,];
                 }
 
@@ -722,7 +722,7 @@ export class EditorVoices
         this.BANZAI_BILL =              new EditorVoices('Banzai Bill',              () => new EditorVoiceSoundHolderWithSingingPartBefore('BanzaiBill',),);
         this.BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,];
                 }
 
@@ -748,7 +748,7 @@ export class EditorVoices
 
         this.SUN =                      new class EditorVoices_Sun extends EditorVoices {
 
-                protected get _createEntityReferences(): PossibleEntityReferences_Received {
+                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
                     return [Import.Entities.ANGRY_SUN,];
                 }
 
@@ -910,18 +910,18 @@ export class EditorVoices
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<EditorVoices> {
+    protected override get _static(): StaticReference<EditorVoices> {
         return EditorVoices;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }
 
-    protected static _getValueByEnumerable(value: Enumerable,) {
+    protected static override _getValueByEnumerable(value: Enumerable,) {
         return value instanceof Import.Entities
             ? this.values.find(enumerable => (enumerable.entityReferences.references as readonly Entities[]).includes(value))
             ?? null

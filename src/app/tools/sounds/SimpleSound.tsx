@@ -2,9 +2,10 @@ import './SimpleSound.scss';
 
 import {Component} from 'react';
 
+import type {IsSourceFoundCallback} from './SoundFounds.types';
 import type {SimpleSoundProperties} from './properties/SimpleSoundProperties';
 import type {SimpleSoundState}      from './properties/SimpleSoundState';
-import type {IsSourceFoundCallback} from './SoundFounds.types';
+import type {ReactElement}          from '../../../util/react/ReactProperty';
 
 import {SoundFounds}            from './SoundFounds';
 import {SoundStates}            from './SoundStates';
@@ -162,18 +163,18 @@ export default class SimpleSound
     //endregion -------------------- Methods --------------------
     //region -------------------- React methods --------------------
 
-    public componentDidMount() {
+    public override componentDidMount(): void {
         if (!this.state.isSourceRetrieved)
             this.isSoundFound.onCreate(this.#isSourceFoundCallback);
     }
 
-    public componentWillUnmount() {
+    public override componentWillUnmount(): void {
         const audio = this.#audio;
         if (audio != null)
             audio.onended = null;
     }
 
-    public render() {
+    public override render(): ReactElement {
         return <div key={this._title} className="audio-state-container container">{
             this.state.state.getElements(new SoundSubElementsHolder(
                 () => <div key={`${this._title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.__play()}/>,

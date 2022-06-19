@@ -35,7 +35,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
         this.on(callbacks);
     }
 
-    protected _createInstance(options: Partial<Popover.Options>,): Popover {
+    protected override _createInstance(options: Partial<Popover.Options>,): Popover {
         return Popover.getOrCreateInstance(this.element, options,);
     }
 
@@ -50,7 +50,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/popovers/#events
      */
-    public _on(callbacks: Partial<PopoverEvents<this>>,): this {
+    protected override _on(callbacks: Partial<PopoverEvents<this>>,): this {
         if (callbacks.inserted != null)
             this.onInserted(callbacks.inserted);
         return this;
@@ -60,7 +60,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.show
      */
-    public onShow(callback: PopoverEventCallbackReceived<this>,): this {
+    public override onShow(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.SHOW_EVENT, callback,);
     }
 
@@ -68,7 +68,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.shown
      */
-    public onShown(callback: PopoverEventCallbackReceived<this>,): this {
+    public override onShown(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.SHOWN_EVENT, callback,);
     }
 
@@ -76,7 +76,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.hide
      */
-    public onHide(callback: PopoverEventCallbackReceived<this>,): this {
+    public override onHide(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.HIDE_EVENT, callback,);
     }
 
@@ -84,7 +84,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Popover.Events.hidden
      */
-    public onHidden(callback: PopoverEventCallbackReceived<this>,): this {
+    public override onHidden(callback: PopoverEventCallbackReceived<this>,): this {
         return this.__addEventListener(PopoverInstance.HIDDEN_EVENT, callback,);
     }
 

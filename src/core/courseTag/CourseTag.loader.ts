@@ -109,11 +109,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): CourseTagTemplate {
+    public override build(): CourseTagTemplate {
         return {
             name: this._createNameTemplate(),
             isOfficial: this._getContent(this._headersIndexMap.isAnOfficialTag),

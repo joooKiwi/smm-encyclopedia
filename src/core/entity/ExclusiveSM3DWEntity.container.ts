@@ -19,7 +19,7 @@ export class ExclusiveSM3DWEntityContainer<CATEGORY extends EntityCategory = Ent
         super(name, category, property, references,);
     }
 
-    protected _testProperty(property: Property,): Property {
+    protected override _testProperty(property: Property,): Property {
         property = super._testProperty(property);
 
         assert(property.isInNightTheme == null, 'The property isInNightTheme should always be set to a null for a SM3DW exclusive property.',);

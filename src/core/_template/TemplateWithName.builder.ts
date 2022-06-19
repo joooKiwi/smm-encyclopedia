@@ -40,7 +40,7 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
         return this.#game.get;
     }
 
-    protected abstract get _static(): object;
+    protected /*static*/ abstract get _static(): object;
 
     protected /*static*/ _uniqueName(template: T,): | string | null {
         return null;

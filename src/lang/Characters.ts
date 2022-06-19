@@ -453,13 +453,13 @@ export class Characters
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Characters> {
+    protected override get _static(): StaticReference<Characters> {
         return Characters;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.spaceEvenCharacters.includes(value as never)
                 || enumerable.spaceUnevenCharacters.includes(value as never))
             ?? null;

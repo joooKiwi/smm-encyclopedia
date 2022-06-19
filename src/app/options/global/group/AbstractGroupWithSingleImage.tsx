@@ -13,7 +13,7 @@ import type {GlobalThemeOption}                                     from '../Glo
 export abstract class AbstractGroupWithSingleImage<T extends Exclude<PossibleElement, Themes>, U extends Exclude<PossibleOptionValue, GlobalThemeOption>, >
     extends AbstractGroup<T, U> {
 
-    protected _renderElement(element: T, option: GlobalAppOption<U>, [isDisabled,]: readonly [boolean, boolean,], onClickCallback: OnClickCallback | null): ReactElement {
+    protected override _renderElement(element: T, option: GlobalAppOption<U>, [isDisabled,]: readonly [boolean, boolean,], onClickCallback: OnClickCallback | null): ReactElement {
         return <Image key={`option input (${element.englishName})`} id={`optionInput-${element.englishNameInHtml}`}
                       className={`btn btn${option.get ? '' : '-outline'}-secondary  ${isDisabled ? 'disabled' : ''}`} data-bs-toggle="button"
                       source={element.imagePath} fallbackName={`option - ${element.englishName}`}

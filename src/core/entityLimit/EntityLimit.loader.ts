@@ -150,11 +150,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): | EntityLimitTemplate | AlternativeLimitTemplate {
+    public override build(): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = this._getContent(this._headersIndexMap.type);
         const acronym = this._getContent(this._headersIndexMap.acronym);
 

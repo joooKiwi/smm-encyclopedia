@@ -54,7 +54,7 @@ export default class EveryThemesApp
 
     //endregion -------------------- Methods --------------------
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <GameContentTranslationComponent>{translation =>
             <Table
                 id="theme-table"

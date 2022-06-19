@@ -3,7 +3,7 @@ import {PureComponent} from 'react';
 import type {ModalProperties}                           from '../ModalContainers.types';
 import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
 import type {ReactComponent}                            from '../../util/react/ReactComponent';
-import type {ReactProperty}                             from '../../util/react/ReactProperty';
+import type {ReactElement, ReactProperty}               from '../../util/react/ReactProperty';
 import type {TranslationMethod}                         from '../../lang/components/TranslationProperty';
 
 import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
@@ -65,7 +65,7 @@ export abstract class AbstractNavigationButton
      */
     protected abstract getContent(translation: TranslationMethod<'content'>,): PossibleContent;
 
-    public render() {
+    public override render(): ReactElement {
         return <ContentTranslationComponent>{translation => {
             const isTopButton = this._isTopButton;
             const id = this._id;

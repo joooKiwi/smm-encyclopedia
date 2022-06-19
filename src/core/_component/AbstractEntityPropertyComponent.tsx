@@ -1,3 +1,5 @@
+import type {ReactElement} from '../../util/react/ReactProperty';
+
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
 
 /**
@@ -11,7 +13,7 @@ export abstract class AbstractEntityPropertyComponent<R, E>
 
     protected abstract _renderSingleComponent(enumInstance: E,): JSX.Element;
 
-    public _render() {
+    public override _render(): ReactElement {
         const enumInstances = [] as E[];
         this.map.forEach((isInEnumInstance, enumInstance) => {
             if (isInEnumInstance)

@@ -42,7 +42,7 @@ export class ClearConditionImageBuilder<NAME extends Exclude<SimpleImageName, nu
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): ClearConditionImageContainer {
+    public override build(): ClearConditionImageContainer {
         return new ClearConditionImageContainer(this._createImages(),);
     }
 

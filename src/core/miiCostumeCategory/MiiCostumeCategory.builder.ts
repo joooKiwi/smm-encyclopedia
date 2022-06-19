@@ -15,12 +15,12 @@ export class MiiCostumeCategoryBuilder
         super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, false,);
     }
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return MiiCostumeCategoryBuilder;
     }
 
 
-    protected _build(name: Name<string>,): MiiCostumeCategory {
+    protected override _build(name: Name<string>,): MiiCostumeCategory {
         return new MiiCostumeCategoryContainer(name);
     }
 

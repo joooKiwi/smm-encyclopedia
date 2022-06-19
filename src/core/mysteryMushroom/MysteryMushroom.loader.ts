@@ -207,11 +207,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): MysteryMushroomTemplate {
+    public override build(): MysteryMushroomTemplate {
         return {
             properties: {
                 unlock: {

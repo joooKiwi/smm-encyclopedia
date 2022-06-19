@@ -21,7 +21,7 @@ export class SoundEffectBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return SoundEffectBuilder;
     }
 
@@ -46,7 +46,7 @@ export class SoundEffectBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    protected _build(name: Name<string>,): SoundEffect {
+    protected override _build(name: Name<string>,): SoundEffect {
         return new SoundEffectContainer(
             name,
             this.__createCategory(),

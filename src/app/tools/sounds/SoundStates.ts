@@ -20,28 +20,28 @@ export abstract class SoundStates
     static {
         this.STANDBY = new class SoundStates_Standby extends SoundStates {
 
-            public getElements({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+            public override getElements({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
                 return [playElement(),];
             }
 
         }('standby',);
         this.PAUSED =  new class SoundStates_Paused extends SoundStates {
 
-            public getElements({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+            public override getElements({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
                 return [playElement(), stopElement(),];
             }
 
         } ('paused',);
         this.PLAYING = new class SoundStates_Playing extends SoundStates {
 
-            public getElements({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+            public override getElements({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
                 return [pauseElement(), stopElement(),];
             }
 
         }('playing',);
         this.EXCEPTION = new class SoundStates_Exception extends SoundStates {
 
-            public getElements({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+            public override getElements({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
                 return [exceptionElement(),];
             }
 
@@ -89,7 +89,7 @@ export abstract class SoundStates
 
     //region -------------------- Enum value methods --------------------
 
-    public static _getValueByString(value: string,) {
+    public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

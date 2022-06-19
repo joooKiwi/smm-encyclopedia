@@ -9,11 +9,11 @@ export abstract class AbstractEmptyableStringConverter<T>
 
     //region -------------------- Methods --------------------
 
-    public convertTheValue(value: string,): | T | null {
+    public override convertTheValue(value: string,): | T | null {
         return value === '' ? null : super.convertTheValue(value);
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return value === '' || this._isValueValid(value);
     }
 

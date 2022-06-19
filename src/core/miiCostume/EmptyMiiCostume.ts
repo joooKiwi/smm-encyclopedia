@@ -34,7 +34,7 @@ export class EmptyMiiCostume
 
     public readonly version = null;
 
-    public toString(): EmptyMiiCostumeName {
+    public override toString(): EmptyMiiCostumeName {
         return 'Empty Mii costume';
     }
 

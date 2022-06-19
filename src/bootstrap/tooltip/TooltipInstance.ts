@@ -50,7 +50,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callbacks
      * @see https://getbootstrap.com/docs/5.1/components/tooltips/#events
      */
-    public _on(callbacks: Partial<TooltipEvents<this>>,): this {
+    protected override _on(callbacks: Partial<TooltipEvents<this>>,): this {
         if (callbacks.inserted != null)
             this.onInserted(callbacks.inserted);
         return this;
@@ -60,7 +60,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.show
      */
-    public onShow(callback: TooltipEventCallbackReceived<this>,): this {
+    public override onShow(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.SHOW_EVENT, callback,);
     }
 
@@ -68,7 +68,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.shown
      */
-    public onShown(callback: TooltipEventCallbackReceived<this>,): this {
+    public override onShown(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.SHOWN_EVENT, callback,);
     }
 
@@ -76,7 +76,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.hide
      */
-    public onHide(callback: TooltipEventCallbackReceived<this>,): this {
+    public override onHide(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.HIDE_EVENT, callback,);
     }
 
@@ -84,7 +84,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @param callback
      * @see Tooltip.Events.hidden
      */
-    public onHidden(callback: TooltipEventCallbackReceived<this>,): this {
+    public override onHidden(callback: TooltipEventCallbackReceived<this>,): this {
         return this.__addEventListener(TooltipInstance.HIDDEN_EVENT, callback,);
     }
 

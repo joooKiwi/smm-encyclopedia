@@ -71,7 +71,7 @@ export default class EverySoundEffectsApp
 
     //endregion -------------------- Methods --------------------
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <Table
             id="soundEffect-table"
             caption={<GameContentTranslationComponent translationKey="Every sound effects"/>}

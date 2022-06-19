@@ -10,15 +10,15 @@ export class StringToNumberConverter
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): number {
+    protected override _convertTheValue(validValue: string,) {
         return Number(validValue);
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return ConverterPatterns.NUMBER_PATTERN.test(value);
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a number`);
     }
 
