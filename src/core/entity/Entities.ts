@@ -2754,9 +2754,7 @@ export class Entities
             }
 
         }('Cursed Key',);
-        this.PHANTO =                                        new class Entities_Phanto extends Entities {
-
-        }('Phanto',);
+        this.PHANTO =                                        new Entities('Phanto',);
 
         this.TRAMPOLINE =                                    new class Entities_Trampoline extends Entities {
 
