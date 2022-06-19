@@ -2,14 +2,13 @@ import 'bootstrap/dist/js/bootstrap.esm';
 import './index.scss';
 import './lang/i18n';
 
-import ReactDOM        from 'react-dom';
+import {createRoot}    from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import IndexComponent  from './IndexComponent';
 
-ReactDOM.render(
-    <IndexComponent/>,
-    document.getElementById('root'),
-);
+import IndexComponent from './IndexComponent';
+
+const root = createRoot(document.getElementById('root')!);
+root.render(<IndexComponent/>);
 
 if (process.env.NODE_ENV === 'production') {
     // If you want to start measuring performance in your app, pass a function
