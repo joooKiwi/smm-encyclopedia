@@ -1,0 +1,55 @@
+#game-names, #gameStyle-names, #soundEffect-names, #otherGameReference-names {
+  padding-bottom: var(--bs-spacer-md);
+}
+
+.main-container {
+}
+
+.names-container {
+  border-style: solid;
+  border-color: var(--bs-secondary);
+  border-radius: var(--bs-border-radius);
+
+  padding: var(--bs-spacer-md);
+  margin-bottom: var(--bs-spacer-sm);
+}
+
+.names-title {
+  color: var(--bs-primary);
+  text-decoration: underline;
+  text-align: center;
+}
+
+
+.name-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.return-of-line-name-container {
+  padding-bottom: var(--bs-spacer-sm);
+
+  border-bottom-style: dotted;
+  border-color: var(--bs-secondary);
+  border-width: var(--bs-border-width-1);
+}
+
+.single-name-container {
+  padding: var(--bs-spacer-sm);
+
+}
+
+.single-name-sub-container {
+  background-color: rgba(var(--bs-secondary-rgb), 0.5,);
+
+  border-radius: var(--bs-border-radius);
+
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: var(--bs-spacer-sm);
+}
+
+.game-image, .gameStyle-image, .soundEffect-image {
+  max-height: 2cm;
+}

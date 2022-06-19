@@ -1,0 +1,33 @@
+.groupOf2-powerUp-priority {
+
+  display: flex;
+
+  &.horizontal-group {
+    flex-direction: row;
+  }
+
+  &.vertical-group {
+    flex-direction: column;
+  }
+
+  align-items: initial;
+  justify-content: initial;
+
+  > .arrow-container.horizontal, > .arrows-container.horizontal {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  > .left-container, > .right-container {
+    display: flex;
+    align-items: center;
+    width: calc(100% / 3);
+
+    > * {
+      height: auto;
+      width: 100%;
+    }
+
+  }
+
+}

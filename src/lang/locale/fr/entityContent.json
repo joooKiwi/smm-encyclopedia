@@ -1,0 +1,13 @@
+{
+  "entity + boot":        "{{entity}} + botte",
+  "entity + projectile":  "{{entity}} + projectile",
+  "entity + projectiles": "{{entity}} + projectiles",
+  "entity + shell":       "{{entity}} + carapace",
+  "entity + wing":        "{{entity}} + aile",
+  "entity + fast":        "{{entity}} + rapide",
+  "entity + wing & fast": "{{entity}} + aile & rapide",
+  "entity + stump":       "{{entity}} + tronc",
+  "entity + cloud":       "{{entity}} + nuage",
+  "entity + car":         "{{entity}} + voiture",
+  "entity + clone":       "{{entity}} + clone"
+}

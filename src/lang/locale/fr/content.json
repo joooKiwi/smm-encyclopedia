@@ -1,0 +1,51 @@
+{
+  "Yes": "Oui",
+  "No":  "Non",
+
+  "White":  { "m": "Blanc",  "f": "Blanche" },
+  "Black":  { "m": "Noir",   "f": "Noire" },
+  "Red":    { "m": "Rouge",  "f": "Rouge" },
+  "Green":  { "m": "Vert",   "f": "Verte" },
+  "Blue":   { "m": "Bleu",   "f": "Bleue" },
+  "Yellow": { "m": "Jaune",  "f": "Jaune" },
+
+  "Name":                "Nom",
+  "Full name":           "Nom complet",
+  "Alternative name":    "Nom alternatif",
+  "Empty name":          "Nom vide",
+  "Acronym":             "Acronyme",
+  "Acronym(s)":          "Acronyme(s)",
+  "Alternative acronym": "Acronyme alternatif",
+
+  "Minimum": { "m": "Minimum", "f": "Minimum" },
+  "Maximum": { "m": "Maximum", "f": "Maximum" },
+
+  "Loading the page": "Chargement de la page",
+  "Confirm":          "Confirmer",
+  "Save":             "Sauvegarder",
+  "Cancel":           "Annuler",
+  "Close":            "Fermer",
+  "Next":             "Suivant",
+  "Previous":         "Précédant",
+  "Option":           "Option",
+  "Options":          "Options",
+
+  "Image": "Image",
+
+  "Limit": "Limite",
+
+  "Type": "Type",
+
+  "In other languages":  "Dans d'autres langues",
+  "Change the language": "Changer la langue",
+
+  "Copyright":                 "Droit d'auteur",
+  "React application made by": "Application React faite par",
+  "Last update":               "Dernière mise à jour",
+
+  "Home":    "Accueil",
+  "Display": "Afficher",
+  "Search":  "Rechercher",
+
+  "N/A": "N/A"
+}

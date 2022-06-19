@@ -1,0 +1,48 @@
+.not-applicable, .is-unknown, .unknown-reference {
+  color: var(--bs-red);
+}
+
+.not-applicable:after {
+  content: var(--not-applicable);
+}
+
+.is-unknown:after {
+  content: var(--is-unknown);
+}
+
+.unknown-reference:after {
+  content: var(--unknown-reference);
+  font-style: italic;
+}
+
+ //region -------------------- Text related constants --------------------
+
+:root {
+  --not-applicable: 'N/A';
+  --is-unknown: '?';
+  --unknown-reference: '???';
+
+  --text-space-rightArrow-space: ' → ';
+}
+
+[lang='ja'], [lang='zh_T'], [lang='zh_S'], [lang='ko'], {
+  &:root {
+    --not-applicable: 'Ｎ／Ａ';
+    --is-unknown: '？';
+    --unknown-reference: '？？？';
+  }
+}
+
+[lang='ja'], [lang='zh_T'], [lang='zh_S'], {
+  &:root {
+    --text-space-rightArrow-space: '→';
+  }
+}
+
+[lang='ko'], {
+  &:root {
+    --text-space-rightArrow-space: ' → ';
+  }
+}
+
+//endregion -------------------- Text related constants --------------------

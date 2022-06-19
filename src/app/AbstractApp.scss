@@ -1,0 +1,60 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+
+  //@include gradient-y-three-colors($cyan, cornFlowerBlue, null, $blue);
+
+  main {
+    flex: 1 1 auto;
+  }
+}
+
+//Every table ending with table
+table[id$="-table"] {
+
+  thead, tfoot, {
+    text-align: center;
+  }
+
+
+  tbody tr > {
+    //region -------------------- 1 - # --------------------
+
+    :nth-child(1) {
+      width: 1cm;
+      text-align: left;
+
+      &:after {
+        content: '.';
+      }
+    }
+
+    //endregion -------------------- 1 - # --------------------
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+  }
+
+  th img {
+    max-height: .75cm;
+  }
+
+  img {
+    max-height: 1cm;
+  }
+
+  .animated-image, .non-animated-image {
+    --amount-of-blocks: 0;
+    --single-height: 0;
+    height: calc(var(--amount-of-blocks) * var(--single-height));
+  }
+
+}
+
+.time-image, .theme-image, .game-image, .gameStyle-image {
+  border-radius: var(--bs-border-radius);
+}

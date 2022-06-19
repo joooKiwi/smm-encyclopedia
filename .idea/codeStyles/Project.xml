@@ -1,0 +1,15 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="200" />
+    <option name="SOFT_MARGINS" value="100,150,200" />
+    <TypeScriptCodeStyleSettings version="0">
+      <option name="FORCE_SEMICOLON_STYLE" value="true" />
+      <option name="USE_DOUBLE_QUOTES" value="false" />
+      <option name="FORCE_QUOTE_STYlE" value="true" />
+      <option name="IMPORTS_WRAP" value="0" />
+      <option name="UNION_TYPES_WRAP" value="0" />
+      <option name="ALIGN_IMPORTS" value="true" />
+      <option name="ALIGN_UNION_TYPES" value="true" />
+    </TypeScriptCodeStyleSettings>
+  </code_scheme>
+</component>

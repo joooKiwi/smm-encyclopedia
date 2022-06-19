@@ -1,0 +1,11 @@
+@import 'configs';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: var(--bs-code-font-family);
+}

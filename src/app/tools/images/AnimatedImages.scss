@@ -1,0 +1,87 @@
+@import '../../../mixin';
+
+$last-possible-amount-of-frames: 10;
+
+//region -------------------- Methods & Mixins --------------------
+
+@function list-to-string($list, $glue: ', ',) {
+  $result: '';
+
+  @for $i from 1 through length($list) {
+    $element: nth($list, $i);
+
+    $result: '#{$result}#{$element}#{if($i != length($list),$glue,'')}';
+  }
+
+  @return $result;
+}
+
+@mixin list-of-variable-of-background-image($size,) {
+  $every-images: [];
+  @for $i from 1 to ($size + 1) {
+    $every-images: append($every-images, 'var(--image-#{$i})',);
+  }
+  background-image: unquote(list-to-string($every-images));
+}
+
+@mixin list-of-background-size($size, $index,) {
+  $returned-string: [];
+  @for $i from 1 to ($size + 1) {
+    $returned-string: append($returned-string, if($index == $i, auto, 0,),);
+  }
+  background-size: unquote(list-to-string($returned-string));
+}
+
+//endregion -------------------- Methods & Mixins --------------------
+//region -------------------- Animations --------------------
+
+.animated-image {
+  --single-frame-duration: 0.25s;
+  --duration-total: calc(var(--single-frame-duration) * var(--amount-of-frames));
+  animation-duration: var(--duration-total);
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+
+  background-repeat: no-repeat;
+
+  .image {
+    //animation-delay: calc(var(--single-frame-duration) * var(--frame-number));
+  }
+
+  @for $i from 1 to ($last-possible-amount-of-frames + 1) {
+    .image-#{$i} {
+      --frame-number: #{$i};
+    }
+  }
+}
+
+@for $amount-of-frames from 2 to ($last-possible-amount-of-frames + 1) {
+
+  .animated-image-#{$amount-of-frames} {
+    --amount-of-frames: #{$amount-of-frames};
+    animation-name: animation-from-#{$amount-of-frames}-images;
+    @include list-of-variable-of-background-image($amount-of-frames);
+  }
+
+}
+
+@for $amount-of-frames from 2 to  ($last-possible-amount-of-frames + 1) {
+
+  @keyframes animation-from-#{$amount-of-frames}-images {
+    $single-frame-percentage: 100% / $amount-of-frames;
+    from {
+      @include list-of-background-size($amount-of-frames, 1,);
+    }
+    @for $i from 2 to $amount-of-frames {
+      #{$single-frame-percentage * $i} {
+        @include list-of-background-size($amount-of-frames, $i,);
+      }
+    }
+    to {
+      @include list-of-background-size($amount-of-frames, $amount-of-frames,);
+    }
+  }
+
+}
+
+//endregion -------------------- Animations --------------------

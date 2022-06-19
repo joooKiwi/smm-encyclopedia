@@ -1,0 +1,59 @@
+.app-title {
+  width: 100%;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.app-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.simpleListElement-container, .cardListElement-container, {
+  background-color: rgba(var(--bs-primary-400-rgb), 75%,);
+  margin: var(--bs-spacer-sm);
+  padding: var(--bs-spacer-md);
+
+  display: flex;
+}
+
+.simpleListElement-container {
+  justify-content: center;
+}
+
+.cardListElement-container {
+  flex-direction: column;
+  align-items: center;
+
+  > :nth-child(1) > span { //the name container
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--bs-secondary);
+    text-decoration-thickness: 1px;
+  }
+
+  > .cardListName-content-container {
+    margin-left: var(--bs-spacer-sm);
+    margin-right: var(--bs-spacer-sm);
+  }
+}
+
+#subMain-container {
+  position: relative;
+}
+
+#viewChanger-container {
+  position: absolute;
+  top: var(--bs-spacer-md);
+  right: var(--bs-spacer-sm);
+}
+
+#btn-viewDisplay-container {
+  display: flex;
+  justify-content: flex-end;
+
+  .btn-viewDisplay {
+    max-width: 1cm;
+  }
+
+}

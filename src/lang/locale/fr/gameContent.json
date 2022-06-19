@@ -1,0 +1,164 @@
+{
+  "Every entities":                "Toutes les entités",
+  "Every entity categories":       "Toutes les catégories d'entité",
+  "Every entity limits":           "Toutes les limites d'entité",
+  "Every themes":                  "Tous les décors",
+  "Every times":                   "Tous les temps",
+  "Every sound effects":           "Tous les effets sonores",
+  "Every sound effect categories": "Toutes les catégories d'effet sonore",
+  "Every Mii costumes":            "Tous les {{pluralName}}",
+  "Every Mii costume categories":  "Toutes les catégories de {{MiiCostume}}",
+  "Every Mystery Mushrooms":       "Tous les {{pluralName}}",
+  "Every game references":         "Toutes les références de jeu",
+  "Every games":                   "Tous les jeux",
+  "Every game styles":             "Tous les styles de jeu",
+  "Every course tags":             "Tous les {{tags}} de {{course}}",
+  "Every predefined messages":     "Tous les {{predefinedMessages}}",
+
+  "Empty entity":             "Entité vide",
+  "Empty entity category":    "Catégorie d'entité vide",
+  "Empty game styles":        "Style de jeu vide",
+  "Empty entity reference":   "Référence d'entité vide",
+  "Empty course theme":       "Thème de niveau vide",
+  "Empty world theme":        "Thème de monde vide",
+  "Empty \"is in property\"": "«Est dans propriété» vide",
+
+  "Display every entities":                "Afficher toutes les entités",
+  "Display every entity categories":       "Afficher toutes les catégories d'entité",
+  "Display every entity groups":           "Afficher tous les groupes d'entité",
+  "Display every limits":                  "Afficher toutes les limites",
+  "Display every themes":                  "Afficher tous les décors",
+  "Display every sound effects":           "Afficher tous les effets sonores",
+  "Display every sound effect categories": "Afficher tous les catégories d'effet sonore",
+  "Display every Mii costumes":            "Afficher tous les {{pluralName}}",
+  "Display every Mii costume categories":  "Afficher toutes les catégories de {{MiiCostume}}",
+  "Display every Mystery Mushrooms":       "Afficher tous les {{pluralName}}",
+  "Display every game references":         "Afficher toutes les références de jeu",
+  "Display every games":                   "Afficher tous les jeux",
+  "Display every game styles":             "Afficher tous les styles de jeu",
+  "Display every predefined messages":     "Afficher tous les {{predefinedMessages}}",
+
+
+  "Category": "Catégorie",
+
+  "Official notification": {
+    "position": {
+      "place": {
+        "1": "ère",
+        "2": "ème",
+        "3": "ème"
+      },
+      "job": {
+        "1": "ère",
+        "2": "ème",
+        "3": "ème"
+      }
+    },
+
+
+    "finish all job":                    "Terminer toutes les {{jobs}} dans le {{StoryMode}}.",
+    "finish all 3 job (character)":      "Terminer toutes les 3 {{jobs}} dans le {{StoryMode}} pour {{characterImage}}.",
+    "finish X job (Peach)":              "Terminer la {{position}} {{job}} ({{MissionTitle}}) dans le {{StoryMode}} pour {{characterImage}}.",
+    "hit ? Block near Purple Toad":      "Toucher le {{entityImage}} central près du {{characterImage}} dans le {{StoryMode}}.",
+    "finish rebuilding castle":          "Terminer de reconstruire le château dans le {{StoryMode}}.",
+
+    "course": {
+      "receive like":                    "Recevoir un {{likeImage}}.",
+      "receive comment":                 "Recevoir un commentaire.",
+      "receive feedback (a lot)":        "Recevoir beaucoup de commentaires sur un {{course}}.",
+      "receive play":                    "Recevoir {{amount}} jouers sur un {{course}}.",
+
+      "like":                            "{{likeImage}} un {{course}}.",
+      "comment":                         "Commenter un {{course}}.",
+      "upload":                          "Publier un {{course}}.",
+
+      "1st to clear - 1":                "Être le/la premier(ère) à compléter {{amount}} {{course}}.",
+      "1st to clear":                    "Être le/la premier(ère) à compléter {{amount}} {{courses}}.",
+
+      "clear - 1":                       "Terminer {{amount}} {{course}}.",
+      "clear":                           "Terminer {{amount}} {{courses}}.",
+
+      "play":                            "Jouer {{amount}} {{courses}}."
+    },
+
+    "set world record":                  "Obtenir {{amount}} {{worldRecord}}.",
+    "hold world record":                 "Maintenir {{amount}} {{worldRecords}}.",
+
+    "win match - 1":                     "Gagner {{amount}} match dans le mode {{MultiplayerVersus}}",
+    "win match":                         "Gagner {{amount}} matchs dans le mode {{MultiplayerVersus}}",
+    "win consecutive match":             "Gagner {{amount}} matchs consécutifs dans le mode {{MultiplayerVersus}}.",
+
+    "clear course multiplayer coop - 1": "Terminer {{amount}} {{course}} dans le mode {{MultiplayerCoop}}.",
+    "clear course multiplayer coop":     "Terminer {{amount}} {{courses}} dans le mode {{MultiplayerCoop}}.",
+
+    "maker point":                       "Obtenir {{amount}} {{MakerPoints}}.",
+
+    "high score":                        "Obtenir un record de {{amount}} {{courses}} ou plus dans le {{EndlessChallenge}} ({{difficulty}}).",
+
+    "rank":                              "Obtenir un rang {{rank}} dans le mode {{MultiplayerVersus}}.",
+
+    "medal":                             "Obtenir une {{medalImage}} dans le {{leaderboard}}.",
+    "place":                             "Être en {{position}} place{{medalImage}} dans le {{leaderboard}} mondial.",
+
+    "stamp":                             "Débloquer {{amount}} {{stampImage}} dans le {{NinjiSpeedruns}}.",
+
+    "super world": {
+      "upload":                          "Publier un {{SuperWorld}}.",
+
+      "clear - 1":                       "Terminer {{amount}} {{SuperWorld}}.",
+      "clear":                           "Terminer {{amount}} {{SuperWorlds}}."
+    }
+  },
+
+  "Limit":               "Limite",
+  "In the editor":       "Dans l'éditeur",
+  "While playing":       "En jouant",
+  "Limit in the editor": "Limite dans l'éditeur",
+  "Limit while playing": "Limite quand est en train de jouer",
+
+  "Course theme":           "Décor de niveau",
+  "World theme":            "Décor de monde" ,
+  "Is in the course theme": "Est dans le décor de niveau",
+  "Is in the world theme":  "Est dans le décor de monde",
+
+  "nightEffect": {
+    "Special effect on entities": "Change le comportement sur certaines {{entities}}.",
+    "Screen upside down":         "Vire l'écran à l'envers.",
+    "Dark":                       "Rend le niveau sombre (excepté les {{players}} & certaines {{entities}})",
+
+    "Wind":                       "Tout dépendament du {{gameStyle}}, il y a différents effets de vent.",
+    "nightDesertWindEffect": {
+      "→ periodic":               "Le vent souffle à droite périodiquement",
+      "← periodic":               "Le vent souffle à gauche périodiquement",
+      "↔ periodic":               "Le vent souffle de gauche à droite en alternance périodiquement",
+      "← constant":               "Le vent souffle à gauche constamment"
+    },
+
+    "Slippery":                   "A un sol glissant.",
+    "Low gravity":                "A une gravité faible et quelques {{entities}} se comportent comme si c'était dans {{underwaterImage}}.",
+    "Poison liquid":              "L'{{water}} est changé en {{poison}}.",
+    "Entities in water":          "Les {{entities}} se comportent comme dans {{underwaterImage}}.",
+    "Characters in water":        "Les {{players}} se comportent comme dans {{underwaterImage}}."
+  },
+
+  "Day":   "Jour",
+  "Night": "Nuit",
+  "Time":  "Temps",
+
+  "Sound effect":  "Effet sonore",
+  "Sound effects": "Effets sonores",
+
+  "Game":                  "Jeu",
+  "Games":                 "Jeux",
+  "Game style":            "Style de jeu",
+  "Game styles":           "Styles de jeu",
+  "Game reference":        "Référence de jeu",
+  "Game references":       "Références de jeu",
+  "Other game references": "Autres références de jeu",
+
+  "Wind effect (night desert)": "Effet de vent ({{night}} du {{desert}})",
+  "Effect (night)":             "Effet ({{night}})",
+
+  "Course tag":       "{{Tag}} de {{course}}",
+  "First appearance": "Première apparition"
+}

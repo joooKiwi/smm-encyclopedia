@@ -1,0 +1,51 @@
+{
+  "Yes": "Yes",
+  "No":  "No",
+
+  "White":  { "m": "White",  "f": "White" },
+  "Black":  { "m": "Black",  "f": "Black" },
+  "Red":    { "m": "Red",    "f": "Red" },
+  "Green":  { "m": "Green",  "f": "Green" },
+  "Blue":   { "m": "Blue",   "f": "Blue" },
+  "Yellow": { "m": "Yellow", "f": "Yellow" },
+
+  "Name":                "Name",
+  "Full name":           "Full name",
+  "Alternative name":    "Alternative name",
+  "Empty name":          "Empty name",
+  "Acronym":             "Acronym",
+  "Acronym(s)":          "Acronym(s)",
+  "Alternative acronym": "Alternative acronym",
+
+  "Minimum": { "m": "Minimum", "f": "Minimum" },
+  "Maximum": { "m": "Maximum", "f": "Maximum" },
+
+  "Loading the page": "Loading the page",
+  "Confirm":          "Confirm",
+  "Save":             "Save",
+  "Cancel":           "Cancel",
+  "Close":            "Close",
+  "Next":             "Next",
+  "Previous":         "Previous",
+  "Option":           "Option",
+  "Options":          "Options",
+
+  "Image": "Image",
+
+  "Limit": "Limit",
+
+  "Type": "Type",
+
+  "In other languages":  "In other languages",
+  "Change the language": "Change the language",
+
+  "Copyright":                 "Copyright",
+  "React application made by": "React application made by",
+  "Last update":               "Last update",
+
+  "Home" :   "Home",
+  "Search":  "Search",
+  "Display": "Display",
+
+  "N/A": "N/A"
+}

@@ -1,0 +1,39 @@
+import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
+import type {Translation}                                                                      from './Translation';
+
+import {EMPTY_OBJECT} from '../../util/emptyVariables';
+
+export abstract class AbstractTranslationContainer<N extends Namespace, T extends PossibleReactElement = PossibleReactElement, >
+    implements Translation<N, T> {
+
+    //region -------------------- Attributes --------------------
+
+    readonly #namespace;
+    readonly #translationKey;
+    readonly #replace;
+
+    //endregion -------------------- Attributes --------------------
+
+    protected constructor(namespace: N, translationKey: SingleTranslationKey<N>, replace: TranslationReplaceKeysMap<T> = EMPTY_OBJECT,) {
+        this.#namespace = namespace;
+        this.#translationKey = translationKey;
+        this.#replace = replace;
+    }
+
+    //region -------------------- Getter methods --------------------
+
+    public get namespace(): N {
+        return this.#namespace;
+    }
+
+    public get translationKey(): SingleTranslationKey<N> {
+        return this.#translationKey;
+    }
+
+    public get replace(): TranslationReplaceKeysMap<T> {
+        return this.#replace;
+    }
+
+    //endregion -------------------- Getter methods --------------------
+
+}
