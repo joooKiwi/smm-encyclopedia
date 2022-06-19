@@ -10,8 +10,9 @@ import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, Possib
 import type {PossibleLanguageValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithOnlyProjectLanguages';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../util/enum/Enum.types';
 
-import {Characters} from './Characters';
-import {Enum}       from '../util/enum/Enum';
+import {Characters}   from './Characters';
+import {EMPTY_STRING} from '../util/emptyVariables';
+import {Enum}         from '../util/enum/Enum';
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
@@ -517,6 +518,7 @@ export abstract class EveryLanguages
 
     static #CURRENT_LANGUAGE: EveryLanguages;
     public static readonly UNKNOWN_STRING = '???';
+    public static readonly SPACE_STRING = ' ';
     public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleInternationalAcronym_Project>> | null = null;
     protected static readonly _SPACE_EVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, true, false,];
     protected static readonly _SPACE_EVEN_LANGUAGE_WITHOUT_SPACE: SpaceParameterReceived = [false, true,];
@@ -525,10 +527,7 @@ export abstract class EveryLanguages
     readonly #isACompleteLanguage: boolean;
 
     #spaceParameter?: SpaceParameters;
-    #hasSpace?: boolean;
     #isASpaceEvenLanguage?: boolean;
-    #isASpaceEvenLanguageForThePointsAndSpace?: boolean;
-    #isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace?: boolean;
 
     readonly #projectAcronym: PossibleAcronym;
     readonly #internationalAcronym: PossibleInternationalAcronym;
@@ -592,7 +591,7 @@ export abstract class EveryLanguages
     }
 
     public get hasSpace(): boolean {
-        return this.#hasSpace ??= this.__spaceParameters[0];
+        return this.__spaceParameters[0];
     }
 
     public get isASpaceEvenLanguage(): boolean {
@@ -600,11 +599,11 @@ export abstract class EveryLanguages
     }
 
     public get isASpaceEvenLanguageForThePointsAndSpace(): boolean {
-        return this.#isASpaceEvenLanguageForThePointsAndSpace ??= this.__spaceParameters[1];
+        return this.__spaceParameters[1];
     }
 
     public get isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace(): boolean {
-        return this.#isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace ??= this.__spaceParameters[2];
+        return this.__spaceParameters[2];
     }
 
     //endregion -------------------- Space getter methods --------------------
@@ -654,7 +653,7 @@ export abstract class EveryLanguages
     //region -------------------- Characters getter methods --------------------
 
     public get space(): PossibleSpaceCharacter {
-        return this.#space ??= this.hasSpace ? ' ' : '';
+        return this.#space ??= this.hasSpace ? EveryLanguages.SPACE_STRING : EMPTY_STRING;
     }
 
     public get points(): PossiblePoints_Array {
