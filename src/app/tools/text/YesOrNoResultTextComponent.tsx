@@ -1,11 +1,10 @@
 import './YesOrNoResultTextComponent.scss';
 
-import {useTranslation} from 'react-i18next';
-
 import type {TextColor}             from './properties/BooleanResultTextProperties';
 import type {YesOrNoTextProperties} from './properties/YesOrNoTextProperties';
 
-import BooleanResultTextComponent from './BooleanResultTextComponent';
+import BooleanResultTextComponent  from './BooleanResultTextComponent';
+import ContentTranslationComponent from '../../../lang/components/ContentTranslationComponent';
 
 const YES_COLOR: TextColor = 'text-yes';
 const NO_COLOR: TextColor = 'text-no';
@@ -17,11 +16,10 @@ const NO_COLOR: TextColor = 'text-no';
  * @reactComponent
  */
 export default function YesOrNoResultTextComponent(properties: YesOrNoTextProperties,): JSX.Element {
-    const {t: translation,} = useTranslation('content');
-
-    return <BooleanResultTextComponent
-        true={[translation('Yes'), YES_COLOR,]}
-        false={[translation('No'), NO_COLOR,]}
-        {...properties}
-    />;
+    return <ContentTranslationComponent>{translation =>
+        <BooleanResultTextComponent
+            true={[translation('Yes'), YES_COLOR,]}
+            false={[translation('No'), NO_COLOR,]}
+            {...properties}
+        />}</ContentTranslationComponent>;
 }
