@@ -1,4 +1,4 @@
-import resource from '../../resources/Entity limit.csv';
+import resource from '../../resources/compiled/Entity limit.json';
 
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                                                                         from './EntityLimit';

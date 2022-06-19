@@ -1,4 +1,4 @@
-import resource from '../../resources/Course tag (SMM2).csv';
+import resource from '../../resources/compiled/Course tag (SMM2).json';
 
 import type {CourseTag}                                              from './CourseTag';
 import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template';

@@ -1,4 +1,4 @@
-import resource from '../../resources/Mystery Mushroom (SMM).csv';
+import resource from '../../resources/compiled/Mystery Mushroom (SMM).json';
 
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';

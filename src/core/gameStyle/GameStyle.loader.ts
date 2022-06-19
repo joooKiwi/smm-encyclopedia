@@ -1,4 +1,4 @@
-import resource from '../../resources/Game style.csv';
+import resource from '../../resources/compiled/Game style.json';
 
 import type {Loader}                                                             from '../../util/loader/Loader';
 import type {GameStyle}                                                          from './GameStyle';

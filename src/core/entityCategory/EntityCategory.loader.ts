@@ -1,4 +1,4 @@
-import resource from '../../resources/Entity category.csv';
+import resource from '../../resources/compiled/Entity category.json';
 
 import type {EntityCategory}                            from './EntityCategory';
 import type {EntityCategoryTemplate}                    from './EntityCategory.template';

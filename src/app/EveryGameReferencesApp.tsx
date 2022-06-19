@@ -11,7 +11,6 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import {Games}                         from '../core/game/Games';
 import {GameStyles}                    from '../core/gameStyle/GameStyles';
 import NameComponent                   from '../lang/name/component/Name.component';
-import {SingleTranslationKey}          from '../lang/components/TranslationProperty';
 import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 
 /**
@@ -62,9 +61,9 @@ export default class EveryGameReferencesApp
     //endregion -------------------- Getter & initialisation methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _getContainer(groupId: string, title: SingleTranslationKey<'gameContent'>, enumReferences: readonly (| Games | GameStyles | SoundEffects)[],): ReactElement
-    protected _getContainer(groupId: string, title: SingleTranslationKey<'gameContent'>, enumReferences: readonly GameReferences[], returnOfLine: readonly GameReferences[],): ReactElement
-    protected _getContainer(groupId: string, title: SingleTranslationKey<'gameContent'>, enumReferences: readonly PossibleGameReference[], returnOfLine?: readonly GameReferences[],) {
+    protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly (| Games | GameStyles | SoundEffects)[],): ReactElement
+    protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly GameReferences[], returnOfLine: readonly GameReferences[],): ReactElement
+    protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly PossibleGameReference[], returnOfLine?: readonly GameReferences[],) {
         return <div key={`names container - ${groupId}`} id={`${groupId}-names-container`} className="names-container">
             <GameContentTranslationComponent>{translation =>
                 <h2 key={`names title - ${groupId}`} id={`${groupId}-names-title`} className="col-12 names-title">{translation(title)}</h2>
@@ -102,3 +101,5 @@ export default class EveryGameReferencesApp
 
 type PossibleGameReference = (Games | GameStyles | SoundEffects | GameReferences)
                              & { renderSingleComponent?: ReactElement };
+//@FIXME this variable should be replaced with SingleTranslationKey<'gameContent'> if possible
+type PossibleTitle = 'Games' | 'Game styles' | 'Sound effects' | 'Other game references';

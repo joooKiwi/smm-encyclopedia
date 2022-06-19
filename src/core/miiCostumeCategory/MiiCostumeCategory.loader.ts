@@ -1,4 +1,4 @@
-import resource from '../../resources/Mii Costume category (SMM2).csv';
+import resource from '../../resources/compiled/Mii Costume category (SMM2).json';
 
 import type {Loader}                                                         from '../../util/loader/Loader';
 import type {MiiCostumeCategory}                                             from './MiiCostumeCategory';

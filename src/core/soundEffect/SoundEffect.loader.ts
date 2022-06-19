@@ -1,4 +1,4 @@
-import resource from '../../resources/Sound effect.csv';
+import resource from '../../resources/compiled/Sound effect.json';
 
 import type {PropertiesArray as LanguagesPropertyArray}            from '../../lang/Loader.types';
 import type {Loader}                                               from '../../util/loader/Loader';

@@ -1,4 +1,4 @@
-import resource from '../../resources/Theme.csv';
+import resource from '../../resources/compiled/Theme.json';
 
 import type {CourseAndWorldTheme, PossibleEnglishName}       from './Themes.types';
 import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types';

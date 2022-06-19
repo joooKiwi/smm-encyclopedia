@@ -1,4 +1,4 @@
-import resource from '../../resources/Predefined message (SMM2).csv';
+import resource from '../../resources/compiled/Predefined message (SMM2).json';
 
 import type {Loader}                                                         from '../../util/loader/Loader';
 import type {PredefinedMessage}                                              from './PredefinedMessage';
