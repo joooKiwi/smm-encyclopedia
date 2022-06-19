@@ -25,7 +25,7 @@ export class EmptySoundEffectCategory
 
     //endregion -------------------- Singleton usage --------------------
 
-    public toString(): EmptySoundEffectCategoryName {
+    public override toString(): EmptySoundEffectCategoryName {
         return 'Empty sound effect category';
     }
 

@@ -12,17 +12,17 @@ import {StringContainer}                 from '../../util/StringContainer';
 export default class GameComponent
     extends AbstractEntityPropertyComponent<GameProperty, Games> {
 
-    protected get map() {
+    protected override get map() {
         return this.reference.toGameMap();
     }
 
-    protected get _isInAll() {
+    protected override get _isInAll() {
         return this.reference.isInSuperMarioMaker1
             && this.reference.isInSuperMarioMakerFor3DS
             && this.reference.isInSuperMarioMaker2;
     }
 
-    protected _renderSingleComponent(game: Games,) {
+    protected override _renderSingleComponent(game: Games,) {
         return GameComponent.renderSingleComponent(game, this.name.english,);
     }
 
@@ -34,11 +34,11 @@ export default class GameComponent
         return <Image key={key} id={id} source={game.imagePath} fallbackName={game.englishName} className={`game-image ${gameEnglishNameInHtml}-image`}/>;
     }
 
-    protected _renderComponentForAllAsText() {
+    protected override _renderComponentForAllAsText() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every games')}</span>}/>;
     }
 
-    protected _renderComponentForAllAsImages() {
+    protected override _renderComponentForAllAsImages() {
         return <div key={`${this.name.english} (every games)`}>{Games.values.map(game => this._renderSingleComponent(game))}</div>;
     }
 

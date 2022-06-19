@@ -17,7 +17,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
     //endregion -------------------- Attributes --------------------
     //region -------------------- Create methods --------------------
 
-    protected _createPossibleViewDisplay(): readonly ViewDisplays[] {
+    protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
         return AbstractCardListApp.#APP_OPTION_INTERPRETER;
     }
 

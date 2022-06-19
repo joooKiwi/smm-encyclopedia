@@ -26,11 +26,11 @@ export class MysteryMushroomBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected /*static*/ get _static() {
+    protected /*static*/ override get _static() {
         return MysteryMushroomBuilder;
     }
 
-    protected _uniqueName(template: MysteryMushroomTemplate,): string | null {
+    protected override _uniqueName(template: MysteryMushroomTemplate,): string | null {
         return template.uniqueName;
     }
 

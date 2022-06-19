@@ -103,7 +103,7 @@ export abstract class AbstractAppOption<T, S extends ReactState, O extends numbe
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected abstract get _static(): EnumerableStatic<O, N> & AppOptionStatic<S>
+    protected abstract override get _static(): EnumerableStatic<O, N> & AppOptionStatic<S>
 
     //endregion -------------------- Enum methods --------------------
 

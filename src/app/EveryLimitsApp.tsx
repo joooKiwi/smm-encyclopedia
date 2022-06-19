@@ -51,7 +51,7 @@ export default class EveryLimitsApp
 
     //endregion -------------------- Methods --------------------
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <Table
             id="entityLimit-table"
             caption={<GameContentTranslationComponent translationKey="Every entity limits"/>}

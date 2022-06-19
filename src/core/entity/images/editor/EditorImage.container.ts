@@ -15,15 +15,15 @@ export class EditorImageContainer
 
     //region -------------------- Getter methods --------------------
 
-    protected get _createEveryGameStyles(): readonly GameStyles[] {
+    protected override get _createEveryGameStyles(): readonly GameStyles[] {
         return GameStyles.values;
     }
 
-    protected get _createEveryThemes(): readonly Themes[] {
+    protected override get _createEveryThemes(): readonly Themes[] {
         return Themes.courseThemes;
     }
 
-    protected get _createEveryTimes(): readonly Times[] {
+    protected override get _createEveryTimes(): readonly Times[] {
         return Times.values;
     }
 

@@ -199,7 +199,7 @@ export class ProjectLanguages
     }
 
     public get isInEverySuperMarioMakerGame(): boolean {
-        return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMaker2;
+        return this.#isInEverySuperMarioMakerGame ??= this.isInSuperMarioMaker1 && this.isInSuperMarioMakerFor3DS && this.isInSuperMarioMaker2;
     }
 
     //region -------------------- Characters getter methods --------------------
@@ -369,7 +369,7 @@ export class ProjectLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<ProjectLanguages> {
+    protected override get _static(): StaticReference<ProjectLanguages> {
         return ProjectLanguages;
     }
 
@@ -394,11 +394,11 @@ export class ProjectLanguages
     //endregion -------------------- Enum default methods --------------------
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.getValue(EveryLanguages.getValue(value));
     }
 
-    protected static _getValueByEnumerable(value: Enumerable,) {
+    protected static override _getValueByEnumerable(value: Enumerable,) {
         return value instanceof EveryLanguages
             ? this.values.find(enumerable => enumerable.language === value) ?? null
             : null;

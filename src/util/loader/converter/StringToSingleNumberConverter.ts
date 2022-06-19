@@ -11,11 +11,11 @@ export class StringToSingleNumberConverter<N extends number, >
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): N {
+    protected override _convertTheValue(validValue: string,) {
         return ConverterUtil.convertToNumber(validValue) as N;
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return ConverterPatterns.NUMBER_PATTERN.test(value)
             && ConverterUtil.convertToNumber(value) === this.singleValue;
     }

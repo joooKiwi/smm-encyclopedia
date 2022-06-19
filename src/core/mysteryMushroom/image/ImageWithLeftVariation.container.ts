@@ -15,7 +15,7 @@ export class ImageWithLeftVariationContainer<PATH extends PossiblePath = Possibl
             amountOfImagesOnJump,);
     }
 
-    protected _createPaths() {
+    protected override _createPaths() {
         return [this._basicPath, this._leftVariationPath,] as const;
     }
 

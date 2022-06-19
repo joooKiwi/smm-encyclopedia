@@ -11,7 +11,7 @@ export class EditorVoiceSoundHolderWithVoiceBefore<T extends PossibleStartingNam
 
     //region -------------------- Creator methods --------------------
 
-    protected _createFileName(): PossibleFileName<T, never> {
+    protected override _createFileName(): PossibleFileName<T, never> {
         return `/editor voice/voice_${this._simpleFileName}.wav`;
     }
 

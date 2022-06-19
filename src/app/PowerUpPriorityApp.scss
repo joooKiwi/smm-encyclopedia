@@ -1,0 +1,257 @@
+@import "../variables";
+@import "../mixin";
+
+#powerUpPriority-container {
+  --image-height: 1cm;
+  --min-line-size: .25cm;
+  --triangle-angle: 45;
+  --min-2nd-style-size: 2.5cm;
+
+
+  --group-no-lag-color: var(--bs-green);
+  --group-lag-color: var(--bs-blue);
+  text-align: center;
+
+  img {
+    height: var(--image-height);
+  }
+
+  .accordion-body {
+    padding: 0;
+  }
+
+  //.arrow-container {
+  //  &.horizontal {
+  //    min-width: var(--min-line-size);
+  //  }
+  //  &.vertical {
+  //    min-height: var(--min-line-size);
+  //  }
+  //}
+
+}
+
+[id^='powerUpPriority-group-'] {
+  //--group-color: transparent;
+  --group-line-style: solid;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--bs-spacer-sm);
+}
+
+//region Color
+
+#powerUpPriority-group-smb-nonPowerUps,
+#powerUpPriority-group-smb3-nonPowerUps,
+#powerUpPriority-group-smw-nonPowerUps,
+#powerUpPriority-group-nsmbu-nonPowerUps,
+#powerUpPriority-group-sm3dw-superStarAndWearable, {
+  --group-color: var(--group-no-lag-color);
+
+  .arrow-container {
+    --color: var(--group-no-lag-color);
+    --line-color: var(--color);
+    --arrow-color: var(--color);
+  }
+}
+
+#powerUpPriority-group-smb,
+#powerUpPriority-group-smb3,
+#powerUpPriority-group-smw,
+#powerUpPriority-group-nsmbu,
+#powerUpPriority-group-sm3dw, {
+  > .arrow-container {
+    --color: var(--group-lag-color);
+    --line-color: var(--color);
+    --arrow-color: var(--color);
+  }
+}
+
+#powerUpPriority-group-smb-simplePowerUps,
+#powerUpPriority-group-smb3-simplePowerUps,
+#powerUpPriority-group-smw-simplePowerUps,
+#powerUpPriority-group-nsmbu-simplePowerUps,
+#powerUpPriority-group-sm3dw-simplePowerUps, {
+  --group-color: var(--group-lag-color);
+
+
+  .arrow-container {
+    --color: var(--group-lag-color);
+    --line-color: var(--color);
+    --arrow-color: var(--color);
+  }
+}
+
+//endregion Color
+//region Arrow type
+
+#powerUpPriority-group-smb-nonPowerUps,
+#powerUpPriority-group-smb3-nonPowerUps,
+#powerUpPriority-group-smw-nonPowerUps,
+#powerUpPriority-group-nsmbu-nonPowerUps, {
+  > .diagonal-arrows-container > :nth-child(2) > .arrows-container > :nth-child(2) {
+    --line-style: dashed;
+  }
+}
+
+#powerUpPriority-group-smb-top-shells,    #powerUpPriority-group-smb-mountable,   #powerUpPriority-group-smb-nonPowerUps-mountable,
+#powerUpPriority-group-smb3-top-shells,   #powerUpPriority-group-smb3-mountable,  #powerUpPriority-group-smb3-nonPowerUps-mountable,
+#powerUpPriority-group-smw-top-shells,    #powerUpPriority-group-smw-mountable,   #powerUpPriority-group-smw-nonPowerUps-mountable,
+#powerUpPriority-group-nsmbu-top-shells,  #powerUpPriority-group-nsmbu-mountable, #powerUpPriority-group-nsmbu-nonPowerUps-mountable,{
+  .line {
+    --line-style: dashed;
+  }
+}
+
+//endregion Arrow type
+
+//region Width
+
+#powerUpPriority-group-smb-simplePowerUps > {
+  .left-container {
+    width: 15%;
+  }
+
+  .right-container {
+    width: 60%;
+  }
+}
+
+//endregion Width
+//region Padding & margin
+
+#powerUpPriority-group-smb-nonPowerUps,             #powerUpPriority-group-smb-simplePowerUps,    #powerUpPriority-group-smb-shells,    #powerUpPriority-group-smb-others,
+#powerUpPriority-group-smb3-nonPowerUps,            #powerUpPriority-group-smb3-simplePowerUps,   #powerUpPriority-group-smb3-shells,   #powerUpPriority-group-smb3-others,
+#powerUpPriority-group-smw-nonPowerUps,             #powerUpPriority-group-smw-simplePowerUps,    #powerUpPriority-group-smw-shells,    #powerUpPriority-group-smw-others,
+#powerUpPriority-group-nsmbu-nonPowerUps,           #powerUpPriority-group-nsmbu-simplePowerUps,  #powerUpPriority-group-nsmbu-shells,  #powerUpPriority-group-nsmbu-others,
+#powerUpPriority-group-sm3dw-superStarAndWearable,  #powerUpPriority-group-sm3dw-simplePowerUps,                                        #powerUpPriority-group-sm3dw-others, {
+  padding: 0;
+}
+
+#powerUpPriority-group-smb-mushrooms > {
+  .top-container, .bottom-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+//endregion Padding & margin
+//region Border
+
+#powerUpPriority-group-smb-nonPowerUps, #powerUpPriority-group-smb3-nonPowerUps,
+#powerUpPriority-group-smw-nonPowerUps, #powerUpPriority-group-nsmbu-nonPowerUps,
+#powerUpPriority-group-sm3dw-superStarAndWearable, {
+  border-color: var(--group-no-lag-color);
+  border-width: var(--bs-border-width-1);
+  border-style: var(--group-line-style);
+  border-radius: var(--bs-border-radius);
+
+  > .start-container {
+    border-color: var(--group-no-lag-color);
+    border-width: 0;
+    border-bottom-width: var(--bs-border-width-1);
+    border-style: var(--group-line-style);
+  }
+
+  > .end-container {
+    > .left-end-container {
+      border-color: var(--group-no-lag-color);
+      border-width: 0;
+      border-top-width: var(--bs-border-width-1);
+      border-right-width: var(--bs-border-width-1);
+      border-style: var(--group-line-style);
+      border-top-right-radius: var(--bs-border-radius);
+    }
+
+    >.right-end-container{
+      border-color: var(--group-no-lag-color);
+      border-width: 0;
+      border-top-width: var(--bs-border-width-1);
+      border-left-width: var(--bs-border-width-1);
+      border-style: var(--group-line-style);
+      border-top-left-radius: var(--bs-border-radius);
+    }
+  }
+}
+
+#powerUpPriority-group-smb-top-shells,
+#powerUpPriority-group-smb3-top-shells,
+#powerUpPriority-group-smw-top-shells,
+#powerUpPriority-group-nsmbu-top-shells, {
+  border-color: var(--group-no-lag-color);
+  border-width: 0;
+  border-style: var(--group-line-style);
+  border-bottom-width: var(--bs-border-width-1);
+}
+
+#powerUpPriority-group-smb-mountable,
+#powerUpPriority-group-smb3-mountable,
+#powerUpPriority-group-smw-mountable,
+#powerUpPriority-group-nsmbu-mountable, {
+  border-color: var(--group-no-lag-color);
+  border-width: 0;
+  border-style: var(--group-line-style);
+  border-top-width: var(--bs-border-width-1);
+}
+
+#powerUpPriority-group-smb-simplePowerUps,
+#powerUpPriority-group-smb3-simplePowerUps,
+#powerUpPriority-group-smw-simplePowerUps,
+#powerUpPriority-group-nsmbu-simplePowerUps,
+#powerUpPriority-group-sm3dw-simplePowerUps, {
+  border-color: var(--group-lag-color);
+  border-width: var(--bs-border-width-1);
+  border-style: var(--group-line-style);
+  border-radius: var(--bs-border-radius);
+
+  > .left-container {
+    border-color: var(--group-lag-color);
+    border-width: 0;
+    border-right-width: var(--bs-border-width-1);
+    border-style: var(--group-line-style);
+  }
+
+  > .right-container {
+    border-color: var(--group-lag-color);
+    border-width: 0;
+    border-left-width: var(--bs-border-width-1);
+    border-style: var(--group-line-style);
+  }
+}
+
+//endregion Border
+//region Display
+
+#powerUpPriority-group-smb-shells,
+#powerUpPriority-group-smb3-shells,
+#powerUpPriority-group-smw-shells,
+#powerUpPriority-group-nsmbu-shells, {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  > :nth-child(2) .line {
+    --line-size: 25px;
+  }
+
+}
+
+#powerUpPriority-group-smb-nonPowerUps,
+#powerUpPriority-group-smb3-nonPowerUps,
+#powerUpPriority-group-smw-nonPowerUps,
+#powerUpPriority-group-nsmbu-nonPowerUps,
+#powerUpPriority-group-sm3dw-superStarAndWearable {
+  > .diagonal-arrows-container {
+    justify-content: space-around;
+  }
+}
+
+#powerUpPriority-group-smb-others{
+  display: flex;
+  justify-content: center;
+}
+//endregion Display

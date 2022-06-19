@@ -37,14 +37,14 @@ export abstract class Sounds
     static {
         this.YES = new class Sounds_Yes extends Sounds {
 
-            public renderComponent(properties: SimpleSoundProperties,): ReactElement {
+            public override renderComponent(properties: SimpleSoundProperties,): ReactElement {
                 return <SimpleSound {...properties}/>;
             }
 
         }(true,);
         this.NO =  new class Sounds_No extends Sounds {
 
-            public renderComponent(): ReactElement {
+            public override renderComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
@@ -82,13 +82,13 @@ export abstract class Sounds
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Sounds> {
+    protected override get _static(): StaticReference<Sounds> {
         return Sounds;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByBoolean(value: boolean,) {
+    protected static override _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
             ?? null;
     }

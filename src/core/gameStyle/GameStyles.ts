@@ -39,55 +39,55 @@ export abstract class GameStyles
     static {
         this.SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles {
 
-                public get(property: GameStyleProperty,): boolean {
+                public override get(property: GameStyleProperty,): boolean {
                     return property.isInSuperMarioBrosStyle;
                 }
 
-                public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBrosStyle'] {
+                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBrosStyle'] {
                     return referenceProperty.referenceInSuperMarioBrosStyle;
                 }
 
             }    ('SMB',   'M1', 'Super Mario Bros.',      );
         this.SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles {
 
-                public get(property: GameStyleProperty,): boolean {
+                public override get(property: GameStyleProperty,): boolean {
                     return property.isInSuperMarioBros3Style;
                 }
 
-                public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBros3Style'] {
+                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBros3Style'] {
                     return referenceProperty.referenceInSuperMarioBros3Style;
                 }
 
             }   ('SMB3',  'M3', 'Super Mario Bros. 3',    );
         this.SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles {
 
-                public get(property: GameStyleProperty,): boolean {
+                public override get(property: GameStyleProperty,): boolean {
                     return property.isInSuperMarioWorldStyle;
                 }
 
-                public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioWorldStyle'] {
+                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioWorldStyle'] {
                     return referenceProperty.referenceInSuperMarioWorldStyle;
                 }
 
             }   ('SMW',   'MW', 'Super Mario World',      );
         this.NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles {
 
-                public get(property: GameStyleProperty,): boolean {
+                public override get(property: GameStyleProperty,): boolean {
                     return property.isInNewSuperMarioBrosUStyle;
                 }
 
-                public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInNewSuperMarioBrosUStyle'] {
+                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInNewSuperMarioBrosUStyle'] {
                     return referenceProperty.referenceInNewSuperMarioBrosUStyle;
                 }
 
             }('NSMBU', 'WU', 'New Super Mario Bros. U',);
         this.SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles {
 
-            public get(property: GameStyleProperty,): boolean {
+            public override get(property: GameStyleProperty,): boolean {
                 return property.isInSuperMario3DWorldStyle === true;
             }
 
-            public getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMario3DWorldStyle'] {
+            public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMario3DWorldStyle'] {
                 return referenceProperty.referenceInSuperMario3DWorldStyle;
             }
 
@@ -192,13 +192,13 @@ export abstract class GameStyles
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<GameStyles> {
+    protected override get _static(): StaticReference<GameStyles> {
         return GameStyles;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

@@ -15,7 +15,7 @@ export class ImageWithUnderwaterVariationContainer<PATH extends PossiblePath = P
             amountOfImagesOnJump,);
     }
 
-    protected _createPaths() {
+    protected override _createPaths() {
         return [this._basicPath, this._underwaterVariationPath,] as const;
     }
 

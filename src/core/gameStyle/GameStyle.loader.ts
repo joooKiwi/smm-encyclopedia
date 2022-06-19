@@ -1,4 +1,4 @@
-import resource from '../../resources/Game style.csv';
+import resource from '../../resources/compiled/Game style.json';
 
 import type {Loader}                                                             from '../../util/loader/Loader';
 import type {GameStyle}                                                          from './GameStyle';
@@ -114,11 +114,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): GameStyleTemplate {
+    public override build(): GameStyleTemplate {
         return {
             is: {
                 in: {game: this._createGameTemplateFrom1And2(),},

@@ -19,7 +19,7 @@ export class ExclusiveSMM2EntityContainer<CATEGORY extends EntityCategory = Enti
         super(name, category, property, references,);
     }
 
-    protected _testProperty(property: Property,): Property {
+    protected override _testProperty(property: Property,): Property {
         property = super._testProperty(property);
 
         assert(property.isInNightTheme != null, 'The property isInNightTheme should always be set to a boolean for a SMM2 exclusive property when it is included in at least one of those styles (SMB, SMB3, SMW or NSMBU).',);

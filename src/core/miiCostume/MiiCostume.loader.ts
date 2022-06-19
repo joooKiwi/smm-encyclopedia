@@ -1,4 +1,4 @@
-import resource from '../../resources/Mii Costume (SMM2).csv';
+import resource from '../../resources/compiled/Mii Costume (SMM2).json';
 
 import type {Loader}                                                                        from '../../util/loader/Loader';
 import type {PossibleEnglishName}                                                           from './MiiCostumes.types';
@@ -120,11 +120,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): MiiCostumeTemplate {
+    public override build(): MiiCostumeTemplate {
         return {
             officialNotification: this._getContent(this._headersIndexMap.notificationIfUnlocked),
             version: this._getContent(this._headersIndexMap.MM2_version),

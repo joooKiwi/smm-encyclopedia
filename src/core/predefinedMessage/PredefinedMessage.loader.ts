@@ -1,4 +1,4 @@
-import resource from '../../resources/Predefined message (SMM2).csv';
+import resource from '../../resources/compiled/Predefined message (SMM2).json';
 
 import type {Loader}                                                         from '../../util/loader/Loader';
 import type {PredefinedMessage}                                              from './PredefinedMessage';
@@ -99,11 +99,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): PredefinedMessageTemplate {
+    public override build(): PredefinedMessageTemplate {
         return {
             name: this._createNameTemplate(),
         };

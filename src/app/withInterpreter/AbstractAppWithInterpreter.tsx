@@ -81,7 +81,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
 
     protected abstract _createTitleContent(): ReactElementOrString;
 
-    protected _mainContent(): ReactElement {
+    protected override _mainContent(): ReactElement {
         const typeDisplayed = this.typeDisplayed;
 
         return <div key={`${this._key} (sub main container)`} id="subMain-container">

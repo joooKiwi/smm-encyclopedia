@@ -21,7 +21,7 @@ export class CourseTagBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return CourseTagBuilder;
     }
 
@@ -34,7 +34,7 @@ export class CourseTagBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    protected _build(name: Name<string>,): CourseTag {
+    protected override _build(name: Name<string>,): CourseTag {
         const template = this.template;
 
         return new CourseTagContainer(

@@ -35,72 +35,72 @@ export abstract class Arrows
     static {
         this.UP =                   new class ArrowDirections_Up extends Arrows {
 
-            public createCardinalArrow(): ReactElement {
+            public override createCardinalArrow(): ReactElement {
                 return <div className="arrow up"/>;
             }
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [this.createCardinalArrow(), null,];
             }
 
         }('arrow-container', VERTICAL, true,);
         this.DOWN =                 new class ArrowDirections_Down extends Arrows {
 
-            public createCardinalArrow(): ReactElement {
+            public override createCardinalArrow(): ReactElement {
                 return <div className="arrow down"/>;
             }
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [null, this.createCardinalArrow(),];
             }
 
         }('arrow-container', VERTICAL, true,);
         this.LEFT =                 new class ArrowDirections_Left extends Arrows {
 
-            public createCardinalArrow(): ReactElement {
+            public override createCardinalArrow(): ReactElement {
                 return <div className="arrow left"/>;
             }
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [this.createCardinalArrow(), null,];
             }
 
         }('arrow-container', HORIZONTAL, true,);
         this.RIGHT =                new class ArrowDirections_Right extends Arrows {
 
-            public createCardinalArrow(): ReactElement {
+            public override createCardinalArrow(): ReactElement {
                 return <div className="arrow right"/>;
             }
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [null, this.createCardinalArrow(),];
             }
 
         }('arrow-container', HORIZONTAL, true,);
         this.VERTICAL_JOINED =      new class ArrowDirections_Vertical extends Arrows {
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),];
             }
 
         }('arrow-container', VERTICAL, false,);
         this.VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),];
             }
 
         }('arrows-container', VERTICAL, false,);
         this.HORIZONTAL_JOINED =    new class ArrowDirections_Horizontal extends Arrows {
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),];
             }
 
         }('arrow-container', HORIZONTAL, true,);
         this.HORIZONTAL_SEPARATED = new class ArrowDirections_HorizontalSeparated extends Arrows {
 
-            protected _createArrow(): PossibleArrowCreation {
+            protected override _createArrow(): PossibleArrowCreation {
                 return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),];
             }
 
@@ -183,7 +183,7 @@ export abstract class Arrows
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Arrows> {
+    protected override get _static(): StaticReference<Arrows> {
         return Arrows;
     }
 

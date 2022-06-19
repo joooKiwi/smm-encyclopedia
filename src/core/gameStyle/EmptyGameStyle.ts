@@ -56,7 +56,7 @@ export class EmptyGameStyle
     }
 
 
-    public toString(): EmptyGameStyleName {
+    public override toString(): EmptyGameStyleName {
         return 'Empty game style';
     }
 

@@ -19,7 +19,7 @@ export class ExclusiveSMM1EntityContainer
         super(name, category, property, references,);
     }
 
-    protected _testCategory(category: EntityCategory,): EntityCategory {
+    protected override _testCategory(category: EntityCategory,): EntityCategory {
         category = super._testCategory(category);
 
         assert(category instanceof EmptyEntityCategory, 'A SMM1 exclusive entity cannot be in a SMM2 category.',);
@@ -27,7 +27,7 @@ export class ExclusiveSMM1EntityContainer
         return category;
     }
 
-    protected _testProperty(property: Property,): Property {
+    protected override _testProperty(property: Property,): Property {
         property = super._testProperty(property);
 
         assert(property.isInSuperMarioMaker1, 'The property isInSMM1 should always be set to true for a SMM1 exclusive property.',);

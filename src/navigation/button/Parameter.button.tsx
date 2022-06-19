@@ -11,23 +11,23 @@ export default class ParameterButton
 
     static readonly #ID = 'parameter-button';
 
-    protected get _isTopButton(): boolean {
+    protected override get _isTopButton() {
         return true;
     }
 
-    protected get _id(): string {
+    protected override get _id() {
         return ParameterButton.#ID;
     }
 
-    protected get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get tooltipPlacement(): PossibleTooltipPlacement {
         return 'left';
     }
 
-    protected get _addedClass(): string {
+    protected override get _addedClass() {
         return 'bi-gear-fill';
     }
 
-    protected getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return [translation('Options'), 'lg',];
     }
 

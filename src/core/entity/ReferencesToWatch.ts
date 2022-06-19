@@ -174,7 +174,7 @@ class ReferencesToWatchForProduction
 
     //region -------------------- Methods --------------------
 
-    protected _createReferenceHolder(template: EntityTemplate, singleReference: PossibleEnglishName, referenceType: ReferenceType,): ReferenceHolderForProduction {
+    protected override _createReferenceHolder(template: EntityTemplate, singleReference: PossibleEnglishName, referenceType: ReferenceType,): ReferenceHolderForProduction {
         return {
             reference: template,
             type: referenceType,
@@ -195,7 +195,7 @@ class ReferencesToWatchForTestAndDevelopment
 
     //region -------------------- Methods --------------------
 
-    protected _createReferenceHolder(template: EntityTemplate, reference: PossibleEnglishName, referenceType: ReferenceType, index?: number,): ReferenceHolderForTestAndDevelopment {
+    protected override _createReferenceHolder(template: EntityTemplate, reference: PossibleEnglishName, referenceType: ReferenceType, index?: number,): ReferenceHolderForTestAndDevelopment {
         return {
             reference: template,
             type: referenceType,
@@ -206,7 +206,7 @@ class ReferencesToWatchForTestAndDevelopment
         };
     }
 
-    public testReferences(): void {
+    public override testReferences(): void {
         this._references.forEach(englishReferenceToWatch => {
             if (!this._englishNames.has(englishReferenceToWatch.value))
                 throw englishReferenceToWatch.errorIfNeverFound();

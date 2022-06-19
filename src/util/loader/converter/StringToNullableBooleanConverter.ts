@@ -11,15 +11,15 @@ export class StringToNullableBooleanConverter
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): boolean {
+    protected override _convertTheValue(validValue: string,) {
         return ConverterUtil.convertToBoolean(validValue);
     }
 
-    protected _isValueValid(nonEmptyValue: string,): boolean {
+    protected override _isValueValid(nonEmptyValue: string,) {
         return ConverterPatterns.BOOLEAN_PATTERN.test(nonEmptyValue);
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a nullable boolean`);
     }
 

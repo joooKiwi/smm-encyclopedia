@@ -26,22 +26,22 @@ export abstract class Times
     static {
         this.DAY =   new class Times_Day extends Times {
 
-            public get(property: TimeProperty,): boolean {
+            public override get(property: TimeProperty,): boolean {
                 return property.isInDayTheme;
             }
 
-            public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
+            public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
                 return referenceProperty.referenceInDayTheme;
             }
 
         }  ('Day',   'Sun',);
         this.NIGHT = new class Times_Night extends Times {
 
-            public get(property: TimeProperty,): boolean {
+            public override get(property: TimeProperty,): boolean {
                 return property.isInNightTheme === true;
             }
 
-            public getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
+            public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
                 return referenceProperty.referenceInNightTheme;
             }
 
@@ -96,13 +96,13 @@ export abstract class Times
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Times> {
+    protected override get _static(): StaticReference<Times> {
         return Times;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

@@ -35,14 +35,14 @@ export abstract class Images
     static {
         this.YES = new class Images_Yes extends Images {
 
-            public renderComponent(properties: _ImageProperties,): ReactElement {
+            public override renderComponent(properties: _ImageProperties,): ReactElement {
                 return <Image {...properties}/>;
             }
 
         }(true,);
         this.NO =  new class Images_No extends Images {
 
-            public renderComponent(): ReactElement {
+            public override renderComponent(): ReactElement {
                 return EMPTY_REACT_ELEMENT;
             }
 
@@ -80,13 +80,13 @@ export abstract class Images
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Images> {
+    protected override get _static(): StaticReference<Images> {
         return Images;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByBoolean(value: boolean,) {
+    protected static override _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
             ?? null;
     }

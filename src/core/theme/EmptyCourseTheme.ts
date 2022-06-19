@@ -54,7 +54,7 @@ export class EmptyCourseTheme
         return EMPTY_MAP;
     }
 
-    public toString(): EmptyCourseThemeName {
+    public override toString(): EmptyCourseThemeName {
         return 'Empty course theme';
     }
 

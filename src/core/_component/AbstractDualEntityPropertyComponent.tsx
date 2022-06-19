@@ -1,3 +1,5 @@
+import type {ReactElement} from '../../util/react/ReactProperty';
+
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
 
 /**
@@ -14,7 +16,7 @@ export abstract class AbstractDualEntityPropertyComponent<R>
 
     protected abstract _renderSecondComponent(): JSX.Element;
 
-    public _render() {
+    public override _render(): ReactElement {
         return this._isInFirst ?
             this._renderFirstComponent()
             : this._renderSecondComponent();

@@ -15,12 +15,12 @@ export class PredefinedMessageBuilder
         super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, true,);
     }
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return PredefinedMessageBuilder;
     }
 
 
-    protected _build(name: Name<string>,): PredefinedMessage {
+    protected override _build(name: Name<string>,): PredefinedMessage {
         return new PredefinedMessageContainer(name);
     }
 

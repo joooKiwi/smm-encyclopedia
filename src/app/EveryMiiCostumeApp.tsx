@@ -24,17 +24,17 @@ export default class EveryMiiCostumeApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'miiCostume';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costumes', {
             pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
         })}</GameContentTranslationComponent>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
         return new class implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
             public get iterable(): IterableIterator<MiiCostumes> {

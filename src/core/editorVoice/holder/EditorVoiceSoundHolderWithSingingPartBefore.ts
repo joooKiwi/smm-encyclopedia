@@ -11,7 +11,7 @@ export class EditorVoiceSoundHolderWithSingingPartBefore<U extends PossibleStart
 
     //region -------------------- Creator methods --------------------
 
-    protected _createFileName(): PossibleFileName<never, U> {
+    protected override _createFileName(): PossibleFileName<never, U> {
         return `/editor voice/se_ui_singingparts_${this._simpleFileName}.wav`;
     }
 

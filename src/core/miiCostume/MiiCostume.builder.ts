@@ -24,7 +24,7 @@ export class MiiCostumeBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return MiiCostumeBuilder;
     }
 
@@ -45,7 +45,7 @@ export class MiiCostumeBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public _build(name: Name<string>,): MiiCostume {
+    public override _build(name: Name<string>,): MiiCostume {
         const template = this.template;
 
         return new MiiCostumeContainer(name,

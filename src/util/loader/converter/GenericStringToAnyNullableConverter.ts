@@ -5,13 +5,13 @@ export class GenericStringToAnyNullableConverter<T>
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): | T | null {
+    protected override _convertTheValue(validValue: string,) {
         return validValue === ''
             ? null
             : super._convertTheValue(validValue);
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return value === '' || super.isValueValid(value);
     }
 

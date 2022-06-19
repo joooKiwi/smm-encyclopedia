@@ -15,7 +15,7 @@ export class BasicImageContainer<PATH extends PossiblePath = PossiblePath, >
             amountOfImagesOnJump,);
     }
 
-    protected _createPaths() {
+    protected override _createPaths() {
         return [this._basicPath] as const;
     }
 

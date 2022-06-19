@@ -15,11 +15,11 @@ export class EntityCategoryBuilder
         super(templateBuilder, Games.SUPER_MARIO_MAKER_2, true,);
     }
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return EntityCategoryBuilder;
     }
 
-    protected _build(name: Name<string>,): EntityCategory {
+    protected override _build(name: Name<string>,): EntityCategory {
         return new EntityCategoryContainer(
             name,
         );

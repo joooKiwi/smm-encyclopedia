@@ -530,7 +530,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      *
      * @param typeOrHeader the type to add in front of the header type or the header name
      * @param validValueOrConvertor an array or a simple header or convertor
-     * @protected
      */
     protected _addTypeToHeaderTypeOrConvertor<T extends | number | boolean | string>(typeOrHeader: PredefinedConversion | SimpleHeader<H>, validValueOrConvertor: ArrayOrSimpleHeaderTypeConvertorExcluding<T>,): ArrayHeaderTypeOrConvertor {
         return [typeOrHeader, validValueOrConvertor,].flat();
@@ -725,7 +724,6 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * and the create a new basic {@link Converter}.
      *
      * @param headerContainer the header container
-     * @protected
      */
     protected _createSingleConvertor(headerContainer: HeaderContainer<H, this['headersAsArray']>,): ConversionCallbackToConverter {
         return headerContainer.createConversionCallbacks()[0];

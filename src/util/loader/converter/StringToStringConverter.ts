@@ -9,16 +9,16 @@ export class StringToStringConverter
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): string {
+    protected override _convertTheValue(validValue: string,) {
         return validValue;
 
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return true;
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a string`);
     }
 

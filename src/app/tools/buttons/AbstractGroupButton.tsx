@@ -4,6 +4,7 @@ import {Component}      from 'react';
 import type {ActivatableProperties} from './properties/ActivatableProperties';
 import type {GroupButtonProperties} from './properties/GroupButtonProperties';
 import type {ReactComponent}        from '../../../util/react/ReactComponent';
+import type {ReactElement}          from '../../../util/react/ReactProperty';
 
 /**
  * @reactComponent
@@ -89,7 +90,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
         ).flat();
     }
 
-    public render() {
+    public override render(): ReactElement {
         return <div key={`groupButton_${this.groupName}`} id={`group-${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group">
             {this.__createButtons()}
         </div>;

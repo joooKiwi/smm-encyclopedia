@@ -13,28 +13,28 @@ export class InGameImage_SMM1Container
 
     //region -------------------- Getter methods --------------------
 
-    protected get _createEveryGameStyles(): readonly GameStyles[] {
+    protected override get _createEveryGameStyles(): readonly GameStyles[] {
         return GameStyles.gameStyles_smm1;
     }
 
-    protected get _createEveryThemes(): readonly Themes[] {
+    protected override get _createEveryThemes(): readonly Themes[] {
         return Themes.courseThemes_smm1;
     }
 
-    protected get _createEveryTimes(): readonly Times[] {
+    protected override get _createEveryTimes(): readonly Times[] {
         return [Times.DAY,];
     }
 
     //endregion -------------------- Getter methods --------------------
 
-    public get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
-    public get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
-    public get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
-    public get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
-    public get(expectEmpty: boolean, theme: Themes,): readonly string[]
-    public get(expectEmpty: boolean, theme: Themes,): readonly string[]
-    public get(expectEmpty: boolean,): readonly string[]
-    public get(expectEmpty: boolean, gameStyle_or_theme?: | GameStyles | Themes, theme?: | Themes,): readonly string[] {
+    public override get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
+    public override get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
+    public override get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
+    public override get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
+    public override get(expectEmpty: boolean, theme: Themes,): readonly string[]
+    public override get(expectEmpty: boolean, theme: Themes,): readonly string[]
+    public override get(expectEmpty: boolean,): readonly string[]
+    public override get(expectEmpty: boolean, gameStyle_or_theme?: | GameStyles | Themes, theme?: | Themes,): readonly string[] {
         if (gameStyle_or_theme == null)
             return super.get(expectEmpty, Times.DAY,);
         if (theme == null) {

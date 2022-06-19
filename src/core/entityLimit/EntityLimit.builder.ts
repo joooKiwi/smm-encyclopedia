@@ -48,7 +48,7 @@ export class EntityLimitBuilder
 
     //region -------------------- Build helper methods --------------------
 
-    protected get _static() {
+    protected /*static*/ override get _static() {
         return EntityLimitBuilder;
     }
 
@@ -116,7 +116,7 @@ export class EntityLimitBuilder
 
     //endregion -------------------- Build helper methods --------------------
 
-    public _build(name: Name<string>,): EntityLimit {
+    public override _build(name: Name<string>,): EntityLimit {
         const template = this.template;
 
         return template.type == null

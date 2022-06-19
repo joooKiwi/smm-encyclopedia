@@ -14,14 +14,14 @@ export abstract class HeaderTypes
     static {
         this.HEAD = new class HeaderTypes_Head extends HeaderTypes {
 
-            public getLayout(layout: readonly string[][]): readonly string[][] {
+            public override getLayout(layout: readonly string[][]): readonly string[][] {
                 return layout;
             }
 
         }('head', 'top',);
         this.FOOT = new class HeaderTypes_Foot extends HeaderTypes {
 
-            public getLayout(layout: readonly string[][]): readonly string[][] {
+            public override getLayout(layout: readonly string[][]): readonly string[][] {
                 return [...layout].reverse();
             }
 
@@ -65,13 +65,13 @@ export abstract class HeaderTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<HeaderTypes> {
+    protected override get _static(): StaticReference<HeaderTypes> {
         return HeaderTypes;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    public static _getValueByString(value: string,) {
+    public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.simpleName === value)
             ?? null;
     }

@@ -22,15 +22,15 @@ export default class EverySoundEffectCategoriesApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'soundEffectCategory';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent translationKey="Every sound effect categories"/>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
         return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
 
             public get iterable(): IterableIterator<SoundEffectCategories> {

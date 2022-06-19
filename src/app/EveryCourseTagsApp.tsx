@@ -22,11 +22,11 @@ export default class EveryCourseTagsApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'courseTag';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
             translation,
             'Every course tags', {
@@ -37,7 +37,7 @@ export default class EveryCourseTagsApp
         }</GameContentTranslationComponent>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<CourseTags> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<CourseTags> {
         return new class implements AppInterpreterWithCardList<CourseTags> {
 
             public get iterable(): IterableIterator<CourseTags> {

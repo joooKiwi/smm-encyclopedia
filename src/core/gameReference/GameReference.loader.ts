@@ -1,4 +1,4 @@
-import resource from '../../resources/Game reference.csv';
+import resource from '../../resources/compiled/Game reference.json';
 
 import type {GameReference}                             from './GameReference';
 import type {GameReferenceTemplate}                     from './GameReference.template';
@@ -101,11 +101,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap(): typeof Headers {
+    protected override get _headersIndexMap(): typeof Headers {
         return Headers;
     }
 
-    public build(): GameReferenceTemplate {
+    public override build(): GameReferenceTemplate {
         return {
             acronym: this._getContent(this._headersIndexMap.acronym),
             name: this._createNameTemplate(),

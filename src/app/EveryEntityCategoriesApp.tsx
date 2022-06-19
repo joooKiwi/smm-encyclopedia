@@ -22,15 +22,15 @@ export default class EveryEntityCategoriesApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'entityCategory';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent translationKey="Every entity categories"/>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
         return new class implements AppInterpreterWithCardList<EntityCategories> {
 
             public get iterable(): IterableIterator<EntityCategories> {

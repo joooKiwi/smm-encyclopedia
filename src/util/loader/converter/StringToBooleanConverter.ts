@@ -11,15 +11,15 @@ export class StringToBooleanConverter
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(validValue: string,): boolean {
+    protected override _convertTheValue(validValue: string,) {
         return ConverterUtil.convertToBoolean(validValue);
     }
 
-    public isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,): boolean {
         return ConverterPatterns.BOOLEAN_PATTERN.test(value);
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a boolean`);
     }
 

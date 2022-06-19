@@ -45,7 +45,7 @@ export class SoundContainer<PATH extends PossiblePath, >
 
     //region -------------------- Getter methods --------------------
 
-    protected _createPaths() {
+    protected override _createPaths() {
         return [this._basicPath] as const;
     }
 

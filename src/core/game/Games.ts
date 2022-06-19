@@ -26,21 +26,21 @@ export abstract class Games
     static {
         this.SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games {
 
-                public get(property: GameProperty,): boolean {
+                public override get(property: GameProperty,): boolean {
                     return property.isInSuperMarioMaker1;
                 }
 
             }('SMM', '1', 'Super Mario Maker',);
         this.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
 
-                public get(property: GameProperty,): boolean {
+                public override get(property: GameProperty,): boolean {
                     return property.isInSuperMarioMakerFor3DS;
                 }
 
             }('SMM3DS', '3DS', 'Super Mario Maker for Nintendo 3DS',);
         this.SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
 
-            public get(property: GameProperty,): boolean {
+            public override get(property: GameProperty,): boolean {
                 return property.isInSuperMarioMaker2;
             }
 
@@ -114,13 +114,13 @@ export abstract class Games
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Games> {
+    protected override get _static(): StaticReference<Games> {
         return Games;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
                 || enumerable.acronym === value
                 || enumerable.simpleValue === value)

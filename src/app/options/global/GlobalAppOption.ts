@@ -49,44 +49,44 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     static {
         this.IMAGES =           new class GlobalAppOption_Images extends GlobalAppOption<Images> {
 
-            protected _get(state: GlobalAppState,): Images {
+            protected override _get(state: GlobalAppState,): Images {
                 return state.images;
             }
 
-            protected _set(nextState: GlobalAppState, value: Images,): void {
+            protected override _set(nextState: GlobalAppState, value: Images,): void {
                 nextState.images = value;
             }
 
         }(Images.YES,);
         this.IMAGE_ANIMATIONS = new class GlobalAppOption_Images extends GlobalAppOption<ImageAnimations> {
 
-            protected _get(state: GlobalAppState,): ImageAnimations {
+            protected override _get(state: GlobalAppState,): ImageAnimations {
                 return state.imageAnimations;
             }
 
-            protected _set(nextState: GlobalAppState, value: ImageAnimations,): void {
+            protected override _set(nextState: GlobalAppState, value: ImageAnimations,): void {
                 nextState.imageAnimations = value;
             }
 
         }(ImageAnimations.YES,);
         this.SOUNDS =           new class GlobalAppOption_Sounds extends GlobalAppOption<Sounds> {
 
-            protected _get(state: GlobalAppState,): Sounds {
+            protected override _get(state: GlobalAppState,): Sounds {
                 return state.sounds;
             }
 
-            protected _set(nextState: GlobalAppState, value: Sounds,): void {
+            protected override _set(nextState: GlobalAppState, value: Sounds,): void {
                 nextState.sounds = value;
             }
 
         }(Sounds.YES,);
         this.TEXTS =           new class GlobalAppOption_Sounds extends GlobalAppOption<Texts> {
 
-            protected _get(state: GlobalAppState,): Texts {
+            protected override _get(state: GlobalAppState,): Texts {
                 return state.texts;
             }
 
-            protected _set(nextState: GlobalAppState, value: Texts,): void {
+            protected override _set(nextState: GlobalAppState, value: Texts,): void {
                 nextState.texts = value;
             }
 
@@ -94,33 +94,33 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
 
         this.SMM1 =             new class GlobalAppOption_SMM1 extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.game['1'];
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.game['1'] = value;
             }
 
         }(false,);
         this.SMM3DS =           new class GlobalAppOption_SMM3DS extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.game['3DS'];
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.game['3DS'] = value;
             }
 
         }(false,);
         this.SMM2 =             new class GlobalAppOption_SMM2 extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.game['2'];
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.game['2'] = value;
             }
 
@@ -128,55 +128,55 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
 
         this.SMB =              new class GlobalAppOption_SMB extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.gameStyle.SMB;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.gameStyle.SMB = value;
             }
 
         }(true,);
         this.SMB3 =             new class GlobalAppOption_SMB3 extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.gameStyle.SMB3;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.gameStyle.SMB3 = value;
             }
 
         }(true,);
         this.SMW =              new class GlobalAppOption_SMW extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.gameStyle.SMW;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.gameStyle.SMW = value;
             }
 
         }(true,);
         this.NSMBU =            new class GlobalAppOption_NSMBU extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.gameStyle.NSMBU;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.gameStyle.NSMBU = value;
             }
 
         }(true,);
         this.SM3DW =            new class GlobalAppOption_SM3DW extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.gameStyle.SM3DW;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.gameStyle.SM3DW = value;
             }
 
@@ -184,110 +184,110 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
 
         this.GROUND =           new class GlobalAppOption_Ground extends GlobalAppOption<GlobalThemeOption> {
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.ground;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.ground = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.UNDERGROUND =      new class GlobalAppOption_Underground extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.underground;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.underground = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.UNDERWATER =       new class GlobalAppOption_Underwater extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.underwater;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.underwater = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.DESERT =           new class GlobalAppOption_Desert extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.desert;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.desert = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.SNOW =             new class GlobalAppOption_Snow extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.snow;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.snow = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.SKY =              new class GlobalAppOption_Sky extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.sky;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.sky = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.FOREST =           new class GlobalAppOption_Forest extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.forest;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.forest = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.GHOST_HOUSE =      new class GlobalAppOption_GhostHouse extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.ghostHouse;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.ghostHouse = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.AIRSHIP =          new class GlobalAppOption_Airship extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.airship;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.airship = value;
             }
 
         }(GlobalThemeOption.ALL,);
         this.CASTLE =           new class GlobalAppOption_Castle extends GlobalAppOption<GlobalThemeOption>{
 
-            protected _get(state: GlobalAppState,): GlobalThemeOption {
+            protected override _get(state: GlobalAppState,): GlobalThemeOption {
                 return state.theme.castle;
             }
 
-            protected _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
+            protected override _set(nextState: GlobalAppState, value: GlobalThemeOption,): void {
                 nextState.theme.castle = value;
             }
 
@@ -295,22 +295,22 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
 
         this.DAY =              new class GlobalAppOption_Day extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.time.day;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.time.day = value;
             }
 
         }(true,);
         this.NIGHT =            new class GlobalAppOption_Night extends GlobalAppOption<boolean> {
 
-            protected _get(state: GlobalAppState,): boolean {
+            protected override _get(state: GlobalAppState,): boolean {
                 return state.time.night;
             }
 
-            protected _set(nextState: GlobalAppState, value: boolean,): void {
+            protected override _set(nextState: GlobalAppState, value: boolean,): void {
                 nextState.time.night = value;
             }
 
@@ -385,7 +385,7 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<GlobalAppOption> & AppOptionStatic<GlobalAppState> {
+    protected override get _static(): StaticReference<GlobalAppOption> & AppOptionStatic<GlobalAppState> {
         return GlobalAppOption;
     }
 

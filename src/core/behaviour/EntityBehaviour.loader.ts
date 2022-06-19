@@ -1,4 +1,4 @@
-import resource from '../../resources/Entity behaviour.csv';
+import resource from '../../resources/compiled/Entity behaviour.json';
 
 import type {EntityBehaviour}                          from './EntityBehaviour';
 import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template';

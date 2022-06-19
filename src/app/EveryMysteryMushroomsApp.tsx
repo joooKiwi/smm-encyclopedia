@@ -159,7 +159,7 @@ export default class EveryMysteryMushroomsApp
 
     //endregion -------------------- Methods --------------------
 
-    protected _mainContent() {
+    protected override _mainContent() {
         return <Table
             id="mysteryMushroom-table"
             caption={<GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: 'Mystery Mushrooms'})}</GameContentTranslationComponent>}

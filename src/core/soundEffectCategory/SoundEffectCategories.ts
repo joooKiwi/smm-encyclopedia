@@ -98,13 +98,13 @@ export class SoundEffectCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<SoundEffectCategories> {
+    protected override get _static(): StaticReference<SoundEffectCategories> {
         return SoundEffectCategories;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

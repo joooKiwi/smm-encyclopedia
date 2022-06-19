@@ -227,7 +227,7 @@ export class EmptyEntity
     }
 
 
-    public toString(): EmptyEntityName {
+    public override toString(): EmptyEntityName {
         return 'Empty entity';
     }
 

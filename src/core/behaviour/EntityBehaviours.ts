@@ -111,13 +111,13 @@ export class EntityBehaviours
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<EntityBehaviours> {
+    protected override get _static(): StaticReference<EntityBehaviours> {
         return EntityBehaviours;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    public static _getValueByString(value: string,) {
+    public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.acronym === value
                 || enumerable.translationKey === value)
             ?? null;

@@ -28,7 +28,7 @@ export class InGameImage_SMM1Builder
 
     //region -------------------- Game Style --------------------
 
-    public setAllGameStyles(): this {
+    public override setAllGameStyles(): this {
         return this._setGameStyle(InGameImage_SMM1Builder.#GAME_STYLE_ARRAY);
     }
 
@@ -52,7 +52,7 @@ export class InGameImage_SMM1Builder
 
     //endregion -------------------- Build utility methods --------------------
 
-    public build(): InGameImage {
+    public override build(): InGameImage {
         return new InGameImage_SMM1Container(this._createNewMap(), this._createDefaultImages(),);
     }
 

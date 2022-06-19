@@ -19,11 +19,11 @@ export abstract class AbstractStringToSingleValueConvertor<V>
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected abstract _convertTheValue(validValue: string,): V;
+    protected abstract override _convertTheValue(validValue: string,): V;
 
-    public abstract isValueValid(value: string,): boolean;
+    public abstract override isValueValid(value: string,): boolean;
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not "${this.singleValue}".`);
     }
 

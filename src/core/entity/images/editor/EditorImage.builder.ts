@@ -176,11 +176,11 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //endregion -------------------- Time --------------------
     //region -------------------- Game Style --------------------
 
-    protected _setGameStyle(gameStyle: OriginalGameStyles,): this
-    protected _setGameStyle(gameStyles: readonly OriginalGameStyles[],): this
-    protected _setGameStyle(gameStyles: readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[],): this
-    protected _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles?: readonly OriginalGameStyles[],): this
-    protected _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[] = [],): this {
+    protected override _setGameStyle(gameStyle: OriginalGameStyles,): this
+    protected override _setGameStyle(gameStyles: readonly OriginalGameStyles[],): this
+    protected override _setGameStyle(gameStyles: readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[],): this
+    protected override _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles?: readonly OriginalGameStyles[],): this
+    protected override _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[] = [],): this {
         if (!(gameStyles instanceof Array))
             return this._setGameStyle([gameStyles], notGameStyles,);
 

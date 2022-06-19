@@ -4,6 +4,7 @@ import {Component, type Dispatch, type SetStateAction} from 'react';
 import type {Name}                                                                         from '../Name';
 import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties';
 import type {ReactComponent}                                                               from '../../../util/react/ReactComponent';
+import type {ReactElement}                                                                 from '../../../util/react/ReactProperty';
 
 import ContentTranslationComponent from '../../components/ContentTranslationComponent';
 import {ProjectLanguages}          from '../../ProjectLanguages';
@@ -52,7 +53,7 @@ export default class NamePopoverComponent
     }
 
 
-    public componentDidMount(): void {
+    public override componentDidMount(): void {
         const id = this.id;
         const setDoesDisplayPopover = this.setDoesDisplayPopover;
 
@@ -66,7 +67,7 @@ export default class NamePopoverComponent
         });
     }
 
-    public render() {
+    public override render(): ReactElement {
         return this.state.element;
     }
 

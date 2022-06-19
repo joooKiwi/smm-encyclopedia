@@ -19,11 +19,11 @@ export default class EveryPredefinedMessagesApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected override _createKey(): string {
         return 'predefinedMessage';
     }
 
-    protected _createTitleContent(): ReactElementOrString {
+    protected override _createTitleContent(): ReactElementOrString {
         return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
             translation,
             'Every predefined messages', {
@@ -33,7 +33,7 @@ export default class EveryPredefinedMessagesApp
         }</GameContentTranslationComponent>;
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {
         return new class implements AppInterpreterWithSimpleList<PredefinedMessages> {
 
             public get iterable(): IterableIterator<PredefinedMessages> {

@@ -112,13 +112,9 @@ export abstract class AbstractImage<PATH extends PossiblePath,
     }
 
     public get jumpImages(): JumpImages<PATH> {
-        if (this.#jumpImages == null) {
-            this.#jumpImages = this.#amountOfImagesOnJump === 1
-                ? [this.__getImages(AbstractImage.#JUMP_IMAGE_1), EMPTY_ARRAY, EMPTY_ARRAY,]
-                : this.__getImages(AbstractImage.#JUMP_IMAGES);
-
-        }
-        return this.#jumpImages;
+        return this.#jumpImages ??= this.#amountOfImagesOnJump === 1
+            ? [this.__getImages(AbstractImage.#JUMP_IMAGE_1), EMPTY_ARRAY, EMPTY_ARRAY,]
+            : this.__getImages(AbstractImage.#JUMP_IMAGES);
     }
 
     public get fallingAfterJumpImages(): FallingAfterJumpImages<PATH> {

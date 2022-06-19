@@ -1,4 +1,4 @@
-import resource from '../../resources/Course tag (SMM2).csv';
+import resource from '../../resources/compiled/Course tag (SMM2).json';
 
 import type {CourseTag}                                              from './CourseTag';
 import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template';
@@ -109,11 +109,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): CourseTagTemplate {
+    public override build(): CourseTagTemplate {
         return {
             name: this._createNameTemplate(),
             isOfficial: this._getContent(this._headersIndexMap.isAnOfficialTag),

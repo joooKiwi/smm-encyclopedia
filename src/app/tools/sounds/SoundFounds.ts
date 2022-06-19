@@ -43,11 +43,11 @@ export abstract class SoundFounds
     static {
         this.YES =       new class SoundFounds_Yes extends SoundFounds {
 
-            public onCreate(callback: IsSourceFoundCallback,): void {
+            public override onCreate(callback: IsSourceFoundCallback,): void {
                 callback(true);
             }
 
-            public onPlay(callback: IsSourceFoundCallback,): true {
+            public override onPlay(callback: IsSourceFoundCallback,): true {
                 callback(true);
                 return true;
             }
@@ -55,11 +55,11 @@ export abstract class SoundFounds
         }('yes',);
         this.NO =        new class SoundFounds_No extends SoundFounds {
 
-            public onCreate(callback: IsSourceFoundCallback,): void {
+            public override onCreate(callback: IsSourceFoundCallback,): void {
                 callback(false);
             }
 
-            public onPlay(callback: IsSourceFoundCallback,): false {
+            public override onPlay(callback: IsSourceFoundCallback,): false {
                 callback(false);
                 return false;
             }
@@ -67,7 +67,7 @@ export abstract class SoundFounds
         }('no',);
         this.ON_PLAY =   new class SoundFounds_OnPlay extends SoundFounds {
 
-            public onPlay(callback: IsSourceFoundCallback,): null {
+            public override onPlay(callback: IsSourceFoundCallback,): null {
                 callback();
                 return null;
             }
@@ -75,7 +75,7 @@ export abstract class SoundFounds
         }('on play',);
         this.ON_CREATE = new class SoundFounds_OnCreate extends SoundFounds {
 
-            public onCreate(callback: IsSourceFoundCallback,): void {
+            public override onCreate(callback: IsSourceFoundCallback,): void {
                 callback();
             }
 
@@ -134,7 +134,7 @@ export abstract class SoundFounds
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<SoundFounds> {
+    protected override get _static(): StaticReference<SoundFounds> {
         return SoundFounds;
     }
 
@@ -155,7 +155,7 @@ export abstract class SoundFounds
     //endregion -------------------- Enum default methods --------------------
     //region -------------------- Enum value methods --------------------
 
-    public static _getValueByString(value: string,) {
+    public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
             ?? null;
     }

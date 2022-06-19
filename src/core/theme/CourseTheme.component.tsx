@@ -11,11 +11,11 @@ export default class CourseThemeComponent
     extends ThemeComponent<ThemeProperty> {
 
 
-    protected get map() {
+    protected override get map() {
         return this.reference.toCourseThemeMap();
     }
 
-    protected get _isInAll() {
+    protected override get _isInAll() {
         return this.reference.isInGroundTheme
             && this.reference.isInUndergroundTheme
             && this.reference.isInUnderwaterTheme
@@ -28,15 +28,15 @@ export default class CourseThemeComponent
             && this.reference.isInCastleTheme;
     }
 
-    protected _renderSingleComponent(theme: Themes,) {
+    protected override _renderSingleComponent(theme: Themes,) {
         return CourseThemeComponent.renderSingleComponent(theme, true, this.name.english,);
     }
 
-    protected _renderComponentForAllAsText() {
+    protected override _renderComponentForAllAsText() {
         return <GameContentTranslationComponent children={translation => <span>{translation('Every themes')}</span>}/>;
     }
 
-    protected _renderComponentForAllAsImages() {
+    protected override _renderComponentForAllAsImages() {
         return <div key={`${this.name.english} (every course themes)`}>{Themes.courseThemes.map(courseTheme => this._renderSingleComponent(courseTheme))}</div>;
     }
 

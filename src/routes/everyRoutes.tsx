@@ -18,12 +18,15 @@ const EverySoundEffectCategoriesApp =  lazy(() => import('../app/EverySoundEffec
 const EverySoundEffectsApp =           lazy(() => import('../app/EverySoundEffectsApp'));
 const EveryThemesApp =                 lazy(() => import('../app/EveryThemesApp'));
 const HomeApp =                        lazy(() => import('../app/HomeApp'));
+const PowerUpPriorityApp =             lazy(() => import('../app/PowerUpPriorityApp'));
 const SourcesApp =                     lazy(() => import('../app/SourcesApp'));
 
 export const everySimpleRoutes = [
     SimpleRouteContainer.newInstance('home',                       '/home',                       () => <HomeApp/>,                      ),
     SimpleRouteContainer.newInstance('about',                      '/about',                      () => <AboutApp/>,                     ),
     SimpleRouteContainer.newInstance('sources',                    '/sources',                    () => <SourcesApp/>,                   ),
+
+    SimpleRouteContainer.newInstance('powerUpPriority',            '/power-up/priority',          () => <PowerUpPriorityApp/>,           ),
 
     SimpleRouteContainer.newInstance('everyGameReferences',        '/every/gameReference',        () => <EveryGameReferencesApp/>,       ),
     SimpleRouteContainer.newInstance('everyEntities',              '/every/entity',               () => <EveryEntitiesApp/>,             ),

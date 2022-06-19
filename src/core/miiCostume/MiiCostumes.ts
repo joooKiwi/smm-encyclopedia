@@ -349,13 +349,13 @@ export class MiiCostumes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<MiiCostumes> {
+    protected override get _static(): StaticReference<MiiCostumes> {
         return MiiCostumes;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
                 || enumerable.imageName === value)
             ?? null;

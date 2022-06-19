@@ -9,15 +9,15 @@ export class StringToEmptyableStringConverter
 
     //region -------------------- Methods --------------------
 
-    protected _convertTheValue(nonEmptyValue: string,): | string | null {
+    protected override _convertTheValue(nonEmptyValue: string,) {
         return nonEmptyValue;
     }
 
-    public _isValueValid(value: string,): boolean {
+    protected override _isValueValid(value: string,) {
         return true;
     }
 
-    protected _newError(): TypeError {
+    protected override _newError() {
         return new TypeError(`The value "${this.originalValue}" is not convertible to a non empty value`);
     }
 

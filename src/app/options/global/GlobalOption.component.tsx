@@ -2,9 +2,9 @@ import './GlobalOption.scss';
 
 import {Component} from 'react';
 
-import type {GlobalAppState}    from '../../AppStates.types';
-import type {GlobalThemeOption} from './GlobalThemeOption';
-import type {ReactProperty}     from '../../../util/react/ReactProperty';
+import type {GlobalAppState}              from '../../AppStates.types';
+import type {GlobalThemeOption}           from './GlobalThemeOption';
+import type {ReactElement, ReactProperty} from '../../../util/react/ReactProperty';
 
 import GameGroup         from './group/GameGroup';
 import {Games}           from '../../../core/game/Games';
@@ -36,7 +36,7 @@ export default class GlobalOptionComponent
         this.state = GlobalAppOption.createDefaultState;
     }
 
-    public render() {
+    public override render(): ReactElement {
         //TODO move the groups into multiple different sub components.
         const imageAnimations = GlobalAppOption.IMAGE_ANIMATIONS, imageAnimationsValue = imageAnimations.get.value;
         const texts = GlobalAppOption.TEXTS, textsValue = texts.get.value;

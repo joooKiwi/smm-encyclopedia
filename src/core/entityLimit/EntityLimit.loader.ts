@@ -1,4 +1,4 @@
-import resource from '../../resources/Entity limit.csv';
+import resource from '../../resources/compiled/Entity limit.json';
 
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template';
 import type {EntityLimit}                                                                                                                                                                         from './EntityLimit';
@@ -150,11 +150,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): | EntityLimitTemplate | AlternativeLimitTemplate {
+    public override build(): | EntityLimitTemplate | AlternativeLimitTemplate {
         const type = this._getContent(this._headersIndexMap.type);
         const acronym = this._getContent(this._headersIndexMap.acronym);
 

@@ -13,7 +13,7 @@ import type {Themes}            from '../../../../core/theme/Themes';
 export default class ThemeGroup
     extends AbstractGroup<Themes, GlobalThemeOption> {
 
-    protected _renderElement(element: Themes, option: GlobalAppOption<GlobalThemeOption>, [hasSMM2Selected, isDisabledNight,]: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement {
+    protected override _renderElement(element: Themes, option: GlobalAppOption<GlobalThemeOption>, [hasSMM2Selected, isDisabledNight,]: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement {
         return <div key={`option container (${element.englishName})`} id={`${element.englishNameInHtml}-option-container`} className="btn-group-vertical" role="group">{
             hasSMM2Selected
                 ? ThemeGroup.__renderElementWithDayAndNight(element, option, isDisabledNight,)

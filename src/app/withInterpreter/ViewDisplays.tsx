@@ -22,7 +22,7 @@ export abstract class ViewDisplays
     static {
         this.TABLE =       new class ViewDisplays_Table extends ViewDisplays {
 
-            public createComponent(app: PossibleApp,): ReactElement {
+            public override createComponent(app: PossibleApp,): ReactElement {
                 assert('createTable' in app, 'The application does not handle a table creation.',);
                 return app.createTable();
             }
@@ -30,7 +30,7 @@ export abstract class ViewDisplays
         }('table', 'table',);
         this.SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
 
-            public createComponent(app: PossibleApp,): ReactElement {
+            public override createComponent(app: PossibleApp,): ReactElement {
                 assert('createList' in app, 'The application does not handle a "simple list" creation.',);
                 return app.createList();
             }
@@ -38,7 +38,7 @@ export abstract class ViewDisplays
         }('simple-list', 'list',);
         this.CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
 
-            public createComponent(app: PossibleApp,): ReactElement {
+            public override createComponent(app: PossibleApp,): ReactElement {
                 assert('createCardList' in app, 'The application does not handle a "card list" creation.',);
                 return app.createCardList();
             }
@@ -96,7 +96,7 @@ export abstract class ViewDisplays
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<ViewDisplays> {
+    protected override get _static(): StaticReference<ViewDisplays> {
         return ViewDisplays;
     }
 

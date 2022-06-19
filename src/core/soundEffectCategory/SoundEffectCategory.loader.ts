@@ -1,4 +1,4 @@
-import resource from '../../resources/Sound effect category.csv';
+import resource from '../../resources/compiled/Sound effect category.json';
 
 import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
 import type {Loader}                                    from '../../util/loader/Loader';
@@ -100,11 +100,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): SoundEffectCategoryTemplate {
+    public override build(): SoundEffectCategoryTemplate {
         return {
             name: this._createNameTemplate(),
         };

@@ -28,9 +28,9 @@ export class MiiCostumeCategories
 
     static {
         this.HEADGEAR = new MiiCostumeCategories('Headgear', 1,);
-        this.TOP = new MiiCostumeCategories('Top', 0,);
-        this.COSTUME = new MiiCostumeCategories('Costume', 3,);
-        this.BOTTOM = new MiiCostumeCategories('Bottom', 2,);
+        this.TOP =      new MiiCostumeCategories('Top', 0,);
+        this.COSTUME =  new MiiCostumeCategories('Costume', 3,);
+        this.BOTTOM =   new MiiCostumeCategories('Bottom', 2,);
     }
 
     //endregion -------------------- Enum instances --------------------
@@ -97,13 +97,13 @@ export class MiiCostumeCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<MiiCostumeCategories> {
+    protected override get _static(): StaticReference<MiiCostumeCategories> {
         return MiiCostumeCategories;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByString(value: string,) {
+    protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
                 || enumerable.imageName === value)
             ?? null;

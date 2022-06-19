@@ -14,18 +14,18 @@ export class GameStyles
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_BROS =       new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS,      );
-    public static readonly SUPER_MARIO_BROS_3 =     new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS_3,    );
-    public static readonly SUPER_MARIO_WORLD =      new GameStyles(OriginalGameStyles.SUPER_MARIO_WORLD,     );
-    public static readonly NEW_SUPER_MARIO_BROS_U = new GameStyles(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U,);
-    public static readonly SUPER_MARIO_3D_WORLD =   new GameStyles(OriginalGameStyles.SUPER_MARIO_3D_WORLD,  );
+    public static override readonly SUPER_MARIO_BROS =       new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS,      );
+    public static override readonly SUPER_MARIO_BROS_3 =     new GameStyles(OriginalGameStyles.SUPER_MARIO_BROS_3,    );
+    public static override readonly SUPER_MARIO_WORLD =      new GameStyles(OriginalGameStyles.SUPER_MARIO_WORLD,     );
+    public static override readonly NEW_SUPER_MARIO_BROS_U = new GameStyles(OriginalGameStyles.NEW_SUPER_MARIO_BROS_U,);
+    public static override readonly SUPER_MARIO_3D_WORLD =   new GameStyles(OriginalGameStyles.SUPER_MARIO_3D_WORLD,  );
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
 
     static [index: number]: GameStyles;
 
-    protected static _PARENT: StaticReference<OriginalGameStyles> = OriginalGameStyles;
+    protected static override _PARENT: StaticReference<OriginalGameStyles> = OriginalGameStyles;
 
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
@@ -68,55 +68,55 @@ export class GameStyles
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(property: GameStyleProperty,): boolean {
+    public override get(property: GameStyleProperty,): boolean {
         return this.parent.get(property);
     }
 
-    public getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities {
+    public override getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities {
         return this.parent.getReference(referenceProperty);
     }
 
 
-    public static get gameStyles_smm1(): EnumArray_SMM1<GameStyles> {
+    public static override get gameStyles_smm1(): EnumArray_SMM1<GameStyles> {
         return this.#GAME_STYLES_SMM1 ??= OriginalGameStyles.gameStyles_smm1.map(gameStyle => this.getValue(gameStyle)) as unknown as EnumArray_SMM1<GameStyles>;
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<GameStyles> {
+    protected override get _static(): StaticReference<GameStyles> {
         return GameStyles;
     }
 
     //region -------------------- Enum value methods --------------------
 
-    protected static _getValueByEnumerable(value: Enumerable,) {
+    protected static override _getValueByEnumerable(value: Enumerable,) {
         if (value instanceof OriginalGameStyles)
             return GameStyles[value.ordinal];
         return null;
     }
 
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O, GameStyles>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O, GameStyles>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N, GameStyles>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S, GameStyles>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S, GameStyles>
-    public static getValue<I extends GameStyles = GameStyles, >(instance: I,): I
-    public static getValue(instance: OriginalGameStyles,): GameStyles
-    public static getValue(value: PossibleNonNullableValue,): GameStyles
-    public static getValue(value: PossibleValue,): | GameStyles | null
-    public static getValue(value: PossibleValue,) {
+    public static override getValue(nullValue: | null | undefined,): null
+    public static override getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O, GameStyles>
+    public static override getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O, GameStyles>
+    public static override getValue<N extends Names = Names, >(name: N,): EnumByName<N, GameStyles>
+    public static override getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S, GameStyles>
+    public static override getValue<S extends string = string, >(name: S,): EnumByString<S, GameStyles>
+    public static override getValue<I extends GameStyles = GameStyles, >(instance: I,): I
+    public static override getValue(instance: OriginalGameStyles,): GameStyles
+    public static override getValue(value: PossibleNonNullableValue,): GameStyles
+    public static override getValue(value: PossibleValue,): | GameStyles | null
+    public static override getValue(value: PossibleValue,) {
         return Enum.getValueOn(this, value,);
     }
 
-    public static get values(): EnumArray<GameStyles> {
+    public static override get values(): EnumArray<GameStyles> {
         return Enum.getValuesOn(this);
     }
 
     //endregion -------------------- Enum value methods --------------------
 
-    public static [Symbol.iterator]() {
+    public static override [Symbol.iterator]() {
         return this.values[Symbol.iterator]();
     }
 

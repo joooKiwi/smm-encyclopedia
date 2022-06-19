@@ -22,7 +22,7 @@ export class EmptyMiiCostumeCategory
 
     //endregion -------------------- Singleton usage --------------------
 
-    public toString(): EmptyMiiCostumeCategoryName {
+    public override toString(): EmptyMiiCostumeCategoryName {
         return 'Empty Mii costume category';
     }
 

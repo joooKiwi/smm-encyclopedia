@@ -1,4 +1,4 @@
-import resource from '../../resources/Mystery Mushroom (SMM).csv';
+import resource from '../../resources/compiled/Mystery Mushroom (SMM).json';
 
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
@@ -207,11 +207,11 @@ class TemplateBuilder
         super(content);
     }
 
-    protected get _headersIndexMap() {
+    protected override get _headersIndexMap() {
         return Headers;
     }
 
-    public build(): MysteryMushroomTemplate {
+    public override build(): MysteryMushroomTemplate {
         return {
             properties: {
                 unlock: {
