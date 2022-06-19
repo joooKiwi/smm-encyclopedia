@@ -3,10 +3,12 @@ import {Fragment, lazy} from 'react';
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../ClassWithEnglishName';
 import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../../lang/ClassWithTranslationKey';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKey, PossibleValue} from './OfficialNotifications.types';
+import type {ObjectHolder}                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/holder/ObjectHolder';
 import type {ReactElement}                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/react/ReactProperty';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../lang/components/TranslationProperty';
 
+import {DelayedObjectHolderContainer}  from '../../util/holder/DelayedObjectHolder.container';
 import {EMPTY_ARRAY, EMPTY_STRING}     from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {Enum}                          from '../../util/enum/Enum';
@@ -551,7 +553,7 @@ export class OfficialNotifications
     readonly #additionalEnglishName: readonly PossibleEnglishNameWithEveryAmount[];
 
     readonly #translationKey;
-    #additionalTranslationKey?: | PossibleAdditionalTranslationKey | null;
+    #additionalTranslationKeyHolder: ObjectHolder<| PossibleAdditionalTranslationKey | null>;
 
     //endregion -------------------- Attributes --------------------
 
@@ -563,6 +565,7 @@ export class OfficialNotifications
         this.#englishName = new StringContainer(englishName);
         this.#translationKey = translationKey;
         this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : amount.map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount);
+        this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(()=>this._createAdditionalTranslationKey);
     }
 
     //region -------------------- Getter methods --------------------
@@ -593,7 +596,7 @@ export class OfficialNotifications
     }
 
     public get additionalTranslationKey(): | PossibleAdditionalTranslationKey | null {
-        return this.#additionalTranslationKey ??= this._createAdditionalTranslationKey;
+        return this.#additionalTranslationKeyHolder.get;
     }
 
     //endregion -------------------- Getter methods (translation key) --------------------
