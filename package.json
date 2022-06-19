@@ -1,6 +1,7 @@
 {
   "name": "every-smm2-properties",
   "version": "0.1.0-beta",
+  "homepage": "https://https://joookiwi.github.io/every-SMM2-properties/",
   "private": true,
   "scripts": {
     "csv-to-json": "node ./src/scripts/CSVToJson",
@@ -71,6 +72,7 @@
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "gh-pages": "^4.0.0"
   }
 }
