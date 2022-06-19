@@ -11,7 +11,7 @@
     "eject": "craco eject",
 
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -m \"[ci skip] Updates\" -d build"
   },
   "repository": {
     "type": "git",
