@@ -1,6 +1,6 @@
 {
   "name": "every-smm2-properties",
-  "version": "1.0.0",
+  "version": "0.1.0-beta",
   "private": true,
   "scripts": {
     "csv-to-json": "node ./src/scripts/CSVToJson",
