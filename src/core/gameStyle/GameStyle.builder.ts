@@ -39,10 +39,6 @@ export class GameStyleBuilder
 
     //region -------------------- Dynamic imports attributes --------------------
 
-    protected get _static() {
-        return GameStyleBuilder;
-    }
-
     //region -------------------- Builder helper methods --------------------
 
     private static __getNameBy(reference: PossibleAcronym,): () => Name<string> {
