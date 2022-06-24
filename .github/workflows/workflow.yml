@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - name: Checkout action
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
       - name: NPM ci command
-        run: npm ci
+      - run: npm ci
 
       - name: Deployment of the application
       - run: npm run deploy
