@@ -1,4 +1,4 @@
-name: SMM2Properties CI
+name: SMM Encyclopedia CI
 
 on:
   push:
@@ -21,24 +21,26 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Git bot configuration
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+      - name: Repository checkout
+        uses: actions/checkout@v3
+
       - name: Node.js (v${{matrix.node-version}}) configuration
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
-          registry-url: https://npm.pkg.github.com/
           cache: 'npm'
+
       - name: Dependencies installation
         run: npm ci
+
       - name: Application deployment
-        run: npm run deploy
+        run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          branch: ${{github.ref}}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
+          repository: ${{ github.repository }}
