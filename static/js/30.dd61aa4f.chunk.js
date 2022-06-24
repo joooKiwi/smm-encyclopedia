@@ -1,0 +1,2 @@
+(this["webpackJsonpevery-smm2-properties"]=this["webpackJsonpevery-smm2-properties"]||[]).push([[30],{281:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return s}));var r=n(34),i=n(48),a=n(7);function s(e){return"gameStyle"in e?function(e){var t=e.gameStyle.nightDesertWindTranslationKey;return null==t?r.a:Object(a.jsx)(i.a,{translationKey:"nightEffect.nightDesertWindEffect.".concat(t)})}(e):function(e){var t=e.theme.effect;return null==t?r.a:t.createNewComponent}(e)}}}]);
+//# sourceMappingURL=30.dd61aa4f.chunk.js.map

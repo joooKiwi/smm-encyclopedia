@@ -1,0 +1,2 @@
+(this["webpackJsonpevery-smm2-properties"]=this["webpackJsonpevery-smm2-properties"]||[]).push([[23],{301:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return p}));var r=n(1),a=n(2),c=n(4),i=n(5),s=n(108),u=n(7),p=function(e){Object(c.a)(n,e);var t=Object(i.a)(n);function n(){return Object(r.a)(this,n),t.apply(this,arguments)}return Object(a.a)(n,[{key:"_mainContent",value:function(){return Object(u.jsx)(u.Fragment,{children:"About page"})}}]),n}(s.a)}}]);
+//# sourceMappingURL=23.6814c643.chunk.js.map
