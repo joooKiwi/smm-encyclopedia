@@ -21,12 +21,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Git bot config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
       - name: Node.js (v${{ matrix.node-version }}) configuration
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm ci
-      - run: npm run deploy
+      - name: Dependencies installation
+        run: npm ci
+      - name: Application deployment
+        run: npm run deploy
