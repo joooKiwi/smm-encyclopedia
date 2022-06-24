@@ -2,9 +2,11 @@ name: SMM2Properties CI
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+      - gh-pages
   pull_request:
-    branches: [ $default-branch ]
+    branches:
+      - main
 
 jobs:
   build:
