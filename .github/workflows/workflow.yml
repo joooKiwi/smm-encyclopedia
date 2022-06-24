@@ -25,6 +25,11 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Git bot configuration
+        run: |
+          git config user.email "$(git log --format='%ae' HEAD^!)"
+          git config user.name "$(git log --format='%an' HEAD^!)"
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
       - name: Node.js (v${{ matrix.node-version }}) configuration
         uses: actions/setup-node@v3
         with:
