@@ -21,6 +21,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - name: Git bot configuration
         run: |
           git config user.email "$(git log --format='%ae' HEAD^!)"
