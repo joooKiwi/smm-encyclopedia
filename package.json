@@ -1,6 +1,7 @@
 {
   "name": "every-smm2-properties",
   "version": "0.1.0-beta",
+  "homepage": "https://joookiwi.github.io/every-SMM2-properties/",
   "private": true,
   "scripts": {
     "csv-to-json": "node ./src/scripts/CSVToJson",
