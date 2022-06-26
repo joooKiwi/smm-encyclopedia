@@ -12,7 +12,7 @@ import {redirectToHome}    from './redirectToHome';
  * @reactComponent
  */
 export default function Routes() {
-    return <BrowserRouter>
+    return <BrowserRouter basename="every-SMM2-properties">
         <Suspense fallback={<LoadingApp/>}>
             <ReactRoutes>
                 <Route path="/" element={redirectToHome()}/>
