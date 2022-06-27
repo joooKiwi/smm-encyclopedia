@@ -1,4 +1,5 @@
-import type {ClassWithPath, ClimbingImage, DownImage, FallingAfterJumpImage, GoalPoleImage, JumpImage, PossibleBasicPath, PossiblePath, PossibleImages, PossibleJapaneseImagePath, PossibleLeftVariationImagePath, PossibleUnderwaterVariationImagePath, RunningImage, SwimmingImage, TauntImage, TurningImage, WaitingImage, WalkImage} from '../path/ClassWithPath';
+import type {BasePath}                                                                                                                                                                                                                                                                                                                   from '../../../variables';
+import type {ClassWithPath, ClimbingImage, DownImage, FallingAfterJumpImage, GoalPoleImage, JumpImage, PossibleBasicPath, PossibleImages, PossibleJapaneseImagePath, PossibleLeftVariationImagePath, PossiblePath, PossibleUnderwaterVariationImagePath, RunningImage, SwimmingImage, TauntImage, TurningImage, WaitingImage, WalkImage} from '../path/ClassWithPath';
 
 export interface Image<T extends PossiblePath = PossiblePath, >
     extends ClassWithPath {
@@ -84,9 +85,9 @@ export type GoalPoleImages<T extends PossiblePath = PossiblePath, > = readonly [
 
 export type PossibleImages_Array<V extends PossibleImages = PossibleImages, T extends PossiblePath = PossiblePath, > =
     | readonly []
-    | readonly [`${PossibleBasicPath<T>}/${V}`,]
-    | readonly [`${PossibleBasicPath<T>}/${V}`, `${PossibleJapaneseImagePath<T>}/${V}`,]
-    | readonly [`${PossibleBasicPath<T>}/${V}`, `${PossibleLeftVariationImagePath<T>}/${V}`,]
-    | readonly [`${PossibleBasicPath<T>}/${V}`, `${PossibleUnderwaterVariationImagePath<T>}/${V}`,];
+    | readonly [`/${BasePath}${PossibleBasicPath<T>}/${V}`,]
+    | readonly [`/${BasePath}${PossibleBasicPath<T>}/${V}`, `/${BasePath}${PossibleJapaneseImagePath<T>}/${V}`,]
+    | readonly [`/${BasePath}${PossibleBasicPath<T>}/${V}`, `/${BasePath}${PossibleLeftVariationImagePath<T>}/${V}`,]
+    | readonly [`/${BasePath}${PossibleBasicPath<T>}/${V}`, `/${BasePath}${PossibleUnderwaterVariationImagePath<T>}/${V}`,];
 
 //endregion -------------------- Possible images (array) --------------------

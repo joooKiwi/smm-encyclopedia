@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EntityCategories as RealEnum}                                                                                                                                                                                                                 from './EntityCategories';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 
@@ -28,7 +29,7 @@ export type PossibleEnglishName = | 'Terrain' | 'Item' | 'Enemy' | 'Gizmo';
 
 export type PossibleImageNumber = | 0 | 1 | 2 | 3;
 export type PossibleImageName = `CategoryIcon_0${PossibleImageNumber}`;
-export type PossibleImagePath = `/category/${PossibleImageName}^s.tiff`;
+export type PossibleImagePath = `/${BasePath}/category/${PossibleImageName}^s.tiff`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

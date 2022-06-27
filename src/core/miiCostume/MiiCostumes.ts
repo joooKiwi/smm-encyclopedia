@@ -5,6 +5,7 @@ import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleS
 import type {MiiCostume}                                                                                                                                                                                                                       from './MiiCostume';
 import type {StaticReference}                                                                                                                                                                                                                  from '../../util/enum/Enum.types';
 
+import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';
 import {Import}          from '../../util/DynamicImporter';
 import {StringContainer} from '../../util/StringContainer';
@@ -310,7 +311,7 @@ export class MiiCostumes
         super();
         this.#englishName = new StringContainer(englishName);
         this.#imageName = imageName;
-        this.#imagePath = `/Mii costume/${imageName}.tiff`;
+        this.#imagePath = `/${BASE_PATH}/Mii costume/${imageName}.tiff`;
     }
 
     //region -------------------- Getter methods --------------------

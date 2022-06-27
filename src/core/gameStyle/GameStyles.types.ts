@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {GameStyles as RealEnum}                                                                                                                                                                                                                       from './GameStyles';
 import type {PossibleAcronym_GameStyle, PossibleEnglishName_GameStyle}                                                                                                                                                                                     from '../gameReference/GameReferences.types';
@@ -29,7 +30,7 @@ export type Names = keyof typeof Enum;
 export type PossibleAcronym = PossibleAcronym_GameStyle;
 export type PossibleEnglishName = PossibleEnglishName_GameStyle;
 
-export type PossibleImagePath = `/game style/${PossibleGameAcronym}_Lyt_Logo_00.tiff`;
+export type PossibleImagePath = `/${BasePath}/game style/${PossibleGameAcronym}_Lyt_Logo_00.tiff`;
 
 export type PossibleShortImagePath = | '1 - SMB' | '2 - SMB3' | '3 - SMW' | '4 - NSMBU' | '5 - SM3DW';
 export type PossibleGameAcronym = | 'M1' | 'M3' | 'MW' | 'WU' | '3W';

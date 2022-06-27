@@ -8,6 +8,7 @@ import type {ReactElement}                                                      
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../lang/components/TranslationProperty';
 
+import {BASE_PATH}                     from '../../variables';
 import {DelayedObjectHolderContainer}  from '../../util/holder/DelayedObjectHolder.container';
 import {EMPTY_ARRAY, EMPTY_STRING}     from '../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
@@ -202,7 +203,7 @@ export class OfficialNotifications
         this.HIT_MIDDLE_QUESTION_BLOCK_NEAR_PURPLE_TOAD =        new class OfficialNotifications_HitMiddleQuestionBlockNearPurpleToad extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.entityImage = <Image key={`${key} - entity image`} source={'/entity/5 - SM3DW/Editor/3W_Lyt_P_HatenaBlock_00.tiff'} fallbackName={'"? Block" image'}/>;
+                keyMap.entityImage = <Image key={`${key} - entity image`} source={`/${BASE_PATH}/entity/5 - SM3DW/Editor/3W_Lyt_P_HatenaBlock_00.tiff`} fallbackName={'"? Block" image'}/>;
                 return this._addCharacterImage('Purple Toad', key,
                     this._addStoryMode(key, keyMap,),);
             }
@@ -452,7 +453,7 @@ export class OfficialNotifications
         this.GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_GoldMedalOnTheLeaderboard extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.medalImage = <Image key={`${key} - gold medal image`} source="/others/medal/BadgeS_03^u.tiff" fallbackName="Gold medal image"/>;
+                keyMap.medalImage = <Image key={`${key} - gold medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_03^u.tiff`} fallbackName="Gold medal image"/>;
                 return this._addLeaderboard(key, keyMap,);
             }
 
@@ -460,7 +461,7 @@ export class OfficialNotifications
         this.SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_SilverMedalOnTheLeaderboard extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.medalImage = <Image key={`${key} - silver medal image`} source="/others/medal/BadgeS_04^u.tiff" fallbackName="Silver medal image"/>;
+                keyMap.medalImage = <Image key={`${key} - silver medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_04^u.tiff`} fallbackName="Silver medal image"/>;
                 return this._addLeaderboard(key, keyMap,);
             }
 
@@ -468,7 +469,7 @@ export class OfficialNotifications
         this.BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_BronzeMedalOnTheLeaderboard extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.medalImage = <Image key={`${key} - bronze medal image`} source="/others/medal/BadgeS_05^u.tiff" fallbackName="Bronze medal image"/>;
+                keyMap.medalImage = <Image key={`${key} - bronze medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_05^u.tiff`} fallbackName="Bronze medal image"/>;
                 return this._addLeaderboard(key, keyMap,);
             }
 
@@ -476,7 +477,7 @@ export class OfficialNotifications
         this.FIRST_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_1stPlaceOnTheLeaderboard extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.medalImage = <Image key={`${key} - gold medal image (position)`} source="/others/medal/BadgeS_00^u.tiff" fallbackName="Gold medal image (position)"/>;
+                keyMap.medalImage = <Image key={`${key} - gold medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_00^u.tiff`} fallbackName="Gold medal image (position)"/>;
                 return super._addLeaderboard(key,
                     this._addPosition(1, 'place', key, keyMap,),);
             }
@@ -485,7 +486,7 @@ export class OfficialNotifications
         this.SECOND_PLACE_ON_THE_LEADERBOARD =                   new class OfficialNotifications_2ndPlaceOnTheLeaderboard extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.medalImage = <Image key={`${key} - silver medal image (position)`} source="/others/medal/BadgeS_01^u.tiff" fallbackName="Silver medal image (position)"/>;
+                keyMap.medalImage = <Image key={`${key} - silver medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_01^u.tiff`} fallbackName="Silver medal image (position)"/>;
                 return super._addLeaderboard(key,
                     this._addPosition(2, 'place', key, keyMap,),);
             }
@@ -494,7 +495,7 @@ export class OfficialNotifications
         this.THIRD_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_3rdPlaceOnTheLeaderboard extends OfficialNotifications {
 
             protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-                keyMap.medalImage = <Image key={`${key} - bronze medal image (position)`} source="/others/medal/BadgeS_02^u.tiff" fallbackName="Bronze medal image (position)"/>;
+                keyMap.medalImage = <Image key={`${key} - bronze medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_02^u.tiff`} fallbackName="Bronze medal image (position)"/>;
                 return super._addLeaderboard(key,
                     this._addPosition(3, 'place', key, keyMap,),);
             }
@@ -696,7 +697,7 @@ export class OfficialNotifications
 
 
     protected _addLikeImage(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.likeImage = <Image key={`${key} - like image`} className="like-image" source={'/others/Heart_00^d.tiff'} fallbackName={'Like image'}/>;//TODO change color (in css) to match the one in the game
+        keyMap.likeImage = <Image key={`${key} - like image`} className="like-image" source={`/${BASE_PATH}/others/Heart_00^d.tiff`} fallbackName={'Like image'}/>;//TODO change color (in css) to match the one in the game
         return keyMap;
     }
 
@@ -706,7 +707,7 @@ export class OfficialNotifications
     }
 
     protected _addStampImage(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.stampImage = <Image key={`${key} - stamp image`} className="stamp-image" source={'/others/EventClearListIcon_00^s.tiff'} fallbackName={'Stamp image'}/>;//TODO change color (in css) to match the one in the game
+        keyMap.stampImage = <Image key={`${key} - stamp image`} className="stamp-image" source={`/${BASE_PATH}/others/EventClearListIcon_00^s.tiff`} fallbackName={'Stamp image'}/>;//TODO change color (in css) to match the one in the game
         return keyMap;
     }
 

@@ -7,6 +7,7 @@ import type {StaticReference}                                                   
 import type {TimeProperty}                                                                                                                                                                                                                           from '../entity/properties/TimeProperty';
 import type {TimeReferences}                                                                                                                                                                                                                         from '../entity/properties/TimeReferences';
 
+import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';
 import {StringContainer} from '../../util/StringContainer';
 import TimeComponent     from './Time.component';
@@ -79,7 +80,7 @@ export abstract class Times
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/time/${this.#simpleImagePath}.png`;
+        return this.#imagePath ??= `/${BASE_PATH}/time/${this.#simpleImagePath}.png`;
     }
 
     //endregion -------------------- Getter methods --------------------

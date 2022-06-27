@@ -6,6 +6,7 @@ import type {MysteryMushroomAppStates} from './AppStates.types';
 import type {SingleTableContent}       from './tools/table/Table.types';
 
 import AbstractApp                     from './AbstractApp';
+import {BASE_PATH}                     from '../variables';
 import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -169,7 +170,7 @@ export default class EveryMysteryMushroomsApp
                 {
                     key: 'canBeUnlockedByAnAmiibo',
                     // @ts-ignore
-                    element: <Image source="/others/Amiibo (short).svg" fallbackName="Amiibo icon"/>, tooltip: {translationKey: '--Can be unlocked by an Amiibo--', namespace: 'gameContent',},
+                    element: <Image source={`/${BASE_PATH}/others/Amiibo (short).svg`} fallbackName="Amiibo icon"/>, tooltip: {translationKey: '--Can be unlocked by an Amiibo--', namespace: 'gameContent',},
                 },
                 {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,},
                 {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},

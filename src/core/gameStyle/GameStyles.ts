@@ -10,6 +10,7 @@ import type {PossibleOtherEntities}                                             
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                     from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                                                                             from '../../util/enum/Enum.types';
 
+import {BASE_PATH}        from '../../variables';
 import {Enum}             from '../../util/enum/Enum';
 import GameStyleComponent from './GameStyle.component';
 import {Import}           from '../../util/DynamicImporter';
@@ -162,7 +163,7 @@ export abstract class GameStyles
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/game style/${this.gameAcronym}_Lyt_Logo_00.tiff`;
+        return this.#imagePath ??= `/${BASE_PATH}/game style/${this.gameAcronym}_Lyt_Logo_00.tiff`;
     }
 
     public get shortImagePath(): PossibleShortImagePath {

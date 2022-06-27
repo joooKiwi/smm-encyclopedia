@@ -3,6 +3,7 @@ import './DisplayView.scss';
 import type {ModalPropertiesWithDiv} from './ModalContainers.types';
 import type {ReactProperty}          from '../util/react/ReactProperty';
 
+import {BASE_PATH}                     from '../variables';
 import DisplayViewRouteButton          from './DisplayView.routeButton';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from '../app/tools/images/Image';
@@ -77,7 +78,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 </div> : EMPTY_REACT_ELEMENT}
                 {isSMM1Selected ? <div key="button group container (mystery mushroom)" id="mysteryMushroom-buttonGroup-container" className="btn-group col-12" role="group">
                     <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={<>--Mystery Mushroom--{/*TODO add Mystery Mushroom reference*/}
-                        <sup><Image key="mysteryMushroom-image" source="/entity/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png" fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
+                        <sup><Image key="mysteryMushroom-image" source={`/${BASE_PATH}/entity/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png`} fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
                     </>}
                                             tooltipValue={translation('Display every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--',},)}//TODO add Mystery Mushroom reference
                                             elementId="displayView-mysteryMushroom-button" id={id} divId={divId}/>

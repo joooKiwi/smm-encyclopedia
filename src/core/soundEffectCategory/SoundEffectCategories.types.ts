@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {SoundEffectCategories as RealEnum}                                                                                                                                                                                                            from './SoundEffectCategories';
 
@@ -27,7 +28,7 @@ export type PossibleEnglishName = | 'Feelings' | 'Stingers' | 'Reactions' | 'Ani
 
 export type PossibleImageNumber = | 4 | 5 | 6 | 7 | 8;
 export type PossibleImageName = `CategoryIcon_0${PossibleImageNumber}`;
-export type PossibleImagePath = `/category/${PossibleImageName}^s.tiff`;
+export type PossibleImagePath = `/${BasePath}/category/${PossibleImageName}^s.tiff`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
