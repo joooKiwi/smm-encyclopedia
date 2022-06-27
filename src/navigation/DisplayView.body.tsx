@@ -5,10 +5,10 @@ import type {ReactProperty}          from '../util/react/ReactProperty';
 
 import {BASE_PATH}                     from '../variables';
 import DisplayViewRouteButton          from './DisplayView.routeButton';
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import Image                           from '../app/tools/images/Image';
-import {GlobalAppOption}               from '../app/options/global/GlobalAppOption';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {GlobalAppOption}               from '../app/options/global/GlobalAppOption';
+import Image                           from '../app/tools/images/Image';
 
 interface DisplayViewBodyProperties
     extends ReactProperty, ModalPropertiesWithDiv {

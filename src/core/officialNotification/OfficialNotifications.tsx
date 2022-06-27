@@ -566,7 +566,7 @@ export class OfficialNotifications
         this.#englishName = new StringContainer(englishName);
         this.#translationKey = translationKey;
         this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : amount.map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount);
-        this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(()=>this._createAdditionalTranslationKey);
+        this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(()=> this._createAdditionalTranslationKey);
     }
 
     //region -------------------- Getter methods --------------------

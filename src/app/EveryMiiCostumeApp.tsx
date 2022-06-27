@@ -15,7 +15,6 @@ import Image                           from './tools/images/Image';
 export default class EveryMiiCostumeApp
     extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, {}, MiiCostumeAppStates> {
 
-
     public constructor(props: {},) {
         super(props,);
         MiiCostumeAppOption.REFERENCE = this;
