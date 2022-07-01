@@ -7,10 +7,11 @@
                 }
                 span {
                     color: var(--gray-color);
+                    position: absolute;
                     bottom: -2mm;
                 }
             </style>
-            <span>~ SMM2</span>
+            <span>&tilde; SMM2</span>
         </div>
     </foreignObject>
 </svg>
