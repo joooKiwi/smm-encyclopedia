@@ -1,4 +1,4 @@
-<style>
+<foreignObject><style>
      :root {
           --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 
@@ -58,7 +58,7 @@
           content: var(--smm2-parenthese-content);
      }
 
-</style>
+</style></foreignObject>
 # Super Mario Maker Encyclopedia
 
 [![SMM Encyclopedia CI](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml)
