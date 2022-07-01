@@ -1,8 +1,8 @@
 # Super Mario Maker Encyclopedia
 
-[![SMM Encyclopedia CI](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml)
+[![SMM Encyclopedia CI](https://github.com/joooKiwi/smm-encyclopedia/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/smm-encyclopedia/actions/workflows/workflow.yml)
 
-https://joookiwi.github.io/every-SMM2-properties
+https://joookiwi.github.io/smm-encyclopedia
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
@@ -17,22 +17,22 @@ It is also there give the details as simple as they can get.<br/>
 More is to add once this huge project is finished.
 
 The languages supported by the project are the ones available in the games:
- - ![Partially done](.github/styles/partially-done.svg) English ([american](https://joookiwi.github.io/every-SMM2-properties/en_AM)
-& [european](https://joookiwi.github.io/every-SMM2-properties/en_EU))
- - ![Partially done](.github/styles/partially-done.svg) French ([canadian](https://joookiwi.github.io/every-SMM2-properties/fr_CA)
-& [european](https://joookiwi.github.io/every-SMM2-properties/fr_EU))
- - ![Not completed](.github/styles/not-completed.svg)  [German](https://joookiwi.github.io/every-SMM2-properties/de)
- - ![Not completed](.github/styles/not-completed.svg)  Spanish ([american](https://joookiwi.github.io/every-SMM2-properties/es_AM)
-& [european](https://joookiwi.github.io/every-SMM2-properties/es_EU))
- - ![Not completed](.github/styles/not-completed.svg)  [Italian](https://joookiwi.github.io/every-SMM2-properties/it)
- - ![Not completed](.github/styles/not-completed.svg)  [Dutch](https://joookiwi.github.io/every-SMM2-properties/nl)
- - ![Not completed](.github/styles/not-completed.svg)  Portuguese ([american](https://joookiwi.github.io/every-SMM2-properties/pt_AM)
-& [european](https://joookiwi.github.io/every-SMM2-properties/pt_EU))
- - ![Not completed](.github/styles/not-completed.svg)  [Russian](https://joookiwi.github.io/every-SMM2-properties/ru)
- - ![Not completed](.github/styles/not-completed.svg)  [Japanese](https://joookiwi.github.io/every-SMM2-properties/jp)
- - ![Not completed](.github/styles/not-completed.svg)  Chinese ([traditional](https://joookiwi.github.io/every-SMM2-properties/zh_T)
-& [simplified](https://joookiwi.github.io/every-SMM2-properties/zh_S))
- - ![Not completed](.github/styles/not-completed.svg)  [Korean](https://joookiwi.github.io/every-SMM2-properties/ko)
+ - ![Partially done](.github/styles/partially-done.svg) English ([american](https://joookiwi.github.io/smm-encyclopedia/en_AM)
+& [european](https://joookiwi.github.io/smm-encyclopedia/en_EU))
+ - ![Partially done](.github/styles/partially-done.svg) French ([canadian](https://joookiwi.github.io/smm-encyclopedia/fr_CA)
+& [european](https://joookiwi.github.io/smm-encyclopedia/fr_EU))
+ - ![Not completed](.github/styles/not-completed.svg)  [German](https://joookiwi.github.io/smm-encyclopedia/de)
+ - ![Not completed](.github/styles/not-completed.svg)  Spanish ([american](https://joookiwi.github.io/smm-encyclopedia/es_AM)
+& [european](https://joookiwi.github.io/smm-encyclopedia/es_EU))
+ - ![Not completed](.github/styles/not-completed.svg)  [Italian](https://joookiwi.github.io/smm-encyclopedia/it)
+ - ![Not completed](.github/styles/not-completed.svg)  [Dutch](https://joookiwi.github.io/smm-encyclopedia/nl)
+ - ![Not completed](.github/styles/not-completed.svg)  Portuguese ([american](https://joookiwi.github.io/smm-encyclopedia/pt_AM)
+& [european](https://joookiwi.github.io/smm-encyclopedia/pt_EU))
+ - ![Not completed](.github/styles/not-completed.svg)  [Russian](https://joookiwi.github.io/smm-encyclopedia/ru)
+ - ![Not completed](.github/styles/not-completed.svg)  [Japanese](https://joookiwi.github.io/smm-encyclopedia/jp)
+ - ![Not completed](.github/styles/not-completed.svg)  Chinese ([traditional](https://joookiwi.github.io/smm-encyclopedia/zh_T)
+& [simplified](https://joookiwi.github.io/smm-encyclopedia/zh_S))
+ - ![Not completed](.github/styles/not-completed.svg)  [Korean](https://joookiwi.github.io/smm-encyclopedia/ko)
 
 The other languages seen in the project can include Hebrew, Polish, Ukrainian & Greek.
 Although, they are only there for some names.
@@ -101,10 +101,10 @@ The project could also be run with `npm run fast-start` to omit:
  - (Other things in the future)
 
 By default, it will open it in the default browser automatically.
-If it has not worked, then, open [localhost:3000/every-SMM2-properties](http://localhost:3000/every-SMM2-properties) to display the application.
+If it has not worked, then, open [localhost:3000/smm-encyclopedia](http://localhost:3000/smm-encyclopedia) to display the application.
 
 If it needs to be tested on other devices than the local machine, there will be another address.
-An example could be [192.168.4.20:3000/every-SMM2-properties](http://192.168.4.20:3000/every-SMM2-properties).
+An example could be [192.168.4.20:3000/smm-encyclopedia](http://192.168.4.20:3000/smm-encyclopedia).
 
 ### Running tests
 
@@ -115,7 +115,7 @@ For more details, see [how to run the tests](https://facebook.github.io/create-r
 
 ### Deploying the changes to the server
 
-Since the project uses the workflow (in [.github/workflows/workflow.yml](https://github.com/joooKiwi/every-SMM2-properties/blob/main/.github/workflows/workflow.yml)),
+Since the project uses the workflow (in [.github/workflows/workflow.yml](https://github.com/joooKiwi/smm-encyclopedia/blob/main/.github/workflows/workflow.yml)),
 it will automatically push the changes once there is a commit in the main branch.
 
 It automatically calls the command `npm run deploy` (implicitly calling `npm run predeploy`).
@@ -126,4 +126,4 @@ With the deployment, it will automatically call `npm run build` and will:
 
 See [the application's deployment](https://facebook.github.io/create-react-app/docs/deployment) to know in details how the **React build** is done.
 
-The code will be pushed in the branch [github-pages branch](https://github.com/joooKiwi/every-SMM2-properties/tree/gh-pages) by the workflow.
+The code will be pushed in the branch [github-pages branch](https://github.com/joooKiwi/smm-encyclopedia/tree/gh-pages) by the workflow.
