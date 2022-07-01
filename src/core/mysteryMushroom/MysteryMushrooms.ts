@@ -700,7 +700,7 @@ export class MysteryMushrooms
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyIndividualEnglishNames(): readonly EnglishNameOnFile[] {
+    public static get everyEnglishNamesOnFile(): readonly EnglishNameOnFile[] {
         return this.values.map(enumeration => enumeration.englishNameOnFile);
     }
 

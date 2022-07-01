@@ -410,7 +410,7 @@ export class EntityLoader
                 .convertTo([1, 2,], 'firstAppearanceInMarioMaker',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker_version',)
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMakerFor3DS', 'isInSuperMarioMaker2',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleEntityCategoriesNames, 'categoryInTheEditor',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_entityCategory, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'While playing → LCL',], 'canBeInAParachute', 'canHaveWings',)
 
@@ -418,7 +418,7 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsNames, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_limit, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
@@ -452,8 +452,8 @@ export class EntityLoader
                     'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)',
                     'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)',
                     'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
-                .convertTo(HeaderTypesForConvertor.everyLimitsNames, 'editorLimit_SMM1And3DS',)
-                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'editorLimit_SMM2',)
+                .convertTo(HeaderTypesForConvertor.everyName_limit, 'editorLimit_SMM1And3DS',)
+                .convertTo(HeaderTypesForConvertor.everyNameOrUnknown_limit, 'editorLimit_SMM2',)
                 .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
                     'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
                 .convertToNullableBooleanAnd(['Not on track', 'While holding an entity',], 'whilePlaying_isInGEL_isSuperGlobal',)
@@ -461,7 +461,7 @@ export class EntityLoader
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
                     'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)
                 .convertToNullableBooleanAnd(['Only when not dotted',], 'whilePlaying_isInObjectRenderedLimit',)
-                .convertTo(HeaderTypesForConvertor.everyLimitsNamesOrUnknown, 'whilePlaying_otherLimit',)
+                .convertTo(HeaderTypesForConvertor.everyNameOrUnknown_limit, 'whilePlaying_otherLimit',)
                 .convertToEmptyableStringAnd('Only falling coin', 'whilePlaying_otherLimit_comment',)
 
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine', 'If not collected',], 'canRespawn',)
@@ -497,7 +497,7 @@ export class EntityLoader
                 //
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',], 'hasANameReferencedInMarioMaker')
-                .convertTo(HeaderTypesForConvertor.everyPossibleEntityNames, 'english', 'americanEnglish',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_entity, 'english', 'americanEnglish',)
 
                 .onAfterFinalObjectCreated(finalContent => {
                     const template = finalContent.build();

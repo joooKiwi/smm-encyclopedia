@@ -86,7 +86,7 @@ export class GameStyleLoader
                 .convertToBoolean('isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',)
                 .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'reference',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'reference',)
 
                 .convertToEmptyableStringAnd(['←', '↔', '→',], 'nightDesertWindDirection',)
                 .convertToEmptyableStringAnd(['periodic', 'constant',], 'nightDesertWindFrequency',)

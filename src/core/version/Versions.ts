@@ -1,5 +1,5 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Versions.types';
-import type {StaticReference}                                                                                                                                                                     from '../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Versions.types';
+import type {StaticReference}                                                                                                                                                                                                                                from '../../util/enum/Enum.types';
 
 import {Enum}       from '../../util/enum/Enum';
 import {Games}      from '../game/Games';
@@ -114,8 +114,20 @@ export class Versions
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everySimpleNames(): readonly PossibleName[] {
+    public static get everyNames(): readonly PossibleName[] {
         return this.values.map(enumerable => enumerable.simpleName);
+    }
+
+    public static get everyNames_smm1(): readonly PossibleName_SMM1[] {
+        return this.values.filter(enumerable => enumerable.game === Games.SUPER_MARIO_MAKER_1).map(enumerable => enumerable.simpleName as PossibleName_SMM1);
+    }
+
+    public static get everyNames_smm3ds(): readonly PossibleName_SMM3DS[] {
+        return this.values.filter(enumerable => enumerable.game === Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS).map(enumerable => enumerable.simpleName as PossibleName_SMM3DS);
+    }
+
+    public static get everyNames_smm2(): readonly PossibleName_SMM2[] {
+        return this.values.filter(enumerable => enumerable.game === Games.SUPER_MARIO_MAKER_2).map(enumerable => enumerable.simpleName as PossibleName_SMM2);
     }
 
     //endregion -------------------- Methods --------------------

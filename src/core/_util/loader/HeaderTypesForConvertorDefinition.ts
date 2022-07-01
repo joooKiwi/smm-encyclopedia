@@ -15,7 +15,7 @@ import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, Po
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../nightEffect/NightEffects.types';
-import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                       from '../../version/Versions.types';
+import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from '../../version/Versions.types';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
 
@@ -24,35 +24,35 @@ export interface HeaderTypesForConvertorDefinition {
 
     //region -------------------- Game reference --------------------
 
-    get everyPossibleGameReferenceAcronym(): ValueOrStringConstant<EveryPossibleAcronym_GameReference>
+    get everyPossibleAcronym_gameReference(): ValueOrStringConstant<EveryPossibleAcronym_GameReference>
 
-    get everyPossibleGameReferenceAcronymWithPokemonGeneration(): ValueOrStringConstant<EveryPossibleAcronymWithPokemonGeneration_GameReference>
+    get everyPossibleAcronymWithPokemonGeneration_gameReference(): ValueOrStringConstant<EveryPossibleAcronymWithPokemonGeneration_GameReference>
 
     //TODO change to ValueOrNull<EveryPossibleName_GameReference>
-    get everyPossibleGameReferenceEnglishName(): ValueOrEmptyableStringConstant<EveryPossibleName_GameReference>
+    get everyPossibleName_gameReference(): ValueOrEmptyableStringConstant<EveryPossibleName_GameReference>
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
 
-    get everyPossibleGameStyleAcronym(): ValueOrStringConstant<EveryPossibleAcronym_GameStyle>
+    get everyPossibleAcronym_gameStyle(): ValueOrStringConstant<EveryPossibleAcronym_GameStyle>
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
     //TODO change to ValueOrNull<EveryPossibleName_Entity>
-    get everyPossibleEntityNames(): ValueOrEmptyableStringConstant<EveryPossibleName_Entity>
+    get everyPossibleName_entity(): ValueOrEmptyableStringConstant<EveryPossibleName_Entity>
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
 
-    get everyPossibleBehavioursAcronyms(): ValueOrStringConstant<EveryPossibleAcronym_EntityBehaviour>
+    get everyPossibleAcronym_entityBehaviour(): ValueOrStringConstant<EveryPossibleAcronym_EntityBehaviour>
 
-    get everyPossibleBehavioursTranslationKeys(): ValueOrStringConstant<EveryPossibleTranslationKey_EntityBehaviour>
+    get everyPossibleTranslationKey_entityBehaviour(): ValueOrStringConstant<EveryPossibleTranslationKey_EntityBehaviour>
 
     //endregion -------------------- Entity behaviour --------------------
     //region -------------------- Entity group --------------------
 
-    get everyPossibleGroupNames(): ValueOrStringConstant<EveryPossibleName_EntityGroup>
+    get everyPossibleName_entityGroup(): ValueOrStringConstant<EveryPossibleName_EntityGroup>
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Theme --------------------
@@ -64,47 +64,47 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
-    get everyPossibleEntityCategoriesNames(): ValueOrStringConstant<EveryPossibleName_EntityCategory>
+    get everyPossibleName_entityCategory(): ValueOrStringConstant<EveryPossibleName_EntityCategory>
 
     //endregion -------------------- Entity category --------------------
     //region -------------------- Entity limit --------------------
 
-    get everyPossibleLimitsAcronyms(): ValueOrStringConstant<EveryPossibleAcronym_EntityLimit>
+    get everyPossibleAcronym_limit(): ValueOrStringConstant<EveryPossibleAcronym_EntityLimit>
 
-    get everyAlternativeLimitAcronyms(): ValueOrStringConstant<EveryAlternativeAcronym_EntityLimit>
+    get everyAlternativeAcronym_limit(): ValueOrStringConstant<EveryAlternativeAcronym_EntityLimit>
 
-    get everyPossibleLimitsNames(): ValueOrStringConstant<EveryPossibleName_EntityLimit>
+    get everyPossibleName_limit(): ValueOrStringConstant<EveryPossibleName_EntityLimit>
 
-    get everyLimitsNames(): ValueOrStringConstant<EveryEnglishName_EntityLimit>
+    get everyName_limit(): ValueOrStringConstant<EveryEnglishName_EntityLimit>
 
-    get everyLimitsNamesOrUnknown(): ValueOrStringConstant<EveryEnglishNameOrUnknown_EntityLimit>
+    get everyNameOrUnknown_limit(): ValueOrStringConstant<EveryEnglishNameOrUnknown_EntityLimit>
 
     //endregion -------------------- Entity limit --------------------
     //region -------------------- Entity limit type --------------------
 
-    get everyPossibleLimitTypesNames(): ValueOrStringConstant<EveryPossibleEnglishName_EntityLimitType>
+    get everyPossibleName_limitType(): ValueOrStringConstant<EveryPossibleEnglishName_EntityLimitType>
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
-    get everyPossibleSoundEffectsNames(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffect>
+    get everyPossibleName_soundEffect(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffect>
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Sound effect category --------------------
 
-    get everyPossibleSoundEffectCategoriesNames(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffectCategory>
+    get everyPossibleName_soundEffectCategory(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffectCategory>
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
-    get everyPossibleName_MiiCostumeCategory(): ValueOrStringConstant<EveryPossibleCategory_MiiCostume>
+    get everyPossibleName_MiiCostumeCategory(): ValueOrStringConstant<EveryPossibleName_MiiCostumeCategory>
 
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
-    get everyPossibleMysteryMushroomIndividualEnglishNames(): ValueOrStringConstant<EveryPossibleEnglishNameOnFile_MysteryMushroom>
+    get everyPossibleEnglishNameOnFile_mysteryMushroom(): ValueOrStringConstant<EveryPossibleEnglishNameOnFile_MysteryMushroom>
 
     get everyPossibleConditionToUnlockIt_mysteryMushroom(): ValueOrStringConstant<EveryConditionToUnlockIt_MysteryMushroom>
 
@@ -115,7 +115,7 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Mystery Mushroom --------------------
     //region -------------------- Official notification --------------------
 
-    get everyPossibleNameWithAmount_officialNotification(): ValueOrStringConstant<EveryPossibleNameWithAmount_officialNotification>;
+    get everyPossibleNameWithAmount_officialNotification(): ValueOrStringConstant<EveryPossibleNameWithAmount_OfficialNotification>;
 
     //endregion -------------------- Official notification --------------------
     //region -------------------- Predefined message --------------------
@@ -125,7 +125,13 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Predefined message --------------------
     //region -------------------- Version --------------------
 
-    get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleSimpleName_Version>
+    get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleName_Version>
+
+    get everyPossibleName_version_smm(): ValueOrStringConstant<EveryPossibleName_Version_SMM>
+
+    get everyPossibleName_version_smm3ds(): ValueOrStringConstant<EveryPossibleName_Version_SMM3DS>
+
+    get everyPossibleName_version_smm2(): ValueOrStringConstant<EveryPossibleName_Version_SMM2>
 
     //endregion -------------------- Version --------------------
 
@@ -177,7 +183,7 @@ export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName
 
 //region -------------------- Mii costume --------------------
 
-export type EveryPossibleCategory_MiiCostume = readonly PossibleEnglishName_MiiCostumeCategory[];
+export type EveryPossibleName_MiiCostumeCategory = readonly PossibleEnglishName_MiiCostumeCategory[];
 
 //endregion -------------------- Mii costume --------------------
 //region -------------------- Mystery Mushroom --------------------
@@ -192,7 +198,7 @@ export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (
 //endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------
 
-export type EveryPossibleNameWithAmount_officialNotification = readonly (PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount)[];
+export type EveryPossibleNameWithAmount_OfficialNotification = readonly (PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount)[];
 
 //endregion -------------------- Official notification --------------------
 //region -------------------- Predefined message --------------------
@@ -202,7 +208,10 @@ export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglis
 //endregion -------------------- Predefined message --------------------
 //region -------------------- Version --------------------
 
-export type EveryPossibleSimpleName_Version = readonly PossibleName_Version[];
+export type EveryPossibleName_Version = readonly PossibleName_Version[];
+export type EveryPossibleName_Version_SMM = readonly PossibleName_Version_SMM[];
+export type EveryPossibleName_Version_SMM3DS = readonly PossibleName_Version_SMM3DS[];
+export type EveryPossibleName_Version_SMM2 = readonly PossibleName_Version_SMM2[];
 
 //endregion -------------------- Version --------------------
 

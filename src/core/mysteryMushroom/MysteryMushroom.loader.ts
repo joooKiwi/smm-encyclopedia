@@ -151,38 +151,38 @@ export class MysteryMushroomLoader
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleConditionToUnlockIt_mysteryMushroom, 'conditionToUnlockIt',)
                 .convertToBoolean('canBeUnlockedByAnAmiibo',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronymWithPokemonGeneration, 'reference',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleAcronymWithPokemonGeneration_gameReference, 'reference',)
 
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenCollected_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectWhenCollected_game',)
                 .convertToNullableBoolean('haveASoundEffectWhenCollected',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnTaunt_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectOnTaunt_game',)
                 .convertToNullableBoolean('haveASoundEffectOnTaunt',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnJump_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectOnJump_game',)
                 .convertToNullableBooleanAnd([2, '3 images',], 'haveASoundEffectOnJump',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnGroundAfterJump_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectOnGroundAfterJump_game',)
                 .convertToNullableBoolean('haveASoundEffectOnGroundAfterJump',)
 
                 .convertToNullableBooleanAnd(['Twinkle', 'Engine sound',], 'soundEffectOnMovement',)
 
                 .convertToNullableBoolean('haveASoundEffectOnTurnAfterRun',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASpecialMusicInStarMode_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASpecialMusicInStarMode_game',)
                 .convertToNullableBooleanAnd(['Flying Mario', 'Metal Mario', 'Super Star',], 'haveASpecialMusicInStarMode',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Rock',], 'haveASoundEffectWhenOnGoalPole_type',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectWhenOnGoalPole_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectWhenOnGoalPole_game',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom, 'haveASoundEffectWhenOnGoalPole_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',], 'haveASoundEffectWhenOnGoalPole',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectOnDeath_type',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'haveASoundEffectOnDeath_game',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectOnDeath_game',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom, 'haveASoundEffectOnDeath_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ "Oh no!"', '+ "Nooo!"', '+ "Nooo"', '+ "Woah!"', '+ "Yaha!"',], 'haveASoundEffectOnDeath',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleMysteryMushroomIndividualEnglishNames, 'english', 'americanEnglish',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleEnglishNameOnFile_mysteryMushroom, 'english', 'americanEnglish',)
 
                 .onAfterFinalObjectCreated((finalContent, convertedContent,) => references.set(convertedContent[Headers.uniqueName], finalContent,))
                 .load();

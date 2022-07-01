@@ -75,8 +75,8 @@ export class GameReferenceLoader
             new CSVLoader<PropertiesArray, GameReference, keyof typeof Headers>(resource, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceAcronym, 'acronym',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleGameReferenceEnglishName, 'english',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'acronym',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_gameReference, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();

@@ -132,8 +132,8 @@ export class SoundEffectLoader
                     'doesTrigger_player_collectPowerUp', 'doesTrigger_player_getIntoAnEntity',
                     'doesTrigger_player_spawn', 'doesTrigger_player_damage', 'doesTrigger_player_lostALife',
                 )
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'category',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectsNames, 'english',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_soundEffectCategory, 'category',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_soundEffect, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();

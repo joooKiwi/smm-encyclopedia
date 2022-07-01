@@ -75,7 +75,7 @@ export class SoundEffectCategoryLoader
             new CSVLoader<PropertiesArray, SoundEffectCategory, keyof typeof Headers>(resource, convertedContent => new SoundEffectCategoryBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleSoundEffectCategoriesNames, 'english',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_soundEffectCategory, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();

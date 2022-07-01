@@ -75,11 +75,11 @@ export class EntityBehaviourLoader
             new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(resource, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('boolean')
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleBehavioursAcronyms, 'acronym',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleBehavioursTranslationKeys, 'translationKey',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_entityBehaviour, 'acronym',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleTranslationKey_entityBehaviour, 'translationKey',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleGroupNames, 'link_group',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleEntityNames, 'link_entity',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_entityGroup, 'link_group',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_entity, 'link_entity',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.translationKey, finalContent,))
                 .load();
