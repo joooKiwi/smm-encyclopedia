@@ -1,64 +1,3 @@
-<style>
-     :root {
-          --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-
-          --gray-color:   rgb(128, 128, 128);
-          --green-color:  rgb(0, 153, 76);
-          --yellow-color: rgb(153, 153, 0);
-          --orange-color: rgb(153, 76, 0);
-          --red-color:    rgb(153, 0, 76);
-        
-          --complete-content:       "Complete";
-          --partially-done-content: "Partially done";
-          --not-completed-content:  "Not completed";
-          --in-progress-content:    "In progress";
-
-          --smm1-parenthese-content:    " (SMM1)";
-          --smm3ds-parenthese-content:    " (SMM3DS)";
-          --smm2-parenthese-content:    " (SMM2)";
-    }
-
-     .alias {
-          color: var(--gray-color);
-     }
-
-     .complete::before, .partially-done::before, .in-progress::before, .not-completed::before {
-          border-radius: 0.25rem;
-          font-size: small;
-          padding: 0.125rem 0.0625rem;
-          background-image: var(--bs-gradient);
-     }
-     .complete::before {
-          background-color: var(--green-color);
-          content: var(--complete-content);
-     }
-     .partially-done::before {
-          background-color: var(--orange-color);
-          content: var(--partially-done-content);
-     }
-     .in-progress::before {
-          background-color: var(--yellow-color);
-          content: var(--in-progress-content);
-     }
-     .not-completed::before {
-          background-color: var(--red-color);
-          content: var(--not-completed-content);
-     }
-
-     .smm::after, .smm3ds::after, .smm2::after {
-          color: var(--gray-color);   
-     }
-     .smm::after {
-          content: var(--smm1-parenthese-content);
-     }
-     .smm3ds::after {
-          content: var(--smm3ds-parenthese-content);
-     }
-     .smm2::after {
-          content: var(--smm2-parenthese-content);
-     }
-
-</style>
 # Super Mario Maker Encyclopedia
 
 [![SMM Encyclopedia CI](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml)
@@ -67,9 +6,9 @@ https://joookiwi.github.io/every-SMM2-properties
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
- - Super Mario Maker (WiiU) <span class="alias">~ SMM1</span>
- - Super Mario Maker for Nintendo 3DS (3DS) <span class="alias">~ SMM3DS</span>
- - Super Mario Maker 2 (Switch) <span class="alias">~ SMM2</span>
+ - Super Mario Maker (WiiU) ![~ SMM1](.github/styles/smm1-alias.svg)
+ - Super Mario Maker for Nintendo 3DS (3DS) ![~ SMM3DS](.github/styles/smm3ds-alias.svg)
+ - Super Mario Maker 2 (Switch) ![~ SMM2](.github/styles/smm2-alias.svg)
 
 The information is mostly based on the SMM2 game.
 
@@ -78,22 +17,22 @@ It is also there give the details as simple as they can get.<br/>
 More is to add once this huge project is finished.
 
 The languages supported by the project are the ones available in the games:
- - <span class="language partially-done"></span> English ([american](https://joookiwi.github.io/every-SMM2-properties/en_AM)
+ - ![Partially done](.github/styles/partially-done.svg) English ([american](https://joookiwi.github.io/every-SMM2-properties/en_AM)
 & [european](https://joookiwi.github.io/every-SMM2-properties/en_EU))
- - <span class="language partially-done"></span> French ([canadian](https://joookiwi.github.io/every-SMM2-properties/fr_CA)
+ - ![Partially done](.github/styles/partially-done.svg) French ([canadian](https://joookiwi.github.io/every-SMM2-properties/fr_CA)
 & [european](https://joookiwi.github.io/every-SMM2-properties/fr_EU))
- - <span class="language not-completed"></span> [German](https://joookiwi.github.io/every-SMM2-properties/de)
- - <span class="language not-completed"></span> Spanish ([american](https://joookiwi.github.io/every-SMM2-properties/es_AM)
+ - ![Not completed](.github/styles/not-completed.svg)  [German](https://joookiwi.github.io/every-SMM2-properties/de)
+ - ![Not completed](.github/styles/not-completed.svg)  Spanish ([american](https://joookiwi.github.io/every-SMM2-properties/es_AM)
 & [european](https://joookiwi.github.io/every-SMM2-properties/es_EU))
- - <span class="language not-completed"></span> [Italian](https://joookiwi.github.io/every-SMM2-properties/it)
- - <span class="language not-completed"></span> [Dutch](https://joookiwi.github.io/every-SMM2-properties/nl)
- - <span class="language not-completed"></span> Portuguese ([american](https://joookiwi.github.io/every-SMM2-properties/pt_AM)
+ - ![Not completed](.github/styles/not-completed.svg)  [Italian](https://joookiwi.github.io/every-SMM2-properties/it)
+ - ![Not completed](.github/styles/not-completed.svg)  [Dutch](https://joookiwi.github.io/every-SMM2-properties/nl)
+ - ![Not completed](.github/styles/not-completed.svg)  Portuguese ([american](https://joookiwi.github.io/every-SMM2-properties/pt_AM)
 & [european](https://joookiwi.github.io/every-SMM2-properties/pt_EU))
- - <span class="language not-completed"></span> [Russian](https://joookiwi.github.io/every-SMM2-properties/ru)
- - <span class="language not-completed"></span> [Japanese](https://joookiwi.github.io/every-SMM2-properties/jp)
- - <span class="language not-completed"></span> Chinese ([traditional](https://joookiwi.github.io/every-SMM2-properties/zh_T)
+ - ![Not completed](.github/styles/not-completed.svg)  [Russian](https://joookiwi.github.io/every-SMM2-properties/ru)
+ - ![Not completed](.github/styles/not-completed.svg)  [Japanese](https://joookiwi.github.io/every-SMM2-properties/jp)
+ - ![Not completed](.github/styles/not-completed.svg)  Chinese ([traditional](https://joookiwi.github.io/every-SMM2-properties/zh_T)
 & [simplified](https://joookiwi.github.io/every-SMM2-properties/zh_S))
- - <span class="language not-completed"></span> [Korean](https://joookiwi.github.io/every-SMM2-properties/ko)
+ - ![Not completed](.github/styles/not-completed.svg)  [Korean](https://joookiwi.github.io/every-SMM2-properties/ko)
 
 The other languages seen in the project can include Hebrew, Polish, Ukrainian & Greek.
 Although, they are only there for some names.
@@ -109,41 +48,37 @@ And for <u>[https://example.com/en-US/path]()</u>, then the language would be se
  - Sub-pages with reactive URL.
 
 ### Sub-page applications
-   - <span class="sub-page in-progress">          Entity</span>
-   - <span class="sub-page not-completed">        Character name</span>
-   - <span class="sub-page smm2 not-completed">   Clear condition</span>
-
-     - <span class="sub-page smm2 not-completed"> Clear condition category</span>
-   - <span class="sub-page complete">             Entity limit</span>
-   - <span class="sub-page not-completed">        Entity projectile</span>
-   - <span class="sub-page not-completed">        Entity object</span>
-   - <span class="sub-page complete">             Entity category</span>
-   - <span class="sub-page not-completed">        Entity group</span>
-   - <span class="sub-page partially-done">       Theme</span>
-   - <span class="sub-page complete">             Game reference</span>
-   - <span class="sub-page partially-done">       Game style</span>
-   - <span class="sub-page not-completed">        Entity behaviour</span>
-   - <span class="sub-page partially-done">       Sound effect</span>
-
-     - <span class="sub-page complete">           Sound effect category</span>
-   - <span class="sub-page smm2 complete">        Course tag</span>
-   - <span class="sub-page smm2 partially-done">  Predefined message</span>
-   - <span class="sub-page smm2 not-completed">   Sample courses</span>
-   - <span class="sub-page smm not-completed">    Medals</span>
-   - <span class="sub-page smm3ds not-completed"> Super Mario Challenges levels</span>
-   - <span class="sub-page smm2 not-completed">   Job</span>
-   - <span class="sub-page smm2 not-completed">   Official notification</span>
-   - <span class="sub-page smm2 not-completed">   Ninji speedrun</span>
-   - <span class="sub-page smm in-progress">      Mystery Mushroom</span>
-   - <span class="sub-page smm2 complete">        Mii costume</span>
-
-      - <span class="sub-page smm2 complete">     Mii costume category</span>
-   - <span class="sub-page not-completed">        Instruments</span>
+   - ![In progress](.github/styles/in-progress.svg)         Entity
+   - ![Not completed](.github/styles/not-completed.svg)     Character name
+   - ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
+     - ![Not completed](.github/styles/not-completed.svg)   Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Completed](.github/styles/completed.svg)             Entity limit
+   - ![Not completed](.github/styles/not-completed.svg)     Entity projectile
+   - ![Not completed](.github/styles/not-completed.svg)     Entity object
+   - ![Completed](.github/styles/completed.svg)             Entity category
+   - ![Not completed](.github/styles/not-completed.svg)     Entity group
+   - ![Partially done](.github/styles/partially-done.svg)   Theme
+   - ![Completed](.github/styles/completed.svg)             Game reference
+   - ![Partially done](.github/styles/partially-done.svg)   Game style</span>
+   - ![Not completed](.github/styles/not-completed.svg)     Entity behaviour
+   - ![Partially done](.github/styles/partially-done.svg)   Sound effect
+     - ![Not completed](.github/styles/completed.svg)       Sound effect category
+   - ![Completed](.github/styles/completed.svg)             Course tag ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Predefined message ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Sample courses ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Medals ![ (SMM1)](.github/styles/smm1-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Job ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Official notification ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Ninji speedrun ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
+   - ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+      - ![Completed](.github/styles/completed.svg)          Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Instruments
      
 #### Other sub-pages (not directly related to the project)
-   - <span class="sub-page in-progress">          Power-up priority</span>
-   - <span class="sub-page not-completed">        Secret pages (by URL, by key combination & maybe other ones)</span>
-
+   - ![In progress](.github/styles/in-progress.svg)         Power-up priority
+   - ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
 
 ## Development for the web application
 ### Prerequisites

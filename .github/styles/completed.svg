@@ -1,0 +1,27 @@
+<svg fill="none" height="20" width="90" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                :root {
+                    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+                    --bs-btn-border-radius: 0.25rem;
+                    --bs-green: #198754;
+                    --bs-white: #FFF;
+                }
+                small {
+                    border-radius: var(--bs-btn-border-radius);
+                    padding: 0.125rem 0.0625rem;
+                    background-image: var(--bs-gradient);
+                    background-color: var(--bs-green);
+                    color: var(--bs-white);
+
+                    width: 88px;
+                    text-align: center;
+
+                    position: absolute;
+                }
+            </style>
+            <small>Completed</small>
+        </div>
+    </foreignObject>
+</svg>
