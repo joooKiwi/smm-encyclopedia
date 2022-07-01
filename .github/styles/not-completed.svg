@@ -1,15 +1,13 @@
-<svg fill="none" height="22" width="85" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="20" width="85" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 :root {
-                    --red-color-rgb: 153, 0, 76;
+                    --red-color: rgb(153, 0, 76);
                     --align: -3px;
                 }
                 span {
-                    border-radius: 0.25rem;
-                    padding: 0.125rem 0.0625rem;
-                    background: linear-gradient(180deg, rgba(var(--red-color-rgb), 0.85), rgba(var(--red-color-rgb), 1));
+                    color: var(--red-color);
                     position: absolute;
                     bottom: var(--align);
                 }
