@@ -1,66 +1,3 @@
-<foreignObject><style>
-     :root {
-          --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-
-          --gray-color:   rgb(128, 128, 128);
-          --green-color:  rgb(0, 153, 76);
-          --yellow-color: rgb(153, 153, 0);
-          --orange-color: rgb(153, 76, 0);
-          --red-color:    rgb(153, 0, 76);
-        
-          --complete-content:       "Complete";
-          --partially-done-content: "Partially done";
-          --not-completed-content:  "Not completed";
-          --in-progress-content:    "In progress";
-
-          --smm1-parenthese-content:    " (SMM1)";
-          --smm3ds-parenthese-content:    " (SMM3DS)";
-          --smm2-parenthese-content:    " (SMM2)";
-    }
-
-     .alias {
-          color: var(--gray-color);
-     }
-
-     .complete::before, .partially-done::before, .in-progress::before, .not-completed::before {
-          border-radius: 0.25rem;
-          font-size: small;
-          padding: 0.125rem 0.0625rem;
-          background-image: var(--bs-gradient);
-     }
-     .complete::before {
-          background-color: var(--green-color);
-          content: var(--complete-content);
-     }
-     .partially-done::before {
-          background-color: var(--orange-color);
-          content: var(--partially-done-content);
-     }
-     .in-progress::before {
-          background-color: var(--yellow-color);
-          content: var(--in-progress-content);
-     }
-     .not-completed::before {
-          background-color: var(--red-color);
-          content: var(--not-completed-content);
-     }
-
-     .smm::after, .smm3ds::after, .smm2::after {
-          color: var(--gray-color);   
-     }
-     .smm::after {
-          content: var(--smm1-parenthese-content);
-     }
-     .smm3ds::after {
-          content: var(--smm3ds-parenthese-content);
-     }
-     .smm2::after {
-          content: var(--smm2-parenthese-content);
-     }
-
-</style></foreignObject>
-<link href="/styles/style.css" rel="stylesheet"></link>
-
 # Super Mario Maker Encyclopedia
 
 [![SMM Encyclopedia CI](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml)
@@ -69,8 +6,8 @@ https://joookiwi.github.io/every-SMM2-properties
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
- - Super Mario Maker (WiiU) <img src="/styles/smm1-alias.svg"/>
- - Super Mario Maker for Nintendo 3DS (3DS) <img src="/styles/smm3ds-alias.svg"/>
+ - Super Mario Maker (WiiU) <a><img src="/styles/smm1-alias.svg"></a>
+ - Super Mario Maker for Nintendo 3DS (3DS) `~ SMM3DS`
  - Super Mario Maker 2 (Switch) <a><img src="/styles/smm2-alias.svg"/></a>
 
 The information is mostly based on the SMM2 game.
