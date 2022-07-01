@@ -4,7 +4,7 @@
             <style>
                 :root {
                     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-                    --red-color: rgb(153, 0, 76);
+                    --green-color: rgb(0, 153, 76);
                     --align: -3px;
                 }
                 span {
@@ -16,7 +16,7 @@
                     bottom: var(--align);
                 }
             </style>
-            <small>Not completed</small>
+            <small>Completed</small>
         </div>
     </foreignObject>
 </svg>

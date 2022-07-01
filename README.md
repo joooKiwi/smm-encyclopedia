@@ -6,9 +6,9 @@ https://joookiwi.github.io/every-SMM2-properties
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
- - Super Mario Maker (WiiU) <img src=".github/styles/smm1-alias.svg">
- - Super Mario Maker for Nintendo 3DS (3DS) <img src=".github/styles/smm3ds-alias.svg">
- - Super Mario Maker 2 (Switch) <img src=".github/styles/smm2-alias.svg">
+ - Super Mario Maker (WiiU) ![~ SMM1](.github/styles/smm1-alias.svg)
+ - Super Mario Maker for Nintendo 3DS (3DS) ![~ SMM3DS](.github/styles/smm3ds-alias.svg)
+ - Super Mario Maker 2 (Switch) ![~ SMM2](.github/styles/smm2-alias.svg)
 
 The information is mostly based on the SMM2 game.
 
@@ -48,41 +48,37 @@ And for <u>[https://example.com/en-US/path]()</u>, then the language would be se
  - Sub-pages with reactive URL.
 
 ### Sub-page applications
-   - <span class="sub-page in-progress">          Entity</span>
-   - <span class="sub-page not-completed">        Character name</span>
-   - <span class="sub-page smm2 not-completed">   Clear condition</span>
-
-     - <span class="sub-page smm2 not-completed"> Clear condition category</span>
-   - <span class="sub-page complete">             Entity limit</span>
-   - <span class="sub-page not-completed">        Entity projectile</span>
-   - <span class="sub-page not-completed">        Entity object</span>
-   - <span class="sub-page complete">             Entity category</span>
-   - <span class="sub-page not-completed">        Entity group</span>
-   - <span class="sub-page partially-done">       Theme</span>
-   - <span class="sub-page complete">             Game reference</span>
-   - <span class="sub-page partially-done">       Game style</span>
-   - <span class="sub-page not-completed">        Entity behaviour</span>
-   - <span class="sub-page partially-done">       Sound effect</span>
-
-     - <span class="sub-page complete">           Sound effect category</span>
-   - <span class="sub-page smm2 complete">        Course tag</span>
-   - <span class="sub-page smm2 partially-done">  Predefined message</span>
-   - <span class="sub-page smm2 not-completed">   Sample courses</span>
-   - <span class="sub-page smm not-completed">    Medals</span>
-   - ![Not completed](.github/styles/not-completed.svg?raw=true) Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
-   - <span class="sub-page smm2 not-completed">   Job</span>
-   - <span class="sub-page smm2 not-completed">   Official notification</span>
-   - <span class="sub-page smm2 not-completed">   Ninji speedrun</span>
-   - <span class="sub-page smm in-progress">      Mystery Mushroom</span>
-   - <span class="sub-page smm2 complete">        Mii costume</span>
-
-      - <span class="sub-page smm2 complete">     Mii costume category</span>
-   - <span class="sub-page not-completed">        Instruments</span>
+   - ![In progress](.github/styles/in-progress.svg)         Entity
+   - ![Not completed](.github/styles/not-completed.svg)     Character name
+   - ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
+     - ![Not completed](.github/styles/not-completed.svg)   Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Completed](.github/styles/completed.svg)             Entity limit
+   - ![Not completed](.github/styles/not-completed.svg)     Entity projectile
+   - ![Not completed](.github/styles/not-completed.svg)     Entity object
+   - ![Completed](.github/styles/completed.svg)             Entity category
+   - ![Not completed](.github/styles/not-completed.svg)     Entity group
+   - ![Partially done](.github/styles/partially-done.svg)   Theme
+   - ![Completed](.github/styles/completed.svg)             Game reference
+   - ![Partially done](.github/styles/partially-done.svg)   Game style</span>
+   - ![Not completed](.github/styles/not-completed.svg)     Entity behaviour
+   - ![Partially done](.github/styles/partially-done.svg)   Sound effect
+     - ![Not completed](.github/styles/completed.svg)       Sound effect category
+   - ![Completed](.github/styles/completed.svg)             Course tag ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Predefined message ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Sample courses ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Medals ![ (SMM1)](.github/styles/smm1-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Job ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Official notification ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Ninji speedrun ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
+   - ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+      - ![Completed](.github/styles/completed.svg)          Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg)     Instruments
      
 #### Other sub-pages (not directly related to the project)
-   - <span class="sub-page in-progress">          Power-up priority</span>
-   - <span class="sub-page not-completed">        Secret pages (by URL, by key combination & maybe other ones)</span>
-
+   - ![In progress](.github/styles/in-progress.svg)         Power-up priority
+   - ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
 
 ## Development for the web application
 ### Prerequisites
