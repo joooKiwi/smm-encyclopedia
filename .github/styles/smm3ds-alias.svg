@@ -3,10 +3,12 @@
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 :root {
-                --gray-color: rgb(128, 128, 128);
+                    --gray-color: rgb(128, 128, 128);
                 }
                 span {
-                color: var(--gray-color);
+                    color: var(--gray-color);
+                    position: absolute;
+                    bottom: -2px;
                 }
             </style>
             <span>~ SMM3DS</span>
