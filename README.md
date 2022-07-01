@@ -6,9 +6,9 @@ https://joookiwi.github.io/every-SMM2-properties
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
- - Super Mario Maker (WiiU) <a href="#"><img src=".github/styles/smm1-alias.svg"/></a>
- - Super Mario Maker for Nintendo 3DS (3DS) <a href="#"><img src=".github/styles/smm3ds-alias.svg" height="21"></a>
- - Super Mario Maker 2 (Switch) <a href="#"><img src=".github/styles/smm2-alias.svg"/></a>
+ - Super Mario Maker (WiiU) <img src=".github/styles/smm1-alias.svg"/>
+ - Super Mario Maker for Nintendo 3DS (3DS) <a><img src=".github/styles/smm3ds-alias.svg" height="21"></a>
+ - Super Mario Maker 2 (Switch) <a href=""><img src=".github/styles/smm2-alias.svg"/></a>
 
 The information is mostly based on the SMM2 game.
 
