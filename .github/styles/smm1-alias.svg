@@ -7,8 +7,7 @@
                 }
                 span {
                     color: var(--gray-color);
-                    position: absolute;
-                    top: -2px;
+                    bottom: -2px;
                 }
             </style>
             <span>~ SMM1</span>
