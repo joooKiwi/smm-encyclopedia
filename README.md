@@ -59,7 +59,7 @@
      }
 
 </style></foreignObject>
-<img href="/styles/style.svg"/>
+<link href="/styles/style.css" rel="stylesheet">
 # Super Mario Maker Encyclopedia
 
 [![SMM Encyclopedia CI](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml)
