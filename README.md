@@ -6,9 +6,9 @@ https://joookiwi.github.io/every-SMM2-properties
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
- - Super Mario Maker (WiiU) ![](.github/styles/smm1-alias.svg)
- - Super Mario Maker for Nintendo 3DS (3DS) ![](.github/styles/smm3ds-alias.svg)
- - Super Mario Maker 2 (Switch) ![](.github/styles/smm2-alias.svg)
+ - Super Mario Maker (WiiU) <img src=".github/styles/smm1-alias.svg">
+ - Super Mario Maker for Nintendo 3DS (3DS) <img src=".github/styles/smm3ds-alias.svg">
+ - Super Mario Maker 2 (Switch) <img src=".github/styles/smm2-alias.svg">
 
 The information is mostly based on the SMM2 game.
 
@@ -69,7 +69,7 @@ And for <u>[https://example.com/en-US/path]()</u>, then the language would be se
    - <span class="sub-page smm2 partially-done">  Predefined message</span>
    - <span class="sub-page smm2 not-completed">   Sample courses</span>
    - <span class="sub-page smm not-completed">    Medals</span>
-   - <span class="sub-page smm3ds not-completed"> Super Mario Challenges levels</span>
+   - ![](.github/styles/not-completed.svg) Super Mario Challenges levels ![](.github/styles/smm3ds-sub-page.svg)
    - <span class="sub-page smm2 not-completed">   Job</span>
    - <span class="sub-page smm2 not-completed">   Official notification</span>
    - <span class="sub-page smm2 not-completed">   Ninji speedrun</span>

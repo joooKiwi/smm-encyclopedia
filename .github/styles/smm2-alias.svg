@@ -1,17 +1,18 @@
-<svg fill="none" height="21" width="75" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="20" width="75" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 :root {
                     --gray-color: rgb(128, 128, 128);
+                    --align: -3px;
                 }
                 span {
                     color: var(--gray-color);
                     position: absolute;
-                    bottom: -2mm;
+                    bottom: var(--align);
                 }
             </style>
-            <span>&tilde; SMM2</span>
+            <span>~ SMM2</span>
         </div>
     </foreignObject>
 </svg>
