@@ -17,22 +17,22 @@ It is also there give the details as simple as they can get.<br/>
 More is to add once this huge project is finished.
 
 The languages supported by the project are the ones available in the games:
- - <span class="language partially-done"></span> English ([american](https://joookiwi.github.io/every-SMM2-properties/en_AM)
+ - ![Partially done](.github/styles/partially-done.svg) English ([american](https://joookiwi.github.io/every-SMM2-properties/en_AM)
 & [european](https://joookiwi.github.io/every-SMM2-properties/en_EU))
- - <span class="language partially-done"></span> French ([canadian](https://joookiwi.github.io/every-SMM2-properties/fr_CA)
+ - ![Partially done](.github/styles/partially-done.svg) French ([canadian](https://joookiwi.github.io/every-SMM2-properties/fr_CA)
 & [european](https://joookiwi.github.io/every-SMM2-properties/fr_EU))
- - <span class="language not-completed"></span> [German](https://joookiwi.github.io/every-SMM2-properties/de)
- - <span class="language not-completed"></span> Spanish ([american](https://joookiwi.github.io/every-SMM2-properties/es_AM)
+ - ![Not completed](.github/styles/not-completed.svg)  [German](https://joookiwi.github.io/every-SMM2-properties/de)
+ - ![Not completed](.github/styles/not-completed.svg)  Spanish ([american](https://joookiwi.github.io/every-SMM2-properties/es_AM)
 & [european](https://joookiwi.github.io/every-SMM2-properties/es_EU))
- - <span class="language not-completed"></span> [Italian](https://joookiwi.github.io/every-SMM2-properties/it)
- - <span class="language not-completed"></span> [Dutch](https://joookiwi.github.io/every-SMM2-properties/nl)
- - <span class="language not-completed"></span> Portuguese ([american](https://joookiwi.github.io/every-SMM2-properties/pt_AM)
+ - ![Not completed](.github/styles/not-completed.svg)  [Italian](https://joookiwi.github.io/every-SMM2-properties/it)
+ - ![Not completed](.github/styles/not-completed.svg)  [Dutch](https://joookiwi.github.io/every-SMM2-properties/nl)
+ - ![Not completed](.github/styles/not-completed.svg)  Portuguese ([american](https://joookiwi.github.io/every-SMM2-properties/pt_AM)
 & [european](https://joookiwi.github.io/every-SMM2-properties/pt_EU))
- - <span class="language not-completed"></span> [Russian](https://joookiwi.github.io/every-SMM2-properties/ru)
- - <span class="language not-completed"></span> [Japanese](https://joookiwi.github.io/every-SMM2-properties/jp)
- - <span class="language not-completed"></span> Chinese ([traditional](https://joookiwi.github.io/every-SMM2-properties/zh_T)
+ - ![Not completed](.github/styles/not-completed.svg)  [Russian](https://joookiwi.github.io/every-SMM2-properties/ru)
+ - ![Not completed](.github/styles/not-completed.svg)  [Japanese](https://joookiwi.github.io/every-SMM2-properties/jp)
+ - ![Not completed](.github/styles/not-completed.svg)  Chinese ([traditional](https://joookiwi.github.io/every-SMM2-properties/zh_T)
 & [simplified](https://joookiwi.github.io/every-SMM2-properties/zh_S))
- - <span class="language not-completed"></span> [Korean](https://joookiwi.github.io/every-SMM2-properties/ko)
+ - ![Not completed](.github/styles/not-completed.svg)  [Korean](https://joookiwi.github.io/every-SMM2-properties/ko)
 
 The other languages seen in the project can include Hebrew, Polish, Ukrainian & Greek.
 Although, they are only there for some names.

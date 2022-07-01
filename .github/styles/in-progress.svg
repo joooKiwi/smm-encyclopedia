@@ -3,20 +3,18 @@
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 :root {
-                    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-                    --yellow-color: rgb(153, 153, 0);
+                    --yellow-color-rgb: 153, 153, 0;
                     --align: -3px;
                 }
                 span {
                     border-radius: 0.25rem;
                     padding: 0.125rem 0.0625rem;
-                    background-image: var(--bs-gradient);
-                    background-color: var(--yellow-color);
+                    background: linear-gradient(180deg, rgba(var(--yellow-color-rgb), 0.85), rgba(var(--yellow-color-rgb), 1));
                     position: absolute;
                     bottom: var(--align);
                 }
             </style>
-            <small>Not completed</small>
+            <small>In progress</small>
         </div>
     </foreignObject>
 </svg>
