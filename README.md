@@ -90,10 +90,15 @@ Then, from there,
 
 ### Run the project locally (desktop and mobile)
 
-To run the project, the command `npm start` is the only thing to do.
- - It will start the development mode;
- - It will also reload if any edits is made;
- - In the console, it will display any lint errors.
+To run the project, the command `npm run start` is the only thing to do.
+ - CSV → Json;
+ - Start the development mode;
+ - Reload on edits (and save);
+ - In the console (and command prompt), display any lint errors.
+
+The project could also be run with `npm run fast-start` to omit:
+ - CSV → Json
+ - (Other things in the future)
 
 By default, it will open it in the default browser automatically.
 If it has not worked, then, open [localhost:3000/every-SMM2-properties](http://localhost:3000/every-SMM2-properties) to display the application.
@@ -103,19 +108,10 @@ An example could be [192.168.4.20:3000/every-SMM2-properties](http://192.168.4.2
 
 ### Running tests
 
-The command to execute the tests is `npm test`.
+The command to execute the tests is `npm run test`.
 
 Then, from  that, it will start an interactive watch mode.
 For more details, see [how to run the tests](https://facebook.github.io/create-react-app/docs/running-tests).
-
-### Prepare the final build
-
-In order to create a production build, the command to execute is `npm run build`.
- - It will minify the files;
- - The files will include the hashes.
-
-The application will ready to compile once this is done.
-For more details, see the [application's deployment](https://facebook.github.io/create-react-app/docs/deployment).
 
 ### Deploying the changes to the server
 
@@ -123,5 +119,11 @@ Since the project uses the workflow (in [.github/workflows/workflow.yml](https:/
 it will automatically push the changes once there is a commit in the main branch.
 
 It automatically calls the command `npm run deploy` (implicitly calling `npm run predeploy`).
+
+With the deployment, it will automatically call `npm run build` and will:
+ - Minify of the files;
+ - Contain files formatted in _static/js/\[420.jank69].chunk.js_ and _static/css/\[420.jank69].chunk.css_.
+
+See [the application's deployment](https://facebook.github.io/create-react-app/docs/deployment) to know in details how the **React build** is done.
 
 The code will be pushed in the branch [github-pages branch](https://github.com/joooKiwi/every-SMM2-properties/tree/gh-pages) by the workflow.
