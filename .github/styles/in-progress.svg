@@ -4,15 +4,15 @@
             <style>
                 :root {
                     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-                    --yellow-color: rgb(153, 153, 0);
+                    --bs-yellow: #FFC107;
                 }
                 small {
                     border-radius: 0.25rem;
                     padding: 0.125rem 0.0625rem;
                     background-image: var(--bs-gradient);
-                    background-color: var(--yellow-color);
+                    background-color: var(--bs-yellow);
 
-                    width: 90px;
+                    width: 88px;
                     text-align: center;
 
                     position: absolute;
