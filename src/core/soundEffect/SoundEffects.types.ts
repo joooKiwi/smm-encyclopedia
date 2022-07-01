@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {PossibleEnglishName_SoundEffect}                                                                                                                                                                                                              from '../gameReference/GameReferences.types';
 import type {SoundEffects as RealEnum}                                                                                                                                                                                                                     from './SoundEffects';
@@ -94,7 +95,7 @@ export type PossibleEnglishName = | PossibleEnglishName_SMM1 | PossibleEnglishNa
 //region -------------------- Image path (SMM1) --------------------
 
 export type SoundEffectImageNumber_SMM1 = `${`0${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | 10 | 11 | 12 | 13 | 14}_0${| 0 | 1}`;
-export type PossibleImagePath_SMM1 = `/sound effect/Edit_Lyt_P_SE${SoundEffectImageNumber_SMM1}.tiff`;
+export type PossibleImagePath_SMM1 = `/${BasePath}/sound effect/Edit_Lyt_P_SE${SoundEffectImageNumber_SMM1}.tiff`;
 
 //endregion -------------------- Image path (SMM1) --------------------
 //region -------------------- Image path (SMM2) --------------------
@@ -124,7 +125,7 @@ export type SoundEffectImageName_SMM2 =
     | 'Heartbeat' | 'Silence'
     | `${| '' | 'Last'}Boss`
     | `Mario0${| 0 | 1 | 2 | 3}`;
-export type PossibleImagePath_SMM2 = `/sound effect/Lyt_E_P_SE_${SoundEffectImageName_SMM2}.tiff`;
+export type PossibleImagePath_SMM2 = `/${BasePath}/sound effect/Lyt_E_P_SE_${SoundEffectImageName_SMM2}.tiff`;
 
 //endregion -------------------- Image path (SMM2) --------------------
 

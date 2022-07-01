@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {MiiCostumes as RealEnum}                                                                                                                                                                                                                      from './MiiCostumes';
 
@@ -220,7 +221,7 @@ export type PossibleImageName =
               | `Skin${| '3W' | 'M1' | 'M3' | 'MW' | 'MU'}`}`
     ;
 
-export type PossibleImagePath = `/Mii costume/${PossibleImageName}.tiff`;
+export type PossibleImagePath = `/${BasePath}/Mii costume/${PossibleImageName}.tiff`;
 
 //endregion -------------------- Image name --------------------
 

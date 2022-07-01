@@ -5,6 +5,7 @@ import type {EnumArray, EnumArray_EnglishName, EnumByName, EnumByNumber, EnumByO
 import type {SoundEffectCategory}                                                                                                                                                                                                                                                          from './SoundEffectCategory';
 import type {StaticReference}                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types';
 
+import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';
 import {Import}          from '../../util/DynamicImporter';
 import {StringContainer} from '../../util/StringContainer';
@@ -85,7 +86,7 @@ export class SoundEffectCategories
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/category/${this.imageName}^s.tiff`;
+        return this.#imagePath ??= `/${BASE_PATH}/category/${this.imageName}^s.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------

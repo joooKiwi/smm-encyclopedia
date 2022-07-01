@@ -112,14 +112,14 @@ export class EntityLimitLoader
             new CSVLoader<PropertiesArray, EntityLimit, keyof typeof Headers>(resource, convertedContent => new EntityLimitBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeLimitAcronyms, 'alternative',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitTypesNames, 'type',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleLimitsAcronyms, 'acronym',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyAlternativeAcronym_limit, 'alternative',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_limitType, 'type',)
+                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleAcronym_limit, 'acronym',)
                 .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)
                 .convertToNullableNumberAnd(['?', '10?', '400?', '500?',], 'limit_SMM2',)
                 .convertToEmptyableStringAnd(['Crash online if met', 'Per player', 'Per pair', 'Per section',], 'limit_comment',)
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleLimitsNames, 'english',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();

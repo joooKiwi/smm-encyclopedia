@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {MiiCostumeCategories as RealEnum}                                                                                                                                                                                                             from './MiiCostumeCategories';
 
@@ -33,7 +34,7 @@ export type PossibleEnglishName = | 'Top' | 'Headgear' | 'Costume' | 'Bottom';
 
 export type PossibleImageNumber = | 0 | 1 | 2 | 3;
 export type PossibleImageName = `DressIcon_0${PossibleImageNumber}`;
-export type PossibleImagePath = `/category/${PossibleImageName}^s.tiff`;
+export type PossibleImagePath = `/${BasePath}/category/${PossibleImageName}^s.tiff`;
 
 //endregion -------------------- Image name --------------------
 

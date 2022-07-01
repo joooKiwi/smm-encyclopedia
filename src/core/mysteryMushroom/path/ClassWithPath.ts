@@ -1,3 +1,5 @@
+import type {BasePath} from '../../../variables';
+
 export interface ClassWithPath {
 
 }
@@ -267,7 +269,7 @@ export type LostALifeSound = 'down.wav';
 //endregion -------------------- Specific image / sound files --------------------
 //region -------------------- Path (starting / ending) --------------------
 
-export type BasicStartingPath = '/mystery mushroom/';
+export type BasicStartingPath = `/${BasePath}/mystery mushroom/`;
 export type JapanesePath = '/Japanese';
 export type LeftVariationPath = '/Left variation';
 export type UnderwaterVariationPath = '/Underwater variation';

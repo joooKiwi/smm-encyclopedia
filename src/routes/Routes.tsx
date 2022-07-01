@@ -1,5 +1,5 @@
-import {BrowserRouter, Navigate, Route, Routes as ReactRoutes} from 'react-router-dom';
-import {Suspense}                                              from 'react';
+import {HashRouter, Navigate, Route, Routes as ReactRoutes} from 'react-router-dom';
+import {Suspense}                                           from 'react';
 
 import DirectRoute         from './DirectRoute';
 import {everySimpleRoutes} from './everyRoutes';
@@ -12,7 +12,7 @@ import {redirectToHome}    from './redirectToHome';
  * @reactComponent
  */
 export default function Routes() {
-    return <BrowserRouter>
+    return <HashRouter>
         <Suspense fallback={<LoadingApp/>}>
             <ReactRoutes>
                 <Route path="/" element={redirectToHome()}/>
@@ -21,7 +21,7 @@ export default function Routes() {
                 {getRoutesToProjectRoute_InEveryLanguage()}
             </ReactRoutes>
         </Suspense>
-    </BrowserRouter>;
+    </HashRouter>;
 }
 
 function getRedirectRoutesToProjectRoute_InDefault() {

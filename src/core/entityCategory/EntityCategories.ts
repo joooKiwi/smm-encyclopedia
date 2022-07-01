@@ -5,6 +5,7 @@ import type {EntityCategory}                                                    
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types';
 import type {StaticReference}                                                                                                                                                                                                                                       from '../../util/enum/Enum.types';
 
+import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';
 import {Import}          from '../../util/DynamicImporter';
 import {StringContainer} from '../../util/StringContainer';
@@ -84,7 +85,7 @@ export class EntityCategories
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/category/${this.imageName}^s.tiff`;
+        return this.#imagePath ??= `/${BASE_PATH}/category/${this.imageName}^s.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------

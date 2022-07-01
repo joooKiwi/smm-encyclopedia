@@ -14,6 +14,7 @@ import Table                           from './tools/table/Table';
 import {Themes}                        from '../core/theme/Themes';
 import {Times}                         from '../core/time/Times';
 import YesOrNoResultTextComponent      from './tools/text/YesOrNoResultTextComponent';
+import {BASE_PATH}                     from '../variables';
 
 /**
  * @reactComponent
@@ -73,11 +74,11 @@ export default class EveryThemesApp
                         key: 'theme', element: <>--course & world theme--</>,
                         subHeaders: [
                             {
-                                key: 'isInTheCourseTheme', element: <Image source="/theme/Course theme.tiff" fallbackName="Course theme"/>,
+                                key: 'isInTheCourseTheme', element: <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/>,
                                 tooltip: {namespace: 'gameContent', translationKey: 'Is in the course theme',},
                             },
                             {
-                                key: 'isInTheWorldTheme', element: <Image source="/theme/World theme.tiff" fallbackName="World theme"/>,
+                                key: 'isInTheWorldTheme', element: <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/>,
                                 tooltip: {namespace: 'gameContent', translationKey: 'Is in the world theme',},
                             },
                         ],

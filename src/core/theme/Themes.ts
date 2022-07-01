@@ -9,6 +9,7 @@ import type {ThemeProperty}                                                     
 import type {ThemeReferences}                                                                                                                                                                                                                                                                                                                                                                                                                                             from '../entity/properties/ThemeReferences';
 import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './WorldTheme';
 
+import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';
 import {EmptyEntity}     from '../entity/EmptyEntity';
 import {Import}          from '../../util/DynamicImporter';
@@ -243,15 +244,15 @@ export class Themes
     }
 
     public get smallImagePath(): SmallImagePath {
-        return this.#smallImagePath ??= `/theme/Lyt_E_SceneSmall_${this.gameName}_00.tiff`;
+        return this.#smallImagePath ??= `/${BASE_PATH}/theme/Lyt_E_SceneSmall_${this.gameName}_00.tiff`;
     }
 
     public get longImagePath(): LargeImagePath {
-        return this.#largeImagePath ??= `/theme/Lyt_E_Scene_${this.gameName}_00.tiff`;
+        return this.#largeImagePath ??= `/${BASE_PATH}/theme/Lyt_E_Scene_${this.gameName}_00.tiff`;
     }
 
     public get endlessMarioImagePath(): | EndlessMarioImagePath | null {
-        return this.#endlessMarioImagePath ??= `/theme/WM_GameSkin_${this.gameName as PossibleGameName_CourseTheme}_00^l.tiff`;
+        return this.#endlessMarioImagePath ??= `/${BASE_PATH}/theme/WM_GameSkin_${this.gameName as PossibleGameName_CourseTheme}_00^l.tiff`;
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -1,5 +1,7 @@
 import type {BasicStartingPath, ClassWithPath, JapanesePath, LeftVariationPath, PossiblePath, PossiblePaths_Array, UnderwaterVariationPath} from './ClassWithPath';
 
+import {BASE_PATH} from '../../../variables';
+
 export abstract class ClassWithPathContainer<PATH extends PossiblePath,
     BASIC_PATH extends | string | null,
     JAPANESE_PATH extends string | null,
@@ -9,7 +11,7 @@ export abstract class ClassWithPathContainer<PATH extends PossiblePath,
 
     //region -------------------- Attributes --------------------
 
-    protected static readonly BASIC_STARTING_PATH: BasicStartingPath = '/mystery mushroom/';
+    protected static readonly BASIC_STARTING_PATH: BasicStartingPath = `/${BASE_PATH}/mystery mushroom/`;
     protected static readonly JAPANESE_PATH: JapanesePath = '/Japanese';
     protected static readonly LEFT_VARIATION_PATH: LeftVariationPath = '/Left variation';
     protected static readonly UNDERWATER_VARIATION_PATH: UnderwaterVariationPath = '/Underwater variation';

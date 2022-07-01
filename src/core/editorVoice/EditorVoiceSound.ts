@@ -1,4 +1,5 @@
-import {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder';
+import type {BasePath}               from '../../variables';
+import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder';
 
 export interface EditorVoiceSound<T extends | PossibleFileName | null = | PossibleFileName | null, U extends | PossibleFileName | null = | PossibleFileName | null, > {
 
@@ -175,11 +176,11 @@ type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, 
 //endregion -------------------- Starting name --------------------
 
 export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, >
-    = | `/editor voice/voice_${T}.wav`;
+    = | `/${BasePath}/editor voice/voice_${T}.wav`;
 export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[0]>;
 export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[1]>;
 export type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
-    = | `/editor voice/se_ui_singingparts_${T}.wav`;
+    = | `/${BasePath}/editor voice/se_ui_singingparts_${T}.wav`;
 export type PossibleFileName<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, U extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
     = | PossibleFileName_WithVoiceBefore<T> | PossibleFileName_WithSingingPartBefore<U>;
 

@@ -6,6 +6,7 @@ import type {GameProperty}                                                      
 import type {PropertyGetter}                                                                                                                                                                                                                                      from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                                     from '../../util/enum/Enum.types';
 
+import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';
 import GameComponent     from './Game.component';
 import {StringContainer} from '../../util/StringContainer';
@@ -76,7 +77,7 @@ export abstract class Games
             this.#acronym = enumeration_or_acronym;
             this.#englishName = new StringContainer(englishName);
             this.#simpleValue = simpleValue;
-            this.#imagePath = `/game/${englishName}.svg`;
+            this.#imagePath = `/${BASE_PATH}/game/${englishName}.svg`;
         }
     }
 

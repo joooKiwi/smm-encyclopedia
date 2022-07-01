@@ -1,3 +1,4 @@
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {Times as RealEnum}                                                                                                                                                                                                                            from './Times';
 
@@ -25,7 +26,7 @@ export type Names = keyof typeof Enum;
 export type PossibleEnglishName = | 'Day' | 'Night';
 
 export type PossibleSimpleImagePath = | 'Sun' | 'Moon';
-export type PossibleImagePath = `/time/${PossibleSimpleImagePath}.png`;
+export type PossibleImagePath = `/${BasePath}/time/${PossibleSimpleImagePath}.png`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

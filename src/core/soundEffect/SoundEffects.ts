@@ -1,9 +1,11 @@
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                            from '../ClassWithEnglishName';
+import type {ClassWithNullableSMM2ImagePath}                                                                                                                                                                                                                                                                                                                                                                                                  from '../ClassWithImagePath';
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                              from '../ClassWithReference';
 import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from './SoundEffects.types';
 import type {SoundEffect}                                                                                                                                                                                                                                                                                                                                                                                                                     from './SoundEffect';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/enum/Enum.types';
 
+import {BASE_PATH}          from '../../variables';
 import {Enum}               from '../../util/enum/Enum';
 import {Import}             from '../../util/DynamicImporter';
 import SoundEffectComponent from './SoundEffect.component';
@@ -16,7 +18,8 @@ import {StringContainer}    from '../../util/StringContainer';
 export class SoundEffects
     extends Enum<Ordinals, Names>
     implements ClassWithReference<SoundEffect>,
-        ClassWithEnglishName<PossibleEnglishName> {
+        ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithNullableSMM2ImagePath<PossibleImagePath_SMM2> {
 
     //region -------------------- Enum instances --------------------
 
@@ -165,9 +168,9 @@ export class SoundEffects
         super();
         this.#englishName = new StringContainer(englishName);
         this.#SMM1ImagePath = imageNumber_smm1 == null ? null : typeof imageNumber_smm1 == 'string'
-            ? [`/sound effect/Edit_Lyt_P_SE${imageNumber_smm1}.tiff`]
-            : [`/sound effect/Edit_Lyt_P_SE${imageNumber_smm1[0]}.tiff`, `/sound effect/Edit_Lyt_P_SE${imageNumber_smm1[1]}.tiff`,];
-        this.#SMM2ImagePath = imageName_smm2 == null ? null : `/sound effect/Lyt_E_P_SE_${imageName_smm2}.tiff`;
+            ? [`/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${imageNumber_smm1}.tiff`]
+            : [`/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${imageNumber_smm1[0]}.tiff`, `/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${imageNumber_smm1[1]}.tiff`,];
+        this.#SMM2ImagePath = imageName_smm2 == null ? null : `/${BASE_PATH}/sound effect/Lyt_E_P_SE_${imageName_smm2}.tiff`;
     }
 
     //region -------------------- Getter methods --------------------

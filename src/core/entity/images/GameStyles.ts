@@ -6,6 +6,7 @@ import type {EnumArray, EnumArray_SMM1, EnumByName, EnumByNumber, EnumByOrdinal,
 import type {StaticReference}                                                                                                                                                                       from '../../../util/enum/Enum.types';
 import type {PossibleOtherEntities}                                                                                                                                                                 from '../Entity';
 
+import {BASE_PATH}                        from '../../../variables';
 import {Enum}                             from '../../../util/enum/Enum';
 import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles';
 
@@ -54,15 +55,15 @@ export class GameStyles
     }
 
     public get gamePath_editor(): GamePath_Editor {
-        return this.#gamePath_editor ??= `/entity/${this.shortImagePath}/Editor/`;
+        return this.#gamePath_editor ??= `/${BASE_PATH}/entity/${this.shortImagePath}/Editor/`;
     }
 
     public get gamePath_clearCondition(): GamePath_ClearCondition {
-        return this.#gamePath_clearCondition ??= `/entity/${this.shortImagePath}/Clear Condition/`;
+        return this.#gamePath_clearCondition ??= `/${BASE_PATH}/entity/${this.shortImagePath}/Clear Condition/`;
     }
 
     public get gamePath_inGameSmm1(): GamePath_InGameSMM1 {
-        return this.#gamePath_smm1 ??= `/entity/${this.shortImagePath}/In game/SMM1/`;
+        return this.#gamePath_smm1 ??= `/${BASE_PATH}/entity/${this.shortImagePath}/In game/SMM1/`;
     }
 
     //endregion -------------------- Getter methods --------------------

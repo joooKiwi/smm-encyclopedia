@@ -1,31 +1,46 @@
-name: SMM2Properties CI
+name: SMM Encyclopedia CI
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+      - main
   pull_request:
-    branches: [ $default-branch ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     strategy:
       matrix:
         node-version: [16.x]
 
     steps:
-      - name: Checkout action
-        uses: actions/checkout@v2
+      - name: Repository checkout
+        uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Node.js (v${{matrix.node-version}}) configuration
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{matrix.node-version}}
           cache: 'npm'
 
-      - name: NPM ci command
+      - name: Dependencies installation
         run: npm ci
 
-      - name: Deployment of the application
-      - run: npm run deploy
+      - name: Application deployment
+        run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+        env:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
+          repository: ${{ github.repository }}

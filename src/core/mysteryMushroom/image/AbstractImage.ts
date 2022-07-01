@@ -1,6 +1,7 @@
 import type {ClimbingImage, DownImage, FallingAfterJumpImage, GoalPoleImage, JumpImage, PossibleImages, PossiblePath, RunningImage, SwimmingImage, TauntImage, TurningImage, WaitingImage, WalkImage}           from '../path/ClassWithPath';
 import type {ClimbingImages, DownImages, FallingAfterJumpImages, GoalPoleImages, Image, JumpImages, PossibleImages_Array, RunningImages, SwimmingImages, TauntImages, TurningImages, WaitingImages, WalkImages} from './Image';
 
+import {BASE_PATH}              from '../../../variables';
 import {ClassWithPathContainer} from '../path/ClassWithPath.container';
 import {EMPTY_ARRAY}            from '../../../util/emptyVariables';
 
@@ -84,7 +85,7 @@ export abstract class AbstractImage<PATH extends PossiblePath,
     private __getImages(images: PossibleImages | readonly PossibleImages[],) {
         if (images instanceof Array)
             return images.map(image => this.__getImages(image));
-        return this._paths.map(path => `${path}/${images}`) as unknown as PossibleImages_Array<PossibleImages, PATH>;
+        return this._paths.map(path => `/${BASE_PATH}${path}/${images}`) as unknown as PossibleImages_Array<PossibleImages, PATH>;
     }
 
     public get waitingImages(): WaitingImages<PATH> {
