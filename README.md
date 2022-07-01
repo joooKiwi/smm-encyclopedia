@@ -59,8 +59,8 @@
      }
 
 </style></foreignObject>
+<img href="/styles/style.svg"/>
 # Super Mario Maker Encyclopedia
-<img href="https://github.com/joooKiwi/every-SMM2-properties/tree/main/.github/styles/style.svg"/>
 
 [![SMM Encyclopedia CI](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml/badge.svg)](https://github.com/joooKiwi/every-SMM2-properties/actions/workflows/workflow.yml)
 
@@ -68,9 +68,9 @@ https://joookiwi.github.io/every-SMM2-properties
 
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
- - Super Mario Maker (WiiU) <img href="https://github.com/joooKiwi/every-SMM2-properties/tree/main/.github/styles/smm1-alias.svg"/>
- - Super Mario Maker for Nintendo 3DS (3DS) <img href="https://github.com/joooKiwi/every-SMM2-properties/tree/main/.github/styles/smm3ds-alias.svg"/>
- - Super Mario Maker 2 (Switch) <img href="https://github.com/joooKiwi/every-SMM2-properties/tree/main/.github/styles/smm2-alias.svg"/>
+ - Super Mario Maker (WiiU) <img href="/styles/smm1-alias.svg"/>
+ - Super Mario Maker for Nintendo 3DS (3DS) <img href="/styles/smm3ds-alias.svg"/>
+ - Super Mario Maker 2 (Switch) <img href="/styles/smm2-alias.svg"/>
 
 The information is mostly based on the SMM2 game.
 
