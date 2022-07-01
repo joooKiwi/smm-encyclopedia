@@ -6,7 +6,7 @@
  * @note if this value changes, the package.json homepage should change too.
  * @see EditorVoices
  */
-export const BASE_PATH = 'every-SMM2-properties';
+export const BASE_PATH = 'smm-encyclopedia';
 
 /**
  * A basic representation of the base path.

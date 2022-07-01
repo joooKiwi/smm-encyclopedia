@@ -1,21 +1,25 @@
 {
-  "name": "every-smm2-properties",
-  "version": "0.1.0-beta",
-  "homepage": "https://joookiwi.github.io/every-SMM2-properties/",
+  "name": "smm-encyclopedia",
+  "version": "0.2.0-beta",
+  "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "scripts": {
     "csv-to-json": "node ./src/scripts/CSVToJson",
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
 
+    "prestart": "npm run csv-to-json",
+    "start": "craco start",
+    "fast-start": "craco start",
+
+    "test": "craco test",
+
+    "prebuild": "npm run csv-to-json",
+    "build": "craco build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -m \"[ci skip] Updates\" -d build"
+    "deploy": "gh-pages -m \"Version 0.2 (beta)\" -d build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joooKiwi/every-SMM2-properties.git"
+    "url": "git+https://github.com/joooKiwi/smm-encyclopedia.git"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
@@ -28,7 +32,7 @@
     "wiki", "encyclopedia"
   ],
   "bugs": {
-    "url": "https://github.com/joooKiwi/every-SMM2-properties/issues"
+    "url": "https://github.com/joooKiwi/smm-encyclopedia/issues"
   },
   "eslintConfig": {
     "extends": [
