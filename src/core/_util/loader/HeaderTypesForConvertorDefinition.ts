@@ -19,6 +19,7 @@ import type {PossibleName as PossibleName_Version}                              
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
 
+//TODO Change some ValueOrStringConstant<*> to return ValueOrNull<*>
 export interface HeaderTypesForConvertorDefinition {
 
     //region -------------------- Game reference --------------------
@@ -27,7 +28,8 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleGameReferenceAcronymWithPokemonGeneration(): ValueOrStringConstant<EveryPossibleAcronymWithPokemonGeneration_GameReference>
 
-    get everyPossibleGameReferenceEnglishName(): ValueOrStringConstant<EveryPossibleName_GameReference>
+    //TODO change to ValueOrNull<EveryPossibleName_GameReference>
+    get everyPossibleGameReferenceEnglishName(): ValueOrEmptyableStringConstant<EveryPossibleName_GameReference>
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
@@ -37,7 +39,8 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
-    get everyPossibleEntityNames(): ValueOrStringConstant<EveryPossibleName_Entity>
+    //TODO change to ValueOrNull<EveryPossibleName_Entity>
+    get everyPossibleEntityNames(): ValueOrEmptyableStringConstant<EveryPossibleName_Entity>
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
@@ -130,11 +133,12 @@ export interface HeaderTypesForConvertorDefinition {
 
 //region -------------------- External types --------------------
 
-/**
- * The value received in parameter or simply the {@link StringConstant String constant}.
- */
+/**The value received in parameter or simply the {@link StringConstant String constant}.*/
 type ValueOrStringConstant<T, > = T | StringConstant;
+/**The value received in parameter or simply the {@link EmptyableStringConstant Emptyable string constant}.*/
+type ValueOrEmptyableStringConstant<T, > = T | EmptyableStringConstant;
 export type StringConstant = 'string';
+export type EmptyableStringConstant = `emptyable ${StringConstant}`;
 // export type NumberConstant = 'number';
 // export type StringAndNumberConstants = readonly [StringConstant, NumberConstant,];
 // export type EmptyArray = readonly [];

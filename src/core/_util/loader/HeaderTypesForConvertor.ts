@@ -291,6 +291,7 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Attributes --------------------
 
     static readonly #STRING_VALUE: StringConstant = 'string';
+    static readonly #EMPTYABLE_STRING_VALUE: EmptyableStringConstant = 'emptyable string';
     // static readonly #NUMBER_VALUE: NumberConstant = 'number';
     // static readonly #STRING_AND_NUMBER: StringAndNumber = [this.#STRING_VALUE, this.#NUMBER_VALUE,];
     // static readonly #EMPTY_ARRAY: EmptyArray = [];
@@ -301,7 +302,7 @@ class HeaderTypesForConvertorForProduction
 
     public readonly everyPossibleGameReferenceAcronym = HeaderTypesForConvertorForProduction.#STRING_VALUE;
     public readonly everyPossibleGameReferenceAcronymWithPokemonGeneration = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleGameReferenceEnglishName = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleGameReferenceEnglishName = HeaderTypesForConvertorForProduction.#EMPTYABLE_STRING_VALUE;
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
@@ -311,7 +312,7 @@ class HeaderTypesForConvertorForProduction
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
-    public readonly everyPossibleEntityNames = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleEntityNames = HeaderTypesForConvertorForProduction.#EMPTYABLE_STRING_VALUE;
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
