@@ -1,7 +1,7 @@
-<svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="21" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
-            <span class="alias">~ SMM2</span>
+            <span style="color: var(--color-scale-gray-3); bottom: 0;">~ SMM2</span>
         </div>
     </foreignObject>
 </svg>

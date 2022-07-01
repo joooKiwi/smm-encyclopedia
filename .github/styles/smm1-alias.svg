@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<svg version="2.0" xmlns="http://www.w3.org/2000/svg" height="21">
-    <text font-size="16" >
-        <tspan color="red">~ SMM1</tspan>
-    </text>
+<svg fill="none" height="21" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <span style="color: slategray; top: 0;">~ SMM1</span>
+        </div>
+    </foreignObject>
 </svg>
