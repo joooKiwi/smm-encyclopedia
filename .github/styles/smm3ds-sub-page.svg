@@ -3,16 +3,11 @@
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 :root {
-                    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
                     --gray-color: rgb(153, 0, 76);
                     --align: -3px;
                 }
                 span {
-                    border-radius: 0.25rem;
-                    font-size: small;
-                    padding: 0.125rem 0.0625rem;
-                    background-image: var(--bs-gradient);
-                    background-color: var(--red-color);
+                    color: var(--gray-color);
                     position: absolute;
                     bottom: var(--align);
                 }

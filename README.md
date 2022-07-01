@@ -69,7 +69,7 @@ And for <u>[https://example.com/en-US/path]()</u>, then the language would be se
    - <span class="sub-page smm2 partially-done">  Predefined message</span>
    - <span class="sub-page smm2 not-completed">   Sample courses</span>
    - <span class="sub-page smm not-completed">    Medals</span>
-   - ![](.github/styles/not-completed.svg) Super Mario Challenges levels ![](.github/styles/smm3ds-sub-page.svg)
+   - ![Not completed](.github/styles/not-completed.svg?raw=true) Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
    - <span class="sub-page smm2 not-completed">   Job</span>
    - <span class="sub-page smm2 not-completed">   Official notification</span>
    - <span class="sub-page smm2 not-completed">   Ninji speedrun</span>
