@@ -1,6 +1,6 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.2.0-beta",
+  "version": "0.3.0-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "prebuild": "npm run csv-to-json",
     "build": "craco build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -m \"Version 0.2 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Version 0.3 (beta)\" -d build"
   },
   "repository": {
     "type": "git",
