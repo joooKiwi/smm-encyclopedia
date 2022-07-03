@@ -110,9 +110,9 @@ Most of them are self-explanatory.
 | src/routes             | The routes of the project                                                |                                                 |
 | src/util               | The utilities                                                            |     They should me moved into separate projects |
 | src/bootstrap          | External dependencies to [Bootstrap](https://getbootstrap.com/)          |                                                 |
-| scr/navigation         | The application navigation (& footer)                                    |                                                 |
-| scr/resources          | The application resources (mostly CSV files)                             | Move this directory outside of the `scr` folder |
-| scr/resources/compiled | The compiled (json files) from the CSV **(this should always be empty)** |                                                 |
+| src/navigation         | The application navigation (& footer)                                    |                                                 |
+| src/resources          | The application resources (mostly CSV files)                             | Move this directory outside of the `src` folder |
+| src/resources/compiled | The compiled (json files) from the CSV **(this should always be empty)** |                                                 |
 | public/[any-folder]    | The images (& sounds) of the project                                     |                                                 |
 
 #### File naming
@@ -131,20 +131,135 @@ and others gives meaning to them.
 The variables, methods & classes use a different format, but they all share at some point the standard.<br/>
 They don't follow directly the standard, but have a general format followed.
 
-| Syntax            |                    Description                     |                               Applicable for                               | Example                                                                                           |
-|:------------------|:--------------------------------------------------:|:--------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------|
-| [upper-case-name] | An upper case name (using `_` as a word separator) |                         Constant<br/>Enum instance                         | <pre>AN_EXAMPLE</pre>                                                                             |
-| [lower-case-name] |        A lower case name (using camel case)        |                                  Variable                                  | <pre>anExample</pre>                                                                              |
-| [capital-case]    |               A capital case name (                |      Class<br/>Interface<br/>Type<br/>Dynamic import method for class      | <pre>AnExample</pre>                                                                              |
-| [name][_[nameX]*] |   Multiple different names following each others   |                            Variable<br/>Method                             | <pre>anExample_withSomething_secret</pre>                                                         |
-| #[name]           |                **(always)** private                |                                  Variable                                  | <pre>#anExample</pre>                                                                             |
-| _[name]           |               **(always)** protected               |                                   Method                                   | <pre>_anExample()</pre>                                                                           |
-| __[name]          |   private (since _#[name]_ don't work on React)    |                                   Method                                   | <pre>__anExample()<br/>~~#notAnExample()~~</pre>                                                  |
-| `,`               |             Ending with a leading `,`              | Creation (Array / Object)<br/>Call (method / constructor)<br/>Generic type | <pre>[a, b, c,]<br/>{a: 1, b: 2, c: 3,}<br/>anExample(a, b, c,)<br/>new AnExample(a, b, c,)</pre> |
-| `&#124;`          |             **(always)** Before a join             |                                    Type                                    | <pre>type AnExample = &#124; TypeA &#124; TypeB;</pre>                                            |                                                                            |
-| `;`               |           **(always)** Ending with a `;`           |                              Class<br/>Method                              | <pre>class AnExample {<br/>  attributeA;<br/>  attributeB;<br/>}</pre>                            |
-| ~~`;`~~           |           **(never)** Ending with a `;`            |                             Interface<br/>Type                             | <pre>interface AnExample {<br/>  attributeA<br/>  attributeB<br/>}</pre>                          |
+| Syntax                    |                                               Description                                               |                               Applicable for                               | Example                                                                                                                                                                  |
+|:--------------------------|:-------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [upper-case-name]         |                           An upper case name (using `_` as a word separator)                            |                         Constant<br/>Enum instance                         | <pre>AN_EXAMPLE                                                                                                                                                          |
+| [lower-case-name]         |                                  A lower case name (using camel case)                                   |                                  Variable                                  | <pre>anExample                                                                                                                                                           |
+| [capital-case]            |                                          A capital case name (                                          |      Class<br/>Interface<br/>Type<br/>Dynamic import method for class      | <pre>AnExample                                                                                                                                                           |
+| [name][_[nameX]*]         |                             Multiple different names following each others                              |                            Variable<br/>Method                             | <pre>anExample_withSomething_secret                                                                                                                                      |
+| #[name]                   |                                          **(always)** private                                           |                                  Variable                                  | <pre>#anExample                                                                                                                                                          |
+| _[name]                   |                                         **(always)** protected                                          |                                   Method                                   | <pre>_anExample()                                                                                                                                                        |
+| __[name]                  |                              private (since _#[name]_ don't work on React)                              |                                   Method                                   | <pre>__anExample()<br/>~~#notAnExample()~~                                                                                                                               |
+| `,`                       |                                        Ending with a leading `,`                                        | Creation (Array / Object)<br/>Call (method / constructor)<br/>Generic type | <pre>[a, b, c,]<br/>{a: 1, b: 2, c: 3,}<br/>anExample(a, b, c,)<br/>new AnExample(a, b, c,)<br/><br/>class AnExample<T,>{ ... }<br/>anExample<T,>(t: T,)                 |
+| `&#124;`                  |                                       **(always)** Before a join                                        |                                    Type                                    | <pre>type AnExample = &#124; TypeA &#124; TypeB;                                                                                                                         |                                                                            |
+| `'`<br/>not `"`           |                            For a string variable, `'` is used instead of `"`                            |                            String<br/>Character                            | <pre>type AnExampleString = 'something';<br/>type AnExampleCharacter = 'A';                                                                                              |
+| `;`                       |                                     **(always)** Ending with a `;`                                      |                        Variable<br/>Class<br/>Type                         | <pre>const anExample = 420 / 69;<br/><br/>class AnExample {<br/>  attributeA;<br/>  attributeB;<br/>}<br/><br/>type AnExample = \`Jank ${&#124; 'city' &#124; 'game'}\`; |
+| no `;`                    |                                      **(never)** Ending with a `;`                                      |                                 Interface                                  | <pre>interface AnExample {<br/>  attributeA<br/>  attributeB<br/>}                                                                                                       |
+| `null`<br/>no `undefined` | To be like Kotlin, Java, C#, PHP & others, the use of `null` is the only one for the nullable variables |                                    Type                                    | <pre>type AnExample = &#124; AType &#124; null;                                                                                                                          |
 
+#### Files using a CSV source
+
+In the core (`src/core/...`), the files have some formatting that each have their responsibility.
+The only ones that are used outside are:
+ - Interface
+ - Enum (sometimes even in the `src/util/DynamicImporter.ts`)
+ - The loader types (`Loader.types`)
+
+The rest should not be used outside the same package (folder).
+
+| Format              | Type              |                 Description                  |                                                  Dependencies |
+|:--------------------|:------------------|:--------------------------------------------:|--------------------------------------------------------------:|
+| [name].template.ts  | Template          |   The template associated to the CSV file    |                                                          Type |
+| [name].loader.ts    | Loader            |         The file loader (main core)          |                                 Builder<br/>Template<br/>Type |
+| Loader.types.ts     | Type              |  Types only applicable to the file loaders   |                                                               |
+| [name].builder.ts   | Builder           |   The builder class that create the class    |                   Template <br/>Class<br/>Enum _(some times)_ |
+| [name].ts           | Interface         | The class description that is used elsewhere |                                                          Type |
+| [name].container.ts | Class             |              The class instance              |                                                     Interface |
+| [plural-name].ts    | Enum              |      Every elements as an enum instance      |                                            Loader _(dynamic)_ |
+
+<br/>
+The types used in the interface:
+
+| Type        |                                                    Use case |
+|:------------|------------------------------------------------------------:|
+| boolean     |                                            Most of the time |
+| number      |                                            Most of the time |
+| string      | translation key<br/>acronym<br/>name attributes<br/>comment |
+| object      |                                                  Properties |
+| enumeration |                    Properties use other `scr/core` elements |
+
+#### Dependencies
+
+```mermaid
+flowchart LR
+  CN[Character name]
+  CC[Clear condition]
+  CCC[Clear condition category]
+  CT[Course tag]
+  EV[Editor voice]
+  E[Entity]
+  EB[Entity behaviour]
+  EC[Entity category]
+  EG[Entity group]
+  EL[Entity limit]
+  G[Game]
+  GR[Game reference]
+  GS[Game style]
+  I[Instrument]
+  J[Job]
+  M[Medal]
+  MC[Mii costume]
+  MCC[Mii costume category]
+  MM[Mystery Mushroom]
+  NE[Night effect]
+  NS[Ninji speedrun]
+  ON[Official notification]
+  PM[Predefined message]
+  SC[Sample course]
+  SE[Sound effect]
+  SEC[Sound effect category]
+  SMCL[Super Mario Challenges level]
+  Th[Theme]
+  Ti[Time]
+  V[Version]
+  
+
+  subgraph Independant
+    CT & J & M & NS & ON & PM & SC & SMCL
+  end
+
+  subgraph Clear condition
+    direction TB
+    CC     -->  CCC
+    CCC    -.-> CC
+  end
+  CN       -->  EV
+  CC       -.-> E
+  EV       -.-> CN & E
+  E        -->  CC & EB & EV & EC & EL & G & GS & I & MM & Th & Ti & V
+  E        -.-> EG & NE
+  EB       -.-> E
+  EC       -.-> E
+  EG       -->  E
+  EL       -.-> E
+  subgraph Game
+    direction TB
+    G & GS -->  GR
+    GR     -.-> G & GS
+    subgraph Game style
+      direction TB
+      GS   -->  NE
+    end
+  end
+  I        -.-> E
+  J        -.-> E
+  M        -.-> E
+  MC       -.-> E
+  subgraph Mii costume
+    direction TB
+    MC  -->  MCC
+    MCC -.-> MC
+  end
+  NE       -.-> E
+  ON       -.-> E & MC
+  subgraph Sound effect
+    direction TB
+    SE  --> SEC
+    SEC -.-> SE
+  end
+  V        --> GS
+
+```
 
 ### NPM commands
 
