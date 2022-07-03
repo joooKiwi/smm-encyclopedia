@@ -180,46 +180,63 @@ The types used in the interface:
 
 #### Dependencies
 
+##### Legends
+```mermaid
+flowchart TB
+  E(("General<br/>dependency"))
+  subgraph Exclusive to...
+    SMM1{{"Super Mario Maker (WiiU)"}}
+    SMM3DS>"Super Mario Maker for Nintendo 3DS (3DS)"]
+    SMM2[\"Super Mario Maker 2 (Switch)"\]
+  end
+  subgraph Depencencies to...
+    A -- Direct --> B
+    C -. "Indirect (via the DynamicImporter)" .-> D
+  end
+```
+
 ```mermaid
 flowchart LR
-  CN[Character name]
-  CC[Clear condition]
-  CCC[Clear condition category]
-  CT[Course tag]
-  EV[Editor voice]
-  E[Entity]
-  EB[Entity behaviour]
-  EC[Entity category]
-  EG[Entity group]
-  EL[Entity limit]
-  G[Game]
-  GR[Game reference]
-  GS[Game style]
-  I[Instrument]
-  J[Job]
-  M[Medal]
-  MC[Mii costume]
-  MCC[Mii costume category]
-  MM[Mystery Mushroom]
-  NE[Night effect]
-  NS[Ninji speedrun]
-  ON[Official notification]
-  PM[Predefined message]
-  SC[Sample course]
-  SE[Sound effect]
-  SEC[Sound effect category]
-  SMCL[Super Mario Challenges level]
-  Th[Theme]
-  Ti[Time]
-  V[Version]
+  CN((Character name))
+  CC[\Clear condition\]
+  CCC[\Clear condition category\]
+  CT[\Course tag\]
+  EV((Editor voice))
+  E{"Entity<br/>(the main content)"}
+  EB(("Entity<br/>behaviour"))
+  EC(("Entity<br/>category"))
+  EG((Entity group))
+  EL((Entity limit))
+  G((Game))
+  GR(("Game<br/>reference"))
+  GS((Game style))
+  I((Instrument))
+  J[\Job\]
+  M{{Medal}}
+  MC[\Mii costume\]
+  MCC[\Mii costume category\]
+  MM{{Mystery Mushroom}}
+  NE((Night effect))
+  NS[\Ninji speedrun\]
+  ON(("Official<br/>notification"))
+  PM[\Predefined message\]
+  SC[\Sample course\]
+  SE((Sound effect))
+  SEC(("Sound effect<br/>category"))
+  SMCL>Super Mario Challenges level]
+  Th((Theme))
+  Ti((Time))
+  V((Version))
   
 
+  subgraph Sound effect
+    SE     --> SEC
+    SEC    -.-> SE
+  end
   subgraph Independant
     CT & J & M & NS & ON & PM & SC & SMCL
   end
-
-  subgraph Clear condition
-    direction TB
+  subgraph "Clear condition (SMM2)"
     CC     -->  CCC
     CCC    -.-> CC
   end
@@ -232,12 +249,11 @@ flowchart LR
   EC       -.-> E
   EG       -->  E
   EL       -.-> E
+  V        --> GS
   subgraph Game
-    direction TB
     G & GS -->  GR
     GR     -.-> G & GS
     subgraph Game style
-      direction TB
       GS   -->  NE
     end
   end
@@ -245,19 +261,12 @@ flowchart LR
   J        -.-> E
   M        -.-> E
   MC       -.-> E
-  subgraph Mii costume
-    direction TB
-    MC  -->  MCC
-    MCC -.-> MC
+  subgraph "Mii costume (SMM2)"
+    MC     -->  MCC
+    MCC    -.-> MC
   end
   NE       -.-> E
   ON       -.-> E & MC
-  subgraph Sound effect
-    direction TB
-    SE  --> SEC
-    SEC -.-> SE
-  end
-  V        --> GS
 
 ```
 
