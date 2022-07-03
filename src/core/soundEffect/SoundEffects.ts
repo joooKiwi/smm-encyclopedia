@@ -12,6 +12,7 @@ import SoundEffectComponent from './SoundEffect.component';
 import {StringContainer}    from '../../util/StringContainer';
 
 /**
+ * @todo change the images to a different format than the constructor one.
  * @recursiveReference {@link SoundEffectLoader}
  * @classWithDynamicImport {@link SoundEffectLoader}
  */

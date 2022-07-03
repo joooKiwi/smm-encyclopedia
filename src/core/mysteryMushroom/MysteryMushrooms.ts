@@ -20,9 +20,10 @@ import {SoundContainer}                        from './sound/Sound.container';
 import {StringContainer}                       from '../../util/StringContainer';
 
 /**
+ * @todo Change the mystery mushroom images to svg
+ * @todo Change the path to be like in the game instead of the mystery mushroom name
  * @recursiveReference {@link MysteryMushroomLoader}
  * @classWithDynamicImport {@link MysteryMushroomLoader}
- * @todo add to the Mystery Mushroom image builder the variants (underwater, left & japanese)
  */
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>

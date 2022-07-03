@@ -18,6 +18,7 @@ import {Import}                                      from '../../util/DynamicImp
 import {StringContainer}                             from '../../util/StringContainer';
 
 /**
+ * @todo change the english name to the enum name for the _createEntityReference
  * @recursiveReference {@link Entities}
  * @classWithDynamicImport {@link Entities}
  */
