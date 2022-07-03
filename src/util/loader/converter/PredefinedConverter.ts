@@ -156,30 +156,7 @@ export abstract class PredefinedConverter
     }('single number',);
     public static readonly SINGLE_STRING =    new class PredefinedConverter_SingleString extends PredefinedConverter {
 
-        public newConvertor(value: string, validatingValue: boolean,): Converter<string, boolean>
-        public newConvertor(value: string, validatingValue: any[],): never
-        public newConvertor(value: string, validatingValue: any,): | Converter<string, boolean> | never
-        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, boolean> | never {
-            assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',);
-            return new StringToSingleBooleanConverter(value, validatingValue,);
-        }
-
-        public newValidation(validatingValue: boolean,): ValidationCallback
-        public newValidation(validatingValue: any[],): never
-        public newValidation(validatingValue: any,): | ValidationCallback | never
-        public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
-            assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',);
-            return value => Boolean(value) === validatingValue;
-        }
-
-        public newConversion(value: string,): string {
-            return value;
-        }
-
-    }('single boolean',);
-    public static readonly SINGLE_BOOLEAN =   new class PredefinedConverter_SingleString extends PredefinedConverter {
-
-        public newConvertor(value: string, validatingValue: string,): Converter<string, string>
+        public newConvertor(value: string, validatingValue: boolean,): Converter<string, string>
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, string> | never
         public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, string> | never {
@@ -187,7 +164,7 @@ export abstract class PredefinedConverter
             return new StringToSingleStringConverter(value, validatingValue,);
         }
 
-        public newValidation(validatingValue: string,): ValidationCallback
+        public newValidation(validatingValue: boolean,): ValidationCallback
         public newValidation(validatingValue: any[],): never
         public newValidation(validatingValue: any,): | ValidationCallback | never
         public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
@@ -200,6 +177,29 @@ export abstract class PredefinedConverter
         }
 
     }('single string',);
+    public static readonly SINGLE_BOOLEAN =   new class PredefinedConverter_SingleString extends PredefinedConverter {
+
+        public newConvertor(value: string, validatingValue: string,): Converter<string, boolean>
+        public newConvertor(value: string, validatingValue: any[],): never
+        public newConvertor(value: string, validatingValue: any,): | Converter<string, boolean> | never
+        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, boolean> | never {
+            assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',);
+            return new StringToSingleBooleanConverter(value, validatingValue,);
+        }
+
+        public newValidation(validatingValue: string,): ValidationCallback
+        public newValidation(validatingValue: any[],): never
+        public newValidation(validatingValue: any,): | ValidationCallback | never
+        public newValidation(validatingValue: | any | any[],): | ValidationCallback | never {
+            assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',);
+            return value => Boolean(value) === validatingValue;
+        }
+
+        public newConversion(value: string,): string {
+            return value;
+        }
+
+    }('single boolean',);
     //TODO add string to emptyable single string converter
     //TODO add string to array of string converter
     //TODO add string to array of nullable string converter
