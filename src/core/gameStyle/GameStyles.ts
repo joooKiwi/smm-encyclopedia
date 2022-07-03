@@ -31,69 +31,61 @@ export abstract class GameStyles
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ SUPER_MARIO_BROS;
-    public static/* readonly*/ SUPER_MARIO_BROS_3;
-    public static/* readonly*/ SUPER_MARIO_WORLD;
-    public static/* readonly*/ NEW_SUPER_MARIO_BROS_U;
-    public static/* readonly*/ SUPER_MARIO_3D_WORLD;
+    public static readonly SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles {
 
-    static {
-        this.SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles {
+        public override get(property: GameStyleProperty,): boolean {
+            return property.isInSuperMarioBrosStyle;
+        }
 
-                public override get(property: GameStyleProperty,): boolean {
-                    return property.isInSuperMarioBrosStyle;
-                }
+        public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBrosStyle'] {
+            return referenceProperty.referenceInSuperMarioBrosStyle;
+        }
 
-                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBrosStyle'] {
-                    return referenceProperty.referenceInSuperMarioBrosStyle;
-                }
+    }('SMB', 'M1', 'Super Mario Bros.',);
+    public static readonly SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles {
 
-            }    ('SMB',   'M1', 'Super Mario Bros.',      );
-        this.SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles {
+        public override get(property: GameStyleProperty,): boolean {
+            return property.isInSuperMarioBros3Style;
+        }
 
-                public override get(property: GameStyleProperty,): boolean {
-                    return property.isInSuperMarioBros3Style;
-                }
+        public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBros3Style'] {
+            return referenceProperty.referenceInSuperMarioBros3Style;
+        }
 
-                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioBros3Style'] {
-                    return referenceProperty.referenceInSuperMarioBros3Style;
-                }
+    }('SMB3', 'M3', 'Super Mario Bros. 3',);
+    public static readonly SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles {
 
-            }   ('SMB3',  'M3', 'Super Mario Bros. 3',    );
-        this.SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles {
+        public override get(property: GameStyleProperty,): boolean {
+            return property.isInSuperMarioWorldStyle;
+        }
 
-                public override get(property: GameStyleProperty,): boolean {
-                    return property.isInSuperMarioWorldStyle;
-                }
+        public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioWorldStyle'] {
+            return referenceProperty.referenceInSuperMarioWorldStyle;
+        }
 
-                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMarioWorldStyle'] {
-                    return referenceProperty.referenceInSuperMarioWorldStyle;
-                }
+    }('SMW', 'MW', 'Super Mario World',);
+    public static readonly NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles {
 
-            }   ('SMW',   'MW', 'Super Mario World',      );
-        this.NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles {
+        public override get(property: GameStyleProperty,): boolean {
+            return property.isInNewSuperMarioBrosUStyle;
+        }
 
-                public override get(property: GameStyleProperty,): boolean {
-                    return property.isInNewSuperMarioBrosUStyle;
-                }
+        public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInNewSuperMarioBrosUStyle'] {
+            return referenceProperty.referenceInNewSuperMarioBrosUStyle;
+        }
 
-                public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInNewSuperMarioBrosUStyle'] {
-                    return referenceProperty.referenceInNewSuperMarioBrosUStyle;
-                }
+    }('NSMBU', 'WU', 'New Super Mario Bros. U',);
+    public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles {
 
-            }('NSMBU', 'WU', 'New Super Mario Bros. U',);
-        this.SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles {
+        public override get(property: GameStyleProperty,): boolean {
+            return property.isInSuperMario3DWorldStyle === true;
+        }
 
-            public override get(property: GameStyleProperty,): boolean {
-                return property.isInSuperMario3DWorldStyle === true;
-            }
+        public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMario3DWorldStyle'] {
+            return referenceProperty.referenceInSuperMario3DWorldStyle;
+        }
 
-            public override getReference(referenceProperty: GameStyleReferences,): GameStyleReferences['referenceInSuperMario3DWorldStyle'] {
-                return referenceProperty.referenceInSuperMario3DWorldStyle;
-            }
-
-        } ('SM3DW', '3W', 'Super Mario 3D World',   );
-    }
+    }('SM3DW', '3W', 'Super Mario 3D World',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

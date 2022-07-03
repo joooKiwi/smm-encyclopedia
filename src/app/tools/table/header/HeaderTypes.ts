@@ -8,25 +8,20 @@ export abstract class HeaderTypes
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ HEAD;
-    public static/* readonly*/ FOOT;
+    public static readonly HEAD = new class HeaderTypes_Head extends HeaderTypes {
 
-    static {
-        this.HEAD = new class HeaderTypes_Head extends HeaderTypes {
+        public override getLayout(layout: readonly string[][]): readonly string[][] {
+            return layout;
+        }
 
-            public override getLayout(layout: readonly string[][]): readonly string[][] {
-                return layout;
-            }
+    }('head', 'top',);
+    public static readonly FOOT = new class HeaderTypes_Foot extends HeaderTypes {
 
-        }('head', 'top',);
-        this.FOOT = new class HeaderTypes_Foot extends HeaderTypes {
+        public override getLayout(layout: readonly string[][]): readonly string[][] {
+            return [...layout].reverse();
+        }
 
-            public override getLayout(layout: readonly string[][]): readonly string[][] {
-                return [...layout].reverse();
-            }
-
-        }('foot', 'bottom',);
-    }
+    }('foot', 'bottom',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

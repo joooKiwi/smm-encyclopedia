@@ -19,71 +19,37 @@ export class CourseTags
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ NONE;
-    public static/* readonly*/ STANDARD;
-    public static/* readonly*/ PUZZLE_SOLVING;
-    public static/* readonly*/ SPEEDRUN;
+    public static readonly NONE =               new CourseTags('None',);
+    public static readonly STANDARD =           new CourseTags('Standard',);
+    public static readonly PUZZLE_SOLVING =     new CourseTags('Puzzle-solving',);
+    public static readonly SPEEDRUN =           new CourseTags('Speedrun',);
 
-    public static/* readonly*/ AUTOSCROLL;
-    public static/* readonly*/ AUTO_MARIO;
+    public static readonly AUTOSCROLL =         new CourseTags('Autoscroll',);
+    public static readonly AUTO_MARIO =         new CourseTags('Auto-Mario',);
 
-    public static/* readonly*/ ONE_SCREEN;
-    public static/* readonly*/ SHORT_AND_SWEET;
-    public static/* readonly*/ PRECISION;
-    public static/* readonly*/ SHOOTER;
+    public static readonly ONE_SCREEN =         new CourseTags('One screen',);
+    public static readonly SHORT_AND_SWEET =    new CourseTags('Short and sweet',);
+    public static readonly PRECISION =          new CourseTags('Precision',);
+    public static readonly SHOOTER =            new CourseTags('Shooter',);
 
-    public static/* readonly*/ SINGLE_PLAYER;
-    public static/* readonly*/ MULTIPLAYER_VERSUS;
-    public static/* readonly*/ MULTIPLAYER_COOP;
+    public static readonly SINGLE_PLAYER =      new CourseTags('Single player',);
+    public static readonly MULTIPLAYER_VERSUS = new CourseTags('Multiplayer Versus',);
+    public static readonly MULTIPLAYER_COOP =   new CourseTags('Multiplayer Co-op',);
 
-    public static/* readonly*/ THEMED;
-    public static/* readonly*/ MUSIC;
-    public static/* readonly*/ ART;
-    public static/* readonly*/ SHOWCASE;
-    public static/* readonly*/ STORY;
-    public static/* readonly*/ EXPLORATION;
-    public static/* readonly*/ TECHNICAL;
+    public static readonly THEMED =             new CourseTags('Themed',);
+    public static readonly MUSIC =              new CourseTags('Music',);
+    public static readonly ART =                new CourseTags('Art',);
+    public static readonly SHOWCASE =           new CourseTags('Showcase',);
+    public static readonly STORY =              new CourseTags('Story',);
+    public static readonly EXPLORATION =        new CourseTags('Exploration',);
+    public static readonly TECHNICAL =          new CourseTags('Technical',);
 
-    public static/* readonly*/ BOSS_BATTLE;
-    public static/* readonly*/ LINK;
+    public static readonly BOSS_BATTLE =        new CourseTags('Boss battle',);
+    public static readonly LINK =               new CourseTags('Link',);
 
-    public static/* readonly*/ GLITCH;
-    public static/* readonly*/ TROLL;
-    public static/* readonly*/ KAIZO;
-
-    static {
-        this.NONE =               new CourseTags('None',);
-        this.STANDARD =           new CourseTags('Standard',);
-        this.PUZZLE_SOLVING =     new CourseTags('Puzzle-solving',);
-        this.SPEEDRUN =           new CourseTags('Speedrun',);
-
-        this.AUTOSCROLL =         new CourseTags('Autoscroll',);
-        this.AUTO_MARIO =         new CourseTags('Auto-Mario',);
-
-        this.ONE_SCREEN =         new CourseTags('One screen',);
-        this.SHORT_AND_SWEET =    new CourseTags('Short and sweet',);
-        this.PRECISION =          new CourseTags('Precision',);
-        this.SHOOTER =            new CourseTags('Shooter',);
-
-        this.SINGLE_PLAYER =      new CourseTags('Single player',);
-        this.MULTIPLAYER_VERSUS = new CourseTags('Multiplayer Versus',);
-        this.MULTIPLAYER_COOP =   new CourseTags('Multiplayer Co-op',);
-
-        this.THEMED =             new CourseTags('Themed',);
-        this.MUSIC =              new CourseTags('Music',);
-        this.ART =                new CourseTags('Art',);
-        this.SHOWCASE =           new CourseTags('Showcase',);
-        this.STORY =              new CourseTags('Story',);
-        this.EXPLORATION =        new CourseTags('Exploration',);
-        this.TECHNICAL =          new CourseTags('Technical',);
-
-        this.BOSS_BATTLE =        new CourseTags('Boss battle',);
-        this.LINK =               new CourseTags('Link',);
-
-        this.GLITCH =             new CourseTags('Glitch',);
-        this.TROLL =              new CourseTags('Troll',);
-        this.KAIZO =              new CourseTags('Kaizo',);
-    }
+    public static readonly GLITCH =             new CourseTags('Glitch',);
+    public static readonly TROLL =              new CourseTags('Troll',);
+    public static readonly KAIZO =              new CourseTags('Kaizo',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

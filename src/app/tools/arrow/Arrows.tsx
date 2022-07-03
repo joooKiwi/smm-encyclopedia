@@ -23,89 +23,78 @@ export abstract class Arrows
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ UP;
-    public static /*readonly*/ DOWN;
-    public static /*readonly*/ LEFT;
-    public static /*readonly*/ RIGHT;
-    public static /*readonly*/ VERTICAL_JOINED;
-    public static /*readonly*/ VERTICAL_SEPARATED;
-    public static /*readonly*/ HORIZONTAL_JOINED;
-    public static /*readonly*/ HORIZONTAL_SEPARATED;
+    public static readonly UP =                   new class ArrowDirections_Up extends Arrows {
 
-    static {
-        this.UP =                   new class ArrowDirections_Up extends Arrows {
+        public override createCardinalArrow(): ReactElement {
+            return <div className="arrow up"/>;
+        }
 
-            public override createCardinalArrow(): ReactElement {
-                return <div className="arrow up"/>;
-            }
+        protected override _createArrow(): PossibleArrowCreation {
+            return [this.createCardinalArrow(), null,];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [this.createCardinalArrow(), null,];
-            }
+    }('arrow-container', VERTICAL, true,);
+    public static readonly DOWN =                 new class ArrowDirections_Down extends Arrows {
 
-        }('arrow-container', VERTICAL, true,);
-        this.DOWN =                 new class ArrowDirections_Down extends Arrows {
+        public override createCardinalArrow(): ReactElement {
+            return <div className="arrow down"/>;
+        }
 
-            public override createCardinalArrow(): ReactElement {
-                return <div className="arrow down"/>;
-            }
+        protected override _createArrow(): PossibleArrowCreation {
+            return [null, this.createCardinalArrow(),];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [null, this.createCardinalArrow(),];
-            }
+    }('arrow-container', VERTICAL, true,);
+    public static readonly LEFT =                 new class ArrowDirections_Left extends Arrows {
 
-        }('arrow-container', VERTICAL, true,);
-        this.LEFT =                 new class ArrowDirections_Left extends Arrows {
+        public override createCardinalArrow(): ReactElement {
+            return <div className="arrow left"/>;
+        }
 
-            public override createCardinalArrow(): ReactElement {
-                return <div className="arrow left"/>;
-            }
+        protected override _createArrow(): PossibleArrowCreation {
+            return [this.createCardinalArrow(), null,];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [this.createCardinalArrow(), null,];
-            }
+    }('arrow-container', HORIZONTAL, true,);
+    public static readonly RIGHT =                new class ArrowDirections_Right extends Arrows {
 
-        }('arrow-container', HORIZONTAL, true,);
-        this.RIGHT =                new class ArrowDirections_Right extends Arrows {
+        public override createCardinalArrow(): ReactElement {
+            return <div className="arrow right"/>;
+        }
 
-            public override createCardinalArrow(): ReactElement {
-                return <div className="arrow right"/>;
-            }
+        protected override _createArrow(): PossibleArrowCreation {
+            return [null, this.createCardinalArrow(),];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [null, this.createCardinalArrow(),];
-            }
+    }('arrow-container', HORIZONTAL, true,);
+    public static readonly VERTICAL_JOINED =      new class ArrowDirections_Vertical extends Arrows {
 
-        }('arrow-container', HORIZONTAL, true,);
-        this.VERTICAL_JOINED =      new class ArrowDirections_Vertical extends Arrows {
+        protected override _createArrow(): PossibleArrowCreation {
+            return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),];
-            }
+    }('arrow-container', VERTICAL, false,);
+    public static readonly VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
 
-        }('arrow-container', VERTICAL, false,);
-        this.VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
+        protected override _createArrow(): PossibleArrowCreation {
+            return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),];
-            }
+    }('arrows-container', VERTICAL, false,);
+    public static readonly HORIZONTAL_JOINED =    new class ArrowDirections_Horizontal extends Arrows {
 
-        }('arrows-container', VERTICAL, false,);
-        this.HORIZONTAL_JOINED =    new class ArrowDirections_Horizontal extends Arrows {
+        protected override _createArrow(): PossibleArrowCreation {
+            return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),];
-            }
+    }('arrow-container', HORIZONTAL, true,);
+    public static readonly HORIZONTAL_SEPARATED = new class ArrowDirections_HorizontalSeparated extends Arrows {
 
-        }('arrow-container', HORIZONTAL, true,);
-        this.HORIZONTAL_SEPARATED = new class ArrowDirections_HorizontalSeparated extends Arrows {
+        protected override _createArrow(): PossibleArrowCreation {
+            return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),];
+        }
 
-            protected override _createArrow(): PossibleArrowCreation {
-                return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),];
-            }
-
-        }('arrows-container', HORIZONTAL, false,);
-    }
+    }('arrows-container', HORIZONTAL, false,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

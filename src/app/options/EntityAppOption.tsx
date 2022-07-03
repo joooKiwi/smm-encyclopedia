@@ -48,416 +48,388 @@ export abstract class EntityAppOption
     //region -------------------- Enum instances --------------------
 
     /**
-     * Display every images.
+     * Display every image.
      */
-    public static/* readonly*/ IMAGES;
+    public static readonly IMAGES = new class EntityAppOption_Images extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.images;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.section.images = value;
+        }
+
+        private get __createImageOnEditor(): PossibleRenderReactElement {
+            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+            const image = enumeration.editorImage;
+
+            return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`editor image (${enumeration.englishName})`}>{
+                [...new Set(EntityAppOption.themes.map(theme =>
+                    EntityAppOption.times.map(time => image.get(true, gameStyle, theme, time,)
+                        .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
+                    .map(([theme, time, image, index,]) =>
+                        <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
+            }</Fragment>);
+        }
+
+        private get __createImageOnClearCondition(): PossibleRenderReactElement {
+            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+            const image = enumeration.clearConditionImage;
+
+            return EntityAppOption._gameStyles.map(gameStyle =>
+                <Fragment key={`clear condition image (${enumeration.englishName})`}>{
+                    image.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
+                }</Fragment>);
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+
+                return enumeration.editorImage === EmptyEditorImage.get
+                    ? this.__createImageOnClearCondition
+                    : this.__createImageOnEditor;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {
+                key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
+                    ({key: `image-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
+            };
+        }
+
+    }(true,);
     /**
      * Display an animation or not.
      *
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static/* readonly*/ IMAGES_ON_EDITOR;
-    public static/* readonly*/ IMAGES_ON_CLEAR_CONDITION;
-    public static/* readonly*/ IMAGES_ON_WHILE_PLAYING;
-    public static/* readonly*/ IMAGES_ON_UNUSED;
+    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
 
-    public static/* readonly*/ NAME;
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.images.editor;
+        }
 
-    public static/* readonly*/ GAME;
-    public static/* readonly*/ WHEN_ALL_SELECTED_GAME;
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.editor = value;
+        }
 
-    public static/* readonly*/ GAME_STYLE;
-    public static/* readonly*/ WHEN_ALL_SELECTED_GAME_STYLE;
+    }(true,);
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
 
-    public static/* readonly*/ COURSE_THEME;
-    public static/* readonly*/ WHEN_ALL_SELECTED_COURSE_THEME;
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.images.clearCondition;
+        }
 
-    public static/* readonly*/ TIME;
-    public static/* readonly*/ WHEN_ALL_SELECTED_TIME;
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.clearCondition = value;
+        }
 
-    public static/* readonly*/ CATEGORY;
+    }(true,);
+    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.images.whilePlaying;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.whilePlaying = value;
+        }
+
+    }(false,);
+    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.images.unused;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.images.unused = value;
+        }
+
+    }(false,);
+
+    public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.name;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.section.name = value;
+        }
+
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+
+                return <div className="nameAndEditorVoiceSound-container container">
+                    {CommonOptions.get.getNameContent(enumeration)}
+                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
+                </div>;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return CommonOptions.get.nameHeader;
+        }
+
+    }(true,);
+
+    public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.game;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.section.game = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+
+                return <GameComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_GAME.get}/>;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,};
+        }
+
+    }(false,);
+    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.asText.whenAll.game;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.asText.whenAll.game = value;
+        }
+
+    }(false,);
+
+    public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.gameStyle;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.section.gameStyle = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+
+                return <GameStyleComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_GAME_STYLE.get}/>;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
+        }
+
+    }(false,);
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.asText.whenAll.gameStyle;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.asText.whenAll.gameStyle = value;
+        }
+
+    }(false,);
+
+    public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.courseTheme;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.section.courseTheme = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+
+                return <CourseThemeComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_COURSE_THEME.get}/>;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
+        }
+
+    }(false,);
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.asText.whenAll.courseTheme;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.asText.whenAll.courseTheme = value;
+        }
+
+    }(false,);
+
+    public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.time;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.section.time = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+
+            return () => {
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+
+                return <TimeComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_TIME.get}/>;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
+        }
+
+    }(false,);
+    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.asText.whenAll.time;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,): void {
+            nextState.display.asText.whenAll.time = value;
+        }
+
+    }(false,);
+
+    public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.category;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.section.category = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
+                    categoryName = enumeration.reference.categoryNameContainer;
+
+                return CommonOptions.get.getCategoryContent(enumeration,
+                    () => EntityAppOption.CATEGORY_AS_TEXT.get
+                        ? categoryName
+                        : EntityCategories.getValue(categoryName.english)!.imagePath,);
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return CommonOptions.get.categoryHeader;
+        }
+
+    }(true,);
     /**
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static/* readonly*/ CATEGORY_AS_TEXT;
+    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {
 
-    public static/* readonly*/ LIMIT;
-    public static/* readonly*/ IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT;
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.asText.category;
+        }
 
-    static {
-        this.IMAGES = new class EntityAppOption_Images extends EntityAppOption {
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.asText.category = value;
+        }
 
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.images;
-            }
+    }(false,);
 
-            protected override _set(nextState: EntityAppStates, value: boolean,): void {
-                nextState.display.section.images = value;
-            }
+    public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
-            private get __createImageOnEditor(): PossibleRenderReactElement {
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.section.limit;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.section.limit = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const image = enumeration.editorImage;
-
-                return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`editor image (${enumeration.englishName})`}>{
-                    [...new Set(EntityAppOption.themes.map(theme =>
-                        EntityAppOption.times.map(time => image.get(true, gameStyle, theme, time,)
-                            .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
-                        .map(([theme, time, image, index,]) =>
-                            <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
-                }</Fragment>);
-            }
-
-            private get __createImageOnClearCondition(): PossibleRenderReactElement {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const image = enumeration.clearConditionImage;
-
-                return EntityAppOption._gameStyles.map(gameStyle =>
-                    <Fragment key={`clear condition image (${enumeration.englishName})`}>{
-                        image.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
-                    }</Fragment>);
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                    return enumeration.editorImage === EmptyEditorImage.get
-                        ? this.__createImageOnClearCondition
-                        : this.__createImageOnEditor;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {
-                    key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
-                    subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
-                        ({key: `image-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
-                };
-            }
-
-        }(true,);
-        this.IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.images.editor;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.images.editor = value;
-            }
-
-        }(true,);
-        this.IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.images.clearCondition;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.images.clearCondition = value;
-            }
-
-        }(true,);
-        this.IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.images.whilePlaying;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.images.whilePlaying = value;
-            }
-
-        }(false,);
-        this.IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.images.unused;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.images.unused = value;
-            }
-
-        }(false,);
-
-        this.NAME = new class EntityAppOption_Name extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.name;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,): void {
-                nextState.display.section.name = value;
-            }
-
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                    return <div className="nameAndEditorVoiceSound-container container">
-                        {CommonOptions.get.getNameContent(enumeration)}
-                        <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
-                    </div>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return CommonOptions.get.nameHeader;
-            }
-
-        }(true,);
-
-        this.GAME = new class EntityAppOption_Game extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.game;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.section.game = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
-
-                    return <GameComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_GAME.get}/>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,};
-            }
-
-        }(false,);
-        this.WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.asText.whenAll.game;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,): void {
-                nextState.display.asText.whenAll.game = value;
-            }
-
-        }(false,);
-
-        this.GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.gameStyle;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.section.gameStyle = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
-
-                    return <GameStyleComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_GAME_STYLE.get}/>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
-            }
-
-        }(false,);
-        this.WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.asText.whenAll.gameStyle;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,): void {
-                nextState.display.asText.whenAll.gameStyle = value;
-            }
-
-        }(false,);
-
-        this.COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.courseTheme;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.section.courseTheme = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
-
-                    return <CourseThemeComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_COURSE_THEME.get}/>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
-            }
-
-        }(false,);
-        this.WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.asText.whenAll.courseTheme;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,): void {
-                nextState.display.asText.whenAll.courseTheme = value;
-            }
-
-        }(false,);
-
-        this.TIME = new class EntityAppOption_Time extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.time;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.section.time = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-
-                return () => {
-                    const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
-
-                    return <TimeComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_TIME.get}/>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
-            }
-
-        }(false,);
-        this.WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.asText.whenAll.time;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,): void {
-                nextState.display.asText.whenAll.time = value;
-            }
-
-        }(false,);
-
-        this.CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.category;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.section.category = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                        categoryName = enumeration.reference.categoryNameContainer;
-
-                    return CommonOptions.get.getCategoryContent(enumeration,
-                        () => EntityAppOption.CATEGORY_AS_TEXT.get
-                        ? categoryName
-                        : EntityCategories.getValue(categoryName.english)!.imagePath,);
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return CommonOptions.get.categoryHeader;
-            }
-
-        }(true,);
-        this.CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.asText.category;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.asText.category = value;
-            }
-
-        }(false,);
-
-        this.LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.section.limit;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.section.limit = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const entity = enumeration.reference;
-
-                    const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds;
-                    const editorLimit_SMM2 = entity.editorLimit_smm2;
-
-                    return [
-                        editorLimit_SMM1And3DS == null
-                            ? <TextComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} content={'N/A'}/>
-                            : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS}
-                                              displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
-                        editorLimit_SMM2 == null || editorLimit_SMM2 === 'N/A'
-                            ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
-                            : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2}
-                                              displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
-                        <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()}
-                                        displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
-                    ];
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {
-                    key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
-                    subHeaders: [
-                        {
-                            key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
-                            tooltip: {namespace: 'gameContent', translationKey: 'Limit in the editor',},
-                            subHeaders: [
-                                {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                                {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                            ],
-                        },
-                        {
-                            key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
-                            tooltip: {namespace: 'gameContent', translationKey: 'Limit while playing',},
-                        },
-                    ],
-                };
-            }
-
-        }(true,);
-        this.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {
-
-            protected override _get(state: EntityAppStates,): boolean {
-                return state.display.asText.ifApplicable.acronymOnLimits;
-            }
-
-            protected override _set(nextState: EntityAppStates, value: boolean,) {
-                nextState.display.asText.ifApplicable.acronymOnLimits = value;
-            }
-
-        }(true,);
-    }
+                const entity = enumeration.reference;
+
+                const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds;
+                const editorLimit_SMM2 = entity.editorLimit_smm2;
+
+                return [
+                    editorLimit_SMM1And3DS == null
+                        ? <TextComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} content={'N/A'}/>
+                        : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS}
+                                          displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                    editorLimit_SMM2 == null || editorLimit_SMM2 === 'N/A'
+                        ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
+                        : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2}
+                                          displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                    <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()}
+                                    displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                ];
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {
+                key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
+                subHeaders: [
+                    {
+                        key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
+                        tooltip: {namespace: 'gameContent', translationKey: 'Limit in the editor',},
+                        subHeaders: [
+                            {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                            {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                        ],
+                    },
+                    {
+                        key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
+                        tooltip: {namespace: 'gameContent', translationKey: 'Limit while playing',},
+                    },
+                ],
+            };
+        }
+
+    }(true,);
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {
+
+        protected override _get(state: EntityAppStates,): boolean {
+            return state.display.asText.ifApplicable.acronymOnLimits;
+        }
+
+        protected override _set(nextState: EntityAppStates, value: boolean,) {
+            nextState.display.asText.ifApplicable.acronymOnLimits = value;
+        }
+
+    }(true,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

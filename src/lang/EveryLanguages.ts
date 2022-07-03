@@ -20,491 +20,462 @@ export abstract class EveryLanguages
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ ENGLISH;
-    public static/* readonly*/ AMERICAN_ENGLISH;
-    public static/* readonly*/ EUROPEAN_ENGLISH;
-    public static/* readonly*/ FRENCH;
-    public static/* readonly*/ CANADIAN_FRENCH;
-    public static/* readonly*/ EUROPEAN_FRENCH;
-    public static/* readonly*/ GERMAN;
-    public static/* readonly*/ SPANISH;
-    public static/* readonly*/ AMERICAN_SPANISH;
-    public static/* readonly*/ EUROPEAN_SPANISH;
-    public static/* readonly*/ ITALIAN;
-    public static/* readonly*/ DUTCH;
-    public static/* readonly*/ PORTUGUESE;
-    public static/* readonly*/ AMERICAN_PORTUGUESE;
-    public static/* readonly*/ EUROPEAN_PORTUGUESE;
-    public static/* readonly*/ RUSSIAN;
-    public static/* readonly*/ JAPANESE;
-    public static/* readonly*/ CHINESE;
-    public static/* readonly*/ TRADITIONAL_CHINESE;
-    public static/* readonly*/ SIMPLIFIED_CHINESE;
-    public static/* readonly*/ KOREAN;
-
-    public static /*readonly*/ HEBREW;
-    public static /*readonly*/ POLISH;
-    public static /*readonly*/ UKRAINIAN;
-    public static /*readonly*/ GREEK;
-
-    static {
-        this.ENGLISH =             new class EveryLanguages_English extends EveryLanguages {
-
-            //region -------------------- Space getter methods --------------------
-
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
-
-            //endregion -------------------- Space getter methods --------------------
-
-            public override get isCurrentLanguage(): boolean {
-                return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
-            }
-
-            public override get isDefaultLanguage(): boolean {
-                return EveryLanguages.AMERICAN_ENGLISH.isDefaultLanguage || EveryLanguages.EUROPEAN_ENGLISH.isDefaultLanguage;
-            }
-
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['english']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return this.get(classWithEveryLanguages);
-            }
-
-            public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['english']
-            public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return classWithEveryLanguages.english;
-            }
-
-            public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalEnglish']
-            public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): AmericanOrEuropeanOriginal<T> {
-                return classWithEveryLanguages.originalEnglish;
-            }
-
-        }           (true,  'en',    'en',    'English',              'English',);
-        this.AMERICAN_ENGLISH =    new class EveryLanguages_AmericanEnglish extends EveryLanguages {
-
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
-            }
-
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return this.get(classWithEveryLanguages);
-            }
-
-            public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
-            public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return classWithEveryLanguages.americanEnglish;
-            }
-
-        }   (true,  'en_AM', 'en-US', 'English (America)',    'English (America)',   'America',      EveryLanguages.ENGLISH,);
-        this.EUROPEAN_ENGLISH =    new class EveryLanguages_EuropeanEnglish extends EveryLanguages {
-
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage;
-            }
-
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return this.get(classWithEveryLanguages);
-            }
-
-            public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
-            public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return classWithEveryLanguages.europeanEnglish;
-            }
-
-        }   (true,  'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    'Europe',       EveryLanguages.ENGLISH,);
-        this.FRENCH =              new class EveryLanguages_French extends EveryLanguages {
-
-            //region -------------------- Space getter methods --------------------
-
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+    public static readonly ENGLISH =             new class EveryLanguages_English extends EveryLanguages {
 
-            //endregion -------------------- Space getter methods --------------------
+        //region -------------------- Space getter methods --------------------
 
-            public override get isCurrentLanguage(): boolean {
-                return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
-            }
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-            public override get isDefaultLanguage(): boolean {
-                return EveryLanguages.CANADIAN_FRENCH.isDefaultLanguage || EveryLanguages.EUROPEAN_FRENCH.isDefaultLanguage;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['french']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return this.get(classWithEveryLanguages);
-            }
+        public override get isCurrentLanguage(): boolean {
+            return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
+        }
 
-            public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['french']
-            public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return classWithEveryLanguages.french;
-            }
+        public override get isDefaultLanguage(): boolean {
+            return EveryLanguages.AMERICAN_ENGLISH.isDefaultLanguage || EveryLanguages.EUROPEAN_ENGLISH.isDefaultLanguage;
+        }
+
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['english']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return this.get(classWithEveryLanguages);
+        }
 
-            public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalFrench']
-            public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): CanadianOrEuropeanOriginal<T> {
-                return classWithEveryLanguages.originalFrench;
-            }
+        public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['english']
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return classWithEveryLanguages.english;
+        }
 
-        }            (true,  'fr',    'fr',    'French',               'Français',);
-        this.CANADIAN_FRENCH =     new class EveryLanguages_CanadianFrench extends EveryLanguages {
+        public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalEnglish']
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): AmericanOrEuropeanOriginal<T> {
+            return classWithEveryLanguages.originalEnglish;
+        }
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
-            }
+    }           (true,  'en',    'en',    'English',              'English',);
+    public static readonly AMERICAN_ENGLISH =    new class EveryLanguages_AmericanEnglish extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return this.get(classWithEveryLanguages);
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage;
+        }
 
-            public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
-            public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return classWithEveryLanguages.canadianFrench;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return this.get(classWithEveryLanguages);
+        }
 
-        }    (true,  'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   'Canada',       EveryLanguages.FRENCH,);
-        this.EUROPEAN_FRENCH =     new class EveryLanguages_EuropeanFrench extends EveryLanguages {
+        public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return classWithEveryLanguages.americanEnglish;
+        }
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage;
-            }
+    }   (true,  'en_AM', 'en-US', 'English (America)',    'English (America)',   'America',      EveryLanguages.ENGLISH,);
+    public static readonly EUROPEAN_ENGLISH =    new class EveryLanguages_EuropeanEnglish extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return this.get(classWithEveryLanguages);
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage;
+        }
 
-            public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
-            public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-                return classWithEveryLanguages.europeanFrench;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return this.get(classWithEveryLanguages);
+        }
 
-        }    (true,  'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   'Europe',       EveryLanguages.FRENCH,);
-        this.GERMAN =              new class EveryLanguages_German extends EveryLanguages {
+        public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return classWithEveryLanguages.europeanEnglish;
+        }
 
-            //region -------------------- Space getter methods --------------------
+    }   (true,  'en_EU', 'en-EU', 'English (Europe)',     'English (Europe)',    'Europe',       EveryLanguages.ENGLISH,);
+    public static readonly FRENCH =              new class EveryLanguages_French extends EveryLanguages {
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        //region -------------------- Space getter methods --------------------
 
-            //endregion -------------------- Space getter methods --------------------
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['german']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.german;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-        }            (false, 'de',    'de',    'German',               'Deutsche',);
-        this.SPANISH =             new class EveryLanguages_Spanish extends EveryLanguages {
+        public override get isCurrentLanguage(): boolean {
+            return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
+        }
 
-            //region -------------------- Space getter methods --------------------
+        public override get isDefaultLanguage(): boolean {
+            return EveryLanguages.CANADIAN_FRENCH.isDefaultLanguage || EveryLanguages.EUROPEAN_FRENCH.isDefaultLanguage;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['french']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return this.get(classWithEveryLanguages);
+        }
 
-            //endregion -------------------- Space getter methods --------------------
+        public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['french']
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return classWithEveryLanguages.french;
+        }
 
-            public override get isCurrentLanguage(): boolean {
-                return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage;
-            }
+        public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalFrench']
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): CanadianOrEuropeanOriginal<T> {
+            return classWithEveryLanguages.originalFrench;
+        }
 
-            public override get isDefaultLanguage(): boolean {
-                return EveryLanguages.AMERICAN_SPANISH.isDefaultLanguage || EveryLanguages.EUROPEAN_SPANISH.isDefaultLanguage;
-            }
+    }            (true,  'fr',    'fr',    'French',               'Français',);
+    public static readonly CANADIAN_FRENCH =     new class EveryLanguages_CanadianFrench extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['spanish']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.spanish;
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage;
+        }
 
-            public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalSpanish']
-            public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleAmericanOrEuropeanValue<T> {
-                return classWithEveryLanguages.originalSpanish;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return this.get(classWithEveryLanguages);
+        }
 
-        }           (false, 'es',    'es',    'Spanish',              'Español',);
-        this.AMERICAN_SPANISH =    new class EveryLanguages_AmericanSpanish extends EveryLanguages {
+        public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return classWithEveryLanguages.canadianFrench;
+        }
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
-            }
+    }    (true,  'fr_CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   'Canada',       EveryLanguages.FRENCH,);
+    public static readonly EUROPEAN_FRENCH =     new class EveryLanguages_EuropeanFrench extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanSpanish']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.americanSpanish;
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage;
+        }
 
-        }   (false, 'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   'America',      EveryLanguages.SPANISH,);
-        this.EUROPEAN_SPANISH =    new class EveryLanguages_EuropeanSpanish extends EveryLanguages {
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return this.get(classWithEveryLanguages);
+        }
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
-            }
+        public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+            return classWithEveryLanguages.europeanFrench;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanSpanish']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.europeanSpanish;
-            }
+    }    (true,  'fr_EU', 'fr-EU', 'French (Europe)',      'Français (Europe)',   'Europe',       EveryLanguages.FRENCH,);
+    public static readonly GERMAN =              new class EveryLanguages_German extends EveryLanguages {
 
-        }   (false, 'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    'Europe',       EveryLanguages.SPANISH,);
-        this.ITALIAN =             new class EveryLanguages_Italian extends EveryLanguages {
+        //region -------------------- Space getter methods --------------------
 
-            //region -------------------- Space getter methods --------------------
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-            //endregion -------------------- Space getter methods --------------------
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['german']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.german;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['italian']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.italian;
-            }
+    }            (false, 'de',    'de',    'German',               'Deutsche',);
+    public static readonly SPANISH =             new class EveryLanguages_Spanish extends EveryLanguages {
 
-        }           (false, 'it',    'it',    'Italian',              'Italiano',);
-        this.DUTCH =               new class EveryLanguages_Dutch extends EveryLanguages {
+        //region -------------------- Space getter methods --------------------
 
-            //region -------------------- Space getter methods --------------------
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-            //endregion -------------------- Space getter methods --------------------
+        public override get isCurrentLanguage(): boolean {
+            return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['dutch']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.dutch;
-            }
+        public override get isDefaultLanguage(): boolean {
+            return EveryLanguages.AMERICAN_SPANISH.isDefaultLanguage || EveryLanguages.EUROPEAN_SPANISH.isDefaultLanguage;
+        }
 
-        }             (false, 'nl',    'nl',    'Dutch',                'Nederlands',);
-        this.PORTUGUESE =          new class EveryLanguages_Portuguese extends EveryLanguages {
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['spanish']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.spanish;
+        }
 
-            //region -------------------- Space getter methods --------------------
+        public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalSpanish']
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleAmericanOrEuropeanValue<T> {
+            return classWithEveryLanguages.originalSpanish;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+    }           (false, 'es',    'es',    'Spanish',              'Español',);
+    public static readonly AMERICAN_SPANISH =    new class EveryLanguages_AmericanSpanish extends EveryLanguages {
 
-            //endregion -------------------- Space getter methods --------------------
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
+        }
 
-            public override get isCurrentLanguage(): boolean {
-                return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanSpanish']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.americanSpanish;
+        }
 
-            public override get isDefaultLanguage(): boolean {
-                return EveryLanguages.AMERICAN_PORTUGUESE.isDefaultLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isDefaultLanguage;
-            }
+    }   (false, 'es_AM', 'es-US', 'Spanish (America)',    'Español (America)',   'America',      EveryLanguages.SPANISH,);
+    public static readonly EUROPEAN_SPANISH =    new class EveryLanguages_EuropeanSpanish extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['portuguese']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.portuguese;
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage;
+        }
 
-            public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalPortuguese']
-            public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleAmericanOrEuropeanValue<T> {
-                return classWithEveryLanguages.originalPortuguese;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanSpanish']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.europeanSpanish;
+        }
 
-        }        (false, 'pt',    'pt',    'Portuguese',           'Português',);
-        this.AMERICAN_PORTUGUESE = new class EveryLanguages_AmericanPortuguese extends EveryLanguages {
+    }   (false, 'es_EU', 'es-EU', 'Spanish (Europe)',     'Español (Europa)',    'Europe',       EveryLanguages.SPANISH,);
+    public static readonly ITALIAN =             new class EveryLanguages_Italian extends EveryLanguages {
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
-            }
+        //region -------------------- Space getter methods --------------------
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanPortuguese']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.americanPortuguese;
-            }
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-        }(false, 'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', 'America',      EveryLanguages.PORTUGUESE,);
-        this.EUROPEAN_PORTUGUESE = new class EveryLanguages_EuropeanPortuguese extends EveryLanguages {
+        //endregion -------------------- Space getter methods --------------------
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['italian']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.italian;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanPortuguese']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.europeanPortuguese;
-            }
+    }           (false, 'it',    'it',    'Italian',              'Italiano',);
+    public static readonly DUTCH =               new class EveryLanguages_Dutch extends EveryLanguages {
 
-        }(false, 'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  'Europe',       EveryLanguages.PORTUGUESE,);
-        this.RUSSIAN =             new class EveryLanguages_Russian extends EveryLanguages {
+        //region -------------------- Space getter methods --------------------
 
-            //region -------------------- Space getter methods --------------------
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-            //endregion -------------------- Space getter methods --------------------
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['dutch']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.dutch;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['russian']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.russian;
-            }
+    }             (false, 'nl',    'nl',    'Dutch',                'Nederlands',);
+    public static readonly PORTUGUESE =          new class EveryLanguages_Portuguese extends EveryLanguages {
 
-        }           (false, 'ru',    'ru',    'Russian',              'русский',);
-        this.JAPANESE =            new class EveryLanguages_Japanese extends EveryLanguages {
+        //region -------------------- Space getter methods --------------------
 
-            //region -------------------- Space getter methods --------------------
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-            //endregion -------------------- Space getter methods --------------------
+        public override get isCurrentLanguage(): boolean {
+            return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['japanese']
-            protected override _get<T>(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.japanese;
-            }
+        public override get isDefaultLanguage(): boolean {
+            return EveryLanguages.AMERICAN_PORTUGUESE.isDefaultLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isDefaultLanguage;
+        }
 
-        }          (false, 'ja',    'ja',    'Japanese',             '日本語',);
-        this.CHINESE =             new class EveryLanguages_Chinese extends EveryLanguages {
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['portuguese']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.portuguese;
+        }
 
-            //region -------------------- Space getter methods --------------------
+        public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalPortuguese']
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleAmericanOrEuropeanValue<T> {
+            return classWithEveryLanguages.originalPortuguese;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE;
-            }
+    }        (false, 'pt',    'pt',    'Portuguese',           'Português',);
+    public static readonly AMERICAN_PORTUGUESE = new class EveryLanguages_AmericanPortuguese extends EveryLanguages {
 
-            //endregion -------------------- Space getter methods --------------------
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage;
+        }
 
-            public override get isCurrentLanguage(): boolean {
-                return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanPortuguese']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.americanPortuguese;
+        }
 
-            public override get isDefaultLanguage(): boolean {
-                return EveryLanguages.TRADITIONAL_CHINESE.isDefaultLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isDefaultLanguage;
-            }
+    }(false, 'pt_AM', 'pt-US', 'Portuguese (America)', 'Português (América)', 'America',      EveryLanguages.PORTUGUESE,);
+    public static readonly EUROPEAN_PORTUGUESE = new class EveryLanguages_EuropeanPortuguese extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['chinese']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.chinese;
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage;
+        }
 
-            public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalChinese']
-            public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleChineseValue<T> {
-                return classWithEveryLanguages.originalChinese;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanPortuguese']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.europeanPortuguese;
+        }
 
-        }           (false, 'zh',    'zh',    'Chinese',              '中国人',);
-        this.TRADITIONAL_CHINESE = new class EveryLanguages_TraditionalChinese extends EveryLanguages {
+    }(false, 'pt_EU', 'pt-EU', 'Portuguese (Europe)',  'Português (Europa)',  'Europe',       EveryLanguages.PORTUGUESE,);
+    public static readonly RUSSIAN =             new class EveryLanguages_Russian extends EveryLanguages {
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
-            }
+        //region -------------------- Space getter methods --------------------
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['traditionalChinese']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.traditionalChinese;
-            }
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
 
-        }(false, 'zh_T',  'zh-TW', 'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
-        this.SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
+        //endregion -------------------- Space getter methods --------------------
 
-            public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-                return this.isCurrentLanguage && EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['russian']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.russian;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['simplifiedChinese']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.simplifiedChinese;
-            }
+    }           (false, 'ru',    'ru',    'Russian',              'русский',);
+    public static readonly JAPANESE =            new class EveryLanguages_Japanese extends EveryLanguages {
 
-        } (false, 'zh_S',  'zh-CN', 'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
-        this.KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
+        //region -------------------- Space getter methods --------------------
 
-            //region -------------------- Space getter methods --------------------
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_EVEN_LANGUAGE_WITH_SPACE;
-            }
+        //endregion -------------------- Space getter methods --------------------
 
-            //endregion -------------------- Space getter methods --------------------
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['japanese']
+        protected override _get<T>(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.japanese;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['korean']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.korean;
-            }
+    }          (false, 'ja',    'ja',    'Japanese',             '日本語',);
+    public static readonly CHINESE =             new class EveryLanguages_Chinese extends EveryLanguages {
 
-        }            (false, 'ko',    'ko',    'Korean',               '한국어',);
+        //region -------------------- Space getter methods --------------------
 
-        this.HEBREW =              new class EveryLanguages_Hebrew extends EveryLanguages {
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE;
+        }
 
-            //region -------------------- Space getter methods --------------------
+        //endregion -------------------- Space getter methods --------------------
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        public override get isCurrentLanguage(): boolean {
+            return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
+        }
 
-            //endregion -------------------- Space getter methods --------------------
+        public override get isDefaultLanguage(): boolean {
+            return EveryLanguages.TRADITIONAL_CHINESE.isDefaultLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isDefaultLanguage;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['hebrew']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.hebrew;
-            }
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['chinese']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.chinese;
+        }
 
-        }            (false, 'he',    'he',    'Hebrew',               'עִברִית',);
-        this.POLISH =              new class EveryLanguages_Polish extends EveryLanguages {
+        public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalChinese']
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleChineseValue<T> {
+            return classWithEveryLanguages.originalChinese;
+        }
 
-            //region -------------------- Space getter methods --------------------
+    }           (false, 'zh',    'zh',    'Chinese',              '中国人',);
+    public static readonly TRADITIONAL_CHINESE = new class EveryLanguages_TraditionalChinese extends EveryLanguages {
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage;
+        }
 
-            //endregion -------------------- Space getter methods --------------------
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['traditionalChinese']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.traditionalChinese;
+        }
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['polish']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.polish;
-            }
+    }(false, 'zh_T',  'zh-TW', 'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,);
+    public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
-        }            (false, 'pl',    'pl',    'Polish',               'Polski',);
-        this.UKRAINIAN =           new class EveryLanguages_Ukrainian extends EveryLanguages {
+        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
+            return this.isCurrentLanguage && EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage;
+        }
 
-            //region -------------------- Space getter methods --------------------
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['simplifiedChinese']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.simplifiedChinese;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+    } (false, 'zh_S',  'zh-CN', 'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,);
+    public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
-            //endregion -------------------- Space getter methods --------------------
+        //region -------------------- Space getter methods --------------------
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['ukrainian']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.ukrainian;
-            }
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_EVEN_LANGUAGE_WITH_SPACE;
+        }
 
-        }         (false, 'uk',    'uk',    'Ukrainian',            'Український',);
-        this.GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
+        //endregion -------------------- Space getter methods --------------------
 
-            //region -------------------- Space getter methods --------------------
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['korean']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.korean;
+        }
 
-            protected override get _spaceParameters(): SpaceParameterReceived {
-                return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
-            }
+    }            (false, 'ko',    'ko',    'Korean',               '한국어',);
 
-            //endregion -------------------- Space getter methods --------------------
+    public static readonly HEBREW =              new class EveryLanguages_Hebrew extends EveryLanguages {
 
-            protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['greek']
-            protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
-                return classWithEveryLanguages.greek;
-            }
+        //region -------------------- Space getter methods --------------------
 
-        }             (false, 'el',    'el',    'Greek',                'ελληνικά',);
-    }
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['hebrew']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.hebrew;
+        }
+
+    }            (false, 'he',    'he',    'Hebrew',               'עִברִית',);
+    public static readonly POLISH =              new class EveryLanguages_Polish extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['polish']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.polish;
+        }
+
+    }            (false, 'pl',    'pl',    'Polish',               'Polski',);
+    public static readonly UKRAINIAN =           new class EveryLanguages_Ukrainian extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['ukrainian']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.ukrainian;
+        }
+
+    }         (false, 'uk',    'uk',    'Ukrainian',            'Український',);
+    public static readonly GREEK =               new class EveryLanguages_Greek extends EveryLanguages {
+
+        //region -------------------- Space getter methods --------------------
+
+        protected override get _spaceParameters(): SpaceParameterReceived {
+            return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE;
+        }
+
+        //endregion -------------------- Space getter methods --------------------
+
+        protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['greek']
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+            return classWithEveryLanguages.greek;
+        }
+
+    }             (false, 'el',    'el',    'Greek',                'ελληνικά',);
 
     protected static readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH;
 

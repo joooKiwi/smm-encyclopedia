@@ -13,25 +13,7 @@ export abstract class DateDayLanguages
 
     //region -------------------- Enum instances --------------------
 
-    public static override /*readonly*/ AMERICAN_ENGLISH;
-    public static override /*readonly*/ EUROPEAN_ENGLISH;
-    public static override /*readonly*/ CANADIAN_FRENCH;
-    public static override /*readonly*/ EUROPEAN_FRENCH;
-    public static override /*readonly*/ GERMAN;
-    public static override /*readonly*/ AMERICAN_SPANISH;
-    public static override /*readonly*/ EUROPEAN_SPANISH;
-    public static override /*readonly*/ ITALIAN;
-    public static override /*readonly*/ DUTCH;
-    public static override /*readonly*/ AMERICAN_PORTUGUESE;
-    public static override /*readonly*/ EUROPEAN_PORTUGUESE;
-    public static override /*readonly*/ RUSSIAN;
-    public static override /*readonly*/ JAPANESE;
-    public static override /*readonly*/ TRADITIONAL_CHINESE;
-    public static override /*readonly*/ SIMPLIFIED_CHINESE;
-    public static override /*readonly*/ KOREAN;
-
-    static {
-        this.AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
+    public static override readonly AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return day === 2 || day === 22
@@ -42,116 +24,115 @@ export abstract class DateDayLanguages
         }
 
     }   (ProjectLanguages.AMERICAN_ENGLISH,   );
-        this.EUROPEAN_ENGLISH =    new class DateDayLanguages_EuropeanEnglish extends DateDayLanguages {
+    public static override readonly EUROPEAN_ENGLISH =    new class DateDayLanguages_EuropeanEnglish extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return DateDayLanguages.AMERICAN_ENGLISH.newDayComponent(day);
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return DateDayLanguages.AMERICAN_ENGLISH.newDayComponent(day);
+        }
 
-        }   (ProjectLanguages.EUROPEAN_ENGLISH,   );
-        this.CANADIAN_FRENCH =     new class DateDayLanguages_CanadianFrench extends DateDayLanguages {
+    }   (ProjectLanguages.EUROPEAN_ENGLISH,   );
+    public static override readonly CANADIAN_FRENCH =     new class DateDayLanguages_CanadianFrench extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return day === 1
-                    ? <>{day}<sup>er</sup></>
-                    : <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return day === 1
+                ? <>{day}<sup>er</sup></>
+                : <>{day}</>;
+        }
 
-        }    (ProjectLanguages.CANADIAN_FRENCH,    );
-        this.EUROPEAN_FRENCH =     new class DateDayLanguages_EuropeanFrench extends DateDayLanguages {
+    }    (ProjectLanguages.CANADIAN_FRENCH,    );
+    public static override readonly EUROPEAN_FRENCH =     new class DateDayLanguages_EuropeanFrench extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return DateDayLanguages.CANADIAN_FRENCH.newDayComponent(day);
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return DateDayLanguages.CANADIAN_FRENCH.newDayComponent(day);
+        }
 
-        }    (ProjectLanguages.EUROPEAN_FRENCH,    );
-        this.GERMAN =              new class DateDayLanguages_German extends DateDayLanguages {
+    }    (ProjectLanguages.EUROPEAN_FRENCH,    );
+    public static override readonly GERMAN =              new class DateDayLanguages_German extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day === 1
-                    ? 'der ' + day
-                    : day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day === 1
+                ? 'der ' + day
+                : day}</>;
+        }
 
-        }            (ProjectLanguages.GERMAN,             );
-        this.AMERICAN_SPANISH =    new class DateDayLanguages_AmericanSpanish extends DateDayLanguages {
+    }            (ProjectLanguages.GERMAN,             );
+    public static override readonly AMERICAN_SPANISH =    new class DateDayLanguages_AmericanSpanish extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day}</>;
+        }
 
-        }   (ProjectLanguages.AMERICAN_SPANISH,   );
-        this.EUROPEAN_SPANISH =    new class DateDayLanguages_EuropeanSpanish extends DateDayLanguages {
+    }   (ProjectLanguages.AMERICAN_SPANISH,   );
+    public static override readonly EUROPEAN_SPANISH =    new class DateDayLanguages_EuropeanSpanish extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return DateDayLanguages.AMERICAN_SPANISH.newDayComponent(day);
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return DateDayLanguages.AMERICAN_SPANISH.newDayComponent(day);
+        }
 
-        }   (ProjectLanguages.EUROPEAN_SPANISH,   );
-        this.ITALIAN =             new class DateDayLanguages_Italian extends DateDayLanguages {
+    }   (ProjectLanguages.EUROPEAN_SPANISH,   );
+    public static override readonly ITALIAN =             new class DateDayLanguages_Italian extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day === 1 ? 'il' : day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day === 1 ? 'il' : day}</>;
+        }
 
-        }           (ProjectLanguages.ITALIAN,            );
-        this.DUTCH =               new class DateDayLanguages_Dutch extends DateDayLanguages {
+    }           (ProjectLanguages.ITALIAN,            );
+    public static override readonly DUTCH =               new class DateDayLanguages_Dutch extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day}</>;
+        }
 
-        }             (ProjectLanguages.DUTCH,              );
-        this.AMERICAN_PORTUGUESE = new class DateDayLanguages_AmericanPortuguese extends DateDayLanguages {
+    }             (ProjectLanguages.DUTCH,              );
+    public static override readonly AMERICAN_PORTUGUESE = new class DateDayLanguages_AmericanPortuguese extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day}</>;
+        }
 
-        }(ProjectLanguages.AMERICAN_PORTUGUESE,);
-        this.EUROPEAN_PORTUGUESE = new class DateDayLanguages_EuropeanPortuguese extends DateDayLanguages {
+    }(ProjectLanguages.AMERICAN_PORTUGUESE,);
+    public static override readonly EUROPEAN_PORTUGUESE = new class DateDayLanguages_EuropeanPortuguese extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return DateDayLanguages.AMERICAN_PORTUGUESE.newDayComponent(day);
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return DateDayLanguages.AMERICAN_PORTUGUESE.newDayComponent(day);
+        }
 
-        }(ProjectLanguages.EUROPEAN_PORTUGUESE,);
-        this.RUSSIAN =             new class DateDayLanguages_Russian extends DateDayLanguages {
+    }(ProjectLanguages.EUROPEAN_PORTUGUESE,);
+    public static override readonly RUSSIAN =             new class DateDayLanguages_Russian extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day}</>;
+        }
 
-        }           (ProjectLanguages.RUSSIAN,            );
-        this.JAPANESE =            new class DateDayLanguages_Japanese extends DateDayLanguages {
+    }           (ProjectLanguages.RUSSIAN,            );
+    public static override readonly JAPANESE =            new class DateDayLanguages_Japanese extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day}</>;
+        }
 
-        }          (ProjectLanguages.JAPANESE,           );
-        this.TRADITIONAL_CHINESE = new class DateDayLanguages_TraditionalChinese extends DateDayLanguages {
+    }          (ProjectLanguages.JAPANESE,           );
+    public static override readonly TRADITIONAL_CHINESE = new class DateDayLanguages_TraditionalChinese extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return DateDayLanguages.JAPANESE.newDayComponent(day);
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return DateDayLanguages.JAPANESE.newDayComponent(day);
+        }
 
-        }(ProjectLanguages.TRADITIONAL_CHINESE,);
-        this.SIMPLIFIED_CHINESE =  new class DateDayLanguages_SimplifiedChinese extends DateDayLanguages {
+    }(ProjectLanguages.TRADITIONAL_CHINESE,);
+    public static override readonly SIMPLIFIED_CHINESE =  new class DateDayLanguages_SimplifiedChinese extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return DateDayLanguages.JAPANESE.newDayComponent(day);
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return DateDayLanguages.JAPANESE.newDayComponent(day);
+        }
 
-        } (ProjectLanguages.SIMPLIFIED_CHINESE, );
-        this.KOREAN =              new class DateDayLanguages_Korean extends DateDayLanguages {
+    } (ProjectLanguages.SIMPLIFIED_CHINESE, );
+    public static override readonly KOREAN =              new class DateDayLanguages_Korean extends DateDayLanguages {
 
-            public override newDayComponent(day: DayNumber,) {
-                return <>{day}</>;
-            }
+        public override newDayComponent(day: DayNumber,) {
+            return <>{day}</>;
+        }
 
-        }            (ProjectLanguages.KOREAN,             );
-    }
+    }            (ProjectLanguages.KOREAN,             );
 
     protected static override readonly _DEFAULT = this.getValue(ProjectLanguages._DEFAULT);
 

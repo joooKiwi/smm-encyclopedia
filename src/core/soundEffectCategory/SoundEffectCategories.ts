@@ -22,19 +22,11 @@ export class SoundEffectCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ FEELINGS;
-    public static/* readonly*/ STINGERS;
-    public static/* readonly*/ REACTIONS;
-    public static/* readonly*/ ANIMATIONS;
-    public static/* readonly*/ MUSIC;
-
-    static {
-        this.FEELINGS =   new SoundEffectCategories('Feelings',   4,);
-        this.STINGERS =   new SoundEffectCategories('Stingers',   5,);
-        this.REACTIONS =  new SoundEffectCategories('Reactions',  6,);
-        this.ANIMATIONS = new SoundEffectCategories('Animations', 7,);
-        this.MUSIC =      new SoundEffectCategories('Music',      8,);
-    }
+    public static readonly FEELINGS =   new SoundEffectCategories('Feelings',   4,);
+    public static readonly STINGERS =   new SoundEffectCategories('Stingers',   5,);
+    public static readonly REACTIONS =  new SoundEffectCategories('Reactions',  6,);
+    public static readonly ANIMATIONS = new SoundEffectCategories('Animations', 7,);
+    public static readonly MUSIC =      new SoundEffectCategories('Music',      8,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

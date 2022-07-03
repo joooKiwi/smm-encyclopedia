@@ -34,130 +34,121 @@ export abstract class MiiCostumeAppOption
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ IMAGE;
-    public static/* readonly*/ NAME;
-    public static/* readonly*/ OFFICIAL_NOTIFICATION;
+    public static readonly IMAGE =                  new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-    public static/* readonly*/ CATEGORY;
+        protected override _get(state: MiiCostumeAppStates,): boolean {
+            return state.display.section.image;
+        }
+
+        protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+            nextState.display.section.image = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+
+                return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>;
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
+        }
+
+    }(true,);
+    public static readonly NAME =                   new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
+
+        protected override _get(state: MiiCostumeAppStates,): boolean {
+            return state.display.section.name;
+        }
+
+        protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+            nextState.display.section.name = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION());
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return CommonOptions.get.nameHeader;
+        }
+
+    }(true,);
+    public static readonly OFFICIAL_NOTIFICATION =  new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
+
+        protected override _get(state: MiiCostumeAppStates,): boolean {
+            return state.display.section.conditionToUnlockIt;
+        }
+
+        protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
+            nextState.display.section.conditionToUnlockIt = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const miiCostume = enumeration.reference;
+
+                const {officialNotification} = miiCostume;
+
+                return officialNotification == null
+                    ? EMPTY_REACT_ELEMENT
+                    : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,);
+
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            //TODO add new translation to the header value.
+            return {key: 'officialNotification', element: <>--Official notification--</>,};
+        }
+
+    }(true,);
+
+    public static readonly CATEGORY =               new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
+
+        protected override _get(state: MiiCostumeAppStates,): boolean {
+            return state.display.section.category;
+        }
+
+        protected override _set(nextState: MiiCostumeAppStates, value: boolean,) {
+            nextState.display.section.category = value;
+        }
+
+        protected override get _createContentOption(): PossibleOptionWithContent {
+            return () => {
+                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
+                    categoryName = enumeration.reference.categoryContainer.nameContainer;
+
+                return CommonOptions.get.getCategoryContent(enumeration,
+                    () => MiiCostumeAppOption.CATEGORY_AS_TEXT.get
+                        ? categoryName
+                        : MiiCostumeCategories.getValue(categoryName.english)!.imagePath,);
+            };
+        }
+
+        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+            return CommonOptions.get.categoryHeader;
+        }
+
+    }(true,);
     /**
      * Tell whenever a {@link MiiCostumeAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static/* readonly*/ CATEGORY_AS_TEXT;
+    public static readonly CATEGORY_AS_TEXT =       new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
 
-    static {
-        this.IMAGE =                  new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
+        protected override _get(state: MiiCostumeAppStates,): boolean {
+            return state.display.asText.category;
+        }
 
-            protected override _get(state: MiiCostumeAppStates,): boolean {
-                return state.display.section.image;
-            }
+        protected override _set(nextState: MiiCostumeAppStates, value: boolean,) {
+            nextState.display.asText.category = value;
+        }
 
-            protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
-                nextState.display.section.image = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                    return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
-            }
-
-        }(true,);
-        this.NAME =                   new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
-
-            protected override _get(state: MiiCostumeAppStates,): boolean {
-                return state.display.section.name;
-            }
-
-            protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
-                nextState.display.section.name = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION());
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return CommonOptions.get.nameHeader;
-            }
-
-        }(true,);
-        this.OFFICIAL_NOTIFICATION =  new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
-
-            protected override _get(state: MiiCostumeAppStates,): boolean {
-                return state.display.section.conditionToUnlockIt;
-            }
-
-            protected override _set(nextState: MiiCostumeAppStates, value: boolean,): void {
-                nextState.display.section.conditionToUnlockIt = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const miiCostume = enumeration.reference;
-
-                    const {officialNotification} = miiCostume;
-
-                    return officialNotification == null
-                        ? EMPTY_REACT_ELEMENT
-                        : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,);
-
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                //TODO add new translation to the header value.
-                return {key: 'officialNotification', element: <>--Official notification--</>,};
-            }
-
-        }(true,);
-
-        this.CATEGORY =               new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
-
-            protected override _get(state: MiiCostumeAppStates,): boolean {
-                return state.display.section.category;
-            }
-
-            protected override _set(nextState: MiiCostumeAppStates, value: boolean,) {
-                nextState.display.section.category = value;
-            }
-
-            protected override get _createContentOption(): PossibleOptionWithContent {
-                return () => {
-                    const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                        categoryName = enumeration.reference.categoryContainer.nameContainer;
-
-                    return CommonOptions.get.getCategoryContent(enumeration,
-                        () => MiiCostumeAppOption.CATEGORY_AS_TEXT.get
-                            ? categoryName
-                            : MiiCostumeCategories.getValue(categoryName.english)!.imagePath,);
-                };
-            }
-
-            protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-                return CommonOptions.get.categoryHeader;
-            }
-
-        }(true,);
-        this.CATEGORY_AS_TEXT =       new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
-
-            protected override _get(state: MiiCostumeAppStates,): boolean {
-                return state.display.asText.category;
-            }
-
-            protected override _set(nextState: MiiCostumeAppStates, value: boolean,) {
-                nextState.display.asText.category = value;
-            }
-
-        }(false,);
-    }
+    }(false,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

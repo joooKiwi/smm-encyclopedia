@@ -30,147 +30,131 @@ export class Themes
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ GROUND;
-    public static/* readonly*/ UNDERGROUND;
-    public static/* readonly*/ UNDERWATER;
-    public static/* readonly*/ DESERT;
-    public static/* readonly*/ SNOW;
-    public static/* readonly*/ SKY;
-    public static/* readonly*/ FOREST;
-    public static/* readonly*/ GHOST_HOUSE;
-    public static/* readonly*/ AIRSHIP;
-    public static/* readonly*/ CASTLE;
+    public static readonly GROUND =      new class Themes_Ground extends Themes {
 
-    public static/* readonly*/ VOLCANO;
-    public static/* readonly*/ SPACE;
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInGroundTheme;
+        }
 
-    static {
-        this.GROUND =      new class Themes_Ground extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGroundTheme'] {
+            return referenceProperty.referenceInGroundTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInGroundTheme;
-            }
+    }('Ground', 'plain',);
+    public static readonly UNDERGROUND = new class Themes_Underground extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGroundTheme'] {
-                return referenceProperty.referenceInGroundTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInUndergroundTheme;
+        }
 
-        }     ('Ground', 'plain',);
-        this.UNDERGROUND = new class Themes_Underground extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUndergroundTheme'] {
+            return referenceProperty.referenceInUndergroundTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInUndergroundTheme;
-            }
+    }('Underground', 'underground',);
+    public static readonly UNDERWATER =  new class Themes_Underwater extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUndergroundTheme'] {
-                return referenceProperty.referenceInUndergroundTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInUnderwaterTheme;
+        }
 
-        }('Underground', 'underground',);
-        this.UNDERWATER =  new class Themes_Underwater extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUnderwaterTheme'] {
+            return referenceProperty.referenceInUnderwaterTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInUnderwaterTheme;
-            }
+    }('Underwater', 'water',);
+    public static readonly DESERT =      new class Themes_Desert extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUnderwaterTheme'] {
-                return referenceProperty.referenceInUnderwaterTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInDesertTheme;
+        }
 
-        } ('Underwater', 'water',);
-        this.DESERT =      new class Themes_Desert extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInDesertTheme'] {
+            return referenceProperty.referenceInDesertTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInDesertTheme;
-            }
+    }('Desert', 'desert',);
+    public static readonly SNOW =        new class Themes_Snow extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInDesertTheme'] {
-                return referenceProperty.referenceInDesertTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInSnowTheme;
+        }
 
-        }     ('Desert', 'desert',);
-        this.SNOW =        new class Themes_Snow extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSnowTheme'] {
+            return referenceProperty.referenceInSnowTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInSnowTheme;
-            }
+    }('Snow', 'snow',);
+    public static readonly SKY =         new class Themes_Sky extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSnowTheme'] {
-                return referenceProperty.referenceInSnowTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInSkyTheme;
+        }
 
-        }       ('Snow', 'snow',);
-        this.SKY =         new class Themes_Sky extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSkyTheme'] {
+            return referenceProperty.referenceInSkyTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInSkyTheme;
-            }
+    }('Sky', 'athletic',);
+    public static readonly FOREST =      new class Themes_Forest extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSkyTheme'] {
-                return referenceProperty.referenceInSkyTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInForestTheme;
+        }
 
-        }        ('Sky', 'athletic',);
-        this.FOREST =      new class Themes_Forest extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInForestTheme'] {
+            return referenceProperty.referenceInForestTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInForestTheme;
-            }
+    }('Forest', 'woods',);
+    public static readonly GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInForestTheme'] {
-                return referenceProperty.referenceInForestTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInGhostHouseTheme;
+        }
 
-        }     ('Forest', 'woods',);
-        this.GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGhostHouseTheme'] {
+            return referenceProperty.referenceInGhostHouseTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInGhostHouseTheme;
-            }
+    }('Ghost House', 'hauntedhouse',);
+    public static readonly AIRSHIP =     new class Themes_Airship extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGhostHouseTheme'] {
-                return referenceProperty.referenceInGhostHouseTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInAirshipTheme;
+        }
 
-        } ('Ghost House', 'hauntedhouse',);
-        this.AIRSHIP =     new class Themes_Airship extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInAirshipTheme'] {
+            return referenceProperty.referenceInAirshipTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInAirshipTheme;
-            }
+    }('Airship', 'airship',);
+    public static readonly CASTLE =      new class Themes_Castle extends Themes {
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInAirshipTheme'] {
-                return referenceProperty.referenceInAirshipTheme;
-            }
+        protected override _get(property: ThemeProperty,): | boolean | null {
+            return property.isInCastleTheme;
+        }
 
-        }    ('Airship', 'airship',);
-        this.CASTLE =      new class Themes_Castle extends Themes {
+        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInCastleTheme'] {
+            return referenceProperty.referenceInCastleTheme;
+        }
 
-            protected override _get(property: ThemeProperty,): | boolean | null {
-                return property.isInCastleTheme;
-            }
+    }('Castle', 'castle',);
 
-            public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInCastleTheme'] {
-                return referenceProperty.referenceInCastleTheme;
-            }
+    public static readonly VOLCANO =     new class Themes_Volcano extends Themes {
 
-        }     ('Castle', 'castle',);
+        public override get endlessMarioImagePath() {
+            return null;
+        }
 
-        this.VOLCANO =     new class Themes_Volcano extends Themes {
+    }('Volcano', 'magma',);
+    public static readonly SPACE =       new class Themes_Space extends Themes   {
 
-            public override get endlessMarioImagePath() {
-                return null;
-            }
+        public override get endlessMarioImagePath() {
+            return null;
+        }
 
-        }    ('Volcano', 'magma',);
-        this.SPACE =       new class Themes_Space extends Themes   {
-
-            public override get endlessMarioImagePath() {
-                return null;
-            }
-
-        }    ('Space', 'night',);
-    }
+    }('Space', 'night',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

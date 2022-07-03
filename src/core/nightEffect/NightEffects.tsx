@@ -23,92 +23,80 @@ export class NightEffects
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ SPECIAL_EFFECT_ON_ENTITIES;
-    public static/* readonly*/ SCREEN_UPSIDE_DOWN;
-    public static/* readonly*/ DARK;
-    public static/* readonly*/ WIND;
-    public static/* readonly*/ SLIPPERY;
-    public static/* readonly*/ LOW_GRAVITY;
-    public static/* readonly*/ POISON_LIQUID;
-    public static/* readonly*/ ENTITIES_IN_WATER;
-    public static/* readonly*/ CHARACTERS_IN_WATER;
+    public static readonly SPECIAL_EFFECT_ON_ENTITIES = new class NightEffects_SpecialEffectOnEntities extends NightEffects {
 
-    static {
-        this.SPECIAL_EFFECT_ON_ENTITIES = new class NightEffects_SpecialEffectOnEntities extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            //TODO change the link to be only for the entities with special effects on ground night
+            return {
+                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                //TODO change the link to be only for the entities with special effects on ground night
-                return {
-                    entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
-                };
-            }
+    }('Special effect on entities',);
+    public static readonly SCREEN_UPSIDE_DOWN =         new NightEffects('Screen upside down',);
+    public static readonly DARK =                       new class NightEffects_Dark extends NightEffects {
 
-        }('Special effect on entities',);
-        this.SCREEN_UPSIDE_DOWN =         new NightEffects('Screen upside down',);
-        this.DARK =                       new class NightEffects_Dark extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            //TODO change the entities to be only for the entities with dark light
+            return {
+                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+                players: NightEffects.__createPlayersLink(this),
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                //TODO change the entities to be only for the entities with dark light
-                return {
-                    entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
-                    players: NightEffects.__createPlayersLink(this),
-                };
-            }
+    }('Dark',);
+    public static readonly WIND =                       new class NightEffects_Wind extends NightEffects {
 
-        }('Dark',);
-        this.WIND =                       new class NightEffects_Wind extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            //TODO change the game styles to only show the effect with the game style view.
+            return {
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{translation('Game style').toLowerCase()}</Link>,
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                //TODO change the game styles to only show the effect with the game style view.
-                return {
-                    gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{translation('Game style').toLowerCase()}</Link>,
-                };
-            }
+    }('Wind',);
+    public static readonly SLIPPERY =                   new NightEffects('Slippery',);
+    public static readonly LOW_GRAVITY =                new class NightEffects_LowGravity extends NightEffects {
 
-        }('Wind',);
-        this.SLIPPERY =                   new NightEffects('Slippery',);
-        this.LOW_GRAVITY =                new class NightEffects_LowGravity extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            return {
+                underwaterImage: NightEffects.__createUnderwaterImage(this),
+                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                return {
-                    underwaterImage: NightEffects.__createUnderwaterImage(this),
-                    entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
-                };
-            }
+    }('Low gravity',);
+    public static readonly POISON_LIQUID =              new class NightEffects_PoisonLiquid extends NightEffects {
 
-        }('Low gravity',);
-        this.POISON_LIQUID =              new class NightEffects_PoisonLiquid extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            return {
+                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.WATER.reference)!.toLowerCase()}</span>,
+                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.POISON.reference)!.toLowerCase()}</span>,
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                return {
-                    water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.WATER.reference)!.toLowerCase()}</span>,
-                    poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.POISON.reference)!.toLowerCase()}</span>,
-                };
-            }
+    }('Poison liquid',);
+    public static readonly ENTITIES_IN_WATER =          new class NightEffects_EntitiesInWater extends NightEffects {
 
-        }('Poison liquid',);
-        this.ENTITIES_IN_WATER =          new class NightEffects_EntitiesInWater extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
+            return {
+                underwaterImage: NightEffects.__createUnderwaterImage(this),
+                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
-                return {
-                    underwaterImage: NightEffects.__createUnderwaterImage(this),
-                    entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
-                };
-            }
+    }('Entities in water',);
+    public static readonly CHARACTERS_IN_WATER =        new class NightEffects_CharactersInWater extends NightEffects {
 
-        }('Entities in water',);
-        this.CHARACTERS_IN_WATER =        new class NightEffects_CharactersInWater extends NightEffects {
+        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+            return {
+                underwaterImage: NightEffects.__createUnderwaterImage(this),
+                players: NightEffects.__createPlayersLink(this),
+            };
+        }
 
-            protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-                return {
-                    underwaterImage: NightEffects.__createUnderwaterImage(this),
-                    players: NightEffects.__createPlayersLink(this),
-                };
-            }
-
-        }('Characters in water',);
-    }
+    }('Characters in water',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

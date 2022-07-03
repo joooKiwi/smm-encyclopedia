@@ -8,123 +8,63 @@ export class Characters
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ POINT;
-    public static/* readonly*/ INTERROGATION_POINT;
-    public static/* readonly*/ EXCLAMATION_POINT;
-    public static/* readonly*/ COLON;
-    public static/* readonly*/ SEMICOLON;
-    public static/* readonly*/ COMMA;
-    public static/* readonly*/ UNION_TRAIT;
+    public static readonly POINT =                new Characters('.',  '．',);
+    public static readonly INTERROGATION_POINT =  new Characters('?',  '？',);
+    public static readonly EXCLAMATION_POINT =    new Characters('!',  '！',);
+    public static readonly COLON =                new Characters(':',  '：',);
+    public static readonly SEMICOLON =            new Characters(';',  '；',);
+    public static readonly COMMA =                new Characters(',',  '，',);
+    public static readonly UNION_TRAIT =          new Characters('-',  '－',);
 
-    public static/* readonly*/ COMMERCIAL_AND;
+    public static readonly COMMERCIAL_AND =       new Characters('&',  '＆',);
 
-    public static/* readonly*/ STARTING_PARENTHESIS;
-    public static/* readonly*/ ENDING_PARENTHESIS;
-    public static/* readonly*/ STARTING_BRACKET;
-    public static/* readonly*/ ENDING_BRACKET;
-    public static/* readonly*/ STARTING_BRACE;
-    public static/* readonly*/ ENDING_BRACE;
+    public static readonly STARTING_PARENTHESIS = new Characters('(',  '（',);
+    public static readonly ENDING_PARENTHESIS =   new Characters(')',  '）',);
+    public static readonly STARTING_BRACKET =     new Characters('(',  '（',);
+    public static readonly ENDING_BRACKET =       new Characters(')',  '）',);
+    public static readonly STARTING_BRACE =       new Characters('(',  '（',);
+    public static readonly ENDING_BRACE =         new Characters(')',  '）',);
 
-    public static/* readonly*/ SLASH;
-    public static/* readonly*/ VERTICAL_SLASH;
+    public static readonly SLASH =                new Characters('/',  '／',);
+    public static readonly VERTICAL_SLASH =       new Characters('|',  '｜',);
 
-    public static/* readonly*/ LETTER_A;
-    public static/* readonly*/ LETTER_B;
-    public static/* readonly*/ LETTER_C;
-    public static/* readonly*/ LETTER_D;
-    public static/* readonly*/ LETTER_E;
-    public static/* readonly*/ LETTER_F;
-    public static/* readonly*/ LETTER_G;
-    public static/* readonly*/ LETTER_H;
-    public static/* readonly*/ LETTER_I;
-    public static/* readonly*/ LETTER_J;
-    public static/* readonly*/ LETTER_K;
-    public static/* readonly*/ LETTER_L;
-    public static/* readonly*/ LETTER_M;
-    public static/* readonly*/ LETTER_N;
-    public static/* readonly*/ LETTER_O;
-    public static/* readonly*/ LETTER_P;
-    public static/* readonly*/ LETTER_Q;
-    public static/* readonly*/ LETTER_R;
-    public static/* readonly*/ LETTER_S;
-    public static/* readonly*/ LETTER_T;
-    public static/* readonly*/ LETTER_U;
-    public static/* readonly*/ LETTER_V;
-    public static/* readonly*/ LETTER_W;
-    public static/* readonly*/ LETTER_X;
-    public static/* readonly*/ LETTER_Y;
-    public static/* readonly*/ LETTER_Z;
+    public static readonly LETTER_A =             new Characters('Aa', 'Ａａ',);
+    public static readonly LETTER_B =             new Characters('Bb', 'Ｂｂ',);
+    public static readonly LETTER_C =             new Characters('Cc', 'Ｃｃ',);
+    public static readonly LETTER_D =             new Characters('Dd', 'Ｄｄ',);
+    public static readonly LETTER_E =             new Characters('Ee', 'Ｅｅ',);
+    public static readonly LETTER_F =             new Characters('Ff', 'Ｆｆ',);
+    public static readonly LETTER_G =             new Characters('Gg', 'Ｇｇ',);
+    public static readonly LETTER_H =             new Characters('Hh', 'Ｈｈ',);
+    public static readonly LETTER_I =             new Characters('Ii', 'Ｉｉ',);
+    public static readonly LETTER_J =             new Characters('Jj', 'Ｊｊ',);
+    public static readonly LETTER_K =             new Characters('Kk', 'Ｋｋ',);
+    public static readonly LETTER_L =             new Characters('Ll', 'Ｌｌ',);
+    public static readonly LETTER_M =             new Characters('Mm', 'Ｍｍ',);
+    public static readonly LETTER_N =             new Characters('Nn', 'Ｎｎ',);
+    public static readonly LETTER_O =             new Characters('Oo', 'Ｏｏ',);
+    public static readonly LETTER_P =             new Characters('Pp', 'Ｐｐ',);
+    public static readonly LETTER_Q =             new Characters('Qq', 'Ｑｑ',);
+    public static readonly LETTER_R =             new Characters('Rr', 'Ｒｒ',);
+    public static readonly LETTER_S =             new Characters('Ss', 'Ｓｓ',);
+    public static readonly LETTER_T =             new Characters('Tt', 'Ｔｔ',);
+    public static readonly LETTER_U =             new Characters('Uu', 'Ｕｕ',);
+    public static readonly LETTER_V =             new Characters('Vv', 'Ｖｖ',);
+    public static readonly LETTER_W =             new Characters('Ww', 'Ｗｗ',);
+    public static readonly LETTER_X =             new Characters('Xx', 'Ｘｘ',);
+    public static readonly LETTER_Y =             new Characters('Yy', 'Ｙｙ',);
+    public static readonly LETTER_Z =             new Characters('Zz', 'Ｚｚ',);
 
-    public static/* readonly*/ NUMBER_0;
-    public static/* readonly*/ NUMBER_1;
-    public static/* readonly*/ NUMBER_2;
-    public static/* readonly*/ NUMBER_3;
-    public static/* readonly*/ NUMBER_4;
-    public static/* readonly*/ NUMBER_5;
-    public static/* readonly*/ NUMBER_6;
-    public static/* readonly*/ NUMBER_7;
-    public static/* readonly*/ NUMBER_8;
-    public static/* readonly*/ NUMBER_9;
-
-    static {
-            this.POINT =                new Characters('.',  '．',);
-            this.INTERROGATION_POINT =  new Characters('?',  '？',);
-            this.EXCLAMATION_POINT =    new Characters('!',  '！',);
-            this.COLON =                new Characters(':',  '：',);
-            this.SEMICOLON =            new Characters(';',  '；',);
-            this.COMMA =                new Characters(',',  '，',);
-            this.UNION_TRAIT =          new Characters('-',  '－',);
-    
-            this.COMMERCIAL_AND =       new Characters('&',  '＆',);
-    
-            this.STARTING_PARENTHESIS = new Characters('(',  '（',);
-            this.ENDING_PARENTHESIS =   new Characters(')',  '）',);
-            this.STARTING_BRACKET =     new Characters('(',  '（',);
-            this.ENDING_BRACKET =       new Characters(')',  '）',);
-            this.STARTING_BRACE =       new Characters('(',  '（',);
-            this.ENDING_BRACE =         new Characters(')',  '）',);
-    
-            this.SLASH =                new Characters('/',  '／',);
-            this.VERTICAL_SLASH =       new Characters('|',  '｜',);
-    
-            this.LETTER_A =             new Characters('Aa', 'Ａａ',);
-            this.LETTER_B =             new Characters('Bb', 'Ｂｂ',);
-            this.LETTER_C =             new Characters('Cc', 'Ｃｃ',);
-            this.LETTER_D =             new Characters('Dd', 'Ｄｄ',);
-            this.LETTER_E =             new Characters('Ee', 'Ｅｅ',);
-            this.LETTER_F =             new Characters('Ff', 'Ｆｆ',);
-            this.LETTER_G =             new Characters('Gg', 'Ｇｇ',);
-            this.LETTER_H =             new Characters('Hh', 'Ｈｈ',);
-            this.LETTER_I =             new Characters('Ii', 'Ｉｉ',);
-            this.LETTER_J =             new Characters('Jj', 'Ｊｊ',);
-            this.LETTER_K =             new Characters('Kk', 'Ｋｋ',);
-            this.LETTER_L =             new Characters('Ll', 'Ｌｌ',);
-            this.LETTER_M =             new Characters('Mm', 'Ｍｍ',);
-            this.LETTER_N =             new Characters('Nn', 'Ｎｎ',);
-            this.LETTER_O =             new Characters('Oo', 'Ｏｏ',);
-            this.LETTER_P =             new Characters('Pp', 'Ｐｐ',);
-            this.LETTER_Q =             new Characters('Qq', 'Ｑｑ',);
-            this.LETTER_R =             new Characters('Rr', 'Ｒｒ',);
-            this.LETTER_S =             new Characters('Ss', 'Ｓｓ',);
-            this.LETTER_T =             new Characters('Tt', 'Ｔｔ',);
-            this.LETTER_U =             new Characters('Uu', 'Ｕｕ',);
-            this.LETTER_V =             new Characters('Vv', 'Ｖｖ',);
-            this.LETTER_W =             new Characters('Ww', 'Ｗｗ',);
-            this.LETTER_X =             new Characters('Xx', 'Ｘｘ',);
-            this.LETTER_Y =             new Characters('Yy', 'Ｙｙ',);
-            this.LETTER_Z =             new Characters('Zz', 'Ｚｚ',);
-    
-            this.NUMBER_0 =             new Characters('0',  '０',);
-            this.NUMBER_1 =             new Characters('1',  '１',);
-            this.NUMBER_2 =             new Characters('2',  '２',);
-            this.NUMBER_3 =             new Characters('3',  '３',);
-            this.NUMBER_4 =             new Characters('4',  '４',);
-            this.NUMBER_5 =             new Characters('5',  '５',);
-            this.NUMBER_6 =             new Characters('6',  '６',);
-            this.NUMBER_7 =             new Characters('7',  '７',);
-            this.NUMBER_8 =             new Characters('8',  '８',);
-            this.NUMBER_9 =             new Characters('9',  '９',);
-    }
+    public static readonly NUMBER_0 =             new Characters('0',  '０',);
+    public static readonly NUMBER_1 =             new Characters('1',  '１',);
+    public static readonly NUMBER_2 =             new Characters('2',  '２',);
+    public static readonly NUMBER_3 =             new Characters('3',  '３',);
+    public static readonly NUMBER_4 =             new Characters('4',  '４',);
+    public static readonly NUMBER_5 =             new Characters('5',  '５',);
+    public static readonly NUMBER_6 =             new Characters('6',  '６',);
+    public static readonly NUMBER_7 =             new Characters('7',  '７',);
+    public static readonly NUMBER_8 =             new Characters('8',  '８',);
+    public static readonly NUMBER_9 =             new Characters('9',  '９',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

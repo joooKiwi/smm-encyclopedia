@@ -20,37 +20,20 @@ export class EntityBehaviours
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ RESPAWN_WITH_VINE;
-    public static/* readonly*/ RESPAWN_AS_QUESTION_MARK_BLOCK;
-    public static/* readonly*/ ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN;
-    public static/* readonly*/ NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN;
-    public static/* readonly*/ ONLY_1ST_SOUND_OF_PINK_COIN;
+    public static readonly RESPAWN_WITH_VINE =                             new EntityBehaviours('RV',    'Respawn with Vine',);
+    public static readonly RESPAWN_AS_QUESTION_MARK_BLOCK =                new EntityBehaviours('RB',    'Respawn as ? Block',);
+    public static readonly ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN =           new EntityBehaviours('AC',    'Always know visually # of Coin',);
+    public static readonly NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN =            new EntityBehaviours('NC',    'Never know visually # of Coin',);
+    public static readonly ONLY_1ST_SOUND_OF_PINK_COIN =                   new EntityBehaviours('O1S',   'Only 1st sound of Pink Coin',);
 
-    public static/* readonly*/ SPAWN_ONLY_1_POWER_UP;
-    public static/* readonly*/ SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS;
-    public static/* readonly*/ EXPELLED_POWER_UP_FROM_BLOCK;
-    public static/* readonly*/ ALWAYS_FINAL_POWER_UP;
+    public static readonly SPAWN_ONLY_1_POWER_UP =                         new EntityBehaviours('S1P',   'Spawn only 1 power-up',);
+    public static readonly SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS = new EntityBehaviours('S1-4P', 'Spawn (1-4) power-up(s) from # of players',);
+    public static readonly EXPELLED_POWER_UP_FROM_BLOCK =                  new EntityBehaviours('EPB',   'Expelled power-up from Block',);
+    public static readonly ALWAYS_FINAL_POWER_UP =                         new EntityBehaviours('AFP',   'Always final power-up',);
 
-    public static/* readonly*/ RESPAWN_AFTER_10_SEC;
-    public static/* readonly*/ CAN_RESPAWN_AT_CP;
-    public static/* readonly*/ RESPAWN_IN_BLOCK_IF_PLAYER_DIE;
-
-    static {
-        this.RESPAWN_WITH_VINE =                             new EntityBehaviours('RV',    'Respawn with Vine',                        );
-        this.RESPAWN_AS_QUESTION_MARK_BLOCK =                new EntityBehaviours('RB',    'Respawn as ? Block',                       );
-        this.ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN =           new EntityBehaviours('AC',    'Always know visually # of Coin',           );
-        this.NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN =            new EntityBehaviours('NC',    'Never know visually # of Coin',            );
-        this.ONLY_1ST_SOUND_OF_PINK_COIN =                   new EntityBehaviours('O1S',   'Only 1st sound of Pink Coin',              );
-
-        this.SPAWN_ONLY_1_POWER_UP =                         new EntityBehaviours('S1P',   'Spawn only 1 power-up',                    );
-        this.SPAWN_1_TO_4_POWER_UPS_FROM_AMOUNT_OF_PLAYERS = new EntityBehaviours('S1-4P', 'Spawn (1-4) power-up(s) from # of players',);
-        this.EXPELLED_POWER_UP_FROM_BLOCK =                  new EntityBehaviours('EPB',   'Expelled power-up from Block',             );
-        this.ALWAYS_FINAL_POWER_UP =                         new EntityBehaviours('AFP',   'Always final power-up',                    );
-
-        this.RESPAWN_AFTER_10_SEC =                          new EntityBehaviours('R10',   'Respawn after 10 sec.',                    );
-        this.CAN_RESPAWN_AT_CP =                             new EntityBehaviours('CRCP',  'Can respawn at CP',                        );
-        this.RESPAWN_IN_BLOCK_IF_PLAYER_DIE =                new EntityBehaviours('RBD',   'Respawn in Block (if player die)',         );
-    }
+    public static readonly RESPAWN_AFTER_10_SEC =                          new EntityBehaviours('R10',   'Respawn after 10 sec.',);
+    public static readonly CAN_RESPAWN_AT_CP =                             new EntityBehaviours('CRCP',  'Can respawn at CP',);
+    public static readonly RESPAWN_IN_BLOCK_IF_PLAYER_DIE =                new EntityBehaviours('RBD',   'Respawn in Block (if player die)',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------

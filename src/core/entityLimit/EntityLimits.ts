@@ -26,326 +26,270 @@ export class EntityLimits
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ GENERAL_ENTITY_LIMIT_WHILE_PLAYING;
-    public static/* readonly*/ POWER_UP_ENTITY_LIMIT_WHILE_PLAYING;
-
-    public static/* readonly*/ LOOSE_COIN_LIMIT;
-    public static/* readonly*/ SOUND_EFFECT_LIMIT;
-    public static/* readonly*/ CORPSE_LIMIT;
-    public static/* readonly*/ PROJECTILE_LIMIT;
-    public static/* readonly*/ LIGHT_SOURCE_LIMIT;
-
-    public static/* readonly*/ GROUND_LIMIT;
-    public static/* readonly*/ BLOCK_LIMIT;
-    public static/* readonly*/ PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT;
-    public static/* readonly*/ CLEAR_PIPE_LIMIT;
-
-    public static/* readonly*/ GROWN_VINE_LIMIT;
-    public static/* readonly*/ CHECKPOINT_FLAG_LIMIT;
-    public static/* readonly*/ TRACK_LIMIT;
-    public static/* readonly*/ SNAKE_BLOCK_LIMIT;
-    public static/* readonly*/ EXCLAMATION_BLOCK_LIMIT;
-    public static/* readonly*/ TRACK_BLOCK_LIMIT;
-    public static/* readonly*/ ICICLE_LIMIT;
-    public static/* readonly*/ ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT;
-
-    public static/* readonly*/ ENTITY_HELD_BY_A_TWISTER_LIMIT;
-    public static/* readonly*/ SNOWBALL_THROWN_BY_A_SPIKE_LIMIT;
-    public static/* readonly*/ CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT;
-    public static/* readonly*/ RENDERED_OBJECT_LIMIT;
-    public static/* readonly*/ KEY_COLLECTED_LIMIT;
-    public static/* readonly*/ _10_OR_30_OR_50_COIN_LIMIT;
-    public static/* readonly*/ PINK_COIN_LIMIT;
-
-    public static/* readonly*/ POWER_UP_ENTITY_LIMIT_EDITOR;
-    public static/* readonly*/ PLAYER_FIREBALL;
-    public static/* readonly*/ PLAYER_SUPERBALL;
-    public static/* readonly*/ PLAYER_BOMB;
-    public static/* readonly*/ PLAYER_BUILDER_BOX;
-    public static/* readonly*/ PLAYER_BOOMERANG;
-    public static/* readonly*/ PLAYER_CANNONBALL;
-    public static/* readonly*/ HATCHED_YOSHI_LIMIT;
-
-    public static/* readonly*/ GENERAL_ENTITY_LIMIT_EDITOR;
-    public static/* readonly*/ CHARVAARGH_LIMIT;
-    public static/* readonly*/ PIRANHA_CREEPER_LIMIT;
-    public static/* readonly*/ BOWSER_AND_BOWSER_JR_LIMIT;
-    public static/* readonly*/ BOOM_BOOM_AND_POM_POM_LIMIT;
-    public static/* readonly*/ KOOPALING_LIMIT;
-    public static/* readonly*/ ANGRY_SUN_OR_MOON_LIMIT;
-    public static/* readonly*/ PHANTO_LIMIT;
-    public static/* readonly*/ KOOPA_TROOPA_CAR_LIMIT;
-
-    public static/* readonly*/ WARP_DOOR_LIMIT;
-    public static/* readonly*/ WARP_BOX_LIMIT;
-    public static/* readonly*/ WARP_PIPE_LIMIT;
-
-    static {
-        this.GENERAL_ENTITY_LIMIT_WHILE_PLAYING =                       new EntityLimits                                                                                (['GEL (WP)', 'General Entity', true,], ['ELB', 'Entity Limit B',], );
-        this.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING =                      new EntityLimits                                                                                (['PEL (WP)', 'Power-up Entity', true,], ['ELC', 'Entity Limit C',],);
-
-        this.LOOSE_COIN_LIMIT =                                         new class EntityLimits_LooseCoinLimit extends EntityLimits {
-
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.COIN;
-            }
-
-        }                                (['LCL', 'Loose Coin',],                                                                         );
-        this.SOUND_EFFECT_LIMIT =                                       new EntityLimits                                                                                (['SEL', 'Sound Effect',],                                                            );
-        this.CORPSE_LIMIT =                                             new EntityLimits                                                                                (['CL', 'Corpse',],                                                                   );
-        this.PROJECTILE_LIMIT =                                         new EntityLimits                                                                                (['PJL', 'Projectile',],                                                              );
-        this.LIGHT_SOURCE_LIMIT =                                       new EntityLimits                                                                                (['LSL', 'Light Source',],                                                            );
-
-        this.GROUND_LIMIT =                                             new class EntityLimits_GroundLimit extends EntityLimits {
-
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.GROUND;
-            }
-
-        }                                   ('Ground', 'Ground Limit 1',                                                                     );
-        this.BLOCK_LIMIT =                                              new EntityLimits                                                                                ('Block', 'Ground Limit 2',                                         );
-        this.PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT = new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
-
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Platform / Slope / Conveyor Belt / Pipe / Vine" group
-            }
+    public static readonly GENERAL_ENTITY_LIMIT_WHILE_PLAYING =                       new EntityLimits(['GEL (WP)', 'General Entity', true,], ['ELB', 'Entity Limit B',],);
+    public static readonly POWER_UP_ENTITY_LIMIT_WHILE_PLAYING =                      new EntityLimits(['PEL (WP)', 'Power-up Entity', true,], ['ELC', 'Entity Limit C',],);
 
-        }('Platform / Slope / Conveyor Belt / Pipe / Vine', 'Ground Limit 3',                             );
-        this.CLEAR_PIPE_LIMIT =                                         new class EntityLimits_ClearPipeLimit extends EntityLimits {
-
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.CLEAR_PIPE;
-            }
+    public static readonly LOOSE_COIN_LIMIT =                                         new class EntityLimits_LooseCoinLimit extends EntityLimits {
 
-        }                                ('Clear Pipe',                                                                                   );
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.COIN;
+        }
 
-        this.GROWN_VINE_LIMIT =                                         new class EntityLimits_GrownVineLimit extends EntityLimits {
+    }(['LCL', 'Loose Coin',],);
+    public static readonly SOUND_EFFECT_LIMIT =                                       new EntityLimits(['SEL', 'Sound Effect',],);
+    public static readonly CORPSE_LIMIT =                                             new EntityLimits(['CL', 'Corpse',],);
+    public static readonly PROJECTILE_LIMIT =                                         new EntityLimits(['PJL', 'Projectile',],);
+    public static readonly LIGHT_SOURCE_LIMIT =                                       new EntityLimits(['LSL', 'Light Source',],);
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.VINE;
-            }
+    public static readonly GROUND_LIMIT =                                             new class EntityLimits_GroundLimit extends EntityLimits {
 
-        }                                (['GVL', 'Grown Vine',],                                                                         );
-        this.CHECKPOINT_FLAG_LIMIT =                                    new class EntityLimits_CheckpointFlagLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.GROUND;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.CHECKPOINT_FLAG;
-            }
+    }('Ground', 'Ground Limit 1',);
+    public static readonly BLOCK_LIMIT =                                              new EntityLimits('Block', 'Ground Limit 2',);
+    public static readonly PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT = new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
 
-        }                           ('Checkpoint Flag',                                                                              );
-        this.TRACK_LIMIT =                                              new class EntityLimits_TrackLimit extends EntityLimits {
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Platform / Slope / Conveyor Belt / Pipe / Vine" group
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.TRACK;
-            }
+    }('Platform / Slope / Conveyor Belt / Pipe / Vine', 'Ground Limit 3',);
+    public static readonly CLEAR_PIPE_LIMIT =                                         new class EntityLimits_ClearPipeLimit extends EntityLimits {
 
-        }                                    ('Track',                                                                                        );
-        this.SNAKE_BLOCK_LIMIT =                                        new class EntityLimits_SnakeBlockLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.CLEAR_PIPE;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.SNAKE_BLOCK;
-            }
+    }('Clear Pipe',);
 
-        }                               ('Snake Block',                                                                                  );
-        this.EXCLAMATION_BLOCK_LIMIT =                                  new class EntityLimits_ExclamationBlockLimit extends EntityLimits {
+    public static readonly GROWN_VINE_LIMIT =                                         new class EntityLimits_GrownVineLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.EXCLAMATION_MARK_BLOCK;
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.VINE;
+        }
 
-        }                         ('! Block',                                                                                      );
-        this.TRACK_BLOCK_LIMIT =                                        new class EntityLimits_TrackBlockLimit extends EntityLimits {
+    }(['GVL', 'Grown Vine',],);
+    public static readonly CHECKPOINT_FLAG_LIMIT =                                    new class EntityLimits_CheckpointFlagLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.TRACK_BLOCK;
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.CHECKPOINT_FLAG;
+        }
 
-        }                               ('Track Block',                                                                                  );
-        this.ICICLE_LIMIT =                                             new class EntityLimits_IcicleLimit extends EntityLimits {
+    }('Checkpoint Flag',);
+    public static readonly TRACK_LIMIT =                                              new class EntityLimits_TrackLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.ICICLE;
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.TRACK;
+        }
 
-        }                                   ('Icicle',                                                                                       );
-        this.ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT =           new class EntityLimits_OneWayWallOrArrowSignOrDashBlockLimit extends EntityLimits {
+    }('Track',);
+    public static readonly SNAKE_BLOCK_LIMIT =                                        new class EntityLimits_SnakeBlockLimit extends EntityLimits {
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "One-Way Wall / Arrow Sign / Dash Block" group
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.SNAKE_BLOCK;
+        }
 
-        }         ('One-Way Wall / Arrow Sign / Dash Block',                                                       );
+    }('Snake Block',);
+    public static readonly EXCLAMATION_BLOCK_LIMIT =                                  new class EntityLimits_ExclamationBlockLimit extends EntityLimits {
 
-        this.ENTITY_HELD_BY_A_TWISTER_LIMIT =                           new class EntityLimits_EntityHeldByATwisterLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.EXCLAMATION_MARK_BLOCK;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.TWISTER;
-            }
+    }('! Block',);
+    public static readonly TRACK_BLOCK_LIMIT =                                        new class EntityLimits_TrackBlockLimit extends EntityLimits {
 
-        }                     ('Entity Held By A Twister',                                                                     );
-        this.SNOWBALL_THROWN_BY_A_SPIKE_LIMIT =                         new class EntityLimits_SnowballThrownByASpikeLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.TRACK_BLOCK;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return [Import.Entities.SNOWBALL, Import.Entities.SPIKE,];
-            }
+    }('Track Block',);
+    public static readonly ICICLE_LIMIT =                                             new class EntityLimits_IcicleLimit extends EntityLimits {
 
-        }                   ('Snowball Thrown By A Spike',                                                                   );
-        this.CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT =                      new EntityLimits                                                                                ('Clear Condition Entity Amount',                                                     );
-        this.RENDERED_OBJECT_LIMIT =                                    new EntityLimits                                                                                ('Rendered Object', 'Object Displayed Limit'                        );
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.ICICLE;
+        }
 
-        this._10_OR_30_OR_50_COIN_LIMIT =                               new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
+    }('Icicle',);
+    public static readonly ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT =           new class EntityLimits_OneWayWallOrArrowSignOrDashBlockLimit extends EntityLimits {
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "[10- / 30- / 50-]Coin" group
-            }
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "One-Way Wall / Arrow Sign / Dash Block" group
+        }
 
-        }('[10- / 30- / 50-]Coin',                                                                        );
-        this.PINK_COIN_LIMIT =                                          new class EntityLimits_PinkCoinLimit extends EntityLimits {
+    }('One-Way Wall / Arrow Sign / Dash Block',);
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.PINK_COIN;
-            }
+    public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                           new class EntityLimits_EntityHeldByATwisterLimit extends EntityLimits {
 
-        }                                 ('Pink Coin',                                                                                    );
-        this.KEY_COLLECTED_LIMIT =                                      new class EntityLimits_KeyCollectedLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.TWISTER;
+        }
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "(Cursed) Key" groups
-            }
+    }('Entity Held By A Twister',);
+    public static readonly SNOWBALL_THROWN_BY_A_SPIKE_LIMIT =                         new class EntityLimits_SnowballThrownByASpikeLimit extends EntityLimits {
 
-        }                             ('Key Collected',                                                                                );
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return [Import.Entities.SNOWBALL, Import.Entities.SPIKE,];
+        }
 
-        this.POWER_UP_ENTITY_LIMIT_EDITOR =                             new EntityLimits                                                                                (['PEL (E)', 'Power-up Entity', false,],                                              );
-        this.PLAYER_FIREBALL =                                          new class EntityLimits_FireballThrownByAPlayerLimit extends EntityLimits {
+    }('Snowball Thrown By A Spike',);
+    public static readonly CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT =                      new EntityLimits('Clear Condition Entity Amount',);
+    public static readonly RENDERED_OBJECT_LIMIT =                                    new EntityLimits('Rendered Object', 'Object Displayed Limit',);
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.FIREBALL_THROWN_BY_A_PLAYER;
-            }
+    public static readonly KEY_COLLECTED_LIMIT =                                      new class EntityLimits_KeyCollectedLimit extends EntityLimits {
 
-        }                  ('Player\'s Fireball',                                                                           );
-        this.PLAYER_SUPERBALL =                                         new class EntityLimits_SuperballThrownByAPlayerLimit extends EntityLimits {
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "(Cursed) Key" groups
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.SUPERBALL_THROWN_BY_A_PLAYER;
-            }
+    }('Key Collected',);
+    public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
 
-        }                 ('Player\'s Superball',                                                                          );
-        this.PLAYER_BOMB =                                              new class EntityLimits_BombThrownByALinkLimit extends EntityLimits {
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "[10- / 30- / 50-]Coin" group
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.BOMB_THROWN_BY_A_LINK;
-            }
+    }('[10- / 30- / 50-]Coin',);
+    public static readonly PINK_COIN_LIMIT =                                          new class EntityLimits_PinkCoinLimit extends EntityLimits {
 
-        }                        ('Player\'s Bomb',                                                                               );
-        this.PLAYER_BUILDER_BOX =                                       new class EntityLimits_BuilderBoxThrownByAPlayerLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.PINK_COIN;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.BUILDER_BOX_THROWN_BY_A_PLAYER;
-            }
+    }('Pink Coin',);
 
-        }                ('Player\'s Builder Box',                                                                        );
-        this.PLAYER_BOOMERANG =                                         new class EntityLimits_BoomerangThrownByAPlayerLimit extends EntityLimits {
+    public static readonly POWER_UP_ENTITY_LIMIT_EDITOR =                             new EntityLimits(['PEL (E)', 'Power-up Entity', false,],);
+    public static readonly PLAYER_FIREBALL =                                          new class EntityLimits_FireballThrownByAPlayerLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.BOOMERANG_THROWN_BY_A_PLAYER;
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.FIREBALL_THROWN_BY_A_PLAYER;
+        }
 
-        }                 ('Player\'s Boomerang',                                                                          );
-        this.PLAYER_CANNONBALL =                                        new class EntityLimits_CannonballThrownByAPlayerLimit extends EntityLimits {
+    }('Player\'s Fireball',);
+    public static readonly PLAYER_SUPERBALL =                                         new class EntityLimits_SuperballThrownByAPlayerLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.CANNONBALL_THROWN_BY_A_PLAYER;
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.SUPERBALL_THROWN_BY_A_PLAYER;
+        }
 
-        }                ('Player\'s Cannonball',                                                                         );
-        this.HATCHED_YOSHI_LIMIT =                                      new class EntityLimits_HatchedYoshiLimit extends EntityLimits {
+    }('Player\'s Superball',);
+    public static readonly PLAYER_BOMB =                                              new class EntityLimits_BombThrownByALinkLimit extends EntityLimits {
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "(Red) Yoshi" group
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.BOMB_THROWN_BY_A_LINK;
+        }
 
-        }                             (['HYL', 'Hatched Yoshi',],                                                                      );
+    }('Player\'s Bomb',);
+    public static readonly PLAYER_BUILDER_BOX =                                       new class EntityLimits_BuilderBoxThrownByAPlayerLimit extends EntityLimits {
 
-        this.GENERAL_ENTITY_LIMIT_EDITOR =                              new EntityLimits                                                                                (['GEL (WP)', 'General Entity', false,], 'General Enemy Limit',     );
-        this.CHARVAARGH_LIMIT =                                         new class EntityLimits_CharvaarghLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.BUILDER_BOX_THROWN_BY_A_PLAYER;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.CHARVAARGH;
-            }
+    }('Player\'s Builder Box',);
+    public static readonly PLAYER_BOOMERANG =                                         new class EntityLimits_BoomerangThrownByAPlayerLimit extends EntityLimits {
 
-        }                               ('Charvaargh',                                                                                   );
-        this.PIRANHA_CREEPER_LIMIT =                                    new class EntityLimits_PiranhaCreeperLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.BOOMERANG_THROWN_BY_A_PLAYER;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.PIRANHA_CREEPER;
-            }
+    }('Player\'s Boomerang',);
+    public static readonly PLAYER_CANNONBALL =                                        new class EntityLimits_CannonballThrownByAPlayerLimit extends EntityLimits {
 
-        }                           ('Piranha Creeper',                                                                              );
-        this.BOWSER_AND_BOWSER_JR_LIMIT =                               new class EntityLimits_BowserAndBowserJrLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.CANNONBALL_THROWN_BY_A_PLAYER;
+        }
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Bowser (Jr.)" group
-            }
+    }('Player\'s Cannonball',);
+    public static readonly HATCHED_YOSHI_LIMIT =                                      new class EntityLimits_HatchedYoshiLimit extends EntityLimits {
 
-        }                        ('Bowser (Jr.)',                                                                                 );
-        this.BOOM_BOOM_AND_POM_POM_LIMIT =                              new class EntityLimits_BoomBoomAndPomPomLimit extends EntityLimits {
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "(Red) Yoshi" group
+        }
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Boom Boom / Pom Pom" group
-            }
+    }(['HYL', 'Hatched Yoshi',],);
 
-        }                        ('Boom Boom / Pom Pom',                                                                          );
-        this.KOOPALING_LIMIT =                                          new class EntityLimits_KoopalingLimit extends EntityLimits {
+    public static readonly GENERAL_ENTITY_LIMIT_EDITOR =                              new EntityLimits(['GEL (WP)', 'General Entity', false,], 'General Enemy Limit',);
+    public static readonly CHARVAARGH_LIMIT =                                         new class EntityLimits_CharvaarghLimit extends EntityLimits {
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Koopalings" group
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.CHARVAARGH;
+        }
 
-        }                                ('Koopaling',                                                                                    );
-        this.ANGRY_SUN_OR_MOON_LIMIT =                                  new class EntityLimits_AngrySunOrMoonLimit extends EntityLimits {
+    }('Charvaargh',);
+    public static readonly PIRANHA_CREEPER_LIMIT =                                    new class EntityLimits_PiranhaCreeperLimit extends EntityLimits {
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Angry Sun / Moon" group
-            }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.PIRANHA_CREEPER;
+        }
 
-        }                           ('Angry Sun / Moon',                                                                             );
-        this.PHANTO_LIMIT =                                             new class EntityLimits_PhantoLimit extends EntityLimits {
+    }('Piranha Creeper',);
+    public static readonly BOWSER_AND_BOWSER_JR_LIMIT =                               new class EntityLimits_BowserAndBowserJrLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.PHANTO;
-            }
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Bowser (Jr.)" group
+        }
 
-        }                                   ('Phanto',                                                                                       );
-        this.KOOPA_TROOPA_CAR_LIMIT =                                   new class EntityLimits_KoopaTroopaCarLimit extends EntityLimits {
+    }('Bowser (Jr.)',);
+    public static readonly BOOM_BOOM_AND_POM_POM_LIMIT =                              new class EntityLimits_BoomBoomAndPomPomLimit extends EntityLimits {
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.KOOPA_TROOPA_CAR;
-            }
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Boom Boom / Pom Pom" group
+        }
 
-        }                           ('Koopa Troopa Car',                                                                             );
+    }('Boom Boom / Pom Pom',);
+    public static readonly KOOPALING_LIMIT =                                          new class EntityLimits_KoopalingLimit extends EntityLimits {
 
-        this.WARP_DOOR_LIMIT =                                          new class EntityLimits_WarpDoorLimit extends EntityLimits {
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Koopalings" group
+        }
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Warp Doors" group
-            }
+    }('Koopaling',);
+    public static readonly ANGRY_SUN_OR_MOON_LIMIT =                                  new class EntityLimits_AngrySunOrMoonLimit extends EntityLimits {
 
-        }                                 ('Warp Door',                                                                                    );
-        this.WARP_BOX_LIMIT =                                           new class EntityLimits_WarpBoxLimit extends EntityLimits {
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Angry Sun / Moon" group
+        }
 
-            protected override get _groupLink(): PossibleGroupLinkInitialisation {
-                return null;//TODO change to "Warp Boxes" group
-            }
+    }('Angry Sun / Moon',);
+    public static readonly PHANTO_LIMIT =                                             new class EntityLimits_PhantoLimit extends EntityLimits {
 
-        }                                  ('Warp Box',                                                                                     );
-        this.WARP_PIPE_LIMIT =                                          new class EntityLimits_WarpBoxLimit extends EntityLimits {
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.PHANTO;
+        }
 
-            protected override get _entityLink(): PossibleEntityLinkInitialisation {
-                return Import.Entities.PIPE;
-            }
+    }('Phanto',);
+    public static readonly KOOPA_TROOPA_CAR_LIMIT =                                   new class EntityLimits_KoopaTroopaCarLimit extends EntityLimits {
 
-        }                                  ('Warp Pipe',                                                                                    );
-    }
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.KOOPA_TROOPA_CAR;
+        }
+
+    }('Koopa Troopa Car',);
+
+    public static readonly WARP_DOOR_LIMIT =                                          new class EntityLimits_WarpDoorLimit extends EntityLimits {
+
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Warp Doors" group
+        }
+
+    }('Warp Door',);
+    public static readonly WARP_BOX_LIMIT =                                           new class EntityLimits_WarpBoxLimit extends EntityLimits {
+
+        protected override get _groupLink(): PossibleGroupLinkInitialisation {
+            return null;//TODO change to "Warp Boxes" group
+        }
+
+    }('Warp Box',);
+    public static readonly WARP_PIPE_LIMIT =                                          new class EntityLimits_WarpBoxLimit extends EntityLimits {
+
+        protected override get _entityLink(): PossibleEntityLinkInitialisation {
+            return Import.Entities.PIPE;
+        }
+
+    } ('Warp Pipe',);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
