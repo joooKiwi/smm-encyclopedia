@@ -195,9 +195,29 @@ flowchart TB
   end
 ```
 
+The dependencies imply that the entity uses almost everything in the project.<br/>
+So, some recursive dependencies are in place to make the project compile.
+
+To simplify the diagram, the entity dependencies has been removed to help readibility.<br>
+And the dependencies used in the Entity are:<br/>
+ 1. Clear condition
+ 2. Editor voice
+ 3. Entity behaviour
+ 4. Entity category
+ 5. Entity group _(by dynamic import)_
+ 6. Entity limit
+ 7. Game
+ 8. Game style
+ 9. Instrument
+ 10. Mystery Mushroom
+ 11. Night effect _(by dynamic import)_
+ 12. Theme
+ 13. Time
+ 14. Version
+
 ```mermaid
 flowchart LR
-  CN((Character name))
+  CN(("Character<br/>name"))
   CC[\Clear condition\]
   CCC[\Clear condition category\]
   CT[\Course tag\]
@@ -243,13 +263,13 @@ flowchart LR
   CN       -->  EV
   CC       -.-> E
   EV       -.-> CN & E
-  E        -->  CC & EB & EV & EC & EL & G & GS & I & MM & Th & Ti & V
-  E        -.-> EG & NE
   EB       -.-> E
   EC       -.-> E
   EG       -->  E
   EL       -.-> E
-  V        --> GS
+  SE       -.-> E & EG & G
+  Th       -.-> Ti & G
+  V        -->  GS
   subgraph Game
     G & GS -->  GR
     GR     -.-> G & GS
@@ -265,7 +285,7 @@ flowchart LR
     MC     -->  MCC
     MCC    -.-> MC
   end
-  NE       -.-> E
+  NE       -.-> CN & GS & E
   ON       -.-> E & MC
 
 ```
