@@ -29,6 +29,9 @@ const Image =         lazy(() => import('../tools/images/Image'));
 
 //endregion -------------------- dynamic imports --------------------
 
+/**
+ * @todo Change CATEGORY to use {IMAGE, TEXT or NO} instead of 2 different options.
+ */
 export abstract class MiiCostumeAppOption
     extends AbstractAppOption<boolean, MiiCostumeAppStates, Ordinals, Names> {
 

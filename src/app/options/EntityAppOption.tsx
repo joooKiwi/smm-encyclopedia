@@ -41,6 +41,14 @@ const TextComponent =             lazy(() => import( '../tools/text/TextComponen
 
 //endregion -------------------- dynamic imports --------------------
 
+/**
+ * @todo merge all of the "image" into 1 type
+ * @todo merge all of the "game" into 1 type
+ * @todo merge all of the "game style" into 1 type
+ * @todo merge all of the "time" into 1 type
+ * @todo merge all of the "category" into 1 type
+ * @todo merge all of the "limit" into 1 type
+ */
 export abstract class EntityAppOption
     extends AbstractAppOption<boolean, EntityAppStates, Ordinals, Names>
     implements AppOptionWithContent, AppOptionWithTable {

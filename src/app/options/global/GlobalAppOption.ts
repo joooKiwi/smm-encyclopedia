@@ -12,6 +12,9 @@ import {GlobalThemeOption} from './GlobalThemeOption';
 import {Sounds}            from './Sounds';
 import {Texts}             from './Texts';
 
+/**
+ * @todo Change to a different kind of option (that can work with the url directly)
+ */
 export abstract class GlobalAppOption<T extends PossibleAppOptionValue = PossibleAppOptionValue, >
     extends AbstractAppOption<T, GlobalAppState, Ordinals, Names> {
 

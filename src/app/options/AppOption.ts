@@ -1,6 +1,6 @@
 import {ReactComponentWithState} from '../../util/react/ReactComponent';
 
-export interface AppOption<T, > {
+/**@deprecated*/export interface AppOption<T, > {
 
     get get(): T
 
@@ -8,7 +8,7 @@ export interface AppOption<T, > {
 
 }
 
-export interface AppOptionStatic<S> {
+/**@deprecated*/export interface AppOptionStatic<S> {
 
     get REFERENCE(): ReactComponentWithState<S>
 

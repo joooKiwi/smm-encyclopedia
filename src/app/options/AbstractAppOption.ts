@@ -4,6 +4,7 @@ import type {ReactState}                 from '../../util/react/ReactState';
 
 import {Enum} from '../../util/enum/Enum';
 
+/**@deprecated*/
 export abstract class AbstractAppOption<T, S extends ReactState, O extends number = number, N extends string = string, >
     extends Enum<O, N>
     implements AppOption<T> {
