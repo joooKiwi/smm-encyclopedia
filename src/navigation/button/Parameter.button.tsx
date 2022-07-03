@@ -19,7 +19,7 @@ export default class ParameterButton
         return ParameterButton.#ID;
     }
 
-    protected override get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get _tooltipPlacement(): PossibleTooltipPlacement {
         return 'left';
     }
 
@@ -27,7 +27,7 @@ export default class ParameterButton
         return 'bi-gear-fill';
     }
 
-    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override _getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return [translation('Options'), 'lg',];
     }
 

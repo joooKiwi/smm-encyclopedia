@@ -776,10 +776,8 @@ export abstract class EveryLanguages
     /**
      * Set the language into the dom elements using a <b>lang</b> attribute
      * to change it to the current instance.
-     *
-     * @private
      */
-    private __setLanguageToHTML(): this {
+    #setLanguageToHTML(): this {
         document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.projectAcronym));
         return this;
     }
@@ -797,7 +795,7 @@ export abstract class EveryLanguages
         if (selectedLanguage == null || selectedLanguage.isCurrentLanguage)
             return this;
 
-        const currentLanguage = (this.#CURRENT_LANGUAGE = selectedLanguage.__setLanguageToHTML());
+        const currentLanguage = (this.#CURRENT_LANGUAGE = selectedLanguage.#setLanguageToHTML());
         i18n.changeLanguage(currentLanguage.projectAcronym);
         this.INTERNATIONALISATION_SET_CURRENT_LANGUAGE?.(currentLanguage.internationalAcronym as PossibleInternationalAcronym_Project);
         return this;

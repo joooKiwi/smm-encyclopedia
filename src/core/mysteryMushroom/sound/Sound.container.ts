@@ -54,21 +54,21 @@ export class SoundContainer<PATH extends PossiblePath, >
     }
 
     // @ts-ignore
-    private __getSounds<S extends PossibleSounds = PossibleSounds, >(sound: S,): PossibleSounds_Array<S, PATH>
-    private __getSounds<S1 extends PossibleSounds = PossibleSounds, S2 extends PossibleSounds = PossibleSounds, >(sounds: readonly [S1, S2,],): readonly [PossibleSounds_Array<S1, PATH>, PossibleSounds_Array<S2, PATH>,]
-    private __getSounds(sounds: PossibleSounds | readonly PossibleSounds[],) {
+    #getSounds<S extends PossibleSounds = PossibleSounds, >(sound: S,): PossibleSounds_Array<S, PATH>
+    #getSounds<S1 extends PossibleSounds = PossibleSounds, S2 extends PossibleSounds = PossibleSounds, >(sounds: readonly [S1, S2,],): readonly [PossibleSounds_Array<S1, PATH>, PossibleSounds_Array<S2, PATH>,]
+    #getSounds(sounds: PossibleSounds | readonly PossibleSounds[],) {
         if (sounds instanceof Array)
-            return sounds.map(image => this.__getSounds(image));
+            return sounds.map(image => this.#getSounds(image));
         return this._paths.map(path => `${path}/${sounds}`) as unknown as PossibleSounds_Array<PossibleSounds, PATH>;
     }
 
 
     public get powerUpCollectedSounds(): PowerUpCollectedSounds<PATH> {
-        return this.#powerUpGotSounds ??= this._property.haveASoundEffectWhenCollected ? this.__getSounds(SoundContainer.#POWER_UP_SOUND) : EMPTY_ARRAY;
+        return this.#powerUpGotSounds ??= this._property.haveASoundEffectWhenCollected ? this.#getSounds(SoundContainer.#POWER_UP_SOUND) : EMPTY_ARRAY;
     }
 
     public get tauntSounds(): TauntSounds<PATH> {
-        return this.#tauntSounds ??= this._property.haveASoundEffectOnTaunt ? this.__getSounds(SoundContainer.#TAUNT_SOUND) : EMPTY_ARRAY;
+        return this.#tauntSounds ??= this._property.haveASoundEffectOnTaunt ? this.#getSounds(SoundContainer.#TAUNT_SOUND) : EMPTY_ARRAY;
     }
 
     public get jumpSounds(): JumpSounds<PATH> {
@@ -77,28 +77,28 @@ export class SoundContainer<PATH extends PossiblePath, >
                 case 0:
                     return this.#jumpSounds = EMPTY_ARRAY;
                 case 1:
-                    return this.#jumpSounds = this.__getSounds(SoundContainer.#JUMP_SOUND_1);
+                    return this.#jumpSounds = this.#getSounds(SoundContainer.#JUMP_SOUND_1);
                 case 2:
-                    return this.#jumpSounds = this.__getSounds(SoundContainer.#JUMP_SOUNDS).flat() as unknown as JumpSounds<PATH>;
+                    return this.#jumpSounds = this.#getSounds(SoundContainer.#JUMP_SOUNDS).flat() as unknown as JumpSounds<PATH>;
             }
         }
         return this.#jumpSounds;
     }
 
     public get onGroundAfterJumpSounds(): OnGroundAfterJumpSounds<PATH> {
-        return this.#onGroundAfterJumpSounds ??= this._property.haveASoundEffectOnGroundAfterJump ? this.__getSounds(SoundContainer.#ON_GROUND_AFTER_JUMP_SOUND) : EMPTY_ARRAY;
+        return this.#onGroundAfterJumpSounds ??= this._property.haveASoundEffectOnGroundAfterJump ? this.#getSounds(SoundContainer.#ON_GROUND_AFTER_JUMP_SOUND) : EMPTY_ARRAY;
     }
 
     public get turningSounds(): TurningSounds<PATH> {
-        return this.#turningSounds ??= this._property.haveASoundEffectOnTurnAfterRun ? this.__getSounds(SoundContainer.#TURNING_SOUND) : EMPTY_ARRAY;
+        return this.#turningSounds ??= this._property.haveASoundEffectOnTurnAfterRun ? this.#getSounds(SoundContainer.#TURNING_SOUND) : EMPTY_ARRAY;
     }
 
     public get goalPoleSounds(): GoalPoleSounds<PATH> {
-        return this.#goalPoleSounds ??= this._property.haveASoundEffectOnGoalPole ? this.__getSounds(SoundContainer.#GOAL_POLE_SOUND) : EMPTY_ARRAY;
+        return this.#goalPoleSounds ??= this._property.haveASoundEffectOnGoalPole ? this.#getSounds(SoundContainer.#GOAL_POLE_SOUND) : EMPTY_ARRAY;
     }
 
     public get lostALifeSounds(): LostALifeSounds<PATH> {
-        return this.#lostALifeSounds ??= this._property.haveASoundEffectOnDeath ? this.__getSounds(SoundContainer.#LOST_A_LIFE_SOUND) : EMPTY_ARRAY;
+        return this.#lostALifeSounds ??= this._property.haveASoundEffectOnDeath ? this.#getSounds(SoundContainer.#LOST_A_LIFE_SOUND) : EMPTY_ARRAY;
     }
 
     //endregion -------------------- Getter methods --------------------

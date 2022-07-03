@@ -562,11 +562,11 @@ class TemplateBuilder
         ];
         const isExclusiveToSuperMarioMaker1 = isInSuperMarioMaker1 && !isInSuperMarioMaker2;
         const gameStyleTemplate: SimpleGameStyleTemplate = {
-            superMarioBros: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioBrosLink),
-            superMarioBros3: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioBros3Link),
-            superMarioWorld: TemplateBuilder.__convertLinkToOnlyBoolean(superMarioWorldLink),
-            newSuperMarioBrosU: TemplateBuilder.__convertLinkToOnlyBoolean(newSuperMarioBrosULink),
-            superMario3DWorld: isExclusiveToSuperMarioMaker1 ? TemplateBuilder.__convertLinkToNullableBoolean(superMario3DWorldLink) : TemplateBuilder.__convertLinkToOnlyBoolean(superMario3DWorldLink),
+            superMarioBros: TemplateBuilder.#convertLinkToOnlyBoolean(superMarioBrosLink),
+            superMarioBros3: TemplateBuilder.#convertLinkToOnlyBoolean(superMarioBros3Link),
+            superMarioWorld: TemplateBuilder.#convertLinkToOnlyBoolean(superMarioWorldLink),
+            newSuperMarioBrosU: TemplateBuilder.#convertLinkToOnlyBoolean(newSuperMarioBrosULink),
+            superMario3DWorld: isExclusiveToSuperMarioMaker1 ? TemplateBuilder.#convertLinkToNullableBoolean(superMario3DWorldLink) : TemplateBuilder.#convertLinkToOnlyBoolean(superMario3DWorldLink),
         };
         const isExclusiveToSuperMario3DWorld = !gameStyleTemplate.superMarioBros && !gameStyleTemplate.superMarioBros3 && !gameStyleTemplate.superMarioWorld && !gameStyleTemplate.newSuperMarioBrosU && gameStyleTemplate.superMario3DWorld === true;
 
@@ -585,20 +585,20 @@ class TemplateBuilder
                     game: this._createGameTemplateFromAllGames(),
                     style: gameStyleTemplate,
                     theme: {
-                        ground: TemplateBuilder.__convertLinkToOnlyBoolean(groundLink),
-                        underground: TemplateBuilder.__convertLinkToOnlyBoolean(undergroundLink),
-                        underwater: TemplateBuilder.__convertLinkToOnlyBoolean(underwaterLink),
-                        desert: TemplateBuilder.__convertLinkToNullableBoolean(desertLink),
-                        snow: TemplateBuilder.__convertLinkToNullableBoolean(snowLink),
-                        sky: TemplateBuilder.__convertLinkToNullableBoolean(skyLink),
-                        forest: TemplateBuilder.__convertLinkToNullableBoolean(forestLink),
-                        ghostHouse: TemplateBuilder.__convertLinkToOnlyBoolean(ghostHouseLink),
-                        airship: TemplateBuilder.__convertLinkToOnlyBoolean(airshipLink),
-                        castle: TemplateBuilder.__convertLinkToOnlyBoolean(castleLink),
+                        ground: TemplateBuilder.#convertLinkToOnlyBoolean(groundLink),
+                        underground: TemplateBuilder.#convertLinkToOnlyBoolean(undergroundLink),
+                        underwater: TemplateBuilder.#convertLinkToOnlyBoolean(underwaterLink),
+                        desert: TemplateBuilder.#convertLinkToNullableBoolean(desertLink),
+                        snow: TemplateBuilder.#convertLinkToNullableBoolean(snowLink),
+                        sky: TemplateBuilder.#convertLinkToNullableBoolean(skyLink),
+                        forest: TemplateBuilder.#convertLinkToNullableBoolean(forestLink),
+                        ghostHouse: TemplateBuilder.#convertLinkToOnlyBoolean(ghostHouseLink),
+                        airship: TemplateBuilder.#convertLinkToOnlyBoolean(airshipLink),
+                        castle: TemplateBuilder.#convertLinkToOnlyBoolean(castleLink),
                     },
                     time: {
-                        day: TemplateBuilder.__convertLinkToOnlyBoolean(dayLink),
-                        night: isExclusiveToSuperMarioMaker1 || isExclusiveToSuperMario3DWorld ? TemplateBuilder.__convertLinkToNullableBoolean(nightLink) : TemplateBuilder.__convertLinkToOnlyBoolean(nightLink),
+                        day: TemplateBuilder.#convertLinkToOnlyBoolean(dayLink),
+                        night: isExclusiveToSuperMarioMaker1 || isExclusiveToSuperMario3DWorld ? TemplateBuilder.#convertLinkToNullableBoolean(nightLink) : TemplateBuilder.#convertLinkToOnlyBoolean(nightLink),
                     },
                 },
 
@@ -715,11 +715,11 @@ class TemplateBuilder
                     }
                 },
                 behaviour: {
-                    solo: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_solo),),
-                    localCoop: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_localCoop),),
+                    solo: TemplateBuilder.#convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_solo),),
+                    localCoop: TemplateBuilder.#convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_localCoop),),
                     online: {
-                        coop: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_onlineCoop),),
-                        versus: TemplateBuilder.__convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_onlineVS),),
+                        coop: TemplateBuilder.#convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_onlineCoop),),
+                        versus: TemplateBuilder.#convertToBehaviourArray(this._getContent(this._headersIndexMap.behaviour_onlineVS),),
                     },
                 },
                 offscreenRange: {
@@ -739,7 +739,7 @@ class TemplateBuilder
                         },
                     },
                 },
-                dimension: TemplateBuilder.__createDimensionTemplate(
+                dimension: TemplateBuilder.#createDimensionTemplate(
                     this._getContent(this._headersIndexMap.dimension), this._getContent(this._headersIndexMap.dimension_maximum),
                     this._getContent(this._headersIndexMap.dimension_differentInSM3DW), this._getContent(this._headersIndexMap.dimension_maximum_differentInSM3DW),
                 ),
@@ -780,38 +780,38 @@ class TemplateBuilder
         };
     }
 
-    private static __convertLinkToOnlyBoolean(link: | EntityLink | null,) {
-        return link != null && this.__convertLinkToBoolean(link);
+    static #convertLinkToOnlyBoolean(link: | EntityLink | null,) {
+        return link != null && this.#convertLinkToBoolean(link);
     }
 
-    private static __convertLinkToBoolean(link: EntityLink,): boolean {
+    static #convertLinkToBoolean(link: EntityLink,): boolean {
         return link.includes(this.#LINK_AS_THIS);
     }
 
-    private static __convertLinkToNullableBoolean(link: | EntityLink | null,): | boolean | null {
+    static #convertLinkToNullableBoolean(link: | EntityLink | null,): | boolean | null {
         return link == null
             ? null
-            : this.__convertLinkToBoolean(link);
+            : this.#convertLinkToBoolean(link);
     }
 
-    private static __convertToBehaviourArray(behaviour: | string | null,): EveryPossibleLinkedBehaviourAcronymArray {
+    static #convertToBehaviourArray(behaviour: | string | null,): EveryPossibleLinkedBehaviourAcronymArray {
         return behaviour == null
             ? EMPTY_ARRAY
             : behaviour.split(this.#SLASH_SEPARATOR) as | [string,] | [string, string,] | [string, string, string,] as EveryPossibleLinkedBehaviourAcronymArray;
     }
 
 
-    private static __createDimensionTemplate(value: PossibleDimension, maximumValue: PossibleMaximumDimension, valueSM3DW: PossibleDimensionDifferentInSM3DW, maximumValueSM3DW: PossibleMaximumDimensionDifferentInSM3DW,): DimensionTemplate {
+    static #createDimensionTemplate(value: PossibleDimension, maximumValue: PossibleMaximumDimension, valueSM3DW: PossibleDimensionDifferentInSM3DW, maximumValueSM3DW: PossibleMaximumDimensionDifferentInSM3DW,): DimensionTemplate {
         return value == null && maximumValue == null && valueSM3DW == null && maximumValueSM3DW == null
             ? this.#EMPTY_DIMENSION_TEMPLATE
             : {
                 value: value,
                 maximum: maximumValue,
-                differentInSM3DW: this.__createSM3DWDifferentDimensionTemplate(valueSM3DW, maximumValueSM3DW,),
+                differentInSM3DW: this.#createSM3DWDifferentDimensionTemplate(valueSM3DW, maximumValueSM3DW,),
             };
     }
 
-    private static __createSM3DWDifferentDimensionTemplate(value: PossibleDimensionDifferentInSM3DW, maximumValue: PossibleMaximumDimensionDifferentInSM3DW,): SimpleDimensionTemplateDifferentInSM3DW {
+    static #createSM3DWDifferentDimensionTemplate(value: PossibleDimensionDifferentInSM3DW, maximumValue: PossibleMaximumDimensionDifferentInSM3DW,): SimpleDimensionTemplateDifferentInSM3DW {
         return value == null && maximumValue == null
             ? this.#EMPTY_SIMPLE_DIMENSION_TEMPLATE
             : {value: value, maximum: maximumValue,};

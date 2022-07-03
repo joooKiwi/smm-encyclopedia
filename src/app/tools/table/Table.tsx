@@ -31,45 +31,45 @@ export default class Table
     //endregion -------------------- Attributes --------------------
     //region -------------------- Getter methods --------------------
 
-    protected get id() {
+    public get id() {
         return this.props.id;
     }
 
-    protected get caption() {
+    public get caption() {
         return this.props.caption;
     }
 
-    protected get headers() {
+    public get headers() {
         return this.props.headers;
     }
 
-    protected get content() {
+    public get content() {
         return this.props.content;
     }
 
-    protected get tableColor() {
+    public get tableColor() {
         return this.props['table-color'] ?? Table.DEFAULT_TABLE_COLOR;
     }
 
-    protected get headersColor() {
+    public get headersColor() {
         return this.props['headers-color'] ?? Table.DEFAULT_HEADERS_COLOR;
     }
 
 
-    private __getEveryHeaders(): EveryHeaders
-    private __getEveryHeaders(headers: readonly SingleHeaderContent[],): readonly [string, SingleHeaderContent,][]
-    private __getEveryHeaders(headers: readonly SingleHeaderContent[] = this.headers ?? [],): EveryHeaders {
+    #getEveryHeaders(): EveryHeaders
+    #getEveryHeaders(headers: readonly SingleHeaderContent[],): readonly [string, SingleHeaderContent,][]
+    #getEveryHeaders(headers: readonly SingleHeaderContent[] = this.headers ?? [],): EveryHeaders {
         const array = [] as [string, SingleHeaderContent,][];
         for (let header of headers) {
             const subHeaders = TableHeaders.getSubHeaders(header);
             array.push([TableHeaders.getHeaderKey(header), header,]);
             if (subHeaders.length !== 0)
-                array.push(...this.__getEveryHeaders(subHeaders,));
+                array.push(...this.#getEveryHeaders(subHeaders,));
         }
         return array;
     }
 
-    private __getEveryHeaderHolders(everyHeaders: EveryHeaders,): EveryHeaderHolders {
+    #getEveryHeaderHolders(everyHeaders: EveryHeaders,): EveryHeaderHolders {
         const everyHeaderHolders = new Map<string, HeaderHolder>(everyHeaders.map(([key, header,]) =>
             [key,
                 new HeaderHolderContainer(this.id, header,
@@ -85,7 +85,7 @@ export default class Table
         return everyHeaderHolders;
     }
 
-    private __getLayout(everyHeaderHolders: EveryHeaderHolders,): Layout {
+    #getLayout(everyHeaderHolders: EveryHeaderHolders,): Layout {
         const layout: string[][] = [];
 
         everyHeaderHolders.forEach((headerContainer, key,) => {
@@ -106,8 +106,8 @@ export default class Table
         const caption = this.caption;
         const headers = this.headers;
         const isHeaderNull = headers == null;
-        const everyHeadersHolder: ObjectHolder<EveryHeaderHolders> = new DelayedObjectHolderContainer(() => this.__getEveryHeaderHolders(this.__getEveryHeaders()));
-        const layoutHolder: ObjectHolder<Layout> = new DelayedObjectHolderContainer(() => this.__getLayout(everyHeadersHolder.get));
+        const everyHeadersHolder: ObjectHolder<EveryHeaderHolders> = new DelayedObjectHolderContainer(() => this.#getEveryHeaderHolders(this.#getEveryHeaders()));
+        const layoutHolder: ObjectHolder<Layout> = new DelayedObjectHolderContainer(() => this.#getLayout(everyHeadersHolder.get));
 
         return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
             {caption == null ? EMPTY_REACT_ELEMENT : <caption>{caption}</caption>}

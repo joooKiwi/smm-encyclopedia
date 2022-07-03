@@ -28,7 +28,7 @@ export class NightEffects
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with special effects on ground night
             return {
-                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
             };
         }
 
@@ -39,8 +39,8 @@ export class NightEffects
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             //TODO change the entities to be only for the entities with dark light
             return {
-                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
-                players: NightEffects.__createPlayersLink(this),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
+                players: NightEffects._createPlayersLink(this),
             };
         }
 
@@ -60,8 +60,8 @@ export class NightEffects
 
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             return {
-                underwaterImage: NightEffects.__createUnderwaterImage(this),
-                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+                underwaterImage: NightEffects._createUnderwaterImage(this),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
             };
         }
 
@@ -81,8 +81,8 @@ export class NightEffects
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
             return {
-                underwaterImage: NightEffects.__createUnderwaterImage(this),
-                entities: NightEffects.__createEntitiesLink(this, 'everyEntities',),
+                underwaterImage: NightEffects._createUnderwaterImage(this),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
             };
         }
 
@@ -91,8 +91,8 @@ export class NightEffects
 
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             return {
-                underwaterImage: NightEffects.__createUnderwaterImage(this),
-                players: NightEffects.__createPlayersLink(this),
+                underwaterImage: NightEffects._createUnderwaterImage(this),
+                players: NightEffects._createPlayersLink(this),
             };
         }
 
@@ -128,16 +128,16 @@ export class NightEffects
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private static __createUnderwaterImage(instance: NightEffects,): ReactElement {
+    protected static _createUnderwaterImage(instance: NightEffects,): ReactElement {
         return <Fragment key={`${instance.englishName} (underwater)`}>{Themes.UNDERWATER.renderSingleComponent(true)}</Fragment>;
     }
 
-    private static __createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
+    protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
         //TODO add entities translation
         return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">--entities--</Link>;
     }
 
-    private static __createPlayersLink(instance: NightEffects,): ReactElement {
+    protected static _createPlayersLink(instance: NightEffects,): ReactElement {
         //TODO add players translation
         return <span key={`${instance.englishName} (players)`} className="text-decoration-underline">--players--</span>;
     }

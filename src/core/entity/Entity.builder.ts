@@ -63,7 +63,7 @@ export class EntityBuilder
     //endregion -------------------- Attributes --------------------
 
     public constructor(template: EntityTemplate,) {
-        super(template, (template,) => EntityBuilder.__getGames(template,), false,);
+        super(template, (template,) => EntityBuilder.#getGames(template,), false,);
     }
 
     /**
@@ -74,7 +74,7 @@ export class EntityBuilder
      * @param template the template destructured to get only the games
      * @onlyCalledAtConstruction
      */
-    private static __getGames({properties: {isIn: {game: {1: isInSMM1, '3DS': isInSMM3DS, 2: isInSMM2,},},},}: EntityTemplate,): OriginalPossibleGameReceived {
+    static #getGames({properties: {isIn: {game: {1: isInSMM1, '3DS': isInSMM3DS, 2: isInSMM2,},},},}: EntityTemplate,): OriginalPossibleGameReceived {
         return isInSMM1 && isInSMM3DS
             ? isInSMM2
                 ? 'all'
@@ -96,7 +96,7 @@ export class EntityBuilder
      * Get the entity category reference from the {@link EntityTemplate template}
      * or return an {@link EmptyEntityCategory empty category}.
      */
-    private __getEntityCategory(): EntityCategory {
+    #getEntityCategory(): EntityCategory {
         return EntityCategories.getValue(this.template.categoryInTheEditor)?.reference
             ?? EmptyEntityCategory.get;
     }
@@ -104,20 +104,20 @@ export class EntityBuilder
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
-    private static __whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
-    private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
-    private static __whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
+    static #whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
+    static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
+    static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
         return EntityLimits.getValue(entityLimit);
     }
 
-    private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
-    private static __getPropertyWhereEntityLimit<COMMENT extends PossibleComment, >(entityLimit: | PossibleEnglishName_EntityLimit | null, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
-    private static __getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?', comment: PossibleComment = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
+    static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
+    static #getPropertyWhereEntityLimit<COMMENT extends PossibleComment, >(entityLimit: | PossibleEnglishName_EntityLimit | null, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
+    static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?', comment: PossibleComment = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
         if (entityLimit === '?')
             return PropertyContainer.UNKNOWN_CONTAINER;
         if (entityLimit == null)
             return PropertyContainer.NOT_APPLICABLE_CONTAINER;
-        return new PropertyThatCanBeUnknownWithCommentContainer(this.__whereEntityLimit(entityLimit), false, comment,);
+        return new PropertyThatCanBeUnknownWithCommentContainer(this.#whereEntityLimit(entityLimit), false, comment,);
     }
 
     /**
@@ -125,7 +125,7 @@ export class EntityBuilder
      *
      * @param limitTemplate the limit template
      */
-    private static __getLimitPropertyAttributes(limitTemplate: LimitPropertyTemplate,): LimitProperty {
+    static #getLimitPropertyAttributes(limitTemplate: LimitPropertyTemplate,): LimitProperty {
         const {
             editor: {'1And3DS': editorLimit_SMM1And3DS, 2: editorLimit_SMM2,},
             whilePlaying: {
@@ -138,8 +138,8 @@ export class EntityBuilder
 
         return LimitPropertyContainer.get(
             [
-                GameStructureContainer.get(this.__whereEntityLimit(editorLimit_SMM1And3DS),
-                    this.__getPropertyWhereEntityLimit(editorLimit_SMM2),
+                GameStructureContainer.get(this.#whereEntityLimit(editorLimit_SMM1And3DS),
+                    this.#getPropertyWhereEntityLimit(editorLimit_SMM2),
                 ),
                 [
                     PropertyProvider.newBooleanContainer<GeneralEntityLimitType, true, false, true>(generalLimit, true, false,),
@@ -147,7 +147,7 @@ export class EntityBuilder
                 ],
                 PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
                 PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
-                this.__getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
+                this.#getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
             ],
             [
                 [editorLimit_SMM1And3DS, editorLimit_SMM2,],
@@ -163,7 +163,7 @@ export class EntityBuilder
      * Create the {@link Property property} from the {@link EntityTemplate template}
      * with the games, game style, theme, time & limit.
      */
-    private __createProperty() {
+    #createProperty() {
         const {isIn: {game, style: gameStyle, theme, time,}, limits,} = this.template.properties;
 
         return new PropertyInstanceContainer(
@@ -171,7 +171,7 @@ export class EntityBuilder
             new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
             new DelayedObjectHolderContainer(() => ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
             new DelayedObjectHolderContainer(() => TimePropertyContainer.get(time.day, time.night,)),
-            new DelayedObjectHolderContainer(() => EntityBuilder.__getLimitPropertyAttributes(limits)),
+            new DelayedObjectHolderContainer(() => EntityBuilder.#getLimitPropertyAttributes(limits)),
         );
     }
 
@@ -183,30 +183,30 @@ export class EntityBuilder
      * It gets the single references (game, game style, theme & time),
      * but it can also get every reference from the {@link EntityTemplate template}.
      */
-    private __createReferences() {
+    #createReferences() {
         const reference = this.template.properties.reference;
 
         //region -------------------- Single reference --------------------
 
-        const inSuperMarioBros = this.__createOtherEntityReferences(reference.style.superMarioBros);
-        const inSuperMarioBros3 = this.__createOtherEntityReferences(reference.style.superMarioBros3);
-        const inSuperMarioWorld = this.__createOtherEntityReferences(reference.style.superMarioWorld);
-        const inNewSuperMarioBros = this.__createOtherEntityReferences(reference.style.newSuperMarioBrosU);
-        const inSuperMario3DWorld = this.__createOtherEntityReferences(reference.style.superMario3DWorld);
+        const inSuperMarioBros = this.#createOtherEntityReferences(reference.style.superMarioBros);
+        const inSuperMarioBros3 = this.#createOtherEntityReferences(reference.style.superMarioBros3);
+        const inSuperMarioWorld = this.#createOtherEntityReferences(reference.style.superMarioWorld);
+        const inNewSuperMarioBros = this.#createOtherEntityReferences(reference.style.newSuperMarioBrosU);
+        const inSuperMario3DWorld = this.#createOtherEntityReferences(reference.style.superMario3DWorld);
 
-        const inGroundTheme = this.__createOtherEntityReferences(reference.theme.ground);
-        const inUndergroundTheme = this.__createOtherEntityReferences(reference.theme.underground);
-        const inUnderwaterTheme = this.__createOtherEntityReferences(reference.theme.underwater);
-        const inDesertTheme = this.__createOtherEntityReferences(reference.theme.desert);
-        const inSnowTheme = this.__createOtherEntityReferences(reference.theme.snow);
-        const inSkyTheme = this.__createOtherEntityReferences(reference.theme.sky);
-        const inForestTheme = this.__createOtherEntityReferences(reference.theme.forest);
-        const inGhostHouseTheme = this.__createOtherEntityReferences(reference.theme.ghostHouse);
-        const inAirshipTheme = this.__createOtherEntityReferences(reference.theme.airship);
-        const inCastleTheme = this.__createOtherEntityReferences(reference.theme.castle);
+        const inGroundTheme = this.#createOtherEntityReferences(reference.theme.ground);
+        const inUndergroundTheme = this.#createOtherEntityReferences(reference.theme.underground);
+        const inUnderwaterTheme = this.#createOtherEntityReferences(reference.theme.underwater);
+        const inDesertTheme = this.#createOtherEntityReferences(reference.theme.desert);
+        const inSnowTheme = this.#createOtherEntityReferences(reference.theme.snow);
+        const inSkyTheme = this.#createOtherEntityReferences(reference.theme.sky);
+        const inForestTheme = this.#createOtherEntityReferences(reference.theme.forest);
+        const inGhostHouseTheme = this.#createOtherEntityReferences(reference.theme.ghostHouse);
+        const inAirshipTheme = this.#createOtherEntityReferences(reference.theme.airship);
+        const inCastleTheme = this.#createOtherEntityReferences(reference.theme.castle);
 
-        const inDayTheme = this.__createOtherEntityReferences(reference.time.day);
-        const inNightTheme = this.__createOtherEntityReferences(reference.time.night);
+        const inDayTheme = this.#createOtherEntityReferences(reference.time.day);
+        const inNightTheme = this.#createOtherEntityReferences(reference.time.night);
 
         //endregion -------------------- Single reference --------------------
         //region -------------------- Group reference --------------------
@@ -218,10 +218,10 @@ export class EntityBuilder
         if (reference.group.all === null)
             everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = ObjectHolders.EMPTY_ARRAY;
         else {
-            everyGameStyleReferences = this.__createGroupReference(reference.group.gameStyle);
-            everyThemeReferences = this.__createGroupReference(reference.group.theme);
-            everyTimeReferences = this.__createGroupReference(reference.group.time);
-            everyReferences = this.__createGroupReference(reference.group.all);
+            everyGameStyleReferences = this.#createGroupReference(reference.group.gameStyle);
+            everyThemeReferences = this.#createGroupReference(reference.group.theme);
+            everyTimeReferences = this.#createGroupReference(reference.group.time);
+            everyReferences = this.#createGroupReference(reference.group.all);
         }
 
         //endregion -------------------- Group reference --------------------
@@ -234,7 +234,7 @@ export class EntityBuilder
         );
     }
 
-    private __createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
+    #createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
             : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
@@ -246,7 +246,7 @@ export class EntityBuilder
      *
      * @param link the entity link or null
      */
-    private __createOtherEntityReferences(link: | EntityLink | null,): ObjectHolder<PossibleOtherEntities> {
+    #createOtherEntityReferences(link: | EntityLink | null,): ObjectHolder<PossibleOtherEntities> {
         return new DelayedObjectHolderContainer(
             link === null
                 ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
@@ -261,18 +261,18 @@ export class EntityBuilder
     //endregion -------------------- Build helper methods --------------------
 
     public override _build(name: Name<string>,) {
-        const isInProperty = this.__createProperty();
+        const isInProperty = this.#createProperty();
         const isInSMM1 = isInProperty.isInSuperMarioMaker1;
         const isInSMM2 = isInProperty.isInSuperMarioMaker2;
 
 
         return isInSMM1 && !isInSMM2
-            ? new ExclusiveSMM1EntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),)
+            ? new ExclusiveSMM1EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
             : !isInSMM1 && isInSMM2
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
-                    ? new ExclusiveSM3DWEntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                    : new ExclusiveSMM2EntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),)
-                : new EntityContainer(name, this.__getEntityCategory(), isInProperty, this.__createReferences(),);
+                    ? new ExclusiveSM3DWEntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
+                    : new ExclusiveSMM2EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
+                : new EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),);
     }
 
 }

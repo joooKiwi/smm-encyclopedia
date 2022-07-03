@@ -26,15 +26,15 @@ interface SoundEffectProperties {
 export default class SoundEffectComponent
     extends PureComponent<SoundEffectProperties> {
 
-    protected get reference() {
+    public get reference() {
         return this.props.reference;
     }
 
-    protected get game() {
+    public get game() {
         return this.props.game;
     }
 
-    protected get name() {
+    public get name() {
         return this.props.name;
     }
 

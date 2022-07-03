@@ -25,7 +25,7 @@ export default class EveryGameStylesApp
 
     //region -------------------- Methods --------------------
 
-    protected get content() {
+    protected get _content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const enumerable of GameStyles) {
@@ -58,7 +58,7 @@ export default class EveryGameStylesApp
                 GameStyleAppOption.GAME.renderTableHeader,
                 GameStyleAppOption.NIGHT_DESERT_WIND.renderTableHeader,
             ].filter(header => header != null) as SingleHeadersContent}
-            content={this.content}
+            content={this._content}
         />;
     }
 

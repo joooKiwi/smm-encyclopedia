@@ -364,7 +364,6 @@ export class MysteryMushrooms
      * Get the path depending on the mystery mushroom
      *
      * @note that the method will never be called when using {@link MYSTERY_MUSHROOM MysteryMushrooms.MYSTERY_MUSHROOM}.
-     * @private
      */
     private get __path(): PossiblePath {
         return this.#path ??= `${this.ordinal} - ${this.englishNameOnFile}` as PossiblePath;

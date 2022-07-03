@@ -129,12 +129,12 @@ export default class SimpleSound
      *  it will assume that the source is valid.
      * </p>
      */
-    private __play(): void {
+    #play(): void {
         this._audio.play()
             .then(() => {
                 const isSoundFound = this.isSoundFound.onPlay(this.#isSourceFoundCallback) ?? this.__isSoundFound;
                 if (!isSoundFound)
-                    this.__stop(SoundStates.EXCEPTION);
+                    this.#stop(SoundStates.EXCEPTION);
             })
             .catch(() => this.setState({state: SoundStates.EXCEPTION,}));
         this.setState({state: SoundStates.PLAYING,});
@@ -143,7 +143,7 @@ export default class SimpleSound
     /**
      * Pause the current audio element.
      */
-    private __pause(): void {
+    #pause(): void {
         this._audio.pause();
         this.setState({state: SoundStates.PAUSED,});
     }
@@ -153,7 +153,7 @@ export default class SimpleSound
      *
      * @param state either {@link SoundStates.STANDBY standby} or {@link SoundStates.EXCEPTION exception} state
      */
-    private __stop(state: SoundStates = SoundStates.STANDBY,): void {
+    #stop(state: SoundStates = SoundStates.STANDBY,): void {
         const audio = this._audio;
         audio.pause();
         audio.currentTime = 0;
@@ -177,9 +177,9 @@ export default class SimpleSound
     public override render(): ReactElement {
         return <div key={this._title} className="audio-state-container container">{
             this.state.state.getElements(new SoundSubElementsHolder(
-                () => <div key={`${this._title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.__play()}/>,
-                () => <div key={`${this._title} - pause`} className={SimpleSound.#PAUSE_CLASSES} onClick={() => this.__pause()}/>,
-                () => <div key={`${this._title} - stop`} className={SimpleSound.#STOP_CLASSES} onClick={() => this.__stop()}/>,
+                () => <div key={`${this._title} - play`} className={SimpleSound.#PLAY_CLASSES} onClick={() => this.#play()}/>,
+                () => <div key={`${this._title} - pause`} className={SimpleSound.#PAUSE_CLASSES} onClick={() => this.#pause()}/>,
+                () => <div key={`${this._title} - stop`} className={SimpleSound.#STOP_CLASSES} onClick={() => this.#stop()}/>,
                 () => <div key={`${this._title} - exception`} className={SimpleSound.#EXCEPTION_CLASSES}/>,
             ))
         }</div>;

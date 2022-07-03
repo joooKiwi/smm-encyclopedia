@@ -45,7 +45,7 @@ export class TranslationUtility {
         const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX).filter(splitValue => !argumentsFound.includes(splitValue));
         let finalArguments: (| string | ReactElement)[] = [];
         for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
-            this.__addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]]);
+            this.#addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]]);
         return <>{finalArguments}</>;
     }
 
@@ -59,7 +59,7 @@ export class TranslationUtility {
      * @param firstElement the first element
      * @param secondElement the second element
      */
-    private static __addArgumentToArray(finalArguments: PossibleReactElement[], firstElement: PossibleReactElement, secondElement: PossibleReactElement | undefined,): void {
+    static #addArgumentToArray(finalArguments: PossibleReactElement[], firstElement: PossibleReactElement, secondElement: PossibleReactElement | undefined,): void {
         finalArguments.push(firstElement);
         if (secondElement == null)
             return;

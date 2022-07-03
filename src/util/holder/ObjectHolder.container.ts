@@ -6,16 +6,16 @@ export class ObjectHolderContainer<T>
     readonly #value;
 
     public constructor(value: PossibleValueOnObjectHolder<T>,) {
-        this.#value = ObjectHolderContainer.__retrieveValue(value,);
+        this.#value = ObjectHolderContainer.#retrieveValue(value,);
     }
 
-    private static __retrieveValue<T, >(value: PossibleValueOnObjectHolder<T>,): T {
+    static #retrieveValue<T, >(value: PossibleValueOnObjectHolder<T>,): T {
         return value == null
             ? value
             : value instanceof Function
                 ? value()
                 : typeof value == 'object' && 'get' in value
-                    ? this.__retrieveValue(value.get,)
+                    ? this.#retrieveValue(value.get,)
                     : value;
     }
 

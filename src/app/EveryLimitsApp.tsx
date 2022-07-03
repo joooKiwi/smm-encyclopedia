@@ -19,7 +19,7 @@ export default class EveryLimitsApp
 
     //region -------------------- Methods --------------------
 
-    private static __getAcronym(entityLimit: EntityLimit,): '' | EntityLimit['acronym'] | `${EntityLimit['acronym']} / ${EntityLimit['alternativeAcronym']}` {
+    static #getAcronym(entityLimit: EntityLimit,): '' | EntityLimit['acronym'] | `${EntityLimit['acronym']} / ${EntityLimit['alternativeAcronym']}` {
         return entityLimit.alternativeAcronym == null
             ? entityLimit.acronym == null
                 ? ''
@@ -27,7 +27,7 @@ export default class EveryLimitsApp
             : `${entityLimit.acronym} / ${entityLimit.alternativeAcronym}`;
     }
 
-    protected get content() {
+    protected get _content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const enumerable of EntityLimits) {
@@ -36,7 +36,7 @@ export default class EveryLimitsApp
             if (entityLimit !== entityLimit.alternativeContainer) {
                 content.push([enumerable.englishName,
                     <>{index}</>,
-                    <TextComponent content={EveryLimitsApp.__getAcronym(entityLimit)}/>,
+                    <TextComponent content={EveryLimitsApp.#getAcronym(entityLimit)}/>,
                     <NameComponent id="name" name={entityLimit} popoverOrientation="bottom"/>,
                     <NameComponent id="alternativeName" name={entityLimit.alternativeContainer} popoverOrientation="bottom"/>,
                     <TextComponent content={entityLimit.limitAmountInSMM1AndSMM3DS} isUnknown={entityLimit.isUnknownLimitInSMM1AndSMM3DS}/>,
@@ -73,7 +73,7 @@ export default class EveryLimitsApp
                 },
                 {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,},
             ]}
-            content={this.content}/>;
+            content={this._content}/>;
     }
 
 }

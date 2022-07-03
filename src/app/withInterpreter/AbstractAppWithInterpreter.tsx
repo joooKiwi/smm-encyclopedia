@@ -53,7 +53,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
      * Get the group key for each {@link ViewDisplays "view display" button}.
      * It is also used for the {@link Table} id.
      *
-     * @see __createViewDisplayGroup
+     * @see #createViewDisplayGroup
      */
     protected get _key(): string {
         return this.#key ??= this._createKey();
@@ -72,7 +72,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
-    private get __createViewDisplayGroup(): ReactElement {
+    get #createViewDisplayGroup(): ReactElement {
         return <div key={`${this._key} (group)`} id="btn-viewDisplay-container" className="btn-group">
             {this.__possibleViewDisplay.map(viewDisplay =>
                 viewDisplay.createButton(this.typeDisplayed, this._key, nextValue => this.typeDisplayed = nextValue,))}
@@ -86,7 +86,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
 
         return <div key={`${this._key} (sub main container)`} id="subMain-container">
             <aside id="viewChanger-container">
-                {this.__createViewDisplayGroup}
+                {this.#createViewDisplayGroup}
             </aside>
             <div id={`${this._key}-container`} className={`${typeDisplayed.htmlType}-container`}>
                 <h1 key={`${this._key} (title)`} id={`${this._key}-title`} className="app-title">{this._createTitleContent()}</h1>

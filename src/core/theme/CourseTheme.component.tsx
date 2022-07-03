@@ -11,7 +11,7 @@ export default class CourseThemeComponent
     extends ThemeComponent<ThemeProperty> {
 
 
-    protected override get map() {
+    protected override get _map() {
         return this.reference.toCourseThemeMap();
     }
 

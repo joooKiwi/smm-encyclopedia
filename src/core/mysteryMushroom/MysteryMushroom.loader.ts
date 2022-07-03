@@ -218,7 +218,7 @@ class TemplateBuilder
                     condition: this._getContent(this._headersIndexMap.conditionToUnlockIt),
                     amiibo: this._getContent(this._headersIndexMap.canBeUnlockedByAnAmiibo),
                 },
-                sound: this.__createSoundTemplate(),
+                sound: this.#createSoundTemplate(),
             },
             uniqueName: this._getContent(this._headersIndexMap.uniqueName),
             gameReference: this._getContent(this._headersIndexMap.reference),
@@ -226,7 +226,7 @@ class TemplateBuilder
         };
     }
 
-    private __createSoundTemplate(): SoundPropertyTemplate {
+    #createSoundTemplate(): SoundPropertyTemplate {
         return {
             soundEffect: {
                 movement: this._getContent(this._headersIndexMap.soundEffectOnMovement),

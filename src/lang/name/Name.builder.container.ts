@@ -22,7 +22,6 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
      * As it stands, only the english and french language are complete.
      *
      * @see EveryLanguages.isACompleteLanguage
-     * @private
      */
     static readonly #IS_NULLABLE_FOR_COMPLETED_LANGUAGES = false;
     /**
@@ -31,7 +30,6 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
      * As it stands, only the greek is optional.
      *
      * @see ProjectLanguages.isInEverySuperMarioMakerGame
-     * @private
      */
     static readonly #IS_NULLABLE_FOR_OPTIONAL_LANGUAGES = true;
 
@@ -284,9 +282,9 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
-    private __get<S extends string = string, >(language: EveryLanguages, value: | S | null,): | S | null
-    private __get<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(language: EveryLanguages, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,]
-    private __get(language: EveryLanguages, value1: PossibleLanguageValue<string>, value2?: PossibleLanguageValue<string>, value3?: PossibleLanguageValue<string>,) {
+    #get<S extends string = string, >(language: EveryLanguages, value: | S | null,): | S | null
+    #get<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(language: EveryLanguages, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,]
+    #get(language: EveryLanguages, value1: PossibleLanguageValue<string>, value2?: PossibleLanguageValue<string>, value3?: PossibleLanguageValue<string>,) {
         const canBeNullable = (() => {
             //TODO change to the ProjectLanguages.isACompleteLanguage instead
             switch (language) {
@@ -317,21 +315,21 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     public build(): Name<string> {
         const {english, french, german, spanish, italian, dutch, portuguese, russian, japanese, chinese, korean, hebrew, polish, ukrainian, greek,} = this.template;
 
-        this.setEnglish(this.__get(EveryLanguages.ENGLISH, english.simple, english.american, english.european,))
-            .setFrench(this.__get(EveryLanguages.FRENCH, french.simple, french.canadian, french.european,))
-            .setGerman(this.__get(EveryLanguages.GERMAN, german,))
-            .setSpanish(this.__get(EveryLanguages.SPANISH, spanish.simple, spanish.american, spanish.european,))
-            .setItalian(this.__get(EveryLanguages.ITALIAN, italian,))
-            .setDutch(this.__get(EveryLanguages.DUTCH, dutch,))
-            .setPortuguese(this.__get(EveryLanguages.PORTUGUESE, portuguese.simple, portuguese.american, portuguese.european,))
-            .setRussian(this.__get(EveryLanguages.RUSSIAN, russian,))
-            .setJapanese(this.__get(EveryLanguages.JAPANESE, japanese,))
-            .setChinese(this.__get(EveryLanguages.CHINESE, chinese.simple, chinese.simplified, chinese.traditional,))
-            .setKorean(this.__get(EveryLanguages.KOREAN, korean,))
-            .setHebrew(this.__get(EveryLanguages.HEBREW, hebrew,))
-            .setPolish(this.__get(EveryLanguages.POLISH, polish,))
-            .setUkrainian(this.__get(EveryLanguages.UKRAINIAN, ukrainian,))
-            .setGreek(this.__get(EveryLanguages.GREEK, greek,));
+        this.setEnglish(this.#get(EveryLanguages.ENGLISH, english.simple, english.american, english.european,))
+            .setFrench(this.#get(EveryLanguages.FRENCH, french.simple, french.canadian, french.european,))
+            .setGerman(this.#get(EveryLanguages.GERMAN, german,))
+            .setSpanish(this.#get(EveryLanguages.SPANISH, spanish.simple, spanish.american, spanish.european,))
+            .setItalian(this.#get(EveryLanguages.ITALIAN, italian,))
+            .setDutch(this.#get(EveryLanguages.DUTCH, dutch,))
+            .setPortuguese(this.#get(EveryLanguages.PORTUGUESE, portuguese.simple, portuguese.american, portuguese.european,))
+            .setRussian(this.#get(EveryLanguages.RUSSIAN, russian,))
+            .setJapanese(this.#get(EveryLanguages.JAPANESE, japanese,))
+            .setChinese(this.#get(EveryLanguages.CHINESE, chinese.simple, chinese.simplified, chinese.traditional,))
+            .setKorean(this.#get(EveryLanguages.KOREAN, korean,))
+            .setHebrew(this.#get(EveryLanguages.HEBREW, hebrew,))
+            .setPolish(this.#get(EveryLanguages.POLISH, polish,))
+            .setUkrainian(this.#get(EveryLanguages.UKRAINIAN, ukrainian,))
+            .setGreek(this.#get(EveryLanguages.GREEK, greek,));
 
         assert(this.english !== undefined, 'The english reference has not been initialised.',);
         assert(this.french !== undefined, 'The french reference has not been initialised.',);

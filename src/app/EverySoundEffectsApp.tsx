@@ -37,7 +37,7 @@ export default class EverySoundEffectsApp
     //endregion -------------------- Attributes & getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private __createCategoryComponent(index: number, soundEffect: SoundEffect,) {
+    #createCategoryComponent(index: number, soundEffect: SoundEffect,) {
         const categoryName = soundEffect.categoryNameContainer;
         if (categoryName === EmptyStringName.get)
             return EMPTY_REACT_ELEMENT;
@@ -49,7 +49,7 @@ export default class EverySoundEffectsApp
         return <Image source={SoundEffectCategories.getValue(categoryEnglishName)!.imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
     }
 
-    protected get content() {
+    protected get _content() {
         const content = [] as SingleTableContent[];
 
         let index = 1;
@@ -61,7 +61,7 @@ export default class EverySoundEffectsApp
                 soundEffect.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={soundEffect} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT,
                 soundEffect.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={soundEffect} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT,
                 <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
-                this.__createCategoryComponent(index, soundEffect,),
+                this.#createCategoryComponent(index, soundEffect,),
                 <>--{soundEffect.translationKey}--</>,
             ]);
             index++;
@@ -88,7 +88,7 @@ export default class EverySoundEffectsApp
                 {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
                 {key: 'player behaviour', element: <>--Player behaviour--</>/*<GameContentTranslationComponent translationKey="Player behaviour"/>*/,},
             ]}
-            content={this.content}
+            content={this._content}
         />;
     }
 

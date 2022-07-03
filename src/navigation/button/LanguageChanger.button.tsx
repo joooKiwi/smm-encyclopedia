@@ -22,7 +22,7 @@ export default class LanguageChangerButton
         return LanguageChangerButton.#ID;
     }
 
-    protected override get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get _tooltipPlacement(): PossibleTooltipPlacement {
         return 'left';
     }
 
@@ -30,7 +30,7 @@ export default class LanguageChangerButton
         return 'bi-translate';
     }
 
-    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override _getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return [translation('Change the language'), 'md',];
     }
 

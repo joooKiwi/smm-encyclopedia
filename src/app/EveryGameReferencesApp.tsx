@@ -47,15 +47,15 @@ export default class EveryGameReferencesApp
     //region -------------------- Getter & initialisation methods --------------------
 
     private static get __otherGameReferences(): readonly GameReferences[] {
-        if (EveryGameReferencesApp.#otherGameReferences == null) {
+        if (this.#otherGameReferences == null) {
             const alreadyIncludedNames = [
                 ...Games.values.map(game => game.englishName),
                 ...GameStyles.values.map(game => game.englishName),
                 ...SoundEffects.soundEffect_games.map(game => game.englishName) as PossibleEnglishName_Games[],
             ];
-            EveryGameReferencesApp.#otherGameReferences = GameReferences.values.filter(enumerable => !alreadyIncludedNames.includes(enumerable.englishName as never));
+            this.#otherGameReferences = GameReferences.values.filter(enumerable => !alreadyIncludedNames.includes(enumerable.englishName as never));
         }
-        return EveryGameReferencesApp.#otherGameReferences;
+        return this.#otherGameReferences;
     }
 
     //endregion -------------------- Getter & initialisation methods --------------------

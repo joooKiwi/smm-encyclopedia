@@ -22,15 +22,15 @@ export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
     extends PureComponent<EntityPropertyProperties<R>>
     implements ReactComponent {
 
-    protected get reference() {
+    public get reference() {
         return this.props.reference;
     }
 
-    protected get name() {
+    public get name() {
         return this.props.name;
     }
 
-    protected get displayAllAsText(): boolean {
+    public get displayAllAsText(): boolean {
         return this.props.displayAllAsText;
     }
 

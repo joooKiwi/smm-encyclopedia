@@ -37,7 +37,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
     }
 
 
-    private __addEventListener(type: string, callback: OffcanvasEventCallbackReceived<this>,): this {
+    #addEventListener(type: string, callback: OffcanvasEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -56,7 +56,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @see Offcanvas.Events.show
      */
     public override onShow(callback: OffcanvasEventCallbackReceived<this>,): this {
-        return this.__addEventListener(OffcanvasInstance.SHOW_EVENT, callback,);
+        return this.#addEventListener(OffcanvasInstance.SHOW_EVENT, callback,);
     }
 
     /**
@@ -64,7 +64,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @see Offcanvas.Events.shown
      */
     public override onShown(callback: OffcanvasEventCallbackReceived<this>,): this {
-        return this.__addEventListener(OffcanvasInstance.SHOWN_EVENT, callback,);
+        return this.#addEventListener(OffcanvasInstance.SHOWN_EVENT, callback,);
     }
 
     /**
@@ -72,7 +72,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @see Offcanvas.Events.hide
      */
     public override onHide(callback: OffcanvasEventCallbackReceived<this>,): this {
-        return this.__addEventListener(OffcanvasInstance.HIDE_EVENT, callback,);
+        return this.#addEventListener(OffcanvasInstance.HIDE_EVENT, callback,);
     }
 
     /**
@@ -80,7 +80,7 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
      * @see Offcanvas.Events.hidden
      */
     public override onHidden(callback: OffcanvasEventCallbackReceived<this>,): this {
-        return this.__addEventListener(OffcanvasInstance.HIDDEN_EVENT, callback,);
+        return this.#addEventListener(OffcanvasInstance.HIDDEN_EVENT, callback,);
     }
 
 

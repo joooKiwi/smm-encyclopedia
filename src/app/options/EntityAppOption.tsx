@@ -60,7 +60,7 @@ export abstract class EntityAppOption
             nextState.display.section.images = value;
         }
 
-        private get __createImageOnEditor(): PossibleRenderReactElement {
+        get #createImageOnEditor(): PossibleRenderReactElement {
             const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
             const image = enumeration.editorImage;
 
@@ -73,7 +73,7 @@ export abstract class EntityAppOption
             }</Fragment>);
         }
 
-        private get __createImageOnClearCondition(): PossibleRenderReactElement {
+        get #createImageOnClearCondition(): PossibleRenderReactElement {
             const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
             const image = enumeration.clearConditionImage;
 
@@ -88,8 +88,8 @@ export abstract class EntityAppOption
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
 
                 return enumeration.editorImage === EmptyEditorImage.get
-                    ? this.__createImageOnClearCondition
-                    : this.__createImageOnEditor;
+                    ? this.#createImageOnClearCondition
+                    : this.#createImageOnEditor;
             };
         }
 

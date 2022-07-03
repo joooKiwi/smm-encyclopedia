@@ -62,9 +62,8 @@ export default class EveryMysteryMushroomsApp
      * @param images the images
      * @param englishName the english name of the {@link MysteryMushroom}
      * @param type the possible type of the {@link MysteryMushroom} as a property in the {@link SoundProperty}
-     * @private
      */
-    private static __createImages(images: PossibleGroupImages, englishName: string, type: string,) {
+    static #createImages(images: PossibleGroupImages, englishName: string, type: string,) {
         if (images.length === 0 || images[0].length === 0)
             return this.#NOT_APPLICABLE_COMPONENT;
 
@@ -88,10 +87,10 @@ export default class EveryMysteryMushroomsApp
         const id = StringContainer.getInHtml(englishName);
         return imagesFormattedAsGroup.map((images, index,) =>
             <Image key={`${fallbackName} - ${index + 1}`} partialId={`${id}-${index + 1}`}
-                            images={images.map<ImageProperties>((image, index,) => ({source: image, fallbackName: `${fallbackName}-${index + 1}`,}))}/>);
+                   images={images.map<ImageProperties>((image, index,) => ({source: image, fallbackName: `${fallbackName}-${index + 1}`,}))}/>);
     }
 
-    private static __createSounds(sounds: PossibleSounds, englishName: string, type: string,) {
+    static #createSounds(sounds: PossibleSounds, englishName: string, type: string,) {
         if (sounds.length === 0)
             return EMPTY_REACT_ELEMENT;
 
@@ -102,7 +101,7 @@ export default class EveryMysteryMushroomsApp
         </>;
     }
 
-    protected get content() {
+    protected get _content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const enumerable of MysteryMushrooms) {
@@ -122,35 +121,35 @@ export default class EveryMysteryMushroomsApp
                     </Fragment>)}</div>,
                 <NameComponent id={`name_${englishNameAsId}`} name={mysteryMushroom} popoverOrientation="right"/>,
                 <div key={`${englishName} - power-up collected`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
-                    : EveryMysteryMushroomsApp.__createSounds(enumerable.powerUpCollectedSounds, englishName, 'power-up collected',)
+                    : EveryMysteryMushroomsApp.#createSounds(enumerable.powerUpCollectedSounds, englishName, 'power-up collected',)
                 }</div>,
-                <div key={`${englishName} - waiting`}>{EveryMysteryMushroomsApp.__createImages(enumerable.waitingImages, englishName, 'waiting',)}</div>,
+                <div key={`${englishName} - waiting`}>{EveryMysteryMushroomsApp.#createImages(enumerable.waitingImages, englishName, 'waiting',)}</div>,
                 <div key={`${englishName} - taunt`}>
-                    {EveryMysteryMushroomsApp.__createImages(enumerable.tauntImages, englishName, 'taunt',)}
-                    {EveryMysteryMushroomsApp.__createSounds(enumerable.tauntSounds, englishName, 'taunt',)}
+                    {EveryMysteryMushroomsApp.#createImages(enumerable.tauntImages, englishName, 'taunt',)}
+                    {EveryMysteryMushroomsApp.#createSounds(enumerable.tauntSounds, englishName, 'taunt',)}
                 </div>,
-                <div key={`${englishName} - lost a life`}>{EveryMysteryMushroomsApp.__createImages(enumerable.downImages, englishName, 'pressing ↓',)}</div>,
-                <div key={`${englishName} - walking`}>{EveryMysteryMushroomsApp.__createImages(enumerable.walkImages, englishName, 'walk',)}</div>,
-                <div key={`${englishName} - running`}>{EveryMysteryMushroomsApp.__createImages(enumerable.runningImages, englishName, 'running',)}</div>,
-                <div key={`${englishName} - swimming`}>{EveryMysteryMushroomsApp.__createImages(enumerable.swimmingImages, englishName, 'swimming',)}</div>,
+                <div key={`${englishName} - lost a life`}>{EveryMysteryMushroomsApp.#createImages(enumerable.downImages, englishName, 'pressing ↓',)}</div>,
+                <div key={`${englishName} - walking`}>{EveryMysteryMushroomsApp.#createImages(enumerable.walkImages, englishName, 'walk',)}</div>,
+                <div key={`${englishName} - running`}>{EveryMysteryMushroomsApp.#createImages(enumerable.runningImages, englishName, 'running',)}</div>,
+                <div key={`${englishName} - swimming`}>{EveryMysteryMushroomsApp.#createImages(enumerable.swimmingImages, englishName, 'swimming',)}</div>,
                 <div key={`${englishName} - jumping`}>
-                    {EveryMysteryMushroomsApp.__createImages(enumerable.jumpImages, englishName, 'jump',)}
-                    {EveryMysteryMushroomsApp.__createSounds(enumerable.jumpSounds, englishName, 'jump',)}
+                    {EveryMysteryMushroomsApp.#createImages(enumerable.jumpImages, englishName, 'jump',)}
+                    {EveryMysteryMushroomsApp.#createSounds(enumerable.jumpSounds, englishName, 'jump',)}
                 </div>,
-                <div key={`${englishName} - falling after jump`}>{EveryMysteryMushroomsApp.__createImages(enumerable.fallingAfterJumpImages, englishName, 'falling after jump',)}</div>,
+                <div key={`${englishName} - falling after jump`}>{EveryMysteryMushroomsApp.#createImages(enumerable.fallingAfterJumpImages, englishName, 'falling after jump',)}</div>,
                 <div key={`${englishName} - ground after jump`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
-                    : EveryMysteryMushroomsApp.__createSounds(enumerable.onGroundAfterJumpSounds, englishName, 'ground after jump',)
+                    : EveryMysteryMushroomsApp.#createSounds(enumerable.onGroundAfterJumpSounds, englishName, 'ground after jump',)
                 }</div>,
                 <div key={`${englishName} - turning`}>
-                    {EveryMysteryMushroomsApp.__createImages(enumerable.turningImages, englishName, 'turning',)}
-                    {EveryMysteryMushroomsApp.__createSounds(enumerable.turningSounds, englishName, 'turning',)}</div>,
-                <div key={`${englishName} - climbing`}>{EveryMysteryMushroomsApp.__createImages(enumerable.climbingImages, englishName, 'climbing',)}</div>,
+                    {EveryMysteryMushroomsApp.#createImages(enumerable.turningImages, englishName, 'turning',)}
+                    {EveryMysteryMushroomsApp.#createSounds(enumerable.turningSounds, englishName, 'turning',)}</div>,
+                <div key={`${englishName} - climbing`}>{EveryMysteryMushroomsApp.#createImages(enumerable.climbingImages, englishName, 'climbing',)}</div>,
                 <div key={`${englishName} - goal pole`}>
-                    {EveryMysteryMushroomsApp.__createImages(enumerable.goalPoleImages, englishName, 'goal pole',)}
-                    {EveryMysteryMushroomsApp.__createSounds(enumerable.goalPoleSounds, englishName, 'goal pole',)}
+                    {EveryMysteryMushroomsApp.#createImages(enumerable.goalPoleImages, englishName, 'goal pole',)}
+                    {EveryMysteryMushroomsApp.#createSounds(enumerable.goalPoleSounds, englishName, 'goal pole',)}
                 </div>,
                 <div key={`${englishName} - death`}>{isMysteryMushroom ? EveryMysteryMushroomsApp.#NOT_APPLICABLE_COMPONENT
-                    : EveryMysteryMushroomsApp.__createSounds(enumerable.lostALifeSounds, englishName, 'lost a life',)
+                    : EveryMysteryMushroomsApp.#createSounds(enumerable.lostALifeSounds, englishName, 'lost a life',)
                 }</div>,
             ]);
             index++;
@@ -194,7 +193,7 @@ export default class EveryMysteryMushroomsApp
                     ],
                 },
             ]}
-            content={this.content}
+            content={this._content}
         />;
     }
 

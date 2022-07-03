@@ -29,17 +29,17 @@ export class MiiCostumeBuilder
     }
 
 
-    private static __createOfficialNotification({officialNotification: officialNotificationName,}: MiiCostumeTemplate,): ObjectHolder<OfficialNotificationHolder> {
+    static #createOfficialNotification({officialNotification: officialNotificationName,}: MiiCostumeTemplate,): ObjectHolder<OfficialNotificationHolder> {
         return new DelayedObjectHolderContainer(() => new OfficialNotificationHolderBuilder(officialNotificationName).build());
     }
 
-    private static __createVersion({version,}: MiiCostumeTemplate,): ObjectHolder<Versions | null> {
+    static #createVersion({version,}: MiiCostumeTemplate,): ObjectHolder<Versions | null> {
         return version == null
             ? ObjectHolders.NULL
             : new DelayedObjectHolderContainer(() => Versions.getValue(version));
     }
 
-    private static __createCategory({category,}: MiiCostumeTemplate,): ObjectHolder<MiiCostumeCategory> {
+    static #createCategory({category,}: MiiCostumeTemplate,): ObjectHolder<MiiCostumeCategory> {
         return new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValue(category).reference);
     }
 
@@ -49,9 +49,9 @@ export class MiiCostumeBuilder
         const template = this.template;
 
         return new MiiCostumeContainer(name,
-            MiiCostumeBuilder.__createOfficialNotification(template,),
-            MiiCostumeBuilder.__createVersion(template,),
-            MiiCostumeBuilder.__createCategory(template,)
+            MiiCostumeBuilder.#createOfficialNotification(template,),
+            MiiCostumeBuilder.#createVersion(template,),
+            MiiCostumeBuilder.#createCategory(template,)
         );
     }
 

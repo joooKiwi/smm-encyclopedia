@@ -58,21 +58,21 @@ export class NameContainer<T, >
                        greek: PossibleLanguageValue<T>,) {
         const originalLanguages: EveryLanguages[] = [];
 
-        this.#englishContainer = NameContainer.__newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.ENGLISH, originalLanguages, english,);
-        this.#frenchContainer = NameContainer.__newLanguageContainer<T, T, CanadianOrEuropeanArray<T>>(EveryLanguages.FRENCH, originalLanguages, french,);
-        this.#germanContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.GERMAN, originalLanguages, german,);
-        this.#spanishContainer = NameContainer.__newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.SPANISH, originalLanguages, spanish,);
-        this.#italianContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.ITALIAN, originalLanguages, italian,);
-        this.#dutchContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.DUTCH, originalLanguages, dutch,);
-        this.#portugueseContainer = NameContainer.__newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
-        this.#russianContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.RUSSIAN, originalLanguages, russian,);
-        this.#japaneseContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.JAPANESE, originalLanguages, japanese,);
-        this.#chineseContainer = NameContainer.__newLanguageContainer<T, T, ChineseArray<T>>(EveryLanguages.CHINESE, originalLanguages, chinese,);
-        this.#koreanContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.KOREAN, originalLanguages, korean,);
-        this.#hebrewContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.HEBREW, originalLanguages, hebrew,);
-        this.#polishContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.POLISH, originalLanguages, polish,);
-        this.#ukrainianContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.UKRAINIAN, originalLanguages, ukrainian,);
-        this.#greekContainer = NameContainer.__newLanguageContainer<T, T>(EveryLanguages.GREEK, originalLanguages, greek,);
+        this.#englishContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.ENGLISH, originalLanguages, english,);
+        this.#frenchContainer = NameContainer.#newLanguageContainer<T, T, CanadianOrEuropeanArray<T>>(EveryLanguages.FRENCH, originalLanguages, french,);
+        this.#germanContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.GERMAN, originalLanguages, german,);
+        this.#spanishContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.SPANISH, originalLanguages, spanish,);
+        this.#italianContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.ITALIAN, originalLanguages, italian,);
+        this.#dutchContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.DUTCH, originalLanguages, dutch,);
+        this.#portugueseContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(EveryLanguages.PORTUGUESE, originalLanguages, portuguese,);
+        this.#russianContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.RUSSIAN, originalLanguages, russian,);
+        this.#japaneseContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.JAPANESE, originalLanguages, japanese,);
+        this.#chineseContainer = NameContainer.#newLanguageContainer<T, T, ChineseArray<T>>(EveryLanguages.CHINESE, originalLanguages, chinese,);
+        this.#koreanContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.KOREAN, originalLanguages, korean,);
+        this.#hebrewContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.HEBREW, originalLanguages, hebrew,);
+        this.#polishContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.POLISH, originalLanguages, polish,);
+        this.#ukrainianContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.UKRAINIAN, originalLanguages, ukrainian,);
+        this.#greekContainer = NameContainer.#newLanguageContainer<T, T>(EveryLanguages.GREEK, originalLanguages, greek,);
 
         this.#originalLanguages = originalLanguages;
     }
@@ -300,15 +300,15 @@ export class NameContainer<T, >
     }
 
 
-    private static __newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): EmptyableOptionalLanguage<T, S, never>
-    private static __newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<T, S, never>
-    private static __newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<T, S, never>
-    private static __newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | null,): Language<T, S, never>
-    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<T, S, A>
-    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<T, S, A>
-    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<T, S, A>
-    private static __newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<T, S, A>
-    private static __newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | T | readonly T[] | null,) {
+    static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): EmptyableOptionalLanguage<T, S, never>
+    static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<T, S, never>
+    static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<T, S, never>
+    static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | null,): Language<T, S, never>
+    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<T, S, A>
+    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<T, S, A>
+    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<T, S, A>
+    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<T, S, A>
+    static #newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | T | readonly T[] | null,) {
         if (value == null) {
             assert(!language.isACompleteLanguage, `The language "${language.englishName}" cannot be null if it is a complete language.`,);
             return EmptyLanguageContainer.get;

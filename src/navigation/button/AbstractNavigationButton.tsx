@@ -48,7 +48,7 @@ export abstract class AbstractNavigationButton
      *
      * @return the tooltip placement
      */
-    protected abstract get tooltipPlacement(): PossibleTooltipPlacement;
+    protected abstract get _tooltipPlacement(): PossibleTooltipPlacement;
 
     /**
      * The added classes (as a bootstrap svg)
@@ -63,17 +63,17 @@ export abstract class AbstractNavigationButton
      * @param translation the {@link TranslationMethod translation method}
      * @return a single content or a content that is hidden once the screen is shorter
      */
-    protected abstract getContent(translation: TranslationMethod<'content'>,): PossibleContent;
+    protected abstract _getContent(translation: TranslationMethod<'content'>,): PossibleContent;
 
     public override render(): ReactElement {
         return <ContentTranslationComponent>{translation => {
             const isTopButton = this._isTopButton;
             const id = this._id;
-            const contentValue = this.getContent(translation);
+            const contentValue = this._getContent(translation);
             const willBeHiddenOnShorterScreen = typeof contentValue != 'string';
             const content = willBeHiddenOnShorterScreen ? contentValue[0] : contentValue;
 
-            return <Tooltip elementId={id} option={({title: content, placement: this.tooltipPlacement,})}>
+            return <Tooltip elementId={id} option={({title: content, placement: this._tooltipPlacement,})}>
                 <ModalButton key={`navigation button (${id})`} id={id} elementToShow={this.props.id}
                              className={`btn btn-lg btn-outline-${isTopButton ? 'primary' : 'light'} btn-navigation ${this._addedClass} rounded-pill`}>{
                     willBeHiddenOnShorterScreen

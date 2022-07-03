@@ -40,7 +40,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
     }
 
 
-    private __addEventListener(type: string, callback: ModalEventCallbackReceived<this>,): this {
+    #addEventListener(type: string, callback: ModalEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -61,7 +61,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @see Modal.Events.show
      */
     public override onShow(callback: ModalEventCallbackReceived<this>,): this {
-        return this.__addEventListener(ModalInstance.SHOW_EVENT, callback,);
+        return this.#addEventListener(ModalInstance.SHOW_EVENT, callback,);
     }
 
     /**
@@ -69,7 +69,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @see Modal.Events.shown
      */
     public override onShown(callback: ModalEventCallbackReceived<this>,): this {
-        return this.__addEventListener(ModalInstance.SHOWN_EVENT, callback,);
+        return this.#addEventListener(ModalInstance.SHOWN_EVENT, callback,);
     }
 
     /**
@@ -77,7 +77,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @see Modal.Events.hide
      */
     public override onHide(callback: ModalEventCallbackReceived<this>): this {
-        return this.__addEventListener(ModalInstance.HIDE_EVENT, callback,);
+        return this.#addEventListener(ModalInstance.HIDE_EVENT, callback,);
     }
 
     /**
@@ -85,7 +85,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @see Modal.Events.hidden
      */
     public override onHidden(callback: ModalEventCallbackReceived<this>,): this {
-        return this.__addEventListener(ModalInstance.HIDDEN_EVENT, callback,);
+        return this.#addEventListener(ModalInstance.HIDDEN_EVENT, callback,);
     }
 
     /**
@@ -93,7 +93,7 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
      * @see Modal.Events.hidePrevented
      */
     public onHidePrevented(callback: ModalEventCallbackReceived<this>,): this {
-        return this.__addEventListener(ModalInstance.HIDE_PREVENTED_EVENT, callback,);
+        return this.#addEventListener(ModalInstance.HIDE_PREVENTED_EVENT, callback,);
     }
 
 

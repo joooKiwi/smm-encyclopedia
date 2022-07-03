@@ -26,7 +26,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     //endregion -------------------- Create methods --------------------
     //region -------------------- Render methods --------------------
 
-    private __tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {
+    #tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const enumerable of optionInterpreter.iterable) {
@@ -53,7 +53,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
         return <Table key={`${this._key} (table)`}
                       {...optionInterpreter.tableProperties}
                       id={`${this._key}-table`}
-                      content={this.__tableContent(optionInterpreter)}
+                      content={this.#tableContent(optionInterpreter)}
                       headers={[
                           {key: 'originalOrder', element: <>#</>,},
                           ...(optionInterpreter.tableOptions

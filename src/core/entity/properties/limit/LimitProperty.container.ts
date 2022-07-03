@@ -129,7 +129,7 @@ export class LimitPropertyContainer
 
     //endregion -------------------- Custom limit --------------------
 
-    private __newMap(...values: readonly (EntityLimits | null)[]): Map<EntityLimits, boolean> {
+    #newMap(...values: readonly (EntityLimits | null)[]): Map<EntityLimits, boolean> {
         const newValues = values.filter(limit => limit != null) as EntityLimits[];
         return new Map(EntityLimits.values.map(limit => [limit, newValues.includes(limit),]));
     }
@@ -141,13 +141,13 @@ export class LimitPropertyContainer
     public toLimitInTheEditorMap() {
         const editorLimits = [this.editorLimit_smm1And3ds, this.editorLimit_smm2,];
 
-        return this.__newMap(...editorLimits.map(editorLimit => editorLimit instanceof EntityLimits ? editorLimit : null));
+        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof EntityLimits ? editorLimit : null));
     }
 
     public toLimitWhilePlayingMap() {
         const otherLimitWhilePlaying = this.otherLimitWhilePlaying;
 
-        return this.__newMap(
+        return this.#newMap(
             this.isInGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
             this.isInGlobalGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
             this.isInPowerUpLimitWhilePlaying === true ? EntityLimits.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING : null,

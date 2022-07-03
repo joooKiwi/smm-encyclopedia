@@ -107,7 +107,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                     map.get(time)!.get(gameStyle)!.set(theme, true,))
             )
         );
-        return this.__addTimes(times)._addGameStyle(_gameStyles).__addThemes(themes);
+        return this.#addTimes(times)._addGameStyle(_gameStyles).#addThemes(themes);
     }
 
     //endregion -------------------- Selected map --------------------
@@ -164,11 +164,11 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#times ?? ExtendedSetContainer.EMPTY;
     }
 
-    private __addTimes(time: Times,): this
-    private __addTimes(times: readonly Times[],): this
-    private __addTimes(times: | Times | readonly Times[],): this {
+    #addTimes(time: Times,): this
+    #addTimes(times: readonly Times[],): this
+    #addTimes(times: | Times | readonly Times[],): this {
         if (!(times instanceof Array))
-            return this.__addTimes([times]);
+            return this.#addTimes([times]);
         this.__times.add(...times);
         return this;
     }
@@ -202,16 +202,16 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#themes ?? ExtendedSetContainer.EMPTY;
     }
 
-    private __addThemes(theme: Themes,): this
-    private __addThemes(themes: readonly Themes[],): this
-    private __addThemes(themes: Themes | readonly Themes[],): this {
+    #addThemes(theme: Themes,): this
+    #addThemes(themes: readonly Themes[],): this
+    #addThemes(themes: Themes | readonly Themes[],): this {
         if (!(themes instanceof Array))
-            return this.__addThemes([themes]);
+            return this.#addThemes([themes]);
         this.__themes.add(...themes.map(theme => Themes.getValue(theme)));
         return this;
     }
 
-    private __setThemes(time: Times, gameStyle: OriginalGameStyles, themes: readonly Themes[], notThemes: readonly Themes[] = [],): this {
+    #setThemes(time: Times, gameStyle: OriginalGameStyles, themes: readonly Themes[], notThemes: readonly Themes[] = [],): this {
         this.__themes.clear();
         return this._add([time], [gameStyle], themes.filter(theme => !notThemes.includes(theme)),);
     }
@@ -220,26 +220,26 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     public setTheme(gameStyle: OriginalGameStyles,): never
     public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.__setThemes(Times.DAY, gameStyle, themes,);
+        return this.#setThemes(Times.DAY, gameStyle, themes,);
     }
 
     public setNotTheme(gameStyle: OriginalGameStyles,): never
     public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.__setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
+        return this.#setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
     }
 
 
     public setNightTheme(gameStyle: OriginalGameStyles,): never
     public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.__setThemes(Times.NIGHT, gameStyle, themes,);
+        return this.#setThemes(Times.NIGHT, gameStyle, themes,);
     }
 
     public setNotNightTheme(gameStyle: OriginalGameStyles,): never
     public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.__setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
+        return this.#setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
     }
 
     //endregion -------------------- Theme --------------------
@@ -253,9 +253,9 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#overrideMap ?? EMPTY_MAP;
     }
 
-    private __setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: OriginalGameStyles, theme: | Themes | null,): this {
+    #setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: OriginalGameStyles, theme: | Themes | null,): this {
         if (!(gameStyle instanceof GameStyles))
-            return this.__setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,);
+            return this.#setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,);
 
         const times = time == null ? Times.values : [time] as const;
         const themes = theme == null ? Themes.courseThemes : [theme] as const;
@@ -286,9 +286,9 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#overrideDefaultAmount ?? EMPTY_MAP;
     }
 
-    protected __setOverrideDefaultAmounts(number: PossibleAmountOfImages, gameStyle: OriginalGameStyles,): this {
+    protected _setOverrideDefaultAmounts(number: PossibleAmountOfImages, gameStyle: OriginalGameStyles,): this {
         if (!(gameStyle instanceof GameStyles))
-            return this.__setOverrideDefaultAmounts(number, GameStyles.getValue(gameStyle),);
+            return this._setOverrideDefaultAmounts(number, GameStyles.getValue(gameStyle),);
 
         this.__overrideDefaultAmounts.set(gameStyle, number,);
         return this;
@@ -304,7 +304,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param imageNumber the image number
      */
     public setImage(gameStyle: OriginalGameStyles, theme: | Themes | null, time: | Times | null, imageNumber: PossibleAmountOfImages,): this {
-        return this.__setOverrideImages(imageNumber, time, gameStyle, theme,);
+        return this.#setOverrideImages(imageNumber, time, gameStyle, theme,);
     }
 
     /**
@@ -316,7 +316,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param number the default amount
      */
     public setDefaultAmount(gameStyle: OriginalGameStyles, number: PossibleAmountOfImages,): this {
-        return this.__setOverrideDefaultAmounts(number, gameStyle,);
+        return this._setOverrideDefaultAmounts(number, gameStyle,);
     }
 
     //endregion -------------------- Override images --------------------

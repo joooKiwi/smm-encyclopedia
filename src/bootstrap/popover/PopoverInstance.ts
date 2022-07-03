@@ -40,7 +40,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     }
 
 
-    private __addEventListener(type: string, callback: PopoverEventCallbackReceived<this>,): this {
+    #addEventListener(type: string, callback: PopoverEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -61,7 +61,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Popover.Events.show
      */
     public override onShow(callback: PopoverEventCallbackReceived<this>,): this {
-        return this.__addEventListener(PopoverInstance.SHOW_EVENT, callback,);
+        return this.#addEventListener(PopoverInstance.SHOW_EVENT, callback,);
     }
 
     /**
@@ -69,7 +69,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Popover.Events.shown
      */
     public override onShown(callback: PopoverEventCallbackReceived<this>,): this {
-        return this.__addEventListener(PopoverInstance.SHOWN_EVENT, callback,);
+        return this.#addEventListener(PopoverInstance.SHOWN_EVENT, callback,);
     }
 
     /**
@@ -77,7 +77,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Popover.Events.hide
      */
     public override onHide(callback: PopoverEventCallbackReceived<this>,): this {
-        return this.__addEventListener(PopoverInstance.HIDE_EVENT, callback,);
+        return this.#addEventListener(PopoverInstance.HIDE_EVENT, callback,);
     }
 
     /**
@@ -85,7 +85,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Popover.Events.hidden
      */
     public override onHidden(callback: PopoverEventCallbackReceived<this>,): this {
-        return this.__addEventListener(PopoverInstance.HIDDEN_EVENT, callback,);
+        return this.#addEventListener(PopoverInstance.HIDDEN_EVENT, callback,);
     }
 
     /**
@@ -93,7 +93,7 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Popover.Events.inserted
      */
     public onInserted(callback: PopoverEventCallbackReceived<this>,): this {
-        return this.__addEventListener(PopoverInstance.INSERTED_EVENT, callback,);
+        return this.#addEventListener(PopoverInstance.INSERTED_EVENT, callback,);
     }
 
 

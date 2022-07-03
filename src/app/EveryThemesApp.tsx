@@ -24,7 +24,7 @@ export default class EveryThemesApp
 
     //region -------------------- Methods --------------------
 
-    protected get content() {
+    protected get _content() {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const enumerable of Themes) {
@@ -98,7 +98,7 @@ export default class EveryThemesApp
                         },
                     },
                 ]}
-                content={this.content}
+                content={this._content}
             />
         }</GameContentTranslationComponent>;
     }
