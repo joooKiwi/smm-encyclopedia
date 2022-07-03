@@ -36,14 +36,14 @@ export type Names = keyof typeof Enum;
 //region -------------------- Acronyms --------------------
 
 export type PossibleAcronym =
-    | `en_${| 'AM' | 'EU'}`
-    | `fr_${| 'CA' | 'EU'}`
+    | `en-${| 'AM' | 'EU'}`
+    | `fr-${| 'CA' | 'EU'}`
     | 'de'
-    | `es_${| 'AM' | 'EU'}`
+    | `es-${| 'AM' | 'EU'}`
     | 'it' | 'nl'
-    | `pt_${| 'AM' | 'EU'}`
+    | `pt-${| 'AM' | 'EU'}`
     | 'ru' | 'ja'
-    | `zh_${| 'T' | 'S'}`
+    | `zh-${| 'T' | 'S'}`
     | 'ko';
 
 export type PossibleInternationalAcronym =

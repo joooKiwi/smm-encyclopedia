@@ -25,21 +25,21 @@ import {EveryLanguages} from './EveryLanguages';
  *
  * As it stands, the languages are:
  * <ol>
- *     <li>en_AM - American English</li>
- *     <li>en_EU - European English</li>
- *     <li>fr_CA - Canadian French</li>
- *     <li>fr_EU - European French</li>
+ *     <li>en-AM - American English</li>
+ *     <li>en-EU - European English</li>
+ *     <li>fr-CA - Canadian French</li>
+ *     <li>fr-EU - European French</li>
  *     <li>de    - German</li>
- *     <li>es_AM - American Spanish</li>
- *     <li>es_EU - European Spanish</li>
+ *     <li>es-AM - American Spanish</li>
+ *     <li>es-EU - European Spanish</li>
  *     <li>it    - Italian</li>
  *     <li>nl    - Dutch</li>
- *     <li>pt_AM - American Portuguese</li>
- *     <li>pt_EU - European Portuguese</li>
+ *     <li>pt-AM - American Portuguese</li>
+ *     <li>pt-EU - European Portuguese</li>
  *     <li>ru    - Russian</li>
  *     <li>ja    - Japanese</li>
- *     <li>zh_T  - Traditional Chinese</li>
- *     <li>zh_S  - Simplified Chinese</li>
+ *     <li>zh-T  - Traditional Chinese</li>
+ *     <li>zh-S  - Simplified Chinese</li>
  *     <li>ko    - Korean</li>
  * </ol>
  *
