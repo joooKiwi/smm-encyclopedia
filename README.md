@@ -37,51 +37,64 @@ The languages supported by the project are the ones available in the games:
 The other languages seen in the project can include Hebrew, Polish, Ukrainian & Greek.
 Although, they are only there for some names.
 
+<details>
+<summary>List of elements to to</summary>
+
 ## List of elements to do
 
- - When giving an url <u>[https://example.com/path]()</u>, it would be based on the browser language.<br/>
-And for <u>[https://example.com/en-US/path]()</u>, then the language would be set to American English.
- - Dark mode implementation.
- - Color blind implementation.
- - Search engine.
- - Options that would change the URL based on the application loaded.
- - Sub-pages with reactive URL.
+- [ ] When giving an url <u>[https://example.com/path]()</u>, it would be based on the browser language.<br/>
+  And for <u>[https://example.com/en-US/path]()</u>, then the language would be set to American English.
+- [ ] Dark mode implementation.
+- [ ] Color blind implementation.
+- [ ] Search engine.
+- [ ] Options that would change the URL based on the application loaded.
+- [ ] Sub-pages with reactive URL.
 
 ### Sub-page applications
-   - ![In progress](.github/styles/in-progress.svg)         Entity
-   - ![Not completed](.github/styles/not-completed.svg)     Character name
-   - ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
-     - ![Not completed](.github/styles/not-completed.svg)   Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Completed](.github/styles/completed.svg)             Entity limit
-   - ![Not completed](.github/styles/not-completed.svg)     Entity projectile
-   - ![Not completed](.github/styles/not-completed.svg)     Entity object
-   - ![Completed](.github/styles/completed.svg)             Entity category
-   - ![Not completed](.github/styles/not-completed.svg)     Entity group
-   - ![Partially done](.github/styles/partially-done.svg)   Theme
-   - ![Completed](.github/styles/completed.svg)             Game reference
-   - ![Partially done](.github/styles/partially-done.svg)   Game style</span>
-   - ![Not completed](.github/styles/not-completed.svg)     Entity behaviour
-   - ![Partially done](.github/styles/partially-done.svg)   Sound effect
-     - ![Not completed](.github/styles/completed.svg)       Sound effect category
-   - ![Completed](.github/styles/completed.svg)             Course tag ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Predefined message ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Sample courses ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Medals ![ (SMM1)](.github/styles/smm1-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Job ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Official notification ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Ninji speedrun ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
-   - ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-      - ![Completed](.github/styles/completed.svg)          Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-   - ![Not completed](.github/styles/not-completed.svg)     Editor voice
-   - ![Not completed](.github/styles/not-completed.svg)     Instrument
-     
+- [ ] ![In progress](.github/styles/in-progress.svg)         Entity
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Character name
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
+    - [ ] ![Not completed](.github/styles/not-completed.svg) Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [x] ![Completed](.github/styles/completed.svg)             Entity limit
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity projectile
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity object
+- [x] ![Completed](.github/styles/completed.svg)             Entity category
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity group
+- [ ] ![Partially done](.github/styles/partially-done.svg)   Theme
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Time
+- [x] ![Completed](.github/styles/completed.svg)             Game reference
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Game
+- [ ] ![Partially done](.github/styles/partially-done.svg)   Game style</span>
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity behaviour
+- [ ] ![Partially done](.github/styles/partially-done.svg)   Sound effect
+    - [ ] ![Not completed](.github/styles/not-completed.svg) Sound effect category
+- [x] ![Completed](.github/styles/completed.svg)             Course tag ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Predefined message ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Sample courses ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Medals ![ (SMM1)](.github/styles/smm1-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Job ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Official notification ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Ninji speedrun ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
+- [x] ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+    - [x] ![Completed](.github/styles/completed.svg)         Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Editor voice
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Instrument
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Version
+
 #### Other sub-pages (not directly related to the project)
-   - ![In progress](.github/styles/in-progress.svg)         Power-up priority
-   - ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
+- [ ] ![In progress](.github/styles/in-progress.svg)         Power-up priority
+- [ ] ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
+
+</details>
+<details>
+<summary>Development for the web application</summary>
 
 ## Development for the web application
+
+<details>
+<summary>Files & folders</summary>
 
 ### Standard used in the project
 
@@ -178,9 +191,58 @@ The types used in the interface:
 | object      |                                                  Properties |
 | enumeration |                    Properties use other `scr/core` elements |
 
+</details>
+
 #### Dependencies
 
-##### Legends
+<details>
+<summary>Grid</summary>
+
+##### Grid dependencies
+
+| Name                                        |                                                                                   Direct dependency                                                                                   |       Indirect dependency        |
+|:--------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------:|
+| Entity                                      | Clear condition<br/>Entity limit<br/>Entity category<br/>Theme<br/>Time<br/>Game<br/>Game style<br/>Mystery Mushroom<br/>Entity behaviour<br/>Editor voice<br/>Instrument<br/>Version |  Entity group<br/>Night effect   |
+| Character name                              |                                                                                     Editor voice                                                                                      |                                  |
+| Clear condition <sup>(SMM2)                 |                                                                               Clear condition category                                                                                |              Entity              |
+| Clear condition category <sup>(SMM2)        |                                                                                                                                                                                       |         Clear condition          |
+| Entity limit                                |                                                                                                                                                                                       |              Entity              |
+| Entity projectile                           |                                                                                                                                                                                       |              Entity              |
+| Entity object                               |                                                                                                                                                                                       |              Entity              |
+| Entity category                             |                                                                                                                                                                                       |              Entity              |
+| Entity group                                |                                                                                        Entity                                                                                         |                                  |
+| Theme                                       |                                                                                                                                                                                       |          Time<br/>Game           |
+| Time                                        |                                                                                                                                                                                       |                                  |
+| Game reference                              |                                                                                                                                                                                       |       Game<br/>Game style        |
+| Game                                        |                                                                                    Game reference                                                                                     |                                  |
+| Game style                                  |                                                                            Game reference<br/>Night effect                                                                            |                                  |
+| Entity behaviour                            |                                                                                                                                                                                       |              Entity              |
+| Sound effect                                |                                                                                 Sound effect category                                                                                 | Entity<br/>Entity group<br/>Game |
+| Sound effect category                       |                                                                                                                                                                                       |           Sound effect           |
+| Course tag <sup>(SMM2)                      |                                                                                                                                                                                       |                                  |
+| Predefined message <sup>(SMM2)              |                                                                                                                                                                                       |                                  |
+| Sample courses <sup>(SMM2)                  |                                                                                                                                                                                       |                                  |
+| Medals <sup>(SMM1)                          |                                                                                                                                                                                       |              Entity              |
+| Super Mario Challenges levels <sup>(SMM3DW) |                                                                                                                                                                                       |                                  |
+| Job <sup>(SMM2)                             |                                                                                                                                                                                       |              Entity              |
+| Official notification <sup>(SMM2)           |                                                                                                                                                                                       |      Entity<br/>Mii costume      |
+| Ninji speedrun <sup>(SMM2)                  |                                                                                                                                                                                       |                                  |
+| Mystery Mushroom <sup>(SMM1)                |                                                                                                                                                                                       |                                  |
+| Mii costume <sup>(SMM2)                     |                                                                                 Mii costume category                                                                                  |              Entity              |
+| Mii costume category <sup>(SMM2)            |                                                                                                                                                                                       |           Mii costume            |
+| Editor voice                                |                                                                                                                                                                                       |    Entity<br/>Character name     |
+| Instrument                                  |                                                                                                                                                                                       |              Entity              |
+| Version                                     |                                                                                      Game style                                                                                       |                                  |
+
+</details>
+<details>
+<summary>Flowchart (does not work on the mobile app)</summary>
+
+<details>
+<summary>Legends</summary>
+
+##### Flowchart dependencies
+
 ```mermaid
 flowchart TB
   E(("General<br/>dependency"))
@@ -195,25 +257,29 @@ flowchart TB
   end
 ```
 
+</details>
+
 The dependencies imply that the entity uses almost everything in the project.<br/>
 So, some recursive dependencies are in place to make the project compile.
 
-To simplify the diagram, the entity dependencies has been removed to help readibility.<br>
+To simplify the diagram, the entity dependencies has been removed to help readability.<br>
 And the dependencies used in the Entity are:<br/>
- 1. Clear condition
- 2. Editor voice
- 3. Entity behaviour
- 4. Entity category
- 5. Entity group _(by dynamic import)_
- 6. Entity limit
- 7. Game
- 8. Game style
- 9. Instrument
- 10. Mystery Mushroom
- 11. Night effect _(by dynamic import)_
- 12. Theme
- 13. Time
- 14. Version
+1. Clear condition
+2. Editor voice
+3. Entity behaviour
+4. Entity category
+5. Entity group _(by dynamic import)_
+6. Entity limit
+7. Entity projectile
+8. Entity object
+9. Game
+10. Game style
+11. Instrument
+12. Mystery Mushroom
+13. Night effect _(by dynamic import)_
+14. Theme
+15. Time
+16. Version
 
 ```mermaid
 flowchart LR
@@ -227,6 +293,8 @@ flowchart LR
   EC(("Entity<br/>category"))
   EG((Entity group))
   EL((Entity limit))
+  EP((Entity<br/>projectile))
+  EO((Entity<br/>object))
   G((Game))
   GR(("Game<br/>reference"))
   GS((Game style))
@@ -267,6 +335,8 @@ flowchart LR
   EC       -.-> E
   EG       -->  E
   EL       -.-> E
+  EO       -.-> E
+  EP       -.-> E
   SE       -.-> E & EG & G
   Th       -.-> Ti & G
   V        -->  GS
@@ -289,6 +359,11 @@ flowchart LR
   ON       -.-> E & MC
 
 ```
+
+</details>
+
+<details>
+<summary>NPM commands</summary>
 
 ### NPM commands
 
@@ -338,3 +413,6 @@ With the deployment, it will automatically call `npm run build` and will:
 See [the application's deployment](https://facebook.github.io/create-react-app/docs/deployment) to know in details how the **React build** is done.
 
 The code will be pushed in the branch [github-pages branch](https://github.com/joooKiwi/smm-encyclopedia/tree/gh-pages) by the workflow.
+
+</details>
+</details>
