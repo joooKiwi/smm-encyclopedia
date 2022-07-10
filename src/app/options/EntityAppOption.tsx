@@ -2,12 +2,10 @@ import {Fragment, lazy} from 'react';
 
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
 import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
-import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
 import type {Entities}                                                                                                                                                              from '../../core/entity/Entities';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
 import type {EntityAppStates}                                                                                                                                                       from '../AppStates.types';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
-import type {ReactComponentWithState}                                                                                                                                               from '../../util/react/ReactComponent';
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
@@ -19,7 +17,6 @@ import ContentTranslationComponent     from '../../lang/components/ContentTransl
 import {Enum}                          from '../../util/enum/Enum';
 import {EntityCategories}              from '../../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes';
-import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {EmptyAppOption}                from './component/EmptyAppOption';
 import {EmptyEditorImage}              from '../../core/entity/images/editor/EmptyEditorImage';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
@@ -59,14 +56,6 @@ export abstract class EntityAppOption
      * Display every image.
      */
     public static readonly IMAGES = new class EntityAppOption_Images extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.images;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.section.images = value;
-        }
 
         get #createImageOnEditor(): PossibleRenderReactElement {
             const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
@@ -116,61 +105,12 @@ export abstract class EntityAppOption
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.images.editor;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.editor = value;
-        }
-
-    }(true,);
-    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.images.clearCondition;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.clearCondition = value;
-        }
-
-    }(true,);
-    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.images.whilePlaying;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.whilePlaying = value;
-        }
-
-    }(false,);
-    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.images.unused;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.images.unused = value;
-        }
-
-    }(false,);
+    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {}(true,);
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {}(true,);
+    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {}(false,);
+    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {}(false,);
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.name;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.section.name = value;
-        }
-
 
         protected override get _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -191,14 +131,6 @@ export abstract class EntityAppOption
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.game;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.section.game = value;
-        }
-
         protected override get _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
@@ -213,26 +145,9 @@ export abstract class EntityAppOption
 
     }(false,);
     public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.game;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.game = value;
-        }
-
     }(false,);
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.gameStyle;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.section.gameStyle = value;
-        }
 
         protected override get _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -247,27 +162,9 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.gameStyle;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.gameStyle = value;
-        }
-
-    }(false,);
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {}(false,);
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.courseTheme;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.section.courseTheme = value;
-        }
 
         protected override get _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -282,27 +179,9 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.courseTheme;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.courseTheme = value;
-        }
-
-    }(false,);
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {}(false,);
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.time;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.section.time = value;
-        }
 
         protected override get _createContentOption(): PossibleOptionWithContent {
 
@@ -318,27 +197,9 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.asText.whenAll.time;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,): void {
-            nextState.display.asText.whenAll.time = value;
-        }
-
-    }(false,);
+    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {}(false,);
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.category;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.section.category = value;
-        }
 
         protected override get _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -361,27 +222,9 @@ export abstract class EntityAppOption
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.asText.category;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.asText.category = value;
-        }
-
-    }(false,);
+    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {}(false,);
 
     public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.section.limit;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.section.limit = value;
-        }
 
         protected override get _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -427,17 +270,7 @@ export abstract class EntityAppOption
         }
 
     }(true,);
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {
-
-        protected override _get(state: EntityAppStates,): boolean {
-            return state.display.asText.ifApplicable.acronymOnLimits;
-        }
-
-        protected override _set(nextState: EntityAppStates, value: boolean,) {
-            nextState.display.asText.ifApplicable.acronymOnLimits = value;
-        }
-
-    }(true,);
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}(true,);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -447,7 +280,6 @@ export abstract class EntityAppOption
     //endregion -------------------- Enum attributes --------------------
     //region -------------------- Attributes --------------------
 
-    static #REFERENCE: ReactComponentWithState<EntityAppStates>;
     /**
      * The callback to get the enumeration based for each option.
      *
@@ -471,47 +303,9 @@ export abstract class EntityAppOption
 
     //region -------------------- Getter methods --------------------
 
-    public static get REFERENCE(): ReactComponentWithState<EntityAppStates> {
-        return this.#REFERENCE;
-    }
-
-    public static set REFERENCE(value: ReactComponentWithState<EntityAppStates>,) {
-        this.#REFERENCE = value;
-    }
-
     public static get createDefaultState(): EntityAppStates {
         return {
             typeDisplayed: ViewDisplays.TABLE,
-            display: {
-                section: {
-                    images: EntityAppOption.IMAGES._lastValueRetrieved,
-                    name: EntityAppOption.NAME._lastValueRetrieved,
-                    game: EntityAppOption.GAME._lastValueRetrieved,
-                    gameStyle: EntityAppOption.GAME_STYLE._lastValueRetrieved,
-                    courseTheme: EntityAppOption.COURSE_THEME._lastValueRetrieved,
-                    time: EntityAppOption.TIME._lastValueRetrieved,
-                    category: EntityAppOption.CATEGORY._lastValueRetrieved,
-                    limit: EntityAppOption.LIMIT._lastValueRetrieved,
-                },
-                asText: {
-                    category: EntityAppOption.CATEGORY_AS_TEXT._lastValueRetrieved,
-                    whenAll: {
-                        game: EntityAppOption.WHEN_ALL_SELECTED_GAME._lastValueRetrieved,
-                        gameStyle: EntityAppOption.WHEN_ALL_SELECTED_GAME_STYLE._lastValueRetrieved,
-                        courseTheme: EntityAppOption.WHEN_ALL_SELECTED_COURSE_THEME._lastValueRetrieved,
-                        time: EntityAppOption.WHEN_ALL_SELECTED_TIME._lastValueRetrieved,
-                    },
-                    ifApplicable: {
-                        acronymOnLimits: EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT._lastValueRetrieved,
-                    },
-                },
-                images: {
-                    editor: EntityAppOption.IMAGES_ON_EDITOR._lastValueRetrieved,
-                    clearCondition: EntityAppOption.IMAGES_ON_CLEAR_CONDITION._lastValueRetrieved,
-                    whilePlaying: EntityAppOption.IMAGES_ON_WHILE_PLAYING._lastValueRetrieved,
-                    unused: EntityAppOption.IMAGES_ON_UNUSED._lastValueRetrieved,
-                },
-            },
         };
     }
 
@@ -552,9 +346,7 @@ export abstract class EntityAppOption
     }
 
     public get renderContent(): readonly ReactElement[] {
-        return this.get
-            ? this.__appOptionWithContent.renderContent
-            : EMPTY_ARRAY;
+        return this.__appOptionWithContent.renderContent;
     }
 
     //endregion -------------------- App option - content --------------------
@@ -573,9 +365,7 @@ export abstract class EntityAppOption
     }
 
     public get renderTableHeader(): | SingleHeaderContent | null {
-        return this.get
-            ? this.__appOptionWithTable.renderTableHeader
-            : null;
+        return this.__appOptionWithTable.renderTableHeader;
     }
 
     //endregion -------------------- App option - table --------------------
@@ -583,7 +373,7 @@ export abstract class EntityAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityAppOption> & AppOptionStatic<EntityAppStates> {
+    protected override get _static(): StaticReference<EntityAppOption> {
         return EntityAppOption;
     }
 

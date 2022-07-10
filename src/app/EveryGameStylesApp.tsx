@@ -19,7 +19,6 @@ export default class EveryGameStylesApp
 
     public constructor(props: {},) {
         super(props,);
-        GameStyleAppOption.REFERENCE = this;
         this.state = GameStyleAppOption.createDefaultState;
     }
 

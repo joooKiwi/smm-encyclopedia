@@ -17,7 +17,6 @@ export default class EveryMiiCostumeApp
 
     public constructor(props: {},) {
         super(props,);
-        MiiCostumeAppOption.REFERENCE = this;
         this.state = MiiCostumeAppOption.createDefaultState;
     }
 
