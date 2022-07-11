@@ -47,8 +47,9 @@ export default class EveryThemesApp
             //region -------------------- Card list interpreter --------------------
 
             public createCardListContent(enumerable: Themes,): ReactElement {
-                const {reference, englishName, endlessMarioImagePath,} = enumerable;
-                return <div className="card-body" id={`theme-${reference.english}`}>
+                const {englishName, englishNameInHtml, endlessMarioImagePath,} = enumerable;
+
+                return <div className="card-body" id={`theme-${englishNameInHtml}`}>
                     {enumerable.renderSingleComponent(true)}
                     {endlessMarioImagePath != null ? <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/> : EMPTY_REACT_ELEMENT}
                 </div>;
@@ -82,7 +83,7 @@ export default class EveryThemesApp
                 return option.renderContent;
             }
 
-            public createTableHeader(option: ThemeAppOption): | SingleHeaderContent | null {
+            public createTableHeader(option: ThemeAppOption,): | SingleHeaderContent | null {
                 return option.renderTableHeader;
             }
 
