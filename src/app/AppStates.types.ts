@@ -108,7 +108,10 @@ export interface EntityAppStates
     //         unused: boolean
     //     }
     // }
+}
 
+export interface EntityLimitAppStates
+    extends AppStates, AppWithVariableDisplayStates {
 }
 
 export interface ThemeAppStates
