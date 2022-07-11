@@ -20,7 +20,7 @@ export default class EveryThemesApp
     extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, {}, ThemeAppStates> {
 
 
-    constructor(props: {},) {
+    public constructor(props: {},) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,

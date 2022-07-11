@@ -36,7 +36,7 @@ export abstract class ThemeAppOption
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGE =                  new class extends ThemeAppOption {
+    public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -61,7 +61,7 @@ export abstract class ThemeAppOption
         }
 
     }();
-    public static readonly NAME =                   new class extends ThemeAppOption {
+    public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => CommonOptions.get.getNameContent(ThemeAppOption.CALLBACK_TO_GET_ENUMERATION());
@@ -72,7 +72,7 @@ export abstract class ThemeAppOption
         }
 
     }();
-    public static readonly COURSE_AND_WORLD_THEME = new class extends ThemeAppOption {
+    public static readonly COURSE_AND_WORLD_THEME = new class ThemeAppOption_CourseAndWorldTheme extends ThemeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -102,7 +102,7 @@ export abstract class ThemeAppOption
             };
         }
     }();
-    public static readonly GAME =                   new class extends ThemeAppOption {
+    public static readonly GAME =                   new class ThemeAppOption_Game extends ThemeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
@@ -129,7 +129,7 @@ export abstract class ThemeAppOption
         }
 
     }();
-    public static readonly NIGHT_EFFECT =           new class extends ThemeAppOption {
+    public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {

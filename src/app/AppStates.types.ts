@@ -1,10 +1,5 @@
-import type {ImageAnimations}   from './options/global/ImageAnimations';
-import type {Images}            from './options/global/Images';
-import type {GlobalThemeOption} from './options/global/GlobalThemeOption';
-import type {ReactState}        from '../util/react/ReactState';
-import type {Sounds}            from './options/global/Sounds';
-import type {Texts}             from './options/global/Texts';
-import type {ViewDisplays}      from './withInterpreter/ViewDisplays';
+import type {ReactState}   from '../util/react/ReactState';
+import type {ViewDisplays} from './withInterpreter/ViewDisplays';
 
 export interface AppStates
     extends ReactState {
@@ -76,38 +71,7 @@ interface AppStateThatHaveACategory {
 //region -------------------- Specific states --------------------
 
 export interface EntityAppStates
-    extends AppStates, AppWithVariableDisplayStates/*, AppStateThatHaveACategory*/ {
-
-    // display: {
-    //     section: {
-    //         name: boolean
-    //         game: boolean
-    //         gameStyle: boolean
-    //         courseTheme: boolean
-    //         time: boolean
-    //         category: boolean
-    //         limit: boolean
-    //         images: boolean
-    //     }
-    //     asText: {
-    //         category: boolean
-    //         whenAll: {
-    //             game: boolean
-    //             gameStyle: boolean
-    //             courseTheme: boolean
-    //             time: boolean
-    //         }
-    //         ifApplicable: {
-    //             acronymOnLimits: boolean
-    //         }
-    //     }
-    //     images: {
-    //         editor: boolean
-    //         clearCondition: boolean
-    //         whilePlaying: boolean
-    //         unused: boolean
-    //     }
-    // }
+    extends AppStates, AppWithVariableDisplayStates {
 }
 
 export interface EntityLimitAppStates
@@ -116,48 +80,22 @@ export interface EntityLimitAppStates
 
 export interface ThemeAppStates
     extends AppStates, AppWithVariableDisplayStates {
-
 }
 
 export interface GameStyleAppStates
     extends AppStates, AppWithVariableDisplayStates {
-
-    // display: {
-    //     section: {
-    //         image: boolean
-    //         name: boolean
-    //         game: boolean
-    //         nightDesertWind: boolean
-    //     }
-    // }
-
 }
 
 export interface SoundEffectAppStates
     extends AppStates, AppStateThatHaveACategory {
-
 }
 
 export interface MiiCostumeAppStates
-    extends AppStates, AppWithVariableDisplayStates/*, AppStateThatHaveACategory*/ {
-
-    // display: {
-    //     section: {
-    //         image: boolean
-    //         name: boolean
-    //         conditionToUnlockIt: boolean
-    //         category: boolean
-    //     }
-    //     asText: {
-    //         category: boolean
-    //     }
-    // }
-
+    extends AppStates, AppWithVariableDisplayStates {
 }
 
 export interface MysteryMushroomAppStates
     extends AppStates {
-
 }
 
 //endregion -------------------- Specific states --------------------
