@@ -108,7 +108,7 @@ export abstract class GameStyleAppOption
                     namespace: 'gameContent', translationKey: 'Wind effect (night desert)',
                     replace: {
                         night: '--night--',//TODO add night reference
-                        desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference[0])!.toLowerCase(),
+                        desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
                     },
                 },
             };

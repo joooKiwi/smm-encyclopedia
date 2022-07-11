@@ -111,6 +111,11 @@ export interface EntityAppStates
 
 }
 
+export interface ThemeAppStates
+    extends AppStates, AppWithVariableDisplayStates {
+
+}
+
 export interface GameStyleAppStates
     extends AppStates {
 
