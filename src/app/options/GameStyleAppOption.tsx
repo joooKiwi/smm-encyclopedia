@@ -3,13 +3,11 @@ import {lazy} from 'react';
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
 import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameStyleAppOption.types';
-import type {GameStyleAppStates}                                                                                                                                                    from '../AppStates.types';
 import type {GameStyles}                                                                                                                                                            from '../../core/gameStyle/GameStyles';
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
-import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
 import {CommonOptions}                 from './CommonOptions';
@@ -29,7 +27,7 @@ const YesOrNoResultTextComponent = lazy(() => import( '../tools/text/YesOrNoResu
 //endregion -------------------- dynamic imports --------------------
 
 export abstract class GameStyleAppOption
-    extends AbstractAppOption<boolean, GameStyleAppStates, Ordinals, Names>
+    extends Enum<Ordinals, Names>
     implements AppOptionWithContent, AppOptionWithTable {
 
     //region -------------------- Enum instances --------------------
@@ -47,7 +45,7 @@ export abstract class GameStyleAppOption
             return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
         }
 
-    }(true,);
+    }();
     public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
         protected override get _createContentOption(): () => PossibleRenderReactElement {
@@ -62,7 +60,7 @@ export abstract class GameStyleAppOption
             return CommonOptions.get.nameHeader;
         }
 
-    }(true,);
+    }();
     public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
 
         protected override get _createContentOption(): () => PossibleRenderReactElement {
@@ -88,7 +86,7 @@ export abstract class GameStyleAppOption
             };
         }
 
-    }(true,);
+    }();
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
         protected override get _createContentOption(): () => PossibleRenderReactElement {
@@ -114,7 +112,7 @@ export abstract class GameStyleAppOption
             };
         }
 
-    }(true,);
+    }();
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum attributes --------------------
@@ -136,17 +134,11 @@ export abstract class GameStyleAppOption
 
     //endregion -------------------- Attributes --------------------
 
-    private constructor(defaultValue: boolean,) {
-        super(defaultValue,);
+    private constructor() {
+        super();
     }
 
     //region -------------------- Getter methods --------------------
-
-    public static get createDefaultState(): GameStyleAppStates {
-        return {};
-    }
-
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 

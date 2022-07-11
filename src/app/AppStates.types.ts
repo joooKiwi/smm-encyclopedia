@@ -117,7 +117,7 @@ export interface ThemeAppStates
 }
 
 export interface GameStyleAppStates
-    extends AppStates {
+    extends AppStates, AppWithVariableDisplayStates {
 
     // display: {
     //     section: {
