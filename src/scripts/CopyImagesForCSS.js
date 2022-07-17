@@ -80,12 +80,11 @@ class ImageTemplate {
 
 [
     new ImageTemplate('entity/1 - SMB/In game/SMM1/Item - Kinoko2', 'wait.0', 'Mystery Mushroom', 'png',),
-].forEach(({oldName, oldPath, fullOldName, newName, newPath, fullNewName,}) => {
+].forEach(({oldName, oldPath, fullOldName, newName, newPath, fullNewName,}) =>
     copyFile(fullOldName, fullNewName, error => {
         if (error != null) {
             console.warn(`The file ("${oldName}" → "${newName}") could not be moved ("${oldPath}" → "${newPath}").`)
             console.trace(error)
         } else
             console.log(`The file ("${oldName}" → "${newName}") has been moved successfully ("${oldPath}" → "${newPath}").`)
-    })
-})
+    }))
