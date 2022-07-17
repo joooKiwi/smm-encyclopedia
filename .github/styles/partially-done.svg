@@ -5,13 +5,13 @@
                 :root {
                     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
                     --bs-btn-border-radius: 0.25rem;
-                    --bs-orange: #FD7e14;
+                    --bs-yellow: #FFC107;
                 }
                 small {
                     border-radius: var(--bs-btn-border-radius);
                     padding: 0.125rem 0.0625rem;
                     background-image: var(--bs-gradient);
-                    background-color: var(--bs-orange);
+                    background-color: var(--bs-yellow);
 
                     width: 88px;
                     text-align: center;
