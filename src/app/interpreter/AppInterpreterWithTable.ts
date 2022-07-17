@@ -1,10 +1,9 @@
-import type {AbstractAppOption}            from '../options/AbstractAppOption';
-import type {AppInterpreterWithCardList}   from './AppInterpreterWithCardList';
-import type {AppWithVariableDisplayStates} from '../AppStates.types';
-import type {Content}                      from './AppInterpreter';
-import type {SingleHeaderContent}          from '../tools/table/SimpleHeader';
-import type {TableProperties}              from '../tools/table/Table.types';
-import type {ReactElement}                 from '../../util/react/ReactProperty';
+import type {AppInterpreterWithCardList} from './AppInterpreterWithCardList';
+import type {Enumerable}                 from '../../util/enum/Enumerable';
+import type {Content}                    from './AppInterpreter';
+import type {SingleHeaderContent}        from '../tools/table/SimpleHeader';
+import type {TableProperties}            from '../tools/table/Table.types';
+import type {ReactElement}               from '../../util/react/ReactProperty';
 
 /**
  * An application interpreter when using {@link AbstractTableApp}
@@ -15,9 +14,9 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
 
 
     /**
-     * Set the enumerable (CONTENT) on the {@link AbstractAppOption option enum}.
+     * Set the enumerable (CONTENT) on the {@link Option option enum}.
      *
-     * @param value the enumerable content to set on the {@link AbstractAppOption option enum}
+     * @param value the enumerable content to set on the {@link Option option enum}
      */
     set callbackToGetEnumerable(value: () => CONTENT,)
 
@@ -34,7 +33,7 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
 
     /**
      * Get the table content as an array of {@link ReactElement}
-     * from the {@link AbstractAppOption application option} received.
+     * from the {@link Option application option} received.
      *
      * @param option the application option
      */
@@ -42,7 +41,7 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
 
     /**
      * Get the {@link SingleHeaderContent table header} or null
-     * from the {@link AbstractAppOption application option} received.
+     * from the {@link Option application option} received.
      *
      * @param option the application option
      */
@@ -58,5 +57,7 @@ export type SimplifiedTableProperties = Omit<TableProperties, | 'key' | 'id' | '
 /**
  * An option made to display any table column
  * based on the {@link Content content receive}.
+ *
+ * @deprecated Replace with enumerable instead
  */
-export type Option = AbstractAppOption<any, AppWithVariableDisplayStates, any, any>;
+export type Option = Enumerable<any, any>;

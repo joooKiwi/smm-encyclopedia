@@ -42,10 +42,14 @@ Although, they are only there for some names.
 
 ## List of elements to do
 
-- [ ] When giving an url <u>[https://example.com/path]()</u>, it would be based on the browser language.<br/>
-  And for <u>[https://example.com/en-US/path]()</u>, then the language would be set to American English.
-- [ ] Dark mode implementation.
-- [ ] Color blind implementation.
+- [ ] When giving an url <u>example.com/path</u>, it would be based on the browser language.<br/>
+  And for <u>example.com/en-US/path</u>, then the language would be set to American English.
+- [ ] Font family
+  - [ ] from the Super Mario Maker games
+  - [ ] from SMB, SMB3, SMW, NSMBU & SM3DW specifically
+- [ ] Color mode implementation (independent of each and another)
+  - [ ] Dark mode
+  - [ ] Colour-blind mode
 - [ ] Search engine.
 - [ ] Options that would change the URL based on the application loaded.
 - [ ] Sub-pages with reactive URL.
@@ -222,7 +226,7 @@ The types used in the interface:
 | Course tag <sup>(SMM2)                      |                                                                                                                                                                                       |                                  |
 | Predefined message <sup>(SMM2)              |                                                                                                                                                                                       |                                  |
 | Sample courses <sup>(SMM2)                  |                                                                                                                                                                                       |                                  |
-| Medals <sup>(SMM1)                          |                                                                                                                                                                                       |              Entity              |
+| Medals <sup>(SMM1)                          |                                                                                                                                                                                       |    Entity<br/>Character name     |
 | Super Mario Challenges levels <sup>(SMM3DW) |                                                                                                                                                                                       |                                  |
 | Job <sup>(SMM2)                             |                                                                                                                                                                                       |              Entity              |
 | Official notification <sup>(SMM2)           |                                                                                                                                                                                       |      Entity<br/>Mii costume      |
@@ -317,12 +321,16 @@ flowchart LR
   V((Version))
   
 
+  subgraph Independant
+    CT & J & M & NS & ON & PM & SC & SMCL
+  end
+  subgraph Entity
+   E & EB & EC & EG & EL & EO & EP & I & MM
+  end
+
   subgraph Sound effect
     SE     --> SEC
     SEC    -.-> SE
-  end
-  subgraph Independant
-    CT & J & M & NS & ON & PM & SC & SMCL
   end
   subgraph "Clear condition (SMM2)"
     CC     -->  CCC
@@ -349,7 +357,7 @@ flowchart LR
   end
   I        -.-> E
   J        -.-> E
-  M        -.-> E
+  M        -.-> CN & E
   MC       -.-> E
   subgraph "Mii costume (SMM2)"
     MC     -->  MCC

@@ -1,8 +1,6 @@
 import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
-import type {CourseTheme}                                                                                                                                                                                                                                  from './CourseTheme';
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {Themes as RealEnum}                                                                                                                                                                                                                           from './Themes';
-import type {WorldTheme}                                                                                                                                                                                                                                   from './WorldTheme';
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
@@ -60,8 +58,6 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
-
-export type CourseAndWorldTheme = readonly [CourseTheme, WorldTheme,];
 
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     ...EnumArray_OnlyCourseTheme<T>,

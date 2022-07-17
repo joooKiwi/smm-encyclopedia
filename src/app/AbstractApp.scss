@@ -58,3 +58,7 @@ table[id$="-table"] {
 .time-image, .theme-image, .game-image, .gameStyle-image {
   border-radius: var(--bs-border-radius);
 }
+
+.mystery-mushroom-image::after {
+  content: var(--mystery-mushroom-image);
+}

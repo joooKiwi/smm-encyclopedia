@@ -1,6 +1,7 @@
 import resource from '../../resources/compiled/Theme.json';
 
-import type {CourseAndWorldTheme, PossibleEnglishName}       from './Themes.types';
+import type {CourseAndWorldTheme}                            from './CourseAndWorldTheme';
+import type {PossibleEnglishName}                            from './Themes.types';
 import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types';
 import type {PropertiesArray as LanguagesPropertyArray}      from '../../lang/Loader.types';
 import type {PossibleEffectInNightTheme, ThemeTemplate}      from './Theme.template';
@@ -9,7 +10,6 @@ import type {Loader}                                         from '../../util/lo
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
 import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EmptyCourseTheme}        from './EmptyCourseTheme';
 import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 import {ThemeBuilder}            from './Theme.builder';
 
@@ -109,7 +109,7 @@ export class ThemeLoader
                 .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 
-                .onAfterFinalObjectCreated(finalContent => references.set((finalContent[0] === EmptyCourseTheme.get ? finalContent[1] : finalContent[0]).english as PossibleEnglishName, finalContent,))
+                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();
 
             //endregion -------------------- CSV Loader --------------------

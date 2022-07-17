@@ -3,12 +3,10 @@ import './DisplayView.scss';
 import type {ModalPropertiesWithDiv} from './ModalContainers.types';
 import type {ReactProperty}          from '../util/react/ReactProperty';
 
-import {BASE_PATH}                     from '../variables';
 import DisplayViewRouteButton          from './DisplayView.routeButton';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {GlobalAppOption}               from '../app/options/global/GlobalAppOption';
-import Image                           from '../app/tools/images/Image';
 
 interface DisplayViewBodyProperties
     extends ReactProperty, ModalPropertiesWithDiv {
@@ -20,7 +18,7 @@ interface DisplayViewBodyProperties
  * @reactComponent
  */
 export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,) {
-    const isSMM1Selected = GlobalAppOption.SMM1.get;
+    // const isSMM1Selected = GlobalAppOption.SMM1.get;
     // const isSMM3DSSelected = GlobalAppOption.SMM3DS.get;
     const isSMM2Selected = GlobalAppOption.SMM2.get;
 
@@ -76,14 +74,12 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                             tooltipValue={translation('Display every Mii costume categories',{MiiCostume: '--Mii costume--',},)}//TODO add Mii costume reference
                                             elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
                 </div> : EMPTY_REACT_ELEMENT}
-                {isSMM1Selected ? <div key="button group container (mystery mushroom)" id="mysteryMushroom-buttonGroup-container" className="btn-group col-12" role="group">
-                    <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={<>--Mystery Mushroom--{/*TODO add Mystery Mushroom reference*/}
-                        <sup><Image key="mysteryMushroom-image" source={`/${BASE_PATH}/entity/1 - SMB/In game/SMM1/Item - Kinoko2/wait.0.png`} fallbackName="Mystery Mushroom image" className="menu-image"/></sup>
-                    </>}
+                {/*isSMM1Selected ? */<div key="button group container (mystery mushroom)" id="mysteryMushroom-buttonGroup-container" className="btn-group col-12" role="group">
+                    <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={<span className="mystery-mushroom-image">--Mystery Mushroom--</span>}//TODO add Mystery Mushroom reference
                                             tooltipValue={translation('Display every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--',},)}//TODO add Mystery Mushroom reference
                                             elementId="displayView-mysteryMushroom-button" id={id} divId={divId}/>
                     {/*TODO add other options for the Mystery Mushroom*/}
-                </div> : EMPTY_REACT_ELEMENT}
+                </div>/* : EMPTY_REACT_ELEMENT*/}
                 <div key="button group container (sound effect)" id="soundEffect-buttonGroup-container" className="btn-group col-12" role="group">
                     <DisplayViewRouteButton routeName={'everySoundEffects'} value={translation('Sound effect')}
                                             tooltipValue={translation('Display every sound effects')}

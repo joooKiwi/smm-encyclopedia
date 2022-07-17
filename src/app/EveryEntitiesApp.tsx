@@ -24,7 +24,6 @@ export default class EveryEntitiesApp
 
     public constructor(props: {},) {
         super(props,);
-        EntityAppOption.REFERENCE = this;
         this.state = EntityAppOption.createDefaultState;
     }
 

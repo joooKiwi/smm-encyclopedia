@@ -3,7 +3,8 @@ import type {TOptions} from 'i18next';
 import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
 import type {ReactElement}                                                                                                                from '../../util/react/ReactProperty';
 
-import {assert} from '../../util/utilitiesMethods';
+import {assert}         from '../../util/utilitiesMethods';
+import {isInProduction} from '../../variables';
 
 export class TranslationUtility {
 
@@ -65,8 +66,14 @@ export class TranslationUtility {
             return;
         finalArguments.push(secondElement);
 
-        if (process.env.NODE_ENV !== 'production' && typeof secondElement != 'string' && secondElement.key == null)
-            console.warn(`The react element ${secondElement.type} included in a translation should have a "key". Otherwise, it will return a generic error.\n The properties included within it are ${Object.entries(secondElement.props).map(property => `[${property}]`)}.`);
+        if(isInProduction)
+            return;
+
+        if (typeof secondElement != 'string') {
+            if (secondElement?.key == null)
+                console.warn(`The react element ${secondElement.type} doesn't contain a key.`);
+            console.warn(`A generic error will be thrown.\nThe properties included within it are ${Object.entries(secondElement.props).map(property => `[${property}]`)}.`);
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import type {Themes}                        from '../theme/Themes';
 import type {Times}                         from '../time/Times';
 
 import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
+import {isInProduction}                   from '../../variables';
 
 /**
  * A simple entity implementation, but without any specification.
@@ -39,7 +40,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     #testCategory(category: EntityCategory,): CATEGORY
     #testCategory(category: EntityCategory,) {
-        return process.env.NODE_ENV === 'production'
+        return isInProduction
             ? category
             : this._testCategory(category);
     }
@@ -58,7 +59,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     #testProperty(property: Property,): PROPERTY
     #testProperty(property: Property,) {
-        return process.env.NODE_ENV === 'production'
+        return isInProduction
             ? property
             : this._testProperty(property);
     }

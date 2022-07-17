@@ -1,3 +1,6 @@
+@import '../../variables';
+@import '../../mixin';
+
 .app-title {
   width: 100%;
   text-decoration: underline;
@@ -38,14 +41,23 @@
   }
 }
 
-#subMain-container {
-  position: relative;
+@include media-breakpoint-up($grid-breakpoint-md) {
+
+  #subMain-container {
+    position: relative;
+  }
+
+  #viewChanger-container {
+    position: absolute;
+    top: var(--bs-spacer-md);
+    right: var(--bs-spacer-sm);
+  }
+
 }
 
 #viewChanger-container {
-  position: absolute;
-  top: var(--bs-spacer-md);
-  right: var(--bs-spacer-sm);
+  display: flex;
+  justify-content: flex-end;
 }
 
 #btn-viewDisplay-container {

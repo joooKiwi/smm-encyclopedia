@@ -72,25 +72,29 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
-    get #createViewDisplayGroup(): ReactElement {
-        return <div key={`${this._key} (group)`} id="btn-viewDisplay-container" className="btn-group">
+    #createViewDisplayGroup(typeDisplayed: ViewDisplays, key: string,): ReactElement {
+        return <div key={`${key} (button group)`} id="btn-viewDisplay-container" className="btn-group">
             {this.__possibleViewDisplay.map(viewDisplay =>
-                viewDisplay.createButton(this.typeDisplayed, this._key, nextValue => this.typeDisplayed = nextValue,))}
+                viewDisplay.createButton(typeDisplayed, key, nextValue => this.typeDisplayed = nextValue,))}
         </div>;
     }
 
     protected abstract _createTitleContent(): ReactElementOrString;
 
+    protected _createDescription(): ReactElementOrString {
+        return <>--description--{/*TODO add description*/}</>;
+    }
+
     protected override _mainContent(): ReactElement {
         const typeDisplayed = this.typeDisplayed;
+        const key = this._key;
 
-        return <div key={`${this._key} (sub main container)`} id="subMain-container">
-            <aside id="viewChanger-container">
-                {this.#createViewDisplayGroup}
-            </aside>
-            <div id={`${this._key}-container`} className={`${typeDisplayed.htmlType}-container`}>
-                <h1 key={`${this._key} (title)`} id={`${this._key}-title`} className="app-title">{this._createTitleContent()}</h1>
-                <div key={`${this._key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
+        return <div key={`${key} (sub main container)`} id="subMain-container">
+            <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
+                <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
+                <aside key={`${key} (view changer)`} id="viewChanger-container">{this.#createViewDisplayGroup(typeDisplayed, key,)}</aside>
+                <p key={`${key} (description)`}>{this._createDescription()}</p>
+                <div key={`${key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
             </div>
 
         </div>;
