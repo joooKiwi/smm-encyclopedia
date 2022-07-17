@@ -83,14 +83,16 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
 
     protected override _mainContent(): ReactElement {
         const typeDisplayed = this.typeDisplayed;
+        const key = this._key;
 
-        return <div key={`${this._key} (sub main container)`} id="subMain-container">
-            <aside id="viewChanger-container">
-                {this.#createViewDisplayGroup}
-            </aside>
-            <div id={`${this._key}-container`} className={`${typeDisplayed.htmlType}-container`}>
-                <h1 key={`${this._key} (title)`} id={`${this._key}-title`} className="app-title">{this._createTitleContent()}</h1>
-                <div key={`${this._key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
+        return <div key={`${key} (sub main container)`} id="subMain-container">
+            <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
+                <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
+                <aside key={`${key} (view changer)`} id="viewChanger-container">
+                    {this.#createViewDisplayGroup}
+                </aside>
+                <p>--long description--{/*TODO add long description*/}</p>
+                <div key={`${key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
             </div>
 
         </div>;
