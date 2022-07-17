@@ -11,11 +11,11 @@ import {UnusedImageBuilder}               from './UnusedImage.builder';
 export class UnusedImage_BigMushroomBuilder
     extends UnusedImageBuilder<UnusedImage_BigMushroom, ImageName_BigMushroom_Unused_SMM1> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     #identifierMap = new Map<ImageIdentifier, PossibleImageNumber>();
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: ImageName_BigMushroom_Unused_SMM1,) {
         super(name);

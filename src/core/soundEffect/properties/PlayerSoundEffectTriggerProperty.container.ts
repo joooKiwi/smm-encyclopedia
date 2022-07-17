@@ -25,7 +25,7 @@ export class PlayerSoundEffectTriggerPropertyContainer
     static readonly #TAKE_DAMAGE_OR_LOST_A_LIFE =            new PlayerSoundEffectTriggerPropertyContainer('When taking damage or losing a life',                                                                                                              false, false, false, false, false, false, false, true,  true, );
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #translationKey: PossibleTranslation;
 
@@ -110,7 +110,7 @@ export class PlayerSoundEffectTriggerPropertyContainer
 
     //endregion -------------------- Environment triggers --------------------
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     /**

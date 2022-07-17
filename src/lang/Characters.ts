@@ -8,131 +8,71 @@ export class Characters
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ POINT;
-    public static/* readonly*/ INTERROGATION_POINT;
-    public static/* readonly*/ EXCLAMATION_POINT;
-    public static/* readonly*/ COLON;
-    public static/* readonly*/ SEMICOLON;
-    public static/* readonly*/ COMMA;
-    public static/* readonly*/ UNION_TRAIT;
+    public static readonly POINT =                new Characters('.',  '．',);
+    public static readonly INTERROGATION_POINT =  new Characters('?',  '？',);
+    public static readonly EXCLAMATION_POINT =    new Characters('!',  '！',);
+    public static readonly COLON =                new Characters(':',  '：',);
+    public static readonly SEMICOLON =            new Characters(';',  '；',);
+    public static readonly COMMA =                new Characters(',',  '，',);
+    public static readonly UNION_TRAIT =          new Characters('-',  '－',);
 
-    public static/* readonly*/ COMMERCIAL_AND;
+    public static readonly COMMERCIAL_AND =       new Characters('&',  '＆',);
 
-    public static/* readonly*/ STARTING_PARENTHESIS;
-    public static/* readonly*/ ENDING_PARENTHESIS;
-    public static/* readonly*/ STARTING_BRACKET;
-    public static/* readonly*/ ENDING_BRACKET;
-    public static/* readonly*/ STARTING_BRACE;
-    public static/* readonly*/ ENDING_BRACE;
+    public static readonly STARTING_PARENTHESIS = new Characters('(',  '（',);
+    public static readonly ENDING_PARENTHESIS =   new Characters(')',  '）',);
+    public static readonly STARTING_BRACKET =     new Characters('(',  '（',);
+    public static readonly ENDING_BRACKET =       new Characters(')',  '）',);
+    public static readonly STARTING_BRACE =       new Characters('(',  '（',);
+    public static readonly ENDING_BRACE =         new Characters(')',  '）',);
 
-    public static/* readonly*/ SLASH;
-    public static/* readonly*/ VERTICAL_SLASH;
+    public static readonly SLASH =                new Characters('/',  '／',);
+    public static readonly VERTICAL_SLASH =       new Characters('|',  '｜',);
 
-    public static/* readonly*/ LETTER_A;
-    public static/* readonly*/ LETTER_B;
-    public static/* readonly*/ LETTER_C;
-    public static/* readonly*/ LETTER_D;
-    public static/* readonly*/ LETTER_E;
-    public static/* readonly*/ LETTER_F;
-    public static/* readonly*/ LETTER_G;
-    public static/* readonly*/ LETTER_H;
-    public static/* readonly*/ LETTER_I;
-    public static/* readonly*/ LETTER_J;
-    public static/* readonly*/ LETTER_K;
-    public static/* readonly*/ LETTER_L;
-    public static/* readonly*/ LETTER_M;
-    public static/* readonly*/ LETTER_N;
-    public static/* readonly*/ LETTER_O;
-    public static/* readonly*/ LETTER_P;
-    public static/* readonly*/ LETTER_Q;
-    public static/* readonly*/ LETTER_R;
-    public static/* readonly*/ LETTER_S;
-    public static/* readonly*/ LETTER_T;
-    public static/* readonly*/ LETTER_U;
-    public static/* readonly*/ LETTER_V;
-    public static/* readonly*/ LETTER_W;
-    public static/* readonly*/ LETTER_X;
-    public static/* readonly*/ LETTER_Y;
-    public static/* readonly*/ LETTER_Z;
+    public static readonly LETTER_A =             new Characters('Aa', 'Ａａ',);
+    public static readonly LETTER_B =             new Characters('Bb', 'Ｂｂ',);
+    public static readonly LETTER_C =             new Characters('Cc', 'Ｃｃ',);
+    public static readonly LETTER_D =             new Characters('Dd', 'Ｄｄ',);
+    public static readonly LETTER_E =             new Characters('Ee', 'Ｅｅ',);
+    public static readonly LETTER_F =             new Characters('Ff', 'Ｆｆ',);
+    public static readonly LETTER_G =             new Characters('Gg', 'Ｇｇ',);
+    public static readonly LETTER_H =             new Characters('Hh', 'Ｈｈ',);
+    public static readonly LETTER_I =             new Characters('Ii', 'Ｉｉ',);
+    public static readonly LETTER_J =             new Characters('Jj', 'Ｊｊ',);
+    public static readonly LETTER_K =             new Characters('Kk', 'Ｋｋ',);
+    public static readonly LETTER_L =             new Characters('Ll', 'Ｌｌ',);
+    public static readonly LETTER_M =             new Characters('Mm', 'Ｍｍ',);
+    public static readonly LETTER_N =             new Characters('Nn', 'Ｎｎ',);
+    public static readonly LETTER_O =             new Characters('Oo', 'Ｏｏ',);
+    public static readonly LETTER_P =             new Characters('Pp', 'Ｐｐ',);
+    public static readonly LETTER_Q =             new Characters('Qq', 'Ｑｑ',);
+    public static readonly LETTER_R =             new Characters('Rr', 'Ｒｒ',);
+    public static readonly LETTER_S =             new Characters('Ss', 'Ｓｓ',);
+    public static readonly LETTER_T =             new Characters('Tt', 'Ｔｔ',);
+    public static readonly LETTER_U =             new Characters('Uu', 'Ｕｕ',);
+    public static readonly LETTER_V =             new Characters('Vv', 'Ｖｖ',);
+    public static readonly LETTER_W =             new Characters('Ww', 'Ｗｗ',);
+    public static readonly LETTER_X =             new Characters('Xx', 'Ｘｘ',);
+    public static readonly LETTER_Y =             new Characters('Yy', 'Ｙｙ',);
+    public static readonly LETTER_Z =             new Characters('Zz', 'Ｚｚ',);
 
-    public static/* readonly*/ NUMBER_0;
-    public static/* readonly*/ NUMBER_1;
-    public static/* readonly*/ NUMBER_2;
-    public static/* readonly*/ NUMBER_3;
-    public static/* readonly*/ NUMBER_4;
-    public static/* readonly*/ NUMBER_5;
-    public static/* readonly*/ NUMBER_6;
-    public static/* readonly*/ NUMBER_7;
-    public static/* readonly*/ NUMBER_8;
-    public static/* readonly*/ NUMBER_9;
-
-    static {
-            this.POINT =                new Characters('.',  '．',);
-            this.INTERROGATION_POINT =  new Characters('?',  '？',);
-            this.EXCLAMATION_POINT =    new Characters('!',  '！',);
-            this.COLON =                new Characters(':',  '：',);
-            this.SEMICOLON =            new Characters(';',  '；',);
-            this.COMMA =                new Characters(',',  '，',);
-            this.UNION_TRAIT =          new Characters('-',  '－',);
-    
-            this.COMMERCIAL_AND =       new Characters('&',  '＆',);
-    
-            this.STARTING_PARENTHESIS = new Characters('(',  '（',);
-            this.ENDING_PARENTHESIS =   new Characters(')',  '）',);
-            this.STARTING_BRACKET =     new Characters('(',  '（',);
-            this.ENDING_BRACKET =       new Characters(')',  '）',);
-            this.STARTING_BRACE =       new Characters('(',  '（',);
-            this.ENDING_BRACE =         new Characters(')',  '）',);
-    
-            this.SLASH =                new Characters('/',  '／',);
-            this.VERTICAL_SLASH =       new Characters('|',  '｜',);
-    
-            this.LETTER_A =             new Characters('Aa', 'Ａａ',);
-            this.LETTER_B =             new Characters('Bb', 'Ｂｂ',);
-            this.LETTER_C =             new Characters('Cc', 'Ｃｃ',);
-            this.LETTER_D =             new Characters('Dd', 'Ｄｄ',);
-            this.LETTER_E =             new Characters('Ee', 'Ｅｅ',);
-            this.LETTER_F =             new Characters('Ff', 'Ｆｆ',);
-            this.LETTER_G =             new Characters('Gg', 'Ｇｇ',);
-            this.LETTER_H =             new Characters('Hh', 'Ｈｈ',);
-            this.LETTER_I =             new Characters('Ii', 'Ｉｉ',);
-            this.LETTER_J =             new Characters('Jj', 'Ｊｊ',);
-            this.LETTER_K =             new Characters('Kk', 'Ｋｋ',);
-            this.LETTER_L =             new Characters('Ll', 'Ｌｌ',);
-            this.LETTER_M =             new Characters('Mm', 'Ｍｍ',);
-            this.LETTER_N =             new Characters('Nn', 'Ｎｎ',);
-            this.LETTER_O =             new Characters('Oo', 'Ｏｏ',);
-            this.LETTER_P =             new Characters('Pp', 'Ｐｐ',);
-            this.LETTER_Q =             new Characters('Qq', 'Ｑｑ',);
-            this.LETTER_R =             new Characters('Rr', 'Ｒｒ',);
-            this.LETTER_S =             new Characters('Ss', 'Ｓｓ',);
-            this.LETTER_T =             new Characters('Tt', 'Ｔｔ',);
-            this.LETTER_U =             new Characters('Uu', 'Ｕｕ',);
-            this.LETTER_V =             new Characters('Vv', 'Ｖｖ',);
-            this.LETTER_W =             new Characters('Ww', 'Ｗｗ',);
-            this.LETTER_X =             new Characters('Xx', 'Ｘｘ',);
-            this.LETTER_Y =             new Characters('Yy', 'Ｙｙ',);
-            this.LETTER_Z =             new Characters('Zz', 'Ｚｚ',);
-    
-            this.NUMBER_0 =             new Characters('0',  '０',);
-            this.NUMBER_1 =             new Characters('1',  '１',);
-            this.NUMBER_2 =             new Characters('2',  '２',);
-            this.NUMBER_3 =             new Characters('3',  '３',);
-            this.NUMBER_4 =             new Characters('4',  '４',);
-            this.NUMBER_5 =             new Characters('5',  '５',);
-            this.NUMBER_6 =             new Characters('6',  '６',);
-            this.NUMBER_7 =             new Characters('7',  '７',);
-            this.NUMBER_8 =             new Characters('8',  '８',);
-            this.NUMBER_9 =             new Characters('9',  '９',);
-    }
+    public static readonly NUMBER_0 =             new Characters('0',  '０',);
+    public static readonly NUMBER_1 =             new Characters('1',  '１',);
+    public static readonly NUMBER_2 =             new Characters('2',  '２',);
+    public static readonly NUMBER_3 =             new Characters('3',  '３',);
+    public static readonly NUMBER_4 =             new Characters('4',  '４',);
+    public static readonly NUMBER_5 =             new Characters('5',  '５',);
+    public static readonly NUMBER_6 =             new Characters('6',  '６',);
+    public static readonly NUMBER_7 =             new Characters('7',  '７',);
+    public static readonly NUMBER_8 =             new Characters('8',  '８',);
+    public static readonly NUMBER_9 =             new Characters('9',  '９',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Characters;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,];
     static #POINTS_STRING?: Points_Array;
@@ -192,7 +132,7 @@ export class Characters
     readonly #spaceEvenCharacters: PossibleSpaceEvenCharacters;
     readonly #spaceUnevenCharacters: PossibleSpaceUnevenCharacters;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(spaceUnevenCharacter: PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, spaceEvenCharacter: PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet,)
     private constructor(spaceUnevenCharacters: PossibleMixedSpaceUnevenCharacter_RomainAlphabet, spaceEvenCharacters: PossibleMixedSpaceEvenCharacter_RomainAlphabet,)
@@ -219,15 +159,15 @@ export class Characters
 
     //region -------------------- Specific characters --------------------
 
-    private static __getBothEvenAndUnevenCharacters<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
+    static #getBothEvenAndUnevenCharacters<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
         return enumArray.map(enumerable => [enumerable.spaceUnevenCharacters[index], enumerable.spaceEvenCharacters[index],]).flat() as unknown as A;
     }
 
-    private static __getOnlyUnevenCharacter<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
+    static #getOnlyUnevenCharacter<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
         return enumArray.map(enumerable => enumerable.spaceUnevenCharacters[index]) as unknown as A;
     }
 
-    private static __getOnlyEvenCharacter<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
+    static #getOnlyEvenCharacter<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
         return enumArray.map(enumerable => enumerable.spaceEvenCharacters[index]).flat() as unknown as A;
     }
 
@@ -238,14 +178,14 @@ export class Characters
     }
 
     public static get points(): Points_Array {
-        return this.#POINTS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.points_enum, 0,);
+        return this.#POINTS_STRING ??= this.#getBothEvenAndUnevenCharacters(this.points_enum, 0,);
     }
 
     public static getPoints<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Points_SpaceEven_Array, Points_SpaceUneven_Array>
     public static getPoints(isSpaceEven: boolean,): PossiblePoints_Array {
         return isSpaceEven
-            ? this.#POINTS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.points_enum, 0,)
-            : this.#POINTS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.points_enum, 0,);
+            ? this.#POINTS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.points_enum, 0,)
+            : this.#POINTS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.points_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (points) --------------------
@@ -256,14 +196,14 @@ export class Characters
     }
 
     public static get parentheses(): Parentheses_Array {
-        return this.#PARENTHESES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.parentheses_enum, 0,);
+        return this.#PARENTHESES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.parentheses_enum, 0,);
     }
 
     public static getParentheses<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array>
     public static getParentheses(isSpaceEven: boolean,): PossibleParentheses_Array {
         return isSpaceEven
-            ? this.#PARENTHESES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.parentheses_enum, 0,)
-            : this.#PARENTHESES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.parentheses_enum, 0,);
+            ? this.#PARENTHESES_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.parentheses_enum, 0,)
+            : this.#PARENTHESES_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.parentheses_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (parentheses) --------------------
@@ -274,14 +214,14 @@ export class Characters
     }
 
     public static get brackets(): Brackets_Array {
-        return this.#BRACKETS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.brackets_enum, 0,);
+        return this.#BRACKETS_STRING ??= this.#getBothEvenAndUnevenCharacters(this.brackets_enum, 0,);
     }
 
     public static getBrackets<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array>
     public static getBrackets(isSpaceEven: boolean,): PossibleBrackets_Array {
         return isSpaceEven
-            ? this.#BRACKETS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.brackets_enum, 0,)
-            : this.#BRACKETS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.brackets_enum, 0,);
+            ? this.#BRACKETS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.brackets_enum, 0,)
+            : this.#BRACKETS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.brackets_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (brackets) --------------------
@@ -292,14 +232,14 @@ export class Characters
     }
 
     public static get braces(): Braces_Array {
-        return this.#BRACES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.braces_enum, 0,);
+        return this.#BRACES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.braces_enum, 0,);
     }
 
     public static getBraces<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Braces_SpaceEven_Array, Braces_SpaceUneven_Array>
     public static getBraces(isSpaceEven: boolean,): PossibleBraces_Array {
         return isSpaceEven
-            ? this.#BRACES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.braces_enum, 0,)
-            : this.#BRACES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.braces_enum, 0,);
+            ? this.#BRACES_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.braces_enum, 0,)
+            : this.#BRACES_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.braces_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (braces) --------------------
@@ -310,14 +250,14 @@ export class Characters
     }
 
     public static get slashes(): Slashes_Array {
-        return this.#SLASHES_STRING ??= this.__getBothEvenAndUnevenCharacters(this.slashes_enum, 0,);
+        return this.#SLASHES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.slashes_enum, 0,);
     }
 
     public static getSlashes<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array>
     public static getSlashes(isSpaceEven: boolean,): PossibleSlashes_Array {
         return isSpaceEven
-            ? this.#SLASHES_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.slashes_enum, 0,)
-            : this.#SLASHES_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.slashes_enum, 0,);
+            ? this.#SLASHES_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.slashes_enum, 0,)
+            : this.#SLASHES_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.slashes_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (slashes) --------------------
@@ -340,25 +280,25 @@ export class Characters
 
 
     public static get lowercaseLetters(): LowercaseLetters_Array {
-        return this.#LOWERCASE_LETTERS ??= this.__getBothEvenAndUnevenCharacters(this.letters_enum, 1,);
+        return this.#LOWERCASE_LETTERS ??= this.#getBothEvenAndUnevenCharacters(this.letters_enum, 1,);
     }
 
     public static getLowercaseLetters<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array>
     public static getLowercaseLetters(isSpaceEven: boolean,): PossibleLowercaseRomainAlphabet_Array {
         return isSpaceEven
-            ? this.#LOWERCASE_LETTERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.letters_enum, 1,)
-            : this.#LOWERCASE_LETTERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.letters_enum, 1,);
+            ? this.#LOWERCASE_LETTERS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.letters_enum, 1,)
+            : this.#LOWERCASE_LETTERS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.letters_enum, 1,);
     }
 
     public static get uppercaseLetters(): UppercaseLetters_Array {
-        return this.#UPPERCASE_LETTERS ??= this.__getBothEvenAndUnevenCharacters(this.letters_enum, 0,);
+        return this.#UPPERCASE_LETTERS ??= this.#getBothEvenAndUnevenCharacters(this.letters_enum, 0,);
     }
 
     public static getUppercaseLetters<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array>
     public static getUppercaseLetters(isSpaceEven: boolean,): PossibleUppercaseRomainAlphabet_Array {
         return isSpaceEven
-            ? this.#UPPERCASE_LETTERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.letters_enum, 0,)
-            : this.#UPPERCASE_LETTERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.letters_enum, 0,);
+            ? this.#UPPERCASE_LETTERS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.letters_enum, 0,)
+            : this.#UPPERCASE_LETTERS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.letters_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (letters) --------------------
@@ -369,14 +309,14 @@ export class Characters
     }
 
     public static get numbers(): Numbers_Array {
-        return this.#NUMBERS_STRING ??= this.__getBothEvenAndUnevenCharacters(this.numbers_enum, 0,);
+        return this.#NUMBERS_STRING ??= this.#getBothEvenAndUnevenCharacters(this.numbers_enum, 0,);
     }
 
     public static getNumbers<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array>
     public static getNumbers(isSpaceEven: boolean,): PossibleNumbers_Array {
         return isSpaceEven
-            ? this.#NUMBERS_SPACE_EVEN ??= this.__getOnlyEvenCharacter(this.numbers_enum, 0,)
-            : this.#NUMBERS_SPACE_UNEVEN ??= this.__getOnlyUnevenCharacter(this.numbers_enum, 0,);
+            ? this.#NUMBERS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.numbers_enum, 0,)
+            : this.#NUMBERS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.numbers_enum, 0,);
     }
 
     //endregion -------------------- Specific characters (numbers) --------------------
@@ -429,23 +369,23 @@ export class Characters
 
     //region -------------------- Transformation methods --------------------
 
-    private static __textInBetween(isSpaceEven: boolean, startingCharacter: Characters, text: string, endingCharacter: Characters,) {
+    static #textInBetween(isSpaceEven: boolean, startingCharacter: Characters, text: string, endingCharacter: Characters,) {
         return `${startingCharacter.getCharacters(isSpaceEven)}${text}${endingCharacter.getCharacters(isSpaceEven)}`;
     }
 
     public static textInParentheses<B extends boolean, S extends string, >(isSpaceEven: B, text: S,): TextInParentheses<B, S>
     public static textInParentheses(isSpaceEven: boolean, text: string,) {
-        return this.__textInBetween(isSpaceEven, this.STARTING_PARENTHESIS, text, this.ENDING_PARENTHESIS,);
+        return this.#textInBetween(isSpaceEven, this.STARTING_PARENTHESIS, text, this.ENDING_PARENTHESIS,);
     }
 
     public static textInBrackets<B extends boolean, S extends string, >(isSpaceEven: B, text: S,): TextInBrackets<B, S>
     public static textInBrackets(isSpaceEven: boolean, text: string,) {
-        return this.__textInBetween(isSpaceEven, this.STARTING_BRACKET, text, this.ENDING_BRACKET,);
+        return this.#textInBetween(isSpaceEven, this.STARTING_BRACKET, text, this.ENDING_BRACKET,);
     }
 
     public static textInBraces<B extends boolean, S extends string, >(isSpaceEven: B, text: S,): TextInBraces<B, S>
     public static textInBraces(isSpaceEven: boolean, text: string,) {
-        return this.__textInBetween(isSpaceEven, this.STARTING_BRACE, text, this.ENDING_BRACE,);
+        return this.#textInBetween(isSpaceEven, this.STARTING_BRACE, text, this.ENDING_BRACE,);
     }
 
     //endregion -------------------- Transformation methods --------------------

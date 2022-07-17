@@ -3,12 +3,12 @@ import type {Builder} from '../../util/builder/Builder';
 export abstract class TemplateBuilder<T, U, >
     implements Builder<U> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     #template?: T;
     readonly #templateBuilder_or_template;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(template: T,)
     protected constructor(templateBuilder: Builder<T>,)

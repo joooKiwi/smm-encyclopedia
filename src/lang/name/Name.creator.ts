@@ -9,7 +9,7 @@ export class NameCreator {
 
     static readonly #INSTANCE_MAP = new Map<object, Set<string>>();
 
-    private static __testName(name: PossibleNameTemplate,): PossibleNameTemplate {
+    static #testName(name: PossibleNameTemplate,): PossibleNameTemplate {
         //README since some references are still not complete, they are in comment
         assert(name.english.simple != null || !(name.english.american == null || name.english.european == null), `The english name ("${name.english.simple}") can either have a single english name or both "american"("${name.english.american}") and "european"("${name.english.european}") name separated.`,);
         assert(name.french.simple != null || !(name.french.canadian == null || name.french.european == null), `The french name ("${name.french.simple}") can either have a single french name or both "canadian"("${name.french.canadian}") and "european"("${name.french.european}") name separated.`,);
@@ -20,7 +20,7 @@ export class NameCreator {
         return name;
     }
 
-    private static __testEnglishNameInSet(set: Set<string>, name: PossibleNameTemplate, uniqueName: | string | null,): string {
+    static #testEnglishNameInSet(set: Set<string>, name: PossibleNameTemplate, uniqueName: | string | null,): string {
         const englishReferenceName = uniqueName ?? name.english.simple ?? name.english.american;
 
         assert(englishReferenceName != null, 'No english name can be null since they are used as a key for the references.',);
@@ -49,7 +49,7 @@ export class NameCreator {
         if (!map.has(instance))
             map.set(instance, new Set());
         const set = map.get(instance)!;
-        this.__testEnglishNameInSet(set, this.__testName(name), uniqueName,);
+        this.#testEnglishNameInSet(set, this.#testName(name), uniqueName,);
     }
 
 }

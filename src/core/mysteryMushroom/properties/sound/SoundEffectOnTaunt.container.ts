@@ -20,7 +20,7 @@ export class SoundEffectOnTauntContainer
     readonly #argumentsReceived: ArgumentsReceived;
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #property;
     readonly #game;
@@ -40,7 +40,7 @@ export class SoundEffectOnTauntContainer
         return this.#game;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(value: PossibleValuesReceived, game: PossibleGamesReceived,): SoundEffectOnTaunt {

@@ -4,11 +4,11 @@ import type {GameStyles}          from '../../../gameStyle/GameStyles';
 export class UnusedImage_RegularContainer
     implements UnusedImage_Regular {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #all;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(images: ReadonlyMap<GameStyles, readonly (readonly string[])[]>,) {
         this.#all = images;

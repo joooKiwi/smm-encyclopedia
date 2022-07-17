@@ -7,7 +7,7 @@ import {Times}                             from '../../time/Times';
 export abstract class AbstractImageWithTimesThemesAndGameStyles
     implements ImageWithTimesThemesAndGameStyles {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #map;
     readonly #defaultImages;
@@ -16,7 +16,7 @@ export abstract class AbstractImageWithTimesThemesAndGameStyles
     #everyThemes?: readonly Themes[];
     #everyTimes?: readonly Times[];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(map: ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly string[]>>>, defaultImages: ReadonlyMap<GameStyles, readonly string[]>,) {
         this.#map = map;

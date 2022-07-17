@@ -16,4 +16,5 @@ export interface AppInterpreter<CONTENT extends Content = Content,> {
 
 }
 
+//TODO change the ClassWithReference<{nameContainer}> to be ClassHavingReferenceWithName
 export type Content = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<{ get nameContainer(): Name<string> }>;

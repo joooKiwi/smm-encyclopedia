@@ -13,7 +13,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
     extends Component<GroupButtonProperties<T>>
     implements ReactComponent<ReactNode> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_IS_OUTLINE = true;
     public static DEFAULT_IS_VERTICAL = true;
@@ -23,7 +23,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
     #isOutline?: GroupButtonProperties<T>['isOutline'];
     #hasTheConditionToBeVertical?: boolean;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(props: GroupButtonProperties<T>,) {
         super(props);
@@ -31,31 +31,31 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
 
     //region -------------------- Getter methods --------------------
 
-    protected get elements(): readonly T[] {
+    public get elements(): readonly T[] {
         return this.props.elements;
     }
 
-    protected get isChoiceGroup(): boolean {
+    public get isChoiceGroup(): boolean {
         return this.props.isChoiceGroup;
     }
 
-    protected get groupName(): string {
+    public get groupName(): string {
         return this.props.groupName;
     }
 
-    protected get color(): string {
+    public get color(): string {
         return this.props.color;
     }
 
-    protected get isVertical(): boolean {
+    public get isVertical(): boolean {
         return this.#isVertical ??= this.props.isVertical ?? AbstractGroupButton.DEFAULT_IS_VERTICAL;
     }
 
-    protected get isOutline(): boolean {
+    public get isOutline(): boolean {
         return this.#isOutline ??= this.props.isOutline ?? AbstractGroupButton.DEFAULT_IS_OUTLINE;
     }
 
-    protected get hasTheConditionToBeVertical(): boolean {
+    public get hasTheConditionToBeVertical(): boolean {
         return this.#hasTheConditionToBeVertical ??= this.isVertical
             ? this.elements.length > AbstractGroupButton.MAXIMUM_HORIZONTAL_LENGTH
             : false;
@@ -73,10 +73,8 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
     /**
      * Create multiple buttons composed of an {@link HTMLInputElement Input}
      * and a {@link HTMLLabelElement Label} element.
-     *
-     * @private
      */
-    private __createButtons(): readonly JSX.Element[] {
+    #createButtons(): readonly JSX.Element[] {
         return this.elements.map((properties, index) => {
                 let id = this.groupName + (index + 1);
                 return [
@@ -92,7 +90,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
 
     public override render(): ReactElement {
         return <div key={`groupButton_${this.groupName}`} id={`group-${this.groupName}`} className={'btn-group' + (this.hasTheConditionToBeVertical ? ' btn-group-vertical' : '')} role="group">
-            {this.__createButtons()}
+            {this.#createButtons()}
         </div>;
     }
 }

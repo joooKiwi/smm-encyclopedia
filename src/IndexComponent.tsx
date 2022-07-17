@@ -24,7 +24,7 @@ function FunctionIndexComponent() {
 }
 
 function setAndGetCurrentLanguage(): PossibleInternationalAcronym {
-    ProjectLanguages.currentLanguage ??= 'en_AM';
+    ProjectLanguages.currentLanguage ??= 'en-AM';
     return ProjectLanguages.currentLanguage.internationalAcronym;
 }
 

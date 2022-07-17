@@ -15,49 +15,43 @@ export abstract class ViewDisplays
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ TABLE;
-    public static/* readonly*/ SIMPLE_LIST;
-    public static/* readonly*/ CARD_LIST;
+    public static readonly TABLE =       new class ViewDisplays_Table extends ViewDisplays {
 
-    static {
-        this.TABLE =       new class ViewDisplays_Table extends ViewDisplays {
+        public override createComponent(app: PossibleApp,): ReactElement {
+            assert('createTable' in app, 'The application does not handle a table creation.',);
+            return app.createTable();
+        }
 
-            public override createComponent(app: PossibleApp,): ReactElement {
-                assert('createTable' in app, 'The application does not handle a table creation.',);
-                return app.createTable();
-            }
+    }('table', 'table',);
+    public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
 
-        }('table', 'table',);
-        this.SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
+        public override createComponent(app: PossibleApp,): ReactElement {
+            assert('createList' in app, 'The application does not handle a "simple list" creation.',);
+            return app.createList();
+        }
 
-            public override createComponent(app: PossibleApp,): ReactElement {
-                assert('createList' in app, 'The application does not handle a "simple list" creation.',);
-                return app.createList();
-            }
+    }('simple-list', 'list',);
+    public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
 
-        }('simple-list', 'list',);
-        this.CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
+        public override createComponent(app: PossibleApp,): ReactElement {
+            assert('createCardList' in app, 'The application does not handle a "card list" creation.',);
+            return app.createCardList();
+        }
 
-            public override createComponent(app: PossibleApp,): ReactElement {
-                assert('createCardList' in app, 'The application does not handle a "card list" creation.',);
-                return app.createCardList();
-            }
-
-        }('card-list', 'card-list',);
-    }
+    }('card-list', 'card-list',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: ViewDisplays;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #type;
     readonly #htmlType;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(type: Type, htmlType: HTMLType,) {
         super();

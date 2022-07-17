@@ -16,14 +16,36 @@ export abstract class SoundFounds
      * @noValidationOnPlay
      * @noValidationOnCreate
      */
-    public static /*readonly*/ YES;
+    public static readonly YES =       new class SoundFounds_Yes extends SoundFounds {
+
+        public override onCreate(callback: IsSourceFoundCallback,): void {
+            callback(true);
+        }
+
+        public override onPlay(callback: IsSourceFoundCallback,): true {
+            callback(true);
+            return true;
+        }
+
+    }('yes',);
     /**
      * Tell that the sound will never be found.
      *
      * @noValidationOnPlay
      * @noValidationOnCreate
      */
-    public static /*readonly*/ NO;
+    public static readonly NO =        new class SoundFounds_No extends SoundFounds {
+
+        public override onCreate(callback: IsSourceFoundCallback,): void {
+            callback(false);
+        }
+
+        public override onPlay(callback: IsSourceFoundCallback,): false {
+            callback(false);
+            return false;
+        }
+
+    }('no',);
     /**
      * Tell whenever the sound is present or not
      * when the audio source will be played.
@@ -31,70 +53,41 @@ export abstract class SoundFounds
      * @noValidationOnCreate
      * @defaultValue
      */
-    public static /*readonly*/ ON_PLAY;
+    public static readonly ON_PLAY =   new class SoundFounds_OnPlay extends SoundFounds {
+
+        public override onPlay(callback: IsSourceFoundCallback,): null {
+            callback();
+            return null;
+        }
+
+    }('on play',);
     /**
      * Tell whenever the sound is present or not
      * when creating the audio element.
      *
      * @noValidationOnPlay
      */
-    public static /*readonly*/ ON_CREATE;
+    public static readonly ON_CREATE = new class SoundFounds_OnCreate extends SoundFounds {
 
-    static {
-        this.YES =       new class SoundFounds_Yes extends SoundFounds {
+        public override onCreate(callback: IsSourceFoundCallback,): void {
+            callback();
+        }
 
-            public override onCreate(callback: IsSourceFoundCallback,): void {
-                callback(true);
-            }
-
-            public override onPlay(callback: IsSourceFoundCallback,): true {
-                callback(true);
-                return true;
-            }
-
-        }('yes',);
-        this.NO =        new class SoundFounds_No extends SoundFounds {
-
-            public override onCreate(callback: IsSourceFoundCallback,): void {
-                callback(false);
-            }
-
-            public override onPlay(callback: IsSourceFoundCallback,): false {
-                callback(false);
-                return false;
-            }
-
-        }('no',);
-        this.ON_PLAY =   new class SoundFounds_OnPlay extends SoundFounds {
-
-            public override onPlay(callback: IsSourceFoundCallback,): null {
-                callback();
-                return null;
-            }
-
-        }('on play',);
-        this.ON_CREATE = new class SoundFounds_OnCreate extends SoundFounds {
-
-            public override onCreate(callback: IsSourceFoundCallback,): void {
-                callback();
-            }
-
-        }('on create',);
-    }
+    }('on create',);
 
     protected static readonly _DEFAULT = SoundFounds.ON_PLAY;
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: SoundFounds;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishName;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: EnglishName,) {
         super();

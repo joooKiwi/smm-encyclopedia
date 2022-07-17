@@ -22,25 +22,18 @@ export class MiiCostumeCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ HEADGEAR;
-    public static/* readonly*/ TOP;
-    public static/* readonly*/ COSTUME;
-    public static/* readonly*/ BOTTOM;
-
-    static {
-        this.HEADGEAR = new MiiCostumeCategories('Headgear', 1,);
-        this.TOP =      new MiiCostumeCategories('Top', 0,);
-        this.COSTUME =  new MiiCostumeCategories('Costume', 3,);
-        this.BOTTOM =   new MiiCostumeCategories('Bottom', 2,);
-    }
+    public static readonly HEADGEAR = new MiiCostumeCategories('Headgear', 1,);
+    public static readonly TOP =      new MiiCostumeCategories('Top', 0,);
+    public static readonly COSTUME =  new MiiCostumeCategories('Costume', 3,);
+    public static readonly BOTTOM =   new MiiCostumeCategories('Bottom', 2,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: MiiCostumeCategories;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>;
 
@@ -49,7 +42,7 @@ export class MiiCostumeCategories
     readonly #imageName: PossibleImageName;
     #imagePath?: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();

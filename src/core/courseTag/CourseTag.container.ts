@@ -8,12 +8,12 @@ export class CourseTagContainer
     extends ClassContainingAName<string>
     implements CourseTag {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #isAnOfficialTag;
     readonly #firstAppearanceContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: Name<string>, isAnOfficialTag: boolean, firstAppearance: ObjectHolder<| Versions | null>,) {
         super(name);

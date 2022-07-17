@@ -19,7 +19,7 @@ export default class SearchButton
         return SearchButton.#ID;
     }
 
-    protected override get tooltipPlacement(): PossibleTooltipPlacement {
+    protected override get _tooltipPlacement(): PossibleTooltipPlacement {
         return 'bottom';
     }
 
@@ -27,7 +27,7 @@ export default class SearchButton
         return 'bi-search';
     }
 
-    protected override getContent(translation: TranslationMethod<'content'>,): PossibleContent {
+    protected override _getContent(translation: TranslationMethod<'content'>,): PossibleContent {
         return [`${translation('Search')}…`, 'md',];
     }
 

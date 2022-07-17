@@ -19,7 +19,7 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
     extends Component<T, S>
     implements ReactComponent {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #LANGUAGE_CHANGER_ELEMENT_ID = 'languageChanger-modal-container';
     static readonly #LANGUAGE_CHANGER_DIV_ELEMENT_ID = 'languageChanger-container';
@@ -33,7 +33,7 @@ export default abstract class AbstractApp<T = {}, S extends AppStates = AppState
     static readonly #SEARCH_ELEMENT_ID = 'search-modal-container';
     static readonly #SEARCH_DIV_ELEMENT_ID = 'search-container';
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected abstract _mainContent(): ReactElement;
 

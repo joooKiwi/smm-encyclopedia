@@ -62,7 +62,7 @@ import type {EnumName}         from './Enum.types';
 export abstract class Enum<O extends number = number, N extends string = string, >
     implements Enumerable<O, N> {
 
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static readonly #DEFAULT_NULL_DEFAULT_ARRAY = [null, null,] as const;
     static readonly #PROTOTYPE_NAME = 'prototype';
@@ -133,9 +133,9 @@ export abstract class Enum<O extends number = number, N extends string = string,
     static readonly #VALUES_MAP = new Map<EnumerableStatic, readonly Enumerable[]>();
 
     #name?: N;
-    #ordinal?: O;
+    readonly #ordinal: O;
 
-    //endregion -------------------- Enum attributes --------------------
+    //endregion -------------------- Enum fields --------------------
     //region -------------------- Enum static methods --------------------
 
     /**
@@ -160,8 +160,8 @@ export abstract class Enum<O extends number = number, N extends string = string,
      *
      * @param instance the static instance to initialise
      */
-    private static __initialiseOn(instance: EnumerableStatic,): typeof Enum
-    private static __initialiseOn(instance: EnumerableStatic & typeof Enum,) {
+    static #initialiseOn(instance: EnumerableStatic,): typeof Enum
+    static #initialiseOn(instance: EnumerableStatic & typeof Enum,) {
         const everyProperties = (Object.entries(Object.getOwnPropertyDescriptors(instance))
             .filter(([, property,]) => property.get == null && property.set == null)
             .filter(([name,]) => name !== this.#PROTOTYPE_NAME)
@@ -190,24 +190,11 @@ export abstract class Enum<O extends number = number, N extends string = string,
      * @param instance the instance
      * @see Enum.name
      */
-    private static __getNameOn<I extends Enumerable, >(instance: I,): I['name']
-    private static __getNameOn(instance: Enumerable & Enum,) {
+    static #getNameOn<I extends Enumerable, >(instance: I,): I['name']
+    static #getNameOn(instance: Enumerable & Enum,) {
         if (!this.#NAME_MAP.has(instance))
-            this.__initialiseOn(instance._static);
+            this.#initialiseOn(instance._static);
         return this.#NAME_MAP.get(instance);
-    }
-
-    /**
-     * Get the ordinal based on the {@link _static} object.
-     *
-     * @param instance the instance
-     * @see Enum.ordinal
-     */
-    private static __getOrdinalOn<I extends Enumerable, >(instance: I,): I['ordinal']
-    private static __getOrdinalOn(instance: Enumerable & Enum,) {
-        if (!this.#ORDINAL_MAP.has(instance))
-            this.__initialiseOn(instance._static);
-        return this.#ORDINAL_MAP.get(instance);
     }
 
     /**
@@ -217,8 +204,8 @@ export abstract class Enum<O extends number = number, N extends string = string,
      * @onlyCalledAtConstruction
      * @see Enum.ordinal
      */
-    private static __getLastOrdinalOn<I extends Enumerable, >(instance: EnumerableStatic<I['ordinal'], I['name'], I>,): I['ordinal']
-    private static __getLastOrdinalOn(instance: EnumerableStatic,) {
+    static #getLastOrdinalOn<I extends Enumerable, >(instance: EnumerableStatic<I['ordinal'], I['name'], I>,): I['ordinal']
+    static #getLastOrdinalOn(instance: EnumerableStatic,) {
         const map = this.#LAST_ORDINAL_MAP;
         return map.has(instance)
             ? map.set(instance, map.get(instance)! + 1).get(instance)
@@ -231,17 +218,18 @@ export abstract class Enum<O extends number = number, N extends string = string,
     protected constructor() {
         // @ts-ignore
         const staticReference = this._static;
-        Reflect.set(staticReference, Enum.__getLastOrdinalOn(staticReference), this,);
+        this.#name = Object.entries(staticReference).find(([, a,]) => a == null)?.[0] as N | undefined;
+        Reflect.set(staticReference, this.#ordinal = Enum.#getLastOrdinalOn(staticReference), this,);
     }
 
     //region -------------------- Enum methods --------------------
 
     public get name(): N {
-        return this.#name ??= Enum.__getNameOn(this);
+        return this.#name ??= Enum.#getNameOn(this);
     }
 
     public get ordinal(): O {
-        return this.#ordinal ??= Enum.__getOrdinalOn(this);
+        return this.#ordinal;
     }
 
     /**
@@ -280,7 +268,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
     public static getDefaultOn<I extends Enumerable, >(instance: EnumerableStatic<I['ordinal'], I['name'], any>,): | I | null
     public static getDefaultOn(instance: EnumerableStatic,) {
         if (!this.#DEFAULT_MAP.has(instance))
-            this.__initialiseOn(instance);
+            this.#initialiseOn(instance);
 
         return this.#DEFAULT_MAP.get(instance);
     }
@@ -298,7 +286,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
     public static setDefaultOn<I extends Enumerable, IS extends EnumerableStatic<I['ordinal'], I['name'], any>, >(instance: IS, value: | I | string | number | null,): IS
     public static setDefaultOn(instance: EnumerableStatic, value: | Enumerable | string | number | null,) {
         if (!this.#DEFAULT_MAP.has(instance))
-            this.__initialiseOn(instance);
+            this.#initialiseOn(instance);
 
         const valueRetrieved = instance.getValue(value);
         if (valueRetrieved !== this.#DEFAULT_MAP.get(instance))
@@ -309,7 +297,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
     public static setNonNullDefaultOn<I extends Enumerable, IS extends EnumerableStatic<I['ordinal'], I['name'], any>, >(instance: IS, value: | I | string | number | null,): IS
     public static setNonNullDefaultOn(instance: EnumerableStatic, value: | Enumerable | string | number | null,) {
         if (!this.#DEFAULT_MAP.has(instance))
-            this.__initialiseOn(instance);
+            this.#initialiseOn(instance);
 
         if (value == null)
             return instance;
@@ -383,7 +371,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
      *      <li>the {@link Enum.ordinal ordinal},</li>
      *      <li>the {@link Enum.name name},</li>
      *      <li>directly as a {@link Enum}</li>
-     *      <li>a static {@link Enum._PARENT _PARENT} attribute</li>
+     *      <li>a static {@link Enum._PARENT _PARENT} field</li>
      *  </ol>
      *  And the possible arguments received can be <i>undefined</i>, <i>null</i>,
      *  a <i>{@link String string}</i>, a <i>{@link Number number}</i>
@@ -474,12 +462,12 @@ export abstract class Enum<O extends number = number, N extends string = string,
     public static getValuesOn<IS extends EnumerableStatic<any, any, any>, >(instance: IS,): IS['values']
     public static getValuesOn(instance: EnumerableStatic,) {
         if (!this.#VALUES_MAP.has(instance))
-            this.__initialiseOn(instance);
+            this.#initialiseOn(instance);
 
         return this.#VALUES_MAP.get(instance);
     }
 
-    public [Symbol.toStringTag](): EnumName {
+    public get [Symbol.toStringTag](): EnumName {
         return 'Enum';
     }
 

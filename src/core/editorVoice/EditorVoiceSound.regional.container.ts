@@ -3,12 +3,12 @@ import type {EditorVoiceSound, PossibleFileName_WithVoiceBefore_WithEuropeanAlte
 export class EditorVoiceSoundRegionalContainer
     implements EditorVoiceSound<PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #regularFileName;
     readonly #europeanFileName;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(regularFileName: PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular, europeanFileName: PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European,) {
         this.#regularFileName = regularFileName;

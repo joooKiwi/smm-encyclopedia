@@ -8,26 +8,21 @@ export class EntityLimitTypes
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ WHILE_PLAYING;
-    public static /*readonly*/ EDITOR;
-
-    static {
-        this.WHILE_PLAYING = new EntityLimitTypes('While Playing', 'While playing',);
-        this.EDITOR =        new EntityLimitTypes('Editor',        'In the editor',);
-    }
+    public static readonly WHILE_PLAYING = new EntityLimitTypes('While Playing', 'While playing',);
+    public static readonly EDITOR =        new EntityLimitTypes('Editor',        'In the editor',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EntityLimitTypes;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishName;
     readonly #englishCommonText;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, englishCommonText: PossibleEnglishCommonText,) {
         super();

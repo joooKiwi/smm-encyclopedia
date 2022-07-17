@@ -10,7 +10,7 @@ import {ExtendedMapContainer}    from './ExtendedMap.container';
 export class ExtendedSetContainer<T, LENGTH extends number = number, >
     implements ExtendedSet<T, LENGTH> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_SEPARATOR = ',';
     public static DEFAULT_STARTING_INDEX = 0;
@@ -25,7 +25,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
 
     [index: number]: T;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(values?: Iterable<T> | null | undefined,) {
         this.#set = new Set(values);
@@ -36,7 +36,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
         return this.#set;
     }
 
-    private get __array(): T[] {
+    get #array(): T[] {
         return this.#indexMapReference;
     }
 
@@ -60,13 +60,12 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * Add an item to the {@link Set internal Set} and the {@link this.indexMapReference internal indexMapReference}.
      * It also adds reflectively the index to the class itself.
      * @param values
-     * @private
      */
-    private __add(...values: readonly T[]): this {
+    #add(...values: readonly T[]): this {
         const oldLength = this.length;
 
         values.forEach(value => this._set.add(value));
-        this.#indexMapReference = [...new Set([...this.__array, ...values,])];
+        this.#indexMapReference = [...new Set([...this.#array, ...values,])];
 
         this.forEach((value, index,) => {
             if (index > oldLength)
@@ -83,7 +82,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Set.add
      */
     public add(...values: readonly T[]): this {
-        return this.__add(...values);
+        return this.#add(...values);
     }
 
     public push = this.add;
@@ -105,12 +104,12 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
     //endregion -------------------- Addition methods --------------------
     //region -------------------- Removal methods --------------------
 
-    private __delete(...values: readonly T[]): boolean {
+    #delete(...values: readonly T[]): boolean {
         const oldLength = this.length;
         let everyValuesHasBeenDeleted = this.has(...values);
 
         values.forEach(value => everyValuesHasBeenDeleted = this._set.delete(value));
-        this.#indexMapReference = this.__array.filter(value => !values.includes(value));
+        this.#indexMapReference = this.#array.filter(value => !values.includes(value));
 
         values.forEach((value, index,) => {
             if (index > oldLength)
@@ -127,7 +126,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Set.delete
      */
     public delete(...values: T[]): boolean {
-        return this.__delete(...values);
+        return this.#delete(...values);
     }
 
     public drop = this.delete;
@@ -158,11 +157,11 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
 
         return startingIndex === defaultStartingValue && endingIndex === defaultLength
             ? this
-            : new ExtendedSetContainer(this.__array.filter((value, index,) => index > startingIndex! && index < endingIndex!));
+            : new ExtendedSetContainer(this.#array.filter((value, index,) => index > startingIndex! && index < endingIndex!));
     }
 
 
-    private __has(value: any,): boolean {
+    #has(value: any,): boolean {
         if (value instanceof Array) {
             for (const internalValue of this)
                 if (internalValue instanceof Array && isArrayEquals(internalValue, value,))
@@ -182,7 +181,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
     public has(...values: readonly any[]): boolean
     public has(...values: readonly T[]): boolean {
         for (const value of values)
-            if (!this.__has(value))
+            if (!this.#has(value))
                 return false;
         return true;
     }
@@ -229,7 +228,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      */
     public find<U extends T, V, >(callback: (value: T, index: LENGTH,) => value is U, callbackIfNotFound: () => V,): | U | V
     public find(callback: (value: T, index: LENGTH,) => boolean, callbackIfNotFound?: () => T,) {
-        const valueFound = this.__array.find((value, index,) => callback(value, index as LENGTH,));
+        const valueFound = this.#array.find((value, index,) => callback(value, index as LENGTH,));
         return valueFound != null
             ? valueFound
             : callbackIfNotFound == null
@@ -264,7 +263,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      */
     public findIndex<U extends LENGTH, V, >(callback: (value: T, index: LENGTH,) => index is U, callbackIfNotFound: () => V,): | U | V
     public findIndex(callback: (value: T, key: LENGTH,) => boolean, callbackIfNotFound?: () => LENGTH,) {
-        const valueFound = this.__array.findIndex((value, index,) => callback(value, index as LENGTH,));
+        const valueFound = this.#array.findIndex((value, index,) => callback(value, index as LENGTH,));
         return valueFound != null
             ? valueFound
             : callbackIfNotFound == null
@@ -278,7 +277,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Array.forEach
      */
     public forEach(callback: (value: T, index: LENGTH,) => void,): this {
-        this.__array.forEach((value, index,) => callback(value, index as LENGTH,));
+        this.#array.forEach((value, index,) => callback(value, index as LENGTH,));
         return this;
     }
 
@@ -288,7 +287,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Array.map
      */
     public map<V>(callback: (value: T, index: LENGTH,) => V,): ExtendedSet<V, LENGTH> {
-        return new ExtendedSetContainer(this.__array.map((value, index,) => callback(value, index as LENGTH,))) as unknown as ExtendedSet<V, LENGTH>;
+        return new ExtendedSetContainer(this.#array.map((value, index,) => callback(value, index as LENGTH,))) as unknown as ExtendedSet<V, LENGTH>;
     }
 
     //endregion -------------------- Loop methods --------------------
@@ -298,14 +297,14 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Array.entries
      */
     public get entries(): IterableIterator<readonly [number, T,]> {
-        return this.__array.entries();
+        return this.#array.entries();
     }
 
     /**
      * @see Array.keys
      */
     public get keys(): IterableIterator<number> {
-        return this.__array.keys();
+        return this.#array.keys();
     }
 
     /**
@@ -322,7 +321,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Array.join
      */
     public join(separator: string = this.defaultSeparator,): string {
-        return this.__array.join(separator);
+        return this.#array.join(separator);
     }
 
 
@@ -353,14 +352,14 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
      * @see Array.toString
      */
     public toString(): string {
-        return this.__array.toString();
+        return this.#array.toString();
     }
 
     /**
      * @see Array.toLocalString
      */
     public toLocalString(): string {
-        return this.__array.toLocaleString();
+        return this.#array.toLocaleString();
     }
 
     //endregion -------------------- Conversion methods --------------------

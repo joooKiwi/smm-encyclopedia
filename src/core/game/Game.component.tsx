@@ -12,7 +12,7 @@ import {StringContainer}                 from '../../util/StringContainer';
 export default class GameComponent
     extends AbstractEntityPropertyComponent<GameProperty, Games> {
 
-    protected override get map() {
+    protected override get _map() {
         return this.reference.toGameMap();
     }
 

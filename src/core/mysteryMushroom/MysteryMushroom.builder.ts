@@ -36,7 +36,7 @@ export class MysteryMushroomBuilder
 
     //region -------------------- Property helper methods --------------------
 
-    private __createSoundPropertyAttributes() {
+    #createSoundPropertyFields() {
         const propertyTemplate = this.template.properties.sound;
         const {movement,} = propertyTemplate.soundEffect;
         const {
@@ -57,13 +57,13 @@ export class MysteryMushroomBuilder
         ] as const;
     }
 
-    private __createProperty() {
+    #createProperty() {
         const propertyTemplate = this.template.properties;
         const unlockTemplate = propertyTemplate.unlock;
 
         return new MysteryMushroomPropertyContainer(
             UnlockPropertyContainer.get(unlockTemplate.condition, unlockTemplate.amiibo,),
-            new SoundPropertyContainer(...this.__createSoundPropertyAttributes(),),
+            new SoundPropertyContainer(...this.#createSoundPropertyFields(),),
         );
     }
 
@@ -87,6 +87,6 @@ export class MysteryMushroomBuilder
     //endregion -------------------- Build helper methods --------------------
 
     protected _build(name: Name<string>,): MysteryMushroom {
-        return new MysteryMushroomContainer(name, this._getGames(), this.__createProperty());
+        return new MysteryMushroomContainer(name, this._getGames(), this.#createProperty());
     }
 }

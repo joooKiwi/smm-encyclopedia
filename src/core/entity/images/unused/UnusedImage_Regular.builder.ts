@@ -11,11 +11,11 @@ import {UnusedImageBuilder}           from './UnusedImage.builder';
 export class UnusedImage_RegularBuilder
     extends UnusedImageBuilder<UnusedImage_Regular, ImageName_Unused_SMM1> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     #identifierMap: ExtendedMap<OriginalGameStyles, ExtendedMap<ImageIdentifier, PossibleImageNumber>> = new ExtendedMapContainer();
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: ImageName_Unused_SMM1,) {
         super(name,);

@@ -29,37 +29,32 @@ export abstract class Images
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ YES;
-    public static /*readonly*/ NO;
+    public static readonly YES = new class Images_Yes extends Images {
 
-    static {
-        this.YES = new class Images_Yes extends Images {
+        public override renderComponent(properties: _ImageProperties,): ReactElement {
+            return <Image {...properties}/>;
+        }
 
-            public override renderComponent(properties: _ImageProperties,): ReactElement {
-                return <Image {...properties}/>;
-            }
+    }(true,);
+    public static readonly NO =  new class Images_No extends Images {
 
-        }(true,);
-        this.NO =  new class Images_No extends Images {
+        public override renderComponent(): ReactElement {
+            return EMPTY_REACT_ELEMENT;
+        }
 
-            public override renderComponent(): ReactElement {
-                return EMPTY_REACT_ELEMENT;
-            }
-
-        }(false,);
-    }
+    }(false,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Images;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #value;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(value: boolean,) {
         super();

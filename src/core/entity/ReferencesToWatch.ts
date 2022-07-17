@@ -2,10 +2,12 @@ import type {EntityLink}          from './loader.types';
 import type {EntityTemplate}      from './Entity.template';
 import type {PossibleEnglishName} from './Entities.types';
 
+import {isInProduction} from '../../variables';
+
 interface ReferencesToWatchDefinition {
 
     /**
-     * Add every sub references in the "time", "theme" & "game style" attributes.
+     * Add every sub references in the "time", "theme" & "game style" fields.
      *
      * @param reference the template to retrieve and set the other references.
      */
@@ -53,7 +55,7 @@ type ReferenceType = | 'time' | 'theme' | 'gameStyle';
 abstract class AbstractReferenceToWatch<T extends ReferenceHolderForProduction, >
     implements ReferencesToWatchDefinition {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #TIME = 'time';
     static readonly #THEME = 'theme';
@@ -66,7 +68,7 @@ abstract class AbstractReferenceToWatch<T extends ReferenceHolderForProduction, 
     readonly #alreadyAddedName: Set<EntityLink>;
     readonly #references: T[];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(englishNames: Map<PossibleEnglishName, EntityTemplate>,) {
         this.#englishNames = englishNames;
@@ -218,5 +220,5 @@ class ReferencesToWatchForTestAndDevelopment
 }
 
 
-const ReferencesToWatch: ReferencesToWatchDefinitionConstructor = process.env.NODE_ENV === 'production' ? ReferencesToWatchForProduction : ReferencesToWatchForTestAndDevelopment;
+const ReferencesToWatch: ReferencesToWatchDefinitionConstructor = isInProduction ? ReferencesToWatchForProduction : ReferencesToWatchForTestAndDevelopment;
 export {ReferencesToWatch};

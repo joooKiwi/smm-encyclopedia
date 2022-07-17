@@ -25,12 +25,12 @@ export class SoundEffectBuilder
         return SoundEffectBuilder;
     }
 
-    private __createCategory() {
+    #createCategory() {
         return SoundEffectCategories.getValue(this.template.properties.category)?.reference
             ?? EmptySoundEffectCategory.get;
     }
 
-    private __createProperty() {
+    #createProperty() {
         const isInPropertiesTemplate = this.template.properties.isIn;
         const gameTemplate = isInPropertiesTemplate.game;
         const {movement: playerMovementTriggerTemplate, interaction: playerInteractionTriggerTemplate, environment: playerEnvironmentTriggerTemplate,} = isInPropertiesTemplate.trigger.player;
@@ -49,8 +49,8 @@ export class SoundEffectBuilder
     protected override _build(name: Name<string>,): SoundEffect {
         return new SoundEffectContainer(
             name,
-            this.__createCategory(),
-            this.__createProperty(),
+            this.#createCategory(),
+            this.#createProperty(),
         );
     }
 

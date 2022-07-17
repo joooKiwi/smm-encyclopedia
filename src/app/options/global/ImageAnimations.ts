@@ -19,27 +19,21 @@ export class ImageAnimations
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ SEPARATED;
-    public static /*readonly*/ YES;
-    public static /*readonly*/ NO;
-
-    static {
-        this.SEPARATED = new ImageAnimations('separated',);
-        this.YES =       new ImageAnimations(true,);
-        this.NO =        new ImageAnimations(false,);
-    }
+    public static readonly SEPARATED = new ImageAnimations('separated',);
+    public static readonly YES =       new ImageAnimations(true,);
+    public static readonly NO =        new ImageAnimations(false,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: ImageAnimations;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #value;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(value: PossibleImageAnimation,) {
         super();

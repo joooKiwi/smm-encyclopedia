@@ -3,12 +3,12 @@ import type {Converter} from './Converter';
 export abstract class AbstractStringConverter<T>
     implements Converter<string, T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #originalValue;
     #convertedValue?: T;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(originalValue: string,) {
         this.#originalValue = originalValue;

@@ -42,69 +42,64 @@ export abstract class Texts
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ YES;
-    public static /*readonly*/ NO;
+    public static readonly YES = new class Texts_Yes extends Texts {
 
-    static {
-        this.YES = new class Texts_Yes extends Texts {
+        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
+            return <TextComponent {...properties}/>;
+        }
 
-            public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
-                return <TextComponent {...properties}/>;
-            }
+        public override renderNameComponent(properties: _NameProperties,): ReactElement {
+            return <NameComponent {...properties}/>;
+        }
 
-            public override renderNameComponent(properties: _NameProperties,): ReactElement {
-                return <NameComponent {...properties}/>;
-            }
+        public override renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
+            return <YesOrNoResultTextComponent {...properties}/>;
+        }
 
-            public override renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
-                return <YesOrNoResultTextComponent {...properties}/>;
-            }
+        public override renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
+            return <BooleanTextComponent {...properties}/>;
+        }
 
-            public override renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
-                return <BooleanTextComponent {...properties}/>;
-            }
+        public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
+            return <BooleanResultTextComponent {...properties}/>;
+        }
 
-            public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
-                return <BooleanResultTextComponent {...properties}/>;
-            }
+    }(true,);
+    public static readonly NO =  new class Texts_No extends Texts {
 
-        }(true,);
-        this.NO =  new class Texts_No extends Texts {
+        public override renderTextComponent(): ReactElement {
+            return EMPTY_REACT_ELEMENT;
+        }
 
-            public override renderTextComponent(): ReactElement {
-                return EMPTY_REACT_ELEMENT;
-            }
+        public override renderNameComponent(): ReactElement {
+            return EMPTY_REACT_ELEMENT;
+        }
 
-            public override renderNameComponent(): ReactElement {
-                return EMPTY_REACT_ELEMENT;
-            }
+        public override renderYesNoComponent(): ReactElement {
+            return EMPTY_REACT_ELEMENT;
+        }
 
-            public override renderYesNoComponent(): ReactElement {
-                return EMPTY_REACT_ELEMENT;
-            }
+        public override renderBooleanComponent(): ReactElement {
+            return EMPTY_REACT_ELEMENT;
+        }
 
-            public override renderBooleanComponent(): ReactElement {
-                return EMPTY_REACT_ELEMENT;
-            }
+        public override renderBooleanResultComponent(): ReactElement {
+            return EMPTY_REACT_ELEMENT;
+        }
 
-            public override renderBooleanResultComponent(): ReactElement {
-                return EMPTY_REACT_ELEMENT;
-            }
-
-        }(false,);
-    }
+    } (false,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Texts;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #value;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(value: boolean,) {
         super();

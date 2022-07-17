@@ -17,8 +17,8 @@ const Papa =                                  require("papaparse");
     'Mii Costume (SMM2)',
     'Mii Costume category (SMM2)',
 ].forEach(fileName => {
-    const file = createReadStream(`${__dirname}/../resources/${fileName}.csv`,);
-    const writeSteam = createWriteStream(`${__dirname}/../resources/compiled/${fileName}.json`,);
+    const file = createReadStream(`${__dirname}/../resources/${fileName}.csv`,)
+    const writeSteam = createWriteStream(`${__dirname}/../resources/compiled/${fileName}.json`,)
 
     writeSteam
         .on('open', () => console.log(`Reading file "${fileName}".`))
@@ -26,9 +26,9 @@ const Papa =                                  require("papaparse");
         .on('error', error => {
             console.warn(`An error happened with the file "${fileName}".`)
             console.trace(error)
-        });
+        })
 
     Papa.parse(file, {
         complete: result => writeSteam.end(JSON.stringify(result.data)),
-    },);
-});
+    },)
+})

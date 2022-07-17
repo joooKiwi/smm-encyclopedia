@@ -32,7 +32,7 @@ export class EntityLimitBuilder
     public static references: Map<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>;
 
     //endregion -------------------- External object references --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #NOT_APPLICABLE_CONTAINER: ObjectHolder<NotApplicableProperty> = new ObjectHolderContainer(PropertyContainer.NOT_APPLICABLE_CONTAINER);
     static readonly #UNKNOWN_CONTAINER: ObjectHolder<UnknownProperty> = new ObjectHolderContainer(PropertyContainer.UNKNOWN_CONTAINER);
@@ -40,7 +40,7 @@ export class EntityLimitBuilder
     static readonly #EMPTY_ENTITY_LIMIT: ObjectHolder<EmptyEntityLimit> = new DelayedObjectHolderContainer(() => EmptyEntityLimit.get);
     static readonly #EMPTY_ENTITY_LIMIT_AMOUNT: ObjectHolder<EmptyEntityLimitAmount> = new DelayedObjectHolderContainer(() => EmptyEntityLimitAmount.get);
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
         super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
@@ -58,11 +58,11 @@ export class EntityLimitBuilder
      *
      * @param template
      */
-    private __getEntityLimitTypeBy(template: AlternativeLimitTemplate,): ObjectHolder<EntityLimitTypes> {
+    #getEntityLimitTypeBy(template: AlternativeLimitTemplate,): ObjectHolder<EntityLimitTypes> {
         return new DelayedObjectHolderContainer(() => Import.EntityLimits.getValue(template.name.english.simple!)!.reference.type);
     }
 
-    private __getAlternativeEntityLimitBy(limit: | PossibleAlternativeEnglishName | null,): ObjectHolder<AlternativeEntityLimit> {
+    #getAlternativeEntityLimitBy(limit: | PossibleAlternativeEnglishName | null,): ObjectHolder<AlternativeEntityLimit> {
         return limit == null
             ? EntityLimitBuilder.#EMPTY_ENTITY_LIMIT
             : new DelayedObjectHolderContainer(() => EntityLimitBuilder.references.get(limit) as AlternativeEntityLimit);
@@ -73,19 +73,19 @@ export class EntityLimitBuilder
      *
      * @param name
      */
-    private __getTypeBy(name: PossibleEnglishName_EntityLimitType,): ObjectHolder<EntityLimitTypes> {
+    #getTypeBy(name: PossibleEnglishName_EntityLimitType,): ObjectHolder<EntityLimitTypes> {
         return new DelayedObjectHolderContainer(() => EntityLimitTypes.getValue(name));
     }
 
     //region -------------------- Limit amount helper methods --------------------
 
-    private __createLimitTemplateInSMM1And3DS(amount: Exclude<PossibleLimitAmount_SMM1And3DS, null>,) {
+    #createLimitTemplateInSMM1And3DS(amount: Exclude<PossibleLimitAmount_SMM1And3DS, null>,) {
         return amount === 'N/A'
             ? EntityLimitBuilder.#NOT_APPLICABLE_CONTAINER
             : new DelayedObjectHolderContainer(() => PropertyProvider.newNumberContainer(amount, true,));
     }
 
-    private __createLimitTemplateInSMM2(amount: Exclude<PossibleLimitAmount_SMM2, null>,) {
+    #createLimitTemplateInSMM2(amount: Exclude<PossibleLimitAmount_SMM2, null>,) {
         return amount === '?'
             ? EntityLimitBuilder.#UNKNOWN_CONTAINER
             : new DelayedObjectHolderContainer(() =>
@@ -101,12 +101,12 @@ export class EntityLimitBuilder
      * @param template the limit amount template
      * @canContainDuplicateObjects
      */
-    private __createLimitAmount({'1And3DS': amountInSMM1And3DS, 2: amountInSMM2, comment,}: LimitAmountTemplate,): ObjectHolder<EntityLimitAmount> {
+    #createLimitAmount({'1And3DS': amountInSMM1And3DS, 2: amountInSMM2, comment,}: LimitAmountTemplate,): ObjectHolder<EntityLimitAmount> {
         return amountInSMM1And3DS == null || amountInSMM2 == null
             ? EntityLimitBuilder.#EMPTY_ENTITY_LIMIT_AMOUNT
             : new DelayedObjectHolderContainer(() => new EntityLimitAmountContainer(
-                this.__createLimitTemplateInSMM1And3DS(amountInSMM1And3DS),
-                this.__createLimitTemplateInSMM2(amountInSMM2),
+                this.#createLimitTemplateInSMM1And3DS(amountInSMM1And3DS),
+                this.#createLimitTemplateInSMM2(amountInSMM2),
                 comment,
             ));
 
@@ -123,15 +123,15 @@ export class EntityLimitBuilder
             ? new AlternativeEntityLimitContainer(
                 name,
                 template.acronym,
-                this.__getEntityLimitTypeBy(template),
-                this.__createLimitAmount(template.limit),
+                this.#getEntityLimitTypeBy(template),
+                this.#createLimitAmount(template.limit),
             )
             : new EntityLimitContainer(
                 name,
                 template.acronym,
-                this.__getAlternativeEntityLimitBy(template.references.alternative),
-                this.__getTypeBy(template.type),
-                this.__createLimitAmount(template.limit),
+                this.#getAlternativeEntityLimitBy(template.references.alternative),
+                this.#getTypeBy(template.type),
+                this.#createLimitAmount(template.limit),
             );
     }
 

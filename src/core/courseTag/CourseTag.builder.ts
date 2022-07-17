@@ -26,7 +26,12 @@ export class CourseTagBuilder
     }
 
 
-    private static __getFirstAppearance({firstAppearance,}: CourseTagTemplate,): ObjectHolder<| Versions | null> {
+    /**
+     * Get the version dependent on {@link CourseTagTemplate.firstAppearance} or null if not found.
+     *
+     * @param template
+     */
+    static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): ObjectHolder<| Versions | null> {
         return firstAppearance == null
             ? ObjectHolders.NULL
             : new DelayedObjectHolderContainer(() => Versions.getValue(`v${firstAppearance}`));
@@ -40,7 +45,7 @@ export class CourseTagBuilder
         return new CourseTagContainer(
             name,
             template.isOfficial,
-            CourseTagBuilder.__getFirstAppearance(template),
+            CourseTagBuilder.#getFirstAppearance(template),
         );
     }
 

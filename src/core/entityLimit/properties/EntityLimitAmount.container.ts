@@ -7,13 +7,13 @@ import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount,
 export class EntityLimitAmountContainer
     implements EntityLimitAmount {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #limitInSMM1AndSMM3DS;
     readonly #limitInSMM2;
     readonly #comment;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(limitInSMM1AndSMM3DS: ObjectHolder<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicableProperty | UnknownProperty>,
                        limitInSMM2: ObjectHolder<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | UnknownProperty>,

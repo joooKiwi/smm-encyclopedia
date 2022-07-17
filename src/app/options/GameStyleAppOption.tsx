@@ -1,22 +1,17 @@
 import {lazy} from 'react';
 
-import type {AppOptionStatic}                                                                                                                                                       from './AppOption';
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
 import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameStyleAppOption.types';
-import type {GameStyleAppStates}                                                                                                                                                    from '../AppStates.types';
 import type {GameStyles}                                                                                                                                                            from '../../core/gameStyle/GameStyles';
-import type {ReactComponentWithState}                                                                                                                                               from '../../util/react/ReactComponent';
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
-import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
 import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
-import {EMPTY_ARRAY}                   from '../../util/emptyVariables';
 import {Enum}                          from '../../util/enum/Enum';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../../core/game/Games';
@@ -32,141 +27,101 @@ const YesOrNoResultTextComponent = lazy(() => import( '../tools/text/YesOrNoResu
 //endregion -------------------- dynamic imports --------------------
 
 export abstract class GameStyleAppOption
-    extends AbstractAppOption<boolean, GameStyleAppStates, Ordinals, Names>
+    extends Enum<Ordinals, Names>
     implements AppOptionWithContent, AppOptionWithTable {
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ IMAGE;
-    public static/* readonly*/ NAME;
-    public static/* readonly*/ GAME;
-    public static/* readonly*/ NIGHT_DESERT_WIND;
+    public static readonly IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-    static {
-        this.IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
+        protected override get _createContentOption(): () => PossibleRenderReactElement {
+            return () => {
+                const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
+                return enumerable.renderSingleComponent;
+            };
+        }
 
-            protected override _get(state: GameStyleAppStates,): boolean {
-                return state.display.section.image;
-            }
+        protected override get _createTableHeaderOption(): SingleHeaderContent {
+            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
+        }
 
-            protected override _set(nextState: GameStyleAppStates, value: boolean,): void {
-                nextState.display.section.image = value;
-            }
+    }();
+    public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-            protected override get _createContentOption(): () => PossibleRenderReactElement {
-                return () => {
-                    const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    return enumerable.renderSingleComponent;
-                };
-            }
+        protected override get _createContentOption(): () => PossibleRenderReactElement {
+            return () => {
+                const enumeration = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
 
-            protected override get _createTableHeaderOption(): SingleHeaderContent {
-                return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,}
-            }
+                return CommonOptions.get.getNameContent(enumeration);
+            };
+        }
 
-        }(true,);
-        this.NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
+        protected override get _createTableHeaderOption(): SingleHeaderContent {
+            return CommonOptions.get.nameHeader;
+        }
 
-            protected override _get(state: GameStyleAppStates,): boolean {
-                return state.display.section.name;
-            }
+    }();
+    public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
 
-            protected override _set(nextState: GameStyleAppStates, value: boolean,): void {
-                nextState.display.section.name = value;
-            }
+        protected override get _createContentOption(): () => PossibleRenderReactElement {
+            return () => {
+                const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const gameStyle = enumerable.reference;
+                return [
+                    <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
+                    <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMakerFor3DS}/>,
+                    <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
+                ];
+            };
+        }
 
-            protected override get _createContentOption(): () => PossibleRenderReactElement {
-                return () => {
-                    const enumeration = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
+        protected override get _createTableHeaderOption(): SingleHeaderContent {
+            return {
+                key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
+                subHeaders: [
+                    {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+                    {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
+                    {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                ],
+            };
+        }
 
-                    return CommonOptions.get.getNameContent(enumeration)
-                };
-            }
+    }();
+    public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-            protected override get _createTableHeaderOption(): SingleHeaderContent {
-                return CommonOptions.get.nameHeader;
-            }
+        protected override get _createContentOption(): () => PossibleRenderReactElement {
+            return () => {
+                const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const gameStyle = enumerable.reference;
 
-        }(true,);
-        this.GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
+                return <NightEffectComponent gameStyle={gameStyle}/>;
+            };
+        }
 
-            protected override _get(state: GameStyleAppStates,): boolean {
-                return state.display.section.game;
-            }
-
-            protected override _set(nextState: GameStyleAppStates, value: boolean,) {
-                nextState.display.section.game = value;
-            }
-
-            protected override get _createContentOption(): () => PossibleRenderReactElement {
-                return () => {
-                    const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const gameStyle = enumerable.reference;
-                    return [
-                        <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
-                        <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMakerFor3DS}/>,
-                        <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
-                    ];
-                };
-            }
-
-            protected override get _createTableHeaderOption(): SingleHeaderContent {
-                return {
-                    key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                    subHeaders: [
-                        {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                        {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
-                        {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                    ],
-                }
-            }
-
-        }(true,);
-        this.NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
-
-            protected override _get(state: GameStyleAppStates,): boolean {
-                return state.display.section.nightDesertWind;
-            }
-
-            protected override _set(nextState: GameStyleAppStates, value: boolean,) {
-                nextState.display.section.nightDesertWind = value;
-            }
-
-            protected override get _createContentOption(): () => PossibleRenderReactElement {
-                return () => {
-                    const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-                    const gameStyle = enumerable.reference;
-
-                    return <NightEffectComponent gameStyle={gameStyle}/>;
-                };
-            }
-
-            protected override get _createTableHeaderOption(): SingleHeaderContent {
-                return {
-                    key: 'nightDesertWind',
-                    element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
-                    tooltip: {
-                        namespace: 'gameContent', translationKey: 'Wind effect (night desert)',
-                        replace: {
-                            night: '--night--',//TODO add night reference
-                            desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference[0])!.toLowerCase(),
-                        },
+        protected override get _createTableHeaderOption(): SingleHeaderContent {
+            return {
+                key: 'nightDesertWind',
+                element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
+                tooltip: {
+                    namespace: 'gameContent', translationKey: 'Wind effect (night desert)',
+                    replace: {
+                        night: '--night--',//TODO add night reference
+                        desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
                     },
-                }
-            }
+                },
+            };
+        }
 
-        }(true,);
-    }
+    }();
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: GameStyleAppOption;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
-    static #REFERENCE: ReactComponentWithState<GameStyleAppStates>;
     /**
      * The callback to get the enumeration based for each option.
      *
@@ -177,36 +132,13 @@ export abstract class GameStyleAppOption
     #appOptionWithContent?: AppOptionWithContent;
     #appOptionWithTable?: AppOptionWithTable;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
-    private constructor(defaultValue: boolean,) {
-        super(defaultValue,);
+    private constructor() {
+        super();
     }
 
     //region -------------------- Getter methods --------------------
-
-    public static get REFERENCE(): ReactComponentWithState<GameStyleAppStates> {
-        return this.#REFERENCE;
-    }
-
-    public static set REFERENCE(value: ReactComponentWithState<GameStyleAppStates>,) {
-        this.#REFERENCE = value;
-    }
-
-    public static get createDefaultState(): GameStyleAppStates {
-        return {
-            display: {
-                section: {
-                    image: GameStyleAppOption.IMAGE._lastValueRetrieved,
-                    name: GameStyleAppOption.NAME._lastValueRetrieved,
-                    game: GameStyleAppOption.GAME._lastValueRetrieved,
-                    nightDesertWind: GameStyleAppOption.NIGHT_DESERT_WIND._lastValueRetrieved,
-                },
-            },
-        };
-    }
-
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
@@ -219,9 +151,7 @@ export abstract class GameStyleAppOption
     }
 
     public get renderContent(): readonly ReactElement[] {
-        return this.get
-            ? this.__appOptionWithContent.renderContent
-            : EMPTY_ARRAY;
+        return this.__appOptionWithContent.renderContent;
     }
 
     //endregion -------------------- App option - content --------------------
@@ -234,9 +164,7 @@ export abstract class GameStyleAppOption
     }
 
     public get renderTableHeader(): | SingleHeaderContent | null {
-        return this.get
-            ? this.__appOptionWithTable.renderTableHeader
-            : null;
+        return this.__appOptionWithTable.renderTableHeader;
     }
 
     //endregion -------------------- App option - table --------------------
@@ -244,7 +172,7 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<GameStyleAppOption> & AppOptionStatic<GameStyleAppStates> {
+    protected override get _static(): StaticReference<GameStyleAppOption> {
         return GameStyleAppOption;
     }
 

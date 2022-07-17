@@ -9,11 +9,11 @@ export class SoundEffectContainer
     extends ClassContainingANameAndACategory<string, string, SoundEffectCategory>
     implements SoundEffect {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #propertyContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: Name<string>, category: SoundEffectCategory, property: SoundEffectProperty,) {
         super(name, category,);

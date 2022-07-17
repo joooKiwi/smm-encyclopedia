@@ -60,60 +60,60 @@ export class DynamicImporter {
 
     //endregion -------------------- Singleton usage --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
-    //region -------------------- Entity attributes --------------------
+    //region -------------------- Entity fields --------------------
 
     #EntityLoader?: typeof EntityLoader;
     #Entities?: typeof Entities;
 
-    //endregion -------------------- Entity attributes --------------------
-    //region -------------------- "Entity limit" attributes --------------------
+    //endregion -------------------- Entity fields --------------------
+    //region -------------------- "Entity limit" fields --------------------
 
     #EntityLimitLoader?: typeof EntityLimitLoader;
     #EntityLimits?: typeof EntityLimits;
 
     #EntityLimitTypes?: typeof EntityLimitTypes;
 
-    //endregion -------------------- "Entity limit" attributes --------------------
-    //region -------------------- "Entity category" attributes --------------------
+    //endregion -------------------- "Entity limit" fields --------------------
+    //region -------------------- "Entity category" fields --------------------
 
     #EntityCategoryLoader?: typeof EntityCategoryLoader;
     #EntityCategories?: typeof EntityCategories;
 
-    //endregion -------------------- "Entity category" attributes --------------------
-    //region -------------------- Theme attributes --------------------
+    //endregion -------------------- "Entity category" fields --------------------
+    //region -------------------- Theme fields --------------------
 
     #ThemeLoader?: typeof ThemeLoader;
     #Themes?: typeof Themes;
 
     #NightEffects?: typeof NightEffects;
 
-    //endregion -------------------- Theme attributes --------------------
-    //region -------------------- Time attributes --------------------
+    //endregion -------------------- Theme fields --------------------
+    //region -------------------- Time fields --------------------
 
     #Times?: typeof Times;
 
-    //endregion -------------------- Time attributes --------------------
-    //region -------------------- "Game reference" attributes --------------------
+    //endregion -------------------- Time fields --------------------
+    //region -------------------- "Game reference" fields --------------------
 
     #GameReferenceLoader?: typeof GameReferenceLoader;
     #GameReferences?: typeof GameReferences;
 
-    //endregion -------------------- "Game reference" attributes --------------------
-    //region -------------------- "Game style" attributes --------------------
+    //endregion -------------------- "Game reference" fields --------------------
+    //region -------------------- "Game style" fields --------------------
 
     #GameStyleLoader?: typeof GameStyleLoader;
     #GameStyles?: typeof GameStyles;
 
-    //endregion -------------------- "Game style" attributes --------------------
-    //region -------------------- "Entity behaviour" attributes --------------------
+    //endregion -------------------- "Game style" fields --------------------
+    //region -------------------- "Entity behaviour" fields --------------------
 
     #EntityBehaviourLoader?: typeof EntityBehaviourLoader;
     #EntityBehaviours?: typeof EntityBehaviours;
 
-    //endregion -------------------- "Entity behaviour" attributes --------------------
-    //region -------------------- "Sound effect" attributes --------------------
+    //endregion -------------------- "Entity behaviour" fields --------------------
+    //region -------------------- "Sound effect" fields --------------------
 
     #SoundEffectLoader?: typeof SoundEffectLoader;
     #SoundEffects?: typeof SoundEffects;
@@ -121,14 +121,14 @@ export class DynamicImporter {
     #SoundEffectCategoryLoader?: typeof SoundEffectCategoryLoader;
     #SoundEffectCategories?: typeof SoundEffectCategories;
 
-    //endregion -------------------- "Sound effect" attributes --------------------
-    //region -------------------- "Mystery Mushroom" attributes --------------------
+    //endregion -------------------- "Sound effect" fields --------------------
+    //region -------------------- "Mystery Mushroom" fields --------------------
 
     #MysteryMushroomLoader?: typeof MysteryMushroomLoader;
     #MysteryMushrooms?: typeof MysteryMushrooms;
 
-    //endregion -------------------- "Sound effect" attributes --------------------
-    //region -------------------- "Mii costume" attributes --------------------
+    //endregion -------------------- "Sound effect" fields --------------------
+    //region -------------------- "Mii costume" fields --------------------
 
     #MiiCostumeLoader?: typeof MiiCostumeLoader;
     #MiiCostumes?: typeof MiiCostumes;
@@ -136,36 +136,36 @@ export class DynamicImporter {
     #MiiCostumeCategoryLoader?: typeof MiiCostumeCategoryLoader;
     #MiiCostumeCategories?: typeof MiiCostumeCategories;
 
-    //endregion -------------------- "Mii costume" attributes --------------------
-    //region -------------------- "Official notification" attributes --------------------
+    //endregion -------------------- "Mii costume" fields --------------------
+    //region -------------------- "Official notification" fields --------------------
 
     #OfficialNotifications?: typeof OfficialNotifications;
 
-    //endregion -------------------- "Official notification" attributes --------------------
-    //region -------------------- "Course tag" attributes --------------------
+    //endregion -------------------- "Official notification" fields --------------------
+    //region -------------------- "Course tag" fields --------------------
 
     #CourseTags?: typeof CourseTags;
     #CourseTagLoader?: typeof CourseTagLoader;
 
-    //endregion -------------------- "Course tag" attributes --------------------
-    //region -------------------- "Predefined message" attributes --------------------
+    //endregion -------------------- "Course tag" fields --------------------
+    //region -------------------- "Predefined message" fields --------------------
 
     #PredefinedMessages?: typeof PredefinedMessages;
     #PredefinedMessageLoader?: typeof PredefinedMessageLoader;
 
-    //endregion -------------------- "Predefined message" attributes --------------------
-    //region -------------------- Version attributes --------------------
+    //endregion -------------------- "Predefined message" fields --------------------
+    //region -------------------- Version fields --------------------
 
     #Versions?: typeof Versions;
 
-    //endregion -------------------- Version attributes --------------------
-    //region -------------------- Other attributes --------------------
+    //endregion -------------------- Version fields --------------------
+    //region -------------------- Other fields --------------------
 
     #ClassThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer;
 
-    //endregion -------------------- Other attributes --------------------
+    //endregion -------------------- Other fields --------------------
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Entity getter methods --------------------
@@ -319,7 +319,7 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Official notification" getter methods --------------------
-    //region -------------------- "Course tag" attributes --------------------
+    //region -------------------- "Course tag" fields --------------------
 
     public get CourseTags(): typeof CourseTags {
         return this.#CourseTags ??= require('../core/courseTag/CourseTags').CourseTags;
@@ -329,8 +329,8 @@ export class DynamicImporter {
         return this.#CourseTagLoader ??= require('../core/courseTag/CourseTag.loader').CourseTagLoader;
     }
 
-    //endregion -------------------- "Course tag" attributes --------------------
-    //region -------------------- "Predefined message" attributes --------------------
+    //endregion -------------------- "Course tag" fields --------------------
+    //region -------------------- "Predefined message" fields --------------------
 
     public get PredefinedMessages(): typeof PredefinedMessages {
         return this.#PredefinedMessages ??= require('../core/predefinedMessage/PredefinedMessages').PredefinedMessages;
@@ -340,7 +340,7 @@ export class DynamicImporter {
         return this.#PredefinedMessageLoader ??= require('../core/predefinedMessage/PredefinedMessage.loader').PredefinedMessageLoader;
     }
 
-    //endregion -------------------- "Predefined message" attributes --------------------
+    //endregion -------------------- "Predefined message" fields --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {

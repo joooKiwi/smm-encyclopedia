@@ -18,6 +18,7 @@ import {Import}                                      from '../../util/DynamicImp
 import {StringContainer}                             from '../../util/StringContainer';
 
 /**
+ * @todo change the english name to the enum name for the _createEntityReference
  * @recursiveReference {@link Entities}
  * @classWithDynamicImport {@link Entities}
  */
@@ -30,829 +31,458 @@ export class EditorVoices
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
-    public static/* readonly*/ GROUND;
-    public static/* readonly*/ START_GROUND;
-    public static/* readonly*/ GOAL_GROUND;
-    public static/* readonly*/ STEEP_SLOPE;
-    public static/* readonly*/ GENTLE_SLOPE;
+    public static readonly GROUND =                   new EditorVoices('Ground',                   () => new EditorVoiceSoundHolderWithVoiceBefore('ground',),);
+    public static readonly START_GROUND =             new EditorVoices('Start Ground',             () => new EditorVoiceSoundHolderWithVoiceBefore('startground',),);
+    public static readonly GOAL_GROUND =              new EditorVoices('Goal Ground',              () => new EditorVoiceSoundHolderWithVoiceBefore('goalground',),);
+    public static readonly STEEP_SLOPE =              new EditorVoices('Steep Slope',              () => new EditorVoiceSoundHolderWithSingingPartBefore('steepslope',),);
+    public static readonly GENTLE_SLOPE =             new EditorVoices('Gentle Slope',             () => new EditorVoiceSoundHolderWithSingingPartBefore('gentleslope',),);
 
-    public static/* readonly*/ PIPE;
-    public static/* readonly*/ CLEAR_PIPE;
+    public static readonly PIPE =                     new EditorVoices('Pipe',                     () => new EditorVoiceSoundHolderWithVoiceBefore('pipe',),);
+    public static readonly CLEAR_PIPE =               new EditorVoices('Clear Pipe',               () => new EditorVoiceSoundHolderWithSingingPartBefore('ClearPipe',),);
 
-    public static/* readonly*/ SPIKE_TRAP;
-    public static/* readonly*/ JELECTRO;
-    public static/* readonly*/ SEA_URCHIN;
-    public static/* readonly*/ SPIKE_BLOCK;
+    public static readonly SPIKE_TRAP =               new EditorVoices('Spike Trap',               () => new EditorVoiceSoundHolderWithVoiceBefore('spiketrap',),);
+    public static readonly JELECTRO =                 new EditorVoices('Jelectro',                 () => new EditorVoiceSoundHolderWithVoiceBefore('jellelectro',),);
+    public static readonly SEA_URCHIN =               new EditorVoices('Sea Urchin',               () => new EditorVoiceSoundHolderWithVoiceBefore('seaechinus',),);
+    public static readonly SPIKE_BLOCK =              new EditorVoices('Spike Block',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SpikeBlock',),);
 
-    public static/* readonly*/ MUSHROOM_PLATFORM;
-    public static/* readonly*/ SEMISOLID_PLATFORM;
-    public static/* readonly*/ BRIDGE;
+    public static readonly MUSHROOM_PLATFORM =        new EditorVoices('Mushroom Platform',        () => new EditorVoiceSoundHolderWithVoiceBefore('mushroomplatform',),);
+    public static readonly SEMISOLID_PLATFORM =       new EditorVoices('Semisolid Platform',       () => new EditorVoiceSoundHolderWithVoiceBefore('semisolidplatform',),);
+    public static readonly BRIDGE =                   new EditorVoices('Bridge',                   () => new EditorVoiceSoundHolderWithVoiceBefore('bridge',),);
 
     //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
     //region -------------------- Block / Coin --------------------
 
-    public static/* readonly*/ BLOCK;
+    public static readonly BLOCK =                    new class EditorVoices_Block extends EditorVoices {
 
-    public static/* readonly*/ HARD_BLOCK;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.BRICK_BLOCK, Import.Entities.CRISTAL_BLOCK, Import.Entities.ROTATING_BLOCK,];
+        }
 
-    public static/* readonly*/ QUESTION_MARK_BLOCK;
-    public static/* readonly*/ HIDDEN_BLOCK;
+    }('Block', () => new EditorVoiceSoundHolderWithVoiceBefore('block',),);
 
-    public static/* readonly*/ EXCLAMATION_MARK_BLOCK;
+    public static readonly HARD_BLOCK =               new class EditorVoices_HardBlock extends EditorVoices {
 
-    public static/* readonly*/ NOTE_BLOCK;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.HARD_BLOCK, Import.Entities.ROCK_BLOCK,];
+        }
 
-    public static/* readonly*/ DONUT_BLOCK;
+    }('Hard Block', () => new EditorVoiceSoundHolderWithVoiceBefore('hardblock',),);
 
-    public static/* readonly*/ CLOUD_BLOCK;
+    public static readonly QUESTION_MARK_BLOCK =      new EditorVoices('? Block',                  () => new EditorVoiceSoundHolderWithVoiceBefore('questionblock',),);
+    public static readonly HIDDEN_BLOCK =             new EditorVoices('Hidden Block',             () => new EditorVoiceSoundHolderWithVoiceBefore('hiddenblock',),);
 
-    public static/* readonly*/ ON_OFF_SWITCH;
-    public static/* readonly*/ DOTTED_LINE_BLOCK;
+    public static readonly EXCLAMATION_MARK_BLOCK =   new EditorVoices('! Block',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('!Block',),);
 
-    public static/* readonly*/ P_BLOCK;
+    public static readonly NOTE_BLOCK =               new EditorVoices('Note Block',               () => new EditorVoiceSoundHolderWithVoiceBefore('noteblock',),);
 
-    public static/* readonly*/ BLINKING_BLOCK;
+    public static readonly DONUT_BLOCK =              new EditorVoices('Donut Block',              () => new EditorVoiceSoundHolderWithVoiceBefore('donutblock',),);
 
-    public static/* readonly*/ ICE_BLOCK;
-    public static/* readonly*/ ICICLE;
+    public static readonly CLOUD_BLOCK =              new EditorVoices('Cloud Block',              () => new EditorVoiceSoundHolderWithVoiceBefore('cloudblock',),);
 
-    public static/* readonly*/ COIN;
-    public static/* readonly*/ FROZEN_COIN;
-    public static/* readonly*/ TEN_COIN;
-    public static/* readonly*/ THIRTY_COIN;
-    public static/* readonly*/ FIFTY_COIN;
-    public static/* readonly*/ PINK_COIN;
+    public static readonly ON_OFF_SWITCH =            new EditorVoices('ON/OFF Switch',            () => new EditorVoiceSoundHolderWithSingingPartBefore('ONOFFswitch',),);
+    public static readonly DOTTED_LINE_BLOCK =        new EditorVoices('Dotted-Line Block',        () => new EditorVoiceSoundHolderWithSingingPartBefore('Dotted-LineBlock_nr',),);
+
+    public static readonly P_BLOCK =                  new EditorVoices('P Block',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('PBlock',),);
+
+    public static readonly BLINKING_BLOCK =           new EditorVoices('Blinking Block',           () => new EditorVoiceSoundHolderWithSingingPartBefore('BlinkingBlock',),);
+
+    public static readonly ICE_BLOCK =                new EditorVoices('Ice Block',                () => new EditorVoiceSoundHolderWithVoiceBefore('iceblock2',),);
+    public static readonly ICICLE =                   new EditorVoices('Icicle',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('icicle',),);
+
+    public static readonly COIN =                     new EditorVoices('Coin',                     () => new EditorVoiceSoundHolderWithVoiceBefore('coin',),);
+    public static readonly FROZEN_COIN =              new EditorVoices('Frozen Coin',              () => new EditorVoiceSoundHolderWithSingingPartBefore('FrozenCoin',),);
+    public static readonly TEN_COIN =                 new EditorVoices('10-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('10-Coin',),);
+    public static readonly THIRTY_COIN =              new EditorVoices('30-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('30-Coin',),);
+    public static readonly FIFTY_COIN =               new EditorVoices('50-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('50-Coin',),);
+    public static readonly PINK_COIN =                new EditorVoices('Pink Coin',                () => new EditorVoiceSoundHolderWithSingingPartBefore('pinkcoin',),);
 
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectiles & player --------------------
 
-    public static/* readonly*/ SUPER_MUSHROOM;
-    public static/* readonly*/ SUPER_MARIO;
-    public static/* readonly*/ SUPER_LUIGI;
-    public static/* readonly*/ SUPER_TOAD;
-    public static/* readonly*/ SUPER_TOADETTE;
+    public static readonly SUPER_MUSHROOM =           new EditorVoices('Super Mushroom',           () => new EditorVoiceSoundHolderWithVoiceBefore('supermushroom',),);
+    public static readonly SUPER_MARIO =              new EditorVoices('Super Mario',              () => new EditorVoiceSoundHolderWithVoiceBefore('supermario',),);
+    public static readonly SUPER_LUIGI =              new EditorVoices('Super Luigi',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperLuigi',),);
+    public static readonly SUPER_TOAD =               new EditorVoices('Super Toad',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperToad',),);
+    public static readonly SUPER_TOADETTE =           new EditorVoices('Super Toadette',           () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperToadette',),);
 
-    public static/* readonly*/ FIRE_FLOWER;
-    public static/* readonly*/ FIRE_MARIO;
-    public static/* readonly*/ FIRE_LUIGI;
-    public static/* readonly*/ FIRE_TOAD;
-    public static/* readonly*/ FIRE_TOADETTE;
+    public static readonly FIRE_FLOWER =              new EditorVoices('Fire Flower',              () => new EditorVoiceSoundHolderWithVoiceBefore('fireflower',),);
+    public static readonly FIRE_MARIO =               new EditorVoices('Fire Mario',               () => new EditorVoiceSoundHolderWithVoiceBefore('firemario',),);
+    public static readonly FIRE_LUIGI =               new EditorVoices('Fire Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FireLuigi',),);
+    public static readonly FIRE_TOAD =                new EditorVoices('Fire Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FireToad',),);
+    public static readonly FIRE_TOADETTE =            new EditorVoices('Fire Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('FireToadette',),);
 
-    public static/* readonly*/ SUPERBALL_FLOWER;
-    public static/* readonly*/ SUPERBALL_MARIO;
-    public static/* readonly*/ SUPERBALL_LUIGI;
-    public static/* readonly*/ SUPERBALL_TOAD;
-    public static/* readonly*/ SUPERBALL_TOADETTE;
+    public static readonly SUPERBALL_FLOWER =         new EditorVoices('Superball Flower',         () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballFlower',),);
+    public static readonly SUPERBALL_MARIO =          new EditorVoices('Superball Mario',          () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballMario',),);
+    public static readonly SUPERBALL_LUIGI =          new EditorVoices('Superball Luigi',          () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballLuigi',),);
+    public static readonly SUPERBALL_TOAD =           new EditorVoices('Superball Toad',           () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballToad',),);
+    public static readonly SUPERBALL_TOADETTE =       new EditorVoices('Superball Toadette',       () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballToadette',),);
 
-    public static/* readonly*/ MYSTERY_MUSHROOM;
-    public static/* readonly*/ COSTUME_MARIO;
+    public static readonly MYSTERY_MUSHROOM =         new EditorVoices('Mystery Mushroom',         () => new EditorVoiceSoundHolderWithVoiceBefore('mysterymushroom',),);
+    public static readonly COSTUME_MARIO =            new EditorVoices('Costume Mario',            () => new EditorVoiceSoundHolderWithVoiceBefore('costumemario',),);
 
-    public static/* readonly*/ WEIRD_MUSHROOM;
-    public static/* readonly*/ WEIRD_MARIO;
+    public static readonly WEIRD_MUSHROOM =           new EditorVoices('Weird Mushroom',           () => new EditorVoiceSoundHolderWithVoiceBefore('weiredmashroom',),);
+    public static readonly WEIRD_MARIO =              new EditorVoices('Weird Mario',              () => new EditorVoiceSoundHolderWithVoiceBefore('weiredmario',),);
 
-    public static/* readonly*/ MASTER_SWORD;
-    public static/* readonly*/ LINK;
+    public static readonly MASTER_SWORD =             new EditorVoices('Master Sword',             () => new EditorVoiceSoundHolderWithSingingPartBefore('MasterSword',),);
+    public static readonly LINK =                     new EditorVoices('Link',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('Link',),);
 
-    public static/* readonly*/ BIG_MUSHROOM_SMM1;
-    public static/* readonly*/ BIG_MUSHROOM_SMM2;
-    public static/* readonly*/ BIG_MARIO;
-    public static/* readonly*/ BIG_LUIGI;
-    public static/* readonly*/ BIG_TOAD;
-    public static/* readonly*/ BIG_TOADETTE;
+    public static readonly BIG_MUSHROOM_SMM1 =        new class EditorVoices_BigMushroomSMM1 extends EditorVoices {
 
-    public static/* readonly*/ SMB2_MUSHROOM;
-    public static/* readonly*/ SMB2_MARIO;
-    public static/* readonly*/ SMB2_LUIGI;
-    public static/* readonly*/ SMB2_TOAD;
-    public static/* readonly*/ SMB2_TOADETTE;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.BIG_MUSHROOM_CLASSIC, Import.Entities.BIG_MUSHROOM_MODERN,];
+        }
 
-    public static/* readonly*/ SUPER_LEAF;
-    public static/* readonly*/ RACCOON_MARIO;
-    public static/* readonly*/ RACCOON_LUIGI;
-    public static/* readonly*/ RACCOON_TOAD;
-    public static/* readonly*/ RACCOON_TOADETTE;
+    }('Big Mushroom (SMM1)', () => new EditorVoiceSoundHolderWithVoiceBefore('bigmashroom',),);
+    public static readonly BIG_MUSHROOM_SMM2 =        new class EditorVoices_BigMushroomSMM2 extends EditorVoices {
 
-    public static/* readonly*/ FROG_SUIT;
-    public static/* readonly*/ FROG_MARIO;
-    public static/* readonly*/ FROG_LUIGI;
-    public static/* readonly*/ FROG_TOAD;
-    public static/* readonly*/ FROG_TOADETTE;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.BIG_MUSHROOM,];
+        }
 
-    public static/* readonly*/ CAPE_FEATHER;
-    public static/* readonly*/ CAPE_MARIO;
-    public static/* readonly*/ CAPE_LUIGI;
-    public static/* readonly*/ CAPE_TOAD;
-    public static/* readonly*/ CAPE_TOADETTE;
+    }('Big Mushroom (SMM2)', () => new EditorVoiceSoundHolderWithSingingPartBefore('BigMushroom',),);
+    public static readonly BIG_MARIO =                new EditorVoices('Big Mario',                () => new EditorVoiceSoundHolderWithVoiceBefore('bigmario',),);
+    public static readonly BIG_LUIGI =                new EditorVoices('Big Luigi',                () => new EditorVoiceSoundHolderWithSingingPartBefore('BigLuigi',),);
+    public static readonly BIG_TOAD =                 new EditorVoices('Big Toad',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('BigToad',),);
+    public static readonly BIG_TOADETTE =             new EditorVoices('Big Toadette',             () => new EditorVoiceSoundHolderWithSingingPartBefore('BigToadette',),);
 
-    public static/* readonly*/ POWER_BALLOON;
-    public static/* readonly*/ BALLOON_MARIO;
-    public static/* readonly*/ BALLOON_LUIGI;
-    public static/* readonly*/ BALLOON_TOAD;
-    public static/* readonly*/ BALLOON_TOADETTE;
+    public static readonly SMB2_MUSHROOM =            new EditorVoices('SMB2 Mushroom',            () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Mushroom',),);
+    public static readonly SMB2_MARIO =               new EditorVoices('SMB2 Mario',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Mario',),);
+    public static readonly SMB2_LUIGI =               new EditorVoices('SMB2 Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Luigi',),);
+    public static readonly SMB2_TOAD =                new EditorVoices('SMB2 Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Toad',),);
+    public static readonly SMB2_TOADETTE =            new EditorVoices('SMB2 Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Toadette',),);
 
-    public static/* readonly*/ PROPELLER_MUSHROOM;
-    public static/* readonly*/ PROPELLER_MARIO;
-    public static/* readonly*/ PROPELLER_LUIGI;
-    public static/* readonly*/ PROPELLER_TOAD;
-    public static/* readonly*/ PROPELLER_TOADETTE;
+    public static readonly SUPER_LEAF =               new EditorVoices('Super Leaf',               () => new EditorVoiceSoundHolderWithVoiceBefore('superleaf',),);
+    public static readonly RACCOON_MARIO =            new EditorVoices('Raccoon Mario',            () => new EditorVoiceSoundHolderWithVoiceBefore('lacoonmario',),);
+    public static readonly RACCOON_LUIGI =            new EditorVoices('Raccoon Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonLuigi',),);
+    public static readonly RACCOON_TOAD =             new EditorVoices('Raccoon Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonToad',),);
+    public static readonly RACCOON_TOADETTE =         new EditorVoices('Raccoon Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonToadette',),);
 
-    public static/* readonly*/ SUPER_ACORN;
-    public static/* readonly*/ FLYING_SQUIRREL_MARIO;
-    public static/* readonly*/ FLYING_SQUIRREL_LUIGI;
-    public static/* readonly*/ FLYING_SQUIRREL_TOAD;
-    public static/* readonly*/ FLYING_SQUIRREL_TOADETTE;
+    public static readonly FROG_SUIT =                new EditorVoices('Frog Suit',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogSuit',),);
+    public static readonly FROG_MARIO =               new EditorVoices('Frog Mario',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogMario',),);
+    public static readonly FROG_LUIGI =               new EditorVoices('Frog Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogLuigi',),);
+    public static readonly FROG_TOAD =                new EditorVoices('Frog Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogToad',),);
+    public static readonly FROG_TOADETTE =            new EditorVoices('Frog Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogToadette',),);
 
-    public static/* readonly*/ SUPER_BELL;
-    public static/* readonly*/ CAT_MARIO;
-    public static/* readonly*/ CAT_LUIGI;
-    public static/* readonly*/ CAT_TOAD;
-    public static/* readonly*/ CAT_TOADETTE;
+    public static readonly CAPE_FEATHER =             new EditorVoices('Cape Feather',             () => new EditorVoiceSoundHolderWithVoiceBefore('capefeather',),);
+    public static readonly CAPE_MARIO =               new EditorVoices('Cape Mario',               () => new EditorVoiceSoundHolderWithVoiceBefore('capemario',),);
+    public static readonly CAPE_LUIGI =               new EditorVoices('Cape Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('CapeLuigi',),);
+    public static readonly CAPE_TOAD =                new EditorVoices('Cape Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('CapeToad',),);
+    public static readonly CAPE_TOADETTE =            new EditorVoices('Cape Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('CapeToadette',),);
 
-    public static/* readonly*/ SUPER_HAMMER;
-    public static/* readonly*/ BUILDER_MARIO;
-    public static/* readonly*/ BUILDER_LUIGI;
-    public static/* readonly*/ BUILDER_TOAD;
-    public static/* readonly*/ BUILDER_TOADETTE;
+    public static readonly POWER_BALLOON =            new EditorVoices('Power Balloon',            () => new EditorVoiceSoundHolderWithSingingPartBefore('PowerBalloon',),);
+    public static readonly BALLOON_MARIO =            new EditorVoices('Balloon Mario',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonMario',),);
+    public static readonly BALLOON_LUIGI =            new EditorVoices('Balloon Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonLuigi',),);
+    public static readonly BALLOON_TOAD =             new EditorVoices('Balloon Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonToad',),);
+    public static readonly BALLOON_TOADETTE =         new EditorVoices('Balloon Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonToadette',),);
 
-    public static/* readonly*/ BOOMERANG_FLOWER;
-    public static/* readonly*/ BOOMERANG_MARIO;
-    public static/* readonly*/ BOOMERANG_LUIGI;
-    public static/* readonly*/ BOOMERANG_TOAD;
-    public static/* readonly*/ BOOMERANG_TOADETTE;
+    public static readonly PROPELLER_MUSHROOM =       new EditorVoices('Propeller Mushroom',       () => new EditorVoiceSoundHolderWithVoiceBefore('propellermushroom',),);
+    public static readonly PROPELLER_MARIO =          new EditorVoices('Propeller Mario',          () => new EditorVoiceSoundHolderWithVoiceBefore('propellermario',),);
+    public static readonly PROPELLER_LUIGI =          new EditorVoices('Propeller Luigi',          () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerLuigi',),);
+    public static readonly PROPELLER_TOAD =           new EditorVoices('Propeller Toad',           () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerToad',),);
+    public static readonly PROPELLER_TOADETTE =       new EditorVoices('Propeller Toadette',       () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerToadette',),);
 
-    public static/* readonly*/ CANNON_BOX;
-    public static/* readonly*/ PROPELLER_BOX;
-    public static/* readonly*/ GOOMBA_MASK;
-    public static/* readonly*/ BULLET_BILL_MASK;
-    public static/* readonly*/ RED_POW_BOX;
+    public static readonly SUPER_ACORN =              new EditorVoices('Super Acorn',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperAcorn',),);
+    public static readonly FLYING_SQUIRREL_MARIO =    new EditorVoices('Flying Squirrel Mario',    () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelMario',),);
+    public static readonly FLYING_SQUIRREL_LUIGI =    new EditorVoices('Flying Squirrel Luigi',    () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelLuigi',),);
+    public static readonly FLYING_SQUIRREL_TOAD =     new EditorVoices('Flying Squirrel Toad',     () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelToad',),);
+    public static readonly FLYING_SQUIRREL_TOADETTE = new EditorVoices('Flying Squirrel Toadette', () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelToadette',),);
 
-    public static/* readonly*/ SUPER_STAR;
+    public static readonly SUPER_BELL =               new EditorVoices('Super Bell',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperBell',),);
+    public static readonly CAT_MARIO =                new EditorVoices('Cat Mario',                () => new EditorVoiceSoundHolderWithSingingPartBefore('CatMario',),);
+    public static readonly CAT_LUIGI =                new EditorVoices('Cat Luigi',                () => new EditorVoiceSoundHolderWithSingingPartBefore('CatLuigi',),);
+    public static readonly CAT_TOAD =                 new EditorVoices('Cat Toad',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('CatToad',),);
+    public static readonly CAT_TOADETTE =             new EditorVoices('Cat Toadette',             () => new EditorVoiceSoundHolderWithSingingPartBefore('CatToadette',),);
 
-    public static/* readonly*/ ONE_UP_MUSHROOM;
-    public static/* readonly*/ ROTTEN_MUSHROOM;
+    public static readonly SUPER_HAMMER =             new EditorVoices('Super Hammer',             () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperHammer',),);
+    public static readonly BUILDER_MARIO =            new EditorVoices('Builder Mario',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderMario',),);
+    public static readonly BUILDER_LUIGI =            new EditorVoices('Builder Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderLuigi',),);
+    public static readonly BUILDER_TOAD =             new EditorVoices('Builder Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderToad',),);
+    public static readonly BUILDER_TOADETTE =         new EditorVoices('Builder Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderToadette',),);
 
-    public static/* readonly*/ SHOE_GOOMBA;
-    public static/* readonly*/ STILETTO_GOOMBA;
-    public static/* readonly*/ YOSHI_EGG;
-    public static/* readonly*/ RED_YOSHI_EGG;
+    public static readonly BOOMERANG_FLOWER =         new EditorVoices('Boomerang Flower',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangFlower',),);
+    public static readonly BOOMERANG_MARIO =          new EditorVoices('Boomerang Mario',          () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangMario',),);
+    public static readonly BOOMERANG_LUIGI =          new EditorVoices('Boomerang Luigi',          () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangLuigi',),);
+    public static readonly BOOMERANG_TOAD =           new EditorVoices('Boomerang Toad',           () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangToad',),);
+    public static readonly BOOMERANG_TOADETTE =       new EditorVoices('Boomerang Toadette',       () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangToadette',),);
+
+    public static readonly CANNON_BOX =               new EditorVoices('Cannon Box',               () => new EditorVoiceSoundHolderWithSingingPartBefore('CannonBox',),);
+    public static readonly PROPELLER_BOX =            new EditorVoices('Propeller Box',            () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerBox',),);
+    public static readonly GOOMBA_MASK =              new EditorVoices('Goomba Mask',              () => new EditorVoiceSoundHolderWithSingingPartBefore('GoombaMask',),);
+    public static readonly BULLET_BILL_MASK =         new EditorVoices('Bullet Bill Mask',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BulletBillMask',),);
+    public static readonly RED_POW_BOX =              new EditorVoices('Red POW Box',              () => new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBox',),);
+
+    public static readonly SUPER_STAR =               new EditorVoices('Super Star',               () => new EditorVoiceSoundHolderWithVoiceBefore('superstar',),);
+
+    public static readonly ONE_UP_MUSHROOM =          new EditorVoices('1-Up Mushroom',            () => new EditorVoiceSoundHolderWithVoiceBefore('oneupmushroom',),);
+    public static readonly ROTTEN_MUSHROOM =          new EditorVoices('Rotten Mushroom',          () => new EditorVoiceSoundHolderWithSingingPartBefore('RottenMushroom',),);
+
+    public static readonly SHOE_GOOMBA =              new EditorVoices('Shoe Goomba',              () => new EditorVoiceSoundHolderWithVoiceBefore('shoegoomba',),);
+    public static readonly STILETTO_GOOMBA =          new EditorVoices('Stiletto Goomba',          () => new EditorVoiceSoundHolderWithVoiceBefore('stilettogoomba',),);
+    public static readonly YOSHI_EGG =                new EditorVoices('Yoshi\'s Egg',             () => new EditorVoiceSoundHolderWithVoiceBefore('yoshiegg',),);
+    public static readonly RED_YOSHI_EGG =            new EditorVoices('Red Yoshi\'s Egg',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BigRedYoshisEgg',),);
 
     //endregion -------------------- Power-up / Yoshi / Shoe + projectiles & player --------------------
     //region -------------------- General enemies --------------------
 
-    public static/* readonly*/ GOOMBA;
-    public static/* readonly*/ GALOOMBA;
-    public static/* readonly*/ GOOMBRAT;
-    public static/* readonly*/ GOOMBUD;
+    public static readonly GOOMBA =                   new EditorVoices('Goomba',                   () => new EditorVoiceSoundHolderWithVoiceBefore('goomba',),);
+    public static readonly GALOOMBA =                 new EditorVoices('Galoomba',                 () => new EditorVoiceSoundHolderWithVoiceBefore('galoomba',),);
+    public static readonly GOOMBRAT =                 new EditorVoices('Goombrat',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('Goombrat',),);
+    public static readonly GOOMBUD =                  new EditorVoices('Goombud',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Goombud',),);
 
-    public static/* readonly*/ KOOPA_TROOPA;
+    public static readonly KOOPA_TROOPA =             new class EditorVoices_KoopaTroopa extends EditorVoices {
 
-    public static/* readonly*/ DRY_BONES;
-    public static/* readonly*/ DRY_BONES_SHELL;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.GREEN_KOOPA_TROOPA, Import.Entities.RED_KOOPA_TROOPA,];
+        }
 
-    public static/* readonly*/ BUZZY_BEETLE;
+    }('Koopa Troopa', () => new EditorVoiceSoundHolderWithVoiceBefore('koopatrooper',),);
 
-    public static/* readonly*/ SPINY;
+    public static readonly DRY_BONES =                new class EditorVoices_DryBones extends EditorVoices {
 
-    public static/* readonly*/ SPIKE_TOP;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.DRY_BONES, Import.Entities.PARABONES,];
+        }
 
-    public static/* readonly*/ SKIPSQUEAK;
-    public static/* readonly*/ SPINY_SKIPSQUEAK;
+    }('Dry Bones', () => new EditorVoiceSoundHolderWithVoiceBefore('drybones',),);
+    public static readonly DRY_BONES_SHELL =          new EditorVoices('Dry Bones Shell',          () => new EditorVoiceSoundHolderWithSingingPartBefore('DryBonesShell',),);
 
-    public static/* readonly*/ ANT_TROOPER;
-    public static/* readonly*/ HORNED_ANT_TROOPER;
+    public static readonly BUZZY_BEETLE =             new class EditorVoices_BuzzyBeetle extends EditorVoices {
 
-    public static/* readonly*/ STINGBY;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.BUZZY_BEETLE, Import.Entities.PARA_BEETLE, Import.Entities.BUZZY_SHELL,];
+        }
 
-    public static/* readonly*/ CHEEP_CHEEP;
-    public static/* readonly*/ FISH_BONE;
+    }('Buzzy Beetle', () => new EditorVoiceSoundHolderWithVoiceBefore('buzzybeatle',),);
 
-    public static/* readonly*/ BLOOPER;
-    public static/* readonly*/ BLOOPER_NANNY;
+    public static readonly SPINY =                    new class EditorVoices_Spiny extends EditorVoices {
 
-    public static/* readonly*/ PORCUPUFFER;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.SPINY, Import.Entities.WINGED_SPINY, Import.Entities.SPINY_EGG, Import.Entities.SPINY_SHELL,];
+        }
 
-    public static/* readonly*/ WIGGLER;
-    public static/* readonly*/ ANGRY_WIGGLER;
+    }('Spiny', () => new EditorVoiceSoundHolderWithVoiceBefore('spiny',),);
 
-    public static/* readonly*/ PIRANHA_PLANT;
-    public static/* readonly*/ JUMPING_PIRANHA_PLANT;
-    public static/* readonly*/ FIRE_PIRANHA_PLANT;
-    public static/* readonly*/ MUNCHER;
-    public static/* readonly*/ PIRANHA_CREEPER;
+    public static readonly SPIKE_TOP =                new class EditorVoices_SpikeTop extends EditorVoices {
 
-    public static/* readonly*/ CHAIN_CHOMP;
-    public static/* readonly*/ UNCHAINED_CHOMP;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.SPIKE_TOP, Import.Entities.WINGED_SPIKE_TOP, Import.Entities.FAST_SPIKE_TOP, Import.Entities.FAST_WINGED_SPIKE_TOP,];
+        }
 
-    public static/* readonly*/ SPIKE;
-    public static/* readonly*/ SPIKE_BALL;
-    public static/* readonly*/ SNOWBALL;
+    }('Spike Top', () => new EditorVoiceSoundHolderWithVoiceBefore('spiketop',),);
 
-    public static/* readonly*/ LAKITU;
-    public static/* readonly*/ LAKITU_CLOUD;
+    public static readonly SKIPSQUEAK =               new EditorVoices('Skipsqueak',               () => new EditorVoiceSoundHolderWithSingingPartBefore('Skipsqueak',),);
+    public static readonly SPINY_SKIPSQUEAK =         new EditorVoices('Spiny Skipsqueak',         () => new EditorVoiceSoundHolderWithSingingPartBefore('SpinySkipsqueak',),);
 
-    public static/* readonly*/ BOO;
-    public static/* readonly*/ STRETCH;
-    public static/* readonly*/ BOO_BUDDIES;
-    public static/* readonly*/ PEEPA;
+    public static readonly ANT_TROOPER =              new EditorVoices('Ant Trooper',              () => new EditorVoiceSoundHolderWithSingingPartBefore('AntTrooper',),);
+    public static readonly HORNED_ANT_TROOPER =       new EditorVoices('Horned Ant Trooper',       () => new EditorVoiceSoundHolderWithSingingPartBefore('HornedAntTrooper',),);
 
-    public static/* readonly*/ BOB_OMB;
-    public static/* readonly*/ LIT_BOB_OMB;
+    public static readonly STINGBY =                  new EditorVoices('Stingby',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Stingby',),);
 
-    public static/* readonly*/ POKEY;
-    public static/* readonly*/ SNOW_POKEY;
+    public static readonly CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices {
 
-    public static/* readonly*/ THWOMP;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.CHEEP_CHEEP, Import.Entities.BLURPS, Import.Entities.DEEP_CHEEP,];
+        }
 
-    public static/* readonly*/ MONTY_MOLE;
-    public static/* readonly*/ ROCKY_WRENCH;
+    }('Cheep Cheep', () => new EditorVoiceSoundHolderWithVoiceBefore('cheapcheap',),);
+    public static readonly FISH_BONE =                new EditorVoices('Fish Bone',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FishBones',),);
 
-    public static/* readonly*/ MAGIKOOPA;
+    public static readonly BLOOPER =                  new EditorVoices('Blooper',                  () => new EditorVoiceSoundHolderWithVoiceBefore('blooper',),);
+    public static readonly BLOOPER_NANNY =            new EditorVoices('Blooper Nanny',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BlooperNanny',),);
 
-    public static/* readonly*/ HAMMER_BRO;
-    public static/* readonly*/ SLEDGE_BRO;
-    public static/* readonly*/ FIRE_BRO;
-    public static/* readonly*/ HEAVY_FIRE_BRO;
+    public static readonly PORCUPUFFER =              new EditorVoices('Porcupuffer',              () => new EditorVoiceSoundHolderWithSingingPartBefore('Porcupuffer',),);
 
-    public static/* readonly*/ LAVA_BUBBLE;
+    public static readonly WIGGLER =                  new EditorVoices('Wiggler',                  () => new EditorVoiceSoundHolderWithVoiceBefore('wiggler',),);
+    public static readonly ANGRY_WIGGLER =            new EditorVoices('Angry Wiggler',            () => new EditorVoiceSoundHolderWithSingingPartBefore('AngryWiggler',),);
 
-    public static/* readonly*/ MECHAKOOPA;
-    public static/* readonly*/ BLASTA_MECHAKOOPA;
-    public static/* readonly*/ ZAPPA_MECHAKOOPA;
+    public static readonly PIRANHA_PLANT =            new EditorVoices('Piranha Plant',            () => new EditorVoiceSoundHolderWithVoiceBefore('piranhaplant',),);
+    public static readonly JUMPING_PIRANHA_PLANT =    new EditorVoices('Jumping Piranha Plant',    () => new EditorVoiceSoundHolderWithVoiceBefore('jumpingpiranhaplant',),);
+    public static readonly FIRE_PIRANHA_PLANT =       new EditorVoices('Fire Piranha Plant',       () => new EditorVoiceSoundHolderWithVoiceBefore('firepiranhaplant',),);
+    public static readonly MUNCHER =                  new EditorVoices('Muncher',                  () => new EditorVoiceSoundHolderWithVoiceBefore('monchar',),);
+    public static readonly PIRANHA_CREEPER =          new EditorVoices('Piranha Creeper',          () => new EditorVoiceSoundHolderWithSingingPartBefore('PiranhaCreeper',),);
 
-    public static/* readonly*/ CHARVAARGH;
+    public static readonly CHAIN_CHOMP =              new EditorVoices('Chain Chomp',              () => new EditorVoiceSoundHolderWithVoiceBefore('chainchomp',),);
+    public static readonly UNCHAINED_CHOMP =          new EditorVoices('Unchained Chomp',          () => new EditorVoiceSoundHolderWithSingingPartBefore('UnchainedChomp',),);
 
-    public static/* readonly*/ BULLY;
+    public static readonly SPIKE =                    new EditorVoices('Spike',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Spike',),);
+    public static readonly SPIKE_BALL =               new EditorVoices('Spike Ball',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SpikeBall',),);
+    public static readonly SNOWBALL =                 new EditorVoices('Snowball',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('SnowBall',),);
+
+    public static readonly LAKITU =                   new EditorVoices('Lakitu',                   () => new EditorVoiceSoundHolderWithVoiceBefore('lakitu',),);
+    public static readonly LAKITU_CLOUD =             new EditorVoices('Lakitu\'s Cloud',          () => new EditorVoiceSoundHolderWithVoiceBefore('lakitucloud',),);
+
+    public static readonly BOO =                      new EditorVoices('Boo',                      () => new EditorVoiceSoundHolderWithVoiceBefore('boo',),);
+    public static readonly STRETCH =                  new EditorVoices('Stretch',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Stretch',),);
+    public static readonly BOO_BUDDIES =              new EditorVoices('Boo Buddies',              () => new EditorVoiceSoundHolderWithVoiceBefore('boobuddies',),);
+    public static readonly PEEPA =                    new EditorVoices('Peepa',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Peepa',),);
+
+    public static readonly BOB_OMB =                  new EditorVoices('Bob-omb',                  () => new EditorVoiceSoundHolderWithVoiceBefore('bombomb',),);
+    public static readonly LIT_BOB_OMB =              new EditorVoices('Lit Bob-omb',              () => new EditorVoiceSoundHolderWithSingingPartBefore('litBob-omb',),);
+
+    public static readonly POKEY =                    new EditorVoices('Pokey',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Pokey',),);
+    public static readonly SNOW_POKEY =               new EditorVoices('Snow Pokey',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SnowPokey',),);
+
+    public static readonly THWOMP =                   new EditorVoices('Thwomp',                   () => new EditorVoiceSoundHolderWithVoiceBefore('thwomp',),);
+
+    public static readonly MONTY_MOLE =               new EditorVoices('Monty Mole',               () => new EditorVoiceSoundHolderWithVoiceBefore('montymole',),);
+    public static readonly ROCKY_WRENCH =             new EditorVoices('Rocky Wrench',             () => new EditorVoiceSoundHolderWithVoiceBefore('rockeyrench',),);
+
+    public static readonly MAGIKOOPA =                new EditorVoices('Magikoopa',                () => [new EditorVoiceSoundHolderWithVoiceBefore('magikoopa',), new EditorVoiceSoundHolderWithVoiceBefore('kameck_EU',),],);
+
+    public static readonly HAMMER_BRO =               new EditorVoices('Hammer Bro',               () => new EditorVoiceSoundHolderWithVoiceBefore('hammerbro',),);
+    public static readonly SLEDGE_BRO =               new EditorVoices('Sledge Bro',               () => new EditorVoiceSoundHolderWithVoiceBefore('sledgebro',),);
+    public static readonly FIRE_BRO =                 new EditorVoices('Fire Bro',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('FireBro',),);
+    public static readonly HEAVY_FIRE_BRO =           new EditorVoices('Heavy Fire Bro',           () => new EditorVoiceSoundHolderWithSingingPartBefore('HeavyFireBro',),);
+
+    public static readonly LAVA_BUBBLE =              new EditorVoices('Lava Bubble',              () => new EditorVoiceSoundHolderWithVoiceBefore('lavabubble',),);
+
+    public static readonly MECHAKOOPA =               new EditorVoices('Mechakoopa',               () => new EditorVoiceSoundHolderWithSingingPartBefore('Mechakoopa',),);
+    public static readonly BLASTA_MECHAKOOPA =        new EditorVoices('Blasta Mechakoopa',        () => new EditorVoiceSoundHolderWithSingingPartBefore('BlastaMechakoopa',),);
+    public static readonly ZAPPA_MECHAKOOPA =         new EditorVoices('Zappa Mechakoopa',         () => new EditorVoiceSoundHolderWithSingingPartBefore('ZappaMechakoopa',),);
+
+    public static readonly CHARVAARGH =               new EditorVoices('Charvaargh',               () => new EditorVoiceSoundHolderWithSingingPartBefore('Charvaargh',),);
+
+    public static readonly BULLY =                    new EditorVoices('Bully',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Bully',),);
 
     //endregion -------------------- General enemies --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
-    public static/* readonly*/ BILL_BLASTER;
-    public static/* readonly*/ BULL_EYE_BLASTER;
+    public static readonly BILL_BLASTER =             new EditorVoices('Bill Blaster',             () => new EditorVoiceSoundHolderWithVoiceBefore('billblaster',),);
+    public static readonly BULL_EYE_BLASTER =         new EditorVoices('Bull\'s-Eye Blaster',      () => new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBlaster',),);
 
-    public static/* readonly*/ BANZAI_BILL;
-    public static/* readonly*/ BULL_EYE_BANZAI;
+    public static readonly BANZAI_BILL =              new EditorVoices('Banzai Bill',              () => new EditorVoiceSoundHolderWithSingingPartBefore('BanzaiBill',),);
+    public static readonly BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices {
 
-    public static/* readonly*/ CANNON;
-    public static/* readonly*/ RED_CANNON;
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,];
+        }
 
-    public static/* readonly*/ BURNER;
+    }('Bull\'s-Eye Banzai', () => new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBanzai',),);
 
-    public static/* readonly*/ FIRE_BAR;
+    public static readonly CANNON =                   new EditorVoices('Cannon',                   () => new EditorVoiceSoundHolderWithVoiceBefore('cannon',),);
+    public static readonly RED_CANNON =               new EditorVoices('Red Cannon',               () => new EditorVoiceSoundHolderWithSingingPartBefore('redcannon',),);
 
-    public static/* readonly*/ SKEWER;
+    public static readonly BURNER =                   new EditorVoices('Burner',                   () => new EditorVoiceSoundHolderWithVoiceBefore('burner',),);
 
-    public static/* readonly*/ KOOPA_CLOWN_CAR;
-    public static/* readonly*/ JUNIOR_CLOWN_CAR;
-    public static/* readonly*/ FIRE_KOOPA_CLOWN_CAR;
-    public static/* readonly*/ FIRE_JUNIOR_CLOWN_CAR;
+    public static readonly FIRE_BAR =                 new EditorVoices('Fire Bar',                 () => new EditorVoiceSoundHolderWithVoiceBefore('firebar',),);
 
-    public static/* readonly*/ KOOPA_TROOPA_CAR;
+    public static readonly SKEWER =                   new EditorVoices('Skewer',                   () => [new EditorVoiceSoundHolderWithVoiceBefore('skewer'), new EditorVoiceSoundHolderWithVoiceBefore('spikepiller'),],);
 
-    public static/* readonly*/ GRINDER;
+    public static readonly KOOPA_CLOWN_CAR =          new EditorVoices('Koopa Clown Car',          () => new EditorVoiceSoundHolderWithVoiceBefore('koopaclowncar',),);
+    public static readonly JUNIOR_CLOWN_CAR =         new EditorVoices('Junior Clown Car',         () => new EditorVoiceSoundHolderWithVoiceBefore('juniorclowncar',),);
+    public static readonly FIRE_KOOPA_CLOWN_CAR =     new EditorVoices('Fire Koopa Clown Car',     () => new EditorVoiceSoundHolderWithVoiceBefore('firekoopaclowncar',),);
+    public static readonly FIRE_JUNIOR_CLOWN_CAR =    new EditorVoices('Fire Junior Clown Car',    () => new EditorVoiceSoundHolderWithVoiceBefore('firejuniorclowncar',),);
 
-    public static/* readonly*/ SUN;
-    public static/* readonly*/ MOON;
+    public static readonly KOOPA_TROOPA_CAR =         new EditorVoices('Koopa Troopa Car',         () => new EditorVoiceSoundHolderWithSingingPartBefore('KoopaTroopaCar',),);
+
+    public static readonly GRINDER =                  new EditorVoices('Grinder',                  () => new EditorVoiceSoundHolderWithVoiceBefore('grinder',),);
+
+    public static readonly SUN =                      new class EditorVoices_Sun extends EditorVoices {
+
+        protected override get _createEntityReferences(): PossibleEntityReferences_Received {
+            return [Import.Entities.ANGRY_SUN,];
+        }
+
+    }('Sun', () => new EditorVoiceSoundHolderWithSingingPartBefore('Sun',),);
+    public static readonly MOON =                     new EditorVoices('Moon',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('Moon',),);
 
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
     //region -------------------- Bosses + projectiles --------------------
 
-    public static/* readonly*/ BOWSER;
-    public static/* readonly*/ MEOWSER;
+    public static readonly BOWSER =                   new EditorVoices('Bowser',                   () => new EditorVoiceSoundHolderWithVoiceBefore('bowser',),);
+    public static readonly MEOWSER =                  new EditorVoices('Meowser',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Meowser',),);
 
-    public static/* readonly*/ BOWSER_JR;
+    public static readonly BOWSER_JR =                new EditorVoices('Bowser Jr.',               () => new EditorVoiceSoundHolderWithVoiceBefore('bowserjr',),);
 
-    public static/* readonly*/ BOOM_BOOM;
-    public static/* readonly*/ POM_POM;
+    public static readonly BOOM_BOOM =                new EditorVoices('Boom Boom',                () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomBoom',),);
+    public static readonly POM_POM =                  new EditorVoices('Pom Pom',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('PomPom',),);
 
-    public static/* readonly*/ LARRY;
-    public static/* readonly*/ IGGY;
-    public static/* readonly*/ WENDY;
-    public static/* readonly*/ LEMMY;
-    public static/* readonly*/ ROY;
-    public static/* readonly*/ MORTON;
-    public static/* readonly*/ LUDWIG;
+    public static readonly LARRY =                    new EditorVoices('Larry',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Larry',),);
+    public static readonly IGGY =                     new EditorVoices('Iggy',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('Iggy',),);
+    public static readonly WENDY =                    new EditorVoices('Wendy',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Wendy',),);
+    public static readonly LEMMY =                    new EditorVoices('Lemmy',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Lemmy',),);
+    public static readonly ROY =                      new EditorVoices('Roy',                      () => new EditorVoiceSoundHolderWithSingingPartBefore('Roy',),);
+    public static readonly MORTON =                   new EditorVoices('Morton',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('Morton',),);
+    public static readonly LUDWIG =                   new EditorVoices('Ludwig',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('Ludwig',),);
 
     //endregion -------------------- Bosses + projectiles --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    public static/* readonly*/ BUMPER;
+    public static readonly BUMPER =                   new EditorVoices('Bumper',                   () => new EditorVoiceSoundHolderWithVoiceBefore('bumper',),);
 
-    public static/* readonly*/ SWINGING_CLAW;
+    public static readonly SWINGING_CLAW =            new EditorVoices('Swinging Claw',            () => new EditorVoiceSoundHolderWithSingingPartBefore('swingingclaw',),);
 
-    public static/* readonly*/ TWISTER;
+    public static readonly TWISTER =                  new EditorVoices('Twister',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Twister',),);
 
-    public static/* readonly*/ ONE_WAY_WALL;
+    public static readonly ONE_WAY_WALL =             new EditorVoices('One-Way Wall',             () => new EditorVoiceSoundHolderWithVoiceBefore('onewaywall',),);
 
-    public static/* readonly*/ TRACK;
-    public static/* readonly*/ TRACK_BLOCK;
+    public static readonly TRACK =                    new EditorVoices('Track',                    () => new EditorVoiceSoundHolderWithVoiceBefore('track',),);
+    public static readonly TRACK_BLOCK =              new EditorVoices('Track Block',              () => new EditorVoiceSoundHolderWithSingingPartBefore('TrackBlock',),);
 
-    public static/* readonly*/ VINE;
-    public static/* readonly*/ TREE;
+    public static readonly VINE =                     new EditorVoices('Vine',                     () => new EditorVoiceSoundHolderWithVoiceBefore('vine',),);
+    public static readonly TREE =                     new EditorVoices('Tree',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('tree',),);
 
-    public static/* readonly*/ ARROW_SIGN;
+    public static readonly ARROW_SIGN =               new EditorVoices('Arrow Sign',               () => new EditorVoiceSoundHolderWithSingingPartBefore('arrowsign',),);
 
-    public static/* readonly*/ CHECKPOINT_FLAG;
+    public static readonly CHECKPOINT_FLAG =          new EditorVoices('Checkpoint Flag',          () => new EditorVoiceSoundHolderWithSingingPartBefore('CheckpointFlag',),);
 
-    public static/* readonly*/ DASH_BLOCK;
+    public static readonly DASH_BLOCK =               new EditorVoices('Dash Block',               () => new EditorVoiceSoundHolderWithSingingPartBefore('DashBlock',),);
 
-    public static/* readonly*/ SNAKE_BLOCK;
-    public static/* readonly*/ FAST_SNAKE_BLOCK;
+    public static readonly SNAKE_BLOCK =              new EditorVoices('Snake Block',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SnakeBlock',),);
+    public static readonly FAST_SNAKE_BLOCK =         new EditorVoices('Fast Snake Block',         () => new EditorVoiceSoundHolderWithSingingPartBefore('FastSnakeBlock',),);
 
-    public static/* readonly*/ CONVEYOR_BELT;
-    public static/* readonly*/ FAST_CONVEYOR_BELT;
+    public static readonly CONVEYOR_BELT =            new EditorVoices('Conveyor Belt',            () => new EditorVoiceSoundHolderWithVoiceBefore('conveyorbelt',),);
+    public static readonly FAST_CONVEYOR_BELT =       new EditorVoices('Fast Conveyor Belt',       () => new EditorVoiceSoundHolderWithSingingPartBefore('fastconveyorbelt',),);
 
-    public static/* readonly*/ MUSHROOM_TRAMPOLINE;
-    public static/* readonly*/ ON_OFF_TRAMPOLINE;
+    public static readonly MUSHROOM_TRAMPOLINE =      new EditorVoices('Mushroom Trampoline',      () => new EditorVoiceSoundHolderWithSingingPartBefore('MushroomTrampoline',),);
+    public static readonly ON_OFF_TRAMPOLINE =        new EditorVoices('ON/OFF Trampoline',        () => new EditorVoiceSoundHolderWithSingingPartBefore('ONOFFTrampoline',),);
 
-    public static/* readonly*/ LIFT;
-    public static/* readonly*/ FLIMSY_LIFT;
-    public static/* readonly*/ CLOUD_LIFT;
+    public static readonly LIFT =                     new EditorVoices('Lift',                     () => new EditorVoiceSoundHolderWithVoiceBefore('lift',),);
+    public static readonly FLIMSY_LIFT =              new EditorVoices('Flimsy Lift',              () => new EditorVoiceSoundHolderWithVoiceBefore('flimsylift',),);
+    public static readonly CLOUD_LIFT =               new EditorVoices('Cloud Lift',               () => new EditorVoiceSoundHolderWithSingingPartBefore('CloudLift',),);
 
-    public static/* readonly*/ SEESAW;
+    public static readonly SEESAW =                   new EditorVoices('Seesaw',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('seesaw',),);
 
-    public static/* readonly*/ LAVA_LIFT;
-    public static/* readonly*/ FAST_LAVA_LIFT;
+    public static readonly LAVA_LIFT =                new EditorVoices('Lava Lift',                () => new EditorVoiceSoundHolderWithVoiceBefore('lavalift',),);
+    public static readonly FAST_LAVA_LIFT =           new EditorVoices('Fast Lava Lift',           () => new EditorVoiceSoundHolderWithSingingPartBefore('FastLavaLift',),);
 
-    public static/* readonly*/ CRATE;
+    public static readonly CRATE =                    new EditorVoices('Crate',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('crate',),);
 
-    public static/* readonly*/ KEY;
-    public static/* readonly*/ CURSED_KEY;
+    public static readonly KEY =                      new EditorVoices('Key',                      () => new EditorVoiceSoundHolderWithSingingPartBefore('key',),);
+    public static readonly CURSED_KEY =               new EditorVoices('Cursed Key',               () => new EditorVoiceSoundHolderWithSingingPartBefore('cursedkey',),);
 
-    public static/* readonly*/ TRAMPOLINE;
-    public static/* readonly*/ HOP_CHOPS;
+    public static readonly TRAMPOLINE =               new EditorVoices('Trampoline',               () => new EditorVoiceSoundHolderWithVoiceBefore('trampline',),);
+    public static readonly HOP_CHOPS =                new EditorVoices('Hop-Chops',                () => new EditorVoiceSoundHolderWithSingingPartBefore('Hop-Chops',),);
 
-    public static/* readonly*/ POW_BLOCK;
-    public static/* readonly*/ RED_POW_BLOCK;
+    public static readonly POW_BLOCK =                new EditorVoices('POW Block',                () => new EditorVoiceSoundHolderWithVoiceBefore('powblock',),);
+    public static readonly RED_POW_BLOCK =            new EditorVoices('Red POW Block',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBlock',),);
 
-    public static/* readonly*/ P_SWITCH;
+    public static readonly P_SWITCH =                 new EditorVoices('P Switch',                 () => new EditorVoiceSoundHolderWithVoiceBefore('pswitch',),);
 
-    public static/* readonly*/ WARP_DOOR;
-    public static/* readonly*/ P_WARP_DOOR;
-    public static/* readonly*/ KEY_DOOR;
+    public static readonly WARP_DOOR =                new EditorVoices('Warp Door',                () => new EditorVoiceSoundHolderWithVoiceBefore('warpdoor',),);
+    public static readonly P_WARP_DOOR =              new EditorVoices('P Warp Door',              () => new EditorVoiceSoundHolderWithVoiceBefore('pwarpdoor',),);
+    public static readonly KEY_DOOR =                 new EditorVoices('Key Door',                 () => new EditorVoiceSoundHolderWithVoiceBefore('keydoor',),);
 
-    public static/* readonly*/ WARP_BOX;
-    public static/* readonly*/ WARP_BOX_WITH_KEY;
+    public static readonly WARP_BOX =                 new EditorVoices('Warp Box',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('WarpBox',),);
+    public static readonly WARP_BOX_WITH_KEY =        new EditorVoices('Warp Box (With Key)',      () => new EditorVoiceSoundHolderWithSingingPartBefore('WarpBox_withkey',),);
 
-    public static/* readonly*/ WING;
+    public static readonly WING =                     new EditorVoices('Wing',                     () => new EditorVoiceSoundHolderWithVoiceBefore('wings',),);
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    static {
-        //region -------------------- Ground / Pipe / Spike / Platform --------------------
-
-        this.GROUND =                   new EditorVoices('Ground',                   () => new EditorVoiceSoundHolderWithVoiceBefore('ground',),);
-        this.START_GROUND =             new EditorVoices('Start Ground',             () => new EditorVoiceSoundHolderWithVoiceBefore('startground',),);
-        this.GOAL_GROUND =              new EditorVoices('Goal Ground',              () => new EditorVoiceSoundHolderWithVoiceBefore('goalground',),);
-        this.STEEP_SLOPE =              new EditorVoices('Steep Slope',              () => new EditorVoiceSoundHolderWithSingingPartBefore('steepslope',),);
-        this.GENTLE_SLOPE =             new EditorVoices('Gentle Slope',             () => new EditorVoiceSoundHolderWithSingingPartBefore('gentleslope',),);
-
-        this.PIPE =                     new EditorVoices('Pipe',                     () => new EditorVoiceSoundHolderWithVoiceBefore('pipe',),);
-        this.CLEAR_PIPE =               new EditorVoices('Clear Pipe',               () => new EditorVoiceSoundHolderWithSingingPartBefore('ClearPipe',),);
-
-        this.SPIKE_TRAP =               new EditorVoices('Spike Trap',               () => new EditorVoiceSoundHolderWithVoiceBefore('spiketrap',),);
-        this.JELECTRO =                 new EditorVoices('Jelectro',                 () => new EditorVoiceSoundHolderWithVoiceBefore('jellelectro',),);
-        this.SEA_URCHIN =               new EditorVoices('Sea Urchin',               () => new EditorVoiceSoundHolderWithVoiceBefore('seaechinus',),);
-        this.SPIKE_BLOCK =              new EditorVoices('Spike Block',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SpikeBlock',),);
-
-        this.MUSHROOM_PLATFORM =        new EditorVoices('Mushroom Platform',        () => new EditorVoiceSoundHolderWithVoiceBefore('mushroomplatform',),);
-        this.SEMISOLID_PLATFORM =       new EditorVoices('Semisolid Platform',       () => new EditorVoiceSoundHolderWithVoiceBefore('semisolidplatform',),);
-        this.BRIDGE =                   new EditorVoices('Bridge',                   () => new EditorVoiceSoundHolderWithVoiceBefore('bridge',),);
-
-        //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
-        //region -------------------- Block / Coin --------------------
-
-        this.BLOCK =                    new class EditorVoices_Block extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.BRICK_BLOCK, Import.Entities.CRISTAL_BLOCK, Import.Entities.ROTATING_BLOCK,];
-                }
-
-            }('Block', () => new EditorVoiceSoundHolderWithVoiceBefore('block',),);
-
-        this.HARD_BLOCK =               new class EditorVoices_HardBlock extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.HARD_BLOCK, Import.Entities.ROCK_BLOCK,];
-                }
-
-            }('Hard Block', () => new EditorVoiceSoundHolderWithVoiceBefore('hardblock',),);
-
-        this.QUESTION_MARK_BLOCK =      new EditorVoices('? Block',                  () => new EditorVoiceSoundHolderWithVoiceBefore('questionblock',),);
-        this.HIDDEN_BLOCK =             new EditorVoices('Hidden Block',             () => new EditorVoiceSoundHolderWithVoiceBefore('hiddenblock',),);
-
-        this.EXCLAMATION_MARK_BLOCK =   new EditorVoices('! Block',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('!Block',),);
-
-        this.NOTE_BLOCK =               new EditorVoices('Note Block',               () => new EditorVoiceSoundHolderWithVoiceBefore('noteblock',),);
-
-        this.DONUT_BLOCK =              new EditorVoices('Donut Block',              () => new EditorVoiceSoundHolderWithVoiceBefore('donutblock',),);
-
-        this.CLOUD_BLOCK =              new EditorVoices('Cloud Block',              () => new EditorVoiceSoundHolderWithVoiceBefore('cloudblock',),);
-
-        this.ON_OFF_SWITCH =            new EditorVoices('ON/OFF Switch',            () => new EditorVoiceSoundHolderWithSingingPartBefore('ONOFFswitch',),);
-        this.DOTTED_LINE_BLOCK =        new EditorVoices('Dotted-Line Block',        () => new EditorVoiceSoundHolderWithSingingPartBefore('Dotted-LineBlock_nr',),);
-
-        this.P_BLOCK =                  new EditorVoices('P Block',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('PBlock',),);
-
-        this.BLINKING_BLOCK =           new EditorVoices('Blinking Block',           () => new EditorVoiceSoundHolderWithSingingPartBefore('BlinkingBlock',),);
-
-        this.ICE_BLOCK =                new EditorVoices('Ice Block',                () => new EditorVoiceSoundHolderWithVoiceBefore('iceblock2',),);
-        this.ICICLE =                   new EditorVoices('Icicle',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('icicle',),);
-
-        this.COIN =                     new EditorVoices('Coin',                     () => new EditorVoiceSoundHolderWithVoiceBefore('coin',),);
-        this.FROZEN_COIN =              new EditorVoices('Frozen Coin',              () => new EditorVoiceSoundHolderWithSingingPartBefore('FrozenCoin',),);
-        this.TEN_COIN =                 new EditorVoices('10-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('10-Coin',),);
-        this.THIRTY_COIN =              new EditorVoices('30-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('30-Coin',),);
-        this.FIFTY_COIN =               new EditorVoices('50-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('50-Coin',),);
-        this.PINK_COIN =                new EditorVoices('Pink Coin',                () => new EditorVoiceSoundHolderWithSingingPartBefore('pinkcoin',),);
-
-        //endregion -------------------- Block / Coin --------------------
-        //region -------------------- Power-up / Yoshi / Shoe + projectiles & player --------------------
-
-        this.SUPER_MUSHROOM =           new EditorVoices('Super Mushroom',           () => new EditorVoiceSoundHolderWithVoiceBefore('supermushroom',),);
-        this.SUPER_MARIO =              new EditorVoices('Super Mario',              () => new EditorVoiceSoundHolderWithVoiceBefore('supermario',),);
-        this.SUPER_LUIGI =              new EditorVoices('Super Luigi',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperLuigi',),);
-        this.SUPER_TOAD =               new EditorVoices('Super Toad',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperToad',),);
-        this.SUPER_TOADETTE =           new EditorVoices('Super Toadette',           () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperToadette',),);
-
-        this.FIRE_FLOWER =              new EditorVoices('Fire Flower',              () => new EditorVoiceSoundHolderWithVoiceBefore('fireflower',),);
-        this.FIRE_MARIO =               new EditorVoices('Fire Mario',               () => new EditorVoiceSoundHolderWithVoiceBefore('firemario',),);
-        this.FIRE_LUIGI =               new EditorVoices('Fire Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FireLuigi',),);
-        this.FIRE_TOAD =                new EditorVoices('Fire Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FireToad',),);
-        this.FIRE_TOADETTE =            new EditorVoices('Fire Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('FireToadette',),);
-
-        this.SUPERBALL_FLOWER =         new EditorVoices('Superball Flower',         () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballFlower',),);
-        this.SUPERBALL_MARIO =          new EditorVoices('Superball Mario',          () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballMario',),);
-        this.SUPERBALL_LUIGI =          new EditorVoices('Superball Luigi',          () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballLuigi',),);
-        this.SUPERBALL_TOAD =           new EditorVoices('Superball Toad',           () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballToad',),);
-        this.SUPERBALL_TOADETTE =       new EditorVoices('Superball Toadette',       () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperballToadette',),);
-
-        this.MYSTERY_MUSHROOM =         new EditorVoices('Mystery Mushroom',         () => new EditorVoiceSoundHolderWithVoiceBefore('mysterymushroom',),);
-        this.COSTUME_MARIO =            new EditorVoices('Costume Mario',            () => new EditorVoiceSoundHolderWithVoiceBefore('costumemario',),);
-
-        this.WEIRD_MUSHROOM =           new EditorVoices('Weird Mushroom',           () => new EditorVoiceSoundHolderWithVoiceBefore('weiredmashroom',),);
-        this.WEIRD_MARIO =              new EditorVoices('Weird Mario',              () => new EditorVoiceSoundHolderWithVoiceBefore('weiredmario',),);
-
-        this.MASTER_SWORD =             new EditorVoices('Master Sword',             () => new EditorVoiceSoundHolderWithSingingPartBefore('MasterSword',),);
-        this.LINK =                     new EditorVoices('Link',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('Link',),);
-
-        this.BIG_MUSHROOM_SMM1 =        new class EditorVoices_BigMushroomSMM1 extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.BIG_MUSHROOM_CLASSIC, Import.Entities.BIG_MUSHROOM_MODERN,];
-                }
-
-            }('Big Mushroom (SMM1)', () => new EditorVoiceSoundHolderWithVoiceBefore('bigmashroom',),);
-        this.BIG_MUSHROOM_SMM2 =        new class EditorVoices_BigMushroomSMM2 extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.BIG_MUSHROOM,];
-                }
-
-            }('Big Mushroom (SMM2)', () => new EditorVoiceSoundHolderWithSingingPartBefore('BigMushroom',),);
-        this.BIG_MARIO =                new EditorVoices('Big Mario',                () => new EditorVoiceSoundHolderWithVoiceBefore('bigmario',),);
-        this.BIG_LUIGI =                new EditorVoices('Big Luigi',                () => new EditorVoiceSoundHolderWithSingingPartBefore('BigLuigi',),);
-        this.BIG_TOAD =                 new EditorVoices('Big Toad',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('BigToad',),);
-        this.BIG_TOADETTE =             new EditorVoices('Big Toadette',             () => new EditorVoiceSoundHolderWithSingingPartBefore('BigToadette',),);
-
-        this.SMB2_MUSHROOM =            new EditorVoices('SMB2 Mushroom',            () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Mushroom',),);
-        this.SMB2_MARIO =               new EditorVoices('SMB2 Mario',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Mario',),);
-        this.SMB2_LUIGI =               new EditorVoices('SMB2 Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Luigi',),);
-        this.SMB2_TOAD =                new EditorVoices('SMB2 Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Toad',),);
-        this.SMB2_TOADETTE =            new EditorVoices('SMB2 Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('SMB2Toadette',),);
-
-        this.SUPER_LEAF =               new EditorVoices('Super Leaf',               () => new EditorVoiceSoundHolderWithVoiceBefore('superleaf',),);
-        this.RACCOON_MARIO =            new EditorVoices('Raccoon Mario',            () => new EditorVoiceSoundHolderWithVoiceBefore('lacoonmario',),);
-        this.RACCOON_LUIGI =            new EditorVoices('Raccoon Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonLuigi',),);
-        this.RACCOON_TOAD =             new EditorVoices('Raccoon Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonToad',),);
-        this.RACCOON_TOADETTE =         new EditorVoices('Raccoon Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonToadette',),);
-
-        this.FROG_SUIT =                new EditorVoices('Frog Suit',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogSuit',),);
-        this.FROG_MARIO =               new EditorVoices('Frog Mario',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogMario',),);
-        this.FROG_LUIGI =               new EditorVoices('Frog Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogLuigi',),);
-        this.FROG_TOAD =                new EditorVoices('Frog Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogToad',),);
-        this.FROG_TOADETTE =            new EditorVoices('Frog Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogToadette',),);
-
-        this.CAPE_FEATHER =             new EditorVoices('Cape Feather',             () => new EditorVoiceSoundHolderWithVoiceBefore('capefeather',),);
-        this.CAPE_MARIO =               new EditorVoices('Cape Mario',               () => new EditorVoiceSoundHolderWithVoiceBefore('capemario',),);
-        this.CAPE_LUIGI =               new EditorVoices('Cape Luigi',               () => new EditorVoiceSoundHolderWithSingingPartBefore('CapeLuigi',),);
-        this.CAPE_TOAD =                new EditorVoices('Cape Toad',                () => new EditorVoiceSoundHolderWithSingingPartBefore('CapeToad',),);
-        this.CAPE_TOADETTE =            new EditorVoices('Cape Toadette',            () => new EditorVoiceSoundHolderWithSingingPartBefore('CapeToadette',),);
-
-        this.POWER_BALLOON =            new EditorVoices('Power Balloon',            () => new EditorVoiceSoundHolderWithSingingPartBefore('PowerBalloon',),);
-        this.BALLOON_MARIO =            new EditorVoices('Balloon Mario',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonMario',),);
-        this.BALLOON_LUIGI =            new EditorVoices('Balloon Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonLuigi',),);
-        this.BALLOON_TOAD =             new EditorVoices('Balloon Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonToad',),);
-        this.BALLOON_TOADETTE =         new EditorVoices('Balloon Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BalloonToadette',),);
-
-        this.PROPELLER_MUSHROOM =       new EditorVoices('Propeller Mushroom',       () => new EditorVoiceSoundHolderWithVoiceBefore('propellermushroom',),);
-        this.PROPELLER_MARIO =          new EditorVoices('Propeller Mario',          () => new EditorVoiceSoundHolderWithVoiceBefore('propellermario',),);
-        this.PROPELLER_LUIGI =          new EditorVoices('Propeller Luigi',          () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerLuigi',),);
-        this.PROPELLER_TOAD =           new EditorVoices('Propeller Toad',           () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerToad',),);
-        this.PROPELLER_TOADETTE =       new EditorVoices('Propeller Toadette',       () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerToadette',),);
-
-        this.SUPER_ACORN =              new EditorVoices('Super Acorn',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperAcorn',),);
-        this.FLYING_SQUIRREL_MARIO =    new EditorVoices('Flying Squirrel Mario',    () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelMario',),);
-        this.FLYING_SQUIRREL_LUIGI =    new EditorVoices('Flying Squirrel Luigi',    () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelLuigi',),);
-        this.FLYING_SQUIRREL_TOAD =     new EditorVoices('Flying Squirrel Toad',     () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelToad',),);
-        this.FLYING_SQUIRREL_TOADETTE = new EditorVoices('Flying Squirrel Toadette', () => new EditorVoiceSoundHolderWithSingingPartBefore('FlyingSquirrelToadette',),);
-
-        this.SUPER_BELL =               new EditorVoices('Super Bell',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperBell',),);
-        this.CAT_MARIO =                new EditorVoices('Cat Mario',                () => new EditorVoiceSoundHolderWithSingingPartBefore('CatMario',),);
-        this.CAT_LUIGI =                new EditorVoices('Cat Luigi',                () => new EditorVoiceSoundHolderWithSingingPartBefore('CatLuigi',),);
-        this.CAT_TOAD =                 new EditorVoices('Cat Toad',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('CatToad',),);
-        this.CAT_TOADETTE =             new EditorVoices('Cat Toadette',             () => new EditorVoiceSoundHolderWithSingingPartBefore('CatToadette',),);
-
-        this.SUPER_HAMMER =             new EditorVoices('Super Hammer',             () => new EditorVoiceSoundHolderWithSingingPartBefore('SuperHammer',),);
-        this.BUILDER_MARIO =            new EditorVoices('Builder Mario',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderMario',),);
-        this.BUILDER_LUIGI =            new EditorVoices('Builder Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderLuigi',),);
-        this.BUILDER_TOAD =             new EditorVoices('Builder Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderToad',),);
-        this.BUILDER_TOADETTE =         new EditorVoices('Builder Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BuilderToadette',),);
-
-        this.BOOMERANG_FLOWER =         new EditorVoices('Boomerang Flower',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangFlower',),);
-        this.BOOMERANG_MARIO =          new EditorVoices('Boomerang Mario',          () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangMario',),);
-        this.BOOMERANG_LUIGI =          new EditorVoices('Boomerang Luigi',          () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangLuigi',),);
-        this.BOOMERANG_TOAD =           new EditorVoices('Boomerang Toad',           () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangToad',),);
-        this.BOOMERANG_TOADETTE =       new EditorVoices('Boomerang Toadette',       () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomerangToadette',),);
-
-        this.CANNON_BOX =               new EditorVoices('Cannon Box',               () => new EditorVoiceSoundHolderWithSingingPartBefore('CannonBox',),);
-        this.PROPELLER_BOX =            new EditorVoices('Propeller Box',            () => new EditorVoiceSoundHolderWithSingingPartBefore('PropellerBox',),);
-        this.GOOMBA_MASK =              new EditorVoices('Goomba Mask',              () => new EditorVoiceSoundHolderWithSingingPartBefore('GoombaMask',),);
-        this.BULLET_BILL_MASK =         new EditorVoices('Bullet Bill Mask',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BulletBillMask',),);
-        this.RED_POW_BOX =              new EditorVoices('Red POW Box',              () => new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBox',),);
-
-        this.SUPER_STAR =               new EditorVoices('Super Star',               () => new EditorVoiceSoundHolderWithVoiceBefore('superstar',),);
-
-        this.ONE_UP_MUSHROOM =          new EditorVoices('1-Up Mushroom',            () => new EditorVoiceSoundHolderWithVoiceBefore('oneupmushroom',),);
-        this.ROTTEN_MUSHROOM =          new EditorVoices('Rotten Mushroom',          () => new EditorVoiceSoundHolderWithSingingPartBefore('RottenMushroom',),);
-
-        this.SHOE_GOOMBA =              new EditorVoices('Shoe Goomba',              () => new EditorVoiceSoundHolderWithVoiceBefore('shoegoomba',),);
-        this.STILETTO_GOOMBA =          new EditorVoices('Stiletto Goomba',          () => new EditorVoiceSoundHolderWithVoiceBefore('stilettogoomba',),);
-        this.YOSHI_EGG =                new EditorVoices('Yoshi\'s Egg',             () => new EditorVoiceSoundHolderWithVoiceBefore('yoshiegg',),);
-        this.RED_YOSHI_EGG =            new EditorVoices('Red Yoshi\'s Egg',         () => new EditorVoiceSoundHolderWithSingingPartBefore('BigRedYoshisEgg',),);
-
-        //endregion -------------------- Power-up / Yoshi / Shoe + projectiles & player --------------------
-        //region -------------------- General enemies --------------------
-
-        this.GOOMBA =                   new EditorVoices('Goomba',                   () => new EditorVoiceSoundHolderWithVoiceBefore('goomba',),);
-        this.GALOOMBA =                 new EditorVoices('Galoomba',                 () => new EditorVoiceSoundHolderWithVoiceBefore('galoomba',),);
-        this.GOOMBRAT =                 new EditorVoices('Goombrat',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('Goombrat',),);
-        this.GOOMBUD =                  new EditorVoices('Goombud',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Goombud',),);
-
-        this.KOOPA_TROOPA =             new class EditorVoices_KoopaTroopa extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.GREEN_KOOPA_TROOPA, Import.Entities.RED_KOOPA_TROOPA,];
-                }
-
-            }('Koopa Troopa', () => new EditorVoiceSoundHolderWithVoiceBefore('koopatrooper',),);
-
-        this.DRY_BONES =                new class EditorVoices_DryBones extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.DRY_BONES, Import.Entities.PARABONES,];
-                }
-
-            }('Dry Bones', () => new EditorVoiceSoundHolderWithVoiceBefore('drybones',),);
-        this.DRY_BONES_SHELL =          new EditorVoices('Dry Bones Shell',          () => new EditorVoiceSoundHolderWithSingingPartBefore('DryBonesShell',),);
-
-        this.BUZZY_BEETLE =             new class EditorVoices_BuzzyBeetle extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.BUZZY_BEETLE, Import.Entities.PARA_BEETLE, Import.Entities.BUZZY_SHELL,];
-                }
-
-            }('Buzzy Beetle', () => new EditorVoiceSoundHolderWithVoiceBefore('buzzybeatle',),);
-
-        this.SPINY =                    new class EditorVoices_Spiny extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.SPINY, Import.Entities.WINGED_SPINY, Import.Entities.SPINY_EGG, Import.Entities.SPINY_SHELL,];
-                }
-
-            }('Spiny', () => new EditorVoiceSoundHolderWithVoiceBefore('spiny',),);
-
-        this.SPIKE_TOP =                new class EditorVoices_SpikeTop extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.SPIKE_TOP, Import.Entities.WINGED_SPIKE_TOP, Import.Entities.FAST_SPIKE_TOP, Import.Entities.FAST_WINGED_SPIKE_TOP,];
-                }
-
-            }('Spike Top', () => new EditorVoiceSoundHolderWithVoiceBefore('spiketop',),);
-
-        this.SKIPSQUEAK =               new EditorVoices('Skipsqueak',               () => new EditorVoiceSoundHolderWithSingingPartBefore('Skipsqueak',),);
-        this.SPINY_SKIPSQUEAK =         new EditorVoices('Spiny Skipsqueak',         () => new EditorVoiceSoundHolderWithSingingPartBefore('SpinySkipsqueak',),);
-
-        this.ANT_TROOPER =              new EditorVoices('Ant Trooper',              () => new EditorVoiceSoundHolderWithSingingPartBefore('AntTrooper',),);
-        this.HORNED_ANT_TROOPER =       new EditorVoices('Horned Ant Trooper',       () => new EditorVoiceSoundHolderWithSingingPartBefore('HornedAntTrooper',),);
-
-        this.STINGBY =                  new EditorVoices('Stingby',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Stingby',),);
-
-        this.CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.CHEEP_CHEEP, Import.Entities.BLURPS, Import.Entities.DEEP_CHEEP,];
-                }
-
-            }('Cheep Cheep', () => new EditorVoiceSoundHolderWithVoiceBefore('cheapcheap',),);
-        this.FISH_BONE =                new EditorVoices('Fish Bone',                () => new EditorVoiceSoundHolderWithSingingPartBefore('FishBones',),);
-
-        this.BLOOPER =                  new EditorVoices('Blooper',                  () => new EditorVoiceSoundHolderWithVoiceBefore('blooper',),);
-        this.BLOOPER_NANNY =            new EditorVoices('Blooper Nanny',            () => new EditorVoiceSoundHolderWithSingingPartBefore('BlooperNanny',),);
-
-        this.PORCUPUFFER =              new EditorVoices('Porcupuffer',              () => new EditorVoiceSoundHolderWithSingingPartBefore('Porcupuffer',),);
-
-        this.WIGGLER =                  new EditorVoices('Wiggler',                  () => new EditorVoiceSoundHolderWithVoiceBefore('wiggler',),);
-        this.ANGRY_WIGGLER =            new EditorVoices('Angry Wiggler',            () => new EditorVoiceSoundHolderWithSingingPartBefore('AngryWiggler',),);
-
-        this.PIRANHA_PLANT =            new EditorVoices('Piranha Plant',            () => new EditorVoiceSoundHolderWithVoiceBefore('piranhaplant',),);
-        this.JUMPING_PIRANHA_PLANT =    new EditorVoices('Jumping Piranha Plant',    () => new EditorVoiceSoundHolderWithVoiceBefore('jumpingpiranhaplant',),);
-        this.FIRE_PIRANHA_PLANT =       new EditorVoices('Fire Piranha Plant',       () => new EditorVoiceSoundHolderWithVoiceBefore('firepiranhaplant',),);
-        this.MUNCHER =                  new EditorVoices('Muncher',                  () => new EditorVoiceSoundHolderWithVoiceBefore('monchar',),);
-        this.PIRANHA_CREEPER =          new EditorVoices('Piranha Creeper',          () => new EditorVoiceSoundHolderWithSingingPartBefore('PiranhaCreeper',),);
-
-        this.CHAIN_CHOMP =              new EditorVoices('Chain Chomp',              () => new EditorVoiceSoundHolderWithVoiceBefore('chainchomp',),);
-        this.UNCHAINED_CHOMP =          new EditorVoices('Unchained Chomp',          () => new EditorVoiceSoundHolderWithSingingPartBefore('UnchainedChomp',),);
-
-        this.SPIKE =                    new EditorVoices('Spike',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Spike',),);
-        this.SPIKE_BALL =               new EditorVoices('Spike Ball',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SpikeBall',),);
-        this.SNOWBALL =                 new EditorVoices('Snowball',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('SnowBall',),);
-
-        this.LAKITU =                   new EditorVoices('Lakitu',                   () => new EditorVoiceSoundHolderWithVoiceBefore('lakitu',),);
-        this.LAKITU_CLOUD =             new EditorVoices('Lakitu\'s Cloud',          () => new EditorVoiceSoundHolderWithVoiceBefore('lakitucloud',),);
-
-        this.BOO =                      new EditorVoices('Boo',                      () => new EditorVoiceSoundHolderWithVoiceBefore('boo',),);
-        this.STRETCH =                  new EditorVoices('Stretch',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Stretch',),);
-        this.BOO_BUDDIES =              new EditorVoices('Boo Buddies',              () => new EditorVoiceSoundHolderWithVoiceBefore('boobuddies',),);
-        this.PEEPA =                    new EditorVoices('Peepa',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Peepa',),);
-
-        this.BOB_OMB =                  new EditorVoices('Bob-omb',                  () => new EditorVoiceSoundHolderWithVoiceBefore('bombomb',),);
-        this.LIT_BOB_OMB =              new EditorVoices('Lit Bob-omb',              () => new EditorVoiceSoundHolderWithSingingPartBefore('litBob-omb',),);
-
-        this.POKEY =                    new EditorVoices('Pokey',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Pokey',),);
-        this.SNOW_POKEY =               new EditorVoices('Snow Pokey',               () => new EditorVoiceSoundHolderWithSingingPartBefore('SnowPokey',),);
-
-        this.THWOMP =                   new EditorVoices('Thwomp',                   () => new EditorVoiceSoundHolderWithVoiceBefore('thwomp',),);
-
-        this.MONTY_MOLE =               new EditorVoices('Monty Mole',               () => new EditorVoiceSoundHolderWithVoiceBefore('montymole',),);
-        this.ROCKY_WRENCH =             new EditorVoices('Rocky Wrench',             () => new EditorVoiceSoundHolderWithVoiceBefore('rockeyrench',),);
-
-        this.MAGIKOOPA =                new EditorVoices('Magikoopa',                () => [new EditorVoiceSoundHolderWithVoiceBefore('magikoopa',), new EditorVoiceSoundHolderWithVoiceBefore('kameck_EU',),],);
-
-        this.HAMMER_BRO =               new EditorVoices('Hammer Bro',               () => new EditorVoiceSoundHolderWithVoiceBefore('hammerbro',),);
-        this.SLEDGE_BRO =               new EditorVoices('Sledge Bro',               () => new EditorVoiceSoundHolderWithVoiceBefore('sledgebro',),);
-        this.FIRE_BRO =                 new EditorVoices('Fire Bro',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('FireBro',),);
-        this.HEAVY_FIRE_BRO =           new EditorVoices('Heavy Fire Bro',           () => new EditorVoiceSoundHolderWithSingingPartBefore('HeavyFireBro',),);
-
-        this.LAVA_BUBBLE =              new EditorVoices('Lava Bubble',              () => new EditorVoiceSoundHolderWithVoiceBefore('lavabubble',),);
-
-        this.MECHAKOOPA =               new EditorVoices('Mechakoopa',               () => new EditorVoiceSoundHolderWithSingingPartBefore('Mechakoopa',),);
-        this.BLASTA_MECHAKOOPA =        new EditorVoices('Blasta Mechakoopa',        () => new EditorVoiceSoundHolderWithSingingPartBefore('BlastaMechakoopa',),);
-        this.ZAPPA_MECHAKOOPA =         new EditorVoices('Zappa Mechakoopa',         () => new EditorVoiceSoundHolderWithSingingPartBefore('ZappaMechakoopa',),);
-
-        this.CHARVAARGH =               new EditorVoices('Charvaargh',               () => new EditorVoiceSoundHolderWithSingingPartBefore('Charvaargh',),);
-
-        this.BULLY =                    new EditorVoices('Bully',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Bully',),);
-
-        //endregion -------------------- General enemies --------------------
-        //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
-
-        this.BILL_BLASTER =             new EditorVoices('Bill Blaster',             () => new EditorVoiceSoundHolderWithVoiceBefore('billblaster',),);
-        this.BULL_EYE_BLASTER =         new EditorVoices('Bull\'s-Eye Blaster',      () => new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBlaster',),);
-
-        this.BANZAI_BILL =              new EditorVoices('Banzai Bill',              () => new EditorVoiceSoundHolderWithSingingPartBefore('BanzaiBill',),);
-        this.BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,];
-                }
-
-            }('Bull\'s-Eye Banzai', () => new EditorVoiceSoundHolderWithSingingPartBefore('Bulls-EyeBanzai',),);
-
-        this.CANNON =                   new EditorVoices('Cannon',                   () => new EditorVoiceSoundHolderWithVoiceBefore('cannon',),);
-        this.RED_CANNON =               new EditorVoices('Red Cannon',               () => new EditorVoiceSoundHolderWithSingingPartBefore('redcannon',),);
-
-        this.BURNER =                   new EditorVoices('Burner',                   () => new EditorVoiceSoundHolderWithVoiceBefore('burner',),);
-
-        this.FIRE_BAR =                 new EditorVoices('Fire Bar',                 () => new EditorVoiceSoundHolderWithVoiceBefore('firebar',),);
-
-        this.SKEWER =                   new EditorVoices('Skewer',                   () => [new EditorVoiceSoundHolderWithVoiceBefore('skewer'), new EditorVoiceSoundHolderWithVoiceBefore('spikepiller'),],);
-
-        this.KOOPA_CLOWN_CAR =          new EditorVoices('Koopa Clown Car',          () => new EditorVoiceSoundHolderWithVoiceBefore('koopaclowncar',),);
-        this.JUNIOR_CLOWN_CAR =         new EditorVoices('Junior Clown Car',         () => new EditorVoiceSoundHolderWithVoiceBefore('juniorclowncar',),);
-        this.FIRE_KOOPA_CLOWN_CAR =     new EditorVoices('Fire Koopa Clown Car',     () => new EditorVoiceSoundHolderWithVoiceBefore('firekoopaclowncar',),);
-        this.FIRE_JUNIOR_CLOWN_CAR =    new EditorVoices('Fire Junior Clown Car',    () => new EditorVoiceSoundHolderWithVoiceBefore('firejuniorclowncar',),);
-
-        this.KOOPA_TROOPA_CAR =         new EditorVoices('Koopa Troopa Car',         () => new EditorVoiceSoundHolderWithSingingPartBefore('KoopaTroopaCar',),);
-
-        this.GRINDER =                  new EditorVoices('Grinder',                  () => new EditorVoiceSoundHolderWithVoiceBefore('grinder',),);
-
-        this.SUN =                      new class EditorVoices_Sun extends EditorVoices {
-
-                protected override get _createEntityReferences(): PossibleEntityReferences_Received {
-                    return [Import.Entities.ANGRY_SUN,];
-                }
-
-            }('Sun', () => new EditorVoiceSoundHolderWithSingingPartBefore('Sun',),);
-        this.MOON =                     new EditorVoices('Moon',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('Moon',),);
-
-        //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
-        //region -------------------- Bosses + projectiles --------------------
-
-        this.BOWSER =                   new EditorVoices('Bowser',                   () => new EditorVoiceSoundHolderWithVoiceBefore('bowser',),);
-        this.MEOWSER =                  new EditorVoices('Meowser',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Meowser',),);
-
-        this.BOWSER_JR =                new EditorVoices('Bowser Jr.',               () => new EditorVoiceSoundHolderWithVoiceBefore('bowserjr',),);
-
-        this.BOOM_BOOM =                new EditorVoices('Boom Boom',                () => new EditorVoiceSoundHolderWithSingingPartBefore('BoomBoom',),);
-        this.POM_POM =                  new EditorVoices('Pom Pom',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('PomPom',),);
-
-        this.LARRY =                    new EditorVoices('Larry',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Larry',),);
-        this.IGGY =                     new EditorVoices('Iggy',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('Iggy',),);
-        this.WENDY =                    new EditorVoices('Wendy',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Wendy',),);
-        this.LEMMY =                    new EditorVoices('Lemmy',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('Lemmy',),);
-        this.ROY =                      new EditorVoices('Roy',                      () => new EditorVoiceSoundHolderWithSingingPartBefore('Roy',),);
-        this.MORTON =                   new EditorVoices('Morton',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('Morton',),);
-        this.LUDWIG =                   new EditorVoices('Ludwig',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('Ludwig',),);
-
-        //endregion -------------------- Bosses + projectiles --------------------
-        //region -------------------- Passive gizmo / Key / Warp / Other --------------------
-
-        this.BUMPER =                   new EditorVoices('Bumper',                   () => new EditorVoiceSoundHolderWithVoiceBefore('bumper',),);
-
-        this.SWINGING_CLAW =            new EditorVoices('Swinging Claw',            () => new EditorVoiceSoundHolderWithSingingPartBefore('swingingclaw',),);
-
-        this.TWISTER =                  new EditorVoices('Twister',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('Twister',),);
-
-        this.ONE_WAY_WALL =             new EditorVoices('One-Way Wall',             () => new EditorVoiceSoundHolderWithVoiceBefore('onewaywall',),);
-
-        this.TRACK =                    new EditorVoices('Track',                    () => new EditorVoiceSoundHolderWithVoiceBefore('track',),);
-        this.TRACK_BLOCK =              new EditorVoices('Track Block',              () => new EditorVoiceSoundHolderWithSingingPartBefore('TrackBlock',),);
-
-        this.VINE =                     new EditorVoices('Vine',                     () => new EditorVoiceSoundHolderWithVoiceBefore('vine',),);
-        this.TREE =                     new EditorVoices('Tree',                     () => new EditorVoiceSoundHolderWithSingingPartBefore('tree',),);
-
-        this.ARROW_SIGN =               new EditorVoices('Arrow Sign',               () => new EditorVoiceSoundHolderWithSingingPartBefore('arrowsign',),);
-
-        this.CHECKPOINT_FLAG =          new EditorVoices('Checkpoint Flag',          () => new EditorVoiceSoundHolderWithSingingPartBefore('CheckpointFlag',),);
-
-        this.DASH_BLOCK =               new EditorVoices('Dash Block',               () => new EditorVoiceSoundHolderWithSingingPartBefore('DashBlock',),);
-
-        this.SNAKE_BLOCK =              new EditorVoices('Snake Block',              () => new EditorVoiceSoundHolderWithSingingPartBefore('SnakeBlock',),);
-        this.FAST_SNAKE_BLOCK =         new EditorVoices('Fast Snake Block',         () => new EditorVoiceSoundHolderWithSingingPartBefore('FastSnakeBlock',),);
-
-        this.CONVEYOR_BELT =            new EditorVoices('Conveyor Belt',            () => new EditorVoiceSoundHolderWithVoiceBefore('conveyorbelt',),);
-        this.FAST_CONVEYOR_BELT =       new EditorVoices('Fast Conveyor Belt',       () => new EditorVoiceSoundHolderWithSingingPartBefore('fastconveyorbelt',),);
-
-        this.MUSHROOM_TRAMPOLINE =      new EditorVoices('Mushroom Trampoline',      () => new EditorVoiceSoundHolderWithSingingPartBefore('MushroomTrampoline',),);
-        this.ON_OFF_TRAMPOLINE =        new EditorVoices('ON/OFF Trampoline',        () => new EditorVoiceSoundHolderWithSingingPartBefore('ONOFFTrampoline',),);
-
-        this.LIFT =                     new EditorVoices('Lift',                     () => new EditorVoiceSoundHolderWithVoiceBefore('lift',),);
-        this.FLIMSY_LIFT =              new EditorVoices('Flimsy Lift',              () => new EditorVoiceSoundHolderWithVoiceBefore('flimsylift',),);
-        this.CLOUD_LIFT =               new EditorVoices('Cloud Lift',               () => new EditorVoiceSoundHolderWithSingingPartBefore('CloudLift',),);
-
-        this.SEESAW =                   new EditorVoices('Seesaw',                   () => new EditorVoiceSoundHolderWithSingingPartBefore('seesaw',),);
-
-        this.LAVA_LIFT =                new EditorVoices('Lava Lift',                () => new EditorVoiceSoundHolderWithVoiceBefore('lavalift',),);
-        this.FAST_LAVA_LIFT =           new EditorVoices('Fast Lava Lift',           () => new EditorVoiceSoundHolderWithSingingPartBefore('FastLavaLift',),);
-
-        this.CRATE =                    new EditorVoices('Crate',                    () => new EditorVoiceSoundHolderWithSingingPartBefore('crate',),);
-
-        this.KEY =                      new EditorVoices('Key',                      () => new EditorVoiceSoundHolderWithSingingPartBefore('key',),);
-        this.CURSED_KEY =               new EditorVoices('Cursed Key',               () => new EditorVoiceSoundHolderWithSingingPartBefore('cursedkey',),);
-
-        this.TRAMPOLINE =               new EditorVoices('Trampoline',               () => new EditorVoiceSoundHolderWithVoiceBefore('trampline',),);
-        this.HOP_CHOPS =                new EditorVoices('Hop-Chops',                () => new EditorVoiceSoundHolderWithSingingPartBefore('Hop-Chops',),);
-
-        this.POW_BLOCK =                new EditorVoices('POW Block',                () => new EditorVoiceSoundHolderWithVoiceBefore('powblock',),);
-        this.RED_POW_BLOCK =            new EditorVoices('Red POW Block',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBlock',),);
-
-        this.P_SWITCH =                 new EditorVoices('P Switch',                 () => new EditorVoiceSoundHolderWithVoiceBefore('pswitch',),);
-
-        this.WARP_DOOR =                new EditorVoices('Warp Door',                () => new EditorVoiceSoundHolderWithVoiceBefore('warpdoor',),);
-        this.P_WARP_DOOR =              new EditorVoices('P Warp Door',              () => new EditorVoiceSoundHolderWithVoiceBefore('pwarpdoor',),);
-        this.KEY_DOOR =                 new EditorVoices('Key Door',                 () => new EditorVoiceSoundHolderWithVoiceBefore('keydoor',),);
-
-        this.WARP_BOX =                 new EditorVoices('Warp Box',                 () => new EditorVoiceSoundHolderWithSingingPartBefore('WarpBox',),);
-        this.WARP_BOX_WITH_KEY =        new EditorVoices('Warp Box (With Key)',      () => new EditorVoiceSoundHolderWithSingingPartBefore('WarpBox_withkey',),);
-
-        this.WING =                     new EditorVoices('Wing',                     () => new EditorVoiceSoundHolderWithVoiceBefore('wings',),);
-
-        //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
-    }
-
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EditorVoices;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>;
     #entityReferences?: EntityReferenceHolder;
     readonly #editorVoiceSoundHolder: ObjectHolder<EditorVoiceSound>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, editorVoiceSound: () => PossibleSoundReceivedOnFactory,) {
         super();

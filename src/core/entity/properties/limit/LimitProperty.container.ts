@@ -13,12 +13,12 @@ import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.contai
 export class LimitPropertyContainer
     implements LimitProperty {
 
-    //region -------------------- Static attributes --------------------
+    //region -------------------- Static fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<Key, LimitProperty> = new ExtendedMapContainer();
 
-    //endregion -------------------- Static attributes --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Static fields --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #editorLimitContainer;
     readonly #isGeneralLimitContainer;
@@ -129,7 +129,7 @@ export class LimitPropertyContainer
 
     //endregion -------------------- Custom limit --------------------
 
-    private __newMap(...values: readonly (EntityLimits | null)[]): Map<EntityLimits, boolean> {
+    #newMap(...values: readonly (EntityLimits | null)[]): Map<EntityLimits, boolean> {
         const newValues = values.filter(limit => limit != null) as EntityLimits[];
         return new Map(EntityLimits.values.map(limit => [limit, newValues.includes(limit),]));
     }
@@ -141,13 +141,13 @@ export class LimitPropertyContainer
     public toLimitInTheEditorMap() {
         const editorLimits = [this.editorLimit_smm1And3ds, this.editorLimit_smm2,];
 
-        return this.__newMap(...editorLimits.map(editorLimit => editorLimit instanceof EntityLimits ? editorLimit : null));
+        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof EntityLimits ? editorLimit : null));
     }
 
     public toLimitWhilePlayingMap() {
         const otherLimitWhilePlaying = this.otherLimitWhilePlaying;
 
-        return this.__newMap(
+        return this.#newMap(
             this.isInGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
             this.isInGlobalGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
             this.isInPowerUpLimitWhilePlaying === true ? EntityLimits.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING : null,
@@ -156,7 +156,7 @@ export class LimitPropertyContainer
         );
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(argumentsReceived: ArgumentsReceived, key: Key,): LimitProperty {

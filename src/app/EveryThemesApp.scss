@@ -1,0 +1,16 @@
+@import '../variables';
+@import '../mixin';
+
+.cardListElement-container {
+  .card-body {
+    display: flex;
+    flex-direction: row;
+    @include media-breakpoint-up($grid-breakpoint-sm) {
+      flex-direction: column;
+    }
+  }
+
+  img {
+    max-height: 2cm;
+  }
+}

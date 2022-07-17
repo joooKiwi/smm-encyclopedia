@@ -4,7 +4,7 @@
  */
 export class GlobalThemeOption {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     /**
      * A global theme on the {@link Times.DAY day time} & the {@link Times.NIGHT night time}.
@@ -26,7 +26,7 @@ export class GlobalThemeOption {
     readonly #dayValue;
     readonly #nightValue;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(dayValue: boolean, nightValue: boolean,) {
         this.#dayValue = dayValue;

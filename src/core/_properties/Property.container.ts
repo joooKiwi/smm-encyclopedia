@@ -32,14 +32,14 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOW
     public static readonly FALSE_WITH_AMOUNT_CONTAINER: FalseProperty<0> = new PropertyContainer(false, false, 0, null,);
 
     //endregion -------------------- Predefined properties --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #value: ObjectHolder<T>;
     readonly #isUnknown: IS_UNKNOWN;
     readonly #amount: AMOUNT;
     readonly #comment: COMMENT;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(value: PossibleValueOnObjectHolder<T>,)
     protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN,)

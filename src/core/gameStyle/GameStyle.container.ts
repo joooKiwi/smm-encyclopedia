@@ -11,14 +11,14 @@ export class GameStyleContainer
     extends ClassContainingAName<string>
     implements GameStyle {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #isInPropertyHolder;
     readonly #entitiesHolder;
     readonly #isAvailableFromTheStartHolder;
     readonly #nightDesertWindTranslationKey;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: PossibleValueOnObjectHolder<Name<string>>, isInProperty: ObjectHolder<GameProperty>, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>, entities: ObjectHolder<readonly Entity[]>, nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,);

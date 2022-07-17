@@ -13,12 +13,12 @@ export class InGameImage_SMM1Builder
     extends AbstractImageBuilder<ImageName_SMM1>
     implements Builder<InGameImage> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #GAME_STYLE_ARRAY = GameStyles.gameStyles_smm1;
     // static readonly #THEMES_ARRAY = Themes.courseThemes_smm1;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: ImageName_SMM1,) {
         super(name);

@@ -8,6 +8,7 @@ import type {Themes}                        from '../theme/Themes';
 import type {Times}                         from '../time/Times';
 
 import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
+import {isInProduction}                   from '../../variables';
 
 /**
  * A simple entity implementation, but without any specification.
@@ -21,25 +22,25 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     extends ClassContainingANameAndACategory<string, string, CATEGORY>
     implements Entity<CATEGORY, PROPERTY> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     protected static readonly NOT_APPLICABLE = 'N/A';
 
     readonly #propertyContainer;
     readonly #referencesContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category as CATEGORY,);
-        this.__testCategory(this.categoryContainer);
-        this.#propertyContainer = this.__testProperty(property);
+        this.#testCategory(this.categoryContainer);
+        this.#propertyContainer = this.#testProperty(property);
         this.#referencesContainer = references;
     }
 
-    private __testCategory(category: EntityCategory,): CATEGORY
-    private __testCategory(category: EntityCategory,) {
-        return process.env.NODE_ENV === 'production'
+    #testCategory(category: EntityCategory,): CATEGORY
+    #testCategory(category: EntityCategory,) {
+        return isInProduction
             ? category
             : this._testCategory(category);
     }
@@ -56,9 +57,9 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return category;
     }
 
-    private __testProperty(property: Property,): PROPERTY
-    private __testProperty(property: Property,) {
-        return process.env.NODE_ENV === 'production'
+    #testProperty(property: Property,): PROPERTY
+    #testProperty(property: Property,) {
+        return isInProduction
             ? property
             : this._testProperty(property);
     }

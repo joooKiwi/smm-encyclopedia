@@ -1,4 +1,8 @@
-.not-applicable, .is-unknown, .unknown-reference {
+.not-applicable, {
+  color: var(--bs-gray-500);
+}
+
+.is-unknown, .unknown-reference {
   color: var(--bs-red);
 }
 
@@ -15,7 +19,7 @@
   font-style: italic;
 }
 
- //region -------------------- Text related constants --------------------
+//region -------------------- Text related constants --------------------
 
 :root {
   --not-applicable: 'N/A';

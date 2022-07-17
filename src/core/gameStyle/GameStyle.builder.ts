@@ -22,7 +22,7 @@ export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
     implements Builder<GameStyle> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #GAME_PROPERTY_IN_ALL_GAMES: ObjectHolder<GameProperty<true, true, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(true, true,));
     static readonly #GAME_PROPERTY_IN_SMM2: ObjectHolder<GameProperty<false, false, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(false, true,));
@@ -31,27 +31,25 @@ export class GameStyleBuilder
     static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(true,));
     static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(false,));
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(templateBuilder: Builder<GameStyleTemplate>,) {
         super(templateBuilder,);
     }
 
-    //region -------------------- Dynamic imports attributes --------------------
-
     //region -------------------- Builder helper methods --------------------
 
-    private static __getNameBy(reference: PossibleAcronym,): () => Name<string> {
+    static #getNameBy(reference: PossibleAcronym,): () => Name<string> {
         return () => Import.GameReferences.getValue(reference).reference.nameContainer;
     }
 
-    private static __getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): ObjectHolder<GameProperty> {
+    static #getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): ObjectHolder<GameProperty> {
         return isInSMM1And3DS
             ? this.#GAME_PROPERTY_IN_ALL_GAMES
             : this.#GAME_PROPERTY_IN_SMM2;
     }
 
-    private static __getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
+    static #getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
         //TODO move this code elsewhere to remove duplicate code
         return value == null
             ? this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1
@@ -60,7 +58,7 @@ export class GameStyleBuilder
                 : this.#IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1;
     }
 
-    private static __getEntityBy(englishName: PossibleAcronym,): ObjectHolder<readonly Entity[]> {
+    static #getEntityBy(englishName: PossibleAcronym,): ObjectHolder<readonly Entity[]> {
         return new DelayedObjectHolderContainer(() => {
             const gameStyle = Import.GameStyles.getValue(englishName);
 
@@ -69,7 +67,7 @@ export class GameStyleBuilder
         });
     }
 
-    private static __getNightDesertWindTranslationKey({direction, frequency,}: NightDesertWindTemplate,): PossibleNightDesertWindTranslationKey {
+    static #getNightDesertWindTranslationKey({direction, frequency,}: NightDesertWindTemplate,): PossibleNightDesertWindTranslationKey {
         return direction == null
             ? null
             : `${direction} ${frequency}` as PossibleNightDesertWindTranslationKey;
@@ -81,11 +79,11 @@ export class GameStyleBuilder
         const template = this.template;
 
         return new GameStyleContainer(
-            GameStyleBuilder.__getNameBy(template.reference),
-            GameStyleBuilder.__getGameProperty(template.is.in.game),
-            GameStyleBuilder.__getIsAvailableFromTheStart(template.is.availableFromTheStart),
-            GameStyleBuilder.__getEntityBy(template.reference),
-            GameStyleBuilder.__getNightDesertWindTranslationKey(template.nightDesertWind),
+            GameStyleBuilder.#getNameBy(template.reference),
+            GameStyleBuilder.#getGameProperty(template.is.in.game),
+            GameStyleBuilder.#getIsAvailableFromTheStart(template.is.availableFromTheStart),
+            GameStyleBuilder.#getEntityBy(template.reference),
+            GameStyleBuilder.#getNightDesertWindTranslationKey(template.nightDesertWind),
         );
     }
 }

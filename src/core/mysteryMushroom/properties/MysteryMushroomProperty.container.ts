@@ -5,12 +5,12 @@ import type {UnlockProperty}          from './UnlockProperty';
 export class MysteryMushroomPropertyContainer
     implements MysteryMushroomProperty {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #unlockPropertyContainer;
     readonly #soundPropertyContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(unlock: UnlockProperty, sound: SoundProperty,) {
         this.#unlockPropertyContainer = unlock;

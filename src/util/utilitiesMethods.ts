@@ -1,4 +1,5 @@
 import {AssertionError} from 'assert';
+import {isInProduction} from '../variables';
 
 /**
  * Validate if an array is equals to another one.
@@ -30,7 +31,7 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
 }
 
 export function assert(condition: boolean, message: string,): asserts condition {
-    if (process.env.NODE_ENV === 'production')
+    if (isInProduction)
         return;
     if (!condition)
         throw new AssertionError({message: message,});

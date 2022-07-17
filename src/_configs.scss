@@ -13,6 +13,8 @@
   --soundEffectCategory-animations-bg-color: var(--bs-pink);
   --soundEffectCategory-music-bg-color: var(--bs-blue);
 
+  --mystery-mushroom-image: url('resources/images/Mystery Mushroom.png');
+
 }
 
 :root {
@@ -61,7 +63,232 @@
   --bs-z-index-tooltip: #{$z-index-tooltip-original};
 
   //endregion -------------------- Z-index variables --------------------
-  //region -------------------- Color variables --------------------
+  //region -------------------- Font-size variables --------------------
+
+  --bs-font-size-base: #{$font-size-base};
+  --bs-font-size-sm: #{$font-size-sm-original};
+  --bs-font-size-lg: #{$font-size-lg-original};
+  --bs-small-font-size: #{$small-font-size-original};
+  --bs-sub-sup-font-size: #{$sub-sup-font-size-original};
+
+  //endregion -------------------- Font-size variables --------------------
+  //region -------------------- Font-weight variables --------------------
+
+  --bs-font-weight-lighter: #{$font-weight-lighter-original};
+  --bs-font-weight-light: #{$font-weight-light-original};
+  --bs-font-weight-normal: #{$font-weight-normal-original};
+  --bs-font-weight-bold: #{$font-weight-bold-original};
+  --bs-font-weight-bolder: #{$font-weight-bolder-original};
+
+  //endregion -------------------- Font-weight variables --------------------
+
+  --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+}
+
+//region -------------------- Color variables --------------------
+
+:root {
+
+  --bs-blue-100: #{$blue-100};
+  --bs-blue-100-rgb: #{to-rgb($blue-100)};
+  --bs-blue-200: #{$blue-200};
+  --bs-blue-200-rgb: #{to-rgb($blue-200)};
+  --bs-blue-300: #{$blue-300};
+  --bs-blue-300-rgb: #{to-rgb($blue-300)};
+  --bs-blue-400: #{$blue-400};
+  --bs-blue-400-rgb: #{to-rgb($blue-400)};
+  --bs-blue-500: #{$blue-500};
+  --bs-blue-500-rgb: #{to-rgb($blue-500)};
+  --bs-blue-600: #{$blue-600};
+  --bs-blue-600-rgb: #{to-rgb($blue-600)};
+  --bs-blue-700: #{$blue-700};
+  --bs-blue-700-rgb: #{to-rgb($blue-700)};
+  --bs-blue-800: #{$blue-800};
+  --bs-blue-800-rgb: #{to-rgb($blue-800)};
+  --bs-blue-900: #{$blue-900};
+  --bs-blue-900-rgb: #{to-rgb($blue-900)};
+
+  --bs-indigo-100: #{$indigo-100};
+  --bs-indigo-100-rgb: #{to-rgb($indigo-100)};
+  --bs-indigo-200: #{$indigo-200};
+  --bs-indigo-200-rgb: #{to-rgb($indigo-200)};
+  --bs-indigo-300: #{$indigo-300};
+  --bs-indigo-300-rgb: #{to-rgb($indigo-300)};
+  --bs-indigo-400: #{$indigo-400};
+  --bs-indigo-400-rgb: #{to-rgb($indigo-400)};
+  --bs-indigo-500: #{$indigo-500};
+  --bs-indigo-500-rgb: #{to-rgb($indigo-500)};
+  --bs-indigo-600: #{$indigo-600};
+  --bs-indigo-600-rgb: #{to-rgb($indigo-600)};
+  --bs-indigo-700: #{$indigo-700};
+  --bs-indigo-700-rgb: #{to-rgb($indigo-700)};
+  --bs-indigo-800: #{$indigo-800};
+  --bs-indigo-800-rgb: #{to-rgb($indigo-800)};
+  --bs-indigo-900: #{$indigo-900};
+  --bs-indigo-900-rgb: #{to-rgb($indigo-900)};
+
+  --bs-purple-100: #{$purple-100};
+  --bs-purple-100-rgb: #{to-rgb($purple-100)};
+  --bs-purple-200: #{$purple-200};
+  --bs-purple-200-rgb: #{to-rgb($purple-200)};
+  --bs-purple-300: #{$purple-300};
+  --bs-purple-300-rgb: #{to-rgb($purple-300)};
+  --bs-purple-400: #{$purple-400};
+  --bs-purple-400-rgb: #{to-rgb($purple-400)};
+  --bs-purple-500: #{$purple-500};
+  --bs-purple-500-rgb: #{to-rgb($purple-500)};
+  --bs-purple-600: #{$purple-600};
+  --bs-purple-600-rgb: #{to-rgb($purple-600)};
+  --bs-purple-700: #{$purple-700};
+  --bs-purple-700-rgb: #{to-rgb($purple-700)};
+  --bs-purple-800: #{$purple-800};
+  --bs-purple-800-rgb: #{to-rgb($purple-800)};
+  --bs-purple-900: #{$purple-900};
+  --bs-purple-900-rgb: #{to-rgb($purple-900)};
+
+  --bs-pink-100: #{$pink-100};
+  --bs-pink-100-rgb: #{to-rgb($pink-100)};
+  --bs-pink-200: #{$pink-200};
+  --bs-pink-200-rgb: #{to-rgb($pink-200)};
+  --bs-pink-300: #{$pink-300};
+  --bs-pink-300-rgb: #{to-rgb($pink-300)};
+  --bs-pink-400: #{$pink-400};
+  --bs-pink-400-rgb: #{to-rgb($pink-400)};
+  --bs-pink-500: #{$pink-500};
+  --bs-pink-500-rgb: #{to-rgb($pink-500)};
+  --bs-pink-600: #{$pink-600};
+  --bs-pink-600-rgb: #{to-rgb($pink-600)};
+  --bs-pink-700: #{$pink-700};
+  --bs-pink-700-rgb: #{to-rgb($pink-700)};
+  --bs-pink-800: #{$pink-800};
+  --bs-pink-800-rgb: #{to-rgb($pink-800)};
+  --bs-pink-900: #{$pink-900};
+  --bs-pink-900-rgb: #{to-rgb($pink-900)};
+
+  --bs-red-100: #{$red-100};
+  --bs-red-100-rgb: #{to-rgb($red-100)};
+  --bs-red-200: #{$red-200};
+  --bs-red-200-rgb: #{to-rgb($red-200)};
+  --bs-red-300: #{$red-300};
+  --bs-red-300-rgb: #{to-rgb($red-300)};
+  --bs-red-400: #{$red-400};
+  --bs-red-400-rgb: #{to-rgb($red-400)};
+  --bs-red-500: #{$red-500};
+  --bs-red-500-rgb: #{to-rgb($red-500)};
+  --bs-red-600: #{$red-600};
+  --bs-red-600-rgb: #{to-rgb($red-600)};
+  --bs-red-700: #{$red-700};
+  --bs-red-700-rgb: #{to-rgb($red-700)};
+  --bs-red-800: #{$red-800};
+  --bs-red-800-rgb: #{to-rgb($red-800)};
+  --bs-red-900: #{$red-900};
+  --bs-red-900-rgb: #{to-rgb($red-900)};
+
+  --bs-orange-100: #{$orange-100};
+  --bs-orange-100-rgb: #{to-rgb($orange-100)};
+  --bs-orange-200: #{$orange-200};
+  --bs-orange-200-rgb: #{to-rgb($orange-200)};
+  --bs-orange-300: #{$orange-300};
+  --bs-orange-300-rgb: #{to-rgb($orange-300)};
+  --bs-orange-400: #{$orange-400};
+  --bs-orange-400-rgb: #{to-rgb($orange-400)};
+  --bs-orange-500: #{$orange-500};
+  --bs-orange-500-rgb: #{to-rgb($orange-500)};
+  --bs-orange-600: #{$orange-600};
+  --bs-orange-600-rgb: #{to-rgb($orange-600)};
+  --bs-orange-700: #{$orange-700};
+  --bs-orange-700-rgb: #{to-rgb($orange-700)};
+  --bs-orange-800: #{$orange-800};
+  --bs-orange-800-rgb: #{to-rgb($orange-800)};
+  --bs-orange-900: #{$orange-900};
+  --bs-orange-900-rgb: #{to-rgb($orange-900)};
+
+  --bs-yellow-100: #{$yellow-100};
+  --bs-yellow-100-rgb: #{to-rgb($yellow-100)};
+  --bs-yellow-200: #{$yellow-200};
+  --bs-yellow-200-rgb: #{to-rgb($yellow-200)};
+  --bs-yellow-300: #{$yellow-300};
+  --bs-yellow-300-rgb: #{to-rgb($yellow-300)};
+  --bs-yellow-400: #{$yellow-400};
+  --bs-yellow-400-rgb: #{to-rgb($yellow-400)};
+  --bs-yellow-500: #{$yellow-500};
+  --bs-yellow-500-rgb: #{to-rgb($yellow-500)};
+  --bs-yellow-600: #{$yellow-600};
+  --bs-yellow-600-rgb: #{to-rgb($yellow-600)};
+  --bs-yellow-700: #{$yellow-700};
+  --bs-yellow-700-rgb: #{to-rgb($yellow-700)};
+  --bs-yellow-800: #{$yellow-800};
+  --bs-yellow-800-rgb: #{to-rgb($yellow-800)};
+  --bs-yellow-900: #{$yellow-900};
+  --bs-yellow-900-rgb: #{to-rgb($yellow-900)};
+
+  --bs-green-100: #{$green-100};
+  --bs-green-100-rgb: #{to-rgb($green-100)};
+  --bs-green-200: #{$green-200};
+  --bs-green-200-rgb: #{to-rgb($green-200)};
+  --bs-green-300: #{$green-300};
+  --bs-green-300-rgb: #{to-rgb($green-300)};
+  --bs-green-400: #{$green-400};
+  --bs-green-400-rgb: #{to-rgb($green-400)};
+  --bs-green-500: #{$green-500};
+  --bs-green-500-rgb: #{to-rgb($green-500)};
+  --bs-green-600: #{$green-600};
+  --bs-green-600-rgb: #{to-rgb($green-600)};
+  --bs-green-700: #{$green-700};
+  --bs-green-700-rgb: #{to-rgb($green-700)};
+  --bs-green-800: #{$green-800};
+  --bs-green-800-rgb: #{to-rgb($green-800)};
+  --bs-green-900: #{$green-900};
+  --bs-green-900-rgb: #{to-rgb($green-900)};
+
+  --bs-teal-100: #{$teal-100};
+  --bs-teal-100-rgb: #{to-rgb($teal-100)};
+  --bs-teal-200: #{$teal-200};
+  --bs-teal-200-rgb: #{to-rgb($teal-200)};
+  --bs-teal-300: #{$teal-300};
+  --bs-teal-300-rgb: #{to-rgb($teal-300)};
+  --bs-teal-400: #{$teal-400};
+  --bs-teal-400-rgb: #{to-rgb($teal-400)};
+  --bs-teal-500: #{$teal-500};
+  --bs-teal-500-rgb: #{to-rgb($teal-500)};
+  --bs-teal-600: #{$teal-600};
+  --bs-teal-600-rgb: #{to-rgb($teal-600)};
+  --bs-teal-700: #{$teal-700};
+  --bs-teal-700-rgb: #{to-rgb($teal-700)};
+  --bs-teal-800: #{$teal-800};
+  --bs-teal-800-rgb: #{to-rgb($teal-800)};
+  --bs-teal-900: #{$teal-900};
+  --bs-teal-900-rgb: #{to-rgb($teal-900)};
+
+  --bs-cyan-100: #{$cyan-100};
+  --bs-cyan-100-rgb: #{to-rgb($cyan-100)};
+  --bs-cyan-200: #{$cyan-200};
+  --bs-cyan-200-rgb: #{to-rgb($cyan-200)};
+  --bs-cyan-300: #{$cyan-300};
+  --bs-cyan-300-rgb: #{to-rgb($cyan-300)};
+  --bs-cyan-400: #{$cyan-400};
+  --bs-cyan-400-rgb: #{to-rgb($cyan-400)};
+  --bs-cyan-500: #{$cyan-500};
+  --bs-cyan-500-rgb: #{to-rgb($cyan-500)};
+  --bs-cyan-600: #{$cyan-600};
+  --bs-cyan-600-rgb: #{to-rgb($cyan-600)};
+  --bs-cyan-700: #{$cyan-700};
+  --bs-cyan-700-rgb: #{to-rgb($cyan-700)};
+  --bs-cyan-800: #{$cyan-800};
+  --bs-cyan-800-rgb: #{to-rgb($cyan-800)};
+  --bs-cyan-900: #{$cyan-900};
+  --bs-cyan-900-rgb: #{to-rgb($cyan-900)};
+
+  --bs-gray-100-rgb: #{to-rgb($gray-100)};
+  --bs-gray-200-rgb: #{to-rgb($gray-200)};
+  --bs-gray-300-rgb: #{to-rgb($gray-300)};
+  --bs-gray-400-rgb: #{to-rgb($gray-400)};
+  --bs-gray-500-rgb: #{to-rgb($gray-500)};
+  --bs-gray-600-rgb: #{to-rgb($gray-600)};
+  --bs-gray-700-rgb: #{to-rgb($gray-700)};
+  --bs-gray-800-rgb: #{to-rgb($gray-800)};
+  --bs-gray-900-rgb: #{to-rgb($gray-900)};
 
   --bs-black: #{$black};
 
@@ -217,11 +444,9 @@
   --bs-dark-900: #{$dark-900};
   --bs-dark-900-rgb: #{to-rgb($dark-900)};
 
-  //endregion -------------------- Color variables --------------------
-
-  --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-
 }
+
+//endregion -------------------- Color variables --------------------
 
 .rounded-circle {
   border-radius: var(--bs-border-circle-radius);

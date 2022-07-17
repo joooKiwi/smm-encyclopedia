@@ -10,12 +10,12 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     extends ClassContainingAName<string>
     implements Theme {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #isInProperty;
     readonly #isAvailableFromTheStartHolder;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(name: Name<string>, isInProperty: PROPERTY, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>,) {
         super(name,);

@@ -8,7 +8,7 @@ import type {Times}                         from '../../time/Times';
 export class EntityReferencesContainer
     implements EntityReferences {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #referenceInSuperMarioBrosStyle;
     readonly #referenceInSuperMarioBros3Style;
@@ -35,7 +35,7 @@ export class EntityReferencesContainer
     readonly #everyTimeReferences;
     readonly #everyReferences;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     //TODO change the singular references to a GameStyle, Theme & Time structure based objects.
     public constructor(referenceInSuperMarioBrosStyle: ObjectHolder<PossibleOtherEntities>, referenceInSuperMarioBros3Style: ObjectHolder<PossibleOtherEntities>, referenceInSuperMarioWorldStyle: ObjectHolder<PossibleOtherEntities>, referenceInNewSuperMarioBrosUStyle: ObjectHolder<PossibleOtherEntities>, referenceInSuperMario3DWorldStyle: ObjectHolder<PossibleOtherEntities>,

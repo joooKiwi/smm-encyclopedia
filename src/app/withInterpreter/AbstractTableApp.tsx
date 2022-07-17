@@ -12,11 +12,11 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractCardListApp<APP, T, S> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static #APP_OPTION_INTERPRETER: readonly ViewDisplays[] = [ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST, ViewDisplays.TABLE,];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Create methods --------------------
 
     protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
@@ -26,7 +26,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     //endregion -------------------- Create methods --------------------
     //region -------------------- Render methods --------------------
 
-    private __tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {
+    #tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {
         const content = [] as SingleTableContent[];
         let index = 1;
         for (const enumerable of optionInterpreter.iterable) {
@@ -50,10 +50,12 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
      */
     public createTable(): ReactElement {
         const optionInterpreter = this._appOptionInterpreter;
-        return <Table key={`${this._key} (table)`}
+        const key = this._key;
+
+        return <Table key={`${key} (table)`}
                       {...optionInterpreter.tableProperties}
-                      id={`${this._key}-table`}
-                      content={this.__tableContent(optionInterpreter)}
+                      id={`${key}-table`}
+                      content={this.#tableContent(optionInterpreter)}
                       headers={[
                           {key: 'originalOrder', element: <>#</>,},
                           ...(optionInterpreter.tableOptions

@@ -4,12 +4,12 @@ import type {EditorVoiceSoundHolder}                                            
 export abstract class AbstractEditorVoiceSoundHolder<T extends PossibleStartingName_WithVoiceBefore, U extends PossibleStartingName_WithSingingPartBefore, >
     implements EditorVoiceSoundHolder<PossibleFileName<T, U>> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #simpleFileName;
     #fileName?: PossibleFileName<T, U>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(fileName: | T | U,) {
         this.#simpleFileName = fileName;

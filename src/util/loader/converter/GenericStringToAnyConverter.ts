@@ -3,13 +3,13 @@ import {AbstractStringConverter} from './AbstractStringConverter';
 export class GenericStringToAnyConverter<T>
     extends AbstractStringConverter<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #typeName;
     readonly #isValueValidCallback;
     readonly #convertTheValueCallback;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(originalValue: string,
                        typeName: string,
@@ -23,15 +23,15 @@ export class GenericStringToAnyConverter<T>
 
     //region -------------------- Getter methods --------------------
 
-    protected get typeName() {
+    protected get _typeName() {
         return this.#typeName;
     }
 
-    protected get isValueValidCallback() {
+    protected get _isValueValidCallback() {
         return this.#isValueValidCallback;
     }
 
-    protected get convertTheValueCallback() {
+    protected get _convertTheValueCallback() {
         return this.#convertTheValueCallback;
     }
 
@@ -39,15 +39,15 @@ export class GenericStringToAnyConverter<T>
     //region -------------------- Methods --------------------
 
     protected override _convertTheValue(validValue: string,) {
-        return this.convertTheValueCallback(validValue);
+        return this._convertTheValueCallback(validValue);
     }
 
     protected override _newError() {
-        return new TypeError(`The value "${this.originalValue}" could not be converted to a "${this.typeName}".`);
+        return new TypeError(`The value "${this.originalValue}" could not be converted to a "${this._typeName}".`);
     }
 
     public override isValueValid(value: string,): boolean {
-        return this.isValueValidCallback(value);
+        return this._isValueValidCallback(value);
     }
 
     //endregion -------------------- Methods --------------------

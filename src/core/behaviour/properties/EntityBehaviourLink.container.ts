@@ -7,6 +7,7 @@ import type {PossibleGroupName}                 from '../../entityTypes';
 import {assert}                       from '../../../util/utilitiesMethods';
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 import {Entities}                     from '../../entity/Entities';
+import {ObjectHolders}                from '../../../util/holder/objectHolders';
 
 /**
  * @multiton
@@ -28,14 +29,14 @@ export class EntityBehaviourLinkContainer
     static readonly #POWER_UPS_LINK =           new EntityBehaviourLinkContainer('Power-ups', null,             );
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #groupLinkHolder: ObjectHolder<| object | null>;
     readonly #entityLinkHolder: ObjectHolder<| Entity | null>;
 
     private constructor(groupLink: | PossibleGroupName | null, entityLink: | EntityName | null,) {
-        this.#groupLinkHolder = new DelayedObjectHolderContainer(() => groupLink == null ? null : EntityBehaviourLinkContainer.__getEntityGroupByName(groupLink));
-        this.#entityLinkHolder = new DelayedObjectHolderContainer(() => entityLink == null ? null : EntityBehaviourLinkContainer.__getEntityByName(entityLink));
+        this.#groupLinkHolder = groupLink == null ? ObjectHolders.NULL : new DelayedObjectHolderContainer(() => EntityBehaviourLinkContainer.#getEntityGroupByName(groupLink));
+        this.#entityLinkHolder = entityLink == null ? ObjectHolders.NULL : new DelayedObjectHolderContainer(() => EntityBehaviourLinkContainer.#getEntityByName(entityLink));
     }
 
 
@@ -48,15 +49,15 @@ export class EntityBehaviourLinkContainer
     }
 
 
-    private static __getEntityGroupByName(name: PossibleGroupName,): object {
+    static #getEntityGroupByName(name: PossibleGroupName,): object {
         return {};//TODO implement this methods when the group name is added.
     }
 
-    private static __getEntityByName(name: EntityName,): Entity {
+    static #getEntityByName(name: EntityName,): Entity {
         return Entities.getValue(name).reference;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
 
     public static get(groupLink: | PossibleGroupName | null, entityLink: | EntityName | null,): EntityBehaviourLink {
         if (groupLink == null && entityLink == null)

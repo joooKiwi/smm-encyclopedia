@@ -46,6 +46,7 @@ export type EmptyGameStyleName = 'Empty game style';
 
 export type EmptyCourseThemeName = 'Empty course theme';
 export type EmptyWorldThemeName = 'Empty world theme';
+export type EmptyCourseAndWorldThemeName = 'Empty course & world theme';
 
 //endregion -------------------- Theme types --------------------
 //region -------------------- Name types --------------------
@@ -96,7 +97,7 @@ export type EveryPossibleEmptyName =
 
     | EmptyGameStyleName
 
-    | EmptyCourseThemeName | EmptyWorldThemeName
+    | EmptyCourseThemeName | EmptyWorldThemeName | EmptyCourseAndWorldThemeName
 
     | EmptyNameName
 

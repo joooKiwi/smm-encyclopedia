@@ -10,11 +10,11 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
     T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractSimpleListApp<APP, T, S> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static #APP_OPTION_INTERPRETER: readonly ViewDisplays[] = [ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Create methods --------------------
 
     protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
@@ -30,17 +30,18 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
      */
     public createCardList(): ReactElement {
         const optionInterpreter = this._appOptionInterpreter;
+        const key = this._key;
 
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
             const englishName = enumerable.englishName;
             const name = enumerable.reference.nameContainer;
-            const id = `${this._key}-${enumerable.englishNameInHtml}-container`;
+            const id = `${key}-${enumerable.englishNameInHtml}-container`;
 
             //TODO change the popover to be on the id instead of the name directly
             content.push(
                 <div key={`${englishName} - main card list container`} id={id}
-                     className={`${this._key}-container listElement-container col-12 col-sm-4 col-md-3 col-lg-2`}>
+                     className={`${key}-container listElement-container col-12 col-sm-4 col-md-3 col-lg-2`}>
                     <div key={`${name} - main card list sub-container`} className="cardListElement-container rounded-pill">
                         <NameComponent key={`${englishName} - text container`} id="name" name={name} popoverOrientation="left"/>
                         <div className="cardListName-content-container">{optionInterpreter.createCardListContent(enumerable)}</div>

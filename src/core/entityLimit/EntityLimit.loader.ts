@@ -159,11 +159,11 @@ class TemplateBuilder
         const acronym = this._getContent(this._headersIndexMap.acronym);
 
         return type == null
-            ? this.__createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronym,)
-            : this.__createLimitTemplate(type, acronym as PossibleNullableAcronym,);
+            ? this.#createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronym,)
+            : this.#createLimitTemplate(type, acronym as PossibleNullableAcronym,);
     }
 
-    private __createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
+    #createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
         return {
 
             references: {
@@ -175,14 +175,14 @@ class TemplateBuilder
 
             acronym: acronym,
 
-            limit: this.__createLimitAmountTemplate(),
+            limit: this.#createLimitAmountTemplate(),
 
             name: this._createNameTemplate(),
 
         };
     }
 
-    private __createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronym,): AlternativeLimitTemplate {
+    #createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronym,): AlternativeLimitTemplate {
         return {
 
             references: TemplateBuilder.#EMPTY_REFERENCES,
@@ -198,7 +198,7 @@ class TemplateBuilder
     }
 
 
-    private __createLimitAmountTemplate(): LimitAmountTemplate {
+    #createLimitAmountTemplate(): LimitAmountTemplate {
         const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1And3DS);
         const limit_SMM2 = this._getContent(this._headersIndexMap.limit_SMM2);
 

@@ -13,13 +13,13 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
     extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
     implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #acronym;
     readonly #typeHolder;
     readonly #limitHolder;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: ObjectHolder<EntityLimitTypes>, limitAmount: ObjectHolder<EntityLimitAmount>,) {
         super(name, alternative,);

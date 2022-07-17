@@ -1,65 +1,87 @@
-import './GameStylesApp.scss';
+import './EveryGameStylesApp.scss';
 
-import type {GameStyleAppStates}   from './AppStates.types';
-import type {SingleHeadersContent} from './tools/table/SimpleHeader';
-import type {SingleTableContent}   from './tools/table/Table.types';
+import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
+import type {GameStyleAppStates}                                 from './AppStates.types';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
 
-import AbstractApp                     from './AbstractApp';
+import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {GameStyleAppOption}            from './options/GameStyleAppOption';
 import {GameStyles}                    from '../core/gameStyle/GameStyles';
-import Table                           from './tools/table/Table';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
  */
 export default class EveryGameStylesApp
-    extends AbstractApp<{}, GameStyleAppStates> {
-
+    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, {}, GameStyleAppStates> {
 
     public constructor(props: {},) {
         super(props,);
-        GameStyleAppOption.REFERENCE = this;
-        this.state = GameStyleAppOption.createDefaultState;
+        this.state = {
+            typeDisplayed: ViewDisplays.TABLE,
+        };
     }
 
-    //region -------------------- Methods --------------------
+    //region -------------------- Create methods --------------------
 
-    protected get content() {
-        const content = [] as SingleTableContent[];
-        let index = 1;
-        for (const enumerable of GameStyles) {
-            GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumerable;
-
-            content.push([enumerable.englishName,
-                ...[
-                    <>{index}</>,
-                    GameStyleAppOption.IMAGE.renderContent,
-                    GameStyleAppOption.NAME.renderContent,
-                    GameStyleAppOption.GAME.renderContent,
-                    GameStyleAppOption.NIGHT_DESERT_WIND.renderContent,
-                ].flat(),
-            ]);
-            index++;
-        }
-        return content;
+    protected override _createKey(): string {
+        return 'gameStyle';
     }
 
-    //endregion -------------------- Methods --------------------
-
-    protected override _mainContent() {
-        return <Table
-            id="gameStyle-table"
-            caption={<GameContentTranslationComponent translationKey="Every game styles"/>}
-            headers={[
-                {key: 'originalOrder', element: <>#</>,},
-                GameStyleAppOption.IMAGE.renderTableHeader,
-                GameStyleAppOption.NAME.renderTableHeader,
-                GameStyleAppOption.GAME.renderTableHeader,
-                GameStyleAppOption.NIGHT_DESERT_WIND.renderTableHeader,
-            ].filter(header => header != null) as SingleHeadersContent}
-            content={this.content}
-        />;
+    protected override _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent translationKey="Every game styles"/>;
     }
+
+    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
+        return new class implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
+
+            public get iterable(): IterableIterator<GameStyles> {
+                return GameStyles[Symbol.iterator]();
+            }
+
+            //region -------------------- Card list interpreter --------------------
+
+            public createCardListContent(enumerable: GameStyles,): ReactElement {
+                return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>
+                    {enumerable.renderSingleComponent}
+                </div>;
+            }
+
+            //endregion -------------------- Card list interpreter --------------------
+
+            public set callbackToGetEnumerable(value: () => GameStyles,) {
+                GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION = value;
+            }
+
+            public get tableOptions(): GameStyleAppOption[] {
+                return [
+                    GameStyleAppOption.IMAGE,
+                    GameStyleAppOption.NAME,
+                    GameStyleAppOption.GAME,
+                    GameStyleAppOption.NIGHT_DESERT_WIND,
+                ];
+            }
+
+            public get tableProperties(): SimplifiedTableProperties {
+                return {
+                    caption: <GameContentTranslationComponent translationKey="Every game styles"/>,
+                };
+            }
+
+
+            public createTableContent(option: GameStyleAppOption,): readonly ReactElement[] {
+                return option.renderContent;
+            }
+
+            public createTableHeader(option: GameStyleAppOption,): | SingleHeaderContent | null {
+                return option.renderTableHeader;
+            }
+
+        }();
+    }
+
+    //endregion -------------------- Create methods --------------------
 
 }

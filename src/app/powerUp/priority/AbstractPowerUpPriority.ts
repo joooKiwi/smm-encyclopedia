@@ -10,20 +10,20 @@ import {Times}                        from '../../../core/time/Times';
 import {GameStyles}                   from '../../../core/gameStyle/GameStyles';
 import {Entities}                     from '../../../core/entity/Entities';
 
-//region Import from deconstruction
+//region -------------------- Import from deconstruction --------------------
 
 const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD} = GameStyles;
 
-//endregion Import from deconstruction
+//endregion -------------------- Import from deconstruction --------------------
 
 export abstract class AbstractPowerUpPriority
     implements PowerUpPriority {
 
-    //region Attributes
+    //region -------------------- Fields --------------------
 
     protected static _EMPTY_CALLBACK = () => EMPTY_ARRAY;
 
-    //region Game styles
+    //region -------------------- Game styles --------------------
 
     public static readonly SMB_AND_SMB3 = [SUPER_MARIO_BROS, SUPER_MARIO_BROS_3,] as const;
     public static readonly SMW_AND_NSMBU = [SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U,] as const;
@@ -36,21 +36,21 @@ export abstract class AbstractPowerUpPriority
 
     public static readonly ALL_GAME_STYLES = GameStyles.values;
 
-    //endregion Game styles
-    //region image callbacks
+    //endregion -------------------- Game styles --------------------
+    //region -------------------- Image callbacks --------------------
 
     public static FIRST_EDITOR_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => [this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0],];
     public static EDITOR_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(false, gameStyle, Themes.GROUND, Times.DAY,);
     public static IN_GAME_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(false, gameStyle, Themes.GROUND,);
     public static CLEAR_CONDITION_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => entity.clearConditionImage.get(gameStyle,);
 
-    //endregion image callbacks
+    //endregion -------------------- Image callbacks --------------------
 
     readonly #nameHolder: ObjectHolder<Name<string>>;
     readonly #imagesHolder: ObjectHolder<readonly string[]>;
     readonly #isIn;
 
-    //endregion Attributes
+    //endregion -------------------- Fields --------------------
 
     protected constructor(nameCallback: () => Name<string>, imagesCallback: ImagesCallback, isIn: ClassInAnySuperMarioMakerGame,) {
         this.#nameHolder = new DelayedObjectHolderContainer(nameCallback);
@@ -58,7 +58,7 @@ export abstract class AbstractPowerUpPriority
         this.#isIn = isIn;
     }
 
-    //region Getter methods
+    //region -------------------- Getter methods --------------------
 
     public get name(): Name<string> {
         return this.#nameHolder.get;
@@ -78,6 +78,6 @@ export abstract class AbstractPowerUpPriority
             .map(gameStyle => this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat();
     }
 
-    //endregion Getter methods
+    //endregion -------------------- Getter methods --------------------
 
 }

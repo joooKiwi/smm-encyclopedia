@@ -18,7 +18,7 @@ export class UnlockPropertyContainer
     readonly #argumentsReceived: ArgumentsReceived;
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #conditionToUnlockIt;
     readonly #canBeUnlockedByAnAmiibo;
@@ -38,7 +38,7 @@ export class UnlockPropertyContainer
         return this.#canBeUnlockedByAnAmiibo;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(conditionToUnlockIt: PossibleConditionToUnlockIt, canBeUnlockedByAnAmiibo: boolean,): UnlockProperty {

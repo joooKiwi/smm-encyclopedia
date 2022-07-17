@@ -9,7 +9,7 @@ import {OfficialNotifications}               from '../OfficialNotifications';
 export class OfficialNotificationHolderBuilder
     implements Builder<OfficialNotificationHolder> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #NUMBER_ONLY_REGEX = /^\d+$/;
     static readonly #OFFICIAL_NOTIFICATION_SEPARATOR = ' ';
@@ -18,7 +18,7 @@ export class OfficialNotificationHolderBuilder
 
     readonly #name;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: | PossibleEnglishNameWithOnlyAmount | null,) {
         this.#name = name;

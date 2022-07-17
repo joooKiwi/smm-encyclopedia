@@ -9,7 +9,7 @@ import {GameStyles}           from './GameStyles';
 export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT extends number = number, >
     implements Builder<Image> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #GAME_STYLE_ARRAY = GameStyles.values;
 
@@ -18,7 +18,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
 
     #gameStyles?: ExtendedList<GameStyles>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(simpleImageName: NAME, imageNumber?: AMOUNT,)
     protected constructor(simpleImageName: NAME, imageNumber: | AMOUNT | null = null,) {

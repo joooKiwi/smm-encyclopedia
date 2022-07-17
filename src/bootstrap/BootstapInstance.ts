@@ -7,7 +7,7 @@ import {assert} from '../util/utilitiesMethods';
 
 export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static #referencesMaps: Map<StaticBootstrapInstance, Template> = new Map();
 
@@ -15,7 +15,7 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
     readonly #elementId: ID;
     readonly #instance: INSTANCE;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(instance: STATIC_INSTANCE, element: | ID | ELEMENT, options: Partial<OPTION>,) {
         if (typeof element === 'string') {
@@ -28,7 +28,7 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
             this.#elementId = element.id as ID;
         }
         this.#instance = this._createInstance(options);
-        BootstrapInstance.__addReference(instance, this,);
+        BootstrapInstance.#addReference(instance, this,);
     }
 
     protected abstract _createInstance(options: Partial<OPTION>,): INSTANCE
@@ -55,7 +55,7 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    private static __addReference(staticInstance: StaticBootstrapInstance, instance: GenericBootstrapInstance,): void {
+    static #addReference(staticInstance: StaticBootstrapInstance, instance: GenericBootstrapInstance,): void {
         if (!this.__referencesMaps.has(staticInstance))
             this.__referencesMaps.set(staticInstance, {id: new Map(), element: new Map(),});
         const template: Template = this.__referencesMaps.get(staticInstance)!;

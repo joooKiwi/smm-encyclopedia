@@ -14,11 +14,11 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
     extends PureComponent<GroupProperties<T, U>>
     implements ReactComponent {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #IS_NOT_DISABLED = [false, false,] as const;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     public get id(): PossibleId {

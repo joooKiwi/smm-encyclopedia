@@ -40,7 +40,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     }
 
 
-    private __addEventListener(type: string, callback: TooltipEventCallbackReceived<this>,): this {
+    #addEventListener(type: string, callback: TooltipEventCallbackReceived<this>,): this {
         if (callback != null)
             this.element.addEventListener(type, event => callback(this, event,));
         return this;
@@ -61,7 +61,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Tooltip.Events.show
      */
     public override onShow(callback: TooltipEventCallbackReceived<this>,): this {
-        return this.__addEventListener(TooltipInstance.SHOW_EVENT, callback,);
+        return this.#addEventListener(TooltipInstance.SHOW_EVENT, callback,);
     }
 
     /**
@@ -69,7 +69,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Tooltip.Events.shown
      */
     public override onShown(callback: TooltipEventCallbackReceived<this>,): this {
-        return this.__addEventListener(TooltipInstance.SHOWN_EVENT, callback,);
+        return this.#addEventListener(TooltipInstance.SHOWN_EVENT, callback,);
     }
 
     /**
@@ -77,7 +77,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Tooltip.Events.hide
      */
     public override onHide(callback: TooltipEventCallbackReceived<this>,): this {
-        return this.__addEventListener(TooltipInstance.HIDE_EVENT, callback,);
+        return this.#addEventListener(TooltipInstance.HIDE_EVENT, callback,);
     }
 
     /**
@@ -85,7 +85,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Tooltip.Events.hidden
      */
     public override onHidden(callback: TooltipEventCallbackReceived<this>,): this {
-        return this.__addEventListener(TooltipInstance.HIDDEN_EVENT, callback,);
+        return this.#addEventListener(TooltipInstance.HIDDEN_EVENT, callback,);
     }
 
     /**
@@ -93,7 +93,7 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
      * @see Tooltip.Events.inserted
      */
     public onInserted(callback: TooltipEventCallbackReceived<this>,): this {
-        return this.__addEventListener(TooltipInstance.INSERTED_EVENT, callback,);
+        return this.#addEventListener(TooltipInstance.INSERTED_EVENT, callback,);
     }
 
 

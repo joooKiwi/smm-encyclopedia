@@ -22,25 +22,18 @@ export class EntityCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ TERRAIN;
-    public static/* readonly*/ ITEM;
-    public static/* readonly*/ ENEMY;
-    public static/* readonly*/ GIZMO;
-
-    static {
-        this.TERRAIN = new EntityCategories('Terrain', 0,);
-        this.ITEM =    new EntityCategories('Item',    1,);
-        this.ENEMY =   new EntityCategories('Enemy',   2,);
-        this.GIZMO =   new EntityCategories('Gizmo',   3,);
-    }
+    public static readonly TERRAIN = new EntityCategories('Terrain', 0,);
+    public static readonly ITEM =    new EntityCategories('Item',    1,);
+    public static readonly ENEMY =   new EntityCategories('Enemy',   2,);
+    public static readonly GIZMO =   new EntityCategories('Gizmo',   3,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EntityCategories;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, EntityCategory>;
 
@@ -49,7 +42,7 @@ export class EntityCategories
     readonly #imageName: PossibleImageName;
     #imagePath?: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();

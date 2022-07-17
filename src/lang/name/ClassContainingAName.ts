@@ -12,11 +12,11 @@ import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolde
 export class ClassContainingAName<T, >
     implements NameTrait<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #nameContainer: ObjectHolder<Name<T>>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: PossibleValueOnObjectHolder<Name<T>>,) {
         this.#nameContainer = new DelayedObjectHolderContainer(name);

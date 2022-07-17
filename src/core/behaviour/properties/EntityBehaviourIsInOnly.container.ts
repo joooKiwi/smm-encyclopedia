@@ -16,7 +16,7 @@ export class EntityBehaviourIsInOnlyContainer
     static readonly #IS_MULTIPLAYER_ONLY = new EntityBehaviourIsInOnlyContainer(false, true, );
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #isInOnlineOnly;
     readonly #isInMultiplayerOnly;
@@ -34,7 +34,7 @@ export class EntityBehaviourIsInOnlyContainer
         return this.#isInMultiplayerOnly;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
 
 
     public static get(isInOnlineOnly: boolean, isInMultiplayerOnly: boolean,): EntityBehaviourIsInOnly {

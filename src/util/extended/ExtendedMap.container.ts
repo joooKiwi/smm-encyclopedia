@@ -12,7 +12,7 @@ import {ExtendedSetContainer}    from './ExtendedSet.container';
 export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     implements ExtendedMap<K, V, LENGTH> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_SEPARATOR = ',';
     public static readonly DEFAULT_VALUE_IF_NOT_FOUND: DefaultValueIfNotFound = null;
@@ -21,7 +21,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     readonly #map: Map<K, EntrySet<K, V>>;
     public defaultSeparator = ExtendedMapContainer.DEFAULT_SEPARATOR;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(iterable?: Iterable<readonly [K, V] | EntrySet<K, V>>,) {
         this.#map = iterable == null
@@ -70,9 +70,8 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * Add an item to the {@link Map internal Map}.
      *
      * @param values
-     * @private
      */
-    private __add(...values: readonly (readonly [K, V,])[]): this {
+    #add(...values: readonly (readonly [K, V,])[]): this {
         values.forEach(([key, value,]) => this.set(key, value,));
         return this;
     }
@@ -83,7 +82,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.set
      */
     public add(...values: readonly (readonly [K, V,])[]): this {
-        return this.__add(...values);
+        return this.#add(...values);
     }
 
     public push = this.add;
@@ -105,7 +104,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     //endregion -------------------- Addition methods --------------------
     //region -------------------- Removal methods --------------------
 
-    private __delete(...keys: readonly K[]): boolean {
+    #delete(...keys: readonly K[]): boolean {
         let everyValuesHasBeenDeleted = this.has(...keys);
 
         keys.forEach(value => everyValuesHasBeenDeleted = this._map.delete(value));
@@ -119,7 +118,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.delete
      */
     public delete(...values: K[]): boolean {
-        return this.__delete(...values);
+        return this.#delete(...values);
     }
 
     public drop = this.delete;
@@ -142,7 +141,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
         return new ConditionalIntermediate(this, () => callback(this,));
     }
 
-    private __has(value: any,): boolean {
+    #has(value: any,): boolean {
         if (value instanceof Array) {
             for (const internalValue of this)
                 if (internalValue instanceof Array && isArrayEquals(internalValue, value,))
@@ -161,7 +160,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     public has(...values: readonly any[]): boolean
     public has(...values: readonly any[]): boolean {
         for (const value of values)
-            if (!this.__has(value))
+            if (!this.#has(value))
                 return false;
         return true;
     }

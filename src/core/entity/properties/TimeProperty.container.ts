@@ -13,7 +13,9 @@ import type {Times}           from '../../time/Times';
 export class TimePropertyContainer
     implements TimeProperty {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields, constructor & methods --------------------
+
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, TimeProperty> = new ExtendedMapContainer();
 
@@ -21,7 +23,7 @@ export class TimePropertyContainer
     readonly #isInDayTheme;
     readonly #isInNightTheme;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor([isInDayTheme, isInNightTheme,]: ArgumentsReceived,) {
         this.#isInDayTheme = isInDayTheme;
@@ -44,7 +46,7 @@ export class TimePropertyContainer
         return this.#map ??= new Map(Import.Times.values.map(time => [time, time.get(this),]));
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >(isInDayTheme: DAY, isInNightTheme: NIGHT,): TimeProperty<DAY, NIGHT>

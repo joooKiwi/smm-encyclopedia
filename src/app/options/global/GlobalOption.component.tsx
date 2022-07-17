@@ -32,7 +32,6 @@ export default class GlobalOptionComponent
 
     public constructor(props: GlobalOptionProperties,) {
         super(props);
-        GlobalAppOption.REFERENCE = this;
         this.state = GlobalAppOption.createDefaultState;
     }
 

@@ -6,14 +6,14 @@ import {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types
 export class EntityBehaviourContainer
     implements EntityBehaviour {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #acronym;
     readonly #translationKey;
     readonly #isInOnlyContainer;
     readonly #linkContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKeys, isInOnly: EntityBehaviourIsInOnly, link: EntityBehaviourLink,) {
         this.#acronym = acronym;

@@ -1,6 +1,7 @@
 import type {EmptyableStringConstant, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
-import {Import} from '../../../util/DynamicImporter';
+import {Import}         from '../../../util/DynamicImporter';
+import {isInProduction} from '../../../variables';
 
 /**
  * @singleton
@@ -22,12 +23,12 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     //endregion -------------------- Singleton usage --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
     static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
-    //region -------------------- Array attributes --------------------
+    //region -------------------- Array fields --------------------
 
     #everyPossibleAcronym_gameReference?: EveryPossibleAcronym_GameReference;
     #everyPossibleAcronymWithPokemonGeneration_gameReference?: EveryPossibleAcronymWithPokemonGeneration_GameReference;
@@ -74,9 +75,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleName_version_smm3ds?: EveryPossibleName_Version_SMM3DS;
     #everyPossibleName_version_smm2?: EveryPossibleName_Version_SMM2;
 
-    //endregion -------------------- Array attributes --------------------
+    //endregion -------------------- Array fields --------------------
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     //region -------------------- Game reference --------------------
 
@@ -299,7 +300,7 @@ class HeaderTypesForConvertorForProduction
 
     //endregion -------------------- Singleton usage --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #STRING_VALUE: StringConstant = 'string';
     static readonly #EMPTYABLE_STRING_VALUE: EmptyableStringConstant = 'emptyable string';
@@ -307,7 +308,7 @@ class HeaderTypesForConvertorForProduction
     // static readonly #STRING_AND_NUMBER: StringAndNumber = [this.#STRING_VALUE, this.#NUMBER_VALUE,];
     // static readonly #EMPTY_ARRAY: EmptyArray = [];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     //region -------------------- Game reference --------------------
 
@@ -421,5 +422,5 @@ class HeaderTypesForConvertorForProduction
  * </p>
  * @see HeaderTypesForConvertorDefinition
  */
-const HeaderTypesForConvertor: HeaderTypesForConvertorDefinition = process.env.NODE_ENV === 'production' ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
+const HeaderTypesForConvertor: HeaderTypesForConvertorDefinition = isInProduction ? HeaderTypesForConvertorForProduction.get : HeaderTypesForConvertorForTestAndDevelopment.get;
 export {HeaderTypesForConvertor};

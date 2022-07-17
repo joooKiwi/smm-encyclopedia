@@ -1,7 +1,8 @@
 import type {Builder}                                                           from '../../util/builder/Builder';
 import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
+import type {CourseAndWorldTheme}                                               from './CourseAndWorldTheme';
 import type {CourseTheme}                                                       from './CourseTheme';
-import type {CourseAndWorldTheme, PossibleEnglishName}                          from './Themes.types';
+import type {PossibleEnglishName}                                               from './Themes.types';
 import type {Entity}                                                            from '../entity/Entity';
 import type {GameProperty}                                                      from '../entity/properties/GameProperty';
 import type {Name}                                                              from '../../lang/name/Name';
@@ -13,9 +14,9 @@ import type {WorldTheme}                                                        
 
 import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
 import {CourseThemeContainer}                      from './CourseTheme.container';
+import {CourseAndWorldThemeContainer}              from './CourseAndWorldTheme.container';
+import {CourseOnlyThemeContainer}                  from './CourseOnlyTheme.container';
 import {DelayedObjectHolderContainer}              from '../../util/holder/DelayedObjectHolder.container';
-import {EmptyCourseTheme}                          from './EmptyCourseTheme';
-import {EmptyWorldTheme}                           from './EmptyWorldTheme';
 import {Entities}                                  from '../entity/Entities';
 import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
 import {Games}                                     from '../game/Games';
@@ -23,12 +24,13 @@ import {NightEffects}                              from '../nightEffect/NightEff
 import {TemplateWithNameBuilder}                   from '../_template/TemplateWithName.builder';
 import {Themes}                                    from './Themes';
 import {WorldThemeContainer}                       from './WorldTheme.container';
+import {WorldOnlyThemeContainer}                   from './WorldOnlyTheme.container';
 
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
     implements Builder<CourseAndWorldTheme> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #WORLD_THEME_PROPERTY = GamePropertyContainer.get(false, true,);
 
@@ -36,7 +38,7 @@ export class ThemeBuilder
     static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartContainer.get(true,));
     static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartContainer.get(false,));
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
         super(templateBuilder, ({is: {in: {game: {'1And3DS': isInSMM1And3DS,},},},},) => isInSMM1And3DS ? 'all' : Games.SUPER_MARIO_MAKER_2, true,);
@@ -50,21 +52,21 @@ export class ThemeBuilder
 
     //region -------------------- Course theme builder helper methods --------------------
 
-    private static __createCourseTheme(name: Name<string>, template: ThemeTemplate,): CourseTheme {
+    static #createCourseTheme(name: Name<string>, template: ThemeTemplate,): CourseTheme {
         return new CourseThemeContainer(
             name,
-            this.__getGameProperty(template.is.in.game),
-            this.__getIsAvailableFromTheStart(template.is.availableFromTheStart,),
-            this.__getWhereEntityIs(name.english as PossibleEnglishName),
-            this.__getWhereNightEffectIs(template.effect as PossibleEnglishName_NightEffect,),
+            this.#getGameProperty(template.is.in.game,),
+            this.#getIsAvailableFromTheStart(template.is.availableFromTheStart,),
+            this.#getWhereEntityIs(name.english as PossibleEnglishName,),
+            this.#getWhereNightEffectIs(template.effect as PossibleEnglishName_NightEffect,),
         );
     }
 
-    private static __getGameProperty(gameTemplate: SimpleGameFrom1And2Template<boolean, boolean>,): GameProperty {
+    static #getGameProperty(gameTemplate: SimpleGameFrom1And2Template<boolean, boolean>,): GameProperty {
         return GamePropertyContainer.get(gameTemplate['1And3DS'], gameTemplate['2'],);
     }
 
-    private static __getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
+    static #getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
         //TODO move this code elsewhere to remove duplicate code
         return value == null
             ? this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1
@@ -79,7 +81,7 @@ export class ThemeBuilder
      * @param name the english name to retrieve the {@link Themes}
      * @see Themes.get
      */
-    private static __getWhereEntityIs(name: PossibleEnglishName,): ObjectHolder<readonly Entity[]> {
+    static #getWhereEntityIs(name: PossibleEnglishName,): ObjectHolder<readonly Entity[]> {
         return new DelayedObjectHolderContainer(() => {
             const theme = Themes.getValue(name);
 
@@ -93,14 +95,14 @@ export class ThemeBuilder
      *
      * @param name the night effect
      */
-    private static __getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): ObjectHolder<NightEffects> {
+    static #getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): ObjectHolder<NightEffects> {
         return new DelayedObjectHolderContainer(() => NightEffects.getValue(name));
     }
 
     //endregion -------------------- Course theme builder helper methods --------------------
     //region -------------------- World theme builder helper methods --------------------
 
-    private static __createWorldTheme(name: Name<string>,): WorldTheme {
+    static #createWorldTheme(name: Name<string>,): WorldTheme {
         return new WorldThemeContainer(name,
             this.#WORLD_THEME_PROPERTY,
             this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1,
@@ -108,6 +110,34 @@ export class ThemeBuilder
     }
 
     //endregion -------------------- World theme builder helper methods --------------------
+    //region -------------------- Course & world theme builder helper methods --------------------
+
+    static #createCourseAndWorldTheme(name: Name<string>, template: ThemeTemplate,): CourseAndWorldTheme {
+        const courseTheme = this.#createCourseTheme(name, template,);
+        const worldTheme = this.#createWorldTheme(name,);
+
+        return new CourseAndWorldThemeContainer(
+            name,
+            this.#getGameProperty2(courseTheme, worldTheme,),
+            this.#getIsAvailableFromTheStart2(template,),
+            courseTheme,
+            worldTheme,
+        );
+    }
+
+    static #getGameProperty2(courseTheme: CourseTheme, worldTheme: WorldTheme,): ObjectHolder<GameProperty> {
+        return new DelayedObjectHolderContainer(() => GamePropertyContainer.get(
+            courseTheme.isInSuperMarioMaker1 || worldTheme.isInSuperMarioMaker1,
+            courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2,
+        ));
+    }
+
+    static #getIsAvailableFromTheStart2(template: ThemeTemplate,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
+        //TODO since getIsAvailableFromTheStart needs to be moved, this one ("getIsAvailableFromTheStart2") too
+        return this.#getIsAvailableFromTheStart(template.is.availableFromTheStart);
+    }
+
+    //endregion -------------------- Course & world theme builder helper methods --------------------
 
     //endregion -------------------- Builder helper methods --------------------
 
@@ -116,10 +146,10 @@ export class ThemeBuilder
         const {course: isInCourseTheme, world: isInWorldTheme,} = template.is.in.theme;
 
         return isInCourseTheme && isInWorldTheme
-            ? [ThemeBuilder.__createCourseTheme(name, template,), ThemeBuilder.__createWorldTheme(name),]
+            ? ThemeBuilder.#createCourseAndWorldTheme(name, template,)
             : isInCourseTheme
-                ? [ThemeBuilder.__createCourseTheme(name, template,), EmptyWorldTheme.get,]
-                : [EmptyCourseTheme.get, ThemeBuilder.__createWorldTheme(name),];
+                ? new CourseOnlyThemeContainer(name, ThemeBuilder.#createCourseTheme(name, template,),)
+                : new WorldOnlyThemeContainer(name, ThemeBuilder.#createWorldTheme(name,),);
     }
 
 

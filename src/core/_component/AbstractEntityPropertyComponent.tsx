@@ -8,14 +8,14 @@ import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntity
 export abstract class AbstractEntityPropertyComponent<R, E>
     extends AbstractEntityPropertyThatCanDisplayAllComponent<R> {
 
-    protected abstract get map(): ReadonlyMap<E, boolean>;
+    protected abstract get _map(): ReadonlyMap<E, boolean>;
 
 
     protected abstract _renderSingleComponent(enumInstance: E,): JSX.Element;
 
     public override _render(): ReactElement {
         const enumInstances = [] as E[];
-        this.map.forEach((isInEnumInstance, enumInstance) => {
+        this._map.forEach((isInEnumInstance, enumInstance) => {
             if (isInEnumInstance)
                 enumInstances.push(enumInstance);
         });

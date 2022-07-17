@@ -9,9 +9,9 @@ import {PredefinedConverter}                 from './converter/PredefinedConvert
 
 export class CSVLoader<A extends any[] = any[], T = any, H extends string = string, > {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
-    //region -------------------- Static attributes --------------------
+    //region -------------------- Static fields --------------------
 
     /**
      * Any {@link PossiblePredefinedConversionWithoutValues} in new instance when it will be constructed.
@@ -32,8 +32,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      */
     public static GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE: boolean = false;
 
-    //endregion -------------------- Static attributes --------------------
-    //region -------------------- Static custom callback attributes --------------------
+    //endregion -------------------- Static fields --------------------
+    //region -------------------- Static custom callback fields --------------------
 
     /**
      * The custom callback name used in the {@link HeaderContainer}.
@@ -68,8 +68,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING_WITH_ERRORS: CustomConversionCallbackToAnyCallbackWithError = (value, mixedTypeOnConverter, conversionCallbacksToConverter,) =>
         value === '' ? null : CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS(value, mixedTypeOnConverter, conversionCallbacksToConverter,);
 
-    //endregion -------------------- Static custom callback attributes --------------------
-    //region -------------------- Instance attributes --------------------
+    //endregion -------------------- Static custom callback fields --------------------
+    //region -------------------- Instance fields --------------------
 
     readonly #hasOriginalContentAsReference: boolean;
     #doesThrowError?: boolean;
@@ -91,9 +91,9 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     #callbackOnInitialisationStart: CallbackOnInitialisationStart;
     #callbackOnInitialisationEnd: CallbackOnInitialisationEnd<A, T>;
 
-    //endregion -------------------- Instance attributes --------------------
+    //endregion -------------------- Instance fields --------------------
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>, hasOriginalContentAsReference: boolean = CSVLoader.GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE,) {
         this.#hasOriginalContentAsReference = hasOriginalContentAsReference;
@@ -102,7 +102,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
         this.#originalHeaders = originalContent.shift()! as unknown as H[];
         this.#headers = new Set(this.originalHeaders.map(originalHeader => originalHeader.toLowerCase() as SimpleHeader<H>));
-        this.__assert(this.originalHeaders.length === this.headers.size, `There is one or more duplicate header in the csv file. (${this.headers.size}/${this.originalHeaders.length})\n[${this.originalHeaders.join(CSVLoader.COMMA_AND_SPACE_STRING)}]`,);
+        this.#assert(this.originalHeaders.length === this.headers.size, `There is one or more duplicate header in the csv file. (${this.headers.size}/${this.originalHeaders.length})\n[${this.originalHeaders.join(CSVLoader.COMMA_AND_SPACE_STRING)}]`,);
         this.#originalContent = originalContent;
         this.#callbackToCreateObject = callbackToCreateObject;
 
@@ -120,7 +120,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- Assertion methods --------------------
 
-    private __assert(condition: boolean, message: string,): asserts condition {
+    #assert(condition: boolean, message: string,): asserts condition {
         if (this.doesThrowError)
             assert(condition, message,);
     }
@@ -139,11 +139,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- Default does throw error methods --------------------
 
-    protected get doesThrowError(): boolean {
+    public get doesThrowError(): boolean {
         return this.#doesThrowError ?? CSVLoader.GENERIC_DOES_THROW_ERROR;
     }
 
-    protected set doesThrowError(value: boolean,) {
+    public set doesThrowError(value: boolean,) {
         this.setDoesThrowError(value);
     }
 
@@ -155,11 +155,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- Default does throw error methods --------------------
     //region -------------------- Default conversion methods --------------------
 
-    protected get defaultConversion(): PossiblePredefinedConversionWithoutValues {
+    public get defaultConversion(): PossiblePredefinedConversionWithoutValues {
         return this.#defaultConversion ?? CSVLoader.GENERIC_DEFAULT_CONVERSION;
     }
 
-    protected set defaultConversion(value: PossiblePredefinedConversionWithoutValues,) {
+    public set defaultConversion(value: PossiblePredefinedConversionWithoutValues,) {
         this.setDefaultConversion(value);
     }
 
@@ -261,7 +261,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- Content methods --------------------
     //region -------------------- Callback to create the object --------------------
 
-    protected get callbackToCreateObject(): CallbackToCreateObject<A, T> {
+    public get callbackToCreateObject(): CallbackToCreateObject<A, T> {
         return this.#callbackToCreateObject;
     }
 
@@ -271,11 +271,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- On before final object created methods --------------------
 
-    protected get callbackOnBeforeFinalObjectCreated() {
+    public get callbackOnBeforeFinalObjectCreated() {
         return this.#callbackOnBeforeFinalObjectCreated;
     }
 
-    protected set callbackOnBeforeFinalObjectCreated(callback: CallbackOnBeforeFinalObjectCreated<A>,) {
+    public set callbackOnBeforeFinalObjectCreated(callback: CallbackOnBeforeFinalObjectCreated<A>,) {
         this.onBeforeFinalObjectCreated(callback);
     }
 
@@ -304,11 +304,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- On before final object created methods --------------------
     //region -------------------- On after final object created methods --------------------
 
-    protected get callbackOnAfterFinalObjectCreated() {
+    public get callbackOnAfterFinalObjectCreated() {
         return this.#callbackOnAfterFinalObjectCreated;
     }
 
-    protected set callbackOnAfterFinalObjectCreated(callback: CallbackOnAfterFinalObjectCreated<A, T>,) {
+    public set callbackOnAfterFinalObjectCreated(callback: CallbackOnAfterFinalObjectCreated<A, T>,) {
         this.onAfterFinalObjectCreated(callback);
     }
 
@@ -339,11 +339,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- On before single content has been converted methods --------------------
 
-    protected get callbackOnBeforeSingleContentConverted() {
+    public get callbackOnBeforeSingleContentConverted() {
         return this.#callbackOnBeforeSingleContentConverted;
     }
 
-    protected set callbackOnBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted<H>,) {
+    public set callbackOnBeforeSingleContentConverted(callback: CallbackOnBeforeSingleContentConverted<H>,) {
         this.onBeforeSingleContentConverted(callback);
     }
 
@@ -370,11 +370,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- On before single content has been converted methods --------------------
     //region -------------------- On after single content has been converted methods --------------------
 
-    protected get callbackOnAfterSingleContentConverted() {
+    public get callbackOnAfterSingleContentConverted() {
         return this.#callbackOnAfterSingleContentConverted;
     }
 
-    protected set callbackOnAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<H, A>,) {
+    public set callbackOnAfterSingleContentConverted(callback: CallbackOnAfterSingleContentConverted<H, A>,) {
         this.onAfterSingleContentConverted(callback);
     }
 
@@ -403,11 +403,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     //region -------------------- On initialisation start methods --------------------
 
-    protected get callbackOnInitialisationStart() {
+    public get callbackOnInitialisationStart() {
         return this.#callbackOnInitialisationStart;
     }
 
-    protected set callbackOnInitialisationStart(callback: CallbackOnInitialisationStart,) {
+    public set callbackOnInitialisationStart(callback: CallbackOnInitialisationStart,) {
         this.onInitialisationStart(callback);
     }
 
@@ -434,11 +434,11 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- On initialisation start methods --------------------
     //region -------------------- On initialisation end methods --------------------
 
-    protected get callbackOnInitialisationEnd() {
+    public get callbackOnInitialisationEnd() {
         return this.#callbackOnInitialisationEnd;
     }
 
-    protected set callbackOnInitialisationEnd(callback: CallbackOnInitialisationEnd<A, T>,) {
+    public set callbackOnInitialisationEnd(callback: CallbackOnInitialisationEnd<A, T>,) {
         this.onInitialisationEnd(callback);
     }
 
@@ -644,7 +644,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Header conversion methods --------------------
 
     protected _validateHeaderNotIncludedInArrayOfHeadersReceived(header: SimpleHeader<H>, headers: ArrayOfHeadersReceived<H>,): void | never {
-        this.__assert(!headers.includes(header), `Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`,);
+        this.#assert(!headers.includes(header), `Recursive error. A header referenced ("${header}") cannot be included within the possible headers (${headers.map(header => `"${header}"`).join(CSVLoader.COMMA_AND_SPACE_STRING)})`,);
     }
 
     public convertToHeader(header: SimpleHeaderReceived<H>, ...headers: ArrayOfHeadersReceived<H>): this | never {

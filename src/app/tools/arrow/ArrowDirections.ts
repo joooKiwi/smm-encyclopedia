@@ -15,25 +15,20 @@ export class ArrowDirections
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ HORIZONTAL;
-    public static /*readonly*/ VERTICAL;
-
-    static {
-        this.HORIZONTAL = new ArrowDirections('horizontal',);
-        this.VERTICAL = new ArrowDirections('vertical',);
-    }
+    public static readonly HORIZONTAL = new ArrowDirections('horizontal',);
+    public static readonly VERTICAL =   new ArrowDirections('vertical',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: ArrowDirections;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #value;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(value: PossibleName,) {
         super();

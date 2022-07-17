@@ -14,7 +14,7 @@ export class SoundEffectOnTurnAfterRunContainer
     static readonly #EVERY_CONTAINERS = new Map<PossibleValuesReceived, SoundEffectOnTurnAfterRun>();
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #property;
 
@@ -26,7 +26,7 @@ export class SoundEffectOnTurnAfterRunContainer
         return this.#property.value;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(value: PossibleValuesReceived,): SoundEffectOnTurnAfterRun {

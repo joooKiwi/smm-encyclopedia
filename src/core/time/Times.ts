@@ -21,47 +21,42 @@ export abstract class Times
 
     //region -------------------- Enum instances --------------------
 
-    public static/* readonly*/ DAY;
-    public static/* readonly*/ NIGHT;
+    public static readonly DAY =   new class Times_Day extends Times {
 
-    static {
-        this.DAY =   new class Times_Day extends Times {
+        public override get(property: TimeProperty,): boolean {
+            return property.isInDayTheme;
+        }
 
-            public override get(property: TimeProperty,): boolean {
-                return property.isInDayTheme;
-            }
+        public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
+            return referenceProperty.referenceInDayTheme;
+        }
 
-            public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
-                return referenceProperty.referenceInDayTheme;
-            }
+    }('Day',   'Sun',);
+    public static readonly NIGHT = new class Times_Night extends Times {
 
-        }  ('Day',   'Sun',);
-        this.NIGHT = new class Times_Night extends Times {
+        public override get(property: TimeProperty,): boolean {
+            return property.isInNightTheme === true;
+        }
 
-            public override get(property: TimeProperty,): boolean {
-                return property.isInNightTheme === true;
-            }
+        public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
+            return referenceProperty.referenceInNightTheme;
+        }
 
-            public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
-                return referenceProperty.referenceInNightTheme;
-            }
-
-        }('Night', 'Moon',);
-    }
+    }('Night', 'Moon',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Times;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishName;
     readonly #simpleImagePath: PossibleSimpleImagePath;
     #imagePath?: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imagePath: PossibleSimpleImagePath,) {
         super();

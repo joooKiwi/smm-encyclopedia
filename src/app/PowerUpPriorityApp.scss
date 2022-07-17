@@ -1,6 +1,3 @@
-@import "../variables";
-@import "../mixin";
-
 #powerUpPriority-container {
   --image-height: 1cm;
   --min-line-size: .25cm;
@@ -43,7 +40,7 @@
   padding: var(--bs-spacer-sm);
 }
 
-//region Color
+//region -------------------- Color --------------------
 
 #powerUpPriority-group-smb-nonPowerUps,
 #powerUpPriority-group-smb3-nonPowerUps,
@@ -86,8 +83,8 @@
   }
 }
 
-//endregion Color
-//region Arrow type
+//endregion -------------------- Color --------------------
+//region -------------------- Arrow type --------------------
 
 #powerUpPriority-group-smb-nonPowerUps,
 #powerUpPriority-group-smb3-nonPowerUps,
@@ -107,9 +104,9 @@
   }
 }
 
-//endregion Arrow type
+//endregion -------------------- Arrow type --------------------
 
-//region Width
+//region -------------------- Width --------------------
 
 #powerUpPriority-group-smb-simplePowerUps > {
   .left-container {
@@ -121,8 +118,8 @@
   }
 }
 
-//endregion Width
-//region Padding & margin
+//endregion -------------------- Width --------------------
+//region -------------------- Padding & margin --------------------
 
 #powerUpPriority-group-smb-nonPowerUps,             #powerUpPriority-group-smb-simplePowerUps,    #powerUpPriority-group-smb-shells,    #powerUpPriority-group-smb-others,
 #powerUpPriority-group-smb3-nonPowerUps,            #powerUpPriority-group-smb3-simplePowerUps,   #powerUpPriority-group-smb3-shells,   #powerUpPriority-group-smb3-others,
@@ -139,8 +136,8 @@
   }
 }
 
-//endregion Padding & margin
-//region Border
+//endregion -------------------- Padding & margin --------------------
+//region -------------------- Border --------------------
 
 #powerUpPriority-group-smb-nonPowerUps, #powerUpPriority-group-smb3-nonPowerUps,
 #powerUpPriority-group-smw-nonPowerUps, #powerUpPriority-group-nsmbu-nonPowerUps,
@@ -223,8 +220,8 @@
   }
 }
 
-//endregion Border
-//region Display
+//endregion -------------------- Border --------------------
+//region -------------------- Display --------------------
 
 #powerUpPriority-group-smb-shells,
 #powerUpPriority-group-smb3-shells,
@@ -254,4 +251,4 @@
   display: flex;
   justify-content: center;
 }
-//endregion Display
+//endregion -------------------- Display --------------------

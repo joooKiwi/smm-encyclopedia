@@ -8,13 +8,13 @@ import {EMPTY_ARRAY} from '../../../util/emptyVariables';
 export class LanguageContainer<T, S extends T = T, A extends readonly T[] = readonly [], >
     implements Language<T, S, A> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #original;
     readonly #singleValue;
     readonly #arrayValue;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(value: | S | A,) {
         this.#original = value;

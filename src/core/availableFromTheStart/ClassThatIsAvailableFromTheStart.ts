@@ -9,9 +9,9 @@ export interface ClassThatIsAvailableFromTheStart<SMM1 extends PossibleIsAvailab
 }
 
 /**
- * The {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM2 SMM2 attribute} will always be true.
- * But the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM3DS SMM3DS attribute} will be a boolean
- * if the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM1 SMM1 attribute} is also a boolean, but null in the other case.
+ * The {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM2 SMM2 field} will always be true.
+ * But the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM3DS SMM3DS field} will be a boolean
+ * if the {@link ClassThatIsAvailableFromTheStart.isAvailableFromTheStartInSMM1 SMM1 field} is also a boolean, but null in the other case.
  */
 export type InferredClassThatIsAvailableFromTheStartBySMM1<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > =
     SMM1 extends null ? ClassThatIsAvailableFromTheStart<SMM1, null, true>

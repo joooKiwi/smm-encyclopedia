@@ -25,21 +25,21 @@ import {EveryLanguages} from './EveryLanguages';
  *
  * As it stands, the languages are:
  * <ol>
- *     <li>en_AM - American English</li>
- *     <li>en_EU - European English</li>
- *     <li>fr_CA - Canadian French</li>
- *     <li>fr_EU - European French</li>
+ *     <li>en-AM - American English</li>
+ *     <li>en-EU - European English</li>
+ *     <li>fr-CA - Canadian French</li>
+ *     <li>fr-EU - European French</li>
  *     <li>de    - German</li>
- *     <li>es_AM - American Spanish</li>
- *     <li>es_EU - European Spanish</li>
+ *     <li>es-AM - American Spanish</li>
+ *     <li>es-EU - European Spanish</li>
  *     <li>it    - Italian</li>
  *     <li>nl    - Dutch</li>
- *     <li>pt_AM - American Portuguese</li>
- *     <li>pt_EU - European Portuguese</li>
+ *     <li>pt-AM - American Portuguese</li>
+ *     <li>pt-EU - European Portuguese</li>
  *     <li>ru    - Russian</li>
  *     <li>ja    - Japanese</li>
- *     <li>zh_T  - Traditional Chinese</li>
- *     <li>zh_S  - Simplified Chinese</li>
+ *     <li>zh-T  - Traditional Chinese</li>
+ *     <li>zh-S  - Simplified Chinese</li>
  *     <li>ko    - Korean</li>
  * </ol>
  *
@@ -52,51 +52,32 @@ export class ProjectLanguages
 
     //region -------------------- Enum instances --------------------
 
-    public static /*readonly*/ AMERICAN_ENGLISH;
-    public static /*readonly*/ EUROPEAN_ENGLISH;
-    public static /*readonly*/ CANADIAN_FRENCH;
-    public static /*readonly*/ EUROPEAN_FRENCH;
-    public static /*readonly*/ GERMAN;
-    public static /*readonly*/ AMERICAN_SPANISH;
-    public static /*readonly*/ EUROPEAN_SPANISH;
-    public static /*readonly*/ ITALIAN;
-    public static /*readonly*/ DUTCH;
-    public static /*readonly*/ AMERICAN_PORTUGUESE;
-    public static /*readonly*/ EUROPEAN_PORTUGUESE;
-    public static /*readonly*/ RUSSIAN;
-    public static /*readonly*/ JAPANESE;
-    public static /*readonly*/ TRADITIONAL_CHINESE;
-    public static /*readonly*/ SIMPLIFIED_CHINESE;
-    public static /*readonly*/ KOREAN;
-
-    static {
-        this.AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,    true,  true,  true, );
-        this.EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,    true,  true,  true, );
-        this.CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,     true,  true,  true, );
-        this.EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,     true,  true,  true, );
-        this.GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,              true,  true,  true, );
-        this.AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,    true,  true,  true, );
-        this.EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,    true,  true,  true, );
-        this.ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,             true,  true,  true, );
-        this.DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,               true,  true,  true, );
-        this.AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE, false, false, false,);
-        this.EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE, true,  true,  false,);
-        this.RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,             true,  true,  true, );
-        this.JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,            true,  true,  true, );
-        this.TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE, false, false, true, );
-        this.SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  false, false, true, );
-        this.KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              false, false, true, );
-    }
+    public static readonly AMERICAN_ENGLISH =    new ProjectLanguages(EveryLanguages.AMERICAN_ENGLISH,    true,  true,  true, );
+    public static readonly EUROPEAN_ENGLISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_ENGLISH,    true,  true,  true, );
+    public static readonly CANADIAN_FRENCH =     new ProjectLanguages(EveryLanguages.CANADIAN_FRENCH,     true,  true,  true, );
+    public static readonly EUROPEAN_FRENCH =     new ProjectLanguages(EveryLanguages.EUROPEAN_FRENCH,     true,  true,  true, );
+    public static readonly GERMAN =              new ProjectLanguages(EveryLanguages.GERMAN,              true,  true,  true, );
+    public static readonly AMERICAN_SPANISH =    new ProjectLanguages(EveryLanguages.AMERICAN_SPANISH,    true,  true,  true, );
+    public static readonly EUROPEAN_SPANISH =    new ProjectLanguages(EveryLanguages.EUROPEAN_SPANISH,    true,  true,  true, );
+    public static readonly ITALIAN =             new ProjectLanguages(EveryLanguages.ITALIAN,             true,  true,  true, );
+    public static readonly DUTCH =               new ProjectLanguages(EveryLanguages.DUTCH,               true,  true,  true, );
+    public static readonly AMERICAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.AMERICAN_PORTUGUESE, false, false, false,);
+    public static readonly EUROPEAN_PORTUGUESE = new ProjectLanguages(EveryLanguages.EUROPEAN_PORTUGUESE, true,  true,  false,);
+    public static readonly RUSSIAN =             new ProjectLanguages(EveryLanguages.RUSSIAN,             true,  true,  true, );
+    public static readonly JAPANESE =            new ProjectLanguages(EveryLanguages.JAPANESE,            true,  true,  true, );
+    public static readonly TRADITIONAL_CHINESE = new ProjectLanguages(EveryLanguages.TRADITIONAL_CHINESE, false, false, true, );
+    public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  false, false, true, );
+    public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              false, false, true, );
 
     protected static readonly _DEFAULT = this.getValue(EveryLanguages.default)!;
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: ProjectLanguages;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #language: EveryLanguages;
     readonly #isInSuperMarioMaker1: boolean;
@@ -104,7 +85,7 @@ export class ProjectLanguages
     readonly #isInSuperMarioMaker2: boolean;
     #isInEverySuperMarioMakerGame?: boolean;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(language: ProjectLanguages,)
     // @ts-ignore

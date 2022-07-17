@@ -19,31 +19,31 @@ export default class TableHeaders
     extends PureComponent<TableHeadersProperties>
     implements ReactComponent {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     #everyHeaderHolders?: EveryHeaderHolders;
     #layout?: Layout;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
-    protected get id(): string {
+    public get id(): string {
         return this.props.id;
     }
 
-    protected get type(): HeaderTypes {
+    public get type(): HeaderTypes {
         return this.props.type;
     }
 
-    protected get headers(): SingleHeadersContent {
+    public get headers(): SingleHeadersContent {
         return this.props.headers;
     }
 
-    protected get everyHeaderHolders(): EveryHeaderHolders {
+    public get everyHeaderHolders(): EveryHeaderHolders {
         return this.#everyHeaderHolders ??= this.props.everyHeadersHolder();
     }
 
-    protected get layout(): Layout {
+    public get layout(): Layout {
         return this.#layout ??= this.props.layout();
     }
 

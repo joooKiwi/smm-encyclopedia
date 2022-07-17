@@ -13,7 +13,7 @@ export default class GameStyleComponent
     extends AbstractEntityPropertyComponent<GameStyleProperty, GameStyles> {
 
 
-    protected override get map() {
+    protected override get _map() {
         return this.reference.toGameStyleMap();
     }
 
