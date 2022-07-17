@@ -95,6 +95,33 @@ $z-index-tooltip-original: $zindex-tooltip;
 $zindex-tooltip: var(--bs-z-index-tooltip);
 
 //endregion -------------------- Z-index variables --------------------
+//region -------------------- Font-size variables --------------------
+
+$font-size-sm-original: $font-size-sm;
+$font-size-sm: var(--bs-font-size-sm);
+$font-size-lg-original: $font-size-lg;
+$font-size-lg: var(--bs-font-size-lg);
+
+$small-font-size-original: $small-font-size;
+$small-font-size: var(--bs-small-font-size);
+$sub-sup-font-size-original: $sub-sup-font-size;
+$sub-sup-font-size: var(--bs-sub-sup-font-size);
+
+//endregion -------------------- Font-size variables --------------------
+//region -------------------- Font-weight variables --------------------
+
+$font-weight-lighter-original: $font-weight-lighter;
+$font-weight-lighter: var(--bs-font-weight-lighter);
+$font-weight-light-original: $font-weight-light;
+$font-weight-light: var(--bs-font-weight-light);
+$font-weight-normal-original: $font-weight-normal;
+$font-weight-normal: var(--bs-font-weight-normal);
+$font-weight-bold-original: $font-weight-bold;
+$font-weight-bold: var(--bs-font-weight-bold);
+$font-weight-bolder-original: $font-weight-bolder;
+$font-weight-bolder: var(--bs-font-weight-bolder);
+
+//endregion -------------------- Font-weight variables --------------------
 //region -------------------- Colors variables --------------------
 
 $primary-100: tint-color($primary, 80%);

@@ -63,6 +63,24 @@
   --bs-z-index-tooltip: #{$z-index-tooltip-original};
 
   //endregion -------------------- Z-index variables --------------------
+  //region -------------------- Font-size variables --------------------
+
+  --bs-font-size-base: #{$font-size-base};
+  --bs-font-size-sm: #{$font-size-sm-original};
+  --bs-font-size-lg: #{$font-size-lg-original};
+  --bs-small-font-size: #{$small-font-size-original};
+  --bs-sub-sup-font-size: #{$sub-sup-font-size-original};
+
+  //endregion -------------------- Font-size variables --------------------
+  //region -------------------- Font-weight variables --------------------
+
+  --bs-font-weight-lighter: #{$font-weight-lighter-original};
+  --bs-font-weight-light: #{$font-weight-light-original};
+  --bs-font-weight-normal: #{$font-weight-normal-original};
+  --bs-font-weight-bold: #{$font-weight-bold-original};
+  --bs-font-weight-bolder: #{$font-weight-bolder-original};
+
+  //endregion -------------------- Font-weight variables --------------------
 
   --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
