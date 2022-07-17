@@ -292,12 +292,12 @@ export class EntityLimits
     } ('Warp Pipe',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EntityLimits;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, EntityLimit>;
     static readonly #LIMIT_LENGTH = ' Limit'.length;
@@ -312,7 +312,7 @@ export class EntityLimits
     #entityLink?: | readonly [Entity] | readonly [Entity, Entity,];
     #groupLink?: object;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: EnglishNameReceived, alternativeEnglishName: | AlternativeEnglishNameReceived | null = null,) {
         super();

@@ -3,11 +3,11 @@ import type {UnusedImage_BigMushroom} from './UnusedImage_BigMushroom';
 export class UnusedImage_BigMushroomContainer
     implements UnusedImage_BigMushroom {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #all: readonly (readonly string[])[];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(images: readonly (readonly string[])[]) {
         this.#all = images;

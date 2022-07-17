@@ -9,7 +9,7 @@ export class SoundContainer<PATH extends PossiblePath, >
     extends ClassWithPathContainer<PATH, PossibleBasicPath<PATH>, null, null, null>
     implements Sound {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #POWER_UP_SOUND: PowerUpCollectedSound = 'powerup.wav';
     #powerUpGotSounds?: PowerUpCollectedSounds<PATH>;
@@ -36,7 +36,7 @@ export class SoundContainer<PATH extends PossiblePath, >
 
     readonly #property: SoundProperty;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(path: PATH, property: SoundProperty,) {
         super(`${SoundContainer.BASIC_STARTING_PATH}${path}`, null, null, null,);

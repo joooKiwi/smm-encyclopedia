@@ -6,11 +6,11 @@ import {DelayedObjectHolderContainer} from '../../holder/DelayedObjectHolder.con
 export class ConditionalIntermediate<T, >
     extends AbstractIntermediate<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #conditionCallbackHolder: ObjectHolder<boolean>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(reference: T, conditionCallback: () => boolean,) {
         super(reference);

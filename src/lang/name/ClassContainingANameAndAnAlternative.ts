@@ -11,11 +11,11 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
     extends ClassContainingAName<T>
     implements NameTraitFromAnAlternativeContainer<U, ALTERNATIVE> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #alternativeContainer: ObjectHolder<ALTERNATIVE>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: PossibleValueOnObjectHolder<Name<T>>, alternative: PossibleValueOnObjectHolder<ALTERNATIVE>,) {
         super(name,);

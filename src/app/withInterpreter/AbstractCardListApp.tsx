@@ -10,11 +10,11 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
     T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractSimpleListApp<APP, T, S> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static #APP_OPTION_INTERPRETER: readonly ViewDisplays[] = [ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Create methods --------------------
 
     protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {

@@ -471,18 +471,18 @@ export class EditorVoices
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EditorVoices;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>;
     #entityReferences?: EntityReferenceHolder;
     readonly #editorVoiceSoundHolder: ObjectHolder<EditorVoiceSound>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, editorVoiceSound: () => PossibleSoundReceivedOnFactory,) {
         super();

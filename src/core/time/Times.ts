@@ -45,18 +45,18 @@ export abstract class Times
     }('Night', 'Moon',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Times;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishName;
     readonly #simpleImagePath: PossibleSimpleImagePath;
     #imagePath?: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imagePath: PossibleSimpleImagePath,) {
         super();

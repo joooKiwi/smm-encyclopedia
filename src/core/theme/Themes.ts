@@ -158,12 +158,12 @@ export class Themes
     }('Space', 'night',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Themes;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>;
     static #COURSES: EnumArray_OnlyCourseTheme;
@@ -177,7 +177,7 @@ export class Themes
     #largeImagePath?: LargeImagePath;
     #endlessMarioImagePath?: | EndlessMarioImagePath | null;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     // @ts-ignore
     protected constructor(enumeration: Themes,)

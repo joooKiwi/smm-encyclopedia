@@ -11,12 +11,12 @@ export class MiiCostumeContainer
     extends ClassContainingANameAndACategory<string, string, MiiCostumeCategory>
     implements MiiCostume {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #officialNotificationHolder;
     readonly #version;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: PossibleValueOnObjectHolder<Name<string>>, officialNotification: ObjectHolder<OfficialNotificationHolder>, version: ObjectHolder<| Versions | null>, category: PossibleValueOnObjectHolder<MiiCostumeCategory>,) {
         super(name, category,);

@@ -22,14 +22,14 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     extends ClassContainingANameAndACategory<string, string, CATEGORY>
     implements Entity<CATEGORY, PROPERTY> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     protected static readonly NOT_APPLICABLE = 'N/A';
 
     readonly #propertyContainer;
     readonly #referencesContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category as CATEGORY,);

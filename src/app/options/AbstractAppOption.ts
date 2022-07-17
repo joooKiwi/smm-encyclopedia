@@ -6,11 +6,11 @@ import {Enum} from '../../util/enum/Enum';
 export abstract class AbstractAppOption<T, S extends ReactState, O extends number = number, N extends string = string, >
     extends Enum<O, N> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #defaultValue: T;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(defaultValue: T,) {
         super();

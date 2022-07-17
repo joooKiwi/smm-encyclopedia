@@ -12,7 +12,9 @@ import {Themes}               from '../../theme/Themes';
 export class ThemePropertyContainer
     implements ThemeProperty {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields, constructor & methods --------------------
+
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemeProperty> = new ExtendedMapContainer();
 
@@ -28,7 +30,7 @@ export class ThemePropertyContainer
     readonly #isInAirshipTheme: boolean;
     readonly #isInCastleTheme: boolean;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor([isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,]: ArgumentsReceived,) {
         this.#isInGroundTheme = isInGroundTheme;
@@ -91,7 +93,7 @@ export class ThemePropertyContainer
         return this.#map ??= new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]));
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>

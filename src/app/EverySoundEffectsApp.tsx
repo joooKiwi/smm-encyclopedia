@@ -23,7 +23,7 @@ import SoundEffectComponent            from '../core/soundEffect/SoundEffect.com
 export default class EverySoundEffectsApp
     extends AbstractApp<{}, SoundEffectAppStates> {
 
-    //region -------------------- Attributes & getter methods --------------------
+    //region -------------------- Fields & getter methods --------------------
 
     public constructor(props: {},) {
         super(props,);
@@ -34,7 +34,7 @@ export default class EverySoundEffectsApp
         return this.state.display.asText.category;
     }
 
-    //endregion -------------------- Attributes & getter methods --------------------
+    //endregion -------------------- Fields & getter methods --------------------
     //region -------------------- Methods --------------------
 
     #createCategoryComponent(index: number, soundEffect: SoundEffect,) {

@@ -110,12 +110,12 @@ export abstract class EntityLimitAppOption
     }();
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EntityLimitAppOption;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     /**
      * The callback to get the enumeration based for each option.
@@ -127,7 +127,7 @@ export abstract class EntityLimitAppOption
     #appOptionWithContent?: AppOptionWithContent;
     #appOptionWithTable?: AppOptionWithTable;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor() {
         super();

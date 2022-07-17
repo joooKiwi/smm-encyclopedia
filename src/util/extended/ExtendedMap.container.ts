@@ -12,7 +12,7 @@ import {ExtendedSetContainer}    from './ExtendedSet.container';
 export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     implements ExtendedMap<K, V, LENGTH> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_SEPARATOR = ',';
     public static readonly DEFAULT_VALUE_IF_NOT_FOUND: DefaultValueIfNotFound = null;
@@ -21,7 +21,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     readonly #map: Map<K, EntrySet<K, V>>;
     public defaultSeparator = ExtendedMapContainer.DEFAULT_SEPARATOR;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(iterable?: Iterable<readonly [K, V] | EntrySet<K, V>>,) {
         this.#map = iterable == null

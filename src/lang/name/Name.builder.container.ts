@@ -14,7 +14,7 @@ import {NameContainer}  from './Name.container';
 export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     implements NameBuilder<string, TEMPLATE> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     /**
      * A constant meant to signify a complete language.
@@ -59,7 +59,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     readonly #game;
     readonly #isACompleteName: IsACompleteNameCallback;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     /**
      * Create a new {@link Builder builder} instance to create a {@link Name}.
@@ -301,12 +301,12 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
             }
         })();
         if (value2 === undefined) {
-            assert(canBeNullable || value1 != null, `The value cannot be null on the ${language.englishName} attribute.`,);
+            assert(canBeNullable || value1 != null, `The value cannot be null on the ${language.englishName} field.`,);
             return value1;
         }
 
         const all3ValuesAreNull = value1 == null && value2 == null && value3 == null;
-        assert(canBeNullable || !all3ValuesAreNull, `The 3 values received cannot be null on the ${language.englishName} attribute.`,);
+        assert(canBeNullable || !all3ValuesAreNull, `The 3 values received cannot be null on the ${language.englishName} field.`,);
         return all3ValuesAreNull ? null : value1 ?? [value2, value3,];
     }
 

@@ -23,12 +23,12 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     //endregion -------------------- Singleton usage --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?';
     static readonly #UNKNOWN_REFERENCE: UnknownReference = '???';
 
-    //region -------------------- Array attributes --------------------
+    //region -------------------- Array fields --------------------
 
     #everyPossibleAcronym_gameReference?: EveryPossibleAcronym_GameReference;
     #everyPossibleAcronymWithPokemonGeneration_gameReference?: EveryPossibleAcronymWithPokemonGeneration_GameReference;
@@ -75,9 +75,9 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleName_version_smm3ds?: EveryPossibleName_Version_SMM3DS;
     #everyPossibleName_version_smm2?: EveryPossibleName_Version_SMM2;
 
-    //endregion -------------------- Array attributes --------------------
+    //endregion -------------------- Array fields --------------------
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     //region -------------------- Game reference --------------------
 
@@ -300,7 +300,7 @@ class HeaderTypesForConvertorForProduction
 
     //endregion -------------------- Singleton usage --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #STRING_VALUE: StringConstant = 'string';
     static readonly #EMPTYABLE_STRING_VALUE: EmptyableStringConstant = 'emptyable string';
@@ -308,7 +308,7 @@ class HeaderTypesForConvertorForProduction
     // static readonly #STRING_AND_NUMBER: StringAndNumber = [this.#STRING_VALUE, this.#NUMBER_VALUE,];
     // static readonly #EMPTY_ARRAY: EmptyArray = [];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     //region -------------------- Game reference --------------------
 

@@ -8,21 +8,21 @@ import {DelayedObjectHolderContainer}            from '../../../util/holder/Dela
 import {GameStyles}                              from '../../../core/gameStyle/GameStyles';
 import {ObjectHolders}                           from '../../../util/holder/objectHolders';
 
-//region Import from deconstruction
+//region -------------------- Import from deconstruction --------------------
 
 const {SUPER_MARIO_3D_WORLD} = GameStyles;
 
-//endregion Import from deconstruction
+//endregion -------------------- Import from deconstruction --------------------
 
 export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
     extends AbstractPowerUpBySMM1GameStylesPriority
     implements PowerUpByAllGameStylesPriority {
 
-    //region Attributes
+    //region -------------------- Fields --------------------
 
     readonly #sm3dwImagesHolder: ObjectHolder<readonly string[]>;
 
-    //endregion Attributes
+    //endregion -------------------- Fields --------------------
 
     protected constructor(entity: Entities, gameStylesDisplayed: | GameStyles | PossibleGameStyles, callback: ImageRetrieverCallback, isIn: ClassInAnySuperMarioMakerGame,) {
         super(entity, gameStylesDisplayed, callback, isIn,);
@@ -30,12 +30,12 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
 
     }
 
-    //region Getter methods
+    //region -------------------- Getter methods --------------------
 
     public get sm3dwImages(): readonly string[] {
         return this.#sm3dwImagesHolder.get;
     }
 
-    //endregion Getter methods
+    //endregion -------------------- Getter methods --------------------
 
 }

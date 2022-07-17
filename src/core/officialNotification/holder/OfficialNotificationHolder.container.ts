@@ -12,14 +12,14 @@ import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container
 export class OfficialNotificationHolderContainer
     implements OfficialNotificationHolder {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<Key, OfficialNotificationHolder> = new ExtendedMapContainer();
 
     readonly #officialNotification;
     readonly #amount;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(officialNotification: OfficialNotifications, amount: | number | null,) {
         this.#officialNotification = officialNotification;

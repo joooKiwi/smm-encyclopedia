@@ -36,7 +36,7 @@ export class MysteryMushroomBuilder
 
     //region -------------------- Property helper methods --------------------
 
-    #createSoundPropertyAttributes() {
+    #createSoundPropertyFields() {
         const propertyTemplate = this.template.properties.sound;
         const {movement,} = propertyTemplate.soundEffect;
         const {
@@ -63,7 +63,7 @@ export class MysteryMushroomBuilder
 
         return new MysteryMushroomPropertyContainer(
             UnlockPropertyContainer.get(unlockTemplate.condition, unlockTemplate.amiibo,),
-            new SoundPropertyContainer(...this.#createSoundPropertyAttributes(),),
+            new SoundPropertyContainer(...this.#createSoundPropertyFields(),),
         );
     }
 

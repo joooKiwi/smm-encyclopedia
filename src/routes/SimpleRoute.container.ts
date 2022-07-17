@@ -7,13 +7,13 @@ import type {ReactElement} from '../util/react/ReactProperty';
 export class SimpleRouteContainer<NAME extends string, PATH extends string, >
     implements SimpleRoute<NAME, PATH> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #name;
     readonly #path;
     readonly #renderCallback;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: NAME, path: PATH, renderCallback: () => ReactElement,) {
         this.#name = name;

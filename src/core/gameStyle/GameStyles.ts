@@ -88,12 +88,12 @@ export abstract class GameStyles
     }('SM3DW', '3W', 'Super Mario 3D World',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: GameStyles;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>;
     static #GAME_STYLES_SMM1?: EnumArray_SMM1;
@@ -105,7 +105,7 @@ export abstract class GameStyles
     #imagePath?: PossibleImagePath;
     #shortImagePath?: PossibleShortImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     // @ts-ignore
     protected constructor(enumeration: GameStyles,)

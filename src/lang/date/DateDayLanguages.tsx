@@ -137,18 +137,18 @@ export abstract class DateDayLanguages
     protected static override readonly _DEFAULT = this.getValue(ProjectLanguages._DEFAULT);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: DateDayLanguages;
 
     protected static override readonly _PARENT: StaticReference<ProjectLanguages> = ProjectLanguages;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #reference;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(language: ProjectLanguages,) {
         super(language);

@@ -43,19 +43,19 @@ export abstract class Games
     }('SMM2', '2', 'Super Mario Maker 2',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Games;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #acronym: PossibleAcronym;
     readonly #englishName: StringContainer<PossibleEnglishName>;
     readonly #simpleValue: PossibleSimpleValue;
     readonly #imagePath: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     // @ts-ignore
     protected constructor(enumeration: Games,)

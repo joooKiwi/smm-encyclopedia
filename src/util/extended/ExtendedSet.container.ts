@@ -10,7 +10,7 @@ import {ExtendedMapContainer}    from './ExtendedMap.container';
 export class ExtendedSetContainer<T, LENGTH extends number = number, >
     implements ExtendedSet<T, LENGTH> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_SEPARATOR = ',';
     public static DEFAULT_STARTING_INDEX = 0;
@@ -25,7 +25,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
 
     [index: number]: T;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(values?: Iterable<T> | null | undefined,) {
         this.#set = new Set(values);

@@ -18,12 +18,12 @@ import {TemplateBuilder}              from './Template.builder';
 export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate, U, >
     extends TemplateBuilder<T, U> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #isACompleteName;
     readonly #game: ObjectHolder<OriginalPossibleGameReceived>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(templateBuilder_or_template: | T | Builder<T>, game: PossibleGameReceived<T>, isACompleteName: boolean,) {
         super(templateBuilder_or_template);

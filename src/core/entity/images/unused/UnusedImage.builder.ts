@@ -4,11 +4,11 @@ import {UnusedImage} from './UnusedImage';
 export abstract class UnusedImageBuilder<T extends UnusedImage, N extends string, >
     implements Builder<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #simpleImageName: N;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(name: N,) {
         this.#simpleImageName = name;

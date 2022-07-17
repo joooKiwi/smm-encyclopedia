@@ -11,11 +11,11 @@ export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U
     extends ClassContainingAName<T>
     implements NameTraitFromACategory<U, CATEGORY> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #categoryContainer: ObjectHolder<CATEGORY>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: PossibleValueOnObjectHolder<Name<T>>, category: PossibleValueOnObjectHolder<CATEGORY>,) {
         super(name,);

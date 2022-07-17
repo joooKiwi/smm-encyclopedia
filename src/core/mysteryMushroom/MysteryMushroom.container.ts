@@ -8,12 +8,12 @@ export class MysteryMushroomContainer
     extends ClassContainingAName<string>
     implements MysteryMushroom {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #games;
     readonly #propertyContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: Name<string>, games: MysteryMushroomGames, property: MysteryMushroomProperty,) {
         super(name,);

@@ -1,10 +1,10 @@
 export abstract class AbstractIntermediate<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #reference;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(reference: T,) {
         this.#reference = reference;

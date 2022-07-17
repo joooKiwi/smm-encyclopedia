@@ -8,24 +8,24 @@ import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHo
 import {GameStyles}                   from '../../../core/gameStyle/GameStyles';
 import {ObjectHolders}                from '../../../util/holder/objectHolders';
 
-//region Import from deconstruction
+//region -------------------- Import from deconstruction --------------------
 
 const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U} = GameStyles;
 
-//endregion Import from deconstruction
+//endregion -------------------- Import from deconstruction --------------------
 
 export abstract class AbstractPowerUpBySMM1GameStylesPriority
     extends AbstractPowerUpPriority
     implements PowerUpBySMM1GameStylesPriority {
 
-    //region Attributes
+    //region -------------------- Fields --------------------
 
     readonly #smbImagesHolder: ObjectHolder<readonly string[]>;
     readonly #smb3ImagesHolder: ObjectHolder<readonly string[]>;
     readonly #smwImagesHolder: ObjectHolder<readonly string[]>;
     readonly #nsmbuImagesHolder: ObjectHolder<readonly string[]>;
 
-    //endregion Attributes
+    //endregion -------------------- Fields --------------------
 
     protected constructor(entity: Entities, gameStylesDisplayed: | GameStyles | PossibleGameStyles, callback: ImageRetrieverCallback, isIn: ClassInAnySuperMarioMakerGame,) {
         super(() => entity.reference.nameContainer,
@@ -37,7 +37,7 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
         this.#nsmbuImagesHolder = entity.reference.isInNewSuperMarioBrosUStyle ? new DelayedObjectHolderContainer(() => callback(entity, NEW_SUPER_MARIO_BROS_U)) : ObjectHolders.EMPTY_ARRAY;
     }
 
-    //region Getter methods
+    //region -------------------- Getter methods --------------------
 
     public get smbImages(): readonly string[] {
         return this.#smbImagesHolder.get;
@@ -55,6 +55,6 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
         return this.#nsmbuImagesHolder.get;
     }
 
-    //endregion Getter methods
+    //endregion -------------------- Getter methods --------------------
 
 }

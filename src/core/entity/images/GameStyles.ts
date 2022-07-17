@@ -22,14 +22,14 @@ export class GameStyles
     public static override readonly SUPER_MARIO_3D_WORLD =   new GameStyles(OriginalGameStyles.SUPER_MARIO_3D_WORLD,  );
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: GameStyles;
 
     protected static override _PARENT: StaticReference<OriginalGameStyles> = OriginalGameStyles;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #GAME_STYLES_SMM1?: EnumArray_SMM1<GameStyles>;
 
@@ -38,7 +38,7 @@ export class GameStyles
     #gamePath_clearCondition?: GamePath_ClearCondition;
     #gamePath_smm1?: GamePath_InGameSMM1;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     // @ts-ignore
     protected constructor(enumeration: GameStyles,)

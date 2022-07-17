@@ -7,7 +7,7 @@ import {assert} from '../util/utilitiesMethods';
 
 export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static #referencesMaps: Map<StaticBootstrapInstance, Template> = new Map();
 
@@ -15,7 +15,7 @@ export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapI
     readonly #elementId: ID;
     readonly #instance: INSTANCE;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(instance: STATIC_INSTANCE, element: | ID | ELEMENT, options: Partial<OPTION>,) {
         if (typeof element === 'string') {

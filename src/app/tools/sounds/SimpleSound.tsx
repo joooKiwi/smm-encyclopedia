@@ -14,7 +14,7 @@ import {SoundSubElementsHolder} from './holder/SoundSubElementsHolder';
 export default class SimpleSound
     extends Component<SimpleSoundProperties, SimpleSoundState> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
     static readonly #PAUSE_CLASSES = 'btn btn-lg bi-pause-btn-fill audio-state audio-state-pause';
@@ -28,7 +28,7 @@ export default class SimpleSound
     #audio?: HTMLAudioElement;
     readonly #isSourceFoundCallback: IsSourceFoundCallback;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(properties: SimpleSoundProperties,) {
         super(properties);

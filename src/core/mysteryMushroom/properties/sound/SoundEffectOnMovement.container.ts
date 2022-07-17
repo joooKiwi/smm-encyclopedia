@@ -14,7 +14,7 @@ export class SoundEffectOnMovementContainer
     static readonly #EVERY_CONTAINERS = new Map<PossibleValuesReceived, SoundEffectOnMovement>();
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #property;
 
@@ -30,7 +30,7 @@ export class SoundEffectOnMovementContainer
         return this.#property.comment;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(value: PossibleValuesReceived,): SoundEffectOnMovement {

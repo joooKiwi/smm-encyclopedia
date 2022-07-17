@@ -9,7 +9,7 @@ import type {TimeProperty}      from './TimeProperty';
 export class PropertyContainer
     implements Property {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #gameContainer;
     readonly #gameStyleContainer;
@@ -17,7 +17,7 @@ export class PropertyContainer
     readonly #timeContainer;
     readonly #limitContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<LimitProperty>,) {
         this.#gameContainer = game;

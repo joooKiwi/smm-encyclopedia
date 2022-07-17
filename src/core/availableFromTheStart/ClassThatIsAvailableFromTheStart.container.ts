@@ -12,13 +12,13 @@ import {GameStructureContainer} from '../game/GameStructure.container';
 export class ClassThatIsAvailableFromTheStartContainer<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM3DS extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM2 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, >
     implements ClassThatIsAvailableFromTheStart<SMM1, SMM3DS, SMM2> {
 
-    //region -------------------- Attribute --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ClassThatIsAvailableFromTheStart> = new ExtendedMapContainer();
 
     readonly #structure;
 
-    //endregion -------------------- Attribute --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(structure: GameStructure<SMM1, SMM3DS, SMM2>,) {
         this.#structure = structure;

@@ -1,10 +1,10 @@
 export abstract class AbstractAppOptionWithSomething<T, > {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #callbackToRender;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(callbackToRender: () => T,) {
         this.#callbackToRender = callbackToRender;

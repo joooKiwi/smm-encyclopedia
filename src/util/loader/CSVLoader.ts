@@ -9,9 +9,9 @@ import {PredefinedConverter}                 from './converter/PredefinedConvert
 
 export class CSVLoader<A extends any[] = any[], T = any, H extends string = string, > {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
-    //region -------------------- Static attributes --------------------
+    //region -------------------- Static fields --------------------
 
     /**
      * Any {@link PossiblePredefinedConversionWithoutValues} in new instance when it will be constructed.
@@ -32,8 +32,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      */
     public static GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE: boolean = false;
 
-    //endregion -------------------- Static attributes --------------------
-    //region -------------------- Static custom callback attributes --------------------
+    //endregion -------------------- Static fields --------------------
+    //region -------------------- Static custom callback fields --------------------
 
     /**
      * The custom callback name used in the {@link HeaderContainer}.
@@ -68,8 +68,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     public static readonly CUSTOM_CONVERSION_CALLBACK_WITH_EMPTYABLE_STRING_WITH_ERRORS: CustomConversionCallbackToAnyCallbackWithError = (value, mixedTypeOnConverter, conversionCallbacksToConverter,) =>
         value === '' ? null : CSVLoader.CUSTOM_CONVERSION_CALLBACK_WITH_ERRORS(value, mixedTypeOnConverter, conversionCallbacksToConverter,);
 
-    //endregion -------------------- Static custom callback attributes --------------------
-    //region -------------------- Instance attributes --------------------
+    //endregion -------------------- Static custom callback fields --------------------
+    //region -------------------- Instance fields --------------------
 
     readonly #hasOriginalContentAsReference: boolean;
     #doesThrowError?: boolean;
@@ -91,9 +91,9 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     #callbackOnInitialisationStart: CallbackOnInitialisationStart;
     #callbackOnInitialisationEnd: CallbackOnInitialisationEnd<A, T>;
 
-    //endregion -------------------- Instance attributes --------------------
+    //endregion -------------------- Instance fields --------------------
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(originalContent: string[][], callbackToCreateObject: CallbackToCreateObject<A, T>, hasOriginalContentAsReference: boolean = CSVLoader.GENERIC_HAS_ORIGINAL_CONTENT_AS_REFERENCE,) {
         this.#hasOriginalContentAsReference = hasOriginalContentAsReference;

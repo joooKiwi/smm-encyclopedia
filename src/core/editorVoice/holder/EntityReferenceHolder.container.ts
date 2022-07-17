@@ -12,11 +12,11 @@ import {ObjectHolderContainer}        from '../../../util/holder/ObjectHolder.co
 export class EntityReferenceHolderContainer
     implements EntityReferenceHolder {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #references: ObjectHolder<PossibleEntityReferences>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(references: PossibleEntityReferences_Received,) {
         this.#references = references.length === 1

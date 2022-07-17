@@ -29,7 +29,7 @@ export class EntityBehaviourLinkContainer
     static readonly #POWER_UPS_LINK =           new EntityBehaviourLinkContainer('Power-ups', null,             );
 
     //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #groupLinkHolder: ObjectHolder<| object | null>;
     readonly #entityLinkHolder: ObjectHolder<| Entity | null>;
@@ -57,7 +57,7 @@ export class EntityBehaviourLinkContainer
         return Entities.getValue(name).reference;
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
 
     public static get(groupLink: | PossibleGroupName | null, entityLink: | EntityName | null,): EntityBehaviourLink {
         if (groupLink == null && entityLink == null)

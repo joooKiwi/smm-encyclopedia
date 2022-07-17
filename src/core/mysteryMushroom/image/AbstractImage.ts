@@ -12,7 +12,7 @@ export abstract class AbstractImage<PATH extends PossiblePath,
     extends ClassWithPathContainer<PATH, BASIC_PATH, JAPANESE_PATH, LEFT_VARIATION_PATH, UNDERWATER_VARIATION_PATH>
     implements Image<PATH> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #WAITING_IMAGE: WaitingImage = 'wait.0.png';
     #waitingImages?: WaitingImages<PATH>;
@@ -67,7 +67,7 @@ export abstract class AbstractImage<PATH extends PossiblePath,
     static readonly #GOAL_POLE_IMAGES = [this.#GOAL_POLE_IMAGE_1, this.#GOAL_POLE_IMAGE_2,] as const;
     #goalPoleImages?: GoalPoleImages<PATH>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(basicPath: BASIC_PATH, japanesePath: JAPANESE_PATH, leftVariationPath: LEFT_VARIATION_PATH, underwaterVariationPath: UNDERWATER_VARIATION_PATH, amountOfImagesOnJump: | 1 | 3 = 1,) {
         super(basicPath, japanesePath, leftVariationPath, underwaterVariationPath,);

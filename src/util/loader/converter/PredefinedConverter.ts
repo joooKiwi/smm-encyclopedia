@@ -210,12 +210,12 @@ export abstract class PredefinedConverter
     //TODO add string to array of nullable number converter
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: PredefinedConverter;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #simpleName;
     readonly #simpleNameAsNonNullable;
@@ -224,7 +224,7 @@ export abstract class PredefinedConverter
     readonly #callbackToCreateNewValidationAsNonNullable: (validatingValue: | any | any[],) => ValidationCallback;
     readonly #callbackToCreateNewConversionAsNonNullable: () => ConversionCallbackToAny;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(simpleName: BasicPredefinedConversion,)
     private constructor(simpleName: PredefinedConversion, simpleNameAsNonNullable: BasicPredefinedConversion,)

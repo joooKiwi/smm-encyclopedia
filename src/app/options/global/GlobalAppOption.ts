@@ -48,14 +48,14 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     public static readonly NIGHT =            new class GlobalAppOption_Night extends GlobalAppOption<boolean> {}(true,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: GlobalAppOption;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(defaultValue: T,) {
         super(defaultValue,);

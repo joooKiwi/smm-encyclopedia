@@ -12,12 +12,12 @@ export class CourseThemeContainer
     extends AbstractTheme
     implements CourseTheme {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #entitiesHolder;
     readonly #effectHolder;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: Name<string>, isInProperty: GameProperty, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>, entities: ObjectHolder<readonly Entity[]>, effect: ObjectHolder<NightEffects>,) {
         super(name, isInProperty, isAvailableFromTheStart,);

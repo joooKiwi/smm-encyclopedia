@@ -19,7 +19,7 @@ import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 export default class EveryGameReferencesApp
     extends AbstractApp {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     /**
      * Every {@link GameReferences} that will do a return of line after its rendering.
@@ -43,7 +43,7 @@ export default class EveryGameReferencesApp
 
     static #otherGameReferences?: readonly GameReferences[];
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter & initialisation methods --------------------
 
     private static get __otherGameReferences(): readonly GameReferences[] {

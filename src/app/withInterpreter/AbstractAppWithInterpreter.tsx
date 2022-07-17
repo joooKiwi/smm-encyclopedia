@@ -12,13 +12,13 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractApp<T, S> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     #possibleViewDisplay?: readonly ViewDisplays[];
     #key?: string;
     #appInterpreter?: APP;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter & create methods --------------------
 
     /**

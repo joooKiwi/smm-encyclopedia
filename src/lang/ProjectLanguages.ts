@@ -72,12 +72,12 @@ export class ProjectLanguages
     protected static readonly _DEFAULT = this.getValue(EveryLanguages.default)!;
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: ProjectLanguages;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #language: EveryLanguages;
     readonly #isInSuperMarioMaker1: boolean;
@@ -85,7 +85,7 @@ export class ProjectLanguages
     readonly #isInSuperMarioMaker2: boolean;
     #isInEverySuperMarioMakerGame?: boolean;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(language: ProjectLanguages,)
     // @ts-ignore

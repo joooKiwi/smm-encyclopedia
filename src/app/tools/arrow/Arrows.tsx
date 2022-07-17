@@ -97,19 +97,19 @@ export abstract class Arrows
     }('arrows-container', HORIZONTAL, false,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Arrows;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #container;
     readonly #direction;
     readonly #doesDisplayLine;
     #arrows?: PossibleArrowCreation;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(container: PossibleContainer, direction: ArrowDirections, doesDisplayLine: boolean,) {
         super();

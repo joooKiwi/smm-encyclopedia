@@ -15,7 +15,7 @@ import {ProjectLanguages}          from '../ProjectLanguages';
 export class NameContainer<T, >
     implements Name<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #OPTIONAL_LANGUAGES = [EveryLanguages.HEBREW, EveryLanguages.POLISH,
         EveryLanguages.UKRAINIAN, EveryLanguages.GREEK,] as const;
@@ -39,7 +39,7 @@ export class NameContainer<T, >
     readonly #ukrainianContainer: EmptyableOptionalLanguage<T, T, never>;
     readonly #greekContainer: EmptyableOptionalLanguage<T, T, never>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(english: AmericanOrEuropeanOriginal<T>,
                        french: CanadianOrEuropeanOriginal<T>,
@@ -97,7 +97,7 @@ export class NameContainer<T, >
 
     /**
      * The options languages on the {@link NameContainer},
-     * but as the type used by the private static attributes.
+     * but as the type used by the private static fields.
      */
     protected static get _optionalLanguages() {
         return this.#OPTIONAL_LANGUAGES;

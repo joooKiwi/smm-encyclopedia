@@ -2,14 +2,14 @@ import type {ReactElement} from '../../../../util/react/ReactProperty';
 
 export class SoundSubElementsHolder {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #playElement;
     readonly #pauseElement;
     readonly #stopElement;
     readonly #exceptionElement;
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public constructor(playElement: ReactCallback, pauseElement: ReactCallback, stopElement: ReactCallback, exceptionElement: ReactCallback,) {
         this.#playElement = playElement;

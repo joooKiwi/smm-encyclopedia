@@ -17,18 +17,18 @@ import PowerUpPriorityComponent  from './powerUp/priority/PowerUpPriority.compon
 import {SMM1PowerUpPriority}     from './powerUp/priority/SMM1PowerUpPriority';
 import {SMM2PowerUpPriority}     from './powerUp/priority/SMM2PowerUpPriority';
 
-//region Import from deconstruction
+//region -------------------- Import from deconstruction --------------------
 
 const {SMB_AND_SMB3, SMW_AND_NSMBU, SMB_SMB3_AND_SMW, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK, FIRST_EDITOR_IMAGE_CALLBACK, IN_GAME_IMAGE_CALLBACK, CLEAR_CONDITION_IMAGE_CALLBACK} = AbstractPowerUpPriority;
 const {FIRE_FLOWER, BIG_MUSHROOM_MODERN, RED_YOSHI, BUZZY_SHELL, PROPELLER_BOX, RED_POW_BOX, MASTER_SWORD, BIG_MUSHROOM_CLASSIC, CANNON_BOX, SUPER_ACORN, CAR, SUPER_LEAF, SUPER_HAMMER, JUNIOR_CLOWN_CAR, SUPERBALL_FLOWER, FROG_SUIT, FIRE_JUNIOR_CLOWN_CAR, BOOMERANG_FLOWER, SHOE, BIG_MUSHROOM, KOOPA_CLOWN_CAR, KOOPA_TROOPA_CAR, BULLET_BILL_MASK, SPINY_SHELL, SMB2_MUSHROOM, FIRE_KOOPA_CLOWN_CAR, YOSHI, DRY_BONES_SHELL, STILETTO, POWER_BALLOON, LAKITU_CLOUD, MYSTERY_MUSHROOM, GOOMBA_MASK, SUPER_MUSHROOM, CAPE_FEATHER, SUPER_BELL, SUPER_STAR, PROPELLER_MUSHROOM, WEIRD_MUSHROOM} = Entities;
 const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD} = GameStyles;
 
-//endregion Import from deconstruction
+//endregion -------------------- Import from deconstruction --------------------
 
 export default class PowerUpPriorityApp
     extends AbstractApp {
 
-    //region Power-up priority holders
+    //region -------------------- Power-up priority holders --------------------
 
     static readonly #SUPER_MUSHROOM: PowerUpByAllGameStylesPriority =               new AllGamesPowerUpPriority(SUPER_MUSHROOM,         SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,);
     static readonly #MYSTERY_MUSHROOM: PowerUpPriority =                            new SMM1PowerUpPriority(MYSTERY_MUSHROOM,           SUPER_MARIO_BROS,       IN_GAME_IMAGE_CALLBACK,);
@@ -93,7 +93,7 @@ export default class PowerUpPriorityApp
         AbstractPowerUpPriority.getEditorImages(KOOPA_TROOPA_CAR, gameStyle,),);
     static readonly #LAKITU_CLOUD: PowerUpBySMM1GameStylesPriority =                new SMM2PowerUpPriority(LAKITU_CLOUD,               SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,);
 
-    //endregion Power-up priority holders
+    //endregion -------------------- Power-up priority holders --------------------
 
     protected override _mainContent(): ReactElement {
         return <>

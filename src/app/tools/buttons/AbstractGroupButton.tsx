@@ -13,7 +13,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
     extends Component<GroupButtonProperties<T>>
     implements ReactComponent<ReactNode> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_IS_OUTLINE = true;
     public static DEFAULT_IS_VERTICAL = true;
@@ -23,7 +23,7 @@ export default abstract class AbstractGroupButton<T extends ActivatablePropertie
     #isOutline?: GroupButtonProperties<T>['isOutline'];
     #hasTheConditionToBeVertical?: boolean;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(props: GroupButtonProperties<T>,) {
         super(props);

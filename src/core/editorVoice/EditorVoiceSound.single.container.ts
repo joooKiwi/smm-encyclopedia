@@ -3,11 +3,11 @@ import type {EditorVoiceSound, PossibleFileName, PossibleStartingName_WithVoiceB
 export class EditorVoiceSoundSingleContainer
     implements EditorVoiceSound<PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative>> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #fileName;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(fileName: PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative>,) {
         this.#fileName = fileName;

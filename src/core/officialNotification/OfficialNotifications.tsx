@@ -473,12 +473,12 @@ export class OfficialNotifications
     }('Clear # Super World', 'super world.clear', 2, 3, 4, 5, 10,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: OfficialNotifications;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #englishName;
     readonly #additionalEnglishName: readonly PossibleEnglishNameWithEveryAmount[];
@@ -486,7 +486,7 @@ export class OfficialNotifications
     readonly #translationKey;
     #additionalTranslationKeyHolder: ObjectHolder<| PossibleAdditionalTranslationKey | null>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount>, translationKey: PossibleTranslationKey,)
     private constructor(englishName: PossibleEnglishNameWithAmount<'#'>, translationKey: PossibleTranslationKey, ...amount: readonly PossibleAmount[])

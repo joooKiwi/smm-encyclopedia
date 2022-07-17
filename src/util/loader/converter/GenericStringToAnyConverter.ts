@@ -3,13 +3,13 @@ import {AbstractStringConverter} from './AbstractStringConverter';
 export class GenericStringToAnyConverter<T>
     extends AbstractStringConverter<T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #typeName;
     readonly #isValueValidCallback;
     readonly #convertTheValueCallback;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(originalValue: string,
                        typeName: string,

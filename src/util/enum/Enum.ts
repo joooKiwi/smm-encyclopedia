@@ -62,7 +62,7 @@ import type {EnumName}         from './Enum.types';
 export abstract class Enum<O extends number = number, N extends string = string, >
     implements Enumerable<O, N> {
 
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static readonly #DEFAULT_NULL_DEFAULT_ARRAY = [null, null,] as const;
     static readonly #PROTOTYPE_NAME = 'prototype';
@@ -135,7 +135,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
     #name?: N;
     readonly #ordinal: O;
 
-    //endregion -------------------- Enum attributes --------------------
+    //endregion -------------------- Enum fields --------------------
     //region -------------------- Enum static methods --------------------
 
     /**
@@ -371,7 +371,7 @@ export abstract class Enum<O extends number = number, N extends string = string,
      *      <li>the {@link Enum.ordinal ordinal},</li>
      *      <li>the {@link Enum.name name},</li>
      *      <li>directly as a {@link Enum}</li>
-     *      <li>a static {@link Enum._PARENT _PARENT} attribute</li>
+     *      <li>a static {@link Enum._PARENT _PARENT} field</li>
      *  </ol>
      *  And the possible arguments received can be <i>undefined</i>, <i>null</i>,
      *  a <i>{@link String string}</i>, a <i>{@link Number number}</i>

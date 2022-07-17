@@ -11,12 +11,12 @@ export abstract class AbstractCourseAndWorldTheme
     extends ClassContainingAName<string>
     implements CourseAndWorldTheme {
 
-    //region -------------------- Attributes ----------------------------------------
+    //region -------------------- Fields ----------------------------------------
 
     readonly #courseTheme: CourseTheme;
     readonly #worldTheme: WorldTheme;
 
-    //endregion -------------------- Attributes ----------------------------------------
+    //endregion -------------------- Fields ----------------------------------------
 
     protected constructor(name: Name<string>, courseTheme: CourseTheme, worldTheme: WorldTheme,) {
         super(name,);

@@ -13,12 +13,12 @@ import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.contai
 export class LimitPropertyContainer
     implements LimitProperty {
 
-    //region -------------------- Static attributes --------------------
+    //region -------------------- Static fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<Key, LimitProperty> = new ExtendedMapContainer();
 
-    //endregion -------------------- Static attributes --------------------
-    //region -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Static fields --------------------
+    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #editorLimitContainer;
     readonly #isGeneralLimitContainer;
@@ -156,7 +156,7 @@ export class LimitPropertyContainer
         );
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(argumentsReceived: ArgumentsReceived, key: Key,): LimitProperty {

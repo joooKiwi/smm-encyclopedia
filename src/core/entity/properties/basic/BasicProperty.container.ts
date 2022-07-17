@@ -7,7 +7,7 @@ export class BasicPropertyContainer<HAS_A_MUSHROOM_VARIANT extends PossibleHasAM
     CAN_HAVE_WINGS extends PossibleCanHaveWings = PossibleCanHaveWings, >
     implements BasicProperty<HAS_A_MUSHROOM_VARIANT, CAN_BE_IN_A_PARACHUTE, CAN_HAVE_WINGS> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static readonly POSSIBLE_COMMENT: LCL_whilePlaying = 'While playing → LCL';
 
@@ -15,7 +15,7 @@ export class BasicPropertyContainer<HAS_A_MUSHROOM_VARIANT extends PossibleHasAM
     readonly #canBeInAParachuteContainer: CanBeInAParachute<CAN_BE_IN_A_PARACHUTE>;
     readonly #canHaveWingsContainer: CanHaveWings<CAN_HAVE_WINGS>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(hasAMushroom: HAS_A_MUSHROOM_VARIANT, canBeInAParachute: CAN_BE_IN_A_PARACHUTE, canHaveWings: CAN_HAVE_WINGS,) {
         this.#hasAMushroomContainer = PropertyProvider.newBooleanContainer(hasAMushroom, true, false,);

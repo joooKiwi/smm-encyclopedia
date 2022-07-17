@@ -8,11 +8,11 @@ import {AbstractPowerUpByAllPossibleGameStylesPriority} from './AbstractPowerUpB
 export class SMM1PowerUpPriority
     extends AbstractPowerUpByAllPossibleGameStylesPriority {
 
-    //region Attributes
+    //region -------------------- Fields --------------------
 
     static readonly #IS_IN_GAME: ClassInAnySuperMarioMakerGame<true, false, false> = {isInSuperMarioMaker1: true, isInSuperMarioMakerFor3DS: false, isInSuperMarioMaker2: false,};
 
-    //endregion Attributes
+    //endregion -------------------- Fields --------------------
 
     public constructor(entity: Entities, gameStylesDisplayed: GameStyles, callback: ImageRetrieverCallback,)
     public constructor(entity: Entities, gameStylesDisplayed: | PossibleGameStyles, callback: ImageRetrieverCallback,)

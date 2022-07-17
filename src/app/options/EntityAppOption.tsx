@@ -273,12 +273,12 @@ export abstract class EntityAppOption
     public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}(true,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EntityAppOption;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     /**
      * The callback to get the enumeration based for each option.
@@ -295,7 +295,7 @@ export abstract class EntityAppOption
     #appOptionWithContent?: AppOptionWithContent;
     #appOptionWithTable?: AppOptionWithTable;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(defaultValue: boolean,) {
         super(defaultValue,);

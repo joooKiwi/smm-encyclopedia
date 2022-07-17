@@ -42,19 +42,19 @@ export class PredefinedMessages
     public static readonly THROW =          new PredefinedMessages('Throw!',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: PredefinedMessages;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, PredefinedMessage>;
 
     #reference?: PredefinedMessage;
     readonly #englishName: StringContainer<PossibleEnglishName>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
         super();

@@ -28,12 +28,12 @@ export class MiiCostumeCategories
     public static readonly BOTTOM =   new MiiCostumeCategories('Bottom', 2,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: MiiCostumeCategories;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>;
 
@@ -42,7 +42,7 @@ export class MiiCostumeCategories
     readonly #imageName: PossibleImageName;
     #imagePath?: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();

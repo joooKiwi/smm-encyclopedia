@@ -297,12 +297,12 @@ export class MysteryMushrooms
     public static readonly BABYMETAL =              new MysteryMushrooms('BABYMETAL',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: MysteryMushrooms;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>;
 
@@ -314,7 +314,7 @@ export class MysteryMushrooms
     #soundContainer?: Sound;
 
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(englishName_and_englishNameOnFile: PossibleEnglishName,)
     public constructor(englishNameOnFile: EnglishNameOnFile, englishName: PossibleEnglishName,)

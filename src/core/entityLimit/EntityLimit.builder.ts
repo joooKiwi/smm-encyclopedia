@@ -32,7 +32,7 @@ export class EntityLimitBuilder
     public static references: Map<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>;
 
     //endregion -------------------- External object references --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #NOT_APPLICABLE_CONTAINER: ObjectHolder<NotApplicableProperty> = new ObjectHolderContainer(PropertyContainer.NOT_APPLICABLE_CONTAINER);
     static readonly #UNKNOWN_CONTAINER: ObjectHolder<UnknownProperty> = new ObjectHolderContainer(PropertyContainer.UNKNOWN_CONTAINER);
@@ -40,7 +40,7 @@ export class EntityLimitBuilder
     static readonly #EMPTY_ENTITY_LIMIT: ObjectHolder<EmptyEntityLimit> = new DelayedObjectHolderContainer(() => EmptyEntityLimit.get);
     static readonly #EMPTY_ENTITY_LIMIT_AMOUNT: ObjectHolder<EmptyEntityLimitAmount> = new DelayedObjectHolderContainer(() => EmptyEntityLimitAmount.get);
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
         super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);

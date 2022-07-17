@@ -156,12 +156,12 @@ export class MiiCostumes
     public static readonly WORLD_WEAR =                   new MiiCostumes('World Wear',                   'All_MapWorld',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: MiiCostumes;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostume>;
 
@@ -170,7 +170,7 @@ export class MiiCostumes
     readonly #imageName: PossibleImageName;
     readonly #imagePath: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageName: PossibleImageName,) {
         super();

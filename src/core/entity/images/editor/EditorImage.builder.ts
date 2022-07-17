@@ -16,7 +16,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     extends AbstractImageBuilder<NAME, PossibleAmountOfImages>
     implements Builder<EditorImage> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #SIMPLE_POWER_UP_ENDING: VariantEditorImage_PowerUp = 'Uni';
     static readonly #POWER_UP_ENDING: `${VariantEditorImage_PowerUp}_00` = `${this.#SIMPLE_POWER_UP_ENDING}_00`;
@@ -31,7 +31,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     #overrideDefaultAmount?: Map<GameStyles, PossibleAmountOfImages>;
     #overrideMap?: Map<Times, Map<GameStyles, Map<Themes, PossibleAmountOfImages>>>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     /**
      * <p>

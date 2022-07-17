@@ -10,12 +10,12 @@ import {AbstractCourseAndWorldTheme} from './AbstractCourseAndWorldTheme';
 export class CourseAndWorldThemeContainer
     extends AbstractCourseAndWorldTheme {
 
-    //region Attributes
+    //region -------------------- Fields --------------------
 
     readonly #isInPropertyHolder;
     readonly #isAvailableFromTheStartHolder;
 
-    //endregion Attributes
+    //endregion -------------------- Fields --------------------
 
     public constructor(name: Name<string>, gameProperty: ObjectHolder<GameProperty>, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>, courseTheme: CourseTheme, worldTheme: WorldTheme,) {
         super(name, courseTheme, worldTheme,);

@@ -15,7 +15,7 @@ import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}       
 export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEADERS_INDEX_MAP, >
     implements Builder<TEMPLATE> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EMPTY_HEBREW = null;
     static readonly #EMPTY_POLISH = null;
@@ -24,7 +24,7 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     readonly #content;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(content: ARRAY,) {
         this.#content = content;

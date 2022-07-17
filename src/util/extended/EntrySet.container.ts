@@ -3,12 +3,12 @@ import {EntrySet} from './EntrySet';
 export class EntrySetContainer<K, V, >
     implements EntrySet<K, V> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #key;
     #value;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(key: K, value: V,)
     public constructor(entry: EntrySet<K, V>,)

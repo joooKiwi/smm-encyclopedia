@@ -10,7 +10,7 @@ import {ExtendedMapContainer} from '../../util/extended/ExtendedMap.container';
 export class GameStructureContainer<SMM1, SMM3DS, SMM2, >
     implements GameStructure<SMM1, SMM3DS, SMM2> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStructure<any, any, any>> = new ExtendedMapContainer();
 
@@ -18,7 +18,7 @@ export class GameStructureContainer<SMM1, SMM3DS, SMM2, >
     readonly #superMarioMakerForNintendo3DS;
     readonly #superMarioMaker2;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor([isInSuperMarioMaker1, isInSuperMarioMakerFor3DS, isInSuperMarioMaker2,]: ArgumentsReceived<SMM1, SMM3DS, SMM2>,) {
         this.#superMarioMaker = isInSuperMarioMaker1;

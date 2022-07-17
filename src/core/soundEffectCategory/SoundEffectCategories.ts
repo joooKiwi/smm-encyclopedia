@@ -29,12 +29,12 @@ export class SoundEffectCategories
     public static readonly MUSIC =      new SoundEffectCategories('Music',      8,);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: SoundEffectCategories;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffectCategory>;
 
@@ -43,7 +43,7 @@ export class SoundEffectCategories
     readonly #imageName: PossibleImageName;
     #imagePath?: PossibleImagePath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super();

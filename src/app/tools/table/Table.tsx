@@ -23,12 +23,12 @@ export default class Table
     extends PureComponent<TableProperties>
     implements ReactComponent {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     public static readonly DEFAULT_TABLE_COLOR: BootstrapColor = 'primary';
     public static readonly DEFAULT_HEADERS_COLOR: BootstrapColor = 'info';
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     public get id() {

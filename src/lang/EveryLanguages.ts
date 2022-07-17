@@ -480,12 +480,12 @@ export abstract class EveryLanguages
     protected static readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH;
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: EveryLanguages;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #CURRENT_LANGUAGE: EveryLanguages;
     public static readonly UNKNOWN_STRING = '???';
@@ -521,7 +521,7 @@ export abstract class EveryLanguages
     #romainUppercaseAlphabet?: PossibleUppercaseRomainAlphabet_Array;
     #numbers?: PossibleNumbers_Array;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(isACompleteLanguage: boolean, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
@@ -774,7 +774,7 @@ export abstract class EveryLanguages
     //endregion -------------------- Transformation methods --------------------
 
     /**
-     * Set the language into the dom elements using a <b>lang</b> attribute
+     * Set the language into the dom elements using a <b>lang</b> value
      * to change it to the current instance.
      */
     #setLanguageToHTML(): this {

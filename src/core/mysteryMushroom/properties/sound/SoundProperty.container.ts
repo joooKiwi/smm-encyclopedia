@@ -22,7 +22,7 @@ import {SpecialMusicInStarModeContainer}       from './SpecialMusicInStarMode.co
 export class SoundPropertyContainer
     implements SoundProperty {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #soundEffectWhenCollectedContainer;
     readonly #soundEffectOnTauntContainer;
@@ -34,7 +34,7 @@ export class SoundPropertyContainer
     readonly #soundEffectOnGoalPoleContainer;
     readonly #soundEffectOnDeathContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(valueWhenCollected: PossibleSoundEffectWhenCollected, gameWhenCollected: GameOnSoundEffectWhenCollected,
                        valueOnTaunt: PossibleSoundEffectOnTaunt, gameOnTaunt: GameOnSoundEffectOnTaunt,

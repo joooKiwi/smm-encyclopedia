@@ -54,13 +54,13 @@ export class EntityBuilder
     extends TemplateWithNameBuilder<EntityTemplate, Entity>
     implements Builder<Entity> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
 
     readonly #selfCallback = () => [this.build()] as const;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(template: EntityTemplate,) {
         super(template, (template,) => EntityBuilder.#getGames(template,), false,);
@@ -125,7 +125,7 @@ export class EntityBuilder
      *
      * @param limitTemplate the limit template
      */
-    static #getLimitPropertyAttributes(limitTemplate: LimitPropertyTemplate,): LimitProperty {
+    static #getLimitPropertyFields(limitTemplate: LimitPropertyTemplate,): LimitProperty {
         const {
             editor: {'1And3DS': editorLimit_SMM1And3DS, 2: editorLimit_SMM2,},
             whilePlaying: {
@@ -171,7 +171,7 @@ export class EntityBuilder
             new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
             new DelayedObjectHolderContainer(() => ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
             new DelayedObjectHolderContainer(() => TimePropertyContainer.get(time.day, time.night,)),
-            new DelayedObjectHolderContainer(() => EntityBuilder.#getLimitPropertyAttributes(limits)),
+            new DelayedObjectHolderContainer(() => EntityBuilder.#getLimitPropertyFields(limits)),
         );
     }
 

@@ -9,7 +9,7 @@ export abstract class ClassWithPathContainer<PATH extends PossiblePath,
     UNDERWATER_VARIATION_PATH extends string | null, >
     implements ClassWithPath {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     protected static readonly BASIC_STARTING_PATH: BasicStartingPath = `/${BASE_PATH}/mystery mushroom/`;
     protected static readonly JAPANESE_PATH: JapanesePath = '/Japanese';
@@ -23,7 +23,7 @@ export abstract class ClassWithPathContainer<PATH extends PossiblePath,
     readonly #leftVariationPath;
     readonly #underwaterVariationPath;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(basicPath: BASIC_PATH, japanesePath: JAPANESE_PATH, leftVariationPath: LEFT_VARIATION_PATH, underwaterVariationPath: UNDERWATER_VARIATION_PATH,) {
         this.#basicPath = basicPath;

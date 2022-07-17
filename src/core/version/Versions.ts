@@ -41,19 +41,19 @@ export class Versions
     public static readonly SMM2_V3_0_1 =       new Versions('v3.0.1',       2,     new Date(2020, 7,  15,),);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: Versions;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #name;
     readonly #game;
     readonly #releaseDate;
     readonly #gameStyle;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null,)
     private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null, gameStyle: typeof GameStyles['SUPER_MARIO_3D_WORLD'],)

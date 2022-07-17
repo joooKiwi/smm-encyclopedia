@@ -84,12 +84,12 @@ export class SoundEffects
     public static readonly SUPER_MARIO_GALAXY =     new SoundEffects('Super Mario Galaxy',        null,                 'Mario03',);
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum attributes --------------------
+    //region -------------------- Enum fields --------------------
 
     static [index: number]: SoundEffects;
 
-    //endregion -------------------- Enum attributes --------------------
-    //region -------------------- Attributes --------------------
+    //endregion -------------------- Enum fields --------------------
+    //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffect>;
     static #soundEffect_games?: EnumArray_Games;
@@ -99,7 +99,7 @@ export class SoundEffects
     readonly #SMM1ImagePath: | readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,] | null;
     readonly #SMM2ImagePath: | PossibleImagePath_SMM2 | null;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName_SMM1AndSMM2, imageNumber_smm1: | SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,], imageName_smm2: SoundEffectImageName_SMM2,)
     private constructor(englishName: Exclude<PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2>, imageNumber_smm1: SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,], imageName_smm2: null,)

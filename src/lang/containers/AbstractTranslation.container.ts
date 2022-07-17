@@ -6,13 +6,13 @@ import {EMPTY_OBJECT} from '../../util/emptyVariables';
 export abstract class AbstractTranslationContainer<N extends Namespace, T extends PossibleReactElement = PossibleReactElement, >
     implements Translation<N, T> {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #namespace;
     readonly #translationKey;
     readonly #replace;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     protected constructor(namespace: N, translationKey: SingleTranslationKey<N>, replace: TranslationReplaceKeysMap<T> = EMPTY_OBJECT,) {
         this.#namespace = namespace;

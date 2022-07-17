@@ -8,11 +8,11 @@ export class GameReferenceContainer
     extends ClassContainingAName<string>
     implements GameReference {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #acronym;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(acronym: PossibleAcronym, name: Name<string>,) {
         super(name,);

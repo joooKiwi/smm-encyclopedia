@@ -5,12 +5,12 @@ import type {SoundEffectProperty}              from './SoundEffectProperty';
 export class SoundEffectPropertyContainer
     implements SoundEffectProperty {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     readonly #gameContainer;
     readonly #playerSoundEffectTriggerContainer;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(game: GameProperty, playerSoundEffectTrigger: PlayerSoundEffectTriggerProperty,) {
         this.#gameContainer = game;

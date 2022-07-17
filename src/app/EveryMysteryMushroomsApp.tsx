@@ -27,20 +27,20 @@ import {ImageProperties}               from './tools/images/properties/ImageProp
 export default class EveryMysteryMushroomsApp
     extends AbstractApp<{}, MysteryMushroomAppStates> {
 
-    //region -------------------- Attributes & getter methods --------------------
+    //region -------------------- Fields & getter methods --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(props: {},) {
         super(props,);
         this.state = {};
     }
 
-    //endregion -------------------- Attributes & getter methods --------------------
+    //endregion -------------------- Fields & getter methods --------------------
     //region -------------------- Methods --------------------
 
     /**

@@ -20,13 +20,13 @@ export class NoImage
     }
 
     //endregion -------------------- Singleton usage --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EMPTY_ARRAY_2 = [EMPTY_ARRAY, EMPTY_ARRAY,] as const;
     static readonly #EMPTY_ARRAY_3 = [EMPTY_ARRAY, EMPTY_ARRAY, EMPTY_ARRAY,] as const;
     static readonly #EMPTY_ARRAY_6 = [EMPTY_ARRAY, EMPTY_ARRAY, EMPTY_ARRAY, EMPTY_ARRAY, EMPTY_ARRAY, EMPTY_ARRAY,] as const;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     public readonly waitingImages = EMPTY_ARRAY;

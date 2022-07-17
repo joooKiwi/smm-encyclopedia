@@ -8,7 +8,7 @@ import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables';
 export class HeaderHolderContainer
     implements HeaderHolder {
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #INSTANCES = new Map<string, HeaderHolderContainer[]>();
     static readonly #MAXIMUM_SUB_LEVEL_MAP = new Map<string, number>();
@@ -25,7 +25,7 @@ export class HeaderHolderContainer
     readonly #callbackToRenderHead: (headerHolder: this,) => ReactElement;
     readonly #callbackToRenderFoot: (headerHolder: this,) => ReactElement;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public constructor(tableIdentifier: string, header: SingleHeaderContent, callbackToRenderHead: (headerHolder: HeaderHolder,) => ReactElement, callbackToRenderFoot: (headerHolder: HeaderHolder,) => ReactElement,) {
         this.#tableIdentifier = tableIdentifier;

@@ -37,13 +37,13 @@ export class CommonOptions {
     }
 
     //endregion -------------------- Singleton usage --------------------
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     #nameHeader?: SingleHeaderContent;
 
     #categoryHeader?: SingleHeaderContent;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     public get nameHeader(): SingleHeaderContent {
         return this.#nameHeader ??= {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,};

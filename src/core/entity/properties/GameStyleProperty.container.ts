@@ -14,8 +14,9 @@ import type {GameStyles}      from '../../gameStyle/GameStyles';
 export class GameStylePropertyContainer
     implements GameStyleProperty {
 
+    //region -------------------- Fields, constructor & methods --------------------
 
-    //region -------------------- Attributes --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStyleProperty> = new ExtendedMapContainer();
 
@@ -26,7 +27,7 @@ export class GameStylePropertyContainer
     readonly #isInNewSuperMarioBrosUStyle;
     readonly #isInSuperMario3DWorldStyle;
 
-    //endregion -------------------- Attributes --------------------
+    //endregion -------------------- Fields --------------------
 
     private constructor([isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,]: ArgumentsReceived,) {
         this.#isInSuperMarioBrosStyle = isInSuperMarioBrosStyle;
@@ -64,7 +65,7 @@ export class GameStylePropertyContainer
         return this.#map ??= new Map(Import.GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
     }
 
-    //endregion -------------------- Container attributes, constructor & methods --------------------
+    //endregion -------------------- Fields, constructor & methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends | boolean | null = | boolean | null, >(isInSuperMarioBrosStyle: SMB, isInSuperMarioBros3Style: SMB3, isInSuperMarioWorldStyle: SMW, isInNewSuperMarioBrosUStyle: NSMBU, isInSuperMario3DWorldStyle: SM3DW,): GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
