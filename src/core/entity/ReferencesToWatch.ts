@@ -2,6 +2,8 @@ import type {EntityLink}          from './loader.types';
 import type {EntityTemplate}      from './Entity.template';
 import type {PossibleEnglishName} from './Entities.types';
 
+import {isInProduction} from '../../variables';
+
 interface ReferencesToWatchDefinition {
 
     /**
@@ -218,5 +220,5 @@ class ReferencesToWatchForTestAndDevelopment
 }
 
 
-const ReferencesToWatch: ReferencesToWatchDefinitionConstructor = process.env.NODE_ENV === 'production' ? ReferencesToWatchForProduction : ReferencesToWatchForTestAndDevelopment;
+const ReferencesToWatch: ReferencesToWatchDefinitionConstructor = isInProduction ? ReferencesToWatchForProduction : ReferencesToWatchForTestAndDevelopment;
 export {ReferencesToWatch};

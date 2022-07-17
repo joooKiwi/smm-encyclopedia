@@ -1,7 +1,3 @@
-import type {Resource}    from 'i18next';
-import i18n               from 'i18next';
-import {initReactI18next} from 'react-i18next';
-
 import englishLanguage                 from './locale/en/language.json';
 import englishContent                  from './locale/en/content.json';
 import englishGameContent              from './locale/en/gameContent.json';
@@ -66,6 +62,12 @@ import koreanLanguage                  from './locale/ko/language.json';
 import koreanContent                   from './locale/ko/content.json';
 import koreanGameContent               from './locale/ko/gameContent.json';
 import koreanEntityContent             from './locale/ko/entityContent.json';
+
+import type {Resource}    from 'i18next';
+import i18n               from 'i18next';
+import {initReactI18next} from 'react-i18next';
+
+import {isInProduction}                from '../variables';
 
 declare module 'react-i18next' {
     interface Resources {
@@ -245,7 +247,7 @@ i18n
         },
         ns: ['language', 'content', 'gameContent', 'entityContent',],
         resources,
-        debug: true,
+        debug: !isInProduction,
 
         interpolation: {
             escapeValue: false,
