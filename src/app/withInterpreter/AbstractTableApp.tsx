@@ -50,9 +50,11 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
      */
     public createTable(): ReactElement {
         const optionInterpreter = this._appOptionInterpreter;
-        return <Table key={`${this._key} (table)`}
+        const key = this._key;
+
+        return <Table key={`${key} (table)`}
                       {...optionInterpreter.tableProperties}
-                      id={`${this._key}-table`}
+                      id={`${key}-table`}
                       content={this.#tableContent(optionInterpreter)}
                       headers={[
                           {key: 'originalOrder', element: <>#</>,},
