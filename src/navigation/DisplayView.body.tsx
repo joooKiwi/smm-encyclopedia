@@ -74,6 +74,19 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                             tooltipValue={translation('Display every Mii costume categories',{MiiCostume: '--Mii costume--',},)}//TODO add Mii costume reference
                                             elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
                 </div> : EMPTY_REACT_ELEMENT}
+                <div key="button group container (power-up + mountable priority)" id="powerUpAndMountable-buttonGroup-container" className="btn-group-vertical col-12" role="group">
+                    <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={<>----Power-up-- & --ride----</>}
+                                            tooltipValue={translation('Display every power-ups & rides priority', {powerUps: '--power-ups--', rides:'--rides--',},)}//TODO add Power-ups & rides reference
+                                            elementId="displayView-powerUpAndMountable-button" id={id} divId={divId}/>
+                    <div key="button group container (power-up + mountable priority separately)" id="powerUpAndMountableSeparately-buttonGroup-container" className="btn-group" role="group">
+                        <DisplayViewRouteButton routeName="everyPowerUpPriority" value={<>--Power-up--</>}
+                                                tooltipValue={translation('Display every power-ups priority', {powerUps: '--power-ups--',},)}//TODO add Power-up reference
+                                                elementId="displayView-powerUp-button" id={id} divId={divId}/>
+                        <DisplayViewRouteButton routeName="everyRidePriority" value={<>--Ride--</>}
+                                                tooltipValue={translation('Display every rides priority', {rides:'--rides--'},)}//TODO add Rides reference
+                                                elementId="displayView-ride-button" id={id} divId={divId}/>
+                    </div>
+                </div>
                 {/*isSMM1Selected ? */<div key="button group container (mystery mushroom)" id="mysteryMushroom-buttonGroup-container" className="btn-group col-12" role="group">
                     <DisplayViewRouteButton routeName={'everyMysteryMushrooms'} value={<span className="mystery-mushroom-image">--Mystery Mushroom--</span>}//TODO add Mystery Mushroom reference
                                             tooltipValue={translation('Display every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--',},)}//TODO add Mystery Mushroom reference

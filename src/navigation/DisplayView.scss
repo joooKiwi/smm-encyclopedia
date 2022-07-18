@@ -1,7 +1,15 @@
 #display-modal-body-container .container {
-  .btn-group {
+  .btn-group, .btn-group-vertical {
     padding-bottom: var(--bs-spacer-md);
     padding-right: var(--bs-spacer-sm);
     padding-left: var(--bs-spacer-sm);
+
   }
+
+  .btn-group-vertical > {
+    .btn-group, .btn-group-vertical {
+      padding: var(--bs-spacer-xs);
+    }
+  }
+
 }
