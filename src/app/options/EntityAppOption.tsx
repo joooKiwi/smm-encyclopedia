@@ -148,8 +148,7 @@ export abstract class EntityAppOption
         }
 
     }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {
-    }(false,);
+    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {}(false,);
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
