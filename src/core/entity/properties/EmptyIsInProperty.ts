@@ -1,8 +1,9 @@
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../../util/ClassWithNullObjectPattern';
 import type {Property}                                          from './Property';
 
-import {EMPTY_MAP}          from '../../../util/emptyVariables';
-import {EmptyLimitProperty} from './limit/EmptyLimitProperty';
+import {EMPTY_MAP}               from '../../../util/emptyVariables';
+import {EmptyInstrumentProperty} from './instrument/EmptyInstrumentProperty';
+import {EmptyLimitProperty}      from './limit/EmptyLimitProperty';
 
 /**
  * @singleton
@@ -92,6 +93,17 @@ export class EmptyIsInProperty
     public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
+    //region -------------------- Instrument properties --------------------
+
+    public readonly instrumentContainer = EmptyInstrumentProperty.get;
+
+    public readonly instruments = this.instrumentContainer.instruments;
+
+    public readonly canMakeASoundOutOfAMusicBlockContainer = this.instrumentContainer.canMakeASoundOutOfAMusicBlockContainer;
+    public readonly canMakeASoundOutOfAMusicBlock = this.instrumentContainer.canMakeASoundOutOfAMusicBlock;
+    public readonly canMakeASoundOutOfAMusicBlockComment = this.instrumentContainer.canMakeASoundOutOfAMusicBlockComment;
+
+    //endregion -------------------- Instrument properties --------------------
 
     public toGameMap() {
         return EMPTY_MAP;

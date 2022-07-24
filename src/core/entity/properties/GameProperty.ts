@@ -8,7 +8,7 @@ export interface GameProperty<SMM1 extends boolean = boolean, SMM3DS extends boo
 
 }
 
-export type ExclusiveSMM1GameProperty = GameProperty<true, false, false>;
-export type AbstractExclusiveSMM2GameProperty = GameProperty<false, false, true>;
-export type ExclusiveSMM2GamePropertyInSM3DW = AbstractExclusiveSMM2GameProperty;
-export type ExclusiveSMM2GameProperty = AbstractExclusiveSMM2GameProperty;
+/**@deprecated*/export type ExclusiveSMM1GameProperty = GameProperty<true, false, false>;
+/**@deprecated*/export type AbstractExclusiveSMM2GameProperty = GameProperty<false, false, true>;
+/**@deprecated*/export type ExclusiveSMM2GamePropertyInSM3DW = AbstractExclusiveSMM2GameProperty;
+/**@deprecated*/export type ExclusiveSMM2GameProperty = AbstractExclusiveSMM2GameProperty;

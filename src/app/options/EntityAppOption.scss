@@ -2,4 +2,11 @@
   display: flex;
   justify-content: space-between;
   padding: var(--bs-spacer-xs);
+
+  .properties {
+    margin-top: var(--bs-negative-spacer-md);
+    margin-left: var(--bs-negative-spacer-lg);
+    margin-right: var(--bs-spacer-sm);
+  }
+
 }

@@ -1,9 +1,13 @@
 import type {Builder}                                                                         from '../../util/builder/Builder';
+import type {CanMakeASoundOutOfAMusicBlock}                                                   from './properties/instrument/loader.types';
 import type {Entity, PossibleOtherEntities}                                                   from './Entity';
 import type {EntityCategory}                                                                  from '../entityCategory/EntityCategory';
 import type {EntityLink}                                                                      from './loader.types';
 import type {EntityTemplate}                                                                  from './Entity.template';
 import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from './properties/limit/Loader.types';
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                       from './properties/instrument/InstrumentProperty';
+import type {InstrumentPropertyTemplate}                                                      from './properties/instrument/InstrumentProperty.template';
+import type {Instrument}                                                                      from '../instrument/Instrument';
 import type {LimitProperty}                                                                   from './properties/limit/LimitProperty';
 import type {LimitPropertyTemplate}                                                           from './properties/limit/LimitProperty.template';
 import type {Name}                                                                            from '../../lang/name/Name';
@@ -13,11 +17,13 @@ import type {PossibleComment}                                                   
 import type {PossibleEnglishName}                                                             from './Entities.types';
 import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from '../entityLimit/EntityLimits.types';
 import type {PossibleGameReceived as OriginalPossibleGameReceived}                            from '../../lang/name/Name.builder.types';
+import type {PossibleInstrument}                                                              from '../instrument/loader.types';
 import type {PropertyThatCanBeUnknownWithComment}                                             from '../_properties/PropertyThatCanBeUnknownWithComment';
 
 import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
 import {EmptyEntity}                                    from './EmptyEntity';
 import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory';
+import {EmptyInstrumentProperty}                        from './properties/instrument/EmptyInstrumentProperty';
 import {Entities}                                       from './Entities';
 import {EntityCategories}                               from '../entityCategory/EntityCategories';
 import {EntityContainer}                                from './Entity.container';
@@ -30,6 +36,8 @@ import {GamePropertyContainer}                          from './properties/GameP
 import {Games}                                          from '../game/Games';
 import {GameStructureContainer}                         from '../game/GameStructure.container';
 import {GameStylePropertyContainer}                     from './properties/GameStyleProperty.container';
+import {InstrumentPropertyContainer}                    from './properties/instrument/InstrumentProperty.container';
+import {Instruments}                                    from '../instrument/Instruments';
 import {LimitPropertyContainer}                         from './properties/limit/LimitProperty.container';
 import {ObjectHolders}                                  from '../../util/holder/objectHolders';
 import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
@@ -57,6 +65,7 @@ export class EntityBuilder
     //region -------------------- Fields --------------------
 
     static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
+    static readonly #EMPTY_INSTRUMENT_OBJECT_HOLDER: ObjectHolder<InstrumentProperty> = new ObjectHolderContainer(() => EmptyInstrumentProperty.get);
 
     readonly #selfCallback = () => [this.build()] as const;
 
@@ -159,12 +168,79 @@ export class EntityBuilder
         );
     }
 
+    //region -------------------- Property helper methods (instrument) --------------------
+
+    /**
+     * <p>
+     *  Get the instrument reference (tuple) based on the value received in parameter.
+     * </p>
+     *
+     * <p>
+     *  The possible instruments can either be a single one or a mix of 2 different entities (by reference, height or alternative form)
+     *
+     *  The entities that are applicable for this are:
+     *  <ol>
+     *      <li>{@link Entities.CHAIN_CHOMP Chain Chomp}: {@link Entities.UNCHAINED_CHOMP unchained} & {@link Entities.CHAIN_CHOMP_STUMP stump}</li>
+     *      <li>{@link Entities.LEMMY Lemmy}: top & bottom</li>
+     *      <li>{@link Entities.TRAMPOLINE Trampoline}: regular & sideway</li>
+     *  </ol>
+     * </p>
+     *
+     * @param instrument The non null instrument (single or mixed)
+     * @returns A tuple of 1 or 2 instruments
+     * @see Instruments
+     */
+    static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): | readonly [Instrument,] | readonly [Instrument, Instrument,]
+    static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): readonly Instrument[] {
+        const singleInstrument = Instruments.getValue(instrument);
+        if (singleInstrument != null)
+            return [singleInstrument.reference];
+
+        return Instruments.values.filter(enumerable => instrument.includes(enumerable.englishName))!
+            .map(enumerable => enumerable.reference);
+    }
+
+    /**
+     * Get the property to tell if the {@link Entity current entity} (by its {@link EntityTemplate template})
+     * can make a sound out of a {@link Entities.MUSIC_BLOCK music block}.
+     *
+     * @param canMakeASoundOutOfAMusicBlock can make a sound out of a {@link Entities.MUSIC_BLOCK music block entity}
+     * @returns {@link NotApplicableProperty N/A} or [boolean & {@link PossibleCanMakeASoundOutOfAMusicBlock_Comment nullable comment}]
+     */
+    static #getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,): CanMakeASoundOutOfAMusicBlockProperty {
+        if (canMakeASoundOutOfAMusicBlock == null)
+            return PropertyContainer.NOT_APPLICABLE_CONTAINER;
+        return PropertyProvider.newBooleanContainer<CanMakeASoundOutOfAMusicBlock, true, false, true>(canMakeASoundOutOfAMusicBlock, true, false,);
+    }
+
+    /**
+     * Get the instrument properties of an {@link Entity entity}
+     *
+     * @param instrumentTemplate the instrument template
+     * @returns An object holder containing the properties for the instrument part of an {@link Entity entity}
+     * @see InstrumentPropertyContainer
+     * @see EmptyInstrumentProperty
+     */
+    static #getInstrumentPropertyHolder({instrument, canMakeASoundOutOfAMusicBlock,}: InstrumentPropertyTemplate,): ObjectHolder<InstrumentProperty> {
+        if (instrument == null)
+            return this.#EMPTY_INSTRUMENT_OBJECT_HOLDER;
+
+        return new DelayedObjectHolderContainer(() => InstrumentPropertyContainer.get(
+            [
+                new DelayedObjectHolderContainer(() => this.#whereInstrument(instrument)),
+                this.#getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock,),
+            ],
+            [instrument, canMakeASoundOutOfAMusicBlock,],));
+    }
+
+    //endregion -------------------- Property helper methods (instrument) --------------------
+
     /**
      * Create the {@link Property property} from the {@link EntityTemplate template}
      * with the games, game style, theme, time & limit.
      */
     #createProperty() {
-        const {isIn: {game, style: gameStyle, theme, time,}, limits,} = this.template.properties;
+        const {isIn: {game, style: gameStyle, theme, time,}, limits, sound,} = this.template.properties;
 
         return new PropertyInstanceContainer(
             new ObjectHolderContainer(GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
@@ -172,6 +248,7 @@ export class EntityBuilder
             new DelayedObjectHolderContainer(() => ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
             new DelayedObjectHolderContainer(() => TimePropertyContainer.get(time.day, time.night,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.#getLimitPropertyFields(limits)),
+            EntityBuilder.#getInstrumentPropertyHolder(sound),
         );
     }
 

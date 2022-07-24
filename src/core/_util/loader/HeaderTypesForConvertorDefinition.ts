@@ -10,11 +10,13 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                                                      from '../../instrument/Instruments.types';
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from '../../miiCostumeCategory/MiiCostumeCategories.types';
 import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from '../../officialNotification/OfficialNotifications.types';
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../nightEffect/NightEffects.types';
+import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                                                    from '../../instrument/loader.types';
 import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from '../../version/Versions.types';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
@@ -123,6 +125,13 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleName_predefinedMessage(): ValueOrStringConstant<EveryPossibleEnglishName_PredefinedMessage>
 
     //endregion -------------------- Predefined message --------------------
+    //region -------------------- Instrument --------------------
+
+    get everyPossibleName_instrument():ValueOrStringConstant<EveryPossibleName_Instrument>
+
+    get everyPossibleNameOnEntity_instrument():ValueOrEmptyableStringConstant<EveryPossibleNameOnEntity_Instrument>
+
+    //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
 
     get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleName_Version>
@@ -206,6 +215,12 @@ export type EveryPossibleNameWithAmount_OfficialNotification = readonly (Possibl
 export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglishName_PredefinedMessage[];
 
 //endregion -------------------- Predefined message --------------------
+//region -------------------- Instrument --------------------
+
+export type EveryPossibleName_Instrument = readonly PossibleEnglishName_Instrument[];
+export type EveryPossibleNameOnEntity_Instrument = readonly (| PossibleEnglishName_Instrument | PossibleMixedName_Instrument)[];
+
+//endregion -------------------- Instrument --------------------
 //region -------------------- Version --------------------
 
 export type EveryPossibleName_Version = readonly PossibleName_Version[];

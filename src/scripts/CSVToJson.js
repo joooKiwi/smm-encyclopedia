@@ -1,5 +1,8 @@
 const {createReadStream, createWriteStream} = require("fs");
-const Papa =                                  require("papaparse");
+const {parse} =                               require("papaparse");
+const Logger =                                require('./console/Logger');
+
+const logger = Logger.get;
 
 [
     'Entity',
@@ -16,19 +19,19 @@ const Papa =                                  require("papaparse");
     'Mystery Mushroom (SMM)',
     'Mii Costume (SMM2)',
     'Mii Costume category (SMM2)',
+    'Instrument',
 ].forEach(fileName => {
     const file = createReadStream(`${__dirname}/../resources/${fileName}.csv`,)
     const writeSteam = createWriteStream(`${__dirname}/../resources/compiled/${fileName}.json`,)
-
     writeSteam
-        .on('open', () => console.log(`Reading file "${fileName}".`))
-        .on('finish', () => console.log(`Finished reading file "${fileName}".`))
+        .on('open', () => logger.log(`Reading file "${fileName}".`))
+        .on('finish', () => logger.success(`Finished reading file "${fileName}".`))
         .on('error', error => {
-            console.warn(`An error happened with the file "${fileName}".`)
-            console.trace(error)
+            logger.warn(`An error happened with the file "${fileName}".`)
+            logger.error(error)
         })
 
-    Papa.parse(file, {
+    parse(file, {
         complete: result => writeSteam.end(JSON.stringify(result.data)),
     },)
 })
