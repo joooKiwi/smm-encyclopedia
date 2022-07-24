@@ -1,3 +1,5 @@
+import './LanguageChanger.body.scss'
+
 import {Fragment, useState} from 'react';
 
 import type {ReactProperty} from '../util/react/ReactProperty';

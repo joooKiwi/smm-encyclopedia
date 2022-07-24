@@ -1,0 +1,20 @@
+@import '../../variables';
+@import '../../mixin';
+
+#languageChanger-button {
+  width: auto;
+}
+
+@include media-breakpoint-between($grid-breakpoint-sm, $grid-breakpoint-md) {
+  #languageChanger-button span {
+    display: none;
+  }
+}
+
+@include media-breakpoint-up($grid-breakpoint-sm) {
+  #languageChanger-button {
+    position: absolute;
+    right: var(--bs-spacer-md);
+    bottom: var(--bs-spacer-lg);
+  }
+}
