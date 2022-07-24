@@ -10,6 +10,7 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types';
 import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
+import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                                                      from '../../instrument/Instruments.types';
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from '../../miiCostumeCategory/MiiCostumeCategories.types';
 import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from '../../officialNotification/OfficialNotifications.types';
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types';
@@ -123,6 +124,11 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleName_predefinedMessage(): ValueOrStringConstant<EveryPossibleEnglishName_PredefinedMessage>
 
     //endregion -------------------- Predefined message --------------------
+    //region -------------------- Instrument --------------------
+
+    get everyPossibleName_instrument():ValueOrStringConstant<EveryPossibleName_Instrument>
+
+    //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
 
     get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleName_Version>
@@ -206,6 +212,11 @@ export type EveryPossibleNameWithAmount_OfficialNotification = readonly (Possibl
 export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglishName_PredefinedMessage[];
 
 //endregion -------------------- Predefined message --------------------
+//region -------------------- Instrument --------------------
+
+export type EveryPossibleName_Instrument = readonly PossibleEnglishName_Instrument[];
+
+//endregion -------------------- Instrument --------------------
 //region -------------------- Version --------------------
 
 export type EveryPossibleName_Version = readonly PossibleName_Version[];

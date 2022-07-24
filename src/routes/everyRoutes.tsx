@@ -11,6 +11,7 @@ const EveryEntityGroupApp =             lazy(() => import('../app/EveryEntityGro
 const EveryGameStylesApp =              lazy(() => import('../app/EveryGameStylesApp'));
 const EveryGameReferencesApp =          lazy(() => import('../app/EveryGameReferencesApp'));
 const EveryEntityLimitsApp =            lazy(() => import('../app/EveryEntityLimitsApp'));
+const EveryInstrumentsApp =             lazy(() => import('../app/EveryInstrumentsApp'));
 const EveryMiiCostumeApp =              lazy(() => import('../app/EveryMiiCostumeApp'));
 const EveryMiiCostumeCategoriesApp =    lazy(() => import('../app/EveryMiiCostumeCategoriesApp'));
 const EveryMysteryMushroomsApp =        lazy(() => import('../app/EveryMysteryMushroomsApp'));
@@ -48,4 +49,5 @@ export const everySimpleRoutes = [
 
     SimpleRouteContainer.newInstance('everyPredefinedMessages',    '/every/PredefinedMessage',    () => <EveryPredefinedMessagesApp/>,   ),
     SimpleRouteContainer.newInstance('everyCourseTags',            '/every/courseTag',            () => <EveryCourseTagsApp/>,           ),
+    SimpleRouteContainer.newInstance('everyInstruments',           '/every/instrument',           () => <EveryInstrumentsApp/>,          ),
 ] as const;
