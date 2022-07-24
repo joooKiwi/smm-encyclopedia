@@ -32,7 +32,8 @@
 
   "Image": "Image",
 
-  "Limit": "Limit",
+  "Limit":      "Limit",
+  "Instrument": "Instrument",
 
   "Type": "Type",
 
