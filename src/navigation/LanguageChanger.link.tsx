@@ -1,3 +1,5 @@
+import './LanguageChanger.link.scss'
+
 import {Fragment} from 'react';
 
 import type {ReactProperty} from '../util/react/ReactProperty';

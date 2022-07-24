@@ -1,8 +1,8 @@
-export type PossibleEnglishName = string;
-export type PossibleInstrument =
-    | 'null'
-    | PossibleEnglishName
-    | 'Green → Marimba\nRed → Vibraphone' | 'Green → Dog\nRed → Cat' | 'Unchain Chomp → Piano 1\nStump → Mokugyo'
-    | 'regular → Cymbal\nsideway → Hi-Hat'
+import type {PossibleEnglishName} from './Instruments.types';
+
+export type PossibleMixedInstrument =
+    | 'Unchain Chomp → Piano 1\nStump → Mokugyo'
+    | 'Regular → Cymbal\nSideway → Hi-Hat'
     | 'Bottom → Hello\nTop → Ok'
-    | null;
+
+export type PossibleInstrument = | PossibleEnglishName | PossibleMixedInstrument | null;

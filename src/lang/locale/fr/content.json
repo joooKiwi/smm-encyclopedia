@@ -32,12 +32,15 @@
 
   "Image": "Image",
 
-  "Limit": "Limite",
+  "Limit":      "Limite",
+  "Instrument": "Instrument",
 
   "Type": "Type",
 
-  "In other languages":  "Dans d'autres langues",
-  "Change the language": "Changer la langue",
+  "In other languages":          "Dans d'autres langues",
+  "Change the language":         "Changer la langue",
+  "GitHub repository":           "Répertoire GitHub",
+  "Go to the GitHub repository": "Aller au répertoire GitHub",
 
   "Copyright":                 "Droit d'auteur",
   "React application made by": "Application React faite par",

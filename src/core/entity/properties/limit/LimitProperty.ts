@@ -125,11 +125,11 @@ export type PossibleOtherLimit = | OtherLimitProperty | NotApplicableProperty;
 //endregion -------------------- Single entity limit --------------------
 //region -------------------- Exclusive entity limit --------------------
 
-export type ExclusiveSMM1LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS, >
+/**@deprecated*/export type ExclusiveSMM1LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS, >
     = LimitProperty<EDITOR_SMM1AND3DS, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty>;
-export type AbstractExclusiveSMM2LimitProperty<EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2, GENERAL extends GeneralLimitProperty = GeneralLimitProperty, GENERAL_GLOBAL extends GeneralGlobalLimitProperty = GeneralGlobalLimitProperty, POWER_UP extends PowerUpLimitProperty = PowerUpLimitProperty, PROJECTILE extends PossibleIsInProjectileLimit = PossibleIsInProjectileLimit, OTHER extends PossibleOtherLimit = PossibleOtherLimit, >
+/**@deprecated*/export type AbstractExclusiveSMM2LimitProperty<EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2, GENERAL extends GeneralLimitProperty = GeneralLimitProperty, GENERAL_GLOBAL extends GeneralGlobalLimitProperty = GeneralGlobalLimitProperty, POWER_UP extends PowerUpLimitProperty = PowerUpLimitProperty, PROJECTILE extends PossibleIsInProjectileLimit = PossibleIsInProjectileLimit, OTHER extends PossibleOtherLimit = PossibleOtherLimit, >
     = LimitProperty<null, EDITOR_SMM2, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, OTHER>;
-export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<PossibleEditorLimit_SMM2, GeneralLimitProperty, GeneralGlobalLimitProperty, PowerUpLimitProperty, ProjectileLimitProperty, NotApplicableProperty>;
-export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;
+/**@deprecated*/export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<PossibleEditorLimit_SMM2, GeneralLimitProperty, GeneralGlobalLimitProperty, PowerUpLimitProperty, ProjectileLimitProperty, NotApplicableProperty>;
+/**@deprecated*/export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;
 
 //endregion -------------------- Exclusive entity limit --------------------

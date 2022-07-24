@@ -98,4 +98,8 @@ export interface MysteryMushroomAppStates
     extends AppStates {
 }
 
+export interface InstrumentAppStates
+    extends AppStates, AppWithVariableDisplayStates {
+}
+
 //endregion -------------------- Specific states --------------------

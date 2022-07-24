@@ -8,9 +8,11 @@
     @include media-breakpoint-up($grid-breakpoint-sm) {
       flex-direction: column;
     }
+    align-items: center;
   }
 
   img {
     max-height: 2cm;
+    width: fit-content;
   }
 }

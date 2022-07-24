@@ -1,10 +1,11 @@
-import type {GameProperty}      from './GameProperty';
-import type {GameStyleProperty} from './GameStyleProperty';
-import type {LimitProperty}     from './limit/LimitProperty';
-import type {ObjectHolder}      from '../../../util/holder/ObjectHolder';
-import type {Property}          from './Property';
-import type {ThemeProperty}     from './ThemeProperty';
-import type {TimeProperty}      from './TimeProperty';
+import type {GameProperty}       from './GameProperty';
+import type {GameStyleProperty}  from './GameStyleProperty';
+import type {InstrumentProperty} from './instrument/InstrumentProperty';
+import type {LimitProperty}      from './limit/LimitProperty';
+import type {ObjectHolder}       from '../../../util/holder/ObjectHolder';
+import type {Property}           from './Property';
+import type {ThemeProperty}      from './ThemeProperty';
+import type {TimeProperty}       from './TimeProperty';
 
 export class PropertyContainer
     implements Property {
@@ -16,15 +17,17 @@ export class PropertyContainer
     readonly #themeContainer;
     readonly #timeContainer;
     readonly #limitContainer;
+    readonly #instrumentHolder;
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<LimitProperty>,) {
+    public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<LimitProperty>, instrument: ObjectHolder<InstrumentProperty>,) {
         this.#gameContainer = game;
         this.#gameStyleContainer = gameStyle;
         this.#themeContainer = theme;
         this.#timeContainer = time;
         this.#limitContainer = limit;
+        this.#instrumentHolder = instrument;
     }
 
     //region -------------------- Game properties --------------------
@@ -233,6 +236,34 @@ export class PropertyContainer
 
     //endregion -------------------- Custom limit --------------------
     //endregion -------------------- Limit properties --------------------
+    //region -------------------- Instrument properties --------------------
+
+    public get instrumentContainer() {
+        return this.#instrumentHolder.get;
+    }
+
+
+    public get instruments() {
+        return this.instrumentContainer.instruments;
+    }
+
+    //region -------------------- Can make a sound out of a music block --------------------
+
+    public get canMakeASoundOutOfAMusicBlockContainer() {
+        return this.instrumentContainer.canMakeASoundOutOfAMusicBlockContainer;
+    }
+
+    public get canMakeASoundOutOfAMusicBlock() {
+        return this.canMakeASoundOutOfAMusicBlockContainer.value;
+    }
+
+    public get canMakeASoundOutOfAMusicBlockComment() {
+        return this.canMakeASoundOutOfAMusicBlockContainer.comment;
+    }
+
+    //endregion -------------------- Can make a sound out of a music block --------------------
+
+    //endregion -------------------- Instrument properties --------------------
 
     public toGameMap() {
         return this.gameContainer.toGameMap();

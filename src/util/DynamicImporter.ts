@@ -14,6 +14,8 @@ import type {GameReferenceLoader}                       from '../core/gameRefere
 import type {GameReferences}                            from '../core/gameReference/GameReferences';
 import type {GameStyleLoader}                           from '../core/gameStyle/GameStyle.loader';
 import type {GameStyles}                                from '../core/gameStyle/GameStyles';
+import type {InstrumentLoader}                          from '../core/instrument/Instrument.loader';
+import type {Instruments}                               from '../core/instrument/Instruments';
 import type {MiiCostumeCategories}                      from '../core/miiCostumeCategory/MiiCostumeCategories';
 import type {MiiCostumeCategoryLoader}                  from '../core/miiCostumeCategory/MiiCostumeCategory.loader';
 import type {MiiCostumeLoader}                          from '../core/miiCostume/MiiCostume.loader';
@@ -154,6 +156,12 @@ export class DynamicImporter {
     #PredefinedMessageLoader?: typeof PredefinedMessageLoader;
 
     //endregion -------------------- "Predefined message" fields --------------------
+    //region -------------------- Instrument fields --------------------
+
+    #Instruments?: typeof Instruments;
+    #InstrumentLoader?: typeof InstrumentLoader;
+
+    //endregion -------------------- Instrument fields --------------------
     //region -------------------- Version fields --------------------
 
     #Versions?: typeof Versions;
@@ -341,6 +349,17 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Predefined message" fields --------------------
+    //region -------------------- "Instrument" getter methods --------------------
+
+    public get Instruments(): typeof Instruments {
+        return this.#Instruments ??= require('../core/instrument/Instruments').Instruments;
+    }
+
+    public get InstrumentLoader(): typeof InstrumentLoader {
+        return this.#InstrumentLoader ??= require('../core/instrument/Instrument.loader').InstrumentLoader;
+    }
+
+    //endregion -------------------- "Instrument" getter methods --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {

@@ -1,0 +1,14 @@
+#footer-container {
+  position: relative;
+
+  margin-bottom: 0;
+  padding-top: var(--bs-spacer-xl);
+  padding-bottom: var(--bs-spacer-lg);
+
+}
+
+#helper-container {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: var(--bs-spacer-md);
+}

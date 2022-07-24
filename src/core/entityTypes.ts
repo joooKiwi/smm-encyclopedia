@@ -45,8 +45,6 @@ export type PossibleGroupName = string;
 
 /** @temporaryLocation */export type IsGlobalGroundOrGlobal = | boolean | 'SM3DW' | null;
 
-/** @temporaryLocation */export type CanMakeASoundOutOfAMusicBlock = | boolean | 'Excluding the top 3 notes' | null;
-
 /** @temporaryLocation */export type PossibleLightSource = | '?'
                                                            | `${'Dim' | 'Full'} light`
                                                            | `Full light when ${| 'falling' | 'collected' | 'shooting'}`

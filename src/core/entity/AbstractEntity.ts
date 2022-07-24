@@ -289,6 +289,34 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     //endregion -------------------- Custom limit --------------------
 
     //endregion -------------------- Limit properties --------------------
+    //region -------------------- Instrument properties --------------------
+
+    public get instrumentContainer(): this['propertyContainer']['instrumentContainer'] {
+        return this.propertyContainer.instrumentContainer;
+    }
+
+
+    public get instruments(): this['instrumentContainer']['instruments'] {
+        return this.instrumentContainer.instruments;
+    }
+
+    //region -------------------- Can make a sound out of a music block --------------------
+
+    public get canMakeASoundOutOfAMusicBlockContainer(): this['instrumentContainer']['canMakeASoundOutOfAMusicBlockContainer'] {
+        return this.instrumentContainer.canMakeASoundOutOfAMusicBlockContainer;
+    }
+
+    public get canMakeASoundOutOfAMusicBlock(): this['instrumentContainer']['canMakeASoundOutOfAMusicBlock'] {
+        return this.instrumentContainer.canMakeASoundOutOfAMusicBlock;
+    }
+
+    public get canMakeASoundOutOfAMusicBlockComment(): this['instrumentContainer']['canMakeASoundOutOfAMusicBlockComment'] {
+        return this.instrumentContainer.canMakeASoundOutOfAMusicBlockComment;
+    }
+
+    //endregion -------------------- Can make a sound out of a music block --------------------
+
+    //endregion -------------------- Instrument properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References --------------------

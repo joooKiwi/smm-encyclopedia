@@ -1,0 +1,12 @@
+@import '../../variables';
+@import '../../mixin';
+
+#github-button {
+  width: auto;
+}
+
+@include media-breakpoint-down($grid-breakpoint-sm) {
+  #github-button span {
+    display: none;
+  }
+}

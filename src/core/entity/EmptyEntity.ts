@@ -77,15 +77,15 @@ export class EmptyEntity
 
     public readonly timeContainer = this.propertyContainer.timeContainer;
 
-    public readonly isInDayTheme = this.propertyContainer.isInDayTheme;
-    public readonly isInNightTheme = this.propertyContainer.isInNightTheme;
+    public readonly isInDayTheme = this.timeContainer.isInDayTheme;
+    public readonly isInNightTheme = this.timeContainer.isInNightTheme;
 
     //endregion -------------------- Time properties --------------------
     //region -------------------- Limit properties --------------------
 
     public readonly limitContainer = this.propertyContainer.limitContainer;
 
-    public readonly editorLimitContainer = this.propertyContainer.editorLimitContainer;
+    public readonly editorLimitContainer = this.limitContainer.editorLimitContainer;
     public readonly editorLimit_smm1And3ds = this.limitContainer.editorLimit_smm1And3ds;
     public readonly editorLimit_smm2 = this.limitContainer.editorLimit_smm2;
     public readonly isUnknown_editorLimit_smm2 = this.limitContainer.isUnknown_editorLimit_smm2;
@@ -110,6 +110,17 @@ export class EmptyEntity
     public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
+    //region -------------------- Instrument properties --------------------
+
+    public readonly instrumentContainer = this.propertyContainer.instrumentContainer;
+
+    public readonly instruments = this.instrumentContainer.instruments;
+
+    public readonly canMakeASoundOutOfAMusicBlockContainer = this.instrumentContainer.canMakeASoundOutOfAMusicBlockContainer;
+    public readonly canMakeASoundOutOfAMusicBlock = this.instrumentContainer.canMakeASoundOutOfAMusicBlock;
+    public readonly canMakeASoundOutOfAMusicBlockComment = this.instrumentContainer.canMakeASoundOutOfAMusicBlockComment;
+
+    //endregion -------------------- Instrument properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References --------------------

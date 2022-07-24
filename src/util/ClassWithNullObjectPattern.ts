@@ -85,6 +85,11 @@ export type EmptyOfficialNotificationName = 'Empty official notification';
 export type EmptyPredefinedMessageName = 'Empty predefined message';
 
 //endregion -------------------- Predefined message types --------------------
+//region -------------------- Instrument types --------------------
+
+export type EmptyInstrumentName = 'Empty instrument';
+
+//endregion -------------------- Instrument types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -110,6 +115,8 @@ export type EveryPossibleEmptyName =
 
     | EmptyOfficialNotificationName
 
-    | EmptyPredefinedMessageName;
+    | EmptyPredefinedMessageName
+
+    | EmptyInstrumentName;
 
 //endregion -------------------- Empty names types --------------------
