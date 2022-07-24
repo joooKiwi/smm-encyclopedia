@@ -1,4 +1,4 @@
-import '../LanguageChanger.scss';
+import './LanguageChanger.button.scss';
 
 import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
 import type {TranslationMethod}                         from '../../lang/components/TranslationProperty';
@@ -31,7 +31,7 @@ export default class LanguageChangerButton
     }
 
     protected override _getContent(translation: TranslationMethod<'content'>,): PossibleContent {
-        return [translation('Change the language'), 'md',];
+        return translation('Change the language');
     }
 
 }
