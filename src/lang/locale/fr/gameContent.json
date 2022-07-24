@@ -17,6 +17,7 @@
   "Every game styles":                "Tous les styles de jeu",
   "Every course tags":                "Tous les {{tags}} de {{course}}",
   "Every predefined messages":        "Tous les {{predefinedMessages}}",
+  "Every instruments":                "Tous les instruments",
 
   "Empty entity":             "Entité vide",
   "Empty entity category":    "Catégorie d'entité vide",
@@ -32,7 +33,7 @@
   "Display every limits":                     "Afficher toutes les limites",
   "Display every themes":                     "Afficher tous les décors",
   "Display every sound effects":              "Afficher tous les effets sonores",
-  "Display every sound effect categories":    "Afficher tous les catégories d'effet sonore",
+  "Display every sound effect categories":    "Afficher toutes les catégories d'effet sonore",
   "Display every Mii costumes":               "Afficher tous les {{pluralName}}",
   "Display every Mii costume categories":     "Afficher toutes les catégories de {{MiiCostume}}",
   "Display every power-ups priority":         "Afficher toutes les priorités d'{{powerUp}}",
@@ -43,6 +44,7 @@
   "Display every games":                      "Afficher tous les jeux",
   "Display every game styles":                "Afficher tous les styles de jeu",
   "Display every predefined messages":        "Afficher tous les {{predefinedMessages}}",
+  "Display every instruments":                "Afficher tous les instruments",
 
 
   "Category": "Catégorie",

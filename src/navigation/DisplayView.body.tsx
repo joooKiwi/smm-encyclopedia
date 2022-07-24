@@ -64,6 +64,22 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                             elementId="displayView-gameStyle-button" id={id} divId={divId}/>
                 </div>
             </div>
+            <div id="display-sound-container" className="container">
+                <h3 className="text-center text-decoration-underline pb-2">--Sound--</h3>
+                <div key="button group container (sound effect)" id="soundEffect-buttonGroup-container" className="btn-group col-12" role="group">
+                    <DisplayViewRouteButton routeName="everySoundEffects" value={translation('Sound effect')}
+                                            tooltipValue={translation('Display every sound effects')}
+                                            elementId="displayView-soundEffect-button" id={id} divId={divId}/>
+                    {isSMM2Selected ? <DisplayViewRouteButton routeName="everySoundEffectCategories" value={translation('Category')}
+                                                              tooltipValue={translation('Display every sound effect categories')}
+                                                              elementId="displayView-soundEffectCategory-button" id={id} divId={divId}/> : EMPTY_REACT_ELEMENT}
+                </div>
+                <div className="btn-group col-12">
+                    <DisplayViewRouteButton routeName="everyInstruments" value={'--Instrument--'}
+                                            tooltipValue={translation('Display every instruments')}
+                                            elementId="displayView-instrument-button" id={id} divId={divId}/>
+                </div>
+            </div>
             <div id="display-other-container" className="container">
                 <h3 className="text-center text-decoration-underline pb-2">--Other--</h3>
                 {isSMM2Selected ? <div key="button group container (mii costume)" id="miiCostume-buttonGroup-container" className="btn-group col-12" role="group">
@@ -93,14 +109,6 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                             elementId="displayView-mysteryMushroom-button" id={id} divId={divId}/>
                     {/*TODO add other options for the Mystery Mushroom*/}
                 </div>/* : EMPTY_REACT_ELEMENT*/}
-                <div key="button group container (sound effect)" id="soundEffect-buttonGroup-container" className="btn-group col-12" role="group">
-                    <DisplayViewRouteButton routeName="everySoundEffects" value={translation('Sound effect')}
-                                            tooltipValue={translation('Display every sound effects')}
-                                            elementId="displayView-soundEffect-button" id={id} divId={divId}/>
-                    {isSMM2Selected ? <DisplayViewRouteButton routeName="everySoundEffectCategories" value={translation('Category')}
-                                                              tooltipValue={translation('Display every sound effect categories')}
-                                                              elementId="displayView-soundEffectCategory-button" id={id} divId={divId}/> : EMPTY_REACT_ELEMENT}
-                </div>
                 {isSMM2Selected ? <div key="button group container (course tag (SMM2))" id="courseTag-buttonGroup-container" className="btn-group col-6" role="group">
                     <DisplayViewRouteButton routeName="everyCourseTags" value={translation('Course tag', {
                         Course: '--Course--',//TODO add course reference
