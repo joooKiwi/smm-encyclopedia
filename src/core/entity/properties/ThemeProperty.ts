@@ -40,8 +40,8 @@ export interface ThemeProperty<GROUND extends boolean = boolean,
 
 }
 
-export type ExclusiveSMM1ThemeProperty = ThemeProperty<true, true, true, null, null, null, null, true, true, true>;
-export type AbstractExclusiveSMM2ThemeProperty<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends boolean = boolean, SNOW extends boolean = boolean, SKY extends boolean = boolean, FOREST extends boolean = boolean, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >
+/**@deprecated*/export type ExclusiveSMM1ThemeProperty = ThemeProperty<true, true, true, null, null, null, null, true, true, true>;
+/**@deprecated*/export type AbstractExclusiveSMM2ThemeProperty<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends boolean = boolean, SNOW extends boolean = boolean, SKY extends boolean = boolean, FOREST extends boolean = boolean, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >
     = ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>;
-export type ExclusiveSMM2ThemePropertyInSM3DW = AbstractExclusiveSMM2ThemeProperty;
-export type ExclusiveSMM2ThemeProperty = AbstractExclusiveSMM2ThemeProperty;
+/**@deprecated*/export type ExclusiveSMM2ThemePropertyInSM3DW = AbstractExclusiveSMM2ThemeProperty;
+/**@deprecated*/export type ExclusiveSMM2ThemeProperty = AbstractExclusiveSMM2ThemeProperty;

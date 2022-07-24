@@ -15,8 +15,8 @@ export interface TimeProperty<DAY extends boolean = boolean, NIGHT extends | boo
 
 }
 
-export type ExclusiveSMM1TimeProperty = TimeProperty<true, null>;
-export type AbstractExclusiveSMM2TimeProperty<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >
+/**@deprecated*/export type ExclusiveSMM1TimeProperty = TimeProperty<true, null>;
+/**@deprecated*/export type AbstractExclusiveSMM2TimeProperty<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >
     = TimeProperty<DAY, NIGHT>;
-export type ExclusiveSMM2TimePropertyInSM3DW = AbstractExclusiveSMM2TimeProperty<true, null>;
-export type ExclusiveSMM2TimeProperty = AbstractExclusiveSMM2TimeProperty<boolean, boolean>;
+/**@deprecated*/export type ExclusiveSMM2TimePropertyInSM3DW = AbstractExclusiveSMM2TimeProperty<true, null>;
+/**@deprecated*/export type ExclusiveSMM2TimeProperty = AbstractExclusiveSMM2TimeProperty<boolean, boolean>;

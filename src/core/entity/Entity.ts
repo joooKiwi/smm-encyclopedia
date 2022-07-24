@@ -218,9 +218,9 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
 
 }
 
-export type ExclusiveSMM1Entity = Entity<EmptyEntityCategory, ExclusiveSMM1Property> & ExclusiveSMM1Property;
-export type AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<CATEGORY, PROPERTY> & AbstractExclusiveSMM2Property;
-export type ExclusiveSM3DWEntity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW;
-export type ExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property> & ExclusiveSMM2Property;
+/**@deprecated*/export type ExclusiveSMM1Entity = Entity<EmptyEntityCategory, ExclusiveSMM1Property> & ExclusiveSMM1Property;
+/**@deprecated*/export type AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<CATEGORY, PROPERTY> & AbstractExclusiveSMM2Property;
+/**@deprecated*/export type ExclusiveSM3DWEntity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW;
+/**@deprecated*/export type ExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property> & ExclusiveSMM2Property;
 
 export type PossibleOtherEntities = readonly [Entity,] | readonly [Entity, Entity,];
