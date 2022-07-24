@@ -110,6 +110,17 @@ export class EmptyEntity
     public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment;
 
     //endregion -------------------- Limit properties --------------------
+    //region -------------------- Instrument properties --------------------
+
+    public readonly instrumentContainer = this.propertyContainer.instrumentContainer;
+
+    public readonly instruments = this.instrumentContainer.instruments;
+
+    public readonly canMakeASoundOutOfAMusicBlockContainer = this.instrumentContainer.canMakeASoundOutOfAMusicBlockContainer;
+    public readonly canMakeASoundOutOfAMusicBlock = this.instrumentContainer.canMakeASoundOutOfAMusicBlock;
+    public readonly canMakeASoundOutOfAMusicBlockComment = this.instrumentContainer.canMakeASoundOutOfAMusicBlockComment;
+
+    //endregion -------------------- Instrument properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References --------------------

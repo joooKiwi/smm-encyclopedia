@@ -166,5 +166,7 @@
   "Effect (night)":             "Effet ({{night}})",
 
   "Course tag":       "{{Tag}} de {{course}}",
-  "First appearance": "Première apparition"
+  "First appearance": "Première apparition",
+
+  "instrument": {"Excluding the top 3 notes": "Excluant les 3 notes du haut"}
 }

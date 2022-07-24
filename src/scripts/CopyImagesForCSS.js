@@ -6,6 +6,7 @@ const logger = Logger.get;
 
 [
     new ImageTemplate('entity/1 - SMB/In game/SMM1/Item - Kinoko2', 'wait.0', 'Mystery Mushroom', 'png',),
+    new ImageTemplate('entity/3 - SMW/Editor', 'MW_Lyt_P_OnpuBlock_01', 'Music Block', 'tiff',),
 ].forEach(({oldName, oldPath, fullOldName, newName, newPath, fullNewName,}) => {
     logger.log(`Moving the file ("${oldName}" → "${newName}")`)
     copyFile(fullOldName, fullNewName, error => {

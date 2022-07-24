@@ -1,0 +1,29 @@
+.music-block, .music-block-with-comment, {
+  display: flex;
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: var(--music-block-image);
+    background-size: 100%;
+    display: inline-block;
+    height: .5cm;
+    width: .5cm;
+  }
+
+}
+
+.music-block-with-comment::after {
+  //TODO move separate component
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  content: '!'; //TODO change to variable exclamation
+  color: var(--bs-black);
+  background-color: rgba(var(--bs-red-500-rgb), 50%);
+  font-size: 0.4rem;
+  font-weight: var(--bs-font-weight-bold);
+  text-align: center;
+  width: .25cm;
+  border-radius: var(--bs-border-circle-radius);
+}

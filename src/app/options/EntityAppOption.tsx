@@ -28,13 +28,14 @@ import {ViewDisplays}                  from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
-const CourseThemeComponent =      lazy(() => import('../../core/theme/CourseTheme.component'));
-const EditorVoiceSoundComponent = lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'));
-const GameComponent =             lazy(() => import('../../core/game/Game.component'));
-const GameStyleComponent =        lazy(() => import('../../core/gameStyle/GameStyle.component'));
-const LimitComponent =            lazy(() => import('../../core/entityLimit/Limit.component'));
-const TimeComponent =             lazy(() => import('../../core/time/Time.component'));
-const TextComponent =             lazy(() => import( '../tools/text/TextComponent'));
+const CourseThemeComponent =        lazy(() => import('../../core/theme/CourseTheme.component'));
+const EditorVoiceSoundComponent =   lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'));
+const InstrumentPropertyComponent = lazy(() => import( '../../core/entity/properties/instrument/InstrumentProperty.component'));
+const GameComponent =               lazy(() => import('../../core/game/Game.component'));
+const GameStyleComponent =          lazy(() => import('../../core/gameStyle/GameStyle.component'));
+const LimitComponent =              lazy(() => import('../../core/entityLimit/Limit.component'));
+const TimeComponent =               lazy(() => import('../../core/time/Time.component'));
+const TextComponent =               lazy(() => import( '../tools/text/TextComponent'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -118,6 +119,9 @@ export abstract class EntityAppOption
 
                 return <div className="nameAndEditorVoiceSound-container container">
                     {CommonOptions.get.getNameContent(enumeration)}
+                    <div className="properties">
+                        <InstrumentPropertyComponent value={enumeration}/>
+                    </div>
                     <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
                 </div>;
             };

@@ -144,6 +144,24 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
     //endregion -------------------- Custom limit --------------------
 
     //endregion -------------------- Limit properties --------------------
+    //region -------------------- Instrument properties --------------------
+
+    get instrumentContainer(): this['propertyContainer']['instrumentContainer']
+
+
+    get instruments(): this['instrumentContainer']['instruments']
+
+    //region -------------------- Can make a sound out of a music block --------------------
+
+    get canMakeASoundOutOfAMusicBlockContainer(): this['instrumentContainer']['canMakeASoundOutOfAMusicBlockContainer']
+
+    get canMakeASoundOutOfAMusicBlock(): this['instrumentContainer']['canMakeASoundOutOfAMusicBlock']
+
+    get canMakeASoundOutOfAMusicBlockComment(): this['instrumentContainer']['canMakeASoundOutOfAMusicBlockComment']
+
+    //endregion -------------------- Can make a sound out of a music block --------------------
+
+    //endregion -------------------- Instrument properties --------------------
 
     //endregion -------------------- Properties --------------------
     //region -------------------- References properties --------------------

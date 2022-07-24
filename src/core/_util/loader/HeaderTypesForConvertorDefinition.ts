@@ -16,6 +16,7 @@ import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, Po
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../nightEffect/NightEffects.types';
+import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                                                    from '../../instrument/loader.types';
 import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from '../../version/Versions.types';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
@@ -128,6 +129,8 @@ export interface HeaderTypesForConvertorDefinition {
 
     get everyPossibleName_instrument():ValueOrStringConstant<EveryPossibleName_Instrument>
 
+    get everyPossibleNameOnEntity_instrument():ValueOrEmptyableStringConstant<EveryPossibleNameOnEntity_Instrument>
+
     //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
 
@@ -215,6 +218,7 @@ export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglis
 //region -------------------- Instrument --------------------
 
 export type EveryPossibleName_Instrument = readonly PossibleEnglishName_Instrument[];
+export type EveryPossibleNameOnEntity_Instrument = readonly (| PossibleEnglishName_Instrument | PossibleMixedName_Instrument)[];
 
 //endregion -------------------- Instrument --------------------
 //region -------------------- Version --------------------

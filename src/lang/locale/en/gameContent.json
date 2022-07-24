@@ -168,5 +168,7 @@
 
   "Course tag":         "{{Course}} {{tag}}",
   "Is an official tag": "Is an official {{tag}}",
-  "First appearance":   "First appearance"
+  "First appearance":   "First appearance",
+
+  "instrument": {"Excluding the top 3 notes": "Excluding the top 3 notes"}
 }

@@ -1,4 +1,4 @@
-import type {EmptyableStringConstant, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EmptyableStringConstant, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import {Import}         from '../../../util/DynamicImporter';
 import {isInProduction} from '../../../variables';
@@ -71,6 +71,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleName_predefinedMessage?: EveryPossibleEnglishName_PredefinedMessage;
 
     #everyPossibleName_instrument?: EveryPossibleName_Instrument;
+    #everyPossibleNameOnEntity_instrument?: EveryPossibleNameOnEntity_Instrument;
 
     #everyPossibleName_version?: EveryPossibleName_Version;
     #everyPossibleName_version_smm?: EveryPossibleName_Version_SMM;
@@ -267,6 +268,15 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleName_instrument ??= Import.Instruments.everyEnglishNames;
     }
 
+    public get everyPossibleNameOnEntity_instrument() {
+        return this.#everyPossibleNameOnEntity_instrument ??= [
+            ...Import.Instruments.everyEnglishNames,
+            'Unchain Chomp → Piano 1\nStump → Mokugyo',
+            'Regular → Cymbal\nSideway → Hi-Hat',
+            'Bottom → Hello\nTop → Ok'
+        ];
+    }
+
     //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
 
@@ -410,6 +420,7 @@ class HeaderTypesForConvertorForProduction
     //region -------------------- Instrument --------------------
 
     public readonly everyPossibleName_instrument = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleNameOnEntity_instrument = HeaderTypesForConvertorForProduction.#EMPTYABLE_STRING_VALUE;
 
     //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
