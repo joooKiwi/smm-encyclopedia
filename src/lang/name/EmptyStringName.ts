@@ -21,6 +21,7 @@ export class EmptyStringName
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Name properties --------------------
 
@@ -125,9 +126,14 @@ export class EmptyStringName
 
     //endregion -------------------- Name properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toNameMap() {
         return EMPTY_MAP;
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
     public toString(): EmptyNameName {
         return 'Empty name';

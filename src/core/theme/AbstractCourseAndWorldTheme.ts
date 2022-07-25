@@ -24,6 +24,8 @@ export abstract class AbstractCourseAndWorldTheme
         this.#worldTheme = worldTheme;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Theme properties --------------------
 
     public get courseTheme(): CourseTheme {
@@ -76,9 +78,13 @@ export abstract class AbstractCourseAndWorldTheme
 
     //endregion -------------------- "Is available from the start" properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.isInProperty.toGameMap();
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
 }

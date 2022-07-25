@@ -25,6 +25,7 @@ export class EmptyLimitProperty
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     public readonly editorLimitContainer = GameStructureContainer.get(null, PropertyContainer.NOT_APPLICABLE_CONTAINER,);
     public readonly editorLimit_smm1And3ds = this.editorLimitContainer.superMarioMaker;
@@ -50,6 +51,9 @@ export class EmptyLimitProperty
     public readonly otherLimitWhilePlaying = this.otherLimitWhilePlayingContainer.value;
     public readonly otherLimitWhilePlayingComment = this.otherLimitWhilePlayingContainer.comment;
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toLimitMap() {
         return EMPTY_MAP;
     }
@@ -62,6 +66,7 @@ export class EmptyLimitProperty
         return EMPTY_MAP;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     public toString(): EmptyLimitName {
         return 'Empty limit';

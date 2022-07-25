@@ -27,6 +27,7 @@ export class EmptyWorldTheme
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -47,10 +48,14 @@ export class EmptyWorldTheme
 
     //endregion -------------------- "Is available from the start" properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return EMPTY_MAP;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyWorldThemeName {
         return 'Empty world theme';

@@ -1,4 +1,4 @@
-import {EntrySet} from './EntrySet';
+import type {EntrySet} from './EntrySet';
 
 export class EntrySetContainer<K, V, >
     implements EntrySet<K, V> {
@@ -42,9 +42,12 @@ export class EntrySetContainer<K, V, >
     }
 
     //endregion -------------------- Getter & setter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toArray(): readonly [K, V,] {
         return [this.key, this.value,];
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

@@ -13,12 +13,9 @@ import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.contai
 export class LimitPropertyContainer
     implements LimitProperty {
 
-    //region -------------------- Static fields --------------------
+    //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<Key, LimitProperty> = new ExtendedMapContainer();
-
-    //endregion -------------------- Static fields --------------------
-    //region -------------------- Fields, constructor & methods --------------------
 
     readonly #editorLimitContainer;
     readonly #isGeneralLimitContainer;
@@ -27,6 +24,7 @@ export class LimitPropertyContainer
     readonly #isProjectileLimitContainer;
     readonly #isOtherLimitContainer;
 
+    //endregion -------------------- Fields --------------------
 
     private constructor([editorLimit, [generalLimit, generalGlobalLimit,], powerUpLimit, projectileLimit, otherLimit,]: ArgumentsReceived,) {
         this.#editorLimitContainer = editorLimit;
@@ -36,6 +34,8 @@ export class LimitPropertyContainer
         this.#isProjectileLimitContainer = projectileLimit;
         this.#isOtherLimitContainer = otherLimit;
     }
+
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Editor limit --------------------
 
@@ -129,7 +129,15 @@ export class LimitPropertyContainer
 
     //endregion -------------------- Custom limit --------------------
 
-    #newMap(...values: readonly (EntityLimits | null)[]): Map<EntityLimits, boolean> {
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
+    /**
+     * Create a new map of limit based on the {@link EntityLimits entity limit} received.
+     *
+     * @param values the values (null are ignored)
+     */
+    #newMap(...values: readonly (EntityLimits | null)[]): ReadonlyMap<EntityLimits, boolean> {
         const newValues = values.filter(limit => limit != null) as EntityLimits[];
         return new Map(EntityLimits.values.map(limit => [limit, newValues.includes(limit),]));
     }
@@ -156,7 +164,7 @@ export class LimitPropertyContainer
         );
     }
 
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Convertor methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(argumentsReceived: ArgumentsReceived, key: Key,): LimitProperty {

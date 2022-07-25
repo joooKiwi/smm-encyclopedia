@@ -27,6 +27,7 @@ export class EmptyGameStyle
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -51,10 +52,14 @@ export class EmptyGameStyle
 
     public readonly nightDesertWindTranslationKey = null;
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return EMPTY_MAP;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyGameStyleName {
         return 'Empty game style';

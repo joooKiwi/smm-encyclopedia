@@ -28,6 +28,8 @@ export class GameStyleContainer
         this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Game properties --------------------
 
     public get isInProperty() {
@@ -75,9 +77,13 @@ export class GameStyleContainer
         return this.#nightDesertWindTranslationKey;
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return this.isInProperty.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

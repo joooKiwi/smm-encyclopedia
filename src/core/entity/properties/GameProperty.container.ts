@@ -13,8 +13,6 @@ import {GameStructureContainer} from '../../game/GameStructure.container';
 export class GamePropertyContainer
     implements GameProperty {
 
-    //region -------------------- Fields, constructor & methods --------------------
-
     //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GamePropertyContainer> = new ExtendedMapContainer();
@@ -43,12 +41,13 @@ export class GamePropertyContainer
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap(): ReadonlyMap<Games, boolean> {
         return this.#map ??= new Map(Games.values.map(game => [game, game.get(this),]));
     }
 
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Convertor methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
 

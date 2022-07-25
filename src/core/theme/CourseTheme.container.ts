@@ -25,6 +25,8 @@ export class CourseThemeContainer
         this.#effectHolder = effect;
     }
 
+    //region -------------------- Getter methods --------------------
+
     public get entities() {
         return this.#entitiesHolder.get;
     }
@@ -32,5 +34,7 @@ export class CourseThemeContainer
     public get effect() {
         return this.#effectHolder.get;
     }
+
+    //endregion -------------------- Getter methods --------------------
 
 }

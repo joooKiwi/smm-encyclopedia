@@ -12,8 +12,6 @@ import {Themes}               from '../../theme/Themes';
 export class ThemePropertyContainer
     implements ThemeProperty {
 
-    //region -------------------- Fields, constructor & methods --------------------
-
     //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemeProperty> = new ExtendedMapContainer();
@@ -88,21 +86,31 @@ export class ThemePropertyContainer
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
         return this.#map ??= new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]));
     }
 
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Convertor methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
-    public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
     /**
      * Get a property instance based on the {@link Themes} properties.
      *
-     * @param argumentsReceived
+     * @param isInGroundTheme Is in the {@link Themes.GROUND ground theme}
+     * @param isInUndergroundTheme Is in the {@link Themes.UNDERGROUND underground theme}
+     * @param isInUnderwaterTheme Is in the {@link Themes.UNDERWATER underwater theme}
+     * @param isInDesertTheme Is in the {@link Themes.DESERT desert theme}
+     * @param isInSnowTheme Is in the {@link Themes.SNOW snow theme}
+     * @param isInSkyTheme Is in the {@link Themes.SKY sky theme}
+     * @param isInForestTheme Is in the {@link Themes.FOREST forest theme}
+     * @param isInGhostHouseTheme Is in the {@link Themes.GHOST_HOUSE ghost house theme}
+     * @param isInAirshipTheme Is in the {@link Themes.AIRSHIP airship theme}
+     * @param isInCastleTheme Is in the {@link Themes.CASTLE castle theme}
      * @noDuplicateInstanceCreation
      */
+    public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
     public static get(...argumentsReceived: ArgumentsReceived) {
         return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))

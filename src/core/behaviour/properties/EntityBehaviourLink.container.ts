@@ -10,6 +10,7 @@ import {Entities}                     from '../../entity/Entities';
 import {ObjectHolders}                from '../../../util/holder/objectHolders';
 
 /**
+ * @todo change the predefined to be in a map instead
  * @multiton
  * @provider
  */

@@ -1,4 +1,5 @@
 import './EverySoundEffectsApp.scss';
+
 import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/soundEffectCategory/SoundEffectCategories.types';
 import type {SoundEffect}                                         from '../core/soundEffect/SoundEffect';
 import type {SoundEffectAppStates}                                from './AppStates.types';
@@ -23,18 +24,18 @@ import SoundEffectComponent            from '../core/soundEffect/SoundEffect.com
 export default class EverySoundEffectsApp
     extends AbstractApp<{}, SoundEffectAppStates> {
 
-    //region -------------------- Fields & getter methods --------------------
-
     public constructor(props: {},) {
         super(props,);
         this.state = {display: {asText: {category: false,},},};
     }
 
+    //region -------------------- Getter methods --------------------
+
     protected get _displayCategoryAsText(): boolean {
         return this.state.display.asText.category;
     }
 
-    //endregion -------------------- Fields & getter methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     #createCategoryComponent(index: number, soundEffect: SoundEffect,) {

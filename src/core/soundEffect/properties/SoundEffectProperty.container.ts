@@ -17,6 +17,8 @@ export class SoundEffectPropertyContainer
         this.#playerSoundEffectTriggerContainer = playerSoundEffectTrigger;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Game properties --------------------
 
     public get gameContainer() {
@@ -94,8 +96,13 @@ export class SoundEffectPropertyContainer
 
     //endregion -------------------- Player sound effect trigger properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.gameContainer.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

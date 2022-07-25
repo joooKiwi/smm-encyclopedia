@@ -27,8 +27,6 @@ import {ImageProperties}               from './tools/images/properties/ImageProp
 export default class EveryMysteryMushroomsApp
     extends AbstractApp<{}, MysteryMushroomAppStates> {
 
-    //region -------------------- Fields & getter methods --------------------
-
     //region -------------------- Fields --------------------
 
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>;
@@ -40,7 +38,6 @@ export default class EveryMysteryMushroomsApp
         this.state = {};
     }
 
-    //endregion -------------------- Fields & getter methods --------------------
     //region -------------------- Methods --------------------
 
     /**

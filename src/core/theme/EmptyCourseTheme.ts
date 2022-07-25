@@ -27,6 +27,7 @@ export class EmptyCourseTheme
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -49,10 +50,14 @@ export class EmptyCourseTheme
 
     public readonly entities = EMPTY_ARRAY;
     public readonly effect = null;
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return EMPTY_MAP;
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyCourseThemeName {
         return 'Empty course theme';

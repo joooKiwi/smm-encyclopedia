@@ -23,6 +23,8 @@ export class CourseAndWorldThemeContainer
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Theme properties --------------------
 
     public override get isInCourseTheme(): true {
@@ -49,5 +51,7 @@ export class CourseAndWorldThemeContainer
     }
 
     //endregion -------------------- "Is available from the start" properties --------------------
+
+    //endregion -------------------- Getter methods --------------------
 
 }

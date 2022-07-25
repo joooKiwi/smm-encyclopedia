@@ -9,6 +9,9 @@ import {EmptyStringName}                           from '../../lang/name/EmptySt
 import {EmptyWorldTheme}                           from './EmptyWorldTheme';
 import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
 
+/**
+ * @singleton
+ */
 export class EmptyCourseAndWorldTheme
     extends ClassContainingAName<string>
     implements CourseAndWorldTheme, ClassWithNullObjectPattern<EmptyCourseAndWorldThemeName> {
@@ -26,6 +29,7 @@ export class EmptyCourseAndWorldTheme
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Theme properties --------------------
 
@@ -55,10 +59,14 @@ export class EmptyCourseAndWorldTheme
 
     //endregion -------------------- "Is available from the start" properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return EMPTY_MAP;
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyCourseAndWorldThemeName {
         return 'Empty course & world theme';

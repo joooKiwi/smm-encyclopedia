@@ -14,8 +14,6 @@ import type {GameStyles}      from '../../gameStyle/GameStyles';
 export class GameStylePropertyContainer
     implements GameStyleProperty {
 
-    //region -------------------- Fields, constructor & methods --------------------
-
     //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, GameStyleProperty> = new ExtendedMapContainer();
@@ -60,21 +58,26 @@ export class GameStylePropertyContainer
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameStyleMap(): ReadonlyMap<GameStyles, boolean> {
         return this.#map ??= new Map(Import.GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]));
     }
 
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Convertor methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
-    public static get<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends | boolean | null = | boolean | null, >(isInSuperMarioBrosStyle: SMB, isInSuperMarioBros3Style: SMB3, isInSuperMarioWorldStyle: SMW, isInNewSuperMarioBrosUStyle: NSMBU, isInSuperMario3DWorldStyle: SM3DW,): GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
     /**
      * Get a property instance based on the {@link GameStyles} properties.
      *
-     * @param argumentsReceived
+     * @param isInSuperMarioBrosStyle Is in the {@link GameStyles.SUPER_MARIO_BROS SMB style}
+     * @param isInSuperMarioBros3Style Is in the {@link GameStyles.SUPER_MARIO_BROS_3 SMB3 style}
+     * @param isInSuperMarioWorldStyle Is in the {@link GameStyles.SUPER_MARIO_WORLD SMW style}
+     * @param isInNewSuperMarioBrosUStyle Is in the {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU style}
+     * @param isInSuperMario3DWorldStyle Is in the {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW style}
      * @noDuplicateInstanceCreation
      */
+    public static get<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends | boolean | null = | boolean | null, >(isInSuperMarioBrosStyle: SMB, isInSuperMarioBros3Style: SMB3, isInSuperMarioWorldStyle: SMW, isInNewSuperMarioBrosUStyle: NSMBU, isInSuperMario3DWorldStyle: SM3DW,): GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
     public static get(...argumentsReceived: ArgumentsReceived) {
         return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))

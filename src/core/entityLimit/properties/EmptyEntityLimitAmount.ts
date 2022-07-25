@@ -21,7 +21,7 @@ export class EmptyEntityLimitAmount
     }
 
     //endregion -------------------- Singleton usage --------------------
-
+    //region -------------------- Getter methods --------------------
 
     public readonly limitContainerInSMM1AndSMM3DS = PropertyContainer.NULL_CONTAINER;
     public readonly limitAmountInSMM1AndSMM3DS = this.limitContainerInSMM1AndSMM3DS.value;
@@ -32,6 +32,8 @@ export class EmptyEntityLimitAmount
     public readonly isUnknownLimitInSMM2 = this.limitContainerInSMM2.isUnknown;
 
     public readonly comment = null;
+
+    //endregion -------------------- Getter methods --------------------
 
     public toString(): EmptyEntityLimitAmountName {
         return 'Empty entity limit (amount)';

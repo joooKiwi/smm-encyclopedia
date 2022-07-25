@@ -21,6 +21,8 @@ export class MysteryMushroomContainer
         this.#propertyContainer = property;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Games --------------------
 
     public get games(): MysteryMushroomGames {
@@ -222,5 +224,7 @@ export class MysteryMushroomContainer
     //endregion -------------------- Sound properties --------------------
 
     //endregion -------------------- Properties --------------------
+
+    //endregion -------------------- Getter methods --------------------
 
 }

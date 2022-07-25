@@ -30,6 +30,8 @@ export class PropertyContainer
         this.#instrumentHolder = instrument;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Game properties --------------------
 
     public get gameContainer() {
@@ -265,6 +267,9 @@ export class PropertyContainer
 
     //endregion -------------------- Instrument properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.gameContainer.toGameMap();
     }
@@ -292,5 +297,7 @@ export class PropertyContainer
     public toLimitWhilePlayingMap() {
         return this.limitContainer.toLimitWhilePlayingMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

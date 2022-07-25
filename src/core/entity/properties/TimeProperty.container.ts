@@ -13,8 +13,6 @@ import type {Times}           from '../../time/Times';
 export class TimePropertyContainer
     implements TimeProperty {
 
-    //region -------------------- Fields, constructor & methods --------------------
-
     //region -------------------- Fields --------------------
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, TimeProperty> = new ExtendedMapContainer();
@@ -41,21 +39,23 @@ export class TimePropertyContainer
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toTimeMap(): ReadonlyMap<Times, boolean> {
         return this.#map ??= new Map(Import.Times.values.map(time => [time, time.get(this),]));
     }
 
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Convertor methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
-    public static get<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >(isInDayTheme: DAY, isInNightTheme: NIGHT,): TimeProperty<DAY, NIGHT>
     /**
      * Get a property instance based on the {@link Times} properties.
      *
-     * @param argumentsReceived
+     * @param isInDayTime Is in the {@link Times.DAY day time}
+     * @param isInNightTime Is in the {@link Times.NIGHT night time}
      * @noDuplicateInstanceCreation
      */
+    public static get<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >(isInDayTime: DAY, isInNightTime: NIGHT,): TimeProperty<DAY, NIGHT>
     public static get(...argumentsReceived: ArgumentsReceived) {
         return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))

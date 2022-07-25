@@ -23,6 +23,8 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Game properties --------------------
 
     public get isInProperty(): PROPERTY {
@@ -61,9 +63,13 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     }
 
     //endregion -------------------- "Is available from the start" properties --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return this.isInProperty.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }
