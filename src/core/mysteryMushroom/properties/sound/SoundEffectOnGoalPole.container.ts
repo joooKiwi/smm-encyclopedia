@@ -1,40 +1,37 @@
-import type {ExtendedList}                                                                                                                                                                                      from '../../../../util/extended/ExtendedList';
+import type {ExtendedMap}                                                                                                                                                                                       from '../../../../util/extended/ExtendedMap';
 import type {PossibleGames, PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnGoalPole} from './SoundEffectOnGoalPole';
 
-import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
+import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
 import {GameReferences}       from '../../../gameReference/GameReferences';
-import {isArrayEquals}        from '../../../../util/utilitiesMethods';
 import {PropertyProvider}     from '../../../_properties/PropertyProvider';
 
 /**
+ * @todo move the content in the constructor in the builder instead
  * @multiton
  * @provider
  */
 export class SoundEffectOnGoalPoleContainer
     implements SoundEffectOnGoalPole {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Fields --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<SoundEffectOnGoalPoleContainer> = new ExtendedSetContainer();
-
-    readonly #argumentsReceived: ArgumentsReceived;
-
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Fields, constructor & methods --------------------
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, SoundEffectOnGoalPoleContainer> = new ExtendedMapContainer();
 
     readonly #property;
     readonly #type;
     readonly #game;
     readonly #smallDefinition;
 
-    private constructor(argumentsReceived: ArgumentsReceived,) {
-        const [value, type, game, smallDefinition,] = this.#argumentsReceived = argumentsReceived;
+    //endregion -------------------- Fields --------------------
 
+    private constructor([value, type, game, smallDefinition,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,);
         this.#type = type;
         this.#game = GameReferences.getValue(game);
         this.#smallDefinition = smallDefinition;
     }
+
+    //region -------------------- Getter methods --------------------
 
     public get value(): PossibleValues {
         return this.#property.value;
@@ -56,15 +53,15 @@ export class SoundEffectOnGoalPoleContainer
         return this.#smallDefinition;
     }
 
-
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(value: PossibleValuesReceived, type: PossibleTypesReceived, game: PossibleGamesReceived, smallDefinition: PossibleTranslationKeys,): SoundEffectOnGoalPole {
         const argumentsReceived: ArgumentsReceived = [value, type, game, smallDefinition,];
 
-        return this.#EVERY_CONTAINERS.find(value => isArrayEquals(value.#argumentsReceived, argumentsReceived,))
-            ?? this.#EVERY_CONTAINERS.addAndGet(new this(argumentsReceived,));
+        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
+            .isNotMet(reference => reference.set(argumentsReceived, new this(argumentsReceived)))
+            .get(argumentsReceived);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------

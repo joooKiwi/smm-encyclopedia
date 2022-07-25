@@ -1,8 +1,7 @@
-import type {ExtendedList}                                from '../../../util/extended/ExtendedList';
+import type {ExtendedMap}                                 from '../../../util/extended/ExtendedMap';
 import type {PossibleConditionToUnlockIt, UnlockProperty} from './UnlockProperty';
 
-import {isArrayEquals}        from '../../../util/utilitiesMethods';
-import {ExtendedSetContainer} from '../../../util/extended/ExtendedSet.container';
+import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
 
 /**
  * @multiton
@@ -11,24 +10,21 @@ import {ExtendedSetContainer} from '../../../util/extended/ExtendedSet.container
 export class UnlockPropertyContainer
     implements UnlockProperty {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Fields --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<UnlockPropertyContainer> = new ExtendedSetContainer();
-
-    readonly #argumentsReceived: ArgumentsReceived;
-
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Fields, constructor & methods --------------------
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, UnlockPropertyContainer> = new ExtendedMapContainer();
 
     readonly #conditionToUnlockIt;
     readonly #canBeUnlockedByAnAmiibo;
 
-    private constructor(argumentsReceived: ArgumentsReceived,) {
-        const [conditionToUnlockIt, canBeUnlockedByAnAmiibo,] = this.#argumentsReceived = argumentsReceived;
+    //endregion -------------------- Fields --------------------
 
+    private constructor([conditionToUnlockIt, canBeUnlockedByAnAmiibo,]: ArgumentsReceived,) {
         this.#conditionToUnlockIt = conditionToUnlockIt;
         this.#canBeUnlockedByAnAmiibo = canBeUnlockedByAnAmiibo;
     }
+
+    //region -------------------- Getter methods --------------------
 
     public get conditionToUnlockIt() {
         return this.#conditionToUnlockIt;
@@ -38,14 +34,15 @@ export class UnlockPropertyContainer
         return this.#canBeUnlockedByAnAmiibo;
     }
 
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(conditionToUnlockIt: PossibleConditionToUnlockIt, canBeUnlockedByAnAmiibo: boolean,): UnlockProperty {
         const argumentsReceived: ArgumentsReceived = [conditionToUnlockIt, canBeUnlockedByAnAmiibo,];
 
-        return this.#EVERY_CONTAINERS.find(value => isArrayEquals(value.#argumentsReceived, argumentsReceived,))
-            ?? this.#EVERY_CONTAINERS.addAndGet(new this(argumentsReceived,));
+        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
+            .isNotMet(reference => reference.set(argumentsReceived, new this(argumentsReceived)))
+            .get(argumentsReceived);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------

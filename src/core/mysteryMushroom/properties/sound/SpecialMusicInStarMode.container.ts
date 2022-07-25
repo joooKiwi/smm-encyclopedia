@@ -1,36 +1,33 @@
-import type {ExtendedList}                                                                                                                  from '../../../../util/extended/ExtendedList';
+import type {ExtendedMap}                                                                                                                   from '../../../../util/extended/ExtendedMap';
 import type {PossibleGames, PossibleGamesReceived, PossibleTranslationKeys, PossibleValues, PossibleValuesReceived, SpecialMusicInStarMode} from './SpecialMusicInStarMode';
 
-import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
+import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
 import {GameReferences}       from '../../../gameReference/GameReferences';
-import {isArrayEquals}        from '../../../../util/utilitiesMethods';
 import {PropertyProvider}     from '../../../_properties/PropertyProvider';
 
 /**
+ * @todo move the content in the constructor in the builder instead
  * @multiton
  * @provider
  */
 export class SpecialMusicInStarModeContainer
     implements SpecialMusicInStarMode {
 
-    //region -------------------- Predefined containers --------------------
+    //region -------------------- Fields --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedList<SpecialMusicInStarModeContainer> = new ExtendedSetContainer();
-
-    readonly #argumentsReceived: ArgumentsReceived;
-
-    //endregion -------------------- Predefined containers --------------------
-    //region -------------------- Fields, constructor & methods --------------------
+    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, SpecialMusicInStarModeContainer> = new ExtendedMapContainer();
 
     readonly #property;
     readonly #game;
 
-    private constructor(argumentsReceived: ArgumentsReceived,) {
-        const [value, game,] = this.#argumentsReceived = argumentsReceived;
+    //endregion -------------------- Fields --------------------
 
+    private constructor([value, game,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,);
         this.#game = GameReferences.getValue(game);
     }
+
+    //region -------------------- Getter methods --------------------
 
     public get value(): PossibleValues {
         return this.#property.value;
@@ -45,15 +42,15 @@ export class SpecialMusicInStarModeContainer
         return this.#property.comment;
     }
 
-
-    //endregion -------------------- Fields, constructor & methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Provider / Multiton method --------------------
 
     public static get(value: PossibleValuesReceived, game: PossibleGamesReceived,): SpecialMusicInStarMode {
         const argumentsReceived: ArgumentsReceived = [value, game,];
 
-        return this.#EVERY_CONTAINERS.find(value => isArrayEquals(value.#argumentsReceived, argumentsReceived,))
-            ?? this.#EVERY_CONTAINERS.addAndGet(new this(argumentsReceived,));
+        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
+            .isNotMet(reference => reference.set(argumentsReceived, new this(argumentsReceived)))
+            .get(argumentsReceived);
     }
 
     //endregion -------------------- Provider / Multiton method --------------------
