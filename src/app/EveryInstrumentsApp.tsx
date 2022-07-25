@@ -38,8 +38,6 @@ export default class EveryInstrumentsApp
             //region -------------------- Card list interpreter --------------------
 
             public createCardListContent({soundPaths, name,}: Instruments,): ReactElement {
-                console.log(`---------- ${name} ----------`)
-                console.log(soundPaths)
                 return <div className="instrument-sounds">{soundPaths.map((soundPath, index,) =>
                     <SimpleSound source={soundPath} title={`${name} (instrument #${index})`}/>
                 )}</div>;
