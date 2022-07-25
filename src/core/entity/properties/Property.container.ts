@@ -1,11 +1,11 @@
-import type {GameProperty}       from './GameProperty';
-import type {GameStyleProperty}  from './GameStyleProperty';
+import type {GameProperty}       from './game/GameProperty';
+import type {GameStyleProperty}  from './gameStyle/GameStyleProperty';
 import type {InstrumentProperty} from './instrument/InstrumentProperty';
 import type {LimitProperty}      from './limit/LimitProperty';
 import type {ObjectHolder}       from '../../../util/holder/ObjectHolder';
 import type {Property}           from './Property';
-import type {ThemeProperty}      from './ThemeProperty';
-import type {TimeProperty}       from './TimeProperty';
+import type {ThemeProperty}      from './theme/ThemeProperty';
+import type {TimeProperty}       from './time/TimeProperty';
 
 export class PropertyContainer
     implements Property {

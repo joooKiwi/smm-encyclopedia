@@ -32,10 +32,10 @@ import {EntityReferencesContainer}                      from './properties/Entit
 import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}                   from './ExclusiveSMM2Entity.container';
-import {GamePropertyContainer}                          from './properties/GameProperty.container';
+import {GamePropertyContainer}                          from './properties/game/GameProperty.container';
 import {Games}                                          from '../game/Games';
 import {GameStructureContainer}                         from '../game/GameStructure.container';
-import {GameStylePropertyContainer}                     from './properties/GameStyleProperty.container';
+import {GameStylePropertyContainer}                     from './properties/gameStyle/GameStyleProperty.container';
 import {InstrumentPropertyContainer}                    from './properties/instrument/InstrumentProperty.container';
 import {Instruments}                                    from '../instrument/Instruments';
 import {LimitPropertyContainer}                         from './properties/limit/LimitProperty.container';
@@ -46,8 +46,8 @@ import {PropertyContainer as PropertyInstanceContainer} from './properties/Prope
 import {PropertyProvider}                               from '../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
-import {ThemePropertyContainer}                         from './properties/ThemeProperty.container';
-import {TimePropertyContainer}                          from './properties/TimeProperty.container';
+import {ThemePropertyContainer}                         from './properties/theme/ThemeProperty.container';
+import {TimePropertyContainer}                          from './properties/time/TimeProperty.container';
 
 
 /**

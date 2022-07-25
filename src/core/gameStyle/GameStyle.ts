@@ -1,6 +1,6 @@
 import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
 import type {Entity}                           from '../entity/Entity';
-import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {GameProperty}                     from '../entity/properties/game/GameProperty';
 import type {NameTrait}                        from '../../lang/name/NameTrait';
 
 export interface GameStyle

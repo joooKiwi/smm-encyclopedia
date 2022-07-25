@@ -7,7 +7,7 @@ import {EMPTY_MAP}                                 from '../../util/emptyVariabl
 import {EmptyCourseTheme}                          from './EmptyCourseTheme';
 import {EmptyStringName}                           from '../../lang/name/EmptyStringName';
 import {EmptyWorldTheme}                           from './EmptyWorldTheme';
-import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
+import {GamePropertyContainer}                     from '../entity/properties/game/GameProperty.container';
 
 /**
  * @singleton

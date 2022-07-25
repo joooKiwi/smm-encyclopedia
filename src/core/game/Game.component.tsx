@@ -1,4 +1,4 @@
-import type {GameProperty} from '../entity/properties/GameProperty';
+import type {GameProperty} from '../entity/properties/game/GameProperty';
 
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent';
 import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent';

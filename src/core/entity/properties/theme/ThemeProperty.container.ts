@@ -1,8 +1,8 @@
-import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
+import type {ExtendedMap}   from '../../../../util/extended/ExtendedMap';
 import type {ThemeProperty} from './ThemeProperty';
 
-import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {Themes}               from '../../theme/Themes';
+import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
+import {Themes}               from '../../../theme/Themes';
 
 /**
  * @multiton

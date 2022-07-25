@@ -4,7 +4,7 @@ import type {SoundEffect}         from './SoundEffect';
 import type {SoundEffectTemplate} from './SoundEffect.template';
 
 import {EmptySoundEffectCategory}                  from '../soundEffectCategory/EmptySoundEffectCategory';
-import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
+import {GamePropertyContainer}                     from '../entity/properties/game/GameProperty.container';
 import {Games}                                     from '../game/Games';
 import {PlayerSoundEffectTriggerPropertyContainer} from './properties/PlayerSoundEffectTriggerProperty.container';
 import {SoundEffectContainer}                      from './SoundEffect.container';

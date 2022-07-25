@@ -1,7 +1,7 @@
 import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
 import type {Builder}                                                           from '../../util/builder/Builder';
 import type {Entity}                                                            from '../entity/Entity';
-import type {GameProperty}                                                      from '../entity/properties/GameProperty';
+import type {GameProperty}                                                      from '../entity/properties/game/GameProperty';
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                  from './GameStyle';
 import type {GameStyleTemplate, NightDesertWindTemplate}                        from './GameStyle.template';
 import type {Name}                                                              from '../../lang/name/Name';
@@ -10,7 +10,7 @@ import type {PossibleAcronym}                                                   
 import type {SimpleGameFrom1And2Template}                                       from '../game/SimpleGame.template';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
-import {GamePropertyContainer}        from '../entity/properties/GameProperty.container';
+import {GamePropertyContainer}        from '../entity/properties/game/GameProperty.container';
 import {GameStyleContainer}           from './GameStyle.container';
 import {Import}                       from '../../util/DynamicImporter';
 import {TemplateBuilder}              from '../_template/Template.builder';

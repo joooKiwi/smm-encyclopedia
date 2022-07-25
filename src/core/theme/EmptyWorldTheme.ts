@@ -5,7 +5,7 @@ import {ClassContainingAName}                      from '../../lang/name/ClassCo
 import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
 import {EMPTY_MAP}                                 from '../../util/emptyVariables';
 import {EmptyStringName}                           from '../../lang/name/EmptyStringName';
-import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
+import {GamePropertyContainer}                     from '../entity/properties/game/GameProperty.container';
 
 /**
  * @singleton

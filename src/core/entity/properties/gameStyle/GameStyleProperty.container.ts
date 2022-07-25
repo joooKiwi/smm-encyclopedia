@@ -1,9 +1,9 @@
-import type {ExtendedMap}       from '../../../util/extended/ExtendedMap';
+import type {ExtendedMap}       from '../../../../util/extended/ExtendedMap';
 import type {GameStyleProperty} from './GameStyleProperty';
 
-import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {Import}               from '../../../util/DynamicImporter';
-import type {GameStyles}      from '../../gameStyle/GameStyles';
+import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
+import {Import}               from '../../../../util/DynamicImporter';
+import type {GameStyles}      from '../../../gameStyle/GameStyles';
 
 
 /**

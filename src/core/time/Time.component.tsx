@@ -1,4 +1,4 @@
-import type {TimeProperty} from '../entity/properties/TimeProperty';
+import type {TimeProperty} from '../entity/properties/time/TimeProperty';
 
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent';
 import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent';

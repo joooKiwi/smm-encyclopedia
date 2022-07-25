@@ -1,10 +1,10 @@
-import type {ExtendedMap}   from '../../../util/extended/ExtendedMap';
+import type {ExtendedMap}   from '../../../../util/extended/ExtendedMap';
 import type {GameProperty}  from './GameProperty';
-import type {GameStructure} from '../../game/GameStructure';
+import type {GameStructure} from '../../../game/GameStructure';
 
-import {ExtendedMapContainer}   from '../../../util/extended/ExtendedMap.container';
-import {Games}                  from '../../game/Games';
-import {GameStructureContainer} from '../../game/GameStructure.container';
+import {ExtendedMapContainer}   from '../../../../util/extended/ExtendedMap.container';
+import {Games}                  from '../../../game/Games';
+import {GameStructureContainer} from '../../../game/GameStructure.container';
 
 /**
  * @multiton

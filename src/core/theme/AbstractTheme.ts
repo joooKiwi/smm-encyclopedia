@@ -1,5 +1,5 @@
 import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
-import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {GameProperty}                     from '../entity/properties/game/GameProperty';
 import type {Name}                             from '../../lang/name/Name';
 import type {ObjectHolder}                     from '../../util/holder/ObjectHolder';
 import type {Theme}                            from './Theme';

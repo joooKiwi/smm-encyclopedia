@@ -4,7 +4,7 @@ import type {CourseAndWorldTheme}                                               
 import type {CourseTheme}                                                       from './CourseTheme';
 import type {PossibleEnglishName}                                               from './Themes.types';
 import type {Entity}                                                            from '../entity/Entity';
-import type {GameProperty}                                                      from '../entity/properties/GameProperty';
+import type {GameProperty}                                                      from '../entity/properties/game/GameProperty';
 import type {Name}                                                              from '../../lang/name/Name';
 import type {ObjectHolder}                                                      from '../../util/holder/ObjectHolder';
 import type {PossibleEnglishName as PossibleEnglishName_NightEffect}            from '../nightEffect/NightEffects.types';
@@ -18,7 +18,7 @@ import {CourseAndWorldThemeContainer}              from './CourseAndWorldTheme.c
 import {CourseOnlyThemeContainer}                  from './CourseOnlyTheme.container';
 import {DelayedObjectHolderContainer}              from '../../util/holder/DelayedObjectHolder.container';
 import {Entities}                                  from '../entity/Entities';
-import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
+import {GamePropertyContainer}                     from '../entity/properties/game/GameProperty.container';
 import {Games}                                     from '../game/Games';
 import {NightEffects}                              from '../nightEffect/NightEffects';
 import {TemplateWithNameBuilder}                   from '../_template/TemplateWithName.builder';

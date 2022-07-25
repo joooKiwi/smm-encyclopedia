@@ -1,9 +1,9 @@
-import type {ExtendedMap}  from '../../../util/extended/ExtendedMap';
+import type {ExtendedMap}  from '../../../../util/extended/ExtendedMap';
 import type {TimeProperty} from './TimeProperty';
 
-import {ExtendedMapContainer} from '../../../util/extended/ExtendedMap.container';
-import {Import}               from '../../../util/DynamicImporter';
-import type {Times}           from '../../time/Times';
+import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
+import {Import}               from '../../../../util/DynamicImporter';
+import type {Times}           from '../../../time/Times';
 
 /**
  * @multiton

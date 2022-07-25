@@ -1,6 +1,6 @@
 import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
 import type {CourseTheme}                      from './CourseTheme';
-import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {GameProperty}                     from '../entity/properties/game/GameProperty';
 import type {Name}                             from '../../lang/name/Name';
 import type {ObjectHolder}                     from '../../util/holder/ObjectHolder';
 import type {WorldTheme}                       from './WorldTheme';

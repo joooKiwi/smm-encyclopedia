@@ -1,4 +1,4 @@
-import type {AbstractExclusiveSMM2GameProperty, GameProperty} from '../entity/properties/GameProperty';
+import type {AbstractExclusiveSMM2GameProperty, GameProperty} from '../entity/properties/game/GameProperty';
 import type {ClassThatIsAvailableFromTheStart}                from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
 import type {Name}                                            from '../../lang/name/Name';
 import type {ObjectHolder}                                    from '../../util/holder/ObjectHolder';
