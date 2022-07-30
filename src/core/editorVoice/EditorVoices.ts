@@ -91,9 +91,9 @@ export class EditorVoices
 
     public static readonly COIN =                     new EditorVoices('Coin',                     () => new EditorVoiceSoundHolderWithVoiceBefore('coin',),);
     public static readonly FROZEN_COIN =              new EditorVoices('Frozen Coin',              () => new EditorVoiceSoundHolderWithSingingPartBefore('FrozenCoin',),);
-    public static readonly TEN_COIN =                 new EditorVoices('10-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('10-Coin',),);
-    public static readonly THIRTY_COIN =              new EditorVoices('30-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('30-Coin',),);
-    public static readonly FIFTY_COIN =               new EditorVoices('50-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('50-Coin',),);
+    public static readonly TEN_COIN =                 new EditorVoices('10-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('10-coin',),);
+    public static readonly THIRTY_COIN =              new EditorVoices('30-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('30-coin',),);
+    public static readonly FIFTY_COIN =               new EditorVoices('50-Coin',                  () => new EditorVoiceSoundHolderWithSingingPartBefore('50-coin',),);
     public static readonly PINK_COIN =                new EditorVoices('Pink Coin',                () => new EditorVoiceSoundHolderWithSingingPartBefore('pinkcoin',),);
 
     //endregion -------------------- Block / Coin --------------------
@@ -455,7 +455,7 @@ export class EditorVoices
     public static readonly HOP_CHOPS =                new EditorVoices('Hop-Chops',                () => new EditorVoiceSoundHolderWithSingingPartBefore('Hop-Chops',),);
 
     public static readonly POW_BLOCK =                new EditorVoices('POW Block',                () => new EditorVoiceSoundHolderWithVoiceBefore('powblock',),);
-    public static readonly RED_POW_BLOCK =            new EditorVoices('Red POW Block',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RedPOWBlock',),);
+    public static readonly RED_POW_BLOCK =            new EditorVoices('Red POW Block',            () => new EditorVoiceSoundHolderWithSingingPartBefore('redPOWBlock',),);
 
     public static readonly P_SWITCH =                 new EditorVoices('P Switch',                 () => new EditorVoiceSoundHolderWithVoiceBefore('pswitch',),);
 

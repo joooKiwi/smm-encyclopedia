@@ -76,14 +76,14 @@ export class Entities
     public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected override get _createEditorImage(): PossibleEditorImage {
-            return __createGroundEditorImage('slope_l30',);
+            return __createGroundEditorImage('slope_l45',);
         }
 
     }('Steep Slope',);
     public static readonly GENTLE_SLOPE =                                  new class Entities_GentleSlope extends Entities {
 
         protected override get _createEditorImage(): PossibleEditorImage {
-            return __createGroundEditorImage('slope_l45',);
+            return __createGroundEditorImage('slope_l30',);
         }
 
     }('Gentle Slope',);

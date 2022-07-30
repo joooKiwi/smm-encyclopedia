@@ -3,9 +3,9 @@ import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder';
 
 export interface EditorVoiceSound<T extends | PossibleFileName | null = | PossibleFileName | null, U extends | PossibleFileName | null = | PossibleFileName | null, > {
 
-    get fileName(): T
+    get fileName(): T;
 
-    get europeanFileName(): U
+    get europeanFileName(): U;
 
 }
 
@@ -91,7 +91,7 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'Dotted-LineBlock_nr' | 'ONOFFswitch'
     | `${| 'P' | 'Blinking'}Block`
     | 'icicle'
-    | 'pinkcoin' | `${| 'Frozen' | `${| 10 | 30 | 50}-`}Coin`
+    | 'pinkcoin' | 'FrozenCoin' | `${| 10 | 30 | 50}-coin`
 
     | ItemWithPlayer_NotMario<'Super'>
     | ItemWithPlayer_NotMario<'Fire'>
@@ -158,7 +158,7 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'crate'
     | `${| '' | 'cursed'}key`
     | 'Hop-Chops'
-    | 'RedPOWBlock'
+    | 'redPOWBlock'
     | `WarpBox${| '' | '_withkey'}`;
 
 //endregion -------------------- Starting name (singing part before) --------------------
