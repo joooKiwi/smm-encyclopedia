@@ -115,6 +115,23 @@ They are separated in different sections
  - Spacing for the import is aligned for better readability
  - Ordered alphabetically by group
 
+
+#### Visibility
+
+Since some visibilities are present in other languages (like Kotlin, Java, PHP or C#),
+the project utilise some standard on the visibilities.
+
+It utilises the Typescript system for the pre-established visibilities.
+Then, for those that are not in the system, it uses somme pattern for it.
+
+| Syntax               | in project |  in Typescript  |         in Javascript         |                                                                            Example |
+|----------------------|:----------:|:---------------:|:-----------------------------:|-----------------------------------------------------------------------------------:|
+| public [name]        |   public   |     public      |            public             |                                      <pre> public anExample<br/>public anExample() |
+| [name]               |  package   |     public      |            public             |                                                     <pre>anExample<br/>anExample() |
+| _[name]              | protected  |    protected    |            public             |                               <pre>protected _anExample<br/>protected _anExample() |
+| __[name]<br/>#[name] |  private   |     private     | __ -> public<br/># -> private | <pre>#anExample<br/>#anExample()<br/>private __anExample<br/>private __anExample() |
+
+
 #### Folder structure
 
 The files are structured by folder.
