@@ -16,11 +16,13 @@ export abstract class DateDayLanguages
     public static override readonly AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
-            return day === 2 || day === 22
-                ? <>{day}<sup>nd</sup></>
-                : day === 3
-                    ? <>3<sup>rd</sup></>
-                    : <>{day}<sup>th</sup></>;
+            return day === 1 || day === 21 || day === 31
+                ? <>{day}<sup>st</sup></>
+                : day === 2 || day === 22
+                    ? <>{day}<sup>nd</sup></>
+                    : day === 3
+                        ? <>3<sup>rd</sup></>
+                        : <>{day}<sup>th</sup></>;
         }
 
     }   (ProjectLanguages.AMERICAN_ENGLISH,   );
