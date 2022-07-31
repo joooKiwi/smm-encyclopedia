@@ -12,6 +12,7 @@ enum Enum {
 
     GROUND, START_GROUND, GOAL_GROUND,
     STEEP_SLOPE, GENTLE_SLOPE,
+    START_BLOCK, OCCLUDE_BLOCK,
     WATER, LAVA, POISON,
     PIPE, CLEAR_PIPE,
     SPIKE_TRAP, JELECTRO, SEA_URCHIN, SPIKE_BLOCK,
@@ -61,7 +62,7 @@ enum Enum {
 
     SHOE_GOOMBA, SHOE,
     STILETTO_GOOMBA, STILETTO,
-    YOSHI_EGG, YOSHI, FIRE_THROWN_BY_A_YOSHI, POISON_THROWN_BY_A_YOSHI, BONE_THROWN_BY_A_YOSHI, HAMMER_THROWN_BY_A_YOSHI,
+    YOSHI_EGG, YOSHI, FIRE_THROWN_BY_A_YOSHI, POISON_THROWN_BY_A_YOSHI, BONE_THROWN_BY_A_YOSHI, WRENCH_THROWN_BY_A_YOSHI, HAMMER_THROWN_BY_A_YOSHI,
     RED_YOSHI_EGG, RED_YOSHI, FIRE_THROWN_BY_A_RED_YOSHI,
 
     //endregion -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
@@ -157,7 +158,9 @@ enum Enum {
     STONE,
     WARP_DOOR, P_WARP_DOOR, KEY_DOOR,
     WARP_BOX, WARP_BOX_WITH_KEY,
-    WING, PARACHUTE, BUBBLE,
+    WING, PARACHUTE,
+    TOAD, CAGED_TOADETTE,
+    BUBBLE,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -190,14 +193,17 @@ export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull
 export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai';
 export type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate';
 export type PossibleEnglishName =
-    | `${| '' | `${| 'Start' | 'Goal'} `}Ground` | `${| 'Steep' | 'Gentle'} Slope`
-    | 'Water' | 'Lava' | 'Poison' | `${| '' | 'Clear '}Pipe`
+    | `${| '' | `${| 'Start' | 'Goal'} `}Ground`
+    | `${| 'Steep' | 'Gentle'} Slope`
+    | 'Water' | 'Lava' | 'Poison'
+    | `${| '' | 'Clear '}Pipe`
     | `Spike ${| 'Trap' | 'Block'}` | 'Jelectro' | 'Sea Urchin'
     | `${| 'Mushroom' | 'Semisolid'} Platform` | 'Bridge'
 
     | PossibleEnglishName_Block
     | PossibleEnglishName_HardBlock
-    | `${| '?' | 'Hidden' | 'Empty' | '!'
+    | `${| 'Start' | 'Occlude'
+         | '?' | 'Hidden' | 'Empty' | '!'
          | 'Note' | 'Music'
          | 'Donut'
          | 'Cloud'
@@ -224,7 +230,7 @@ export type PossibleEnglishName =
 
     | `${PossibleEnglishName_Shoe}${| '' | ' Goomba'}`
     | PossibleEnglishName_Yoshi | `${| '' | 'Red '}Yoshi's Egg`
-    | `${| 'Fire' | 'Poison' | 'Bone' | 'Hammer'} thrown by a Yoshi`
+    | `${| 'Fire' | 'Poison' | 'Bone' | 'Wrench' | 'Hammer'} thrown by a Yoshi`
     | `${|'Fire'} thrown by a Red Yoshi`
 
     | 'Goomba' | 'Galoomba' | 'Goombrat' | 'Goombud'
@@ -298,7 +304,9 @@ export type PossibleEnglishName =
     | 'Stone'
     | `${| `${| '' | 'P '}Warp` | 'Key'} Door`
     | `Warp Box${| '' | ' (With Key)'}`
-    | 'Wing' | 'Parachute' | 'Bubble'
+    | 'Wing' | 'Parachute'
+    | 'Toad' | 'Caged Toadette'
+    | 'Bubble'
     ;
 
 //endregion -------------------- English name --------------------
@@ -321,6 +329,7 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'GROUND', E>, EnumByName<'START_GROUND', E>, EnumByName<'GOAL_GROUND', E>,
     EnumByName<'STEEP_SLOPE', E>, EnumByName<'GENTLE_SLOPE', E>,
+    EnumByName<'START_BLOCK', E>, EnumByName<'OCCLUDE_BLOCK', E>,
     EnumByName<'WATER', E>, EnumByName<'LAVA', E>, EnumByName<'POISON', E>,
     EnumByName<'PIPE', E>, EnumByName<'CLEAR_PIPE', E>,
     EnumByName<'SPIKE_TRAP', E>, EnumByName<'JELECTRO', E>, EnumByName<'SEA_URCHIN', E>, EnumByName<'SPIKE_BLOCK', E>,
@@ -364,7 +373,7 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
 
     EnumByName<'SHOE_GOOMBA', E>, EnumByName<'SHOE', E>,
     EnumByName<'STILETTO_GOOMBA', E>, EnumByName<'STILETTO', E>,
-    EnumByName<'YOSHI_EGG', E>, EnumByName<'YOSHI', E>, EnumByName<'FIRE_THROWN_BY_A_YOSHI', E>, EnumByName<'POISON_THROWN_BY_A_YOSHI', E>, EnumByName<'BONE_THROWN_BY_A_YOSHI', E>, EnumByName<'HAMMER_THROWN_BY_A_YOSHI', E>,
+    EnumByName<'YOSHI_EGG', E>, EnumByName<'YOSHI', E>, EnumByName<'FIRE_THROWN_BY_A_YOSHI', E>, EnumByName<'POISON_THROWN_BY_A_YOSHI', E>, EnumByName<'BONE_THROWN_BY_A_YOSHI', E>, EnumByName<'WRENCH_THROWN_BY_A_YOSHI', E>, EnumByName<'HAMMER_THROWN_BY_A_YOSHI', E>,
     EnumByName<'RED_YOSHI_EGG', E>, EnumByName<'RED_YOSHI', E>, EnumByName<'FIRE_THROWN_BY_A_RED_YOSHI', E>,
 
     EnumByName<'GOOMBA', E>, EnumByName<'GALOOMBA', E>, EnumByName<'GOOMBRAT', E>, EnumByName<'GOOMBUD', E>,
@@ -448,7 +457,9 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'STONE', E>,
     EnumByName<'WARP_DOOR', E>, EnumByName<'P_WARP_DOOR', E>, EnumByName<'KEY_DOOR', E>,
     EnumByName<'WARP_BOX', E>, EnumByName<'WARP_BOX_WITH_KEY', E>,
-    EnumByName<'WING', E>, EnumByName<'PARACHUTE', E>, EnumByName<'BUBBLE', E>,
+    EnumByName<'WING', E>, EnumByName<'PARACHUTE', E>,
+    EnumByName<'TOAD', E>, EnumByName<'CAGED_TOADETTE', E>,
+    EnumByName<'BUBBLE', E>,
 ];
 
 //endregion -------------------- Array types --------------------

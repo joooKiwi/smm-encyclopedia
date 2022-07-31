@@ -10,8 +10,13 @@ interface ImageNameMap {
     'Ground': ImageThatIsAGround<'Ground'>
     'Start Ground': NoImages
     'Goal Ground': NoImages
-    'Steep Slope': ImageThatIsAGround<'slope_l30'>
-    'Gentle Slope': ImageThatIsAGround<'slope_l45'>
+
+    'Steep Slope': ImageThatIsAGround<'slope_l45'>
+    'Gentle Slope': ImageThatIsAGround<'slope_l30'>
+
+    'Start Block': NoImages
+    'Occlude Block': NoImages
+
     'Water': NoImages
     'Lava': NoImages
     'Poison': NoImages
@@ -136,6 +141,7 @@ interface ImageNameMap {
     'Yoshi': NoImages
     'Fire thrown by a Yoshi': NoImages
     'Poison thrown by a Yoshi': NoImages
+    'Wrench thrown by a Yoshi': NoImages
     'Bone thrown by a Yoshi': NoImages
     'Hammer thrown by a Yoshi': NoImages
     'Red Yoshi\'s Egg': ImageThatHasOnly1Reference<'YosshiEggRed'>
@@ -409,6 +415,10 @@ interface ImageNameMap {
 
     'Wing': ['Wing', Name_0<'Wing'>,]
     'Parachute': ['parachute', Name_0<'parachute'>,]
+
+    'Toad': NoImages
+    'Caged Toadette': NoImages
+
     'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------

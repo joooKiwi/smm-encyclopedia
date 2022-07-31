@@ -9,8 +9,13 @@ interface ImageNameMap {
     'Ground': NoImages
     'Start Ground': NoImages
     'Goal Ground': NoImages
+
     'Steep Slope': NoImages
     'Gentle Slope': NoImages
+
+    'Start Block': NoImages
+    'Occlude Block': NoImages
+
     'Water': NoImages
     'Lava': NoImages
     'Poison': NoImages
@@ -136,6 +141,7 @@ interface ImageNameMap {
     'Fire thrown by a Yoshi': NoImages
     'Poison thrown by a Yoshi': NoImages
     'Bone thrown by a Yoshi': NoImages
+    'Wrench thrown by a Yoshi': NoImages
     'Hammer thrown by a Yoshi': NoImages
     'Red Yoshi\'s Egg': NoImages
     'Red Yoshi': NoImages
@@ -405,8 +411,12 @@ interface ImageNameMap {
     'Warp Box': NoImages
     'Warp Box (With Key)': NoImages
 
-    'Wing': NoImages,
-    'Parachute': NoImages,
+    'Wing': NoImages
+    'Parachute': NoImages
+
+    'Toad': NoImages
+    'Caged Toadette': NoImages
+
     'Bubble': NoImages,
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------

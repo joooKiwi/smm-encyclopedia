@@ -73,6 +73,7 @@ export class Entities
     }('Ground',);
     public static readonly START_GROUND =                                  new Entities('Start Ground',);
     public static readonly GOAL_GROUND =                                   new Entities('Goal Ground',);
+
     public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
 
         protected override get _createEditorImage(): PossibleEditorImage {
@@ -87,6 +88,10 @@ export class Entities
         }
 
     }('Gentle Slope',);
+
+    public static readonly START_BLOCK =                                   new Entities('Start Block',);
+    public static readonly OCCLUDE_BLOCK =                                 new Entities('Occlude Block',);
+
     public static readonly WATER =                                         new Entities('Water',);
     public static readonly LAVA =                                          new Entities('Lava',);
     public static readonly POISON =                                        new Entities('Poison',);
@@ -863,6 +868,7 @@ export class Entities
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',);
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',);
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',);
+    public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new Entities('Wrench thrown by a Yoshi',);
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',);
     public static readonly RED_YOSHI_EGG =                                 new class Entities_RedYoshiEgg extends Entities {
 
@@ -2485,6 +2491,10 @@ export class Entities
         }
 
     }('Parachute',);
+
+    public static readonly TOAD =                                          new Entities('Toad',);
+    public static readonly CAGED_TOADETTE =                                new Entities('Caged Toadette',);
+
     public static readonly BUBBLE =                                        new Entities('Bubble',);
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
