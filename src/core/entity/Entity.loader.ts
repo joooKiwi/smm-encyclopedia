@@ -451,10 +451,11 @@ export class EntityLoader
 
                 .convertTo([EntityLoader.UNKNOWN_CHARACTER, 1, 2, '1?', EntityLoader.INFINITE_CHARACTER,
                     'For each entity', 'For each clone (2-4)',
+                    'For each objects (4)',
                     'For each projectile', 'For each projectile (1)',
                     'For each projectiles', 'For each projectiles (2)', 'For each projectiles (3)',
                     'For each projectiles (4)', 'For each projectiles (5)', 'For each projectiles (6)',
-                    'For each projectiles (10?)', 'For each projectiles (1-3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
+                    'For each projectiles (10?)', 'For each projectiles (1|3)', 'For each projectiles (3-5)', 'For each projectiles (NSMU → 2, [SMB,SMB3,SMW] → 3)',], 'limitAmount',)
                 .convertTo(HeaderTypesForConvertor.everyName_limit, 'editorLimit_SMM1And3DS',)
                 .convertTo(HeaderTypesForConvertor.everyNameOrUnknown_limit, 'editorLimit_SMM2',)
                 .convertToNullableBooleanAnd(['Only when collected (30 frames)', 'As a group',
@@ -463,7 +464,7 @@ export class EntityLoader
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
                 .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
                     'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)
-                .convertToNullableBooleanAnd(['Only when not dotted',], 'whilePlaying_isInObjectRenderedLimit',)
+                .convertToNullableBooleanAnd(['Only when not dotted', 'Only if not hit', 'Only if not hit?',], 'whilePlaying_isInObjectRenderedLimit',)
                 .convertTo(HeaderTypesForConvertor.everyNameOrUnknown_limit, 'whilePlaying_otherLimit',)
                 .convertToEmptyableStringAnd('Only falling coin', 'whilePlaying_otherLimit_comment',)
 
