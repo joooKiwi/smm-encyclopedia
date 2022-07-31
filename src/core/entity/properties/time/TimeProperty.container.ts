@@ -1,21 +1,15 @@
-import type {ExtendedMap}  from '../../../../util/extended/ExtendedMap';
 import type {TimeProperty} from './TimeProperty';
 
-import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
-import {Import}               from '../../../../util/DynamicImporter';
-import type {Times}           from '../../../time/Times';
+import {Import}     from '../../../../util/DynamicImporter';
+import type {Times} from '../../../time/Times';
 
 /**
- * @multiton
- * @provider
  * @classWithDynamicImport {@link Times}
  */
-export class TimePropertyContainer
-    implements TimeProperty {
+export class TimePropertyContainer<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >
+    implements TimeProperty<DAY, NIGHT> {
 
     //region -------------------- Fields --------------------
-
-    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, TimeProperty> = new ExtendedMapContainer();
 
     #map?: ReadonlyMap<Times, boolean>;
     readonly #isInDayTheme;
@@ -23,7 +17,7 @@ export class TimePropertyContainer
 
     //endregion -------------------- Fields --------------------
 
-    private constructor([isInDayTheme, isInNightTheme,]: ArgumentsReceived,) {
+    constructor(isInDayTheme: DAY, isInNightTheme: NIGHT,) {
         this.#isInDayTheme = isInDayTheme;
         this.#isInNightTheme = isInNightTheme;
     }
@@ -46,24 +40,5 @@ export class TimePropertyContainer
     }
 
     //endregion -------------------- Convertor methods --------------------
-    //region -------------------- Provider / Multiton method --------------------
-
-    /**
-     * Get a property instance based on the {@link Times} properties.
-     *
-     * @param isInDayTime Is in the {@link Times.DAY day time}
-     * @param isInNightTime Is in the {@link Times.NIGHT night time}
-     * @noDuplicateInstanceCreation
-     */
-    public static get<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >(isInDayTime: DAY, isInNightTime: NIGHT,): TimeProperty<DAY, NIGHT>
-    public static get(...argumentsReceived: ArgumentsReceived) {
-        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
-            .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))
-            .get(argumentsReceived);
-    }
-
-    //endregion -------------------- Provider / Multiton method --------------------
 
 }
-
-type ArgumentsReceived = readonly [isInDayTheme: boolean, isInNightTheme: | boolean | null,];

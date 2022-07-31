@@ -12,19 +12,19 @@ import type {SimpleGameFrom1And2Template}                                       
 import type {ThemeTemplate}                                                     from './Theme.template';
 import type {WorldTheme}                                                        from './WorldTheme';
 
-import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
-import {CourseThemeContainer}                      from './CourseTheme.container';
-import {CourseAndWorldThemeContainer}              from './CourseAndWorldTheme.container';
-import {CourseOnlyThemeContainer}                  from './CourseOnlyTheme.container';
-import {DelayedObjectHolderContainer}              from '../../util/holder/DelayedObjectHolder.container';
-import {Entities}                                  from '../entity/Entities';
-import {GamePropertyContainer}                     from '../entity/properties/game/GameProperty.container';
-import {Games}                                     from '../game/Games';
-import {NightEffects}                              from '../nightEffect/NightEffects';
-import {TemplateWithNameBuilder}                   from '../_template/TemplateWithName.builder';
-import {Themes}                                    from './Themes';
-import {WorldThemeContainer}                       from './WorldTheme.container';
-import {WorldOnlyThemeContainer}                   from './WorldOnlyTheme.container';
+import {ClassThatIsAvailableFromTheStartProvider} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.provider';
+import {CourseThemeContainer}                     from './CourseTheme.container';
+import {CourseAndWorldThemeContainer}             from './CourseAndWorldTheme.container';
+import {CourseOnlyThemeContainer}                 from './CourseOnlyTheme.container';
+import {DelayedObjectHolderContainer}             from '../../util/holder/DelayedObjectHolder.container';
+import {Entities}                                 from '../entity/Entities';
+import {GamePropertyProvider}                     from '../entity/properties/game/GameProperty.provider';
+import {Games}                                    from '../game/Games';
+import {NightEffects}                             from '../nightEffect/NightEffects';
+import {TemplateWithNameBuilder}                  from '../_template/TemplateWithName.builder';
+import {Themes}                                   from './Themes';
+import {WorldThemeContainer}                      from './WorldTheme.container';
+import {WorldOnlyThemeContainer}                  from './WorldOnlyTheme.container';
 
 export class ThemeBuilder
     extends TemplateWithNameBuilder<ThemeTemplate, CourseAndWorldTheme>
@@ -32,11 +32,11 @@ export class ThemeBuilder
 
     //region -------------------- Fields --------------------
 
-    static readonly #WORLD_THEME_PROPERTY = GamePropertyContainer.get(false, true,);
+    static readonly #WORLD_THEME_PROPERTY = GamePropertyProvider.get.smm2Only;
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartContainer.get(null,));
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartContainer.get(true,));
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartContainer.get(false,));
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartProvider.get.get(null,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartProvider.get.get(true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartProvider.get.get(false,));
 
     //endregion -------------------- Fields --------------------
 
@@ -63,7 +63,7 @@ export class ThemeBuilder
     }
 
     static #getGameProperty(gameTemplate: SimpleGameFrom1And2Template<boolean, boolean>,): GameProperty {
-        return GamePropertyContainer.get(gameTemplate['1And3DS'], gameTemplate['2'],);
+        return GamePropertyProvider.get.get(gameTemplate['1And3DS'], gameTemplate['2'],);
     }
 
     static #getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
@@ -126,7 +126,7 @@ export class ThemeBuilder
     }
 
     static #getGameProperty2(courseTheme: CourseTheme, worldTheme: WorldTheme,): ObjectHolder<GameProperty> {
-        return new DelayedObjectHolderContainer(() => GamePropertyContainer.get(
+        return new DelayedObjectHolderContainer(() => GamePropertyProvider.get.get(
             courseTheme.isInSuperMarioMaker1 || worldTheme.isInSuperMarioMaker1,
             courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2,
         ));

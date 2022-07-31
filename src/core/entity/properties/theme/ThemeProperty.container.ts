@@ -1,36 +1,30 @@
-import type {ExtendedMap}   from '../../../../util/extended/ExtendedMap';
 import type {ThemeProperty} from './ThemeProperty';
 
-import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container';
-import {Themes}               from '../../../theme/Themes';
+import {Themes} from '../../../theme/Themes';
 
 /**
- * @multiton
- * @provider
  * @classWithDynamicImport {@link Themes}
  */
-export class ThemePropertyContainer
-    implements ThemeProperty {
+export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >
+    implements ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE> {
 
     //region -------------------- Fields --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, ThemeProperty> = new ExtendedMapContainer();
-
     #map?: ReadonlyMap<Themes, boolean>;
-    readonly #isInGroundTheme: boolean;
-    readonly #isInUndergroundTheme: boolean;
-    readonly #isInUnderwaterTheme: boolean;
-    readonly #isInDesertTheme: | boolean | null;
-    readonly #isInSnowTheme: | boolean | null;
-    readonly #isInSkyTheme: | boolean | null;
-    readonly #isInForestTheme: | boolean | null;
-    readonly #isInGhostHouseTheme: boolean;
-    readonly #isInAirshipTheme: boolean;
-    readonly #isInCastleTheme: boolean;
+    readonly #isInGroundTheme;
+    readonly #isInUndergroundTheme;
+    readonly #isInUnderwaterTheme;
+    readonly #isInDesertTheme;
+    readonly #isInSnowTheme;
+    readonly #isInSkyTheme;
+    readonly #isInForestTheme;
+    readonly #isInGhostHouseTheme;
+    readonly #isInAirshipTheme;
+    readonly #isInCastleTheme;
 
     //endregion -------------------- Fields --------------------
 
-    private constructor([isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,]: ArgumentsReceived,) {
+    constructor(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,) {
         this.#isInGroundTheme = isInGroundTheme;
         this.#isInUndergroundTheme = isInUndergroundTheme;
         this.#isInUnderwaterTheme = isInUnderwaterTheme;
@@ -93,32 +87,5 @@ export class ThemePropertyContainer
     }
 
     //endregion -------------------- Convertor methods --------------------
-    //region -------------------- Provider / Multiton method --------------------
-
-    /**
-     * Get a property instance based on the {@link Themes} properties.
-     *
-     * @param isInGroundTheme Is in the {@link Themes.GROUND ground theme}
-     * @param isInUndergroundTheme Is in the {@link Themes.UNDERGROUND underground theme}
-     * @param isInUnderwaterTheme Is in the {@link Themes.UNDERWATER underwater theme}
-     * @param isInDesertTheme Is in the {@link Themes.DESERT desert theme}
-     * @param isInSnowTheme Is in the {@link Themes.SNOW snow theme}
-     * @param isInSkyTheme Is in the {@link Themes.SKY sky theme}
-     * @param isInForestTheme Is in the {@link Themes.FOREST forest theme}
-     * @param isInGhostHouseTheme Is in the {@link Themes.GHOST_HOUSE ghost house theme}
-     * @param isInAirshipTheme Is in the {@link Themes.AIRSHIP airship theme}
-     * @param isInCastleTheme Is in the {@link Themes.CASTLE castle theme}
-     * @noDuplicateInstanceCreation
-     */
-    public static get<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
-    public static get(...argumentsReceived: ArgumentsReceived) {
-        return this.#EVERY_CONTAINERS.if(map => map.has(argumentsReceived))
-            .isNotMet(map => map.set(argumentsReceived, new this(argumentsReceived,)))
-            .get(argumentsReceived);
-    }
-
-    //endregion -------------------- Provider / Multiton method --------------------
 
 }
-
-type ArgumentsReceived = readonly [isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: | boolean | null, isInSnowTheme: | boolean | null, isInSkyTheme: | boolean | null, isInForestTheme: | boolean | null, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,];

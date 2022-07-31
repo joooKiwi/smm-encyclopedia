@@ -1,4 +1,5 @@
 import type {ClassThatIsAvailableFromTheStartContainer} from '../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
+import type {ClassThatIsAvailableFromTheStartProvider}  from '../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider';
 import type {CourseTagLoader}                           from '../core/courseTag/CourseTag.loader';
 import type {CourseTags}                                from '../core/courseTag/CourseTags';
 import type {EntityBehaviourLoader}                     from '../core/behaviour/EntityBehaviour.loader';
@@ -170,6 +171,7 @@ export class DynamicImporter {
     //region -------------------- Other fields --------------------
 
     #ClassThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer;
+    #ClassThatIsAvailableFromTheStartProvider?: typeof ClassThatIsAvailableFromTheStartProvider;
 
     //endregion -------------------- Other fields --------------------
 
@@ -371,6 +373,10 @@ export class DynamicImporter {
 
     public get ClassThatIsAvailableFromTheStartContainer(): typeof ClassThatIsAvailableFromTheStartContainer {
         return this.#ClassThatIsAvailableFromTheStartContainer ??= require('../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer;
+    }
+
+    public get ClassThatIsAvailableFromTheStartProvider(): typeof ClassThatIsAvailableFromTheStartProvider {
+        return this.#ClassThatIsAvailableFromTheStartProvider ??= require('../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider').ClassThatIsAvailableFromTheStartProvider;
     }
 
     //endregion -------------------- Other getter methods --------------------

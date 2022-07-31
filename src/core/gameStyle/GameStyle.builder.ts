@@ -10,13 +10,13 @@ import type {PossibleAcronym}                                                   
 import type {SimpleGameFrom1And2Template}                                       from '../game/SimpleGame.template';
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
-import {GamePropertyContainer}        from '../entity/properties/game/GameProperty.container';
 import {GameStyleContainer}           from './GameStyle.container';
 import {Import}                       from '../../util/DynamicImporter';
 import {TemplateBuilder}              from '../_template/Template.builder';
+import {GamePropertyProvider}         from '../entity/properties/game/GameProperty.provider';
 
 /**
- * @classWithDynamicImport {@link Entities}m {@link GameReferences}, {@link GameStyles}, {@link ClassThatIsAvailableFromTheStartContainer}
+ * @classWithDynamicImport {@link Entities}, {@link GameReferences}, {@link GameStyles}, {@link ClassThatIsAvailableFromTheStartProvider}
  */
 export class GameStyleBuilder
     extends TemplateBuilder<GameStyleTemplate, GameStyle>
@@ -24,12 +24,12 @@ export class GameStyleBuilder
 
     //region -------------------- Fields --------------------
 
-    static readonly #GAME_PROPERTY_IN_ALL_GAMES: ObjectHolder<GameProperty<true, true, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(true, true,));
-    static readonly #GAME_PROPERTY_IN_SMM2: ObjectHolder<GameProperty<false, false, true>> = new DelayedObjectHolderContainer(() => GamePropertyContainer.get(false, true,));
+    static readonly #GAME_PROPERTY_IN_ALL_GAMES: ObjectHolder<GameProperty<true, true, true>> = new DelayedObjectHolderContainer(() => GamePropertyProvider.get.all);
+    static readonly #GAME_PROPERTY_IN_SMM2: ObjectHolder<GameProperty<false, false, true>> = new DelayedObjectHolderContainer(() => GamePropertyProvider.get.smm2Only);
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(null,));
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(true,));
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartContainer.get(false,));
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(null,));
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(true,));
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(false,));
 
     //endregion -------------------- Fields --------------------
 

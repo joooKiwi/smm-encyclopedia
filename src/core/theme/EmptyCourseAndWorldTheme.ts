@@ -1,13 +1,13 @@
 import type {CourseAndWorldTheme}                                      from './CourseAndWorldTheme';
 import type {ClassWithNullObjectPattern, EmptyCourseAndWorldThemeName} from '../../util/ClassWithNullObjectPattern';
 
-import {ClassContainingAName}                      from '../../lang/name/ClassContainingAName';
-import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
-import {EMPTY_MAP}                                 from '../../util/emptyVariables';
-import {EmptyCourseTheme}                          from './EmptyCourseTheme';
-import {EmptyStringName}                           from '../../lang/name/EmptyStringName';
-import {EmptyWorldTheme}                           from './EmptyWorldTheme';
-import {GamePropertyContainer}                     from '../entity/properties/game/GameProperty.container';
+import {ClassContainingAName}                     from '../../lang/name/ClassContainingAName';
+import {ClassThatIsAvailableFromTheStartProvider} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.provider';
+import {EMPTY_MAP}                                from '../../util/emptyVariables';
+import {EmptyCourseTheme}                         from './EmptyCourseTheme';
+import {EmptyStringName}                          from '../../lang/name/EmptyStringName';
+import {EmptyWorldTheme}                          from './EmptyWorldTheme';
+import {GamePropertyProvider}                     from '../entity/properties/game/GameProperty.provider';
 
 /**
  * @singleton
@@ -42,7 +42,7 @@ export class EmptyCourseAndWorldTheme
     //endregion -------------------- Theme properties --------------------
     //region -------------------- Game properties --------------------
 
-    public readonly isInProperty = GamePropertyContainer.get(false, true,);
+    public readonly isInProperty = GamePropertyProvider.get.smm2Only;
 
     public readonly isInSuperMarioMaker1 = this.isInProperty.isInSuperMarioMaker1;
     public readonly isInSuperMarioMakerFor3DS = this.isInProperty.isInSuperMarioMakerFor3DS;
@@ -51,7 +51,7 @@ export class EmptyCourseAndWorldTheme
     //endregion -------------------- Game properties --------------------
     //region -------------------- "Is available from the start" properties --------------------
 
-    public readonly isAvailableFromTheStartContainer = ClassThatIsAvailableFromTheStartContainer.get(null, null, null,);
+    public readonly isAvailableFromTheStartContainer = ClassThatIsAvailableFromTheStartProvider.get.null;
 
     public readonly isAvailableFromTheStartInSMM1 = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1;
     public readonly isAvailableFromTheStartInSMM3DS = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS;

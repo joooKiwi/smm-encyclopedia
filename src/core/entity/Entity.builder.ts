@@ -32,13 +32,13 @@ import {EntityReferencesContainer}                      from './properties/Entit
 import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container';
 import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container';
 import {ExclusiveSMM2EntityContainer}                   from './ExclusiveSMM2Entity.container';
-import {GamePropertyContainer}                          from './properties/game/GameProperty.container';
+import {GamePropertyProvider}                           from './properties/game/GameProperty.provider';
 import {Games}                                          from '../game/Games';
-import {GameStructureContainer}                         from '../game/GameStructure.container';
-import {GameStylePropertyContainer}                     from './properties/gameStyle/GameStyleProperty.container';
-import {InstrumentPropertyContainer}                    from './properties/instrument/InstrumentProperty.container';
+import {GameStructureProvider}                          from '../game/GameStructure.provider';
+import {GameStylePropertyProvider}                      from './properties/gameStyle/GameStyleProperty.provider';
+import {InstrumentPropertyProvider}                     from './properties/instrument/InstrumentProperty.provider';
 import {Instruments}                                    from '../instrument/Instruments';
-import {LimitPropertyContainer}                         from './properties/limit/LimitProperty.container';
+import {LimitPropertyProvider}                          from './properties/limit/LimitProperty.provider';
 import {ObjectHolders}                                  from '../../util/holder/objectHolders';
 import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
 import {PropertyContainer}                              from '../_properties/Property.container';
@@ -46,9 +46,8 @@ import {PropertyContainer as PropertyInstanceContainer} from './properties/Prope
 import {PropertyProvider}                               from '../_properties/PropertyProvider';
 import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container';
 import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
-import {ThemePropertyContainer}                         from './properties/theme/ThemeProperty.container';
-import {TimePropertyContainer}                          from './properties/time/TimeProperty.container';
-
+import {ThemePropertyProvider}                          from './properties/theme/ThemeProperty.provider';
+import {TimePropertyProvider}                           from './properties/time/TimeProperty.provider';
 
 /**
  * Create an {@link Entity} from a {@link EntityTemplate template} received.
@@ -145,26 +144,15 @@ export class EntityBuilder
             },
         } = limitTemplate;
 
-        return LimitPropertyContainer.get(
+        return LimitPropertyProvider.get.get([[editorLimit_SMM1And3DS, editorLimit_SMM2,], [generalLimit, superGlobalGeneralLimit,], powerUpLimit, projectileLimit, [otherLimit, otherLimitComment,],],
+            GameStructureProvider.get.get(this.#whereEntityLimit(editorLimit_SMM1And3DS), this.#getPropertyWhereEntityLimit(editorLimit_SMM2),),
             [
-                GameStructureContainer.get(this.#whereEntityLimit(editorLimit_SMM1And3DS),
-                    this.#getPropertyWhereEntityLimit(editorLimit_SMM2),
-                ),
-                [
-                    PropertyProvider.newBooleanContainer<GeneralEntityLimitType, true, false, true>(generalLimit, true, false,),
-                    PropertyProvider.newBooleanContainer<GeneralGlobalEntityLimitType, true, false, true>(superGlobalGeneralLimit, true, false,),
-                ],
-                PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
-                PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
-                this.#getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
+                PropertyProvider.newBooleanContainer<GeneralEntityLimitType, true, false, true>(generalLimit, true, false,),
+                PropertyProvider.newBooleanContainer<GeneralGlobalEntityLimitType, true, false, true>(superGlobalGeneralLimit, true, false,),
             ],
-            [
-                [editorLimit_SMM1And3DS, editorLimit_SMM2,],
-                [generalLimit, superGlobalGeneralLimit,],
-                powerUpLimit,
-                projectileLimit,
-                [otherLimit, otherLimitComment,]
-            ]
+            PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
+            PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
+            this.#getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
         );
     }
 
@@ -218,19 +206,17 @@ export class EntityBuilder
      *
      * @param instrumentTemplate the instrument template
      * @returns An object holder containing the properties for the instrument part of an {@link Entity entity}
-     * @see InstrumentPropertyContainer
+     * @see InstrumentPropertyProvider
      * @see EmptyInstrumentProperty
      */
     static #getInstrumentPropertyHolder({instrument, canMakeASoundOutOfAMusicBlock,}: InstrumentPropertyTemplate,): ObjectHolder<InstrumentProperty> {
         if (instrument == null)
             return this.#EMPTY_INSTRUMENT_OBJECT_HOLDER;
 
-        return new DelayedObjectHolderContainer(() => InstrumentPropertyContainer.get(
-            [
-                new DelayedObjectHolderContainer(() => this.#whereInstrument(instrument)),
-                this.#getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock,),
-            ],
-            [instrument, canMakeASoundOutOfAMusicBlock,],));
+        return new DelayedObjectHolderContainer(() => InstrumentPropertyProvider.get.get([instrument, canMakeASoundOutOfAMusicBlock,],
+            new DelayedObjectHolderContainer(() => this.#whereInstrument(instrument)),
+            this.#getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock,),
+        ));
     }
 
     //endregion -------------------- Property helper methods (instrument) --------------------
@@ -243,10 +229,10 @@ export class EntityBuilder
         const {isIn: {game, style: gameStyle, theme, time,}, limits, sound,} = this.template.properties;
 
         return new PropertyInstanceContainer(
-            new ObjectHolderContainer(GamePropertyContainer.get(game['1'], game['3DS'], game['2'],)),
-            new DelayedObjectHolderContainer(() => GameStylePropertyContainer.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
-            new DelayedObjectHolderContainer(() => ThemePropertyContainer.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
-            new DelayedObjectHolderContainer(() => TimePropertyContainer.get(time.day, time.night,)),
+            new ObjectHolderContainer(GamePropertyProvider.get.get(game['1'], game['3DS'], game['2'],)),
+            new DelayedObjectHolderContainer(() => GameStylePropertyProvider.get.get(gameStyle.superMarioBros, gameStyle.superMarioBros3, gameStyle.superMarioWorld, gameStyle.newSuperMarioBrosU, gameStyle.superMario3DWorld,)),
+            new DelayedObjectHolderContainer(() => ThemePropertyProvider.get.get(theme.ground, theme.underground, theme.underwater, theme.desert, theme.snow, theme.sky, theme.forest, theme.ghostHouse, theme.airship, theme.castle,)),
+            new DelayedObjectHolderContainer(() => TimePropertyProvider.get.get(time.day, time.night,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.#getLimitPropertyFields(limits)),
             EntityBuilder.#getInstrumentPropertyHolder(sound),
         );

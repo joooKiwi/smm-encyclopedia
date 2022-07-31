@@ -2,9 +2,9 @@ import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../../util/
 import type {LimitProperty}                              from './LimitProperty';
 import type {NotApplicableProperty}                      from '../../../_properties/PropertyWithEverything';
 
-import {EMPTY_MAP}              from '../../../../util/emptyVariables';
-import {GameStructureContainer} from '../../../game/GameStructure.container';
-import {PropertyContainer}      from '../../../_properties/Property.container';
+import {EMPTY_MAP}             from '../../../../util/emptyVariables';
+import {GameStructureProvider} from '../../../game/GameStructure.provider';
+import {PropertyContainer}     from '../../../_properties/Property.container';
 
 /**
  * @singleton
@@ -27,7 +27,7 @@ export class EmptyLimitProperty
     //endregion -------------------- Singleton usage --------------------
     //region -------------------- Getter methods --------------------
 
-    public readonly editorLimitContainer = GameStructureContainer.get(null, PropertyContainer.NOT_APPLICABLE_CONTAINER,);
+    public readonly editorLimitContainer = GameStructureProvider.get.get(null, PropertyContainer.NOT_APPLICABLE_CONTAINER,);
     public readonly editorLimit_smm1And3ds = this.editorLimitContainer.superMarioMaker;
     public readonly editorLimit_smm2 = this.editorLimitContainer.superMarioMaker2.value;
     public readonly isUnknown_editorLimit_smm2 = this.editorLimitContainer.superMarioMaker2.isUnknown;

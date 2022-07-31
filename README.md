@@ -176,16 +176,17 @@ The only ones that are used outside are:
 
 The rest should not be used outside the same package (folder).
 
-| Format              | Type      |                 Description                  |                                Dependencies |
-|:--------------------|:----------|:--------------------------------------------:|--------------------------------------------:|
-| [name].template.ts  | Template  |   The template associated to the CSV file    |                                        Type |
-| [name].loader.ts    | Loader    |         The file loader (main core)          |               Builder<br/>Template<br/>Type |
-| Loader.types.ts     | Type      |  Types only applicable to the file loaders   |                                             |
-| [name].builder.ts   | Builder   |   The builder class that create the class    | Template <br/>Class<br/>Enum _(some times)_ |
-| [name].ts           | Interface | The class description that is used elsewhere |                                        Type |
-| Empty[name].ts      | Singleton |           The empty class instance           |                                   Interface |
-| [name].container.ts | Class     |              The class instance              |                                   Interface |
-| [plural-name].ts    | Enum      |      Every elements as an enum instance      |                          Loader _(dynamic)_ |
+| Format              | Type      |                                                 Description                                                 |                                Dependencies |
+|:--------------------|:----------|:-----------------------------------------------------------------------------------------------------------:|--------------------------------------------:|
+| [name].template.ts  | Template  |                                   The template associated to the CSV file                                   |                                        Type |
+| [name].loader.ts    | Loader    |                                         The file loader (main core)                                         |               Builder<br/>Template<br/>Type |
+| Loader.types.ts     | Type      |                                  Types only applicable to the file loaders                                  |                                             |
+| [name].builder.ts   | Builder   |                                   The builder class that create the class                                   | Template <br/>Class<br/>Enum _(some times)_ |
+| [name].provider.ts  | Provider  | The provider class that will get or create the specific instance<br/>(will never create duplicate instance) |                        Interface <br/>Class |
+| [name].ts           | Interface |                                The class description that is used elsewhere                                 |                                        Type |
+| Empty[name].ts      | Singleton |                                          The empty class instance                                           |                                   Interface |
+| [name].container.ts | Class     |                                             The class instance                                              |                                   Interface |
+| [plural-name].ts    | Enum      |                                     Every elements as an enum instance                                      |                          Loader _(dynamic)_ |
 
 <br/>
 The types used in the interface:
