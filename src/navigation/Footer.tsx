@@ -33,7 +33,7 @@ export default function Footer({languageChanger,}: FooterProperties,) {
                     <ContentTranslationComponent translationKey="React application made by"/>: JóôòKiwi & Geitje
                 </span>
                 <span id="copyright_lastEdited" className="text-center text-light small">
-                    <ContentTranslationComponent translationKey="Last update"/>: <SimpleDate day={24} month={7} year={2022}/>
+                    <ContentTranslationComponent translationKey="Last update"/>: <SimpleDate day={31} month={7} year={2022}/>
                 </span>
             </div>
         </div>
