@@ -26,7 +26,7 @@ export default function NameComponent({id, ...otherProperties}: NameProperties,)
     const elementId = `${id}-${StringContainer.getInHtml(englishName)}`;
     const listId = `${elementId}-list`;
 
-    return <div key={`${englishName} - container (${id})`} id={`${elementId}-container`}>
+    return <div key={`${englishName} - container (${id})`} id={`${elementId}-container`} className="name-container">
         <NamePopoverComponent id={elementId} listId={listId} setDoesDisplayPopover={setDoesDisplayPopover} otherProperties={otherProperties}/>
         <NameListComponent name={name} id={elementId} listId={listId} doesDisplayPopover={doesDisplayPopover}/>
     </div>;
