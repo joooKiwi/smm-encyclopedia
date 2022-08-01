@@ -1,5 +1,5 @@
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {ThemeAppOption as RealEnum}                                                                                                                                                                                                              from './ThemeAppOption';
+import type {ThemeAppOption as RealEnum}                                                                                                                                                                                                                   from './ThemeAppOption';
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
@@ -10,8 +10,6 @@ enum Enum {
 
     IMAGE,
     NAME,
-    COURSE_AND_WORLD_THEME,
-    GAME,
     NIGHT_EFFECT,
 
 }
@@ -43,8 +41,6 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['IMAGE'],
     SimpleEnum<T>['NAME'],
-    SimpleEnum<T>['COURSE_AND_WORLD_THEME'],
-    SimpleEnum<T>['GAME'],
     SimpleEnum<T>['NIGHT_EFFECT'],
 ];
 

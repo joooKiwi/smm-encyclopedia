@@ -10,15 +10,11 @@ import type {SingleHeaderContent}                                               
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
-import {BASE_PATH}                     from '../../variables';
 import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {Enum}                          from '../../util/enum/Enum';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../../core/game/Games';
 import {Times}                         from '../../core/time/Times';
-import YesOrNoResultTextComponent      from '../tools/text/YesOrNoResultTextComponent';
 
 //region -------------------- dynamic imports --------------------
 
@@ -64,68 +60,21 @@ export abstract class ThemeAppOption
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
-            return () => CommonOptions.get.getNameContent(ThemeAppOption.CALLBACK_TO_GET_ENUMERATION());
+            return () => {
+                const enumerable = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
+
+                return <div className="nameWithContent-container">
+                    <div className="col-10">
+                        {CommonOptions.get.getGameContent(enumerable)}
+                        {CommonOptions.get.getNameContent(enumerable)}
+                    </div>
+                    <div className="col-2">{CommonOptions.get.getThemeContent(enumerable)}</div>
+                </div>;
+            };
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return CommonOptions.get.nameHeader;
-        }
-
-    }();
-    public static readonly COURSE_AND_WORLD_THEME = new class ThemeAppOption_CourseAndWorldTheme extends ThemeAppOption {
-
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const reference = enumeration.reference;
-
-                return [
-                    <YesOrNoResultTextComponent boolean={reference.isInCourseTheme}/>,
-                    <YesOrNoResultTextComponent boolean={reference.isInWorldTheme}/>,
-                ];
-            };
-        }
-
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'theme', element: <>--course & world theme--</>,
-                subHeaders: [
-                    {
-                        key: 'isInTheCourseTheme', element: <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/>,
-                        tooltip: {namespace: 'gameContent', translationKey: 'Is in the course theme',},
-                    },
-                    {
-                        key: 'isInTheWorldTheme', element: <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/>,
-                        tooltip: {namespace: 'gameContent', translationKey: 'Is in the world theme',},
-                    },
-                ],
-            };
-        }
-    }();
-    public static readonly GAME =                   new class ThemeAppOption_Game extends ThemeAppOption {
-
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const reference = enumeration.reference;
-
-                return [
-                    <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
-                    <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
-                    <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker2}/>,
-                ];
-            };
-        }
-
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                subHeaders: [
-                    {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                    {key: 'isInSuperMarioMakerForNintendo3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
-                    {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                ],
-            };
         }
 
     }();
