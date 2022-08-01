@@ -13,7 +13,10 @@ export class EntrySetContainer<K, V, >
     public constructor(key: K, value: V,)
     public constructor(entry: EntrySet<K, V>,)
     public constructor(key_or_entry: | K | EntrySet<K, V>, value?: V,) {
-        if (typeof key_or_entry == 'object' && 'key' in key_or_entry) {
+        if (key_or_entry == null) {
+            this.#key = key_or_entry;
+            this.#value = value as V;
+        } else if (typeof key_or_entry == 'object' && 'key' in key_or_entry) {
             this.#key = key_or_entry.key;
             this.#value = key_or_entry.value;
         } else {
