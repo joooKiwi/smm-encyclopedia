@@ -1,17 +1,22 @@
-import {lazy, ReactElement} from 'react';
+import {lazy} from 'react';
 
-import type {ClassWithEnglishName}   from '../../core/ClassWithEnglishName';
-import type {ClassWithReference}     from '../../core/ClassWithReference';
-import type {Enum}                   from '../../util/enum/Enum';
-import type {Name}                   from '../../lang/name/Name';
-import type {NameTrait}              from '../../lang/name/NameTrait';
-import type {NameTraitFromACategory} from '../../lang/name/NameTraitFromACategory';
-import type {SingleHeaderContent}    from '../tools/table/SimpleHeader';
+import type {ClassInAnySuperMarioMakerGame} from '../../core/game/ClassInAnySuperMarioMakerGame';
+import type {ClassWithEnglishName}          from '../../core/ClassWithEnglishName';
+import type {ClassWithReference}            from '../../core/ClassWithReference';
+import type {Enum}                          from '../../util/enum/Enum';
+import type {Name}                          from '../../lang/name/Name';
+import type {NameTrait}                     from '../../lang/name/NameTrait';
+import type {NameTraitFromACategory}        from '../../lang/name/NameTraitFromACategory';
+import type {ReactElement}                  from '../../util/react/ReactProperty';
+import type {SingleHeaderContent}           from '../tools/table/SimpleHeader';
+import type {Themes}                        from '../../core/theme/Themes';
 
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
+import {BASE_PATH}                     from '../../variables';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {EmptyStringName}               from '../../lang/name/EmptyStringName';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
+import {Games}                         from '../../core/game/Games';
 
 //region -------------------- dynamic imports --------------------
 
@@ -71,7 +76,38 @@ export class CommonOptions {
         return <NameComponent key={`${startingKey} name`} id={`category-name-${enumeration.englishNameInHtml}`} name={name} popoverOrientation="left"/>;
     }
 
+
+    /**
+     * Get a {@link HTMLDivElement} containing each images (if true)
+     * of the {@link Games} contained in the {@link Enumerable} {@link ClassWithReference reference}.
+     *
+     * @param enumeration The enumerable to retrieve the {@link Games} properties & {@link ClassWithEnglishName english name}.
+     */
+    public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): ReactElement {
+        const reference = enumeration.reference;
+        const isInSMM1 = reference.isInSuperMarioMaker1;
+        const isInSMM3DS = reference.isInSuperMarioMakerFor3DS;
+        const isInSMM2 = reference.isInSuperMarioMaker2;
+
+        return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
+            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : EMPTY_REACT_ELEMENT}
+            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : EMPTY_REACT_ELEMENT}
+            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : EMPTY_REACT_ELEMENT}
+        </div>;
+    }
+
+
+    public getThemeContent(enumeration: Themes,): ReactElement {
+        const reference = enumeration.reference;
+
+        return <div key={`${enumeration.englishName} (theme content images)`} id={`${enumeration.englishNameInHtml}-themeContentImages-container`} className="themeContentImages-container">
+            {reference.isInCourseTheme ? <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/> : EMPTY_REACT_ELEMENT}
+            {reference.isInWorldTheme ? <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/> : EMPTY_REACT_ELEMENT}
+        </div>;
+    }
+
 }
 
 type EnumerationWithReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<Name<string>>;
 type EnumerationWithCategoryReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<NameTraitFromACategory<string, NameTrait<string>>>;
+type EnumerationWithInSuperMarioMakerGameReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<ClassInAnySuperMarioMakerGame>;
