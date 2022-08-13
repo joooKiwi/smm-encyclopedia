@@ -12,9 +12,37 @@
   --soundEffectCategory-reactions-bg-color: var(--bs-green);
   --soundEffectCategory-animations-bg-color: var(--bs-pink);
   --soundEffectCategory-music-bg-color: var(--bs-blue);
+}
 
-  --mystery-mushroom-image: url('resources/images/Mystery Mushroom.png');
-  --music-block-image: url('resources/images/Music Block.tiff');
+:root {
+  --music-block-image:          url('resources/images/Music Block.tiff');
+  --question-block-sm3dw-image: url('resources/images/Question Block (SM3DW).tiff');
+
+  --super-mushroom-image:       url('resources/images/Super Mushroom.tiff');
+  --fire-flower-image:          url('resources/images/Fire Flower.tiff');
+  --superball-flower-image:     url('resources/images/Superball Flower.tiff');
+  --mystery-mushroom-image:     url('resources/images/Mystery Mushroom.png');
+  --master-sword-image:         url('resources/images/Master Sword.tiff');
+
+  --smb2-mushroom-image:        url('resources/images/SMB2 Mushroom.tiff');
+  --super-leaf-image:           url('resources/images/Super Leaf.tiff');
+  --frog-suit-image:            url('resources/images/Frog Suit.tiff');
+  --sape-feather-image:         url('resources/images/Cape Feather.tiff');
+  --power-balloon-image:        url('resources/images/Power Balloon.tiff');
+  --propeller-mushroom-image:   url('resources/images/Propeller Mushroom.tiff');
+  --super-acorn-image:          url('resources/images/Super Acorn.tiff');
+  --super-bell-image:           url('resources/images/Super Bell.tiff');
+  --super-hammer-image:         url('resources/images/Super Hammer.tiff');
+  --boomerang-flower-image:     url('resources/images/Boomerang Flower.tiff');
+  --shoe-image:                 url('resources/images/Shoe.tiff');
+
+
+
+  --dry-bones-shell-image:      url('resources/images/Dry Bones Shell.tiff');
+  --buzzy-shell-image:          url('resources/images/Buzzy Shell.tiff');
+  --spiny-shell-image:          url('resources/images/Spiny Shell.tiff');
+  --cloud-image:                url('resources/images/Cloud.tiff');
+  --clown-car-image:            url('resources/images/Clown Car.tiff');
 
 }
 
