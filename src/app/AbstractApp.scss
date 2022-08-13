@@ -47,12 +47,14 @@ table[id$="-table"] {
     max-height: 1cm;
   }
 
-  .animated-image, .non-animated-image {
-    --amount-of-blocks: 0;
-    --single-height: 0;
-    height: calc(var(--amount-of-blocks) * var(--single-height));
-  }
+}
 
+.animated-image, .non-animated-image {
+  --amount-of-blocks: 0;
+  --single-height: 0;
+  --single-width: var(--single-height);
+  height: calc(var(--amount-of-blocks) * var(--single-height));
+  width: calc(var(--amount-of-blocks) * var(--single-width));
 }
 
 .time-image, .theme-image, .gameStyle-image {

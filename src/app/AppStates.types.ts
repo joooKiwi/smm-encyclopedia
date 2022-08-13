@@ -95,7 +95,7 @@ export interface MiiCostumeAppStates
 }
 
 export interface MysteryMushroomAppStates
-    extends AppStates {
+    extends AppStates, AppWithVariableDisplayStates {
 }
 
 export interface InstrumentAppStates
