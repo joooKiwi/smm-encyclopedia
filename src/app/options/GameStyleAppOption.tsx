@@ -13,8 +13,6 @@ import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.comp
 import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {Enum}                          from '../../util/enum/Enum';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../../core/game/Games';
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';
 import {Themes}                        from '../../core/theme/Themes';
 import {Times}                         from '../../core/time/Times';
@@ -76,14 +74,7 @@ export abstract class GameStyleAppOption
         }
 
         protected override get _createTableHeaderOption(): SingleHeaderContent {
-            return {
-                key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                subHeaders: [
-                    {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                    {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
-                    {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                ],
-            };
+            return CommonOptions.get.gameHeaderWithAllGames;
         }
 
     }();

@@ -1,15 +1,15 @@
 import {lazy} from 'react';
 
-import type {ClassInAnySuperMarioMakerGame} from '../../core/game/ClassInAnySuperMarioMakerGame';
-import type {ClassWithEnglishName}          from '../../core/ClassWithEnglishName';
-import type {ClassWithReference}            from '../../core/ClassWithReference';
-import type {Enum}                          from '../../util/enum/Enum';
-import type {Name}                          from '../../lang/name/Name';
-import type {NameTrait}                     from '../../lang/name/NameTrait';
-import type {NameTraitFromACategory}        from '../../lang/name/NameTraitFromACategory';
-import type {ReactElement}                  from '../../util/react/ReactProperty';
-import type {SingleHeaderContent}           from '../tools/table/SimpleHeader';
-import type {Themes}                        from '../../core/theme/Themes';
+import type {ClassInAnySuperMarioMakerGame}             from '../../core/game/ClassInAnySuperMarioMakerGame';
+import type {ClassWithEnglishName}                      from '../../core/ClassWithEnglishName';
+import type {ClassWithReference}                        from '../../core/ClassWithReference';
+import type {Enum}                                      from '../../util/enum/Enum';
+import type {Name}                                      from '../../lang/name/Name';
+import type {NameTrait}                                 from '../../lang/name/NameTrait';
+import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory';
+import type {ReactElement}                              from '../../util/react/ReactProperty';
+import type {SingleHeaderContent, SingleHeadersContent} from '../tools/table/SimpleHeader';
+import type {Themes}                                    from '../../core/theme/Themes';
 
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {BASE_PATH}                     from '../../variables';
@@ -45,7 +45,8 @@ export class CommonOptions {
     //region -------------------- Fields --------------------
 
     #nameHeader?: SingleHeaderContent;
-
+    #gameHeader?: SingleHeaderContent;
+    #gameHeaderWithAllGames?: SingleHeaderContent;
     #categoryHeader?: SingleHeaderContent;
 
     //endregion -------------------- Fields --------------------
@@ -76,6 +77,26 @@ export class CommonOptions {
         return <NameComponent key={`${startingKey} name`} id={`category-name-${enumeration.englishNameInHtml}`} name={name} popoverOrientation="left"/>;
     }
 
+
+    public get gameHeader(): SingleHeaderContent {
+        return this.#gameHeader ??= {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,};
+    }
+
+    public getGameHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
+        return {
+            key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
+            subHeaders: subHeaders,
+        };
+    }
+
+    /**@deprecated Relocate the games in the name content */
+    public get gameHeaderWithAllGames(): SingleHeaderContent {
+        return this.#gameHeaderWithAllGames ??= this.getGameHeader(
+            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
+            {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
+            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+        );
+    }
 
     /**
      * Get a {@link HTMLDivElement} containing each images (if true)
