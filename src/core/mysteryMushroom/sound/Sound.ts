@@ -1,47 +1,84 @@
-import type {ClassWithPath, GoalPoleSound, JumpSound, LostALifeSound, OnGroundAfterJumpSound, PossibleBasicPath, PossiblePath, PossibleSounds, PowerUpCollectedSound, TauntSound, TurningSound} from '../path/ClassWithPath';
+import type {BasePath}          from '../../../variables';
+import type {EnglishNameOnFile} from '../MysteryMushrooms.types';
 
-export interface Sound<T extends PossiblePath = PossiblePath, >
-    extends ClassWithPath {
+export interface Sound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > {
 
-    get powerUpCollectedSounds(): PowerUpCollectedSounds<T>;
+    get powerUpCollectedSound(): PowerUpCollectedSound<FILE>
 
-    get tauntSounds(): TauntSounds<T>;
+    get tauntSound(): TauntSound<FILE>
 
-    get jumpSounds(): JumpSounds<T>;
+    get jumpSounds(): JumpSounds<FILE>
 
-    get onGroundAfterJumpSounds(): OnGroundAfterJumpSounds<T>;
+    get onGroundAfterJumpSound(): OnGroundAfterJumpSound<FILE>
 
-    get turningSounds(): TurningSounds<T>;
+    get turningSound(): TurningSound<FILE>
 
-    get goalPoleSounds(): GoalPoleSounds<T>;
+    get goalPoleSound(): GoalPoleSound<FILE>
 
-    get lostALifeSounds(): LostALifeSounds<T>;
+    get lostALifeSound(): LostALifeSound<FILE>
 
 }
 
+
+/** The base path for a sound */
+export type Path<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = `/${BasePath}/sound/mystery mushroom/${FILE}`;
+
+/**
+ * The sound file path relative to the {@link Path sound path}
+ *
+ * @see Path
+ */
+export type SingleSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, SOUND_FILE extends PossibleSounds = PossibleSounds, > = `${Path<FILE>}/${SOUND_FILE}`;
+
+//region -------------------- Specific sound files --------------------
+
+export type PossibleSounds = | PowerUpCollectedSoundFile
+                             | TauntSoundFile
+                             | JumpSoundFile
+                             | OnGroundAfterJumpSoundFile
+                             | TurningSoundFile
+                             | GoalPoleSoundFile
+                             | LostALifeSoundFile;
+
+export type PowerUpCollectedSoundFile = `powerup.wav`;
+
+export type TauntSoundFile = 'appeal.wav';
+
+export type JumpSoundNumber = | '' | 2;
+export type JumpSoundFile<N extends JumpSoundNumber = JumpSoundNumber, > = `jump${N}.wav`;
+
+export type TurningSoundFile = 'slip.wav';
+
+export type OnGroundAfterJumpSoundFile = 'ground.wav';
+
+export type GoalPoleSoundFile = 'goal.wav';
+
+export type LostALifeSoundFile = 'down.wav';
+
+//endregion -------------------- Specific sound files --------------------
 //region -------------------- Possible sounds (array) --------------------
 
+export type PowerUpCollectedSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleSound<FILE, PowerUpCollectedSoundFile>;
 
-export type PowerUpCollectedSounds<T extends PossiblePath = PossiblePath, > = PossibleSounds_Array<PowerUpCollectedSound, T>;
+export type TauntSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleSound<FILE, TauntSoundFile>;
 
-export type TauntSounds<T extends PossiblePath = PossiblePath, > = PossibleSounds_Array<TauntSound, T>;
-
-export type JumpSounds<T extends PossiblePath = PossiblePath, > = | readonly [] | readonly [
-    ...Exclude<PossibleSounds_Array<JumpSound<''>, T>, readonly []>,
-    ...PossibleSounds_Array<JumpSound<2>, T>,
-];
-
-export type OnGroundAfterJumpSounds<T extends PossiblePath = PossiblePath, > = PossibleSounds_Array<OnGroundAfterJumpSound, T>;
-
-export type TurningSounds<T extends PossiblePath = PossiblePath, > = PossibleSounds_Array<TurningSound, T>;
-
-export type GoalPoleSounds<T extends PossiblePath = PossiblePath, > = PossibleSounds_Array<GoalPoleSound, T>;
-
-export type LostALifeSounds<T extends PossiblePath = PossiblePath, > = PossibleSounds_Array<LostALifeSound, T>;
-
-
-export type PossibleSounds_Array<V extends PossibleSounds = PossibleSounds, T extends PossiblePath = PossiblePath, > =
+export type JumpSounds<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
     | readonly []
-    | readonly [`${PossibleBasicPath<T>}/${V}`,];
+    | readonly [SingleSound<FILE, JumpSoundFile<''>>,]
+    | readonly [SingleSound<FILE, JumpSoundFile<''>>, SingleSound<FILE, JumpSoundFile<2>>,];
+
+export type OnGroundAfterJumpSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleSound<FILE, OnGroundAfterJumpSoundFile>;
+
+export type TurningSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleSound<FILE, TurningSoundFile>;
+
+export type GoalPoleSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleSound<FILE, GoalPoleSoundFile>;
+
+export type LostALifeSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleSound<FILE, LostALifeSoundFile>;
 
 //endregion -------------------- Possible sounds (array) --------------------
