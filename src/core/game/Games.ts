@@ -57,22 +57,12 @@ export abstract class Games
 
     //endregion -------------------- Fields --------------------
 
-    // @ts-ignore
-    protected constructor(enumeration: Games,)
-    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, englishName: PossibleEnglishName,)
-    private constructor(enumeration_or_acronym: | PossibleAcronym | Games, simpleValue: PossibleSimpleValue, englishName: PossibleEnglishName,) {
+    private constructor(enumeration_or_acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, englishName: PossibleEnglishName,) {
         super();
-        if (enumeration_or_acronym instanceof Games) {
-            this.#acronym = enumeration_or_acronym.#acronym;
-            this.#englishName = enumeration_or_acronym.#englishName;
-            this.#simpleValue = enumeration_or_acronym.#simpleValue;
-            this.#imagePath = enumeration_or_acronym.#imagePath;
-        } else {
-            this.#acronym = enumeration_or_acronym;
-            this.#englishName = new StringContainer(englishName);
-            this.#simpleValue = simpleValue;
-            this.#imagePath = `/${BASE_PATH}/game/${englishName}.svg`;
-        }
+        this.#acronym = enumeration_or_acronym;
+        this.#englishName = new StringContainer(englishName);
+        this.#simpleValue = simpleValue;
+        this.#imagePath = `/${BASE_PATH}/game/${englishName}.svg`;
     }
 
     //region -------------------- Getter methods --------------------
