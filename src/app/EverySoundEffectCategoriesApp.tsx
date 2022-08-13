@@ -39,7 +39,7 @@ export default class EverySoundEffectCategoriesApp
 
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListContent(enumerable: SoundEffectCategories): ReactElement {
+            public createCardListContent(enumerable: SoundEffectCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;
             }
 
