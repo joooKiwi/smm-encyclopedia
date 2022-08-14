@@ -1,0 +1,2 @@
+(this["webpackJsonpsmm-encyclopedia"]=this["webpackJsonpsmm-encyclopedia"]||[]).push([[4],{327:function(e,n,t){"use strict";t.r(n),t.d(n,"default",(function(){return r}));var a=t(37),c=t(52),i=t(7);function r(e){return"gameStyle"in e?function(e){var n=e.gameStyle.nightDesertWindTranslationKey;return null==n?a.a:Object(i.jsx)(c.a,{translationKey:"nightEffect.nightDesertWindEffect.".concat(n)})}(e):function(e){var n=e.theme.effect;return null==n?a.a:n.createNewComponent}(e)}}}]);
+//# sourceMappingURL=4.ddc6bca1.chunk.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/app/EveryMiiCostumeApp.scss"],"names":[],"mappings":"AAAA,+BACE,cAAe,CAChB,sBAGC,kBAAc","file":"14.de877587.chunk.css","sourcesContent":[".cardListElement-container img {\n  max-height: 2cm;\n}\n\n.question-block-image {\n  --image-width: 24px;\n}\n"]}
