@@ -27,6 +27,7 @@ const Image = lazy(() => import('../tools/images/Image'));
 //endregion -------------------- dynamic imports --------------------
 
 /**
+ * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
  * @todo Change CATEGORY to use {IMAGE, TEXT or NO} instead of 2 different options.
  */
 export abstract class MiiCostumeAppOption
@@ -36,7 +37,7 @@ export abstract class MiiCostumeAppOption
 
     public static readonly IMAGE =                 new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -44,25 +45,25 @@ export abstract class MiiCostumeAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
         }
 
     }(true,);
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION());
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return CommonOptions.get.nameHeader;
         }
 
     }(true,);
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
                 const miiCostume = enumeration.reference;
@@ -76,7 +77,7 @@ export abstract class MiiCostumeAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             //TODO add new translation to the header value.
             return {key: 'officialNotification', element: <>--Official notification--</>,};
         }
@@ -85,7 +86,7 @@ export abstract class MiiCostumeAppOption
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryContainer.nameContainer;
@@ -97,7 +98,7 @@ export abstract class MiiCostumeAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return CommonOptions.get.categoryHeader;
         }
 
@@ -146,13 +147,13 @@ export abstract class MiiCostumeAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected get _createContentOption(): PossibleOptionWithContent {
+    protected _createContentOption(): PossibleOptionWithContent {
         return null;
     }
 
-    protected get __appOptionWithContent(): AppOptionWithContent {
+    private get __appOptionWithContent(): AppOptionWithContent {
         if (this.#appOptionWithContent == null) {
-            const content = this._createContentOption;
+            const content = this._createContentOption();
             this.#appOptionWithContent = content == null
                 ? EmptyAppOption.get
                 : new AppOptionWithContentComponent(content,);
@@ -167,13 +168,13 @@ export abstract class MiiCostumeAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected get _createTableHeaderOption(): PossibleOptionWithTable {
+    protected _createTableHeaderOption(): PossibleOptionWithTable {
         return null;
     }
 
     protected get __appOptionWithTable(): AppOptionWithTable {
         if (this.#appOptionWithTable == null) {
-            const content = this._createTableHeaderOption;
+            const content = this._createTableHeaderOption();
             this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,);
         }
         return this.#appOptionWithTable;

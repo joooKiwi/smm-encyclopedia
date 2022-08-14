@@ -30,15 +30,11 @@ export abstract class SoundEffectAppOption
 
     public static readonly GAME =             new class GameStyleAppOption_Game extends SoundEffectAppOption {
 
-        protected override _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumerable = SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return [
-                    SoundEffectAppOption.renderSMM1And3DSImage(enumerable),
-                    SoundEffectAppOption.renderSMM2Image(enumerable),
+        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+            return [
+                    SoundEffectAppOption.renderSMM1And3DSImage(enumeration),
+                    SoundEffectAppOption.renderSMM2Image(enumeration),
                 ];
-            };
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -48,12 +44,8 @@ export abstract class SoundEffectAppOption
     }();
     public static readonly NAME =             new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
-        protected override _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumeration = SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return CommonOptions.get.getNameContent(enumeration);
-            };
+        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+            return CommonOptions.get.getNameContent(enumeration);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -63,13 +55,10 @@ export abstract class SoundEffectAppOption
     }();
     public static readonly CATEGORY =         new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
-        protected override _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumerable = SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    reference = enumerable.reference;
+        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+            const {reference,} = enumeration;
 
-                return CommonOptions.get.getCategoryContent(enumerable, () => SoundEffectCategories.getValue(reference.categoryEnglish)!.imagePath,);
-            };
+            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValue(reference.categoryEnglish)!.imagePath,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -79,13 +68,10 @@ export abstract class SoundEffectAppOption
     }();
     public static readonly PLAYER_BEHAVIOUR = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
-        protected override _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumerable = SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    reference = enumerable.reference;
+        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+            const {reference,} = enumeration;
 
-                return <>--{reference.translationKey}--</>;
-            };
+            return <>--{reference.translationKey}--</>;
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -136,10 +122,10 @@ export abstract class SoundEffectAppOption
         return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT;
     }
 
-    protected abstract _createContentOption(): () => PossibleRenderReactElement;
+    protected abstract _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement;
 
-    protected get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(this._createContentOption(),);
+    private get __appOptionWithContent(): AppOptionWithContent {
+        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION()),);
     }
 
     public get renderContent(): readonly ReactElement[] {
@@ -151,7 +137,7 @@ export abstract class SoundEffectAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent;
 
-    protected get __appOptionWithTable(): AppOptionWithTable {
+    private get __appOptionWithTable(): AppOptionWithTable {
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),);
     }
 

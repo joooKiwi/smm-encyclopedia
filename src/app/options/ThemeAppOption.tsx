@@ -34,19 +34,14 @@ export abstract class ThemeAppOption
 
     public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return [
-                    enumeration.renderSingleComponent(false),
-                    enumeration.endlessMarioImagePath == null ? EMPTY_REACT_ELEMENT :
-                        <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/>,
-                ];
-            };
+        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+            return [
+                enumeration.renderSingleComponent(false),
+                enumeration.endlessMarioImagePath != null ? <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/> : EMPTY_REACT_ELEMENT,
+            ];
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
                 subHeaders: [
@@ -59,37 +54,28 @@ export abstract class ThemeAppOption
     }();
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumerable = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return <div className="nameWithContent-container">
+        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+            return <div className="nameWithContent-container">
                     <div className="col-10">
-                        {CommonOptions.get.getGameContent(enumerable)}
-                        {CommonOptions.get.getNameContent(enumerable)}
+                        {CommonOptions.get.getGameContent(enumeration)}
+                        {CommonOptions.get.getNameContent(enumeration)}
                     </div>
-                    <div className="col-2">{CommonOptions.get.getThemeContent(enumerable)}</div>
+                    <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
                 </div>;
-            };
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return CommonOptions.get.nameHeader;
         }
 
     }();
     public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const {courseTheme,} = enumeration.reference;
-
-                return <NightEffectComponent theme={courseTheme}/>;
-            };
+        protected override _createContentOption({reference: {courseTheme,},}: Themes,): PossibleRenderReactElement {
+            return <NightEffectComponent theme={courseTheme}/>;
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'effect', element: <Image source={Times.NIGHT.imagePath} fallbackName={`effect - ${Times.NIGHT.englishName}`}/>,
                 tooltip: {
@@ -132,10 +118,10 @@ export abstract class ThemeAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract _createContentOption(): PossibleOptionWithContent;
+    protected abstract _createContentOption(enumeration: Themes,): PossibleRenderReactElement;
 
     private get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(this._createContentOption(),);
+        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(ThemeAppOption.CALLBACK_TO_GET_ENUMERATION()),);
     }
 
     public get renderContent(): readonly ReactElement[] {
@@ -145,7 +131,7 @@ export abstract class ThemeAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected abstract _createTableHeaderOption(): PossibleOptionWithTable;
+    protected abstract _createTableHeaderOption(): SingleHeaderContent;
 
     private get __appOptionWithTable(): AppOptionWithTable {
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),);
@@ -192,6 +178,3 @@ export abstract class ThemeAppOption
     //endregion -------------------- Enum methods --------------------
 
 }
-
-type PossibleOptionWithContent = (() => PossibleRenderReactElement);
-type PossibleOptionWithTable = SingleHeaderContent;

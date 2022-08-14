@@ -23,41 +23,31 @@ export abstract class EntityLimitAppOption
 
     public static readonly ACRONYM = new class EntityLimitAppOption_Acronym extends EntityLimitAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const {reference: {acronym, alternativeAcronym,},} = enumeration;
+        protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: EntityLimits,): PossibleRenderReactElement {
+            const finalAcronym = alternativeAcronym == null
+                ? acronym == null
+                    ? ''
+                    : acronym
+                : `${acronym} / ${alternativeAcronym}`;
 
-                const finalAcronym = alternativeAcronym == null
-                    ? acronym == null
-                        ? ''
-                        : acronym
-                    : `${acronym} / ${alternativeAcronym}`;
-
-                return <TextComponent content={finalAcronym}/>;
-            };
+            return <TextComponent content={finalAcronym}/>;
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {key: 'acronym', element: <ContentTranslationComponent translationKey="Acronym(s)"/>,};
         }
 
     }();
     public static readonly NAME = new class EntityLimitAppOption_Name extends EntityLimitAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const {reference,} = enumeration;
-
-                return [
-                    <NameComponent id="name" name={reference} popoverOrientation="bottom"/>,
-                    <NameComponent id="alternativeName" name={reference.alternativeContainer} popoverOrientation="bottom"/>,
-                ];
-            };
+        protected override _createContentOption({reference,}: EntityLimits,): PossibleRenderReactElement {
+            return [
+                <NameComponent id="name" name={reference} popoverOrientation="bottom"/>,
+                <NameComponent id="alternativeName" name={reference.alternativeContainer} popoverOrientation="bottom"/>,
+            ];
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'names', element: <ContentTranslationComponent translationKey="Name"/>,
                 subHeaders: [
@@ -70,19 +60,14 @@ export abstract class EntityLimitAppOption
     }();
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const {reference,} = enumeration;
-
-                return [
-                    <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
-                    <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
-                ];
-            };
+        protected override _createContentOption({reference,}: EntityLimits,): PossibleRenderReactElement {
+            return [
+                <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
+                <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
+            ];
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>, subHeaders: [
                     {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
@@ -94,16 +79,11 @@ export abstract class EntityLimitAppOption
     }();
     public static readonly TYPE = new class EntityLimitAppOption_Type extends EntityLimitAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const {reference: {type,},} = enumeration;
-
-                return <GameContentTranslationComponent>{translation => <TextComponent content={translation(type.englishCommonText)}/>}</GameContentTranslationComponent>;
-            };
+        protected override _createContentOption({reference: {type,},}: EntityLimits,): PossibleRenderReactElement {
+            return <GameContentTranslationComponent>{translation => <TextComponent content={translation(type.englishCommonText)}/>}</GameContentTranslationComponent>;
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,};
         }
 
@@ -139,10 +119,10 @@ export abstract class EntityLimitAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract _createContentOption(): PossibleOptionWithContent;
+    protected abstract _createContentOption(enumeration: EntityLimits,): PossibleRenderReactElement;
 
     private get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(this._createContentOption(),);
+        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION()),);
     }
 
     public get renderContent(): readonly ReactElement[] {
@@ -152,7 +132,7 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected abstract _createTableHeaderOption(): PossibleOptionWithTable;
+    protected abstract _createTableHeaderOption(): SingleHeaderContent;
 
     private get __appOptionWithTable(): AppOptionWithTable {
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),);
@@ -199,6 +179,3 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- Enum methods --------------------
 
 }
-
-type PossibleOptionWithContent = (() => PossibleRenderReactElement);
-type PossibleOptionWithTable = SingleHeaderContent;
