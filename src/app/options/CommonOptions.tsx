@@ -47,6 +47,7 @@ export class CommonOptions {
     #nameHeader?: SingleHeaderContent;
     #gameHeader?: SingleHeaderContent;
     #gameHeaderWithAllGames?: SingleHeaderContent;
+    #gameHeaderWithMainGames?: SingleHeaderContent;
     #categoryHeader?: SingleHeaderContent;
 
     //endregion -------------------- Fields --------------------
@@ -94,6 +95,13 @@ export class CommonOptions {
         return this.#gameHeaderWithAllGames ??= this.getGameHeader(
             {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
             {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
+            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+        );
+    }
+
+    public get gameHeaderWithMainGames(): SingleHeaderContent {
+        return this.#gameHeaderWithMainGames ??= this.getGameHeader(
+            {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},//TODO create a animated image for both games (SMM1 & SMM3DS)
             {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
         );
     }
