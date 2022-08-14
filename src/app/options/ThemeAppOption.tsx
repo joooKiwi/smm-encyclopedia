@@ -10,15 +10,11 @@ import type {SingleHeaderContent}                                               
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
-import {BASE_PATH}                     from '../../variables';
 import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {Enum}                          from '../../util/enum/Enum';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../../core/game/Games';
 import {Times}                         from '../../core/time/Times';
-import YesOrNoResultTextComponent      from '../tools/text/YesOrNoResultTextComponent';
 
 //region -------------------- dynamic imports --------------------
 
@@ -38,19 +34,14 @@ export abstract class ThemeAppOption
 
     public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return [
-                    enumeration.renderSingleComponent(false),
-                    enumeration.endlessMarioImagePath == null ? EMPTY_REACT_ELEMENT :
-                        <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/>,
-                ];
-            };
+        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+            return [
+                enumeration.renderSingleComponent(false),
+                enumeration.endlessMarioImagePath != null ? <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/> : EMPTY_REACT_ELEMENT,
+            ];
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
                 subHeaders: [
@@ -63,84 +54,28 @@ export abstract class ThemeAppOption
     }();
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => CommonOptions.get.getNameContent(ThemeAppOption.CALLBACK_TO_GET_ENUMERATION());
+        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+            return <div className="nameWithContent-container">
+                    <div className="col-10">
+                        {CommonOptions.get.getGameContent(enumeration)}
+                        {CommonOptions.get.getNameContent(enumeration)}
+                    </div>
+                    <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+                </div>;
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return CommonOptions.get.nameHeader;
-        }
-
-    }();
-    public static readonly COURSE_AND_WORLD_THEME = new class ThemeAppOption_CourseAndWorldTheme extends ThemeAppOption {
-
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const reference = enumeration.reference;
-
-                return [
-                    <YesOrNoResultTextComponent boolean={reference.isInCourseTheme}/>,
-                    <YesOrNoResultTextComponent boolean={reference.isInWorldTheme}/>,
-                ];
-            };
-        }
-
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'theme', element: <>--course & world theme--</>,
-                subHeaders: [
-                    {
-                        key: 'isInTheCourseTheme', element: <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/>,
-                        tooltip: {namespace: 'gameContent', translationKey: 'Is in the course theme',},
-                    },
-                    {
-                        key: 'isInTheWorldTheme', element: <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/>,
-                        tooltip: {namespace: 'gameContent', translationKey: 'Is in the world theme',},
-                    },
-                ],
-            };
-        }
-    }();
-    public static readonly GAME =                   new class ThemeAppOption_Game extends ThemeAppOption {
-
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const reference = enumeration.reference;
-
-                return [
-                    <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
-                    <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
-                    <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker2}/>,
-                ];
-            };
-        }
-
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                subHeaders: [
-                    {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                    {key: 'isInSuperMarioMakerForNintendo3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
-                    {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                ],
-            };
         }
 
     }();
     public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
-            return () => {
-                const enumeration = ThemeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const {courseTheme,} = enumeration.reference;
-
-                return <NightEffectComponent theme={courseTheme}/>;
-            };
+        protected override _createContentOption({reference: {courseTheme,},}: Themes,): PossibleRenderReactElement {
+            return <NightEffectComponent theme={courseTheme}/>;
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'effect', element: <Image source={Times.NIGHT.imagePath} fallbackName={`effect - ${Times.NIGHT.englishName}`}/>,
                 tooltip: {
@@ -183,10 +118,10 @@ export abstract class ThemeAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract _createContentOption(): PossibleOptionWithContent;
+    protected abstract _createContentOption(enumeration: Themes,): PossibleRenderReactElement;
 
     private get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(this._createContentOption(),);
+        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(ThemeAppOption.CALLBACK_TO_GET_ENUMERATION()),);
     }
 
     public get renderContent(): readonly ReactElement[] {
@@ -196,7 +131,7 @@ export abstract class ThemeAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected abstract _createTableHeaderOption(): PossibleOptionWithTable;
+    protected abstract _createTableHeaderOption(): SingleHeaderContent;
 
     private get __appOptionWithTable(): AppOptionWithTable {
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),);
@@ -243,6 +178,3 @@ export abstract class ThemeAppOption
     //endregion -------------------- Enum methods --------------------
 
 }
-
-type PossibleOptionWithContent = (() => PossibleRenderReactElement);
-type PossibleOptionWithTable = SingleHeaderContent;

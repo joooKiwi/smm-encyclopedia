@@ -1,8 +1,24 @@
-#mysteryMushroom-table {
+#mysteryMushroom-table, .cardListElement-container, {
 
   .animated-image, .non-animated-image, {
     --amount-of-blocks: 1;
     --single-height: 24px;
   }
 
+}
+
+.cardListElement-container {
+  .image-content-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dual-image-content-container {
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

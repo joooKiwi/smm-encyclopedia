@@ -307,10 +307,12 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
         return this.toArray().join(separator);
     }
 
+    //region -------------------- Convertor methods --------------------
 
     public toArray(): EntrySet<K, V>[] {
         return [...this._map.values()];
     }
+
 
     public toSet(): Set<EntrySet<K, V>> {
         return new Set(this._map.values());
@@ -320,6 +322,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
         return new ExtendedSetContainer(this._map.values()) as unknown as ExtendedSet<EntrySet<K, V>, LENGTH>;
     }
 
+
     public toMap(): Map<K, V> {
         return new Map(this.map((key, value,) => value));
     }
@@ -328,6 +331,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
         return new ExtendedMapContainer(this) as unknown as ExtendedMap<K, V, LENGTH>;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     /**
      * @see Map.toString

@@ -1,5 +1,5 @@
 import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
-import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {GameProperty}                     from '../entity/properties/game/GameProperty';
 import type {Name}                             from '../../lang/name/Name';
 import type {ObjectHolder}                     from '../../util/holder/ObjectHolder';
 import type {Theme}                            from './Theme';
@@ -22,6 +22,8 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
         this.#isInProperty = isInProperty;
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart;
     }
+
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -61,9 +63,13 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     }
 
     //endregion -------------------- "Is available from the start" properties --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return this.isInProperty.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

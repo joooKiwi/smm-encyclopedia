@@ -1,4 +1,4 @@
-import type {GameProperty}                     from '../../entity/properties/GameProperty';
+import type {GameProperty}                     from '../../entity/properties/game/GameProperty';
 import type {PlayerSoundEffectTriggerProperty} from './PlayerSoundEffectTriggerProperty';
 import type {SoundEffectProperty}              from './SoundEffectProperty';
 
@@ -16,6 +16,8 @@ export class SoundEffectPropertyContainer
         this.#gameContainer = game;
         this.#playerSoundEffectTriggerContainer = playerSoundEffectTrigger;
     }
+
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -94,8 +96,13 @@ export class SoundEffectPropertyContainer
 
     //endregion -------------------- Player sound effect trigger properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.gameContainer.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

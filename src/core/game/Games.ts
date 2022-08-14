@@ -2,7 +2,7 @@ import type {ClassWithAcronym}                                                  
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                from '../ClassWithEnglishName';
 import type {ClassWithImagePath}                                                                                                                                                                                                                                  from '../ClassWithImagePath';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleValue, PossibleStringValue, PossibleValue} from './Games.types';
-import type {GameProperty}                                                                                                                                                                                                                                        from '../entity/properties/GameProperty';
+import type {GameProperty}                                                                                                                                                                                                                                        from '../entity/properties/game/GameProperty';
 import type {PropertyGetter}                                                                                                                                                                                                                                      from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                                     from '../../util/enum/Enum.types';
 
@@ -57,22 +57,12 @@ export abstract class Games
 
     //endregion -------------------- Fields --------------------
 
-    // @ts-ignore
-    protected constructor(enumeration: Games,)
-    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, englishName: PossibleEnglishName,)
-    private constructor(enumeration_or_acronym: | PossibleAcronym | Games, simpleValue: PossibleSimpleValue, englishName: PossibleEnglishName,) {
+    private constructor(enumeration_or_acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, englishName: PossibleEnglishName,) {
         super();
-        if (enumeration_or_acronym instanceof Games) {
-            this.#acronym = enumeration_or_acronym.#acronym;
-            this.#englishName = enumeration_or_acronym.#englishName;
-            this.#simpleValue = enumeration_or_acronym.#simpleValue;
-            this.#imagePath = enumeration_or_acronym.#imagePath;
-        } else {
-            this.#acronym = enumeration_or_acronym;
-            this.#englishName = new StringContainer(englishName);
-            this.#simpleValue = simpleValue;
-            this.#imagePath = `/${BASE_PATH}/game/${englishName}.svg`;
-        }
+        this.#acronym = enumeration_or_acronym;
+        this.#englishName = new StringContainer(englishName);
+        this.#simpleValue = simpleValue;
+        this.#imagePath = `/${BASE_PATH}/game/${englishName}.svg`;
     }
 
     //region -------------------- Getter methods --------------------

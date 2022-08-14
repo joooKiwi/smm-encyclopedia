@@ -13,8 +13,6 @@ import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.comp
 import {CommonOptions}                 from './CommonOptions';
 import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
 import {Enum}                          from '../../util/enum/Enum';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../../core/game/Games';
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';
 import {Themes}                        from '../../core/theme/Themes';
 import {Times}                         from '../../core/time/Times';
@@ -34,71 +32,48 @@ export abstract class GameStyleAppOption
 
     public static readonly IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-        protected override get _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-                return enumerable.renderSingleComponent;
-            };
+        protected override _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement {
+            return enumeration.renderSingleComponent;
         }
 
-        protected override get _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
         }
 
     }();
     public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-        protected override get _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumeration = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-
-                return CommonOptions.get.getNameContent(enumeration);
-            };
+        protected override _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement {
+            return CommonOptions.get.getNameContent(enumeration);
         }
 
-        protected override get _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return CommonOptions.get.nameHeader;
         }
 
     }();
     public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
 
-        protected override get _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const gameStyle = enumerable.reference;
-                return [
-                    <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker1}/>,
-                    <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMakerFor3DS}/>,
-                    <YesOrNoResultTextComponent boolean={gameStyle.isInSuperMarioMaker2}/>,
-                ];
-            };
+        protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
+            return [
+                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
+                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
+                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker2}/>,
+            ];
         }
 
-        protected override get _createTableHeaderOption(): SingleHeaderContent {
-            return {
-                key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                subHeaders: [
-                    {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                    {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
-                    {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                ],
-            };
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return CommonOptions.get.gameHeaderWithAllGames;
         }
 
     }();
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-        protected override get _createContentOption(): () => PossibleRenderReactElement {
-            return () => {
-                const enumerable = GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const gameStyle = enumerable.reference;
-
-                return <NightEffectComponent gameStyle={gameStyle}/>;
-            };
+        protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
+                return <NightEffectComponent gameStyle={reference}/>;
         }
 
-        protected override get _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'nightDesertWind',
                 element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
@@ -144,10 +119,10 @@ export abstract class GameStyleAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract get _createContentOption(): () => PossibleRenderReactElement;
+    protected abstract _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement;
 
-    protected get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(this._createContentOption,);
+    private get __appOptionWithContent(): AppOptionWithContent {
+        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION()),);
     }
 
     public get renderContent(): readonly ReactElement[] {
@@ -157,10 +132,10 @@ export abstract class GameStyleAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected abstract get _createTableHeaderOption(): SingleHeaderContent;
+    protected abstract _createTableHeaderOption(): SingleHeaderContent;
 
-    protected get __appOptionWithTable(): AppOptionWithTable {
-        return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption,);
+    private get __appOptionWithTable(): AppOptionWithTable {
+        return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),);
     }
 
     public get renderTableHeader(): | SingleHeaderContent | null {

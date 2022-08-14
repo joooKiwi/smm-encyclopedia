@@ -1,6 +1,6 @@
 import type {EveryLanguages}                            from '../EveryLanguages';
-import type {Name}                                from './Name';
-import type {NameTrait}                           from './NameTrait';
+import type {Name}                                      from './Name';
+import type {NameTrait}                                 from './NameTrait';
 import type {NameTraitFromAnAlternativeContainer}       from './NameTraitFromAnAlternativeContainer';
 import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
@@ -224,9 +224,12 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toAlternativeNameMap(): ReadonlyMap<EveryLanguages, U> {
         return this.alternativeNameContainer.toNameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

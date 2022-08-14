@@ -60,7 +60,7 @@ export class Versions
     private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null, gameStyle?: typeof GameStyles['SUPER_MARIO_3D_WORLD'],) {
         super();
         this.#name = name;
-        this.#game = Games.getValue(game.toString() as | '1' | '3DS' | '2');
+        this.#game = Games.getValue(game === 1 ? 'SMM' : `SMM${game}` as const);
         this.#releaseDate = releaseDate;
         this.#gameStyle = gameStyle ?? null;
     }

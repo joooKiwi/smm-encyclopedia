@@ -47,15 +47,25 @@ table[id$="-table"] {
     max-height: 1cm;
   }
 
-  .animated-image, .non-animated-image {
-    --amount-of-blocks: 0;
-    --single-height: 0;
-    height: calc(var(--amount-of-blocks) * var(--single-height));
+}
+
+.listElement-container, .cardListElement-container, {
+
+  .name-container {
+    text-align: center;
   }
 
 }
 
-.time-image, .theme-image, .game-image, .gameStyle-image {
+.animated-image, .non-animated-image {
+  --amount-of-blocks: 0;
+  --single-height: 0;
+  --single-width: var(--single-height);
+  height: calc(var(--amount-of-blocks) * var(--single-height));
+  width: calc(var(--amount-of-blocks) * var(--single-width));
+}
+
+.time-image, .theme-image, .gameStyle-image {
   border-radius: var(--bs-border-radius);
 }
 

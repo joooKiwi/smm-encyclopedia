@@ -1,21 +1,18 @@
+import type {EntityBehaviourLinkTemplate}              from './properties/EntityBehaviourLink.template';
+import type {IsInOnlyTemplate}                         from './properties/IsInOnlyTemplate';
 import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
-import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types';
-import type {PossibleGroupName}                        from '../entityTypes';
 
+/**
+ * @template
+ */
 export interface EntityBehaviourTemplate {
 
     acronym: PossibleAcronym
 
     translationKey: PossibleTranslationKeys
 
-    isOnly: {
-        online: boolean
-        multiplayer: boolean
-    }
+    isOnly: IsInOnlyTemplate
 
-    links: {
-        group: | PossibleGroupName | null
-        entity: | EntityName | null
-    }
+    links: EntityBehaviourLinkTemplate
 
 }

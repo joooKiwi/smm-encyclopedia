@@ -1,6 +1,6 @@
 import type {EveryLanguages}                            from '../EveryLanguages';
-import type {Name}                               from './Name';
-import type {NameTrait}                          from './NameTrait';
+import type {Name}                                      from './Name';
+import type {NameTrait}                                 from './NameTrait';
 import type {NameTraitFromACategory}                    from './NameTraitFromACategory';
 import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
@@ -224,9 +224,12 @@ export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U
     }
 
     //endregion -------------------- Getter methods --------------------
+    //endregion -------------------- Convertor methods --------------------
 
     public toCategoryNameMap(): ReadonlyMap<EveryLanguages, U> {
         return this.categoryNameContainer.toNameMap();
     }
+
+    //region -------------------- Convertor methods --------------------
 
 }

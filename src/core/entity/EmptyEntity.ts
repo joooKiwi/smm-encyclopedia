@@ -32,6 +32,7 @@ export class EmptyEntity
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Properties --------------------
 
@@ -209,6 +210,9 @@ export class EmptyEntity
 
     //endregion -------------------- References --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return EMPTY_MAP;
     }
@@ -237,6 +241,7 @@ export class EmptyEntity
         return EMPTY_MAP;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyEntityName {
         return 'Empty entity';

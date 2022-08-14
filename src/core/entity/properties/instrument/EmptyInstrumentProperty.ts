@@ -24,6 +24,7 @@ export class EmptyInstrumentProperty
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     public readonly instruments = EMPTY_ARRAY;
 
@@ -31,6 +32,7 @@ export class EmptyInstrumentProperty
     public readonly canMakeASoundOutOfAMusicBlock = this.canMakeASoundOutOfAMusicBlockContainer.value;
     public readonly canMakeASoundOutOfAMusicBlockComment = this.canMakeASoundOutOfAMusicBlockContainer.comment;
 
+    //endregion -------------------- Getter methods --------------------
 
     public toString(): EmptyInstrumentName {
         return 'Empty instrument';

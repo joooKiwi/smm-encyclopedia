@@ -17,6 +17,8 @@ export class MysteryMushroomPropertyContainer
         this.#soundPropertyContainer = sound;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Unlock properties --------------------
 
     public get unlockPropertyContainer() {
@@ -203,5 +205,7 @@ export class MysteryMushroomPropertyContainer
     //endregion -------------------- Sound effect (death) --------------------
 
     //endregion -------------------- Sound properties --------------------
+
+    //endregion -------------------- Getter methods --------------------
 
 }

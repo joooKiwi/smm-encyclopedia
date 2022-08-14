@@ -23,6 +23,7 @@ export class EmptyIsInProperty
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -105,6 +106,9 @@ export class EmptyIsInProperty
 
     //endregion -------------------- Instrument properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return EMPTY_MAP;
     }
@@ -133,6 +137,7 @@ export class EmptyIsInProperty
         return EMPTY_MAP;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     public toString(): EmptyIsInPropertyName {
         return 'Empty "is in property"';

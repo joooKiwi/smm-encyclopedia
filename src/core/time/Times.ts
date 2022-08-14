@@ -4,8 +4,8 @@ import type {PossibleOtherEntities}                                             
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types';
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                from '../PropertyGetter';
 import type {StaticReference}                                                                                                                                                                                                                        from '../../util/enum/Enum.types';
-import type {TimeProperty}                                                                                                                                                                                                                           from '../entity/properties/TimeProperty';
-import type {TimeReferences}                                                                                                                                                                                                                         from '../entity/properties/TimeReferences';
+import type {TimeProperty}                                                                                                                                                                                                                           from '../entity/properties/time/TimeProperty';
+import type {TimeReferences}                                                                                                                                                                                                                         from '../entity/properties/time/TimeReferences';
 
 import {BASE_PATH}       from '../../variables';
 import {Enum}            from '../../util/enum/Enum';

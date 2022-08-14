@@ -1,6 +1,6 @@
 import type {ClassThatIsAvailableFromTheStart}                 from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
 import type {Entity}                                           from '../entity/Entity';
-import type {GameProperty}                                     from '../entity/properties/GameProperty';
+import type {GameProperty}                                     from '../entity/properties/game/GameProperty';
 import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle';
 import type {Name}                                             from '../../lang/name/Name';
 import type {ObjectHolder, PossibleValueOnObjectHolder}        from '../../util/holder/ObjectHolder';
@@ -27,6 +27,8 @@ export class GameStyleContainer
         this.#entitiesHolder = entities;
         this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey;
     }
+
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -75,9 +77,13 @@ export class GameStyleContainer
         return this.#nightDesertWindTranslationKey;
     }
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return this.isInProperty.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

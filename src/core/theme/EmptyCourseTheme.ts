@@ -1,11 +1,11 @@
 import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/ClassWithNullObjectPattern';
 import type {CourseTheme}                                      from './CourseTheme';
 
-import {ClassContainingAName}                      from '../../lang/name/ClassContainingAName';
-import {ClassThatIsAvailableFromTheStartContainer} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.container';
-import {EMPTY_ARRAY, EMPTY_MAP}                    from '../../util/emptyVariables';
-import {EmptyIsInProperty}                         from '../entity/properties/EmptyIsInProperty';
-import {EmptyStringName}                           from '../../lang/name/EmptyStringName';
+import {ClassContainingAName}                     from '../../lang/name/ClassContainingAName';
+import {ClassThatIsAvailableFromTheStartProvider} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.provider';
+import {EMPTY_ARRAY, EMPTY_MAP}                   from '../../util/emptyVariables';
+import {EmptyIsInProperty}                        from '../entity/properties/EmptyIsInProperty';
+import {EmptyStringName}                          from '../../lang/name/EmptyStringName';
 
 /**
  * @singleton
@@ -27,6 +27,7 @@ export class EmptyCourseTheme
     }
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
@@ -39,7 +40,7 @@ export class EmptyCourseTheme
     //endregion -------------------- Game properties --------------------
     //region -------------------- "Is available from the start" properties --------------------
 
-    public readonly isAvailableFromTheStartContainer = ClassThatIsAvailableFromTheStartContainer.get(null, null, null,);
+    public readonly isAvailableFromTheStartContainer = ClassThatIsAvailableFromTheStartProvider.get.null;
 
     public readonly isAvailableFromTheStartInSMM1 = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1;
     public readonly isAvailableFromTheStartInSMM3DS = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS;
@@ -49,10 +50,14 @@ export class EmptyCourseTheme
 
     public readonly entities = EMPTY_ARRAY;
     public readonly effect = null;
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toGameMap() {
         return EMPTY_MAP;
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyCourseThemeName {
         return 'Empty course theme';

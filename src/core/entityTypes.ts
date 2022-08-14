@@ -66,8 +66,8 @@ export type PossibleGroupName = string;
 //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 //region -------------------- Dimension properties --------------------
 
-export type PossibleDimension = | `${number}x${number}` | 'string' | '?' | null;
-export type PossibleMaximumDimension = | `${number}x${number}` | 'string' | null;
+export type PossibleDimension = | `${number}x${number}` | `${number}\n(only on the top or bottom of the screen)x∞` | 'string' | '?' | null;
+export type PossibleMaximumDimension = | `${number}x${number}` | `${number}\n(only on the top or bottom of the screen)x[level width]∞` | 'string' | null;
 export type PossibleDimensionDifferentInSM3DW = | `${number}x${number}` | 'string' | null;
 export type PossibleMaximumDimensionDifferentInSM3DW = | `${number}x${number}` | 'string' | null;
 

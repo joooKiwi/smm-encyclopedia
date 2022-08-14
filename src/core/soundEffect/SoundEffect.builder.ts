@@ -4,7 +4,7 @@ import type {SoundEffect}         from './SoundEffect';
 import type {SoundEffectTemplate} from './SoundEffect.template';
 
 import {EmptySoundEffectCategory}                  from '../soundEffectCategory/EmptySoundEffectCategory';
-import {GamePropertyContainer}                     from '../entity/properties/GameProperty.container';
+import {GamePropertyProvider}                      from '../entity/properties/game/GameProperty.provider';
 import {Games}                                     from '../game/Games';
 import {PlayerSoundEffectTriggerPropertyContainer} from './properties/PlayerSoundEffectTriggerProperty.container';
 import {SoundEffectContainer}                      from './SoundEffect.container';
@@ -36,7 +36,7 @@ export class SoundEffectBuilder
         const {movement: playerMovementTriggerTemplate, interaction: playerInteractionTriggerTemplate, environment: playerEnvironmentTriggerTemplate,} = isInPropertiesTemplate.trigger.player;
 
         return new SoundEffectPropertyContainer(
-            GamePropertyContainer.get(gameTemplate['1And3DS'], gameTemplate['2'],),
+            GamePropertyProvider.get.get(gameTemplate['1And3DS'], gameTemplate['2'],),
 
             PlayerSoundEffectTriggerPropertyContainer.get(playerMovementTriggerTemplate.jumpAfterLanding, playerMovementTriggerTemplate.turnAroundAfterBeingAtFullSpeed, playerMovementTriggerTemplate.crouch, playerMovementTriggerTemplate.after3SecondsRepeatedly,
                 playerInteractionTriggerTemplate.collectPowerUp, playerInteractionTriggerTemplate.getIntoAnEntity,

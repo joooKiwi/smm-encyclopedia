@@ -1,5 +1,5 @@
-import type {NameTrait}                          from './NameTrait';
-import type {Name}                               from './Name';
+import type {NameTrait}                                 from './NameTrait';
+import type {Name}                                      from './Name';
 import type {EveryLanguages}                            from '../EveryLanguages';
 import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder';
 
@@ -220,9 +220,12 @@ export class ClassContainingAName<T, >
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toNameMap(): ReadonlyMap<EveryLanguages, T> {
         return this.nameContainer.toNameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

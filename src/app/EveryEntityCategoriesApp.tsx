@@ -39,7 +39,7 @@ export default class EveryEntityCategoriesApp
 
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListContent(enumerable: EntityCategories): ReactElement {
+            public createCardListContent(enumerable: EntityCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;
             }
 

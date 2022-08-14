@@ -77,6 +77,7 @@ export class NameContainer<T, >
         this.#originalLanguages = originalLanguages;
     }
 
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Name properties --------------------
 
@@ -294,11 +295,14 @@ export class NameContainer<T, >
     }
 
     //endregion -------------------- Name properties --------------------
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
     public toNameMap(): ReadonlyMap<EveryLanguages, T> {
         return this.#map ??= new Map(this.originalLanguages.map(language => [language, language.get(this)!,]));
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): EmptyableOptionalLanguage<T, S, never>
     static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<T, S, never>

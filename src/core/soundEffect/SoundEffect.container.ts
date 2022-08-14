@@ -20,6 +20,8 @@ export class SoundEffectContainer
         this.#propertyContainer = property;
     }
 
+    //region -------------------- Getter methods --------------------
+
     //region -------------------- Properties --------------------
 
     public get propertyContainer(): SoundEffectProperty {
@@ -105,8 +107,13 @@ export class SoundEffectContainer
 
     //endregion -------------------- Properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.propertyContainer.toGameMap();
     }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

@@ -1,3 +1,4 @@
+import type {EveryPossibleName_Version_SMM}                from '../_util/loader/HeaderTypesForConvertorDefinition';
 import type {PossibleConditionToUnlockIt}                  from './properties/UnlockProperty';
 import type {PossibleEnglishName as PossibleGameReference} from '../gameReference/GameReferences.types';
 import type {SoundPropertyTemplate}                        from './properties/sound/SoundProperty.template';
@@ -12,6 +13,8 @@ export interface MysteryMushroomTemplate
     gameReference: | PossibleGameReference | PokemonGeneration
 
     properties: {
+
+        firstAppearance: EveryPossibleName_Version_SMM
 
         unlock: {
             condition: PossibleConditionToUnlockIt

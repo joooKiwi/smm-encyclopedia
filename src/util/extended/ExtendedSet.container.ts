@@ -324,6 +324,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
         return this.#array.join(separator);
     }
 
+    //region -------------------- Convertor methods --------------------
 
     public toArray(): T[] {
         return [...this];
@@ -347,6 +348,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
         return new ExtendedMapContainer(this.toMap()) as unknown as ExtendedMap<LENGTH, T, LENGTH>;
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
     /**
      * @see Array.toString

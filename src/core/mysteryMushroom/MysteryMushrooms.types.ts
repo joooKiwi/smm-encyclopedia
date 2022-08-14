@@ -162,8 +162,37 @@ export type Ordinals = typeof Enum[Names];
 
 export type Names = keyof typeof Enum;
 
-export type EnglishNameOnFile = | Exclude<PossibleEnglishName, | 'Mary O.' | 'Bowser Jr.' | 'Donkey Kong Jr.' | '? Block' | 'R.O.B.'>
-                                | 'Mary O' | 'Bowser Jr' | 'Donkey Kong Jr' | 'Question Mark Block' | 'Mario (MB)' | 'R.O.B';
+//region -------------------- File name --------------------
+
+export type EnglishNameOnFile =
+    | 'Arwing' | 'Ashley'
+    | 'Blackey' | WithLeftVariant<'Block'> | `Boss0${`${| 0 | 1 | 2 | 3 | 4}${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | `5${| 0 | 1}`}` | WithLeftVariant<`Boss04${| 5 | 6}`>
+    | 'Charizard' | 'ChibiRobo'
+    | 'DarkPit' | 'Dedede' | 'DiddyKong' | 'DiyMario' | `DonkeyKong${| '' | 'Jr'}` | 'DrMario' | 'DuckHunt'
+    | 'Falco' | 'Falcon' | 'Fightfly' | 'Fit' | 'Fox' | 'Fuko' | 'Futa'
+    | 'GameWatch' | 'Ganon' | 'Greninja'
+    | 'Heiho'
+    | 'Ike'
+    | 'Kaizo' | 'Kappei' | 'Kento' | 'Kinopio' | 'Kinuyo' | 'Kirby' | `Koopa${| '' | 'Jr'}` | 'Kuribo'
+    | 'Link' | 'Lisa' | 'LittleMac' | 'Lucario' | 'Lucas' | 'Lucina' | 'Luigi'
+    | 'MahjongTile' | `Mario${| '' | 'Gold' | 'Kart' | 'Original' | 'Silver'}` | 'Marth' | 'MegaMan' | 'MetaKnight' | 'Mewtwo' | 'MishiNeko' | 'MrHakari' | 'Murabito'
+    | 'Ness' | 'Nikki'
+    | 'Orima'
+    | 'PackMan' | 'Palutena' | 'Peach' | 'Peppy' | 'Pikachu' | 'Pikmin' | 'Pit' | 'Pudding'
+    | 'ResetSan' | 'Robin' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| '' | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | 'SplaIka'
+    | 'Takumi' | 'Tanuki' | 'ThunLink' | 'Tincle' | 'Totakeke' | 'Trampoline' | 'TsubuMame'
+    | 'Waluigi' | 'Wario' | 'Wiibo' | `WoolYoshi${| 'Aqua' | 'Big' | 'Green' | 'Pink'}`
+    | 'Yoshi'
+    | 'Zelda' | 'ZeroSams';
+
+type WithOnlyUnderwaterVariant<T extends string, > = `${T} W`;
+type WithUnderwaterVariant<T extends string, > = `${T}${| '' | ' W'}`;
+type WithLeftVariant<T extends string, > = `${T}${| '' | ' L'}`;
+type WithJapaneseVariant<T extends string, > = `${T} ${| 'JP' | 'USEU'}`;
+
+
+//endregion -------------------- File name --------------------
+//region -------------------- English name --------------------
 
 export type PossibleUniqueEnglishName = | PossibleEnglishName | 'Mario (MB)';
 export type PossibleEnglishName =
@@ -307,6 +336,8 @@ export type PossibleEnglishName =
 
     | 'Arino KACHO' | 'SUPER MARIO KUN' | 'Necky' | 'GLA' | 'BABYMETAL';
 
+//endregion -------------------- English name --------------------
+
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
@@ -321,6 +352,10 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
+
+
+export type PossibleImageSourceForFile<T, > = | readonly [] | readonly [T,] | readonly [T, T,];
+export type PossibleSoundSourceForFile<T, > = T extends readonly string[] ? (| readonly [] | T) : T extends string ? (| T | null) : never;
 
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<E>['MYSTERY_MUSHROOM'],

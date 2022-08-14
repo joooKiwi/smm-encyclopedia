@@ -10,6 +10,8 @@ import {assert}                      from '../../util/utilitiesMethods';
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}
  * and is exclusive to the {@link GameStyles.SUPER_MARIO_3D_WORLD  Mario 3D World} {@link GameStyles game style}.
+ *
+ * @todo change tht exclusive SMM3DW entity to be an interface and separate the Entity projectile & Entity object into their own class.
  */
 export class ExclusiveSM3DWEntityContainer<CATEGORY extends EntityCategory = EntityCategory, >
     extends AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW>
@@ -23,7 +25,7 @@ export class ExclusiveSM3DWEntityContainer<CATEGORY extends EntityCategory = Ent
         property = super._testProperty(property);
 
         assert(property.isInNightTheme == null, 'The property isInNightTheme should always be set to a null for a SM3DW exclusive property.',);
-        assert(typeof property.isInProjectileLimitWhilePlaying == 'boolean', 'The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.',);
+        // assert(typeof property.isInProjectileLimitWhilePlaying == 'boolean', 'The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.',);
 
         return property;
     }

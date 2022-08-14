@@ -108,11 +108,29 @@ In order to have a clean way to navigate on the project, multiple standard have 
 
 They are separated in different sections 
  - Import ordering
-   1. Dependencies import
-   2. Type import (not useful to debug)
-   3. Real import (used at compile time → `import type`)
+   1. SCSS files _(for React components)_
+   2. Dependencies import
+   3. Type import (not useful to debug)
+   4. Real import (if used at compile time → `import type`)
  - Spacing for the import is aligned for better readability
  - Ordered alphabetically by group
+
+
+#### Visibility
+
+Since some visibilities are present in other languages (like Kotlin, Java, PHP or C#),
+the project utilise some standard on the visibilities.
+
+It utilises the Typescript system for the pre-established visibilities.
+Then, for those that are not in the system, it uses somme pattern for it.
+
+| Syntax               | in project |  in Typescript  |         in Javascript         |                                                                            Example |
+|----------------------|:----------:|:---------------:|:-----------------------------:|-----------------------------------------------------------------------------------:|
+| public [name]        |   public   |     public      |            public             |                                      <pre> public anExample<br/>public anExample() |
+| [name]               |  package   |     public      |            public             |                                                     <pre>anExample<br/>anExample() |
+| _[name]              | protected  |    protected    |            public             |                               <pre>protected _anExample<br/>protected _anExample() |
+| __[name]<br/>#[name] |  private   |     private     | __ -> public<br/># -> private | <pre>#anExample<br/>#anExample()<br/>private __anExample<br/>private __anExample() |
+
 
 #### Folder structure
 
@@ -155,6 +173,7 @@ They don't follow directly the standard, but have a general format followed.
 | [capital-case]            |                                          A capital case name (                                          |      Class<br/>Interface<br/>Type<br/>Dynamic import method for class      | <pre>AnExample                                                                                                                                                   |
 | [name][_[nameX]*]         |                             Multiple different names following each others                              |                            Variable<br/>Method                             | <pre>anExample_withSomething_secret                                                                                                                              |
 | #[name]                   |                                          **(always)** private                                           |                            Variable<br/>Method                             | <pre>#anExample<br/>#anExample()                                                                                                                                 |
+| $[name]                   |                     something that starts with a number<br/>*(Not a PHP variable)*                      |                            Variable<br/>Method                             | <pre>$1Example<br/>$1Example()                                                                                                                                   |
 | _[name]                   |                                         **(always)** protected                                          |                                   Method                                   | <pre>_anExample()                                                                                                                                                |
 | __[name]                  |                                      private (with private field)                                       |                          Getter & setter methods                           | <pre>get __anExample() {<br/>  this.#anExample;<br/>}<br/>set __anExample(value) {<br/>  this.#anExample = value;<br/>}                                          |
 | `,`                       |                                        Ending with a leading `,`                                        | Creation (Array / Object)<br/>Call (method / constructor)<br/>Generic type | <pre>[a, b, c,]<br/>{a: 1, b: 2, c: 3,}<br/>anExample(a, b, c,)<br/>new AnExample(a, b, c,)<br/><br/>class AnExample<T,>{ ... }<br/>anExample<T,>(t: T,)         |
@@ -174,15 +193,17 @@ The only ones that are used outside are:
 
 The rest should not be used outside the same package (folder).
 
-| Format              | Type              |                 Description                  |                                                  Dependencies |
-|:--------------------|:------------------|:--------------------------------------------:|--------------------------------------------------------------:|
-| [name].template.ts  | Template          |   The template associated to the CSV file    |                                                          Type |
-| [name].loader.ts    | Loader            |         The file loader (main core)          |                                 Builder<br/>Template<br/>Type |
-| Loader.types.ts     | Type              |  Types only applicable to the file loaders   |                                                               |
-| [name].builder.ts   | Builder           |   The builder class that create the class    |                   Template <br/>Class<br/>Enum _(some times)_ |
-| [name].ts           | Interface         | The class description that is used elsewhere |                                                          Type |
-| [name].container.ts | Class             |              The class instance              |                                                     Interface |
-| [plural-name].ts    | Enum              |      Every elements as an enum instance      |                                            Loader _(dynamic)_ |
+| Format              | Type      |                                                 Description                                                 |                                Dependencies |
+|:--------------------|:----------|:-----------------------------------------------------------------------------------------------------------:|--------------------------------------------:|
+| [name].template.ts  | Template  |                                   The template associated to the CSV file                                   |                                        Type |
+| [name].loader.ts    | Loader    |                                         The file loader (main core)                                         |               Builder<br/>Template<br/>Type |
+| Loader.types.ts     | Type      |                                  Types only applicable to the file loaders                                  |                                             |
+| [name].builder.ts   | Builder   |                                   The builder class that create the class                                   | Template <br/>Class<br/>Enum _(some times)_ |
+| [name].provider.ts  | Provider  | The provider class that will get or create the specific instance<br/>(will never create duplicate instance) |                        Interface <br/>Class |
+| [name].ts           | Interface |                                The class description that is used elsewhere                                 |                                        Type |
+| Empty[name].ts      | Singleton |                                          The empty class instance                                           |                                   Interface |
+| [name].container.ts | Class     |                                             The class instance                                              |                                   Interface |
+| [plural-name].ts    | Enum      |                                     Every elements as an enum instance                                      |                          Loader _(dynamic)_ |
 
 <br/>
 The types used in the interface:

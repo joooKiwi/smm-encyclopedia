@@ -9,7 +9,7 @@ import {MysteryMushroomContainer}         from './MysteryMushroom.container';
 import {MysteryMushroomPropertyContainer} from './properties/MysteryMushroomProperty.container';
 import {SoundPropertyContainer}           from './properties/sound/SoundProperty.container';
 import {TemplateWithNameBuilder}          from '../_template/TemplateWithName.builder';
-import {UnlockPropertyContainer}          from './properties/UnlockProperty.container';
+import {UnlockPropertyProvider}           from './properties/UnlockProperty.provider';
 
 export class MysteryMushroomBuilder
     extends TemplateWithNameBuilder<MysteryMushroomTemplate, MysteryMushroom> {
@@ -62,7 +62,7 @@ export class MysteryMushroomBuilder
         const unlockTemplate = propertyTemplate.unlock;
 
         return new MysteryMushroomPropertyContainer(
-            UnlockPropertyContainer.get(unlockTemplate.condition, unlockTemplate.amiibo,),
+            UnlockPropertyProvider.get.get(unlockTemplate.condition, unlockTemplate.amiibo,),
             new SoundPropertyContainer(...this.#createSoundPropertyFields(),),
         );
     }

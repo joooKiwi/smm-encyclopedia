@@ -1,5 +1,6 @@
 import resource from '../../resources/compiled/Mystery Mushroom (SMM).json';
 
+import type {EveryPossibleName_Version_SMM}                                                                                                                                                                                      from '../_util/loader/HeaderTypesForConvertorDefinition';
 import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
 import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
 import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from './MysteryMushroom.template';
@@ -28,6 +29,8 @@ import {MysteryMushroomBuilder}  from './MysteryMushroom.builder';
 enum Headers {
     conditionToUnlockIt,
     canBeUnlockedByAnAmiibo,
+
+    firstAppearanceInMarioMaker,
 
     reference,
 
@@ -68,6 +71,8 @@ type ExclusivePropertiesArray = [
 
     conditionToUnlockIt: PossibleConditionToUnlockIt,
     canBeUnlockedByAnAmiibo: boolean,
+
+    firstAppearanceInMarioMaker: EveryPossibleName_Version_SMM,
 
     reference: | PossibleGameReference | PokemonGeneration,
 
@@ -138,12 +143,6 @@ export class MysteryMushroomLoader
         if (this.#map == null) {
             const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>();
 
-            //region -------------------- Builder initialisation --------------------
-
-            // @ts-ignore FIXME add toMap() function on gameReferences
-            // MysteryMushroomBuilder.gameReferencesMap = GameReferences.toMap();
-
-            //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, MysteryMushroom, keyof typeof Headers>(resource, convertedContent => new MysteryMushroomBuilder(new TemplateBuilder(convertedContent)).build())
@@ -151,6 +150,7 @@ export class MysteryMushroomLoader
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleConditionToUnlockIt_mysteryMushroom, 'conditionToUnlockIt',)
                 .convertToBoolean('canBeUnlockedByAnAmiibo',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_version_smm, 'firstAppearanceInMarioMaker',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleAcronymWithPokemonGeneration_gameReference, 'reference',)
 
 
@@ -214,6 +214,7 @@ class TemplateBuilder
     public override build(): MysteryMushroomTemplate {
         return {
             properties: {
+                firstAppearance: this._getContent(this._headersIndexMap.firstAppearanceInMarioMaker),
                 unlock: {
                     condition: this._getContent(this._headersIndexMap.conditionToUnlockIt),
                     amiibo: this._getContent(this._headersIndexMap.canBeUnlockedByAnAmiibo),

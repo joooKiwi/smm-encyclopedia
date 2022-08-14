@@ -38,6 +38,8 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         this.#referencesContainer = references;
     }
 
+    //region -------------------- Tester methods --------------------
+
     #testCategory(category: EntityCategory,): CATEGORY
     #testCategory(category: EntityCategory,) {
         return isInProduction
@@ -75,6 +77,9 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     protected _testProperty(property: Property,): Property {
         return property;
     }
+
+    //endregion -------------------- Tester methods --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Properties --------------------
 
@@ -429,6 +434,9 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //endregion -------------------- References --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.propertyContainer.toGameMap();
     }
@@ -457,5 +465,6 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
         return this.limitContainer.toLimitWhilePlayingMap();
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
 }

@@ -40,6 +40,7 @@ const TextComponent =               lazy(() => import( '../tools/text/TextCompon
 //endregion -------------------- dynamic imports --------------------
 
 /**
+ * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
  * @todo merge all of the "image" into 1 type
  * @todo merge all of the "game" into 1 type
  * @todo merge all of the "game style" into 1 type
@@ -81,7 +82,7 @@ export abstract class EntityAppOption
                 }</Fragment>);
         }
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -91,7 +92,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {
                 key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
                 subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
@@ -113,7 +114,7 @@ export abstract class EntityAppOption
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
 
@@ -127,7 +128,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return CommonOptions.get.nameHeader;
         }
 
@@ -135,7 +136,7 @@ export abstract class EntityAppOption
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
@@ -143,8 +144,8 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,};
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+            return CommonOptions.get.gameHeader;
         }
 
     }(false,);
@@ -152,7 +153,7 @@ export abstract class EntityAppOption
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
@@ -160,7 +161,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
         }
 
@@ -169,7 +170,7 @@ export abstract class EntityAppOption
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
@@ -177,7 +178,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
         }
 
@@ -186,7 +187,7 @@ export abstract class EntityAppOption
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
 
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
@@ -195,7 +196,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
         }
 
@@ -204,7 +205,7 @@ export abstract class EntityAppOption
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryNameContainer;
@@ -216,7 +217,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return CommonOptions.get.categoryHeader;
         }
 
@@ -229,7 +230,7 @@ export abstract class EntityAppOption
 
     public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
-        protected override get _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
                 const entity = enumeration.reference;
@@ -252,7 +253,7 @@ export abstract class EntityAppOption
             };
         }
 
-        protected override get _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {
                 key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
                 subHeaders: [
@@ -334,13 +335,13 @@ export abstract class EntityAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected get _createContentOption(): PossibleOptionWithContent {
+    protected _createContentOption(): PossibleOptionWithContent {
         return null;
     }
 
-    protected get __appOptionWithContent(): AppOptionWithContent {
+    private get __appOptionWithContent(): AppOptionWithContent {
         if (this.#appOptionWithContent == null) {
-            const content = this._createContentOption;
+            const content = this._createContentOption();
             this.#appOptionWithContent = content == null
                 ? EmptyAppOption.get
                 : new AppOptionWithContentComponent(content,);
@@ -355,13 +356,13 @@ export abstract class EntityAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected get _createTableHeaderOption(): PossibleOptionWithTable {
+    protected _createTableHeaderOption(): PossibleOptionWithTable {
         return null;
     }
 
-    protected get __appOptionWithTable(): AppOptionWithTable {
+    private get __appOptionWithTable(): AppOptionWithTable {
         if (this.#appOptionWithTable == null) {
-            const content = this._createTableHeaderOption;
+            const content = this._createTableHeaderOption();
             this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,);
         }
         return this.#appOptionWithTable;

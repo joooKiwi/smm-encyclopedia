@@ -1,7 +1,7 @@
 import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart';
 import type {CourseAndWorldTheme}              from './CourseAndWorldTheme';
 import type {CourseTheme}                      from './CourseTheme';
-import type {GameProperty}                     from '../entity/properties/GameProperty';
+import type {GameProperty}                     from '../entity/properties/game/GameProperty';
 import type {Name}                             from '../../lang/name/Name';
 import type {WorldTheme}                       from './WorldTheme';
 
@@ -23,6 +23,8 @@ export abstract class AbstractCourseAndWorldTheme
         this.#courseTheme = courseTheme;
         this.#worldTheme = worldTheme;
     }
+
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- Theme properties --------------------
 
@@ -76,9 +78,13 @@ export abstract class AbstractCourseAndWorldTheme
 
     //endregion -------------------- "Is available from the start" properties --------------------
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return this.isInProperty.toGameMap();
     }
 
+    //endregion -------------------- Convertor methods --------------------
 
 }

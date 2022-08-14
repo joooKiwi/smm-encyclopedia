@@ -58,13 +58,12 @@ export default class EveryEntityLimitsApp
 
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
-            //endregion -------------------- Table interpreter --------------------
 
             public set callbackToGetEnumerable(value: () => EntityLimits,) {
                 EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = value;
             }
 
-            public get tableOptions(): EntityLimitAppOption[] {
+            public get tableOptions(): readonly EntityLimitAppOption[] {
                 return [
                     EntityLimitAppOption.ACRONYM,
                     EntityLimitAppOption.NAME,
@@ -87,6 +86,8 @@ export default class EveryEntityLimitsApp
             public createTableHeader(option: EntityLimitAppOption,): | SingleHeaderContent | null {
                 return option.renderTableHeader;
             }
+
+            //endregion -------------------- Table interpreter --------------------
 
         }();
     }

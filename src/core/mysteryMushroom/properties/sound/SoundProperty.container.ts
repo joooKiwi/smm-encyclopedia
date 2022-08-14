@@ -19,6 +19,9 @@ import {SoundEffectOnTurnAfterRunContainer}    from './SoundEffectOnTurnAfterRun
 import {SoundEffectWhenCollectedContainer}     from './SoundEffectWhenCollected.container';
 import {SpecialMusicInStarModeContainer}       from './SpecialMusicInStarMode.container';
 
+/**
+ * @todo Separate each "sound effect" or "special music" in their each class
+ */
 export class SoundPropertyContainer
     implements SoundProperty {
 

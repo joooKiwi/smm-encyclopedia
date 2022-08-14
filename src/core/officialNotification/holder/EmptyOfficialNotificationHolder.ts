@@ -20,9 +20,12 @@ export class EmptyOfficialNotificationHolder
 
 
     //endregion -------------------- Singleton usage --------------------
+    //region -------------------- Getter methods --------------------
 
     public readonly officialNotification = null;
     public readonly amount = null;
+
+    //endregion -------------------- Getter methods --------------------
 
     public toString(): EmptyOfficialNotificationName {
         return 'Empty official notification';

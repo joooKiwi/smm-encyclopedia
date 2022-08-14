@@ -55,7 +55,7 @@ export default class EveryGameStylesApp
                 GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION = value;
             }
 
-            public get tableOptions(): GameStyleAppOption[] {
+            public get tableOptions(): readonly GameStyleAppOption[] {
                 return [
                     GameStyleAppOption.IMAGE,
                     GameStyleAppOption.NAME,

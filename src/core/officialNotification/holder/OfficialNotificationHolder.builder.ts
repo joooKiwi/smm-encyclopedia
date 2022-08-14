@@ -2,9 +2,9 @@ import type {Builder}                           from '../../../util/builder/Buil
 import type {OfficialNotificationHolder}        from './OfficialNotificationHolder';
 import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types';
 
-import {EmptyOfficialNotificationHolder}     from './EmptyOfficialNotificationHolder';
-import {OfficialNotificationHolderContainer} from './OfficialNotificationHolder.container';
-import {OfficialNotifications}               from '../OfficialNotifications';
+import {EmptyOfficialNotificationHolder}    from './EmptyOfficialNotificationHolder';
+import {OfficialNotificationHolderProvider} from './OfficialNotificationHolder.provider';
+import {OfficialNotifications}              from '../OfficialNotifications';
 
 export class OfficialNotificationHolderBuilder
     implements Builder<OfficialNotificationHolder> {
@@ -41,14 +41,14 @@ export class OfficialNotificationHolderBuilder
         const officialNotification = OfficialNotifications.getValue(name);
 
         if (OfficialNotificationHolderBuilder.#POSSIBLE_EXCLUDED_CASES.includes(officialNotification))
-            return OfficialNotificationHolderContainer.get(name, officialNotification,);
+            return OfficialNotificationHolderProvider.get.get(name, officialNotification,);
 
         const numberFoundInOfficialNotification = Number(name.split(OfficialNotificationHolderBuilder.#OFFICIAL_NOTIFICATION_SEPARATOR)
             .find(value => OfficialNotificationHolderBuilder.#NUMBER_ONLY_REGEX.test(value)) ?? OfficialNotificationHolderBuilder.#NO_NUMBER_FOUND);
 
         return numberFoundInOfficialNotification === OfficialNotificationHolderBuilder.#NO_NUMBER_FOUND
-            ? OfficialNotificationHolderContainer.get(name, officialNotification,)
-            : OfficialNotificationHolderContainer.get(name, officialNotification, numberFoundInOfficialNotification,);
+            ? OfficialNotificationHolderProvider.get.get(name, officialNotification,)
+            : OfficialNotificationHolderProvider.get.get(name, officialNotification, numberFoundInOfficialNotification,);
 
     }
 
