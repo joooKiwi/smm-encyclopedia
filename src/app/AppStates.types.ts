@@ -87,7 +87,7 @@ export interface GameStyleAppStates
 }
 
 export interface SoundEffectAppStates
-    extends AppStates, AppStateThatHaveACategory {
+    extends AppStates, AppWithVariableDisplayStates {
 }
 
 export interface MiiCostumeAppStates

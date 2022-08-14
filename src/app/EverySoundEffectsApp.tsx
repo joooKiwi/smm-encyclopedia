@@ -1,96 +1,92 @@
 import './EverySoundEffectsApp.scss';
 
-import type {PossibleEnglishName as PossibleEnglishName_Category} from '../core/soundEffectCategory/SoundEffectCategories.types';
-import type {SoundEffect}                                         from '../core/soundEffect/SoundEffect';
-import type {SoundEffectAppStates}                                from './AppStates.types';
+import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
+import type {SoundEffectAppStates}                               from './AppStates.types';
 
-import AbstractApp                     from './AbstractApp';
-import ContentTranslationComponent     from '../lang/components/ContentTranslationComponent';
+import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../core/game/Games';
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
-import {EmptyStringName}               from '../lang/name/EmptyStringName';
-import NameComponent                   from '../lang/name/component/Name.component';
-import {SingleTableContent}            from './tools/table/Table.types';
 import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
-import Table                           from './tools/table/Table';
-import Image                           from './tools/images/Image';
-import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
-import SoundEffectComponent            from '../core/soundEffect/SoundEffect.component';
+import {SoundEffectAppOption}          from './options/SoundEffectAppOption';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
  */
 export default class EverySoundEffectsApp
-    extends AbstractApp<{}, SoundEffectAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, {}, SoundEffectAppStates> {
 
     public constructor(props: {},) {
         super(props,);
-        this.state = {display: {asText: {category: false,},},};
+        this.state = {
+            typeDisplayed: ViewDisplays.TABLE,
+        };
     }
 
-    //region -------------------- Getter methods --------------------
+    //region -------------------- Create methods --------------------
 
-    protected get _displayCategoryAsText(): boolean {
-        return this.state.display.asText.category;
+    protected override _createKey(): string {
+        return 'soundEffect';
     }
 
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
-
-    #createCategoryComponent(index: number, soundEffect: SoundEffect,) {
-        const categoryName = soundEffect.categoryNameContainer;
-        if (categoryName === EmptyStringName.get)
-            return EMPTY_REACT_ELEMENT;
-
-        if (this._displayCategoryAsText)
-            return <NameComponent id={`${index}_soundEffectCategory-name`} name={categoryName} popoverOrientation="right"/>;
-
-        const categoryEnglishName = categoryName.english as PossibleEnglishName_Category;
-        return <Image source={SoundEffectCategories.getValue(categoryEnglishName)!.imagePath} fallbackName={`${categoryEnglishName} - image`}/>;
+    protected override _createTitleContent(): ReactElementOrString {
+        return <GameContentTranslationComponent translationKey="Every sound effects"/>;
     }
 
-    protected get _content() {
-        const content = [] as SingleTableContent[];
+    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
+        return new class implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
-        let index = 1;
-        for (const enumerable of SoundEffects) {
-            const soundEffect = enumerable.reference;
+            public get iterable(): IterableIterator<SoundEffects> {
+                return SoundEffects[Symbol.iterator]();
+            }
 
-            content.push([enumerable.englishName,
-                <>{index}</>,
-                soundEffect.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={soundEffect} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT,
-                soundEffect.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={soundEffect} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT,
-                <NameComponent id="name" name={soundEffect} popoverOrientation="right"/>,
-                this.#createCategoryComponent(index, soundEffect,),
-                <>--{soundEffect.translationKey}--</>,
-            ]);
-            index++;
-        }
-        return content;
+            //region -------------------- Card list interpreter --------------------
+
+            public createCardListContent(enumerable: SoundEffects,): ReactElement {
+                return <div>
+                    <div className="soundEffect-images-container">
+                        {SoundEffectAppOption.renderSMM1And3DSImage(enumerable)}
+                        {SoundEffectAppOption.renderSMM2Image(enumerable)}
+                    </div>
+                </div>;
+            }
+
+            //endregion -------------------- Card list interpreter --------------------
+            //region -------------------- Table interpreter --------------------
+
+            public set callbackToGetEnumerable(value: () => SoundEffects,) {
+                SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION = value;
+            }
+
+            public get tableOptions(): readonly SoundEffectAppOption[] {
+                return [
+                    SoundEffectAppOption.GAME,
+                    SoundEffectAppOption.NAME,
+                    SoundEffectAppOption.CATEGORY,
+                    SoundEffectAppOption.PLAYER_BEHAVIOUR,
+                ];
+            }
+
+            public get tableProperties(): SimplifiedTableProperties {
+                return {
+                    caption: <GameContentTranslationComponent translationKey="Every sound effects"/>,
+                };
+            }
+
+            public createTableContent(option: SoundEffectAppOption,): readonly ReactElement[] {
+                return option.renderContent;
+            }
+
+            public createTableHeader(option: SoundEffectAppOption,): | SingleHeaderContent | null {
+                return option.renderTableHeader;
+            }
+
+            //endregion -------------------- Table interpreter --------------------
+
+        }();
     }
 
-    //endregion -------------------- Methods --------------------
-
-    protected override _mainContent() {
-        return <Table
-            id="soundEffect-table"
-            caption={<GameContentTranslationComponent translationKey="Every sound effects"/>}
-            headers={[
-                {key: 'originalOrder', element: <>#</>,},
-                {
-                    key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
-                    subHeaders: [
-                        {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                        {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-                    ],
-                },
-                {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,},
-                {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,},
-                {key: 'player behaviour', element: <>--Player behaviour--</>/*<GameContentTranslationComponent translationKey="Player behaviour"/>*/,},
-            ]}
-            content={this._content}
-        />;
-    }
+    //endregion -------------------- Create methods --------------------
 
 }
