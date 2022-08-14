@@ -49,6 +49,14 @@ table[id$="-table"] {
 
 }
 
+.listElement-container, .cardListElement-container, {
+
+  .name-container {
+    text-align: center;
+  }
+
+}
+
 .animated-image, .non-animated-image {
   --amount-of-blocks: 0;
   --single-height: 0;
