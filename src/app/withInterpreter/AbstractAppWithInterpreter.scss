@@ -27,6 +27,8 @@
 .cardListElement-container {
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 95%;
 
   > :nth-child(1) > span { //the name container
     text-decoration-line: underline;

@@ -62,7 +62,7 @@ export default class EveryEntitiesApp
                 EntityAppOption.CALLBACK_TO_GET_ENUMERATION = value;
             }
 
-            public get tableOptions(): EntityAppOption[] {
+            public get tableOptions(): readonly EntityAppOption[] {
                 return [EntityAppOption.IMAGES,
                     EntityAppOption.NAME,
                     EntityAppOption.GAME,

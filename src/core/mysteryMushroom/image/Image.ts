@@ -1,92 +1,128 @@
-import type {ClassWithPath, ClimbingImage, DownImage, FallingAfterJumpImage, GoalPoleImage, JumpImage, PossibleBasicPath, PossibleImages, PossibleJapaneseImagePath, PossibleLeftVariationImagePath, PossiblePath, PossibleUnderwaterVariationImagePath, RunningImage, SwimmingImage, TauntImage, TurningImage, WaitingImage, WalkImage} from '../path/ClassWithPath';
+import type {BasePath}          from '../../../variables';
+import type {EnglishNameOnFile} from '../MysteryMushrooms.types';
 
-export interface Image<T extends PossiblePath = PossiblePath, >
-    extends ClassWithPath {
+export interface Image<FILE extends EnglishNameOnFile = EnglishNameOnFile, > {
 
-    get waitingImages(): WaitingImages<T>
+    get waitingImage(): WaitingImage<FILE>
 
-    get tauntImages(): TauntImages<T>
+    get tauntImage(): TauntImage<FILE>
 
-    get downImages(): DownImages<T>
+    get pressingDownImage(): PressingDownImage<FILE>
 
-    get walkImages(): WalkImages<T>
+    get walkImages(): WalkImages<FILE>
 
-    get runningImages(): RunningImages<T>
+    get runningImages(): RunningImages<FILE>
 
-    get swimmingImages(): SwimmingImages<T>
+    get swimmingImages(): SwimmingImages<FILE>
 
-    get jumpImages(): JumpImages<T>
+    get jumpImages(): JumpImages<FILE>
 
-    get fallingAfterJumpImages(): FallingAfterJumpImages<T>
+    get fallingAfterJumpImage(): FallingAfterJumpImage<FILE>
 
-    get turningImages(): TurningImages<T>
+    get turningImage(): TurningImage<FILE>
 
-    get climbingImages(): ClimbingImages<T>
+    get climbingImages(): ClimbingImages<FILE>
 
-    get goalPoleImages(): GoalPoleImages<T>
+    get goalPoleImages(): GoalPoleImages<FILE>
 
 }
 
-export type BasicImage<T extends PossiblePath = PossiblePath, > = Image<T>;
-export type ImageWithJapanese<T extends PossiblePath = PossiblePath, > = BasicImage<T>;
-export type ImageWithLeftVariation<T extends PossiblePath = PossiblePath, > = BasicImage<T>;
-export type ImageWithUnderwaterVariation<T extends PossiblePath = PossiblePath, > = BasicImage<T>;
 
+export type Path<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = `/${BasePath}/entity/1 - SMB/In game/SMM1/Player Chara - ${FILE}`;
+
+export type SingleImage<FILE extends EnglishNameOnFile = EnglishNameOnFile, IMAGE_FILE extends PossibleImages = PossibleImages, > = `${Path<FILE>}/${IMAGE_FILE}`;
+
+//region -------------------- Specific image files --------------------
+
+export type PossibleImages = | WaitingImageFile
+                             | TauntImageFile
+                             | PressingDownImageFile
+                             | WalkImageFile
+                             | RunningImageFile
+                             | SwimmingImageFile
+                             | JumpImageFile | FallingAfterJumpImageFile
+                             | TurningImageFile
+                             | ClimbingImageFile
+                             | GoalPoleImageFile;
+
+export type WaitingImageFile = 'wait.0.tiff';
+
+export type TauntImageFile = 'appeal.0.tiff';
+
+export type PressingDownImageFile = 'stoop.0.tiff';
+
+export type WalkImageNumber = | 0 | 1 | 2;
+export type WalkImageFile<N extends WalkImageNumber = WalkImageNumber, > = `walk.${N}.tiff`;
+
+export type RunningImageNumber = | 0 | 1 | 2;
+export type RunningImageFile<N extends RunningImageNumber = RunningImageNumber, > = `/b_dash.${N}.tiff`;
+
+export type SwimmingImageNumber = | 0 | 1 | 2 | 3 | 4 | 5;
+export type SwimmingImageFile<N extends SwimmingImageNumber = SwimmingImageNumber, > = `swim.${N}.tiff`;
+
+export type JumpImageNumber = | 0 | 1 | 2;
+export type JumpImageFile<N extends JumpImageNumber = JumpImageNumber> = `jump.${N}.tiff`;
+
+export type FallingAfterJumpImageFile = 'jump_fall.0.tiff';
+
+export type TurningImageFile = 'turn.0.tiff';
+
+export type ClimbingImageNumber = | 0 | 1;
+export type ClimbingImageFile<N extends ClimbingImageNumber = ClimbingImageNumber, > = `climb.${N}.tiff`;
+
+export type GoalPoleImageNumber = | 0 | 1;
+export type GoalPoleImageFile<N extends GoalPoleImageNumber = GoalPoleImageNumber, > = `pole.${N}.tiff`;
+
+//endregion -------------------- Specific image files --------------------
 //region -------------------- Possible images (array) --------------------
 
-export type WaitingImages<T extends PossiblePath = PossiblePath, > = PossibleImages_Array<WaitingImage, T>
+export type WaitingImage<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleImage<FILE, WaitingImageFile>;
 
-export type TauntImages<T extends PossiblePath = PossiblePath, > = PossibleImages_Array<TauntImage, T>;
+export type TauntImage<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleImage<FILE, TauntImageFile>;
 
-export type DownImages<T extends PossiblePath = PossiblePath, > = PossibleImages_Array<DownImage, T>;
+export type PressingDownImage<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleImage<FILE, PressingDownImageFile>;
 
-export type WalkImages<T extends PossiblePath = PossiblePath, > = readonly [
-    PossibleImages_Array<WalkImage<0>, T>,
-    PossibleImages_Array<WalkImage<1>, T>,
-    PossibleImages_Array<WalkImage<2>, T>,
+export type WalkImages<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = readonly [
+    SingleImage<FILE, WalkImageFile<0>>,
+    SingleImage<FILE, WalkImageFile<1>>,
+    SingleImage<FILE, WalkImageFile<2>>,
 ];
 
-export type RunningImages<T extends PossiblePath = PossiblePath, > = readonly [
-    PossibleImages_Array<RunningImage<0>, T>,
-    PossibleImages_Array<RunningImage<1>, T>,
-    PossibleImages_Array<RunningImage<2>, T>,
+export type RunningImages<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = readonly [
+    SingleImage<FILE, RunningImageFile<0>>,
+    SingleImage<FILE, RunningImageFile<1>>,
+    SingleImage<FILE, RunningImageFile<2>>,
 ];
 
-export type SwimmingImages<T extends PossiblePath = PossiblePath, > = readonly [
-    PossibleImages_Array<SwimmingImage<0>, T>,
-    PossibleImages_Array<SwimmingImage<1>, T>,
-    PossibleImages_Array<SwimmingImage<2>, T>,
-    PossibleImages_Array<SwimmingImage<3>, T>,
-    PossibleImages_Array<SwimmingImage<4>, T>,
-    PossibleImages_Array<SwimmingImage<5>, T>,
+export type SwimmingImages<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = readonly [
+    SingleImage<FILE, SwimmingImageFile<0>>,
+    SingleImage<FILE, SwimmingImageFile<1>>,
+    SingleImage<FILE, SwimmingImageFile<2>>,
+    SingleImage<FILE, SwimmingImageFile<3>>,
+    SingleImage<FILE, SwimmingImageFile<4>>,
+    SingleImage<FILE, SwimmingImageFile<5>>,
 ];
 
-export type JumpImages<T extends PossiblePath = PossiblePath, > = readonly [
-    PossibleImages_Array<JumpImage<0>, T>,
-    PossibleImages_Array<JumpImage<1>, T>,
-    PossibleImages_Array<JumpImage<2>, T>,
+export type JumpImages<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = | readonly [SingleImage<FILE, JumpImageFile<0>>,]
+                                                                               | readonly [SingleImage<FILE, JumpImageFile<0>>, SingleImage<FILE, JumpImageFile<1>>, SingleImage<FILE, JumpImageFile<2>>,];
+
+export type FallingAfterJumpImage<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleImage<FILE, FallingAfterJumpImageFile>;
+
+export type TurningImage<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+    SingleImage<FILE, TurningImageFile>;
+
+export type ClimbingImages<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = readonly [
+    SingleImage<FILE, ClimbingImageFile<0>>,
+    SingleImage<FILE, ClimbingImageFile<1>>,
 ];
 
-export type FallingAfterJumpImages<T extends PossiblePath = PossiblePath, > = PossibleImages_Array<FallingAfterJumpImage, T>;
-
-export type TurningImages<T extends PossiblePath = PossiblePath, > = PossibleImages_Array<TurningImage, T>;
-
-export type ClimbingImages<T extends PossiblePath = PossiblePath, > = readonly [
-    PossibleImages_Array<ClimbingImage<0>, T>,
-    PossibleImages_Array<ClimbingImage<1>, T>,
+export type GoalPoleImages<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = readonly [
+    SingleImage<FILE, GoalPoleImageFile<0>>,
+    SingleImage<FILE, GoalPoleImageFile<1>>,
 ];
-
-export type GoalPoleImages<T extends PossiblePath = PossiblePath, > = readonly [
-    PossibleImages_Array<GoalPoleImage<0>, T>,
-    PossibleImages_Array<GoalPoleImage<1>, T>,
-];
-
-
-export type PossibleImages_Array<V extends PossibleImages = PossibleImages, T extends PossiblePath = PossiblePath, > =
-    | readonly []
-    | readonly [`${PossibleBasicPath<T>}/${V}`,]
-    | readonly [`${PossibleBasicPath<T>}/${V}`, `${PossibleJapaneseImagePath<T>}/${V}`,]
-    | readonly [`${PossibleBasicPath<T>}/${V}`, `${PossibleLeftVariationImagePath<T>}/${V}`,]
-    | readonly [`${PossibleBasicPath<T>}/${V}`, `${PossibleUnderwaterVariationImagePath<T>}/${V}`,];
 
 //endregion -------------------- Possible images (array) --------------------

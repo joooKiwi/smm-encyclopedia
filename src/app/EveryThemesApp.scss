@@ -1,18 +1,80 @@
 @import '../variables';
 @import '../mixin';
 
-.cardListElement-container {
-  .card-body {
+#theme-table {
+
+  .gameContentImages-container img {
+    max-height: .4cm;
+  }
+
+  .nameWithContent-container {
     display: flex;
-    flex-direction: row;
-    @include media-breakpoint-up($grid-breakpoint-sm) {
-      flex-direction: column;
-    }
     align-items: center;
   }
 
+  .themeContentImages-container {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      max-height: .5cm;
+    }
+  }
+
+  .name-container {
+    text-align: center;
+  }
+
+}
+
+.images-container, .gameContentImages-container, .themeContentImages-container {
   img {
-    max-height: 2cm;
     width: fit-content;
   }
+}
+
+.cardListElement-container {
+
+  .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .images-container, {
+      display: flex;
+      flex-direction: row;
+      width: 5cm;
+      @include media-breakpoint-up($grid-breakpoint-sm) {
+        flex-direction: column;
+        width: auto;
+      }
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gameContentImages-container, .themeContentImages-container, {
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+
+
+  .images-container img {
+    max-height: 2cm;
+    @include media-breakpoint-between($grid-breakpoint-lg, $grid-breakpoint-xl) {
+      max-height: 1.5cm;
+    }
+  }
+
+  .gameContentImages-container img {
+    min-height: .5cm;
+    max-height: 1cm;
+  }
+
+  .themeContentImages-container img {
+    min-height: .5cm;
+    max-height: 1cm;
+  }
+
 }

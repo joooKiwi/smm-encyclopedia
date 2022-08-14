@@ -1,7 +1,9 @@
 import './AnimatedImages.scss';
+import './VariableImage.scss';
 
-import type {AnimatedImagesProperties} from './properties/AnimatedImagesProperties';
-import type {ImageProperties}          from './properties/ImageProperties';
+import type {AnimatedImagesProperties}    from './properties/AnimatedImagesProperties';
+import type {ImageFromVariableProperties} from './properties/ImageFromVariableProperties';
+import type {ImageProperties}             from './properties/ImageProperties';
 
 import {assert} from '../../../util/utilitiesMethods';
 
@@ -10,10 +12,19 @@ import {assert} from '../../../util/utilitiesMethods';
  * @param properties
  * @reactComponent
  */
-export default function Image(properties: | ImageProperties | AnimatedImagesProperties,) {
-    return 'source' in properties
-        ? <SingleImage {...properties}/>
-        : <AnimatedImages {...properties}/>;
+export default function Image(properties: | ImageFromVariableProperties | ImageProperties | AnimatedImagesProperties,) {
+    return 'variable' in properties
+        ? <ImageFromVariable {...properties}/>
+        : 'source' in properties
+            ? <SingleImage {...properties}/>
+            : <AnimatedImages {...properties}/>;
+}
+
+function ImageFromVariable({variable, isSquared, className, style, ...imagesProperties}: ImageFromVariableProperties,) {
+    const appliedStyle = style ?? {};
+    appliedStyle['--image-source'] = `var(--${variable}-image)`;
+    return <i className={`image-from-variable ${isSquared ? 'square-image-from-variable' : ''} ${className ?? ''}`}
+              style={appliedStyle} {...imagesProperties}/>;
 }
 
 function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties,) {

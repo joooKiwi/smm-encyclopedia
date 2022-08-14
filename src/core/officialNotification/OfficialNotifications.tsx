@@ -134,7 +134,7 @@ export class OfficialNotifications
     public static readonly HIT_MIDDLE_QUESTION_BLOCK_NEAR_PURPLE_TOAD =        new class OfficialNotifications_HitMiddleQuestionBlockNearPurpleToad extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-            keyMap.entityImage = <Image key={`${key} - entity image`} source={`/${BASE_PATH}/entity/5 - SM3DW/Editor/3W_Lyt_P_HatenaBlock_00.tiff`} fallbackName={'"? Block" image'}/>;
+            keyMap.entityImage = <Image key={`${key} - entity image`} className="question-block-image" variable="question-block-sm3dw" isSquared/>;
             return this._addCharacterImage('Purple Toad', key,
                 this._addStoryMode(key, keyMap,),);
         }

@@ -12,6 +12,7 @@ import Image                           from './tools/images/Image';
 import {ThemeAppOption}                from './options/ThemeAppOption';
 import {Themes}                        from '../core/theme/Themes';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
+import {CommonOptions}                 from './options/CommonOptions';
 
 /**
  * @reactComponent
@@ -23,7 +24,7 @@ export default class EveryThemesApp
     public constructor(props: {},) {
         super(props,);
         this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
+            typeDisplayed: ViewDisplays.CARD_LIST,
         };
     }
 
@@ -50,8 +51,12 @@ export default class EveryThemesApp
                 const {englishName, englishNameInHtml, endlessMarioImagePath,} = enumerable;
 
                 return <div className="card-body" id={`theme-${englishNameInHtml}`}>
-                    {enumerable.renderSingleComponent(true)}
-                    {endlessMarioImagePath != null ? <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/> : EMPTY_REACT_ELEMENT}
+                    <div className="col-2">{CommonOptions.get.getGameContent(enumerable)}</div>
+                    <div className="images-container col-7">
+                        {enumerable.renderSingleComponent(true)}
+                        {endlessMarioImagePath != null ? <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/> : EMPTY_REACT_ELEMENT}
+                    </div>
+                    <div className="col-2">{CommonOptions.get.getThemeContent(enumerable)}</div>
                 </div>;
             }
 
@@ -66,8 +71,6 @@ export default class EveryThemesApp
                 return [
                     ThemeAppOption.IMAGE,
                     ThemeAppOption.NAME,
-                    ThemeAppOption.COURSE_AND_WORLD_THEME,
-                    ThemeAppOption.GAME,
                     ThemeAppOption.NIGHT_EFFECT,
                 ];
             }

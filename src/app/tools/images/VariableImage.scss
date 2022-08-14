@@ -1,0 +1,13 @@
+.image-from-variable {
+  --image-width: auto;
+  --image-height: auto;
+  display: inline-block;
+  background-image: var(--image-source);
+  background-size: contain;
+  width: var(--image-width);
+  height: var(--image-height);
+}
+
+.square-image-from-variable {
+  --image-height: var(--image-width);
+}

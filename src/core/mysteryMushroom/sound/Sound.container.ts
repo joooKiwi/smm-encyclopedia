@@ -1,104 +1,102 @@
-import type {GoalPoleSound, JumpSound, LostALifeSound, OnGroundAfterJumpSound, PossibleBasicPath, PossiblePath, PossibleSounds, PowerUpCollectedSound, TauntSound, TurningSound} from '../path/ClassWithPath';
-import type {GoalPoleSounds, JumpSounds, LostALifeSounds, OnGroundAfterJumpSounds, PossibleSounds_Array, PowerUpCollectedSounds, Sound, TauntSounds, TurningSounds}              from './Sound';
-import type {SoundProperty}                                                                                                                                                      from '../properties/sound/SoundProperty';
+import type {GoalPoleSound, GoalPoleSoundFile, JumpSoundFile, JumpSounds, LostALifeSound, LostALifeSoundFile, OnGroundAfterJumpSound, OnGroundAfterJumpSoundFile, Path, PossibleSounds, PowerUpCollectedSound, PowerUpCollectedSoundFile, SingleSound, Sound, TauntSound, TauntSoundFile, TurningSound, TurningSoundFile} from './Sound';
+import type {SoundProperty}                                                                                                                                                                                                                                                                                               from '../properties/sound/SoundProperty';
+import type {EnglishNameOnFile}                                                                                                                                                                                                                                                                                           from '../MysteryMushrooms.types';
 
-import {ClassWithPathContainer} from '../path/ClassWithPath.container';
-import {EMPTY_ARRAY}            from '../../../util/emptyVariables';
+import {BASE_PATH}                    from '../../../variables';
+import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
+import {EMPTY_ARRAY}                  from '../../../util/emptyVariables';
 
-export class SoundContainer<PATH extends PossiblePath, >
-    extends ClassWithPathContainer<PATH, PossibleBasicPath<PATH>, null, null, null>
+export class SoundContainer<FILE extends EnglishNameOnFile = EnglishNameOnFile, >
     implements Sound {
 
     //region -------------------- Fields --------------------
 
-    static readonly #POWER_UP_SOUND: PowerUpCollectedSound = 'powerup.wav';
-    #powerUpGotSounds?: PowerUpCollectedSounds<PATH>;
+    readonly #path;
 
-    static readonly #TAUNT_SOUND: TauntSound = 'appeal.wav';
-    #tauntSounds?: TauntSounds<PATH>;
+    static readonly #POWER_UP_SOUND: PowerUpCollectedSoundFile = 'powerup.wav';
+    #powerUpGotSounds?: PowerUpCollectedSound<FILE>;
 
-    static readonly #JUMP_SOUND_1: JumpSound<''> = 'jump.wav';
-    static readonly #JUMP_SOUND_2: JumpSound<2> = 'jump2.wav';
-    static readonly #JUMP_SOUNDS = [this.#JUMP_SOUND_1, this.#JUMP_SOUND_2,] as const;
-    #jumpSounds?: JumpSounds<PATH>;
+    static readonly #TAUNT_SOUND: TauntSoundFile = 'appeal.wav';
+    #tauntSounds?: TauntSound<FILE>;
 
-    static readonly #ON_GROUND_AFTER_JUMP_SOUND: OnGroundAfterJumpSound = 'ground.wav';
-    #onGroundAfterJumpSounds?: OnGroundAfterJumpSounds<PATH>;
+    static readonly #JUMP_SOUND_1: JumpSoundFile<''> = 'jump.wav';
+    static readonly #JUMP_SOUND_2: JumpSoundFile<2> = 'jump2.wav';
+    #jumpSounds?: JumpSounds<FILE>;
 
-    static readonly #TURNING_SOUND: TurningSound = 'slip.wav';
-    #turningSounds?: TurningSounds<PATH>;
+    static readonly #ON_GROUND_AFTER_JUMP_SOUND: OnGroundAfterJumpSoundFile = 'ground.wav';
+    #onGroundAfterJumpSounds?: OnGroundAfterJumpSound<FILE>;
 
-    static readonly #GOAL_POLE_SOUND: GoalPoleSound = 'goal.wav';
-    #goalPoleSounds?: GoalPoleSounds<PATH>;
+    static readonly #TURNING_SOUND: TurningSoundFile = 'slip.wav';
+    #turningSounds?: TurningSound<FILE>;
 
-    static readonly #LOST_A_LIFE_SOUND: LostALifeSound = 'down.wav';
-    #lostALifeSounds?: LostALifeSounds<PATH>;
+    static readonly #GOAL_POLE_SOUND: GoalPoleSoundFile = 'goal.wav';
+    #goalPoleSounds?: GoalPoleSound<FILE>;
 
-    readonly #property: SoundProperty;
+    static readonly #LOST_A_LIFE_SOUND: LostALifeSoundFile = 'down.wav';
+    #lostALifeSounds?: LostALifeSound<FILE>;
+
+    readonly #property;
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(path: PATH, property: SoundProperty,) {
-        super(`${SoundContainer.BASIC_STARTING_PATH}${path}`, null, null, null,);
-        this.#property = property;
+    public constructor(file: FILE, property: () => SoundProperty,) {
+        this.#path = `/${BASE_PATH}/sound/mystery mushroom/${file}` as const;
+        this.#property = new DelayedObjectHolderContainer(property);
     }
 
     //region -------------------- Getter methods --------------------
 
-    protected override _createPaths() {
-        return [this._basicPath] as const;
+    private __path(): Path<FILE> {
+        return this.#path;
     }
 
-    protected get _property(): SoundProperty {
-        return this.#property;
-    }
-
-    // @ts-ignore
-    #getSounds<S extends PossibleSounds = PossibleSounds, >(sound: S,): PossibleSounds_Array<S, PATH>
-    #getSounds<S1 extends PossibleSounds = PossibleSounds, S2 extends PossibleSounds = PossibleSounds, >(sounds: readonly [S1, S2,],): readonly [PossibleSounds_Array<S1, PATH>, PossibleSounds_Array<S2, PATH>,]
-    #getSounds(sounds: PossibleSounds | readonly PossibleSounds[],) {
-        if (sounds instanceof Array)
-            return sounds.map(image => this.#getSounds(image));
-        return this._paths.map(path => `${path}/${sounds}`) as unknown as PossibleSounds_Array<PossibleSounds, PATH>;
+    private get __property(): SoundProperty {
+        return this.#property.get;
     }
 
 
-    public get powerUpCollectedSounds(): PowerUpCollectedSounds<PATH> {
-        return this.#powerUpGotSounds ??= this._property.haveASoundEffectWhenCollected ? this.#getSounds(SoundContainer.#POWER_UP_SOUND) : EMPTY_ARRAY;
+    #getSound<SOUND_PATH extends PossibleSounds = PossibleSounds, >(sound: SOUND_PATH,): SingleSound<FILE, SOUND_PATH> {
+        return `${this.__path as unknown as Path<FILE>}/${sound}`;
+        //FIXME for some reason typescript doesn't see the type properly
     }
 
-    public get tauntSounds(): TauntSounds<PATH> {
-        return this.#tauntSounds ??= this._property.haveASoundEffectOnTaunt ? this.#getSounds(SoundContainer.#TAUNT_SOUND) : EMPTY_ARRAY;
+
+    public get powerUpCollectedSound(): PowerUpCollectedSound<FILE> {
+        return this.#powerUpGotSounds ??= this.#getSound(SoundContainer.#POWER_UP_SOUND);
     }
 
-    public get jumpSounds(): JumpSounds<PATH> {
+    public get tauntSound(): TauntSound<FILE> {
+        return this.#tauntSounds ??= this.#getSound(SoundContainer.#TAUNT_SOUND);
+    }
+
+    public get jumpSounds(): JumpSounds<FILE> {
         if (this.#jumpSounds == null) {
-            switch (this._property.amountOnSoundEffectOnJump!) {
+            switch (this.__property.amountOnSoundEffectOnJump!) {
                 case 0:
-                    return this.#jumpSounds = EMPTY_ARRAY;
+                    return EMPTY_ARRAY;
                 case 1:
-                    return this.#jumpSounds = this.#getSounds(SoundContainer.#JUMP_SOUND_1);
+                    return this.#jumpSounds = [this.#getSound(SoundContainer.#JUMP_SOUND_1),];
                 case 2:
-                    return this.#jumpSounds = this.#getSounds(SoundContainer.#JUMP_SOUNDS).flat() as unknown as JumpSounds<PATH>;
+                    return this.#jumpSounds = [this.#getSound(SoundContainer.#JUMP_SOUND_1), this.#getSound(SoundContainer.#JUMP_SOUND_2),];
             }
         }
         return this.#jumpSounds;
     }
 
-    public get onGroundAfterJumpSounds(): OnGroundAfterJumpSounds<PATH> {
-        return this.#onGroundAfterJumpSounds ??= this._property.haveASoundEffectOnGroundAfterJump ? this.#getSounds(SoundContainer.#ON_GROUND_AFTER_JUMP_SOUND) : EMPTY_ARRAY;
+    public get onGroundAfterJumpSound(): OnGroundAfterJumpSound<FILE> {
+        return this.#onGroundAfterJumpSounds ??= this.#getSound(SoundContainer.#ON_GROUND_AFTER_JUMP_SOUND);
     }
 
-    public get turningSounds(): TurningSounds<PATH> {
-        return this.#turningSounds ??= this._property.haveASoundEffectOnTurnAfterRun ? this.#getSounds(SoundContainer.#TURNING_SOUND) : EMPTY_ARRAY;
+    public get turningSound(): TurningSound<FILE> {
+        return this.#turningSounds ??= this.#getSound(SoundContainer.#TURNING_SOUND);
     }
 
-    public get goalPoleSounds(): GoalPoleSounds<PATH> {
-        return this.#goalPoleSounds ??= this._property.haveASoundEffectOnGoalPole ? this.#getSounds(SoundContainer.#GOAL_POLE_SOUND) : EMPTY_ARRAY;
+    public get goalPoleSound(): GoalPoleSound<FILE> {
+        return this.#goalPoleSounds ??= this.#getSound(SoundContainer.#GOAL_POLE_SOUND);
     }
 
-    public get lostALifeSounds(): LostALifeSounds<PATH> {
-        return this.#lostALifeSounds ??= this._property.haveASoundEffectOnDeath ? this.#getSounds(SoundContainer.#LOST_A_LIFE_SOUND) : EMPTY_ARRAY;
+    public get lostALifeSound(): LostALifeSound<FILE> {
+        return this.#lostALifeSounds ??= this.#getSound(SoundContainer.#LOST_A_LIFE_SOUND);
     }
 
     //endregion -------------------- Getter methods --------------------

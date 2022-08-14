@@ -15,6 +15,7 @@ export interface AppWithVariableDisplayStates
 
 //region -------------------- Single states group --------------------
 
+/**@deprecated The global app state should be changed to route arguments instead*/
 export interface GlobalAppState
     extends ReactState {
 
@@ -57,49 +58,39 @@ export interface GlobalAppState
 
 }
 
-interface AppStateThatHaveACategory {
-
-    display: {
-        asText: {
-            category: boolean
-        }
-    }
-
-}
-
 //endregion -------------------- Single states group --------------------
 //region -------------------- Specific states --------------------
 
 export interface EntityAppStates
-    extends AppStates, AppWithVariableDisplayStates {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface EntityLimitAppStates
-    extends AppStates, AppWithVariableDisplayStates {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface ThemeAppStates
-    extends AppStates, AppWithVariableDisplayStates {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface GameStyleAppStates
-    extends AppStates, AppWithVariableDisplayStates {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface SoundEffectAppStates
-    extends AppStates, AppStateThatHaveACategory {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface MiiCostumeAppStates
-    extends AppStates, AppWithVariableDisplayStates {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface MysteryMushroomAppStates
-    extends AppStates {
+    extends AppWithVariableDisplayStates {
 }
 
 export interface InstrumentAppStates
-    extends AppStates, AppWithVariableDisplayStates {
+    extends AppWithVariableDisplayStates {
 }
 
 //endregion -------------------- Specific states --------------------

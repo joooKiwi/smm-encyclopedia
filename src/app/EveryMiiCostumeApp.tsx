@@ -55,7 +55,7 @@ export default class EveryMiiCostumeApp
                 MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION = value;
             }
 
-            public get tableOptions(): MiiCostumeAppOption[] {
+            public get tableOptions(): readonly MiiCostumeAppOption[] {
                 return [
                     MiiCostumeAppOption.IMAGE,
                     MiiCostumeAppOption.NAME,
