@@ -1,4 +1,4 @@
-import './EveryGameReferencesApp.scss';
+import './GameReferenceApp.scss';
 
 import {Fragment}                       from 'react';
 import type {PossibleEnglishName_Games} from '../core/soundEffect/SoundEffects.types';
@@ -16,7 +16,7 @@ import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
 /**
  * @reactComponent
  */
-export default class EveryGameReferencesApp
+export default class GameReferenceApp
     extends AbstractApp {
 
     //region -------------------- Fields --------------------
@@ -93,7 +93,7 @@ export default class EveryGameReferencesApp
             {this._getContainer('game', 'Games', Games.values,)}
             {this._getContainer('gameStyle', 'Game styles', GameStyles.values,)}
             {this._getContainer('soundEffect', 'Sound effects', SoundEffects.soundEffect_games,)}
-            {this._getContainer('otherGameReferences', 'Other game references', EveryGameReferencesApp.__otherGameReferences, EveryGameReferencesApp.RETURN_OF_LINES,)}
+            {this._getContainer('otherGameReferences', 'Other game references', GameReferenceApp.__otherGameReferences, GameReferenceApp.RETURN_OF_LINES,)}
         </div>;
     }
 

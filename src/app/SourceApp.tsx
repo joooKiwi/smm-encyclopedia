@@ -2,13 +2,12 @@ import AbstractApp from './AbstractApp';
 
 /**
  * @reactComponent
- * @todo create the app
  */
-export default class EveryEntityGroupApp
+export default class SourceApp
     extends AbstractApp {
 
     protected override _mainContent() {
-        return <>every entity groups</>;
+        return <>Every sources</>;
     }
 
 }

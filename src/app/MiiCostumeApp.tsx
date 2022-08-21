@@ -1,4 +1,4 @@
-import './EveryMiiCostumeApp.scss';
+import './MiiCostumeApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {MiiCostumeAppStates}                                from './AppStates.types';
@@ -12,7 +12,7 @@ import {MiiCostumeAppOption}           from './options/MiiCostumeAppOption';
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import Image                           from './tools/images/Image';
 
-export default class EveryMiiCostumeApp
+export default class MiiCostumeApp
     extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, {}, MiiCostumeAppStates> {
 
     public constructor(props: {},) {

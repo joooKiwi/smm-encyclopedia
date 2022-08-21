@@ -1,4 +1,4 @@
-import './EveryGameStylesApp.scss';
+import './GameStyleApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {GameStyleAppStates}                                 from './AppStates.types';
@@ -14,7 +14,7 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 /**
  * @reactComponent
  */
-export default class EveryGameStylesApp
+export default class GameStyleApp
     extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, {}, GameStyleAppStates> {
 
     public constructor(props: {},) {

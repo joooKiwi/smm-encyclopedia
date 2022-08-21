@@ -1,4 +1,4 @@
-import './EverySoundEffectsApp.scss';
+import './SoundEffectApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
@@ -14,7 +14,7 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 /**
  * @reactComponent
  */
-export default class EverySoundEffectsApp
+export default class SoundEffectApp
     extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, {}, SoundEffectAppStates> {
 
     public constructor(props: {},) {

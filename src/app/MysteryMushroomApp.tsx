@@ -1,4 +1,4 @@
-import './EveryMysteryMushroomsApp.scss';
+import './MysteryMushroomApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {MysteryMushroomAppStates}                           from './AppStates.types';
@@ -15,7 +15,7 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 /**
  * @reactComponent
  */
-export default class EveryMysteryMushroomsApp
+export default class MysteryMushroomApp
     extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, {}, MysteryMushroomAppStates> {
 
     public constructor(props: {},) {

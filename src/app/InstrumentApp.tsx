@@ -8,7 +8,7 @@ import {Instruments}                   from '../core/instrument/Instruments';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 import SimpleSound                     from './tools/sounds/SimpleSound';
 
-export default class EveryInstrumentsApp
+export default class InstrumentApp
     extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>, {}, InstrumentAppStates> {
 
     public constructor(props: {},) {

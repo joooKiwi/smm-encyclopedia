@@ -1,4 +1,4 @@
-import './EveryCourseTagsApp.scss';
+import './CourseTagApp.scss';
 
 import {Fragment} from 'react';
 
@@ -12,7 +12,7 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
-export default class EveryCourseTagsApp
+export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>> {
 
     public constructor(props: {},) {

@@ -9,7 +9,7 @@ import {PredefinedMessages}            from '../core/predefinedMessage/Predefine
 import {TranslationUtility}            from '../lang/components/TranslationUtility';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
-export default class EveryPredefinedMessagesApp
+export default class PredefinedMessageApp
     extends AbstractSimpleListApp<AppInterpreterWithSimpleList<PredefinedMessages>> {
 
     public constructor(props: {},) {

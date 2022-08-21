@@ -1,4 +1,4 @@
-import './EveryEntitiesApp.scss';
+import './EntityApp.scss';
 import './options/EntityAppOption.scss';
 
 import {lazy} from 'react';
@@ -19,7 +19,7 @@ const SimpleSound = lazy(() => import('./tools/sounds/SimpleSound'));
 /**
  * @reactComponent
  */
-export default class EveryEntitiesApp
+export default class EntityApp
     extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, {}, EntityAppStates> {
 
     public constructor(props: {},) {

@@ -1,19 +1,19 @@
-import './EveryEntityCategoriesApp.scss';
+import './SoundEffectCategoryApp.scss';
 
 import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
 import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
-import {EntityCategories}              from '../core/entityCategory/EntityCategories';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
+import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
  */
-export default class EveryEntityCategoriesApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
+export default class SoundEffectCategoryApp
+    extends AbstractCardListApp<AppInterpreterWithCardList<SoundEffectCategories>> {
 
     public constructor(props: {},) {
         super(props,);
@@ -23,23 +23,23 @@ export default class EveryEntityCategoriesApp
     //region -------------------- Create methods --------------------
 
     protected override _createKey(): string {
-        return 'entityCategory';
+        return 'soundEffectCategory';
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entity categories"/>;
+        return <GameContentTranslationComponent translationKey="Every sound effect categories"/>;
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
-        return new class implements AppInterpreterWithCardList<EntityCategories> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
+        return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
 
-            public get iterable(): IterableIterator<EntityCategories> {
-                return EntityCategories[Symbol.iterator]();
+            public get iterable(): IterableIterator<SoundEffectCategories> {
+                return SoundEffectCategories[Symbol.iterator]();
             }
 
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListContent(enumerable: EntityCategories,): ReactElement {
+            public createCardListContent(enumerable: SoundEffectCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;
             }
 
@@ -48,6 +48,6 @@ export default class EveryEntityCategoriesApp
         }();
     }
 
-    //region -------------------- Create methods --------------------
+    //endregion -------------------- Create methods --------------------
 
 }

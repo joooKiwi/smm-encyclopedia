@@ -1,4 +1,4 @@
-import './EveryThemesApp.scss';
+import './ThemeApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
@@ -17,7 +17,7 @@ import {CommonOptions}                 from './options/CommonOptions';
 /**
  * @reactComponent
  */
-export default class EveryThemesApp
+export default class ThemeApp
     extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, {}, ThemeAppStates> {
 
 

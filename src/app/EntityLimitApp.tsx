@@ -1,4 +1,4 @@
-import './EveryEntityLimitsApp.scss';
+import './EntityLimitApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {EntityLimitAppStates}                               from './AppStates.types';
@@ -15,7 +15,7 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 /**
  * @reactComponent
  */
-export default class EveryEntityLimitsApp
+export default class EntityLimitApp
     extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, {}, EntityLimitAppStates> {
 
 
