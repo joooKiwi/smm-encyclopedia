@@ -1,6 +1,6 @@
 import type {HeaderHolder}        from './HeaderHolder';
 import type {SingleHeaderContent} from '../SimpleHeader';
-import type {ReactElement}        from '../../../../util/react/ReactProperty';
+import type {ReactElement}        from '../../../../util/react/ReactProperties';
 
 import {assert}              from '../../../../util/utilitiesMethods';
 import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables';

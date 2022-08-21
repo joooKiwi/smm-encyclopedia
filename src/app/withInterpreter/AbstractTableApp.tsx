@@ -1,6 +1,6 @@
 import type {AppInterpreterWithTable}      from '../interpreter/AppInterpreterWithTable';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
-import type {ReactElement}                 from '../../util/react/ReactProperty';
+import type {ReactElement}                 from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}          from '../tools/table/SimpleHeader';
 import type {SingleTableContent}           from '../tools/table/Table.types';
 

@@ -1,8 +1,8 @@
-import type {ReactProperty}      from '../../../util/react/ReactProperty';
+import type {ReactProperties}    from '../../../util/react/ReactProperties';
 import type {SingleTableContent} from './Table.types';
 
 export interface TableContentProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     content: readonly SingleTableContent[]
 

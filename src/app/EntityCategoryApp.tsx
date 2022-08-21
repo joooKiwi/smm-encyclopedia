@@ -1,7 +1,7 @@
 import './EntityCategoryApp.scss';
 
 import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import {EntityCategories}              from '../core/entityCategory/EntityCategories';

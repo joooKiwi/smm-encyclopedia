@@ -4,7 +4,7 @@ import {Times}       from '../../../../core/time/Times';
 import type {GlobalThemeOption} from '../GlobalThemeOption';
 import type {GlobalAppOption}   from '../GlobalAppOption';
 import type {OnClickCallback}   from './Group.types';
-import type {ReactElement}      from '../../../../util/react/ReactProperty';
+import type {ReactElement}      from '../../../../util/react/ReactProperties';
 import type {Themes}            from '../../../../core/theme/Themes';
 
 /**

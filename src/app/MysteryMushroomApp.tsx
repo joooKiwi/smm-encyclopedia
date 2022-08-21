@@ -2,7 +2,7 @@ import './MysteryMushroomApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {MysteryMushroomAppStates}                           from './AppStates.types';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';

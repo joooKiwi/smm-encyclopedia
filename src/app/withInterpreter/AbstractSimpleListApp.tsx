@@ -1,6 +1,6 @@
 import type {AppInterpreterWithSimpleList} from '../interpreter/AppInterpreterWithSimpleList';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
-import type {ReactElement}                 from '../../util/react/ReactProperty';
+import type {ReactElement}                 from '../../util/react/ReactProperties';
 
 import {AbstractAppWithInterpreter} from './AbstractAppWithInterpreter';
 import NameComponent                from '../../lang/name/component/Name.component';

@@ -1,12 +1,12 @@
 import './Arrow.scss';
 
-import type {ReactProperty}            from '../../../util/react/ReactProperty';
+import type {ReactProperties}          from '../../../util/react/ReactProperties';
 import type {PossibleNonNullableValue} from './Arrows.types';
 
 import {Arrows} from './Arrows';
 
 interface SingleArrowProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     value: PossibleNonNullableValue
 

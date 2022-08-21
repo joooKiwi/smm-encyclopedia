@@ -1,7 +1,7 @@
 import type {DefaultResources, KeyPrefix, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
 
-import type {Translation}                                   from '../containers/Translation';
-import type {ReactElement, SimpleReactPropertyWithChildren} from '../../util/react/ReactProperty';
+import type {Translation}                                     from '../containers/Translation';
+import type {ReactElement, SimpleReactPropertiesWithChildren} from '../../util/react/ReactProperties';
 
 export type TranslationReturnType = | string | JSX.Element;
 export type ContentCallback = AnyTranslationCallback<ContentNamespace>;
@@ -82,7 +82,7 @@ export interface AnyTranslationPropertyWithProperty<N extends Namespace, >
 //region -------------------- Regular property --------------------
 
 export interface TranslationPropertyByChildren<N extends Namespace, >
-    extends SimpleReactPropertyWithChildren<AnyTranslationCallback<N>> {
+    extends SimpleReactPropertiesWithChildren<AnyTranslationCallback<N>> {
 
 }
 

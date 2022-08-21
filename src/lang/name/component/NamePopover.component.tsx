@@ -3,8 +3,8 @@ import {Component, type Dispatch, type SetStateAction} from 'react';
 
 import type {Name}                                                                         from '../Name';
 import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties';
-import type {ReactComponent}                                                               from '../../../util/react/ReactComponent';
-import type {ReactElement}                                                                 from '../../../util/react/ReactProperty';
+import type {ReactComponent} from '../../../util/react/ReactComponent';
+import type {ReactElement}   from '../../../util/react/ReactProperties';
 
 import ContentTranslationComponent from '../../components/ContentTranslationComponent';
 import {ProjectLanguages}          from '../../ProjectLanguages';

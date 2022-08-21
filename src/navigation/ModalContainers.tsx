@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 
 import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from './ModalContainers.types';
-import type {ReactProperty}                                      from '../util/react/ReactProperty';
+import type {ReactProperties}                                    from '../util/react/ReactProperties';
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
 import DisplayViewBody             from './DisplayView.body';
@@ -14,7 +14,7 @@ import {ModalInstance}             from '../bootstrap/modal/ModalInstance';
 import SearchBody                  from './Search.body';
 
 interface ModalContainersProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     languageChanger: ModalPropertiesWithDiv;
 

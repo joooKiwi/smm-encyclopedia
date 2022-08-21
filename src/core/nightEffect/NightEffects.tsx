@@ -4,7 +4,7 @@ import {Link}     from 'react-router-dom';
 import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './NightEffects.types';
 import type {EveryPossibleRouteNames}                                                                                                                                                                    from '../../routes/everyRoutes.types';
-import type {ReactElement}                                                                                                                                                                               from '../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                                               from '../../util/react/ReactProperties';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 import type {TranslationMethod, TranslationReplaceKeysMap}                                                                                                                                               from '../../lang/components/TranslationProperty';
 

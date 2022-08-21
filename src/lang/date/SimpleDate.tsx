@@ -2,12 +2,12 @@ import {FormattedDateParts} from 'react-intl';
 import {Fragment}           from 'react';
 
 import type {DayNumber, MonthNumber} from './types';
-import type {ReactProperty}          from '../../util/react/ReactProperty';
+import type {ReactProperties}        from '../../util/react/ReactProperties';
 
 import {DateDayLanguages} from './DateDayLanguages';
 
 export interface DateTimeFormatProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     year: number
 

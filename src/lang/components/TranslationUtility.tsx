@@ -1,7 +1,7 @@
 import type {TOptions} from 'i18next';
 
 import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
-import type {ReactElement}                                                                                                                from '../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                from '../../util/react/ReactProperties';
 
 import {assert}         from '../../util/utilitiesMethods';
 import {isInProduction} from '../../variables';

@@ -1,8 +1,8 @@
 import type {HTMLIProperties} from '../../../../util/react/html/HTMLIProperties';
-import type {ReactProperty}   from '../../../../util/react/ReactProperty';
+import type {ReactProperties} from '../../../../util/react/ReactProperties';
 
 export interface ImageFromVariableProperties
-    extends ReactProperty, HTMLIProperties {
+    extends ReactProperties, HTMLIProperties {
 
     /** Any variable from the css variables */
     variable: PossibleVariableImage

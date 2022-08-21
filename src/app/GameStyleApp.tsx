@@ -2,7 +2,7 @@ import './GameStyleApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {GameStyleAppStates}                                 from './AppStates.types';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
 import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';

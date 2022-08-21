@@ -1,7 +1,7 @@
 import './PowerUpAndRidePriorityApp.scss';
 
 import type {PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, PowerUpPriority} from './powerUp/priority/PowerUpPriority';
-import type {ReactElement}                                                                     from '../util/react/ReactProperty';
+import type {ReactElement}                                                                     from '../util/react/ReactProperties';
 
 import AbstractApp                     from './AbstractApp';
 import {AbstractPowerUpPriority}       from './powerUp/priority/AbstractPowerUpPriority';

@@ -1,5 +1,5 @@
 import type {SimpleRoute}  from './SimpleRoute';
-import type {ReactElement} from '../util/react/ReactProperty';
+import type {ReactElement} from '../util/react/ReactProperties';
 
 /**
  * @provider

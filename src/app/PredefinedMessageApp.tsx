@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 
-import type {ReactElementOrString}         from '../util/react/ReactProperty';
+import type {ReactElementOrString}         from '../util/react/ReactProperties';
 import type {AppInterpreterWithSimpleList} from './interpreter/AppInterpreterWithSimpleList';
 
 import {AbstractSimpleListApp}         from './withInterpreter/AbstractSimpleListApp';

@@ -1,7 +1,7 @@
 import {Link, useLocation} from 'react-router-dom';
 
 import type {LanguageChangerLinkProperties} from './LanguageChanger.link';
-import type {ReactElement, ReactProperty}   from '../util/react/ReactProperty';
+import type {ReactElement, ReactProperties} from '../util/react/ReactProperties';
 
 import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent';
 import {ProjectLanguages}           from '../lang/ProjectLanguages';
@@ -10,7 +10,7 @@ import {StringContainer}            from '../util/StringContainer';
 import Tooltip                      from '../bootstrap/tooltip/Tooltip';
 
 export interface SingleLanguageChangerLinkProperties
-    extends ReactProperty, LanguageChangerLinkProperties {
+    extends ReactProperties, LanguageChangerLinkProperties {
 
     type: | 'button' | 'label'
 

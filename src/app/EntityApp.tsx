@@ -6,7 +6,7 @@ import {lazy} from 'react';
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {EntityAppStates}                                    from './AppStates.types';
 import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';

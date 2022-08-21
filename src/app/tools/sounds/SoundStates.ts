@@ -1,7 +1,7 @@
 import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundStates.types';
 import type {ClassWithEnglishName}                                                                                                                                                               from '../../../core/ClassWithEnglishName';
 import type {StaticReference}                                                                                                                                                                    from '../../../util/enum/Enum.types';
-import type {ReactElement}                                                                                                                                                                       from '../../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                                       from '../../../util/react/ReactProperties';
 import type {SoundSubElementsHolder}                                                                                                                                                             from './holder/SoundSubElementsHolder';
 
 import {Enum} from '../../../util/enum/Enum';

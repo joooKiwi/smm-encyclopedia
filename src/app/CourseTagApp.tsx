@@ -2,7 +2,7 @@ import './CourseTagApp.scss';
 
 import {Fragment} from 'react';
 
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
 import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';

@@ -5,7 +5,7 @@ import type {HeaderHolder}               from './header/HeaderHolder';
 import type {EveryHeaderHolders, Layout} from './TableHeaders.types';
 import type {ObjectHolder}               from '../../../util/holder/ObjectHolder';
 import type {ReactComponent}             from '../../../util/react/ReactComponent';
-import type {ReactElement}               from '../../../util/react/ReactProperty';
+import type {ReactElement}               from '../../../util/react/ReactProperties';
 import type {SingleHeaderContent}        from './SimpleHeader';
 import type {TableProperties}            from './Table.types';
 

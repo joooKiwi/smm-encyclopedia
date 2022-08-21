@@ -1,6 +1,6 @@
 import type {AppInterpreterWithSimpleList} from './AppInterpreterWithSimpleList';
 import type {Content}                      from './AppInterpreter';
-import type {ReactElement}                 from '../../util/react/ReactProperty';
+import type {ReactElement}                 from '../../util/react/ReactProperties';
 
 /**
  * An application interpreter when using {@link AbstractCardListApp}

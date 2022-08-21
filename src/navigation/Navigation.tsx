@@ -1,6 +1,6 @@
 import './Navigation.scss';
 
-import type {ReactProperty}                           from '../util/react/ReactProperty';
+import type {ReactProperties}                         from '../util/react/ReactProperties';
 import type {ModalProperties, ModalPropertiesWithDiv} from './ModalContainers.types';
 
 import DisplayViewButton from './button/DisplayView.button';
@@ -9,7 +9,7 @@ import ParameterButton   from './button/Parameter.button';
 import SearchButton      from './button/Search.button';
 
 export interface NavigationProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     parameter: ModalProperties
 

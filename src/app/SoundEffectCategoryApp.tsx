@@ -1,7 +1,7 @@
 import './SoundEffectCategoryApp.scss';
 
 import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';

@@ -2,13 +2,13 @@ import {Link, useLocation} from 'react-router-dom';
 import {route}             from '../routes/route';
 
 import type {EveryPossibleRouteNames} from '../routes/everyRoutes.types';
-import type {GameContentCallback}     from '../lang/components/TranslationProperty';
-import type {ReactProperty}           from '../util/react/ReactProperty';
+import type {GameContentCallback} from '../lang/components/TranslationProperty';
+import type {ReactProperties}     from '../util/react/ReactProperties';
 
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 
 interface SingleDisplayTabProperty
-    extends ReactProperty {
+    extends ReactProperties {
 
     routeName: EveryPossibleRouteNames
 

@@ -1,7 +1,7 @@
 import './DisplayView.scss';
 
 import type {ModalPropertiesWithDiv} from './ModalContainers.types';
-import type {ReactProperty}          from '../util/react/ReactProperty';
+import type {ReactProperties}        from '../util/react/ReactProperties';
 
 import DisplayViewRouteButton          from './DisplayView.routeButton';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
@@ -9,7 +9,7 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import {GlobalAppOption}               from '../app/options/global/GlobalAppOption';
 
 interface DisplayViewBodyProperties
-    extends ReactProperty, ModalPropertiesWithDiv {
+    extends ReactProperties, ModalPropertiesWithDiv {
 
 }
 

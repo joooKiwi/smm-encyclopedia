@@ -7,7 +7,7 @@ import type {Enum}                                      from '../../util/enum/En
 import type {Name}                                      from '../../lang/name/Name';
 import type {NameTrait}                                 from '../../lang/name/NameTrait';
 import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory';
-import type {ReactElement}                              from '../../util/react/ReactProperty';
+import type {ReactElement}                              from '../../util/react/ReactProperties';
 import type {SingleHeaderContent, SingleHeadersContent} from '../tools/table/SimpleHeader';
 import type {Themes}                                    from '../../core/theme/Themes';
 

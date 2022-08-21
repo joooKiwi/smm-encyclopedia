@@ -2,7 +2,7 @@ import './AbstractAppWithInterpreter.scss';
 
 import type {AppInterpreter}                     from '../interpreter/AppInterpreter';
 import type {AppWithVariableDisplayStates}       from '../AppStates.types';
-import type {ReactElement, ReactElementOrString} from '../../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString} from '../../util/react/ReactProperties';
 
 import AbstractApp    from '../AbstractApp';
 import {ViewDisplays} from './ViewDisplays';

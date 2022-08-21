@@ -3,7 +3,7 @@ import Image         from '../../../tools/images/Image';
 
 import type {OnClickCallback, PossibleElement, PossibleOptionValue} from './Group.types';
 import type {GlobalAppOption}                                       from '../GlobalAppOption';
-import type {ReactElement}                                          from '../../../../util/react/ReactProperty';
+import type {ReactElement}                                          from '../../../../util/react/ReactProperties';
 import type {Themes}                                                from '../../../../core/theme/Themes';
 import type {GlobalThemeOption}                                     from '../GlobalThemeOption';
 

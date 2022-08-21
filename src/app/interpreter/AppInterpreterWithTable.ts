@@ -3,7 +3,7 @@ import type {Enumerable}                 from '../../util/enum/Enumerable';
 import type {Content}                    from './AppInterpreter';
 import type {SingleHeaderContent}        from '../tools/table/SimpleHeader';
 import type {TableProperties}            from '../tools/table/Table.types';
-import type {ReactElement}               from '../../util/react/ReactProperty';
+import type {ReactElement}               from '../../util/react/ReactProperties';
 
 /**
  * An application interpreter when using {@link AbstractTableApp}

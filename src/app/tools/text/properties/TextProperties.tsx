@@ -1,8 +1,8 @@
-import type {HTMLSpanProperties}          from '../../../../util/react/html/HTMLSpanProperties';
-import type {ReactElement, ReactProperty} from '../../../../util/react/ReactProperty';
+import type {HTMLSpanProperties}            from '../../../../util/react/html/HTMLSpanProperties';
+import type {ReactElement, ReactProperties} from '../../../../util/react/ReactProperties';
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
-    extends ReactProperty, Omit<HTMLSpanProperties, | 'content' | 'className'> {
+    extends ReactProperties, Omit<HTMLSpanProperties, | 'content' | 'className'> {
 
     /**
      * The content used for the {@link TextComponent}

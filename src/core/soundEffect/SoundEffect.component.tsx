@@ -3,7 +3,7 @@ import './SoundEffect.scss';
 import {PureComponent} from 'react';
 
 import type {Name}         from '../../lang/name/Name';
-import type {ReactElement} from '../../util/react/ReactProperty';
+import type {ReactElement} from '../../util/react/ReactProperties';
 import type {SoundEffects} from './SoundEffects';
 
 import {Games}            from '../game/Games';

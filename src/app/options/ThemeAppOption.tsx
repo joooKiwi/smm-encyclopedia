@@ -5,7 +5,7 @@ import type {AppOptionWithTable}                                                
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ThemeAppOption.types';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 import type {Themes}                                                                                                                                                                from '../../core/theme/Themes';
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';

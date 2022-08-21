@@ -2,7 +2,7 @@ import './GameReferenceApp.scss';
 
 import {Fragment}                       from 'react';
 import type {PossibleEnglishName_Games} from '../core/soundEffect/SoundEffects.types';
-import type {ReactElement}              from '../util/react/ReactProperty';
+import type {ReactElement}              from '../util/react/ReactProperties';
 
 import AbstractApp                     from './AbstractApp';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';

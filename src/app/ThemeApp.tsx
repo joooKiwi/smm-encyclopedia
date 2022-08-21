@@ -1,7 +1,7 @@
 import './ThemeApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
 import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
 import type {ThemeAppStates}                                     from './AppStates.types';
 

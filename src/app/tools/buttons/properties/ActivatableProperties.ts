@@ -1,7 +1,7 @@
-import type {ReactProperty} from '../../../../util/react/ReactProperty';
+import type {ReactProperties} from '../../../../util/react/ReactProperties';
 
 export interface ActivatableProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     isActive: boolean
 

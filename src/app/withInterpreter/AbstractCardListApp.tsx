@@ -1,6 +1,6 @@
 import type {AppInterpreterWithCardList}   from '../interpreter/AppInterpreterWithCardList';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
-import type {ReactElement}                 from '../../util/react/ReactProperty';
+import type {ReactElement}                 from '../../util/react/ReactProperties';
 
 import {AbstractSimpleListApp} from './AbstractSimpleListApp';
 import NameComponent           from '../../lang/name/component/Name.component';

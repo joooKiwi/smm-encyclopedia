@@ -1,10 +1,10 @@
-import type {ReactProperty}        from '../../../util/react/ReactProperty';
+import type {ReactProperties}      from '../../../util/react/ReactProperties';
 import type {HTMLButtonProperties} from '../../../util/react/html/HTMLButtonProperties';
 
 import {ModalInstance} from '../ModalInstance';
 
 interface ModalButtonProperties
-    extends ReactProperty, Omit<HTMLButtonProperties, | 'type' | 'onClick'> {
+    extends ReactProperties, Omit<HTMLButtonProperties, | 'type' | 'onClick'> {
 
     elementToShow: string
 

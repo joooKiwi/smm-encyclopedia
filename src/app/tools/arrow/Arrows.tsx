@@ -1,5 +1,5 @@
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleContainer, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Arrows.types';
-import type {ReactElement}                                                                                                                                                                             from '../../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                                             from '../../../util/react/ReactProperties';
 import type {StaticReference}                                                                                                                                                                          from '../../../util/enum/Enum.types';
 
 import {Enum}                from '../../../util/enum/Enum';

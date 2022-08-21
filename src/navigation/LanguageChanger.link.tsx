@@ -2,14 +2,14 @@ import './LanguageChanger.link.scss'
 
 import {Fragment} from 'react';
 
-import type {ReactProperty} from '../util/react/ReactProperty';
+import type {ReactProperties} from '../util/react/ReactProperties';
 
 import {LanguageChangerSingleLink} from './LanguageChanger.single.link';
 import {ProjectLanguages}          from '../lang/ProjectLanguages';
 import {StringContainer}           from '../util/StringContainer';
 
 export interface LanguageChangerLinkProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     language: ProjectLanguages
 

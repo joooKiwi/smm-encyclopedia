@@ -5,7 +5,7 @@ import type {AppOptionWithTable}                                                
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeAppOption.types';
 import type {MiiCostumeAppStates}                                                                                                                                                   from '../AppStates.types';
 import type {MiiCostumes}                                                                                                                                                           from '../../core/miiCostume/MiiCostumes';
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 

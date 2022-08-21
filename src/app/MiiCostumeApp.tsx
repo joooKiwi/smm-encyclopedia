@@ -3,7 +3,7 @@ import './MiiCostumeApp.scss';
 import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
 import type {MiiCostumeAppStates}                                from './AppStates.types';
 import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperty';
+import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
 
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';

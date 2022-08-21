@@ -5,7 +5,7 @@ import {Component} from 'react';
 import type {IsSourceFoundCallback} from './SoundFounds.types';
 import type {SimpleSoundProperties} from './properties/SimpleSoundProperties';
 import type {SimpleSoundState}      from './properties/SimpleSoundState';
-import type {ReactElement}          from '../../../util/react/ReactProperty';
+import type {ReactElement}          from '../../../util/react/ReactProperties';
 
 import {SoundFounds}            from './SoundFounds';
 import {SoundStates}            from './SoundStates';

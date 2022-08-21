@@ -1,8 +1,8 @@
 import type {HTMLSpanProperties} from '../../../../util/react/html/HTMLSpanProperties';
-import type {ReactProperty}      from '../../../../util/react/ReactProperty';
+import type {ReactProperties}    from '../../../../util/react/ReactProperties';
 
 export interface BooleanTextProperties
-    extends ReactProperty, Omit<HTMLSpanProperties, | 'content' | 'className'> {
+    extends ReactProperties, Omit<HTMLSpanProperties, | 'content' | 'className'> {
 
     boolean: boolean
 

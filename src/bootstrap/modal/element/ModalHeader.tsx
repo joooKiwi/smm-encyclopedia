@@ -1,12 +1,12 @@
-import type {HTMLDivProperties}           from '../../../util/react/html/HTMLDivProperties';
-import type {HTMLButtonProperties}        from '../../../util/react/html/HTMLButtonProperties';
-import type {HTMLHeadingProperties}       from '../../../util/react/html/HTMLHeadingProperties';
-import type {ReactElement, ReactProperty} from '../../../util/react/ReactProperty';
+import type {HTMLDivProperties}             from '../../../util/react/html/HTMLDivProperties';
+import type {HTMLButtonProperties}          from '../../../util/react/html/HTMLButtonProperties';
+import type {HTMLHeadingProperties}         from '../../../util/react/html/HTMLHeadingProperties';
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
 
 import {EMPTY_OBJECT, EMPTY_STRING} from '../../../util/emptyVariables';
 
 interface ModalHeaderProperties
-    extends ReactProperty, HTMLDivProperties {
+    extends ReactProperties, HTMLDivProperties {
 
     modalTitle: | string | ReactElement
 
