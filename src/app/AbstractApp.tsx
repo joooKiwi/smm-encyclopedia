@@ -2,6 +2,7 @@ import './AbstractApp.scss';
 
 import {Component} from 'react';
 
+import type {AppProperties}                                      from './AppProperties.types';
 import type {AppStates}                                          from './AppStates.types';
 import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from '../navigation/ModalContainers.types';
 import type {ReactComponent}                                     from '../util/react/ReactComponent';
@@ -15,7 +16,7 @@ import Navigation            from '../navigation/Navigation';
 /**
  * @reactComponent
  */
-export default abstract class AbstractApp<T = {}, S extends AppStates = AppStates, >
+export default abstract class AbstractApp<T extends AppProperties = AppProperties, S extends AppStates = AppStates, >
     extends Component<T, S>
     implements ReactComponent {
 

@@ -32,7 +32,7 @@ export default class GlobalOptionComponent
 
     public constructor(props: GlobalOptionProperties,) {
         super(props);
-        this.state = GlobalAppOption.createDefaultState;
+        this.state = {};
     }
 
     public override render(): ReactElement {

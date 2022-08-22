@@ -1,4 +1,5 @@
 import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {InstrumentAppStates}                                  from './AppStates.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
@@ -10,9 +11,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 import SimpleSound                     from './tools/sounds/SimpleSound';
 
 export default class InstrumentApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>, {}, InstrumentAppStates> {
+    extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>, AppProperties, InstrumentAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.CARD_LIST,

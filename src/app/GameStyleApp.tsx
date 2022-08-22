@@ -1,6 +1,7 @@
 import './GameStyleApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {GameStyleAppStates}                                   from './AppStates.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
@@ -16,9 +17,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class GameStyleApp
-    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, {}, GameStyleAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, AppProperties, GameStyleAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,

@@ -1,4 +1,5 @@
 import type {AppInterpreterWithCardList}   from '../interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                from '../AppProperties.types';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
 import type {ReactElement}                 from '../../util/react/ReactProperties';
 
@@ -8,7 +9,7 @@ import NameComponent           from '../../lang/name/component/Name.component';
 import {ViewDisplays}          from './ViewDisplays';
 
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
-    T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractSimpleListApp<APP, T, S> {
 
     //region -------------------- Fields --------------------

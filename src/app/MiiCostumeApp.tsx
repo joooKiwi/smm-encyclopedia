@@ -1,24 +1,28 @@
 import './MiiCostumeApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {MiiCostumeAppStates}                                  from './AppStates.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
-import {TranslationUtility}            from '../lang/components/TranslationUtility';
-import {MiiCostumeAppOption}           from './options/MiiCostumeAppOption';
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
+import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
+import {MiiCostumeAppOption}           from './options/MiiCostumeAppOption';
+import {TranslationUtility}            from '../lang/components/TranslationUtility';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 export default class MiiCostumeApp
-    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, {}, MiiCostumeAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, AppProperties, MiiCostumeAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = MiiCostumeAppOption.createDefaultState;
+        this.state = {
+            typeDisplayed: ViewDisplays.TABLE,
+        };
     }
 
     //region -------------------- Create methods --------------------

@@ -1,6 +1,7 @@
 import './ThemeApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
@@ -19,10 +20,9 @@ import {CommonOptions}                 from './options/CommonOptions';
  * @reactComponent
  */
 export default class ThemeApp
-    extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, {}, ThemeAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, AppProperties, ThemeAppStates> {
 
-
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.CARD_LIST,

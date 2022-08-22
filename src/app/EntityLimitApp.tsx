@@ -1,6 +1,7 @@
 import './EntityLimitApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {EntityLimitAppStates}                                 from './AppStates.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
@@ -17,10 +18,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class EntityLimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, {}, EntityLimitAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, AppProperties, EntityLimitAppStates> {
 
-
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,

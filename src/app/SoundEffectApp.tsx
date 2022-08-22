@@ -1,6 +1,7 @@
 import './SoundEffectApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
@@ -16,9 +17,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class SoundEffectApp
-    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, {}, SoundEffectAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, AppProperties, SoundEffectAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,

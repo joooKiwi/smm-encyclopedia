@@ -4,6 +4,7 @@ import './options/EntityAppOption.scss';
 import {lazy} from 'react';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {EntityAppStates}                                      from './AppStates.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
@@ -14,6 +15,7 @@ import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {Entities}                      from '../core/entity/Entities';
 import {EntityAppOption}               from './options/EntityAppOption';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 const SimpleSound = lazy(() => import('./tools/sounds/SimpleSound'));
 
@@ -21,11 +23,13 @@ const SimpleSound = lazy(() => import('./tools/sounds/SimpleSound'));
  * @reactComponent
  */
 export default class EntityApp
-    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, {}, EntityAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, AppProperties, EntityAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = EntityAppOption.createDefaultState;
+        this.state = {
+            typeDisplayed: ViewDisplays.TABLE,
+        };
     }
 
     //region -------------------- Create methods --------------------

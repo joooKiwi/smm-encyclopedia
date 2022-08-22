@@ -1,6 +1,7 @@
 import './MysteryMushroomApp.scss';
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {MysteryMushroomAppStates}                             from './AppStates.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
@@ -17,9 +18,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class MysteryMushroomApp
-    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, {}, MysteryMushroomAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, AppProperties, MysteryMushroomAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.CARD_LIST,

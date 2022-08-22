@@ -3,6 +3,7 @@ import './CourseTagApp.scss';
 import {Fragment} from 'react';
 
 import type {AppInterpreterWithCardList,}                          from './interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
@@ -16,9 +17,11 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = {typeDisplayed: ViewDisplays.CARD_LIST,};
+        this.state = {
+            typeDisplayed: ViewDisplays.CARD_LIST,
+        };
     }
 
     //region -------------------- Create methods --------------------

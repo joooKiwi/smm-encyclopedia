@@ -62,12 +62,6 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     }
 
     //region -------------------- Getter methods --------------------
-
-    public static get createDefaultState(): GlobalAppState {
-        return {
-        };
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------

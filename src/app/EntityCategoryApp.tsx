@@ -1,14 +1,15 @@
 import './EntityCategoryApp.scss';
 
-import type {AppInterpreterWithCardList} from './interpreter/AppInterpreterWithCardList';
+import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                                        from './AppProperties.types';
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
-import type {ReactElement, ReactElementOrString}                      from '../util/react/ReactProperties';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import {EntityCategories}              from '../core/entityCategory/EntityCategories';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
-import {ViewDisplays}                                         from './withInterpreter/ViewDisplays';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
@@ -16,9 +17,11 @@ import {ViewDisplays}                                         from './withInterp
 export default class EntityCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = {typeDisplayed: ViewDisplays.CARD_LIST,};
+        this.state = {
+            typeDisplayed: ViewDisplays.CARD_LIST,
+        };
     }
 
     //region -------------------- Create methods --------------------

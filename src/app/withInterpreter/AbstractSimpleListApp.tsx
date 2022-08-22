@@ -1,14 +1,15 @@
+import type {AppProperties}                from '../AppProperties.types';
 import type {AppInterpreterWithSimpleList} from '../interpreter/AppInterpreterWithSimpleList';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
 import type {ReactElement}                 from '../../util/react/ReactProperties';
 
 import {AbstractAppWithInterpreter} from './AbstractAppWithInterpreter';
 import NameComponent                from '../../lang/name/component/Name.component';
-import {ViewDisplays}         from './ViewDisplays';
-import {ListDimensionCreator} from './ListDimension.creator';
+import {ViewDisplays}               from './ViewDisplays';
+import {ListDimensionCreator}       from './ListDimension.creator';
 
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
-    T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractAppWithInterpreter<APP, T, S> {
 
     //region -------------------- Fields --------------------
