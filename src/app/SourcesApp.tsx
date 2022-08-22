@@ -3,7 +3,7 @@ import AbstractApp from './AbstractApp';
 /**
  * @reactComponent
  */
-export default class SourceApp
+export default class SourcesApp
     extends AbstractApp {
 
     protected override _mainContent() {

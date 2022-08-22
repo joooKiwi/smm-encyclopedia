@@ -22,7 +22,7 @@ const SoundEffectCategoryApp =     lazy(() => import('../app/SoundEffectCategory
 const SoundEffectApp =             lazy(() => import('../app/SoundEffectApp'));
 const ThemeApp =                   lazy(() => import('../app/ThemeApp'));
 const HomeApp =                    lazy(() => import('../app/HomeApp'));
-const SourceApp =                  lazy(() => import('../app/SourceApp'));
+const SourcesApp =                 lazy(() => import('../app/SourcesApp'));
 
 //endregion -------------------- Dynamic imports --------------------
 //region -------------------- Applications parameter --------------------
@@ -38,7 +38,7 @@ const COURSE_TAG_PARAMETERS = [['every', 'every', 'all',],
 export const everySimpleRoutes = [
     SimpleRouteContainer.newInstance(    'home',                       '/home',                        () => <HomeApp/>,                   ),
     SimpleRouteContainer.newInstance(    'about',                      '/about',                       () => <AboutApp/>,                  ),
-    SimpleRouteContainer.newInstance(    'sources',                    '/sources',                     () => <SourceApp/>,                 ),
+    SimpleRouteContainer.newInstance(    'sources',                    '/sources',                     () => <SourcesApp/>,                ),
 
     SimpleRouteContainer.newInstance(    'everyPowerUp&RidePriority',  'every/power-up+ride/priority',  () => <PowerUpAndRidePriorityApp/>, ),
     SimpleRouteContainer.newInstance(    'everyPowerUpPriority',       'every/power-up/priority',       () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryPowerUpPriorityApp
