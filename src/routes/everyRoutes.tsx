@@ -60,7 +60,7 @@ export const everySimpleRoutes = [
 
     SimpleRouteContainer.newInstance(    'everyMysteryMushrooms',      '/every/mystery-mushroom',       () => <MysteryMushroomApp/>,         ),
 
-    SimpleRouteContainer.newInstance(    'everyPredefinedMessages',    '/every/predefined-essage',      () => <PredefinedMessageApp/>,       ),
+    SimpleRouteContainer.newInstance(    'everyPredefinedMessages',    '/every/predefined-message',     () => <PredefinedMessageApp/>,       ),
     ...COURSE_TAG_PARAMETERS.map(([name, routePath,type,]) =>
         SimpleRouteContainer.newInstance(`${name}CourseTags`,          `/${routePath}/course-tag`,      () => <CourseTagApp type={type}/>    )),
     SimpleRouteContainer.newInstance(    'everyInstruments',           '/every/instrument',             () => <InstrumentApp/>,              ),
