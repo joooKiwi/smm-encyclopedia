@@ -1,13 +1,14 @@
 import './EntityCategoryApp.scss';
 
-import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
+import type {AppInterpreterWithCardList} from './interpreter/AppInterpreterWithCardList';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                      from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import {EntityCategories}              from '../core/entityCategory/EntityCategories';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import Image                           from './tools/images/Image';
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
+import {ViewDisplays}                                         from './withInterpreter/ViewDisplays';
 
 /**
  * @reactComponent
@@ -37,7 +38,22 @@ export default class EntityCategoryApp
                 return EntityCategories[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: null,
+                    large: 3,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: EntityCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;

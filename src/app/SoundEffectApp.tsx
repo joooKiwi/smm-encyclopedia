@@ -1,9 +1,10 @@
 import './SoundEffectApp.scss';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
-import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
-import type {SoundEffectAppStates}                               from './AppStates.types';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
+import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
+import type {SoundEffectAppStates}                                 from './AppStates.types';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -41,7 +42,18 @@ export default class SoundEffectApp
                 return SoundEffects[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return null;
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: SoundEffects,): ReactElement {
                 return <div>

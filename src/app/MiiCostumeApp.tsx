@@ -1,9 +1,10 @@
 import './MiiCostumeApp.scss';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {MiiCostumeAppStates}                                from './AppStates.types';
-import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {MiiCostumeAppStates}                                  from './AppStates.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes';
@@ -39,7 +40,23 @@ export default class MiiCostumeApp
                 return MiiCostumes[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: 4,
+                    large: 3,
+                    extraExtraLarge: 2,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent({reference, englishName, imagePath,}: MiiCostumes,): ReactElement {
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`;//TODO move to the parent container className.

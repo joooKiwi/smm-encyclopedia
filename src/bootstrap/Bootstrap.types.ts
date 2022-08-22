@@ -22,3 +22,4 @@ export type BootstrapColor
       | 'success' | 'info' | 'warning' | 'danger'
       | 'white' | 'gray' | 'gray-dark'
       | 'blue' | 'indigo' | 'purple' | 'pink' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'cyan';
+export type PossibleBootstrapDimension = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;

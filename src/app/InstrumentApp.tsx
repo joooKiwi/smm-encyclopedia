@@ -1,6 +1,7 @@
-import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
-import type {InstrumentAppStates}                from './AppStates.types';
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
+import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList';
+import type {InstrumentAppStates}                                  from './AppStates.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -35,7 +36,18 @@ export default class InstrumentApp
                 return Instruments[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return null;
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent({soundPaths, name,}: Instruments,): ReactElement {
                 return <div className="instrument-sounds">{soundPaths.map((soundPath, index,) =>

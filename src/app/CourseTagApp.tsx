@@ -2,8 +2,9 @@ import './CourseTagApp.scss';
 
 import {Fragment} from 'react';
 
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
-import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
+import type {AppInterpreterWithCardList,}                          from './interpreter/AppInterpreterWithCardList';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import {CourseTags}                    from '../core/courseTag/CourseTags';
@@ -44,7 +45,18 @@ export default class CourseTagApp
                 return CourseTags[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return null;
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,): ReactElement {
                 return courseTag.firstAppearance == null

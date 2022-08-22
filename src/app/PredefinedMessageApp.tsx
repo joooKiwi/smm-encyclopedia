@@ -1,7 +1,8 @@
 import {Fragment} from 'react';
 
-import type {ReactElementOrString}         from '../util/react/ReactProperties';
 import type {AppInterpreterWithSimpleList} from './interpreter/AppInterpreterWithSimpleList';
+import type {PossibleDimensionOnList}      from './interpreter/DimensionOnList';
+import type {ReactElementOrString}         from '../util/react/ReactProperties';
 
 import {AbstractSimpleListApp}         from './withInterpreter/AbstractSimpleListApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -39,6 +40,14 @@ export default class PredefinedMessageApp
             public get iterable(): IterableIterator<PredefinedMessages> {
                 return PredefinedMessages[Symbol.iterator]();
             }
+
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return null;
+            }
+
+            //endregion -------------------- List interpreter --------------------
 
         }();
     }

@@ -1,9 +1,10 @@
 import './ThemeApp.scss';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
-import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
-import type {ThemeAppStates}                                     from './AppStates.types';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
+import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
+import type {ThemeAppStates}                                       from './AppStates.types';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
@@ -45,7 +46,23 @@ export default class ThemeApp
                 return Themes[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: 4,
+                    large: 3,
+                    extraLarge: 2,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: Themes,): ReactElement {
                 const {englishName, englishNameInHtml, endlessMarioImagePath,} = enumerable;
