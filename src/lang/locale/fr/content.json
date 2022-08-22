@@ -35,7 +35,12 @@
   "Limit":      "Limite",
   "Instrument": "Instrument",
 
-  "Type": "Type",
+  "Type":  "Type",
+  "All":   "Tout",
+  "Official": {
+    "Yes": "Officiel",
+    "No":  "Non-officiel"
+  },
 
   "In other languages":          "Dans d'autres langues",
   "Change the language":         "Changer la langue",

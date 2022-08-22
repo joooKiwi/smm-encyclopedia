@@ -2,6 +2,8 @@ import {lazy} from 'react';
 
 import {SimpleRouteContainer} from './SimpleRoute.container';
 
+//region -------------------- Dynamic imports --------------------
+
 const AboutApp =                   lazy(() => import('../app/AboutApp'));
 const PredefinedMessageApp =       lazy(() => import('../app/PredefinedMessageApp'));
 const CourseTagApp =               lazy(() => import('../app/CourseTagApp'));
@@ -22,32 +24,44 @@ const ThemeApp =                   lazy(() => import('../app/ThemeApp'));
 const HomeApp =                    lazy(() => import('../app/HomeApp'));
 const SourceApp =                  lazy(() => import('../app/SourceApp'));
 
+//endregion -------------------- Dynamic imports --------------------
+//region -------------------- Applications parameter --------------------
+
+const COURSE_TAG_PARAMETERS = [['every', 'every', 'all',],
+    ['official', 'official', 'official',], ['noOfficial', 'no-official', 'noOfficial',], ['officialExcludingMakerCentral', 'official-excluding-maker-central', 'officialExcludingMakerCentral',],
+    ['unofficial', 'unofficial', 'unofficial',], ['noUnofficial', 'no-unofficial', 'noUnofficial',], ['unofficialExcludingMakerCentral', 'unofficial-excluding-maker-central', 'unofficialExcludingMakerCentral',],
+    ['makerCentral', 'maker-central', 'makerCentral',], ['noMakerCentral', 'no-maker-central', 'noMakerCentral',],
+] as const;
+
+//endregion -------------------- Applications parameter --------------------
+
 export const everySimpleRoutes = [
-    SimpleRouteContainer.newInstance('home',                       '/home',                       () => <HomeApp/>,                    ),
-    SimpleRouteContainer.newInstance('about',                      '/about',                      () => <AboutApp/>,                   ),
-    SimpleRouteContainer.newInstance('sources',                    '/sources',                    () => <SourceApp/>,                  ),
+    SimpleRouteContainer.newInstance(    'home',                       '/home',                        () => <HomeApp/>,                   ),
+    SimpleRouteContainer.newInstance(    'about',                      '/about',                       () => <AboutApp/>,                  ),
+    SimpleRouteContainer.newInstance(    'sources',                    '/sources',                     () => <SourceApp/>,                 ),
 
-    SimpleRouteContainer.newInstance('everyPowerUp&RidePriority',  'every/power-up+ride/priority', () => <PowerUpAndRidePriorityApp/>, ),
-    SimpleRouteContainer.newInstance('everyPowerUpPriority',       'every/power-up/priority',      () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryPowerUpPriorityApp
-    SimpleRouteContainer.newInstance('everyRidePriority',          'every/ride/priority',          () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryRidePriorityApp
+    SimpleRouteContainer.newInstance(    'everyPowerUp&RidePriority',  'every/power-up+ride/priority',  () => <PowerUpAndRidePriorityApp/>, ),
+    SimpleRouteContainer.newInstance(    'everyPowerUpPriority',       'every/power-up/priority',       () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryPowerUpPriorityApp
+    SimpleRouteContainer.newInstance(    'everyRidePriority',          'every/ride/priority',           () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryRidePriorityApp
 
-    SimpleRouteContainer.newInstance('everyGameReferences',        '/every/gameReference',        () => <GameReferenceApp/>,           ),
-    SimpleRouteContainer.newInstance('everyEntities',              '/every/entity',               () => <EntityApp/>,                  ),
-    SimpleRouteContainer.newInstance('everyGameStyles',            '/every/gameStyle',            () => <GameStyleApp/>,               ),
-    SimpleRouteContainer.newInstance('everyCategories',            '/every/entity/category',      () => <EntityCategoryApp/>,          ),
-    SimpleRouteContainer.newInstance('everyGroups',                '/every/entity/group',         () => <EntityGroupApp/>,             ),
-    SimpleRouteContainer.newInstance('everyLimits',                '/every/entity/limit',         () => <EntityLimitApp/>,             ),
-    SimpleRouteContainer.newInstance('everyThemes',                '/every/theme',                () => <ThemeApp/>,                   ),
+    SimpleRouteContainer.newInstance(    'everyGameReferences',        '/every/game-reference',         () => <GameReferenceApp/>,           ),
+    SimpleRouteContainer.newInstance(    'everyEntities',              '/every/entity',                 () => <EntityApp/>,                  ),
+    SimpleRouteContainer.newInstance(    'everyGameStyles',            '/every/gameStyle',              () => <GameStyleApp/>,               ),
+    SimpleRouteContainer.newInstance(    'everyCategories',            '/every/entity-category',        () => <EntityCategoryApp/>,          ),
+    SimpleRouteContainer.newInstance(    'everyGroups',                '/every/entity-group',           () => <EntityGroupApp/>,             ),
+    SimpleRouteContainer.newInstance(    'everyLimits',                '/every/entity-limit',           () => <EntityLimitApp/>,             ),
+    SimpleRouteContainer.newInstance(    'everyThemes',                '/every/theme',                  () => <ThemeApp/>,                   ),
 
-    SimpleRouteContainer.newInstance('everySoundEffects',          '/every/soundEffect',          () => <SoundEffectApp/>,             ),
-    SimpleRouteContainer.newInstance('everySoundEffectCategories', '/every/soundEffect/category', () => <SoundEffectCategoryApp/>,     ),
+    SimpleRouteContainer.newInstance(    'everySoundEffects',          '/every/sound-effect',           () => <SoundEffectApp/>,             ),
+    SimpleRouteContainer.newInstance(    'everySoundEffectCategories', '/every/sound-effect-category',  () => <SoundEffectCategoryApp/>,     ),
 
-    SimpleRouteContainer.newInstance('everyMiiCostumes',           '/every/miiCostume',           () => <MiiCostumeApp/>,              ),
-    SimpleRouteContainer.newInstance('everyMiiCostumeCategories',  '/every/miiCostume/category',  () => <MiiCostumeCategoryApp/>,      ),
+    SimpleRouteContainer.newInstance(    'everyMiiCostumes',           '/every/mii-costume',            () => <MiiCostumeApp/>,              ),
+    SimpleRouteContainer.newInstance(    'everyMiiCostumeCategories',  '/every/mii-costume-category',   () => <MiiCostumeCategoryApp/>,      ),
 
-    SimpleRouteContainer.newInstance('everyMysteryMushrooms',      '/every/mysteryMushroom',      () => <MysteryMushroomApp/>,         ),
+    SimpleRouteContainer.newInstance(    'everyMysteryMushrooms',      '/every/mystery-mushroom',       () => <MysteryMushroomApp/>,         ),
 
-    SimpleRouteContainer.newInstance('everyPredefinedMessages',    '/every/PredefinedMessage',    () => <PredefinedMessageApp/>,       ),
-    SimpleRouteContainer.newInstance('everyCourseTags',            '/every/courseTag',            () => <CourseTagApp/>,               ),
-    SimpleRouteContainer.newInstance('everyInstruments',           '/every/instrument',           () => <InstrumentApp/>,              ),
+    SimpleRouteContainer.newInstance(    'everyPredefinedMessages',    '/every/predefined-essage',      () => <PredefinedMessageApp/>,       ),
+    ...COURSE_TAG_PARAMETERS.map(([name, routePath,type,]) =>
+        SimpleRouteContainer.newInstance(`${name}CourseTags`,          `/${routePath}/course-tag`,      () => <CourseTagApp type={type}/>    )),
+    SimpleRouteContainer.newInstance(    'everyInstruments',           '/every/instrument',             () => <InstrumentApp/>,              ),
 ] as const;

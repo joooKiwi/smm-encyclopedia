@@ -1,0 +1,51 @@
+import type {CourseTagTypes as RealEnum}                                                                                                                                                                                                                   from './CourseTagTypes';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
+export type PossibleStringValue = | Names | PossibleCourseTagType;
+export type PossibleValue = | RealEnum | string | number | null | undefined;
+
+enum Enum {
+
+    ALL,
+    OFFICIAL,
+    UNOFFICIAL,
+    MAKER_CENTRAL,
+
+}
+
+//region -------------------- Number types --------------------
+
+export type Ordinals = typeof Enum[Names];
+
+//endregion -------------------- Number types --------------------
+//region -------------------- String types --------------------
+
+export type Names = keyof typeof Enum;
+export type PossibleCourseTagType = | 'all' | 'official' | 'unofficial' | 'makerCentral'
+                                    | `no${'Official' | 'Unofficial' | 'MakerCentral'}`
+                                    | `${'official' | 'unofficial'}ExcludingMakerCentral`;
+
+//endregion -------------------- String types --------------------
+//region -------------------- Instance types --------------------
+
+export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>;
+
+export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
+export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+
+//endregion -------------------- Instance types --------------------
+//region -------------------- Array types --------------------
+
+export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
+    SimpleEnum<T>['ALL'],
+    SimpleEnum<T>['OFFICIAL'],
+    SimpleEnum<T>['UNOFFICIAL'],
+    SimpleEnum<T>['MAKER_CENTRAL'],
+];
+
+//endregion -------------------- Array types --------------------

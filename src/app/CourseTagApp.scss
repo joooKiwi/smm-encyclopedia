@@ -1,7 +1,23 @@
 #courseTag-container {
 
-  .cardListName-content-container{
+  .cardListName-content-container {
     color: rgba(var(--bs-dark-rgb), 50%,);
   }
 
+}
+
+#courseTag-linkButton-container {
+  > .btn-group > .btn {
+    border-bottom: {
+      left-radius: 0;
+      right-radius: 0;
+    }
+  }
+
+  > .btn {
+    border-top: {
+      left-radius: 0;
+      right-radius: 0;
+    };
+  }
 }

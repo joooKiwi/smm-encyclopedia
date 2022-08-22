@@ -23,12 +23,16 @@ enum Enum {
     SHOOTER,
 
     SINGLE_PLAYER,
+    MULTIPLAYER,
+    LOCAL_MULTIPLAYER,
+    ONLINE_MULTIPLAYER,
     MULTIPLAYER_VERSUS,
     MULTIPLAYER_COOP,
 
     THEMED,
     MUSIC,
     ART,
+    PIXEL_ART,
     SHOWCASE,
     STORY,
     EXPLORATION,
@@ -52,15 +56,23 @@ export type Ordinals = typeof Enum[Names];
 
 export type Names = keyof typeof Enum;
 
-export type PossibleEnglishName =
+export type PossibleEnglishName = | PossibleOfficialEnglishName | PossibleUnofficialEnglishName;
+export type PossibleOfficialEnglishName =
     | 'None' | 'Standard' | 'Puzzle-solving' | 'Speedrun'
-    | 'Autoscroll' | 'Auto-Mario' | 'One screen'
+    | 'Autoscroll' | 'Auto-Mario'
     | 'Short and sweet' | 'Precision' | 'Shooter'
-    | 'Single player' | `Multiplayer ${| 'Versus' | 'Co-op'}`
-    | 'Themed' | 'Music' | 'Art' | 'Showcase' | 'Story' | 'Exploration'
+    | 'Single player' | 'Multiplayer Versus'
+    | 'Themed' | 'Music' | 'Art'
     | 'Technical' | 'Boss battle'
-    | 'Link'
+    | 'Link';
+export type PossibleUnofficialEnglishName =
+    | 'One screen'
+    | `${| 'Local' | 'Online'} Multiplayer` | `Multiplayer${| '' | ' Co-op'}`
+    | 'Pixel art' | 'Showcase' | 'Story' | 'Exploration'
     | 'Glitch' | 'Troll' | 'Kaizo';
+export type PossibleMakerCentralName = | 'Standard' | 'Puzzle' | 'Speedrun' | 'Autoscroll' | 'Auto'
+                                       | 'Short' | 'Shooter' | 'One Player Only' | 'Multiplayer' | 'Themed'
+                                       | 'Music' | 'Pixel Art' | 'Technical' | 'Boss' | 'Link';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -77,6 +89,29 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
+export type OfficialCourseTags<T extends RealEnum = RealEnum, > = readonly [
+    SimpleEnum<T>['NONE'], SimpleEnum<T>['STANDARD'], SimpleEnum<T>['PUZZLE_SOLVING'], SimpleEnum<T>['SPEEDRUN'],
+    SimpleEnum<T>['AUTOSCROLL'], SimpleEnum<T>['AUTO_MARIO'],
+    SimpleEnum<T>['SHORT_AND_SWEET'], SimpleEnum<T>['SHOOTER'],
+    SimpleEnum<T>['SINGLE_PLAYER'], SimpleEnum<T>['MULTIPLAYER_VERSUS'],
+    SimpleEnum<T>['THEMED'], SimpleEnum<T>['MUSIC'], SimpleEnum<T>['ART'], SimpleEnum<T>['TECHNICAL'],
+    SimpleEnum<T>['BOSS_BATTLE'], SimpleEnum<T>['LINK'],
+];
+export type UnofficialCourseTags<T extends RealEnum = RealEnum, > = readonly [
+    SimpleEnum<T>['ONE_SCREEN'], SimpleEnum<T>['PRECISION'],
+    SimpleEnum<T>['MULTIPLAYER'], SimpleEnum<T>['LOCAL_MULTIPLAYER'], SimpleEnum<T>['ONLINE_MULTIPLAYER'], SimpleEnum<T>['MULTIPLAYER_COOP'],
+    SimpleEnum<T>['PIXEL_ART'], SimpleEnum<T>['SHOWCASE'], SimpleEnum<T>['STORY'], SimpleEnum<T>['EXPLORATION'],
+    SimpleEnum<T>['GLITCH'], SimpleEnum<T>['TROLL'], SimpleEnum<T>['KAIZO'],
+];
+export type MakerCentralCourseTags<T extends RealEnum = RealEnum, > = readonly [
+    SimpleEnum<T>['STANDARD'], SimpleEnum<T>['PUZZLE_SOLVING'], SimpleEnum<T>['SPEEDRUN'],
+    SimpleEnum<T>['AUTOSCROLL'], SimpleEnum<T>['AUTO_MARIO'],
+    SimpleEnum<T>['SHORT_AND_SWEET'], SimpleEnum<T>['SHOOTER'],
+    SimpleEnum<T>['SINGLE_PLAYER'], SimpleEnum<T>['MULTIPLAYER'],
+    SimpleEnum<T>['THEMED'], SimpleEnum<T>['MUSIC'], SimpleEnum<T>['PIXEL_ART'], SimpleEnum<T>['TECHNICAL'],
+    SimpleEnum<T>['BOSS_BATTLE'], SimpleEnum<T>['LINK'],
+];
+
 export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['NONE'],
     SimpleEnum<T>['STANDARD'],
@@ -92,12 +127,16 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SHOOTER'],
 
     SimpleEnum<T>['SINGLE_PLAYER'],
+    SimpleEnum<T>['MULTIPLAYER'],
+    SimpleEnum<T>['LOCAL_MULTIPLAYER'],
+    SimpleEnum<T>['ONLINE_MULTIPLAYER'],
     SimpleEnum<T>['MULTIPLAYER_VERSUS'],
     SimpleEnum<T>['MULTIPLAYER_COOP'],
 
     SimpleEnum<T>['THEMED'],
     SimpleEnum<T>['MUSIC'],
     SimpleEnum<T>['ART'],
+    SimpleEnum<T>['PIXEL_ART'],
     SimpleEnum<T>['SHOWCASE'],
     SimpleEnum<T>['STORY'],
     SimpleEnum<T>['EXPLORATION'],

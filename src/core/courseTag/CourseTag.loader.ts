@@ -3,7 +3,7 @@ import resource from '../../resources/compiled/Course tag (SMM2).json';
 import type {CourseTag}                                              from './CourseTag';
 import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template';
 import type {Loader}                                                 from '../../util/loader/Loader';
-import type {PossibleEnglishName}                                    from './CourseTags.types';
+import type {PossibleEnglishName, PossibleMakerCentralName}          from './CourseTags.types';
 import type {PropertiesArray as LanguagesPropertyArray}              from '../../lang/Loader.types';
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
@@ -16,6 +16,7 @@ import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
 enum Headers {
 
     isAnOfficialTag,
+    makerCentralName,
     firstAppearanceInMarioMaker,
 
     //region -------------------- Languages --------------------
@@ -40,6 +41,7 @@ enum Headers {
 
 type ExclusivePropertiesArray = [
     isAnOfficialTag: boolean,
+    makerCentralName: | PossibleMakerCentralName | null,
     firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker,
 ];
 
@@ -84,6 +86,7 @@ export class CourseTagLoader
                 .setDefaultConversion('emptyable string')
 
                 .convertToBoolean('isAnOfficialTag',)
+                .convertToEmptyableString('makerCentralName',)
                 .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set((finalContent.english ?? finalContent.americanEnglish) as PossibleEnglishName, finalContent,))
@@ -115,7 +118,10 @@ class TemplateBuilder
 
     public override build(): CourseTagTemplate {
         return {
-            name: this._createNameTemplate(),
+            name: {
+                ...this._createNameTemplate(),
+                makerCentral: this._getContent(this._headersIndexMap.makerCentralName),
+            },
             isOfficial: this._getContent(this._headersIndexMap.isAnOfficialTag),
             firstAppearance: this._getContent(this._headersIndexMap.firstAppearanceInMarioMaker),
         };

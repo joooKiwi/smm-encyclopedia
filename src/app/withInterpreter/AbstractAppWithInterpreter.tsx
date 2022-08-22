@@ -81,6 +81,10 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
 
     protected abstract _createTitleContent(): ReactElementOrString;
 
+    protected _createAsideContent(): | ReactElementOrString | null {
+        return null;
+    }
+
     protected _createDescription(): ReactElementOrString {
         return <>--description--{/*TODO add description*/}</>;
     }
@@ -92,11 +96,13 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
         return <div key={`${key} (sub main container)`} id="subMain-container">
             <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
                 <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
-                <aside key={`${key} (view changer)`} id="viewChanger-container">{this.#createViewDisplayGroup(typeDisplayed, key,)}</aside>
+                <aside key={`${key} (view changer)`} id="viewChanger-container">
+                    {this._createAsideContent()}
+                    {this.#createViewDisplayGroup(typeDisplayed, key,)}
+                </aside>
                 <p key={`${key} (description)`}>{this._createDescription()}</p>
                 <div key={`${key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
             </div>
-
         </div>;
     }
 
