@@ -22,9 +22,7 @@ export type Ordinals = typeof Enum[Names];
 //region -------------------- String types --------------------
 
 export type Names = keyof typeof Enum;
-export type PossibleCourseTagType = | 'all' | 'official' | 'unofficial' | 'makerCentral'
-                                    | `no${'Official' | 'Unofficial' | 'MakerCentral'}`
-                                    | `${'official' | 'unofficial'}ExcludingMakerCentral`;
+export type PossibleCourseTagType = | 'all' | 'official' | 'unofficial' | 'makerCentral';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------

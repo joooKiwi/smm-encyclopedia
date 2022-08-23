@@ -1,3 +1,6 @@
+@import '../variables';
+@import '../mixin';
+
 #courseTag-container {
 
   .cardListName-content-container {
@@ -6,18 +9,32 @@
 
 }
 
-#courseTag-linkButton-container {
-  > .btn-group > .btn {
-    border-bottom: {
-      left-radius: 0;
-      right-radius: 0;
-    }
-  }
+//region  -------------------- Link buttons --------------------
 
-  > .btn {
-    border-top: {
-      left-radius: 0;
-      right-radius: 0;
-    };
+#allCourseTag-button {
+  border-bottom: {
+    left-radius: 0;
+    right-radius: 0;
+  }
+}
+
+#officialCourseTag-button {
+}
+
+#unofficialCourseTag-button {
+}
+
+#makerCentralCourseTag-button {
+  border-top: {
+    left-radius: 0;
+    right-radius: 0;
+  }
+}
+
+//endregion  -------------------- Link buttons --------------------
+
+@include media-breakpoint-up($grid-breakpoint-md) {
+  #courseTag-container > p {
+    margin-top: 1.75cm;
   }
 }

@@ -58,8 +58,9 @@ export default class CourseTagApp
     protected override _createAsideContent(): | ReactElementOrString | null {
         const type = this.type;
 
-        return <div id="courseTag-linkButton-container" className="btn-group-vertical">
-            <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group">
+        return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
+            {type.createAllLinkButton()}
+            <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
                 {type.createOfficialLinkButton()}
                 {type.createUnofficialLinkButton()}
             </div>

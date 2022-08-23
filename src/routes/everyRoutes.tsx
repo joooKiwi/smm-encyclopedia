@@ -27,10 +27,11 @@ const SourcesApp =                lazy(() => import('../app/SourcesApp'));
 //endregion -------------------- Dynamic imports --------------------
 //region -------------------- Applications parameter --------------------
 
-const COURSE_TAG_PARAMETERS = [['every', 'every', 'all',],
-    ['official', 'official', 'official',], ['noOfficial', 'no-official', 'noOfficial',], ['officialExcludingMakerCentral', 'official-excluding-maker-central', 'officialExcludingMakerCentral',],
-    ['unofficial', 'unofficial', 'unofficial',], ['noUnofficial', 'no-unofficial', 'noUnofficial',], ['unofficialExcludingMakerCentral', 'unofficial-excluding-maker-central', 'unofficialExcludingMakerCentral',],
-    ['makerCentral', 'maker-central', 'makerCentral',], ['noMakerCentral', 'no-maker-central', 'noMakerCentral',],
+const COURSE_TAG_PARAMETERS = [
+    ['every',        'every',         'all',],
+    ['official',     'official',      'official',],
+    ['unofficial',   'unofficial',    'unofficial',],
+    ['makerCentral', 'maker-central', 'makerCentral',],
 ] as const;
 
 //endregion -------------------- Applications parameter --------------------
