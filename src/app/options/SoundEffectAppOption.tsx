@@ -90,7 +90,7 @@ export abstract class SoundEffectAppOption
     /**
      * The callback to get the enumeration based for each option.
      *
-     * @note It should only be set by {@link EntityApp} and get by {@link EntityAppOption}.
+     * @note It should only be set by {@link SoundEffectApp} and get by {@link SoundEffectAppOption}.
      */
     public static CALLBACK_TO_GET_ENUMERATION: () => SoundEffects;
 

@@ -48,14 +48,14 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
         const displayViewProperties: ModalPropertiesWithDiv = {id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,};
         const searchProperties: ModalPropertiesWithDiv = {id: AbstractApp.#SEARCH_ELEMENT_ID, divId: AbstractApp.#SEARCH_DIV_ELEMENT_ID,};
 
-        return (<>
+        return <>
             <ModalContainers languageChanger={languageChangerProperties} parameter={parametersProperties} displayView={displayViewProperties} search={searchProperties}/>
             <Navigation parameter={parametersProperties} displayView={(displayViewProperties)} search={searchProperties}/>
             <main id="main-container" className="pt-3 pb-5 align-bottom container-fluid">
                 {this._mainContent()}
             </main>
             <Footer languageChanger={languageChangerProperties}/>
-        </>);
+        </>;
     }
 
 }
