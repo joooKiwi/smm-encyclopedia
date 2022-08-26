@@ -1,15 +1,17 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                            from '../ClassWithEnglishName';
-import type {ClassWithNullableSMM2ImagePath}                                                                                                                                                                                                                                                                                                                                                                                                  from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                              from '../ClassWithReference';
-import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleImagePath_SMM1, PossibleImagePath_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from './SoundEffects.types';
-import type {SoundEffect}                                                                                                                                                                                                                                                                                                                                                                                                                     from './SoundEffect';
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                    from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                                      from '../ClassWithReference';
+import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffects.types';
+import type {PossibleSMM1ImagePath, PossibleSMM2ImagePath, SoundEffectImage}                                                                                                                                                                                                                                                          from './image/SoundEffectImage';
+import type {SoundEffect}                                                                                                                                                                                                                                                                                                             from './SoundEffect';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                         from '../../util/enum/Enum.types';
 
-import {BASE_PATH}          from '../../variables';
-import {Enum}               from '../../util/enum/Enum';
-import {Import}             from '../../util/DynamicImporter';
-import SoundEffectComponent from './SoundEffect.component';
-import {StringContainer}    from '../../util/StringContainer';
+import {Enum}                        from '../../util/enum/Enum';
+import {Import}                      from '../../util/DynamicImporter';
+import {SMM1SoundEffectImage}        from './image/SMM1SoundEffectImage';
+import {SMM2SoundEffectImage}        from './image/SMM2SoundEffectImage';
+import {SoundEffectImageInBothGames} from './image/SoundEffectImageInBothGames';
+import SoundEffectComponent          from './SoundEffect.component';
+import {StringContainer}             from '../../util/StringContainer';
 
 /**
  * @todo change the images to a different format than the constructor one.
@@ -20,68 +22,68 @@ export class SoundEffects
     extends Enum<Ordinals, Names>
     implements ClassWithReference<SoundEffect>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithNullableSMM2ImagePath<PossibleImagePath_SMM2> {
+        SoundEffectImage {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SHOCK =                  new SoundEffects('Shock',                      '00_00',             'Shock',);
-    public static readonly SCREAM =                 new SoundEffects('Scream',                     '00_01',             'Scream',);
-    public static readonly LAUGHTER =               new SoundEffects('Laughter',                   '09_00',             'Laughter',);
-    public static readonly GUFFAW =                 new SoundEffects('Guffaw',                     null,                'LoudLaughter',);
-    public static readonly BOOO =                   new SoundEffects('Booo!',                      null,                'Boo',);
-    public static readonly CHEER =                  new SoundEffects('Cheer',                      '04_01',             'Cheer',);
-    public static readonly BABY =                   new SoundEffects('Baby',                       '10_00',             'Baby',);
-    public static readonly PARTY_POPPER =           new SoundEffects('Party Popper',               null,                'Cracker',);
-    public static readonly APPLAUSE =               new SoundEffects('Applause',                   '04_00',             'Applause',);
-    public static readonly NEAR_MISS =              new SoundEffects('Near Miss',                  null,                'Incident',);
+    public static readonly SHOCK =                  new SoundEffects('Shock',                     new SoundEffectImageInBothGames('00_00', 'Shock',),);
+    public static readonly SCREAM =                 new SoundEffects('Scream',                    new SoundEffectImageInBothGames('00_01', 'Scream',),);
+    public static readonly LAUGHTER =               new SoundEffects('Laughter',                  new SoundEffectImageInBothGames('09_00', 'Laughter',),);
+    public static readonly GUFFAW =                 new SoundEffects('Guffaw',                    new SMM2SoundEffectImage('LoudLaughter',),);
+    public static readonly BOOO =                   new SoundEffects('Booo!',                     new SMM2SoundEffectImage('Boo',),);
+    public static readonly CHEER =                  new SoundEffects('Cheer',                     new SoundEffectImageInBothGames('04_01', 'Cheer',),);
+    public static readonly BABY =                   new SoundEffects('Baby',                      new SoundEffectImageInBothGames('10_00', 'Baby',),);
+    public static readonly PARTY_POPPER =           new SoundEffects('Party Popper',              new SMM2SoundEffectImage('Cracker',),);
+    public static readonly APPLAUSE =               new SoundEffects('Applause',                  new SoundEffectImageInBothGames('04_00', 'Applause',),);
+    public static readonly NEAR_MISS =              new SoundEffects('Near Miss',                 new SMM2SoundEffectImage('Incident',),);
 
-    public static readonly CLATTER =                new SoundEffects('Clatter',                    '01_00',             'Clatter',);
-    public static readonly DRAMA =                  new SoundEffects('Drama!',                     '01_01',             'Drama',);
-    public static readonly KICK =                   new SoundEffects('Kick',                       '02_00',             'Kick',);
-    public static readonly JUMP =                   new SoundEffects('Jump',                       '02_01',             'Jump',);
-    public static readonly HONK_HONK =              new SoundEffects('Honk Honk',                  '10_01',             'Honk',);
-    public static readonly PUNCH =                  new SoundEffects('Punch',                      '06_00',             'Punch',);
-    public static readonly OINK =                   new SoundEffects('Oink',                       null,                'Whoopee',);
-    public static readonly KUH_THUNK =              new SoundEffects('Kuh-thunk!',                 null,                'Focus',);
-    public static readonly BEEP =                   new SoundEffects('Beep!',                      null,                'Glitch',);
-    public static readonly NINJA_ATTACK =           new SoundEffects('Ninja Attack!',              null,                'Uproar',);
-    public static readonly ZAP =                    new SoundEffects('Zap!',                       null,                'Discord',);
+    public static readonly CLATTER =                new SoundEffects('Clatter',                   new SoundEffectImageInBothGames('01_00', 'Clatter',),);
+    public static readonly DRAMA =                  new SoundEffects('Drama!',                    new SoundEffectImageInBothGames('01_01', 'Drama',),);
+    public static readonly KICK =                   new SoundEffects('Kick',                      new SoundEffectImageInBothGames('02_00', 'Kick',),);
+    public static readonly JUMP =                   new SoundEffects('Jump',                      new SoundEffectImageInBothGames('02_01', 'Jump',),);
+    public static readonly HONK_HONK =              new SoundEffects('Honk Honk',                 new SoundEffectImageInBothGames('10_01', 'Honk',),);
+    public static readonly PUNCH =                  new SoundEffects('Punch',                     new SoundEffectImageInBothGames('06_00', 'Punch',),);
+    public static readonly OINK =                   new SoundEffects('Oink',                      new SMM2SoundEffectImage('Whoopee',),);
+    public static readonly KUH_THUNK =              new SoundEffects('Kuh-thunk!',                new SMM2SoundEffectImage('Focus',),);
+    public static readonly BEEP =                   new SoundEffects('Beep!',                     new SMM2SoundEffectImage('Glitch',),);
+    public static readonly NINJA_ATTACK =           new SoundEffects('Ninja Attack!',             new SMM2SoundEffectImage('Uproar',),);
+    public static readonly ZAP =                    new SoundEffects('Zap!',                      new SMM2SoundEffectImage('Discord',),);
 
-    public static readonly DING_DONG =              new SoundEffects('Ding Dong',                 '11_00',              'Ding',);
-    public static readonly BZZZT =                  new SoundEffects('Bzzzt!',                    '11_01',              'Bzzzt',);
-    public static readonly GLORY =                  new SoundEffects('Glory',                     '05_00',              'Glory',);
-    public static readonly DOOM =                   new SoundEffects('Doom',                      '05_01',              'Doom',);
-    public static readonly YEAH =                   new SoundEffects('Yeah!',                     null,                 'Admiration',);
-    public static readonly AWW =                    new SoundEffects('Aww...',                    null,                 'Anguish',);
+    public static readonly DING_DONG =              new SoundEffects('Ding Dong',                 new SoundEffectImageInBothGames('11_00', 'Ding',),);
+    public static readonly BZZZT =                  new SoundEffects('Bzzzt!',                    new SoundEffectImageInBothGames('11_01', 'Bzzzt',),);
+    public static readonly GLORY =                  new SoundEffects('Glory',                     new SoundEffectImageInBothGames('05_00', 'Glory',),);
+    public static readonly DOOM =                   new SoundEffects('Doom',                      new SoundEffectImageInBothGames('05_01', 'Doom',),);
+    public static readonly YEAH =                   new SoundEffects('Yeah!',                     new SMM2SoundEffectImage('Admiration',),);
+    public static readonly AWW =                    new SoundEffects('Aww...',                    new SMM2SoundEffectImage('Anguish',),);
 
-    public static readonly FIREWORKS =              new SoundEffects('Fireworks',                 '06_01',              'Fireworks',);
-    public static readonly AUDIENCE =               new SoundEffects('Audience',                  null,                 'Audience',);
-    public static readonly SCATTING =               new SoundEffects('Scatting',                  null,                 'Scat',);
-    public static readonly BIRD_CHIRPING =          new SoundEffects('Bird\'s Chirping',          '09_01',              null,);
-    public static readonly SPARK =                  new SoundEffects('Spark',                     null,                 'Firecracker',);
-    public static readonly TRADITIONAL =            new SoundEffects('Traditional',               null,                 'Ohayasi',);
-    public static readonly ELECTRIC_GUITAR =        new SoundEffects('Electric Guitar',           null,                 'ElectricGuitar',);
-    public static readonly DISTORTION =             new SoundEffects('Distortion',                '12_01',              null,);
-    public static readonly TWISTY_TURNY =           new SoundEffects('Twisty Turny',              null,                 'Filter',);
-    public static readonly WOOZY =                  new SoundEffects('Woozy',                     null,                 'SoundEffect',);
-    public static readonly TELEPHONE =              new SoundEffects('Telephone',                 '12_00',              null,);
-    public static readonly FLASH =                  new SoundEffects('Flash',                     null,                 'Halo',);
+    public static readonly FIREWORKS =              new SoundEffects('Fireworks',                 new SoundEffectImageInBothGames('06_01', 'Fireworks',),);
+    public static readonly AUDIENCE =               new SoundEffects('Audience',                  new SMM2SoundEffectImage('Audience',),);
+    public static readonly SCATTING =               new SoundEffects('Scatting',                  new SMM2SoundEffectImage('Scat',),);
+    public static readonly BIRD_CHIRPING =          new SoundEffects('Bird\'s Chirping',          new SMM1SoundEffectImage('09_01',),);
+    public static readonly SPARK =                  new SoundEffects('Spark',                     new SMM2SoundEffectImage('Firecracker',),);
+    public static readonly TRADITIONAL =            new SoundEffects('Traditional',               new SMM2SoundEffectImage('Ohayasi',),);
+    public static readonly ELECTRIC_GUITAR =        new SoundEffects('Electric Guitar',           new SMM2SoundEffectImage('ElectricGuitar',),);
+    public static readonly DISTORTION =             new SoundEffects('Distortion',                new SMM1SoundEffectImage('12_01',),);
+    public static readonly TWISTY_TURNY =           new SoundEffects('Twisty Turny',              new SMM2SoundEffectImage('Filter',),);
+    public static readonly WOOZY =                  new SoundEffects('Woozy',                     new SMM2SoundEffectImage('SoundEffect',),);
+    public static readonly TELEPHONE =              new SoundEffects('Telephone',                 new SMM1SoundEffectImage('12_00',),);
+    public static readonly FLASH =                  new SoundEffects('Flash',                     new SMM2SoundEffectImage('Halo',),);
 
-    public static readonly PEACEFUL =               new SoundEffects('Peaceful',                  null,                 'Calm',);
-    public static readonly HORROR =                 new SoundEffects('Horror',                    null,                 'Unrest',);
-    public static readonly BONUS_MUSIC =            new SoundEffects('Bonus Music',               '08_01',              'Bonus',);
-    public static readonly FESTIVE_MUSIC =          new SoundEffects('Festive Music',             '07_00',              null,);
-    public static readonly RAVE_MUSIC =             new SoundEffects('Rave Music',                '07_01',              null,);
-    public static readonly HEARTBEAT =              new SoundEffects('Heartbeat',                 '03_00',              'Heartbeat',);
-    public static readonly SILENCE =                new SoundEffects('Silence',                   '03_01',              'Silence',);
-    public static readonly BIRD_TWEETING_NOISE =    new SoundEffects('Bird\'s Tweeting Noise',    ['13_00', '14_00',],  null,);
-    public static readonly CHICKEN_CLUCKING_NOISE = new SoundEffects('Chicken\'s Clucking Noise', ['13_01', '14_01',],  null,);
-    public static readonly BOSS_MUSIC =             new SoundEffects('Boss Music',                '08_00',              'Boss',);
-    public static readonly FINAL_BOSS =             new SoundEffects('Final Boss',                null,                 'LastBoss',);
-    public static readonly SUPER_MARIO_KART =       new SoundEffects('Super Mario Kart',          null,                 'Mario00',);
-    public static readonly SUPER_MARIO_64 =         new SoundEffects('Super Mario 64',            null,                 'Mario01',);
-    public static readonly SUPER_MARIO_SUNSHINE =   new SoundEffects('Super Mario Sunshine',      null,                 'Mario02',);
-    public static readonly SUPER_MARIO_GALAXY =     new SoundEffects('Super Mario Galaxy',        null,                 'Mario03',);
+    public static readonly PEACEFUL =               new SoundEffects('Peaceful',                  new SMM2SoundEffectImage('Calm',),);
+    public static readonly HORROR =                 new SoundEffects('Horror',                    new SMM2SoundEffectImage('Unrest',),);
+    public static readonly BONUS_MUSIC =            new SoundEffects('Bonus Music',               new SoundEffectImageInBothGames('08_01', 'Bonus',),);
+    public static readonly FESTIVE_MUSIC =          new SoundEffects('Festive Music',             new SMM1SoundEffectImage('07_00',),);
+    public static readonly RAVE_MUSIC =             new SoundEffects('Rave Music',                new SMM1SoundEffectImage('07_01',),);
+    public static readonly HEARTBEAT =              new SoundEffects('Heartbeat',                 new SoundEffectImageInBothGames('03_00', 'Heartbeat',),);
+    public static readonly SILENCE =                new SoundEffects('Silence',                   new SoundEffectImageInBothGames('03_01', 'Silence',),);
+    public static readonly BIRD_TWEETING_NOISE =    new SoundEffects('Bird\'s Tweeting Noise',    new SMM1SoundEffectImage('13_00', '14_00',),);
+    public static readonly CHICKEN_CLUCKING_NOISE = new SoundEffects('Chicken\'s Clucking Noise', new SMM1SoundEffectImage('13_01', '14_01',),);
+    public static readonly BOSS_MUSIC =             new SoundEffects('Boss Music',                new SoundEffectImageInBothGames('08_00', 'Boss',),);
+    public static readonly FINAL_BOSS =             new SoundEffects('Final Boss',                new SMM2SoundEffectImage('LastBoss',),);
+    public static readonly SUPER_MARIO_KART =       new SoundEffects('Super Mario Kart',          new SMM2SoundEffectImage('Mario02',),);
+    public static readonly SUPER_MARIO_64 =         new SoundEffects('Super Mario 64',            new SMM2SoundEffectImage('Mario01',),);
+    public static readonly SUPER_MARIO_SUNSHINE =   new SoundEffects('Super Mario Sunshine',      new SMM2SoundEffectImage('Mario02',),);
+    public static readonly SUPER_MARIO_GALAXY =     new SoundEffects('Super Mario Galaxy',        new SMM2SoundEffectImage('Mario03',),);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -96,21 +98,17 @@ export class SoundEffects
 
     #reference?: SoundEffect;
     readonly #englishName;
-    readonly #SMM1ImagePath: | readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,] | null;
-    readonly #SMM2ImagePath: | PossibleImagePath_SMM2 | null;
+    readonly #images: SoundEffectImage;
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(englishName: PossibleEnglishName_SMM1AndSMM2, imageNumber_smm1: | SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,], imageName_smm2: SoundEffectImageName_SMM2,)
-    private constructor(englishName: Exclude<PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2>, imageNumber_smm1: SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,], imageName_smm2: null,)
-    private constructor(englishName: Exclude<PossibleEnglishName_SMM2, PossibleEnglishName_SMM1AndSMM2>, imageNumber_smm1: null, imageName_smm2: SoundEffectImageName_SMM2,)
-    private constructor(englishName: PossibleEnglishName, imageNumber_smm1: | SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,] | null, imageName_smm2: SoundEffectImageName_SMM2 | null,) {
+    private constructor(englishName: PossibleEnglishName_SMM1AndSMM2, images: SoundEffectImageInBothGames,)
+    private constructor(englishName: Exclude<PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2>, images: SMM1SoundEffectImage,)
+    private constructor(englishName: Exclude<PossibleEnglishName_SMM2, PossibleEnglishName_SMM1AndSMM2>, images: SMM2SoundEffectImage,)
+    private constructor(englishName: PossibleEnglishName, images: SoundEffectImage,) {
         super();
         this.#englishName = new StringContainer(englishName);
-        this.#SMM1ImagePath = imageNumber_smm1 == null ? null : typeof imageNumber_smm1 == 'string'
-            ? [`/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${imageNumber_smm1}.tiff`]
-            : [`/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${imageNumber_smm1[0]}.tiff`, `/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${imageNumber_smm1[1]}.tiff`,];
-        this.#SMM2ImagePath = imageName_smm2 == null ? null : `/${BASE_PATH}/sound effect/Lyt_E_P_SE_${imageName_smm2}.tiff`;
+        this.#images = images;
     }
 
     //region -------------------- Getter methods --------------------
@@ -135,13 +133,21 @@ export class SoundEffects
         return this.#englishName.getInHtml;
     }
 
-    public get SMM1ImagePath(): | readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,] | null {
-        return this.#SMM1ImagePath;
+    //region -------------------- Getter methods (image) --------------------
+
+    public get images(): SoundEffectImage {
+        return this.#images;
     }
 
-    public get SMM2ImagePath(): | PossibleImagePath_SMM2 | null {
-        return this.#SMM2ImagePath;
+    public get SMM1ImagePath(): PossibleSMM1ImagePath {
+        return this.images.SMM1ImagePath;
     }
+
+    public get SMM2ImagePath(): PossibleSMM2ImagePath {
+        return this.images.SMM2ImagePath;
+    }
+
+    //endregion -------------------- Getter methods (image) --------------------
 
 
     public static get soundEffect_games(): EnumArray_Games {
