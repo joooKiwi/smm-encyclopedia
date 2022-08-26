@@ -6,9 +6,9 @@ import type {SoundEffectTemplate} from './SoundEffect.template';
 import {EmptySoundEffectCategory}                  from '../soundEffectCategory/EmptySoundEffectCategory';
 import {GamePropertyProvider}                      from '../entity/properties/game/GameProperty.provider';
 import {Games}                                     from '../game/Games';
-import {PlayerSoundEffectTriggerPropertyContainer} from './properties/PlayerSoundEffectTriggerProperty.container';
+import {PlayerSoundEffectTriggerPropertyContainer} from './property/PlayerSoundEffectTriggerProperty.container';
 import {SoundEffectContainer}                      from './SoundEffect.container';
-import {SoundEffectPropertyContainer}              from './properties/SoundEffectProperty.container';
+import {SoundEffectPropertyContainer}              from './property/SoundEffectProperty.container';
 import {SoundEffectCategories}                     from '../soundEffectCategory/SoundEffectCategories';
 import {TemplateWithNameBuilder}                   from '../_template/TemplateWithName.builder';
 
