@@ -1,7 +1,8 @@
 import type {ClassWithTranslationKey} from '../../../lang/ClassWithTranslationKey';
+import type {PossibleTranslationKey}  from './PlayerSoundEffectTriggers.types';
 
 export interface PlayerSoundEffectTriggerProperty
-    extends ClassWithTranslationKey<PossibleTranslation> {
+    extends ClassWithTranslationKey<PossibleTranslationKey> {
 
     //region -------------------- Movement triggers --------------------
 
@@ -32,17 +33,3 @@ export interface PlayerSoundEffectTriggerProperty
     //endregion -------------------- Environment triggers --------------------
 
 }
-
-export type PossibleTranslation =
-    | 'After land + jump'
-    | 'Turn after full speed'
-    | 'Crouch'
-    | 'After 3 seconds → no movement (continuous)'
-
-    | 'Power-up collected'
-    | 'Get in entity'
-
-    | 'Spawn'
-    | 'Take damage'
-    | 'Lose life'
-    | 'Take damage | Lose life';

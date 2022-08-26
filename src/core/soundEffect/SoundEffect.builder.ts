@@ -1,16 +1,19 @@
-import type {Builder}             from '../../util/builder/Builder';
-import type {Name}                from '../../lang/name/Name';
-import type {SoundEffect}         from './SoundEffect';
-import type {SoundEffectTemplate} from './SoundEffect.template';
+import type {Builder}                          from '../../util/builder/Builder';
+import type {Name}                             from '../../lang/name/Name';
+import type {SoundEffect}                      from './SoundEffect';
+import type {SoundEffectTemplate}              from './SoundEffect.template';
+import type {ObjectHolder}                     from '../../util/holder/ObjectHolder';
+import type {PlayerSoundEffectTriggerTemplate} from './property/PlayerSoundEffectTrigger.template';
 
-import {EmptySoundEffectCategory}                  from '../soundEffectCategory/EmptySoundEffectCategory';
-import {GamePropertyProvider}                      from '../entity/properties/game/GameProperty.provider';
-import {Games}                                     from '../game/Games';
-import {PlayerSoundEffectTriggerPropertyContainer} from './property/PlayerSoundEffectTriggerProperty.container';
-import {SoundEffectContainer}                      from './SoundEffect.container';
-import {SoundEffectPropertyContainer}              from './property/SoundEffectProperty.container';
-import {SoundEffectCategories}                     from '../soundEffectCategory/SoundEffectCategories';
-import {TemplateWithNameBuilder}                   from '../_template/TemplateWithName.builder';
+import {EmptySoundEffectCategory}     from '../soundEffectCategory/EmptySoundEffectCategory';
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
+import {GamePropertyProvider}         from '../entity/properties/game/GameProperty.provider';
+import {Games}                        from '../game/Games';
+import {PlayerSoundEffectTriggers}    from './property/PlayerSoundEffectTriggers';
+import {SoundEffectContainer}         from './SoundEffect.container';
+import {SoundEffectPropertyContainer} from './property/SoundEffectProperty.container';
+import {SoundEffectCategories}        from '../soundEffectCategory/SoundEffectCategories';
+import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder';
 
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
@@ -30,17 +33,22 @@ export class SoundEffectBuilder
             ?? EmptySoundEffectCategory.get;
     }
 
+    static #getTrigger({movement, interaction, environment,}: PlayerSoundEffectTriggerTemplate,): ObjectHolder<PlayerSoundEffectTriggers> {
+        return new DelayedObjectHolderContainer(() => PlayerSoundEffectTriggers.getValueByTrigger(//TODO replace PlayerSoundEffectTriggers by an indirect usage
+            movement.jumpAfterLanding, movement.turnAroundAfterBeingAtFullSpeed, movement.crouch, movement.after3SecondsRepeatedly,
+            interaction.collectPowerUp, interaction.getIntoAnEntity,
+            environment.spawn, environment.damage, environment.lostALife,
+        ));
+    }
+
     #createProperty() {
-        const isInPropertiesTemplate = this.template.properties.isIn;
-        const gameTemplate = isInPropertiesTemplate.game;
-        const {movement: playerMovementTriggerTemplate, interaction: playerInteractionTriggerTemplate, environment: playerEnvironmentTriggerTemplate,} = isInPropertiesTemplate.trigger.player;
+        const isInPropertiesTemplate = this.template.properties.isIn,
+            gameTemplate = isInPropertiesTemplate.game;
 
         return new SoundEffectPropertyContainer(
             GamePropertyProvider.get.get(gameTemplate['1And3DS'], gameTemplate['2'],),
 
-            PlayerSoundEffectTriggerPropertyContainer.get(playerMovementTriggerTemplate.jumpAfterLanding, playerMovementTriggerTemplate.turnAroundAfterBeingAtFullSpeed, playerMovementTriggerTemplate.crouch, playerMovementTriggerTemplate.after3SecondsRepeatedly,
-                playerInteractionTriggerTemplate.collectPowerUp, playerInteractionTriggerTemplate.getIntoAnEntity,
-                playerEnvironmentTriggerTemplate.spawn, playerEnvironmentTriggerTemplate.damage, playerEnvironmentTriggerTemplate.lostALife,),
+            SoundEffectBuilder.#getTrigger(isInPropertiesTemplate.trigger.player),
         );
     }
 

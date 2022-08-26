@@ -1,6 +1,7 @@
-import type {GameProperty}                     from '../../entity/properties/game/GameProperty';
-import type {PlayerSoundEffectTriggerProperty} from './PlayerSoundEffectTriggerProperty';
-import type {SoundEffectProperty}              from './SoundEffectProperty';
+import type {GameProperty}              from '../../entity/properties/game/GameProperty';
+import type {ObjectHolder}              from '../../../util/holder/ObjectHolder';
+import type {PlayerSoundEffectTriggers} from './PlayerSoundEffectTriggers';
+import type {SoundEffectProperty}       from './SoundEffectProperty';
 
 export class SoundEffectPropertyContainer
     implements SoundEffectProperty {
@@ -8,13 +9,13 @@ export class SoundEffectPropertyContainer
     //region -------------------- Fields --------------------
 
     readonly #gameContainer;
-    readonly #playerSoundEffectTriggerContainer;
+    readonly #playerSoundEffectTriggerHolder;
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(game: GameProperty, playerSoundEffectTrigger: PlayerSoundEffectTriggerProperty,) {
+    public constructor(game: GameProperty, playerSoundEffectTrigger: ObjectHolder<PlayerSoundEffectTriggers>,) {
         this.#gameContainer = game;
-        this.#playerSoundEffectTriggerContainer = playerSoundEffectTrigger;
+        this.#playerSoundEffectTriggerHolder = playerSoundEffectTrigger;
     }
 
     //region -------------------- Getter methods --------------------
@@ -40,8 +41,8 @@ export class SoundEffectPropertyContainer
     //endregion -------------------- Game properties --------------------
     //region -------------------- Player sound effect trigger properties --------------------
 
-    public get playerSoundEffectTriggerContainer(): PlayerSoundEffectTriggerProperty {
-        return this.#playerSoundEffectTriggerContainer;
+    public get playerSoundEffectTriggerContainer(): PlayerSoundEffectTriggers {
+        return this.#playerSoundEffectTriggerHolder.get;
     }
 
     public get translationKey() {
