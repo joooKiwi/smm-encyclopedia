@@ -12,6 +12,7 @@ import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.comp
 import {CommonOptions}                 from './CommonOptions';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {Enum}                          from '../../util/enum/Enum';
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../../core/game/Games';
 import {SoundEffects}                  from '../../core/soundEffect/SoundEffects';
 import {SoundEffectCategories}         from '../../core/soundEffectCategory/SoundEffectCategories';
@@ -69,9 +70,7 @@ export abstract class SoundEffectAppOption
     public static readonly PLAYER_BEHAVIOUR = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
-            const {reference,} = enumeration;
-
-            return <>--{reference.translationKey}--</>;
+            return <GameContentTranslationComponent translationKey={`soundEffect.${enumeration.reference.translationKey}`}/>;
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -91,7 +90,7 @@ export abstract class SoundEffectAppOption
     /**
      * The callback to get the enumeration based for each option.
      *
-     * @note It should only be set by {@link EveryEntitiesApp} and get by {@link EntityAppOption}.
+     * @note It should only be set by {@link EntityApp} and get by {@link EntityAppOption}.
      */
     public static CALLBACK_TO_GET_ENUMERATION: () => SoundEffects;
 

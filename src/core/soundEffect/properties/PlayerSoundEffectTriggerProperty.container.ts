@@ -11,18 +11,18 @@ export class PlayerSoundEffectTriggerPropertyContainer
 
     //region -------------------- Predefined containers --------------------
 
-    static readonly #JUMP_AFTER_LANDING =                    new PlayerSoundEffectTriggerPropertyContainer('After landing and a jump is made',                                                                                                                 true,  false, false, false, false, false, false, false, false,);
-    static readonly #TURN_AROUND_AFTER_BEING_AT_FULL_SPEED = new PlayerSoundEffectTriggerPropertyContainer('After turning around after being at full speed',                                                                                                   false, true,  false, false, false, false, false, false, false,);
-    static readonly #ON_CROUCH =                             new PlayerSoundEffectTriggerPropertyContainer('On crouch',                                                                                                                                        false, false, true,  false, false, false, false, false, false,);
-    static readonly #AFTER_3_SECONDS_OF_NON_MOVEMENT =       new PlayerSoundEffectTriggerPropertyContainer('After 3 seconds of non movement (it repeat itself continuously)',                                                                                  false, false, false, true,  false, false, false, false, false,);
+    static readonly #JUMP_AFTER_LANDING =                    new PlayerSoundEffectTriggerPropertyContainer('After land + jump',                          true,  false, false, false, false, false, false, false, false,);
+    static readonly #TURN_AROUND_AFTER_BEING_AT_FULL_SPEED = new PlayerSoundEffectTriggerPropertyContainer('Turn after full speed',                      false, true,  false, false, false, false, false, false, false,);
+    static readonly #ON_CROUCH =                             new PlayerSoundEffectTriggerPropertyContainer('Crouch',                                     false, false, true,  false, false, false, false, false, false,);
+    static readonly #AFTER_3_SECONDS_OF_NON_MOVEMENT =       new PlayerSoundEffectTriggerPropertyContainer('After 3 seconds → no movement (continuous)', false, false, false, true,  false, false, false, false, false,);
 
-    static readonly #COLLECT_POWER_UP =                      new PlayerSoundEffectTriggerPropertyContainer('When a power-up is collected (power-up / Buzzy Shell / Spiny Shell)',                                                                              false, false, false, false, true,  false, false, false, false,);
-    static readonly #GET_INTO_AN_ENTITY =                    new PlayerSoundEffectTriggerPropertyContainer('When getting into an entity (Clown car / Lakitu\'s Cloud / Boots) / Yoshi (SMM2 only) / Dry Bones Shell (SMM2 only) / Swinging Claw (SMM2 only))', false, false, false, false, false, true,  false, false, false,);
+    static readonly #COLLECT_POWER_UP =                      new PlayerSoundEffectTriggerPropertyContainer('Power-up collected',                         false, false, false, false, true,  false, false, false, false,);
+    static readonly #GET_INTO_AN_ENTITY =                    new PlayerSoundEffectTriggerPropertyContainer('Get in entity',                              false, false, false, false, false, true,  false, false, false,);
 
-    static readonly #AT_SPAWN =                              new PlayerSoundEffectTriggerPropertyContainer('At spawn',                                                                                                                                         false, false, false, false, false, false, true,  false, false,);
-    static readonly #TAKE_DAMAGE =                           new PlayerSoundEffectTriggerPropertyContainer('When taking damage',                                                                                                                               false, false, false, false, false, false, false, true,  false,);
-    static readonly #LOST_A_LIFE =                           new PlayerSoundEffectTriggerPropertyContainer('When losing a life',                                                                                                                               false, false, false, false, false, false, false, false, true, );
-    static readonly #TAKE_DAMAGE_OR_LOST_A_LIFE =            new PlayerSoundEffectTriggerPropertyContainer('When taking damage or losing a life',                                                                                                              false, false, false, false, false, false, false, true,  true, );
+    static readonly #AT_SPAWN =                              new PlayerSoundEffectTriggerPropertyContainer('Spawn',                                      false, false, false, false, false, false, true,  false, false,);
+    static readonly #TAKE_DAMAGE =                           new PlayerSoundEffectTriggerPropertyContainer('Take damage',                                false, false, false, false, false, false, false, true,  false,);
+    static readonly #LOST_A_LIFE =                           new PlayerSoundEffectTriggerPropertyContainer('Lose life',                                  false, false, false, false, false, false, false, false, true, );
+    static readonly #TAKE_DAMAGE_OR_LOST_A_LIFE =            new PlayerSoundEffectTriggerPropertyContainer('Take damage | Lose life',                    false, false, false, false, false, false, false, true,  true, );
 
     //endregion -------------------- Predefined containers --------------------
     //region -------------------- Fields, constructor & methods --------------------

@@ -34,16 +34,15 @@ export interface PlayerSoundEffectTriggerProperty
 }
 
 export type PossibleTranslation =
-    | 'After landing and a jump is made'
-    | 'After turning around after being at full speed'
-    | 'On crouch'
-    | 'After 3 seconds of non movement (it repeat itself continuously)'
+    | 'After land + jump'
+    | 'Turn after full speed'
+    | 'Crouch'
+    | 'After 3 seconds → no movement (continuous)'
 
-    | 'When a power-up is collected (power-up / Buzzy Shell / Spiny Shell)'
-    | 'When getting into an entity (Clown car / Lakitu\'s Cloud / Boots) / Yoshi (SMM2 only) / Dry Bones Shell (SMM2 only) / Swinging Claw (SMM2 only))'
+    | 'Power-up collected'
+    | 'Get in entity'
 
-    |'At spawn'
-    |'When taking damage'
-    |'When losing a life'
-    |'When taking damage or losing a life'
-    ;
+    | 'Spawn'
+    | 'Take damage'
+    | 'Lose life'
+    | 'Take damage | Lose life';
