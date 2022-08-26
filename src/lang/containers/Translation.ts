@@ -1,6 +1,7 @@
-import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
+import type {Namespace, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
+import type {ReactElementOrString}                                       from '../../util/react/ReactProperties';
 
-export interface Translation<N extends Namespace = Namespace, T extends PossibleReactElement = PossibleReactElement, > {
+export interface Translation<N extends Namespace = Namespace, T extends ReactElementOrString = ReactElementOrString, > {
 
     get namespace(): N
 
