@@ -1,6 +1,7 @@
 import type {ReactState} from '../../util/react/ReactState';
 
-import {Enum} from '../../util/enum/Enum';
+import {Enum}           from '../../util/enum/Enum';
+import {isInProduction} from '../../variables';
 
 /**@deprecated*/
 export abstract class AbstractAppOption<T, S extends ReactState, O extends number = number, N extends string = string, >
@@ -20,7 +21,8 @@ export abstract class AbstractAppOption<T, S extends ReactState, O extends numbe
     //region -------------------- Getter & setter methods --------------------
 
     /**@deprecated The method should no longer be used*/public get get(): T {
-        console.warn(`The get method in "${this._static.name}" is deprecated.`);
+        if (!isInProduction)
+            console.warn(`The get method in "${this._static.name}" is deprecated.`);
         return this.#defaultValue;
     }
 
@@ -28,7 +30,8 @@ export abstract class AbstractAppOption<T, S extends ReactState, O extends numbe
     /**@deprecated The method should no longer be used*/public set(value: T,): this
     /**@deprecated The method should no longer be used*/public set(value: T, nextState: S,): this
     public set(): this {
-        console.warn(`The set value in "${this._static.name}" is deprecated, a new method will be under its way!`);
+        if (!isInProduction)
+            console.warn(`The set value in "${this._static.name}" is deprecated, a new method will be under its way!`);
         return this;
     }
 
