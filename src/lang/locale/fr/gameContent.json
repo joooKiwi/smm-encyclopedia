@@ -161,7 +161,7 @@
     "Crouch":                                     "Lorsqu'un {{player}} s'accroupit",
     "After 3 seconds → no movement (continuous)": "Après 3 secondes de non mouvement (se répète continuellement)",
     "Power-up collected":                         "Lorsqu'une {{powerUp}} est collectée ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}})",
-    "Get in entity":                              "Lorsqu'un {{player}} va [dans / sur / est attrapé par] {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} or {{swingingClawImage}}",
+    "Get in entity":                              "Lorsqu'un {{player}} va [dans / sur / est attrapé par] {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} ou {{swingingClawImage}}",
     "Spawn":                                      "Lorsqu'un {{player}} apparaît",
     "Take damage":                                "Lorsqu'un {{player}} reçoit des dégâts",
     "Lose life":                                  "Lorsqu'un {{player}} perd une vie",
