@@ -69,11 +69,8 @@ export class TranslationUtility {
         if (isInProduction)
             return;
 
-        if (typeof secondElement != 'string') {
-            if (secondElement?.key == null)
-                console.warn(`The react element ${secondElement.type} doesn't contain a key.`);
-            console.warn(`A generic error will be thrown.\nThe properties included within it are ${Object.entries(secondElement.props).map(property => `[${property}]`)}.`);
-        }
+        if (typeof secondElement != 'string' && secondElement?.key == null)
+            console.warn(`The react element ${secondElement.type} doesn't contain a key.`);
     }
 
 }
