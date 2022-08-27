@@ -94,6 +94,7 @@ export default class CourseTagApp
                 return courseTag.firstAppearance == null
                     ? EMPTY_REACT_ELEMENT
                     : <sub key={`${name} - first appearance`}>{courseTag.firstAppearance.simpleName}</sub>;
+                //TODO add Maker Central name
             }
 
             //endregion -------------------- Card list interpreter --------------------
