@@ -13,6 +13,7 @@ export interface ImageFromVariableProperties
 }
 
 export type PossibleVariableImage =
+    | `smm${| 1 | '3ds' | 2}`
     | `${|'music'}-block` | `question-block${| '' | '-sm3dw'}`
     | `${| 'super' | 'mystery' | 'big' | 'smb2' | 'propeller'}-mushroom` | 'big-mushroom-classic'
     | `${| 'fire' | 'superball' | 'boomerang'}-flower`
@@ -23,5 +24,5 @@ export type PossibleVariableImage =
     | 'shoe' | 'stiletto'
     | 'yoshi'
     | `${| 'dry-bones' | 'buzzy' | 'spiny'}-shell`
-    | 'cloud' | 'clown-car'
+    | 'lakitu-cloud' | 'clown-car'
     | 'swinging-claw';
