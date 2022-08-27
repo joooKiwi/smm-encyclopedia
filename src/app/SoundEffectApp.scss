@@ -32,3 +32,31 @@
   }
 
 }
+
+.playerSoundEffectTrigger-container {
+  i {
+
+    transform: translateY(var(--bs-spacer-sm));
+    --image-width: .5cm;
+
+    &.big-mushroom-image, &.big-mushroom-classic-image, &.clown-car-image, {
+      --image-width: .75cm;
+    }
+
+    &.mystery-mushroom-image::after {
+      content: initial;
+    }
+
+    &.smm2-only::after {
+      content: '';
+      display: inline-block;
+      background: {
+        image: var(--smm2-image);
+        repeat: no-repeat;
+      };
+      width: .75cm;
+      height: .5cm;
+      transform: translateY(var(--bs-negative-spacer-md));
+    }
+  }
+}

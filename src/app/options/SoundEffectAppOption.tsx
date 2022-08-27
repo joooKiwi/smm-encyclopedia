@@ -12,7 +12,6 @@ import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.comp
 import {CommonOptions}                 from './CommonOptions';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {Enum}                          from '../../util/enum/Enum';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../../core/game/Games';
 import {SoundEffects}                  from '../../core/soundEffect/SoundEffects';
 import {SoundEffectCategories}         from '../../core/soundEffectCategory/SoundEffectCategories';
@@ -70,7 +69,7 @@ export abstract class SoundEffectAppOption
     public static readonly PLAYER_BEHAVIOUR = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
-            return <GameContentTranslationComponent translationKey={`soundEffect.${enumeration.reference.translationKey}`}/>;
+            return enumeration.reference.playerSoundEffectTriggerContainer.createNewComponent(enumeration.englishName,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
