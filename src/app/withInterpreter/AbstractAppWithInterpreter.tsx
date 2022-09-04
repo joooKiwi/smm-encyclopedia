@@ -97,8 +97,8 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
             <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
                 <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
                 <aside key={`${key} (view changer)`} id="viewChanger-container">
-                    {this._createAsideContent()}
                     {this.#createViewDisplayGroup(typeDisplayed, key,)}
+                    {this._createAsideContent()}
                 </aside>
                 <p key={`${key} (description)`}>{this._createDescription()}</p>
                 <div key={`${key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
