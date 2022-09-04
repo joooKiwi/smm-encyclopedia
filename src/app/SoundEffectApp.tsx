@@ -78,6 +78,7 @@ export default class SoundEffectApp
                     SoundEffectAppOption.NAME,
                     SoundEffectAppOption.CATEGORY,
                     SoundEffectAppOption.PLAYER_BEHAVIOUR,
+                    SoundEffectAppOption.SOUNDS,
                 ];
             }
 

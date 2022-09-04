@@ -24,9 +24,10 @@ enum Enum {
     TRADITIONAL, ELECTRIC_GUITAR, DISTORTION, TWISTY_TURNY, WOOZY,
     TELEPHONE, FLASH,
 
-    PEACEFUL, HORROR, BONUS_MUSIC, FESTIVE_MUSIC, RAVE_MUSIC,
+    PEACEFUL, HORROR, FESTIVE_MUSIC, RAVE_MUSIC,
     HEARTBEAT, SILENCE, BIRD_TWEETING_NOISE, CHICKEN_CLUCKING_NOISE,
-    BOSS_MUSIC, FINAL_BOSS,
+
+    BONUS_MUSIC, BOSS_MUSIC, FINAL_BOSS,
     SUPER_MARIO_KART, SUPER_MARIO_64, SUPER_MARIO_SUNSHINE, SUPER_MARIO_GALAXY,
 
 }
@@ -53,9 +54,10 @@ export type Names =
     | 'BIRD_CHIRPING' | 'SPARK' | 'TRADITIONAL' | 'ELECTRIC_GUITAR' | 'DISTORTION'
     | 'TWISTY_TURNY' | 'WOOZY' | 'TELEPHONE' | 'FLASH'
 
-    | 'PEACEFUL' | 'HORROR' | 'BONUS_MUSIC' | 'FESTIVE_MUSIC' | 'RAVE_MUSIC'
+    | 'PEACEFUL' | 'HORROR' | 'FESTIVE_MUSIC' | 'RAVE_MUSIC'
     | 'HEARTBEAT' | 'SILENCE' | 'BIRD_TWEETING_NOISE' | 'CHICKEN_CLUCKING_NOISE'
-    | 'BOSS_MUSIC' | 'FINAL_BOSS'
+
+    | 'BONUS_MUSIC' | 'BOSS_MUSIC' | 'FINAL_BOSS'
     | `SUPER_MARIO_${| 'KART' | '64' | 'SUNSHINE' | 'GALAXY'}`;
 
 export type PossibleEnglishName_Games = PossibleEnglishName_SoundEffect;
@@ -70,7 +72,9 @@ export type PossibleEnglishName_SMM1AndSMM2 =
 
     | 'Fireworks'
 
-    | 'Bonus Music' | 'Heartbeat' | 'Silence' | 'Boss Music';
+    | 'Heartbeat' | 'Silence'
+
+    | 'Bonus Music' | 'Boss Music';
 export type PossibleEnglishName_SMM1 =
     | PossibleEnglishName_SMM1AndSMM2
     | 'Bird\'s Chirping' | 'Distortion' | 'Telephone'
@@ -88,7 +92,9 @@ export type PossibleEnglishName_SMM2 =
     | 'Audience' | 'Scatting' | 'Spark' | 'Traditional' | 'Electric Guitar'
     | 'Twisty Turny' | 'Woozy' | 'Flash'
 
-    | 'Peaceful' | 'Horror' | 'Final Boss'
+    | 'Peaceful' | 'Horror'
+
+    | 'Final Boss'
     | PossibleEnglishName_Games;
 export type PossibleEnglishName = | PossibleEnglishName_SMM1 | PossibleEnglishName_SMM2;
 
@@ -121,9 +127,9 @@ export type SoundEffectImageName_SMM2 =
     | 'ElectricGuitar' | 'Filter' | 'SoundEffect' | 'Halo'
 
     | 'Calm' | 'Unrest'
-    | 'Bonus'
     | 'Heartbeat' | 'Silence'
-    | `${| '' | 'Last'}Boss`
+
+    | 'Bonus' | `${| '' | 'Last'}Boss`
     | `Mario0${| 0 | 1 | 2 | 3}`;
 export type PossibleImagePath_SMM2 = `/${BasePath}/sound effect/Lyt_E_P_SE_${SoundEffectImageName_SMM2}.tiff`;
 
@@ -159,9 +165,10 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['BIRD_CHIRPING'], SimpleEnum<T>['SPARK'], SimpleEnum<T>['TRADITIONAL'], SimpleEnum<T>['ELECTRIC_GUITAR'], SimpleEnum<T>['DISTORTION'],
     SimpleEnum<T>['TWISTY_TURNY'], SimpleEnum<T>['WOOZY'], SimpleEnum<T>['TELEPHONE'], SimpleEnum<T>['FLASH'],
 
-    SimpleEnum<T>['PEACEFUL'], SimpleEnum<T>['HORROR'], SimpleEnum<T>['BONUS_MUSIC'], SimpleEnum<T>['FESTIVE_MUSIC'], SimpleEnum<T>['RAVE_MUSIC'],
+    SimpleEnum<T>['PEACEFUL'], SimpleEnum<T>['HORROR'], SimpleEnum<T>['FESTIVE_MUSIC'], SimpleEnum<T>['RAVE_MUSIC'],
     SimpleEnum<T>['HEARTBEAT'], SimpleEnum<T>['SILENCE'], SimpleEnum<T>['BIRD_TWEETING_NOISE'], SimpleEnum<T>['CHICKEN_CLUCKING_NOISE'],
-    SimpleEnum<T>['BOSS_MUSIC'], SimpleEnum<T>['FINAL_BOSS'],
+
+    SimpleEnum<T>['BONUS_MUSIC'], SimpleEnum<T>['BOSS_MUSIC'], SimpleEnum<T>['FINAL_BOSS'],
     SimpleEnum<T>['SUPER_MARIO_KART'], SimpleEnum<T>['SUPER_MARIO_64'], SimpleEnum<T>['SUPER_MARIO_SUNSHINE'], SimpleEnum<T>['SUPER_MARIO_GALAXY'],
 
 ];
@@ -187,9 +194,10 @@ export type EnumArray_EnglishName = readonly [
     'Traditional', 'Electric Guitar', 'Distortion', 'Twisty Turny', 'Woozy',
     'Telephone', 'Flash',
 
-    'Peaceful', 'Horror', 'Bonus Music', 'Festive Music', 'Rave Music',
+    'Peaceful', 'Horror', 'Festive Music', 'Rave Music',
     'Heartbeat', 'Silence', 'Bird\'s Tweeting Noise', 'Chicken\'s Clucking Noise',
-    'Boss Music', 'Final Boss',
+
+    'Bonus Music', 'Boss Music', 'Final Boss',
     'Super Mario Kart', 'Super Mario 64', 'Super Mario Sunshine', 'Super Mario Galaxy',
 ];
 
