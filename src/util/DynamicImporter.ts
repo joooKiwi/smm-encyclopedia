@@ -21,6 +21,7 @@ import type {MiiCostumeCategories}                      from '../core/miiCostume
 import type {MiiCostumeCategoryLoader}                  from '../core/miiCostumeCategory/MiiCostumeCategory.loader';
 import type {MiiCostumeLoader}                          from '../core/miiCostume/MiiCostume.loader';
 import type {MiiCostumes}                               from '../core/miiCostume/MiiCostumes';
+import type {Musics}                                    from '../core/music/Musics';
 import type {MysteryMushroomLoader}                     from '../core/mysteryMushroom/MysteryMushroom.loader';
 import type {MysteryMushrooms}                          from '../core/mysteryMushroom/MysteryMushrooms';
 import type {NightEffects}                              from '../core/nightEffect/NightEffects';
@@ -163,6 +164,11 @@ export class DynamicImporter {
     #InstrumentLoader?: typeof InstrumentLoader;
 
     //endregion -------------------- Instrument fields --------------------
+    //region -------------------- Music fields --------------------
+
+    #Musics?: typeof Musics;
+
+    //endregion -------------------- Music fields --------------------
     //region -------------------- Version fields --------------------
 
     #Versions?: typeof Versions;
@@ -362,6 +368,13 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Instrument" getter methods --------------------
+    //region -------------------- "Music" getter methods --------------------
+
+    public get Musics(): typeof Musics {
+        return this.#Musics ??= require('../core/music/Musics.ts').Musics;
+    }
+
+    //endregion -------------------- "Music" getter methods --------------------
     //region -------------------- "Version" getter methods --------------------
 
     public get Versions(): typeof Versions {

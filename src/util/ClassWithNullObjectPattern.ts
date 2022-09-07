@@ -95,6 +95,11 @@ export type EmptyPredefinedMessageName = 'Empty predefined message';
 export type EmptyInstrumentName = 'Empty instrument';
 
 //endregion -------------------- Instrument types --------------------
+//region -------------------- Music types --------------------
+
+export type EmptySingleBackgroundMusicName = 'Empty single "background music"';
+
+//endregion -------------------- Music types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -123,6 +128,8 @@ export type EveryPossibleEmptyName =
 
     | EmptyPredefinedMessageName
 
-    | EmptyInstrumentName;
+    | EmptyInstrumentName
+
+    | EmptySingleBackgroundMusicName;
 
 //endregion -------------------- Empty names types --------------------

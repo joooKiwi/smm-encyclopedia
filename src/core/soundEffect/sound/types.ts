@@ -1,18 +1,6 @@
 import type {PossibleEnglishName} from '../SoundEffects.types';
 import type {BasePath}            from '../../../variables';
 
-interface SoundEffectSoundTemplateMap_All {
-
-    'Bonus Music': NoSoundEffectSound//BackgroundMusic_SMB2AndLink<'Bonus', UniqueLinkNameFor<'Bonus'>, UniqueSMB2NameFor<'CharacterSelect'>>
-    'Boss Music': NoSoundEffectSound//BackgroundMusic_SMB2AndLink<'Boss', 'Link_Boss', 'USA_Boss'>
-    'Final Boss': NoSoundEffectSound//BackgroundMusic_SMWIcon_SMB2AndLink<'LastBoss', 'Link_LastBoss', 'USA_LastBoss'>
-    'Super Mario Kart': NoSoundEffectSound//SimpleBackgroundMusic<'SFCMarioKart', 'Circuit'>
-    'Super Mario 64': NoSoundEffectSound//SimpleBackgroundMusic<'SuperMario64', 'Slider'>
-    'Super Mario Sunshine': NoSoundEffectSound//SimpleBackgroundMusic<'MarioSunshine', 'DolphicTown'>
-    'Super Mario Galaxy': NoSoundEffectSound,//SimpleBackgroundMusic<'SFCMarioKart', 'Circuit'>,
-
-}
-
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
 
     'Shock': SoundEffectSound_NoEditor<['yr_SToy_01_OssanOdoroki_L_pxsps_l_ear', 'yr_SToy_01_OssanOdoroki_R_pxsps_r_ear',]>//SoundEffectSoundTemplateMap_All['Shock']
@@ -66,8 +54,8 @@ interface SoundEffectSoundTemplateMap_SMM1Exclusive {
     'Silence': SoundEffectSound_Editor1<['yr_NOISE_short_1', 'yr_NOISE_short_1_pxsps_l_ear', 'yr_NOISE_short_2', 'yr_NOISE_short_2_pxsps_r_ear', 'yr_NOISE_short_3', 'yr_NOISE_short_3_pxsps_l_ear',]>
     'Bird\'s Tweeting Noise': SoundEffectSound_Editor1<['hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',]>
     'Chicken\'s Clucking Noise': SoundEffectSound_Editor1<['yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',]>
-    'Bonus Music': SoundEffectSoundTemplateMap_All['Bonus Music']
-    'Boss Music': SoundEffectSoundTemplateMap_All['Boss Music']
+    'Bonus Music': never
+    'Boss Music': never
     'Final Boss': never
     'Super Mario Kart': never
     'Super Mario 64': never
@@ -98,7 +86,7 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Oink': SoundEffectSound_Editor1<['se_otoasobi_oimo', 'se_mariopaint-pig', 'se_otoasobi_whoopee_0',]>
     'Kuh-thunk!': SingleSoundEffectSound<'Otoasobi_dodon'>
     'Beep!': SoundEffectSound_Editor1<['glitch_M1_000', 'glitch_M1_001', 'glitch_M1_002', 'glitch_M1_003', 'glitch_M1_004', 'glitch_M1_005', 'glitch_M1_006', 'glitch_M1_007', 'muon_2sec',]>
-    'Ninja Attack!': SimpleBackgroundMusicSoundEffect<'Dtbt_Murasame'>
+    'Ninja Attack!': never
     'Zap!': SingleSoundEffectSound<'se_otoasobi_gaaann'>
 
     'Ding Dong': SoundEffectSound_Editor1_Link3<['SE_BELL', 'SE_BELL_excited', 'SE_LinkItemAppear',]>
@@ -109,11 +97,11 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Aww...': SingleSoundEffectSound<'Otoasobi_AAHH'>
 
     'Fireworks': SoundEffectSound_Editor1<['yr_SToy_07_FireWorks_01', 'yr_SToy_07_FireWorks_01_1', 'yr_SToy_07_FireWorks_01_2',]>
-    'Audience': SingleBackgroundMusicSoundEffect<'se_otoasobi_clowd'>
-    'Scatting': SingleBackgroundMusicSoundEffect<'otoasobi_scat'>
+    'Audience': never
+    'Scatting': never
     'Bird\'s Chirping': NoSoundEffectSound
     'Spark': SoundEffectSound_Editor3<['se_otoasobi_spark_00', 'se_otoasobi_spark_01', 'se_otoasobi_spark_02', 'se_otoasobi_spark_03', 'se_otoasobi_spark_04',]>
-    'Traditional': SingleBackgroundMusicSoundEffect<'se_otoasobi_ohayashi'>
+    'Traditional': never
     'Electric Guitar': SoundEffectSound_Editor1<['Otoasobi_Guitar01', 'Otoasobi_Guitar02',]>
     'Distortion': NoSoundEffectSound
     'Twisty Turny': SoundEffectSound_Editor1<SoundEffectSoundNamesForTwistyTurnyAndWoozy>
@@ -129,13 +117,13 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Silence': SingleSoundEffectSound<'se_otoasobi_silence'>
     'Bird\'s Tweeting Noise': NoSoundEffectSound
     'Chicken\'s Clucking Noise': NoSoundEffectSound
-    'Bonus Music': SoundEffectSoundTemplateMap_All['Bonus Music']
-    'Boss Music': SoundEffectSoundTemplateMap_All['Boss Music']
-    'Final Boss': SoundEffectSoundTemplateMap_All['Final Boss']
-    'Super Mario Kart': SoundEffectSoundTemplateMap_All['Super Mario Kart']
-    'Super Mario 64': SoundEffectSoundTemplateMap_All['Super Mario 64']
-    'Super Mario Sunshine': SoundEffectSoundTemplateMap_All['Super Mario Sunshine']
-    'Super Mario Galaxy': SoundEffectSoundTemplateMap_All['Super Mario Galaxy'],
+    'Bonus Music': never
+    'Boss Music': never
+    'Final Boss': never
+    'Super Mario Kart': never
+    'Super Mario 64': never
+    'Super Mario Sunshine': never
+    'Super Mario Galaxy': never,
 
 }
 
@@ -185,10 +173,10 @@ interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR exte
     smb2Names: SMB2_NAMES,
 }
 
-type SoundEffectFromBackgroundMusic<SOUND extends SoundEffectSound<any, any, any, any>, > = readonly [never, SOUND,];
-type SoundEffectFromSoundEffect<SOUND extends SoundEffectSound<any, any, any, any>, > = readonly [SOUND, never,];
-type NoSoundEffectSound = readonly [SoundEffectSound<[], null, [], []>, SoundEffectSound<[], null, [], []>,];
+type SoundEffectFromSoundEffect<SOUND extends SoundEffectSound<any, any, any, any>, > = SOUND;
+type NoSoundEffectSound = SoundEffectSound<[], null, [], []>;
 
+//region -------------------- Sound effect --------------------
 
 type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, [], []>>;
 type SoundEffectSound_NoEditor<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, [], []>>;
@@ -202,27 +190,16 @@ type SoundEffectSound_Editor7<SOUNDS extends readonly string[], > = SoundEffectF
 type SoundEffectSound_Editor10<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], [], []>>;
 type SoundEffectSound_Editor1_Link3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], []>>;
 
-//region -------------------- Background music --------------------
-
-type SingleBackgroundMusicSoundEffect<NAME extends string, > = SoundEffectFromBackgroundMusic<SoundEffectSound<readonly [NAME,], NAME, [], []>>;
-// type BackgroundMusicSoundEffect_Editor1<NAMES extends readonly string[], > = SoundEffectFromBackgroundMusic<SoundEffectSound<NAMES, NAMES[0], [], []>>;
-type SimpleBackgroundMusicSoundEffect<UNIQUE_NAME extends string, > = SoundEffectFromBackgroundMusic<SoundEffectSound<[`BGM_Otoasobi_${UNIQUE_NAME}Icon`, `BGM_Otoasobi_${UNIQUE_NAME}`,], `BGM_Otoasobi_${UNIQUE_NAME}Icon`, [], []>>;
-
-//endregion -------------------- Background music --------------------
+//endregion -------------------- Sound effect --------------------
 
 //endregion -------------------- Value for map --------------------
 
-export type PossibleSoundEffectSoundName_SMM1 = SoundEffectSoundTemplateMap_SMM1Exclusive[PossibleEnglishName][0]['sounds'][number];
-export type PossibleSoundEffectSoundName_SMM2 = | PossibleSoundEffectSoundNameFromSoundEffect_SMM2 | PossibleSoundEffectSoundNameFromBackgroundMusic_SMM2;
-export type PossibleSoundEffectSoundNameFromSoundEffect_SMM2 = SoundEffectSoundTemplateMap_SMM2Exclusive[PossibleEnglishName][0]['sounds'][number];
-export type PossibleSoundEffectSoundNameFromBackgroundMusic_SMM2 = SoundEffectSoundTemplateMap_SMM2Exclusive[PossibleEnglishName][1]['sounds'][number];
+export type PossibleSoundEffectSoundName_SMM1 = SoundEffectSoundTemplateMap_SMM1Exclusive[PossibleEnglishName]['sounds'][number];
+export type PossibleSoundEffectSoundName_SMM2 = | SoundEffectSoundTemplateMap_SMM2Exclusive[PossibleEnglishName]['sounds'][number];
 
 type _PossibleSoundEffectSoundFileNameFromSoundEffect<GAME extends | 1 | 2, NAME extends PossibleSoundEffectSoundName, > = `${BasePath}/sound/sound effect/SMM${GAME}/${NAME}.wav`;
-type _PossibleSoundEffectSoundFileNameFromBackgroundMusic<NAME extends PossibleSoundEffectSoundNameFromBackgroundMusic_SMM2, > = `${BasePath}/music/SMM2/${NAME}.wav`;
 export type PossibleSoundEffectSoundFileName_SMM1 = _PossibleSoundEffectSoundFileNameFromSoundEffect<1, PossibleSoundEffectSoundName_SMM1>;
-export type PossibleSoundEffectSoundFileName_SMM2 = | PossibleSoundEffectSoundFileNameFromSoundEffect_SMM2 | PossibleSoundEffectSoundFileNameFromBackgroundMusic_SMM2;
-export type PossibleSoundEffectSoundFileNameFromSoundEffect_SMM2 = _PossibleSoundEffectSoundFileNameFromSoundEffect<2, PossibleSoundEffectSoundNameFromSoundEffect_SMM2>;
-export type PossibleSoundEffectSoundFileNameFromBackgroundMusic_SMM2 = _PossibleSoundEffectSoundFileNameFromBackgroundMusic<PossibleSoundEffectSoundNameFromBackgroundMusic_SMM2>;
+export type PossibleSoundEffectSoundFileName_SMM2 = _PossibleSoundEffectSoundFileNameFromSoundEffect<2, PossibleSoundEffectSoundName_SMM2>;
 
 export type PossibleSoundEffectSoundName = | PossibleSoundEffectSoundName_SMM1 | PossibleSoundEffectSoundName_SMM2;
 export type PossibleSoundEffectSoundFileName = | PossibleSoundEffectSoundFileName_SMM1 | PossibleSoundEffectSoundFileName_SMM2;

@@ -11,7 +11,7 @@ export class SMM1ExclusiveSoundEffectSoundBuilder
 
     public constructor(sounds: readonly PossibleSoundEffectSoundName_SMM1[],)
     public constructor(...sounds: readonly PossibleSoundEffectSoundName_SMM1[])
-    public constructor(...sounds: readonly (PossibleSoundEffectSoundName_SMM1 | readonly PossibleSoundEffectSoundName_SMM1[])[]) {
+    public constructor(...sounds: readonly (| PossibleSoundEffectSoundName_SMM1 | readonly PossibleSoundEffectSoundName_SMM1[])[]) {
         super(sounds[0] instanceof Array ? sounds[0] : sounds.flat(),);
     }
 
