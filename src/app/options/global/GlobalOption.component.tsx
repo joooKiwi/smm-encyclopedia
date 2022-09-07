@@ -2,9 +2,9 @@ import './GlobalOption.scss';
 
 import {Component} from 'react';
 
-import type {GlobalAppState}              from '../../AppStates.types';
-import type {GlobalThemeOption}           from './GlobalThemeOption';
-import type {ReactElement, ReactProperty} from '../../../util/react/ReactProperty';
+import type {GlobalAppState}                from '../../AppStates.types';
+import type {GlobalThemeOption}             from './GlobalThemeOption';
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
 
 import GameGroup         from './group/GameGroup';
 import {Games}           from '../../../core/game/Games';
@@ -21,7 +21,7 @@ import TimeGroup         from './group/TimeGroup';
 import {Times}           from '../../../core/time/Times';
 
 export interface GlobalOptionProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     id: string;
 
@@ -32,7 +32,7 @@ export default class GlobalOptionComponent
 
     public constructor(props: GlobalOptionProperties,) {
         super(props);
-        this.state = GlobalAppOption.createDefaultState;
+        this.state = {};
     }
 
     public override render(): ReactElement {

@@ -15,6 +15,10 @@
 }
 
 :root {
+  --smm1-image:                 url('resources/images/Super Mario Maker.svg');
+  --smm3ds-image:               url('resources/images/Super Mario Maker for Nintendo 3DS.svg');
+  --smm2-image:                 url('resources/images/Super Mario Maker 2.svg');
+
   --music-block-image:          url('resources/images/Music Block.tiff');
   --question-block-sm3dw-image: url('resources/images/Question Block (SM3DW).tiff');
 
@@ -41,7 +45,7 @@
   --dry-bones-shell-image:      url('resources/images/Dry Bones Shell.tiff');
   --buzzy-shell-image:          url('resources/images/Buzzy Shell.tiff');
   --spiny-shell-image:          url('resources/images/Spiny Shell.tiff');
-  --cloud-image:                url('resources/images/Cloud.tiff');
+  --lakitu-cloud-image:         url('resources/images/Lakitu Cloud.tiff');
   --clown-car-image:            url('resources/images/Clown Car.tiff');
 
 }

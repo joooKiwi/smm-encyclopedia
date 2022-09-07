@@ -1,12 +1,12 @@
-import type {BootstrapColor}              from '../../../bootstrap/Bootstrap.types';
-import type {SingleHeadersContent}        from './SimpleHeader';
-import type {ReactElement, ReactProperty} from '../../../util/react/ReactProperty';
+import type {BootstrapColor}                from '../../../bootstrap/Bootstrap.types';
+import type {SingleHeadersContent}          from './SimpleHeader';
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
 
 export type SingleCaptionContent = | string | ReactElement;
 export type SingleTableContent = [key: string, ...content: ReactElement[]];
 
 export interface TableProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     id: string
 

@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 
-import type {ReactProperty} from '../../util/react/ReactProperty';
+import type {ReactProperties} from '../../util/react/ReactProperties';
 
 import {EntityLimits}     from './EntityLimits';
 import NameComponent      from '../../lang/name/component/Name.component';
@@ -10,7 +10,7 @@ import TextComponent      from '../../app/tools/text/TextComponent';
 type Id = `${| 'editor' | 'whilePlaying'}-${string}`;
 
 interface EditorLimitProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     id: Id
 

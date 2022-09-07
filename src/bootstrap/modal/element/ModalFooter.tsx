@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 
-import type {ReactProperty}        from '../../../util/react/ReactProperty';
+import type {ReactProperties}      from '../../../util/react/ReactProperties';
 import type {HTMLButtonProperties} from '../../../util/react/html/HTMLButtonProperties';
 import type {HTMLDivProperties}    from '../../../util/react/html/HTMLDivProperties';
 
@@ -9,7 +9,7 @@ import {EMPTY_OBJECT, EMPTY_STRING} from '../../../util/emptyVariables';
 import {EMPTY_REACT_ELEMENT}        from '../../../util/emptyReactVariables';
 
 interface ModalFooterProperties
-    extends ReactProperty, HTMLDivProperties {
+    extends ReactProperties, HTMLDivProperties {
 
     successButton?: ModalSuccessButtonProperties
 
@@ -18,14 +18,14 @@ interface ModalFooterProperties
 }
 
 interface ModalSuccessButtonProperties
-    extends ReactProperty, Omit<HTMLButtonProperties, 'type'> {
+    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
 
     children: ReactNode
 
 }
 
 interface ModalCancelButtonProperties
-    extends ReactProperty, Omit<HTMLButtonProperties, 'type'> {
+    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
 
 }
 

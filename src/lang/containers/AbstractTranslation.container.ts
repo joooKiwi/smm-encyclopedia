@@ -1,9 +1,10 @@
-import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
-import type {Translation}                                                                      from './Translation';
+import type {Namespace, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
+import type {ReactElementOrString}                                       from '../../util/react/ReactProperties';
+import type {Translation}                                                from './Translation';
 
 import {EMPTY_OBJECT} from '../../util/emptyVariables';
 
-export abstract class AbstractTranslationContainer<N extends Namespace, T extends PossibleReactElement = PossibleReactElement, >
+export abstract class AbstractTranslationContainer<N extends Namespace, T extends ReactElementOrString = ReactElementOrString, >
     implements Translation<N, T> {
 
     //region -------------------- Fields --------------------

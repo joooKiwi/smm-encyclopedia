@@ -1,9 +1,9 @@
-import type {HTMLDivProperties}                   from '../../util/react/html/HTMLDivProperties';
-import type {HTMLHeadingProperties}               from '../../util/react/html/HTMLHeadingProperties';
-import type {ReactElementOrString, ReactProperty} from '../../util/react/ReactProperty';
+import type {HTMLDivProperties}                     from '../../util/react/html/HTMLDivProperties';
+import type {HTMLHeadingProperties}                 from '../../util/react/html/HTMLHeadingProperties';
+import type {ReactElementOrString, ReactProperties} from '../../util/react/ReactProperties';
 
 export interface AccordionProperties
-    extends ReactProperty, Omit<HTMLDivProperties, 'children'> {
+    extends ReactProperties, Omit<HTMLDivProperties, 'children'> {
 
     /**
      * Align the header properties to the center
@@ -15,7 +15,7 @@ export interface AccordionProperties
 }
 
 export interface HeaderProperties
-    extends ReactProperty, HTMLHeadingProperties {
+    extends ReactProperties, HTMLHeadingProperties {
 
     buttonContent: ReactElementOrString
 
@@ -28,7 +28,7 @@ export interface HeaderProperties
 }
 
 export interface BodyProperties
-    extends ReactProperty, HTMLDivProperties {
+    extends ReactProperties, HTMLDivProperties {
 
     bodyContent: ReactElementOrString
 

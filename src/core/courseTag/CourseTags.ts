@@ -1,8 +1,8 @@
-import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
-import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './CourseTags.types';
-import type {CourseTag}                                                                                                                                                                                  from './CourseTag';
-import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                      from '../ClassWithEnglishName';
+import type {ClassWithReference}                                                                                                                                                                                                                                                                        from '../ClassWithReference';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleOfficialEnglishName, PossibleStringValue, PossibleValue, UnofficialCourseTags} from './CourseTags.types';
+import type {CourseTag}                                                                                                                                                                                                                                                                                 from './CourseTag';
+import type {StaticReference}                                                                                                                                                                                                                                                                           from '../../util/enum/Enum.types';
 
 import {Enum}            from '../../util/enum/Enum';
 import {Import}          from '../../util/DynamicImporter';
@@ -33,12 +33,16 @@ export class CourseTags
     public static readonly SHOOTER =            new CourseTags('Shooter',);
 
     public static readonly SINGLE_PLAYER =      new CourseTags('Single player',);
+    public static readonly MULTIPLAYER =        new CourseTags('Multiplayer',);
+    public static readonly LOCAL_MULTIPLAYER =  new CourseTags('Local Multiplayer',);
+    public static readonly ONLINE_MULTIPLAYER = new CourseTags('Online Multiplayer',);
     public static readonly MULTIPLAYER_VERSUS = new CourseTags('Multiplayer Versus',);
     public static readonly MULTIPLAYER_COOP =   new CourseTags('Multiplayer Co-op',);
 
     public static readonly THEMED =             new CourseTags('Themed',);
     public static readonly MUSIC =              new CourseTags('Music',);
     public static readonly ART =                new CourseTags('Art',);
+    public static readonly PIXEL_ART =          new CourseTags('Pixel art',);
     public static readonly SHOWCASE =           new CourseTags('Showcase',);
     public static readonly STORY =              new CourseTags('Story',);
     public static readonly EXPLORATION =        new CourseTags('Exploration',);
@@ -60,6 +64,9 @@ export class CourseTags
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseTag>;
+    static #officialCourseTags?: OfficialCourseTags;
+    static #unofficialCourseTags?: UnofficialCourseTags;
+    static #makerCentralCourseTags?: MakerCentralCourseTags;
 
     #reference?: CourseTag;
     readonly #englishNameContainer;
@@ -96,8 +103,28 @@ export class CourseTags
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyEnglishName(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName);
+    public static get everyOfficialEnglishName(): readonly PossibleOfficialEnglishName[] {
+        return this.officialCourseTags.map(limit => limit.englishName as PossibleOfficialEnglishName);
+    }
+
+
+    public static get officialCourseTags(): OfficialCourseTags {
+        return this.#officialCourseTags ??= [
+            this.NONE, this.STANDARD, this.PUZZLE_SOLVING, this.SPEEDRUN,
+            this.AUTOSCROLL, this.AUTO_MARIO,
+            this.SHORT_AND_SWEET, this.SHOOTER,
+            this.SINGLE_PLAYER, this.MULTIPLAYER_VERSUS,
+            this.THEMED, this.MUSIC, this.ART, this.TECHNICAL,
+            this.BOSS_BATTLE, this.LINK,
+        ];
+    }
+
+    public static get unofficialCourseTags(): UnofficialCourseTags {
+        return this.#unofficialCourseTags ??= this.values.filter(enumerable => !this.officialCourseTags.includes(enumerable)) as unknown as UnofficialCourseTags;
+    }
+
+    public static get makerCentralCourseTags(): MakerCentralCourseTags {
+        return this.#makerCentralCourseTags ??= this.values.filter(enumerable => enumerable.reference.makerCentralName != null) as unknown as MakerCentralCourseTags;
     }
 
     //endregion -------------------- Methods --------------------

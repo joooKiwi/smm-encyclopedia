@@ -1,11 +1,11 @@
-import type {Name}                        from '../../lang/name/Name';
-import type {ReactComponent}              from '../../util/react/ReactComponent';
-import type {ReactElement, ReactProperty} from '../../util/react/ReactProperty';
+import type {Name}                          from '../../lang/name/Name';
+import type {ReactComponent}                from '../../util/react/ReactComponent';
+import type {ReactElement, ReactProperties} from '../../util/react/ReactProperties';
 
 import {PureComponent} from 'react';
 
 export interface EntityPropertyProperties<R>
-    extends ReactProperty {
+    extends ReactProperties {
 
     reference: R
 

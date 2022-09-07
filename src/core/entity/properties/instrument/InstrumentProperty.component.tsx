@@ -1,14 +1,14 @@
 import './InstrumentProperty.scss';
 
-import type {ReactProperty} from '../../../../util/react/ReactProperty';
-import type {Entities}      from '../../Entities';
+import type {ReactProperties} from '../../../../util/react/ReactProperties';
+import type {Entities}        from '../../Entities';
 
 import {EMPTY_REACT_ELEMENT}           from '../../../../util/emptyReactVariables';
 import GameContentTranslationComponent from '../../../../lang/components/GameContentTranslationComponent';
 import Tooltip                         from '../../../../bootstrap/tooltip/Tooltip';
 
 interface InstrumentPropertyProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     value: Entities
 

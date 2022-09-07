@@ -1,7 +1,7 @@
 import type {TOptions} from 'i18next';
 
-import type {Namespace, PossibleReactElement, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
-import type {ReactElement}                                                                                                                from '../../util/react/ReactProperty';
+import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty';
+import type {ReactElement, ReactElementOrString}                                                                    from '../../util/react/ReactProperties';
 
 import {assert}         from '../../util/utilitiesMethods';
 import {isInProduction} from '../../variables';
@@ -44,7 +44,7 @@ export class TranslationUtility {
         }
 
         const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX).filter(splitValue => !argumentsFound.includes(splitValue));
-        let finalArguments: (| string | ReactElement)[] = [];
+        let finalArguments: ReactElementOrString[] = [];
         for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
             this.#addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]]);
         return <>{finalArguments}</>;
@@ -60,20 +60,17 @@ export class TranslationUtility {
      * @param firstElement the first element
      * @param secondElement the second element
      */
-    static #addArgumentToArray(finalArguments: PossibleReactElement[], firstElement: PossibleReactElement, secondElement: PossibleReactElement | undefined,): void {
+    static #addArgumentToArray(finalArguments: ReactElementOrString[], firstElement: ReactElementOrString, secondElement: | ReactElementOrString | undefined,): void {
         finalArguments.push(firstElement);
         if (secondElement == null)
             return;
         finalArguments.push(secondElement);
 
-        if(isInProduction)
+        if (isInProduction)
             return;
 
-        if (typeof secondElement != 'string') {
-            if (secondElement?.key == null)
-                console.warn(`The react element ${secondElement.type} doesn't contain a key.`);
-            console.warn(`A generic error will be thrown.\nThe properties included within it are ${Object.entries(secondElement.props).map(property => `[${property}]`)}.`);
-        }
+        if (typeof secondElement != 'string' && secondElement?.key == null)
+            console.warn(`The react element ${secondElement.type} doesn't contain a key.`);
     }
 
 }

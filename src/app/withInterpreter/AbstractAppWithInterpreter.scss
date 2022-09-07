@@ -51,15 +51,17 @@
 
   #viewChanger-container {
     position: absolute;
+    width: 100%;
     top: var(--bs-spacer-md);
-    right: var(--bs-spacer-sm);
   }
 
 }
 
 #viewChanger-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 #btn-viewDisplay-container {

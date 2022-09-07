@@ -1,12 +1,12 @@
 import './GroupOf4PowerUpPriority.scss';
 
-import type {ReactElement, ReactProperty} from '../../../util/react/ReactProperty';
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
 
 import Arrow    from '../../tools/arrow/Arrow';
 import {Arrows} from '../../tools/arrow/Arrows';
 
 interface GroupOf4PowerUpPriorityProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     id: string
 

@@ -1,12 +1,12 @@
 import {Fragment} from 'react';
 
 import type {EveryPossibleRouteInstance} from './everyRoutes.types';
-import type {ReactProperty}              from '../util/react/ReactProperty';
+import type {ReactProperties}            from '../util/react/ReactProperties';
 
 import {ProjectLanguages} from '../lang/ProjectLanguages';
 
 interface DirectRoutesProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     language: ProjectLanguages
 

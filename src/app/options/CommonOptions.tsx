@@ -7,7 +7,7 @@ import type {Enum}                                      from '../../util/enum/En
 import type {Name}                                      from '../../lang/name/Name';
 import type {NameTrait}                                 from '../../lang/name/NameTrait';
 import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory';
-import type {ReactElement}                              from '../../util/react/ReactProperty';
+import type {ReactElement}                              from '../../util/react/ReactProperties';
 import type {SingleHeaderContent, SingleHeadersContent} from '../tools/table/SimpleHeader';
 import type {Themes}                                    from '../../core/theme/Themes';
 
@@ -48,6 +48,7 @@ export class CommonOptions {
     #gameHeader?: SingleHeaderContent;
     #gameHeaderWithAllGames?: SingleHeaderContent;
     #gameHeaderWithMainGames?: SingleHeaderContent;
+    #mainGames?: readonly [SingleHeaderContent, SingleHeaderContent,];
     #categoryHeader?: SingleHeaderContent;
 
     //endregion -------------------- Fields --------------------
@@ -100,10 +101,14 @@ export class CommonOptions {
     }
 
     public get gameHeaderWithMainGames(): SingleHeaderContent {
-        return this.#gameHeaderWithMainGames ??= this.getGameHeader(
+        return this.#gameHeaderWithMainGames ??= this.getGameHeader(...this.mainGames);
+    }
+
+    public get mainGames(): readonly [SingleHeaderContent, SingleHeaderContent,] {
+        return this.#mainGames ??= [
             {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},//TODO create a animated image for both games (SMM1 & SMM3DS)
             {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
-        );
+        ];
     }
 
     /**

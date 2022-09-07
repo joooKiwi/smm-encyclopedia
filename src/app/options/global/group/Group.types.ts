@@ -1,4 +1,4 @@
-import type {ReactProperty}     from '../../../../util/react/ReactProperty';
+import type {ReactProperties}   from '../../../../util/react/ReactProperties';
 import type {Games}             from '../../../../core/game/Games';
 import type {GameStyles}        from '../../../../core/gameStyle/GameStyles';
 import type {GlobalAppOption}   from '../GlobalAppOption';
@@ -7,7 +7,7 @@ import type {Themes}            from '../../../../core/theme/Themes';
 import type {Times}             from '../../../../core/time/Times';
 
 export interface GroupProperties<T extends PossibleElement, U extends PossibleOptionValue, >
-    extends ReactProperty {
+    extends ReactProperties {
 
     id: PossibleId
 

@@ -1,5 +1,5 @@
 import type {AppOptionWithContent, PossibleRenderReactElement} from './AppOptionWithContent';
-import type {ReactElement}                                     from '../../../util/react/ReactProperty';
+import type {ReactElement}                                     from '../../../util/react/ReactProperties';
 
 import {AbstractAppOptionWithSomething} from './AbstractAppOptionWithSomething';
 

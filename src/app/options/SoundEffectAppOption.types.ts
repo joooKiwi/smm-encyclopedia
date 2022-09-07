@@ -12,6 +12,7 @@ enum Enum {
     NAME,
     CATEGORY,
     PLAYER_BEHAVIOUR,
+    SOUNDS,
 
 }
 
@@ -44,6 +45,7 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['NAME'],
     SimpleEnum<T>['CATEGORY'],
     SimpleEnum<T>['PLAYER_BEHAVIOUR'],
+    SimpleEnum<T>['SOUNDS'],
 ];
 
 //endregion -------------------- Array types --------------------

@@ -3,7 +3,7 @@ import {PureComponent} from 'react';
 import type {GlobalAppOption}                                                                                   from '../GlobalAppOption';
 import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from './Group.types';
 import type {ReactComponent}                                                                                    from '../../../../util/react/ReactComponent';
-import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperty';
+import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperties';
 
 import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables';
 

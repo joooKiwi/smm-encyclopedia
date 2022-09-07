@@ -6,7 +6,7 @@ import type {Entities}                                                          
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
 import type {EntityAppStates}                                                                                                                                                       from '../AppStates.types';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
 import {AbstractAppOption}             from './AbstractAppOption';
@@ -24,7 +24,6 @@ import {Games}                         from '../../core/game/Games';
 import {GameStyles}                    from '../../core/gameStyle/GameStyles';
 import {Themes}                        from '../../core/theme/Themes';
 import {Times}                         from '../../core/time/Times';
-import {ViewDisplays}                  from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
@@ -287,7 +286,7 @@ export abstract class EntityAppOption
     /**
      * The callback to get the enumeration based for each option.
      *
-     * @note It should only be set by {@link EveryEntitiesApp} and get by {@link EntityAppOption}.
+     * @note It should only be set by {@link EntityApp} and get by {@link EntityAppOption}.
      */
     public static CALLBACK_TO_GET_ENUMERATION: () => Entities;
 
@@ -306,13 +305,6 @@ export abstract class EntityAppOption
     }
 
     //region -------------------- Getter methods --------------------
-
-    public static get createDefaultState(): EntityAppStates {
-        return {
-            typeDisplayed: ViewDisplays.TABLE,
-        };
-    }
-
 
     protected static get _gameStyles() {
         return this.#gameStyles ??= GameStyles.values;

@@ -2,7 +2,7 @@ import {PureComponent} from 'react';
 
 import type {EveryHeaderHolders, Layout, TableHeadersProperties} from './TableHeaders.types';
 import type {ReactComponent}                                     from '../../../util/react/ReactComponent';
-import type {ReactElement}                                       from '../../../util/react/ReactProperty';
+import type {ReactElement}                                       from '../../../util/react/ReactProperties';
 import type {SingleHeaderContent, SingleHeadersContent}          from './SimpleHeader';
 
 import AnyTranslationComponent from '../../../lang/components/AnyTranslationComponent';

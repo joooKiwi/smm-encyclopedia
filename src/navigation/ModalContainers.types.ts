@@ -1,6 +1,7 @@
-import {ReactElement} from '../util/react/ReactProperty';
+import {ReactElement, ReactProperties} from '../util/react/ReactProperties';
 
-export interface ModalProperties {
+export interface ModalProperties
+    extends ReactProperties {
 
     id: string
 

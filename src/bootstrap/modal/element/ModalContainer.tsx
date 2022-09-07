@@ -1,11 +1,11 @@
-import type {HTMLDivProperties}                                              from '../../../util/react/html/HTMLDivProperties';
-import type {ReactElement, ReactProperty, ReactPropertyWithOptionalChildren} from '../../../util/react/ReactProperty';
-import {EMPTY_OBJECT, EMPTY_STRING}                                          from '../../../util/emptyVariables';
+import type {HTMLDivProperties}                                                  from '../../../util/react/html/HTMLDivProperties';
+import type {ReactElement, ReactProperties, ReactPropertiesWithOptionalChildren} from '../../../util/react/ReactProperties';
+import {EMPTY_OBJECT, EMPTY_STRING}                                              from '../../../util/emptyVariables';
 
 export type PossibleModalSize = | 'sm' | 'md' | 'lg' | 'xl';
 
 interface ModalContainerProperties
-    extends ReactProperty, Omit<HTMLDivProperties, 'key'> {
+    extends ReactProperties, Omit<HTMLDivProperties, 'key'> {
 
     id: string
 
@@ -30,7 +30,7 @@ const DEFAULT_SIZE: PossibleModalSize = 'md';
 export default function ModalContainer({id, className=EMPTY_STRING, title, children, verticallyCentered = DEFAULT_VERTICALLY_CENTERED, modalSize = DEFAULT_SIZE,
                                            modalDialogProperties: {className: modalDialogClassName = EMPTY_STRING, ...otherModalDialogProperties} = EMPTY_OBJECT,
                                            modalContentProperties: {className: modalContentClassName = EMPTY_STRING, ...otherModalContentProperties} = EMPTY_OBJECT,
-                                           ...otherProperties}: ReactPropertyWithOptionalChildren<ModalContainerProperties, | ReactElement | readonly ReactElement[]>,) {
+                                           ...otherProperties}: ReactPropertiesWithOptionalChildren<ModalContainerProperties, | ReactElement | readonly ReactElement[]>,) {
     return <div  {...otherProperties} key={`${id} - modal`} className={`modal fade ${className}`} id={id}>
         <div {...otherModalDialogProperties} key={`${id} - modal dialog`} className={`modal-dialog ${verticallyCentered ? 'modal-dialog-centered' : ''} ${modalSize !== DEFAULT_SIZE ? `modal-${modalSize}` : ''} ${modalDialogClassName}`}>
             <div {...otherModalContentProperties} className={`modal-content ${modalContentClassName}`}>{children}</div>

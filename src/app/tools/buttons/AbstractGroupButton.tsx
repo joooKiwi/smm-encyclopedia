@@ -4,7 +4,7 @@ import {Component}      from 'react';
 import type {ActivatableProperties} from './properties/ActivatableProperties';
 import type {GroupButtonProperties} from './properties/GroupButtonProperties';
 import type {ReactComponent}        from '../../../util/react/ReactComponent';
-import type {ReactElement}          from '../../../util/react/ReactProperty';
+import type {ReactElement}          from '../../../util/react/ReactProperties';
 
 /**
  * @reactComponent

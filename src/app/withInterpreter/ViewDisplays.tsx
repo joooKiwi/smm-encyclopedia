@@ -1,11 +1,10 @@
-import type {AbstractAppWithInterpreter}                                                                                                                                                  from './AbstractAppWithInterpreter';
-import type {AbstractCardListApp}                                                                                                                                                         from './AbstractCardListApp';
-import type {AbstractSimpleListApp}                                                                                                                                                       from './AbstractSimpleListApp';
-import type {AbstractTableApp}                                                                                                                                                            from './AbstractTableApp';
-import type {StaticReference}                                                                                                                                                             from '../../util/enum/Enum.types';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, Type} from './ViewDisplays.types';
-import {HTMLType}                                                                                                                                                                         from './ViewDisplays.types';
-import type {ReactElement}                                                                                                                                                                from '../../util/react/ReactProperty';
+import type {AbstractAppWithInterpreter}                                                                                                                                                            from './AbstractAppWithInterpreter';
+import type {AbstractCardListApp}                                                                                                                                                                   from './AbstractCardListApp';
+import type {AbstractSimpleListApp}                                                                                                                                                                 from './AbstractSimpleListApp';
+import type {AbstractTableApp}                                                                                                                                                                      from './AbstractTableApp';
+import type {StaticReference}                                                                                                                                                                       from '../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, HTMLType, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, Type} from './ViewDisplays.types';
+import type {ReactElement}                                                                                                                                                                          from '../../util/react/ReactProperties';
 
 import {Enum}   from '../../util/enum/Enum';
 import {assert} from '../../util/utilitiesMethods';

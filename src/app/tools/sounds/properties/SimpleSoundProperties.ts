@@ -1,8 +1,8 @@
-import type {ReactProperty} from '../../../../util/react/ReactProperty';
-import type {SoundFounds}        from '../SoundFounds';
+import type {ReactProperties} from '../../../../util/react/ReactProperties';
+import type {SoundFounds}     from '../SoundFounds';
 
 export interface SimpleSoundProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     source: string
 

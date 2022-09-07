@@ -5,7 +5,7 @@ import type {AppOptionWithTable}                                                
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeAppOption.types';
 import type {MiiCostumeAppStates}                                                                                                                                                   from '../AppStates.types';
 import type {MiiCostumes}                                                                                                                                                           from '../../core/miiCostume/MiiCostumes';
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
@@ -18,7 +18,6 @@ import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {EmptyAppOption}                from './component/EmptyAppOption';
 import {Enum}                          from '../../util/enum/Enum';
 import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
-import {ViewDisplays}                  from '../withInterpreter/ViewDisplays';
 
 //region -------------------- dynamic imports --------------------
 
@@ -121,7 +120,7 @@ export abstract class MiiCostumeAppOption
     /**
      * The callback to get the enumeration based for each option.
      *
-     * @note It should only be set by {@link EveryEntitiesApp} and get by {@link EntityAppOption}.
+     * @note It should only be set by {@link MiiCostumeApp} and get by {@link MiiCostumeAppOption}.
      */
     public static CALLBACK_TO_GET_ENUMERATION: () => MiiCostumes;
 
@@ -135,13 +134,6 @@ export abstract class MiiCostumeAppOption
     }
 
     //region -------------------- Getter methods --------------------
-
-    public static get createDefaultState(): MiiCostumeAppStates {
-        return {
-            typeDisplayed: ViewDisplays.TABLE,
-        };
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 

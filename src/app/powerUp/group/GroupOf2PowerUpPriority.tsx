@@ -1,14 +1,14 @@
 import './GroupOf2PowerUpPriority.scss';
 
-import type {ReactElement, ReactProperty} from '../../../util/react/ReactProperty';
-import type {PossibleNonNullableValue}    from '../../tools/arrow/Arrows.types';
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
+import type {PossibleNonNullableValue}      from '../../tools/arrow/Arrows.types';
 
 import Arrow             from '../../tools/arrow/Arrow';
 import {Arrows}          from '../../tools/arrow/Arrows';
 import {ArrowDirections} from '../../tools/arrow/ArrowDirections';
 
 interface GroupOf2PowerUpPriorityProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     id: string
 

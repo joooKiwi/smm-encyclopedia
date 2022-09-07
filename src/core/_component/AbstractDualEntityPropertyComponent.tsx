@@ -1,4 +1,4 @@
-import type {ReactElement} from '../../util/react/ReactProperty';
+import type {ReactElement} from '../../util/react/ReactProperties';
 
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent';
 

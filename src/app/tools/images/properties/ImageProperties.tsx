@@ -1,8 +1,8 @@
 import type {HTMLImageProperties} from '../../../../util/react/html/HTMLImageProperties';
-import type {ReactProperty}       from '../../../../util/react/ReactProperty';
+import type {ReactProperties}     from '../../../../util/react/ReactProperties';
 
 export interface ImageProperties
-    extends ReactProperty, Omit<HTMLImageProperties, | 'src' | 'alt'> {
+    extends ReactProperties, Omit<HTMLImageProperties, | 'src' | 'alt'> {
 
     source: string
 

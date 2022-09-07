@@ -2,7 +2,7 @@ import {lazy} from 'react';
 
 import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Sounds.types';
-import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties';
 import type {SimpleSoundProperties}                                                                                                                                                 from '../../tools/sounds/properties/SimpleSoundProperties';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 

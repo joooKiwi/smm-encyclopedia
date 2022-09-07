@@ -1,5 +1,5 @@
 import type {SingleHeaderContent} from '../SimpleHeader';
-import type {ReactElement}        from '../../../../util/react/ReactProperty';
+import type {ReactElement}        from '../../../../util/react/ReactProperties';
 
 export interface HeaderHolder {
 

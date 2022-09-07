@@ -1,7 +1,7 @@
 import './DisplayView.scss';
 
 import type {ModalPropertiesWithDiv} from './ModalContainers.types';
-import type {ReactProperty}          from '../util/react/ReactProperty';
+import type {ReactProperties}        from '../util/react/ReactProperties';
 
 import DisplayViewRouteButton          from './DisplayView.routeButton';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
@@ -9,7 +9,7 @@ import GameContentTranslationComponent from '../lang/components/GameContentTrans
 import {GlobalAppOption}               from '../app/options/global/GlobalAppOption';
 
 interface DisplayViewBodyProperties
-    extends ReactProperty, ModalPropertiesWithDiv {
+    extends ReactProperties, ModalPropertiesWithDiv {
 
 }
 
@@ -110,7 +110,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                     {/*TODO add other options for the Mystery Mushroom*/}
                 </div>/* : EMPTY_REACT_ELEMENT*/}
                 {isSMM2Selected ? <div key="button group container (course tag (SMM2))" id="courseTag-buttonGroup-container" className="btn-group col-6" role="group">
-                    <DisplayViewRouteButton routeName="everyCourseTags" value={translation('Course tag', {
+                    <DisplayViewRouteButton routeName="officialCourseTags" value={translation('Course tag', {
                         Course: '--Course--',//TODO add course reference
                         course: '--course--',//TODO add course reference
                         Tag: '--tag--',//TODO add tag reference

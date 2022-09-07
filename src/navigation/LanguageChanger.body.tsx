@@ -2,7 +2,7 @@ import './LanguageChanger.body.scss'
 
 import {Fragment, useState} from 'react';
 
-import type {ReactProperty} from '../util/react/ReactProperty';
+import type {ReactProperties} from '../util/react/ReactProperties';
 
 import {EveryLanguages}    from '../lang/EveryLanguages';
 import LanguageChangerLink from './LanguageChanger.link';
@@ -12,7 +12,7 @@ import {TooltipInstance}   from '../bootstrap/tooltip/TooltipInstance';
 import {StringContainer}   from '../util/StringContainer';
 
 interface LanguageChangerBodyProperties
-    extends ReactProperty {
+    extends ReactProperties {
 
     containerId: string
 

@@ -2,7 +2,7 @@ import {lazy} from 'react';
 
 import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Texts.types';
-import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperty';
+import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 
 import {EMPTY_REACT_ELEMENT}                 from '../../../util/emptyReactVariables';

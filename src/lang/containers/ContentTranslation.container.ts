@@ -1,8 +1,9 @@
-import type {ContentNamespace, PossibleReactElement, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
+import type {ContentNamespace, SingleTranslationKey, TranslationReplaceKeysMap} from '../components/TranslationProperty';
+import type {ReactElementOrString}                                              from '../../util/react/ReactProperties';
 
 import {AbstractTranslationContainer} from './AbstractTranslation.container';
 
-export class ContentTranslationContainer<T extends PossibleReactElement = PossibleReactElement, >
+export class ContentTranslationContainer<T extends ReactElementOrString = ReactElementOrString, >
     extends AbstractTranslationContainer<ContentNamespace> {
 
     public static readonly NAMESPACE: ContentNamespace = 'content';
