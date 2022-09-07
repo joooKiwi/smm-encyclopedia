@@ -1,9 +1,11 @@
 import './EntityLimitApp.scss';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {EntityLimitAppStates}                               from './AppStates.types';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
-import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
+import type {EntityLimitAppStates}                                 from './AppStates.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
+import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import {EntityLimitAppOption}          from './options/EntityLimitAppOption';
@@ -16,10 +18,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class EntityLimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, {}, EntityLimitAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, AppProperties, EntityLimitAppStates> {
 
-
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,
@@ -43,7 +44,22 @@ export default class EntityLimitApp
                 return EntityLimits[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    large: null,
+                    extraLarge: 2,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumeration: EntityLimits,): ReactElement {
                 EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration;

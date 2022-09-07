@@ -1,4 +1,4 @@
-import type {PlayerSoundEffectTriggerTemplate}                              from './properties/PlayerSoundEffectTrigger.template';
+import type {PlayerSoundEffectTriggerTemplate}                              from './property/PlayerSoundEffectTrigger.template';
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types';
 import type {SimpleGameFrom1And2Template}                                   from '../game/SimpleGame.template';
 import type {TemplateWithNameTemplate}                                      from '../_template/TemplateWithName.template';

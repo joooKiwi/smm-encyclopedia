@@ -1,7 +1,7 @@
 import type {DefaultResources, KeyPrefix, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
 
-import type {Translation}                                     from '../containers/Translation';
-import type {ReactElement, SimpleReactPropertiesWithChildren} from '../../util/react/ReactProperties';
+import type {Translation}                                             from '../containers/Translation';
+import type {ReactElementOrString, SimpleReactPropertiesWithChildren} from '../../util/react/ReactProperties';
 
 export type TranslationReturnType = | string | JSX.Element;
 export type ContentCallback = AnyTranslationCallback<ContentNamespace>;
@@ -37,15 +37,11 @@ export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends in
 
 /**
  * A replacement map to replace the selected key
- * into a {@link PossibleReactElement possible react element (string or React element)}.
+ * into a {@link ReactElementOrString possible non-null react element (string or React element)}.
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap<T extends PossibleReactElement = PossibleReactElement, > = { [key: string]: T };
-/**
- * A {@link ReactElement React element} or a simple {@link String string}
- */
-export type PossibleReactElement = | ReactElement | string;
+export type TranslationReplaceKeysMap<T extends ReactElementOrString = ReactElementOrString, > = { [key: string]: T };
 
 //region -------------------- Simple property --------------------
 

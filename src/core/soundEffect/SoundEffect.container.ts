@@ -1,7 +1,7 @@
 import type {Name}                from '../../lang/name/Name';
 import type {SoundEffect}         from './SoundEffect';
 import type {SoundEffectCategory} from '../soundEffectCategory/SoundEffectCategory';
-import type {SoundEffectProperty} from './properties/SoundEffectProperty';
+import type {SoundEffectProperty} from './property/SoundEffectProperty';
 
 import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory';
 

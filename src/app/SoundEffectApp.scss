@@ -16,8 +16,18 @@
       //endregion -------------------- 2 & 3 - SMM1 & SMM2 --------------------
       //region -------------------- 4 - name --------------------
       //endregion -------------------- 4 - name --------------------
-      //region -------------------- 5 - game style --------------------
+      //region -------------------- 5 - category --------------------
       //endregion -------------------- 5 - category --------------------
+      //region -------------------- 6 - player behaviour --------------------
+      //endregion -------------------- 6 - player behaviour
+      //region -------------------- 7 - sounds --------------------
+
+      :nth-child(7) {
+        min-width: calc(1cm + var(--bs-spacer-sm) * 2);
+        width: 8.5cm;
+      }
+
+      //endregion -------------------- 7 - sounds --------------------
 
     }
 
@@ -32,3 +42,69 @@
   }
 
 }
+
+.playerSoundEffectTrigger-container {
+  i {
+
+    transform: translateY(var(--bs-spacer-sm));
+    --image-width: .5cm;
+
+    &.big-mushroom-image, &.big-mushroom-classic-image, &.clown-car-image, {
+      --image-width: .75cm;
+    }
+
+    &.mystery-mushroom-image::after {
+      content: initial;
+    }
+
+    &.smm2-only::after {
+      content: '';
+      display: inline-block;
+      background: {
+        image: var(--smm2-image);
+        repeat: no-repeat;
+      };
+      width: .75cm;
+      height: .5cm;
+      transform: translateY(var(--bs-negative-spacer-md));
+    }
+  }
+}
+
+//region -------------------- Sound effect sounds --------------------
+
+.soundEffect-sounds-smm1-container {
+  margin-bottom: var(--bs-spacer-md);
+  border-bottom: {
+    width: var(--bs-border-width-1);
+    color: var(--bs-gray-500);
+    style: solid;
+  };
+}
+
+.soundEffect-sounds-smm1-only-container .soundEffect-sounds-smm1-container {
+  margin-bottom: inherit;
+  border-bottom: {
+    style: none;
+  };
+}
+
+
+.soundEffect-sounds-smm1-container, .soundEffect-sounds-smm2-container, {
+  display: flex;
+  flex: {
+    direction: row;
+    wrap: wrap;
+  }
+
+}
+
+.soundEffect-sound-container {
+  padding: {
+    left: var(--bs-spacer-sm);
+    right: var(--bs-spacer-sm);
+    bottom: var(--bs-spacer-sm);
+  }
+}
+
+//endregion -------------------- Sound effect sounds --------------------

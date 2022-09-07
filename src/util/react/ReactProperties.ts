@@ -34,4 +34,4 @@ export interface SimpleReactPropertiesWithOptionalChildren<T>
 }
 
 export type ReactElement = SourceReactElement;
-export type ReactElementOrString = | SourceReactElement | string;
+export type ReactElementOrString = | ReactElement | string;

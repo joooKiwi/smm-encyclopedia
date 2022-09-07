@@ -1,7 +1,9 @@
 import {Fragment} from 'react';
 
-import type {ReactElementOrString}         from '../util/react/ReactProperties';
 import type {AppInterpreterWithSimpleList} from './interpreter/AppInterpreterWithSimpleList';
+import type {AppProperties}                from './AppProperties.types';
+import type {PossibleDimensionOnList}      from './interpreter/DimensionOnList';
+import type {ReactElementOrString}         from '../util/react/ReactProperties';
 
 import {AbstractSimpleListApp}         from './withInterpreter/AbstractSimpleListApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -12,9 +14,11 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 export default class PredefinedMessageApp
     extends AbstractSimpleListApp<AppInterpreterWithSimpleList<PredefinedMessages>> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = {typeDisplayed: ViewDisplays.SIMPLE_LIST,};
+        this.state = {
+            typeDisplayed: ViewDisplays.SIMPLE_LIST,
+        };
     }
 
     //region -------------------- Create methods --------------------
@@ -39,6 +43,14 @@ export default class PredefinedMessageApp
             public get iterable(): IterableIterator<PredefinedMessages> {
                 return PredefinedMessages[Symbol.iterator]();
             }
+
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return null;
+            }
+
+            //endregion -------------------- List interpreter --------------------
 
         }();
     }

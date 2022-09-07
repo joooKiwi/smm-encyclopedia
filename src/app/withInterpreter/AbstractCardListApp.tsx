@@ -1,13 +1,15 @@
 import type {AppInterpreterWithCardList}   from '../interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                from '../AppProperties.types';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
 import type {ReactElement}                 from '../../util/react/ReactProperties';
 
 import {AbstractSimpleListApp} from './AbstractSimpleListApp';
+import {ListDimensionCreator}  from './ListDimension.creator';
 import NameComponent           from '../../lang/name/component/Name.component';
 import {ViewDisplays}          from './ViewDisplays';
 
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
-    T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractSimpleListApp<APP, T, S> {
 
     //region -------------------- Fields --------------------
@@ -29,8 +31,10 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
      * It can be similar to the {@link createList} but has more information displayed.
      */
     public createCardList(): ReactElement {
-        const optionInterpreter = this._appOptionInterpreter;
-        const key = this._key;
+        const optionInterpreter = this._appOptionInterpreter,
+            key = this._key,
+            cardListDimension = optionInterpreter.createCardListDimension(),
+            dimensions = new ListDimensionCreator(cardListDimension === 'list' ? optionInterpreter.createListDimension() : cardListDimension).createDimensions();
 
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
@@ -40,8 +44,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
             //TODO change the popover to be on the id instead of the name directly
             content.push(
-                <div key={`${englishName} - main card list container`} id={id}
-                     className={`${key}-container listElement-container col-12 col-sm-4 col-md-3 col-lg-2`}>
+                <div key={`${englishName} - main card list container`} id={id} className={`${key}-container listElement-container ${dimensions}`}>
                     <div key={`${name} - main card list sub-container`} className="cardListElement-container rounded-pill">
                         <NameComponent key={`${englishName} - text container`} id="name" name={name} popoverOrientation="left"/>
                         <div className="cardListName-content-container">{optionInterpreter.createCardListContent(enumerable)}</div>

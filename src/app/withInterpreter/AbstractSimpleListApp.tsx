@@ -1,3 +1,4 @@
+import type {AppProperties}                from '../AppProperties.types';
 import type {AppInterpreterWithSimpleList} from '../interpreter/AppInterpreterWithSimpleList';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
 import type {ReactElement}                 from '../../util/react/ReactProperties';
@@ -5,9 +6,10 @@ import type {ReactElement}                 from '../../util/react/ReactPropertie
 import {AbstractAppWithInterpreter} from './AbstractAppWithInterpreter';
 import NameComponent                from '../../lang/name/component/Name.component';
 import {ViewDisplays}               from './ViewDisplays';
+import {ListDimensionCreator}       from './ListDimension.creator';
 
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
-    T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractAppWithInterpreter<APP, T, S> {
 
     //region -------------------- Fields --------------------
@@ -28,8 +30,9 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
      * Create a list with only the names displayed.
      */
     public createList(): ReactElement {
-        const optionInterpreter = this._appOptionInterpreter;
-        const key = this._key;
+        const optionInterpreter = this._appOptionInterpreter,
+            key = this._key,
+            dimensions = optionInterpreter.createListDimension();
 
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
@@ -40,7 +43,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
             //TODO change the popover to be on the id instead of the name directly
             content.push(
                 <div key={`${englishName} - main list container`} id={id}
-                     className={`${key}-container listElement-container col-12 col-sm-4 col-md-3 col-lg-2`}>
+                     className={`${key}-container listElement-container ${new ListDimensionCreator(dimensions).createDimensions()}`}>
                     <span key={`${englishName} - main list text-container`} className="simpleListElement-container rounded-pill">
                         <NameComponent key={`${englishName} - text container`} id="name" name={name} popoverOrientation="left"/>
                     </span>

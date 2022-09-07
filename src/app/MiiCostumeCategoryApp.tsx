@@ -1,7 +1,9 @@
 import {lazy} from 'react';
 
-import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
+import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                                        from './AppProperties.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -17,9 +19,11 @@ const Image = lazy(() => import('./tools/images/Image'));
 export default class EveryEntityCategoriesApp
     extends AbstractCardListApp<AppInterpreterWithCardList<MiiCostumeCategories>> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = {typeDisplayed: ViewDisplays.CARD_LIST,};
+        this.state = {
+            typeDisplayed: ViewDisplays.CARD_LIST,
+        };
     }
 
     //region -------------------- Create methods --------------------
@@ -41,7 +45,23 @@ export default class EveryEntityCategoriesApp
                 return MiiCostumeCategories[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    default: 12,
+                    small: 6,
+                    medium: 3,
+                    large: null,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: MiiCostumeCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;

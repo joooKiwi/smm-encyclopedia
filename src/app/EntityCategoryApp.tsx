@@ -1,7 +1,9 @@
 import './EntityCategoryApp.scss';
 
-import type {AppInterpreterWithCardList}         from './interpreter/AppInterpreterWithCardList';
-import type {ReactElement, ReactElementOrString} from '../util/react/ReactProperties';
+import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList';
+import type {AppProperties}                                        from './AppProperties.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp';
 import {EntityCategories}              from '../core/entityCategory/EntityCategories';
@@ -15,9 +17,11 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 export default class EntityCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = {typeDisplayed: ViewDisplays.CARD_LIST,};
+        this.state = {
+            typeDisplayed: ViewDisplays.CARD_LIST,
+        };
     }
 
     //region -------------------- Create methods --------------------
@@ -37,7 +41,22 @@ export default class EntityCategoryApp
                 return EntityCategories[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: null,
+                    large: 3,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: EntityCategories,): ReactElement {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>;

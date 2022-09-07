@@ -1,5 +1,6 @@
-import type {NameTemplate}             from '../../lang/name/Name.template';
-import type {TemplateWithNameTemplate} from '../_template/TemplateWithName.template';
+import type {NameTemplate as OriginalNameTemplate} from '../../lang/name/Name.template';
+import type {PossibleMakerCentralName}             from './CourseTags.types';
+import type {TemplateWithNameTemplate}             from '../_template/TemplateWithName.template';
 
 export interface CourseTagTemplate
     extends TemplateWithNameTemplate<NameTemplate> {
@@ -7,6 +8,13 @@ export interface CourseTagTemplate
     isOfficial: boolean
 
     firstAppearance: PossibleFirstAppearanceInMarioMaker
+
+}
+
+export interface NameTemplate
+    extends OriginalNameTemplate {
+
+    makerCentral: | PossibleMakerCentralName | null
 
 }
 

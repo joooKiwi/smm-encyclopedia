@@ -3,16 +3,19 @@ import './options/EntityAppOption.scss';
 
 import {lazy} from 'react';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {EntityAppStates}                                    from './AppStates.types';
-import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
+import type {EntityAppStates}                                      from './AppStates.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
 import {Entities}                      from '../core/entity/Entities';
 import {EntityAppOption}               from './options/EntityAppOption';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
+import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
 const SimpleSound = lazy(() => import('./tools/sounds/SimpleSound'));
 
@@ -20,11 +23,13 @@ const SimpleSound = lazy(() => import('./tools/sounds/SimpleSound'));
  * @reactComponent
  */
 export default class EntityApp
-    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, {}, EntityAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, AppProperties, EntityAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
-        this.state = EntityAppOption.createDefaultState;
+        this.state = {
+            typeDisplayed: ViewDisplays.TABLE,
+        };
     }
 
     //region -------------------- Create methods --------------------
@@ -44,7 +49,23 @@ export default class EntityApp
                 return Entities[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: 4,
+                    large: 3,
+                    extraLarge: 2,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent({englishNameInHtml: htmlName, reference, editorVoiceSound: {fileName: editorVoice1, europeanFileName: editorVoice2,},}: Entities,): ReactElement {
                 //TODO encapsulate the voiceSound into a sound interpreter.

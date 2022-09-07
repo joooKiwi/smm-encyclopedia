@@ -1,6 +1,7 @@
 import type {ObjectHolder} from './ObjectHolder';
 
-import {ObjectHolderContainer} from './ObjectHolder.container';
+import {EMPTY_ARRAY, EMPTY_OBJECT, EMPTY_STRING} from '../emptyVariables';
+import {ObjectHolderContainer}                   from './ObjectHolder.container';
 
 export class ObjectHolders {
 
@@ -8,26 +9,17 @@ export class ObjectHolders {
         throw new Error('This class cannot be instantiated.');
     }
 
-    /**
-     * A callback holder that only return null.
-     */
+    /** A callback holder that only return null */
     public static readonly NULL: ObjectHolder<null> = new ObjectHolderContainer(null);
-    /**
-     * A callback holder that only return true.
-     */
+    /** A callback holder that only return true */
     public static readonly TRUE: ObjectHolder<true> = new ObjectHolderContainer(true);
-    /**
-     * A callback holder that only return false.
-     */
+    /** A callback holder that only return false */
     public static readonly FALSE: ObjectHolder<false> = new ObjectHolderContainer(false);
-    /**
-     * A callback holder that only return an empty string.
-     */
-    public static readonly EMPTY_STRING: ObjectHolder<''> = new ObjectHolderContainer('');
-    /**
-     * A callback holder that only return an empty array.
-     * @note that the never type is used to be used for any possible array.
-     */
-    public static readonly EMPTY_ARRAY: ObjectHolder<never[]> = new ObjectHolderContainer([]);
+    /** A callback holder that only return an empty string */
+    public static readonly EMPTY_STRING: ObjectHolder<typeof EMPTY_STRING> = new ObjectHolderContainer(EMPTY_STRING);
+    /** A callback holder that only return an empty array */
+    public static readonly EMPTY_ARRAY: ObjectHolder<typeof EMPTY_ARRAY> = new ObjectHolderContainer(EMPTY_ARRAY);
+    /** A callback holder that only return an empty object */
+    public static readonly EMPTY_OBJECT: ObjectHolder<typeof EMPTY_OBJECT> = new ObjectHolderContainer(EMPTY_OBJECT);
 
 }

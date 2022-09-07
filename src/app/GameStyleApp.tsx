@@ -1,9 +1,11 @@
 import './GameStyleApp.scss';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {GameStyleAppStates}                                 from './AppStates.types';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
-import type {SingleHeaderContent}                                from './tools/table/SimpleHeader';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
+import type {GameStyleAppStates}                                   from './AppStates.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
+import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
@@ -15,9 +17,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class GameStyleApp
-    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, {}, GameStyleAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, AppProperties, GameStyleAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,
@@ -41,7 +43,22 @@ export default class GameStyleApp
                 return GameStyles[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: 4,
+                    large: null,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: GameStyles,): ReactElement {
                 return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>

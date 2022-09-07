@@ -60,6 +60,11 @@ export type EmptyIsInPropertyName = 'Empty "is in property"';
 export type EmptyEntityReferenceName = 'Empty entity reference';
 
 //endregion -------------------- Entity property types --------------------
+//region -------------------- Sound effect types --------------------
+
+export type EmptySMMSoundEffectSoundName = 'Empty sound effect sound';
+
+//endregion -------------------- Sound effect types --------------------
 //region -------------------- Sound effect category types --------------------
 
 export type EmptySoundEffectCategoryName = 'Empty sound effect category';
@@ -90,6 +95,11 @@ export type EmptyPredefinedMessageName = 'Empty predefined message';
 export type EmptyInstrumentName = 'Empty instrument';
 
 //endregion -------------------- Instrument types --------------------
+//region -------------------- Music types --------------------
+
+export type EmptySingleBackgroundMusicName = 'Empty single "background music"';
+
+//endregion -------------------- Music types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -108,6 +118,7 @@ export type EveryPossibleEmptyName =
 
     | EmptyIsInPropertyName | EmptyEntityReferenceName
 
+    | EmptySMMSoundEffectSoundName
     | EmptySoundEffectCategoryName
 
     | EmptyMiiCostumeName
@@ -117,6 +128,8 @@ export type EveryPossibleEmptyName =
 
     | EmptyPredefinedMessageName
 
-    | EmptyInstrumentName;
+    | EmptyInstrumentName
+
+    | EmptySingleBackgroundMusicName;
 
 //endregion -------------------- Empty names types --------------------

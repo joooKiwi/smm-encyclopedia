@@ -1,8 +1,10 @@
 import './MysteryMushroomApp.scss';
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties} from './interpreter/AppInterpreterWithTable';
-import type {MysteryMushroomAppStates}                           from './AppStates.types';
-import type {ReactElement, ReactElementOrString}                 from '../util/react/ReactProperties';
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable';
+import type {AppProperties}                                        from './AppProperties.types';
+import type {MysteryMushroomAppStates}                             from './AppStates.types';
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList';
+import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties';
 
 import {AbstractTableApp}              from './withInterpreter/AbstractTableApp';
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
@@ -16,9 +18,9 @@ import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
  * @reactComponent
  */
 export default class MysteryMushroomApp
-    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, {}, MysteryMushroomAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, AppProperties, MysteryMushroomAppStates> {
 
-    public constructor(props: {},) {
+    public constructor(props: AppProperties,) {
         super(props,);
         this.state = {
             typeDisplayed: ViewDisplays.CARD_LIST,
@@ -42,7 +44,24 @@ export default class MysteryMushroomApp
                 return MysteryMushrooms[Symbol.iterator]();
             }
 
+            //region -------------------- List interpreter --------------------
+
+            public createListDimension(): PossibleDimensionOnList {
+                return {
+                    small: 6,
+                    medium: null,
+                    large: 4,
+                    extraLarge: 3,
+                    extraExtraLarge: 2,
+                };
+            }
+
+            //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
+
+            public createCardListDimension(): PossibleDimensionOnCardList {
+                return 'list';
+            }
 
             public createCardListContent(enumerable: MysteryMushrooms,): ReactElement {
                 const amountOfImages = enumerable.englishNameOnFile.length;

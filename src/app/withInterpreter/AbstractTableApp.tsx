@@ -1,4 +1,5 @@
 import type {AppInterpreterWithTable}      from '../interpreter/AppInterpreterWithTable';
+import type {AppProperties}                from '../AppProperties.types';
 import type {AppWithVariableDisplayStates} from '../AppStates.types';
 import type {ReactElement}                 from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}          from '../tools/table/SimpleHeader';
@@ -9,7 +10,7 @@ import Table                 from '../tools/table/Table';
 import {ViewDisplays}        from './ViewDisplays';
 
 export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
-    T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractCardListApp<APP, T, S> {
 
     //region -------------------- Fields --------------------

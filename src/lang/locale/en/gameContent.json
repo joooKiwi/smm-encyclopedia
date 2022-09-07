@@ -156,6 +156,18 @@
 
   "Sound effect":  "Sound effect",
   "Sound effects": "Sound effects",
+  "soundEffect": {
+    "After land + jump":                          "After the {{player}} is landing & a jump is made",
+    "Turn after full speed":                      "After the {{player}} is turning around (after being at full speed)",
+    "Crouch":                                     "When a {{player}} is crouching",
+    "After 3 seconds → no movement (continuous)": "After 3 seconds of non-movement (it repeat itself continuously)",
+    "Power-up collected":                         "When a {{powerUp}} is collected ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
+    "Get in entity":                              "When a {{player}} is getting [into / on / grabbed] a {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} or {{swingingClawImage}}",
+    "Spawn":                                      "When a {{player}} is spawning",
+    "Take damage":                                "When a {{player}} is taking damage",
+    "Lose life":                                  "When a {{player}} is losing a life",
+    "Take damage | Lose life":                    "When a {{player}} is taking damage or losing a life"
+  },
 
   "Game":                  "Game",
   "Games":                 "Games",
