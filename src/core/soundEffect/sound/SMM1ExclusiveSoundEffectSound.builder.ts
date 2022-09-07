@@ -18,7 +18,7 @@ export class SMM1ExclusiveSoundEffectSoundBuilder
     //region -------------------- Builder helper methods --------------------
 
     protected override _createSound(sound: PossibleSoundEffectSoundName_SMM1,): PossibleSoundEffectSoundFileName_SMM1 {
-        return `${BASE_PATH}/sound/sound effect/SMM1/${sound}.wav`;
+        return `/${BASE_PATH}/sound/sound effect/SMM1/${sound}.wav`;
     }
 
     //endregion -------------------- Builder helper methods --------------------
