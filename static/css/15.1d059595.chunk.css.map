@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/app/EveryCourseTagsApp.scss"],"names":[],"mappings":"AAAA,qDAGI,kCAAqC","file":"15.1d059595.chunk.css","sourcesContent":["#courseTag-container {\n\n  .cardListName-content-container{\n    color: rgba(var(--bs-dark-rgb), 50%,);\n  }\n\n}\n"]}

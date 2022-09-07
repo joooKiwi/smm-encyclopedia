@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/app/tools/text/YesOrNoResultTextComponent.scss"],"names":[],"mappings":"AAAA,UACE,qBAAsB,CACvB,SAGC,mBAAoB","file":"2.d7bc89dd.chunk.css","sourcesContent":[".text-yes {\n  color: var(--bs-green);\n}\n\n.text-no {\n  color: var(--bs-red);\n}\n"]}
