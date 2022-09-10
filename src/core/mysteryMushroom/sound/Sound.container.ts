@@ -46,7 +46,7 @@ export class SoundContainer<FILE extends EnglishNameOnFile = EnglishNameOnFile, 
 
     //region -------------------- Getter methods --------------------
 
-    private __path(): Path<FILE> {
+    private get __path(): Path<FILE> {
         return this.#path;
     }
 
@@ -56,8 +56,7 @@ export class SoundContainer<FILE extends EnglishNameOnFile = EnglishNameOnFile, 
 
 
     #getSound<SOUND_PATH extends PossibleSounds = PossibleSounds, >(sound: SOUND_PATH,): SingleSound<FILE, SOUND_PATH> {
-        return `${this.__path as unknown as Path<FILE>}/${sound}`;
-        //FIXME for some reason typescript doesn't see the type properly
+        return `${this.__path}/${sound}`;
     }
 
 

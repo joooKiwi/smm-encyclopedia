@@ -1,23 +1,24 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.6.0-beta",
+  "version": "0.7.1-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "scripts": {
     "csv-to-json": "node ./src/scripts/CSVToJson",
     "copy-images-for-css": "node ./src/scripts/CopyImagesForCSS",
-    "prepare-csv-and-images": "npm-run-all -p csv-to-json copy-images-for-css",
+    "copy-locale-to-src":  "node ./src/scripts/CopyLocaleToSrc",
+    "prepare-project": "npm-run-all -p csv-to-json copy-locale-to-src copy-images-for-css",
 
-    "prestart": "npm run prepare-csv-and-images",
+    "prestart": "npm run prepare-project",
     "start": "craco start",
     "fast-start": "craco start",
 
     "test": "craco test",
 
-    "prebuild": "npm run prepare-csv-and-images",
+    "prebuild": "npm run prepare-project",
     "build": "craco build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -m \"Version 0.6 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Version 0.7.1 (beta)\" -d build"
   },
   "repository": {
     "type": "git",
@@ -79,6 +80,7 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
+    "fs-extra": "^10.1.0",
     "gh-pages": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.3.2",

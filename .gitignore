@@ -25,3 +25,4 @@ yarn-error.log*
 # project
 /src/resources/compiled/
 /src/resources/images/
+/src/lang/locale/
