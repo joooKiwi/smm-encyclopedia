@@ -21,7 +21,7 @@ const logger = Logger.get;
     'Mii Costume category (SMM2)',
     'Instrument',
 ].forEach(fileName => {
-    const file = createReadStream(`${__dirname}/../resources/${fileName}.csv`,)
+    const file = createReadStream(`${__dirname}/../../resources/csv/${fileName}.csv`,)
     const writeSteam = createWriteStream(`${__dirname}/../resources/compiled/${fileName}.json`,)
     writeSteam
         .on('open', () => logger.log(`Reading file "${fileName}".`))
