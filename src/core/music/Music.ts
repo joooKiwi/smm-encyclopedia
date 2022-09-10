@@ -18,4 +18,4 @@ export interface Music<ALL extends PossibleMusicArray = PossibleMusicArray, > {
 export type PossibleMusicArray = | PossibleMusicArray_SingleSoundEffectMusic | PossibleMusicArray_SoundEffectMusicWithDifferentEditor | readonly FullMusicPathOn<Possible_Music>[];
 
 export type FullMusicPathOn<NAME extends | PossibleSoundEffectMusicFileName | Possible_Music | null = | PossibleSoundEffectMusicFileName | Possible_Music | null, >
-    = NAME extends null ? null : `${BasePath}/music/SMM2/${NAME}.wav`;
+    = NAME extends null ? null : `/${BasePath}/music/SMM2/${NAME}.wav`;

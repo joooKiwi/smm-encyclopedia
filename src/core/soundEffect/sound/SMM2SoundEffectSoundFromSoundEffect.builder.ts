@@ -59,7 +59,7 @@ export class SMM2SoundEffectSoundFromSoundEffectBuilder
     //region -------------------- Builder helper methods --------------------
 
     protected override _createSound(sound: PossibleSoundEffectSoundName_SMM2,): PossibleSoundEffectSoundFileName_SMM2 {
-        return `${BASE_PATH}/sound/sound effect/SMM2/${sound}.wav`;
+        return `/${BASE_PATH}/sound/sound effect/SMM2/${sound}.wav`;
     }
 
     protected override _createSounds(sounds: OriginalValuesOnLinkOrSMB2Value,): PossibleValueOnLinkOrSMB2Value_SMM2<readonly PossibleSoundEffectSoundFileName_SMM2[]>
