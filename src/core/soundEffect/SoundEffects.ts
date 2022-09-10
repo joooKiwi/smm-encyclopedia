@@ -630,7 +630,7 @@ export abstract class SoundEffects
             return Import.Musics.SUPER_MARIO_KART;
         }
 
-    }('Super Mario Kart', new SMM2SoundEffectImage('Mario02',),);
+    }('Super Mario Kart', new SMM2SoundEffectImage('Mario03',),);
     public static readonly SUPER_MARIO_64_MUSIC =       new class SoundEffects_SuperMario64Music extends SoundEffects {
 
         protected override _createSMM2Sounds(): Musics {
@@ -651,7 +651,7 @@ export abstract class SoundEffects
             return Import.Musics.SUPER_MARIO_GALAXY;
         }
 
-    }('Super Mario Galaxy', new SMM2SoundEffectImage('Mario03',),);
+    }('Super Mario Galaxy', new SMM2SoundEffectImage('Mario00',),);
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
