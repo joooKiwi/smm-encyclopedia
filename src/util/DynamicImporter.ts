@@ -251,7 +251,7 @@ export class DynamicImporter {
         return this.#GameReferences ??= require('../core/gameReference/GameReferences').GameReferences;
     }
 
-    get GameReferenceLoader(): typeof GameReferenceLoader {
+    public get GameReferenceLoader(): typeof GameReferenceLoader {
         return this.#GameReferenceLoader ??= require('../core/gameReference/GameReference.loader').GameReferenceLoader;
     }
 
@@ -330,7 +330,7 @@ export class DynamicImporter {
     //endregion -------------------- "Mii costume" getter methods --------------------
     //region -------------------- "Official notification" getter methods --------------------
 
-    get OfficialNotifications(): typeof OfficialNotifications {
+    public get OfficialNotifications(): typeof OfficialNotifications {
         return this.#OfficialNotifications ??= require('../core/officialNotification/OfficialNotifications').OfficialNotifications;
     }
 
@@ -371,7 +371,7 @@ export class DynamicImporter {
     //region -------------------- "Music" getter methods --------------------
 
     public get Musics(): typeof Musics {
-        return this.#Musics ??= require('../core/music/Musics.ts').Musics;
+        return this.#Musics ??= require('../core/music/Musics').Musics;
     }
 
     //endregion -------------------- "Music" getter methods --------------------
