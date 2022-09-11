@@ -18,7 +18,6 @@ import {Enum}                          from '../../util/enum/Enum';
 import {EntityCategories}              from '../../core/entityCategory/EntityCategories';
 import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes';
 import {EmptyAppOption}                from './component/EmptyAppOption';
-import {EmptyEditorImage}              from '../../core/entity/images/editor/EmptyEditorImage';
 import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
 import {Games}                         from '../../core/game/Games';
 import {GameStyles}                    from '../../core/gameStyle/GameStyles';
@@ -29,6 +28,7 @@ import {Times}                         from '../../core/time/Times';
 
 const CourseThemeComponent =        lazy(() => import('../../core/theme/CourseTheme.component'));
 const EditorVoiceSoundComponent =   lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'));
+const Image =                       lazy(() => import( '../tools/images/Image'));
 const InstrumentPropertyComponent = lazy(() => import( '../../core/entity/properties/instrument/InstrumentProperty.component'));
 const GameComponent =               lazy(() => import('../../core/game/Game.component'));
 const GameStyleComponent =          lazy(() => import('../../core/gameStyle/GameStyle.component'));
@@ -58,36 +58,15 @@ export abstract class EntityAppOption
      */
     public static readonly IMAGES = new class EntityAppOption_Images extends EntityAppOption {
 
-        get #createImageOnEditor(): PossibleRenderReactElement {
-            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-            const image = enumeration.editorImage;
-
-            return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`editor image (${enumeration.englishName})`}>{
-                [...new Set(EntityAppOption.themes.map(theme =>
-                    EntityAppOption.times.map(time => image.get(true, gameStyle, theme, time,)
-                        .map((image, index,) => [theme, time, image, index,] as const))).flat(2))]
-                    .map(([theme, time, image, index,]) =>
-                        <img src={image} alt={`${gameStyle.acronym}-${theme.englishName}-${time.englishName}-${index + 1}`}/>)
-            }</Fragment>);
-        }
-
-        get #createImageOnClearCondition(): PossibleRenderReactElement {
-            const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-            const image = enumeration.clearConditionImage;
-
-            return EntityAppOption._gameStyles.map(gameStyle =>
-                <Fragment key={`clear condition image (${enumeration.englishName})`}>{
-                    image.get(gameStyle).map((image, index,) => <img src={image} alt={`${gameStyle.acronym}-${index + 1}`}/>)
-                }</Fragment>);
-        }
-
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
+                    {englishName, englishNameInHtml, uniqueImage,} = enumeration;
 
-                return enumeration.editorImage === EmptyEditorImage.get
-                    ? this.#createImageOnClearCondition
-                    : this.#createImageOnEditor;
+                return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`unique image (${englishName})`}>{
+                    uniqueImage.get(gameStyle).map(image =>
+                        <Image id={`${englishNameInHtml}-image`} className="entity-image" source={image}  fallbackName={`${englishName} (${gameStyle.acronym})`}/>)
+                }</Fragment>);
             };
         }
 
