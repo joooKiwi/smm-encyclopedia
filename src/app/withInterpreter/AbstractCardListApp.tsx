@@ -23,7 +23,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
         return AbstractCardListApp.#APP_OPTION_INTERPRETER;
     }
 
-    protected _createUniqueNameOnCard(enumerable: ReturnType<APP['iterable']['next']>['value'],): string {
+    protected _createUniqueNameOnCardList(enumerable: ReturnType<APP['iterable']['next']>['value'],): string {
         //TODO find a better way to use the enumerable type than the complicated name
         return enumerable.englishName;
     }
@@ -43,7 +43,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
-            const uniqueEnglishName = this._createUniqueNameOnCard(enumerable);
+            const uniqueEnglishName = this._createUniqueNameOnCardList(enumerable);
             const name = enumerable.reference.nameContainer;
             const id = `${key}-${enumerable.englishNameInHtml}-container`;
 
