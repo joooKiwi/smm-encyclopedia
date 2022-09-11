@@ -46,10 +46,10 @@ export abstract class MysteryMushroomAppOption
     public static readonly GAME = new class MysteryMushroomAppOption_Game extends MysteryMushroomAppOption {
 
         protected override _createContentOption(enumeration: MysteryMushrooms,): PossibleRenderReactElement {
-            const {englishName, englishNameInHtml, reference,} = enumeration;
+            const {uniqueEnglishName, englishNameInHtml, reference,} = enumeration;
 
-            return <div key={`games - ${englishName}`} id={`games-${englishNameInHtml}`}>{
-                    reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${enumeration.englishName}`}>
+            return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{
+                    reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
                         <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
                         {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
                     </Fragment>)
@@ -280,7 +280,7 @@ export abstract class MysteryMushroomAppOption
     public static readonly CLIMBING = new class MysteryMushroomAppOption_Climbing extends MysteryMushroomAppOption {
 
         protected override _createContentOption(): PossibleRenderReactElement {
-            return this._renderSoundContent();
+            return this._renderImageContent();
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
@@ -386,14 +386,12 @@ export abstract class MysteryMushroomAppOption
 
     #createSingleImageAndSoundContainer(renderDiv: boolean, callback: (enumeration: MysteryMushrooms,) => ReactElement,): ReactElement {
         const enumeration = MysteryMushroomAppOption.CALLBACK_TO_GET_ENUMERATION();
-        if (enumeration === MysteryMushrooms.MYSTERY_MUSHROOM)
-            return MysteryMushroomAppOption.#NOT_APPLICABLE_COMPONENT;
 
-        if (!renderDiv)
-            return callback(enumeration);
-        const englishName = enumeration.englishName;
-        const type = this._mysteryMushroomType;
-        return <div key={`${englishName} - ${type}`}>{callback(enumeration)}</div>;
+        return enumeration === MysteryMushrooms.MYSTERY_MUSHROOM
+            ? MysteryMushroomAppOption.#NOT_APPLICABLE_COMPONENT
+            : renderDiv
+                ? <div key={`${enumeration.uniqueEnglishName} - ${this._mysteryMushroomType}`}>{callback(enumeration)}</div>
+                : callback(enumeration);
     }
 
     protected _createSingleImageAndSoundContainer(callback: (enumeration: MysteryMushrooms,) => ReactElement, renderDiv: boolean = true,): ReactElement {
@@ -416,6 +414,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const englishName = enumeration.englishName;
             const type = this._mysteryMushroomType;
+
             return <>{callback(enumeration).map((value, index,) =>
                 <SimpleSound source={value} title={`${englishName} - ${type} #${index + 1}`}/>
             )}</>;
@@ -424,18 +423,23 @@ export abstract class MysteryMushroomAppOption
 
     protected _createImage(callback: (enumeration: MysteryMushrooms,) => PossibleImageSourceForFile<string>, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
+            const uniqueEnglishName = enumeration.uniqueEnglishName;
             const fallbackName = `${enumeration.englishName} (${this._mysteryMushroomType})`;
+
             return <>{callback(enumeration).map((value, index,) =>
-                <Image key={`${fallbackName} #${index + 1}`} source={value} fallbackName={`${fallbackName} #${index + 1}`}/>
+                <Image key={`${uniqueEnglishName} #${index + 1}`} source={value} fallbackName={`${fallbackName} #${index + 1}`}/>
             )}</>;
         },);
     }
 
     protected _createAnimatedImages(callback: (enumeration: MysteryMushrooms,) => PossibleImageSourceForFile<readonly string[]>, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
+            const uniqueEnglishName = enumeration.uniqueEnglishName;
+            const englishNameInHtml = enumeration.englishNameInHtml;
             const fallbackName = `${enumeration.englishName} (${this._mysteryMushroomType})`;
+
             return <>{callback(enumeration).map((value, index,) =>
-                <Image key={`${fallbackName} #${index + 1}`} partialId={`${enumeration.englishNameInHtml}-${index + 1}`}
+                <Image key={`${uniqueEnglishName} #${index + 1}`} partialId={`${englishNameInHtml}-${index + 1}`}
                        images={value.map((image, index,) =>
                            ({source: image, fallbackName: `${fallbackName} #${index + 1}`,}))}/>
             )}</>;
