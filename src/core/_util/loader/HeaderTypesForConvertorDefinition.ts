@@ -26,121 +26,121 @@ export interface HeaderTypesForConvertorDefinition {
 
     //region -------------------- Game reference --------------------
 
-    get everyPossibleAcronym_gameReference(): ValueOrStringConstant<EveryPossibleAcronym_GameReference>
+    get everyPossibleAcronym_gameReference(): ValueOrEmptyArray<EveryPossibleAcronym_GameReference>
 
-    get everyPossibleAcronymWithPokemonGeneration_gameReference(): ValueOrStringConstant<EveryPossibleAcronymWithPokemonGeneration_GameReference>
+    get everyPossibleAcronymWithPokemonGeneration_gameReference(): ValueOrEmptyArray<EveryPossibleAcronymWithPokemonGeneration_GameReference>
 
-    //TODO change to ValueOrNull<EveryPossibleName_GameReference>
-    get everyPossibleName_gameReference(): ValueOrEmptyableStringConstant<EveryPossibleName_GameReference>
+    get everyPossibleName_gameReference(): ValueOrEmptyArray<EveryPossibleName_GameReference>
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
 
-    get everyPossibleAcronym_gameStyle(): ValueOrStringConstant<EveryPossibleAcronym_GameStyle>
+    get everyPossibleAcronym_gameStyle(): ValueOrEmptyArray<EveryPossibleAcronym_GameStyle>
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
-    //TODO change to ValueOrNull<EveryPossibleName_Entity>
-    get everyPossibleName_entity(): ValueOrEmptyableStringConstant<EveryPossibleName_Entity>
+    get everyPossibleName_entity(): ValueOrEmptyArray<EveryPossibleName_Entity>
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
 
-    get everyPossibleAcronym_entityBehaviour(): ValueOrStringConstant<EveryPossibleAcronym_EntityBehaviour>
+    get everyPossibleAcronym_entityBehaviour(): ValueOrEmptyArray<EveryPossibleAcronym_EntityBehaviour>
 
-    get everyPossibleTranslationKey_entityBehaviour(): ValueOrStringConstant<EveryPossibleTranslationKey_EntityBehaviour>
+    get everyPossibleTranslationKey_entityBehaviour(): ValueOrEmptyArray<EveryPossibleTranslationKey_EntityBehaviour>
 
     //endregion -------------------- Entity behaviour --------------------
     //region -------------------- Entity group --------------------
 
-    get everyPossibleName_entityGroup(): ValueOrStringConstant<EveryPossibleName_EntityGroup>
+    get everyPossibleName_entityGroup(): ValueOrEmptyArray<EveryPossibleName_EntityGroup>
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Theme --------------------
 
-    get everyPossibleName_theme(): ValueOrStringConstant<EveryPossibleName_Theme>
+    get everyPossibleName_theme(): ValueOrEmptyArray<EveryPossibleName_Theme>
 
-    get everyPossibleName_themeNightEffect(): ValueOrStringConstant<EveryPossibleName_ThemeNightEffect>
+    get everyPossibleName_themeNightEffect(): ValueOrEmptyArray<EveryPossibleName_ThemeNightEffect>
 
     //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
-    get everyPossibleName_entityCategory(): ValueOrStringConstant<EveryPossibleName_EntityCategory>
+    get everyPossibleName_entityCategory(): ValueOrEmptyArray<EveryPossibleName_EntityCategory>
 
     //endregion -------------------- Entity category --------------------
     //region -------------------- Entity limit --------------------
 
-    get everyPossibleAcronym_limit(): ValueOrStringConstant<EveryPossibleAcronym_EntityLimit>
+    get everyPossibleAcronym_limit(): ValueOrEmptyArray<EveryPossibleAcronym_EntityLimit>
 
-    get everyAlternativeAcronym_limit(): ValueOrStringConstant<EveryAlternativeAcronym_EntityLimit>
+    get everyAlternativeAcronym_limit(): ValueOrEmptyArray<EveryAlternativeAcronym_EntityLimit>
 
-    get everyPossibleName_limit(): ValueOrStringConstant<EveryPossibleName_EntityLimit>
+    get everyPossibleName_limit(): ValueOrEmptyArray<EveryPossibleName_EntityLimit>
 
-    get everyName_limit(): ValueOrStringConstant<EveryEnglishName_EntityLimit>
+    get everyPossibleNameOrUnknown_limit(): ValueOrEmptyArray<EveryPossibleNameOrUnknown_EntityLimit>
 
-    get everyNameOrUnknown_limit(): ValueOrStringConstant<EveryEnglishNameOrUnknown_EntityLimit>
+    get everyName_limit(): ValueOrEmptyArray<EveryEnglishName_EntityLimit>
+
+    get everyNameOrUnknown_limit(): ValueOrEmptyArray<EveryEnglishNameOrUnknown_EntityLimit>
 
     //endregion -------------------- Entity limit --------------------
     //region -------------------- Entity limit type --------------------
 
-    get everyPossibleName_limitType(): ValueOrStringConstant<EveryPossibleEnglishName_EntityLimitType>
+    get everyPossibleName_limitType(): ValueOrEmptyArray<EveryPossibleEnglishName_EntityLimitType>
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
-    get everyPossibleName_soundEffect(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffect>
+    get everyPossibleName_soundEffect(): ValueOrEmptyArray<EveryPossibleEnglishName_SoundEffect>
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Sound effect category --------------------
 
-    get everyPossibleName_soundEffectCategory(): ValueOrStringConstant<EveryPossibleEnglishName_SoundEffectCategory>
+    get everyPossibleName_soundEffectCategory(): ValueOrEmptyArray<EveryPossibleEnglishName_SoundEffectCategory>
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
-    get everyPossibleName_MiiCostumeCategory(): ValueOrStringConstant<EveryPossibleName_MiiCostumeCategory>
+    get everyPossibleName_MiiCostumeCategory(): ValueOrEmptyArray<EveryPossibleName_MiiCostumeCategory>
 
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     get everyPossibleEnglishNameOnFile_mysteryMushroom(): ValueOrStringConstant<EveryPossibleEnglishNameOnFile_MysteryMushroom>
 
-    get everyPossibleConditionToUnlockIt_mysteryMushroom(): ValueOrStringConstant<EveryConditionToUnlockIt_MysteryMushroom>
+    get everyPossibleConditionToUnlockIt_mysteryMushroom(): ValueOrEmptyArray<EveryConditionToUnlockIt_MysteryMushroom>
 
-    get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom(): ValueOrStringConstant<EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom>
+    get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom(): ValueOrEmptyArray<EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom>
 
-    get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): ValueOrStringConstant<EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom>
+    get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom(): ValueOrEmptyArray<EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom>
 
     //endregion -------------------- Mystery Mushroom --------------------
     //region -------------------- Official notification --------------------
 
-    get everyPossibleNameWithAmount_officialNotification(): ValueOrStringConstant<EveryPossibleNameWithAmount_OfficialNotification>;
+    get everyPossibleNameWithAmount_officialNotification(): ValueOrEmptyArray<EveryPossibleNameWithAmount_OfficialNotification>;
 
     //endregion -------------------- Official notification --------------------
     //region -------------------- Predefined message --------------------
 
-    get everyPossibleName_predefinedMessage(): ValueOrStringConstant<EveryPossibleEnglishName_PredefinedMessage>
+    get everyPossibleName_predefinedMessage(): ValueOrEmptyArray<EveryPossibleEnglishName_PredefinedMessage>
 
     //endregion -------------------- Predefined message --------------------
     //region -------------------- Instrument --------------------
 
-    get everyPossibleName_instrument():ValueOrStringConstant<EveryPossibleName_Instrument>
+    get everyPossibleName_instrument(): ValueOrEmptyArray<EveryPossibleName_Instrument>
 
-    get everyPossibleNameOnEntity_instrument():ValueOrEmptyableStringConstant<EveryPossibleNameOnEntity_Instrument>
+    get everyPossibleNameOnEntity_instrument(): ValueOrEmptyArray<EveryPossibleNameOnEntity_Instrument>
 
     //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
 
-    get everyPossibleName_version(): ValueOrStringConstant<EveryPossibleName_Version>
+    get everyPossibleName_version(): ValueOrEmptyArray<EveryPossibleName_Version>
 
-    get everyPossibleName_version_smm(): ValueOrStringConstant<EveryPossibleName_Version_SMM>
+    get everyPossibleName_version_smm(): ValueOrEmptyArray<EveryPossibleName_Version_SMM>
 
-    get everyPossibleName_version_smm3ds(): ValueOrStringConstant<EveryPossibleName_Version_SMM3DS>
+    get everyPossibleName_version_smm3ds(): ValueOrEmptyArray<EveryPossibleName_Version_SMM3DS>
 
-    get everyPossibleName_version_smm2(): ValueOrStringConstant<EveryPossibleName_Version_SMM2>
+    get everyPossibleName_version_smm2(): ValueOrEmptyArray<EveryPossibleName_Version_SMM2>
 
     //endregion -------------------- Version --------------------
 
@@ -148,15 +148,18 @@ export interface HeaderTypesForConvertorDefinition {
 
 //region -------------------- External types --------------------
 
-/**The value received in parameter or simply the {@link StringConstant String constant}.*/
-type ValueOrStringConstant<T, > = T | StringConstant;
-/**The value received in parameter or simply the {@link EmptyableStringConstant Emptyable string constant}.*/
-type ValueOrEmptyableStringConstant<T, > = T | EmptyableStringConstant;
-export type StringConstant = 'string';
-export type EmptyableStringConstant = `emptyable ${StringConstant}`;
+/** The value received in parameter or <b>null</b>. */
+type ValueOrEmptyArray<T, > = | T | EmptyArray;
+/** The value received in parameter or simply the {@link StringConstant String constant}. */
+// type ValueOrStringConstant<T, > = | T | StringConstant;
+/** The value received in parameter or simply the {@link EmptyableStringConstant Emptyable string constant}. */
+// type ValueOrEmptyableStringConstant<T, > = | T | EmptyableStringConstant;
+// export type StringConstant = 'string';
+// export type EmptyableStringConstant = `emptyable ${StringConstant}`;
 // export type NumberConstant = 'number';
 // export type StringAndNumberConstants = readonly [StringConstant, NumberConstant,];
-// export type EmptyArray = readonly [];
+/** An empty array */
+export type EmptyArray = readonly [];
 
 export type UnknownCharacter = '?';
 export type UnknownReference = '???';

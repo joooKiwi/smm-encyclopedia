@@ -73,13 +73,15 @@ export class EntityBehaviourLoader
             //region -------------------- CSV Loader --------------------
 
             new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(resource, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('boolean')
+                .setDefaultConversion('emptyable string')
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_entityBehaviour, 'acronym',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleTranslationKey_entityBehaviour, 'translationKey',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_entityGroup, 'link_group',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_entity, 'link_entity',)
+                .convertToBoolean('isOnlineOnly', 'isMultiplayerOnly',)
+
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_entityGroup, 'link_group',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_entity, 'link_entity',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.translationKey, finalContent,))
                 .load();
