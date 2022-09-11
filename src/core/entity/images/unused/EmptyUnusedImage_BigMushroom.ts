@@ -22,7 +22,7 @@ export class EmptyUnusedImage_BigMushroom
     public readonly all = EMPTY_ARRAY;
 
     public toString(): EmptyUnusedImageName {
-        return 'Empty "unused" image';
+        return 'Empty unused image';
     }
 
 }

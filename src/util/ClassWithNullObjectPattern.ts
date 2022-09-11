@@ -16,9 +16,10 @@ export interface ClassWithNullObjectPattern<NAME extends EveryPossibleEmptyName 
 export type EmptyEntityName = 'Empty entity';
 
 export type EmptyEditorImageName = 'Empty editor image';
-export type EmptyClearConditionImageName = 'Empty clear condition image';
-export type EmptyInGameImageName = 'Empty "in game" image';
-export type EmptyUnusedImageName = 'Empty "unused" image';
+export type EmptyClearConditionImageName = 'Empty "clear condition" image';
+export type EmptyWhilePlayingImageName = 'Empty "while playing" image';
+export type EmptyUnusedImageName = 'Empty unused image';
+export type EmptyUniqueImageName = 'Empty unique image';
 
 export type EmptyEditorVoiceSoundName = 'Empty "editor voice" sound';
 
@@ -103,7 +104,7 @@ export type EmptySingleBackgroundMusicName = 'Empty single "background music"';
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
-    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName | EmptyUnusedImageName
+    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyWhilePlayingImageName | EmptyUnusedImageName | EmptyUniqueImageName
     | EmptyEditorVoiceSoundName
 
     | EmptyEntityCategoryName

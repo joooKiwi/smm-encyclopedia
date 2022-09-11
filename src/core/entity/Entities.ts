@@ -6,14 +6,14 @@ import type {EditorImage}                                                       
 import type {EditorVoiceSound}                                                                                                                                                                           from '../editorVoice/EditorVoiceSound';
 import type {Entity}                                                                                                                                                                                     from './Entity';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types';
-import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage';
 import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                                                                                                                              from './images/clearCondition/ClearConditionImage.types';
 import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope}                                                                                                       from './images/editor/EditorImage.types';
-import type {PossibleImageReceivedOnFactory as PossibleInGameImage}                                                                                                                                      from './images/inGame/InGameImage.types';
 import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}                                                                                                                                      from './images/unused/UnusedImage.types';
+import type {PossibleImageReceivedOnFactory as PossibleWhilePlayingImage}                                                                                                                                from './images/whilePlaying/WhilePlayingImage.types';
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
 import type {UniqueImage}                                                                                                                                                                                from './images/unique/UniqueImage';
 import type {UnusedImages}                                                                                                                                                                               from './images/unused/UnusedImage';
+import type {WhilePlayingImage}                                                                                                                                                                          from './images/whilePlaying/WhilePlayingImage';
 
 import {ClearConditionImageBuilder}       from './images/clearCondition/ClearConditionImage.builder';
 import {ClearConditionImageFactory}       from './images/clearCondition/ClearConditionImage.factory';
@@ -25,8 +25,6 @@ import {EmptyUniqueImage}                 from './images/unique/EmptyUniqueImage
 import {Enum}                             from '../../util/enum/Enum';
 import {GameStyles}                       from '../gameStyle/GameStyles';
 import {Import}                           from '../../util/DynamicImporter';
-import {InGameImage_SMM1Builder}          from './images/inGame/InGameImage_SMM1.builder';
-import {InGameImageFactory}               from './images/inGame/InGameImage.factory';
 import {Themes}                           from '../theme/Themes';
 import {Times}                            from '../time/Times';
 import {UniqueImageByEditorImage}         from './images/unique/UniqueImageByEditorImage';
@@ -36,6 +34,8 @@ import {UnusedImage_BigMushroomBuilder}   from './images/unused/UnusedImage_BigM
 import {UnusedImage_RegularBuilder}       from './images/unused/UnusedImage_Regular.builder';
 import {UnusedImageFactory}               from './images/unused/UnusedImage.factory';
 import {StringContainer}                  from '../../util/StringContainer';
+import {WhilePlayingImage_SMM1Builder}    from './images/whilePlaying/WhilePlayingImage_SMM1.builder';
+import {WhilePlayingImageFactory}         from './images/whilePlaying/WhilePlayingImage.factory';
 
 //region -------------------- Utility methods (applicable only to Entities) --------------------
 
@@ -802,7 +802,7 @@ export class Entities
         }
 
         protected override get _createInGameImage() {
-            return new InGameImage_SMM1Builder('Kinoko2',)
+            return new WhilePlayingImage_SMM1Builder('Kinoko2',)
                 .setGameStyle(GameStyles.SUPER_MARIO_BROS);
         }
 
@@ -814,7 +814,7 @@ export class Entities
         }
 
         protected override get _createInGameImage() {
-            return new InGameImage_SMM1Builder('KinokoFunny',)
+            return new WhilePlayingImage_SMM1Builder('KinokoFunny',)
                 .setGameStyle(GameStyles.SUPER_MARIO_BROS);
         }
 
@@ -865,7 +865,7 @@ export class Entities
         }
 
         protected override get _createInGameImage() {
-            return new InGameImage_SMM1Builder('MegaKinoko')
+            return new WhilePlayingImage_SMM1Builder('MegaKinoko')
                 .setAllGameStyles();
         }
 
@@ -877,7 +877,7 @@ export class Entities
         }
 
         protected override get _createInGameImage() {
-            return new InGameImage_SMM1Builder('MegaKinoko2')
+            return new WhilePlayingImage_SMM1Builder('MegaKinoko2')
                 .setAllGameStyles();
         }
 
@@ -3452,7 +3452,7 @@ export class Entities
     #uniqueImage?: UniqueImage;
     #editorImage?: EditorImage;
     #clearConditionImage?: ClearConditionImage;
-    #whilePlayingImage?: InGameImage;
+    #whilePlayingImage?: WhilePlayingImage;
     #unusedImages?: UnusedImages;
     #editorVoiceSound?: EditorVoiceSound;
 
@@ -3556,12 +3556,12 @@ export class Entities
      * @protected
      * @onlyCalledOnce
      */
-    protected get _createInGameImage(): PossibleInGameImage {
+    protected get _createInGameImage(): PossibleWhilePlayingImage {
         return null;
     }
 
-    public get inGameImage(): InGameImage {
-        return this.#whilePlayingImage ??= InGameImageFactory.create(this._createInGameImage);
+    public get inGameImage(): WhilePlayingImage {
+        return this.#whilePlayingImage ??= WhilePlayingImageFactory.create(this._createInGameImage);
     }
 
     //endregion -------------------- while playing image --------------------
@@ -3631,7 +3631,7 @@ export class Entities
 
 }
 
-type PossibleUniqueImage = | UniqueImage | EditorImage | {clearCondition: ClearConditionImage, } | readonly [InGameImage,] | null;
+type PossibleUniqueImage = | UniqueImage | EditorImage | {clearCondition: ClearConditionImage, } | readonly [WhilePlayingImage,] | null;
 //TODO replace the in clear condition image object with the type directly
 //TODO replace the in game image array with the type directly
 

@@ -1,12 +1,12 @@
 import type {ClearConditionImage} from '../clearCondition/ClearConditionImage';
 import type {EditorImage}         from '../editor/EditorImage';
 import type {GameStyles}          from '../../../gameStyle/GameStyles';
-import type {InGameImage}         from '../inGame/InGameImage';
 import type {UniqueImage}         from './UniqueImage';
+import type {WhilePlayingImage}   from '../whilePlaying/WhilePlayingImage';
 
 import {ClearConditionImageFactory} from '../clearCondition/ClearConditionImage.factory';
 import {EditorImageFactory}         from '../editor/EditorImage.factory';
-import {InGameImageFactory}         from '../inGame/InGameImage.factory';
+import {WhilePlayingImageFactory}   from '../whilePlaying/WhilePlayingImage.factory';
 
 export abstract class AbstractUniqueImage
     implements UniqueImage {
@@ -19,10 +19,10 @@ export abstract class AbstractUniqueImage
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(editor: | EditorImage | null, clearCondition: | ClearConditionImage | null, inGame: | InGameImage | null,) {
+    protected constructor(editor: | EditorImage | null, clearCondition: | ClearConditionImage | null, whilePlaying: | WhilePlayingImage | null,) {
         this.#editorImage = editor ?? EditorImageFactory.EMPTY_EDITOR_IMAGE;
         this.#clearConditionImage = clearCondition ?? ClearConditionImageFactory.EMPTY_CLEAR_CONDITION_IMAGE;
-        this.#inGameImage = inGame ?? InGameImageFactory.EMPTY_IN_GAME_IMAGE;
+        this.#inGameImage = whilePlaying ?? WhilePlayingImageFactory.EMPTY_WHILE_PLAYING_IMAGE;
     }
 
     //region -------------------- Getter methods --------------------
@@ -35,7 +35,7 @@ export abstract class AbstractUniqueImage
         return this.#clearConditionImage;
     }
 
-    public get inGameImage(): InGameImage {
+    public get whilePlayingImage(): WhilePlayingImage {
         return this.#inGameImage;
     }
 

@@ -1,17 +1,17 @@
 import type {Builder}                          from '../../../../util/builder/Builder';
 import type {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
-import type {ImageName_SMM1}                   from './InGameImage.types';
+import type {ImageName_SMM1}                   from './WhilePlayingImage.types';
 import type {Themes}                           from '../../../theme/Themes';
-import type {InGameImage}                      from './InGameImage';
+import type {WhilePlayingImage}                from './WhilePlayingImage';
 
-import {AbstractImageBuilder}      from '../AbstractImage.builder';
-import {EMPTY_MAP}                 from '../../../../util/emptyVariables';
-import {GameStyles}                from '../GameStyles';
-import {InGameImage_SMM1Container} from './InGameImage_SMM1.container';
+import {AbstractImageBuilder}            from '../AbstractImage.builder';
+import {EMPTY_MAP}                       from '../../../../util/emptyVariables';
+import {GameStyles}                      from '../GameStyles';
+import {WhilePlayingImage_SMM1Container} from './WhilePlayingImage_SMM1.container';
 
-export class InGameImage_SMM1Builder
+export class WhilePlayingImage_SMM1Builder
     extends AbstractImageBuilder<ImageName_SMM1>
-    implements Builder<InGameImage> {
+    implements Builder<WhilePlayingImage> {
 
     //region -------------------- Fields --------------------
 
@@ -29,7 +29,7 @@ export class InGameImage_SMM1Builder
     //region -------------------- Game Style --------------------
 
     public override setAllGameStyles(): this {
-        return this._setGameStyle(InGameImage_SMM1Builder.#GAME_STYLE_ARRAY);
+        return this._setGameStyle(WhilePlayingImage_SMM1Builder.#GAME_STYLE_ARRAY);
     }
 
     //endregion -------------------- Game Style --------------------
@@ -52,8 +52,8 @@ export class InGameImage_SMM1Builder
 
     //endregion -------------------- Build utility methods --------------------
 
-    public override build(): InGameImage {
-        return new InGameImage_SMM1Container(this._createNewMap(), this._createDefaultImages(),);
+    public override build(): WhilePlayingImage {
+        return new WhilePlayingImage_SMM1Container(this._createNewMap(), this._createDefaultImages(),);
     }
 
 }

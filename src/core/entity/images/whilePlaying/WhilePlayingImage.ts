@@ -1,6 +1,6 @@
 import type {ImageWithThemesAndGameStyles} from '../ImageWithThemesAndGameStyles';
 
-export interface InGameImage
+export interface WhilePlayingImage
     extends ImageWithThemesAndGameStyles {
 
 }
