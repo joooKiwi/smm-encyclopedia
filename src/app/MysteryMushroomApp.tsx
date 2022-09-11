@@ -37,7 +37,11 @@ export default class MysteryMushroomApp
         return <GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'})}</GameContentTranslationComponent>;
     }
 
-    protected override _createUniqueNameOnCard(enumerable: MysteryMushrooms,): string {
+    protected override _createUniqueNameOnSimpleList(enumerable: MysteryMushrooms,): string {
+        return enumerable.uniqueEnglishName;
+    }
+
+    protected override _createUniqueNameOnCardList(enumerable: MysteryMushrooms,): string {
         return enumerable.uniqueEnglishName;
     }
 
