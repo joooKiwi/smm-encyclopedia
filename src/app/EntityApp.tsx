@@ -86,10 +86,10 @@ export default class EntityApp
             public get tableOptions(): readonly EntityAppOption[] {
                 return [EntityAppOption.IMAGES,
                     EntityAppOption.NAME,
-                    EntityAppOption.GAME,
-                    EntityAppOption.GAME_STYLE,
-                    EntityAppOption.COURSE_THEME,
-                    EntityAppOption.TIME,
+                    // EntityAppOption.GAME,
+                    // EntityAppOption.GAME_STYLE,
+                    // EntityAppOption.COURSE_THEME,
+                    // EntityAppOption.TIME,
                     EntityAppOption.CATEGORY,
                     EntityAppOption.LIMIT,
                 ];
