@@ -69,7 +69,7 @@ export default class GameReferenceApp
                 <h2 key={`names title - ${groupId}`} id={`${groupId}-names-title`} className="col-12 names-title">{translation(title)}</h2>
             }</GameContentTranslationComponent>
             <div key={`name (container) - ${groupId}`} id={`${groupId}-name-container`} className="container-fluid name-container">{
-                enumReferences.map(gameReference => [gameReference, GameReferences.getValue(gameReference.name)!] as const).map(([enumReference, gameReference,]) =>
+                enumReferences.map(gameReference => [gameReference, GameReferences.getValue(gameReference.englishName)!,] as const).map(([enumReference, gameReference,]) =>
                     <Fragment key={`single name container - ${gameReference.englishName}`}>
                         <div id={`${gameReference.englishNameInHtml}-name-container`} className={`${enumReferences.length > 5 ? 'col-3' : 'col'} single-name-container`}>
                             <div className="single-name-sub-container">
