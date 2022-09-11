@@ -2,7 +2,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Entity}                 
 import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}                                                                                                                                                                                             from '../../entityLimit/EntityLimitTypes.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../soundEffectCategory/SoundEffectCategories.types';
 import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../soundEffect/SoundEffects.types';
-import type {EnglishNameOnFile as EnglishNameOnFile_MysteryMushroom}                                                                                                                                                                                                     from '../../mysteryMushroom/MysteryMushrooms.types';
+import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from '../../mysteryMushroom/MysteryMushrooms.types';
 import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../mysteryMushroom/MysteryMushroom.template';
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../behaviour/EntityBehaviours.types';
 import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../entityLimit/EntityLimits.types';
@@ -29,6 +29,8 @@ export interface HeaderTypesForConvertorDefinition {
     get everyPossibleAcronym_gameReference(): ValueOrEmptyArray<EveryPossibleAcronym_GameReference>
 
     get everyPossibleAcronymWithPokemonGeneration_gameReference(): ValueOrEmptyArray<EveryPossibleAcronymWithPokemonGeneration_GameReference>
+
+    get everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference(): ValueOrEmptyArray<EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference>
 
     get everyPossibleName_gameReference(): ValueOrEmptyArray<EveryPossibleName_GameReference>
 
@@ -106,7 +108,7 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
-    get everyPossibleEnglishNameOnFile_mysteryMushroom(): ValueOrStringConstant<EveryPossibleEnglishNameOnFile_MysteryMushroom>
+    get everyPossibleUniqueEnglishName_mysteryMushroom(): ValueOrEmptyArray<EveryPossibleUniqueEnglishName_MysteryMushroom>
 
     get everyPossibleConditionToUnlockIt_mysteryMushroom(): ValueOrEmptyArray<EveryConditionToUnlockIt_MysteryMushroom>
 
@@ -166,6 +168,7 @@ export type UnknownReference = '???';
 
 export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[];
 export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration)[];
+export type EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference)[];
 export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[];
 
 export type EveryPossibleAcronym_GameStyle = readonly PossibleAcronym_GameStyle[];
@@ -185,6 +188,7 @@ export type EveryPossibleName_EntityCategory = readonly PossibleEnglishName_Enti
 export type EveryPossibleAcronym_EntityLimit = readonly (| PossibleAcronym_EntityLimit | PossibleAlternativeAcronym_EntityLimit)[];
 export type EveryAlternativeAcronym_EntityLimit = readonly PossibleAlternativeAcronym_EntityLimit[];
 export type EveryPossibleName_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit)[];
+export type EveryPossibleNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit | UnknownCharacter)[];
 export type EveryEnglishName_EntityLimit = readonly PossibleEnglishName_EntityLimit[];
 export type EveryEnglishNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | UnknownCharacter)[];
 
@@ -200,12 +204,12 @@ export type EveryPossibleName_MiiCostumeCategory = readonly PossibleEnglishName_
 //endregion -------------------- Mii costume --------------------
 //region -------------------- Mystery Mushroom --------------------
 
-export type EveryPossibleEnglishNameOnFile_MysteryMushroom = readonly EnglishNameOnFile_MysteryMushroom[];
+export type EveryPossibleUniqueEnglishName_MysteryMushroom = readonly UniqueEnglishName_MysteryMushroom[];
 export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt_MysteryMushroom[];
 
-export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, | null | '???'> | UnknownReference)[];
+export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, | null | UnknownReference> | UnknownReference)[];
 
-export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | '???'> | UnknownReference)[];
+export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | UnknownReference> | UnknownReference)[];
 
 //endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------

@@ -419,7 +419,8 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'editorLimit_canBePutOnATrack',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleNameOrUnknown_limit, 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)

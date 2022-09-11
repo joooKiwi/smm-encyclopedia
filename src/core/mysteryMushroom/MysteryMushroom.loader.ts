@@ -173,16 +173,16 @@ export class MysteryMushroomLoader
                 .convertToNullableBooleanAnd(['Flying Mario', 'Metal Mario', 'Super Star',], 'haveASpecialMusicInStarMode',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Rock',], 'haveASoundEffectWhenOnGoalPole_type',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectWhenOnGoalPole_game',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference, 'haveASoundEffectWhenOnGoalPole_game',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom, 'haveASoundEffectWhenOnGoalPole_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',], 'haveASoundEffectWhenOnGoalPole',)
 
                 .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectOnDeath_type',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'haveASoundEffectOnDeath_game',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference, 'haveASoundEffectOnDeath_game',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom, 'haveASoundEffectOnDeath_smallDefinition',)
                 .convertToNullableBooleanAnd(['+ "Oh no!"', '+ "Nooo!"', '+ "Nooo"', '+ "Woah!"', '+ "Yaha!"',], 'haveASoundEffectOnDeath',)
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleEnglishNameOnFile_mysteryMushroom, 'english', 'americanEnglish',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleUniqueEnglishName_mysteryMushroom, 'english', 'americanEnglish',)
 
                 .onAfterFinalObjectCreated((finalContent, convertedContent,) => references.set(convertedContent[Headers.uniqueName], finalContent,))
                 .load();

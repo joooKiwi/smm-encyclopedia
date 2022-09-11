@@ -112,7 +112,7 @@ export class EntityLimitLoader
             new CSVLoader<PropertiesArray, EntityLimit, keyof typeof Headers>(resource, convertedContent => new EntityLimitBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertTo(HeaderTypesForConvertor.everyAlternativeAcronym_limit, 'alternative',)
+                .convertTo(HeaderTypesForConvertor.everyName_limit, 'alternative',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limitType, 'type',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_limit, 'acronym',)
                 .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)

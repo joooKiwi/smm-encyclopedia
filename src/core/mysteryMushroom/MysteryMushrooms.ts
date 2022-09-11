@@ -152,7 +152,7 @@ export class MysteryMushrooms
     public static readonly BABY_MARIO =             new MysteryMushrooms('Boss037', 'Baby Mario',);
     public static readonly QUESTION_MARK_BLOCK =    new MysteryMushrooms(['Block', 'Block L',], '? Block',);
     public static readonly TRAMPOLINE =             new MysteryMushrooms('Trampoline', 'Trampoline',);
-    public static readonly MARIO_MB =               new MysteryMushrooms('MarioOriginal', 'Mario',);
+    public static readonly MARIO_MB =               new MysteryMushrooms('MarioOriginal', 'Mario', 'Mario (MB)',);
     public static readonly SIDESTEPPER =            new MysteryMushrooms('SideStepper', 'Sidestepper',);
     public static readonly SHELLCREEPER =           new MysteryMushrooms('Shellcreeper', 'Shellcreeper',);
     public static readonly FIGHTER_FLY =            new MysteryMushrooms('Fightfly', 'Fighter Fly',);
@@ -326,6 +326,7 @@ export class MysteryMushrooms
 
     #reference?: MysteryMushroom;
     readonly #englishName;
+    readonly #uniqueEnglishName;
     readonly #englishNameOnFile;
     #imageContainer?: PossibleImageSourceForFile<Image>;
     #soundContainer?: Sound;
@@ -346,10 +347,12 @@ export class MysteryMushrooms
 
     public constructor(mysteryMushroomNoFile: null, englishName: PossibleEnglishName,)
     public constructor(englishNameOnFile: EnglishNameOnFile, englishName: PossibleEnglishName,)
+    public constructor(englishNameOnFile: EnglishNameOnFile, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
     public constructor(englishNamesOnFile: readonly [EnglishNameOnFile, EnglishNameOnFile,], englishName: PossibleEnglishName,)
-    public constructor(englishNameOnFile: | EnglishNameOnFile | readonly [EnglishNameOnFile, EnglishNameOnFile,] | null, englishName: PossibleEnglishName,) {
+    public constructor(englishNameOnFile: | EnglishNameOnFile | readonly [EnglishNameOnFile, EnglishNameOnFile,] | null, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName = englishName,) {
         super();
         this.#englishName = new StringContainer(englishName);
+        this.#uniqueEnglishName = uniqueEnglishName;
         this.#englishNameOnFile = englishNameOnFile == null ? EMPTY_ARRAY : typeof englishNameOnFile == 'string' ? [englishNameOnFile] as const : englishNameOnFile;
     }
 
@@ -370,6 +373,10 @@ export class MysteryMushrooms
 
     public get englishName(): PossibleEnglishName {
         return this.#englishName.get;
+    }
+
+    public get uniqueEnglishName(): PossibleUniqueEnglishName {
+        return this.#uniqueEnglishName;
     }
 
     public get englishNameInHtml(): string {
@@ -517,8 +524,8 @@ export class MysteryMushrooms
         return source.map(callback) as unknown as PossibleImageSourceForFile<U>;
     }
 
-    public static get everyEnglishNamesOnFile(): readonly EnglishNameOnFile[] {
-        return this.values.map(enumeration => enumeration.englishNameOnFile).flat();
+    public static get everyUniqueEnglishNames(): readonly PossibleUniqueEnglishName[] {
+        return this.values.map(enumeration => enumeration.uniqueEnglishName).flat();
     }
 
     //endregion -------------------- Methods --------------------
@@ -532,6 +539,7 @@ export class MysteryMushrooms
 
     protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
+                || enumerable.uniqueEnglishName === value
                 || enumerable.englishNameOnFile.includes(value as never))
             ?? null;
     }

@@ -1,4 +1,4 @@
-import type {EmptyableStringConstant, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EmptyArray, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameOrUnknown_EntityLimit, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EveryPossibleUniqueEnglishName_MysteryMushroom, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import {Import}         from '../../../util/DynamicImporter';
 import {isInProduction} from '../../../variables';
@@ -32,6 +32,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleAcronym_gameReference?: EveryPossibleAcronym_GameReference;
     #everyPossibleAcronymWithPokemonGeneration_gameReference?: EveryPossibleAcronymWithPokemonGeneration_GameReference;
+    #everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference?: EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference;
     #everyPossibleName_gameReference?: EveryPossibleName_GameReference;
 
     #everyPossibleAcronym_gameStyle?: EveryPossibleAcronym_GameStyle;
@@ -51,6 +52,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleAcronym_limit?: EveryPossibleAcronym_EntityLimit;
     #everyAlternativeAcronym_limit?: EveryAlternativeAcronym_EntityLimit;
     #everyPossibleName_limit?: EveryPossibleName_EntityLimit;
+    #everyPossibleNameOrUnknown_limit?: EveryPossibleNameOrUnknown_EntityLimit;
     #everyName_limit?: EveryEnglishName_EntityLimit;
     #everyNameOrUnknown_limit?: EveryEnglishNameOrUnknown_EntityLimit;
 
@@ -61,7 +63,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleName_MiiCostumeCategory?: EveryPossibleName_MiiCostumeCategory;
 
-    #everyPossibleEnglishNameOnFile_mysteryMushroom?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
+    #everyPossibleEnglishNameOnFile_mysteryMushroom?: EveryPossibleUniqueEnglishName_MysteryMushroom;
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
@@ -93,6 +95,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
             ...Import.GameReferences.everyAcronyms,
             'Pokémon gen 1', 'Pokémon gen 4', 'Pokémon gen 6',
         ];
+    }
+
+    public get everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference() {
+        return this.#everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference ??= [...this.everyPossibleAcronymWithPokemonGeneration_gameReference, HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,];
     }
 
     public get everyPossibleName_gameReference() {
@@ -165,6 +171,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleName_limit ??= [...Import.EntityLimits.everyEnglishNames, ...Import.EntityLimits.everyAlternativeEnglishNames,];
     }
 
+    public get everyPossibleNameOrUnknown_limit() {
+        return this.#everyPossibleNameOrUnknown_limit ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...this.everyName_limit,];
+    }
+
     public get everyName_limit() {
         return this.#everyName_limit ??= Import.EntityLimits.everyEnglishNames;
     }
@@ -206,8 +216,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
-    public get everyPossibleEnglishNameOnFile_mysteryMushroom() {
-        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= Import.MysteryMushrooms.everyEnglishNamesOnFile;
+    public get everyPossibleUniqueEnglishName_mysteryMushroom() {
+        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= Import.MysteryMushrooms.everyUniqueEnglishNames;
     }
 
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
@@ -272,7 +282,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleNameOnEntity_instrument ??= [
             ...Import.Instruments.everyEnglishNames,
             'Unchain Chomp → Piano 1\nStump → Mokugyo',
-            'Regular → Cymbal\nSideway → Hi-Hat',
+            'Regular → Cymbal\nSideway → Hi-hat',
             'Bottom → Hello\nTop → Ok'
         ];
     }
