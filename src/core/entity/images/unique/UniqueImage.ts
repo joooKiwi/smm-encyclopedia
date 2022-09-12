@@ -2,7 +2,7 @@ import type {ClearConditionImage} from '../clearCondition/ClearConditionImage';
 import type {EditorImage}         from '../editor/EditorImage';
 import type {GameStyles}          from '../../../gameStyle/GameStyles';
 import type {Image}               from '../Image';
-import type {WhilePlayingImage}   from '../whilePlaying/WhilePlayingImage';
+import type {InGameImage}         from '../inGame/InGameImage';
 
 export interface UniqueImage
     extends Image {
@@ -11,7 +11,9 @@ export interface UniqueImage
 
     get clearConditionImage(): ClearConditionImage
 
-    get whilePlayingImage(): WhilePlayingImage
+    get inGameImage(): InGameImage
+
+    get map(): ReadonlyMap<GameStyles, readonly string[]>
 
 
     get(gameStyle: GameStyles,): readonly string[]
