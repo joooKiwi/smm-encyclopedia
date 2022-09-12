@@ -5,6 +5,8 @@ import {EmptyInGameImage} from './EmptyInGameImage';
 
 export class InGameImageFactory {
 
+    public static EMPTY_IN_GAME_IMAGE = EmptyInGameImage.get;
+
     private constructor() {
         throw new TypeError('This class cannot be instantiated.');
     }
@@ -17,7 +19,7 @@ export class InGameImageFactory {
      */
     public static create(builder_or_image: PossibleImageReceivedOnFactory,): InGameImage {
         return builder_or_image == null
-            ? EmptyInGameImage.get
+            ? this.EMPTY_IN_GAME_IMAGE
             : builder_or_image.build();
     }
 

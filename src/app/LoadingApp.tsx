@@ -6,7 +6,7 @@ export default class LoadingApp
     extends AbstractApp {
 
     protected override _mainContent() {
-        return <TextComponent content={<><ContentTranslationComponent translationKey="Loading the page"/>…</>}/>;
+        return <TextComponent key="Loading text content" content={<><ContentTranslationComponent translationKey="Loading the page"/>…</>}/>;
     }
 
 }

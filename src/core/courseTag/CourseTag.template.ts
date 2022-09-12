@@ -18,4 +18,4 @@ export interface NameTemplate
 
 }
 
-export type PossibleFirstAppearanceInMarioMaker = | `${1 | 3}.0.0` | null;
+export type PossibleFirstAppearanceInMarioMaker = | `v${1 | 3}.0.0` | null;

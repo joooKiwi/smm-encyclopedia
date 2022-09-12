@@ -191,7 +191,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     /**
      * The headers on the {@link this.originalContent original content}
-     * used by the Loader to interact with every comparisons.
+     * used by the Loader to interact with every comparison.
      */
     public get headers(): ReadonlySet<SimpleHeader<H>> {
         return this.#headers;
@@ -230,8 +230,8 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //region -------------------- Headers to convert methods --------------------
 
     /**
-     * A map of every headers to convert.
-     * For the titles not included in it, it use the {@link GENERIC_DEFAULT_CONVERSION} for the conversion.
+     * A map of every header to convert.
+     * For the titles not included in it, it uses the {@link GENERIC_DEFAULT_CONVERSION} for the conversion.
      */
     public get headerContainerMap(): ReadonlyMap<SimpleHeader<H>, HeaderContainer<H, this['headersAsArray']>> {
         return this._headerContainerMap;
@@ -604,7 +604,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * <p>
      *  It can either be an empty string (''), <u>not</u> the <u><b>null</b></u> or <u><b>undefined</b></u> values,
      *  any possible predefined value (if a 'boolean' or 'number').
-     *  It also validate if the value can be at least it is the value received (if it's any string).
+     *  It also validates if the value can be at least it is the value received (if it's any string).
      * </p>
      *
      * @param headerTypeOrConvertor
@@ -627,7 +627,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
      * <p>
      *  It can either be a <u><b>null</b></u> or <u><b>undefined</b></u> ignoring the case or
      *  any possible predefined value (if a 'boolean' or 'number').
-     *  It also validate if the value can be at least it is the value received (if it's any string).
+     *  It also validates if the value can be at least it is the value received (if it's any string).
      * </p>
      *
      * @param headerTypeOrConvertor

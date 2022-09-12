@@ -60,10 +60,10 @@ export abstract class EntityLimitAppOption
     }();
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference,}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference, englishName, }: EntityLimits,): PossibleRenderReactElement {
             return [
-                <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
-                <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
+                <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
+                <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
             ];
         }
 
@@ -100,7 +100,7 @@ export abstract class EntityLimitAppOption
     /**
      * The callback to get the enumeration based for each option.
      *
-     * @note It should only be set by {@link EntityLimitAppOption} and get by {@link EveryEntityLimitsApp}.
+     * @note It should only be set by {@link EntityLimitAppOption} and get by {@link EntityLimitApp}.
      */
     public static CALLBACK_TO_GET_ENUMERATION: () => EntityLimits;
 

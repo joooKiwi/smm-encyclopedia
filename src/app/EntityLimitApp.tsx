@@ -63,11 +63,11 @@ export default class EntityLimitApp
 
             public createCardListContent(enumeration: EntityLimits,): ReactElement {
                 EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration;
-                const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishNameInHtml,} = enumeration;
+                const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName, englishNameInHtml,} = enumeration;
 
                 return <div className="card-body" id={`entityLimit-${englishNameInHtml}`}>
                     {limitAmountInSMM1AndSMM3DS === limitAmountInSMM2
-                        ? <TextComponent content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
+                        ? <TextComponent key={`${englishName} - card list text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
                         : EntityLimitAppOption.AMOUNT.renderContent}
                 </div>;
             }

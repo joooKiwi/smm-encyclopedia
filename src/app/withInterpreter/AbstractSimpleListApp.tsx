@@ -23,6 +23,11 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
         return AbstractSimpleListApp.#APP_OPTION_INTERPRETER;
     }
 
+    protected _createUniqueNameOnSimpleList(enumerable: ReturnType<APP['iterable']['next']>['value'],): string {
+        //TODO find a better way to use the enumerable type than the complicated name
+        return enumerable.englishName;
+    }
+
     //endregion -------------------- Create methods --------------------
     //region -------------------- Render methods --------------------
 
@@ -36,16 +41,16 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
 
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
-            const englishName = enumerable.englishName;
+            const uniqueEnglishName = this._createUniqueNameOnSimpleList(enumerable);
             const name = enumerable.reference.nameContainer;
             const id = `${key}-${enumerable.englishNameInHtml}-container`;
 
             //TODO change the popover to be on the id instead of the name directly
             content.push(
-                <div key={`${englishName} - main list container`} id={id}
+                <div key={`${uniqueEnglishName} - main list container`} id={id}
                      className={`${key}-container listElement-container ${new ListDimensionCreator(dimensions).createDimensions()}`}>
-                    <span key={`${englishName} - main list text-container`} className="simpleListElement-container rounded-pill">
-                        <NameComponent key={`${englishName} - text container`} id="name" name={name} popoverOrientation="left"/>
+                    <span key={`${uniqueEnglishName} - main list text-container`} className="simpleListElement-container rounded-pill">
+                        <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={name} popoverOrientation="left"/>
                     </span>
                 </div>
             );

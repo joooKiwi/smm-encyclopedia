@@ -73,39 +73,39 @@
       }
 
       //endregion -------------------- name --------------------
-      //region -------------------- game --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        min-width: 2.5cm;
-      }
-
-      //endregion -------------------- game --------------------
-      //region -------------------- game style --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        max-width: 4cm;
-      }
-
-      //endregion -------------------- game style --------------------
-      //region -------------------- course theme --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        min-width: 4cm;
-        max-width: 6cm;
-      }
-
-      //endregion -------------------- course theme --------------------
-      //region -------------------- time --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        min-width: 1.5cm;
-      }
-
-      //endregion -------------------- time --------------------
+      ////region -------------------- game --------------------
+      //$index: $index+1;
+      //
+      //:nth-child(#{$index}) {
+      //  min-width: 2.5cm;
+      //}
+      //
+      ////endregion -------------------- game --------------------
+      ////region -------------------- game style --------------------
+      //$index: $index+1;
+      //
+      //:nth-child(#{$index}) {
+      //  max-width: 4cm;
+      //}
+      //
+      ////endregion -------------------- game style --------------------
+      ////region -------------------- course theme --------------------
+      //$index: $index+1;
+      //
+      //:nth-child(#{$index}) {
+      //  min-width: 4cm;
+      //  max-width: 6cm;
+      //}
+      //
+      ////endregion -------------------- course theme --------------------
+      ////region -------------------- time --------------------
+      //$index: $index+1;
+      //
+      //:nth-child(#{$index}) {
+      //  min-width: 1.5cm;
+      //}
+      //
+      ////endregion -------------------- time --------------------
       //region -------------------- entity category --------------------
       $index: $index+1;
 

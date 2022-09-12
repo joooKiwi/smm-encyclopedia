@@ -87,7 +87,7 @@ export class CourseTagLoader
 
                 .convertToBoolean('isAnOfficialTag',)
                 .convertToEmptyableString('makerCentralName',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set((finalContent.english ?? finalContent.americanEnglish) as PossibleEnglishName, finalContent,))
                 .load();
