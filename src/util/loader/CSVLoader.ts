@@ -482,7 +482,17 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
         return this;
     }
 
+    /**
+     * Add the header to convert.
+     *
+     * Note that if it is {@link Array []}, then, nothing will be done.
+     *
+     * @param header The header reference
+     * @param headerTypeOrConvertor The convertor value
+     */
     protected addHeaderToConvert(header: SimpleHeader<H>, headerTypeOrConvertor: ArrayOrSimpleHeaderTypeOrConvertor): this {
+        if(headerTypeOrConvertor instanceof Array && headerTypeOrConvertor.length === 0)
+            return this;
         if (!this._headerContainerMap.has(header))
             this._headerContainerMap.set(header, new HeaderContainer(header, this.headersAsArray,));
         this._headerContainerMap.get(header)!.addHeaderTypeOrConvertor(headerTypeOrConvertor);
