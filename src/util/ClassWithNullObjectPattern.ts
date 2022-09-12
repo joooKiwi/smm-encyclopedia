@@ -17,7 +17,7 @@ export type EmptyEntityName = 'Empty entity';
 
 export type EmptyEditorImageName = 'Empty editor image';
 export type EmptyClearConditionImageName = 'Empty "clear condition" image';
-export type EmptyWhilePlayingImageName = 'Empty "while playing" image';
+export type EmptyInGameImageName = 'Empty "in game" image';
 export type EmptyUnusedImageName = 'Empty unused image';
 export type EmptyUniqueImageName = 'Empty unique image';
 
@@ -104,7 +104,7 @@ export type EmptySingleBackgroundMusicName = 'Empty single "background music"';
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
-    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyWhilePlayingImageName | EmptyUnusedImageName | EmptyUniqueImageName
+    | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName | EmptyUnusedImageName | EmptyUniqueImageName
     | EmptyEditorVoiceSoundName
 
     | EmptyEntityCategoryName
