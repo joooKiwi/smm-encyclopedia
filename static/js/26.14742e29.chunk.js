@@ -1,0 +1,2 @@
+(this["webpackJsonpsmm-encyclopedia"]=this["webpackJsonpsmm-encyclopedia"]||[]).push([[26],{312:function(t,e,n){"use strict";n.r(e),n.d(e,"default",(function(){return o}));var c=n(2),a=n(3),i=n(4),r=n(5),u=n(112),s=n(7),o=function(t){Object(i.a)(n,t);var e=Object(r.a)(n);function n(){return Object(c.a)(this,n),e.apply(this,arguments)}return Object(a.a)(n,[{key:"_mainContent",value:function(){return Object(s.jsx)(s.Fragment,{children:"About page"})}}]),n}(u.a)}}]);
+//# sourceMappingURL=26.14742e29.chunk.js.map
