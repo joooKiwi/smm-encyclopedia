@@ -4,12 +4,10 @@ import type {AppOptionWithContent, PossibleRenderReactElement}                  
 import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
 import type {Entities}                                                                                                                                                              from '../../core/entity/Entities';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
-import type {EntityAppStates}                                                                                                                                                       from '../AppStates.types';
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
 
-import {AbstractAppOption}             from './AbstractAppOption';
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
 import {CommonOptions}                 from './CommonOptions';
@@ -48,7 +46,7 @@ const TextComponent =               lazy(() => import( '../tools/text/TextCompon
  * @todo merge all of the "limit" into 1 type
  */
 export abstract class EntityAppOption
-    extends AbstractAppOption<boolean, EntityAppStates, Ordinals, Names>
+    extends Enum<Ordinals, Names>
     implements AppOptionWithContent, AppOptionWithTable {
 
     //region -------------------- Enum instances --------------------
@@ -78,17 +76,17 @@ export abstract class EntityAppOption
             };
         }
 
-    }(true,);
+    }();
     /**
      * Display an animation or not.
      *
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {}(true,);
-    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {}(true,);
-    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {}(false,);
-    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {}(false,);
+    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {}();
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {}();
+    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {}();
+    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {}();
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
@@ -110,7 +108,7 @@ export abstract class EntityAppOption
             return CommonOptions.get.nameHeader;
         }
 
-    }(true,);
+    }();
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
@@ -118,7 +116,7 @@ export abstract class EntityAppOption
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
-                return <GameComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_GAME.get}/>;
+                return <GameComponent reference={entity} name={entity} displayAllAsText/>;
             };
         }
 
@@ -126,8 +124,8 @@ export abstract class EntityAppOption
             return CommonOptions.get.gameHeader;
         }
 
-    }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {}(false,);
+    }();
+    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {}();
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
@@ -135,7 +133,7 @@ export abstract class EntityAppOption
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
-                return <GameStyleComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_GAME_STYLE.get}/>;
+                return <GameStyleComponent reference={entity} name={entity} displayAllAsText/>;
             };
         }
 
@@ -143,8 +141,8 @@ export abstract class EntityAppOption
             return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
         }
 
-    }(false,);
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {}(false,);
+    }();
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {}();
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
@@ -152,7 +150,7 @@ export abstract class EntityAppOption
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
-                return <CourseThemeComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_COURSE_THEME.get}/>;
+                return <CourseThemeComponent reference={entity} name={entity} displayAllAsText/>;
             };
         }
 
@@ -160,17 +158,16 @@ export abstract class EntityAppOption
             return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
         }
 
-    }(false,);
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {}(false,);
+    }();
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {}();
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
-
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
 
-                return <TimeComponent reference={entity} name={entity} displayAllAsText={EntityAppOption.WHEN_ALL_SELECTED_TIME.get}/>;
+                return <TimeComponent reference={entity} name={entity} displayAllAsText/>;
             };
         }
 
@@ -178,8 +175,8 @@ export abstract class EntityAppOption
             return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
         }
 
-    }(false,);
-    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {}(false,);
+    }();
+    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {}();
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
@@ -188,10 +185,7 @@ export abstract class EntityAppOption
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryNameContainer;
 
-                return CommonOptions.get.getCategoryContent(enumeration,
-                    () => EntityAppOption.CATEGORY_AS_TEXT.get
-                        ? categoryName
-                        : EntityCategories.getValue(categoryName.english)!.imagePath,);
+                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValue(categoryName.english)!.imagePath,);
             };
         }
 
@@ -199,12 +193,12 @@ export abstract class EntityAppOption
             return CommonOptions.get.categoryHeader;
         }
 
-    }(true,);
+    }();
     /**
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {}(false,);
+    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {}();
 
     public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
@@ -219,14 +213,11 @@ export abstract class EntityAppOption
                 return [
                     editorLimit_SMM1And3DS == null
                         ? <TextComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} content={'N/A'}/>
-                        : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS}
-                                          displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                        : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS} displayAcronymIfApplicable/>,
                     editorLimit_SMM2 == null || editorLimit_SMM2 === 'N/A'
                         ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
-                        : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2}
-                                          displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
-                    <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()}
-                                    displayAcronymIfApplicable={EntityAppOption.IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT.get}/>,
+                        : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2} displayAcronymIfApplicable/>,
+                    <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()} displayAcronymIfApplicable/>,
                 ];
             };
         }
@@ -251,8 +242,8 @@ export abstract class EntityAppOption
             };
         }
 
-    }(true,);
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}(true,);
+    }();
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}();
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -279,8 +270,8 @@ export abstract class EntityAppOption
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(defaultValue: boolean,) {
-        super(defaultValue,);
+    private constructor() {
+        super();
     }
 
     //region -------------------- Getter methods --------------------
