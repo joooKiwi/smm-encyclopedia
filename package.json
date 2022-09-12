@@ -1,6 +1,6 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.8-beta",
+  "version": "0.8.0-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "scripts": {
