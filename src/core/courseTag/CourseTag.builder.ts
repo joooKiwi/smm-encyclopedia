@@ -41,7 +41,7 @@ export class CourseTagBuilder
     static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): ObjectHolder<| Versions | null> {
         return firstAppearance == null
             ? ObjectHolders.NULL
-            : new DelayedObjectHolderContainer(() => Versions.getValue(`v${firstAppearance}`));
+            : new DelayedObjectHolderContainer(() => Versions.getValue(firstAppearance));
     }
 
     //endregion -------------------- Build helper methods --------------------

@@ -1,4 +1,4 @@
-import type {EmptyableStringConstant, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleEnglishNameOnFile_MysteryMushroom, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, StringConstant, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
+import type {EmptyArray, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameOrUnknown_EntityLimit, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EveryPossibleUniqueEnglishName_MysteryMushroom, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, UnknownCharacter, UnknownReference} from './HeaderTypesForConvertorDefinition';
 
 import {Import}         from '../../../util/DynamicImporter';
 import {isInProduction} from '../../../variables';
@@ -32,6 +32,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleAcronym_gameReference?: EveryPossibleAcronym_GameReference;
     #everyPossibleAcronymWithPokemonGeneration_gameReference?: EveryPossibleAcronymWithPokemonGeneration_GameReference;
+    #everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference?: EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference;
     #everyPossibleName_gameReference?: EveryPossibleName_GameReference;
 
     #everyPossibleAcronym_gameStyle?: EveryPossibleAcronym_GameStyle;
@@ -51,6 +52,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     #everyPossibleAcronym_limit?: EveryPossibleAcronym_EntityLimit;
     #everyAlternativeAcronym_limit?: EveryAlternativeAcronym_EntityLimit;
     #everyPossibleName_limit?: EveryPossibleName_EntityLimit;
+    #everyPossibleNameOrUnknown_limit?: EveryPossibleNameOrUnknown_EntityLimit;
     #everyName_limit?: EveryEnglishName_EntityLimit;
     #everyNameOrUnknown_limit?: EveryEnglishNameOrUnknown_EntityLimit;
 
@@ -61,7 +63,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     #everyPossibleName_MiiCostumeCategory?: EveryPossibleName_MiiCostumeCategory;
 
-    #everyPossibleEnglishNameOnFile_mysteryMushroom?: EveryPossibleEnglishNameOnFile_MysteryMushroom;
+    #everyPossibleEnglishNameOnFile_mysteryMushroom?: EveryPossibleUniqueEnglishName_MysteryMushroom;
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: EveryConditionToUnlockIt_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom;
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom;
@@ -93,6 +95,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
             ...Import.GameReferences.everyAcronyms,
             'Pokémon gen 1', 'Pokémon gen 4', 'Pokémon gen 6',
         ];
+    }
+
+    public get everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference() {
+        return this.#everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference ??= [...this.everyPossibleAcronymWithPokemonGeneration_gameReference, HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,];
     }
 
     public get everyPossibleName_gameReference() {
@@ -165,6 +171,10 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleName_limit ??= [...Import.EntityLimits.everyEnglishNames, ...Import.EntityLimits.everyAlternativeEnglishNames,];
     }
 
+    public get everyPossibleNameOrUnknown_limit() {
+        return this.#everyPossibleNameOrUnknown_limit ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...this.everyName_limit,];
+    }
+
     public get everyName_limit() {
         return this.#everyName_limit ??= Import.EntityLimits.everyEnglishNames;
     }
@@ -206,8 +216,8 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
-    public get everyPossibleEnglishNameOnFile_mysteryMushroom() {
-        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= Import.MysteryMushrooms.everyEnglishNamesOnFile;
+    public get everyPossibleUniqueEnglishName_mysteryMushroom() {
+        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= Import.MysteryMushrooms.everyUniqueEnglishNames;
     }
 
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
@@ -272,7 +282,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
         return this.#everyPossibleNameOnEntity_instrument ??= [
             ...Import.Instruments.everyEnglishNames,
             'Unchain Chomp → Piano 1\nStump → Mokugyo',
-            'Regular → Cymbal\nSideway → Hi-Hat',
+            'Regular → Cymbal\nSideway → Hi-hat',
             'Bottom → Hello\nTop → Ok'
         ];
     }
@@ -321,114 +331,116 @@ class HeaderTypesForConvertorForProduction
 
     //region -------------------- Fields --------------------
 
-    static readonly #STRING_VALUE: StringConstant = 'string';
-    static readonly #EMPTYABLE_STRING_VALUE: EmptyableStringConstant = 'emptyable string';
+    // static readonly #STRING_VALUE: StringConstant = 'string';
+    // static readonly #EMPTYABLE_STRING_VALUE: EmptyableStringConstant = 'emptyable string';
     // static readonly #NUMBER_VALUE: NumberConstant = 'number';
     // static readonly #STRING_AND_NUMBER: StringAndNumber = [this.#STRING_VALUE, this.#NUMBER_VALUE,];
-    // static readonly #EMPTY_ARRAY: EmptyArray = [];
+    static readonly #EMPTY_ARRAY: EmptyArray = [];
 
     //endregion -------------------- Fields --------------------
 
     //region -------------------- Game reference --------------------
 
-    public readonly everyPossibleAcronym_gameReference = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleAcronymWithPokemonGeneration_gameReference = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleName_gameReference = HeaderTypesForConvertorForProduction.#EMPTYABLE_STRING_VALUE;
+    public readonly everyPossibleAcronym_gameReference = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleAcronymWithPokemonGeneration_gameReference = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleName_gameReference = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
 
-    public readonly everyPossibleAcronym_gameStyle = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleAcronym_gameStyle = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Entity --------------------
 
-    public readonly everyPossibleName_entity = HeaderTypesForConvertorForProduction.#EMPTYABLE_STRING_VALUE;
+    public readonly everyPossibleName_entity = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Entity --------------------
     //region -------------------- Entity behaviour --------------------
 
-    public readonly everyPossibleAcronym_entityBehaviour = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleTranslationKey_entityBehaviour = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleAcronym_entityBehaviour = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleTranslationKey_entityBehaviour = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Entity behaviour --------------------
     //region -------------------- Entity group --------------------
 
-    public readonly everyPossibleName_entityGroup = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_entityGroup = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Theme --------------------
 
-    public readonly everyPossibleName_theme = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleName_themeNightEffect = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_theme = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleName_themeNightEffect = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Theme --------------------
     //region -------------------- Entity category --------------------
 
-    public readonly everyPossibleName_entityCategory = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_entityCategory = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Entity category --------------------
     //region -------------------- Entity limit --------------------
 
-    public readonly everyPossibleAcronym_limit = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyAlternativeAcronym_limit = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleName_limit = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyName_limit = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyNameOrUnknown_limit = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleAcronym_limit = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyAlternativeAcronym_limit = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleName_limit = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleNameOrUnknown_limit = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyName_limit = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyNameOrUnknown_limit = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Entity limit --------------------
     //region -------------------- Entity limit type --------------------
 
-    public readonly everyPossibleName_limitType = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_limitType = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
-    public readonly everyPossibleName_soundEffect = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_soundEffect = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Sound effect category --------------------
 
-    public readonly everyPossibleName_soundEffectCategory = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_soundEffectCategory = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Mii costume --------------------
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
-    public readonly everyPossibleName_MiiCostumeCategory = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_MiiCostumeCategory = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
-    public readonly everyPossibleEnglishNameOnFile_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleConditionToUnlockIt_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleUniqueEnglishName_mysteryMushroom = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleConditionToUnlockIt_mysteryMushroom = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Mystery Mushroom --------------------
     //region -------------------- Official notification --------------------
 
-    public readonly everyPossibleNameWithAmount_officialNotification = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleNameWithAmount_officialNotification = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Official notification --------------------
     //region -------------------- Predefined message --------------------
 
-    public readonly everyPossibleName_predefinedMessage = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_predefinedMessage = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Predefined message --------------------
     //region -------------------- Instrument --------------------
 
-    public readonly everyPossibleName_instrument = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleNameOnEntity_instrument = HeaderTypesForConvertorForProduction.#EMPTYABLE_STRING_VALUE;
+    public readonly everyPossibleName_instrument = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleNameOnEntity_instrument = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Instrument --------------------
     //region -------------------- Version --------------------
 
-    public readonly everyPossibleName_version = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleName_version_smm = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleName_version_smm3ds = HeaderTypesForConvertorForProduction.#STRING_VALUE;
-    public readonly everyPossibleName_version_smm2 = HeaderTypesForConvertorForProduction.#STRING_VALUE;
+    public readonly everyPossibleName_version = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleName_version_smm = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleName_version_smm3ds = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
+    public readonly everyPossibleName_version_smm2 = HeaderTypesForConvertorForProduction.#EMPTY_ARRAY;
 
     //endregion -------------------- Version --------------------
 

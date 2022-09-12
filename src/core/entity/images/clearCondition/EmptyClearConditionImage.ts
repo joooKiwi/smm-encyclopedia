@@ -24,7 +24,7 @@ export class EmptyClearConditionImage
     }
 
     public toString(): EmptyClearConditionImageName {
-        return 'Empty clear condition image';
+        return 'Empty "clear condition" image';
     }
 
 

@@ -1,8 +1,8 @@
 import type {Builder}                          from '../../../../util/builder/Builder';
 import type {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles';
 import type {ImageName_SMM1}                   from './InGameImage.types';
-import type {Themes}                           from '../../../theme/Themes';
 import type {InGameImage}                      from './InGameImage';
+import type {Themes}                           from '../../../theme/Themes';
 
 import {AbstractImageBuilder}      from '../AbstractImage.builder';
 import {EMPTY_MAP}                 from '../../../../util/emptyVariables';

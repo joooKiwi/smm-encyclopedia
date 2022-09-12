@@ -419,7 +419,8 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_limit, 'editorLimit_canBePutOnATrack', 'whilePlaying_canBePutOnATrack',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'editorLimit_canBePutOnATrack',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleNameOrUnknown_limit, 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
                 .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
@@ -439,7 +440,7 @@ export class EntityLoader
                 .convertToNullableBoolean('canBeStacked',)
                 .convertToNullableBooleanAnd(['SM3DW',], 'isGlobalGroundOrGlobal',)
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleNameOnEntity_instrument, 'instrument',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleNameOnEntity_instrument, 'instrument',)
                 .convertToNullableBooleanAnd(['Excluding the top 3 notes',], 'canMakeASoundOutOfAMusicBlock',)
 
                 .convertToNullableBooleanAnd('Bob-omb clear condition', 'canBeThrownByBowserInClownCar',)

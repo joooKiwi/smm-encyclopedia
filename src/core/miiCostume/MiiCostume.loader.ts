@@ -93,7 +93,7 @@ export class MiiCostumeLoader
             new CSVLoader<PropertiesArray, MiiCostume, keyof typeof Headers>(resource, convertedContent => new MiiCostumeBuilder(new TemplateBuilder(convertedContent)).build())
                 .setDefaultConversion('emptyable string')
 
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleNameWithAmount_officialNotification, 'notificationIfUnlocked',)
+                .convertTo(HeaderTypesForConvertor.everyPossibleNameWithAmount_officialNotification, 'notificationIfUnlocked',)
                 .convertToEmptyableStringAnd(['2.0.0', '3.0.0',], 'MM2_version',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_MiiCostumeCategory, 'category',)
 

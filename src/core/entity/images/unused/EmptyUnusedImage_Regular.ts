@@ -22,7 +22,7 @@ export class EmptyUnusedImage_Regular
     public readonly all = EMPTY_MAP;
 
     public toString(): EmptyUnusedImageName {
-        return 'Empty "unused" image';
+        return 'Empty unused image';
     }
 
 }

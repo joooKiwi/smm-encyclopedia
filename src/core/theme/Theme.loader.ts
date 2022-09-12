@@ -107,7 +107,7 @@ export class ThemeLoader
                     'isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',
                 )
                 .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
-                .convertToEmptyableStringAnd(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
+                .convertTo(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
                 .load();

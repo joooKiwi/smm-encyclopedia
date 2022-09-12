@@ -17,7 +17,7 @@ export default function NameListComponent({id, listId, name, doesDisplayPopover,
 
                 return <LanguageTranslationComponent key={`${id} - language translation component (${languageKey})`}>{translation =>
                     <li key={`${id} - list element (${languageKey})`} style={({'--language': `'${translation(language.englishName)} ${language.unionTrait} '`,})}>
-                        <TextComponent content={value}/>
+                        <TextComponent key={`${id} - text component (${languageKey})`} content={value}/>
                     </li>
                 }</LanguageTranslationComponent>;
             })

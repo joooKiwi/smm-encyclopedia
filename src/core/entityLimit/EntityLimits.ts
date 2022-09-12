@@ -144,7 +144,7 @@ export class EntityLimits
             return null;//TODO change to "(Cursed) Key" groups
         }
 
-    }('Key Collected',);
+    }(['KCL', 'Key Collected',],);
     public static readonly _10_OR_30_OR_50_COIN_LIMIT =                               new class EntityLimits_PlatformOrSlopeOrConveyorBeltOrPipeOrVineLimit extends EntityLimits {
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -211,7 +211,7 @@ export class EntityLimits
 
     }(['HYL', 'Hatched Yoshi',],);
 
-    public static readonly GENERAL_ENTITY_LIMIT_EDITOR =                              new EntityLimits(['GEL (WP)', 'General Entity', false,], 'General Enemy Limit',);
+    public static readonly GENERAL_ENTITY_LIMIT_EDITOR =                              new EntityLimits(['GEL (E)', 'General Entity', false,], 'General Enemy Limit',);
     public static readonly CHARVAARGH_LIMIT =                                         new class EntityLimits_CharvaarghLimit extends EntityLimits {
 
         protected override get _entityLink(): PossibleEntityLinkInitialisation {

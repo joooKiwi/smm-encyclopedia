@@ -52,7 +52,7 @@ export type Names = keyof typeof Enum;
 export type PossibleAcronymInBothEditorAndWhilePlaying = `${| 'GE' | 'PE'}L (${| 'WP' | 'E'})`;
 export type PossibleStartingEnglishNameInBothEditorAndWhilePlaying = `${| 'General' | 'Power-up'} Entity`;
 
-export type PossibleAcronym = | PossibleAcronymInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'GV' | 'HY'}L`;
+export type PossibleAcronym = | PossibleAcronymInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'GV' | 'KC' | 'HY'}L`;
 export type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
     | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile' | 'Light Source'
 

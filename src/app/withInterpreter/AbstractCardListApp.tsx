@@ -23,6 +23,11 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
         return AbstractCardListApp.#APP_OPTION_INTERPRETER;
     }
 
+    protected _createUniqueNameOnCardList(enumerable: ReturnType<APP['iterable']['next']>['value'],): string {
+        //TODO find a better way to use the enumerable type than the complicated name
+        return enumerable.englishName;
+    }
+
     //endregion -------------------- Create methods --------------------
     //region -------------------- Render methods --------------------
 
@@ -38,15 +43,15 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
         const content = [] as ReactElement[];
         for (const enumerable of optionInterpreter.iterable) {
-            const englishName = enumerable.englishName;
+            const uniqueEnglishName = this._createUniqueNameOnCardList(enumerable);
             const name = enumerable.reference.nameContainer;
             const id = `${key}-${enumerable.englishNameInHtml}-container`;
 
             //TODO change the popover to be on the id instead of the name directly
             content.push(
-                <div key={`${englishName} - main card list container`} id={id} className={`${key}-container listElement-container ${dimensions}`}>
-                    <div key={`${name} - main card list sub-container`} className="cardListElement-container rounded-pill">
-                        <NameComponent key={`${englishName} - text container`} id="name" name={name} popoverOrientation="left"/>
+                <div key={`${uniqueEnglishName} - main card list container`} id={id} className={`${key}-container listElement-container ${dimensions}`}>
+                    <div key={`${uniqueEnglishName} - main card list sub-container`} className="cardListElement-container rounded-pill">
+                        <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={name} popoverOrientation="left"/>
                         <div className="cardListName-content-container">{optionInterpreter.createCardListContent(enumerable)}</div>
                     </div>
                 </div>
