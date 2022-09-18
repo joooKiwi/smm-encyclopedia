@@ -6,13 +6,16 @@
   --exception-color: var(--bs-danger);
   --audio-state-width: 1cm;
   --audio-state-height: 1cm;
+  --audio-state-base-z-index: 10;
   --play-pause-stop-border-radius: var(--bs-border-radius);
+  --container-width: calc(var(--audio-state-width) * 2);
+  --container-height: var(--audio-state-width);
 
   background-color: rgba(var(--bs-primary-rgb), .25,);
   padding: var(--bs-spacer-xs);
   display: flex;
-  width: calc(var(--audio-state-width) * 2);
-  height: calc(var(--audio-state-height));
+  width: var(--container-width);
+  height: var(--container-height);
   border-radius: var(--bs-border-radius);
 }
 
@@ -23,19 +26,25 @@
   height: var(--audio-state-height);
 }
 
+.audio-state-play, .audio-state-pause, .audio-state-stop, {
+  border-radius: var(--play-pause-stop-border-radius);
+  z-index: var(--audio-state-base-z-index);
+}
+
+.audio-state-loading, .audio-state-exception, {
+  z-index: calc(var(--audio-state-base-z-index) - 1);
+}
+
 .audio-state-play {
   --color: var(--play-color);
-  border-radius: var(--play-pause-stop-border-radius);
 }
 
 .audio-state-pause {
   --color: var(--pause-color);
-  border-radius: var(--play-pause-stop-border-radius);
 }
 
 .audio-state-stop {
   --color: var(--stop-color);
-  border-radius: var(--play-pause-stop-border-radius);
 }
 
 .audio-state-loading {
@@ -43,6 +52,7 @@
   --audio-state-width: .75cm;
   --audio-state-height: .75cm;
   margin: {
+    left: calc(var(--container-width) / 2 * -1 - var(--audio-state-width) / 2);
     top: auto;
     bottom: auto;
   };

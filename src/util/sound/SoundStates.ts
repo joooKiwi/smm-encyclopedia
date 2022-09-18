@@ -14,35 +14,35 @@ export abstract class SoundStates
 
     public static readonly STANDBY =   new class SoundStates_Standby extends SoundStates {
 
-        public override getElementsFrom({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({playElement,}: SoundSubElementsHolder,) {
             return [playElement(),];
         }
 
     }('standby',);
     public static readonly PAUSED =    new class SoundStates_Paused extends SoundStates {
 
-        public override getElementsFrom({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({playElement, stopElement,}: SoundSubElementsHolder,) {
             return [playElement(), stopElement(),];
         }
 
     }('paused',);
     public static readonly PLAYING =   new class SoundStates_Playing extends SoundStates {
 
-        public override getElementsFrom({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({pauseElement, stopElement,}: SoundSubElementsHolder,) {
             return [pauseElement(), stopElement(),];
         }
 
     }('playing',);
     public static readonly LOADING =   new class SoundStates_Loading extends SoundStates {
 
-        public override getElementsFrom({stopElement, loadingElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
-            return [stopElement(), loadingElement(),];
+        public override getElementsFrom({pauseElement, stopElement, loadingElement,}: SoundSubElementsHolder,) {
+            return [pauseElement(), stopElement(), loadingElement(),];
         }
 
     }('loading',);
     public static readonly EXCEPTION = new class SoundStates_Exception extends SoundStates {
 
-        public override getElementsFrom({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({exceptionElement,}: SoundSubElementsHolder,) {
             return [exceptionElement(),];
         }
 

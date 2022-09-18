@@ -5,6 +5,7 @@ export class SoundStateHolder {
     //region -------------------- Fields --------------------
 
     readonly #history: SoundStates[];
+    #lastState?: SoundStates;
     #currentState;
 
     //endregion -------------------- Fields --------------------
@@ -32,11 +33,30 @@ export class SoundStateHolder {
     public set currentState(value: | SoundStates | null | undefined,) {
         if (value == null)
             return;
-        this._history.push(this.#currentState = value);
+        this.setLastState(this.currentState)
+            ._history.push(this.#currentState = value);
     }
 
     public setCurrentState(value: | SoundStates | null | undefined,): this {
         this.currentState = value;
+        return this;
+    }
+
+
+    public get lastState(): SoundStates {
+        if (this.#lastState == null)
+            throw new ReferenceError('The history has no last state!');
+        return this.#lastState;
+    }
+
+    public set lastState(value: | SoundStates | null | undefined,) {
+        if (value == null)
+            throw new TypeError('The last state could not be set to a null value.');
+        this.#lastState = value;
+    }
+
+    public setLastState(value: | SoundStates | null | undefined,): this {
+        this.lastState = value;
         return this;
     }
 

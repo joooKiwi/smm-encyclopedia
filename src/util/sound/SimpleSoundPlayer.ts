@@ -61,6 +61,12 @@ export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends str
         if (this.#audio == null) {
             const audio = this.#audio = new Audio(this.source);
             audio.onplaying = event => {
+                switch (this.state.currentState) {
+                    case SoundStates.STANDBY:
+                        return this.stop();
+                    case SoundStates.PAUSED:
+                        return this.pause();
+                }
                 this.setState(SoundStates.PLAYING,);
                 this.onPlaying?.(this, event,);
             };
@@ -273,8 +279,15 @@ export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends str
      * @doesNotTriggerIfIsSameState
      */
     public override pause(): this {
-        if (this.state.currentState === SoundStates.PAUSED)
-            return this;
+        const state = this.state;
+        switch (state.currentState) {
+            case SoundStates.PAUSED:
+                if (state.lastState === SoundStates.PLAYING)
+                    return this;
+                break;
+            case SoundStates.LOADING:
+                return this.setState(SoundStates.PAUSED,);
+        }
 
         this.onBeforePause?.(this);
         this.audio.pause();
@@ -291,8 +304,15 @@ export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends str
      * @doesNotTriggerIfIsSameState
      */
     public override stop(): this {
-        if (this.state.currentState === SoundStates.STANDBY)
-            return this;
+        const state = this.state;
+        switch (state.currentState) {
+            case SoundStates.STANDBY:
+                if (state.lastState === SoundStates.PLAYING)
+                    return this;
+                break;
+            case SoundStates.LOADING:
+                return this.setState(SoundStates.STANDBY,);
+        }
 
         this.onBeforeStop?.(this);
         const audio = this.audio;
