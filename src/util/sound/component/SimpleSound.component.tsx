@@ -2,18 +2,18 @@ import './SimpleSound.component.scss';
 
 import {Component} from 'react';
 
-import type {IsSourceFoundCallback} from '../Validators.types';
+import type {IsSourceFoundCallback} from '../player/Validators.types';
 import type {ReactComponent}        from '../../react/ReactComponent';
 import type {ReactElement}          from '../../react/ReactProperties';
 import type {SimpleSoundState}      from './state/SimpleSound.state';
-import type {SimpleSoundPlayer}     from '../SimpleSoundPlayer';
+import type {SimpleSoundPlayer}     from '../player/SimpleSoundPlayer';
 import type {SimpleSoundProperties} from './property/SimpleSoundProperties';
 
-import {AbstractSoundPlayer}    from '../AbstractSoundPlayer';
-import {SoundPlayerFactory}     from '../SoundPlayer.factory';
-import {SoundStates}            from '../SoundStates';
+import {AbstractSoundPlayer}    from '../player/AbstractSoundPlayer';
+import {SoundPlayerFactory}     from '../player/SoundPlayer.factory';
+import {SoundStates}            from '../player/SoundStates';
 import {SoundSubElementsHolder} from '../holder/SoundSubElementsHolder';
-import {Validators}             from '../Validators';
+import {Validators}             from '../player/Validators';
 
 export default class SimpleSoundComponent<SOURCE extends string = string, TITLE extends string = string, >
     extends Component<SimpleSoundProperties<SOURCE, TITLE>, SimpleSoundState>

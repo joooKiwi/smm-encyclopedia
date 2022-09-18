@@ -1,7 +1,7 @@
 import type {OnAfterPauseSoundPlayerCallback, OnAfterPlayingSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback} from './types';
 
 import {AbstractSoundPlayer} from './AbstractSoundPlayer';
-import {SoundStateHolder}    from './holder/SoundStateHolder';
+import {SoundStateHolder}    from '../holder/SoundStateHolder';
 import {SoundStates}         from './SoundStates';
 
 export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends string = string, DOES_LOOP extends boolean = false, >

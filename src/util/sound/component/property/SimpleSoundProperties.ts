@@ -1,5 +1,5 @@
 import type {ReactProperties} from '../../../react/ReactProperties';
-import type {Validators}      from '../../Validators';
+import type {Validators}      from '../../player/Validators';
 
 export interface SimpleSoundProperties<SOURCE extends string = string, TITLE extends string = string, >
     extends ReactProperties {

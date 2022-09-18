@@ -1,5 +1,5 @@
 import type {ReactState}  from '../../../react/ReactState';
-import type {SoundStates} from '../../SoundStates';
+import type {SoundStates} from '../../player/SoundStates';
 
 export interface SimpleSoundState
     extends ReactState {

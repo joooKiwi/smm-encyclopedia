@@ -1,8 +1,8 @@
-import type {ExtendedMap} from '../extended/ExtendedMap';
+import type {ExtendedMap} from '../../extended/ExtendedMap';
 import type {SoundPlayer} from './SoundPlayer';
 
-import {ExtendedMapContainer} from '../extended/ExtendedMap.container';
-import {isInProduction}       from '../../variables';
+import {ExtendedMapContainer} from '../../extended/ExtendedMap.container';
+import {isInProduction}       from '../../../variables';
 
 export abstract class AbstractSoundPlayer<KEY extends string = string, >
     implements SoundPlayer {

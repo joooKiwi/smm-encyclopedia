@@ -1,10 +1,10 @@
 import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundStates.types';
-import type {ClassWithEnglishName}                                                                                                                                                               from '../../core/ClassWithEnglishName';
-import type {StaticReference}                                                                                                                                                                    from '../enum/Enum.types';
-import type {ReactElement}                                                                                                                                                                       from '../react/ReactProperties';
-import type {SoundSubElementsHolder}                                                                                                                                                             from './holder/SoundSubElementsHolder';
+import type {ClassWithEnglishName}                                                                                                                                                               from '../../../core/ClassWithEnglishName';
+import type {StaticReference}                                                                                                                                                                    from '../../enum/Enum.types';
+import type {ReactElement}                                                                                                                                                                       from '../../react/ReactProperties';
+import type {SoundSubElementsHolder}                                                                                                                                                             from '../holder/SoundSubElementsHolder';
 
-import {Enum} from '../enum/Enum';
+import {Enum} from '../../enum/Enum';
 
 export abstract class SoundStates
     extends Enum<Ordinals, Names>

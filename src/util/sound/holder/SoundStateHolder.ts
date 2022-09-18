@@ -1,4 +1,4 @@
-import {SoundStates} from '../SoundStates';
+import type {SoundStates} from '../player/SoundStates';
 
 export class SoundStateHolder {
 

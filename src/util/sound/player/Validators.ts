@@ -1,8 +1,8 @@
 import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, IsSourceFoundCallback, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Validators.types';
-import type {ClassWithEnglishName}                                                                                                                                                                                      from '../../core/ClassWithEnglishName';
-import type {StaticReference}                                                                                                                                                                                           from '../enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                      from '../../../core/ClassWithEnglishName';
+import type {StaticReference}                                                                                                                                                                                           from '../../enum/Enum.types';
 
-import {Enum} from '../enum/Enum';
+import {Enum} from '../../enum/Enum';
 
 export abstract class Validators
     extends Enum<Ordinals, Names>
