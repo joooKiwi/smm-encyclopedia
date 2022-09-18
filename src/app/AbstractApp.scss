@@ -37,6 +37,7 @@ table[id$="-table"] {
   thead {
     position: sticky;
     top: 0;
+    z-index: var(--bs-z-index-sticky);
   }
 
   th img {
