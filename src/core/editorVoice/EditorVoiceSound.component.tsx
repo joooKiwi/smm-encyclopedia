@@ -4,7 +4,7 @@ import type {EditorVoiceSound} from './EditorVoiceSound';
 import type {ReactProperties}  from '../../util/react/ReactProperties';
 
 import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables';
-import SimpleSound           from '../../app/tools/sounds/SimpleSound';
+import SimpleSoundComponent  from '../../util/sound/component/SimpleSound.component';
 
 interface EditorVoiceSoundComponentProperties
     extends ReactProperties {
@@ -19,19 +19,19 @@ interface EditorVoiceSoundComponentProperties
  * @param properties
  * @reactComponent
  */
-export default function EditorVoiceSoundComponent({editorVoiceSound:{fileName, europeanFileName,}, name,}: EditorVoiceSoundComponentProperties,) {
+export default function EditorVoiceSoundComponent({editorVoiceSound: {fileName, europeanFileName,}, name,}: EditorVoiceSoundComponentProperties,) {
     return fileName == null
         ? EMPTY_REACT_ELEMENT
         : europeanFileName == null
             ? <div key={`Editor voice sound container (single - ${name})`} className="single-editorVoiceSound-container">
-                <SimpleSound source={fileName} title={name}/>
+                <SimpleSoundComponent source={fileName} title={name}/>
             </div>
             : <div key={`Editor voice sound container (double - ${name})`} className="double-editorVoiceSound-container container">
                 <div key={`Editor voice sound container (single #1 - ${name}`} className="single-editorVoiceSound-container">
-                    <SimpleSound source={fileName} title={name}/>
+                    <SimpleSoundComponent source={fileName} title={name}/>
                 </div>
                 <div key={`Editor voice sound container (single #2 - ${name})`} className="single-editorVoiceSound-container">
-                    <SimpleSound source={europeanFileName} title={name}/>
+                    <SimpleSoundComponent source={europeanFileName} title={name}/>
                 </div>
             </div>;
 

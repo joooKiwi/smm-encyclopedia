@@ -14,7 +14,6 @@ import {CommonOptions}                 from './CommonOptions';
 import {Enum}                          from '../../util/enum/Enum';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {MysteryMushrooms}              from '../../core/mysteryMushroom/MysteryMushrooms';
-import SimpleSound                     from '../tools/sounds/SimpleSound';
 import TextComponent                   from '../tools/text/TextComponent';
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';
 import {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom';
@@ -22,8 +21,9 @@ import {NotApplicable}                 from '../../core/_properties/Property';
 
 //region -------------------- dynamic imports --------------------
 
-const NameComponent = lazy(() => import('../../lang/name/component/Name.component'));
-const Image =         lazy(() => import('../tools/images/Image'));
+const NameComponent =        lazy(() => import('../../lang/name/component/Name.component'));
+const Image =                lazy(() => import('../tools/images/Image'));
+const SimpleSoundComponent = lazy(() => import('../../util/sound/component/SimpleSound.component'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -406,7 +406,7 @@ export abstract class MysteryMushroomAppOption
 
             const englishName = enumeration.englishName;
             const type = this._mysteryMushroomType;
-            return <SimpleSound source={value} title={`${englishName} - ${type}`}/>;
+            return <SimpleSoundComponent source={value} title={`${englishName} - ${type}`}/>;
         },);
     }
 
@@ -416,7 +416,7 @@ export abstract class MysteryMushroomAppOption
             const type = this._mysteryMushroomType;
 
             return <>{callback(enumeration).map((value, index,) =>
-                <SimpleSound source={value} title={`${englishName} - ${type} #${index + 1}`}/>
+                <SimpleSoundComponent source={value} title={`${englishName} - ${type} #${index + 1}`}/>
             )}</>;
         },);
     }

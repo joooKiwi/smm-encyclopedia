@@ -3,7 +3,7 @@ import {lazy} from 'react';
 import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Sounds.types';
 import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties';
-import type {SimpleSoundProperties}                                                                                                                                                 from '../../tools/sounds/properties/SimpleSoundProperties';
+import type {SimpleSoundProperties}                                                                                                                                                 from '../../../util/sound/component/property/SimpleSoundProperties';
 import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
 
 import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables';
@@ -11,7 +11,7 @@ import {Enum}                from '../../../util/enum/Enum';
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSound = lazy(() => import('../../tools/sounds/SimpleSound'));
+const SimpleSoundComponent = lazy(() => import('../../../util/sound/component/SimpleSound.component'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -23,7 +23,7 @@ const SimpleSound = lazy(() => import('../../tools/sounds/SimpleSound'));
  *  <li>No → Display no sound viewer</li>
  * </ul>
  *
- * @see SimpleSound
+ * @see SimpleSoundComponent
  */
 export abstract class Sounds
     extends Enum<Ordinals, Names>
@@ -34,7 +34,7 @@ export abstract class Sounds
     public static readonly YES = new class Sounds_Yes extends Sounds {
 
         public override renderComponent(properties: SimpleSoundProperties,): ReactElement {
-            return <SimpleSound {...properties}/>;
+            return <SimpleSoundComponent {...properties}/>;
         }
 
     }(true,);
@@ -72,7 +72,7 @@ export abstract class Sounds
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract renderComponent(properties: SimpleSoundProperties,):ReactElement;
+    public abstract renderComponent(properties: SimpleSoundProperties,): ReactElement;
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

@@ -17,7 +17,11 @@ import {EntityAppOption}               from './options/EntityAppOption';
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
 
-const SimpleSound = lazy(() => import('./tools/sounds/SimpleSound'));
+//region -------------------- dynamic imports --------------------
+
+const SimpleSoundComponent = lazy(() => import('../util/sound/component/SimpleSound.component'));
+
+//endregion -------------------- dynamic imports --------------------
 
 /**
  * @reactComponent
@@ -71,8 +75,8 @@ export default class EntityApp
                 //TODO encapsulate the voiceSound into a sound interpreter.
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`;//TODO move to the parent container className.
                 return <div className={`${category}`}>
-                    {editorVoice1 == null ? EMPTY_REACT_ELEMENT : <SimpleSound source={editorVoice1} title={`${htmlName} - editor voice`}/>}
-                    {editorVoice2 == null ? EMPTY_REACT_ELEMENT : <SimpleSound source={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
+                    {editorVoice1 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent source={editorVoice1} title={`${htmlName} - editor voice`}/>}
+                    {editorVoice2 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent source={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
                 </div>;
             }
 
