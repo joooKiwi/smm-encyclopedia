@@ -1,8 +1,10 @@
-import type {Music, PossibleMusicArray} from './Music';
-import type {ObjectHolder}              from '../../util/holder/ObjectHolder';
-import {ObjectHolderContainer}          from '../../util/holder/ObjectHolder.container';
+import type {Music}          from './Music';
+import type {MusicSoundFile} from './file/MusicSoundFile';
+import type {ObjectHolder}   from '../../util/holder/ObjectHolder';
 
-export abstract class AbstractMusic<ALL extends PossibleMusicArray = PossibleMusicArray, >
+import {ObjectHolderContainer} from '../../util/holder/ObjectHolder.container';
+
+export abstract class AbstractMusic<ALL extends readonly MusicSoundFile[] = readonly MusicSoundFile[], >
     implements Music<ALL> {
 
     //region -------------------- Fields --------------------

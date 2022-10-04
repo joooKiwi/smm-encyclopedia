@@ -2,15 +2,17 @@ import type {Builder}                                                           
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                    from '../ClassWithEnglishName';
 import type {ClassWithReference}                                                                                                                                                                                                                                                                                                      from '../ClassWithReference';
 import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffects.types';
+import type {MusicSoundFile}                                                                                                                                                                                                                                                                                                          from '../music/file/MusicSoundFile';
 import type {PossibleSMM1ImagePath, PossibleSMM2ImagePath, SoundEffectImage}                                                                                                                                                                                                                                                          from './image/SoundEffectImage';
-import type {PossibleSoundEffectSoundFileName, PossibleSoundEffectSoundFileName_SMM1, PossibleSoundEffectSoundFileName_SMM2}                                                                                                                                                                                                          from './sound/types';
-import type {PossibleSoundEffectMusicEditorName}                                                                                                                                                                                                                                                                  from '../music/soundEffect/SoundEffectMusic';
-import type {PossibleMusicArray}                         from '../music/Music';
+import type {PossibleSoundEffectMusicEditorName}                                                                                                                                                                                                                                                                                      from '../music/soundEffect/SoundEffectMusic';
 import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                                                                                                                                                                                                               from './sound/SMM2SoundEffectSound';
 import type {SMM1ExclusiveSoundEffectSound}                                                                                                                                                                                                                                                                                           from './sound/SMM1ExclusiveSoundEffectSound';
 import type {SMM1StandaloneSoundEffectSound}                                                                                                                                                                                                                                                                                          from './sound/SMM1StandaloneSoundEffectSound';
+import type {SMM1SoundEffectSoundFile}                                                                                                                                                                                                                                                                                                from './file/SMM1SoundEffectSoundFile';
+import type {SMM2SoundEffectSoundFile}                                                                                                                                                                                                                                                                                                from './file/SMM2SoundEffectSoundFile';
 import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                                                                                                                                                                                                             from './sound/types';
 import type {SoundEffect}                                                                                                                                                                                                                                                                                                             from './SoundEffect';
+import type {SoundEffectSoundFile}                                                                                                                                                                                                                                                                                                    from './file/SoundEffectSoundFile';
 import type {StaticReference}                                                                                                                                                                                                                                                                                                         from '../../util/enum/Enum.types';
 
 import {EmptySMMSoundEffectSound}                   from './sound/EmptySMMSoundEffectSound';
@@ -28,7 +30,7 @@ import {SMM2SoundEffectSoundFromSoundEffectBuilder} from './sound/SMM2SoundEffec
 import {StringContainer}                            from '../../util/StringContainer';
 
 /**
- * @todo change the images to a different format than the constructor one.
+ * @todo move the images in a delayed method instead of in the constructor.
  * @recursiveReference {@link SoundEffectLoader}, {@link Musics}
  * @classWithDynamicImport {@link SoundEffectLoader}
  */
@@ -564,8 +566,8 @@ export abstract class SoundEffects
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
             return new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .editor(2, 0,).smm2(1).smm2(2)
-                .smm1(0).smm1(1);
+                .editor(2, 1,).smm2(2).smm2(3)
+                .smm1(1).smm1(2);
         }
 
         protected override _createSMM2Sounds() {
@@ -774,17 +776,17 @@ export abstract class SoundEffects
     }
 
     /** Every "sound effect" sounds stored in a {@link SMM1ExclusiveSoundEffectSound SMM1/SMM3DS exclusive "sound effect" sound} */
-    public get sounds_exclusiveSmm1(): readonly PossibleSoundEffectSoundFileName_SMM1[] {
+    public get sounds_exclusiveSmm1(): readonly SMM1SoundEffectSoundFile[] {
         return this.soundsContainer_exclusiveSmm1.sounds;
     }
 
     /** Every "sound effect" sounds stored in a {@link SMM1StandaloneSoundEffectSound SMM1 standalone "sound effect" sound} */
-    public get sounds_standaloneSmm1(): readonly PossibleSoundEffectSoundFileName[] {
+    public get sounds_standaloneSmm1(): readonly SoundEffectSoundFile[] {
         return this.soundsContainer_standaloneSMM1.sounds;
     }
 
     /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} when placed in the editor */
-    public get editorSound_smm1(): | PossibleSoundEffectSoundFileName | null {
+    public get editorSound_smm1(): | SoundEffectSoundFile | null {
         return this.soundsContainer_standaloneSMM1.editorSound;
     }
 
@@ -812,7 +814,7 @@ export abstract class SoundEffects
     }
 
     /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_2 SMM2} when placed in the editor */
-    public get editorSound_smm2(): | PossibleSoundEffectSoundFileName_SMM2 | PossibleSoundEffectMusicEditorName | null {
+    public get editorSound_smm2(): | SMM2SoundEffectSoundFile | PossibleSoundEffectMusicEditorName | null {
         return this.soundsContainer_smm2.editorSound;
     }
 
@@ -885,4 +887,4 @@ export abstract class SoundEffects
 }
 
 type SMM1ExclusiveCallback = (smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) => Builder<SMM1StandaloneSoundEffectSound>;
-type PossibleSMM2SoundEffect = readonly (PossibleSoundEffectSoundFileName_SMM2 | PossibleMusicArray[number])[];
+type PossibleSMM2SoundEffect = readonly (| SMM2SoundEffectSoundFile | MusicSoundFile)[];

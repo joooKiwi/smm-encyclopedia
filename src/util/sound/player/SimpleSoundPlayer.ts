@@ -1,11 +1,12 @@
 import type {OnAfterPauseSoundPlayerCallback, OnAfterPlayingSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback} from './types';
+import type {SoundFile}                                                                                                                                                                                                                                                                                                                                         from '../SoundFile';
 
 import {AbstractSoundPlayer} from './AbstractSoundPlayer';
 import {SoundStateHolder}    from '../holder/SoundStateHolder';
 import {SoundStates}         from './SoundStates';
 
-export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends string = string, DOES_LOOP extends boolean = false, >
-    extends AbstractSoundPlayer<SOURCE> {
+export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE extends string = string, DOES_LOOP extends boolean = false, >
+    extends AbstractSoundPlayer<SOURCE['key']> {
 
     //region -------------------- Fields --------------------
 
@@ -30,7 +31,7 @@ export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends str
     //endregion -------------------- Fields --------------------
 
     public constructor(source: SOURCE, title: TITLE, doesLoop: DOES_LOOP = AbstractSoundPlayer.DEFAULT_DOES_LOOP as DOES_LOOP,) {
-        super(source,);
+        super(source.key,);
         this.#source = source;
         this.#title = title;
         this.#doesLoop = doesLoop;
@@ -59,7 +60,7 @@ export class SimpleSoundPlayer<SOURCE extends string = string, TITLE extends str
 
     public get audio(): HTMLAudioElement {
         if (this.#audio == null) {
-            const audio = this.#audio = new Audio(this.source);
+            const audio = this.#audio = new Audio(this.source.fullName);
             audio.onplaying = event => {
                 switch (this.state.currentState) {
                     case SoundStates.STANDBY:

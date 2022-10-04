@@ -1,8 +1,8 @@
 import type {PossibleEditorValue, PossibleValueOnLinkOrSMB2Value, SoundEffectSound} from './SoundEffectSound';
 import type {ObjectHolder}                                                          from '../../../util/holder/ObjectHolder';
-import type {PossibleSoundEffectSoundFileName}                                      from './types';
+import type {SoundEffectSoundFile}                                                  from '../file/SoundEffectSoundFile';
 
-export abstract class AbstractSoundEffectSound<SOUNDS extends readonly PossibleSoundEffectSoundFileName[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>,
+export abstract class AbstractSoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>,
     LINK_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>,
     SMB2_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, >
     implements SoundEffectSound<SOUNDS, EDITOR_SOUND> {

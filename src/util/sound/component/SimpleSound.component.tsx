@@ -8,6 +8,7 @@ import type {ReactElement}          from '../../react/ReactProperties';
 import type {SimpleSoundState}      from './state/SimpleSound.state';
 import type {SimpleSoundPlayer}     from '../player/SimpleSoundPlayer';
 import type {SimpleSoundProperties} from './property/SimpleSoundProperties';
+import type {SoundFile}             from '../SoundFile';
 
 import {AbstractSoundPlayer}    from '../player/AbstractSoundPlayer';
 import {SoundPlayerFactory}     from '../player/SoundPlayer.factory';
@@ -15,8 +16,8 @@ import {SoundStates}            from '../player/SoundStates';
 import {SoundSubElementsHolder} from '../holder/SoundSubElementsHolder';
 import {Validators}             from '../player/Validators';
 
-export default class SimpleSoundComponent<SOURCE extends string = string, TITLE extends string = string, >
-    extends Component<SimpleSoundProperties<SOURCE, TITLE>, SimpleSoundState>
+export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TITLE extends string = string, >
+    extends Component<SimpleSoundProperties<FILE, TITLE>, SimpleSoundState>
     implements ReactComponent {
 
     //region -------------------- Fields --------------------
@@ -27,12 +28,12 @@ export default class SimpleSoundComponent<SOURCE extends string = string, TITLE 
     static readonly #LOADING_CLASSES = 'spinner-border audio-state audio-state-loading';
     static readonly #EXCEPTION_CLASSES = 'bi-shield-fill-exclamation audio-state audio-state-exception';
 
-    #audio?: SimpleSoundPlayer<SOURCE, TITLE>;
+    #audio?: SimpleSoundPlayer<FILE, TITLE>;
     readonly #isSourceFoundCallback: IsSourceFoundCallback;
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(props: SimpleSoundProperties<SOURCE, TITLE>,) {
+    public constructor(props: SimpleSoundProperties<FILE, TITLE>,) {
         super(props,);
         this.state = {
             state: SoundStates.STANDBY,
@@ -49,9 +50,9 @@ export default class SimpleSoundComponent<SOURCE extends string = string, TITLE 
     //region -------------------- Getter methods --------------------
 
 
-    /** @see SimpleSoundProperties.source */
-    public get source(): SOURCE {
-        return this.props.source;
+    /** @see SimpleSoundProperties.file */
+    public get file(): FILE {
+        return this.props.file;
     }
 
     /** @see SimpleSoundProperties.title */
@@ -80,9 +81,9 @@ export default class SimpleSoundComponent<SOURCE extends string = string, TITLE 
      * Get the audio element (lazily)
      * and initialising it upon creating the audio element
      */
-    protected get _audio(): SimpleSoundPlayer<SOURCE, TITLE> {
+    protected get _audio(): SimpleSoundPlayer<FILE, TITLE> {
         if (this.#audio == null) {
-            const source = this.source;
+            const source = this.file;
             this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
                 .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
                 .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.state.currentState,}));
@@ -103,7 +104,7 @@ export default class SimpleSoundComponent<SOURCE extends string = string, TITLE 
         if (audio == null)
             return;
         audio.setState(SoundStates.STANDBY,);
-        AbstractSoundPlayer.map.remove(audio.source);
+        AbstractSoundPlayer.map.remove(audio.source.key);
     }
 
     public override render(): ReactElement {

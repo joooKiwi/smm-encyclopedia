@@ -1,9 +1,10 @@
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {MysteryMushrooms as RealEnum}                                                                                                                                                                                                                 from './MysteryMushrooms';
+import type {MysteryMushroomSoundFile}                                                                                                                                                                                                                     from './file/MysteryMushroomSoundFile';
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | EnglishNameOnFile | PossibleUniqueEnglishName;
+export type PossibleStringValue = | Names | PossibleFileName | PossibleUniqueEnglishName;
 export type PossibleValue = | RealEnum | number | string | null | undefined;
 
 enum Enum {
@@ -164,7 +165,7 @@ export type Names = keyof typeof Enum;
 
 //region -------------------- File name --------------------
 
-export type EnglishNameOnFile =
+export type PossibleFileName =
     | 'Arwing' | 'Ashley'
     | 'Blackey' | WithLeftVariant<'Block'> | `Boss0${`${| 0 | 1 | 2 | 3 | 4}${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | `5${| 0 | 1}`}` | WithLeftVariant<`Boss04${| 5 | 6}`>
     | 'Charizard' | 'ChibiRobo'
@@ -355,7 +356,12 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 
 
 export type PossibleImageSourceForFile<T, > = | readonly [] | readonly [T,] | readonly [T, T,];
-export type PossibleSoundSourceForFile<T, > = T extends readonly string[] ? (| readonly [] | T) : T extends string ? (| T | null) : never;
+export type PossibleSoundSourceForFile<T, > =
+    T extends readonly MysteryMushroomSoundFile[]
+        ? (| readonly [] | T)
+        : T extends MysteryMushroomSoundFile
+            ? (| T | null)
+            : never;
 
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<E>['MYSTERY_MUSHROOM'],

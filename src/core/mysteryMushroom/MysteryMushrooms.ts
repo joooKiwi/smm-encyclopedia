@@ -327,7 +327,7 @@ export class MysteryMushrooms
     #reference?: MysteryMushroom;
     readonly #englishName;
     readonly #uniqueEnglishName;
-    readonly #englishNameOnFile;
+    readonly #fileName;
     #imageContainer?: PossibleImageSourceForFile<Image>;
     #soundContainer?: Sound;
 
@@ -345,15 +345,13 @@ export class MysteryMushrooms
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(mysteryMushroomNoFile: null, englishName: PossibleEnglishName,)
-    public constructor(englishNameOnFile: EnglishNameOnFile, englishName: PossibleEnglishName,)
-    public constructor(englishNameOnFile: EnglishNameOnFile, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
-    public constructor(englishNamesOnFile: readonly [EnglishNameOnFile, EnglishNameOnFile,], englishName: PossibleEnglishName,)
-    public constructor(englishNameOnFile: | EnglishNameOnFile | readonly [EnglishNameOnFile, EnglishNameOnFile,] | null, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName = englishName,) {
+    public constructor(fileName: FileName, englishName: PossibleEnglishName,)
+    public constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
+    public constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName = englishName,) {
         super();
         this.#englishName = new StringContainer(englishName);
         this.#uniqueEnglishName = uniqueEnglishName;
-        this.#englishNameOnFile = englishNameOnFile == null ? EMPTY_ARRAY : typeof englishNameOnFile == 'string' ? [englishNameOnFile] as const : englishNameOnFile;
+        this.#fileName = fileName;
     }
 
     //region -------------------- Getter methods --------------------
@@ -385,25 +383,25 @@ export class MysteryMushrooms
 
     //region -------------------- Files (images / sounds) getter methods --------------------
 
-    public get englishNameOnFile(): PossibleImageSourceForFile<EnglishNameOnFile> {
-        return this.#englishNameOnFile;
+    public get fileName(): FileName {
+        return this.#fileName;
     }
 
 
-    protected _createImageContainer(file: EnglishNameOnFile,): Image {
+    protected _createImageContainer(file: PossibleFileName,): Image {
         return new ImageContainer(file,);
     }
 
     private get __imageContainers(): PossibleImageSourceForFile<Image> {
-        return this.#imageContainer ??= MysteryMushrooms.#getFromEnglishNameOnFile(this.englishNameOnFile, fileName => this._createImageContainer(fileName!));
+        return this.#imageContainer ??= MysteryMushrooms.#getFromEnglishNameOnFile(this.fileName.imageFileNames, fileName => this._createImageContainer(fileName!));
     }
 
-    protected _createSoundContainer(file: EnglishNameOnFile, property: SoundProperty,): Sound {
+    protected _createSoundContainer(file: PossibleFileName, property: SoundProperty,): Sound {
         return new SoundContainer(file, () => property,);
     }
 
     private get __soundContainer(): Sound {
-        return this.#soundContainer ??= this._createSoundContainer(this.englishNameOnFile[0]!, this.reference,);
+        return this.#soundContainer ??= this._createSoundContainer(this.fileName.soundFileName[0]!, this.reference,);
     }
 
     //region -------------------- Power-up collected --------------------
@@ -538,9 +536,13 @@ export class MysteryMushrooms
     //region -------------------- Enum value methods --------------------
 
     protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.uniqueEnglishName === value
-                || enumerable.englishNameOnFile.includes(value as never))
+        return this.values.find(enumerable => {
+                const fileName = enumerable.fileName;
+                return enumerable.englishName === value
+                    || enumerable.uniqueEnglishName === value
+                    || fileName.imageFileNames.includes(value as never)
+                    || fileName.soundFileName.includes(value as never);
+            })
             ?? null;
     }
 

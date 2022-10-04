@@ -1,12 +1,10 @@
-import type {PossibleFileName} from '../EditorVoiceSound';
+import type {NonRepeatableSoundFile} from '../../../util/sound/NonRepeatableSoundFile';
+import type {PossibleFileName}       from '../EditorVoiceSound';
 
-import {NonRepeatableSoundFileContainer} from '../../../util/sound/NonRepeatableSoundFile.container';
-
-export class EditorVoiceSoundFile<NAME extends PossibleFileName, >
-    extends NonRepeatableSoundFileContainer<'editor voice', NAME, 'wav'> {
-
-    public constructor(name: NAME,) {
-        super('editor voice', name, 'wav',);
-    }
+export interface EditorVoiceSoundFile<NAME extends PossibleFileName, >
+    extends NonRepeatableSoundFile<EditorVoicePath, NAME, EditorVoiceExtension> {
 
 }
+
+export type EditorVoicePath = 'editor voice';
+export type EditorVoiceExtension = 'wav';

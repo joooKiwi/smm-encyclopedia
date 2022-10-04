@@ -57,9 +57,9 @@ export default class InstrumentApp
                 return 'list';
             }
 
-            public createCardListContent({soundPaths, name,}: Instruments,): ReactElement {
-                return <div className="instrument-sounds">{soundPaths.map((soundPath, index,) =>
-                    <SimpleSoundComponent source={soundPath} title={`${name} (instrument #${index})`}/>
+            public createCardListContent({sounds, name,}: Instruments,): ReactElement {
+                return <div className="instrument-sounds">{sounds.map((sound, index,) =>
+                    <SimpleSoundComponent file={sound} title={`${name} (instrument #${index})`}/>
                 )}</div>;
             }
 

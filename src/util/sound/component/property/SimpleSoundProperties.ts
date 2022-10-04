@@ -1,11 +1,12 @@
 import type {ReactProperties} from '../../../react/ReactProperties';
 import type {Validators}      from '../../player/Validators';
+import type {SoundFile}            from '../../SoundFile';
 
-export interface SimpleSoundProperties<SOURCE extends string = string, TITLE extends string = string, >
+export interface SimpleSoundProperties<FILE extends SoundFile = SoundFile, TITLE extends string = string, >
     extends ReactProperties {
 
-    /** The source of the audio element (excluding the {@link BasePath} */
-    source: SOURCE
+    /** The file of the audio element (excluding the {@link BasePath} */
+    file: FILE
 
     /** The title of the audio element */
     title: TITLE

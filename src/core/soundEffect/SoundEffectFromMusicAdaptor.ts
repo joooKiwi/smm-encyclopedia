@@ -1,5 +1,5 @@
-import type {Musics}             from '../music/Musics';
-import type {PossibleMusicArray} from '../music/Music';
+import type {Musics}         from '../music/Musics';
+import type {MusicSoundFile} from '../music/file/MusicSoundFile';
 
 import {assert}      from '../../util/utilitiesMethods';
 import {EMPTY_ARRAY} from '../../util/emptyVariables';
@@ -22,7 +22,7 @@ export class SoundEffectFromMusicAdaptor {
 
     //region -------------------- Getter methods --------------------
 
-    public get sounds(): PossibleMusicArray {
+    public get sounds(): readonly MusicSoundFile[] {
         return this.#musicContainer.everyMusics;
     }
 

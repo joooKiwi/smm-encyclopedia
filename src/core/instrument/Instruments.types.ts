@@ -1,6 +1,5 @@
 import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
 import type {Instruments as RealEnum}                                                                                                                                                                                                                      from './Instruments';
-import {BasePath}                                                                                                                                                                                                                                          from '../../variables';
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
@@ -202,22 +201,19 @@ export type PossibleFileName =
               | 'Zurna'
 
               | 'AH'
-
 }`;
 
-export type PossibleSoundPath = `|${BasePath}/instrument/${PossibleFileName}.wav`;
-
-export type PossibleSoundPath_Single = Exclude<PossibleFileName,
+export type PossibleFileName_Single = Exclude<PossibleFileName,
     | SpecificReverbCowbell | SpecificGlissandoBass | SpecificReversePiano | SpecificChordCM>;
-export type PossibleSoundPath_ReverbCowbell = readonly [SpecificReverbCowbell<'Gamelan'>, SpecificReverbCowbell<'Gamelan_L1'>, SpecificReverbCowbell<'Gamelan_L5'>, SpecificReverbCowbell<'Gamelan_L6'>, SpecificReverbCowbell<'Gamelan_M1_pi'>, SpecificReverbCowbell<'Gamelan_S1'>, SpecificReverbCowbell<'Gamelan_S6'>,];
-export type PossibleSoundPath_GlissandoBass = readonly [SpecificGlissandoBass<'SE7_BassGliss1'>, SpecificGlissandoBass<'SE7_BassGliss2'>,];
-export type PossibleSoundPath_ReversePiano = readonly [SpecificReversePiano<'SE2_ReversePianoC3'>, SpecificReversePiano<'SE2_ReversePianoC4'>, SpecificReversePiano<'SE2_ReversePianoC5'>,];
-export type PossibleSoundPath_SpecificChordCM = readonly [SpecificChordCM<'chord_Cm'>, SpecificChordCM<'chord_CM7'>,];
-export type PossibleSoundPath_Array = | readonly [PossibleSoundPath_Single]
-                                      | PossibleSoundPath_ReverbCowbell
-                                      | PossibleSoundPath_GlissandoBass
-                                      | PossibleSoundPath_ReversePiano
-                                      | PossibleSoundPath_SpecificChordCM;
+export type PossibleFileName_ReverbCowbell = readonly [SpecificReverbCowbell<'Gamelan'>, SpecificReverbCowbell<'Gamelan_L1'>, SpecificReverbCowbell<'Gamelan_L5'>, SpecificReverbCowbell<'Gamelan_L6'>, SpecificReverbCowbell<'Gamelan_M1_pi'>, SpecificReverbCowbell<'Gamelan_S1'>, SpecificReverbCowbell<'Gamelan_S6'>,];
+export type PossibleFileName_GlissandoBass = readonly [SpecificGlissandoBass<'SE7_BassGliss1'>, SpecificGlissandoBass<'SE7_BassGliss2'>,];
+export type PossibleFileName_ReversePiano = readonly [SpecificReversePiano<'SE2_ReversePianoC3'>, SpecificReversePiano<'SE2_ReversePianoC4'>, SpecificReversePiano<'SE2_ReversePianoC5'>,];
+export type PossibleFileName_SpecificChordCM = readonly [SpecificChordCM<'chord_Cm'>, SpecificChordCM<'chord_CM7'>,];
+export type PossibleFileName_Array = | readonly [PossibleFileName_Single]
+                                     | PossibleFileName_ReverbCowbell
+                                     | PossibleFileName_GlissandoBass
+                                     | PossibleFileName_ReversePiano
+                                     | PossibleFileName_SpecificChordCM;
 
 //endregion -------------------- Instrument file name --------------------
 

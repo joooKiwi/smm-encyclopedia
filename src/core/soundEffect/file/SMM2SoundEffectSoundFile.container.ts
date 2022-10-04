@@ -1,15 +1,15 @@
-import type {SMM1SoundEffectSoundFile, SMM1SoundFilePath} from './SMM1SoundEffectSoundFile';
-import type {PossibleSoundEffectSoundName_SMM1}           from '../sound/types';
+import type {PossibleSoundEffectSoundName_SMM2}           from '../sound/types';
+import type {SMM2SoundEffectSoundFile, SMM2SoundFilePath} from './SMM2SoundEffectSoundFile';
 import type {SoundFileExtension}                          from './SoundEffectSoundFile';
 
 import {NonRepeatableSoundFileContainer} from '../../../util/sound/NonRepeatableSoundFile.container';
 
-export class SMM1SoundEffectSoundFileContainer<NAME extends PossibleSoundEffectSoundName_SMM1, >
-    extends NonRepeatableSoundFileContainer<SMM1SoundFilePath, NAME, SoundFileExtension>
-    implements SMM1SoundEffectSoundFile<NAME> {
+export class SMM2SoundEffectSoundFileContainer<NAME extends PossibleSoundEffectSoundName_SMM2, >
+    extends NonRepeatableSoundFileContainer<SMM2SoundFilePath, NAME, SoundFileExtension>
+    implements SMM2SoundEffectSoundFile<NAME> {
 
     public constructor(name: NAME,) {
-        super('sound/sound effect/SMM1', name, 'wav',);
+        super('sound/sound effect/SMM2', name, 'wav',);
     }
 
 }

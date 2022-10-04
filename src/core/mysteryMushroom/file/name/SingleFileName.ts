@@ -1,6 +1,6 @@
 import type {FileName}         from './FileName';
 import type {PossibleFileName} from '../../MysteryMushrooms.types';
 
-export interface SingleJoinedFileName<FILE_NAME extends PossibleFileName = PossibleFileName, >
-    extends FileName<readonly [FILE_NAME,], readonly [FILE_NAME,]> {
+export interface SingleFileName<IMAGE_FILE_NAME extends PossibleFileName = PossibleFileName, SOUND_FILE_NAME extends PossibleFileName = IMAGE_FILE_NAME,>
+    extends FileName<readonly [IMAGE_FILE_NAME,], readonly [SOUND_FILE_NAME,]> {
 }

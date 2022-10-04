@@ -9,11 +9,15 @@ import type {StaticReference}                                                   
 import {BackgroundMusicContainer}                                          from './backgroundMusic/BackgroundMusic.container';
 import {Enum}                                                              from '../../util/enum/Enum';
 import {Enumerable}                                                        from '../../util/enum/Enumerable';
+import {Frame as Time}                                                     from '../../util/sound/time/Frame';
 import {Import}                                                            from '../../util/DynamicImporter';
 import {NonChangeableSoundEffectBackgroundMusicContainer}                  from './backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container';
+import {NonRepeatableMusicSoundFile as NonRepeatable}                      from './file/NonRepeatableMusicSoundFile';
 import {ObjectHolders}                                                     from '../../util/holder/objectHolders';
 import {ObjectHolderContainer}                                             from '../../util/holder/ObjectHolder.container';
 import {NonChangeableSoundEffectBackgroundMusic}                           from './backgroundMusic/NonChangeableSoundEffectBackgroundMusic';
+import {RepeatableDuringThePlayMusicSoundFile as RepeatableDuringThePlay}  from './file/RepeatableDuringThePlayMusicSoundFile';
+import {RepeatableAtTheEndMusicSoundFile as RepeatableAtTheEnd}            from './file/RepeatableAtTheEndMusicSoundFile';
 import {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer} from './backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect.container';
 import {SingleSoundEffectMusicContainer}                                   from './soundEffect/SingleSoundEffectMusic.container';
 import {SoundEffectMusicWithDifferentEditorContainer}                      from './soundEffect/SoundEffectMusicWithDifferentEditor.container';
@@ -123,110 +127,195 @@ export class Musics
 
     public static readonly NINJA_ATTACK = new class Musics_Audience extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.NINJA_ATTACK;
         }
 
         protected override _createMusic() {
-            return new SoundEffectMusicWithDifferentEditorContainer('BGM_Otoasobi_Dtbt_Murasame', 'BGM_Otoasobi_Dtbt_MurasameIcon',);
+            return new SoundEffectMusicWithDifferentEditorContainer(
+                new NonRepeatable('BGM_Otoasobi_Dtbt_Murasame',),
+                new NonRepeatable('BGM_Otoasobi_Dtbt_MurasameIcon',),
+            );
         }
 
     }();
     public static readonly AUDIENCE = new class Musics_Audience extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.AUDIENCE;
         }
 
         protected override _createMusic() {
-            return new SingleSoundEffectMusicContainer('se_otoasobi_clowd',);
+            return new SingleSoundEffectMusicContainer(new NonRepeatable('se_otoasobi_clowd',),);
         }
 
     }();
     public static readonly SCATTING = new class Musics_Scatting extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.SCATTING;
         }
 
         protected override _createMusic() {
-            return new SingleSoundEffectMusicContainer('otoasobi_scat',);
+            return new SingleSoundEffectMusicContainer(new NonRepeatable('otoasobi_scat',),);
         }
 
     }();
     public static readonly TRADITIONAL = new class Musics_Traditional extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.TRADITIONAL;
         }
 
         protected override _createMusic() {
-            return new SingleSoundEffectMusicContainer('se_otoasobi_ohayashi',);
+            return new SingleSoundEffectMusicContainer(new NonRepeatable('se_otoasobi_ohayashi',),);
         }
 
     }();
     public static readonly PEACEFUL = new class Musics_Peaceful extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.PEACEFUL;
         }
 
         protected override _createMusic() {
-            return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer('M1_BGM_Otoasobi_Link_Healing', 'BGM_M1_USA_Ending',);
+            return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer(
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Healing', new Time(148074,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_Ending', new Time(368993,),),
+            );
         }
 
     }();
 
     public static readonly BONUS = new class Musics_Bonus extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.BONUS_MUSIC;
         }
 
         protected override _createMusic() {
-            return new BackgroundMusicContainer('M1_BGM_Otoasobi_Bonus', 'M1_BGM_Otoasobi_Bonus', 'M1_BGM_Otoasobi_BonusHurry',
-                'M1_BGM_Otoasobi_Link_Bonus', 'M1_BGM_Otoasobi_Link_BonusHurry',
-                'BGM_M1_USA_CharacterSelect', 'BGM_M1_USA_CharacterSelect_hurry',
-                'M3_BGM_Otoasobi_Bonus', 'M3_BGM_Otoasobi_Bonus', 'M3_BGM_Otoasobi_BonusHurry',
-                'MW_BGM_Otoasobi_Bonus', 'MW_BGM_Otoasobi_Bonus', null, 'MW_BGM_Otoasobi_BonusHurry', null,
-                'WU_BGM_Otoasobi_Bonus - Track 1', 'WU_BGM_Otoasobi_Bonus - Track 1', 'WU_BGM_Otoasobi_Bonus - Track 2', 'WU_BGM_Otoasobi_BonusHurry - Track 1', 'WU_BGM_Otoasobi_BonusHurry - Track 2',
-                '3W_BGM_Otoasobi_Bonus', '3W_BGM_Otoasobi_Bonus', null, '3W_BGM_Otoasobi_BonusHurry', null,
+            return new BackgroundMusicContainer(
+                new NonRepeatable('M1_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Bonus', new Time(4,),),
+                new RepeatableAtTheEnd('M1_BGM_Otoasobi_BonusHurry',),
+
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Bonus', new Time(148531,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_BonusHurry', new Time(122177,),),
+
+                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect', new Time(172512,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect_hurry', new Time(129152,),),
+
+                new NonRepeatable('M3_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('M3_BGM_Otoasobi_Bonus', new Time(244,),),
+                new RepeatableAtTheEnd('M3_BGM_Otoasobi_BonusHurry',),
+
+                new NonRepeatable('MW_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Bonus', new Time(97302,),),
+                null,
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BonusHurry', new Time(83895,),),
+                null,
+
+                new NonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 1', new Time(49563,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 2', new Time(49563,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 1', new Time(94334,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 2', new Time(94334,),),
+
+                new NonRepeatable('3W_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Bonus', new Time(233756,),),
+                null,
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BonusHurry', new Time(241918,),),
+                null,
             );
         }
 
     }();
     public static readonly BOSS = new class Musics_Boss extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.BOSS_MUSIC;
         }
 
         protected override _createMusic() {
-            return new BackgroundMusicContainer('M1_BGM_Otoasobi_Boss', 'M1_BGM_Otoasobi_Boss', 'M1_BGM_Otoasobi_BossHurry',
-                'M1_BGM_Link_Boss', 'M1_BGM_Link_Boss_Hurry',
-                'BGM_M1_USA_Boss', 'BGM_M1_USA_LastBoss_hurry',
-                'M3_BGM_Otoasobi_Boss', 'M3_BGM_Otoasobi_Boss', 'M3_BGM_Otoasobi_BossHurry',
-                'MW_BGM_Otoasobi_Boss', 'MW_BGM_Otoasobi_Boss', null, 'MW_BGM_Otoasobi_BossHurry', null,
-                'WU_BGM_Otoasobi_Boss', 'WU_BGM_Otoasobi_Boss', null, 'WU_BGM_Otoasobi_BossHurry', null,
-                '3W_BGM_Otoasobi_Boss', '3W_BGM_Otoasobi_Boss', null, '3W_BGM_Otoasobi_BossHurry', null,
+            return new BackgroundMusicContainer(
+                new NonRepeatable('M1_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Boss', new Time(265559,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', new Time(220012,),),
+
+                new RepeatableDuringThePlay('M1_BGM_Link_Boss', new Time(15931,),),
+                new RepeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', new Time(11872,),),
+
+                new RepeatableDuringThePlay('BGM_M1_USA_Boss', new Time(115011,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102231,),),
+
+                new NonRepeatable('M3_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('M3_BGM_Otoasobi_Boss', new Time(206172,),),
+                new RepeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', new Time(198170,),),
+
+                new NonRepeatable('MW_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Boss', new Time(69552,),),
+                null,
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', new Time(187181,),),
+                null,
+
+                new NonRepeatable('WU_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Boss', new Time(280392,),),
+                null,
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', new Time(236907,),),
+                null,
+
+                new NonRepeatable('3W_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Boss', new Time(233238,),),
+                null,
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', new Time(267965,),),
+                null,
             );
         }
 
     }();
     public static readonly FINAL_BOSS = new class Musics_FinalBoss extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.FINAL_BOSS_MUSIC;
         }
 
         protected override _createMusic() {
-            return new BackgroundMusicContainer('M3_BGM_Otoasobi_LastBoss', 'M3_BGM_Otoasobi_LastBoss', 'M3_BGM_Otoasobi_LastBossHurry',
-                'M1_BGM_Link_LastBoss', 'M1_BGM_Link_LastBoss_Hurry',
-                'BGM_M1_USA_LastBoss', 'BGM_M1_USA_LastBoss_hurry',
-                'M3_BGM_Otoasobi_LastBoss', 'M3_BGM_Otoasobi_LastBoss', 'M3_BGM_Otoasobi_LastBossHurry',
-                'MW_BGM_Otoasobi_LastBossIcon', 'MW_BGM_Otoasobi_LastBoss', null, 'MW_BGM_Otoasobi_LastBossHurry', null,
-                'WU_BGM_Otoasobi_LastBoss', 'WU_BGM_Otoasobi_LastBoss', null, 'WU_BGM_Otoasobi_LastBossHurry', null,
-                '3W_BGM_Otoasobi_LastBoss', '3W_BGM_Otoasobi_LastBoss', null, '3W_BGM_Otoasobi_LastBossHurry', null,
+            const smb3Editor = new NonRepeatable('M3_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                smb3 = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', new Time(89453,),),
+                smb3Fast = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', new Time(76674,),);
+
+            return new BackgroundMusicContainer(
+                smb3Editor,
+                smb3,
+                smb3Fast,
+
+                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss', new Time(23984,),),
+                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', new Time(20284,),),
+
+                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss', new Time(115011,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102231,),),
+
+                smb3Editor,
+                smb3,
+                smb3Fast,
+
+                new NonRepeatable('MW_BGM_Otoasobi_LastBossIcon',),//README for some reason, it is set at 1 in the files (but it is ignored)
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', new Time(90251,),),
+                null,
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', new Time(72957,),),
+                null,
+
+                new NonRepeatable('WU_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', new Time(487912,),),
+                null,
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', new Time(454360,),),
+                null,
+
+                new NonRepeatable('3W_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', new Time(2794396,),),
+                null,
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', new Time(2307013,),),
+                null,
             );
         }
 
@@ -234,45 +323,57 @@ export class Musics
 
     public static readonly SUPER_MARIO_KART = new class Musics_SuperMarioKart extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_64_MUSIC;
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer('BGM_Otoasobi_SFCMarioKart_Circuit', 'BGM_Otoasobi_SFCMarioKartHurry_Circuit',);
+            return new NonChangeableSoundEffectBackgroundMusicContainer(
+                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', new Time(130927,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', new Time(102494,),),
+            );
         }
 
     }();
     public static readonly SUPER_MARIO_64 = new class Musics_SuperMario64 extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_64_MUSIC;
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer('BGM_Otoasobi_SuperMario64_Slider', 'BGM_Otoasobi_SuperMario64Hurry_Slider',);
+            return new NonChangeableSoundEffectBackgroundMusicContainer(
+                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', new Time(181140,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', new Time(151154,),),
+            );
         }
 
     }();
     public static readonly SUPER_MARIO_SUNSHINE = new class Musics_SuperMarioSunshine extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC;
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer('BGM_Otoasobi_MarioSunshine_DolphicTown', 'BGM_Otoasobi_MarioSunshineHurry_DolphicTown',);
+            return new NonChangeableSoundEffectBackgroundMusicContainer(
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', new Time(434950,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', new Time(392890,),),
+            );
         }
 
     }();
     public static readonly SUPER_MARIO_GALAXY = new class Musics_SuperMarioGalaxy extends Musics {
 
-        protected override _createSoundEffectHolder() {
+        protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_GALAXY_MUSIC;
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer('BGM_Otoasobi_MarioGalaxy_WindGarden', 'BGM_Otoasobi_MarioGalaxyHurry_WindGarden',);
+            return new NonChangeableSoundEffectBackgroundMusicContainer(
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', new Time(419760,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', new Time(353407),),
+            );
         }
 
     }();
@@ -317,13 +418,13 @@ export class Musics
     }
 
 
-    protected _createSoundEffectHolder(): | SoundEffects | null {
+    protected _createSoundEffectReference(): | SoundEffects | null {
         return null;
     }
 
     private get __soundEffectReference(): ObjectHolder<| SoundEffects | null> {
         if (this.#soundEffectHolder == null) {
-            const value = this._createSoundEffectHolder();
+            const value = this._createSoundEffectReference();
             this.#soundEffectHolder = value == null ? ObjectHolders.NULL : new ObjectHolderContainer(value);
         }
         return this.#soundEffectHolder;

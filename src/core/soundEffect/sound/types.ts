@@ -1,5 +1,4 @@
 import type {PossibleEnglishName} from '../SoundEffects.types';
-import type {BasePath}            from '../../../variables';
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
 
@@ -196,10 +195,4 @@ type SoundEffectSound_Editor1_Link3<SOUNDS extends readonly string[], > = SoundE
 
 export type PossibleSoundEffectSoundName_SMM1 = SoundEffectSoundTemplateMap_SMM1Exclusive[PossibleEnglishName]['sounds'][number];
 export type PossibleSoundEffectSoundName_SMM2 = | SoundEffectSoundTemplateMap_SMM2Exclusive[PossibleEnglishName]['sounds'][number];
-
-type _PossibleSoundEffectSoundFileNameFromSoundEffect<GAME extends | 1 | 2, NAME extends PossibleSoundEffectSoundName, > = `/${BasePath}/sound/sound effect/SMM${GAME}/${NAME}.wav`;
-export type PossibleSoundEffectSoundFileName_SMM1 = _PossibleSoundEffectSoundFileNameFromSoundEffect<1, PossibleSoundEffectSoundName_SMM1>;
-export type PossibleSoundEffectSoundFileName_SMM2 = _PossibleSoundEffectSoundFileNameFromSoundEffect<2, PossibleSoundEffectSoundName_SMM2>;
-
 export type PossibleSoundEffectSoundName = | PossibleSoundEffectSoundName_SMM1 | PossibleSoundEffectSoundName_SMM2;
-export type PossibleSoundEffectSoundFileName = | PossibleSoundEffectSoundFileName_SMM1 | PossibleSoundEffectSoundFileName_SMM2;

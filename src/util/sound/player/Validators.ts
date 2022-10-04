@@ -177,4 +177,5 @@ export abstract class Validators
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

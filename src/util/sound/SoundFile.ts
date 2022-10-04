@@ -1,7 +1,11 @@
-import type {BasePath} from '../../variables';
+import type {BasePath}        from '../../variables';
+import type {RepeatableTypes} from './RepeatableTypes';
+import type {Time}            from './time/Time';
 
-export interface SoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension,
-    IS_REPEATABLE extends boolean = boolean,> {
+export interface SoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, REPEATABLE_TIME extends | Time | null = | Time | null, > {
+
+    /** A unique identifier for a sound file */
+    get key(): string
 
     /** The path of the sound file (excluding the {@link BasePath}) */
     get path(): PATH
@@ -19,12 +23,15 @@ export interface SoundFile<PATH extends string = string, NAME extends string = s
     get extension(): EXTENSION
 
 
-    /** The file is repeatable (at the end or in a possible time of an {@link HTMLAudioElement}) */
-    get isRepeatable(): IS_REPEATABLE
+    /** The repeatable time for the {@link HTMLAudioElement} */
+    get repeatableTime(): REPEATABLE_TIME
+
+    /** The repeatable type for an {@link HTMLAudioElement} */
+    get repeatableType(): RepeatableTypes
 
 }
 
-export type FullPath<PATH extends string = string, > = `${BasePath}/${PATH}`;
+export type FullPath<PATH extends string = string, > = `/${BasePath}/${PATH}`;
 export type FullName<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, > = `${FullPath<PATH>}/${NAME}.${EXTENSION}`;
 
 /** The possible extension for a "sound file" in the project */

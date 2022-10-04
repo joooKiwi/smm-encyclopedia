@@ -10,7 +10,6 @@ export class SingleBackgroundMusicFactory {
         // @ts-ignore
         return smb == null && smb3 == null && smw == null && nsmbu == null && sm3dw == null
             ? EmptySingleBackgroundMusic.get
-            // @ts-ignore
             : new SingleBackgroundMusicContainer(smb, smb3, smw, nsmbu, sm3dw,);
     }
 

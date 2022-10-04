@@ -1,15 +1,16 @@
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                from './SMM2SoundEffectSound';
-import type {PossibleSoundEffectSoundFileName_SMM2, PossibleSoundEffectSoundName_SMM2} from './types';
+import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from './SMM2SoundEffectSound';
+import type {PossibleSoundEffectSoundName_SMM2}                         from './types';
+import type {SMM2SoundEffectSoundFile}                                  from '../file/SMM2SoundEffectSoundFile';
 
 import {AbstractExclusiveSoundEffectSoundBuilder, type SingleIndex} from './AbstractExclusiveSoundEffectSound.builder';
 import {EMPTY_ARRAY}                                                from '../../../util/emptyVariables';
-import {BASE_PATH}                                                  from '../../../variables';
 import {ObjectHolder}                                               from '../../../util/holder/ObjectHolder';
 import {SMM2SoundEffectSoundContainer}                              from './SMM2SoundEffectSound.container';
 import {DelayedObjectHolderContainer}                               from '../../../util/holder/DelayedObjectHolder.container';
+import {SMM2SoundEffectSoundFileContainer}                          from '../file/SMM2SoundEffectSoundFile.container';
 
 export class SMM2SoundEffectSoundFromSoundEffectBuilder
-    extends AbstractExclusiveSoundEffectSoundBuilder<SMM2SoundEffectSound, PossibleSoundEffectSoundName_SMM2, PossibleSoundEffectSoundFileName_SMM2> {
+    extends AbstractExclusiveSoundEffectSoundBuilder<SMM2SoundEffectSound, PossibleSoundEffectSoundName_SMM2, SMM2SoundEffectSoundFile> {
 
     //region -------------------- Fields --------------------
 
@@ -58,18 +59,18 @@ export class SMM2SoundEffectSoundFromSoundEffectBuilder
     //endregion -------------------- Methods --------------------
     //region -------------------- Builder helper methods --------------------
 
-    protected override _createSound(sound: PossibleSoundEffectSoundName_SMM2,): PossibleSoundEffectSoundFileName_SMM2 {
-        return `/${BASE_PATH}/sound/sound effect/SMM2/${sound}.wav`;
+    protected override _createSound(sound: PossibleSoundEffectSoundName_SMM2,): SMM2SoundEffectSoundFile {
+        return new SMM2SoundEffectSoundFileContainer(sound,);
     }
 
-    protected override _createSounds(sounds: OriginalValuesOnLinkOrSMB2Value,): PossibleValueOnLinkOrSMB2Value_SMM2<readonly PossibleSoundEffectSoundFileName_SMM2[]>
-    protected override _createSounds(sounds: readonly PossibleSoundEffectSoundName_SMM2[],): readonly PossibleSoundEffectSoundFileName_SMM2[] {
+    protected override _createSounds(sounds: OriginalValuesOnLinkOrSMB2Value,): PossibleValueOnLinkOrSMB2Value_SMM2
+    protected override _createSounds(sounds: readonly PossibleSoundEffectSoundName_SMM2[],): readonly SMM2SoundEffectSoundFile[] {
         return sounds.map(sound => this._createSound(sound));
     }
 
     //endregion -------------------- Builder helper methods --------------------
 
-    protected override _build(sounds: ObjectHolder<readonly PossibleSoundEffectSoundFileName_SMM2[]>, editorSound: ObjectHolder<PossibleSoundEffectSoundFileName_SMM2>,): SMM2SoundEffectSound {
+    protected override _build(sounds: ObjectHolder<readonly SMM2SoundEffectSoundFile[]>, editorSound: ObjectHolder<SMM2SoundEffectSoundFile>,): SMM2SoundEffectSound {
         return new SMM2SoundEffectSoundContainer(
             sounds,
             editorSound,

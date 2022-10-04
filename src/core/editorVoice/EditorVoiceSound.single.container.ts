@@ -1,7 +1,8 @@
 import type {EditorVoiceSound, PossibleFileName, PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative} from './EditorVoiceSound';
+import type {EditorVoiceSoundFile}                                                                                from './file/EditorVoiceSoundFile';
 
-export class EditorVoiceSoundSingleContainer
-    implements EditorVoiceSound<PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative>> {
+export class EditorVoiceSoundSingleContainer<NAME extends PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative>, >
+    implements EditorVoiceSound<EditorVoiceSoundFile<NAME>, null> {
 
     //region -------------------- Fields --------------------
 
@@ -9,17 +10,17 @@ export class EditorVoiceSoundSingleContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(fileName: PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative>,) {
+    public constructor(fileName: EditorVoiceSoundFile<NAME>,) {
         this.#fileName = fileName;
     }
 
     //region -------------------- Getter methods --------------------
 
-    public get fileName(): PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative> {
+    public get file(): EditorVoiceSoundFile<NAME> {
         return this.#fileName;
     }
 
-    public readonly europeanFileName = null;
+    public readonly europeanFile = null;
 
     //endregion -------------------- Getter methods --------------------
 

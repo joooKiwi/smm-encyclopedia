@@ -3,6 +3,9 @@ import {Fragment, lazy} from 'react';
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                                                   from './component/AppOptionWithContent';
 import type {AppOptionWithTable}                                                                                                                                                                                 from './component/AppOptionWithTable';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleMysteryMushroomType, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MysteryMushroomAppOption.types';
+import type {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom';
+import type {MysteryMushroomSoundFile}      from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile';
+import type {NotApplicable}                 from '../../core/_properties/Property';
 import type {PossibleImageSourceForFile, PossibleSoundSourceForFile}                                                                                                                                             from '../../core/mysteryMushroom/MysteryMushrooms.types';
 import type {ReactElement}                                                                                                                                                                                       from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}                                                                                                                                                                                from '../tools/table/SimpleHeader';
@@ -16,8 +19,6 @@ import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {MysteryMushrooms}              from '../../core/mysteryMushroom/MysteryMushrooms';
 import TextComponent                   from '../tools/text/TextComponent';
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';
-import {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom';
-import {NotApplicable}                 from '../../core/_properties/Property';
 
 //region -------------------- dynamic imports --------------------
 
@@ -398,7 +399,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(renderDiv, callback,);
     }
 
-    protected _createSound(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<string>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSound(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<MysteryMushroomSoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const value = callback(enumeration);
             if (value == null)
@@ -406,17 +407,17 @@ export abstract class MysteryMushroomAppOption
 
             const englishName = enumeration.englishName;
             const type = this._mysteryMushroomType;
-            return <SimpleSoundComponent source={value} title={`${englishName} - ${type}`}/>;
+            return <SimpleSoundComponent file={value} title={`${englishName} - ${type}`}/>;
         },);
     }
 
-    protected _createSounds(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<readonly string[]>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSounds(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<readonly MysteryMushroomSoundFile[]>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const englishName = enumeration.englishName;
             const type = this._mysteryMushroomType;
 
             return <>{callback(enumeration).map((value, index,) =>
-                <SimpleSoundComponent source={value} title={`${englishName} - ${type} #${index + 1}`}/>
+                <SimpleSoundComponent file={value} title={`${englishName} - ${type} #${index + 1}`}/>
             )}</>;
         },);
     }
