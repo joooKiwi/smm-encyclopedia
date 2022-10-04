@@ -71,12 +71,12 @@ export default class EntityApp
                 return 'list';
             }
 
-            public createCardListContent({englishNameInHtml: htmlName, reference, editorVoiceSound: {fileName: editorVoice1, europeanFileName: editorVoice2,},}: Entities,): ReactElement {
+            public createCardListContent({englishNameInHtml: htmlName, reference, editorVoiceSound: {file: editorVoice1, europeanFile: editorVoice2,},}: Entities,): ReactElement {
                 //TODO encapsulate the voiceSound into a sound interpreter.
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`;//TODO move to the parent container className.
                 return <div className={`${category}`}>
-                    {editorVoice1 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent source={editorVoice1} title={`${htmlName} - editor voice`}/>}
-                    {editorVoice2 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent source={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
+                    {editorVoice1 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent file={editorVoice1} title={`${htmlName} - editor voice`}/>}
+                    {editorVoice2 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent file={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
                 </div>;
             }
 
