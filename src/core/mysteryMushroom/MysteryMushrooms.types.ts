@@ -180,7 +180,7 @@ export type PossibleFileName =
     | 'Ness' | 'Nikki'
     | 'Orima'
     | 'PackMan' | 'Palutena' | 'Peach' | 'Peppy' | 'Pikachu' | 'Pikmin' | 'Pit' | 'Pudding'
-    | 'ResetSan' | 'Robin' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| '' | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | 'SplaIka'
+    | 'ResetSan' | 'Robin' | 'Robot' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| '' | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | `Spla${| '' | 't'}Ika`
     | 'Takumi' | 'Tanuki' | 'ThunLink' | 'Tincle' | 'Totakeke' | 'Trampoline' | 'TsubuMame'
     | 'Waluigi' | 'Wario' | 'Wiibo' | `WoolYoshi${| 'Aqua' | 'Big' | 'Green' | 'Pink'}`
     | 'Yoshi'

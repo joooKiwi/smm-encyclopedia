@@ -72,7 +72,7 @@ export default class MysteryMushroomApp
             }
 
             public createCardListContent(enumerable: MysteryMushrooms,): ReactElement {
-                const amountOfImages = enumerable.englishNameOnFile.length;
+                const amountOfImages = enumerable.fileName.imageFileNames.length;
                 const contains2Images = amountOfImages === 2;
 
                 return amountOfImages === 0

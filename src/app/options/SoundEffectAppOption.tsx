@@ -81,8 +81,8 @@ export abstract class SoundEffectAppOption
     public static readonly SOUNDS = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
         protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,): PossibleRenderReactElement {
-            const isSMM1Empty = sounds_exclusiveSmm1.length === 0;
-            const isSMM2Empty = sounds_smm2.length === 0;
+            const isSMM1Empty = sounds_exclusiveSmm1.length === 0,
+                isSMM2Empty = sounds_smm2.length === 0;
 
             return isSMM1Empty && isSMM2Empty
                 ? EMPTY_REACT_ELEMENT

@@ -111,7 +111,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         public override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.waitingImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.waitingImage, renderDiv,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -129,7 +129,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.tauntImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.tauntImage, renderDiv,);
         }
 
         public override _createSoundContent(renderDiv: boolean,): ReactElement {
@@ -148,7 +148,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.pressingDownImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.pressingDownImage, renderDiv,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -233,7 +233,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.fallingAfterJumpImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.fallingAfterJumpImage, renderDiv,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -266,7 +266,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.turningImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.turningImage, renderDiv,);
         }
 
         public override _createSoundContent(renderDiv: boolean,): ReactElement {
