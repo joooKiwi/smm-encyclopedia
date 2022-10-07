@@ -9,7 +9,7 @@ import type {StaticReference}                                                   
 import {BackgroundMusicContainer}                                          from './backgroundMusic/BackgroundMusic.container';
 import {Enum}                                                              from '../../util/enum/Enum';
 import {Enumerable}                                                        from '../../util/enum/Enumerable';
-import {Frame as Time}                                                     from '../../util/sound/time/Frame';
+import {FramePerMillisecond as Time}                                       from '../../util/sound/time/FramePerMillisecond';
 import {Import}                                                            from '../../util/DynamicImporter';
 import {NonChangeableSoundEffectBackgroundMusicContainer}                  from './backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container';
 import {NonRepeatableMusicSoundFile as NonRepeatable}                      from './file/NonRepeatableMusicSoundFile';
@@ -180,8 +180,8 @@ export class Musics
 
         protected override _createMusic() {
             return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer(
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Healing', new Time(148074,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_Ending', new Time(368993,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Healing', new Time(148_074,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_Ending', new Time(368_993,),),
             );
         }
 
@@ -199,32 +199,32 @@ export class Musics
                 new RepeatableDuringThePlay('M1_BGM_Otoasobi_Bonus', new Time(4,),),
                 new RepeatableAtTheEnd('M1_BGM_Otoasobi_BonusHurry',),
 
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Bonus', new Time(148531,),),
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_BonusHurry', new Time(122177,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Bonus', new Time(148_531,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_BonusHurry', new Time(122_177,),),
 
-                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect', new Time(172512,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect_hurry', new Time(129152,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect', new Time(172_512,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect_hurry', new Time(129_152,),),
 
                 new NonRepeatable('M3_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
                 new RepeatableDuringThePlay('M3_BGM_Otoasobi_Bonus', new Time(244,),),
                 new RepeatableAtTheEnd('M3_BGM_Otoasobi_BonusHurry',),
 
                 new NonRepeatable('MW_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Bonus', new Time(97302,),),
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Bonus', new Time(97_302,),),
                 null,
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BonusHurry', new Time(83895,),),
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BonusHurry', new Time(83_895,),),
                 null,
 
                 new NonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 1', new Time(49563,),),
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 2', new Time(49563,),),
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 1', new Time(94334,),),
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 2', new Time(94334,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 1', new Time(49_563,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 2', new Time(49_563,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 1', new Time(94_334,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 2', new Time(94_334,),),
 
                 new NonRepeatable('3W_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Bonus', new Time(233756,),),
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Bonus', new Time(233_756,),),
                 null,
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BonusHurry', new Time(241918,),),
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BonusHurry', new Time(241_918,),),
                 null,
             );
         }
@@ -239,35 +239,35 @@ export class Musics
         protected override _createMusic() {
             return new BackgroundMusicContainer(
                 new NonRepeatable('M1_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Boss', new Time(265559,),),
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', new Time(220012,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Boss', new Time(265_559,),),
+                new RepeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', new Time(220_012,),),
 
-                new RepeatableDuringThePlay('M1_BGM_Link_Boss', new Time(15931,),),
-                new RepeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', new Time(11872,),),
+                new RepeatableDuringThePlay('M1_BGM_Link_Boss', new Time(15_931,),),
+                new RepeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', new Time(11_872,),),
 
-                new RepeatableDuringThePlay('BGM_M1_USA_Boss', new Time(115011,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102231,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_Boss', new Time(115_011,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102_231,),),
 
                 new NonRepeatable('M3_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('M3_BGM_Otoasobi_Boss', new Time(206172,),),
-                new RepeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', new Time(198170,),),
+                new RepeatableDuringThePlay('M3_BGM_Otoasobi_Boss', new Time(206_172,),),
+                new RepeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', new Time(198_170,),),
 
                 new NonRepeatable('MW_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Boss', new Time(69552,),),
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Boss', new Time(69_552,),),
                 null,
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', new Time(187181,),),
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', new Time(187_181,),),
                 null,
 
                 new NonRepeatable('WU_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Boss', new Time(280392,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Boss', new Time(280_392,),),
                 null,
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', new Time(236907,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', new Time(236_907,),),
                 null,
 
                 new NonRepeatable('3W_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Boss', new Time(233238,),),
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Boss', new Time(233_238,),),
                 null,
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', new Time(267965,),),
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', new Time(267_965,),),
                 null,
             );
         }
@@ -281,40 +281,40 @@ export class Musics
 
         protected override _createMusic() {
             const smb3Editor = new NonRepeatable('M3_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                smb3 = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', new Time(89453,),),
-                smb3Fast = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', new Time(76674,),);
+                smb3 = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', new Time(89_453,),),
+                smb3Fast = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', new Time(76_674,),);
 
             return new BackgroundMusicContainer(
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss', new Time(23984,),),
-                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', new Time(20284,),),
+                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss', new Time(23_984,),),
+                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', new Time(20_284,),),
 
-                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss', new Time(115011,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102231,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss', new Time(115_011,),),
+                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102_231,),),
 
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
                 new NonRepeatable('MW_BGM_Otoasobi_LastBossIcon',),//README for some reason, it is set at 1 in the files (but it is ignored)
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', new Time(90251,),),
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', new Time(90_251,),),
                 null,
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', new Time(72957,),),
+                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', new Time(72_957,),),
                 null,
 
                 new NonRepeatable('WU_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', new Time(487912,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', new Time(487_912,),),
                 null,
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', new Time(454360,),),
+                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', new Time(454_360,),),
                 null,
 
                 new NonRepeatable('3W_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', new Time(2794396,),),
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', new Time(2_794_396,),),
                 null,
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', new Time(2307013,),),
+                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', new Time(2_307_013,),),
                 null,
             );
         }
@@ -329,8 +329,8 @@ export class Musics
 
         protected override _createMusic() {
             return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', new Time(130927,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', new Time(102494,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', new Time(130_927,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', new Time(102_494,),),
             );
         }
 
@@ -343,8 +343,8 @@ export class Musics
 
         protected override _createMusic() {
             return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', new Time(181140,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', new Time(151154,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', new Time(181_140,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', new Time(151_154,),),
             );
         }
 
@@ -357,8 +357,8 @@ export class Musics
 
         protected override _createMusic() {
             return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', new Time(434950,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', new Time(392890,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', new Time(434_950,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', new Time(392_890,),),
             );
         }
 
@@ -371,8 +371,8 @@ export class Musics
 
         protected override _createMusic() {
             return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', new Time(419760,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', new Time(353407),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', new Time(419_760,),),
+                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', new Time(353_407),),
             );
         }
 

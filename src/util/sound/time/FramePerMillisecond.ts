@@ -1,23 +1,29 @@
 import {Millisecond} from './Millisecond';
 
-export class Frame<FRAME extends number = number, >
+export class FramePerMillisecond<FRAME extends number = number, >
     extends Millisecond {
 
     //region -------------------- Fields --------------------
 
-    readonly #frame;
+    readonly #framePerMillisecond;
+    readonly #framePerSecond;
 
     //endregion -------------------- Fields --------------------
 
     public constructor(frame: FRAME,) {
         super(frame / 60,);
-        this.#frame = frame;
+        this.#framePerMillisecond = frame;
+        this.#framePerSecond = frame * 1000;
     }
 
     //region -------------------- Getter methods --------------------
 
-    public get frame(): FRAME {
-        return this.#frame;
+    public get framePerSecond(): number {
+        return this.#framePerSecond;
+    }
+
+    public get framePerMillisecond(): FRAME {
+        return this.#framePerMillisecond;
     }
 
     //endregion -------------------- Getter methods --------------------
