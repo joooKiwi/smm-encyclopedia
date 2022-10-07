@@ -34,72 +34,72 @@ export class Musics
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly TITLE_SCREEN = new Musics();
+    public static readonly TITLE_SCREEN =         new Musics();
 
-    public static readonly GROUND = new class Musics_Ground extends Musics {
+    public static readonly GROUND =               new class Musics_Ground extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.GROUND;
         }
 
     }();
-    public static readonly UNDERGROUND = new class Musics_Underground extends Musics {
+    public static readonly UNDERGROUND =          new class Musics_Underground extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.UNDERGROUND;
         }
 
     }();
-    public static readonly UNDERWATER = new class Musics_Underwater extends Musics {
+    public static readonly UNDERWATER =           new class Musics_Underwater extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.UNDERWATER;
         }
 
     }();
-    public static readonly DESERT = new class Musics_Desert extends Musics {
+    public static readonly DESERT =               new class Musics_Desert extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.DESERT;
         }
 
     }();
-    public static readonly SNOW = new class Musics_Snow extends Musics {
+    public static readonly SNOW =                 new class Musics_Snow extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.SNOW;
         }
 
     }();
-    public static readonly SKY = new class Musics_Sky extends Musics {
+    public static readonly SKY =                  new class Musics_Sky extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.SKY;
         }
 
     }();
-    public static readonly FOREST = new class Musics_Forest extends Musics {
+    public static readonly FOREST =               new class Musics_Forest extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.FOREST;
         }
 
     }();
-    public static readonly GHOST_HOUSE = new class Musics_GhostHouse extends Musics {
+    public static readonly GHOST_HOUSE =          new class Musics_GhostHouse extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.GHOST_HOUSE;
         }
 
     }();
-    public static readonly AIRSHIP = new class Musics_Airship extends Musics {
+    public static readonly AIRSHIP =              new class Musics_Airship extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.AIRSHIP;
         }
 
     }();
-    public static readonly CASTLE = new class Musics_Castle extends Musics {
+    public static readonly CASTLE =               new class Musics_Castle extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.CASTLE;
@@ -107,14 +107,14 @@ export class Musics
 
     }();
 
-    public static readonly VOLCANO = new class Musics_Volcano extends Musics {
+    public static readonly VOLCANO =              new class Musics_Volcano extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.VOLCANO;
         }
 
     }();
-    public static readonly SPACE = new class Musics_Space extends Musics {
+    public static readonly SPACE =                new class Musics_Space extends Musics {
 
         protected override _createThemeReference() {
             return Import.Themes.SPACE;
@@ -122,10 +122,10 @@ export class Musics
 
     }();
 
-    public static readonly STAR = new Musics();
-    public static readonly P_SWITCH = new Musics();
+    public static readonly STAR =                 new Musics();
+    public static readonly P_SWITCH =             new Musics();
 
-    public static readonly NINJA_ATTACK = new class Musics_Audience extends Musics {
+    public static readonly NINJA_ATTACK =         new class Musics_Audience extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.NINJA_ATTACK;
@@ -139,7 +139,7 @@ export class Musics
         }
 
     }();
-    public static readonly AUDIENCE = new class Musics_Audience extends Musics {
+    public static readonly AUDIENCE =             new class Musics_Audience extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.AUDIENCE;
@@ -150,7 +150,7 @@ export class Musics
         }
 
     }();
-    public static readonly SCATTING = new class Musics_Scatting extends Musics {
+    public static readonly SCATTING =             new class Musics_Scatting extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.SCATTING;
@@ -161,7 +161,7 @@ export class Musics
         }
 
     }();
-    public static readonly TRADITIONAL = new class Musics_Traditional extends Musics {
+    public static readonly TRADITIONAL =          new class Musics_Traditional extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.TRADITIONAL;
@@ -172,7 +172,7 @@ export class Musics
         }
 
     }();
-    public static readonly PEACEFUL = new class Musics_Peaceful extends Musics {
+    public static readonly PEACEFUL =             new class Musics_Peaceful extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.PEACEFUL;
@@ -187,7 +187,7 @@ export class Musics
 
     }();
 
-    public static readonly BONUS = new class Musics_Bonus extends Musics {
+    public static readonly BONUS =                new class Musics_Bonus extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.BONUS_MUSIC;
@@ -230,7 +230,7 @@ export class Musics
         }
 
     }();
-    public static readonly BOSS = new class Musics_Boss extends Musics {
+    public static readonly BOSS =                 new class Musics_Boss extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.BOSS_MUSIC;
@@ -273,7 +273,7 @@ export class Musics
         }
 
     }();
-    public static readonly FINAL_BOSS = new class Musics_FinalBoss extends Musics {
+    public static readonly FINAL_BOSS =           new class Musics_FinalBoss extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.FINAL_BOSS_MUSIC;
@@ -321,7 +321,7 @@ export class Musics
 
     }();
 
-    public static readonly SUPER_MARIO_KART = new class Musics_SuperMarioKart extends Musics {
+    public static readonly SUPER_MARIO_KART =     new class Musics_SuperMarioKart extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_64_MUSIC;
@@ -335,7 +335,7 @@ export class Musics
         }
 
     }();
-    public static readonly SUPER_MARIO_64 = new class Musics_SuperMario64 extends Musics {
+    public static readonly SUPER_MARIO_64 =       new class Musics_SuperMario64 extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_64_MUSIC;
@@ -363,7 +363,7 @@ export class Musics
         }
 
     }();
-    public static readonly SUPER_MARIO_GALAXY = new class Musics_SuperMarioGalaxy extends Musics {
+    public static readonly SUPER_MARIO_GALAXY =   new class Musics_SuperMarioGalaxy extends Musics {
 
         protected override _createSoundEffectReference() {
             return Import.SoundEffects.SUPER_MARIO_GALAXY_MUSIC;
