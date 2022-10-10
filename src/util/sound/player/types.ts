@@ -1,9 +1,9 @@
-import type {SoundPlayer} from './SoundPlayer';
-import type {SoundStates} from './SoundStates';
+import type {SoundPlayer}  from './SoundPlayer';
+import type {HistoryState} from '../history/HistoryState';
 
 type EventCallback<SOUND_PLAYER extends SoundPlayer, > = (soundPlayer: SOUND_PLAYER, event: Event,) => void;
 type SoundPlayerCallback<SOUND_PLAYER extends SoundPlayer, > = (soundPlayer: SOUND_PLAYER,) => void;
-type SoundPlayerStateChangeCallback<SOUND_PLAYER extends SoundPlayer, > = (soundPlayer: SOUND_PLAYER, newState: SoundStates, oldState: SoundStates,) => void;
+type SoundPlayerStateChangeCallback<SOUND_PLAYER extends SoundPlayer, > = (soundPlayer: SOUND_PLAYER, newState: HistoryState, oldState: HistoryState,) => void;
 export type OnBeforePlaySoundPlayerCallback<SOUND_PLAYER extends SoundPlayer, > = SoundPlayerCallback<SOUND_PLAYER>;
 export type OnAfterPlaySoundPlayerCallback<SOUND_PLAYER extends SoundPlayer, > = SoundPlayerCallback<SOUND_PLAYER>;
 export type OnAfterPlayingSoundPlayerCallback<SOUND_PLAYER extends SoundPlayer, > = EventCallback<SOUND_PLAYER>;

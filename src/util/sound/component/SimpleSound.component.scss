@@ -52,7 +52,8 @@
   --audio-state-width: .75cm;
   --audio-state-height: .75cm;
   margin: {
-    left: calc(var(--container-width) / 2 * -1 - var(--audio-state-width) / 2);
+    left: calc(var(--container-width) / 2 - var(--audio-state-width) / 2);
+    right: calc(var(--container-width) / -2 - var(--audio-state-width) / 2);
     top: auto;
     bottom: auto;
   };

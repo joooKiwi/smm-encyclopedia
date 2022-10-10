@@ -35,8 +35,8 @@ export abstract class SoundStates
     }('playing',);
     public static readonly LOADING =   new class SoundStates_Loading extends SoundStates {
 
-        public override getElementsFrom({pauseElement, stopElement, loadingElement,}: SoundSubElementsHolder,) {
-            return [pauseElement(), stopElement(), loadingElement(),];
+        public override getElementsFrom({loadingElement,}: SoundSubElementsHolder,) {
+            return [loadingElement(),];
         }
 
     }('loading',);
