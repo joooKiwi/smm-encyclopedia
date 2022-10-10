@@ -1,11 +1,11 @@
-import type {BasePath}               from '../../variables';
+import type {EditorVoiceSoundFile}   from './file/EditorVoiceSoundFile';
 import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder';
 
-export interface EditorVoiceSound<T extends | PossibleFileName | null = | PossibleFileName | null, U extends | PossibleFileName | null = | PossibleFileName | null, > {
+export interface EditorVoiceSound<T extends | EditorVoiceSoundFile<PossibleFileName> | null = | EditorVoiceSoundFile<PossibleFileName> | null, U extends | EditorVoiceSoundFile<PossibleFileName> | null = | EditorVoiceSoundFile<PossibleFileName> | null, > {
 
-    get fileName(): T;
+    get file(): T
 
-    get europeanFileName(): U;
+    get europeanFile(): U
 
 }
 
@@ -172,15 +172,14 @@ type ItemWithPlayer_Mario<START extends string, ITEM extends string, > = `${STAR
 type ItemWithPlayer<START extends string, ITEM extends string = never, > = `${START}${| ITEM | 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`;
 type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, > = `${START}${| ITEM | 'Luigi' | 'Toad' | 'Toadette'}`;
 
-
 //endregion -------------------- Starting name --------------------
 
 export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, >
-    = | `/${BasePath}/editor voice/voice_${T}.wav`;
+    = | `voice_${T}`;
 export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[0]>;
 export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[1]>;
 export type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
-    = | `/${BasePath}/editor voice/se_ui_singingparts_${T}.wav`;
+    = | `se_ui_singingparts_${T}`;
 export type PossibleFileName<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, U extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
     = | PossibleFileName_WithVoiceBefore<T> | PossibleFileName_WithSingingPartBefore<U>;
 

@@ -1,14 +1,14 @@
-import type {ObjectHolder}                     from '../../../util/holder/ObjectHolder';
-import type {PossibleEditorValue}              from './SoundEffectSound';
-import type {PossibleSoundEffectSoundFileName} from './types';
-import type {SMM1ExclusiveSoundEffectSound}    from './SMM1ExclusiveSoundEffectSound';
-import type {SMM1StandaloneSoundEffectSound}   from './SMM1StandaloneSoundEffectSound';
-import type {SMM2SoundEffectSound}             from './SMM2SoundEffectSound';
+import type {ObjectHolder}                   from '../../../util/holder/ObjectHolder';
+import type {PossibleEditorValue}            from './SoundEffectSound';
+import type {SMM1ExclusiveSoundEffectSound}  from './SMM1ExclusiveSoundEffectSound';
+import type {SMM1StandaloneSoundEffectSound} from './SMM1StandaloneSoundEffectSound';
+import type {SMM2SoundEffectSound}           from './SMM2SoundEffectSound';
+import type {SoundEffectSoundFile}           from '../file/SoundEffectSoundFile';
 
 import {AbstractSoundEffectSound} from './AbstractSoundEffectSound';
 import {EMPTY_ARRAY}              from '../../../util/emptyVariables';
 
-export class SMM1StandaloneSoundEffectSoundContainer<SOUNDS extends readonly PossibleSoundEffectSoundFileName[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>, >
+export class SMM1StandaloneSoundEffectSoundContainer<SOUNDS extends readonly SoundEffectSoundFile[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>, >
     extends AbstractSoundEffectSound<SOUNDS, EDITOR_SOUND, readonly [], readonly []>
     implements SMM1StandaloneSoundEffectSound<SOUNDS, EDITOR_SOUND> {
 

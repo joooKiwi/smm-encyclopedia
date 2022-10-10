@@ -1,9 +1,9 @@
 import type {ClimbingImageFile, ClimbingImages, PressingDownImageFile, PressingDownImage, FallingAfterJumpImageFile, FallingAfterJumpImage, GoalPoleImageFile, GoalPoleImages, Image, JumpImageFile, JumpImages, Path, PossibleImages, RunningImageFile, RunningImages, SingleImage, SwimmingImageFile, SwimmingImages, TauntImageFile, TauntImage, TurningImageFile, TurningImage, WaitingImageFile, WaitingImage, WalkImageFile, WalkImages} from './Image';
-import type {EnglishNameOnFile}                                                                                                                                                                                                                                                                                                                                                                                                                from '../MysteryMushrooms.types';
+import type {PossibleFileName}                                                                                                                                                                                                                                                                                                                                                                                                                 from '../MysteryMushrooms.types';
 
 import {BASE_PATH} from '../../../variables';
 
-export class ImageContainer<FILE extends EnglishNameOnFile = EnglishNameOnFile, >
+export class ImageContainer<FILE extends PossibleFileName = PossibleFileName, >
     implements Image<FILE> {
 
     //region -------------------- Fields --------------------

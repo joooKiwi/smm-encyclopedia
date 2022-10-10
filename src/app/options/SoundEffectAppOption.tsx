@@ -18,7 +18,7 @@ import {SoundEffectCategories}         from '../../core/soundEffectCategory/Soun
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSound =          lazy(() => import( '../tools/sounds/SimpleSound'));
+const SimpleSoundComponent = lazy(() => import( '../../util/sound/component/SimpleSound.component'));
 const SoundEffectComponent = lazy(() => import( '../../core/soundEffect/SoundEffect.component'));
 
 //endregion -------------------- dynamic imports --------------------
@@ -81,8 +81,8 @@ export abstract class SoundEffectAppOption
     public static readonly SOUNDS = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
         protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,): PossibleRenderReactElement {
-            const isSMM1Empty = sounds_exclusiveSmm1.length === 0;
-            const isSMM2Empty = sounds_smm2.length === 0;
+            const isSMM1Empty = sounds_exclusiveSmm1.length === 0,
+                isSMM2Empty = sounds_smm2.length === 0;
 
             return isSMM1Empty && isSMM2Empty
                 ? EMPTY_REACT_ELEMENT
@@ -90,15 +90,15 @@ export abstract class SoundEffectAppOption
                     {isSMM1Empty
                         ? EMPTY_REACT_ELEMENT
                         : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
-                            {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                                <SimpleSound source={sound} title={`${englishName} (${sound})`}/>
-                            </div>)}
+                            {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
+                                    <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
+                                </div>)}
                         </div>}
                     {isSMM2Empty
                         ? EMPTY_REACT_ELEMENT
                         : <div key={`${englishName} (sound effect sounds (SMM2))`} className="soundEffect-sounds-smm2-container">
-                            {sounds_smm2.map(sound => <div key={`${englishName} (sound effect sound - SMM2 - ${sound})`} className="soundEffect-sound-container soundEffect-sound-smm2-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                                <SimpleSound source={sound} title={`${englishName} (${sound})`}/>
+                            {sounds_smm2.map(sound => <div key={`${englishName} (sound effect sound - SMM2 - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm2-container col-12 col-lg-6 col-xl-4 col-xxl-3">
+                                <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
                             </div>)}
                         </div>}
                 </div>;

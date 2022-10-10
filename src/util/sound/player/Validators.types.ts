@@ -1,5 +1,5 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
-import type {SoundFounds as RealEnum}                                                                                                                                                                                                                      from './SoundFounds';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../enum/Enum.types';
+import type {Validators as RealEnum}                                                                                                                                                                                                                       from './Validators';
 
 
 export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
@@ -7,10 +7,10 @@ export type PossibleStringValue = | Names | EnglishName;
 export type PossibleValue = RealEnum | string | number | null | undefined;
 
 enum Enum {
-    YES,
-    NO,
-    ON_PLAY,
-    ON_CREATE,
+    ALL_YES,
+    ALL_NO,
+    ON_PLAY_ONLY,
+    ON_CREATE_ONLY,
 }
 
 //region -------------------- Number types --------------------
@@ -21,7 +21,7 @@ export type Ordinals = typeof Enum[Names];
 //region -------------------- String types --------------------
 
 export type Names = keyof typeof Enum;
-export type EnglishName = | 'yes' | 'no' | `on ${| 'play' | 'create'}`;
+export type EnglishName = | `all ${| 'yes' | 'no'}` | `on ${| 'play' | 'create'} only`;
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -39,10 +39,10 @@ export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = Or
 //region -------------------- Array types --------------------
 
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
-    EnumByName<'YES', E>,
-    EnumByName<'NO', E>,
-    EnumByName<'ON_PLAY', E>,
-    EnumByName<'ON_CREATE', E>,
+    EnumByName<'ALL_YES', E>,
+    EnumByName<'ALL_NO', E>,
+    EnumByName<'ON_PLAY_ONLY', E>,
+    EnumByName<'ON_CREATE_ONLY', E>,
 ];
 
 //endregion -------------------- Array types --------------------

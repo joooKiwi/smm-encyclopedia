@@ -2,7 +2,7 @@ import type {EditorVoiceSound}                                      from './Edit
 import type {ClassWithNullObjectPattern, EmptyEditorVoiceSoundName} from '../../util/ClassWithNullObjectPattern';
 
 export class EmptyEditorVoiceSound
-    implements EditorVoiceSound<null>, ClassWithNullObjectPattern<EmptyEditorVoiceSoundName> {
+    implements EditorVoiceSound<null, null>, ClassWithNullObjectPattern<EmptyEditorVoiceSoundName> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -17,8 +17,8 @@ export class EmptyEditorVoiceSound
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly fileName = null;
-    public readonly europeanFileName = null;
+    public readonly file = null;
+    public readonly europeanFile = null;
 
 
     public toString(): EmptyEditorVoiceSoundName {

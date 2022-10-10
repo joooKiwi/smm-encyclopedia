@@ -1,3 +1,5 @@
+import {lazy} from 'react';
+
 import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList';
 import type {AppProperties}                                        from './AppProperties.types';
 import type {InstrumentAppStates}                                  from './AppStates.types';
@@ -8,7 +10,12 @@ import {AbstractCardListApp}           from './withInterpreter/AbstractCardListA
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
 import {Instruments}                   from '../core/instrument/Instruments';
 import {ViewDisplays}                  from './withInterpreter/ViewDisplays';
-import SimpleSound                     from './tools/sounds/SimpleSound';
+
+//region -------------------- dynamic imports --------------------
+
+const SimpleSoundComponent = lazy(() => import('../util/sound/component/SimpleSound.component'));
+
+//endregion -------------------- dynamic imports --------------------
 
 export default class InstrumentApp
     extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>, AppProperties, InstrumentAppStates> {
@@ -50,9 +57,9 @@ export default class InstrumentApp
                 return 'list';
             }
 
-            public createCardListContent({soundPaths, name,}: Instruments,): ReactElement {
-                return <div className="instrument-sounds">{soundPaths.map((soundPath, index,) =>
-                    <SimpleSound source={soundPath} title={`${name} (instrument #${index})`}/>
+            public createCardListContent({sounds, name,}: Instruments,): ReactElement {
+                return <div className="instrument-sounds">{sounds.map((sound, index,) =>
+                    <SimpleSoundComponent file={sound} title={`${name} (instrument #${index})`}/>
                 )}</div>;
             }
 

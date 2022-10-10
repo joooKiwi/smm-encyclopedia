@@ -1,4 +1,4 @@
-import type {ReactElement} from '../../../../util/react/ReactProperties';
+import type {ReactElement} from '../../react/ReactProperties';
 
 export class SoundSubElementsHolder {
 
@@ -7,14 +7,16 @@ export class SoundSubElementsHolder {
     readonly #playElement;
     readonly #pauseElement;
     readonly #stopElement;
+    readonly #loadingElement;
     readonly #exceptionElement;
 
     //region -------------------- Fields --------------------
 
-    public constructor(playElement: ReactCallback, pauseElement: ReactCallback, stopElement: ReactCallback, exceptionElement: ReactCallback,) {
+    public constructor(playElement: ReactCallback, pauseElement: ReactCallback, stopElement: ReactCallback, loadingElement: ReactCallback, exceptionElement: ReactCallback,) {
         this.#playElement = playElement;
         this.#pauseElement = pauseElement;
         this.#stopElement = stopElement;
+        this.#loadingElement = loadingElement;
         this.#exceptionElement = exceptionElement;
     }
 
@@ -30,6 +32,10 @@ export class SoundSubElementsHolder {
 
     public get stopElement(): ReactCallback {
         return this.#stopElement;
+    }
+
+    public get loadingElement(): ReactCallback {
+        return this.#loadingElement;
     }
 
     public get exceptionElement(): ReactCallback {

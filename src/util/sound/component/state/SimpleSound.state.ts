@@ -1,10 +1,11 @@
-import type {ReactState}  from '../../../../util/react/ReactState';
-import type {SoundStates} from '../SoundStates';
+import type {ReactState}   from '../../../react/ReactState';
+import type {HistoryState} from '../../history/HistoryState';
 
 export interface SimpleSoundState
     extends ReactState {
 
-    state: SoundStates
+    /** The state of the {@link SimpleSoundComponent component} */
+    state: HistoryState
 
     /**
      * Tell whenever the source has been retrieved or not.

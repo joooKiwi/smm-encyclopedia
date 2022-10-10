@@ -3,6 +3,9 @@ import {Fragment, lazy} from 'react';
 import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                                                   from './component/AppOptionWithContent';
 import type {AppOptionWithTable}                                                                                                                                                                                 from './component/AppOptionWithTable';
 import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleMysteryMushroomType, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MysteryMushroomAppOption.types';
+import type {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom';
+import type {MysteryMushroomSoundFile}      from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile';
+import type {NotApplicable}                 from '../../core/_properties/Property';
 import type {PossibleImageSourceForFile, PossibleSoundSourceForFile}                                                                                                                                             from '../../core/mysteryMushroom/MysteryMushrooms.types';
 import type {ReactElement}                                                                                                                                                                                       from '../../util/react/ReactProperties';
 import type {SingleHeaderContent}                                                                                                                                                                                from '../tools/table/SimpleHeader';
@@ -14,16 +17,14 @@ import {CommonOptions}                 from './CommonOptions';
 import {Enum}                          from '../../util/enum/Enum';
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
 import {MysteryMushrooms}              from '../../core/mysteryMushroom/MysteryMushrooms';
-import SimpleSound                     from '../tools/sounds/SimpleSound';
 import TextComponent                   from '../tools/text/TextComponent';
 import {ProjectLanguages}              from '../../lang/ProjectLanguages';
-import {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom';
-import {NotApplicable}                 from '../../core/_properties/Property';
 
 //region -------------------- dynamic imports --------------------
 
-const NameComponent = lazy(() => import('../../lang/name/component/Name.component'));
-const Image =         lazy(() => import('../tools/images/Image'));
+const NameComponent =        lazy(() => import('../../lang/name/component/Name.component'));
+const Image =                lazy(() => import('../tools/images/Image'));
+const SimpleSoundComponent = lazy(() => import('../../util/sound/component/SimpleSound.component'));
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -110,7 +111,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         public override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.waitingImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.waitingImage, renderDiv,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -128,7 +129,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.tauntImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.tauntImage, renderDiv,);
         }
 
         public override _createSoundContent(renderDiv: boolean,): ReactElement {
@@ -147,7 +148,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.pressingDownImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.pressingDownImage, renderDiv,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -232,7 +233,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.fallingAfterJumpImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.fallingAfterJumpImage, renderDiv,);
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -265,7 +266,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createImageContent(renderDiv: boolean,): ReactElement {
-            return this._createImage(enumeration => enumeration.turningImages, renderDiv,);
+            return this._createImage(enumeration => enumeration.turningImage, renderDiv,);
         }
 
         public override _createSoundContent(renderDiv: boolean,): ReactElement {
@@ -398,7 +399,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(renderDiv, callback,);
     }
 
-    protected _createSound(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<string>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSound(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<MysteryMushroomSoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const value = callback(enumeration);
             if (value == null)
@@ -406,17 +407,17 @@ export abstract class MysteryMushroomAppOption
 
             const englishName = enumeration.englishName;
             const type = this._mysteryMushroomType;
-            return <SimpleSound source={value} title={`${englishName} - ${type}`}/>;
+            return <SimpleSoundComponent file={value} title={`${englishName} - ${type}`}/>;
         },);
     }
 
-    protected _createSounds(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<readonly string[]>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSounds(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<readonly MysteryMushroomSoundFile[]>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const englishName = enumeration.englishName;
             const type = this._mysteryMushroomType;
 
             return <>{callback(enumeration).map((value, index,) =>
-                <SimpleSound source={value} title={`${englishName} - ${type} #${index + 1}`}/>
+                <SimpleSoundComponent file={value} title={`${englishName} - ${type} #${index + 1}`}/>
             )}</>;
         },);
     }

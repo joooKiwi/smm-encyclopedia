@@ -1,12 +1,13 @@
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                      from '../../util/enum/Enum.types';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleNonNullableValue, PossibleSoundPath_Array, PossibleSoundPath_GlissandoBass, PossibleSoundPath_ReverbCowbell, PossibleSoundPath_ReversePiano, PossibleSoundPath_Single, PossibleSoundPath_SpecificChordCM, PossibleStringValue, PossibleValue} from './Instruments.types';
+import type {ClassWithEnglishName}                      from '../ClassWithEnglishName';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleNonNullableValue, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM, PossibleStringValue, PossibleValue} from './Instruments.types';
+import type {InstrumentSoundFile}                                                                                                                                                                                                                                                                                                                                                                            from './file/InstrumentSoundFile';
+import type {Instrument}                                from './Instrument';
+import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                from '../../util/enum/Enum.types';
 
-import {Enum}                 from '../../util/enum/Enum';
-import {ClassWithEnglishName} from '../ClassWithEnglishName';
-import {Import}               from '../../util/DynamicImporter';
-import {Instrument}           from './Instrument';
-import {StringContainer}      from '../../util/StringContainer';
-import {BASE_PATH}            from '../../variables';
+import {Enum}                                      from '../../util/enum/Enum';
+import {Import}                                    from '../../util/DynamicImporter';
+import {InstrumentSoundFileContainer as SoundFile} from './file/InstrumentSoundFile.container';
+import {StringContainer}                           from '../../util/StringContainer';
 
 /**
  * @recursiveReference<{@link InstrumentLoader}>
@@ -116,19 +117,20 @@ export class Instruments
 
     #reference?: Instrument;
     readonly #englishName;
-    readonly #soundPaths;
+    readonly #fileNames;
+    #sounds?: readonly InstrumentSoundFile[];
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(englishName: PossibleEnglishName, fileName: PossibleSoundPath_Single,)
-    private constructor(englishName: PossibleEnglishName, ...reverbCowbell: PossibleSoundPath_ReverbCowbell)
-    private constructor(englishName: PossibleEnglishName, ...glissandoBass: PossibleSoundPath_GlissandoBass)
-    private constructor(englishName: PossibleEnglishName, ...reversePiano: PossibleSoundPath_ReversePiano)
-    private constructor(englishName: PossibleEnglishName, ...chordCM: PossibleSoundPath_SpecificChordCM)
-    private constructor(englishName: PossibleEnglishName, ...filesName: PossibleFileName[]) {
+    private constructor(englishName: PossibleEnglishName, fileName: PossibleFileName_Single,)
+    private constructor(englishName: PossibleEnglishName, ...reverbCowbell: PossibleFileName_ReverbCowbell)
+    private constructor(englishName: PossibleEnglishName, ...glissandoBass: PossibleFileName_GlissandoBass)
+    private constructor(englishName: PossibleEnglishName, ...reversePiano: PossibleFileName_ReversePiano)
+    private constructor(englishName: PossibleEnglishName, ...chordCM: PossibleFileName_SpecificChordCM)
+    private constructor(englishName: PossibleEnglishName, ...fileNames: PossibleFileName_Array) {
         super();
         this.#englishName = new StringContainer(englishName);
-        this.#soundPaths = filesName.map(fileName => `/${BASE_PATH}/instrument/${fileName}.wav`) as unknown as PossibleSoundPath_Array;
+        this.#fileNames = fileNames;
     }
 
     //region -------------------- Getter methods --------------------
@@ -154,8 +156,12 @@ export class Instruments
         return this.#englishName.getInHtml;
     }
 
-    public get soundPaths(): PossibleSoundPath_Array {
-        return this.#soundPaths;
+    public get fileNames(): readonly PossibleFileName[] {
+        return this.#fileNames;
+    }
+
+    public get sounds(): readonly InstrumentSoundFile[] {
+        return this.#sounds ??= this.fileNames.map(fileName => new SoundFile(fileName,));
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -1,9 +1,9 @@
-import type {Builder}                          from '../../../util/builder/Builder';
-import type {PossibleSoundEffectSoundFileName} from './types';
-import type {SMM1StandaloneSoundEffectSound}   from './SMM1StandaloneSoundEffectSound';
-import type {SMM1ExclusiveSoundEffectSound}    from './SMM1ExclusiveSoundEffectSound';
-import type {SMM2SoundEffectSound}             from './SMM2SoundEffectSound';
-import type {SingleIndex}                      from './AbstractExclusiveSoundEffectSound.builder';
+import type {Builder}                        from '../../../util/builder/Builder';
+import type {SMM1StandaloneSoundEffectSound} from './SMM1StandaloneSoundEffectSound';
+import type {SMM1ExclusiveSoundEffectSound}  from './SMM1ExclusiveSoundEffectSound';
+import type {SMM2SoundEffectSound}           from './SMM2SoundEffectSound';
+import type {SoundEffectSoundFile}           from '../file/SoundEffectSoundFile';
+import type {SingleIndex}                    from './AbstractExclusiveSoundEffectSound.builder';
 
 import {assert}                                  from '../../../util/utilitiesMethods';
 import {EmptySMMSoundEffectSound}                from './EmptySMMSoundEffectSound';
@@ -79,14 +79,14 @@ export class SMM1StandaloneSoundEffectSoundBuilder
     //endregion -------------------- Methods --------------------
     //region -------------------- Builder helper methods --------------------
 
-    protected _getSounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): readonly PossibleSoundEffectSoundFileName[] {
+    protected _getSounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): readonly SoundEffectSoundFile[] {
         const soundIndexes = this._soundIndexes;
         assert(soundIndexes != null, 'The sounds require to be selected when SMM1 & SMM2 is given (at construction).',);
 
         return soundIndexes.map(([game, soundIndex,]) => (game === 1 ? smm1 : smm2).sounds[soundIndex]);
     }
 
-    protected _getEditorSound(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): PossibleSoundEffectSoundFileName {
+    protected _getEditorSound(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): SoundEffectSoundFile {
         const index = this._editorIndex;
         assert(index != null, 'The editor sound require to have a selected index when SMM1 & sMM2 is given (at construction).',);
 

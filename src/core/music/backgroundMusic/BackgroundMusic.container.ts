@@ -1,7 +1,9 @@
-import type {BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer} from './BackgroundMusic';
-import type {FullMusicPathOn}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../Music';
-import type {Possible_Music}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from './types';
-import type {SingleBackgroundMusic}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from './SingleBackgroundMusic';
+import type {
+    BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer
+}                            from './BackgroundMusic';
+import type {MusicSoundFile} from '../file/MusicSoundFile';
+import type {Possible_Music} from './types';
+import type {SingleBackgroundMusic} from './SingleBackgroundMusic';
 
 import {AbstractMusic}                from '../AbstractMusic';
 import {SingleBackgroundMusicFactory} from './SingleBackgroundMusic.factory';
@@ -13,7 +15,7 @@ export class BackgroundMusicContainer<SMB_EDITOR_MUSIC extends PossibleSMB_Edito
     SMW_EDITOR_MUSIC extends PossibleSMW_EditorMusic_GroupContainer, SMW_MUSIC extends PossibleSMW_RegularMusic_GroupContainer, SMW_YOSHI_SOUND extends PossibleSMW_RegularYoshiSound_GroupContainer, SMW_FAST_MUSIC extends PossibleSMW_FastMusic_GroupContainer, SMW_FAST_YOSHI_SOUND extends PossibleSMW_FastYoshiSound_GroupContainer,
     NSMBU_EDITOR_MUSIC extends PossibleNSMBU_EditorMusic_GroupContainer, NSMBU_MUSIC extends PossibleNSMBU_RegularMusic_GroupContainer, NSMBU_YOSHI_SOUND extends PossibleNSMBU_RegularYoshiSound_GroupContainer, NSMBU_FAST_MUSIC extends PossibleNSMBU_FastMusic_GroupContainer, NSMBU_FAST_YOSHI_SOUND extends PossibleNSMBU_FastYoshiSound_GroupContainer,
     SM3DW_EDITOR_MUSIC extends PossibleSM3DW_EditorMusic_GroupContainer, SM3DW_MUSIC extends PossibleSM3DW_RegularMusic_GroupContainer, SM3DW_UNDERWATER_MUSIC extends PossibleSM3DW_UnderwaterMusic_GroupContainer, SM3DW_FAST_MUSIC extends PossibleSM3DW_FastMusic_GroupContainer, SM3DW_FAST_UNDERWATER_MUSIC extends PossibleSM3DW_FastUnderwaterMusic_GroupContainer, >
-    extends AbstractMusic<readonly FullMusicPathOn<Possible_Music>[]>
+    extends AbstractMusic<readonly MusicSoundFile<Possible_Music>[]>
     implements BackgroundMusic<SMB_EDITOR_MUSIC, SMB_MUSIC, SMB_FAST_MUSIC, LINK_MUSIC, LINK_FAST_MUSIC, SMB2_MUSIC, SMB2_FAST_MUSIC, SMB3_EDITOR_MUSIC, SMB3_MUSIC, SMB3_FAST_MUSIC, SMW_EDITOR_MUSIC,
         SMW_MUSIC, SMW_YOSHI_SOUND, SMW_FAST_MUSIC, SMW_FAST_YOSHI_SOUND, NSMBU_EDITOR_MUSIC, NSMBU_MUSIC, NSMBU_YOSHI_SOUND, NSMBU_FAST_MUSIC, NSMBU_FAST_YOSHI_SOUND, SM3DW_EDITOR_MUSIC,
         SM3DW_MUSIC, SM3DW_UNDERWATER_MUSIC, SM3DW_FAST_MUSIC, SM3DW_FAST_UNDERWATER_MUSIC> {
@@ -58,21 +60,22 @@ export class BackgroundMusicContainer<SMB_EDITOR_MUSIC extends PossibleSMB_Edito
 
     //region -------------------- Getter methods --------------------
 
-    protected override _createEveryMusics(): readonly FullMusicPathOn<Possible_Music>[] {
+    protected override _createEveryMusics(): readonly MusicSoundFile<Possible_Music>[] {
         const regular = this.regularMusic;
         const fast = this.fastMusic;
-        const link = this.linkMusic.smb as PossibleLink_RegularMusic_GroupContainer;
+        const link = this.linkMusic.smb;
         const fastLink = this.fastLinkMusic.smb;
-        const smb2 = this.smb2Music.smb as PossibleSMB2_RegularMusic_GroupContainer;
+        const smb2 = this.smb2Music.smb;
         const fastSmb2 = this.fastSmb2Music.smb;
 
-        //TODO remove the set to only let an array instead
-        return [...new Set([this.editorMusic.all.filter(music => !regular.all.includes(music as never)),
-                regular.smb, link, smb2, regular.smb3, regular.smw, regular.nsmbu, regular.sm3dw,
-                this.underwaterMusic.all, this.yoshiSound.all,
-                fast.smb, link === fastLink ? null : fastLink, smb2 === fastSmb2 ? null : fastSmb2, fast.smb3, fast.smw, fast.nsmbu, fast.sm3dw,
-                this.fastUnderwaterMusic.all, this.fastYoshiSound.all,
-            ].flat().filter(music => music != null) as unknown as readonly FullMusicPathOn<Possible_Music>[]),];
+        //TODO Change the set to only have an array instead
+        return [...new Set([
+            ...this.editorMusic.all.filter(music => !regular.all.includes(music as never)),
+            regular.smb, link, smb2, regular.smb3, regular.smw, regular.nsmbu, regular.sm3dw,
+            ...this.underwaterMusic.all, ...this.yoshiSound.all,
+            fast.smb, fastLink, fastSmb2, fast.smb3, fast.smw, fast.nsmbu, fast.sm3dw,
+            ...this.fastUnderwaterMusic.all, ...this.fastYoshiSound.all,
+        ].filter(music => music != null) as unknown as readonly MusicSoundFile<Possible_Music>[],),];
     }
 
 

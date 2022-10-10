@@ -1,5 +1,5 @@
+import type {MusicSoundFile}                                                                                                                                                                                                                                                   from '../file/MusicSoundFile';
 import type {Possible_Music, PossibleLink_Music, PossibleNSMBU_Music, PossibleNSMBU_YoshiSound, PossibleOther_Music, PossibleSM3DW_Music, PossibleSM3DW_UnderwaterMusic, PossibleSMB2_Music, PossibleSMB3_Music, PossibleSMB_Music, PossibleSMW_Music, PossibleSMW_YoshiSound} from './types';
-import type {FullMusicPathOn}                                                                                                                                                                                                                                                  from '../Music';
 
 /**
  * A single "background music" with only the {@link Themes} as the basis.
@@ -15,25 +15,31 @@ export interface SingleBackgroundMusic<SMB_MUSIC extends PossibleSMB_Music_Singl
     get all(): PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]>
 
 
-    get smb(): FullMusicPathOn<SMB_MUSIC>
+    get smb(): SMB_MUSIC
 
-    get smb3(): FullMusicPathOn<SMB3_MUSIC>
+    get smb3(): SMB3_MUSIC
 
-    get smw(): FullMusicPathOn<SMW_MUSIC>
+    get smw(): SMW_MUSIC
 
-    get nsmbu(): FullMusicPathOn<NSMBU_MUSIC>
+    get nsmbu(): NSMBU_MUSIC
 
-    get sm3dw(): FullMusicPathOn<SM3DW_MUSIC>
+    get sm3dw(): SM3DW_MUSIC
 
 }
 
-export type PossibleSMB_Music_SingleContainer = | PossibleSMB_Music | PossibleLink_Music | PossibleSMB2_Music | PossibleOther_Music | null;
-export type PossibleSMB3_Music_SingleContainer = | PossibleSMB3_Music | PossibleOther_Music | null;
-export type PossibleSMW_Music_SingleContainer = | PossibleSMW_Music | PossibleSMW_YoshiSound | PossibleOther_Music | null;
-export type PossibleNSMBU_Music_SingleContainer = | PossibleNSMBU_Music | PossibleNSMBU_YoshiSound | PossibleOther_Music | null;
-export type PossibleSM3DW_Music_SingleContainer = | PossibleSM3DW_Music | PossibleSM3DW_UnderwaterMusic | PossibleOther_Music | null;
+export type PossibleSMB_Music_SingleContainer = | MusicSoundFile<| PossibleSMB_Music | PossibleLink_Music | PossibleSMB2_Music | PossibleOther_Music> | null;
+export type PossibleSMB3_Music_SingleContainer = | MusicSoundFile<| PossibleSMB3_Music | PossibleOther_Music> | null;
+export type PossibleSMW_Music_SingleContainer = | MusicSoundFile<| PossibleSMW_Music | PossibleSMW_YoshiSound | PossibleOther_Music> | null;
+export type PossibleNSMBU_Music_SingleContainer = | MusicSoundFile<| PossibleNSMBU_Music | PossibleNSMBU_YoshiSound | PossibleOther_Music> | null;
+export type PossibleSM3DW_Music_SingleContainer = | MusicSoundFile<| PossibleSM3DW_Music | PossibleSM3DW_UnderwaterMusic | PossibleOther_Music> | null;
 
-type PossibleArray = readonly [Possible_Music | null, Possible_Music | null, Possible_Music | null, Possible_Music | null, Possible_Music | null,];
+type PossibleArray = readonly [
+        | MusicSoundFile<Possible_Music> | null,
+        | MusicSoundFile<Possible_Music> | null,
+        | MusicSoundFile<Possible_Music> | null,
+        | MusicSoundFile<Possible_Music> | null,
+        | MusicSoundFile<Possible_Music> | null,
+];
 /**
  * The possible music array (with a variable size from 0 to 5)
  * applicable to any possible {@link SingleBackgroundMusic}.
@@ -41,9 +47,9 @@ type PossibleArray = readonly [Possible_Music | null, Possible_Music | null, Pos
  * @todo convert to maybe a non-null array type (to be created too)
  */
 export type PossibleMusicArray<MUSIC extends PossibleArray=PossibleArray, > = readonly [
-    ...MUSIC[0] extends null ? [] : [FullMusicPathOn<MUSIC[0]>],
-    ...MUSIC[1] extends null ? [] : [FullMusicPathOn<MUSIC[1]>],
-    ...MUSIC[2] extends null ? [] : [FullMusicPathOn<MUSIC[2]>],
-    ...MUSIC[3] extends null ? [] : [FullMusicPathOn<MUSIC[3]>],
-    ...MUSIC[4] extends null ? [] : [FullMusicPathOn<MUSIC[4]>],
+    ...MUSIC[0] extends null ? [] : [MUSIC[0]],
+    ...MUSIC[1] extends null ? [] : [MUSIC[1]],
+    ...MUSIC[2] extends null ? [] : [MUSIC[2]],
+    ...MUSIC[3] extends null ? [] : [MUSIC[3]],
+    ...MUSIC[4] extends null ? [] : [MUSIC[4]],
 ];

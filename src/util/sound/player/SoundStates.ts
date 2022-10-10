@@ -1,10 +1,10 @@
 import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundStates.types';
 import type {ClassWithEnglishName}                                                                                                                                                               from '../../../core/ClassWithEnglishName';
-import type {StaticReference}                                                                                                                                                                    from '../../../util/enum/Enum.types';
-import type {ReactElement}                                                                                                                                                                       from '../../../util/react/ReactProperties';
-import type {SoundSubElementsHolder}                                                                                                                                                             from './holder/SoundSubElementsHolder';
+import type {StaticReference}                                                                                                                                                                    from '../../enum/Enum.types';
+import type {ReactElement}                                                                                                                                                                       from '../../react/ReactProperties';
+import type {SoundSubElementsHolder}                                                                                                                                                             from '../holder/SoundSubElementsHolder';
 
-import {Enum} from '../../../util/enum/Enum';
+import {Enum} from '../../enum/Enum';
 
 export abstract class SoundStates
     extends Enum<Ordinals, Names>
@@ -12,30 +12,37 @@ export abstract class SoundStates
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly STANDBY = new class SoundStates_Standby extends SoundStates {
+    public static readonly STANDBY =   new class SoundStates_Standby extends SoundStates {
 
-        public override getElements({playElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({playElement,}: SoundSubElementsHolder,) {
             return [playElement(),];
         }
 
     }('standby',);
-    public static readonly PAUSED =  new class SoundStates_Paused extends SoundStates {
+    public static readonly PAUSED =    new class SoundStates_Paused extends SoundStates {
 
-        public override getElements({playElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({playElement, stopElement,}: SoundSubElementsHolder,) {
             return [playElement(), stopElement(),];
         }
 
     }('paused',);
-    public static readonly PLAYING = new class SoundStates_Playing extends SoundStates {
+    public static readonly PLAYING =   new class SoundStates_Playing extends SoundStates {
 
-        public override getElements({pauseElement, stopElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({pauseElement, stopElement,}: SoundSubElementsHolder,) {
             return [pauseElement(), stopElement(),];
         }
 
     }('playing',);
+    public static readonly LOADING =   new class SoundStates_Loading extends SoundStates {
+
+        public override getElementsFrom({loadingElement,}: SoundSubElementsHolder,) {
+            return [loadingElement(),];
+        }
+
+    }('loading',);
     public static readonly EXCEPTION = new class SoundStates_Exception extends SoundStates {
 
-        public override getElements({exceptionElement,}: SoundSubElementsHolder,): readonly ReactElement[] {
+        public override getElementsFrom({exceptionElement,}: SoundSubElementsHolder,) {
             return [exceptionElement(),];
         }
 
@@ -71,7 +78,7 @@ export abstract class SoundStates
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract getElements(elementsHolder: SoundSubElementsHolder,): readonly ReactElement[];
+    public abstract getElementsFrom(elementsHolder: SoundSubElementsHolder,): readonly ReactElement[];
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------

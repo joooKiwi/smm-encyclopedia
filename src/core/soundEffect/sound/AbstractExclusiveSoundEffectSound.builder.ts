@@ -1,11 +1,12 @@
-import type {Builder}                                                        from '../../../util/builder/Builder';
-import type {ObjectHolder}                                                   from '../../../util/holder/ObjectHolder';
-import type {PossibleSoundEffectSoundFileName, PossibleSoundEffectSoundName} from './types';
-import type {SoundEffectSound}                                               from './SoundEffectSound';
+import type {Builder}                      from '../../../util/builder/Builder';
+import type {ObjectHolder}                 from '../../../util/holder/ObjectHolder';
+import type {PossibleSoundEffectSoundName} from './types';
+import type {SoundEffectSound}             from './SoundEffectSound';
+import type {SoundEffectSoundFile}         from '../file/SoundEffectSoundFile';
 
 import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container';
 
-export abstract class AbstractExclusiveSoundEffectSoundBuilder<T extends SoundEffectSound, SOUND extends PossibleSoundEffectSoundName, FILE_SOUND extends PossibleSoundEffectSoundFileName, >
+export abstract class AbstractExclusiveSoundEffectSoundBuilder<T extends SoundEffectSound, SOUND extends PossibleSoundEffectSoundName, FILE_SOUND extends SoundEffectSoundFile, >
     implements Builder<T> {
 
     //region -------------------- Fields --------------------

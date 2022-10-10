@@ -1,13 +1,14 @@
-import type {ObjectHolder}                                                             from '../../../util/holder/ObjectHolder';
-import type {PossibleSoundEffectSoundFileName_SMM1, PossibleSoundEffectSoundName_SMM1} from './types';
-import type {SMM1ExclusiveSoundEffectSound}                                            from './SMM1ExclusiveSoundEffectSound';
+import type {ObjectHolder}                      from '../../../util/holder/ObjectHolder';
+import type {PossibleSoundEffectSoundName_SMM1} from './types';
+import type {SMM1ExclusiveSoundEffectSound}     from './SMM1ExclusiveSoundEffectSound';
+import type {SMM1SoundEffectSoundFile}          from '../file/SMM1SoundEffectSoundFile';
 
 import {AbstractExclusiveSoundEffectSoundBuilder} from './AbstractExclusiveSoundEffectSound.builder';
-import {BASE_PATH}                                from '../../../variables';
 import {SMM1ExclusiveSoundEffectSoundContainer}   from './SMM1ExclusiveSoundEffectSound.container';
+import {SMM1SoundEffectSoundFileContainer}        from '../file/SMM1SoundEffectSoundFile.container';
 
 export class SMM1ExclusiveSoundEffectSoundBuilder
-    extends AbstractExclusiveSoundEffectSoundBuilder<SMM1ExclusiveSoundEffectSound, PossibleSoundEffectSoundName_SMM1, PossibleSoundEffectSoundFileName_SMM1> {
+    extends AbstractExclusiveSoundEffectSoundBuilder<SMM1ExclusiveSoundEffectSound, PossibleSoundEffectSoundName_SMM1, SMM1SoundEffectSoundFile> {
 
     public constructor(sounds: readonly PossibleSoundEffectSoundName_SMM1[],)
     public constructor(...sounds: readonly PossibleSoundEffectSoundName_SMM1[])
@@ -17,13 +18,13 @@ export class SMM1ExclusiveSoundEffectSoundBuilder
 
     //region -------------------- Builder helper methods --------------------
 
-    protected override _createSound(sound: PossibleSoundEffectSoundName_SMM1,): PossibleSoundEffectSoundFileName_SMM1 {
-        return `/${BASE_PATH}/sound/sound effect/SMM1/${sound}.wav`;
+    protected override _createSound(sound: PossibleSoundEffectSoundName_SMM1,): SMM1SoundEffectSoundFile {
+        return new SMM1SoundEffectSoundFileContainer(sound,);
     }
 
     //endregion -------------------- Builder helper methods --------------------
 
-    protected override _build(sounds: ObjectHolder<readonly PossibleSoundEffectSoundFileName_SMM1[]>, editorSound: ObjectHolder<PossibleSoundEffectSoundFileName_SMM1>,): SMM1ExclusiveSoundEffectSound {
+    protected override _build(sounds: ObjectHolder<readonly SMM1SoundEffectSoundFile[]>, editorSound: ObjectHolder<SMM1SoundEffectSoundFile>,): SMM1ExclusiveSoundEffectSound {
         return new SMM1ExclusiveSoundEffectSoundContainer(sounds, editorSound,);
     }
 

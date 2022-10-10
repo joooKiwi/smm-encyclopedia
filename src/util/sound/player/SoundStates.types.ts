@@ -1,4 +1,4 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../../util/enum/Enum.types';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../enum/Enum.types';
 import type {SoundStates as RealEnum}                                                                                                                                                                                                                      from './SoundStates';
 
 
@@ -10,6 +10,7 @@ enum Enum {
     STANDBY,
     PLAYING,
     PAUSED,
+    LOADING,
     EXCEPTION,
 }
 
@@ -21,7 +22,7 @@ export type Ordinals = typeof Enum[Names];
 //region -------------------- String types --------------------
 
 export type Names = keyof typeof Enum;
-export type EnglishName = | 'playing' | 'paused' | 'standby' | 'exception';
+export type EnglishName = | 'playing' | 'paused' | 'standby' | 'loading' | 'exception';
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
@@ -42,6 +43,7 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'STANDBY', E>,
     EnumByName<'PLAYING', E>,
     EnumByName<'PAUSED', E>,
+    EnumByName<'LOADING', E>,
     EnumByName<'EXCEPTION', E>,
 ];
 
