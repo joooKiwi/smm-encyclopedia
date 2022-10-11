@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/app/MiiCostumeApp.scss"],"names":[],"mappings":"AAAA,+BACE,cAAe,CAChB,sBAGC,kBAAc","file":"14.5edf515c.chunk.css","sourcesContent":[".cardListElement-container img {\n  max-height: 2cm;\n}\n\n.question-block-image {\n  --image-width: 24px;\n}\n"]}
