@@ -1,8 +1,8 @@
-import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from './ListDimension.creator.types';
-import type {ObjectHolder}                                                                                                                                                                                              from '../../util/holder/ObjectHolder';
+import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from './ListDimension.creator.types'
+import type {ObjectHolder}                                                                                                                                                                                              from '../../util/holder/ObjectHolder'
 
-import {ObjectHolderContainer} from '../../util/holder/ObjectHolder.container';
-import {DimensionOnList}       from '../interpreter/DimensionOnList';
+import {ObjectHolderContainer} from '../../util/holder/ObjectHolder.container'
+import {DimensionOnList}       from '../interpreter/DimensionOnList'
 
 export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,
@@ -21,140 +21,140 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
         large: 2,
         extraLarge: null,
         extraExtraLarge: null,
-    };
+    }
 
-    readonly #dimension;
-    #smallHolder: ObjectHolder<| SMALL | DefaultSmallDimension>;
-    #mediumHolder: ObjectHolder<| MEDIUM | DefaultMediumDimension>;
-    #largeHolder: ObjectHolder<| LARGE | DefaultLargeDimension>;
-    #extraLargeHolder: ObjectHolder<| EXTRA_LARGE | DefaultExtraLargeDimension>;
-    #extraExtraLargeHolder: ObjectHolder<| EXTRA_EXTRA_LARGE | DefaultExtraExtraLargeDimension>;
+    readonly #dimension
+    #smallHolder: ObjectHolder<| SMALL | DefaultSmallDimension>
+    #mediumHolder: ObjectHolder<| MEDIUM | DefaultMediumDimension>
+    #largeHolder: ObjectHolder<| LARGE | DefaultLargeDimension>
+    #extraLargeHolder: ObjectHolder<| EXTRA_LARGE | DefaultExtraLargeDimension>
+    #extraExtraLargeHolder: ObjectHolder<| EXTRA_EXTRA_LARGE | DefaultExtraExtraLargeDimension>
 
     //endregion -------------------- Fields --------------------
 
     public constructor(dimension: | Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>> | null,) {
-        this.#dimension = dimension;
+        this.#dimension = dimension
         this.#smallHolder = new ObjectHolderContainer(() => {
-            const value = this.dimensionOrDefault.small;
-            return value === undefined ? this.defaultSmall : value;
-        });
+            const value = this.dimensionOrDefault.small
+            return value === undefined ? this.defaultSmall : value
+        })
         this.#mediumHolder = new ObjectHolderContainer(() => {
-            const value = this.dimensionOrDefault.medium;
-            return value === undefined ? ListDimensionCreator.defaultMedium : value;
-        });
+            const value = this.dimensionOrDefault.medium
+            return value === undefined ? ListDimensionCreator.defaultMedium : value
+        })
         this.#largeHolder = new ObjectHolderContainer(() => {
-            const value = this.dimensionOrDefault.large;
-            return value === undefined ? this.defaultLarge : value;
-        });
+            const value = this.dimensionOrDefault.large
+            return value === undefined ? this.defaultLarge : value
+        })
         this.#extraLargeHolder = new ObjectHolderContainer(() => {
-            const value = this.dimensionOrDefault.extraLarge;
-            return value === undefined ? this.defaultExtraLarge : value;
-        });
+            const value = this.dimensionOrDefault.extraLarge
+            return value === undefined ? this.defaultExtraLarge : value
+        })
         this.#extraExtraLargeHolder = new ObjectHolderContainer(() => {
-            const value = this.dimensionOrDefault.extraExtraLarge;
-            return value === undefined ? this.defaultExtraExtraLarge : value;
-        });
+            const value = this.dimensionOrDefault.extraExtraLarge
+            return value === undefined ? this.defaultExtraExtraLarge : value
+        })
     }
 
     //region -------------------- Getter methods --------------------
 
     /** The dimension to interpret */
     public get dimension(): | Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE>> | null {
-        return this.#dimension;
+        return this.#dimension
     }
 
     /** Get the dimension stored or the default dimension if null */
     public get dimensionOrDefault(): this['dimension'] extends null ? DefaultDimensionOnCardList : Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>> {
-        return (this.dimension ?? ListDimensionCreator.DEFAULT_DIMENSION) as (this['dimension'] extends null ? DefaultDimensionOnCardList : Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>>);
+        return (this.dimension ?? ListDimensionCreator.DEFAULT_DIMENSION) as (this['dimension'] extends null ? DefaultDimensionOnCardList : Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>>)
     }
 
     //region -------------------- Default dimension --------------------
 
     public get default(): | NonNullable<DEFAULT> | DefaultDefaultDimension {
-        return this.dimension?.default ?? ListDimensionCreator.DEFAULT_DIMENSION.default;
+        return this.dimension?.default ?? ListDimensionCreator.DEFAULT_DIMENSION.default
     }
 
     public static get defaultDefault(): DefaultDefaultDimension {
-        return this.DEFAULT_DIMENSION.default;
+        return this.DEFAULT_DIMENSION.default
     }
 
     public get defaultDefault(): DefaultDefaultDimension {
-        return ListDimensionCreator.defaultDefault;
+        return ListDimensionCreator.defaultDefault
     }
 
     //endregion -------------------- Default dimension --------------------
     //region -------------------- Small dimension --------------------
 
     public get small(): | SMALL | DefaultSmallDimension {
-        return this.#smallHolder.get;
+        return this.#smallHolder.get
     }
 
     public static get defaultSmall(): DefaultSmallDimension {
-        return this.DEFAULT_DIMENSION.small;
+        return this.DEFAULT_DIMENSION.small
     }
 
     public get defaultSmall(): DefaultSmallDimension {
-        return ListDimensionCreator.defaultSmall;
+        return ListDimensionCreator.defaultSmall
     }
 
     //endregion -------------------- Small dimension --------------------
     //region -------------------- Medium dimension --------------------
 
     public get medium(): | MEDIUM | DefaultMediumDimension {
-        return this.#mediumHolder.get;
+        return this.#mediumHolder.get
     }
 
     public static get defaultMedium(): DefaultMediumDimension {
-        return this.DEFAULT_DIMENSION.medium;
+        return this.DEFAULT_DIMENSION.medium
     }
 
     public get defaultMedium(): DefaultMediumDimension {
-        return ListDimensionCreator.defaultMedium;
+        return ListDimensionCreator.defaultMedium
     }
 
     //endregion -------------------- Medium dimension --------------------
     //region -------------------- Large dimension --------------------
 
     public get large(): | LARGE | DefaultLargeDimension {
-        return this.#largeHolder.get;
+        return this.#largeHolder.get
     }
 
     public static get defaultLarge(): DefaultLargeDimension {
-        return this.DEFAULT_DIMENSION.large;
+        return this.DEFAULT_DIMENSION.large
     }
 
     public get defaultLarge(): DefaultLargeDimension {
-        return ListDimensionCreator.defaultLarge;
+        return ListDimensionCreator.defaultLarge
     }
 
     //endregion -------------------- Large dimension --------------------
     //region -------------------- Extra large dimension --------------------
 
     public get extraLarge(): | EXTRA_LARGE | DefaultExtraLargeDimension {
-        return this.#extraLargeHolder.get;
+        return this.#extraLargeHolder.get
     }
 
     public static get defaultExtraLarge(): DefaultExtraLargeDimension {
-        return this.DEFAULT_DIMENSION.extraLarge;
+        return this.DEFAULT_DIMENSION.extraLarge
     }
 
     public get defaultExtraLarge(): DefaultExtraLargeDimension {
-        return ListDimensionCreator.defaultExtraLarge;
+        return ListDimensionCreator.defaultExtraLarge
     }
 
     //endregion -------------------- Extra large dimension --------------------
     //region -------------------- Extra extra large dimension --------------------
 
     public get extraExtraLarge(): | EXTRA_EXTRA_LARGE | DefaultExtraExtraLargeDimension {
-        return this.#extraExtraLargeHolder.get;
+        return this.#extraExtraLargeHolder.get
     }
 
     public static get defaultExtraExtraLarge(): DefaultExtraExtraLargeDimension {
-        return this.DEFAULT_DIMENSION.extraExtraLarge;
+        return this.DEFAULT_DIMENSION.extraExtraLarge
     }
 
     public get defaultExtraExtraLarge(): DefaultExtraExtraLargeDimension {
-        return ListDimensionCreator.defaultExtraExtraLarge;
+        return ListDimensionCreator.defaultExtraExtraLarge
     }
 
     //endregion -------------------- Extra extra large dimension --------------------
@@ -184,9 +184,9 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
             md = this.medium,
             lg = this.large,
             xl = this.extraLarge,
-            xxl = this.extraExtraLarge;
+            xxl = this.extraExtraLarge
 
-        return `col-${this.default} ${sm == null ? '' : `col-sm-${sm} `}${md == null ? '' : `col-md-${md} `}${lg == null ? '' : `col-lg-${lg} `}${xl == null ? '' : `col-xl-${xl} `}${xxl == null ? '' : `col-xxl-${xxl} `}`;
+        return `col-${this.default} ${sm == null ? '' : `col-sm-${sm} `}${md == null ? '' : `col-md-${md} `}${lg == null ? '' : `col-lg-${lg} `}${xl == null ? '' : `col-xl-${xl} `}${xxl == null ? '' : `col-xxl-${xxl} `}`
     }
 
     //endregion -------------------- Methods --------------------

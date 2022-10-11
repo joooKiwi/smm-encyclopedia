@@ -1,8 +1,8 @@
-import type {ClassWithValue}                                                                                                                                                                                from './ClassWithValue';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleImageAnimation, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ImageAnimations.types';
-import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types';
+import type {ClassWithValue}                                                                                                                                                                                from './ClassWithValue'
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleImageAnimation, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ImageAnimations.types'
+import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types'
 
-import {Enum} from '../../../util/enum/Enum';
+import {Enum} from '../../../util/enum/Enum'
 
 /**
  * The possible image animation as either
@@ -19,31 +19,31 @@ export class ImageAnimations
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SEPARATED = new ImageAnimations('separated',);
-    public static readonly YES =       new ImageAnimations(true,);
-    public static readonly NO =        new ImageAnimations(false,);
+    public static readonly SEPARATED = new ImageAnimations('separated',)
+    public static readonly YES =       new ImageAnimations(true,)
+    public static readonly NO =        new ImageAnimations(false,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: ImageAnimations;
+    static [index: number]: ImageAnimations
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #value;
+    readonly #value
 
     //endregion -------------------- Fields --------------------
 
     private constructor(value: PossibleImageAnimation,) {
-        super();
-        this.#value = value;
+        super()
+        this.#value = value
     }
 
     //region -------------------- Getter methods --------------------
 
     public get value() {
-        return this.#value;
+        return this.#value
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -52,19 +52,19 @@ export class ImageAnimations
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<ImageAnimations> {
-        return ImageAnimations;
+        return ImageAnimations
     }
 
     //region -------------------- Enum value methods --------------------
 
     protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.value === value)
-            ?? null;
+            ?? null
     }
 
     protected static override _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(nullValue: | null | undefined,): null
@@ -77,17 +77,17 @@ export class ImageAnimations
     public static getValue(value: PossibleNonNullableValue,): ImageAnimations
     public static getValue(value: PossibleValue,): | ImageAnimations | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

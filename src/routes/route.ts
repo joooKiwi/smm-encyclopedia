@@ -1,9 +1,9 @@
-import type {EveryPossibleRouteNames, EveryPossibleRoutePartialPaths, EveryPossibleRoutes} from './everyRoutes.types';
-import type {Location}                                                                     from 'history';
+import type {EveryPossibleRouteNames, EveryPossibleRoutePartialPaths, EveryPossibleRoutes} from './everyRoutes.types'
+import type {Location}                                                                     from 'history'
 
-import {assert}            from '../util/utilitiesMethods';
-import {everySimpleRoutes} from './everyRoutes';
-import {ProjectLanguages}  from '../lang/ProjectLanguages';
+import {assert}            from '../util/utilitiesMethods'
+import {everySimpleRoutes} from './everyRoutes'
+import {ProjectLanguages}  from '../lang/ProjectLanguages'
 
 export function route(partialPath: EveryPossibleRoutePartialPaths, language?: ProjectLanguages,): EveryPossibleRoutes
 export function route(name: EveryPossibleRouteNames, language?: ProjectLanguages,): EveryPossibleRoutes
@@ -24,17 +24,17 @@ export function route({pathname: pathName,}: Location, languageToReplace?: Proje
  */
 export function route(partialPath_or_name_or_location: PossibleParameterReceived, language: ProjectLanguages = ProjectLanguages.currentLanguage,): EveryPossibleRoutes {
     if (typeof partialPath_or_name_or_location === 'string') {
-        const simpleRoute = everySimpleRoutes.find(simpleRoute => simpleRoute.path === partialPath_or_name_or_location || simpleRoute.name === partialPath_or_name_or_location);
+        const simpleRoute = everySimpleRoutes.find(simpleRoute => simpleRoute.path === partialPath_or_name_or_location || simpleRoute.name === partialPath_or_name_or_location)
 
-        assert(simpleRoute != null, `The route could not be found with the value "${partialPath_or_name_or_location}".`,);
-        return `/${language.projectAcronym}${simpleRoute.path}`;
+        assert(simpleRoute != null, `The route could not be found with the value "${partialPath_or_name_or_location}".`,)
+        return `/${language.projectAcronym}${simpleRoute.path}`
     }
 
-    const {pathname: pathName} = partialPath_or_name_or_location;
+    const {pathname: pathName} = partialPath_or_name_or_location
 
     return language.isCurrentLanguage
         ? pathName as EveryPossibleRoutes
-        : pathName.replace(ProjectLanguages.currentLanguage.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes;
+        : pathName.replace(ProjectLanguages.currentLanguage.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
 }
 
-type PossibleParameterReceived = | EveryPossibleRoutePartialPaths | EveryPossibleRouteNames | Location;
+type PossibleParameterReceived = | EveryPossibleRoutePartialPaths | EveryPossibleRouteNames | Location

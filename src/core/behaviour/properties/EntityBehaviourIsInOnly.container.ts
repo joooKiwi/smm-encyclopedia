@@ -1,28 +1,28 @@
-import type {EntityBehaviourIsInOnly} from './EntityBehaviourIsInOnly';
+import type {EntityBehaviourIsInOnly} from './EntityBehaviourIsInOnly'
 
 export class EntityBehaviourIsInOnlyContainer
     implements EntityBehaviourIsInOnly {
 
     //region -------------------- Fields --------------------
 
-    readonly #isInOnlineOnly;
-    readonly #isInMultiplayerOnly;
+    readonly #isInOnlineOnly
+    readonly #isInMultiplayerOnly
 
     //endregion -------------------- Fields --------------------
 
     constructor(isInOnlineOnly: boolean, isInMultiplayerOnly: boolean,) {
-        this.#isInOnlineOnly = isInOnlineOnly;
-        this.#isInMultiplayerOnly = isInMultiplayerOnly;
+        this.#isInOnlineOnly = isInOnlineOnly
+        this.#isInMultiplayerOnly = isInMultiplayerOnly
     }
 
     //region -------------------- Getter methods --------------------
 
     public get isOnlineOnly() {
-        return this.#isInOnlineOnly;
+        return this.#isInOnlineOnly
     }
 
     public get isMultiplayerOnly() {
-        return this.#isInMultiplayerOnly;
+        return this.#isInMultiplayerOnly
     }
 
     //endregion -------------------- Getter methods --------------------

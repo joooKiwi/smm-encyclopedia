@@ -1,6 +1,6 @@
-import type {FileName} from './FileName';
+import type {FileName} from './FileName'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables';
+import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
 
 /**
  * @singleton
@@ -10,18 +10,18 @@ export class EmptyFileName
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyFileName;
+    static #instance?: EmptyFileName
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly imageFileNames = EMPTY_ARRAY;
-    public readonly soundFileName = EMPTY_ARRAY;
+    public readonly imageFileNames = EMPTY_ARRAY
+    public readonly soundFileName = EMPTY_ARRAY
 
 }

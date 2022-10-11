@@ -1,25 +1,25 @@
-import {AbstractStringConverter} from './AbstractStringConverter';
+import {AbstractStringConverter} from './AbstractStringConverter'
 
 export class StringToStringConverter
     extends AbstractStringConverter<string> {
 
     public constructor(originalValue: string,) {
-        super(originalValue);
+        super(originalValue)
     }
 
     //region -------------------- Methods --------------------
 
     protected override _convertTheValue(validValue: string,) {
-        return validValue;
+        return validValue
 
     }
 
     public override isValueValid(value: string,): boolean {
-        return true;
+        return true
     }
 
     protected override _newError() {
-        return new TypeError(`The value "${this.originalValue}" is not convertible to a string`);
+        return new TypeError(`The value "${this.originalValue}" is not convertible to a string`)
     }
 
     //endregion -------------------- Methods --------------------

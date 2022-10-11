@@ -1,10 +1,10 @@
-import './EditorVoiceSound.scss';
+import './EditorVoiceSound.scss'
 
-import type {EditorVoiceSound} from './EditorVoiceSound';
-import type {ReactProperties}  from '../../util/react/ReactProperties';
+import type {EditorVoiceSound} from './EditorVoiceSound'
+import type {ReactProperties}  from '../../util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables';
-import SimpleSoundComponent  from '../../util/sound/component/SimpleSound.component';
+import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables'
+import SimpleSoundComponent  from '../../util/sound/component/SimpleSound.component'
 
 interface EditorVoiceSoundComponentProperties
     extends ReactProperties {
@@ -33,6 +33,6 @@ export default function EditorVoiceSoundComponent({editorVoiceSound: {file, euro
                 <div key={`Editor voice sound container (single #2 - ${name})`} className="single-editorVoiceSound-container">
                     <SimpleSoundComponent file={europeanFile} title={name}/>
                 </div>
-            </div>;
+            </div>
 
 }

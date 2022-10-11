@@ -1,25 +1,25 @@
-import './SimpleSound.component.scss';
+import './SimpleSound.component.scss'
 
-import {Component} from 'react';
+import {Component} from 'react'
 
-import type {IsSourceFoundCallback} from '../player/Validators.types';
-import type {ReactComponent}        from '../../react/ReactComponent';
-import type {ReactElement}          from '../../react/ReactProperties';
-import type {SimpleSoundState}      from './state/SimpleSound.state';
-import type {SimpleSoundPlayer}     from '../player/SimpleSoundPlayer';
-import type {SimpleSoundProperties} from './property/SimpleSoundProperties';
-import type {SoundFile}             from '../SoundFile';
+import type {IsSourceFoundCallback} from '../player/Validators.types'
+import type {ReactComponent}        from '../../react/ReactComponent'
+import type {ReactElement}          from '../../react/ReactProperties'
+import type {SimpleSoundState}      from './state/SimpleSound.state'
+import type {SimpleSoundPlayer}     from '../player/SimpleSoundPlayer'
+import type {SimpleSoundProperties} from './property/SimpleSoundProperties'
+import type {SoundFile}             from '../SoundFile'
 
-import {AbstractSoundPlayer}    from '../player/AbstractSoundPlayer';
-import {SoundPlayerFactory}     from '../player/SoundPlayer.factory';
-import {SoundStates}            from '../player/SoundStates';
-import {SoundSubElementsHolder} from '../holder/SoundSubElementsHolder';
-import {Validators}             from '../player/Validators';
-import {HistoryState}           from '../history/HistoryState';
+import {AbstractSoundPlayer}    from '../player/AbstractSoundPlayer'
+import {SoundPlayerFactory}     from '../player/SoundPlayer.factory'
+import {SoundStates}            from '../player/SoundStates'
+import {SoundSubElementsHolder} from '../holder/SoundSubElementsHolder'
+import {Validators}             from '../player/Validators'
+import {HistoryState}           from '../history/HistoryState'
 
 //region -------------------- Import from deconstruction --------------------
 
-const {STANDBY, LOADING,} = SoundStates;
+const {STANDBY, LOADING,} = SoundStates
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -29,30 +29,30 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
 
     //region -------------------- Fields --------------------
 
-    static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play';
-    static readonly #PAUSE_CLASSES = 'btn btn-lg bi-pause-btn-fill audio-state audio-state-pause';
-    static readonly #STOP_CLASSES = 'btn btn-lg bi-stop-btn-fill audio-state audio-state-stop';
-    static readonly #LOADING_CLASSES = 'spinner-border audio-state audio-state-loading';
-    static readonly #EXCEPTION_CLASSES = 'bi-shield-fill-exclamation audio-state audio-state-exception';
+    static readonly #PLAY_CLASSES = 'btn btn-lg bi-play-btn-fill audio-state audio-state-play'
+    static readonly #PAUSE_CLASSES = 'btn btn-lg bi-pause-btn-fill audio-state audio-state-pause'
+    static readonly #STOP_CLASSES = 'btn btn-lg bi-stop-btn-fill audio-state audio-state-stop'
+    static readonly #LOADING_CLASSES = 'spinner-border audio-state audio-state-loading'
+    static readonly #EXCEPTION_CLASSES = 'bi-shield-fill-exclamation audio-state audio-state-exception'
 
-    #audio?: SimpleSoundPlayer<FILE, TITLE>;
-    readonly #isSourceFoundCallback: IsSourceFoundCallback;
+    #audio?: SimpleSoundPlayer<FILE, TITLE>
+    readonly #isSourceFoundCallback: IsSourceFoundCallback
 
     //endregion -------------------- Fields --------------------
 
     public constructor(props: SimpleSoundProperties<FILE, TITLE>,) {
-        super(props,);
+        super(props,)
         this.state = {
             state: new HistoryState(STANDBY, false,),
             isSourceRetrieved: false,
-        };
+        }
         this.#isSourceFoundCallback = value => {
             const audio = this._audio,
-                isDurationValid = audio.isDurationValid;
+                isDurationValid = audio.isDurationValid
             value ?? isDurationValid
                 ? this.setState({isSourceRetrieved: true,})
-                : this.setState({isSourceRetrieved: true, /*state: audio.setState(new HistoryState(EXCEPTION, audio.history.current,)).history.current,*/});
-        };
+                : this.setState({isSourceRetrieved: true, /*state: audio.setState(new HistoryState(EXCEPTION, audio.history.current,)).history.current,*/})
+        }
     }
 
     //region -------------------- Getter methods --------------------
@@ -60,28 +60,28 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
 
     /** @see SimpleSoundProperties.file */
     public get file(): FILE {
-        return this.props.file;
+        return this.props.file
     }
 
     /** @see SimpleSoundProperties.title */
     public get title(): TITLE {
-        return this.props.title;
+        return this.props.title
     }
 
     /** @see SimpleSoundProperties.validator */
     public get validator(): Validators {
-        return this.props.validator ?? Validators.default;
+        return this.props.validator ?? Validators.default
     }
 
 
     /** @see SimpleSoundState.state */
     public get componentState(): HistoryState {
-        return this.state.state;
+        return this.state.state
     }
 
     /** @see SimpleSoundState.isSourceRetrieved */
     public get isSourceRetrieved(): boolean {
-        return this.state.isSourceRetrieved;
+        return this.state.isSourceRetrieved
     }
 
 
@@ -91,12 +91,12 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
      */
     protected get _audio(): SimpleSoundPlayer<FILE, TITLE> {
         if (this.#audio == null) {
-            const source = this.file;
+            const source = this.file
             this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
                 .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
-                .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}));
+                .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
         }
-        return this.#audio;
+        return this.#audio
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -104,15 +104,15 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
 
     public override componentDidMount(): void {
         if (!this.isSourceRetrieved)
-            this.validator.onCreate(this.#isSourceFoundCallback);
+            this.validator.onCreate(this.#isSourceFoundCallback)
     }
 
     public override componentWillUnmount(): void {
-        const audio = this.#audio;
+        const audio = this.#audio
         if (audio == null)
-            return;
-        audio.setState(new HistoryState(STANDBY, false,),);
-        AbstractSoundPlayer.map.remove(audio.source.key);
+            return
+        audio.setState(new HistoryState(STANDBY, false,),)
+        AbstractSoundPlayer.map.remove(audio.source.key)
     }
 
     public override render(): ReactElement {
@@ -123,12 +123,12 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
                 () => <div key={`${this.title} - loading`} className={SimpleSoundComponent.#LOADING_CLASSES} role="status"/>,
                 () => <div key={`${this.title} - exception`} className={SimpleSoundComponent.#EXCEPTION_CLASSES}/>,
             ),
-            componentState = this.componentState;
+            componentState = this.componentState
 
         return <div key={`${this.title} - container`} className="audio-state-container container">
             {componentState.isLoading ? LOADING.getElementsFrom(elementsHolder) : null}
             {componentState.state.getElementsFrom(elementsHolder)}
-        </div>;
+        </div>
     }
 
     //endregion -------------------- React methods --------------------

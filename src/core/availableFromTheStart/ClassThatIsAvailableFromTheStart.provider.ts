@@ -1,10 +1,10 @@
-import type {ClassThatIsAvailableFromTheStart, InferredClassThatIsAvailableFromTheStartBySMM1, PossibleIsAvailableFromTheStart} from './ClassThatIsAvailableFromTheStart';
-import type {ProviderForNullable}                                                                                               from '../../util/provider/ProviderForNullable';
-import type {ProviderWithoutKey}                                                                                                from '../../util/provider/ProviderWithoutKey';
+import type {ClassThatIsAvailableFromTheStart, InferredClassThatIsAvailableFromTheStartBySMM1, PossibleIsAvailableFromTheStart} from './ClassThatIsAvailableFromTheStart'
+import type {ProviderForNullable}                                                                                               from '../../util/provider/ProviderForNullable'
+import type {ProviderWithoutKey}                                                                                                from '../../util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}                          from '../../util/provider/AbstractProvider';
-import {ClassThatIsAvailableFromTheStartContainer} from './ClassThatIsAvailableFromTheStart.container';
-import {GameStructureProvider}                     from '../game/GameStructure.provider';
+import {AbstractProvider}                          from '../../util/provider/AbstractProvider'
+import {ClassThatIsAvailableFromTheStartContainer} from './ClassThatIsAvailableFromTheStart.container'
+import {GameStructureProvider}                     from '../game/GameStructure.provider'
 
 /**
  * @singleton
@@ -15,14 +15,14 @@ export class ClassThatIsAvailableFromTheStartProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: ClassThatIsAvailableFromTheStartProvider;
+    static #instance?: ClassThatIsAvailableFromTheStartProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -31,7 +31,7 @@ export class ClassThatIsAvailableFromTheStartProvider
      * A fast way to retrieve an empty {@link ClassThatIsAvailableFromTheStart} with only null as their parameters
      */
     public get null() {
-        return this.get(null, null, null,);
+        return this.get(null, null, null,)
     }
 
     /**
@@ -71,11 +71,11 @@ export class ClassThatIsAvailableFromTheStartProvider
         if (argumentsReceived.length === 1)
             return argumentsReceived[0] == null
                 ? this.get(null, null, true,)
-                : this.get(argumentsReceived[0], true, true,);
+                : this.get(argumentsReceived[0], true, true,)
 
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new ClassThatIsAvailableFromTheStartContainer(GameStructureProvider.get.get(...argumentsReceived),)))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
@@ -84,7 +84,7 @@ type ArgumentsReceived<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIs
     SMM1,
     SMM3DS,
     SMM2,
-];
+]
 type ArgumentsReceived_Simplified<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > = readonly [
     SMM1,
-];
+]

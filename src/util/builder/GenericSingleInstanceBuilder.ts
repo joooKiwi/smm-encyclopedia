@@ -1,7 +1,7 @@
-import type {Builder}      from './Builder';
-import type {ObjectHolder} from '../holder/ObjectHolder';
+import type {Builder}      from './Builder'
+import type {ObjectHolder} from '../holder/ObjectHolder'
 
-import {DelayedObjectHolderContainer} from '../holder/DelayedObjectHolder.container';
+import {DelayedObjectHolderContainer} from '../holder/DelayedObjectHolder.container'
 
 /**
  * A generic builder that create only <b>once</b> an instance from another {@link Builder}.
@@ -10,21 +10,21 @@ import {DelayedObjectHolderContainer} from '../holder/DelayedObjectHolder.contai
 export class GenericSingleInstanceBuilder<T>
     implements Builder<T> {
 
-    readonly #sourceBuilder: Builder<T>;
-    readonly #callbackCallerForBuilder: ObjectHolder<T>;
+    readonly #sourceBuilder: Builder<T>
+    readonly #callbackCallerForBuilder: ObjectHolder<T>
 
     public constructor(builder: Builder<T>,) {
-        this.#sourceBuilder = builder;
-        this.#callbackCallerForBuilder = new DelayedObjectHolderContainer(() => this.builder.build());
+        this.#sourceBuilder = builder
+        this.#callbackCallerForBuilder = new DelayedObjectHolderContainer(() => this.builder.build())
     }
 
 
     public get builder(): Builder<T> {
-        return this.#sourceBuilder;
+        return this.#sourceBuilder
     }
 
     public build(): T {
-        return this.#callbackCallerForBuilder.get;
+        return this.#callbackCallerForBuilder.get
     }
 
 }

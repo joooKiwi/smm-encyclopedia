@@ -1,13 +1,13 @@
-import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from './properties/Property';
-import type {EntityReferences}                                                                                                    from './properties/EntityReferences';
-import type {EntityCategory}                                                                                                      from '../entityCategory/EntityCategory';
-import type {EmptyEntityCategory}                                                                                                 from '../entityCategory/EmptyEntityCategory';
-import type {GameProperty}                                                                                                        from './properties/game/GameProperty';
-import type {GameStyleProperty}                                                                                                   from './properties/gameStyle/GameStyleProperty';
-import type {NameTrait}                                                                                                           from '../../lang/name/NameTrait';
-import type {NameTraitFromACategory}                                                                                              from '../../lang/name/NameTraitFromACategory';
-import type {ThemeProperty}                                                                                                       from './properties/theme/ThemeProperty';
-import type {TimeProperty}                                                                                                        from './properties/time/TimeProperty';
+import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from './properties/Property'
+import type {EntityReferences}                                                                                                    from './properties/EntityReferences'
+import type {EntityCategory}                                                                                                      from '../entityCategory/EntityCategory'
+import type {EmptyEntityCategory}                                                                                                 from '../entityCategory/EmptyEntityCategory'
+import type {GameProperty}                                                                                                        from './properties/game/GameProperty'
+import type {GameStyleProperty}                                                                                                   from './properties/gameStyle/GameStyleProperty'
+import type {NameTrait}                                                                                                           from '../../lang/name/NameTrait'
+import type {NameTraitFromACategory}                                                                                              from '../../lang/name/NameTraitFromACategory'
+import type {ThemeProperty}                                                                                                       from './properties/theme/ThemeProperty'
+import type {TimeProperty}                                                                                                        from './properties/time/TimeProperty'
 
 export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
     extends NameTrait<string>,
@@ -218,9 +218,9 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
 
 }
 
-/**@deprecated*/export type ExclusiveSMM1Entity = Entity<EmptyEntityCategory, ExclusiveSMM1Property> & ExclusiveSMM1Property;
-/**@deprecated*/export type AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<CATEGORY, PROPERTY> & AbstractExclusiveSMM2Property;
-/**@deprecated*/export type ExclusiveSM3DWEntity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW;
-/**@deprecated*/export type ExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property> & ExclusiveSMM2Property;
+/**@deprecated*/export type ExclusiveSMM1Entity = Entity<EmptyEntityCategory, ExclusiveSMM1Property> & ExclusiveSMM1Property
+/**@deprecated*/export type AbstractExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends AbstractExclusiveSMM2Property = AbstractExclusiveSMM2Property, > = Entity<CATEGORY, PROPERTY> & AbstractExclusiveSMM2Property
+/**@deprecated*/export type ExclusiveSM3DWEntity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW
+/**@deprecated*/export type ExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property> & ExclusiveSMM2Property
 
-export type PossibleOtherEntities = readonly [Entity,] | readonly [Entity, Entity,];
+export type PossibleOtherEntities = readonly [Entity,] | readonly [Entity, Entity,]

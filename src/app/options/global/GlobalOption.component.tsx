@@ -1,29 +1,29 @@
-import './GlobalOption.scss';
+import './GlobalOption.scss'
 
-import {Component} from 'react';
+import {Component} from 'react'
 
-import type {GlobalAppState}                from '../../AppStates.types';
-import type {GlobalThemeOption}             from './GlobalThemeOption';
-import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
+import type {GlobalAppState}                from '../../AppStates.types'
+import type {GlobalThemeOption}             from './GlobalThemeOption'
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties'
 
-import GameGroup         from './group/GameGroup';
-import {Games}           from '../../../core/game/Games';
-import GameStyleGroup    from './group/GameStyleGroup';
-import {GameStyles}      from '../../../core/gameStyle/GameStyles';
-import {GlobalAppOption} from './GlobalAppOption';
-import {ImageAnimations} from './ImageAnimations';
-import {Images}          from './Images';
-import {Sounds}          from './Sounds';
-import {Texts}           from './Texts';
-import ThemeGroup        from './group/ThemeGroup';
-import {Themes}          from '../../../core/theme/Themes';
-import TimeGroup         from './group/TimeGroup';
-import {Times}           from '../../../core/time/Times';
+import GameGroup         from './group/GameGroup'
+import {Games}           from '../../../core/game/Games'
+import GameStyleGroup    from './group/GameStyleGroup'
+import {GameStyles}      from '../../../core/gameStyle/GameStyles'
+import {GlobalAppOption} from './GlobalAppOption'
+import {ImageAnimations} from './ImageAnimations'
+import {Images}          from './Images'
+import {Sounds}          from './Sounds'
+import {Texts}           from './Texts'
+import ThemeGroup        from './group/ThemeGroup'
+import {Themes}          from '../../../core/theme/Themes'
+import TimeGroup         from './group/TimeGroup'
+import {Times}           from '../../../core/time/Times'
 
 export interface GlobalOptionProperties
     extends ReactProperties {
 
-    id: string;
+    id: string
 
 }
 
@@ -31,23 +31,23 @@ export default class GlobalOptionComponent
     extends Component<GlobalOptionProperties, GlobalAppState> {
 
     public constructor(props: GlobalOptionProperties,) {
-        super(props);
-        this.state = {};
+        super(props,)
+        this.state = {}
     }
 
     public override render(): ReactElement {
         //TODO move the groups into multiple different sub components.
-        const imageAnimations = GlobalAppOption.IMAGE_ANIMATIONS, imageAnimationsValue = imageAnimations.get.value;
-        const texts = GlobalAppOption.TEXTS, textsValue = texts.get.value;
-        const images = GlobalAppOption.IMAGES, imagesValue = images.get.value;
-        const sounds = GlobalAppOption.SOUNDS, soundsValue = sounds.get.value;
-        const smm1 = GlobalAppOption.SMM1, smm1Value = smm1.get;
-        const smm3ds = GlobalAppOption.SMM3DS, smm3dsValue = smm3ds.get;
-        const smm2 = GlobalAppOption.SMM2, smm2Value = smm2.get;
-        const isNoGame = !smm1Value && !smm3dsValue && !smm2Value;
-        const isSmm1Or3DSExclusive = (smm1Value || smm3dsValue) && !smm2Value;
+        const imageAnimations = GlobalAppOption.IMAGE_ANIMATIONS, imageAnimationsValue = imageAnimations.get.value
+        const texts = GlobalAppOption.TEXTS, textsValue = texts.get.value
+        const images = GlobalAppOption.IMAGES, imagesValue = images.get.value
+        const sounds = GlobalAppOption.SOUNDS, soundsValue = sounds.get.value
+        const smm1 = GlobalAppOption.SMM1, smm1Value = smm1.get
+        const smm3ds = GlobalAppOption.SMM3DS, smm3dsValue = smm3ds.get
+        const smm2 = GlobalAppOption.SMM2, smm2Value = smm2.get
+        const isNoGame = !smm1Value && !smm3dsValue && !smm2Value
+        const isSmm1Or3DSExclusive = (smm1Value || smm3dsValue) && !smm2Value
 
-        const everyThemeOptions = Themes.values.map(({name,}) => GlobalAppOption.getValue(name)) as GlobalAppOption<GlobalThemeOption>[];
+        const everyThemeOptions = Themes.values.map(({name,}) => GlobalAppOption.getValue(name)) as GlobalAppOption<GlobalThemeOption>[]
 
         return <div id={this.props.id} className="container-fluid">
             <div key="option container (texts, images & sounds)" id="textsAndImagesAndSounds-option-container" className="container-fluid">
@@ -101,7 +101,7 @@ export default class GlobalOptionComponent
                 [Times.DAY, GlobalAppOption.DAY, null, null, () => everyThemeOptions.forEach(option => option.set(option.get.onDay(GlobalAppOption.DAY.get))),],
                 [Times.NIGHT, GlobalAppOption.NIGHT, isSmm1Or3DSExclusive, null, () => everyThemeOptions.forEach(option => option.set(option.get.onNight(GlobalAppOption.NIGHT.get))),],
             ]}/>
-        </div>;
+        </div>
     }
 
 }

@@ -1,7 +1,7 @@
-import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference';
-import type {ClassWithTranslationKey} from '../../../../lang/ClassWithTranslationKey';
-import type {GameReferences}          from '../../../gameReference/GameReferences';
-import type {NotApplicable, Property} from '../../../_properties/Property';
+import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference'
+import type {ClassWithTranslationKey} from '../../../../lang/ClassWithTranslationKey'
+import type {GameReferences}          from '../../../gameReference/GameReferences'
+import type {NotApplicable, Property} from '../../../_properties/Property'
 
 export interface SoundEffectOnGoalPole
     extends Property<PossibleValues>, ClassWithGameReference<PossibleGames>, ClassWithTranslationKey<PossibleTranslationKeys> {
@@ -12,13 +12,13 @@ export interface SoundEffectOnGoalPole
 
 }
 
-export type PossibleGamesReceived = | string | null;
-export type PossibleValuesReceived = | boolean | PossibleSimpleTranslationKeys | null;
-export type PossibleTypesReceived = PossibleTypes;
+export type PossibleGamesReceived = | string | null
+export type PossibleValuesReceived = | boolean | PossibleSimpleTranslationKeys | null
+export type PossibleTypesReceived = PossibleTypes
 
-export type PossibleGames = | GameReferences | null;
-export type PossibleValues = | boolean | NotApplicable;
-export type PossibleSimpleTranslationKeys = `+ ${| 'sound' | '"Yatta"' | 'barks' | '"Yeah"' | 'humming' | 'singing' | 'Car sound'}` | null;
+export type PossibleGames = | GameReferences | null
+export type PossibleValues = | boolean | NotApplicable
+export type PossibleSimpleTranslationKeys = `+ ${| 'sound' | '"Yatta"' | 'barks' | '"Yeah"' | 'humming' | 'singing' | 'Car sound'}` | null
 export type PossibleTranslationKeys = | 'Introduction' | 'Startup' | 'Game over'
                                       | `${| 'Level' | 'Race'} finished` | 'Level finished?'
                                       | `${| 'Airship' | 'Timed event' | 'Course'} completed`
@@ -28,5 +28,5 @@ export type PossibleTranslationKeys = | 'Introduction' | 'Startup' | 'Game over'
                                       | 'New technique acquired' | 'Gym Leader victory' | 'Rank up' | 'Secret area discovered' | 'Declaring the Splatfest\'s winning team'
                                       | 'Bowser\'s arrival' | 'Link meets Zelda for the 1st time' | 'Ganon encounter'
                                       | '3DS preview jingle'
-                                      | '???' | null;
-export type PossibleTypes = | 'Marimba' | 'Rock' | null;
+                                      | '???' | null
+export type PossibleTypes = | 'Marimba' | 'Rock' | null

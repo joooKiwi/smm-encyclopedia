@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Instrument.json';
+import resource from '../../resources/compiled/Instrument.json'
 
-import type {Instrument}                                from './Instrument';
-import type {InstrumentTemplate}                        from './Instrument.template';
-import type {Loader}                                    from '../../util/loader/Loader';
-import type {PossibleEnglishName}                       from './Instruments.types';
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Instrument}                                from './Instrument'
+import type {InstrumentTemplate}                        from './Instrument.template'
+import type {Loader}                                    from '../../util/loader/Loader'
+import type {PossibleEnglishName}                       from './Instruments.types'
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
-import {InstrumentBuilder}       from './Instrument.builder';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {InstrumentBuilder}       from './Instrument.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -35,7 +35,7 @@ enum Headers {
 
 type PropertiesArray = [
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- CSV array related types --------------------
 
@@ -48,22 +48,22 @@ export class InstrumentLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: InstrumentLoader;
+    static #instance?: InstrumentLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, Instrument>;
+    #map?: Map<PossibleEnglishName, Instrument>
 
     public load(): ReadonlyMap<PossibleEnglishName, Instrument> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, Instrument>();
+            const references = new Map<PossibleEnglishName, Instrument>()
 
 
             //region -------------------- CSV Loader --------------------
@@ -74,17 +74,17 @@ export class InstrumentLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_instrument, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "instrument" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "instrument" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "instrument" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "instrument" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -93,17 +93,17 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<InstrumentTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap(): typeof Headers {
-        return Headers;
+        return Headers
     }
 
     public override build(): InstrumentTemplate {
         return {
             name: this._createNameTemplate(),
-        };
+        }
     }
 
 }

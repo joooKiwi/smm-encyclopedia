@@ -1,14 +1,14 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                  from '../ClassWithEnglishName';
-import type {ClassWithImagePath}                                                                                                                                                                                                                                    from '../ClassWithImagePath';
-import type {ClassWithReference}                                                                                                                                                                                                                                    from '../ClassWithReference';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeCategories.types';
-import type {MiiCostumeCategory}                                                                                                                                                                                                                                    from './MiiCostumeCategory';
-import type {StaticReference}                                                                                                                                                                                                                                       from '../../util/enum/Enum.types';
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                  from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                                                                                                                                                                                    from '../ClassWithImagePath'
+import type {ClassWithReference}                                                                                                                                                                                                                                    from '../ClassWithReference'
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeCategories.types'
+import type {MiiCostumeCategory}                                                                                                                                                                                                                                    from './MiiCostumeCategory'
+import type {StaticReference}                                                                                                                                                                                                                                       from '../../util/enum/Enum.types'
 
-import {BASE_PATH}       from '../../variables';
-import {Enum}            from '../../util/enum/Enum';
-import {Import}          from '../../util/DynamicImporter';
-import {StringContainer} from '../../util/StringContainer';
+import {BASE_PATH}       from '../../variables'
+import {Enum}            from '../../util/enum/Enum'
+import {Import}          from '../../util/DynamicImporter'
+import {StringContainer} from '../../util/StringContainer'
 
 /**
  * @recursiveReference {@link MiiCostumeCategoryLoader}
@@ -22,38 +22,38 @@ export class MiiCostumeCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly HEADGEAR = new MiiCostumeCategories('Headgear', 1,);
-    public static readonly TOP =      new MiiCostumeCategories('Top', 0,);
-    public static readonly COSTUME =  new MiiCostumeCategories('Costume', 3,);
-    public static readonly BOTTOM =   new MiiCostumeCategories('Bottom', 2,);
+    public static readonly HEADGEAR = new MiiCostumeCategories('Headgear', 1,)
+    public static readonly TOP =      new MiiCostumeCategories('Top', 0,)
+    public static readonly COSTUME =  new MiiCostumeCategories('Costume', 3,)
+    public static readonly BOTTOM =   new MiiCostumeCategories('Bottom', 2,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: MiiCostumeCategories;
+    static [index: number]: MiiCostumeCategories
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>;
+    static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>
 
-    #reference?: MiiCostumeCategory;
-    readonly #englishName: StringContainer<PossibleEnglishName>;
-    readonly #imageName: PossibleImageName;
-    #imagePath?: PossibleImagePath;
+    #reference?: MiiCostumeCategory
+    readonly #englishName: StringContainer<PossibleEnglishName>
+    readonly #imageName: PossibleImageName
+    #imagePath?: PossibleImagePath
 
     //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
-        super();
-        this.#englishName = new StringContainer(englishName);
-        this.#imageName = `DressIcon_0${imageNumber}`;
+        super()
+        this.#englishName = new StringContainer(englishName)
+        this.#imageName = `DressIcon_0${imageNumber}`
     }
 
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, MiiCostumeCategory> {
-        return this.#REFERENCE_MAP ??= Import.MiiCostumeCategoryLoader.get.load();
+        return this.#REFERENCE_MAP ??= Import.MiiCostumeCategoryLoader.get.load()
     }
 
     /**
@@ -61,38 +61,38 @@ export class MiiCostumeCategories
      * @semiAsynchronously
      */
     public get reference(): MiiCostumeCategory {
-        return this.#reference ??= MiiCostumeCategories.REFERENCE_MAP.get(this.englishName)!;
+        return this.#reference ??= MiiCostumeCategories.REFERENCE_MAP.get(this.englishName)!
     }
 
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName.get;
+        return this.#englishName.get
     }
 
     public get englishNameInHtml(): string {
-        return this.#englishName.getInHtml;
+        return this.#englishName.getInHtml
     }
 
     public get imageName(): PossibleImageName {
-        return this.#imageName;
+        return this.#imageName
     }
 
     public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/${BASE_PATH}/category/${this.imageName}^s.tiff`;
+        return this.#imagePath ??= `/${BASE_PATH}/category/${this.imageName}^s.tiff`
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(soundEffectCategory => soundEffectCategory.englishName);
+        return this.values.map(soundEffectCategory => soundEffectCategory.englishName)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<MiiCostumeCategories> {
-        return MiiCostumeCategories;
+        return MiiCostumeCategories
     }
 
     //region -------------------- Enum value methods --------------------
@@ -100,7 +100,7 @@ export class MiiCostumeCategories
     protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value
                 || enumerable.imageName === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(nullValue: | null | undefined,): null
@@ -113,17 +113,17 @@ export class MiiCostumeCategories
     public static getValue(value: PossibleNonNullableValue,): MiiCostumeCategories
     public static getValue(value: PossibleValue,): | MiiCostumeCategories | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

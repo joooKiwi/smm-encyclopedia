@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Course tag (SMM2).json';
+import resource from '../../resources/compiled/Course tag (SMM2).json'
 
-import type {CourseTag}                                              from './CourseTag';
-import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template';
-import type {Loader}                                                 from '../../util/loader/Loader';
-import type {PossibleEnglishName, PossibleMakerCentralName}          from './CourseTags.types';
-import type {PropertiesArray as LanguagesPropertyArray}              from '../../lang/Loader.types';
+import type {CourseTag}                                              from './CourseTag'
+import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template'
+import type {Loader}                                                 from '../../util/loader/Loader'
+import type {PossibleEnglishName, PossibleMakerCentralName}          from './CourseTags.types'
+import type {PropertiesArray as LanguagesPropertyArray}              from '../../lang/Loader.types'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {CourseTagBuilder}        from './CourseTag.builder';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {CourseTagBuilder}        from './CourseTag.builder'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
 
 //region -------------------- CSV array related types --------------------
 
@@ -43,7 +43,7 @@ type ExclusivePropertiesArray = [
     isAnOfficialTag: boolean,
     makerCentralName: | PossibleMakerCentralName | null,
     firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker,
-];
+]
 
 type PropertiesArray = [
     ...ExclusivePropertiesArray,
@@ -63,22 +63,22 @@ export class CourseTagLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: CourseTagLoader;
+    static #instance?: CourseTagLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, CourseTag>;
+    #map?: Map<PossibleEnglishName, CourseTag>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseTag> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, CourseTag>();
+            const references = new Map<PossibleEnglishName, CourseTag>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -90,17 +90,17 @@ export class CourseTagLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set((finalContent.english ?? finalContent.americanEnglish) as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "course tag" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "course tag" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "course tag" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "course tag" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -109,11 +109,11 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<CourseTagTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): CourseTagTemplate {
@@ -124,7 +124,7 @@ class TemplateBuilder
             },
             isOfficial: this._getContent(this._headersIndexMap.isAnOfficialTag),
             firstAppearance: this._getContent(this._headersIndexMap.firstAppearanceInMarioMaker),
-        };
+        }
     }
 
 }

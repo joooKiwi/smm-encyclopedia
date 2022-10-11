@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Predefined message (SMM2).json';
+import resource from '../../resources/compiled/Predefined message (SMM2).json'
 
-import type {Loader}                                                         from '../../util/loader/Loader';
-import type {PredefinedMessage}                                              from './PredefinedMessage';
-import type {PredefinedMessageTemplate}                                      from './PredefinedMessage.template';
-import type {PossibleEnglishName}                                            from './PredefinedMessages.types';
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                                         from '../../util/loader/Loader'
+import type {PredefinedMessage}                                              from './PredefinedMessage'
+import type {PredefinedMessageTemplate}                                      from './PredefinedMessage.template'
+import type {PossibleEnglishName}                                            from './PredefinedMessages.types'
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../lang/Loader.types'
 
-import {AbstractTemplateBuilder}  from '../_template/AbstractTemplate.builder';
-import {CSVLoader}                from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor}  from '../_util/loader/HeaderTypesForConvertor';
-import {PredefinedMessageBuilder} from './PredefinedMessage.builder';
+import {AbstractTemplateBuilder}  from '../_template/AbstractTemplate.builder'
+import {CSVLoader}                from '../../util/loader/CSVLoader'
+import {HeaderTypesForConvertor}  from '../_util/loader/HeaderTypesForConvertor'
+import {PredefinedMessageBuilder} from './PredefinedMessage.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -37,7 +37,7 @@ enum Headers {
 
 type PropertiesArray = [
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- Exclusive properties --------------------
 
@@ -52,22 +52,22 @@ export class PredefinedMessageLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: PredefinedMessageLoader;
+    static #instance?: PredefinedMessageLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, PredefinedMessage>;
+    #map?: Map<PossibleEnglishName, PredefinedMessage>
 
     public load(): ReadonlyMap<PossibleEnglishName, PredefinedMessage> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, PredefinedMessage>();
+            const references = new Map<PossibleEnglishName, PredefinedMessage>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -77,17 +77,17 @@ export class PredefinedMessageLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_predefinedMessage, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "Predefined message" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "Predefined message" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "Predefined message" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "Predefined message" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -96,17 +96,17 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<PredefinedMessageTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): PredefinedMessageTemplate {
         return {
             name: this._createNameTemplate(),
-        };
+        }
     }
 
 }

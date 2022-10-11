@@ -1,4 +1,4 @@
-import type {ReactElement} from '../util/react/ReactProperties';
+import type {ReactElement} from '../util/react/ReactProperties'
 
 export interface SimpleRoute<NAME extends string, PATH extends string, > {
 

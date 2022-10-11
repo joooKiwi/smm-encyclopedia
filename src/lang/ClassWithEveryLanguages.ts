@@ -1,6 +1,6 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './name/containers/Language';
-import type {ClassWithOnlyProjectLanguages, PossibleLanguageValue}                                                                           from './ClassWithOnlyProjectLanguages';
-import type {EveryLanguages}                                                                                                                 from './EveryLanguages';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './name/containers/Language'
+import type {ClassWithOnlyProjectLanguages, PossibleLanguageValue}                                                                           from './ClassWithOnlyProjectLanguages'
+import type {EveryLanguages}                                                                                                                 from './EveryLanguages'
 
 /**
  * <p>
@@ -95,6 +95,6 @@ export type CompleteClassWithEveryLanguages<T, > = ClassWithEveryLanguages<T,
     T,
     T,
     ChineseOriginal<T>, T, T, T,
-    T>;
+    T>
 
-export type AnyClassWithEveryLanguages<T, > = | ClassWithEveryLanguages<T> | CompleteClassWithEveryLanguages<T>;
+export type AnyClassWithEveryLanguages<T, > = | ClassWithEveryLanguages<T> | CompleteClassWithEveryLanguages<T>

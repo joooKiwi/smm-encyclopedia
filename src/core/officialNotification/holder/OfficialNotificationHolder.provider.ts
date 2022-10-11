@@ -1,10 +1,10 @@
-import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types';
-import type {OfficialNotifications}             from '../OfficialNotifications';
-import type {OfficialNotificationHolder}        from './OfficialNotificationHolder';
-import type {ProviderWithKey}                   from '../../../util/provider/ProviderWithKey';
+import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
+import type {OfficialNotifications}             from '../OfficialNotifications'
+import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
+import type {ProviderWithKey}                   from '../../../util/provider/ProviderWithKey'
 
-import {AbstractProvider}                    from '../../../util/provider/AbstractProvider';
-import {OfficialNotificationHolderContainer} from './OfficialNotificationHolder.container';
+import {AbstractProvider}                    from '../../../util/provider/AbstractProvider'
+import {OfficialNotificationHolderContainer} from './OfficialNotificationHolder.container'
 
 /**
  * @singleton
@@ -15,14 +15,14 @@ export class OfficialNotificationHolderProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: OfficialNotificationHolderProvider;
+    static #instance?: OfficialNotificationHolderProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -45,17 +45,17 @@ export class OfficialNotificationHolderProvider
     public get(key: Key, ...argumentsReceived: ArgumentsReceived | ArgumentsReceived_Simplified): OfficialNotificationHolder {
         if (argumentsReceived.length === 1)
             // @ts-ignore
-            return this.get(key, argumentsReceived[0], null,);
+            return this.get(key, argumentsReceived[0], null,)
 
         return this.everyContainers.if(map => map.has(key))
             .isNotMet(map => map.set(key, new OfficialNotificationHolderContainer(argumentsReceived[0], argumentsReceived[1],)))
-            .get(key);
+            .get(key)
     }
 }
 
-type Key = PossibleEnglishNameWithOnlyAmount;
+type Key = PossibleEnglishNameWithOnlyAmount
 type ArgumentsReceived = readonly [
     officialNotification: OfficialNotifications,
     amount: | number | null,
-];
+]
 type ArgumentsReceived_Simplified = readonly [OfficialNotifications,]

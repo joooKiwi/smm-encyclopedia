@@ -1,6 +1,6 @@
-import type {Builder}             from '../../../../util/builder/Builder';
-import type {ClearConditionImage} from './ClearConditionImage';
-import type {PossibleEnglishName} from '../../Entities.types';
+import type {Builder}             from '../../../../util/builder/Builder'
+import type {ClearConditionImage} from './ClearConditionImage'
+import type {PossibleEnglishName} from '../../Entities.types'
 
 interface ImageNameMap {
 
@@ -417,23 +417,21 @@ interface ImageNameMap {
     'Toad': NoImages
     'Caged Toadette': NoImages
 
-    'Bubble': NoImages,
+    'Bubble': NoImages
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    //Toad
-
 }
 
-type NoImages = readonly [null, null,];
+type NoImages = readonly [null, null,]
 
-type Name<NAME extends SimpleImageName, NUMBER extends ImageNumber, > = `${NAME}_0${NUMBER}`;
-type Name_0<NAME extends SimpleImageName, > = Name<NAME, 0>;
+type Name<NAME extends SimpleImageName, NUMBER extends ImageNumber, > = `${NAME}_0${NUMBER}`
+type Name_0<NAME extends SimpleImageName, > = Name<NAME, 0>
 
-export type SimpleImageName = ImageNameMap[PossibleEnglishName][0];
-export type ImageName = ImageNameMap[PossibleEnglishName][1];
+export type SimpleImageName = ImageNameMap[PossibleEnglishName][0]
+export type ImageName = ImageNameMap[PossibleEnglishName][1]
 
-export type PossibleAmountOfImages = | 1 | 2 | 3;
-export type ImageNumber = | 0 | 1 | 2;
+export type PossibleAmountOfImages = | 1 | 2 | 3
+export type ImageNumber = | 0 | 1 | 2
 
-export type PossibleImageReceivedOnFactory = | Builder<ClearConditionImage> | SimpleImageName | null;
+export type PossibleImageReceivedOnFactory = | Builder<ClearConditionImage> | SimpleImageName | null

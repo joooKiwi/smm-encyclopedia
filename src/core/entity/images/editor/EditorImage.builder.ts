@@ -1,16 +1,24 @@
-import type {Builder}                                                                          from '../../../../util/builder/Builder';
-import type {EditorImage}                                                                      from './EditorImage';
-import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList';
-import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles';
-import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types';
+import type {Builder}                                                                          from '../../../../util/builder/Builder'
+import type {EditorImage}                                                                      from './EditorImage'
+import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList'
+import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles'
+import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types'
 
-import {AbstractImageBuilder} from '../AbstractImage.builder';
-import {EditorImageContainer} from './EditorImage.container';
-import {EMPTY_MAP}            from '../../../../util/emptyVariables';
-import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container';
-import {GameStyles}           from '../GameStyles';
-import {Themes}               from '../../../theme/Themes';
-import {Times}                from '../../../time/Times';
+import {AbstractImageBuilder} from '../AbstractImage.builder'
+import {EditorImageContainer} from './EditorImage.container'
+import {EMPTY_MAP}            from '../../../../util/emptyVariables'
+import {ExtendedSetContainer} from '../../../../util/extended/ExtendedSet.container'
+import {GameStyles}           from '../GameStyles'
+import {Themes}               from '../../../theme/Themes'
+import {Times}                from '../../../time/Times'
+
+//region -------------------- Import from deconstruction --------------------
+
+const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3,} = GameStyles
+const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,} = Themes
+const {DAY, NIGHT,} = Times
+
+//endregion -------------------- Import from deconstruction --------------------
 
 export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
     extends AbstractImageBuilder<NAME, PossibleAmountOfImages>
@@ -18,18 +26,18 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     //region -------------------- Fields --------------------
 
-    static readonly #SIMPLE_POWER_UP_ENDING: VariantEditorImage_PowerUp = 'Uni';
-    static readonly #POWER_UP_ENDING: `${VariantEditorImage_PowerUp}_00` = `${this.#SIMPLE_POWER_UP_ENDING}_00`;
+    static readonly #SIMPLE_POWER_UP_ENDING: VariantEditorImage_PowerUp = 'Uni'
+    static readonly #POWER_UP_ENDING: `${VariantEditorImage_PowerUp}_00` = `${this.#SIMPLE_POWER_UP_ENDING}_00`
 
-    #type: PossibleType;
-    #defaultType: PossibleDefaultType;
+    #type: PossibleType
+    #defaultType: PossibleDefaultType
 
-    #times?: ExtendedList<Times>;
-    #themes?: ExtendedList<Themes>;
+    #times?: ExtendedList<Times>
+    #themes?: ExtendedList<Themes>
 
-    readonly #selectedMap: Map<Times, Map<GameStyles, Map<Themes, boolean>>>;
-    #overrideDefaultAmount?: Map<GameStyles, PossibleAmountOfImages>;
-    #overrideMap?: Map<Times, Map<GameStyles, Map<Themes, PossibleAmountOfImages>>>;
+    readonly #selectedMap: Map<Times, Map<GameStyles, Map<Themes, boolean>>>
+    #overrideDefaultAmount?: Map<GameStyles, PossibleAmountOfImages>
+    #overrideMap?: Map<Times, Map<GameStyles, Map<Themes, PossibleAmountOfImages>>>
 
     //endregion -------------------- Fields --------------------
 
@@ -67,14 +75,14 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      */
     public constructor(simpleImageName: NAME, imageNumber: PossibleAmountOfImages,)
     public constructor(simpleImageName: NAME, imageNumber?: PossibleAmountOfImages,) {
-        super(simpleImageName, imageNumber,);
+        super(simpleImageName, imageNumber,)
 
         if (imageNumber == null) {
-            this.#type = 1;
-            this.#defaultType = 'ground';
+            this.#type = 1
+            this.#defaultType = 'ground'
         } else {
-            this.#type = null;
-            this.#defaultType = imageNumber;
+            this.#type = null
+            this.#defaultType = imageNumber
         }
 
         this.#selectedMap = new Map(Times.values.map(time => [time,
@@ -82,7 +90,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
                 new Map(Themes.courseThemes.map(theme => [theme, false,
                 ])),
             ])),
-        ]));
+        ]))
     }
 
     //region -------------------- Getter & setter methods --------------------
@@ -90,50 +98,50 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     //region -------------------- Selected map --------------------
 
     protected get _selectedMap(): Map<Times, Map<GameStyles, Map<Themes, boolean>>> {
-        return this.#selectedMap;
+        return this.#selectedMap
     }
 
     public get selectedMap(): ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, boolean>>> {
-        return this.#selectedMap;
+        return this.#selectedMap
     }
 
     protected _add(times: readonly Times[], gameStyles: readonly OriginalGameStyles[], themes: readonly Themes[],): this {
-        const map = this._selectedMap;
-        const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
+        const map = this._selectedMap
+        const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle))
 
         times.forEach(time =>
             _gameStyles.forEach(gameStyle =>
                 themes.forEach(theme =>
                     map.get(time)!.get(gameStyle)!.set(theme, true,))
             )
-        );
-        return this.#addTimes(times)._addGameStyle(_gameStyles).#addThemes(themes);
+        )
+        return this.#addTimes(times)._addGameStyle(_gameStyles).#addThemes(themes)
     }
 
     //endregion -------------------- Selected map --------------------
     //region -------------------- Type / default type --------------------
 
     protected get _type(): PossibleType {
-        return this.#type;
+        return this.#type
     }
 
     protected get _defaultType(): PossibleDefaultType {
-        return this.#defaultType;
+        return this.#defaultType
     }
 
     protected _setType(value: PossibleType,): this {
-        this.#type = value;
-        return this;
+        this.#type = value
+        return this
     }
 
     protected _setDefaultType(value: PossibleDefaultType,): this {
-        this.#defaultType = value;
-        return this;
+        this.#defaultType = value
+        return this
     }
 
 
     public setAsPowerUp(): this {
-        return this._setType(null)._setDefaultType('power-up');
+        return this._setType(null)._setDefaultType('power-up')
     }
 
     /**
@@ -142,35 +150,35 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param value the total amount (excluding the game styles) of possible images
      */
     public setAmount(value: PossibleAmountOfImages,): this {
-        return this._setType(value);
+        return this._setType(value,)
     }
 
     public hasNoDefaultImage(): this {
-        return this._setDefaultType(null);
+        return this._setDefaultType(null,)
     }
 
     public setAsSnow(): this {
-        return this._setDefaultType('snow');
+        return this._setDefaultType('snow',)
     }
 
     //endregion -------------------- Type / default type --------------------
     //region -------------------- Time --------------------
 
     private get __times(): ExtendedList<Times> {
-        return this.#times ??= new ExtendedSetContainer();
+        return this.#times ??= new ExtendedSetContainer()
     }
 
     protected get _times(): ExtendedList<Times> {
-        return this.#times ?? ExtendedSetContainer.EMPTY;
+        return this.#times ?? ExtendedSetContainer.EMPTY
     }
 
     #addTimes(time: Times,): this
     #addTimes(times: readonly Times[],): this
     #addTimes(times: | Times | readonly Times[],): this {
         if (!(times instanceof Array))
-            return this.#addTimes([times]);
-        this.__times.add(...times);
-        return this;
+            return this.#addTimes([times,],)
+        this.__times.add(...times,)
+        return this
     }
 
     //endregion -------------------- Time --------------------
@@ -182,116 +190,116 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     protected override _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles?: readonly OriginalGameStyles[],): this
     protected override _setGameStyle(gameStyles: | OriginalGameStyles | readonly OriginalGameStyles[], notGameStyles: readonly OriginalGameStyles[] = [],): this {
         if (!(gameStyles instanceof Array))
-            return this._setGameStyle([gameStyles], notGameStyles,);
+            return this._setGameStyle([gameStyles], notGameStyles,)
 
-        const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
-        const _notGameStyles = notGameStyles.map(gameStyle => GameStyles.getValue(gameStyle));
+        const _gameStyles = gameStyles.map(gameStyle => GameStyles.getValue(gameStyle))
+        const _notGameStyles = notGameStyles.map(gameStyle => GameStyles.getValue(gameStyle))
 
         return this._clearGameStyle()
-            ._add(Times.values, _gameStyles.filter(gameStyle => !_notGameStyles.includes(gameStyle)), [],);
+            ._add(Times.values, _gameStyles.filter(gameStyle => !_notGameStyles.includes(gameStyle)), [],)
     }
 
     //endregion -------------------- Game Style --------------------
     //region -------------------- Theme --------------------
 
     private get __themes(): ExtendedList<Themes> {
-        return this.#themes ??= new ExtendedSetContainer();
+        return this.#themes ??= new ExtendedSetContainer()
     }
 
     protected get _themes(): ExtendedList<Themes> {
-        return this.#themes ?? ExtendedSetContainer.EMPTY;
+        return this.#themes ?? ExtendedSetContainer.EMPTY
     }
 
     #addThemes(theme: Themes,): this
     #addThemes(themes: readonly Themes[],): this
     #addThemes(themes: Themes | readonly Themes[],): this {
         if (!(themes instanceof Array))
-            return this.#addThemes([themes]);
-        this.__themes.add(...themes.map(theme => Themes.getValue(theme)));
-        return this;
+            return this.#addThemes([themes])
+        this.__themes.add(...themes.map(theme => Themes.getValue(theme)))
+        return this
     }
 
     #setThemes(time: Times, gameStyle: OriginalGameStyles, themes: readonly Themes[], notThemes: readonly Themes[] = [],): this {
-        this.__themes.clear();
-        return this._add([time], [gameStyle], themes.filter(theme => !notThemes.includes(theme)),);
+        this.__themes.clear()
+        return this._add([time], [gameStyle], themes.filter(theme => !notThemes.includes(theme)),)
     }
 
 
     public setTheme(gameStyle: OriginalGameStyles,): never
     public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.#setThemes(Times.DAY, gameStyle, themes,);
+        return this.#setThemes(DAY, gameStyle, themes,)
     }
 
     public setNotTheme(gameStyle: OriginalGameStyles,): never
     public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setNotTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.#setThemes(Times.DAY, gameStyle, Themes.courseThemes, themes,);
+        return this.#setThemes(DAY, gameStyle, Themes.courseThemes, themes,)
     }
 
 
     public setNightTheme(gameStyle: OriginalGameStyles,): never
     public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.#setThemes(Times.NIGHT, gameStyle, themes,);
+        return this.#setThemes(NIGHT, gameStyle, themes,)
     }
 
     public setNotNightTheme(gameStyle: OriginalGameStyles,): never
     public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this
     public setNotNightTheme(gameStyle: OriginalGameStyles, ...themes: readonly Themes[]): this {
-        return this.#setThemes(Times.NIGHT, gameStyle, Themes.courseThemes, themes,);
+        return this.#setThemes(NIGHT, gameStyle, Themes.courseThemes, themes,)
     }
 
     //endregion -------------------- Theme --------------------
     //region -------------------- Override images --------------------
 
     private get __overrideImages(): Map<Times, Map<GameStyles, Map<Themes, PossibleAmountOfImages>>> {
-        return this.#overrideMap ??= new Map();
+        return this.#overrideMap ??= new Map()
     }
 
     protected get _overrideImages(): ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, PossibleAmountOfImages>>> {
-        return this.#overrideMap ?? EMPTY_MAP;
+        return this.#overrideMap ?? EMPTY_MAP
     }
 
     #setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: OriginalGameStyles, theme: | Themes | null,): this {
         if (!(gameStyle instanceof GameStyles))
-            return this.#setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,);
+            return this.#setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,)
 
-        const times = time == null ? Times.values : [time] as const;
-        const themes = theme == null ? Themes.courseThemes : [theme] as const;
+        const times = time == null ? Times.values : [time] as const
+        const themes = theme == null ? Themes.courseThemes : [theme] as const
 
-        const overrideMap = this.__overrideImages;
+        const overrideMap = this.__overrideImages
 
         times.forEach(time => {
             if (!overrideMap.has(time))
-                overrideMap.set(time, new Map());
-            const timeMap = overrideMap.get(time)!;
+                overrideMap.set(time, new Map())
+            const timeMap = overrideMap.get(time)!
 
             if (!timeMap.has(gameStyle))
-                timeMap.set(gameStyle, new Map());
-            const gameStyleMap = timeMap.get(gameStyle)!;
+                timeMap.set(gameStyle, new Map())
+            const gameStyleMap = timeMap.get(gameStyle)!
 
-            themes.forEach(theme => gameStyleMap.set(theme, imageNumber,));
-        });
+            themes.forEach(theme => gameStyleMap.set(theme, imageNumber,))
+        })
 
-        return this;
+        return this
     }
 
 
     private get __overrideDefaultAmounts(): Map<GameStyles, PossibleAmountOfImages> {
-        return this.#overrideDefaultAmount ??= new Map();
+        return this.#overrideDefaultAmount ??= new Map()
     }
 
     protected get _overrideDefaultAmounts(): ReadonlyMap<GameStyles, PossibleAmountOfImages> {
-        return this.#overrideDefaultAmount ?? EMPTY_MAP;
+        return this.#overrideDefaultAmount ?? EMPTY_MAP
     }
 
     protected _setOverrideDefaultAmounts(number: PossibleAmountOfImages, gameStyle: OriginalGameStyles,): this {
         if (!(gameStyle instanceof GameStyles))
-            return this._setOverrideDefaultAmounts(number, GameStyles.getValue(gameStyle),);
+            return this._setOverrideDefaultAmounts(number, GameStyles.getValue(gameStyle),)
 
-        this.__overrideDefaultAmounts.set(gameStyle, number,);
-        return this;
+        this.__overrideDefaultAmounts.set(gameStyle, number,)
+        return this
     }
 
 
@@ -304,7 +312,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param imageNumber the image number
      */
     public setImage(gameStyle: OriginalGameStyles, theme: | Themes | null, time: | Times | null, imageNumber: PossibleAmountOfImages,): this {
-        return this.#setOverrideImages(imageNumber, time, gameStyle, theme,);
+        return this.#setOverrideImages(imageNumber, time, gameStyle, theme,)
     }
 
     /**
@@ -316,7 +324,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param number the default amount
      */
     public setDefaultAmount(gameStyle: OriginalGameStyles, number: PossibleAmountOfImages,): this {
-        return this._setOverrideDefaultAmounts(number, gameStyle,);
+        return this._setOverrideDefaultAmounts(number, gameStyle,)
     }
 
     //endregion -------------------- Override images --------------------
@@ -326,17 +334,17 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
     public setAsDifferentInSMBAndSMB3(): this {
         return this
-            .setTheme(GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND, Themes.GHOST_HOUSE, Themes.CASTLE,)
-            .setTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND, Themes.GHOST_HOUSE, Themes.CASTLE,)
-            .setNightTheme(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.AIRSHIP,)
-            .setNightTheme(GameStyles.SUPER_MARIO_BROS_3, Themes.GROUND, Themes.UNDERWATER, Themes.DESERT, Themes.SNOW, Themes.SKY, Themes.FOREST, Themes.AIRSHIP,);
+            .setTheme(SUPER_MARIO_BROS, UNDERGROUND, GHOST_HOUSE, CASTLE,)
+            .setTheme(SUPER_MARIO_BROS_3, UNDERGROUND, GHOST_HOUSE, CASTLE,)
+            .setNightTheme(SUPER_MARIO_BROS, GROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, AIRSHIP,)
+            .setNightTheme(SUPER_MARIO_BROS_3, GROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, AIRSHIP,)
     }
 
     //endregion -------------------- Predefined utility methods --------------------
     //region -------------------- Build utility methods --------------------
 
     protected _getImagePath(gameStyle: GameStyles, ending: string = '',) {
-        return `${gameStyle.gamePath_editor}${gameStyle.gameAcronym}_Lyt_P_${this.simpleImageName}${ending}.tiff`;
+        return `${gameStyle.gamePath_editor}${gameStyle.gameAcronym}_Lyt_P_${this.simpleImageName}${ending}.tiff`
     }
 
     /**
@@ -363,122 +371,122 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     protected _getAmountBasedOnValue(time: null, gameStyle: GameStyles, theme: null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[]
     protected _getAmountBasedOnValue(time: | Times | null, gameStyle: GameStyles, theme: | Themes | null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {
         if (time == null || theme == null) {
-            const timeIterator = Times.values.values();
-            let nextTime = timeIterator.next();
+            const timeIterator = Times.values.values()
+            let nextTime = timeIterator.next()
             while (!nextTime.done) {
-                const amount = this._overrideImages.get(nextTime.value)?.get(gameStyle)?.get(Themes.GROUND);
+                const amount = this._overrideImages.get(nextTime.value)?.get(gameStyle)?.get(GROUND)
                 if (amount != null)
-                    return [amount - 1 as ImageNumber];
-                nextTime = timeIterator.next();
+                    return [amount - 1 as ImageNumber]
+                nextTime = timeIterator.next()
             }
         } else {
-            const amount = this._overrideImages.get(time)?.get(gameStyle)?.get(theme);
+            const amount = this._overrideImages.get(time)?.get(gameStyle)?.get(theme)
             if (amount != null)
-                return [amount - 1 as ImageNumber];
+                return [amount - 1 as ImageNumber]
         }
-        return [...new Array(this._overrideDefaultAmounts.get(gameStyle) ?? amountOfImages)].map((_value, index,) => index as ImageNumber,);
+        return [...new Array(this._overrideDefaultAmounts.get(gameStyle) ?? amountOfImages)].map((_value, index,) => index as ImageNumber,)
     }
 
 
     protected _createDefaultImages(): ReadonlyMap<OriginalGameStyles, readonly string[]> {
-        const defaultType = this._defaultType;
+        const defaultType = this._defaultType
 
         switch (typeof defaultType) {
             case 'string'://ground / snow / power-up
-                const imageNumber = this.imageNumber;
-                const type = this._type;
+                const imageNumber = this.imageNumber
+                const type = this._type
 
                 switch (defaultType) {
                     case 'ground':
                         if (type == null)
-                            throw new TypeError(`The type cannot be null for "${this.simpleImageName}" when the default type is set to the ground images.`);
-                        return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, this._getAmountBasedOnValue(null, gameStyle, null, type,).map(index => this._getImagePath(gameStyle, `_0${index}`,)),]));
+                            throw new TypeError(`The type cannot be null for "${this.simpleImageName}" when the default type is set to the ground images.`)
+                        return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, this._getAmountBasedOnValue(null, gameStyle, null, type,).map(index => this._getImagePath(gameStyle, `_0${index}`,)),]))
                     case 'snow':
                         if (imageNumber == null)
-                            throw new TypeError(`The image number cannot null for "${this.simpleImageName}" when the default type is set to the snow images.`);
-                        return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, [this._getImagePath(gameStyle, `_${Themes.SNOW.gameName}_0${imageNumber - 1}`,),],]));
+                            throw new TypeError(`The image number cannot null for "${this.simpleImageName}" when the default type is set to the snow images.`)
+                        return new Map(this._gameStyles.map(gameStyle => [gameStyle.parent, [this._getImagePath(gameStyle, `_${SNOW.gameName}_0${imageNumber - 1}`,),],]))
                     case 'power-up':
                         if (imageNumber != null)
                             return new Map(this._gameStyles.map(gameStyle => [
                                 gameStyle.parent,
                                 [this._getImagePath(gameStyle, `_0${imageNumber - 1}`,), this._getImagePath(gameStyle, `${EditorImageBuilder.#SIMPLE_POWER_UP_ENDING}_0${imageNumber - 1}`),],
-                            ]));
+                            ]))
                         return new Map(this._gameStyles.map(gameStyle => [
                             gameStyle.parent,
                             [this._getImagePath(gameStyle, '_00',), this._getImagePath(gameStyle, EditorImageBuilder.#POWER_UP_ENDING),],
-                        ]));
+                        ]))
                 }
-                break;
+                break
             case'number'://1-4
                 return new Map(this._gameStyles.map(gameStyle => [
                     gameStyle.parent,
                     [this._getImagePath(gameStyle, `_0${defaultType - 1}`,),],
-                ]));
+                ]))
             default://null
-                return EMPTY_MAP;
+                return EMPTY_MAP
         }
     }
 
 
     protected _createNewMap(callbackThatReturnNumbers: (time: Times, gameStyle: GameStyles, theme: Themes,) => readonly ImageNumber[],): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly string[]>>> {
-        const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<Themes, readonly string[]>>>();
+        const returnedMap = new Map<Times, Map<OriginalGameStyles, Map<Themes, readonly string[]>>>()
 
         this._selectedMap.forEach((timeMap, time,) => {
-            const isNightTheme = time === Times.NIGHT;
+            const isNightTheme = time === NIGHT
 
             timeMap.forEach((gameStyleMap, gameStyle,) => {
-                    const originalGameStyle = gameStyle.parent;
+                    const originalGameStyle = gameStyle.parent
 
                     gameStyleMap.forEach((isSelected, theme,) => {
                         if (!isSelected)
-                            return;
-                        const images = callbackThatReturnNumbers(time, gameStyle, theme,).map(number => this._getImagePath(gameStyle, `${theme.getGameName('', isNightTheme,)}_0${number}`));
+                            return
+                        const images = callbackThatReturnNumbers(time, gameStyle, theme,).map(number => this._getImagePath(gameStyle, `${theme.getGameName('', isNightTheme,)}_0${number}`))
                         if (images.length === 0)
-                            return;
+                            return
 
                         if (!returnedMap.has(time))
-                            returnedMap.set(time, new Map());
-                        const timeMap = returnedMap.get(time)!;
+                            returnedMap.set(time, new Map())
+                        const timeMap = returnedMap.get(time)!
 
                         if (!timeMap.has(originalGameStyle))
-                            timeMap.set(originalGameStyle, new Map());
-                        const gameStyleMap = timeMap.get(originalGameStyle)!;
+                            timeMap.set(originalGameStyle, new Map())
+                        const gameStyleMap = timeMap.get(originalGameStyle)!
 
-                        gameStyleMap.set(theme, images);
-                    });
+                        gameStyleMap.set(theme, images)
+                    })
                 }
-            );
-        });
+            )
+        })
 
-        return returnedMap;
+        return returnedMap
     }
 
     protected _createImages(): ReadonlyMap<Times, ReadonlyMap<OriginalGameStyles, ReadonlyMap<Themes, readonly string[]>>> {
-        const imageNumber = this.imageNumber;
+        const imageNumber = this.imageNumber
 
         if (imageNumber != null)
-            return this._createNewMap(() => [imageNumber - 1 as ImageNumber]);
+            return this._createNewMap(() => [imageNumber - 1 as ImageNumber])
 
-        const type = this._type;
+        const type = this._type
         switch (typeof type) {
             case 'number'://1-4
-                return this._createNewMap((time, gameStyle, theme,) => this._getAmountBasedOnValue(time, gameStyle, theme, type,),);
+                return this._createNewMap((time, gameStyle, theme,) => this._getAmountBasedOnValue(time, gameStyle, theme, type,),)
             default://null
-                return EMPTY_MAP;
+                return EMPTY_MAP
         }
     }
 
     //endregion -------------------- Build utility methods --------------------
 
     public build(): EditorImage {
-        return new EditorImageContainer(this._createImages(), this._createDefaultImages(),);
+        return new EditorImageContainer(this._createImages(), this._createDefaultImages(),)
     }
 
 }
 
 //region -------------------- Types --------------------
 
-type PossibleType = | PossibleAmountOfImages | null;
-type PossibleDefaultType = | 'ground' | 'power-up' | 'snow' | PossibleAmountOfImages | null;
+type PossibleType = | PossibleAmountOfImages | null
+type PossibleDefaultType = | 'ground' | 'power-up' | 'snow' | PossibleAmountOfImages | null
 
 //endregion -------------------- Types --------------------

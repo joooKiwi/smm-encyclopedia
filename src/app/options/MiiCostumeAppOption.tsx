@@ -1,27 +1,27 @@
-import {lazy} from 'react';
+import {lazy} from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeAppOption.types';
-import type {MiiCostumeAppStates}                                                                                                                                                   from '../AppStates.types';
-import type {MiiCostumes}                                                                                                                                                           from '../../core/miiCostume/MiiCostumes';
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
+import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeAppOption.types'
+import type {MiiCostumeAppStates}                                                                                                                                                   from '../AppStates.types'
+import type {MiiCostumes}                                                                                                                                                           from '../../core/miiCostume/MiiCostumes'
+import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
+import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
 
-import {AbstractAppOption}             from './AbstractAppOption';
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
-import {CommonOptions}                 from './CommonOptions';
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables';
-import {EmptyAppOption}                from './component/EmptyAppOption';
-import {Enum}                          from '../../util/enum/Enum';
-import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories';
+import {AbstractAppOption}             from './AbstractAppOption'
+import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
+import {CommonOptions}                 from './CommonOptions'
+import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
+import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
+import {EmptyAppOption}                from './component/EmptyAppOption'
+import {Enum}                          from '../../util/enum/Enum'
+import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories'
 
 //region -------------------- dynamic imports --------------------
 
-const Image = lazy(() => import('../tools/images/Image'));
+const Image = lazy(() => import('../tools/images/Image'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -38,81 +38,81 @@ export abstract class MiiCostumeAppOption
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
 
-                return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>;
-            };
+                return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,};
+            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,}
         }
 
-    }(true,);
+    }(true,)
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
-            return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION());
+            return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION())
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return CommonOptions.get.nameHeader;
+            return CommonOptions.get.nameHeader
         }
 
-    }(true,);
+    }(true,)
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const miiCostume = enumeration.reference;
+                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
+                const miiCostume = enumeration.reference
 
-                const {officialNotification} = miiCostume;
+                const {officialNotification} = miiCostume
 
                 return officialNotification == null
                     ? EMPTY_REACT_ELEMENT
-                    : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,);
+                    : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,)
 
-            };
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
             //TODO add new translation to the header value.
-            return {key: 'officialNotification', element: <>--Official notification--</>,};
+            return {key: 'officialNotification', element: <>--Official notification--</>,}
         }
 
-    }(true,);
+    }(true,)
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    categoryName = enumeration.reference.categoryContainer.nameContainer;
+                    categoryName = enumeration.reference.categoryContainer.nameContainer
 
                 return CommonOptions.get.getCategoryContent(enumeration,
                     () => MiiCostumeAppOption.CATEGORY_AS_TEXT.get
                         ? categoryName
-                        : MiiCostumeCategories.getValue(categoryName.english)!.imagePath,);
-            };
+                        : MiiCostumeCategories.getValue(categoryName.english)!.imagePath,)
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return CommonOptions.get.categoryHeader;
+            return CommonOptions.get.categoryHeader
         }
 
-    }(true,);
+    }(true,)
     /**
      * Tell whenever a {@link MiiCostumeAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
     public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
-    }(false,);
+    }(false,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: MiiCostumeAppOption;
+    static [index: number]: MiiCostumeAppOption
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -122,15 +122,15 @@ export abstract class MiiCostumeAppOption
      *
      * @note It should only be set by {@link MiiCostumeApp} and get by {@link MiiCostumeAppOption}.
      */
-    public static CALLBACK_TO_GET_ENUMERATION: () => MiiCostumes;
+    public static CALLBACK_TO_GET_ENUMERATION: () => MiiCostumes
 
-    #appOptionWithContent?: AppOptionWithContent;
-    #appOptionWithTable?: AppOptionWithTable;
+    #appOptionWithContent?: AppOptionWithContent
+    #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
 
     private constructor(defaultValue: boolean,) {
-        super(defaultValue,);
+        super(defaultValue,)
     }
 
     //region -------------------- Getter methods --------------------
@@ -140,40 +140,40 @@ export abstract class MiiCostumeAppOption
     //region -------------------- App option - content --------------------
 
     protected _createContentOption(): PossibleOptionWithContent {
-        return null;
+        return null
     }
 
     private get __appOptionWithContent(): AppOptionWithContent {
         if (this.#appOptionWithContent == null) {
-            const content = this._createContentOption();
+            const content = this._createContentOption()
             this.#appOptionWithContent = content == null
                 ? EmptyAppOption.get
-                : new AppOptionWithContentComponent(content,);
+                : new AppOptionWithContentComponent(content,)
         }
-        return this.#appOptionWithContent;
+        return this.#appOptionWithContent
     }
 
     public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent;
+        return this.__appOptionWithContent.renderContent
     }
 
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
     protected _createTableHeaderOption(): PossibleOptionWithTable {
-        return null;
+        return null
     }
 
     protected get __appOptionWithTable(): AppOptionWithTable {
         if (this.#appOptionWithTable == null) {
-            const content = this._createTableHeaderOption();
-            this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,);
+            const content = this._createTableHeaderOption()
+            this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,)
         }
-        return this.#appOptionWithTable;
+        return this.#appOptionWithTable
     }
 
     public get renderTableHeader(): | SingleHeaderContent | null {
-        return this.__appOptionWithTable.renderTableHeader;
+        return this.__appOptionWithTable.renderTableHeader
     }
 
     //endregion -------------------- App option - table --------------------
@@ -182,7 +182,7 @@ export abstract class MiiCostumeAppOption
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<MiiCostumeAppOption> {
-        return MiiCostumeAppOption;
+        return MiiCostumeAppOption
     }
 
     //region -------------------- Enum value methods --------------------
@@ -197,21 +197,21 @@ export abstract class MiiCostumeAppOption
     public static getValue(value: PossibleNonNullableValue,): MiiCostumeAppOption
     public static getValue(value: PossibleValue,): | MiiCostumeAppOption | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------
 }
 
-type PossibleOptionWithContent = | (() => PossibleRenderReactElement) | null;
-type PossibleOptionWithTable = | SingleHeaderContent | null;
+type PossibleOptionWithContent = | (() => PossibleRenderReactElement) | null
+type PossibleOptionWithTable = | SingleHeaderContent | null

@@ -1,12 +1,12 @@
-import type {EveryLanguages}                                                                                                                                                                                                             from './EveryLanguages';
-import type {SimpleEnum as OriginalSimpleEnum}                                                                                                                                                                                           from '../util/enum/Enum.types';
-import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from './ProjectLanguages.types';
+import type {EveryLanguages}                                                                                                                                                                                                             from './EveryLanguages'
+import type {SimpleEnum as OriginalSimpleEnum}                                                                                                                                                                                           from '../util/enum/Enum.types'
+import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from './ProjectLanguages.types'
 
-export type PossibleNonNullableValue = | EveryLanguages | Ordinals | PossibleStringValue;
+export type PossibleNonNullableValue = | EveryLanguages | Ordinals | PossibleStringValue
 export type PossibleStringValue = | Names
                                   | PossibleAcronym | PossibleInternationalAcronym
-                                  | PossibleEnglishName | PossibleOriginalName;
-export type PossibleValue = | EveryLanguages | number | string | null | undefined;
+                                  | PossibleEnglishName | PossibleOriginalName
+export type PossibleValue = | EveryLanguages | number | string | null | undefined
 
 enum Enum {
 
@@ -30,40 +30,40 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
 //region -------------------- Acronyms --------------------
 
-export type BasicAcronym = | 'en' | 'fr' | 'es' | 'pt' | 'zh';
-export type AdditionalAcronym = | 'he' | 'pl' | 'uk' | 'el';
-export type PossibleAcronym = | BasicAcronym | PossibleAcronym_Project | AdditionalAcronym;
+export type BasicAcronym = | 'en' | 'fr' | 'es' | 'pt' | 'zh'
+export type AdditionalAcronym = | 'he' | 'pl' | 'uk' | 'el'
+export type PossibleAcronym = | BasicAcronym | PossibleAcronym_Project | AdditionalAcronym
 
-export type PossibleInternationalAcronym = | BasicAcronym | PossibleInternationalAcronym_Project | AdditionalAcronym;
+export type PossibleInternationalAcronym = | BasicAcronym | PossibleInternationalAcronym_Project | AdditionalAcronym
 
 //endregion -------------------- Acronyms --------------------
 //region -------------------- Names --------------------
 
-export type BasicEnglishName = | 'English' | 'French' | 'Spanish' | 'Portuguese' | 'Chinese';
-export type AdditionalEnglishName = | 'Hebrew' | 'Polish' | 'Ukrainian' | 'Greek';
-export type PossibleEnglishName = | BasicEnglishName | PossibleEnglishName_Project | AdditionalEnglishName;
+export type BasicEnglishName = | 'English' | 'French' | 'Spanish' | 'Portuguese' | 'Chinese'
+export type AdditionalEnglishName = | 'Hebrew' | 'Polish' | 'Ukrainian' | 'Greek'
+export type PossibleEnglishName = | BasicEnglishName | PossibleEnglishName_Project | AdditionalEnglishName
 
-export type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人';
-export type AdditionalOriginalName = | 'עִברִית' | 'Polski' | 'Український' | 'ελληνικά';
-export type PossibleOriginalName = | BasicOriginalName | PossibleOriginalName_Project | AdditionalOriginalName;
+export type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人'
+export type AdditionalOriginalName = | 'עִברִית' | 'Polski' | 'Український' | 'ελληνικά'
+export type PossibleOriginalName = | BasicOriginalName | PossibleOriginalName_Project | AdditionalOriginalName
 
 //endregion -------------------- Names --------------------
 
-export type PossibleSpaceCharacter = | ' ' | '';
+export type PossibleSpaceCharacter = | ' ' | ''
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends EveryLanguages = EveryLanguages, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<T extends EveryLanguages = EveryLanguages, > = OriginalSimpleEnum<Names, T>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
@@ -85,6 +85,6 @@ export type EnumArray<T extends EveryLanguages = EveryLanguages, > = readonly [
     SimpleEnum<T>['POLISH'],
     SimpleEnum<T>['UKRAINIAN'],
     SimpleEnum<T>['GREEK'],
-];
+]
 
 //endregion -------------------- Array types --------------------

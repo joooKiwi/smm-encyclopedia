@@ -1,5 +1,5 @@
-import {AssertionError} from 'assert';
-import {isInProduction} from '../variables';
+import {AssertionError} from 'assert'
+import {isInProduction} from '../variables'
 
 /**
  * Validate if an array is equals to another one.
@@ -11,28 +11,28 @@ import {isInProduction} from '../variables';
  */
 export function isArrayEquals(firstArray: readonly any[], secondArray: readonly any[],): boolean {
     if (firstArray === secondArray)
-        return true;
+        return true
     if (firstArray.length !== secondArray.length)
-        return false;
+        return false
 
-    const length = firstArray.length;
+    const length = firstArray.length
 
     for (let i = 0; i < length; i++) {
-        const elementInFirstArray = firstArray[i];
-        const elementInSecondArray = secondArray[i];
+        const elementInFirstArray = firstArray[i]
+        const elementInSecondArray = secondArray[i]
         if (elementInFirstArray instanceof Array && elementInSecondArray instanceof Array)
             if (!isArrayEquals(elementInFirstArray, elementInSecondArray,))
-                return false;
+                return false
         if (firstArray[i] !== secondArray[i])
-            return false;
+            return false
     }
 
-    return true;
+    return true
 }
 
 export function assert(condition: boolean, message: string,): asserts condition {
     if (isInProduction)
-        return;
+        return
     if (!condition)
-        throw new AssertionError({message: message,});
+        throw new AssertionError({message: message,})
 }

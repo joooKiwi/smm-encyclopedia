@@ -1,10 +1,10 @@
-import type {Entities as RealEnum}                                                                                                                                                                                                                         from './Entities';
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
+import type {Entities as RealEnum}                                                                                                                                                                                                                         from './Entities'
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
 
 
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName;
-export type PossibleValue = | RealEnum | number | string | null | undefined;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
+export type PossibleStringValue = | Names | PossibleEnglishName
+export type PossibleValue = | RealEnum | number | string | null | undefined
 
 enum Enum {
 
@@ -168,30 +168,30 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
-export type PossibleEnglishName_BigMushroom = `Big Mushroom${| '' | ` (${'classic' | 'modern'})`}`;
-export type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto';
-export type PossibleEnglishName_Yoshi = `${| '' | 'Red '}Yoshi`;
-export type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`;
-export type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`;
-export type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`;
-export type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`;
-export type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`;
-export type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones';
-export type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell';
-export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`;
-export type PossibleEnglishName_SpikeTop = `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`;
-export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`;
-export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai';
-export type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate';
+export type PossibleEnglishName_BigMushroom = `Big Mushroom${| '' | ` (${'classic' | 'modern'})`}`
+export type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto'
+export type PossibleEnglishName_Yoshi = `${| '' | 'Red '}Yoshi`
+export type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`
+export type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`
+export type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`
+export type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`
+export type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`
+export type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
+export type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
+export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`
+export type PossibleEnglishName_SpikeTop = `${| '' | 'Fast '}${| '' | 'Winged '}Spike Top`
+export type PossibleEnglishName_BulletBill = `${`${| '' | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`
+export type PossibleEnglishName_BanzaiBill = `${| '' | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai'
+export type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate'
 export type PossibleEnglishName =
     | `${| '' | `${| 'Start' | 'Goal'} `}Ground`
     | `${| 'Steep' | 'Gentle'} Slope`
@@ -307,21 +307,21 @@ export type PossibleEnglishName =
     | 'Wing' | 'Parachute'
     | 'Toad' | 'Caged Toadette'
     | 'Bubble'
-    ;
+    
 
 //endregion -------------------- English name --------------------
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
 
-export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
+export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
 
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
@@ -460,6 +460,6 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'WING', E>, EnumByName<'PARACHUTE', E>,
     EnumByName<'TOAD', E>, EnumByName<'CAGED_TOADETTE', E>,
     EnumByName<'BUBBLE', E>,
-];
+]
 
 //endregion -------------------- Array types --------------------

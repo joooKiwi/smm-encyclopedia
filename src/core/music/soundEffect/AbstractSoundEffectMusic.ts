@@ -1,6 +1,6 @@
-import type {PossibleSoundEffectMusicEditorName, PossibleSoundEffectMusicFileName, PossibleSoundEffectMusicName, SoundEffectMusic} from './SoundEffectMusic';
+import type {PossibleSoundEffectMusicEditorName, PossibleSoundEffectMusicFileName, PossibleSoundEffectMusicName, SoundEffectMusic} from './SoundEffectMusic'
 
-import {AbstractMusic} from '../AbstractMusic';
+import {AbstractMusic} from '../AbstractMusic'
 
 export abstract class AbstractSoundEffectMusic<ALL extends PossibleSoundEffectMusicFileName, SOUND_EFFECT extends PossibleSoundEffectMusicName, EDITOR_SOUND_EFFECT extends PossibleSoundEffectMusicEditorName, >
     extends AbstractMusic<ALL>
@@ -8,25 +8,25 @@ export abstract class AbstractSoundEffectMusic<ALL extends PossibleSoundEffectMu
 
     //region -------------------- Fields --------------------
 
-    readonly #soundEffect;
-    readonly #editorSoundEffect;
+    readonly #soundEffect
+    readonly #editorSoundEffect
 
     //endregion -------------------- Fields --------------------
 
     protected constructor(name: SOUND_EFFECT, editorName: EDITOR_SOUND_EFFECT,) {
-        super();
-        this.#soundEffect = name == null ? name : name;
-        this.#editorSoundEffect = editorName == null ? editorName : editorName;
+        super()
+        this.#soundEffect = name == null ? name : name
+        this.#editorSoundEffect = editorName == null ? editorName : editorName
     }
 
     //region -------------------- Getter methods --------------------
 
     public get soundEffect(): SOUND_EFFECT {
-        return this.#soundEffect;
+        return this.#soundEffect
     }
 
     public get editorSoundEffect(): EDITOR_SOUND_EFFECT {
-        return this.#editorSoundEffect;
+        return this.#editorSoundEffect
     }
 
     //endregion -------------------- Getter methods --------------------

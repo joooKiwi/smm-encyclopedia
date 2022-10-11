@@ -123,4 +123,4 @@ export interface ClassWithOnlyProjectLanguages<T,
 /**
  * The possible language value as either the generic type or null.
  */
-export type PossibleLanguageValue<T, > = | T | null;
+export type PossibleLanguageValue<T, > = | T | null

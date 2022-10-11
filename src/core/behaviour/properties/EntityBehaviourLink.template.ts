@@ -1,5 +1,5 @@
-import {PossibleGroupName}                 from '../../entityTypes';
-import {PossibleEnglishName as EntityName} from '../../entity/Entities.types';
+import {PossibleGroupName}                 from '../../entityTypes'
+import {PossibleEnglishName as EntityName} from '../../entity/Entities.types'
 
 export interface EntityBehaviourLinkTemplate {
 

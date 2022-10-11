@@ -1,4 +1,4 @@
-import type {ReactElement} from '../../../util/react/ReactProperties';
+import type {ReactElement} from '../../../util/react/ReactProperties'
 
 export interface AppOptionWithContent {
 
@@ -6,4 +6,4 @@ export interface AppOptionWithContent {
 
 }
 
-export type PossibleRenderReactElement = | ReactElement | readonly ReactElement[];
+export type PossibleRenderReactElement = | ReactElement | readonly ReactElement[]

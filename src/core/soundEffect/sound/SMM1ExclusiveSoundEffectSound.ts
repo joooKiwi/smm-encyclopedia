@@ -1,5 +1,5 @@
-import type {PossibleEditorValue, SoundEffectSound} from './SoundEffectSound';
-import type {SMM1SoundEffectSoundFile}              from '../file/SMM1SoundEffectSoundFile';
+import type {PossibleEditorValue, SoundEffectSound} from './SoundEffectSound'
+import type {SMM1SoundEffectSoundFile}              from '../file/SMM1SoundEffectSoundFile'
 
 export interface SMM1ExclusiveSoundEffectSound<SOUNDS extends readonly SMM1SoundEffectSoundFile[] = readonly SMM1SoundEffectSoundFile[],
     EDITOR_SOUND extends PossibleEditorValue_SMM1<SOUNDS> = PossibleEditorValue_SMM1<SOUNDS>, >
@@ -7,4 +7,4 @@ export interface SMM1ExclusiveSoundEffectSound<SOUNDS extends readonly SMM1Sound
 
 }
 
-export type PossibleEditorValue_SMM1<SOUNDS extends readonly SMM1SoundEffectSoundFile[] = readonly SMM1SoundEffectSoundFile[], > = PossibleEditorValue<SOUNDS>;
+export type PossibleEditorValue_SMM1<SOUNDS extends readonly SMM1SoundEffectSoundFile[] = readonly SMM1SoundEffectSoundFile[], > = PossibleEditorValue<SOUNDS>

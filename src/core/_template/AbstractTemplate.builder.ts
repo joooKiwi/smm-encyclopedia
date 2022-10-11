@@ -1,12 +1,12 @@
-import type {Builder}                                                               from '../../util/builder/Builder';
-import type {EntityNameTemplate}                                                    from '../entity/Entity.template';
-import type {HasAReferenceInMarioMaker}                                             from '../entityTypes';
-import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template';
-import type {PartialGameEnumFrom1And2}                                              from './PartialGameEnumFrom1And2';
-import type {PartialGameEnumFromAllGames}                                           from './PartialGameEnumFromAllGames';
-import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum';
-import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types';
-import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}           from '../game/SimpleGame.template';
+import type {Builder}                                                               from '../../util/builder/Builder'
+import type {EntityNameTemplate}                                                    from '../entity/Entity.template'
+import type {HasAReferenceInMarioMaker}                                             from '../entityTypes'
+import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template'
+import type {PartialGameEnumFrom1And2}                                              from './PartialGameEnumFrom1And2'
+import type {PartialGameEnumFromAllGames}                                           from './PartialGameEnumFromAllGames'
+import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum'
+import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types'
+import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}           from '../game/SimpleGame.template'
 
 /**
  * An abstract template builder with a lot of utilities methods
@@ -17,23 +17,23 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
 
     //region -------------------- Fields --------------------
 
-    static readonly #EMPTY_HEBREW = null;
-    static readonly #EMPTY_POLISH = null;
-    static readonly #EMPTY_UKRAINIAN = null;
-    static readonly #EMPTY_GREEK = null;
+    static readonly #EMPTY_HEBREW = null
+    static readonly #EMPTY_POLISH = null
+    static readonly #EMPTY_UKRAINIAN = null
+    static readonly #EMPTY_GREEK = null
 
-    readonly #content;
+    readonly #content
 
     //endregion -------------------- Fields --------------------
 
     protected constructor(content: ARRAY,) {
-        this.#content = content;
+        this.#content = content
     }
 
     //region -------------------- Getter methods --------------------
 
     protected get _content(): ARRAY {
-        return this.#content;
+        return this.#content
     }
 
     /**
@@ -42,24 +42,24 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
      *
      * @protected
      */
-    protected abstract get _headersIndexMap(): HEADERS_INDEX_MAP;
+    protected abstract get _headersIndexMap(): HEADERS_INDEX_MAP
 
     //endregion -------------------- Getter methods --------------------
 
     //region -------------------- Headers methods --------------------
 
     protected _getContent<N extends number, >(header: N,): ARRAY[N] {
-        return this.#content[header];
+        return this.#content[header]
     }
 
     static #getContent<N extends number, ARRAY extends any[], >(content: ARRAY, header: N,): ARRAY[N] {
-        return content[header];
+        return content[header]
     }
 
     // protected getContent<N extends number, >(header: N,): ARRAY[N]
     // protected getContent<S extends keyof HEADERS, N extends number ,>(header: S,): ARRAY[N]
     // protected getContent<N extends number, >(header: |string|number,): ARRAY[N] {
-    //     return typeof header == 'string' ? this._content[this._headers[header]]:this._content[header];
+    //     return typeof header == 'string' ? this._content[this._headers[header]] : this._content[header]
     // }
 
     //endregion -------------------- Headers methods --------------------
@@ -68,14 +68,14 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
     protected _createNameTemplate(): NameTemplate
     protected _createNameTemplate(): NameTemplateWithOptionalLanguages
     protected _createNameTemplate(): PossibleNameTemplate {
-        return AbstractTemplateBuilder.#createNameTemplateFromClass(this._headersIndexMap as unknown as PossibleLanguagesDefinition, this._content,);
+        return AbstractTemplateBuilder.#createNameTemplateFromClass(this._headersIndexMap as unknown as PossibleLanguagesDefinition, this._content,)
     }
 
     static #createNameTemplateFromClass<ARRAY extends any[], >(headers: PossibleLanguagesDefinition, content: ARRAY,): PossibleNameTemplate {
-        const hebrew = 'hebrew' in headers ? content[headers.hebrew] : this.#EMPTY_HEBREW;
-        const polish = 'polish' in headers ? content[headers.polish] : this.#EMPTY_POLISH;
-        const ukrainian = 'ukrainian' in headers ? content[headers.ukrainian] : this.#EMPTY_UKRAINIAN;
-        const greek = 'greek' in headers ? content[headers.greek] : this.#EMPTY_GREEK;
+        const hebrew = 'hebrew' in headers ? content[headers.hebrew] : this.#EMPTY_HEBREW
+        const polish = 'polish' in headers ? content[headers.polish] : this.#EMPTY_POLISH
+        const ukrainian = 'ukrainian' in headers ? content[headers.ukrainian] : this.#EMPTY_UKRAINIAN
+        const greek = 'greek' in headers ? content[headers.greek] : this.#EMPTY_GREEK
 
         const languages: PropertiesArrayWithOptionalLanguages = [
             content[headers.english], content[headers.americanEnglish], content[headers.europeanEnglish],
@@ -93,13 +93,13 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
             polish,
             ukrainian,
             greek,
-        ];
+        ]
 
-        return this.#createNameTemplateFromArray(languages);
+        return this.#createNameTemplateFromArray(languages)
     }
 
     static #createNameTemplateFromArray([english, americanEnglish, europeanEnglish, french, canadianFrench, europeanFrench, german, spanish, americanSpanish, europeanSpanish, italian, dutch, portuguese, americanPortuguese, europeanPortuguese, russian, japanese, chinese, traditionalChinese, simplifiedChinese, korean,
-                                                     hebrew = this.#EMPTY_HEBREW, polish = this.#EMPTY_POLISH, ukrainian = this.#EMPTY_UKRAINIAN, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
+                                            hebrew = this.#EMPTY_HEBREW, polish = this.#EMPTY_POLISH, ukrainian = this.#EMPTY_UKRAINIAN, greek = this.#EMPTY_GREEK,]: | PropertiesArray | PropertiesArrayWithOptionalLanguages,): PossibleNameTemplate {
         return {
             english: {
                 simple: english,
@@ -136,12 +136,12 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
             polish: polish,
             ukrainian: ukrainian,
             greek: greek,
-        };
+        }
     }
 
     protected _createEntityNameTemplate(hasAReferenceInMarioMaker: | HasAReferenceInMarioMaker,): EntityNameTemplate {
-        const nameTemplateWithOptionalLanguages = this._createNameTemplate();
-        return {hasAReferenceInMarioMaker: hasAReferenceInMarioMaker, ...nameTemplateWithOptionalLanguages,};
+        const nameTemplateWithOptionalLanguages = this._createNameTemplate()
+        return {hasAReferenceInMarioMaker: hasAReferenceInMarioMaker, ...nameTemplateWithOptionalLanguages,}
     }
 
     //endregion -------------------- Name template methods --------------------
@@ -159,11 +159,11 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
      * @see PartialGameEnumFrom1And2
      */
     protected _createGameTemplateFrom1And2(): SimpleGameFrom1And2Template<boolean, boolean> {
-        const headers = this._headersIndexMap as unknown as PartialGameEnumFrom1And2;
+        const headers = this._headersIndexMap as unknown as PartialGameEnumFrom1And2
         return {
-            '1And3DS': AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker1And3DS),
-            2: AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker2),
-        };
+            '1And3DS': AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker1And3DS,),
+            2: AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker2,),
+        }
     }
 
     /**
@@ -179,16 +179,16 @@ export abstract class AbstractTemplateBuilder<TEMPLATE, ARRAY extends any[], HEA
      * @see PartialGameEnumFromAllGames
      */
     protected _createGameTemplateFromAllGames(): SimpleGameFromAllGamesTemplate<boolean, boolean, boolean> {
-        const headers = this._headersIndexMap as unknown as PartialGameEnumFromAllGames;
+        const headers = this._headersIndexMap as unknown as PartialGameEnumFromAllGames
         return {
-            1: AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker1),
-            '3DS': AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMakerFor3DS),
-            2: AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker2),
-        };
+            1: AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker1,),
+            '3DS': AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMakerFor3DS,),
+            2: AbstractTemplateBuilder.#getContent(this._content, headers.isInSuperMarioMaker2,),
+        }
     }
 
     //endregion -------------------- Game methods --------------------
 
-    public abstract build(): TEMPLATE;
+    public abstract build(): TEMPLATE
 
 }

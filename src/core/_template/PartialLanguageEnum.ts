@@ -47,4 +47,4 @@ export interface PartialLanguagesEnumWithOptionalLanguages
 
 }
 
-export type PossibleLanguagesDefinition = | PartialLanguagesEnum | PartialLanguagesEnumWithOptionalLanguages;
+export type PossibleLanguagesDefinition = | PartialLanguagesEnum | PartialLanguagesEnumWithOptionalLanguages

@@ -1,8 +1,8 @@
-import type {ConditionalIntermediate}                        from './tools/ConditionalIntermediate';
-import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ClassThatCanGetItems';
-import type {ExtendedList}                                   from './ExtendedList';
-import type {ExtendedMap}                                    from './ExtendedMap';
-import type {VariableReturnValue}                            from './ClassThatCanSearchItems';
+import type {ConditionalIntermediate}                        from './tools/ConditionalIntermediate'
+import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ClassThatCanGetItems'
+import type {ExtendedList}                                   from './ExtendedList'
+import type {ExtendedMap}                                    from './ExtendedMap'
+import type {VariableReturnValue}                            from './ClassThatCanSearchItems'
 
 export interface ExtendedSet<T, LENGTH extends number = number, >
     extends ExtendedList<T, LENGTH> {

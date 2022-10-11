@@ -1,6 +1,6 @@
-import type {BooleanTextProperties} from './properties/BooleanTextProperties';
+import type {BooleanTextProperties} from './properties/BooleanTextProperties'
 
-import TextComponent from './TextComponent';
+import TextComponent from './TextComponent'
 
 /**
  * Create a simple {@link TextComponent}
@@ -8,5 +8,5 @@ import TextComponent from './TextComponent';
  * @reactComponent
  */
 export default function BooleanTextComponent({boolean, true: _true, false: _false, ...otherProperties}: BooleanTextProperties,) {
-    return <TextComponent content={boolean ? _true : _false} {...otherProperties}/>;
+    return <TextComponent content={boolean ? _true : _false} {...otherProperties}/>
 }

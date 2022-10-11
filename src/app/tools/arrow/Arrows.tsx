@@ -1,12 +1,12 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleContainer, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Arrows.types';
-import type {ReactElement}                                                                                                                                                                             from '../../../util/react/ReactProperties';
-import type {StaticReference}                                                                                                                                                                          from '../../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleContainer, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Arrows.types'
+import type {ReactElement}                                                                                                                                                                             from '../../../util/react/ReactProperties'
+import type {StaticReference}                                                                                                                                                                          from '../../../util/enum/Enum.types'
 
-import {Enum}                from '../../../util/enum/Enum';
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables';
-import {ArrowDirections}     from './ArrowDirections';
+import {Enum}                from '../../../util/enum/Enum'
+import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {ArrowDirections}     from './ArrowDirections'
 
-const {VERTICAL, HORIZONTAL} = ArrowDirections;
+const {VERTICAL, HORIZONTAL} = ArrowDirections
 
 /**
  * Every possible arrow direction. It can be a single arrow, joined & bi-directional.<br/>
@@ -26,113 +26,113 @@ export abstract class Arrows
     public static readonly UP =                   new class ArrowDirections_Up extends Arrows {
 
         public override createCardinalArrow(): ReactElement {
-            return <div className="arrow up"/>;
+            return <div className="arrow up"/>
         }
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [this.createCardinalArrow(), null,];
+            return [this.createCardinalArrow(), null,]
         }
 
-    }('arrow-container', VERTICAL, true,);
+    }('arrow-container', VERTICAL, true,)
     public static readonly DOWN =                 new class ArrowDirections_Down extends Arrows {
 
         public override createCardinalArrow(): ReactElement {
-            return <div className="arrow down"/>;
+            return <div className="arrow down"/>
         }
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [null, this.createCardinalArrow(),];
+            return [null, this.createCardinalArrow(),]
         }
 
-    }('arrow-container', VERTICAL, true,);
+    }('arrow-container', VERTICAL, true,)
     public static readonly LEFT =                 new class ArrowDirections_Left extends Arrows {
 
         public override createCardinalArrow(): ReactElement {
-            return <div className="arrow left"/>;
+            return <div className="arrow left"/>
         }
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [this.createCardinalArrow(), null,];
+            return [this.createCardinalArrow(), null,]
         }
 
-    }('arrow-container', HORIZONTAL, true,);
+    }('arrow-container', HORIZONTAL, true,)
     public static readonly RIGHT =                new class ArrowDirections_Right extends Arrows {
 
         public override createCardinalArrow(): ReactElement {
-            return <div className="arrow right"/>;
+            return <div className="arrow right"/>
         }
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [null, this.createCardinalArrow(),];
+            return [null, this.createCardinalArrow(),]
         }
 
-    }('arrow-container', HORIZONTAL, true,);
+    }('arrow-container', HORIZONTAL, true,)
     public static readonly VERTICAL_JOINED =      new class ArrowDirections_Vertical extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),];
+            return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),]
         }
 
-    }('arrow-container', VERTICAL, false,);
+    }('arrow-container', VERTICAL, false,)
     public static readonly VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),];
+            return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),]
         }
 
-    }('arrows-container', VERTICAL, false,);
+    }('arrows-container', VERTICAL, false,)
     public static readonly HORIZONTAL_JOINED =    new class ArrowDirections_Horizontal extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),];
+            return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),]
         }
 
-    }('arrow-container', HORIZONTAL, true,);
+    }('arrow-container', HORIZONTAL, true,)
     public static readonly HORIZONTAL_SEPARATED = new class ArrowDirections_HorizontalSeparated extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),];
+            return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),]
         }
 
-    }('arrows-container', HORIZONTAL, false,);
+    }('arrows-container', HORIZONTAL, false,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: Arrows;
+    static [index: number]: Arrows
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #container;
-    readonly #direction;
-    readonly #doesDisplayLine;
-    #arrows?: PossibleArrowCreation;
+    readonly #container
+    readonly #direction
+    readonly #doesDisplayLine
+    #arrows?: PossibleArrowCreation
 
     //endregion -------------------- Fields --------------------
 
     private constructor(container: PossibleContainer, direction: ArrowDirections, doesDisplayLine: boolean,) {
-        super();
-        this.#direction = direction;
-        this.#container = container;
-        this.#doesDisplayLine = doesDisplayLine;
+        super()
+        this.#direction = direction
+        this.#container = container
+        this.#doesDisplayLine = doesDisplayLine
     }
 
     //region -------------------- Getter methods --------------------
 
     private get __container(): PossibleContainer {
-        return this.#container;
+        return this.#container
     }
 
     /**
      * Get the arrow direction object.
      */
     public get direction(): ArrowDirections {
-        return this.#direction;
+        return this.#direction
     }
 
     private get __doesDisplayLine(): boolean {
-        return this.#doesDisplayLine;
+        return this.#doesDisplayLine
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -146,34 +146,34 @@ export abstract class Arrows
      * @throws EvalError if the arrow contained is not {@link Arrows.UP up}, {@link Arrows.DOWN down}, {@link Arrows.LEFT left} or {@link Arrows.RIGHT right}.
      */
     public createCardinalArrow(): ReactElement {
-        throw new EvalError('This method should never be called from a non-cardinal direction.');
+        throw new EvalError('This method should never be called from a non-cardinal direction.')
     }
 
     private get __arrows(): PossibleArrowCreation {
-        return this.#arrows ??= this._createArrow();
+        return this.#arrows ??= this._createArrow()
     }
 
-    protected abstract _createArrow(): PossibleArrowCreation;
+    protected abstract _createArrow(): PossibleArrowCreation
 
     /**
      * Create an arrow contained in a {@link HTMLDivElement div} having the class "arrow-container" or "arrows-container"
      * combined with the {@link ArrowDirections direction}.
      */
     public createArrow(): ReactElement {
-        const [firstArrow, secondArrow,] = this.__arrows;
+        const [firstArrow, secondArrow,] = this.__arrows
 
         return <div className={`${this.__container} ${this.direction.value}`}>
             {firstArrow ?? EMPTY_REACT_ELEMENT}
             {this.__doesDisplayLine ? <div className="line"/> : EMPTY_REACT_ELEMENT}
             {secondArrow ?? EMPTY_REACT_ELEMENT}
-        </div>;
+        </div>
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<Arrows> {
-        return Arrows;
+        return Arrows
     }
 
     //region -------------------- Enum value methods --------------------
@@ -188,21 +188,21 @@ export abstract class Arrows
     public static getValue(value: PossibleNonNullableValue,): Arrows
     public static getValue(value: PossibleValue,): | Arrows | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------
 
 }
 
-type PossibleArrowCreation = | readonly [ReactElement, null,] | readonly [null, ReactElement,] | readonly [ReactElement, ReactElement,];
+type PossibleArrowCreation = | readonly [ReactElement, null,] | readonly [null, ReactElement,] | readonly [ReactElement, ReactElement,]

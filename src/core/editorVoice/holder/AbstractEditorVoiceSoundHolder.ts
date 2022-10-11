@@ -1,30 +1,30 @@
-import type {PossibleFileName, PossibleStartingName_WithSingingPartBefore, PossibleStartingName_WithVoiceBefore} from '../EditorVoiceSound';
-import type {EditorVoiceSoundHolder}                                                                             from './EditorVoiceSoundHolder';
+import type {PossibleFileName, PossibleStartingName_WithSingingPartBefore, PossibleStartingName_WithVoiceBefore} from '../EditorVoiceSound'
+import type {EditorVoiceSoundHolder}                                                                             from './EditorVoiceSoundHolder'
 
 export abstract class AbstractEditorVoiceSoundHolder<T extends PossibleStartingName_WithVoiceBefore, U extends PossibleStartingName_WithSingingPartBefore, >
     implements EditorVoiceSoundHolder<PossibleFileName<T, U>> {
 
     //region -------------------- Fields --------------------
 
-    readonly #simpleFileName;
-    #fileName?: PossibleFileName<T, U>;
+    readonly #simpleFileName
+    #fileName?: PossibleFileName<T, U>
 
     //endregion -------------------- Fields --------------------
 
     protected constructor(fileName: | T | U,) {
-        this.#simpleFileName = fileName;
+        this.#simpleFileName = fileName
     }
 
     //region -------------------- Getter & creator methods --------------------
 
     protected get _simpleFileName(): | T | U {
-        return this.#simpleFileName;
+        return this.#simpleFileName
     }
 
-    protected abstract _createFileName(): PossibleFileName<T, U>;
+    protected abstract _createFileName(): PossibleFileName<T, U>
 
     public get fileName(): PossibleFileName<T, U> {
-        return this.#fileName ??= this._createFileName();
+        return this.#fileName ??= this._createFileName()
     }
 
     //endregion -------------------- Getter & creator methods --------------------

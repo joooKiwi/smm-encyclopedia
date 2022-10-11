@@ -1,8 +1,8 @@
-import type {GameStyleProperty}  from './GameStyleProperty';
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey';
+import type {GameStyleProperty}  from './GameStyleProperty'
+import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}           from '../../../../util/provider/AbstractProvider';
-import {GameStylePropertyContainer} from './GameStyleProperty.container';
+import {AbstractProvider}           from '../../../../util/provider/AbstractProvider'
+import {GameStylePropertyContainer} from './GameStyleProperty.container'
 
 /**
  * @singleton
@@ -13,14 +13,14 @@ export class GameStylePropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: GameStylePropertyProvider;
+    static #instance?: GameStylePropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -38,7 +38,7 @@ export class GameStylePropertyProvider
     public get(...argumentsReceived: ArgumentsReceived): GameStyleProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new GameStylePropertyContainer(...argumentsReceived,),))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
@@ -49,4 +49,4 @@ type ArgumentsReceived = readonly [
     isInSuperMarioWorldStyle: boolean,
     isInNewSuperMarioBrosUStyle: boolean,
     isInSuperMario3DWorldStyle: | boolean | null,
-];
+]

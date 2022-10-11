@@ -1,6 +1,6 @@
-import type {BasePath}        from '../../variables';
-import type {RepeatableTypes} from './RepeatableTypes';
-import type {Time}            from './time/Time';
+import type {BasePath}        from '../../variables'
+import type {RepeatableTypes} from './RepeatableTypes'
+import type {Time}            from './time/Time'
 
 export interface SoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, REPEATABLE_TIME extends | Time | null = | Time | null, > {
 
@@ -31,8 +31,8 @@ export interface SoundFile<PATH extends string = string, NAME extends string = s
 
 }
 
-export type FullPath<PATH extends string = string, > = `/${BasePath}/${PATH}`;
-export type FullName<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, > = `${FullPath<PATH>}/${NAME}.${EXTENSION}`;
+export type FullPath<PATH extends string = string, > = `/${BasePath}/${PATH}`
+export type FullName<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, > = `${FullPath<PATH>}/${NAME}.${EXTENSION}`
 
 /** The possible extension for a "sound file" in the project */
-export type PossibleExtension = 'wav';
+export type PossibleExtension = 'wav'

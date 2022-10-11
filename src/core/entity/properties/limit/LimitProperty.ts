@@ -1,10 +1,10 @@
-import type {BooleanProperty}                                                                                                                             from '../../../_properties/Property';
-import type {BooleanPropertyWithComment, PropertyWithComment}                                                                                             from '../../../_properties/PropertyWithComment';
-import type {EntityLimits}                                                                                                                                from '../../../entityLimit/EntityLimits';
-import type {GameStructure}                                                                                                                               from '../../../game/GameStructure';
-import type {NotApplicableProperty, UnknownProperty}                                                                                                      from '../../../_properties/PropertyWithEverything';
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment} from './Loader.types';
-import {PropertyThatCanBeUnknown}                                                                                                                         from '../../../_properties/PropertyThatCanBeUnknown';
+import type {BooleanProperty}                                                                                                                             from '../../../_properties/Property'
+import type {BooleanPropertyWithComment, PropertyWithComment}                                                                                             from '../../../_properties/PropertyWithComment'
+import type {EntityLimits}                                                                                                                                from '../../../entityLimit/EntityLimits'
+import type {GameStructure}                                                                                                                               from '../../../game/GameStructure'
+import type {NotApplicableProperty, UnknownProperty}                                                                                                      from '../../../_properties/PropertyWithEverything'
+import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment} from './Loader.types'
+import {PropertyThatCanBeUnknown}                                                                                                                         from '../../../_properties/PropertyThatCanBeUnknown'
 
 export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS,
     EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2,
@@ -99,37 +99,37 @@ export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM
 
 //region -------------------- Single entity limit --------------------
 
-export type PossibleEditorLimit_SMM1And3DS = | EntityLimits | null;
-export type EditorLimit_SMM2 = PropertyThatCanBeUnknown<EntityLimits, false>;
-export type PossibleEditorLimit_SMM2 = | EditorLimit_SMM2 | UnknownProperty | NotApplicableProperty;
+export type PossibleEditorLimit_SMM1And3DS = | EntityLimits | null
+export type EditorLimit_SMM2 = PropertyThatCanBeUnknown<EntityLimits, false>
+export type PossibleEditorLimit_SMM2 = | EditorLimit_SMM2 | UnknownProperty | NotApplicableProperty
 
 export type GeneralLimitProperty<COMMENT extends | PossibleGeneralEntityLimitComment | null = | PossibleGeneralEntityLimitComment | null, >
-    = BooleanPropertyWithComment<boolean, COMMENT>;
-export type PossibleIsInGeneralLimit = | GeneralLimitProperty | NotApplicableProperty;
+    = BooleanPropertyWithComment<boolean, COMMENT>
+export type PossibleIsInGeneralLimit = | GeneralLimitProperty | NotApplicableProperty
 
 export type GeneralGlobalLimitProperty<COMMENT extends | PossibleGeneralGlobalEntityLimitComment | null = | PossibleGeneralGlobalEntityLimitComment | null, >
-    = BooleanPropertyWithComment<boolean, COMMENT>;
-export type PossibleIsInGeneralGlobalLimit = | GeneralGlobalLimitProperty | NotApplicableProperty;
+    = BooleanPropertyWithComment<boolean, COMMENT>
+export type PossibleIsInGeneralGlobalLimit = | GeneralGlobalLimitProperty | NotApplicableProperty
 
-export type PowerUpLimitProperty = BooleanProperty;
-export type PossibleIsInPowerUpLimit = | PowerUpLimitProperty | NotApplicableProperty;
+export type PowerUpLimitProperty = BooleanProperty
+export type PossibleIsInPowerUpLimit = | PowerUpLimitProperty | NotApplicableProperty
 
 export type ProjectileLimitProperty<COMMENT extends | PossibleProjectileEntityLimitComment | null = | PossibleProjectileEntityLimitComment | null, >
-    = BooleanPropertyWithComment<boolean, COMMENT>;
-export type PossibleIsInProjectileLimit = | ProjectileLimitProperty | UnknownProperty | NotApplicableProperty;
+    = BooleanPropertyWithComment<boolean, COMMENT>
+export type PossibleIsInProjectileLimit = | ProjectileLimitProperty | UnknownProperty | NotApplicableProperty
 
 export type OtherLimitProperty<COMMENT extends | PossibleOtherLimitComment | null = | PossibleOtherLimitComment | null, >
-    = PropertyWithComment<EntityLimits, COMMENT>;
-export type PossibleOtherLimit = | OtherLimitProperty | NotApplicableProperty;
+    = PropertyWithComment<EntityLimits, COMMENT>
+export type PossibleOtherLimit = | OtherLimitProperty | NotApplicableProperty
 
 //endregion -------------------- Single entity limit --------------------
 //region -------------------- Exclusive entity limit --------------------
 
 /**@deprecated*/export type ExclusiveSMM1LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS, >
-    = LimitProperty<EDITOR_SMM1AND3DS, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty>;
+    = LimitProperty<EDITOR_SMM1AND3DS, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty>
 /**@deprecated*/export type AbstractExclusiveSMM2LimitProperty<EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2, GENERAL extends GeneralLimitProperty = GeneralLimitProperty, GENERAL_GLOBAL extends GeneralGlobalLimitProperty = GeneralGlobalLimitProperty, POWER_UP extends PowerUpLimitProperty = PowerUpLimitProperty, PROJECTILE extends PossibleIsInProjectileLimit = PossibleIsInProjectileLimit, OTHER extends PossibleOtherLimit = PossibleOtherLimit, >
-    = LimitProperty<null, EDITOR_SMM2, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, OTHER>;
-/**@deprecated*/export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<PossibleEditorLimit_SMM2, GeneralLimitProperty, GeneralGlobalLimitProperty, PowerUpLimitProperty, ProjectileLimitProperty, NotApplicableProperty>;
-/**@deprecated*/export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty;
+    = LimitProperty<null, EDITOR_SMM2, GENERAL, GENERAL_GLOBAL, POWER_UP, PROJECTILE, OTHER>
+/**@deprecated*/export type ExclusiveSMM2LimitPropertyInSM3DW = AbstractExclusiveSMM2LimitProperty<PossibleEditorLimit_SMM2, GeneralLimitProperty, GeneralGlobalLimitProperty, PowerUpLimitProperty, ProjectileLimitProperty, NotApplicableProperty>
+/**@deprecated*/export type ExclusiveSMM2LimitProperty = AbstractExclusiveSMM2LimitProperty
 
 //endregion -------------------- Exclusive entity limit --------------------

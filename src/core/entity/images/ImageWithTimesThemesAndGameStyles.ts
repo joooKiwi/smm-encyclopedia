@@ -1,7 +1,7 @@
-import type {GameStyles} from '../../gameStyle/GameStyles';
-import type {Image}      from './Image';
-import type {Themes}     from '../../theme/Themes';
-import type {Times}      from '../../time/Times';
+import type {GameStyles} from '../../gameStyle/GameStyles'
+import type {Image}      from './Image'
+import type {Themes}     from '../../theme/Themes'
+import type {Times}      from '../../time/Times'
 
 export interface ImageWithTimesThemesAndGameStyles
     extends Image {

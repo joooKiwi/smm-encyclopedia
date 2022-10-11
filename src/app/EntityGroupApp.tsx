@@ -1,4 +1,4 @@
-import AbstractApp from './AbstractApp';
+import AbstractApp from './AbstractApp'
 
 /**
  * @reactComponent
@@ -8,7 +8,7 @@ export default class EntityGroupApp
     extends AbstractApp {
 
     protected override _mainContent() {
-        return <>every entity groups</>;
+        return <>every entity groups</>
     }
 
 }

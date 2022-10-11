@@ -1,12 +1,12 @@
-import type {EntityLimitAmount}                           from './properties/EntityLimitAmount';
-import type {EntityLimitTypes}                            from './EntityLimitTypes';
-import type {NameTrait}                                   from '../../lang/name/NameTrait';
-import type {NameTraitFromAnAlternativeContainer}         from '../../lang/name/NameTraitFromAnAlternativeContainer';
-import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types';
+import type {EntityLimitAmount}                           from './properties/EntityLimitAmount'
+import type {EntityLimitTypes}                            from './EntityLimitTypes'
+import type {NameTrait}                                   from '../../lang/name/NameTrait'
+import type {NameTraitFromAnAlternativeContainer}         from '../../lang/name/NameTraitFromAnAlternativeContainer'
+import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types'
 
 export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount,>
+    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
     extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
         ClassWithEnglishName<PossibleEntityLimits>*/ {
@@ -76,5 +76,5 @@ export interface EntityLimit<ACRONYM extends PossibleAcronym | PossibleAlternati
 
 }
 
-export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronym | null>;
-export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronym | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer']>;
+export type EntityLimitWithPossibleAlternativeEntityLimit = EntityLimit<| PossibleAcronym | null>
+export type AlternativeEntityLimit = EntityLimit<| PossibleAlternativeAcronym | null, EntityLimitWithPossibleAlternativeEntityLimit['type'], EntityLimitWithPossibleAlternativeEntityLimit['limitContainer']>

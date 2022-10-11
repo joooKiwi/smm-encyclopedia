@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Game reference.json';
+import resource from '../../resources/compiled/Game reference.json'
 
-import type {GameReference}                             from './GameReference';
-import type {GameReferenceTemplate}                     from './GameReference.template';
-import type {Loader}                                    from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleEnglishName}      from './GameReferences.types';
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {GameReference}                             from './GameReference'
+import type {GameReferenceTemplate}                     from './GameReference.template'
+import type {Loader}                                    from '../../util/loader/Loader'
+import type {PossibleAcronym, PossibleEnglishName}      from './GameReferences.types'
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
-import {GameReferenceBuilder}    from './GameReference.builder';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {GameReferenceBuilder}    from './GameReference.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -36,11 +36,11 @@ enum Headers {
 
 type ExclusivePropertiesArray = [
     acronym: PossibleAcronym,
-];
+]
 type PropertiesArray = [
     ...ExclusivePropertiesArray,
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- CSV array related types --------------------
 
@@ -53,21 +53,21 @@ export class GameReferenceLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: GameReferenceLoader;
+    static #instance?: GameReferenceLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
-    #map?: Map<PossibleEnglishName, GameReference>;
+    #map?: Map<PossibleEnglishName, GameReference>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameReference> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, GameReference>();
+            const references = new Map<PossibleEnglishName, GameReference>()
 
 
             //region -------------------- CSV Loader --------------------
@@ -79,17 +79,17 @@ export class GameReferenceLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_gameReference, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "game references" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "game references" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "game references" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "game references" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 }
 
@@ -98,17 +98,17 @@ class TemplateBuilder
 
 
     public constructor(content: PropertiesArray) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap(): typeof Headers {
-        return Headers;
+        return Headers
     }
 
     public override build(): GameReferenceTemplate {
         return {
             acronym: this._getContent(this._headersIndexMap.acronym),
             name: this._createNameTemplate(),
-        };
+        }
     }
 }

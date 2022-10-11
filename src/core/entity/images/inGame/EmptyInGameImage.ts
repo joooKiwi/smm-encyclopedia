@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptyInGameImageName} from '../../../../util/ClassWithNullObjectPattern';
-import type {InGameImage}                                      from './InGameImage';
+import type {ClassWithNullObjectPattern, EmptyInGameImageName} from '../../../../util/ClassWithNullObjectPattern'
+import type {InGameImage}                                      from './InGameImage'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables';
+import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
 
 /**
  * @singleton
@@ -11,23 +11,23 @@ export class EmptyInGameImage
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyInGameImage;
+    static #instance?: EmptyInGameImage
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
     public get(): typeof EMPTY_ARRAY {
-        return EMPTY_ARRAY;
+        return EMPTY_ARRAY
     }
 
     public toString(): EmptyInGameImageName {
-        return 'Empty "in game" image';
+        return 'Empty "in game" image'
     }
 
 }

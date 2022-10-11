@@ -1,9 +1,9 @@
-import type {AppInterpreterWithCardList} from './AppInterpreterWithCardList';
-import type {Enumerable}                 from '../../util/enum/Enumerable';
-import type {Content}                    from './AppInterpreter';
-import type {SingleHeaderContent}        from '../tools/table/SimpleHeader';
-import type {TableProperties}            from '../tools/table/Table.types';
-import type {ReactElement}               from '../../util/react/ReactProperties';
+import type {AppInterpreterWithCardList} from './AppInterpreterWithCardList'
+import type {Enumerable}                 from '../../util/enum/Enumerable'
+import type {Content}                    from './AppInterpreter'
+import type {SingleHeaderContent}        from '../tools/table/SimpleHeader'
+import type {TableProperties}            from '../tools/table/Table.types'
+import type {ReactElement}               from '../../util/react/ReactProperties'
 
 /**
  * An application interpreter when using {@link AbstractTableApp}
@@ -53,11 +53,11 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
  * A simplified {@link TableProperties table properties} used
  * for an {@link AppInterpreter application interpreter}.
  */
-export type SimplifiedTableProperties = Omit<TableProperties, | 'key' | 'id' | 'headers' | 'content'>;
+export type SimplifiedTableProperties = Omit<TableProperties, | 'key' | 'id' | 'headers' | 'content'>
 /**
  * An option made to display any table column
  * based on the {@link Content content receive}.
  *
  * @deprecated Replace with enumerable instead
  */
-export type Option = Enumerable<any, any>;
+export type Option = Enumerable<any, any>

@@ -1,9 +1,9 @@
-import type {TOptions}  from 'i18next';
-import {useTranslation} from 'react-i18next';
+import type {TOptions}  from 'i18next'
+import {useTranslation} from 'react-i18next'
 
-import type {AnyTranslationPropertyByChildren, AnyTranslationPropertyWithProperty, Namespace, PossibleAnyTranslationPropertyReceived, SimpleAnyTranslationProperty} from './TranslationProperty';
+import type {AnyTranslationPropertyByChildren, AnyTranslationPropertyWithProperty, Namespace, PossibleAnyTranslationPropertyReceived, SimpleAnyTranslationProperty} from './TranslationProperty'
 
-import {TranslationUtility} from './TranslationUtility';
+import {TranslationUtility} from './TranslationUtility'
 
 /**
  *
@@ -12,10 +12,10 @@ import {TranslationUtility} from './TranslationUtility';
  */
 export default function AnyTranslationComponent<N extends Namespace, >(properties: PossibleAnyTranslationPropertyReceived<N>,) {
     if ('property' in properties)
-        return <AnyTranslationComponentByProperty property={properties.property}/>;
+        return <AnyTranslationComponentByProperty property={properties.property}/>
     if ('children' in properties)
-        return <AnyTranslationComponentByChildren children={properties.children} namespace={properties.namespace}/>;
-    return <AnyTranslationComponentBySimpleProperty namespace={properties.namespace} translationKey={properties.translationKey} replace={properties.replace}/>;
+        return <AnyTranslationComponentByChildren children={properties.children} namespace={properties.namespace}/>
+    return <AnyTranslationComponentBySimpleProperty namespace={properties.namespace} translationKey={properties.translationKey} replace={properties.replace}/>
 }
 
 /**
@@ -24,9 +24,9 @@ export default function AnyTranslationComponent<N extends Namespace, >(propertie
  * @reactComponent
  */
 function AnyTranslationComponentByChildren<N extends Namespace, >({children, namespace,}: AnyTranslationPropertyByChildren<N>,) {
-    const {t: translation,} = useTranslation(namespace);
+    const {t: translation,} = useTranslation(namespace)
 
-    return <>{children(translation)}</>;
+    return <>{children(translation)}</>
 }
 
 /**
@@ -35,21 +35,21 @@ function AnyTranslationComponentByChildren<N extends Namespace, >({children, nam
  * @reactComponent
  */
 function AnyTranslationComponentBySimpleProperty<N extends Namespace, >({namespace, translationKey, replace,}: SimpleAnyTranslationProperty<N>,) {
-    const {t: translation,} = useTranslation(namespace);
+    const {t: translation,} = useTranslation(namespace)
 
-    const isReplaceNotNull = replace != null;
+    const isReplaceNotNull = replace != null
 
-    const options: TOptions<object> = {returnObjects: true,};
+    const options: TOptions<object> = {returnObjects: true,}
     if (isReplaceNotNull)
-        options.interpolation = {skipOnVariables: true,};
+        options.interpolation = {skipOnVariables: true,}
 
     //TODO remove (if possible) the "Type instantiation is excessively deep and possibly infinite."
     // @ts-ignore
-    const translationReturnValue = TranslationUtility.testTranslation(translation(translationKey, options,));
+    const translationReturnValue = TranslationUtility.testTranslation(translation(translationKey, options,))
 
     return !isReplaceNotNull
         ? <>{translationReturnValue}</>
-        : <>{TranslationUtility.replaceInTranslation(translationReturnValue, replace,)}</>;
+        : <>{TranslationUtility.replaceInTranslation(translationReturnValue, replace,)}</>
 }
 
 /**
@@ -58,9 +58,9 @@ function AnyTranslationComponentBySimpleProperty<N extends Namespace, >({namespa
  * @reactComponent
  */
 function AnyTranslationComponentByProperty<N extends Namespace, >({property: {namespace, translationKey, replace,},}: AnyTranslationPropertyWithProperty<N>,) {
-    const {t: translation,} = useTranslation(namespace);
+    const {t: translation,} = useTranslation(namespace)
 
     //TODO remove (if possible) the "Type instantiation is excessively deep and possibly infinite."
     // @ts-ignore
-    return <>{TranslationUtility.replaceAndInterpretTranslation(translation, translationKey, replace,)}</>;
+    return <>{TranslationUtility.replaceAndInterpretTranslation(translation, translationKey, replace,)}</>
 }

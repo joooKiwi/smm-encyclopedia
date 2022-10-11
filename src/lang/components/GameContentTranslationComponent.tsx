@@ -1,6 +1,6 @@
-import type {GameContentNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty';
+import type {GameContentNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty'
 
-import AnyTranslationComponent from './AnyTranslationComponent';
+import AnyTranslationComponent from './AnyTranslationComponent'
 
 /**
  *
@@ -9,5 +9,5 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  */
 export default function GameContentTranslationComponent(properties: PossibleTranslationPropertyReceived<GameContentNamespace>,) {
     // @ts-ignore
-    return <AnyTranslationComponent namespace="gameContent" {...properties}/>;
+    return <AnyTranslationComponent namespace="gameContent" {...properties}/>
 }

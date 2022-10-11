@@ -1,13 +1,13 @@
-import type {EntityBehaviourLink, PossibleEntity, PossibleGroup} from './EntityBehaviourLink';
-import type {ObjectHolder}                                       from '../../../util/holder/ObjectHolder';
-import type {PossibleEnglishName as PossibleEntityName}          from '../../entity/Entities.types';
-import type {PossibleGroupName}                                  from '../../entityTypes';
-import type {ProviderForNullable}                                from '../../../util/provider/ProviderForNullable';
-import type {ProviderWithKey}                                    from '../../../util/provider/ProviderWithKey';
+import type {EntityBehaviourLink, PossibleEntity, PossibleGroup} from './EntityBehaviourLink'
+import type {ObjectHolder}                                       from '../../../util/holder/ObjectHolder'
+import type {PossibleEnglishName as PossibleEntityName}          from '../../entity/Entities.types'
+import type {PossibleGroupName}                                  from '../../entityTypes'
+import type {ProviderForNullable}                                from '../../../util/provider/ProviderForNullable'
+import type {ProviderWithKey}                                    from '../../../util/provider/ProviderWithKey'
 
-import {AbstractProvider}             from '../../../util/provider/AbstractProvider';
-import {EntityBehaviourLinkContainer} from './EntityBehaviourLink.container';
-import {ObjectHolders}                from '../../../util/holder/objectHolders';
+import {AbstractProvider}             from '../../../util/provider/AbstractProvider'
+import {EntityBehaviourLinkContainer} from './EntityBehaviourLink.container'
+import {ObjectHolders}                from '../../../util/holder/objectHolders'
 
 /**
  * An entity behaviour link {@link Provider}.
@@ -31,23 +31,23 @@ export class EntityBehaviourLinkProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EntityBehaviourLinkProvider;
+    static #instance?: EntityBehaviourLinkProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    static #NULL_KEYS = [null, null,] as const;
-    static #NULL_ARGUMENTS = [ObjectHolders.NULL, ObjectHolders.NULL,] as const;
+    static #NULL_KEYS = [null, null,] as const
+    static #NULL_ARGUMENTS = [ObjectHolders.NULL, ObjectHolders.NULL,] as const
 
     public get null() {
-        return this.get(EntityBehaviourLinkProvider.#NULL_KEYS, ...EntityBehaviourLinkProvider.#NULL_ARGUMENTS,);
+        return this.get(EntityBehaviourLinkProvider.#NULL_KEYS, ...EntityBehaviourLinkProvider.#NULL_ARGUMENTS,)
     }
 
     /**
@@ -82,7 +82,7 @@ export class EntityBehaviourLinkProvider
     public get(key: Key, ...argumentsReceived: ArgumentsReceived): EntityBehaviourLink {
         return this.everyContainers.if(map => map.has(key))
             .isNotMet(map => map.set(key, new EntityBehaviourLinkContainer(...argumentsReceived),))
-            .get(key);
+            .get(key)
     }
 
 }
@@ -90,8 +90,8 @@ export class EntityBehaviourLinkProvider
 type Key<GROUP extends | PossibleGroupName | null = PossibleGroupName | null, ENTITY extends | PossibleEntityName | null = | PossibleEntityName | null, > = readonly [
     groupLink: GROUP,
     entityLink: ENTITY,
-];
+]
 type ArgumentsReceived<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends PossibleEntity = PossibleEntity, > = readonly [
     groupLink: ObjectHolder<GROUP>,
     entityLink: ObjectHolder<ENTITY>,
-];
+]

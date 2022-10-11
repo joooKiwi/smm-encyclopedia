@@ -1,15 +1,15 @@
-import type {ClassThatCanAddItems}                               from './ClassThatCanAddItems';
-import type {ClassThatCanBeConvertible}                          from './ClassThatCanBeConvertible';
-import type {ClassThatCanGetItemsOrKeys, DefaultValueIfNotFound} from './ClassThatCanGetItems';
-import type {ClassThatCanRemoveItems}                            from './ClassThatCanRemoveItems';
-import type {ClassThatCanSearchItemsOrKeys, VariableReturnValue} from './ClassThatCanSearchItems';
-import type {ClassThatCanVerifyItems}                            from './ClassThatCanVerifyItems';
-import type {ClassWithLength}                                    from './ClassWithLength';
-import type {ClassWithTools}                                     from './ClassWithTools';
-import type {ConditionalIntermediate}                            from './tools/ConditionalIntermediate';
-import type {EntrySet}                                           from './EntrySet';
-import type {ExtendedIterable}                                   from './ExtendedIterable';
-import type {ExtendedSet}                                        from './ExtendedSet';
+import type {ClassThatCanAddItems}                               from './ClassThatCanAddItems'
+import type {ClassThatCanBeConvertible}                          from './ClassThatCanBeConvertible'
+import type {ClassThatCanGetItemsOrKeys, DefaultValueIfNotFound} from './ClassThatCanGetItems'
+import type {ClassThatCanRemoveItems}                            from './ClassThatCanRemoveItems'
+import type {ClassThatCanSearchItemsOrKeys, VariableReturnValue} from './ClassThatCanSearchItems'
+import type {ClassThatCanVerifyItems}                            from './ClassThatCanVerifyItems'
+import type {ClassWithLength}                                    from './ClassWithLength'
+import type {ClassWithTools}                                     from './ClassWithTools'
+import type {ConditionalIntermediate}                            from './tools/ConditionalIntermediate'
+import type {EntrySet}                                           from './EntrySet'
+import type {ExtendedIterable}                                   from './ExtendedIterable'
+import type {ExtendedSet}                                        from './ExtendedSet'
 
 export interface ExtendedMap<K, V, LENGTH extends number = number, >
     extends ExtendedIterable<readonly [K, V,], K, V>,

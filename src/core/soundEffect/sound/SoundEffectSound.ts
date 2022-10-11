@@ -1,4 +1,4 @@
-import type {SoundEffectSoundFile} from '../file/SoundEffectSoundFile';
+import type {SoundEffectSoundFile} from '../file/SoundEffectSoundFile'
 
 export interface SoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[],
     EDITOR_SOUND extends PossibleEditorValue<SOUNDS> = PossibleEditorValue<SOUNDS>,
@@ -15,5 +15,5 @@ export interface SoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[]
 
 }
 
-export type PossibleEditorValue<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = | SOUNDS[number] | null;
-export type PossibleValueOnLinkOrSMB2Value<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = | readonly [] | readonly [SOUNDS[number],] | readonly [SOUNDS[number], SOUNDS[number],];
+export type PossibleEditorValue<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = | SOUNDS[number] | null
+export type PossibleValueOnLinkOrSMB2Value<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = | readonly [] | readonly [SOUNDS[number],] | readonly [SOUNDS[number], SOUNDS[number],]

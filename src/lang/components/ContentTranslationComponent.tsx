@@ -1,6 +1,6 @@
-import type {ContentNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty';
+import type {ContentNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty'
 
-import AnyTranslationComponent from './AnyTranslationComponent';
+import AnyTranslationComponent from './AnyTranslationComponent'
 
 /**
  *
@@ -8,5 +8,5 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  * @reactComponent
  */
 export default function ContentTranslationComponent(properties: PossibleTranslationPropertyReceived<ContentNamespace>,) {
-    return <AnyTranslationComponent namespace="content" {...properties}/>;
+    return <AnyTranslationComponent namespace="content" {...properties}/>
 }

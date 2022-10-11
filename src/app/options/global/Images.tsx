@@ -1,17 +1,17 @@
-import {lazy} from 'react';
+import {lazy} from 'react'
 
-import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Images.types';
-import type {ImageProperties}                                                                                                                                                       from '../../tools/images/properties/ImageProperties';
-import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties';
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types';
+import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue'
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Images.types'
+import type {ImageProperties}                                                                                                                                                       from '../../tools/images/properties/ImageProperties'
+import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties'
+import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types'
 
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables';
-import {Enum}                from '../../../util/enum/Enum';
+import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {Enum}                from '../../../util/enum/Enum'
 
 //region -------------------- dynamic imports --------------------
 
-const Image = lazy(() => import('../../tools/images/Image'));
+const Image = lazy(() => import('../../tools/images/Image'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -32,58 +32,58 @@ export abstract class Images
     public static readonly YES = new class Images_Yes extends Images {
 
         public override renderComponent(properties: _ImageProperties,): ReactElement {
-            return <Image {...properties}/>;
+            return <Image {...properties}/>
         }
 
-    }(true,);
+    }(true,)
     public static readonly NO =  new class Images_No extends Images {
 
         public override renderComponent(): ReactElement {
-            return EMPTY_REACT_ELEMENT;
+            return EMPTY_REACT_ELEMENT
         }
 
-    }(false,);
+    }(false,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: Images;
+    static [index: number]: Images
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #value;
+    readonly #value
 
     //endregion -------------------- Fields --------------------
 
     private constructor(value: boolean,) {
-        super();
-        this.#value = value;
+        super()
+        this.#value = value
     }
 
     //region -------------------- Getter methods --------------------
 
     public get value() {
-        return this.#value;
+        return this.#value
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract renderComponent(properties: _ImageProperties,):ReactElement;
+    public abstract renderComponent(properties: _ImageProperties,): ReactElement
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<Images> {
-        return Images;
+        return Images
     }
 
     //region -------------------- Enum value methods --------------------
 
     protected static override _getValueByBoolean(value: boolean,) {
         return this.values.find(enumerable => enumerable.value === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(nullValue: | null | undefined,): null
@@ -96,17 +96,17 @@ export abstract class Images
     public static getValue(value: PossibleNonNullableValue,): Images
     public static getValue(value: PossibleValue,): | Images | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

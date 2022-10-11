@@ -1,9 +1,9 @@
-import './GroupOf4PowerUpPriority.scss';
+import './GroupOf4PowerUpPriority.scss'
 
-import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties'
 
-import Arrow    from '../../tools/arrow/Arrow';
-import {Arrows} from '../../tools/arrow/Arrows';
+import Arrow    from '../../tools/arrow/Arrow'
+import {Arrows} from '../../tools/arrow/Arrows'
 
 interface GroupOf4PowerUpPriorityProperties
     extends ReactProperties {
@@ -19,7 +19,7 @@ interface GroupOf4PowerUpPriorityProperties
  * @reactComponent
  */
 export default function GroupOf4PowerUpPriority({id, children,}: GroupOf4PowerUpPriorityProperties,) {
-    const [child1, child2, child3, child4,] = children;
+    const [child1, child2, child3, child4,] = children
     return <div id={id} className="groupOf4-powerUp-priority">
         <div className="start-container">
             {child1}
@@ -42,5 +42,5 @@ export default function GroupOf4PowerUpPriority({id, children,}: GroupOf4PowerUp
             <Arrow value={Arrows.HORIZONTAL_SEPARATED}/>
             {child4}
         </div>
-    </div>;
+    </div>
 }

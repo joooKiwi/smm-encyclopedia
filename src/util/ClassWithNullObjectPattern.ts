@@ -13,92 +13,92 @@ export interface ClassWithNullObjectPattern<NAME extends EveryPossibleEmptyName 
 
 //region -------------------- Entity types --------------------
 
-export type EmptyEntityName = 'Empty entity';
+export type EmptyEntityName = 'Empty entity'
 
-export type EmptyEditorImageName = 'Empty editor image';
-export type EmptyClearConditionImageName = 'Empty "clear condition" image';
-export type EmptyInGameImageName = 'Empty "in game" image';
-export type EmptyUnusedImageName = 'Empty unused image';
-export type EmptyUniqueImageName = 'Empty unique image';
+export type EmptyEditorImageName = 'Empty editor image'
+export type EmptyClearConditionImageName = 'Empty "clear condition" image'
+export type EmptyInGameImageName = 'Empty "in game" image'
+export type EmptyUnusedImageName = 'Empty unused image'
+export type EmptyUniqueImageName = 'Empty unique image'
 
-export type EmptyEditorVoiceSoundName = 'Empty "editor voice" sound';
+export type EmptyEditorVoiceSoundName = 'Empty "editor voice" sound'
 
 //endregion -------------------- Entity types --------------------
 //region -------------------- Entity category types --------------------
 
-export type EmptyEntityCategoryName = 'Empty entity category';
+export type EmptyEntityCategoryName = 'Empty entity category'
 
 //endregion -------------------- Entity category types --------------------
 //region -------------------- Entity limit types --------------------
 
-export type EmptyLimitName = 'Empty limit';
-export type EmptyEntityLimitName = 'Empty entity limit';
+export type EmptyLimitName = 'Empty limit'
+export type EmptyEntityLimitName = 'Empty entity limit'
 
-export type EmptyEntityLimitAmountName = 'Empty entity limit (amount)';
-export type EmptyEntityLimitLinkName = 'Empty entity limit (link)';
+export type EmptyEntityLimitAmountName = 'Empty entity limit (amount)'
+export type EmptyEntityLimitLinkName = 'Empty entity limit (link)'
 
 //endregion -------------------- Entity limit types --------------------
 //region -------------------- Game style types --------------------
 
-export type EmptyGameStyleName = 'Empty game style';
+export type EmptyGameStyleName = 'Empty game style'
 
 //endregion -------------------- Game style types --------------------
 //region -------------------- Theme types --------------------
 
-export type EmptyCourseThemeName = 'Empty course theme';
-export type EmptyWorldThemeName = 'Empty world theme';
-export type EmptyCourseAndWorldThemeName = 'Empty course & world theme';
+export type EmptyCourseThemeName = 'Empty course theme'
+export type EmptyWorldThemeName = 'Empty world theme'
+export type EmptyCourseAndWorldThemeName = 'Empty course & world theme'
 
 //endregion -------------------- Theme types --------------------
 //region -------------------- Name types --------------------
 
-export type EmptyNameName = 'Empty name';
+export type EmptyNameName = 'Empty name'
 
 //endregion -------------------- Name types --------------------
 //region -------------------- Entity property types --------------------
 
-export type EmptyIsInPropertyName = 'Empty "is in property"';
-export type EmptyEntityReferenceName = 'Empty entity reference';
+export type EmptyIsInPropertyName = 'Empty "is in property"'
+export type EmptyEntityReferenceName = 'Empty entity reference'
 
 //endregion -------------------- Entity property types --------------------
 //region -------------------- Sound effect types --------------------
 
-export type EmptySMMSoundEffectSoundName = 'Empty sound effect sound';
+export type EmptySMMSoundEffectSoundName = 'Empty sound effect sound'
 
 //endregion -------------------- Sound effect types --------------------
 //region -------------------- Sound effect category types --------------------
 
-export type EmptySoundEffectCategoryName = 'Empty sound effect category';
+export type EmptySoundEffectCategoryName = 'Empty sound effect category'
 
 //endregion -------------------- Sound effect category types --------------------
 //region -------------------- Mii costume types --------------------
 
-export type EmptyMiiCostumeName = 'Empty Mii costume';
+export type EmptyMiiCostumeName = 'Empty Mii costume'
 
 //endregion -------------------- Mii costume types --------------------
 //region -------------------- Mii costume category types --------------------
 
-export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category';
+export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category'
 
 //endregion -------------------- Mii costume category types --------------------
 //region -------------------- Official notification types --------------------
 
-export type EmptyOfficialNotificationName = 'Empty official notification';
+export type EmptyOfficialNotificationName = 'Empty official notification'
 
 //endregion -------------------- Official notification types --------------------
 //region -------------------- Predefined message types --------------------
 
-export type EmptyPredefinedMessageName = 'Empty predefined message';
+export type EmptyPredefinedMessageName = 'Empty predefined message'
 
 //endregion -------------------- Predefined message types --------------------
 //region -------------------- Instrument types --------------------
 
-export type EmptyInstrumentName = 'Empty instrument';
+export type EmptyInstrumentName = 'Empty instrument'
 
 //endregion -------------------- Instrument types --------------------
 //region -------------------- Music types --------------------
 
-export type EmptySingleBackgroundMusicName = 'Empty single "background music"';
+export type EmptySingleBackgroundMusicName = 'Empty single "background music"'
 
 //endregion -------------------- Music types --------------------
 
@@ -131,6 +131,6 @@ export type EveryPossibleEmptyName =
 
     | EmptyInstrumentName
 
-    | EmptySingleBackgroundMusicName;
+    | EmptySingleBackgroundMusicName
 
 //endregion -------------------- Empty names types --------------------

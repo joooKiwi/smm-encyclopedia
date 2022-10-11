@@ -1,4 +1,4 @@
-import type {EnumName} from './Enum.types';
+import type {EnumName} from './Enum.types'
 
 export interface Enumerable<O extends number = number, N extends string = string, > {
 

@@ -1,4 +1,4 @@
-import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property';
+import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property'
 
 export interface BasicProperty<HAS_A_MUSHROOM_VARIANT extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant,
     CAN_BE_IN_A_PARACHUTE extends PossibleCanBeInAParachute = PossibleCanBeInAParachute,
@@ -32,12 +32,12 @@ export interface BasicProperty<HAS_A_MUSHROOM_VARIANT extends PossibleHasAMushro
 
 }
 
-export type HasAMushroomVariant<T extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant, > = InferredBooleanPropertyThatCanBeNotApplicable<T>;
-export type CanBeInAParachute<T extends PossibleCanBeInAParachute = PossibleCanBeInAParachute, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T>;
-export type CanHaveWings<T extends PossibleCanHaveWings = PossibleCanHaveWings, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T>;
+export type HasAMushroomVariant<T extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant, > = InferredBooleanPropertyThatCanBeNotApplicable<T>
+export type CanBeInAParachute<T extends PossibleCanBeInAParachute = PossibleCanBeInAParachute, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T>
+export type CanHaveWings<T extends PossibleCanHaveWings = PossibleCanHaveWings, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T>
 
-export type LCL_whilePlaying = 'While playing → LCL';
+export type LCL_whilePlaying = 'While playing → LCL'
 
-export type PossibleHasAMushroomVariant = | boolean | null;
-export type PossibleCanBeInAParachute = | boolean | LCL_whilePlaying | null;
-export type PossibleCanHaveWings = | boolean | LCL_whilePlaying | null;
+export type PossibleHasAMushroomVariant = | boolean | null
+export type PossibleCanBeInAParachute = | boolean | LCL_whilePlaying | null
+export type PossibleCanHaveWings = | boolean | LCL_whilePlaying | null

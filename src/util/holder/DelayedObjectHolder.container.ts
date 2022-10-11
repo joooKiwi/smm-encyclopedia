@@ -1,35 +1,35 @@
-import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder'
 
-import {ObjectHolderContainer} from './ObjectHolder.container';
+import {ObjectHolderContainer} from './ObjectHolder.container'
 
 export class DelayedObjectHolderContainer<T>
     implements ObjectHolder<T> {
 
-    #hasBeenInitialised;
-    #object?: T;
-    readonly #callback;
+    #hasBeenInitialised
+    #object?: T
+    readonly #callback
 
     public constructor(value: PossibleValueOnObjectHolder<T>,) {
-        this.#hasBeenInitialised = false;
+        this.#hasBeenInitialised = false
         this.#callback = () => {
-            this.#hasBeenInitialised = true;
-            return new ObjectHolderContainer(value).get;
-        };
+            this.#hasBeenInitialised = true
+            return new ObjectHolderContainer(value).get
+        }
     }
 
 
     public get hasBeenInitialised(): boolean {
-        return this.#hasBeenInitialised;
+        return this.#hasBeenInitialised
     }
 
     public get callback(): () => T {
-        return this.#callback;
+        return this.#callback
     }
 
     public get get(): T {
         if (!this.hasBeenInitialised)
-            this.#object = this.#callback();
-        return this.#object!;
+            this.#object = this.#callback()
+        return this.#object!
     }
 
 }

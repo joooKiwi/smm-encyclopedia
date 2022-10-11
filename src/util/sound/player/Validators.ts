@@ -1,8 +1,8 @@
-import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, IsSourceFoundCallback, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Validators.types';
-import type {ClassWithEnglishName}                                                                                                                                                                                      from '../../../core/ClassWithEnglishName';
-import type {StaticReference}                                                                                                                                                                                           from '../../enum/Enum.types';
+import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, IsSourceFoundCallback, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Validators.types'
+import type {ClassWithEnglishName}                                                                                                                                                                                      from '../../../core/ClassWithEnglishName'
+import type {StaticReference}                                                                                                                                                                                           from '../../enum/Enum.types'
 
-import {Enum} from '../../enum/Enum';
+import {Enum} from '../../enum/Enum'
 
 export abstract class Validators
     extends Enum<Ordinals, Names>
@@ -19,15 +19,15 @@ export abstract class Validators
     public static readonly ALL_YES =        new class SoundFounds_AllYes extends Validators {
 
         public override onCreate(callback: IsSourceFoundCallback,): void {
-            callback(true);
+            callback(true)
         }
 
         public override onPlay(callback: IsSourceFoundCallback,): true {
-            callback(true);
-            return true;
+            callback(true)
+            return true
         }
 
-    }('all yes',);
+    }('all yes',)
     /**
      * Tell that the sound will never be found.
      *
@@ -37,15 +37,15 @@ export abstract class Validators
     public static readonly ALL_NO =         new class SoundFounds_AllNo extends Validators {
 
         public override onCreate(callback: IsSourceFoundCallback,): void {
-            callback(false);
+            callback(false)
         }
 
         public override onPlay(callback: IsSourceFoundCallback,): false {
-            callback(false);
-            return false;
+            callback(false)
+            return false
         }
 
-    }('all no',);
+    }('all no',)
     /**
      * Tell whenever the sound is present or not
      * when the audio source will be played.
@@ -56,11 +56,11 @@ export abstract class Validators
     public static readonly ON_PLAY_ONLY =   new class SoundFounds_OnPlayOnly extends Validators {
 
         public override onPlay(callback: IsSourceFoundCallback,): null {
-            callback();
-            return null;
+            callback()
+            return null
         }
 
-    }('on play only',);
+    }('on play only',)
     /**
      * Tell whenever the sound is present or not
      * when creating the audio element.
@@ -70,38 +70,38 @@ export abstract class Validators
     public static readonly ON_CREATE_ONLY = new class SoundFounds_OnCreateOnly extends Validators {
 
         public override onCreate(callback: IsSourceFoundCallback,): void {
-            callback();
+            callback()
         }
 
-    }('on create only',);
+    }('on create only',)
 
-    protected static readonly _DEFAULT = Validators.ON_PLAY_ONLY;
+    protected static readonly _DEFAULT = Validators.ON_PLAY_ONLY
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: Validators;
+    static [index: number]: Validators
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #englishName;
+    readonly #englishName
 
     //endregion -------------------- Fields --------------------
 
     private constructor(englishName: EnglishName,) {
-        super();
-        this.#englishName = englishName;
+        super()
+        this.#englishName = englishName
     }
 
     //region -------------------- Getter methods --------------------
 
     public get englishName(): EnglishName {
-        return this.#englishName;
+        return this.#englishName
     }
 
     public get englishNameInHtml(): EnglishName {
-        return this.englishName;
+        return this.englishName
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -121,28 +121,28 @@ export abstract class Validators
      * @param callback the callback to execute
      */
     public onPlay(callback: IsSourceFoundCallback,): | boolean | null {
-        return null;
+        return null
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<Validators> {
-        return Validators;
+        return Validators
     }
 
     //region -------------------- Enum default methods --------------------
 
     public static get default(): Validators {
-        return Enum.getNonNullDefaultOn(this);
+        return Enum.getNonNullDefaultOn(this)
     }
 
     public static set default(value: | Validators | string,) {
-        this.setDefault(value);
+        this.setDefault(value)
     }
 
     public static setDefault(value: | Validators | string,): typeof Validators {
-        return Enum.setNonNullDefaultOn(this, value,);
+        return Enum.setNonNullDefaultOn(this, value,)
     }
 
     //endregion -------------------- Enum default methods --------------------
@@ -150,7 +150,7 @@ export abstract class Validators
 
     public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(value: | null | undefined,): null
@@ -163,17 +163,17 @@ export abstract class Validators
     public static getValue(value: PossibleNonNullableValue,): Validators
     public static getValue(value: PossibleValue,): | Validators | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,12 +1,12 @@
-import './Footer.scss';
+import './Footer.scss'
 
-import type {ModalProperties} from './ModalContainers.types';
-import type {ReactProperties} from '../util/react/ReactProperties';
+import type {ModalProperties} from './ModalContainers.types'
+import type {ReactProperties} from '../util/react/ReactProperties'
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import GithubButton                from './button/Github.button';
-import LanguageChangerButton       from './button/LanguageChanger.button';
-import SimpleDate                  from '../lang/date/SimpleDate';
+import ContentTranslationComponent from '../lang/components/ContentTranslationComponent'
+import GithubButton                from './button/Github.button'
+import LanguageChangerButton       from './button/LanguageChanger.button'
+import SimpleDate                  from '../lang/date/SimpleDate'
 
 interface FooterProperties
     extends ReactProperties {
@@ -37,5 +37,5 @@ export default function Footer({languageChanger,}: FooterProperties,) {
                 </span>
             </div>
         </div>
-    </footer>;
+    </footer>
 }

@@ -1,8 +1,8 @@
-import type {ThemeProperty} from '../entity/properties/theme/ThemeProperty';
+import type {ThemeProperty} from '../entity/properties/theme/ThemeProperty'
 
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {ThemeComponent}                from './Theme.component';
-import {Themes}                        from './Themes';
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
+import {ThemeComponent}                from './Theme.component'
+import {Themes}                        from './Themes'
 
 /**
  * @reactComponent
@@ -12,7 +12,7 @@ export default class CourseThemeComponent
 
 
     protected override get _map() {
-        return this.reference.toCourseThemeMap();
+        return this.reference.toCourseThemeMap()
     }
 
     protected override get _isInAll() {
@@ -25,19 +25,19 @@ export default class CourseThemeComponent
             && (this.reference.isInForestTheme ?? false)
             && this.reference.isInGhostHouseTheme
             && this.reference.isInAirshipTheme
-            && this.reference.isInCastleTheme;
+            && this.reference.isInCastleTheme
     }
 
     protected override _renderSingleComponent(theme: Themes,) {
-        return CourseThemeComponent.renderSingleComponent(theme, true, this.name.english,);
+        return CourseThemeComponent.renderSingleComponent(theme, true, this.name.english,)
     }
 
     protected override _renderComponentForAllAsText() {
-        return <GameContentTranslationComponent children={translation => <span>{translation('Every themes')}</span>}/>;
+        return <GameContentTranslationComponent children={translation => <span>{translation('Every themes')}</span>}/>
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every course themes)`}>{Themes.courseThemes.map(courseTheme => this._renderSingleComponent(courseTheme))}</div>;
+        return <div key={`${this.name.english} (every course themes)`}>{Themes.courseThemes.map(courseTheme => this._renderSingleComponent(courseTheme))}</div>
     }
 
 }

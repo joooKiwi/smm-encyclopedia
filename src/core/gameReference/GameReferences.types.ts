@@ -1,10 +1,10 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {GameReferences as RealEnum}                                                                                                                                                                                                                   from './GameReferences';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
+import type {GameReferences as RealEnum}                                                                                                                                                                                                                   from './GameReferences'
 
 
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym;
-export type PossibleValue = | RealEnum | number | string | null | undefined;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
+export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym
+export type PossibleValue = | RealEnum | number | string | null | undefined
 
 enum Enum {
 
@@ -119,21 +119,21 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
-export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' for Nintendo 3DS' | ' 2'}`;
-export type PossibleAcronym_Game = `SMM${| '' | '3DS' | 2}`;
+export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' for Nintendo 3DS' | ' 2'}`
+export type PossibleAcronym_Game = `SMM${| '' | '3DS' | 2}`
 
-export type PossibleEnglishName_GameStyle = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U';
-export type PossibleAcronym_GameStyle = `SM${`B${'' | 3}` | `${'' | '3D'}W`}` | 'NSMBU';
+export type PossibleEnglishName_GameStyle = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
+export type PossibleAcronym_GameStyle = `SM${`B${'' | 3}` | `${'' | '3D'}W`}` | 'NSMBU'
 
-export type PossibleEnglishName_SoundEffect = `Super Mario ${| 'Kart' | 64 | 'Sunshine' | 'Galaxy'}`;
-export type PossibleAcronym_SoundEffect = `SM${| 'K' | 64 | 'S' | 'G'}`;
+export type PossibleEnglishName_SoundEffect = `Super Mario ${| 'Kart' | 64 | 'Sunshine' | 'Galaxy'}`
+export type PossibleAcronym_SoundEffect = `SM${| 'K' | 64 | 'S' | 'G'}`
 
 export type PossibleEnglishName_Exclusive =
     | 'Mario Bros.' | 'Super Mario Bros. 2' | 'Super Mario World 2: Yoshi\'s Island' | 'Super Mario Land' | 'Wario Land: Super Mario Land 3' | 'Mario Tennis'
@@ -227,7 +227,7 @@ export type PossibleEnglishName_Exclusive =
     | 'Shaun the Sheep'
 
     | 'Brain Age: Train Your Brain in Minutes a Day!'
-    ;
+    
 export type PossibleAcronym_Exclusive =
     | 'MB' | 'SMB2' | 'SMW2:YI' | 'SML' | 'WL:SML3' | 'MT' | `DM${| '' | 64}` | 'LM' | 'YWW' | 'CT:TT' | 'WW:T' | 'M&L:PJ'
     | `DK${| '' | 'J' | 'C'}`
@@ -273,23 +273,23 @@ export type PossibleAcronym_Exclusive =
     | 'IC'
     | 'HK' | 'MyM' | 'SS'
     | 'BA:TYBMD'
-    ;
+    
 
 
-export type PossibleEnglishName = | PossibleEnglishName_Game | PossibleEnglishName_GameStyle | PossibleEnglishName_SoundEffect | PossibleEnglishName_Exclusive;
-export type PossibleAcronym = | PossibleAcronym_Game | PossibleAcronym_GameStyle | PossibleAcronym_SoundEffect | PossibleAcronym_Exclusive;
+export type PossibleEnglishName = | PossibleEnglishName_Game | PossibleEnglishName_GameStyle | PossibleEnglishName_SoundEffect | PossibleEnglishName_Exclusive
+export type PossibleAcronym = | PossibleAcronym_Game | PossibleAcronym_GameStyle | PossibleAcronym_SoundEffect | PossibleAcronym_Exclusive
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>
 
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
 
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
@@ -400,6 +400,6 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SHAUN_THE_SHEEP'],
 
     SimpleEnum<T>['BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY'],
-];
+]
 
 //endregion -------------------- Array types --------------------

@@ -1,17 +1,17 @@
-import './Accordion.scss';
+import './Accordion.scss'
 
-import type {AccordionProperties} from './Accordion.types';
+import type {AccordionProperties} from './Accordion.types'
 
 /**
  * @param properties
  * @reactComponent
  */
 export default function Accordion({alignCenter: alignHeadersCenter = false, children, ...htmlProperties}: AccordionProperties,) {
-    htmlProperties.className = `accordion ${htmlProperties.className ?? ''}`;
+    htmlProperties.className = `accordion ${htmlProperties.className ?? ''}`
     return <div {...htmlProperties}>
         {children.map(([partialKey, id, isDisplayed, {buttonContent, alignCenter = alignHeadersCenter, ...headerProperties}, {bodyContent, ...bodyProperties},]) => {
-            headerProperties.className = `accordion-header ${headerProperties.className ?? ''}`;
-            bodyProperties.className = `accordion-body ${headerProperties.className ?? ''} w-100`;
+            headerProperties.className = `accordion-header ${headerProperties.className ?? ''}`
+            bodyProperties.className = `accordion-body ${headerProperties.className ?? ''} w-100`
 
             return <div key={`${partialKey} (accordion item)`} className="accordion-item">
                 <h2 {...headerProperties}>
@@ -21,7 +21,7 @@ export default function Accordion({alignCenter: alignHeadersCenter = false, chil
                 <div key={`${partialKey} (accordion body container)`} id={id} className={`accordion-collapse collapse ${isDisplayed ? 'show' : ''} w-100`} aria-labelledby={id}>
                     <div key={`${partialKey} (accordion body`} {...bodyProperties}>{bodyContent}</div>
                 </div>
-            </div>;
+            </div>
         })}
-    </div>;
+    </div>
 }

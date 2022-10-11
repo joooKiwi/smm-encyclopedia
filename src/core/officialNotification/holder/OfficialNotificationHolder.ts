@@ -1,4 +1,4 @@
-import type {OfficialNotifications} from '../OfficialNotifications';
+import type {OfficialNotifications} from '../OfficialNotifications'
 
 export interface OfficialNotificationHolder {
 

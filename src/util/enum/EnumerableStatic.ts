@@ -1,5 +1,5 @@
-import type {Enumerable}                                                        from './Enumerable';
-import type {EnumByName, EnumByNumber, EnumByOrdinal, EnumByString, SimpleEnum} from './Enum.types';
+import type {Enumerable}                                                        from './Enumerable'
+import type {EnumByName, EnumByNumber, EnumByOrdinal, EnumByString, SimpleEnum} from './Enum.types'
 
 interface _EnumerableStatic<O extends number = number, N extends string = string, E extends Enumerable<O, N> = Enumerable<O, N>, >
     extends Function {
@@ -29,4 +29,4 @@ interface _EnumerableStatic<O extends number = number, N extends string = string
 }
 
 export type EnumerableStatic<O extends number = number, N extends string = string, E extends Enumerable<O, N> = Enumerable<O, N>, >
-    = _EnumerableStatic<O, N, E> & SimpleEnum<N, E>;
+    = _EnumerableStatic<O, N, E> & SimpleEnum<N, E>

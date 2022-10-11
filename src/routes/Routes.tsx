@@ -1,11 +1,11 @@
-import {HashRouter, Navigate, Route, Routes as ReactRoutes} from 'react-router-dom';
-import {Suspense}                                           from 'react';
+import {HashRouter, Navigate, Route, Routes as ReactRoutes} from 'react-router-dom'
+import {Suspense}                                           from 'react'
 
-import DirectRoute         from './DirectRoute';
-import {everySimpleRoutes} from './everyRoutes';
-import LoadingApp          from '../app/LoadingApp';
-import {ProjectLanguages}  from '../lang/ProjectLanguages';
-import {redirectToHome}    from './redirectToHome';
+import DirectRoute         from './DirectRoute'
+import {everySimpleRoutes} from './everyRoutes'
+import LoadingApp          from '../app/LoadingApp'
+import {ProjectLanguages}  from '../lang/ProjectLanguages'
+import {redirectToHome}    from './redirectToHome'
 
 /**
  *
@@ -21,7 +21,7 @@ export default function Routes() {
                 {getRoutesToProjectRoute_InEveryLanguage()}
             </ReactRoutes>
         </Suspense>
-    </HashRouter>;
+    </HashRouter>
 }
 
 function getRedirectRoutesToProjectRoute_InDefault() {
@@ -29,7 +29,7 @@ function getRedirectRoutesToProjectRoute_InDefault() {
         <Route key={`redirect route - ${route.path}`} path={route.path} element={
             <Navigate replace to={`/${ProjectLanguages.default.projectAcronym}${route.path}`}/>
         }/>
-    );
+    )
 }
 
 function getRedirectRoutesToHome_InEveryLanguage() {
@@ -37,7 +37,7 @@ function getRedirectRoutesToHome_InEveryLanguage() {
         <Route key={`redirect route (home) (${language.projectAcronym})`} path={`/${language.projectAcronym}`} element={
             redirectToHome(language)
         }/>
-    );
+    )
 }
 
 function getRoutesToProjectRoute_InEveryLanguage() {
@@ -45,5 +45,5 @@ function getRoutesToProjectRoute_InEveryLanguage() {
         <Route key={`direct route - ${route.name}(${language.projectAcronym})`} path={`/${language.projectAcronym}${route.path}`} element={
             <DirectRoute language={language} route={route}/>
         }/>
-    )).flat();
+    )).flat()
 }

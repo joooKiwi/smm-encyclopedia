@@ -1,25 +1,25 @@
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from '../../entity/Entities.types';
-import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}                                                                                                                                                                                             from '../../entityLimit/EntityLimitTypes.types';
-import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../soundEffectCategory/SoundEffectCategories.types';
-import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../soundEffect/SoundEffects.types';
-import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from '../../mysteryMushroom/MysteryMushrooms.types';
-import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../mysteryMushroom/MysteryMushroom.template';
-import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../behaviour/EntityBehaviours.types';
-import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../entityLimit/EntityLimits.types';
-import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../gameReference/GameReferences.types';
-import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types';
-import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty';
-import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types';
-import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                                                      from '../../instrument/Instruments.types';
-import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from '../../miiCostumeCategory/MiiCostumeCategories.types';
-import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from '../../officialNotification/OfficialNotifications.types';
-import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types';
-import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types';
-import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../nightEffect/NightEffects.types';
-import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                                                    from '../../instrument/loader.types';
-import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from '../../version/Versions.types';
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole';
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath';
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from '../../entity/Entities.types'
+import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}                                                                                                                                                                                             from '../../entityLimit/EntityLimitTypes.types'
+import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../soundEffectCategory/SoundEffectCategories.types'
+import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../soundEffect/SoundEffects.types'
+import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from '../../mysteryMushroom/MysteryMushrooms.types'
+import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../mysteryMushroom/MysteryMushroom.template'
+import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../behaviour/EntityBehaviours.types'
+import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from '../../entityLimit/EntityLimits.types'
+import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from '../../gameReference/GameReferences.types'
+import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from '../../gameStyle/GameStyles.types'
+import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from '../../mysteryMushroom/properties/UnlockProperty'
+import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from '../../entityCategory/EntityCategories.types'
+import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                                                      from '../../instrument/Instruments.types'
+import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from '../../miiCostumeCategory/MiiCostumeCategories.types'
+import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from '../../officialNotification/OfficialNotifications.types'
+import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from '../../predefinedMessage/PredefinedMessages.types'
+import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from '../../theme/Themes.types'
+import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from '../../nightEffect/NightEffects.types'
+import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                                                    from '../../instrument/loader.types'
+import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from '../../version/Versions.types'
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from '../../mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from '../../mysteryMushroom/properties/sound/SoundEffectOnDeath'
 
 //TODO Change some ValueOrStringConstant<*> to return ValueOrNull<*>
 export interface HeaderTypesForConvertorDefinition {
@@ -119,7 +119,7 @@ export interface HeaderTypesForConvertorDefinition {
     //endregion -------------------- Mystery Mushroom --------------------
     //region -------------------- Official notification --------------------
 
-    get everyPossibleNameWithAmount_officialNotification(): ValueOrEmptyArray<EveryPossibleNameWithAmount_OfficialNotification>;
+    get everyPossibleNameWithAmount_officialNotification(): ValueOrEmptyArray<EveryPossibleNameWithAmount_OfficialNotification>
 
     //endregion -------------------- Official notification --------------------
     //region -------------------- Predefined message --------------------
@@ -151,89 +151,89 @@ export interface HeaderTypesForConvertorDefinition {
 //region -------------------- External types --------------------
 
 /** The value received in parameter or <b>null</b>. */
-type ValueOrEmptyArray<T, > = | T | EmptyArray;
+type ValueOrEmptyArray<T, > = | T | EmptyArray
 /** The value received in parameter or simply the {@link StringConstant String constant}. */
-// type ValueOrStringConstant<T, > = | T | StringConstant;
+// type ValueOrStringConstant<T, > = | T | StringConstant
 /** The value received in parameter or simply the {@link EmptyableStringConstant Emptyable string constant}. */
-// type ValueOrEmptyableStringConstant<T, > = | T | EmptyableStringConstant;
-// export type StringConstant = 'string';
-// export type EmptyableStringConstant = `emptyable ${StringConstant}`;
-// export type NumberConstant = 'number';
-// export type StringAndNumberConstants = readonly [StringConstant, NumberConstant,];
+// type ValueOrEmptyableStringConstant<T, > = | T | EmptyableStringConstant
+// export type StringConstant = 'string'
+// export type EmptyableStringConstant = `emptyable ${StringConstant}`
+// export type NumberConstant = 'number'
+// export type StringAndNumberConstants = readonly [StringConstant, NumberConstant,]
 /** An empty array */
-export type EmptyArray = readonly [];
+export type EmptyArray = readonly []
 
-export type UnknownCharacter = '?';
-export type UnknownReference = '???';
+export type UnknownCharacter = '?'
+export type UnknownReference = '???'
 
-export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[];
-export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration)[];
-export type EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference)[];
-export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[];
+export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[]
+export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration)[]
+export type EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference)[]
+export type EveryPossibleName_GameReference = readonly PossibleEnglishName_GameReference[]
 
-export type EveryPossibleAcronym_GameStyle = readonly PossibleAcronym_GameStyle[];
+export type EveryPossibleAcronym_GameStyle = readonly PossibleAcronym_GameStyle[]
 
-export type EveryPossibleName_Entity = readonly PossibleEnglishName_Entity[];
+export type EveryPossibleName_Entity = readonly PossibleEnglishName_Entity[]
 
-export type EveryPossibleAcronym_EntityBehaviour = readonly PossibleAcronym_EntityBehaviour[];
-export type EveryPossibleTranslationKey_EntityBehaviour = readonly PossibleTranslationKey_EntityBehaviour[];
+export type EveryPossibleAcronym_EntityBehaviour = readonly PossibleAcronym_EntityBehaviour[]
+export type EveryPossibleTranslationKey_EntityBehaviour = readonly PossibleTranslationKey_EntityBehaviour[]
 
-export type EveryPossibleName_EntityGroup = readonly string[];
+export type EveryPossibleName_EntityGroup = readonly string[]
 
-export type EveryPossibleName_Theme = readonly PossibleEnglishName_Theme[];
-export type EveryPossibleName_ThemeNightEffect = readonly PossibleEnglishName_Theme_NightEffect[];
+export type EveryPossibleName_Theme = readonly PossibleEnglishName_Theme[]
+export type EveryPossibleName_ThemeNightEffect = readonly PossibleEnglishName_Theme_NightEffect[]
 
-export type EveryPossibleName_EntityCategory = readonly PossibleEnglishName_EntityCategory[];
+export type EveryPossibleName_EntityCategory = readonly PossibleEnglishName_EntityCategory[]
 
-export type EveryPossibleAcronym_EntityLimit = readonly (| PossibleAcronym_EntityLimit | PossibleAlternativeAcronym_EntityLimit)[];
-export type EveryAlternativeAcronym_EntityLimit = readonly PossibleAlternativeAcronym_EntityLimit[];
-export type EveryPossibleName_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit)[];
-export type EveryPossibleNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit | UnknownCharacter)[];
-export type EveryEnglishName_EntityLimit = readonly PossibleEnglishName_EntityLimit[];
-export type EveryEnglishNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | UnknownCharacter)[];
+export type EveryPossibleAcronym_EntityLimit = readonly (| PossibleAcronym_EntityLimit | PossibleAlternativeAcronym_EntityLimit)[]
+export type EveryAlternativeAcronym_EntityLimit = readonly PossibleAlternativeAcronym_EntityLimit[]
+export type EveryPossibleName_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit)[]
+export type EveryPossibleNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | PossibleAlternativeEnglishName_EntityLimit | UnknownCharacter)[]
+export type EveryEnglishName_EntityLimit = readonly PossibleEnglishName_EntityLimit[]
+export type EveryEnglishNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | UnknownCharacter)[]
 
-export type EveryPossibleEnglishName_EntityLimitType = EnumArray_EnglishName_EntityLimitType;
+export type EveryPossibleEnglishName_EntityLimitType = EnumArray_EnglishName_EntityLimitType
 
-export type EveryPossibleEnglishName_SoundEffect = EnumArray_EnglishName_SoundEffect;
-export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName_SoundEffectCategory;
+export type EveryPossibleEnglishName_SoundEffect = EnumArray_EnglishName_SoundEffect
+export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName_SoundEffectCategory
 
 //region -------------------- Mii costume --------------------
 
-export type EveryPossibleName_MiiCostumeCategory = readonly PossibleEnglishName_MiiCostumeCategory[];
+export type EveryPossibleName_MiiCostumeCategory = readonly PossibleEnglishName_MiiCostumeCategory[]
 
 //endregion -------------------- Mii costume --------------------
 //region -------------------- Mystery Mushroom --------------------
 
-export type EveryPossibleUniqueEnglishName_MysteryMushroom = readonly UniqueEnglishName_MysteryMushroom[];
-export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt_MysteryMushroom[];
+export type EveryPossibleUniqueEnglishName_MysteryMushroom = readonly UniqueEnglishName_MysteryMushroom[]
+export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt_MysteryMushroom[]
 
-export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, | null | UnknownReference> | UnknownReference)[];
+export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, | null | UnknownReference> | UnknownReference)[]
 
-export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | UnknownReference> | UnknownReference)[];
+export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | UnknownReference> | UnknownReference)[]
 
 //endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------
 
-export type EveryPossibleNameWithAmount_OfficialNotification = readonly (PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount)[];
+export type EveryPossibleNameWithAmount_OfficialNotification = readonly (PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount)[]
 
 //endregion -------------------- Official notification --------------------
 //region -------------------- Predefined message --------------------
 
-export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglishName_PredefinedMessage[];
+export type EveryPossibleEnglishName_PredefinedMessage = readonly PossibleEnglishName_PredefinedMessage[]
 
 //endregion -------------------- Predefined message --------------------
 //region -------------------- Instrument --------------------
 
-export type EveryPossibleName_Instrument = readonly PossibleEnglishName_Instrument[];
-export type EveryPossibleNameOnEntity_Instrument = readonly (| PossibleEnglishName_Instrument | PossibleMixedName_Instrument)[];
+export type EveryPossibleName_Instrument = readonly PossibleEnglishName_Instrument[]
+export type EveryPossibleNameOnEntity_Instrument = readonly (| PossibleEnglishName_Instrument | PossibleMixedName_Instrument)[]
 
 //endregion -------------------- Instrument --------------------
 //region -------------------- Version --------------------
 
-export type EveryPossibleName_Version = readonly PossibleName_Version[];
-export type EveryPossibleName_Version_SMM = readonly PossibleName_Version_SMM[];
-export type EveryPossibleName_Version_SMM3DS = readonly PossibleName_Version_SMM3DS[];
-export type EveryPossibleName_Version_SMM2 = readonly PossibleName_Version_SMM2[];
+export type EveryPossibleName_Version = readonly PossibleName_Version[]
+export type EveryPossibleName_Version_SMM = readonly PossibleName_Version_SMM[]
+export type EveryPossibleName_Version_SMM3DS = readonly PossibleName_Version_SMM3DS[]
+export type EveryPossibleName_Version_SMM2 = readonly PossibleName_Version_SMM2[]
 
 //endregion -------------------- Version --------------------
 

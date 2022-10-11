@@ -1,8 +1,8 @@
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey';
-import type {ThemeProperty}      from './ThemeProperty';
+import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
+import type {ThemeProperty}      from './ThemeProperty'
 
-import {AbstractProvider}       from '../../../../util/provider/AbstractProvider';
-import {ThemePropertyContainer} from './ThemeProperty.container';
+import {AbstractProvider}       from '../../../../util/provider/AbstractProvider'
+import {ThemePropertyContainer} from './ThemeProperty.container'
 
 /**
  * @singleton
@@ -13,14 +13,14 @@ export class ThemePropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: ThemePropertyProvider;
+    static #instance?: ThemePropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -43,7 +43,7 @@ export class ThemePropertyProvider
     public get(...argumentsReceived: ArgumentsReceived): ThemeProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new ThemePropertyContainer(...argumentsReceived,)))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
@@ -59,4 +59,4 @@ type ArgumentsReceived = readonly [
     isInGhostHouseTheme: boolean,
     isInAirshipTheme: boolean,
     isInCastleTheme: boolean,
-];
+]

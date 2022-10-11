@@ -1,14 +1,15 @@
-import {PureComponent} from 'react';
+import {PureComponent} from 'react'
 
-import type {ModalProperties}                           from '../ModalContainers.types';
-import type {PossibleContent, PossibleTooltipPlacement} from './AbstractNavigationButton.types';
-import type {ReactComponent}                            from '../../util/react/ReactComponent';
-import type {ReactElement, ReactProperties}             from '../../util/react/ReactProperties';
-import type {TranslationMethod}                         from '../../lang/components/TranslationProperty';
+import type {ModalProperties}               from '../ModalContainers.types'
+import type {PossibleContent}               from './AbstractNavigationButton.types'
+import type {PossibleTooltipPlacement}      from '../../bootstrap/Bootstrap.types'
+import type {ReactComponent}                from '../../util/react/ReactComponent'
+import type {ReactElement, ReactProperties} from '../../util/react/ReactProperties'
+import type {TranslationMethod}             from '../../lang/components/TranslationProperty'
 
-import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
-import Tooltip                     from '../../bootstrap/tooltip/Tooltip';
-import ModalButton                 from '../../bootstrap/modal/element/ModalButton';
+import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent'
+import Tooltip                     from '../../bootstrap/tooltip/Tooltip'
+import ModalButton                 from '../../bootstrap/modal/element/ModalButton'
 
 interface NavButtonProperties
     extends ReactProperties, ModalProperties {
@@ -35,12 +36,12 @@ export abstract class AbstractNavigationButton
      * Otherwise (<b>false</b>), this will be "light".
      * </b>
      */
-    protected abstract get _isTopButton(): boolean;
+    protected abstract get _isTopButton(): boolean
 
     /**
      * The current id of the {@link ModalButton button}
      */
-    protected abstract get _id(): string;
+    protected abstract get _id(): string
 
     /**
      * The tooltip placement as only left for the right buttons
@@ -48,13 +49,13 @@ export abstract class AbstractNavigationButton
      *
      * @return the tooltip placement
      */
-    protected abstract get _tooltipPlacement(): PossibleTooltipPlacement;
+    protected abstract get _tooltipPlacement(): PossibleTooltipPlacement
 
     /**
      * The added classes (as a bootstrap svg)
      */
     protected get _addedClass(): string {
-        return '';
+        return ''
     }
 
     /**
@@ -63,15 +64,15 @@ export abstract class AbstractNavigationButton
      * @param translation the {@link TranslationMethod translation method}
      * @return a single content or a content that is hidden once the screen is shorter
      */
-    protected abstract _getContent(translation: TranslationMethod<'content'>,): PossibleContent;
+    protected abstract _getContent(translation: TranslationMethod<'content'>,): PossibleContent
 
     public override render(): ReactElement {
         return <ContentTranslationComponent>{translation => {
-            const isTopButton = this._isTopButton;
-            const id = this._id;
-            const contentValue = this._getContent(translation);
-            const willBeHiddenOnShorterScreen = typeof contentValue != 'string';
-            const content = willBeHiddenOnShorterScreen ? contentValue[0] : contentValue;
+            const isTopButton = this._isTopButton
+            const id = this._id
+            const contentValue = this._getContent(translation)
+            const willBeHiddenOnShorterScreen = typeof contentValue != 'string'
+            const content = willBeHiddenOnShorterScreen ? contentValue[0] : contentValue
 
             return <Tooltip elementId={id} option={({title: content, placement: this._tooltipPlacement,})}>
                 <ModalButton key={`navigation button (${id})`} id={id} elementToShow={this.props.id}
@@ -81,9 +82,9 @@ export abstract class AbstractNavigationButton
                         : <span key={`navigation text button (${id})`} className="btn-navigation-text">{content}</span>
                 }
                 </ModalButton>
-            </Tooltip>;
+            </Tooltip>
         }
-        }</ContentTranslationComponent>;
+        }</ContentTranslationComponent>
     }
 
 }

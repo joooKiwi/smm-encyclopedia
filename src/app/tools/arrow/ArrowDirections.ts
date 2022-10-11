@@ -1,7 +1,7 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ArrowDirections.types';
-import type {StaticReference}                                                                                                                                                                     from '../../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ArrowDirections.types'
+import type {StaticReference}                                                                                                                                                                     from '../../../util/enum/Enum.types'
 
-import {Enum} from '../../../util/enum/Enum';
+import {Enum} from '../../../util/enum/Enum'
 
 /**
  * The arrow direction.<br/>
@@ -15,30 +15,30 @@ export class ArrowDirections
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly HORIZONTAL = new ArrowDirections('horizontal',);
-    public static readonly VERTICAL =   new ArrowDirections('vertical',);
+    public static readonly HORIZONTAL = new ArrowDirections('horizontal',)
+    public static readonly VERTICAL =   new ArrowDirections('vertical',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: ArrowDirections;
+    static [index: number]: ArrowDirections
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #value;
+    readonly #value
 
     //endregion -------------------- Fields --------------------
 
     private constructor(value: PossibleName,) {
-        super();
-        this.#value = value;
+        super()
+        this.#value = value
     }
 
     //region -------------------- Getter methods --------------------
 
     public get value(): PossibleName {
-        return this.#value;
+        return this.#value
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -47,14 +47,14 @@ export class ArrowDirections
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<ArrowDirections> {
-        return ArrowDirections;
+        return ArrowDirections
     }
 
     //region -------------------- Enum value methods --------------------
 
     protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.value === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(value: | null | undefined,): null
@@ -67,17 +67,17 @@ export class ArrowDirections
     public static getValue(value: PossibleNonNullableValue,): ArrowDirections
     public static getValue(value: PossibleValue,): | ArrowDirections | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

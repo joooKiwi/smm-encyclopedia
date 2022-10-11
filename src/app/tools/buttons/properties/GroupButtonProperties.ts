@@ -1,5 +1,5 @@
-import type {BootstrapColor}  from '../../../../bootstrap/Bootstrap.types';
-import type {ReactProperties} from '../../../../util/react/ReactProperties';
+import type {BootstrapColor}  from '../../../../bootstrap/Bootstrap.types'
+import type {ReactProperties} from '../../../../util/react/ReactProperties'
 
 export interface GroupButtonProperties<T, >
     extends ReactProperties {

@@ -1,7 +1,7 @@
-import type {Name}                          from '../../../lang/name/Name';
-import type {ClassInAnySuperMarioMakerGame} from '../../../core/game/ClassInAnySuperMarioMakerGame';
-import type {GameStyles}                    from '../../../core/gameStyle/GameStyles';
-import type {Entities}                      from '../../../core/entity/Entities';
+import type {Name}                          from '../../../lang/name/Name'
+import type {ClassInAnySuperMarioMakerGame} from '../../../core/game/ClassInAnySuperMarioMakerGame'
+import type {GameStyles}                    from '../../../core/gameStyle/GameStyles'
+import type {Entities}                      from '../../../core/entity/Entities'
 
 export interface PowerUpPriority {
 
@@ -33,6 +33,6 @@ export interface PowerUpByAllGameStylesPriority
 
 }
 
-export type PossibleGameStyles = | readonly [GameStyles, GameStyles,] | readonly [GameStyles, GameStyles, GameStyles,] | readonly [GameStyles, GameStyles, GameStyles, GameStyles,];
-export type ImagesCallback = () => readonly string[];
-export type ImageRetrieverCallback = (entity: Entities, gameStyle: GameStyles,) => readonly string[];
+export type PossibleGameStyles = | readonly [GameStyles, GameStyles,] | readonly [GameStyles, GameStyles, GameStyles,] | readonly [GameStyles, GameStyles, GameStyles, GameStyles,]
+export type ImagesCallback = () => readonly string[]
+export type ImageRetrieverCallback = (entity: Entities, gameStyle: GameStyles,) => readonly string[]

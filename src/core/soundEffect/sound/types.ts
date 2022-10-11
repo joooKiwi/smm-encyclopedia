@@ -1,4 +1,4 @@
-import type {PossibleEnglishName} from '../SoundEffects.types';
+import type {PossibleEnglishName} from '../SoundEffects.types'
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
 
@@ -59,7 +59,7 @@ interface SoundEffectSoundTemplateMap_SMM1Exclusive {
     'Super Mario Kart': never
     'Super Mario 64': never
     'Super Mario Sunshine': never
-    'Super Mario Galaxy': never,
+    'Super Mario Galaxy': never
 
 }
 
@@ -122,7 +122,7 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Super Mario Kart': never
     'Super Mario 64': never
     'Super Mario Sunshine': never
-    'Super Mario Galaxy': never,
+    'Super Mario Galaxy': never
 
 }
 
@@ -140,9 +140,9 @@ type SoundEffectSoundNamesForTelephone = readonly [
     'yr_SToy_11_TEL_3D_H_Short_L_pxsps_l_ear', 'yr_SToy_11_TEL_3D_H_Short_R_pxsps_r_ear',
     'yr_SToy_11_TEL_3D_L_Long_L_pxsps_l_ear', 'yr_SToy_11_TEL_3D_L_Long_R_pxsps_r_ear',
     'yr_SToy_11_TEL_3D_L_Short_L_pxsps_l_ear', 'yr_SToy_11_TEL_3D_L_Short_R_pxsps_r_ear',
-];
+]
 
-export type SoundEffectSoundNamesForTwistyTurnyAndWoozy = readonly ['Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',];
+export type SoundEffectSoundNamesForTwistyTurnyAndWoozy = readonly ['Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',]
 type SoundEffectSoundNamesForPeaceful = readonly [
     'Otoasobi_Calm_Hit_01',
     'Otoasobi_Calm_Harp_01', 'Otoasobi_Calm_Harp_02', 'Otoasobi_Calm_Harp_03', 'Otoasobi_Calm_Harp_04', 'Otoasobi_Calm_Harp_05', 'Otoasobi_Calm_Harp_06', 'Otoasobi_Calm_Harp_07', 'Otoasobi_Calm_Harp_09', 'Otoasobi_Calm_Harp_10',
@@ -151,48 +151,48 @@ type SoundEffectSoundNamesForPeaceful = readonly [
     'Otoasobi_Horror_SE_04',
     // 'M1_BGM_Otoasobi_Link_Healing',
     // 'BGM_M1_USA_Ending',
-];
+]
 type SoundEffectSoundNamesForHorror = readonly [
     'Otoasobi_Calm_SE_06',
     'Otoasobi_Horror_01', 'Otoasobi_Horror_02', 'Otoasobi_Horror_03', 'Otoasobi_Horror_04', 'Otoasobi_Horror_05',
     'Otoasobi_Horror_SE_01', 'Otoasobi_Horror_SE_02', 'Otoasobi_Horror_SE_03', 'Otoasobi_Horror_SE_04', 'Otoasobi_Horror_SE_05', 'Otoasobi_Horror_SE_06', 'Otoasobi_Horror_SE_07', 'Otoasobi_Horror_SE_08',
     'Otoasobi_Horror_Strings_01', 'Otoasobi_Horror_Strings_02',
-];
+]
 
 //endregion -------------------- Name for ... --------------------
 //region -------------------- Value for map --------------------
 
-type PossibleEditorValue<NAMES extends readonly string[], > = | NAMES[number] | null;
-type PossibleValueOnLinkOrSMB2Value<NAMES extends readonly string[], > = | readonly [] | readonly [NAMES[number],] | readonly [NAMES[number], NAMES[number],];
+type PossibleEditorValue<NAMES extends readonly string[], > = | NAMES[number] | null
+type PossibleValueOnLinkOrSMB2Value<NAMES extends readonly string[], > = | readonly [] | readonly [NAMES[number],] | readonly [NAMES[number], NAMES[number],]
 
 interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR extends PossibleEditorValue<SOUNDS>, LINK_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, SMB2_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, > {
     sounds: SOUNDS
     editorName: NAME_IN_EDITOR
     linkNames: LINK_NAMES
-    smb2Names: SMB2_NAMES,
+    smb2Names: SMB2_NAMES
 }
 
-type SoundEffectFromSoundEffect<SOUND extends SoundEffectSound<any, any, any, any>, > = SOUND;
-type NoSoundEffectSound = SoundEffectSound<[], null, [], []>;
+type SoundEffectFromSoundEffect<SOUND extends SoundEffectSound<any, any, any, any>, > = SOUND
+type NoSoundEffectSound = SoundEffectSound<[], null, [], []>
 
 //region -------------------- Sound effect --------------------
 
-type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, [], []>>;
-type SoundEffectSound_NoEditor<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, [], []>>;
-type SoundEffectSound_Editor1<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [], []>>;
-type SoundEffectSound_Editor2<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[1], [], []>>;
-type SoundEffectSound_Editor3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[2], [], []>>;
-// type SoundEffectSound_Editor4<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[3], [], []>>;
-type SoundEffectSound_Editor5<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[4], [], []>>;
-// type SoundEffectSound_Editor6<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[5], [], []>>;
-type SoundEffectSound_Editor7<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[6], [], []>>;
-type SoundEffectSound_Editor10<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], [], []>>;
-type SoundEffectSound_Editor1_Link3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], []>>;
+type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, [], []>>
+type SoundEffectSound_NoEditor<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, [], []>>
+type SoundEffectSound_Editor1<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [], []>>
+type SoundEffectSound_Editor2<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[1], [], []>>
+type SoundEffectSound_Editor3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[2], [], []>>
+// type SoundEffectSound_Editor4<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[3], [], []>>
+type SoundEffectSound_Editor5<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[4], [], []>>
+// type SoundEffectSound_Editor6<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[5], [], []>>
+type SoundEffectSound_Editor7<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[6], [], []>>
+type SoundEffectSound_Editor10<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], [], []>>
+type SoundEffectSound_Editor1_Link3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], []>>
 
 //endregion -------------------- Sound effect --------------------
 
 //endregion -------------------- Value for map --------------------
 
-export type PossibleSoundEffectSoundName_SMM1 = SoundEffectSoundTemplateMap_SMM1Exclusive[PossibleEnglishName]['sounds'][number];
-export type PossibleSoundEffectSoundName_SMM2 = | SoundEffectSoundTemplateMap_SMM2Exclusive[PossibleEnglishName]['sounds'][number];
-export type PossibleSoundEffectSoundName = | PossibleSoundEffectSoundName_SMM1 | PossibleSoundEffectSoundName_SMM2;
+export type PossibleSoundEffectSoundName_SMM1 = SoundEffectSoundTemplateMap_SMM1Exclusive[PossibleEnglishName]['sounds'][number]
+export type PossibleSoundEffectSoundName_SMM2 = | SoundEffectSoundTemplateMap_SMM2Exclusive[PossibleEnglishName]['sounds'][number]
+export type PossibleSoundEffectSoundName = | PossibleSoundEffectSoundName_SMM1 | PossibleSoundEffectSoundName_SMM2

@@ -1,4 +1,4 @@
-import {PossibleDimension} from '../withInterpreter/ListDimension.creator.types';
+import {PossibleDimension} from '../withInterpreter/ListDimension.creator.types'
 
 export interface DimensionOnList<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,
@@ -51,5 +51,5 @@ export interface DimensionOnList<DEFAULT extends PossibleDimension = PossibleDim
 
 }
 
-export type PossibleDimensionOnList = | Partial<DimensionOnList> | null;
-export type PossibleDimensionOnCardList = | Partial<DimensionOnList> | 'list' | null;
+export type PossibleDimensionOnList = | Partial<DimensionOnList> | null
+export type PossibleDimensionOnCardList = | Partial<DimensionOnList> | 'list' | null

@@ -1,21 +1,21 @@
-import {Fragment} from 'react';
-import {Link}     from 'react-router-dom';
+import {Fragment} from 'react'
+import {Link}     from 'react-router-dom'
 
-import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './NightEffects.types';
-import type {EveryPossibleRouteNames}                                                                                                                                                                    from '../../routes/everyRoutes.types';
-import type {ReactElement}                                                                                                                                                                               from '../../util/react/ReactProperties';
-import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types';
-import type {TranslationMethod, TranslationReplaceKeysMap}                                                                                                                                               from '../../lang/components/TranslationProperty';
+import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName'
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './NightEffects.types'
+import type {EveryPossibleRouteNames}                                                                                                                                                                    from '../../routes/everyRoutes.types'
+import type {ReactElement}                                                                                                                                                                               from '../../util/react/ReactProperties'
+import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types'
+import type {TranslationMethod, TranslationReplaceKeysMap}                                                                                                                                               from '../../lang/components/TranslationProperty'
 
-import {EMPTY_OBJECT}                  from '../../util/emptyVariables';
-import {Enum}                          from '../../util/enum/Enum';
-import {Entities}                      from '../entity/Entities';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {ProjectLanguages}              from '../../lang/ProjectLanguages';
-import {route}                         from '../../routes/route';
-import {StringContainer}               from '../../util/StringContainer';
-import {Themes}                        from '../theme/Themes';
+import {EMPTY_OBJECT}                  from '../../util/emptyVariables'
+import {Enum}                          from '../../util/enum/Enum'
+import {Entities}                      from '../entity/Entities'
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
+import {ProjectLanguages}              from '../../lang/ProjectLanguages'
+import {route}                         from '../../routes/route'
+import {StringContainer}               from '../../util/StringContainer'
+import {Themes}                        from '../theme/Themes'
 
 export class NightEffects
     extends Enum<Ordinals, Names>
@@ -29,11 +29,11 @@ export class NightEffects
             //TODO change the link to be only for the entities with special effects on ground night
             return {
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
-            };
+            }
         }
 
-    }('Special effect on entities',);
-    public static readonly SCREEN_UPSIDE_DOWN =         new NightEffects('Screen upside down',);
+    }('Special effect on entities',)
+    public static readonly SCREEN_UPSIDE_DOWN =         new NightEffects('Screen upside down',)
     public static readonly DARK =                       new class NightEffects_Dark extends NightEffects {
 
         protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
@@ -41,41 +41,41 @@ export class NightEffects
             return {
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
                 players: NightEffects._createPlayersLink(this),
-            };
+            }
         }
 
-    }('Dark',);
+    }('Dark',)
     public static readonly WIND =                       new class NightEffects_Wind extends NightEffects {
 
         protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
                 gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{translation('Game style').toLowerCase()}</Link>,
-            };
+            }
         }
 
-    }('Wind',);
-    public static readonly SLIPPERY =                   new NightEffects('Slippery',);
+    }('Wind',)
+    public static readonly SLIPPERY =                   new NightEffects('Slippery',)
     public static readonly LOW_GRAVITY =                new class NightEffects_LowGravity extends NightEffects {
 
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
-            };
+            }
         }
 
-    }('Low gravity',);
+    }('Low gravity',)
     public static readonly POISON_LIQUID =              new class NightEffects_PoisonLiquid extends NightEffects {
 
         protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             return {
                 water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.WATER.reference)!.toLowerCase()}</span>,
                 poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.POISON.reference)!.toLowerCase()}</span>,
-            };
+            }
         }
 
-    }('Poison liquid',);
+    }('Poison liquid',)
     public static readonly ENTITIES_IN_WATER =          new class NightEffects_EntitiesInWater extends NightEffects {
 
         protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
@@ -83,92 +83,92 @@ export class NightEffects
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
-            };
+            }
         }
 
-    }('Entities in water',);
+    }('Entities in water',)
     public static readonly CHARACTERS_IN_WATER =        new class NightEffects_CharactersInWater extends NightEffects {
 
         protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
                 players: NightEffects._createPlayersLink(this),
-            };
+            }
         }
 
-    }('Characters in water',);
+    }('Characters in water',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: NightEffects;
+    static [index: number]: NightEffects
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #englishName;
+    readonly #englishName
 
     //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
-        super();
-        this.#englishName = new StringContainer(englishName);
+        super()
+        this.#englishName = new StringContainer(englishName)
     }
 
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName.get;
+        return this.#englishName.get
     }
 
     public get englishNameInHtml(): string {
-        return this.#englishName.getInHtml;
+        return this.#englishName.getInHtml
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     protected static _createUnderwaterImage(instance: NightEffects,): ReactElement {
-        return <Fragment key={`${instance.englishName} (underwater)`}>{Themes.UNDERWATER.renderSingleComponent(true)}</Fragment>;
+        return <Fragment key={`${instance.englishName} (underwater)`}>{Themes.UNDERWATER.renderSingleComponent(true)}</Fragment>
     }
 
     protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
         //TODO add entities translation
-        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">--entities--</Link>;
+        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">--entities--</Link>
     }
 
     protected static _createPlayersLink(instance: NightEffects,): ReactElement {
         //TODO add players translation
-        return <span key={`${instance.englishName} (players)`} className="text-decoration-underline">--players--</span>;
+        return <span key={`${instance.englishName} (players)`} className="text-decoration-underline">--players--</span>
     }
 
     protected _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
-        return EMPTY_OBJECT;
+        return EMPTY_OBJECT
     }
 
     public get createNewComponent(): ReactElement {
         return <GameContentTranslationComponent>{translation =>
             <GameContentTranslationComponent translationKey={`nightEffect.${this.englishName}`} replace={this._createReplaceComponent(translation)}/>
-        }</GameContentTranslationComponent>;
+        }</GameContentTranslationComponent>
     }
 
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName);
+        return this.values.map(limit => limit.englishName)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<NightEffects> {
-        return NightEffects;
+        return NightEffects
     }
 
     //region -------------------- Enum value methods --------------------
 
     protected static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(nullValue: | null | undefined,): null
@@ -181,17 +181,17 @@ export class NightEffects
     public static getValue(value: PossibleNonNullableValue,): NightEffects
     public static getValue(value: PossibleValue,): | NightEffects | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

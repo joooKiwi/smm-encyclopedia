@@ -1,8 +1,8 @@
-import type {TimeProperty}       from './TimeProperty';
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey';
+import type {TimeProperty}       from './TimeProperty'
+import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}      from '../../../../util/provider/AbstractProvider';
-import {TimePropertyContainer} from './TimeProperty.container';
+import {AbstractProvider}      from '../../../../util/provider/AbstractProvider'
+import {TimePropertyContainer} from './TimeProperty.container'
 
 /**
  * @singleton
@@ -13,14 +13,14 @@ export class TimePropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: TimePropertyProvider;
+    static #instance?: TimePropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -35,7 +35,7 @@ export class TimePropertyProvider
     public get(...argumentsReceived: ArgumentsReceived): TimeProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new TimePropertyContainer(...argumentsReceived,),))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
@@ -43,4 +43,4 @@ export class TimePropertyProvider
 type ArgumentsReceived = readonly [
     isInDayTheme: boolean,
     isInNightTheme: | boolean | null,
-];
+]

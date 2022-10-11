@@ -1,18 +1,18 @@
-import type {PossibleFileName, PossibleStartingName_WithSingingPartBefore} from '../EditorVoiceSound';
+import type {PossibleFileName, PossibleStartingName_WithSingingPartBefore} from '../EditorVoiceSound'
 
-import {AbstractEditorVoiceSoundHolder} from './AbstractEditorVoiceSoundHolder';
+import {AbstractEditorVoiceSoundHolder} from './AbstractEditorVoiceSoundHolder'
 
 export class EditorVoiceSoundHolderWithSingingPartBefore<U extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
     extends AbstractEditorVoiceSoundHolder<never, U> {
 
     public constructor(fileName: U,) {
-        super(fileName);
+        super(fileName)
     }
 
     //region -------------------- Creator methods --------------------
 
     protected override _createFileName(): PossibleFileName<never, U> {
-        return `se_ui_singingparts_${this._simpleFileName}`;
+        return `se_ui_singingparts_${this._simpleFileName}`
     }
 
     //endregion -------------------- Creator methods --------------------

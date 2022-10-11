@@ -1,16 +1,16 @@
-import type {ClassInAnySuperMarioMakerGame}                                              from '../../../core/game/ClassInAnySuperMarioMakerGame';
-import type {Entities}                                                                   from '../../../core/entity/Entities';
-import type {ImageRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from './PowerUpPriority';
-import type {ObjectHolder}                                                               from '../../../util/holder/ObjectHolder';
+import type {ClassInAnySuperMarioMakerGame}                                              from '../../../core/game/ClassInAnySuperMarioMakerGame'
+import type {Entities}                                                                   from '../../../core/entity/Entities'
+import type {ImageRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from './PowerUpPriority'
+import type {ObjectHolder}                                                               from '../../../util/holder/ObjectHolder'
 
-import {AbstractPowerUpBySMM1GameStylesPriority} from './AbstractPowerUpBySMM1GameStylesPriority';
-import {DelayedObjectHolderContainer}            from '../../../util/holder/DelayedObjectHolder.container';
-import {GameStyles}                              from '../../../core/gameStyle/GameStyles';
-import {ObjectHolders}                           from '../../../util/holder/objectHolders';
+import {AbstractPowerUpBySMM1GameStylesPriority} from './AbstractPowerUpBySMM1GameStylesPriority'
+import {DelayedObjectHolderContainer}            from '../../../util/holder/DelayedObjectHolder.container'
+import {GameStyles}                              from '../../../core/gameStyle/GameStyles'
+import {ObjectHolders}                           from '../../../util/holder/objectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 
-const {SUPER_MARIO_3D_WORLD} = GameStyles;
+const {SUPER_MARIO_3D_WORLD,} = GameStyles
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -20,20 +20,20 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
 
     //region -------------------- Fields --------------------
 
-    readonly #sm3dwImagesHolder: ObjectHolder<readonly string[]>;
+    readonly #sm3dwImagesHolder: ObjectHolder<readonly string[]>
 
     //endregion -------------------- Fields --------------------
 
     protected constructor(entity: Entities, gameStylesDisplayed: | GameStyles | PossibleGameStyles, callback: ImageRetrieverCallback, isIn: ClassInAnySuperMarioMakerGame,) {
-        super(entity, gameStylesDisplayed, callback, isIn,);
-        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? new DelayedObjectHolderContainer(() => callback(entity, SUPER_MARIO_3D_WORLD)) : ObjectHolders.EMPTY_ARRAY;
+        super(entity, gameStylesDisplayed, callback, isIn,)
+        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? new DelayedObjectHolderContainer(() => callback(entity, SUPER_MARIO_3D_WORLD)) : ObjectHolders.EMPTY_ARRAY
 
     }
 
     //region -------------------- Getter methods --------------------
 
     public get sm3dwImages(): readonly string[] {
-        return this.#sm3dwImagesHolder.get;
+        return this.#sm3dwImagesHolder.get
     }
 
     //endregion -------------------- Getter methods --------------------

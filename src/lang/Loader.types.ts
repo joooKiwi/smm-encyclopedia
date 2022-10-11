@@ -2,10 +2,10 @@
 
 //region -------------------- Single property --------------------
 
-type NonNullableLanguage = string;
-type NonNullableArrayLanguage = | [string, null, null,] | [null, string, string,];
-type NullableLanguage = | NonNullableLanguage | null;
-type NullableArrayLanguage = | NonNullableArrayLanguage | [null, null, null,];
+type NonNullableLanguage = string
+type NonNullableArrayLanguage = | [string, null, null,] | [null, string, string,]
+type NullableLanguage = | NonNullableLanguage | null
+type NullableArrayLanguage = | NonNullableArrayLanguage | [null, null, null,]
 
 //endregion -------------------- Single property --------------------
 //region -------------------- PropertiesArray --------------------
@@ -33,7 +33,7 @@ export type PropertiesArray<ENGLISH extends NullableLanguage = NullableLanguage,
     japanese: JAPANESE,
     chinese: CHINESE, traditionalChinese: TRADITIONAL_CHINESE, simplifiedChinese: SIMPLIFIED_CHINESE,
     korean: KOREAN,
-];
+]
 export type PropertiesArrayWithOptionalLanguages<ENGLISH extends NullableLanguage = NullableLanguage, AMERICAN_ENGLISH extends NullableLanguage = NullableLanguage, EUROPEAN_ENGLISH extends NullableLanguage = NullableLanguage,
     FRENCH extends NullableLanguage = NullableLanguage, CANADIAN_FRENCH extends NullableLanguage = NullableLanguage, EUROPEAN_FRENCH extends NullableLanguage = NullableLanguage,
     GERMAN extends NullableLanguage = NullableLanguage,
@@ -65,7 +65,7 @@ export type PropertiesArrayWithOptionalLanguages<ENGLISH extends NullableLanguag
     POLISH,
     UKRAINIAN,
     GREEK,
-];
+]
 
 export type NonNullablePropertiesArray = readonly [
     /*english*/ ...NonNullableArrayLanguage,
@@ -79,7 +79,7 @@ export type NonNullablePropertiesArray = readonly [
     /*japanese*/ NonNullableLanguage,
     /*chinese*/  ...NonNullableArrayLanguage,
     /*korean*/ NonNullableLanguage,
-];
+]
 export type DefaultNonNullablePropertiesArray = readonly [
     /*english*/ ...NonNullableArrayLanguage,
     /*french*/ ...NonNullableArrayLanguage,
@@ -92,8 +92,7 @@ export type DefaultNonNullablePropertiesArray = readonly [
     /*japanese*/ NullableLanguage,
     /*chinese*/  ...NullableArrayLanguage,
     /*korean*/ NullableLanguage,
-];
-
+]
 
 //endregion -------------------- PropertiesArray ------------------
 
